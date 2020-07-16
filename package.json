@@ -53,6 +53,7 @@
   },
   "devDependencies": {
     "@types/node": "^12.12.47",
+    "@types/xml2js": "^0.4.5",
     "@typescript-eslint/parser": "^2.2.7",
     "concurrently": "^4.1.0",
     "eslint": "^5.16.0",

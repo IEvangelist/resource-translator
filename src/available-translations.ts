@@ -1,4 +1,4 @@
-import { Translations } from "./translations";
+import { Translations } from "./translation-locales";
 
 export class AvailableTranslations {
     readonly translations: Translations;

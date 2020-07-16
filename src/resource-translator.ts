@@ -2,6 +2,8 @@
 // subscriptionKey: c57xxxxxxxxxxxxxxxxxxxxxxxxxxac3
 // endpoint:        https://api.cognitive.microsofttranslator.com/
 
+//  This looks interesting: https://github.com/ryanluton/translate-resx/blob/master/translate-resx.js
+
 /**
  * WORKFLOW
  * 
