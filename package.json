@@ -46,8 +46,7 @@
     "@actions/glob": "^0.1.0",
     "@actions/io": "^1.0.2",
     "@actions/tool-cache": "^1.5.5",
-    "request": "^2.88.2",
-    "request-promise": "^4.2.5",
+    "axios": "^0.19.2",
     "uuidv4": "^6.1.1",
     "xml2js": "^0.4.23"
   },
@@ -55,6 +54,7 @@
     "@types/node": "^12.12.47",
     "@types/xml2js": "^0.4.5",
     "@typescript-eslint/parser": "^2.2.7",
+    "@types/axios": "^0.14.0",
     "concurrently": "^4.1.0",
     "eslint": "^5.16.0",
     "eslint-plugin-github": "^2.0.0",

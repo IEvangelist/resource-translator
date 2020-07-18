@@ -1,4 +1,4 @@
-export async function translate(xml: string) {
+export async function getTranslatableText(xml: string) {
     const values = xml.root.data;
     const textToTranslate = [];
     for (let i = 0; i < values.length; i++) {
@@ -7,4 +7,6 @@ export async function translate(xml: string) {
 
         textToTranslate.push(value);
     }
+
+    return textToTranslate;
 }

@@ -1,20 +1,19 @@
-declare module namespace {
+export interface DetectedLanguage {
+    language: string;
+    score: number;
+}
 
-    export interface DetectedLanguage {
-        language: string;
-        score: number;
-    }
+export interface Result {
+    text: string;
+    to: string;
+}
 
-    export interface Translation {
-        text: string;
-        to: string;
-    }
+export interface TranslationResult {
+    detectedLanguage: DetectedLanguage;
+    translations: Result[];
+}
 
-    export interface TranslationResult {
-        detectedLanguage: DetectedLanguage;
-        translations: Translation[];
-    }
-
+// https://docs.microsoft.com/en-us/azure/cognitive-services/translator/quickstart-translate?pivots=programming-language-javascript#sample-response
 // [
 //     {
 //         "detectedLanguage": {

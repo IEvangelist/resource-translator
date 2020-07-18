@@ -14,14 +14,17 @@
  * Get resource files based on 'baseFileGlob' from source
  * For each resource file:
  *    Parse XML, translate each key/value pair, write out resulting translations
- * Create PR based on newly created translation files
- * 
+ * Create PR based on newly created translation files * 
  */
 
 import { getInput, setOutput, setFailed } from '@actions/core';
 import { context } from '@actions/github';
+import { getAvailableTranslations, translate } from './api';
 import { request } from 'request';
 import { uuid } from 'uuidv4';
+import { findAllResourceFiles } from './resource-finder';
+import { readFile } from './resource-io';
+import { getTranslatableText } from './translator';
 
 interface Options {
     baseFileGlob: string;
@@ -41,36 +44,59 @@ function getOptions(): Options {
     }
 }
 
-try {
-    const inputOptions = getOptions();
-    if (!inputOptions) {
-        setFailed('Both a subscriptionKey and endpoint are required.');
-    } else {
-        let options = {
-            method: 'POST',
-            baseUrl: inputOptions.endpoint,
-            url: 'translate',
-            qs: {
-                'api-version': '3.0',
-                'to': ['de', 'it']
-            },
-            headers: {
-                'Ocp-Apim-Subscription-Key': inputOptions.subscriptionKey,
-                'Content-type': 'application/json',
-                'X-ClientTraceId': uuid().toString()
-            },
-            body: [
-                {
-                    'text': 'Hello World!'
-                }
-            ],
-            json: true,
-        };
+export async function initiate() {
+    try {
+        const inputOptions = getOptions();
+        if (!inputOptions) {
+            setFailed('Both a subscriptionKey and endpoint are required.');
+        } else {
+            const availableTranslations = await getAvailableTranslations();
+            if (!availableTranslations || !availableTranslations.translations) {
+                console.error("Unable to get target translations.");
+                return;
+            }
 
-        // await request(options, function (err, res, body) {
-        //     console.log(JSON.stringify(body, null, 4));
-        // });
+            const to = Object.keys(availableTranslations.translations);
+            console.log(`Detected translation targets to: ${to.join(", ")}`);
+            const resourceFiles = await findAllResourceFiles(inputOptions.baseFileGlob);
+            if (!resourceFiles || !resourceFiles.length) {
+                console.error("Unable to get target resource files.");
+                return;
+            }
+
+            console.log(`Discovered target resource files: ${resourceFiles.join(", ")}`);
+            for (let resourceFile in resourceFiles) {
+                const xml = await readFile(resourceFile);
+                const translatableText = getTranslatableText(xml);
+                await translate(inputOptions.endpoint, translatableText);
+            }
+
+            let requestOptions = {
+                method: 'POST',
+                baseUrl: inputOptions.endpoint,
+                url: 'translate',
+                qs: {
+                    'api-version': '3.0',
+                    'to': ['de', 'it']
+                },
+                headers: {
+                    'Ocp-Apim-Subscription-Key': inputOptions.subscriptionKey,
+                    'Content-type': 'application/json',
+                    'X-ClientTraceId': uuid().toString()
+                },
+                body: [
+                    {
+                        'text': 'Hello World!'
+                    }
+                ],
+                json: true,
+            };
+
+            // await request(options, function (err, res, body) {
+            //     console.log(JSON.stringify(body, null, 4));
+            // });
+        }
+    } catch (error) {
+        setFailed(error.message);
     }
-} catch (error) {
-    setFailed(error.message);
 }
