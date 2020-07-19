@@ -20,7 +20,6 @@
 import { getInput, setOutput, setFailed } from '@actions/core';
 import { context } from '@actions/github';
 import { getAvailableTranslations, translate } from './api';
-import { request } from 'request';
 import { uuid } from 'uuidv4';
 import { findAllResourceFiles } from './resource-finder';
 import { readFile } from './resource-io';
@@ -32,7 +31,7 @@ interface Options {
     endpoint: string;
 }
 
-function getOptions(): Options {
+const getOptions = (): Options => {
     const [baseFileGlob, endpoint, subscriptionKey] = [
         getInput('baseFileGlob') || '**/*.en.resx',
         getInput('endpoint', { required: true }),
@@ -42,7 +41,7 @@ function getOptions(): Options {
     return {
         baseFileGlob, subscriptionKey, endpoint
     }
-}
+};
 
 export async function initiate() {
     try {
@@ -66,8 +65,8 @@ export async function initiate() {
 
             console.log(`Discovered target resource files: ${resourceFiles.join(", ")}`);
             for (let resourceFile in resourceFiles) {
-                const xml = await readFile(resourceFile);
-                const translatableText = getTranslatableText(xml);
+                const resourceXml = await readFile(resourceFile);
+                const translatableText = await getTranslatableText(resourceXml);
                 await translate(inputOptions.endpoint, translatableText);
             }
 

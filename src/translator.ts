@@ -1,7 +1,9 @@
-export async function getTranslatableText(xml: string) {
-    const values = xml.root.data;
-    const textToTranslate = [];
-    for (let i = 0; i < values.length; i++) {
+import { ResourceFile } from "./resource-file";
+
+export async function getTranslatableText(resourceXml: ResourceFile) {
+    const values = resourceXml.root.data;
+    const textToTranslate: string[] = [];
+    for (let i = 0; i < values.length; ++i) {
         const key = values[i].$.name;
         const value = values[i].value[0];
 

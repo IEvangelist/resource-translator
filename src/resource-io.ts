@@ -1,15 +1,16 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { Builder, Parser } from 'xml2js';
+import { ResourceFile } from './resource-file';
 
 export async function readFile(path: string) {
     const file = readFileSync(path, 'utf-8');
     return await parseXml(file);
 }
 
-async function parseXml(file: string) {
+async function parseXml(file: string): Promise<ResourceFile> {
     const parser = new Parser();
     const xml = await parser.parseStringPromise(file);
-    return xml;
+    return xml as ResourceFile;
 }
 
 export function buildXml(data: string) {
