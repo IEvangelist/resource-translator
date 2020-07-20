@@ -25,7 +25,7 @@
   },
   "scripts": {
     "build": "tsc && ncc build -o dist/resource-translator src/main.ts",
-    "test": "tsc --noEmit && jest --coverage",
+    "test": "tsc --noEmit && jest --coverage --verbose",
     "format": "prettier --write src/**/*.ts",
     "format-check": "prettier --check src/**/*.ts",
     "lint": "eslint src/**/*.ts"
