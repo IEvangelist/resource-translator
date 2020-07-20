@@ -1,9 +1,13 @@
-export interface Data {
-    [key: string]: string;
-}
-
 export interface ResourceFile {
-    root: {
-        data: Data[]
-    }
-}
+    root: Root;
+  }
+  export interface Root {
+    data?: (DataEntity)[] | null;
+  }
+  export interface DataEntity {
+    $: $;
+    value?: (string)[] | null;
+  }
+  export interface $ {
+    name: string;
+  }  

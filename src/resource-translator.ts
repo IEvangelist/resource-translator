@@ -50,12 +50,12 @@ export async function initiate() {
             setFailed('Both a subscriptionKey and endpoint are required.');
         } else {
             const availableTranslations = await getAvailableTranslations();
-            if (!availableTranslations || !availableTranslations.translations) {
+            if (!availableTranslations || !availableTranslations.translation) {
                 console.error("Unable to get target translations.");
                 return;
             }
 
-            const to = Object.keys(availableTranslations.translations);
+            const to = Object.keys(availableTranslations.translation);
             console.log(`Detected translation targets to: ${to.join(", ")}`);
             const resourceFiles = await findAllResourceFiles(inputOptions.baseFileGlob);
             if (!resourceFiles || !resourceFiles.length) {
@@ -67,7 +67,9 @@ export async function initiate() {
             for (let resourceFile in resourceFiles) {
                 const resourceXml = await readFile(resourceFile);
                 const translatableText = await getTranslatableText(resourceXml);
-                await translate(inputOptions.endpoint, translatableText);
+                if (translatableText) {
+                    await translate(inputOptions.endpoint, translatableText);
+                }
             }
 
             let requestOptions = {
