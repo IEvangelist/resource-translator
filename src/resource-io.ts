@@ -13,7 +13,7 @@ async function parseXml(file: string): Promise<ResourceFile> {
     return xml as ResourceFile;
 }
 
-export function buildXml(data: string) {
+export function buildXml(data: ResourceFile) {
     const builder = new Builder();
     var xml = builder.buildObject(data);
     return xml;
