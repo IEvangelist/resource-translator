@@ -68,7 +68,19 @@ export async function initiate() {
                 const resourceXml = await readFile(resourceFile);
                 const translatableText = await getTranslatableText(resourceXml);
                 if (translatableText) {
-                    await translate(inputOptions.endpoint, translatableText);
+                    const toLocales  =
+                        Object.keys(availableTranslations.translation);
+                    const result = await translate(
+                        inputOptions.endpoint,
+                        inputOptions.subscriptionKey,
+                        toLocales,
+                        translatableText);
+
+                    if (result && result.translations) {
+                        result.translations.forEach(r => {
+                            r.
+                        });
+                    }
                 }
             }
 
