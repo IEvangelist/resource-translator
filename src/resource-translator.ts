@@ -20,7 +20,6 @@
 import { getInput, setOutput, setFailed } from '@actions/core';
 import { context } from '@actions/github';
 import { getAvailableTranslations, translate } from './api';
-import { uuid } from 'uuidv4';
 import { findAllResourceFiles } from './resource-finder';
 import { readFile } from './resource-io';
 import { getTranslatableText } from './translator';
@@ -69,7 +68,7 @@ export async function initiate() {
                 const resourceXml = await readFile(resourceFile);
                 const translatableText = await getTranslatableText(resourceXml);
                 if (translatableText) {
-                    const toLocales  =
+                    const toLocales =
                         Object.keys(availableTranslations.translation);
                     const result = await translate(
                         inputOptions.endpoint,
@@ -78,39 +77,13 @@ export async function initiate() {
                         translatableText);
 
                     if (result && result.translations) {
-                        const grouped = groupBy(
-                            result.translations,
-                            'to'
-                        )
-                            
+                        const grouped = groupBy(result.translations, 'to');
+                        const locales = Object.keys(grouped);
+
+                        context.
                     }
                 }
             }
-
-            let requestOptions = {
-                method: 'POST',
-                baseUrl: inputOptions.endpoint,
-                url: 'translate',
-                qs: {
-                    'api-version': '3.0',
-                    'to': ['de', 'it']
-                },
-                headers: {
-                    'Ocp-Apim-Subscription-Key': inputOptions.subscriptionKey,
-                    'Content-type': 'application/json',
-                    'X-ClientTraceId': uuid().toString()
-                },
-                body: [
-                    {
-                        'text': 'Hello World!'
-                    }
-                ],
-                json: true,
-            };
-
-            // await request(options, function (err, res, body) {
-            //     console.log(JSON.stringify(body, null, 4));
-            // });
         }
     } catch (error) {
         setFailed(error.message);
