@@ -1,3 +1,8 @@
+type Record<K extends keyof any, T> = {
+    [P in K]: T;
+};
+
+
 export const groupBy = <T extends Record<K, string>, K extends string>
     (array: T[], key: keyof T): { [group: string]: T[] } =>
     array.reduce((result, obj) => {

@@ -24,6 +24,7 @@ import { uuid } from 'uuidv4';
 import { findAllResourceFiles } from './resource-finder';
 import { readFile } from './resource-io';
 import { getTranslatableText } from './translator';
+import { groupBy } from './utils';
 
 interface Options {
     baseFileGlob: string;
@@ -77,9 +78,11 @@ export async function initiate() {
                         translatableText);
 
                     if (result && result.translations) {
-                        result.translations.forEach(r => {
-                            r.
-                        });
+                        const grouped = groupBy(
+                            result.translations,
+                            'to'
+                        )
+                            
                     }
                 }
             }

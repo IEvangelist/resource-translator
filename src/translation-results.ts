@@ -1,16 +1,16 @@
+export interface TranslationResult {
+    detectedLanguage: DetectedLanguage;
+    translations: Result[];
+}
+
 export interface DetectedLanguage {
     language: string;
     score: number;
 }
 
-export interface Result {
+export interface Result extends Record<string, string> {
     text: string;
     to: string;
-}
-
-export interface TranslationResult {
-    detectedLanguage: DetectedLanguage;
-    translations: Result[];
 }
 
 // https://docs.microsoft.com/en-us/azure/cognitive-services/translator/quickstart-translate?pivots=programming-language-javascript#sample-response
