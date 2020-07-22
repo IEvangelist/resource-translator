@@ -7,8 +7,8 @@ inputs:
   endpoint:
     description: 'The Azure Cognitive Services translator resource endpoint'
     required: true
-  baseFileGlob:
-    description: 'The glob pattern for which resource (**/*.en.resx) files to use as input'
+  sourceLocale:
+    description: 'The source locale (i.e.; ''en''), used to create the glob pattern for which resource (**/*.en.resx) files to use as input'
     required: false
 outputs:
   time: # id of output

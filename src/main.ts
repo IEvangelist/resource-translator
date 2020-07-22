@@ -1,6 +1,6 @@
 import { initiate } from './resource-translator';
 
-const main = async (): Promise<void> => {
+const run = async (): Promise<void> => {
     try {
         await initiate();
     } catch (error) {
@@ -8,4 +8,4 @@ const main = async (): Promise<void> => {
     }
 };
 
-export default main;
+run();

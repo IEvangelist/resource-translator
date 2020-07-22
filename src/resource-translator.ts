@@ -1,4 +1,4 @@
-// baseFileGlob:    **/*.en.resx
+// sourceLocale:    en
 // subscriptionKey: c57xxxxxxxxxxxxxxxxxxxxxxxxxxac3
 // endpoint:        https://api.cognitive.microsofttranslator.com/
 
@@ -17,11 +17,11 @@
  * Create PR based on newly created translation files * 
  */
 
-import { getInput, setOutput, setFailed } from '@actions/core';
+import { info, error, getInput, setFailed } from '@actions/core';
 import { context } from '@actions/github';
 import { getAvailableTranslations, translate } from './api';
 import { findAllResourceFiles } from './resource-finder';
-import { readFile } from './resource-io';
+import { readFile, buildXml, writeFile } from './resource-io';
 import { getTranslatableText } from './translator';
 import { groupBy } from './utils';
 
@@ -33,7 +33,7 @@ interface Options {
 
 const getOptions = (): Options => {
     const [baseFileGlob, endpoint, subscriptionKey] = [
-        getInput('baseFileGlob') || '**/*.en.resx',
+        `**/*.${(getInput('sourceLocale') || 'en')}.resx`,
         getInput('endpoint', { required: true }),
         getInput('subscriptionKey', { required: true }),
     ];
@@ -51,19 +51,19 @@ export async function initiate() {
         } else {
             const availableTranslations = await getAvailableTranslations();
             if (!availableTranslations || !availableTranslations.translation) {
-                console.error("Unable to get target translations.");
+                error("Unable to get target translations.");
                 return;
             }
 
             const to = Object.keys(availableTranslations.translation);
-            console.log(`Detected translation targets to: ${to.join(", ")}`);
+            info(`Detected translation targets to: ${to.join(", ")}`);
             const resourceFiles = await findAllResourceFiles(inputOptions.baseFileGlob);
             if (!resourceFiles || !resourceFiles.length) {
-                console.error("Unable to get target resource files.");
+                error("Unable to get target resource files.");
                 return;
             }
 
-            console.log(`Discovered target resource files: ${resourceFiles.join(", ")}`);
+            info(`Discovered target resource files: ${resourceFiles.join(", ")}`);
             for (let resourceFile in resourceFiles) {
                 const resourceXml = await readFile(resourceFile);
                 const translatableText = await getTranslatableText(resourceXml);
@@ -80,7 +80,9 @@ export async function initiate() {
                         const grouped = groupBy(result.translations, 'to');
                         const locales = Object.keys(grouped);
 
-                        context.
+                        for (let locale in locales) {
+                            
+                        }
                     }
                 }
             }
