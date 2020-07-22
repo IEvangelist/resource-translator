@@ -11,8 +11,7 @@
     "translator"
   ],
   "description": "A GitHub action that uses Azure Cognitive Services translator to generate .resx resource files",
-  "main": "dist/resource-translator/main.js",
-  "types": "lib/resource-translator.d.ts",
+  "main": "dist/resource-translator/index.js",
   "directories": {
     "lib": "lib"
   },
