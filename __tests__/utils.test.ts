@@ -1,4 +1,5 @@
-import { groupBy } from '../src/utils';
+import { dirname, resolve } from 'path';
+import { groupBy, getLocaleName } from '../src/utils';
 import { DetectedLanguage, Result, TranslationResult } from '../src/translation-results';
 
 test("UTILS: group by functions correctly", () => {
@@ -57,4 +58,12 @@ test('UTILS: group by functions correctly with translation results', () => {
             { to: 'bg', text: 'Сламен танц, дефтони!' }
         ]
     });
+});
+
+test('UTILS: get locale file name correctly swaps locale.', () => {
+    const resourcePath = resolve(__dirname, "./data/Test.en.resx");
+    const directory = dirname(resourcePath);
+    const localePath = getLocaleName(resourcePath, 'fr');
+    
+    expect(localePath).toEqual(resolve(directory, 'Test.fr.resx'));
 });
