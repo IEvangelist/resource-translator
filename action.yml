@@ -15,4 +15,4 @@ outputs:
     description: 'The time we greeted you'
 runs:
   using: 'node12'
-  main: 'main.js'
+  main: 'dist/resource-translator/index.js'
