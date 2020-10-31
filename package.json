@@ -1,6 +1,6 @@
 {
   "name": "@ievangelist/resource-translator",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "preview": true,
   "keywords": [
     "github",
@@ -23,7 +23,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsc && ncc build -o dist/resource-translator src/main.ts",
+    "build": "tsc && ncc build -o dist/resource-translator src/index.ts",
     "test": "tsc --noEmit && jest --coverage --verbose",
     "format": "prettier --write src/**/*.ts",
     "format-check": "prettier --check src/**/*.ts",
