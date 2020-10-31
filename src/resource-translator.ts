@@ -21,9 +21,9 @@ import { info, error, getInput, setFailed } from '@actions/core';
 import { context } from '@actions/github';
 import { getAvailableTranslations, translate } from './api';
 import { findAllResourceFiles } from './resource-finder';
-import { readFile, buildXml, writeFile } from './resource-io';
+import { readFile, buildXml, writeFile, applyTranslations } from './resource-io';
 import { getTranslatableText } from './translator';
-import { groupBy } from './utils';
+import { groupBy, getLocaleName } from './utils';
 
 interface Options {
     baseFileGlob: string;
@@ -81,7 +81,13 @@ export async function initiate() {
                         const locales = Object.keys(grouped);
 
                         for (let locale in locales) {
-                            
+                            const clone = { ...resourceXml };
+                            const result = applyTranslations(clone, grouped[locale]);
+                            const translatedXml = buildXml(result);
+                            const newPath = getLocaleName(resourceFile, locale);
+                            if (newPath) {
+                                writeFile(newPath, translatedXml);
+                            }
                         }
                     }
                 }
