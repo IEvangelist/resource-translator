@@ -70,7 +70,7 @@ export async function initiate() {
                 const resourceXml = await readFile(resourceFile);
                 const translatableText = await getTranslatableText(resourceXml);
 
-                info(`Translatable text:\n ${translatableText}`);
+                info(`Translatable text:\n ${JSON.stringify(translatableText)}`);
 
                 if (translatableText) {
                     const toLocales =
@@ -80,6 +80,8 @@ export async function initiate() {
                         inputOptions.subscriptionKey,
                         toLocales,
                         translatableText);
+
+                    info(`Translation result:\n ${JSON.stringify(result)}`);
 
                     if (result && result.translations) {
                         const grouped = groupBy(result.translations, 'to');

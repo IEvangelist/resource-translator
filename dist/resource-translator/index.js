@@ -11585,10 +11585,11 @@ async function initiate() {
                 const resourceFile = resourceFiles[index];
                 const resourceXml = await resource_io_1.readFile(resourceFile);
                 const translatableText = await translator_1.getTranslatableText(resourceXml);
-                core_1.info(`Translatable text:\n ${translatableText}`);
+                core_1.info(`Translatable text:\n ${JSON.stringify(translatableText)}`);
                 if (translatableText) {
                     const toLocales = Object.keys(availableTranslations.translation);
                     const result = await api_1.translate(inputOptions.endpoint, inputOptions.subscriptionKey, toLocales, translatableText);
+                    core_1.info(`Translation result:\n ${JSON.stringify(result)}`);
                     if (result && result.translations) {
                         const grouped = utils_1.groupBy(result.translations, 'to');
                         const locales = Object.keys(grouped);
