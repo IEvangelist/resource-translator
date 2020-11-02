@@ -23,7 +23,7 @@ export async function translate(
         json: true
     };
 
-    const to = toLocales.map(to => `to=${encodeURI(to)}`).join('&');
+    const to = toLocales.map(to => `to=${encodeURIComponent(to)}`).join('&');
     const uri = `${endpoint}/translate?api-version=3.0&${to}`;
     const response =
         await Axios.post<TranslationResult>(uri, [

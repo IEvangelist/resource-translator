@@ -2033,23 +2033,18 @@ async function getAvailableTranslations() {
 exports.getAvailableTranslations = getAvailableTranslations;
 async function translate(endpoint, subscriptionKey, toLocales, translatableText) {
     const options = {
-        baseUrl: endpoint,
-        url: 'translate',
-        qs: {
-            'api-version': '3.0',
-            'to': toLocales
-        },
         headers: {
             'Ocp-Apim-Subscription-Key': subscriptionKey,
             'Content-type': 'application/json',
             'X-ClientTraceId': uuidv4_1.uuid()
         },
-        body: [
-            JSON.stringify(Object.fromEntries(translatableText.entries()))
-        ],
-        json: true,
+        json: true
     };
-    const response = await axios_1.default.post(endpoint, translatableText, options);
+    const to = toLocales.map(to => `to=${encodeURIComponent(to)}`).join('&');
+    const uri = `${endpoint}/translate?api-version=3.0&${to}`;
+    const response = await axios_1.default.post(uri, [
+        JSON.stringify(Object.fromEntries(translatableText.entries()))
+    ], options);
     return response.data;
 }
 exports.translate = translate;
