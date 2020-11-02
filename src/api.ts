@@ -15,25 +15,21 @@ export async function translate(
     toLocales: string[],
     translatableText: Map<string, string>): Promise<TranslationResult> {
     const options = {
-        baseUrl: endpoint,
-        url: 'translate',
-        qs: {
-            'api-version': '3.0',
-            'to': toLocales
-        },
         headers: {
             'Ocp-Apim-Subscription-Key': subscriptionKey,
             'Content-type': 'application/json',
             'X-ClientTraceId': uuid()
         },
-        body: [
+        json: true
+    };
+
+    const to = toLocales.map(to => `to=${encodeURI(to)}`).join('&');
+    const uri = `${endpoint}/translate?api-version=3.0&${to}`;
+    const response =
+        await Axios.post<TranslationResult>(uri, [
             JSON.stringify(
                 Object.fromEntries(
                     translatableText.entries()))
-        ],
-        json: true,
-    };  
-
-    const response = await Axios.post<TranslationResult>(endpoint, translatableText, options);
+        ], options);
     return response.data;
 }
