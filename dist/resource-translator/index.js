@@ -11581,7 +11581,8 @@ async function initiate() {
                 return;
             }
             core_1.info(`Discovered target resource files: ${resourceFiles.join(", ")}`);
-            for (let resourceFile in resourceFiles) {
+            for (let index = 0; index < resourceFiles.length; ++index) {
+                const resourceFile = resourceFiles[index];
                 const resourceXml = await resource_io_1.readFile(resourceFile);
                 const translatableText = await translator_1.getTranslatableText(resourceXml);
                 if (translatableText) {

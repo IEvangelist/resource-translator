@@ -64,7 +64,9 @@ export async function initiate() {
             }
 
             info(`Discovered target resource files: ${resourceFiles.join(", ")}`);
-            for (let resourceFile in resourceFiles) {
+            
+            for (let index = 0; index < resourceFiles.length; ++ index) {
+                const resourceFile = resourceFiles[index];
                 const resourceXml = await readFile(resourceFile);
                 const translatableText = await getTranslatableText(resourceXml);
                 if (translatableText) {
