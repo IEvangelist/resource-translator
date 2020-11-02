@@ -1,10 +1,12 @@
 import { Builder, Parser } from 'xml2js';
 import { readFileSync, writeFileSync } from 'fs';
+import { pathToFileURL } from 'url';
 import { ResourceFile } from './resource-file';
 import { Result } from './translation-results';
 
 export async function readFile(path: string) {
-    const file = readFileSync(path, 'utf-8');
+    const url = pathToFileURL(path);
+    const file = readFileSync(url, 'utf-8');
     return await parseXml(file);
 }
 

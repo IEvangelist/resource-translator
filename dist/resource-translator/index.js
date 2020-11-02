@@ -5319,8 +5319,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.writeFile = exports.buildXml = exports.applyTranslations = exports.readFile = void 0;
 const xml2js_1 = __webpack_require__(992);
 const fs_1 = __webpack_require__(747);
+const url_1 = __webpack_require__(835);
 async function readFile(path) {
-    const file = fs_1.readFileSync(path, 'utf-8');
+    const url = url_1.pathToFileURL(path);
+    const file = fs_1.readFileSync(url, 'utf-8');
     return await parseXml(file);
 }
 exports.readFile = readFile;
@@ -13748,6 +13750,9 @@ exports.findAllResourceFiles = void 0;
 const glob_1 = __webpack_require__(281);
 const io_util_1 = __webpack_require__(672);
 async function findAllResourceFiles(baseFileGlob) {
+    // TODO: consider...
+    // import { context } from '@actions/github';
+    // const octokit = await context.getOctokit();
     const globber = await glob_1.create(baseFileGlob);
     const filesAndDirectories = await globber.glob();
     return filesAndDirectories.filter(async (path) => {
