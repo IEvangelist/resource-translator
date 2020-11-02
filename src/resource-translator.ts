@@ -69,6 +69,9 @@ export async function initiate() {
                 const resourceFile = resourceFiles[index];
                 const resourceXml = await readFile(resourceFile);
                 const translatableText = await getTranslatableText(resourceXml);
+
+                info(`Translatable text:\n ${translatableText}`);
+
                 if (translatableText) {
                     const toLocales =
                         Object.keys(availableTranslations.translation);

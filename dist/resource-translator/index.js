@@ -2042,7 +2042,7 @@ async function translate(endpoint, subscriptionKey, toLocales, translatableText)
         headers: {
             'Ocp-Apim-Subscription-Key': subscriptionKey,
             'Content-type': 'application/json',
-            'X-ClientTraceId': uuidv4_1.uuid().toString()
+            'X-ClientTraceId': uuidv4_1.uuid()
         },
         body: [
             JSON.stringify(Object.fromEntries(translatableText.entries()))
@@ -11585,6 +11585,7 @@ async function initiate() {
                 const resourceFile = resourceFiles[index];
                 const resourceXml = await resource_io_1.readFile(resourceFile);
                 const translatableText = await translator_1.getTranslatableText(resourceXml);
+                core_1.info(`Translatable text:\n ${translatableText}`);
                 if (translatableText) {
                     const toLocales = Object.keys(availableTranslations.translation);
                     const result = await api_1.translate(inputOptions.endpoint, inputOptions.subscriptionKey, toLocales, translatableText);

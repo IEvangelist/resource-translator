@@ -24,7 +24,7 @@ export async function translate(
         headers: {
             'Ocp-Apim-Subscription-Key': subscriptionKey,
             'Content-type': 'application/json',
-            'X-ClientTraceId': uuid().toString()
+            'X-ClientTraceId': uuid()
         },
         body: [
             JSON.stringify(
