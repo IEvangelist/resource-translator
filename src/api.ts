@@ -19,7 +19,7 @@ export async function translate(
         url: 'translate',
         qs: {
             'api-version': '3.0',
-            'to': ['de', 'it']
+            'to': toLocales
         },
         headers: {
             'Ocp-Apim-Subscription-Key': subscriptionKey,

@@ -91,7 +91,11 @@ export async function initiate() {
                                 writeFile(newPath, translatedXml);
                             }
                         }
+                    } else {
+                        error("Unable to translate input text.");
                     }
+                } else {
+                    error("No translatable text to work with");
                 }
             }
         }
