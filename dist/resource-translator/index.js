@@ -2037,7 +2037,7 @@ async function translate(endpoint, subscriptionKey, toLocales, translatableText)
         url: 'translate',
         qs: {
             'api-version': '3.0',
-            'to': ['de', 'it']
+            'to': toLocales
         },
         headers: {
             'Ocp-Apim-Subscription-Key': subscriptionKey,
@@ -11601,6 +11601,12 @@ async function initiate() {
                             }
                         }
                     }
+                    else {
+                        core_1.error("Unable to translate input text.");
+                    }
+                }
+                else {
+                    core_1.error("No translatable text to work with");
                 }
             }
         }
