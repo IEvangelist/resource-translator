@@ -1,3 +1,4 @@
+import * as process from 'process';
 import { getTranslatableText } from '../src/translator';
 import { getAvailableTranslations, translate } from '../src/api';
 import { ResourceFile } from '../src/resource-file';
@@ -15,43 +16,53 @@ const expectedLocales = [
     'uk', 'ur', 'vi', 'yua', 'yue', 'zh-Hans', 'zh-Hant'
 ]
 
-test("API: get available translations correctly gets all locales", async () => {
+test('API: get available translations correctly gets all locales', async () => {
     const translations = await getAvailableTranslations();
 
     expect(translations).toBeTruthy();
 
-    const locales = Object.keys(translations.translation).join(", ");
+    const locales = Object.keys(translations.translation).join(', ');
     expect(locales)
-        .toEqual(expectedLocales.join(", "));
+        .toEqual(expectedLocales.join(', '));
 });
 
-test("API: translate correctly performs translation", async () => {
+test('API: translate correctly performs translation', async () => {
     const resourceXml: ResourceFile = {
         root: {
             data: [
-                { $: { name: 'Greetings' }, value: ['Hello world!'] }
+                { $: { name: 'Greeting' }, value: ['Welcome to your new app'] },
+                { $: { name: 'HelloWorld' }, value: ['Hello, world!'] },
+                { $: { name: 'SurveyTitle' }, value: ['How is Blazor working for you? Testing...'] }
             ]
         }
     }
     const translatableText = await getTranslatableText(resourceXml);
-    const translations = await translate(
-        process.env.AZURE_TRANSLATOR_ENDPOINT,
-        process.env.AZURE_TRANSLATOR_SUBSCRIPTION_KEY,
-        process.env.AZURE_TRANSLATOR_SUBSCRIPTION_REGION,
-        expectedLocales,
-        translatableText
-    );
+    const translatorResource = {
+        endpoint: process.env['AZURE_TRANSLATOR_ENDPOINT'] || 'https://api.cognitive.microsofttranslator.com/',
+        subscriptionKey: process.env['AZURE_TRANSLATOR_SUBSCRIPTION_KEY'] || 'unknown!',
+        region: process.env['AZURE_TRANSLATOR_SUBSCRIPTION_REGION'] || undefined
+    };
+    const resultSet = await translate(
+        translatorResource,
+        ['fr', 'es'],
+        translatableText);
 
-    expect(translations).toEqual({
-        detectedLanguage: {
-            language: 'en',
-            score: 1.0
-        },
-        translations: [
-            {
-                text: 'Hallo Welt!',
-                to: 'de'
-            }
-        ]
-    });
+    expect(resultSet).toEqual(
+        {
+            'Greeting':
+                [
+                    { 'text': 'Bienvenue sur votre nouvelle application', to: 'fr' },
+                    { 'text': 'Bienvenido a su nueva aplicación', 'to': 'es' }
+                ],
+            'HelloWorld':
+                [
+                    { 'text': 'Salut tout le monde!', 'to': 'fr' },
+                    { 'text': '¡Hola mundo!', 'to': 'es' }
+                ],
+            'SurveyTitle':
+                [
+                    { 'text': 'Comment Blazor travaille-t-il pour vous ? Test...', 'to': 'fr' },
+                    { 'text': '¿Cómo funciona Blazor para ti? Pruebas...', 'to': 'es' }
+                ]
+        });
 });

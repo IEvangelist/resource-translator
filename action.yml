@@ -2,11 +2,14 @@ name: 'Resource translator'
 description: 'A GitHub action that uses Azure Cognitive Services translator to generate .resx resource files'
 inputs:
   subscriptionKey:
-    description: 'The Azure Cognitive Services translator resource subscription key'
+    description: 'The Azure Cognitive Services translator resource subscription key.'
     required: true
   endpoint:
-    description: 'The Azure Cognitive Services translator resource endpoint'
+    description: 'The Azure Cognitive Services translator resource endpoint.'
     required: true
+  region:
+    description: 'The Azure Cognitive Services translator resource region. This is optional when using a global translator resource.'
+    required: false
   sourceLocale:
     description: 'The source locale (i.e.; ''en''), used to create the glob pattern for which resource (**/*.en.resx) files to use as input'
     required: false

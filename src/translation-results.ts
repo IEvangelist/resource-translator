@@ -1,3 +1,9 @@
+export interface TranslationResultSet {
+    [key: string]: Result[];
+}
+
+export type TranslationResults = TranslationResult[];
+
 export interface TranslationResult {
     detectedLanguage: DetectedLanguage;
     translations: Result[];

@@ -19,7 +19,6 @@
  */
 
 import { info, error, getInput, setFailed } from '@actions/core';
-import { context } from '@actions/github';
 import { getAvailableTranslations, translate } from './api';
 import { findAllResourceFiles } from './resource-finder';
 import { readFile, buildXml, writeFile, applyTranslations } from './resource-io';
@@ -30,7 +29,7 @@ interface Options {
     baseFileGlob: string;
     subscriptionKey: string;
     endpoint: string;
-    region: string;
+    region?: string;
 }
 
 const getOptions = (): Options => {
@@ -38,7 +37,7 @@ const getOptions = (): Options => {
         `**/*.${(getInput('sourceLocale') || 'en')}.resx`,
         getInput('endpoint', { required: true }),
         getInput('subscriptionKey', { required: true }),
-        getInput('region', { required: true })
+        getInput('region')
     ];
 
     return {
@@ -78,28 +77,26 @@ export async function initiate() {
                 if (translatableText) {
                     const toLocales =
                         Object.keys(availableTranslations.translation);
-                    const result = await translate(
-                        inputOptions.endpoint,
-                        inputOptions.subscriptionKey,
-                        inputOptions.region,
+                    const resultSet = await translate(
+                        inputOptions,
                         toLocales,
                         translatableText);
 
-                    info(`Translation result:\n ${JSON.stringify(result)}`);
+                    info(`Translation result:\n ${JSON.stringify(resultSet)}`);
 
-                    if (result && result.translations) {
-                        const grouped = groupBy(result.translations, 'to');
-                        const locales = Object.keys(grouped);
+                    if (resultSet) {
+                        // const grouped = groupBy(result.translations, 'to');
+                        // const locales = Object.keys(grouped);
 
-                        for (let locale in locales) {
-                            const clone = { ...resourceXml };
-                            const result = applyTranslations(clone, grouped[locale]);
-                            const translatedXml = buildXml(result);
-                            const newPath = getLocaleName(resourceFile, locale);
-                            if (newPath) {
-                                writeFile(newPath, translatedXml);
-                            }
-                        }
+                        // for (let locale in locales) {
+                        //     const clone = { ...resourceXml };
+                        //     const result = applyTranslations(clone, grouped[locale]);
+                        //     const translatedXml = buildXml(result);
+                        //     const newPath = getLocaleName(resourceFile, locale);
+                        //     if (newPath) {
+                        //         writeFile(newPath, translatedXml);
+                        //     }
+                        // }
                     } else {
                         error("Unable to translate input text.");
                     }

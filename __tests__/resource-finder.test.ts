@@ -1,6 +1,6 @@
 import { findAllResourceFiles } from '../src/resource-finder';
 
-jest.setTimeout(10000);
+jest.setTimeout(30000);
 
 test("IO: finds all resource files correctly", async () => {
     const resourceFiles = await findAllResourceFiles("**/*.en.resx");
