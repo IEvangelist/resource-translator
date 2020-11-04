@@ -1,7 +1,8 @@
+import { error } from '@actions/core';
 import { AvailableTranslations } from './available-translations';
 import { TranslationResult } from './translation-results';
 import { uuid } from 'uuidv4';
-import Axios from 'axios';
+import Axios, { AxiosRequestConfig } from 'axios';
 
 export async function getAvailableTranslations(): Promise<AvailableTranslations> {
     const url = 'https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation';
@@ -12,24 +13,33 @@ export async function getAvailableTranslations(): Promise<AvailableTranslations>
 export async function translate(
     endpoint: string,
     subscriptionKey: string,
+    region: string,
     toLocales: string[],
-    translatableText: Map<string, string>): Promise<TranslationResult> {
-    const options = {
-        headers: {
-            'Ocp-Apim-Subscription-Key': subscriptionKey,
-            'Content-type': 'application/json',
-            'X-ClientTraceId': uuid()
-        },
-        json: true
-    };
+    translatableText: Map<string, string>): Promise<TranslationResult | undefined> {
+    try {
+        const data = [
+            { 
+                'text': 'Hello World!',
+                'index': 'Another word for asshole?'
+            }
+        ];
+        const options: AxiosRequestConfig = {
+            method: 'POST',
+            headers: {
+                'Ocp-Apim-Subscription-Key': subscriptionKey,
+                'Ocp-Apim-Subscription-Region': region,
+                'Content-type': 'application/json',
+                'X-ClientTraceId': uuid()
+            },
+            data,
+            responseType: 'json',
+        };
 
-    const to = toLocales.map(to => `to=${encodeURIComponent(to)}`).join('&');
-    const uri = `${endpoint}/translate?api-version=3.0&${to}`;
-    const response =
-        await Axios.post<TranslationResult>(uri, [
-            JSON.stringify(
-                Object.fromEntries(
-                    translatableText.entries()))
-        ], options);
-    return response.data;
+        const url = `${endpoint}/translate?api-version=3.0&${toLocales.map(to => `to=${to}`).join('&')}`;
+        const response = await Axios.post<TranslationResult>(url, data, options);
+        return response.data;
+    } catch (ex) {
+        error(`Failed to translate input: ${ex}`);
+        return undefined;
+    }
 }

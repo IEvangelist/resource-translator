@@ -1,5 +1,6 @@
 // sourceLocale:    en
 // subscriptionKey: c57xxxxxxxxxxxxxxxxxxxxxxxxxxac3
+// region:          canadacentral
 // endpoint:        https://api.cognitive.microsofttranslator.com/
 
 //  This looks interesting: https://github.com/ryanluton/translate-resx/blob/master/translate-resx.js
@@ -29,17 +30,19 @@ interface Options {
     baseFileGlob: string;
     subscriptionKey: string;
     endpoint: string;
+    region: string;
 }
 
 const getOptions = (): Options => {
-    const [baseFileGlob, endpoint, subscriptionKey] = [
+    const [baseFileGlob, endpoint, subscriptionKey, region] = [
         `**/*.${(getInput('sourceLocale') || 'en')}.resx`,
         getInput('endpoint', { required: true }),
         getInput('subscriptionKey', { required: true }),
+        getInput('region', { required: true })
     ];
 
     return {
-        baseFileGlob, subscriptionKey, endpoint
+        baseFileGlob, subscriptionKey, endpoint, region
     }
 };
 
@@ -78,6 +81,7 @@ export async function initiate() {
                     const result = await translate(
                         inputOptions.endpoint,
                         inputOptions.subscriptionKey,
+                        inputOptions.region,
                         toLocales,
                         translatableText);
 
