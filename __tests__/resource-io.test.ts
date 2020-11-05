@@ -36,7 +36,7 @@ test('IO: roundtrip, resolve->read->write->read-> compare', async () => {
     expect(resourceXml.root.data[1].value[0]).toEqual('Where have you gone?');
 });
 
-test('IO: apply translations', async () => {
+test('IO: apply translations to Test.en.resx', async () => {
     const resourcePath = resolve(__dirname, './data/Test.en.resx');
     let resourceXml = await readFile(resourcePath);
 
@@ -57,7 +57,7 @@ test('IO: apply translations', async () => {
     expect(resourceXml.root.data[1].value[0]).toEqual('We meet again!');
 });
 
-test('IO: apply translations', async () => {
+test('IO: apply translations to Index.en.resx', async () => {
     const resourcePath = resolve(__dirname, './data/Index.en.resx');
     let resourceXml = await readFile(resourcePath);
 

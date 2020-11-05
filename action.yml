@@ -1,5 +1,8 @@
 name: 'Resource translator'
-description: 'A GitHub action that uses Azure Cognitive Services translator to generate .resx resource files'
+description: 'A GitHub action that uses Azure Cognitive Services Translator to generate .resx resource files given a source .resx file.'
+branding:
+  icon: flag
+  color: gray-dark
 inputs:
   subscriptionKey:
     description: 'The Azure Cognitive Services translator resource subscription key.'
@@ -13,9 +16,6 @@ inputs:
   sourceLocale:
     description: 'The source locale (i.e.; ''en''), used to create the glob pattern for which resource (**/*.en.resx) files to use as input'
     required: false
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
 runs:
   using: 'node12'
   main: 'dist/resource-translator/index.js'
