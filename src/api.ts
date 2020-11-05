@@ -63,18 +63,11 @@ export async function translate(
 
         // Try to write explicit error:
         // https://docs.microsoft.com/en-us/azure/cognitive-services/translator/reference/v3-0-reference#errors
-        const translatorError = findValueByKey(ex, 'error') as TranslatorError;
+        const translatorError = findValueByKey(ex, 'error');
         if (translatorError) {
-            error(`Error [${translatorError.error.code}]: ${translatorError.error.message}`);
+            error(`Error: ${JSON.stringify(translatorError)}`);
         }
 
         return undefined;
-    }
-}
-
-interface TranslatorError {
-    error: {
-        code: number;
-        message: string;
     }
 }

@@ -2178,7 +2178,7 @@ async function translate(translatorResource, toLocales, translatableText) {
         // https://docs.microsoft.com/en-us/azure/cognitive-services/translator/reference/v3-0-reference#errors
         const translatorError = utils_1.findValueByKey(ex, 'error');
         if (translatorError) {
-            core_1.error(`Error [${translatorError.error.code}]: ${translatorError.error.message}`);
+            core_1.error(`Error: ${JSON.stringify(translatorError)}`);
         }
         return undefined;
     }
