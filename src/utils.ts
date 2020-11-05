@@ -15,7 +15,7 @@ export const getLocaleName = (existingPath: string, locale: string) => {
     if (segments.length === 3) {
         const newName = `${segments[0]}.${locale}.${segments[2]}`;
         const directory = dirname(existingPath);
-        
+
         return resolve(directory, newName);
     }
 
@@ -25,3 +25,13 @@ export const getLocaleName = (existingPath: string, locale: string) => {
 export const naturalLanguageCompare = (a: string, b: string) => {
     return !!a && !!b ? a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }) : 0;
 };
+
+export function stringifyMap<T, TValue>(this: T, key: string, value: TValue) {
+    const obj = this[key];
+    return (obj instanceof Map)
+        ? {
+            dataType: 'Map',
+            value: Array.from(obj.entries())
+        }
+        : value;
+}

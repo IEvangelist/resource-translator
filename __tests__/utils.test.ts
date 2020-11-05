@@ -1,5 +1,5 @@
 import { dirname, resolve } from 'path';
-import { groupBy, getLocaleName } from '../src/utils';
+import { groupBy, getLocaleName, stringifyMap } from '../src/utils';
 import { DetectedLanguage, Result, TranslationResult } from '../src/translation-results';
 
 test("UTILS: group by functions correctly", () => {
@@ -66,4 +66,17 @@ test('UTILS: get locale file name correctly swaps locale.', () => {
     const localePath = getLocaleName(resourcePath, 'fr');
     
     expect(localePath).toEqual(resolve(directory, 'Test.fr.resx'));
+});
+
+test('UTILS: JSON stringify map replacer.', () => {
+    const map: Map<string, string> = new Map();
+    map.set('1', 'one');
+    map.set('2', 'two');
+    
+    const obj = {
+        test: 'Sample',
+        map
+    };
+
+    expect(JSON.stringify(obj, stringifyMap)).toEqual(`{"test":"Sample","map":{"dataType":"Map","value":[["1","one"],["2","two"]]}}`);
 });

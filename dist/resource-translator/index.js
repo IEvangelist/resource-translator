@@ -2062,7 +2062,7 @@ module.exports = function nodeRNG() {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.naturalLanguageCompare = exports.getLocaleName = exports.groupBy = void 0;
+exports.stringifyMap = exports.naturalLanguageCompare = exports.getLocaleName = exports.groupBy = void 0;
 const path_1 = __webpack_require__(622);
 exports.groupBy = (array, key) => array.reduce((result, obj) => {
     const value = obj[key];
@@ -2082,6 +2082,16 @@ exports.getLocaleName = (existingPath, locale) => {
 exports.naturalLanguageCompare = (a, b) => {
     return !!a && !!b ? a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }) : 0;
 };
+function stringifyMap(key, value) {
+    const obj = this[key];
+    return (obj instanceof Map)
+        ? {
+            dataType: 'Map',
+            value: Array.from(obj.entries())
+        }
+        : value;
+}
+exports.stringifyMap = stringifyMap;
 
 
 /***/ }),
@@ -2147,7 +2157,7 @@ async function translate(translatorResource, toLocales, translatableText) {
         return resultSet;
     }
     catch (ex) {
-        core_1.error(`Failed to translate input: ${ex}`);
+        core_1.error(`Failed to translate input: ${JSON.stringify(ex)}`);
         return undefined;
     }
 }
@@ -11596,7 +11606,7 @@ async function initiate() {
                 const resourceFile = resourceFiles[index];
                 const resourceXml = await resource_io_1.readFile(resourceFile);
                 const translatableTextMap = await translator_1.getTranslatableTextMap(resourceXml);
-                core_1.info(`Translatable text:\n ${JSON.stringify(translatableTextMap)}`);
+                core_1.info(`Translatable text:\n ${JSON.stringify(translatableTextMap, utils_1.stringifyMap)}`);
                 if (translatableTextMap) {
                     const resultSet = await api_1.translate(inputOptions, toLocales, translatableTextMap.text);
                     core_1.info(`Translation result:\n ${JSON.stringify(resultSet)}`);

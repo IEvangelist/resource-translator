@@ -58,7 +58,7 @@ export async function translate(
 
         return resultSet;
     } catch (ex) {
-        error(`Failed to translate input: ${ex}`);
+        error(`Failed to translate input: ${JSON.stringify(ex)}`);
         return undefined;
     }
 }

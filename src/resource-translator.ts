@@ -23,7 +23,7 @@ import { getAvailableTranslations, translate } from './api';
 import { findAllResourceFiles } from './resource-finder';
 import { readFile, buildXml, writeFile, applyTranslations } from './resource-io';
 import { getTranslatableTextMap } from './translator';
-import { getLocaleName, naturalLanguageCompare } from './utils';
+import { getLocaleName, naturalLanguageCompare, stringifyMap } from './utils';
 
 interface Options {
     baseFileGlob: string;
@@ -75,7 +75,7 @@ export async function initiate() {
                 const resourceXml = await readFile(resourceFile);
                 const translatableTextMap = await getTranslatableTextMap(resourceXml);
 
-                info(`Translatable text:\n ${JSON.stringify(translatableTextMap)}`);
+                info(`Translatable text:\n ${JSON.stringify(translatableTextMap, stringifyMap)}`);
 
                 if (translatableTextMap) {
                     const resultSet = await translate(

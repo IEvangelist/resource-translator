@@ -36,9 +36,11 @@ jobs:
           subscriptionKey: ${{ secrets.AZURE_TRANSLATOR_SUBSCRIPTION_KEY }}
           # The Azure Cognitive Services translator resource endpoint.
           endpoint: ${{ secrets.AZURE_TRANSLATOR_ENDPOINT }}
-          # (Optional) The Azure Cognitive Services translator resource region. This is optional when using a global translator resource.
+          # (Optional) The Azure Cognitive Services translator resource region.
+          # This is optional when using a global translator resource.
           region: ${{ secrets.AZURE_TRANSLATOR_REGION }}
-          # The source locale (i.e.; 'en'), used to create the glob pattern for which resource (**/*.en.resx) files to use as input
+          # The source locale (i.e.; 'en'), used to create the glob pattern
+          # for which resource (**/*.en.resx) files to use as input
           sourceLocale: 'en'
 
       - name: Create pull request
