@@ -22,8 +22,8 @@ import { info, error, getInput, setFailed } from '@actions/core';
 import { getAvailableTranslations, translate } from './api';
 import { findAllResourceFiles } from './resource-finder';
 import { readFile, buildXml, writeFile, applyTranslations } from './resource-io';
-import { getTranslatableText } from './translator';
-import { groupBy, getLocaleName } from './utils';
+import { getTranslatableTextMap } from './translator';
+import { getLocaleName, naturalLanguageCompare } from './utils';
 
 interface Options {
     baseFileGlob: string;
@@ -57,8 +57,11 @@ export async function initiate() {
                 return;
             }
 
-            const to = Object.keys(availableTranslations.translation);
-            info(`Detected translation targets to: ${to.join(", ")}`);
+            const toLocales =
+                Object.keys(availableTranslations.translation)
+                    .sort((a, b) => naturalLanguageCompare(a, b));
+            info(`Detected translation targets to: ${toLocales.join(", ")}`);
+
             const resourceFiles = await findAllResourceFiles(inputOptions.baseFileGlob);
             if (!resourceFiles || !resourceFiles.length) {
                 error("Unable to get target resource files.");
@@ -70,33 +73,29 @@ export async function initiate() {
             for (let index = 0; index < resourceFiles.length; ++ index) {
                 const resourceFile = resourceFiles[index];
                 const resourceXml = await readFile(resourceFile);
-                const translatableText = await getTranslatableText(resourceXml);
+                const translatableTextMap = await getTranslatableTextMap(resourceXml);
 
-                info(`Translatable text:\n ${JSON.stringify(translatableText)}`);
+                info(`Translatable text:\n ${JSON.stringify(translatableTextMap)}`);
 
-                if (translatableText) {
-                    const toLocales =
-                        Object.keys(availableTranslations.translation);
+                if (translatableTextMap) {
                     const resultSet = await translate(
                         inputOptions,
                         toLocales,
-                        translatableText);
+                        translatableTextMap.text);
 
                     info(`Translation result:\n ${JSON.stringify(resultSet)}`);
 
                     if (resultSet) {
-                        // const grouped = groupBy(result.translations, 'to');
-                        // const locales = Object.keys(grouped);
-
-                        // for (let locale in locales) {
-                        //     const clone = { ...resourceXml };
-                        //     const result = applyTranslations(clone, grouped[locale]);
-                        //     const translatedXml = buildXml(result);
-                        //     const newPath = getLocaleName(resourceFile, locale);
-                        //     if (newPath) {
-                        //         writeFile(newPath, translatedXml);
-                        //     }
-                        // }
+                        for (let locale in toLocales) {
+                            const translations = resultSet[locale];
+                            const clone = { ...resourceXml };
+                            const result = applyTranslations(clone, translations, translatableTextMap.ordinals);
+                            const translatedXml = buildXml(result);
+                            const newPath = getLocaleName(resourceFile, locale);
+                            if (newPath) {
+                                writeFile(newPath, translatedXml);
+                            }
+                        }
                     } else {
                         error("Unable to translate input text.");
                     }

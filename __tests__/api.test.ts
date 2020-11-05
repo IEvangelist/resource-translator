@@ -1,5 +1,5 @@
 import * as process from 'process';
-import { getTranslatableText } from '../src/translator';
+import { getTranslatableTextMap } from '../src/translator';
 import { getAvailableTranslations, translate } from '../src/api';
 import { ResourceFile } from '../src/resource-file';
 
@@ -26,6 +26,8 @@ test('API: get available translations correctly gets all locales', async () => {
         .toEqual(expectedLocales.join(', '));
 });
 
+jest.setTimeout(10000);
+
 test('API: translate correctly performs translation', async () => {
     const resourceXml: ResourceFile = {
         root: {
@@ -36,7 +38,7 @@ test('API: translate correctly performs translation', async () => {
             ]
         }
     }
-    const translatableText = await getTranslatableText(resourceXml);
+    const translatableTextMap = await getTranslatableTextMap(resourceXml);
     const translatorResource = {
         endpoint: process.env['AZURE_TRANSLATOR_ENDPOINT'] || 'https://api.cognitive.microsofttranslator.com/',
         subscriptionKey: process.env['AZURE_TRANSLATOR_SUBSCRIPTION_KEY'] || 'unknown!',
@@ -45,24 +47,19 @@ test('API: translate correctly performs translation', async () => {
     const resultSet = await translate(
         translatorResource,
         ['fr', 'es'],
-        translatableText);
+        translatableTextMap.text);
 
     expect(resultSet).toEqual(
         {
-            'Greeting':
-                [
-                    { 'text': 'Bienvenue sur votre nouvelle application', to: 'fr' },
-                    { 'text': 'Bienvenido a su nueva aplicación', 'to': 'es' }
-                ],
-            'HelloWorld':
-                [
-                    { 'text': 'Salut tout le monde!', 'to': 'fr' },
-                    { 'text': '¡Hola mundo!', 'to': 'es' }
-                ],
-            'SurveyTitle':
-                [
-                    { 'text': 'Comment Blazor travaille-t-il pour vous ? Test...', 'to': 'fr' },
-                    { 'text': '¿Cómo funciona Blazor para ti? Pruebas...', 'to': 'es' }
-                ]
+            'es': {
+                'Greeting': 'Bienvenido a su nueva aplicación',
+                'HelloWorld': '¡Hola mundo!',
+                'SurveyTitle': '¿Cómo funciona Blazor para ti? Pruebas...'
+            },
+            'fr': {
+                'Greeting': 'Bienvenue sur votre nouvelle application',
+                'HelloWorld': 'Salut tout le monde!',
+                'SurveyTitle': 'Comment Blazor travaille-t-il pour vous ? Test...'
+            }
         });
 });

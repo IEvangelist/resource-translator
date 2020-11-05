@@ -21,3 +21,7 @@ export const getLocaleName = (existingPath: string, locale: string) => {
 
     return null;
 };
+
+export const naturalLanguageCompare = (a: string, b: string) => {
+    return !!a && !!b ? a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }) : 0;
+};

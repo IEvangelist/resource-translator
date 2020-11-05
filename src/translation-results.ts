@@ -1,5 +1,7 @@
 export interface TranslationResultSet {
-    [key: string]: Result[];
+    [to: string]: {
+        [key: string]: string;
+    }
 }
 
 export type TranslationResults = TranslationResult[];

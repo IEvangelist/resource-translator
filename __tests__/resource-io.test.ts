@@ -41,12 +41,12 @@ test("IO: apply translations", async () => {
     const resourcePath = resolve(__dirname, "./data/Test.en.resx");
     let resourceXml = await readFile(resourcePath);
 
-    const fakeResults: Result[] = [
-        { to: 'fk', 'Greetings': 'This is a fake translation' } as Result,
-        { to: 'fk', 'MyFriend': 'We meet again!' } as Result,
-    ];
+    const fakeResults = {
+        'MyFriend': 'We meet again!',
+        'Greetings': 'This is a fake translation'
+    };
 
-    resourceXml = applyTranslations(resourceXml, fakeResults);
+    resourceXml = applyTranslations(resourceXml, fakeResults, [1, 0]);
 
     expect(resourceXml).toBeTruthy();
     expect(resourceXml.root).toBeTruthy();

@@ -1,6 +1,13 @@
 import { ResourceFile } from "./resource-file";
+import { naturalLanguageCompare } from "./utils";
 
-export async function getTranslatableText(resourceXml: ResourceFile): Promise<Map<string, string>> {
+export interface TranslatableTextMap {
+    text: Map<string, string>;
+    ordinals: number[];
+}
+
+export async function getTranslatableTextMap(resourceXml: ResourceFile)
+    : Promise<TranslatableTextMap> {
     const textToTranslate: Map<string, string> = new Map();
     const values = resourceXml.root.data;
     if (values && values.length) {
@@ -11,5 +18,18 @@ export async function getTranslatableText(resourceXml: ResourceFile): Promise<Ma
             textToTranslate.set(key, value);
         }
     }
-    return textToTranslate;
+
+    const translatableText: Map<string, string> = new Map();
+    [...textToTranslate.keys()].sort((a, b) => naturalLanguageCompare(a, b)).forEach(key => {
+        translatableText.set(key, textToTranslate.get(key)!);
+    });
+
+    const ordinals: number[] =
+        [...translatableText.keys()].map(
+            key => values.findIndex(d => d.$.name === key));
+
+    return {
+        text: translatableText,
+        ordinals
+    };
 }
