@@ -5298,12 +5298,14 @@ module.exports = defaults;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.writeFile = exports.buildXml = exports.applyTranslations = exports.readFile = void 0;
+const core_1 = __webpack_require__(470);
 const xml2js_1 = __webpack_require__(992);
 const fs_1 = __webpack_require__(747);
-const url_1 = __webpack_require__(835);
+const path_1 = __webpack_require__(622);
 async function readFile(path) {
-    const url = url_1.pathToFileURL(path);
-    const file = fs_1.readFileSync(url, 'utf-8');
+    const resolved = path_1.resolve(path);
+    const file = fs_1.readFileSync(resolved, 'utf-8');
+    core_1.info(`Read file: ${file}`);
     return await parseXml(file);
 }
 exports.readFile = readFile;
@@ -5313,12 +5315,16 @@ async function parseXml(file) {
     return xml;
 }
 function applyTranslations(resource, translations, ordinals) {
+    //
+    // Each translation has a named identifier (it's key), for example: { 'SomeKey': 'some translated value' }.
+    // The ordinals map each key to it's appropriate translated value in the resource, for example: [2,0,1].
+    // For each translation, we map its keys value to the corresponding ordinal.
+    //
     if (resource && translations && ordinals && ordinals.length) {
         let index = 0;
         for (let key in translations) {
             const ordinal = ordinals[index++];
-            const translation = translations[key];
-            resource.root.data[ordinal].value = [translation];
+            resource.root.data[ordinal].value = [translations[key]];
         }
     }
     return resource;

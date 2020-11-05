@@ -6,8 +6,7 @@ export interface TranslatableTextMap {
     ordinals: number[];
 }
 
-export async function getTranslatableTextMap(resourceXml: ResourceFile)
-    : Promise<TranslatableTextMap> {
+export async function getTranslatableTextMap(resourceXml: ResourceFile): Promise<TranslatableTextMap> {
     const textToTranslate: Map<string, string> = new Map();
     const values = resourceXml.root.data;
     if (values && values.length) {

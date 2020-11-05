@@ -26,7 +26,7 @@ test('API: get available translations correctly gets all locales', async () => {
         .toEqual(expectedLocales.join(', '));
 });
 
-jest.setTimeout(10000);
+jest.setTimeout(15000);
 
 test('API: translate correctly performs translation', async () => {
     const resourceXml: ResourceFile = {
