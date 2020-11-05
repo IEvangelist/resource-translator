@@ -2062,7 +2062,7 @@ module.exports = function nodeRNG() {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.stringifyMap = exports.naturalLanguageCompare = exports.getLocaleName = exports.groupBy = void 0;
+exports.findValueByKey = exports.stringifyMap = exports.naturalLanguageCompare = exports.getLocaleName = exports.groupBy = void 0;
 const path_1 = __webpack_require__(622);
 exports.groupBy = (array, key) => array.reduce((result, obj) => {
     const value = obj[key];
@@ -2092,6 +2092,21 @@ function stringifyMap(key, value) {
         : value;
 }
 exports.stringifyMap = stringifyMap;
+function findValueByKey(object, key) {
+    let value;
+    Object.keys(object).some(function (k) {
+        if (k === key) {
+            value = object[k];
+            return true;
+        }
+        if (object[k] && typeof object[k] === 'object') {
+            value = findValueByKey(object[k], key);
+            return value !== undefined;
+        }
+    });
+    return value;
+}
+exports.findValueByKey = findValueByKey;
 
 
 /***/ }),
@@ -2109,6 +2124,7 @@ exports.translate = exports.getAvailableTranslations = void 0;
 const core_1 = __webpack_require__(470);
 const uuid_1 = __webpack_require__(898);
 const axios_1 = __importDefault(__webpack_require__(53));
+const utils_1 = __webpack_require__(163);
 async function getAvailableTranslations() {
     const url = 'https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation';
     const response = await axios_1.default.get(url);
@@ -2158,6 +2174,12 @@ async function translate(translatorResource, toLocales, translatableText) {
     }
     catch (ex) {
         core_1.error(`Failed to translate input: ${JSON.stringify(ex)}`);
+        // Try to write explicit error:
+        // https://docs.microsoft.com/en-us/azure/cognitive-services/translator/reference/v3-0-reference#errors
+        const translatorError = utils_1.findValueByKey(ex, 'error');
+        if (translatorError) {
+            core_1.error(`Error [${translatorError.error.code}]: ${translatorError.error.message}`);
+        }
         return undefined;
     }
 }
