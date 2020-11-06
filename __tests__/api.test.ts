@@ -14,7 +14,7 @@ const expectedLocales = [
     'sl', 'sm', 'sr-Cyrl', 'sr-Latn', 'sv', 'sw', 'ta',
     'te', 'th', 'tlh-Latn', 'tlh-Piqd', 'to', 'tr', 'ty',
     'uk', 'ur', 'vi', 'yua', 'yue', 'zh-Hans', 'zh-Hant'
-]
+];
 
 test('API: get available translations correctly gets all locales', async () => {
     const translations = await getAvailableTranslations();

@@ -11632,7 +11632,8 @@ async function initiate() {
                     const resultSet = await api_1.translate(inputOptions, toLocales, translatableTextMap.text);
                     core_1.info(`Translation result:\n ${JSON.stringify(resultSet)}`);
                     if (resultSet) {
-                        for (let locale in toLocales) {
+                        for (let index = 0; index < toLocales.length; index++) {
+                            const locale = toLocales[index];
                             const translations = resultSet[locale];
                             const clone = { ...resourceXml };
                             const result = resource_io_1.applyTranslations(clone, translations, translatableTextMap.ordinals);

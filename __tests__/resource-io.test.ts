@@ -1,5 +1,6 @@
 import { readFile, writeFile, buildXml, applyTranslations } from '../src/resource-io';
 import { resolve } from 'path';
+import { getLocaleName } from '../src/utils';
 
 test('IO: read file correctly parses known XML', async () => {
     const resourcePath = resolve(__dirname, './data/Test.en.resx');
@@ -80,3 +81,10 @@ test('IO: apply translations to Index.en.resx', async () => {
     expect(resourceXml.root.data[2].$.name).toEqual('SurveyTitle');
     expect(resourceXml.root.data[2].value[0]).toEqual('I do not like surveys!');
 });
+
+test('IO: correctly gets local name.', () => {
+    const resourcePath = resolve(__dirname, './data/Index.en.resx');
+    const localName = getLocaleName(resourcePath, 'fr');
+
+    expect(localName).toEqual(resourcePath.replace('.en.resx', '.fr.resx'));
+})

@@ -86,7 +86,8 @@ export async function initiate() {
                     info(`Translation result:\n ${JSON.stringify(resultSet)}`);
 
                     if (resultSet) {
-                        for (let locale in toLocales) {
+                        for (let index = 0; index < toLocales.length; index ++) {
+                            const locale = toLocales[index];
                             const translations = resultSet[locale];
                             const clone = { ...resourceXml };
                             const result = applyTranslations(clone, translations, translatableTextMap.ordinals);
