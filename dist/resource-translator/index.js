@@ -2124,7 +2124,6 @@ exports.translate = exports.getAvailableTranslations = void 0;
 const core_1 = __webpack_require__(470);
 const uuid_1 = __webpack_require__(898);
 const axios_1 = __importDefault(__webpack_require__(53));
-const utils_1 = __webpack_require__(163);
 async function getAvailableTranslations() {
     const url = 'https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation';
     const response = await axios_1.default.get(url);
@@ -2134,7 +2133,7 @@ exports.getAvailableTranslations = getAvailableTranslations;
 async function translate(translatorResource, toLocales, translatableText) {
     try {
         const data = [...translatableText.values()].map(value => {
-            return { text: value };
+            return { pickles: value };
         });
         const headers = {
             'Ocp-Apim-Subscription-Key': translatorResource.subscriptionKey,
@@ -2176,9 +2175,9 @@ async function translate(translatorResource, toLocales, translatableText) {
         core_1.error(`Failed to translate input: ${JSON.stringify(ex)}`);
         // Try to write explicit error:
         // https://docs.microsoft.com/en-us/azure/cognitive-services/translator/reference/v3-0-reference#errors
-        const translatorError = utils_1.findValueByKey(ex, 'error');
-        if (translatorError) {
-            core_1.error(`Error: ${JSON.stringify(translatorError)}`);
+        const e = ex.response.data;
+        if (e) {
+            core_1.error(`error: { code: ${e.error.code}, message: '${e.error.message}' }}`);
         }
         return undefined;
     }

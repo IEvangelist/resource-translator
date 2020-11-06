@@ -18,7 +18,7 @@ export async function translate(
     translatableText: Map<string, string>): Promise<TranslationResultSet | undefined> {
     try {
         const data = [ ...translatableText.values() ].map(value => {
-            return { text: value };
+            return { pickles: value };
         });
         const headers = {
             'Ocp-Apim-Subscription-Key': translatorResource.subscriptionKey,
@@ -63,11 +63,18 @@ export async function translate(
 
         // Try to write explicit error:
         // https://docs.microsoft.com/en-us/azure/cognitive-services/translator/reference/v3-0-reference#errors
-        const translatorError = findValueByKey(ex, 'error');
-        if (translatorError) {
-            error(`Error: ${JSON.stringify(translatorError)}`);
+        const e = ex.response.data as TranslationErrorResponse;
+        if (e) {
+            error(`error: { code: ${e.error.code}, message: '${e.error.message}' }}`);
         }
 
         return undefined;
+    }
+}
+
+interface TranslationErrorResponse {
+    error: { 
+        code: number,
+        message: string;
     }
 }
