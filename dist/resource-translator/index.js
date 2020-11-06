@@ -2133,7 +2133,7 @@ exports.getAvailableTranslations = getAvailableTranslations;
 async function translate(translatorResource, toLocales, translatableText) {
     try {
         const data = [...translatableText.values()].map(value => {
-            return { pickles: value };
+            return { text: value };
         });
         const headers = {
             'Ocp-Apim-Subscription-Key': translatorResource.subscriptionKey,

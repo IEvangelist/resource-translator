@@ -18,7 +18,7 @@ export async function translate(
     translatableText: Map<string, string>): Promise<TranslationResultSet | undefined> {
     try {
         const data = [ ...translatableText.values() ].map(value => {
-            return { pickles: value };
+            return { text: value };
         });
         const headers = {
             'Ocp-Apim-Subscription-Key': translatorResource.subscriptionKey,
