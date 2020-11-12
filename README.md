@@ -31,8 +31,8 @@ jobs:
       - uses: actions/checkout@v2
 
       # Use the resource translator to automatically translate resource files
-      - name: Resource translator
-        uses: IEvangelist/resource-translator@v1.0.3
+      - name: resource-translator
+        uses: IEvangelist/resource-translator@v2.0.1
         with:
           # The Azure Cognitive Services translator resource subscription key
           subscriptionKey: ${{ secrets.AZURE_TRANSLATOR_SUBSCRIPTION_KEY }}
@@ -41,10 +41,14 @@ jobs:
           # (Optional) The Azure Cognitive Services translator resource region.
           # This is optional when using a global translator resource.
           region: ${{ secrets.AZURE_TRANSLATOR_REGION }}
-          # The source locale (i.e.; 'en'), used to create the glob pattern
+          # The source locale (for example, 'en') used to create the glob pattern
           # for which resource (**/*.en.resx) files to use as input
           sourceLocale: 'en'
 
-      - name: Create pull request
+      - name: create-pull-request
         uses: peter-evans/create-pull-request@v3.4.1
+        if: ${{ steps.resource-translator.outputs.has-new-translations }}
+        with:
+          title: ${{ steps.resource-translator.outputs.summary-title }}
+          commit-message: ${{ steps.resource-translator.outputs.summary-details }}
 ```
