@@ -1,3 +1,4 @@
+import { debug } from "@actions/core";
 import { Summary } from "./summary";
 
 /**
@@ -41,6 +42,11 @@ export const summarize = (summary: Summary): [string, string] => {
         '',
         '> These machine translations are a result of Azure Cognitive Services Translator, and the [Resource translator](https://github.com/marketplace/actions/resource-translator) GitHub action. For more information, see [Translator v3.0](https://docs.microsoft.com/azure/cognitive-services/translator/reference/v3-0-reference?WT.mc_id=dapine). To post an issue, or feature request please do here [here](https://github.com/IEvangelist/resource-translator/issues).',
     ];
+
+    debug(JSON.stringify({
+        title,
+        details
+    }));
 
     return [title, details.join('\n')];
 }

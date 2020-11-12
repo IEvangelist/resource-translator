@@ -5,6 +5,11 @@ export class Summary {
     updatedFileCount: number = 0;
     updatedFileTranslations: number = 0;
 
+    constructor(
+        public sourceLocale: string,
+        public toLocales: string[]) {
+    }
+
     get totalFileCount(): number {
         return this.newFileCount + this.updatedFileCount;
     }
@@ -15,10 +20,5 @@ export class Summary {
 
     get hasNewTranslations(): boolean {
         return this.totalTranslations > 0;
-    }
-
-    constructor(
-        public sourceLocale: string,
-        public toLocales: string[]) {
     }
 }

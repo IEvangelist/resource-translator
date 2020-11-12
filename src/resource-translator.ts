@@ -18,7 +18,7 @@
  * Create PR based on newly created translation files * 
  */
 
-import { info, getInput, setFailed, setOutput } from '@actions/core';
+import { info, getInput, setFailed, setOutput, debug } from '@actions/core';
 import { getAvailableTranslations, translate } from './api';
 import { findAllResourceFiles } from './resource-finder';
 import { existsSync } from 'fs';
@@ -72,7 +72,7 @@ export async function initiate() {
                 return;
             }
 
-            info(`Discovered target resource files: ${resourceFiles.join(", ")}`);
+            debug(`Discovered target resource files: ${resourceFiles.join(", ")}`);
 
             let summary = new Summary(sourceLocale, toLocales);
 
@@ -81,7 +81,7 @@ export async function initiate() {
                 const resourceXml = await readFile(resourceFile);
                 const translatableTextMap = await getTranslatableTextMap(resourceXml);
 
-                info(`Translatable text:\n ${JSON.stringify(translatableTextMap, stringifyMap)}`);
+                debug(`Translatable text:\n ${JSON.stringify(translatableTextMap, stringifyMap)}`);
 
                 if (translatableTextMap) {
                     const resultSet = await translate(
@@ -89,7 +89,7 @@ export async function initiate() {
                         toLocales,
                         translatableTextMap.text);
 
-                    info(`Translation result:\n ${JSON.stringify(resultSet)}`);
+                    debug(`Translation result:\n ${JSON.stringify(resultSet)}`);
 
                     if (resultSet) {
                         toLocales.forEach(locale => {

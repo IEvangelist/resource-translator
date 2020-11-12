@@ -47,8 +47,8 @@ jobs:
 
       - name: create-pull-request
         uses: peter-evans/create-pull-request@v3.4.1
-        if: ${{ steps.resource-translator.outputs.has-new-translations }}
+        if: ${{ steps.resource-translator.outputs.has-new-translations }} == 'true'
         with:
-          title: ${{ steps.resource-translator.outputs.summary-title }}
-          commit-message: ${{ steps.resource-translator.outputs.summary-details }}
+          title: '${{ steps.resource-translator.outputs.summary-title }}'
+          commit-message: '${{ steps.resource-translator.outputs.summary-details }}'
 ```

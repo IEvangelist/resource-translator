@@ -1,4 +1,4 @@
-import { info } from '@actions/core';
+import { debug } from '@actions/core';
 import { Builder, Parser } from 'xml2js';
 import { readFileSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
@@ -8,7 +8,7 @@ export async function readFile(path: string) {
     const resolved = resolve(path);
     const file = readFileSync(resolved, 'utf-8');
 
-    info(`Read file: ${file}`);
+    debug(`Read file: ${file}`);
 
     return await parseXml(file);
 }
