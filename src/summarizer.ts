@@ -1,4 +1,5 @@
 import { debug } from "@actions/core";
+import { context } from "@actions/github";
 import { Summary } from "./summary";
 
 /**
@@ -14,6 +15,7 @@ export const summarize = (summary: Summary): [string, string] => {
     const server = env['GITHUB_SERVER_URL'];
     const repo = env['GITHUB_REPOSITORY'];
     const commit = env['GITHUB_SHA'];
+
     const triggeredByUrl = `${server}/${repo}/commit/${commit}`;
 
     const nfc = summary.newFileCount.toLocaleString('en');
@@ -29,7 +31,7 @@ export const summarize = (summary: Summary): [string, string] => {
         `Action triggered by ${triggeredByUrl}.`,
         '',
         `- Source locale: \`${summary.sourceLocale}\``,
-        `- Destination locale(s): \`${summary.toLocales.map(locale => `\`${locale}\``).join(', ')}\``,
+        `- Destination locale(s): ${summary.toLocales.map(locale => `\`${locale}\``).join(', ')}`,
         '',
         '## File translation details',
         '',

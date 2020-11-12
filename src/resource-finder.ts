@@ -29,10 +29,14 @@ async function getFilesToInclude(): Promise<string[]> {
         const token = process.env['GITHUB_TOKEN'] || null;
         if (token) {
             const octokit = getOctokit(token);
-            const response = await octokit.repos.getCommit({
+            const options = {
                 ...context.repo,
                 ref: context.ref
-            });
+            };
+            debug(JSON.stringify(options));
+            const response = await octokit.repos.getCommit(options);
+
+            debug(JSON.stringify(response));
 
             if (response.data) {
                 return response.data.files.map(file => file.filename);
