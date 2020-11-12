@@ -14,9 +14,13 @@ inputs:
     description: 'The Azure Cognitive Services translator resource region. This is optional when using a global translator resource.'
     required: false
   sourceLocale:
-    description: 'The source locale (i.e.; ''en''), used to create the glob pattern for which resource (**/*.en.resx) files to use as input.'
+    description: 'The source locale (for example, ''en'') used to create the glob pattern for which resource (**/*.en.resx) files to use as input.'
     required: false
 outputs:
+  summary-title:
+    description: 'The summary details as a title, for example: "Machine-translated 320 files, a total of 5,418 translations"'
+  summary-message:
+    description: 'GitHub flavored markdown translation summary, with details of the resulting translations.'
   has-new-translations:
     description: 'A boolean value, indicating whether or not new translations exist as a result of running this action.'
 runs:

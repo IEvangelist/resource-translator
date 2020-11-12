@@ -18,10 +18,13 @@
  * Create PR based on newly created translation files * 
  */
 
-import { info, error, getInput, setFailed } from '@actions/core';
+import { info, getInput, setFailed, setOutput } from '@actions/core';
 import { getAvailableTranslations, translate } from './api';
 import { findAllResourceFiles } from './resource-finder';
+import { existsSync } from 'fs';
 import { readFile, buildXml, writeFile, applyTranslations } from './resource-io';
+import { summarize } from './summarizer';
+import { Summary } from './summary';
 import { getTranslatableTextMap } from './translator';
 import { getLocaleName, naturalLanguageCompare, stringifyMap } from './utils';
 
@@ -56,9 +59,10 @@ export async function initiate() {
                 setFailed("Unable to get target translations.");
                 return;
             }
-
+            const sourceLocale = getInput('sourceLocale');
             const toLocales =
                 Object.keys(availableTranslations.translation)
+                    .filter(locale => locale !== sourceLocale)
                     .sort((a, b) => naturalLanguageCompare(a, b));
             info(`Detected translation targets to: ${toLocales.join(", ")}`);
 
@@ -69,7 +73,9 @@ export async function initiate() {
             }
 
             info(`Discovered target resource files: ${resourceFiles.join(", ")}`);
-            
+
+            let summary = new Summary(sourceLocale, toLocales);
+
             for (let index = 0; index < resourceFiles.length; ++ index) {
                 const resourceFile = resourceFiles[index];
                 const resourceXml = await readFile(resourceFile);
@@ -86,17 +92,23 @@ export async function initiate() {
                     info(`Translation result:\n ${JSON.stringify(resultSet)}`);
 
                     if (resultSet) {
-                        for (let index = 0; index < toLocales.length; index ++) {
-                            const locale = toLocales[index];
+                        toLocales.forEach(locale => {
                             const translations = resultSet[locale];
                             const clone = { ...resourceXml };
                             const result = applyTranslations(clone, translations, translatableTextMap.ordinals);
                             const translatedXml = buildXml(result);
                             const newPath = getLocaleName(resourceFile, locale);
                             if (newPath) {
+                                if (existsSync(newPath)) {
+                                    summary.updatedFileCount++;
+                                    summary.updatedFileTranslations += translatableTextMap.ordinals.length;
+                                } else {
+                                    summary.newFileCount++;
+                                    summary.newFileTranslations += translatableTextMap.ordinals.length;
+                                }
                                 writeFile(newPath, translatedXml);
                             }
-                        }
+                        });
                     } else {
                         setFailed("Unable to translate input text.");
                     }
@@ -104,6 +116,12 @@ export async function initiate() {
                     setFailed("No translatable text to work with");
                 }
             }
+
+            setOutput('has-new-translations', summary.hasNewTranslations);
+
+            const [title, details] = summarize(summary);
+            setOutput('summary-title', title);
+            setOutput('summary-details', details);
         }
     } catch (error) {
         setFailed(error.message);
