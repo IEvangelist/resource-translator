@@ -18284,7 +18284,7 @@ exports.summarize = (summary) => {
         `Action triggered by ${triggeredByUrl}.`,
         '',
         `- Source locale: \`${summary.sourceLocale}\``,
-        `- Destination locale(s): \`${summary.toLocales.map(locale => `\`${locale}\``).join(', ')}\``,
+        `- Destination locale(s): ${summary.toLocales.map(locale => `\`${locale}\``).join(', ')}`,
         '',
         '## File translation details',
         '',
@@ -22263,10 +22263,13 @@ async function getFilesToInclude() {
         const token = process.env['GITHUB_TOKEN'] || null;
         if (token) {
             const octokit = github_1.getOctokit(token);
-            const response = await octokit.repos.getCommit({
+            const options = {
                 ...github_1.context.repo,
                 ref: github_1.context.ref
-            });
+            };
+            core_1.debug(JSON.stringify(options));
+            const response = await octokit.repos.getCommit(options);
+            core_1.debug(JSON.stringify(response));
             if (response.data) {
                 return response.data.files.map(file => file.filename);
             }
