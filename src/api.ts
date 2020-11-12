@@ -1,10 +1,9 @@
-import { error, info } from '@actions/core';
+import { setFailed } from '@actions/core';
 import { AvailableTranslations } from './available-translations';
 import { TranslationResult, TranslationResults, TranslationResultSet } from './translation-results';
 import { v4 } from 'uuid';
 import Axios, { AxiosRequestConfig } from 'axios';
 import { TranslatorResource } from './translator-resource';
-import { findValueByKey } from './utils';
 
 export async function getAvailableTranslations(): Promise<AvailableTranslations> {
     const url = 'https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation';
@@ -59,13 +58,13 @@ export async function translate(
 
         return resultSet;
     } catch (ex) {
-        error(`Failed to translate input: ${JSON.stringify(ex)}`);
-
         // Try to write explicit error:
         // https://docs.microsoft.com/en-us/azure/cognitive-services/translator/reference/v3-0-reference#errors
         const e = ex.response.data as TranslationErrorResponse;
         if (e) {
-            error(`error: { code: ${e.error.code}, message: '${e.error.message}' }}`);
+            setFailed(`error: { code: ${e.error.code}, message: '${e.error.message}' }}`);
+        } else {
+            setFailed(`Failed to translate input: ${JSON.stringify(ex)}`);
         }
 
         return undefined;

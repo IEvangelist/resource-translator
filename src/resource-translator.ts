@@ -53,7 +53,7 @@ export async function initiate() {
         } else {
             const availableTranslations = await getAvailableTranslations();
             if (!availableTranslations || !availableTranslations.translation) {
-                error("Unable to get target translations.");
+                setFailed("Unable to get target translations.");
                 return;
             }
 
@@ -64,7 +64,7 @@ export async function initiate() {
 
             const resourceFiles = await findAllResourceFiles(inputOptions.baseFileGlob);
             if (!resourceFiles || !resourceFiles.length) {
-                error("Unable to get target resource files.");
+                setFailed("Unable to get target resource files.");
                 return;
             }
 
@@ -98,10 +98,10 @@ export async function initiate() {
                             }
                         }
                     } else {
-                        error("Unable to translate input text.");
+                        setFailed("Unable to translate input text.");
                     }
                 } else {
-                    error("No translatable text to work with");
+                    setFailed("No translatable text to work with");
                 }
             }
         }

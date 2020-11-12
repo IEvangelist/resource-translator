@@ -1,10 +1,11 @@
+import { setFailed } from '@actions/core';
 import { initiate } from './resource-translator';
 
 const run = async (): Promise<void> => {
     try {
         await initiate();
     } catch (error) {
-        console.error(error);
+        setFailed(error);
     }
 };
 
