@@ -1,4 +1,3 @@
-import * as process from 'process';
 import { getTranslatableTextMap } from '../src/translator';
 import { getAvailableTranslations, translate } from '../src/api';
 import { ResourceFile } from '../src/resource-file';
