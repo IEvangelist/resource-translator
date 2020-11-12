@@ -4,7 +4,7 @@ import { Summary } from "./summary";
  * Example output: https://gist.github.com/IEvangelist/8e7101bda2bacce98d418b5d0fdda756
  * @param summary The object representing the summary of the action's execution.
  */
-export const summarize = (summary: Summary): [title: string, details: string] => {
+export const summarize = (summary: Summary): [string, string] => {
     const fileCount = summary.totalFileCount.toLocaleString('en');
     const translations = summary.totalTranslations.toLocaleString('en');
     const title = `Machine-translated ${fileCount} files, a total of ${translations} translations`;

@@ -519,6 +519,37 @@ module.exports = __webpack_require__(352);
 
 /***/ }),
 
+/***/ 76:
+/***/ (function(__unusedmodule, exports) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Summary = void 0;
+class Summary {
+    constructor(sourceLocale, toLocales) {
+        this.sourceLocale = sourceLocale;
+        this.toLocales = toLocales;
+        this.newFileCount = 0;
+        this.newFileTranslations = 0;
+        this.updatedFileCount = 0;
+        this.updatedFileTranslations = 0;
+    }
+    get totalFileCount() {
+        return this.newFileCount + this.updatedFileCount;
+    }
+    get totalTranslations() {
+        return this.newFileTranslations + this.updatedFileTranslations;
+    }
+    get hasNewTranslations() {
+        return this.totalTranslations > 0;
+    }
+}
+exports.Summary = Summary;
+
+
+/***/ }),
+
 /***/ 81:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2172,12 +2203,14 @@ async function translate(translatorResource, toLocales, translatableText) {
         return resultSet;
     }
     catch (ex) {
-        core_1.error(`Failed to translate input: ${JSON.stringify(ex)}`);
         // Try to write explicit error:
         // https://docs.microsoft.com/en-us/azure/cognitive-services/translator/reference/v3-0-reference#errors
         const e = ex.response.data;
         if (e) {
-            core_1.error(`error: { code: ${e.error.code}, message: '${e.error.message}' }}`);
+            core_1.setFailed(`error: { code: ${e.error.code}, message: '${e.error.message}' }}`);
+        }
+        else {
+            core_1.setFailed(`Failed to translate input: ${JSON.stringify(ex)}`);
         }
         return undefined;
     }
@@ -3202,13 +3235,14 @@ function expand(str, isTop) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+const core_1 = __webpack_require__(470);
 const resource_translator_1 = __webpack_require__(781);
 const run = async () => {
     try {
         await resource_translator_1.initiate();
     }
     catch (error) {
-        console.error(error);
+        core_1.setFailed(error);
     }
 };
 run();
@@ -10755,6 +10789,56 @@ module.exports = require("fs");
 
 /***/ }),
 
+/***/ 752:
+/***/ (function(__unusedmodule, exports) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.summarize = void 0;
+/**
+ * Example output: https://gist.github.com/IEvangelist/8e7101bda2bacce98d418b5d0fdda756
+ * @param summary The object representing the summary of the action's execution.
+ */
+exports.summarize = (summary) => {
+    const fileCount = summary.totalFileCount.toLocaleString('en');
+    const translations = summary.totalTranslations.toLocaleString('en');
+    const title = `Machine-translated ${fileCount} files, a total of ${translations} translations`;
+    const env = process.env;
+    const server = env['GITHUB_SERVER_URL'];
+    const repo = env['GITHUB_REPOSITORY'];
+    const commit = env['GITHUB_SHA'];
+    const triggeredByUrl = `${server}/${repo}/commit/${commit}`;
+    const nfc = summary.newFileCount.toLocaleString('en');
+    const nft = summary.newFileTranslations.toLocaleString('en');
+    const ufc = summary.updatedFileCount.toLocaleString('en');
+    const uft = summary.updatedFileTranslations.toLocaleString('en');
+    // Pull request message template
+    let details = [
+        '# Translation pull request summary',
+        '',
+        `Action triggered by ${triggeredByUrl}.`,
+        '',
+        `- Source locale: \`${summary.sourceLocale}\``,
+        `- Destination locale(s): \`${summary.toLocales.map(locale => `\`${locale}\``).join(', ')}\``,
+        '',
+        '## File translation details',
+        '',
+        '| Type    | File count | Translation count |',
+        '|---------|------------|-------------------|',
+        `| New     | ${nfc}     | ${nft}            |`,
+        `| Updated | ${ufc}     | ${uft}            |`,
+        '',
+        `Of the ${fileCount} translated files, there are a total of ${translations} individual translations.`,
+        '',
+        '> These machine translations are a result of Azure Cognitive Services Translator, and the [Resource translator](https://github.com/marketplace/actions/resource-translator) GitHub action. For more information, see [Translator v3.0](https://docs.microsoft.com/azure/cognitive-services/translator/reference/v3-0-reference?WT.mc_id=dapine). To post an issue, or feature request please do here [here](https://github.com/IEvangelist/resource-translator/issues).',
+    ];
+    return [title, details.join('\n')];
+};
+
+
+/***/ }),
+
 /***/ 761:
 /***/ (function(module) {
 
@@ -11588,7 +11672,10 @@ exports.initiate = void 0;
 const core_1 = __webpack_require__(470);
 const api_1 = __webpack_require__(172);
 const resource_finder_1 = __webpack_require__(952);
+const fs_1 = __webpack_require__(747);
 const resource_io_1 = __webpack_require__(545);
+const summarizer_1 = __webpack_require__(752);
+const summary_1 = __webpack_require__(76);
 const translator_1 = __webpack_require__(848);
 const utils_1 = __webpack_require__(163);
 const getOptions = () => {
@@ -11611,18 +11698,21 @@ async function initiate() {
         else {
             const availableTranslations = await api_1.getAvailableTranslations();
             if (!availableTranslations || !availableTranslations.translation) {
-                core_1.error("Unable to get target translations.");
+                core_1.setFailed("Unable to get target translations.");
                 return;
             }
+            const sourceLocale = core_1.getInput('sourceLocale');
             const toLocales = Object.keys(availableTranslations.translation)
+                .filter(locale => locale !== sourceLocale)
                 .sort((a, b) => utils_1.naturalLanguageCompare(a, b));
             core_1.info(`Detected translation targets to: ${toLocales.join(", ")}`);
             const resourceFiles = await resource_finder_1.findAllResourceFiles(inputOptions.baseFileGlob);
             if (!resourceFiles || !resourceFiles.length) {
-                core_1.error("Unable to get target resource files.");
+                core_1.setFailed("Unable to get target resource files.");
                 return;
             }
             core_1.info(`Discovered target resource files: ${resourceFiles.join(", ")}`);
+            let summary = new summary_1.Summary(sourceLocale, toLocales);
             for (let index = 0; index < resourceFiles.length; ++index) {
                 const resourceFile = resourceFiles[index];
                 const resourceXml = await resource_io_1.readFile(resourceFile);
@@ -11632,26 +11722,37 @@ async function initiate() {
                     const resultSet = await api_1.translate(inputOptions, toLocales, translatableTextMap.text);
                     core_1.info(`Translation result:\n ${JSON.stringify(resultSet)}`);
                     if (resultSet) {
-                        for (let index = 0; index < toLocales.length; index++) {
-                            const locale = toLocales[index];
+                        toLocales.forEach(locale => {
                             const translations = resultSet[locale];
                             const clone = { ...resourceXml };
                             const result = resource_io_1.applyTranslations(clone, translations, translatableTextMap.ordinals);
                             const translatedXml = resource_io_1.buildXml(result);
                             const newPath = utils_1.getLocaleName(resourceFile, locale);
                             if (newPath) {
+                                if (fs_1.existsSync(newPath)) {
+                                    summary.updatedFileCount++;
+                                    summary.updatedFileTranslations += translatableTextMap.ordinals.length;
+                                }
+                                else {
+                                    summary.newFileCount++;
+                                    summary.newFileTranslations += translatableTextMap.ordinals.length;
+                                }
                                 resource_io_1.writeFile(newPath, translatedXml);
                             }
-                        }
+                        });
                     }
                     else {
-                        core_1.error("Unable to translate input text.");
+                        core_1.setFailed("Unable to translate input text.");
                     }
                 }
                 else {
-                    core_1.error("No translatable text to work with");
+                    core_1.setFailed("No translatable text to work with");
                 }
             }
+            core_1.setOutput('has-new-translations', summary.hasNewTranslations);
+            const [title, details] = summarizer_1.summarize(summary);
+            core_1.setOutput('summary-title', title);
+            core_1.setOutput('summary-details', details);
         }
     }
     catch (error) {
