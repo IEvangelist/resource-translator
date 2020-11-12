@@ -1,5 +1,5 @@
 import { dirname, resolve } from 'path';
-import { groupBy, getLocaleName, stringifyMap } from '../src/utils';
+import { groupBy, getLocaleName, stringifyMap, chunk } from '../src/utils';
 import { DetectedLanguage, Result, TranslationResult } from '../src/translation-results';
 
 test("UTILS: group by functions correctly", () => {
@@ -64,7 +64,7 @@ test('UTILS: get locale file name correctly swaps locale.', () => {
     const resourcePath = resolve(__dirname, "./data/Test.en.resx");
     const directory = dirname(resourcePath);
     const localePath = getLocaleName(resourcePath, 'fr');
-    
+
     expect(localePath).toEqual(resolve(directory, 'Test.fr.resx'));
 });
 
@@ -72,11 +72,22 @@ test('UTILS: JSON stringify map replacer.', () => {
     const map: Map<string, string> = new Map();
     map.set('1', 'one');
     map.set('2', 'two');
-    
+
     const obj = {
         test: 'Sample',
         map
     };
 
     expect(JSON.stringify(obj, stringifyMap)).toEqual(`{"test":"Sample","map":{"dataType":"Map","value":[["1","one"],["2","two"]]}}`);
+});
+
+test('UTILS: Chunk array functions correctly.', () => {
+    const abcs = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
+    const chunks = chunk(abcs, 2);
+
+    expect(chunks.length).toEqual(4);
+    expect(chunks[0]).toEqual(['a', 'b']);
+    expect(chunks[1]).toEqual(['c', 'd']);
+    expect(chunks[2]).toEqual(['e', 'f']);
+    expect(chunks[3]).toEqual(['g']);
 });

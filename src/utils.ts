@@ -50,3 +50,13 @@ export function findValueByKey<T>(object: T, key: string) {
     });
     return value;
 }
+
+export function chunk<T>(array: T[], size: number): T[][] {
+    const chunked: T[][] = [];
+    let index = 0;
+    while (index < array.length) {
+        chunked.push(array.slice(index, size + index));
+        index += size;
+    }
+    return chunked;
+}

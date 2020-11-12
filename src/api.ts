@@ -4,6 +4,7 @@ import { TranslationResult, TranslationResults, TranslationResultSet } from './t
 import { v4 } from 'uuid';
 import Axios, { AxiosRequestConfig } from 'axios';
 import { TranslatorResource } from './translator-resource';
+import { chunk } from './utils';
 
 export async function getAvailableTranslations(): Promise<AvailableTranslations> {
     const url = 'https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation';
@@ -37,9 +38,22 @@ export async function translate(
         const baseUrl = translatorResource.endpoint.endsWith('/')
             ? translatorResource.endpoint
             : `${translatorResource.endpoint}/`;
-        const url = `${baseUrl}translate?api-version=3.0&${toLocales.map(to => `to=${to}`).join('&')}`;
-        const response = await Axios.post<TranslationResult[]>(url, data, options);
-        const results: TranslationResults = response.data;
+
+        const apiRateLimit = 10000;
+        const localeCount = toLocales.length;
+        const characters = JSON.stringify(data).length;
+        const batchCount = Math.ceil(characters * localeCount / apiRateLimit);
+        const batchedLocales = batchCount > 1
+            ? chunk(toLocales, batchCount)
+            : [ toLocales ];
+
+        let results: TranslationResults = [];
+        for (let i = 0; i < batchCount; i++) {
+            const locales = batchedLocales[i];
+            const url = `${baseUrl}translate?api-version=3.0&${locales.map(to => `to=${to}`).join('&')}`;
+            const response = await Axios.post<TranslationResults>(url, data, options);
+            results = [...response.data, ...results];
+        }
 
         const resultSet: TranslationResultSet = { };
         if (results && results.length) {
