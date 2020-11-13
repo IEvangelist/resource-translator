@@ -52,11 +52,13 @@ export async function translate(
             const locales = batchedLocales[i];
             const to = locales.map(to => `to=${to}`).join('&');
             debug(`Batch ${i + 1} locales: ${to}`);
+
             const url = `${baseUrl}translate?api-version=3.0&${to}`;
             const response = await Axios.post<TranslationResult[]>(url, data, options);
+            const responseData = response.data;
+            debug(`Batch ${i + 1} response: ${JSON.stringify(responseData)}`);
 
-            debug(`Batch ${i + 1} response: ${JSON.stringify(response.data)}`);
-            results = [...results, ...response.data];
+            results = [...results, ...responseData];
         }
 
         const map: TranslationResults = [
@@ -85,7 +87,9 @@ export async function translate(
     } catch (ex) {
         // Try to write explicit error:
         // https://docs.microsoft.com/en-us/azure/cognitive-services/translator/reference/v3-0-reference#errors
-        const e = ex.response.data as TranslationErrorResponse;
+        const e = ex.response
+            && ex.response.data
+            && ex.response.data as TranslationErrorResponse;
         if (e) {
             setFailed(`error: { code: ${e.error.code}, message: '${e.error.message}' }}`);
         } else {

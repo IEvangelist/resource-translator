@@ -4516,8 +4516,9 @@ async function translate(translatorResource, toLocales, translatableText) {
             core_1.debug(`Batch ${i + 1} locales: ${to}`);
             const url = `${baseUrl}translate?api-version=3.0&${to}`;
             const response = await axios_1.default.post(url, data, options);
-            core_1.debug(`Batch ${i + 1} response: ${JSON.stringify(response.data)}`);
-            results = [...results, ...response.data];
+            const responseData = response.data;
+            core_1.debug(`Batch ${i + 1} response: ${JSON.stringify(responseData)}`);
+            results = [...results, ...responseData];
         }
         const map = [
             {
@@ -4545,7 +4546,9 @@ async function translate(translatorResource, toLocales, translatableText) {
     catch (ex) {
         // Try to write explicit error:
         // https://docs.microsoft.com/en-us/azure/cognitive-services/translator/reference/v3-0-reference#errors
-        const e = ex.response.data;
+        const e = ex.response
+            && ex.response.data
+            && ex.response.data;
         if (e) {
             core_1.setFailed(`error: { code: ${e.error.code}, message: '${e.error.message}' }}`);
         }
