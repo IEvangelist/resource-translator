@@ -41,6 +41,8 @@ async function getFilesToInclude(): Promise<string[]> {
             if (response.data) {
                 return response.data.files.map(file => file.filename);
             }
+        } else {
+            debug("Unable to get the GIT_TOKEN from the environment.");
         }
     } catch (error) {
         debug(error);
