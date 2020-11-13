@@ -2,7 +2,7 @@ import { create } from '@actions/glob';
 import { context, getOctokit } from '@actions/github';
 import { isDirectory } from '@actions/io/lib/io-util';
 import { debug } from '@actions/core';
-import { basename } from 'path';
+import { basename, resolve } from 'path';
 
 export async function findAllResourceFiles(baseFileGlob: string): Promise<string[]> {
     const filesToInclude = await getFilesToInclude();
@@ -39,7 +39,15 @@ async function getFilesToInclude(): Promise<string[]> {
             debug(JSON.stringify(response));
 
             if (response.data) {
-                return response.data.files.map(file => basename(file.filename));
+                const files = [
+                    ...new Set(response.data.files.map(file => {
+                        const path = resolve(__dirname, file.filename);
+                        return basename(path);
+                    }))
+                ];
+
+                debug(`Files from trigger: ${files.join('\n')}`);
+                return files;
             }
         } else {
             debug("Unable to get the GIT_TOKEN from the environment.");
