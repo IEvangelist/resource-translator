@@ -76,10 +76,9 @@ export async function initiate() {
 
             let summary = new Summary(sourceLocale, toLocales);
 
-            for (let index = 0; index < resourceFiles.length; ++ index) {
-                const resourceFile = resourceFiles[index];
-                const resourceXml = await readFile(resourceFile);
-                const translatableTextMap = await getTranslatableTextMap(resourceXml);
+            resourceFiles.forEach(async (resourceFilePath: string) => {
+                const resourceFileXml = await readFile(resourceFilePath);
+                const translatableTextMap = await getTranslatableTextMap(resourceFileXml);
 
                 debug(`Translatable text:\n ${JSON.stringify(translatableTextMap, stringifyMap)}`);
 
@@ -94,10 +93,10 @@ export async function initiate() {
                     if (resultSet) {
                         toLocales.forEach(locale => {
                             const translations = resultSet[locale];
-                            const clone = { ...resourceXml };
+                            const clone = { ...resourceFileXml };
                             const result = applyTranslations(clone, translations, translatableTextMap.ordinals);
                             const translatedXml = buildXml(result);
-                            const newPath = getLocaleName(resourceFile, locale);
+                            const newPath = getLocaleName(resourceFilePath, locale);
                             if (newPath) {
                                 if (existsSync(newPath)) {
                                     summary.updatedFileCount++;
@@ -115,7 +114,7 @@ export async function initiate() {
                 } else {
                     setFailed("No translatable text to work with");
                 }
-            }
+            });
 
             setOutput('has-new-translations', summary.hasNewTranslations);
 

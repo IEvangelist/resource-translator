@@ -29,6 +29,7 @@ export async function findAllResourceFiles(baseFileGlob: string): Promise<string
         return includeFile(path);
     });
 }
+
 async function getFilesToInclude(): Promise<string[]> {
     try {
         // Get all files related to trigger.
@@ -52,11 +53,11 @@ async function getFilesToInclude(): Promise<string[]> {
                     }))
                 ];
 
-                debug(`Files from trigger: ${files.join('\n')}`);
+                debug(`Files from trigger:\n${files.join('\n\t')}`);
                 return files;
             }
         } else {
-            debug("Unable to get the GIT_TOKEN from the environment.");
+            debug("Unable to get the GITHUB_TOKEN from the environment.");
         }
     } catch (error) {
         debug(error);

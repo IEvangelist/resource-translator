@@ -4512,20 +4512,30 @@ async function translate(translatorResource, toLocales, translatableText) {
         let results = [];
         for (let i = 0; i < batchedLocales.length; i++) {
             const locales = batchedLocales[i];
-            const url = `${baseUrl}translate?api-version=3.0&${locales.map(to => `to=${to}`).join('&')}`;
+            const to = locales.map(to => `to=${to}`).join('&');
+            core_1.debug(`Batch ${i + 1} locales: ${to}`);
+            const url = `${baseUrl}translate?api-version=3.0&${to}`;
             const response = await axios_1.default.post(url, data, options);
+            core_1.debug(`Batch ${i + 1} response: ${JSON.stringify(response.data)}`);
             results = [...results, ...response.data];
         }
+        const map = [
+            {
+                detectedLanguage: results[0].detectedLanguage,
+                translations: results.flatMap(r => r.translations)
+            }
+        ];
         const resultSet = {};
-        if (results && results.length) {
+        if (map && map.length) {
             toLocales.forEach(locale => {
                 let result = {};
                 let index = 0;
                 for (let [key, _] of translatableText) {
-                    const translations = results[index++].translations;
+                    const translations = map[index++].translations;
                     const match = translations.find(r => r.to === locale);
-                    if (match && match['text'])
+                    if (match && match['text']) {
                         result[key] = match['text'];
+                    }
                 }
                 resultSet[locale] = result;
             });
@@ -18849,10 +18859,9 @@ async function initiate() {
             }
             core_1.debug(`Discovered target resource files: ${resourceFiles.join(", ")}`);
             let summary = new summary_1.Summary(sourceLocale, toLocales);
-            for (let index = 0; index < resourceFiles.length; ++index) {
-                const resourceFile = resourceFiles[index];
-                const resourceXml = await resource_io_1.readFile(resourceFile);
-                const translatableTextMap = await translator_1.getTranslatableTextMap(resourceXml);
+            resourceFiles.forEach(async (resourceFilePath) => {
+                const resourceFileXml = await resource_io_1.readFile(resourceFilePath);
+                const translatableTextMap = await translator_1.getTranslatableTextMap(resourceFileXml);
                 core_1.debug(`Translatable text:\n ${JSON.stringify(translatableTextMap, utils_1.stringifyMap)}`);
                 if (translatableTextMap) {
                     const resultSet = await api_1.translate(inputOptions, toLocales, translatableTextMap.text);
@@ -18860,10 +18869,10 @@ async function initiate() {
                     if (resultSet) {
                         toLocales.forEach(locale => {
                             const translations = resultSet[locale];
-                            const clone = { ...resourceXml };
+                            const clone = { ...resourceFileXml };
                             const result = resource_io_1.applyTranslations(clone, translations, translatableTextMap.ordinals);
                             const translatedXml = resource_io_1.buildXml(result);
-                            const newPath = utils_1.getLocaleName(resourceFile, locale);
+                            const newPath = utils_1.getLocaleName(resourceFilePath, locale);
                             if (newPath) {
                                 if (fs_1.existsSync(newPath)) {
                                     summary.updatedFileCount++;
@@ -18884,7 +18893,7 @@ async function initiate() {
                 else {
                     core_1.setFailed("No translatable text to work with");
                 }
-            }
+            });
             core_1.setOutput('has-new-translations', summary.hasNewTranslations);
             const [title, details] = summarizer_1.summarize(summary);
             core_1.setOutput('summary-title', title);
@@ -22282,12 +22291,12 @@ async function getFilesToInclude() {
                         return path_1.basename(path);
                     }))
                 ];
-                core_1.debug(`Files from trigger: ${files.join('\n')}`);
+                core_1.debug(`Files from trigger:\n${files.join('\n\t')}`);
                 return files;
             }
         }
         else {
-            core_1.debug("Unable to get the GIT_TOKEN from the environment.");
+            core_1.debug("Unable to get the GITHUB_TOKEN from the environment.");
         }
     }
     catch (error) {

@@ -1,4 +1,4 @@
-import { setFailed } from '@actions/core';
+import { debug, setFailed } from '@actions/core';
 import { AvailableTranslations } from './available-translations';
 import { TranslationResult, TranslationResults, TranslationResultSet } from './translation-results';
 import { v4 } from 'uuid';
@@ -17,7 +17,7 @@ export async function translate(
     toLocales: string[],
     translatableText: Map<string, string>): Promise<TranslationResultSet | undefined> {
     try {
-        const data = [ ...translatableText.values() ].map(value => {
+        const data = [...translatableText.values()].map(value => {
             return { text: value };
         });
         const headers = {
@@ -45,26 +45,37 @@ export async function translate(
         const batchCount = Math.ceil(characters * localeCount / apiRateLimit);
         const batchedLocales = batchCount > 1
             ? chunk(toLocales, batchCount)
-            : [ toLocales ];
+            : [toLocales];
 
         let results: TranslationResults = [];
         for (let i = 0; i < batchedLocales.length; i++) {
             const locales = batchedLocales[i];
-            const url = `${baseUrl}translate?api-version=3.0&${locales.map(to => `to=${to}`).join('&')}`;
-            const response = await Axios.post<TranslationResults>(url, data, options);
+            const to = locales.map(to => `to=${to}`).join('&');
+            debug(`Batch ${i + 1} locales: ${to}`);
+            const url = `${baseUrl}translate?api-version=3.0&${to}`;
+            const response = await Axios.post<TranslationResult[]>(url, data, options);
+
+            debug(`Batch ${i + 1} response: ${JSON.stringify(response.data)}`);
             results = [...results, ...response.data];
         }
 
-        const resultSet: TranslationResultSet = { };
-        if (results && results.length) {
+        const map: TranslationResults = [
+            {
+                detectedLanguage: results[0].detectedLanguage,
+                translations: results.flatMap(r => r.translations)
+            }
+        ];
+        const resultSet: TranslationResultSet = {};
+        if (map && map.length) {
             toLocales.forEach(locale => {
-                let result = { };
+                let result = {};
                 let index = 0;
                 for (let [key, _] of translatableText) {
-                    const translations = results[index++].translations;
+                    const translations = map[index++].translations;
                     const match = translations.find(r => r.to === locale);
-                    if (match && match['text'])
+                    if (match && match['text']) {
                         result[key] = match['text'];
+                    }
                 }
                 resultSet[locale] = result;
             });
@@ -86,7 +97,7 @@ export async function translate(
 }
 
 interface TranslationErrorResponse {
-    error: { 
+    error: {
         code: number,
         message: string;
     }
