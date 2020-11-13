@@ -22271,7 +22271,7 @@ async function getFilesToInclude() {
             const response = await octokit.repos.getCommit(options);
             core_1.debug(JSON.stringify(response));
             if (response.data) {
-                return response.data.files.map(file => file.filename);
+                return response.data.files.map(file => path_1.basename(file.filename));
             }
         }
         else {
