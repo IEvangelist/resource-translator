@@ -22245,15 +22245,20 @@ async function findAllResourceFiles(baseFileGlob) {
     const globber = await glob_1.create(baseFileGlob);
     const filesAndDirectories = await globber.glob();
     const includeFile = (filepath) => {
-        if (filesToInclude && filesToInclude.length) {
+        if (filesToInclude && filesToInclude.length > 0) {
             const filename = path_1.basename(filepath);
-            return filesToInclude.some(f => f.toLowerCase() === filename.toLowerCase());
+            const include = filesToInclude.some(f => f.toLowerCase() === filename.toLowerCase());
+            core_1.debug(`include=${include}, ${filename}`);
+            return include;
         }
         return true;
     };
     return filesAndDirectories.filter(async (path) => {
         const pathIsDirectory = await io_util_1.isDirectory(path);
-        return !pathIsDirectory && includeFile(path);
+        if (pathIsDirectory) {
+            return false;
+        }
+        return includeFile(path);
     });
 }
 exports.findAllResourceFiles = findAllResourceFiles;

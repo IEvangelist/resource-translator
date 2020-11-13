@@ -10,17 +10,23 @@ export async function findAllResourceFiles(baseFileGlob: string): Promise<string
     const filesAndDirectories = await globber.glob();
 
     const includeFile = (filepath: string) => {
-        if (filesToInclude && filesToInclude.length) {
+        if (filesToInclude && filesToInclude.length > 0) {
             const filename = basename(filepath);
-            return filesToInclude.some(f => f.toLowerCase() === filename.toLowerCase());
+            const include = filesToInclude.some(f => f.toLowerCase() === filename.toLowerCase());
+            debug(`include=${include}, ${filename}`);
+            return include;
         }
 
         return true;
     };
 
-    return filesAndDirectories.filter(async path => {
+    return filesAndDirectories.filter(async (path: string) => {
         const pathIsDirectory = await isDirectory(path);
-        return !pathIsDirectory && includeFile(path);
+        if (pathIsDirectory) {
+            return false;
+        }
+
+        return includeFile(path);
     });
 }
 async function getFilesToInclude(): Promise<string[]> {
