@@ -48,11 +48,11 @@ export async function translate(
             : [ toLocales ];
 
         let results: TranslationResults = [];
-        for (let i = 0; i < batchCount; i++) {
+        for (let i = 0; i < batchedLocales.length; i++) {
             const locales = batchedLocales[i];
             const url = `${baseUrl}translate?api-version=3.0&${locales.map(to => `to=${to}`).join('&')}`;
             const response = await Axios.post<TranslationResults>(url, data, options);
-            results = [...response.data, ...results];
+            results = [...results, ...response.data];
         }
 
         const resultSet: TranslationResultSet = { };
