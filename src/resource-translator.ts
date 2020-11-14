@@ -76,7 +76,8 @@ export async function initiate() {
 
             let summary = new Summary(sourceLocale, toLocales);
 
-            resourceFiles.forEach(async (resourceFilePath: string) => {
+            for (let index = 0; index < resourceFiles.length; ++ index) {
+                const resourceFilePath = resourceFiles[index];
                 const resourceFileXml = await readFile(resourceFilePath);
                 const translatableTextMap = await getTranslatableTextMap(resourceFileXml);
 
@@ -114,7 +115,7 @@ export async function initiate() {
                 } else {
                     setFailed("No translatable text to work with");
                 }
-            });
+            }
 
             setOutput('has-new-translations', summary.hasNewTranslations);
 

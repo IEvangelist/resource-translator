@@ -20,7 +20,7 @@ export async function findAllResourceFiles(baseFileGlob: string): Promise<string
         return true;
     };
 
-    return filesAndDirectories.filter(async (path: string) => {
+    const files = filesAndDirectories.filter(async (path: string) => {
         const pathIsDirectory = await isDirectory(path);
         if (pathIsDirectory) {
             return false;
@@ -28,6 +28,10 @@ export async function findAllResourceFiles(baseFileGlob: string): Promise<string
 
         return includeFile(path);
     });
+
+    debug(`Files to translate:\n\t${files.join('\n\t')}`)
+
+    return files;
 }
 
 async function getFilesToInclude(): Promise<string[]> {
@@ -53,7 +57,7 @@ async function getFilesToInclude(): Promise<string[]> {
                     }))
                 ];
 
-                debug(`Files from trigger:\n${files.join('\n\t')}`);
+                debug(`Files from trigger:\n\t${files.join('\n\t')}`);
                 return files;
             }
         } else {
