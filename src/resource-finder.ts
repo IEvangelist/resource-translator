@@ -20,18 +20,21 @@ export async function findAllResourceFiles(baseFileGlob: string): Promise<string
         return true;
     };
 
-    const files = filesAndDirectories.filter(async (path: string) => {
-        const pathIsDirectory = await isDirectory(path);
-        if (pathIsDirectory) {
-            return false;
+    const promises = filesAndDirectories.map(async path => {
+        return {
+            path,
+            isDirectory: await isDirectory(path),
+            include: includeFile(path)
         }
-
-        return includeFile(path);
     });
+    const files = await Promise.all(promises);
+    const results =
+        files.filter(file => file.include && !file.isDirectory)
+             .map(file => file.path);
 
-    debug(`Files to translate:\n\t${files.join('\n\t')}`)
+    debug(`Files to translate:\n\t${results.join('\n\t')}`);
 
-    return files;
+    return results;
 }
 
 async function getFilesToInclude(): Promise<string[]> {

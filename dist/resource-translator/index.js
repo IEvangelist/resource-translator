@@ -22266,15 +22266,18 @@ async function findAllResourceFiles(baseFileGlob) {
         }
         return true;
     };
-    const files = filesAndDirectories.filter(async (path) => {
-        const pathIsDirectory = await io_util_1.isDirectory(path);
-        if (pathIsDirectory) {
-            return false;
-        }
-        return includeFile(path);
+    const promises = filesAndDirectories.map(async (path) => {
+        return {
+            path,
+            isDirectory: await io_util_1.isDirectory(path),
+            include: includeFile(path)
+        };
     });
-    core_1.debug(`Files to translate:\n\t${files.join('\n\t')}`);
-    return files;
+    const files = await Promise.all(promises);
+    const results = files.filter(file => file.include && !file.isDirectory)
+        .map(file => file.path);
+    core_1.debug(`Files to translate:\n\t${results.join('\n\t')}`);
+    return results;
 }
 exports.findAllResourceFiles = findAllResourceFiles;
 async function getFilesToInclude() {
