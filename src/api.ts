@@ -5,6 +5,7 @@ import { v4 } from 'uuid';
 import Axios, { AxiosRequestConfig } from 'axios';
 import { TranslatorResource } from './translator-resource';
 import { chunk } from './utils';
+import { toResultSet } from './api-result-set-mapper';
 
 export async function getAvailableTranslations(): Promise<AvailableTranslations> {
     const url = 'https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation';
@@ -61,29 +62,7 @@ export async function translate(
             results = [...results, ...responseData];
         }
 
-        const map: TranslationResults = [
-            {
-                detectedLanguage: results[0].detectedLanguage,
-                translations: results.flatMap(r => r.translations)
-            }
-        ];
-        const resultSet: TranslationResultSet = {};
-        if (map && map.length) {
-            toLocales.forEach(locale => {
-                let result = {};
-                let index = 0;
-                for (let [key, _] of translatableText) {
-                    const translations = map[index++].translations;
-                    const match = translations.find(r => r.to === locale);
-                    if (match && match['text']) {
-                        result[key] = match['text'];
-                    }
-                }
-                resultSet[locale] = result;
-            });
-        }
-
-        return resultSet;
+        return toResultSet(results, toLocales, translatableText);
     } catch (ex) {
         // Try to write explicit error:
         // https://docs.microsoft.com/en-us/azure/cognitive-services/translator/reference/v3-0-reference#errors
