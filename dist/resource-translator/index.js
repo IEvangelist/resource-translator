@@ -4474,6 +4474,7 @@ const core_1 = __webpack_require__(470);
 const uuid_1 = __webpack_require__(898);
 const axios_1 = __importDefault(__webpack_require__(53));
 const utils_1 = __webpack_require__(163);
+const api_result_set_mapper_1 = __webpack_require__(243);
 async function getAvailableTranslations() {
     const url = 'https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation';
     const response = await axios_1.default.get(url);
@@ -4520,28 +4521,7 @@ async function translate(translatorResource, toLocales, translatableText) {
             core_1.debug(`Batch ${i + 1} response: ${JSON.stringify(responseData)}`);
             results = [...results, ...responseData];
         }
-        const map = [
-            {
-                detectedLanguage: results[0].detectedLanguage,
-                translations: results.flatMap(r => r.translations)
-            }
-        ];
-        const resultSet = {};
-        if (map && map.length) {
-            toLocales.forEach(locale => {
-                let result = {};
-                let index = 0;
-                for (let [key, _] of translatableText) {
-                    const translations = map[index++].translations;
-                    const match = translations.find(r => r.to === locale);
-                    if (match && match['text']) {
-                        result[key] = match['text'];
-                    }
-                }
-                resultSet[locale] = result;
-            });
-        }
-        return resultSet;
+        return api_result_set_mapper_1.toResultSet(results, toLocales, translatableText);
     }
     catch (ex) {
         // Try to write explicit error:
@@ -4834,6 +4814,37 @@ module.exports = function xhrAdapter(config) {
     request.send(requestData);
   });
 };
+
+
+/***/ }),
+
+/***/ 243:
+/***/ (function(__unusedmodule, exports) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.toResultSet = void 0;
+function toResultSet(results, toLocales, translatableText) {
+    const resultSet = {};
+    if (results && results.length) {
+        for (let i = 0; i < toLocales.length; ++i) {
+            const locale = toLocales[i];
+            let result = {};
+            let index = 0;
+            for (let [key, _] of translatableText) {
+                const translations = results[index++].translations;
+                const match = translations.find(r => r.to === locale);
+                if (match && match['text']) {
+                    result[key] = match['text'];
+                }
+            }
+            resultSet[locale] = result;
+        }
+    }
+    return resultSet;
+}
+exports.toResultSet = toResultSet;
 
 
 /***/ }),
