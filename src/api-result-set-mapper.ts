@@ -16,18 +16,32 @@ export function toResultSet(
             let result = {};
             const matches = results.filter(r => r.translations.some(t => t.to === locale));
             if (matches) {
-                for (let i = 0; i < matches.length; ++ i) {
-                    const translations = matches[i].translations.map(t => t['text']);
-                    const zipped = zip(translatableKeys, translations);
-                    for (let f = 0; f < zipped.length; ++ f) {
-                        const key: string = zipped[f][0];
-                        result[key] = zipped[f][1];
-                    }
-                    resultSet[locale] = result;
+                const translations = toRawTextArray(matches, locale);
+                const zipped = zip(translatableKeys, translations);
+                for (let f = 0; f < zipped.length; ++f) {
+                    const key: string = zipped[f][0];
+                    result[key] = zipped[f][1];
                 }
+                resultSet[locale] = result;
             }
         });
     }
 
     return resultSet;
+}
+
+function toRawTextArray(translationResults: TranslationResults, locale: string): string[] {
+    const rawTextArray: string[] = [];
+    if (translationResults && translationResults.length) {
+        for (let i = 0; i < translationResults.length; ++i) {
+            const translations = translationResults[i].translations;
+            translations.forEach(translation => {
+                if (translation.to === locale) {
+                    rawTextArray.push(translation['text']);
+                }
+            });
+        }
+    }
+
+    return rawTextArray;
 }
