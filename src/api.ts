@@ -40,6 +40,8 @@ export async function translate(
             ? translatorResource.endpoint
             : `${translatorResource.endpoint}/`;
 
+        // Current Azure Translator API rate limit
+        // https://docs.microsoft.com/azure/cognitive-services/translator/request-limits#character-and-array-limits-per-request
         const apiRateLimit = 10000;
         const localeCount = toLocales.length;
         const characters = JSON.stringify(data).length;

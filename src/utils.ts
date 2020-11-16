@@ -60,3 +60,9 @@ export function chunk<T>(array: T[], size: number): T[][] {
     }
     return chunked;
 }
+
+export function zip<TFirst, TSecond>(first: TFirst[], second: TSecond[]): (TFirst | TSecond)[][] {
+    return first.map((value, i) => {
+        return [value, second[i]];
+    });
+}
