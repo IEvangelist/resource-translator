@@ -32,17 +32,26 @@ export function applyTranslations(
         let index = 0;
         for (let key in translations) {
             const ordinal = ordinals[index++];
-            resource.root.data[ordinal].value = [translations[key]];
+            const value = [translations[key]];
+            if (value) {
+                resource.root.data[ordinal].value = value;
+            }
         }
     }
 
     return resource;
 }
 
-export function buildXml(resource: ResourceFile) {
-    const builder = new Builder();
-    var xml = builder.buildObject(resource);
-    return xml;
+export function buildXml(resource: ResourceFile): string | undefined {
+    try {
+        debug(`JSON: ${JSON.stringify(resource)}`);
+
+        const builder = new Builder();       
+        var xml = builder.buildObject(resource);
+        return xml;
+    } catch (error) {
+        return undefined;
+    }
 }
 
 export function writeFile(path: string, xml: string) {

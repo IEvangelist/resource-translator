@@ -1,5 +1,5 @@
 import { dirname, resolve } from 'path';
-import { groupBy, getLocaleName, stringifyMap, chunk } from '../src/utils';
+import { groupBy, getLocaleName, stringifyMap, chunk, zip } from '../src/utils';
 import { DetectedLanguage, Result, TranslationResult } from '../src/translation-results';
 
 test("UTILS: group by functions correctly", () => {
@@ -8,7 +8,7 @@ test("UTILS: group by functions correctly", () => {
         { brand: 'Ferrari', color: 'red' },
         { brand: 'Ford', color: 'white' },
         { brand: 'Toyota', color: 'white' },
-        { brand: 'Audi', color: 'white' },
+        { brand: 'Audi', color: 'white' }
     ];
 
     const audiCars = groupBy(cars, 'brand');
@@ -90,4 +90,16 @@ test('UTILS: Chunk array functions correctly.', () => {
     expect(chunks[1]).toEqual(['c', 'd']);
     expect(chunks[2]).toEqual(['e', 'f']);
     expect(chunks[3]).toEqual(['g']);
+});
+
+test('UTILS: Zip arrays functions correctly.', () => {
+    const abcs = ['a', 'b', 'c', 'd'];
+    const nums = [1, 2, 3, 4];
+    const zipped = zip(abcs, nums);
+
+    expect(zipped.length).toBeTruthy();
+    expect(zipped[0]).toEqual(['a', 1]);
+    expect(zipped[1]).toEqual(['b', 2]);
+    expect(zipped[2]).toEqual(['c', 3]);
+    expect(zipped[3]).toEqual(['d', 4]);
 });

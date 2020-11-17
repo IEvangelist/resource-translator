@@ -1,5 +1,4 @@
 import { debug } from "@actions/core";
-import { context } from "@actions/github";
 import { Summary } from "./summary";
 
 /**
@@ -10,7 +9,7 @@ export const summarize = (summary: Summary): [string, string] => {
     const fileCount = summary.totalFileCount.toLocaleString('en');
     const translations = summary.totalTranslations.toLocaleString('en');
     const title = `Machine-translated ${fileCount} files, a total of ${translations} translations`;
-    
+
     const env = process.env;
     const server = env['GITHUB_SERVER_URL'];
     const repo = env['GITHUB_REPOSITORY'];

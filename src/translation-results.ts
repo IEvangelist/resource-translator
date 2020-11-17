@@ -17,7 +17,7 @@ export interface DetectedLanguage {
 }
 
 export interface Result extends Record<string, string> {
-    [key: string]: string;
+    text: string;
     to: string;
 }
 

@@ -94,11 +94,14 @@ export async function initiate() {
                     if (resultSet) {
                         toLocales.forEach(locale => {
                             const translations = resultSet[locale];
+                            if (!translations) {
+                                return;
+                            }
                             const clone = { ...resourceFileXml };
                             const result = applyTranslations(clone, translations, translatableTextMap.ordinals);
                             const translatedXml = buildXml(result);
                             const newPath = getLocaleName(resourceFilePath, locale);
-                            if (newPath) {
+                            if (translatedXml && newPath) {
                                 if (existsSync(newPath)) {
                                     summary.updatedFileCount++;
                                     summary.updatedFileTranslations += translatableTextMap.ordinals.length;

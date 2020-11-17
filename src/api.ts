@@ -74,7 +74,8 @@ export async function translate(
         if (e) {
             setFailed(`error: { code: ${e.error.code}, message: '${e.error.message}' }}`);
         } else {
-            setFailed(`Failed to translate input: ${JSON.stringify(ex)}`);
+            
+            setFailed(`Failed to translate input: ${ex}`);
         }
 
         return undefined;
