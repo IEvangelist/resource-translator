@@ -18,6 +18,11 @@ on:
     paths:
     - '**.resx' # only take action when *.resx files change
 
+# https://docs.github.com/en/free-pro-team@latest/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
+# GitHub automatically creates a GITHUB_TOKEN secret to use in your workflow.
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
