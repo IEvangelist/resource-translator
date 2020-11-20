@@ -3,20 +3,15 @@ import { Builder, Parser } from 'xml2js';
 import { readFileSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
 import { ResourceFile } from './resource-file';
+import { ResourceParser } from './resource-parser';
 
-export async function readFile(path: string) {
+export async function readFile(path: string, resourceParser: ResourceParser) {
     const resolved = resolve(path);
     const file = readFileSync(resolved, 'utf-8');
 
     debug(`Read file: ${file}`);
 
-    return await parseXml(file);
-}
-
-async function parseXml(file: string): Promise<ResourceFile> {
-    const parser = new Parser();
-    const xml = await parser.parseStringPromise(file);
-    return xml as ResourceFile;
+    return await resourceParser.parseFrom<ResourceFile>(file);
 }
 
 export function applyTranslations(
@@ -46,7 +41,7 @@ export function buildXml(resource: ResourceFile): string | undefined {
     try {
         debug(`JSON: ${JSON.stringify(resource)}`);
 
-        const builder = new Builder();       
+        const builder = new Builder();
         var xml = builder.buildObject(resource);
         return xml;
     } catch (error) {

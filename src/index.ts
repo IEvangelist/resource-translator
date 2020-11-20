@@ -1,9 +1,10 @@
 import { setFailed } from '@actions/core';
-import { initiate } from './resource-translator';
+import { getInputs } from './get-inputs';
+import { start } from './resource-translator';
 
 const run = async (): Promise<void> => {
     try {
-        await initiate();
+        await start(getInputs());
     } catch (error) {
         setFailed(error);
     }

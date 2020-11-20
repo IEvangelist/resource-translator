@@ -18,7 +18,7 @@
  * Create PR based on newly created translation files * 
  */
 
-import { info, getInput, setFailed, setOutput, debug } from '@actions/core';
+import { info, setFailed, setOutput, debug } from '@actions/core';
 import { getAvailableTranslations, translate } from './api';
 import { findAllResourceFiles } from './resource-finder';
 import { existsSync } from 'fs';
@@ -27,31 +27,12 @@ import { summarize } from './summarizer';
 import { Summary } from './summary';
 import { getTranslatableTextMap } from './translator';
 import { getLocaleName, naturalLanguageCompare, stringifyMap } from './utils';
+import { Inputs } from './inputs';
+import { ResourceParser } from './resource-parser';
 
-interface Options {
-    baseFileGlob: string;
-    subscriptionKey: string;
-    endpoint: string;
-    region?: string;
-}
-
-const getOptions = (): Options => {
-    const [baseFileGlob, endpoint, subscriptionKey, region] = [
-        `**/*.${(getInput('sourceLocale') || 'en')}.resx`,
-        getInput('endpoint', { required: true }),
-        getInput('subscriptionKey', { required: true }),
-        getInput('region')
-    ];
-
-    return {
-        baseFileGlob, subscriptionKey, endpoint, region
-    }
-};
-
-export async function initiate() {
+export async function start(inputs: Inputs) {
     try {
-        const inputOptions = getOptions();
-        if (!inputOptions) {
+        if (!inputs) {
             setFailed('Both a subscriptionKey and endpoint are required.');
         } else {
             const availableTranslations = await getAvailableTranslations();
@@ -59,14 +40,14 @@ export async function initiate() {
                 setFailed("Unable to get target translations.");
                 return;
             }
-            const sourceLocale = getInput('sourceLocale');
+            const sourceLocale = inputs.sourceLocale;
             const toLocales =
                 Object.keys(availableTranslations.translation)
                     .filter(locale => locale !== sourceLocale)
                     .sort((a, b) => naturalLanguageCompare(a, b));
             info(`Detected translation targets to: ${toLocales.join(", ")}`);
 
-            const resourceFiles = await findAllResourceFiles(inputOptions.baseFileGlob);
+            const resourceFiles = await findAllResourceFiles(inputs.baseFileGlob);
             if (!resourceFiles || !resourceFiles.length) {
                 setFailed("Unable to get target resource files.");
                 return;
@@ -75,6 +56,8 @@ export async function initiate() {
             debug(`Discovered target resource files: ${resourceFiles.join(", ")}`);
 
             let summary = new Summary(sourceLocale, toLocales);
+
+            const resourceParser: ResourceParser = parserFactory();
 
             for (let index = 0; index < resourceFiles.length; ++ index) {
                 const resourceFilePath = resourceFiles[index];
@@ -85,7 +68,7 @@ export async function initiate() {
 
                 if (translatableTextMap) {
                     const resultSet = await translate(
-                        inputOptions,
+                        inputs,
                         toLocales,
                         translatableTextMap.text);
 
@@ -98,6 +81,10 @@ export async function initiate() {
                                 return;
                             }
                             const clone = { ...resourceFileXml };
+
+                            const parser: ResourceParser = parserFactory.get();
+
+
                             const result = applyTranslations(clone, translations, translatableTextMap.ordinals);
                             const translatedXml = buildXml(result);
                             const newPath = getLocaleName(resourceFilePath, locale);
