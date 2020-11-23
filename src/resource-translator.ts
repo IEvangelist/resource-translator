@@ -22,13 +22,14 @@ import { info, setFailed, setOutput, debug } from '@actions/core';
 import { getAvailableTranslations, translate } from './api';
 import { findAllResourceFiles } from './resource-finder';
 import { existsSync } from 'fs';
-import { readFile, buildXml, writeFile, applyTranslations } from './resource-io';
+import { readFile, writeFile, applyTranslations } from './resource-io';
 import { summarize } from './summarizer';
 import { Summary } from './summary';
 import { getTranslatableTextMap } from './translator';
 import { getLocaleName, naturalLanguageCompare, stringifyMap } from './utils';
 import { Inputs } from './inputs';
-import { ResourceParser } from './resource-parser';
+import { TranslationFileParser } from './translation-file-parser';
+import { translationFileParserFactory } from './factories/translation-file-parser-factory';
 
 export async function start(inputs: Inputs) {
     try {
@@ -57,53 +58,53 @@ export async function start(inputs: Inputs) {
 
             let summary = new Summary(sourceLocale, toLocales);
 
-            const resourceParser: ResourceParser = parserFactory();
+            for (let kind of inputs.resourceKinds || [ 'resx' ]) {
+                const translationFileParser =
+                    translationFileParserFactory(kind);
 
-            for (let index = 0; index < resourceFiles.length; ++ index) {
-                const resourceFilePath = resourceFiles[index];
-                const resourceFileXml = await readFile(resourceFilePath);
-                const translatableTextMap = await getTranslatableTextMap(resourceFileXml);
+                for (let index = 0; index < resourceFiles.length; ++index) {
+                    const resourceFilePath = resourceFiles[index];
+                    const resourceFileContent = readFile(resourceFilePath);
+                    const parsedFile = await translationFileParser.parseFrom(resourceFileContent);
+                    const translatableTextMap = translationFileParser.toTranslatableTextMap(parsedFile);
 
-                debug(`Translatable text:\n ${JSON.stringify(translatableTextMap, stringifyMap)}`);
+                    debug(`Translatable text:\n ${JSON.stringify(translatableTextMap, stringifyMap)}`);
 
-                if (translatableTextMap) {
-                    const resultSet = await translate(
-                        inputs,
-                        toLocales,
-                        translatableTextMap.text);
+                    if (translatableTextMap) {
+                        const resultSet = await translate(
+                            inputs,
+                            toLocales,
+                            translatableTextMap.text);
 
-                    debug(`Translation result:\n ${JSON.stringify(resultSet)}`);
+                        debug(`Translation result:\n ${JSON.stringify(resultSet)}`);
 
-                    if (resultSet) {
-                        toLocales.forEach(locale => {
-                            const translations = resultSet[locale];
-                            if (!translations) {
-                                return;
-                            }
-                            const clone = { ...resourceFileXml };
-
-                            const parser: ResourceParser = parserFactory.get();
-
-
-                            const result = applyTranslations(clone, translations, translatableTextMap.ordinals);
-                            const translatedXml = buildXml(result);
-                            const newPath = getLocaleName(resourceFilePath, locale);
-                            if (translatedXml && newPath) {
-                                if (existsSync(newPath)) {
-                                    summary.updatedFileCount++;
-                                    summary.updatedFileTranslations += translatableTextMap.ordinals.length;
-                                } else {
-                                    summary.newFileCount++;
-                                    summary.newFileTranslations += translatableTextMap.ordinals.length;
+                        if (resultSet) {
+                            toLocales.forEach(locale => {
+                                const translations = resultSet[locale];
+                                if (!translations) {
+                                    return;
                                 }
-                                writeFile(newPath, translatedXml);
-                            }
-                        });
+                                const clone = { ...resourceFileContent };
+                                const result = applyTranslations(clone, translations, translatableTextMap.ordinals);
+                                const translatedFile = translationFileParser.toFileFormatted(result, "");
+                                const newPath = getLocaleName(resourceFilePath, locale);
+                                if (translatedFile && newPath) {
+                                    if (existsSync(newPath)) {
+                                        summary.updatedFileCount++;
+                                        summary.updatedFileTranslations += translatableTextMap.ordinals.length;
+                                    } else {
+                                        summary.newFileCount++;
+                                        summary.newFileTranslations += translatableTextMap.ordinals.length;
+                                    }
+                                    writeFile(newPath, translatedFile);
+                                }
+                            });
+                        } else {
+                            setFailed("Unable to translate input text.");
+                        }
                     } else {
-                        setFailed("Unable to translate input text.");
+                        setFailed("No translatable text to work with");
                     }
-                } else {
-                    setFailed("No translatable text to work with");
                 }
             }
 

@@ -1,16 +1,16 @@
 export interface ResourceFile {
     root: Root;
-  }
+}
 
 export interface Root {
-  data: Data[];
+    data: Data[];
 }
 
 export interface Data {
-  $: NameAttribute;
-  value: string[];
+    $: NameAttribute;
+    value: string[];
 }
 
 export interface NameAttribute {
-  name: string;
-}  
+    name: string;
+}

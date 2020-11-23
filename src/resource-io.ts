@@ -1,17 +1,21 @@
 import { debug } from '@actions/core';
-import { Builder, Parser } from 'xml2js';
 import { readFileSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
-import { ResourceFile } from './resource-file';
-import { ResourceParser } from './resource-parser';
+import { ResourceFile } from './files/resource-file';
 
-export async function readFile(path: string, resourceParser: ResourceParser) {
+export function readFile(path: string) {
     const resolved = resolve(path);
     const file = readFileSync(resolved, 'utf-8');
 
     debug(`Read file: ${file}`);
+    
+    return file;
+}
 
-    return await resourceParser.parseFrom<ResourceFile>(file);
+export function writeFile(path: string, content: string) {
+    debug(`Write file, path: ${path}\nContent: ${content}`)
+
+    writeFileSync(path, content);
 }
 
 export function applyTranslations(
@@ -35,20 +39,4 @@ export function applyTranslations(
     }
 
     return resource;
-}
-
-export function buildXml(resource: ResourceFile): string | undefined {
-    try {
-        debug(`JSON: ${JSON.stringify(resource)}`);
-
-        const builder = new Builder();
-        var xml = builder.buildObject(resource);
-        return xml;
-    } catch (error) {
-        return undefined;
-    }
-}
-
-export function writeFile(path: string, xml: string) {
-    writeFileSync(path, xml);
 }

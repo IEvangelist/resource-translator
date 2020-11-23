@@ -1,4 +1,4 @@
-import { ResourceFile } from "./resource-file";
+import { ResourceFile } from "./files/resource-file";
 import { naturalLanguageCompare } from "./utils";
 
 export interface TranslatableTextMap {
@@ -6,7 +6,7 @@ export interface TranslatableTextMap {
     ordinals: number[];
 }
 
-export async function getTranslatableTextMap(resourceXml: ResourceFile): Promise<TranslatableTextMap> {
+export function getTranslatableTextMap(resourceXml: ResourceFile): TranslatableTextMap {
     const textToTranslate: Map<string, string> = new Map();
     const values = resourceXml.root.data;
     if (values && values.length) {

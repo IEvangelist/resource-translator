@@ -16,6 +16,9 @@ inputs:
   sourceLocale:
     description: 'The source locale (for example, ''en'') used to create the glob pattern for which resource (**/*.en.resx) files to use as input.'
     required: false
+  toLocales:
+    description: 'Th'
+    required: false
 outputs:
   summary-title:
     description: 'The summary details as a title, for example: "Machine-translated 320 files, a total of 5,418 translations"'
