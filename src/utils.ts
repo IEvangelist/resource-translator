@@ -67,6 +67,6 @@ export function zip<TFirst, TSecond>(first: TFirst[], second: TSecond[]): (TFirs
     });
 }
 
-export const delay = (ms: number, result?: T) => {
+export const delay = <T>(ms: number, result?: T) => {
     return new Promise(resolve => setTimeout(() => resolve(result), ms));
 }

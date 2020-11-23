@@ -2668,6 +2668,34 @@ exports.toCommandValue = toCommandValue;
 
 /***/ }),
 
+/***/ 85:
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PortableObjectParser = void 0;
+const utils_1 = __webpack_require__(163);
+class PortableObjectParser {
+    async parseFrom(fileContent) {
+        const xliff = await utils_1.delay(1, { empty: true });
+        return xliff; // This is a fake, and will not work.
+    }
+    toFileFormatted(instance, defaultValue) {
+        throw new Error('Method not implemented.');
+    }
+    applyTranslations(instance, translations, ordinals) {
+        throw new Error("Method not implemented.");
+    }
+    toTranslatableTextMap(instance) {
+        throw new Error("Method not implemented.");
+    }
+}
+exports.PortableObjectParser = PortableObjectParser;
+
+
+/***/ }),
+
 /***/ 86:
 /***/ (function(module, __unusedexports, __webpack_require__) {
 
@@ -4352,7 +4380,7 @@ module.exports.MaxBufferError = MaxBufferError;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.zip = exports.chunk = exports.findValueByKey = exports.stringifyMap = exports.naturalLanguageCompare = exports.getLocaleName = exports.groupBy = void 0;
+exports.delay = exports.zip = exports.chunk = exports.findValueByKey = exports.stringifyMap = exports.naturalLanguageCompare = exports.getLocaleName = exports.groupBy = void 0;
 const path_1 = __webpack_require__(622);
 exports.groupBy = (array, key) => array.reduce((result, obj) => {
     const value = obj[key];
@@ -4413,6 +4441,9 @@ function zip(first, second) {
     });
 }
 exports.zip = zip;
+exports.delay = (ms, result) => {
+    return new Promise(resolve => setTimeout(() => resolve(result), ms));
+};
 
 
 /***/ }),
@@ -6090,10 +6121,11 @@ isStream.transform = function (stream) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = __webpack_require__(470);
+const get_inputs_1 = __webpack_require__(452);
 const resource_translator_1 = __webpack_require__(781);
 const run = async () => {
     try {
-        await resource_translator_1.initiate();
+        await resource_translator_1.start(get_inputs_1.getInputs());
     }
     catch (error) {
         core_1.setFailed(error);
@@ -6240,7 +6272,7 @@ module.exports = require("assert");
 /***/ 361:
 /***/ (function(module) {
 
-module.exports = {"_from":"axios@^0.20.0","_id":"axios@0.20.0","_inBundle":false,"_integrity":"sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.20.0","name":"axios","escapedName":"axios","rawSpec":"^0.20.0","saveSpec":null,"fetchSpec":"^0.20.0"},"_requiredBy":["/","/@types/axios"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.20.0.tgz","_shasum":"057ba30f04884694993a8cd07fa394cff11c50bd","_spec":"axios@^0.20.0","_where":"C:\\Users\\david\\source\\repos\\resource-translator","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.10.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"bundlesize":"^0.17.0","coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.0.2","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^20.1.0","grunt-karma":"^2.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^1.0.18","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^1.3.0","karma-chrome-launcher":"^2.2.0","karma-coverage":"^1.1.1","karma-firefox-launcher":"^1.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-opera-launcher":"^1.0.0","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^1.2.0","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.7","karma-webpack":"^1.7.0","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^5.2.0","sinon":"^4.5.0","typescript":"^2.8.1","url-search-params":"^0.10.0","webpack":"^1.13.1","webpack-dev-server":"^1.14.1"},"homepage":"https://github.com/axios/axios","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test && bundlesize","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.20.0"};
+module.exports = {"_args":[["axios@0.20.0","C:\\Users\\dapine\\source\\repos\\resource-translator"]],"_from":"axios@0.20.0","_id":"axios@0.20.0","_inBundle":false,"_integrity":"sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.20.0","name":"axios","escapedName":"axios","rawSpec":"0.20.0","saveSpec":null,"fetchSpec":"0.20.0"},"_requiredBy":["/","/@types/axios"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.20.0.tgz","_spec":"0.20.0","_where":"C:\\Users\\dapine\\source\\repos\\resource-translator","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.10.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"bundlesize":"^0.17.0","coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.0.2","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^20.1.0","grunt-karma":"^2.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^1.0.18","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^1.3.0","karma-chrome-launcher":"^2.2.0","karma-coverage":"^1.1.1","karma-firefox-launcher":"^1.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-opera-launcher":"^1.0.0","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^1.2.0","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.7","karma-webpack":"^1.7.0","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^5.2.0","sinon":"^4.5.0","typescript":"^2.8.1","url-search-params":"^0.10.0","webpack":"^1.13.1","webpack-dev-server":"^1.14.1"},"homepage":"https://github.com/axios/axios","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test && bundlesize","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.20.0"};
 
 /***/ }),
 
@@ -7681,6 +7713,29 @@ exports.Octokit = Octokit;
   })();
 
 }).call(this);
+
+
+/***/ }),
+
+/***/ 452:
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getInputs = void 0;
+const core_1 = __webpack_require__(470);
+exports.getInputs = () => {
+    const sourceLocale = core_1.getInput('sourceLocale', { required: true });
+    const inputs = {
+        baseFileGlob: `**/*.${sourceLocale}.resx`,
+        subscriptionKey: core_1.getInput('subscriptionKey', { required: true }),
+        endpoint: core_1.getInput('endpoint', { required: true }),
+        sourceLocale,
+        region: core_1.getInput('region')
+    };
+    return inputs;
+};
 
 
 /***/ }),
@@ -9428,6 +9483,34 @@ module.exports = resolveCommand;
 
 /***/ }),
 
+/***/ 503:
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.XliffParser = void 0;
+const utils_1 = __webpack_require__(163);
+class XliffParser {
+    async parseFrom(fileContent) {
+        const xliff = await utils_1.delay(1, { empty: true });
+        return xliff; // This is a fake, and will not work.
+    }
+    toFileFormatted(instance, defaultValue) {
+        throw new Error('Method not implemented.');
+    }
+    applyTranslations(instance, translations, ordinals) {
+        throw new Error("Method not implemented.");
+    }
+    toTranslatableTextMap(instance) {
+        throw new Error("Method not implemented.");
+    }
+}
+exports.XliffParser = XliffParser;
+
+
+/***/ }),
+
 /***/ 510:
 /***/ (function(module) {
 
@@ -9865,6 +9948,75 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 });
 
 module.exports = defaults;
+
+
+/***/ }),
+
+/***/ 537:
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ResxParser = void 0;
+const xml2js_1 = __webpack_require__(992);
+const utils_1 = __webpack_require__(163);
+class ResxParser {
+    async parseFrom(fileContent) {
+        const parser = new xml2js_1.Parser();
+        const xml = await parser.parseStringPromise(fileContent);
+        return xml;
+    }
+    toFileFormatted(instance, defaultValue) {
+        try {
+            const builder = new xml2js_1.Builder();
+            var xml = builder.buildObject(instance);
+            return xml;
+        }
+        catch (error) {
+            return defaultValue;
+        }
+    }
+    applyTranslations(resource, translations, ordinals) {
+        //
+        // Each translation has a named identifier (it's key), for example: { 'SomeKey': 'some translated value' }.
+        // The ordinals map each key to it's appropriate translated value in the resource, for example: [2,0,1].
+        // For each translation, we map its keys value to the corresponding ordinal.
+        //
+        if (resource && translations && ordinals && ordinals.length) {
+            let index = 0;
+            for (let key in translations) {
+                const ordinal = ordinals[index++];
+                const value = [translations[key]];
+                if (value) {
+                    resource.root.data[ordinal].value = value;
+                }
+            }
+        }
+        return resource;
+    }
+    toTranslatableTextMap(instance) {
+        const textToTranslate = new Map();
+        const values = instance.root.data;
+        if (values && values.length) {
+            for (let i = 0; i < values.length; ++i) {
+                const key = values[i].$.name;
+                const value = values[i].value[0];
+                textToTranslate.set(key, value);
+            }
+        }
+        const translatableText = new Map();
+        [...textToTranslate.keys()].sort((a, b) => utils_1.naturalLanguageCompare(a, b)).forEach(key => {
+            translatableText.set(key, textToTranslate.get(key));
+        });
+        const ordinals = [...translatableText.keys()].map(key => values.findIndex(d => d.$.name === key));
+        return {
+            text: translatableText,
+            ordinals
+        };
+    }
+}
+exports.ResxParser = ResxParser;
 
 
 /***/ }),
@@ -10431,23 +10583,22 @@ exports.HttpClient = HttpClient;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.writeFile = exports.buildXml = exports.applyTranslations = exports.readFile = void 0;
+exports.applyTranslations = exports.writeFile = exports.readFile = void 0;
 const core_1 = __webpack_require__(470);
-const xml2js_1 = __webpack_require__(992);
 const fs_1 = __webpack_require__(747);
 const path_1 = __webpack_require__(622);
-async function readFile(path) {
+function readFile(path) {
     const resolved = path_1.resolve(path);
     const file = fs_1.readFileSync(resolved, 'utf-8');
     core_1.debug(`Read file: ${file}`);
-    return await parseXml(file);
+    return file;
 }
 exports.readFile = readFile;
-async function parseXml(file) {
-    const parser = new xml2js_1.Parser();
-    const xml = await parser.parseStringPromise(file);
-    return xml;
+function writeFile(path, content) {
+    core_1.debug(`Write file, path: ${path}\nContent: ${content}`);
+    fs_1.writeFileSync(path, content);
 }
+exports.writeFile = writeFile;
 function applyTranslations(resource, translations, ordinals) {
     //
     // Each translation has a named identifier (it's key), for example: { 'SomeKey': 'some translated value' }.
@@ -10467,22 +10618,6 @@ function applyTranslations(resource, translations, ordinals) {
     return resource;
 }
 exports.applyTranslations = applyTranslations;
-function buildXml(resource) {
-    try {
-        core_1.debug(`JSON: ${JSON.stringify(resource)}`);
-        const builder = new xml2js_1.Builder();
-        var xml = builder.buildObject(resource);
-        return xml;
-    }
-    catch (error) {
-        return undefined;
-    }
-}
-exports.buildXml = buildXml;
-function writeFile(path, xml) {
-    fs_1.writeFileSync(path, xml);
-}
-exports.writeFile = writeFile;
 
 
 /***/ }),
@@ -12273,6 +12408,30 @@ module.exports = function parseHeaders(headers) {
   });
 
   return parsed;
+};
+
+
+/***/ }),
+
+/***/ 638:
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.translationFileParserFactory = void 0;
+const po_parser_1 = __webpack_require__(85);
+const restext_parser_1 = __webpack_require__(893);
+const resx_parser_1 = __webpack_require__(537);
+const xliff_parser_1 = __webpack_require__(503);
+exports.translationFileParserFactory = (resourceKind) => {
+    switch (resourceKind) {
+        case 'resx': return new resx_parser_1.ResxParser();
+        case 'xliff': return new xliff_parser_1.XliffParser();
+        case 'restext': return new restext_parser_1.RestextParser();
+        case 'po': return new po_parser_1.PortableObjectParser();
+        default: throw new Error(`Unrecognized resource kind: ${resourceKind}`);
+    }
 };
 
 
@@ -18847,7 +19006,7 @@ module.exports = Axios;
 // region:          canadacentral
 // endpoint:        https://api.cognitive.microsofttranslator.com/
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.initiate = void 0;
+exports.start = void 0;
 //  This looks interesting: https://github.com/ryanluton/translate-resx/blob/master/translate-resx.js
 /**
  * WORKFLOW
@@ -18868,23 +19027,11 @@ const fs_1 = __webpack_require__(747);
 const resource_io_1 = __webpack_require__(545);
 const summarizer_1 = __webpack_require__(752);
 const summary_1 = __webpack_require__(76);
-const translator_1 = __webpack_require__(848);
 const utils_1 = __webpack_require__(163);
-const getOptions = () => {
-    const [baseFileGlob, endpoint, subscriptionKey, region] = [
-        `**/*.${(core_1.getInput('sourceLocale') || 'en')}.resx`,
-        core_1.getInput('endpoint', { required: true }),
-        core_1.getInput('subscriptionKey', { required: true }),
-        core_1.getInput('region')
-    ];
-    return {
-        baseFileGlob, subscriptionKey, endpoint, region
-    };
-};
-async function initiate() {
+const translation_file_parser_factory_1 = __webpack_require__(638);
+async function start(inputs) {
     try {
-        const inputOptions = getOptions();
-        if (!inputOptions) {
+        if (!inputs) {
             core_1.setFailed('Both a subscriptionKey and endpoint are required.');
         }
         else {
@@ -18893,55 +19040,59 @@ async function initiate() {
                 core_1.setFailed("Unable to get target translations.");
                 return;
             }
-            const sourceLocale = core_1.getInput('sourceLocale');
+            const sourceLocale = inputs.sourceLocale;
             const toLocales = Object.keys(availableTranslations.translation)
                 .filter(locale => locale !== sourceLocale)
                 .sort((a, b) => utils_1.naturalLanguageCompare(a, b));
             core_1.info(`Detected translation targets to: ${toLocales.join(", ")}`);
-            const resourceFiles = await resource_finder_1.findAllResourceFiles(inputOptions.baseFileGlob);
+            const resourceFiles = await resource_finder_1.findAllResourceFiles(inputs.baseFileGlob);
             if (!resourceFiles || !resourceFiles.length) {
                 core_1.setFailed("Unable to get target resource files.");
                 return;
             }
             core_1.debug(`Discovered target resource files: ${resourceFiles.join(", ")}`);
             let summary = new summary_1.Summary(sourceLocale, toLocales);
-            for (let index = 0; index < resourceFiles.length; ++index) {
-                const resourceFilePath = resourceFiles[index];
-                const resourceFileXml = await resource_io_1.readFile(resourceFilePath);
-                const translatableTextMap = await translator_1.getTranslatableTextMap(resourceFileXml);
-                core_1.debug(`Translatable text:\n ${JSON.stringify(translatableTextMap, utils_1.stringifyMap)}`);
-                if (translatableTextMap) {
-                    const resultSet = await api_1.translate(inputOptions, toLocales, translatableTextMap.text);
-                    core_1.debug(`Translation result:\n ${JSON.stringify(resultSet)}`);
-                    if (resultSet) {
-                        toLocales.forEach(locale => {
-                            const translations = resultSet[locale];
-                            if (!translations) {
-                                return;
-                            }
-                            const clone = { ...resourceFileXml };
-                            const result = resource_io_1.applyTranslations(clone, translations, translatableTextMap.ordinals);
-                            const translatedXml = resource_io_1.buildXml(result);
-                            const newPath = utils_1.getLocaleName(resourceFilePath, locale);
-                            if (translatedXml && newPath) {
-                                if (fs_1.existsSync(newPath)) {
-                                    summary.updatedFileCount++;
-                                    summary.updatedFileTranslations += translatableTextMap.ordinals.length;
+            for (let kind of inputs.resourceKinds || ['resx']) {
+                const translationFileParser = translation_file_parser_factory_1.translationFileParserFactory(kind);
+                for (let index = 0; index < resourceFiles.length; ++index) {
+                    const resourceFilePath = resourceFiles[index];
+                    const resourceFileContent = resource_io_1.readFile(resourceFilePath);
+                    const parsedFile = await translationFileParser.parseFrom(resourceFileContent);
+                    const translatableTextMap = translationFileParser.toTranslatableTextMap(parsedFile);
+                    core_1.debug(`Translatable text:\n ${JSON.stringify(translatableTextMap, utils_1.stringifyMap)}`);
+                    if (translatableTextMap) {
+                        const resultSet = await api_1.translate(inputs, toLocales, translatableTextMap.text);
+                        core_1.debug(`Translation result:\n ${JSON.stringify(resultSet)}`);
+                        if (resultSet) {
+                            toLocales.forEach(locale => {
+                                const translations = resultSet[locale];
+                                if (!translations) {
+                                    return;
                                 }
-                                else {
-                                    summary.newFileCount++;
-                                    summary.newFileTranslations += translatableTextMap.ordinals.length;
+                                const clone = Object.assign({}, resourceFileContent);
+                                const result = translationFileParser.applyTranslations(clone, translations, translatableTextMap.ordinals);
+                                const translatedFile = translationFileParser.toFileFormatted(result, "");
+                                const newPath = utils_1.getLocaleName(resourceFilePath, locale);
+                                if (translatedFile && newPath) {
+                                    if (fs_1.existsSync(newPath)) {
+                                        summary.updatedFileCount++;
+                                        summary.updatedFileTranslations += translatableTextMap.ordinals.length;
+                                    }
+                                    else {
+                                        summary.newFileCount++;
+                                        summary.newFileTranslations += translatableTextMap.ordinals.length;
+                                    }
+                                    resource_io_1.writeFile(newPath, translatedFile);
                                 }
-                                resource_io_1.writeFile(newPath, translatedXml);
-                            }
-                        });
+                            });
+                        }
+                        else {
+                            core_1.setFailed("Unable to translate input text.");
+                        }
                     }
                     else {
-                        core_1.setFailed("Unable to translate input text.");
+                        core_1.setFailed("No translatable text to work with");
                     }
-                }
-                else {
-                    core_1.setFailed("No translatable text to work with");
                 }
             }
             core_1.setOutput('has-new-translations', summary.hasNewTranslations);
@@ -18954,7 +19105,7 @@ async function initiate() {
         core_1.setFailed(error.message);
     }
 }
-exports.initiate = initiate;
+exports.start = start;
 
 
 /***/ }),
@@ -20999,39 +21150,6 @@ exports.restEndpointMethods = restEndpointMethods;
 
 /***/ }),
 
-/***/ 848:
-/***/ (function(__unusedmodule, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTranslatableTextMap = void 0;
-const utils_1 = __webpack_require__(163);
-async function getTranslatableTextMap(resourceXml) {
-    const textToTranslate = new Map();
-    const values = resourceXml.root.data;
-    if (values && values.length) {
-        for (let i = 0; i < values.length; ++i) {
-            const key = values[i].$.name;
-            const value = values[i].value[0];
-            textToTranslate.set(key, value);
-        }
-    }
-    const translatableText = new Map();
-    [...textToTranslate.keys()].sort((a, b) => utils_1.naturalLanguageCompare(a, b)).forEach(key => {
-        translatableText.set(key, textToTranslate.get(key));
-    });
-    const ordinals = [...translatableText.keys()].map(key => values.findIndex(d => d.$.name === key));
-    return {
-        text: translatableText,
-        ordinals
-    };
-}
-exports.getTranslatableTextMap = getTranslatableTextMap;
-
-
-/***/ }),
-
 /***/ 856:
 /***/ (function(module, __unusedexports, __webpack_require__) {
 
@@ -21758,6 +21876,47 @@ module.exports = function combineURLs(baseURL, relativeURL) {
     ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '')
     : baseURL;
 };
+
+
+/***/ }),
+
+/***/ 893:
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.RestextParser = void 0;
+const utils_1 = __webpack_require__(163);
+class RestextParser {
+    async parseFrom(fileContent) {
+        await utils_1.delay(1, {});
+        let restextFile = {};
+        if (fileContent) {
+            fileContent.split('\n').map(kvp => {
+                const keyValuePair = kvp.split('=');
+                restextFile = {
+                    ...restextFile,
+                    [keyValuePair[0]]: keyValuePair[1]
+                };
+            });
+        }
+        return restextFile;
+    }
+    toFileFormatted(instance, defaultValue) {
+        const text = Object.keys(instance).filter(key => !!key).map(key => {
+            return `${key}=${instance[key]}`;
+        }).join('\n');
+        return text || defaultValue;
+    }
+    applyTranslations(instance, translations, ordinals) {
+        throw new Error("Method not implemented.");
+    }
+    toTranslatableTextMap(instance) {
+        throw new Error("Method not implemented.");
+    }
+}
+exports.RestextParser = RestextParser;
 
 
 /***/ }),
