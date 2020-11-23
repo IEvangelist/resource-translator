@@ -1,3 +1,4 @@
+import { TranslationFile } from "./files/translation-file";
 import { TranslatableTextMap } from "./translator";
 
 /**
@@ -5,31 +6,31 @@ import { TranslatableTextMap } from "./translator";
  * - Parsing raw file content into a well-known translation resource file.
  * - Converting a well-known translation resource file instance into its native file string representation.
 */
-export interface TranslationFileParser<TParsedFile> {
+export interface TranslationFileParser {
     /**
-     * Parses the file's raw content into the corresponding @type {TParsedFile}
-     * @return {Promise<TParsedFile>}
+     * Parses the file's raw content into the corresponding @type {TranslationFile}
+     * @return {Promise<TranslationFile>}
     */
-    parseFrom(fileContent: string): Promise<TParsedFile>,
+    parseFrom(fileContent: string): Promise<TranslationFile>,
 
     /**
-     * Transforms the given @param {TParsedFile} instance into its native
+     * Transforms the given @param {TranslationFile} instance into its native
      * file string representation.
      * @returns {string}
     */
-    toFileFormatted(instance: TParsedFile, defaultValue: string): string
+    toFileFormatted(instance: TranslationFile, defaultValue: string): string
 
     /**
      * Applies the translations, mapping them appropriately to the
-     * corresponding @type {TParsedFile} instance.
+     * corresponding @type {TranslationFile} instance.
     */
     applyTranslations(
-        instance: TParsedFile,
+        instance: TranslationFile,
         translations: { [key: string]: string } | undefined,
-        ordinals: number[] | undefined): TParsedFile;
+        ordinals: number[] | undefined): TranslationFile;
 
     /**
      * Converts the given instance into a translatable text map for processing.
     */
-    toTranslatableTextMap(instance: TParsedFile): TranslatableTextMap;
+    toTranslatableTextMap(instance: TranslationFile): TranslatableTextMap;
 }

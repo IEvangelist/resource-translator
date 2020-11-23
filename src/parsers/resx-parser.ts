@@ -3,7 +3,7 @@ import { ResourceFile } from '../files/resource-file';
 import { TranslationFileParser } from '../translation-file-parser';
 import { naturalLanguageCompare } from '../utils';
 
-export class ResxParser implements TranslationFileParser<ResourceFile> {
+export class ResxParser implements TranslationFileParser {
     async parseFrom(fileContent: string): Promise<ResourceFile> {
         const parser = new Parser();
         const xml = await parser.parseStringPromise(fileContent);

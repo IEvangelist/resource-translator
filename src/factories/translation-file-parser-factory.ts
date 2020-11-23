@@ -5,7 +5,7 @@ import { RestextParser } from "../parsers/restext-parser";
 import { ResxParser } from "../parsers/resx-parser";
 import { XliffParser } from "../parsers/xliff-parser";
 
-export const translationFileParserFactory = <TParsedFile>(resourceKind: ResourceKind): TranslationFileParser<TParsedFile> => {
+export const translationFileParserFactory = (resourceKind: ResourceKind): TranslationFileParser => {
     switch (resourceKind) {
         case 'resx': return new ResxParser();
         case 'xliff': return new XliffParser();

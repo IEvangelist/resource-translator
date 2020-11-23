@@ -22,14 +22,13 @@ import { info, setFailed, setOutput, debug } from '@actions/core';
 import { getAvailableTranslations, translate } from './api';
 import { findAllResourceFiles } from './resource-finder';
 import { existsSync } from 'fs';
-import { readFile, writeFile, applyTranslations } from './resource-io';
+import { readFile, writeFile } from './resource-io';
 import { summarize } from './summarizer';
 import { Summary } from './summary';
-import { getTranslatableTextMap } from './translator';
 import { getLocaleName, naturalLanguageCompare, stringifyMap } from './utils';
 import { Inputs } from './inputs';
-import { TranslationFileParser } from './translation-file-parser';
 import { translationFileParserFactory } from './factories/translation-file-parser-factory';
+import { TranslationFile } from './files/translation-file';
 
 export async function start(inputs: Inputs) {
     try {
@@ -65,6 +64,7 @@ export async function start(inputs: Inputs) {
                 for (let index = 0; index < resourceFiles.length; ++index) {
                     const resourceFilePath = resourceFiles[index];
                     const resourceFileContent = readFile(resourceFilePath);
+
                     const parsedFile = await translationFileParser.parseFrom(resourceFileContent);
                     const translatableTextMap = translationFileParser.toTranslatableTextMap(parsedFile);
 
@@ -84,8 +84,11 @@ export async function start(inputs: Inputs) {
                                 if (!translations) {
                                     return;
                                 }
-                                const clone = { ...resourceFileContent };
-                                const result = applyTranslations(clone, translations, translatableTextMap.ordinals);
+                                const clone = Object.assign({} as TranslationFile, resourceFileContent);
+                                const result =
+                                    translationFileParser.applyTranslations(
+                                        clone, translations, translatableTextMap.ordinals);
+
                                 const translatedFile = translationFileParser.toFileFormatted(result, "");
                                 const newPath = getLocaleName(resourceFilePath, locale);
                                 if (translatedFile && newPath) {
