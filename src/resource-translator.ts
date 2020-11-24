@@ -20,7 +20,7 @@
 
 import { info, setFailed, setOutput, debug } from '@actions/core';
 import { getAvailableTranslations, translate } from './api';
-import { findAllResourceFiles } from './resource-finder';
+import { findAllTranslationFiles } from './translation-file-finder';
 import { existsSync } from 'fs';
 import { readFile, writeFile } from './resource-io';
 import { summarize } from './summarizer';
@@ -47,7 +47,7 @@ export async function start(inputs: Inputs) {
                     .sort((a, b) => naturalLanguageCompare(a, b));
             info(`Detected translation targets to: ${toLocales.join(", ")}`);
 
-            const resourceFiles = await findAllResourceFiles(inputs.baseFileGlob);
+            const resourceFiles = await findAllTranslationFiles(inputs.baseFileGlob);
             if (!resourceFiles || !resourceFiles.length) {
                 setFailed("Unable to get target resource files.");
                 return;

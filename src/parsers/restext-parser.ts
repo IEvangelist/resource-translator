@@ -1,7 +1,7 @@
 import { RestextFile } from "../files/restext-file";
 import { TranslationFileParser } from "../translation-file-parser";
 import { TranslatableTextMap } from "../translator";
-import { delay } from "../utils";
+import { delay, naturalLanguageCompare } from "../utils";
 
 export class RestextParser implements TranslationFileParser {
     async parseFrom(fileContent: string): Promise<RestextFile> {
@@ -35,6 +35,27 @@ export class RestextParser implements TranslationFileParser {
     }
 
     toTranslatableTextMap(instance: RestextFile): TranslatableTextMap {
-        throw new Error("Method not implemented.");
+        const textToTranslate: Map<string, string> = new Map();
+
+        let index = 0;
+        for (const [key, value] of Object.entries(instance)) {
+            textToTranslate.set(key, value);
+            index++;
+        }
+        
+        const translatableText: Map<string, string> = new Map();
+        [...textToTranslate.keys()].sort((a, b) => naturalLanguageCompare(a, b)).forEach(key => {
+            translatableText.set(key, textToTranslate.get(key)!);
+        });
+
+        const keys = Object.keys(instance);
+        const ordinals: number[] =
+            [...translatableText.keys()].map(
+                key => keys.findIndex(objKey => objKey === key));
+
+        return {
+            text: translatableText,
+            ordinals
+        };
     }
 }

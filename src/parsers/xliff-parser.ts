@@ -1,16 +1,23 @@
+import { Builder, Parser } from "xml2js";
 import { XliffFile } from "../files/xliff-file";
 import { TranslationFileParser } from "../translation-file-parser";
 import { TranslatableTextMap } from "../translator";
-import { delay } from "../utils";
 
 export class XliffParser implements TranslationFileParser {
     async parseFrom(fileContent: string): Promise<XliffFile> {
-        const xliff = await delay(1, { empty: true });
-        return xliff as XliffFile; // This is a fake, and will not work.
+        const parser = new Parser();
+        const xml = await parser.parseStringPromise(fileContent);
+        return xml as XliffFile;
     }
 
     toFileFormatted(instance: XliffFile, defaultValue: string): string {
-        throw new Error('Method not implemented.');
+        try {
+            const builder = new Builder();
+            var xml = builder.buildObject(instance);
+            return xml;
+        } catch (error) {
+            return defaultValue;
+        }
     }
 
     applyTranslations(

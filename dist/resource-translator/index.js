@@ -2678,8 +2678,8 @@ exports.PortableObjectParser = void 0;
 const utils_1 = __webpack_require__(163);
 class PortableObjectParser {
     async parseFrom(fileContent) {
-        const xliff = await utils_1.delay(1, { empty: true });
-        return xliff; // This is a fake, and will not work.
+        const portableObject = await utils_1.delay(1, { empty: true });
+        return portableObject; // This is a fake, and will not work.
     }
     toFileFormatted(instance, defaultValue) {
         throw new Error('Method not implemented.');
@@ -2688,7 +2688,11 @@ class PortableObjectParser {
         throw new Error("Method not implemented.");
     }
     toTranslatableTextMap(instance) {
-        throw new Error("Method not implemented.");
+        const text = new Map();
+        const ordinals = [];
+        return {
+            text, ordinals
+        };
     }
 }
 exports.PortableObjectParser = PortableObjectParser;
@@ -6272,7 +6276,7 @@ module.exports = require("assert");
 /***/ 361:
 /***/ (function(module) {
 
-module.exports = {"_args":[["axios@0.20.0","C:\\Users\\dapine\\source\\repos\\resource-translator"]],"_from":"axios@0.20.0","_id":"axios@0.20.0","_inBundle":false,"_integrity":"sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.20.0","name":"axios","escapedName":"axios","rawSpec":"0.20.0","saveSpec":null,"fetchSpec":"0.20.0"},"_requiredBy":["/","/@types/axios"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.20.0.tgz","_spec":"0.20.0","_where":"C:\\Users\\dapine\\source\\repos\\resource-translator","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.10.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"bundlesize":"^0.17.0","coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.0.2","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^20.1.0","grunt-karma":"^2.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^1.0.18","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^1.3.0","karma-chrome-launcher":"^2.2.0","karma-coverage":"^1.1.1","karma-firefox-launcher":"^1.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-opera-launcher":"^1.0.0","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^1.2.0","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.7","karma-webpack":"^1.7.0","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^5.2.0","sinon":"^4.5.0","typescript":"^2.8.1","url-search-params":"^0.10.0","webpack":"^1.13.1","webpack-dev-server":"^1.14.1"},"homepage":"https://github.com/axios/axios","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test && bundlesize","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.20.0"};
+module.exports = {"_from":"axios@^0.20.0","_id":"axios@0.20.0","_inBundle":false,"_integrity":"sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.20.0","name":"axios","escapedName":"axios","rawSpec":"^0.20.0","saveSpec":null,"fetchSpec":"^0.20.0"},"_requiredBy":["/","/@types/axios"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.20.0.tgz","_shasum":"057ba30f04884694993a8cd07fa394cff11c50bd","_spec":"axios@^0.20.0","_where":"C:\\Users\\david\\source\\repos\\resource-translator","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.10.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"bundlesize":"^0.17.0","coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.0.2","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^20.1.0","grunt-karma":"^2.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^1.0.18","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^1.3.0","karma-chrome-launcher":"^2.2.0","karma-coverage":"^1.1.1","karma-firefox-launcher":"^1.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-opera-launcher":"^1.0.0","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^1.2.0","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.7","karma-webpack":"^1.7.0","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^5.2.0","sinon":"^4.5.0","typescript":"^2.8.1","url-search-params":"^0.10.0","webpack":"^1.13.1","webpack-dev-server":"^1.14.1"},"homepage":"https://github.com/axios/axios","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test && bundlesize","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.20.0"};
 
 /***/ }),
 
@@ -9490,14 +9494,22 @@ module.exports = resolveCommand;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.XliffParser = void 0;
-const utils_1 = __webpack_require__(163);
+const xml2js_1 = __webpack_require__(992);
 class XliffParser {
     async parseFrom(fileContent) {
-        const xliff = await utils_1.delay(1, { empty: true });
-        return xliff; // This is a fake, and will not work.
+        const parser = new xml2js_1.Parser();
+        const xml = await parser.parseStringPromise(fileContent);
+        return xml;
     }
     toFileFormatted(instance, defaultValue) {
-        throw new Error('Method not implemented.');
+        try {
+            const builder = new xml2js_1.Builder();
+            var xml = builder.buildObject(instance);
+            return xml;
+        }
+        catch (error) {
+            return defaultValue;
+        }
     }
     applyTranslations(instance, translations, ordinals) {
         throw new Error("Method not implemented.");
@@ -12275,6 +12287,82 @@ module.exports = require("http");
 /***/ (function(module) {
 
 module.exports = require("events");
+
+/***/ }),
+
+/***/ 615:
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.findAllTranslationFiles = void 0;
+const glob_1 = __webpack_require__(281);
+const github_1 = __webpack_require__(469);
+const io_util_1 = __webpack_require__(672);
+const core_1 = __webpack_require__(470);
+const path_1 = __webpack_require__(622);
+async function findAllTranslationFiles(baseFileGlob) {
+    const filesToInclude = await getFilesToInclude();
+    const globber = await glob_1.create(baseFileGlob);
+    const filesAndDirectories = await globber.glob();
+    const includeFile = (filepath) => {
+        if (filesToInclude && filesToInclude.length > 0) {
+            const filename = path_1.basename(filepath);
+            const include = filesToInclude.some(f => f.toLowerCase() === filename.toLowerCase());
+            core_1.debug(`include=${include}, ${filename}`);
+            return include;
+        }
+        return true;
+    };
+    const promises = filesAndDirectories.map(async (path) => {
+        return {
+            path,
+            isDirectory: await io_util_1.isDirectory(path),
+            include: includeFile(path)
+        };
+    });
+    const files = await Promise.all(promises);
+    const results = files.filter(file => file.include && !file.isDirectory)
+        .map(file => file.path);
+    core_1.debug(`Files to translate:\n\t${results.join('\n\t')}`);
+    return results;
+}
+exports.findAllTranslationFiles = findAllTranslationFiles;
+async function getFilesToInclude() {
+    try {
+        // Get all files related to trigger.
+        const token = process.env['GITHUB_TOKEN'] || null;
+        if (token) {
+            const octokit = github_1.getOctokit(token);
+            const options = {
+                ...github_1.context.repo,
+                ref: github_1.context.ref
+            };
+            core_1.debug(JSON.stringify(options));
+            const response = await octokit.repos.getCommit(options);
+            core_1.debug(JSON.stringify(response));
+            if (response.data) {
+                const files = [
+                    ...new Set(response.data.files.map(file => {
+                        const path = path_1.resolve(__dirname, file.filename);
+                        return path_1.basename(path);
+                    }))
+                ];
+                core_1.debug(`Files from trigger:\n\t${files.join('\n\t')}`);
+                return files;
+            }
+        }
+        else {
+            core_1.debug("Unable to get the GITHUB_TOKEN from the environment.");
+        }
+    }
+    catch (error) {
+        core_1.debug(error);
+    }
+    return [];
+}
+
 
 /***/ }),
 
@@ -19022,7 +19110,7 @@ exports.start = void 0;
  */
 const core_1 = __webpack_require__(470);
 const api_1 = __webpack_require__(172);
-const resource_finder_1 = __webpack_require__(952);
+const translation_file_finder_1 = __webpack_require__(615);
 const fs_1 = __webpack_require__(747);
 const resource_io_1 = __webpack_require__(545);
 const summarizer_1 = __webpack_require__(752);
@@ -19045,7 +19133,7 @@ async function start(inputs) {
                 .filter(locale => locale !== sourceLocale)
                 .sort((a, b) => utils_1.naturalLanguageCompare(a, b));
             core_1.info(`Detected translation targets to: ${toLocales.join(", ")}`);
-            const resourceFiles = await resource_finder_1.findAllResourceFiles(inputs.baseFileGlob);
+            const resourceFiles = await translation_file_finder_1.findAllTranslationFiles(inputs.baseFileGlob);
             if (!resourceFiles || !resourceFiles.length) {
                 core_1.setFailed("Unable to get target resource files.");
                 return;
@@ -21913,7 +22001,22 @@ class RestextParser {
         throw new Error("Method not implemented.");
     }
     toTranslatableTextMap(instance) {
-        throw new Error("Method not implemented.");
+        const textToTranslate = new Map();
+        let index = 0;
+        for (const [key, value] of Object.entries(instance)) {
+            textToTranslate.set(key, value);
+            index++;
+        }
+        const translatableText = new Map();
+        [...textToTranslate.keys()].sort((a, b) => utils_1.naturalLanguageCompare(a, b)).forEach(key => {
+            translatableText.set(key, textToTranslate.get(key));
+        });
+        const keys = Object.keys(instance);
+        const ordinals = [...translatableText.keys()].map(key => keys.findIndex(objKey => objKey === key));
+        return {
+            text: translatableText,
+            ordinals
+        };
     }
 }
 exports.RestextParser = RestextParser;
@@ -22442,82 +22545,6 @@ function checkBypass(reqUrl) {
     return false;
 }
 exports.checkBypass = checkBypass;
-
-
-/***/ }),
-
-/***/ 952:
-/***/ (function(__unusedmodule, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.findAllResourceFiles = void 0;
-const glob_1 = __webpack_require__(281);
-const github_1 = __webpack_require__(469);
-const io_util_1 = __webpack_require__(672);
-const core_1 = __webpack_require__(470);
-const path_1 = __webpack_require__(622);
-async function findAllResourceFiles(baseFileGlob) {
-    const filesToInclude = await getFilesToInclude();
-    const globber = await glob_1.create(baseFileGlob);
-    const filesAndDirectories = await globber.glob();
-    const includeFile = (filepath) => {
-        if (filesToInclude && filesToInclude.length > 0) {
-            const filename = path_1.basename(filepath);
-            const include = filesToInclude.some(f => f.toLowerCase() === filename.toLowerCase());
-            core_1.debug(`include=${include}, ${filename}`);
-            return include;
-        }
-        return true;
-    };
-    const promises = filesAndDirectories.map(async (path) => {
-        return {
-            path,
-            isDirectory: await io_util_1.isDirectory(path),
-            include: includeFile(path)
-        };
-    });
-    const files = await Promise.all(promises);
-    const results = files.filter(file => file.include && !file.isDirectory)
-        .map(file => file.path);
-    core_1.debug(`Files to translate:\n\t${results.join('\n\t')}`);
-    return results;
-}
-exports.findAllResourceFiles = findAllResourceFiles;
-async function getFilesToInclude() {
-    try {
-        // Get all files related to trigger.
-        const token = process.env['GITHUB_TOKEN'] || null;
-        if (token) {
-            const octokit = github_1.getOctokit(token);
-            const options = {
-                ...github_1.context.repo,
-                ref: github_1.context.ref
-            };
-            core_1.debug(JSON.stringify(options));
-            const response = await octokit.repos.getCommit(options);
-            core_1.debug(JSON.stringify(response));
-            if (response.data) {
-                const files = [
-                    ...new Set(response.data.files.map(file => {
-                        const path = path_1.resolve(__dirname, file.filename);
-                        return path_1.basename(path);
-                    }))
-                ];
-                core_1.debug(`Files from trigger:\n\t${files.join('\n\t')}`);
-                return files;
-            }
-        }
-        else {
-            core_1.debug("Unable to get the GITHUB_TOKEN from the environment.");
-        }
-    }
-    catch (error) {
-        core_1.debug(error);
-    }
-    return [];
-}
 
 
 /***/ }),

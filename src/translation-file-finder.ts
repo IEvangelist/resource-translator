@@ -4,7 +4,14 @@ import { isDirectory } from '@actions/io/lib/io-util';
 import { debug } from '@actions/core';
 import { basename, resolve } from 'path';
 
-export async function findAllResourceFiles(baseFileGlob: string): Promise<string[]> {
+export interface TranslationFileMap {
+    po?: string[] | undefined;
+    restext?: string[] | undefined;
+    resx?: string[] | undefined;
+    xliff?: string[] | undefined;
+}
+
+export async function findAllTranslationFiles(baseFileGlob: string): Promise<string[]> {
     const filesToInclude = await getFilesToInclude();
     const globber = await create(baseFileGlob);
     const filesAndDirectories = await globber.glob();

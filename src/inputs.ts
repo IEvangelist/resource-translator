@@ -1,4 +1,4 @@
-import { ResourceKind } from "./resource-kind";
+import { TranslationFileKind } from "./translation-file-kind";
 
 export interface Inputs {
     /**
@@ -34,5 +34,5 @@ export interface Inputs {
     /**
      * An array of resource kinds to look for, i.e.; [ 'resx', 'xliff', 'restext', 'po' ].
      */
-    resourceKinds?: ResourceKind[];
+    resourceKinds?: TranslationFileKind[];
 }

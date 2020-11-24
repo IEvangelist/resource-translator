@@ -5,8 +5,8 @@ import { delay } from "../utils";
 
 export class PortableObjectParser implements TranslationFileParser {
     async parseFrom(fileContent: string): Promise<PortableObjectFile> {
-        const xliff = await delay(1, { empty: true });
-        return xliff as PortableObjectFile; // This is a fake, and will not work.
+        const portableObject = await delay(1, { empty: true });
+        return portableObject as PortableObjectFile; // This is a fake, and will not work.
     }
 
     toFileFormatted(instance: PortableObjectFile, defaultValue: string): string {
@@ -21,6 +21,11 @@ export class PortableObjectParser implements TranslationFileParser {
     }
 
     toTranslatableTextMap(instance: PortableObjectFile): TranslatableTextMap {
-        throw new Error("Method not implemented.");
+        const text: Map<string, string> = new Map();
+        const ordinals: number[] = [];
+
+        return {
+            text, ordinals
+        };
     }
 }
