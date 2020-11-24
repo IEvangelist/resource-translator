@@ -1,20 +1,22 @@
-import { getTranslatableTextMap } from '../src/translator';
 import { readFile } from '../src/resource-io';
 import { resolve } from 'path';
-import { ResourceFile } from '../src/resource-file';
+import { ResourceFile } from '../src/files/resource-file';
+import { ResxParser } from '../src/parsers/resx-parser';
 
-let resourceXml: ResourceFile;
+let resourceFile: ResourceFile;
+const parser = new ResxParser();
 
 beforeEach(async () => {
     const resourcePath = resolve(__dirname, "./data/Test.en.resx");
-    resourceXml = await readFile(resourcePath);
+    const text = readFile(resourcePath);
+    resourceFile = await parser.parseFrom(text);
 });
 
 test("IO: translatable XML is mapped parses known XML", async () => {
-    if (resourceXml !== null) {
-        expect(resourceXml).toBeTruthy();
+    if (resourceFile !== null) {
+        expect(resourceFile).toBeTruthy();
 
-        const map = (await getTranslatableTextMap(resourceXml)).text;
+        const map = parser.toTranslatableTextMap(resourceFile).text;
         if (map !== null) {
             expect(map.get("Greetings")).toEqual("Hello world, this is a test.... only a test!");
             expect(map.get("MyFriend")).toEqual("Where have you gone?");
@@ -24,9 +26,9 @@ test("IO: translatable XML is mapped parses known XML", async () => {
 
 test('IO: get translatable text map', async () => {
     const resourcePath = resolve(__dirname, './data/Index.en.resx');
-    let resourceXml = await readFile(resourcePath);
-
-    const translatableTextMap = await getTranslatableTextMap(resourceXml);
+    const text = readFile(resourcePath);
+    const file = await parser.parseFrom(text);
+    const translatableTextMap = parser.toTranslatableTextMap(file);
 
     expect(translatableTextMap).toBeTruthy();
     expect(translatableTextMap.ordinals).toEqual([0,1,2]);

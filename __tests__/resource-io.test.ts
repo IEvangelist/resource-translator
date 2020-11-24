@@ -1,10 +1,14 @@
-import { readFile, writeFile, buildXml, applyTranslations } from '../src/resource-io';
+import { readFile, writeFile } from '../src/resource-io';
 import { resolve } from 'path';
 import { getLocaleName } from '../src/utils';
+import { ResxParser } from '../src/parsers/resx-parser';
+
+const parser = new ResxParser();
 
 test('IO: read file correctly parses known XML', async () => {
     const resourcePath = resolve(__dirname, './data/Test.en.resx');
-    const resourceXml = await readFile(resourcePath);
+    const text = readFile(resourcePath);
+    const resourceXml = await parser.parseFrom(text);
 
     expect(resourceXml).toBeTruthy();
     expect(resourceXml.root).toBeTruthy();
@@ -19,12 +23,12 @@ test('IO: read file correctly parses known XML', async () => {
 test('IO: roundtrip, resolve->read->write->read-> compare', async () => {
     const fakePath = resolve(__dirname, './test-7.en.resx');
     const resourcePath = resolve(__dirname, './data/Test.en.resx');
-    const resourceXml = await readFile(resourcePath);
+    const xml = readFile(resourcePath);
+    const resourceXml = await parser.parseFrom(xml);
 
-    const xml = buildXml(resourceXml);
     writeFile(fakePath, xml);
 
-    const compareXml = await readFile(fakePath);
+    const compareXml = readFile(fakePath);
     expect(resourceXml).toEqual(compareXml);
 
     expect(resourceXml).toBeTruthy();
@@ -39,14 +43,15 @@ test('IO: roundtrip, resolve->read->write->read-> compare', async () => {
 
 test('IO: apply translations to Test.en.resx', async () => {
     const resourcePath = resolve(__dirname, './data/Test.en.resx');
-    let resourceXml = await readFile(resourcePath);
+    const xml = readFile(resourcePath);
+    let resourceXml = await parser.parseFrom(xml);
 
     const fakeResults = {
         'MyFriend': 'We meet again!',
         'Greetings': 'This is a fake translation'
     };
 
-    resourceXml = applyTranslations(resourceXml, fakeResults, [1, 0]);
+    resourceXml = parser.applyTranslations(resourceXml, fakeResults, [1, 0]);
 
     expect(resourceXml).toBeTruthy();
     expect(resourceXml.root).toBeTruthy();
@@ -60,7 +65,8 @@ test('IO: apply translations to Test.en.resx', async () => {
 
 test('IO: apply translations to Index.en.resx', async () => {
     const resourcePath = resolve(__dirname, './data/Index.en.resx');
-    let resourceXml = await readFile(resourcePath);
+    const xml = readFile(resourcePath);
+    let resourceXml = await parser.parseFrom(xml);
 
     const fakeResults = {
         'HelloWorld': 'Goodbye my friend',
@@ -68,7 +74,7 @@ test('IO: apply translations to Index.en.resx', async () => {
         'SurveyTitle': 'I do not like surveys!'
     };
 
-    resourceXml = applyTranslations(resourceXml, fakeResults, [1, 0, 2]);
+    resourceXml = parser.applyTranslations(resourceXml, fakeResults, [1, 0]);
 
     expect(resourceXml).toBeTruthy();
     expect(resourceXml.root).toBeTruthy();

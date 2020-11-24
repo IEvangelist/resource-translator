@@ -1,7 +1,7 @@
 import { Builder, Parser } from "xml2js";
 import { XliffFile } from "../files/xliff-file";
 import { TranslationFileParser } from "../translation-file-parser";
-import { TranslatableTextMap } from "../translator";
+import { TranslatableTextMap } from "../translatable-text-map";
 import { naturalLanguageCompare } from "../utils";
 
 export class XliffParser implements TranslationFileParser {

@@ -1,12 +1,12 @@
-import { readFile, writeFile, buildXml, applyTranslations } from '../src/resource-io';
-import { getTranslatableTextMap } from '../src/translator';
+import { readFile, writeFile } from '../src/resource-io';
 import { getAvailableTranslations, translate } from '../src/api';
-import { ResourceFile } from '../src/resource-file';
+import { ResourceFile } from '../src/files/resource-file';
 import { resolve } from 'path';
 import { getLocaleName, naturalLanguageCompare } from '../src/utils';
 import { summarize } from '../src/summarizer';
 import { existsSync } from 'fs';
 import { Summary } from '../src/summary';
+import { ResxParser } from '../src/parsers/resx-parser';
 
 const expectedLocales = [
     'af', 'ar', 'as', 'bg', 'bn', 'bs', 'ca', 'cs',
@@ -20,6 +20,8 @@ const expectedLocales = [
     'te', 'th', 'tlh-Latn', 'tlh-Piqd', 'to', 'tr', 'ty',
     'uk', 'ur', 'vi', 'yua', 'yue', 'zh-Hans', 'zh-Hant'
 ];
+
+const parser = new ResxParser();
 
 test('API: get available translations correctly gets all locales', async () => {
     const translations = await getAvailableTranslations();
@@ -46,8 +48,9 @@ test('API: read file->translate->apply->write', async () => {
 
     for (let index = 0; index < resourceFiles.length; ++ index) {
         const resourceFilePath = resourceFiles[index];
-        const resourceFileXml = await readFile(resourceFilePath);
-        const translatableTextMap = await getTranslatableTextMap(resourceFileXml);
+        const resourceFileXml = readFile(resourceFilePath);
+        const file = await parser.parseFrom(resourceFileXml);
+        const translatableTextMap = parser.toTranslatableTextMap(file);
 
         if (translatableTextMap) {
             const resultSet = await translate(
@@ -61,10 +64,10 @@ test('API: read file->translate->apply->write', async () => {
 
             if (resultSet) {
                 toLocales.forEach(locale => {
-                    const translations = resultSet[locale];
-                    const clone = { ...resourceFileXml };
-                    const result = applyTranslations(clone, translations, translatableTextMap.ordinals);
-                    const translatedXml = buildXml(result);
+                    const translations = resultSet[locale];                    
+                    const clone = Object.assign({} as ResourceFile, file);
+                    const result = parser.applyTranslations(clone, translations, translatableTextMap.ordinals);
+                    const translatedXml = parser.toFileFormatted(result, "");
                     const newPath = getLocaleName(resourceFilePath, locale);
                     if (translatedXml && newPath) {
                         if (existsSync(newPath)) {
@@ -98,7 +101,7 @@ test('API: translate correctly performs translation', async () => {
             ]
         }
     }
-    const translatableTextMap = await getTranslatableTextMap(resourceXml);
+    const translatableTextMap = parser.toTranslatableTextMap(resourceXml);
     const translatorResource = {
         endpoint: process.env['AZURE_TRANSLATOR_ENDPOINT'] || 'https://api.cognitive.microsofttranslator.com/',
         subscriptionKey: process.env['AZURE_TRANSLATOR_SUBSCRIPTION_KEY'] || 'unknown!',

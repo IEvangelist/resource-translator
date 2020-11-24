@@ -1,6 +1,6 @@
 import { RestextFile } from "../files/restext-file";
 import { TranslationFileParser } from "../translation-file-parser";
-import { TranslatableTextMap } from "../translator";
+import { TranslatableTextMap } from "../translatable-text-map";
 import { delay, naturalLanguageCompare } from "../utils";
 
 export class RestextParser implements TranslationFileParser {

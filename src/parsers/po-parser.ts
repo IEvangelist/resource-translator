@@ -1,12 +1,20 @@
-import { PortableObjectFile } from "../files/po-file";
+import { PortableObjectFile, PortableObjectToken } from "../files/po-file";
 import { TranslationFileParser } from "../translation-file-parser";
-import { TranslatableTextMap } from "../translator";
+import { TranslatableTextMap } from "../translatable-text-map";
 import { delay } from "../utils";
 
 export class PortableObjectParser implements TranslationFileParser {
     async parseFrom(fileContent: string): Promise<PortableObjectFile> {
-        const portableObject = await delay(1, { empty: true });
-        return portableObject as PortableObjectFile; // This is a fake, and will not work.
+        await delay(1, {});
+        let portableObjectFile: PortableObjectFile = {
+            tokens: []
+        };
+        if (fileContent) {    
+            portableObjectFile.tokens =
+                fileContent.split('\n').map(
+                    line => new PortableObjectToken(line));
+        }
+        return portableObjectFile as PortableObjectFile;
     }
 
     toFileFormatted(instance: PortableObjectFile, defaultValue: string): string {
