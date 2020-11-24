@@ -24,6 +24,8 @@ export class PortableObjectParser implements TranslationFileParser {
         const text: Map<string, string> = new Map();
         const ordinals: number[] = [];
 
+        // TODO: This needs to be implemented.
+
         return {
             text, ordinals
         };

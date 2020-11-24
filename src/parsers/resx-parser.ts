@@ -6,15 +6,15 @@ import { naturalLanguageCompare } from '../utils';
 export class ResxParser implements TranslationFileParser {
     async parseFrom(fileContent: string): Promise<ResourceFile> {
         const parser = new Parser();
-        const xml = await parser.parseStringPromise(fileContent);
-        return xml as ResourceFile;
+        const resxXml = await parser.parseStringPromise(fileContent);
+        return resxXml as ResourceFile;
     }
 
     toFileFormatted(instance: ResourceFile, defaultValue: string): string {
         try {
             const builder = new Builder();
-            var xml = builder.buildObject(instance);
-            return xml;
+            var resxXml = builder.buildObject(instance);
+            return resxXml;
         } catch (error) {
             return defaultValue;
         }

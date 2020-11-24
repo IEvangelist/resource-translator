@@ -3,7 +3,7 @@ export interface XliffFile {
 }
 
 export interface Xliff {
-    file: File[];
+    file: File;
 }
 
 export interface File {
