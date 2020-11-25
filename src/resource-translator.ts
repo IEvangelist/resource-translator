@@ -29,6 +29,7 @@ import { getLocaleName, naturalLanguageCompare, stringifyMap } from './utils';
 import { Inputs } from './inputs';
 import { translationFileParserFactory } from './factories/translation-file-parser-factory';
 import { TranslationFile } from './files/translation-file';
+import { TranslationFileKind } from './translation-file-kind';
 
 export async function start(inputs: Inputs) {
     try {
@@ -47,20 +48,26 @@ export async function start(inputs: Inputs) {
                     .sort((a, b) => naturalLanguageCompare(a, b));
             info(`Detected translation targets to: ${toLocales.join(", ")}`);
 
-            const resourceFiles = await findAllTranslationFiles(inputs.baseFileGlob);
-            if (!resourceFiles || !resourceFiles.length) {
+            const translationFiles = await findAllTranslationFiles(inputs.sourceLocale);
+            if (!translationFiles ||
+                (!translationFiles.po &&
+                    !translationFiles.restext &&
+                    !translationFiles.resx &&
+                    !translationFiles.xliff)) {
                 setFailed("Unable to get target resource files.");
                 return;
             }
 
-            debug(`Discovered target resource files: ${resourceFiles.join(", ")}`);
-
             let summary = new Summary(sourceLocale, toLocales);
 
-            for (let kind of inputs.resourceKinds || [ 'resx' ]) {
-                const translationFileParser =
-                    translationFileParserFactory(kind);
+            for (let key of Object.keys(translationFiles)) {
+                const kind = key as TranslationFileKind;
+                const resourceFiles = translationFiles[kind];
+                if (!resourceFiles || !resourceFiles.length) {
+                    continue;
+                }
 
+                const translationFileParser = translationFileParserFactory(kind);
                 for (let index = 0; index < resourceFiles.length; ++index) {
                     const resourceFilePath = resourceFiles[index];
                     const resourceFileContent = readFile(resourceFilePath);

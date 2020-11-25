@@ -11,37 +11,43 @@ export interface TranslationFileMap {
     xliff?: string[] | undefined;
 }
 
-export async function findAllTranslationFiles(baseFileGlob: string): Promise<string[]> {
+export async function findAllTranslationFiles(sourceLocale: string): Promise<TranslationFileMap> {
     const filesToInclude = await getFilesToInclude();
-    const globber = await create(baseFileGlob);
-    const filesAndDirectories = await globber.glob();
+    const translationFileMap: TranslationFileMap = {};
+    for (let kind in ['resx', 'xliff', 'po', 'restext']) {
+        const baseFileGlob = `**.${sourceLocale}.${kind}`;
+        const globber = await create(baseFileGlob);
+        const filesAndDirectories = await globber.glob();
 
-    const includeFile = (filepath: string) => {
-        if (filesToInclude && filesToInclude.length > 0) {
-            const filename = basename(filepath);
-            const include = filesToInclude.some(f => f.toLowerCase() === filename.toLowerCase());
-            debug(`include=${include}, ${filename}`);
-            return include;
-        }
+        const includeFile = (filepath: string) => {
+            if (filesToInclude && filesToInclude.length > 0) {
+                const filename = basename(filepath);
+                const include = filesToInclude.some(f => f.toLowerCase() === filename.toLowerCase());
+                debug(`include=${include}, ${filename}`);
+                return include;
+            }
 
-        return true;
-    };
+            return true;
+        };
 
-    const promises = filesAndDirectories.map(async path => {
-        return {
-            path,
-            isDirectory: await isDirectory(path),
-            include: includeFile(path)
-        }
-    });
-    const files = await Promise.all(promises);
-    const results =
-        files.filter(file => file.include && !file.isDirectory)
-             .map(file => file.path);
+        const promises = filesAndDirectories.map(async path => {
+            return {
+                path,
+                isDirectory: await isDirectory(path),
+                include: includeFile(path)
+            }
+        });
+        const files = await Promise.all(promises);
+        const results =
+            files.filter(file => file.include && !file.isDirectory)
+                .map(file => file.path);
 
-    debug(`Files to translate:\n\t${results.join('\n\t')}`);
+        debug(`Files to translate:\n\t${results.join('\n\t')}`);
 
-    return results;
+        translationFileMap[kind] = results;
+    }
+
+    return translationFileMap;
 }
 
 async function getFilesToInclude(): Promise<string[]> {

@@ -3,7 +3,7 @@ import { findAllTranslationFiles } from '../src/translation-file-finder';
 jest.setTimeout(30000);
 
 test("IO: finds all resource files correctly", async () => {
-    const resourceFiles = await findAllTranslationFiles("**/*.en.resx");
-    expect(resourceFiles).toBeTruthy();
-    expect(resourceFiles[0]).toMatch(/.resx/);
+    const translationFiles = await findAllTranslationFiles('en');
+    expect(translationFiles).toBeTruthy();
+    expect(translationFiles.resx[0]).toMatch(/.resx/);
 });

@@ -30,9 +30,4 @@ export interface Inputs {
      * An array of locales to translate to, i.e.; [ 'fr', 'de', 'es' ].
      */
     toLocales?: string[];
-
-    /**
-     * An array of resource kinds to look for, i.e.; [ 'resx', 'xliff', 'restext', 'po' ].
-     */
-    resourceKinds?: TranslationFileKind[];
 }
