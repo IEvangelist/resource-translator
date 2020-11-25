@@ -4,6 +4,8 @@ export interface PortableObjectFile {
 
 const firstWhitespace: RegExp = /\s+(.*)/;
 
+// https://www.yogihosting.com/portable-object-aspnet-core/
+
 export class PortableObjectToken {
     private _isInsignificant: boolean;
     private _identifier: string | null = null;
@@ -19,6 +21,10 @@ export class PortableObjectToken {
 
     get isInsignificant(): boolean {
         return this._isInsignificant;
+    }
+
+    get isCommentLine(): boolean {
+        return !!this.line && this.line.startsWith('#:');
     }
 
     constructor(public line: string | null | undefined) {
