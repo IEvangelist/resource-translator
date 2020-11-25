@@ -18,10 +18,10 @@ test("PO-TOKEN: parses line correctly", async () => {
     let token = new PortableObjectToken('msgid "There is one item."');
     expect(token.isInsignificant).toBeFalsy();
     expect(token.id).toEqual('msgid');
-    expect(token.value).toEqual('There is one item.');
+    expect(token.value).toEqual('"There is one item."');
 
     token = new PortableObjectToken('msgid_plural "There are {0} items."');
     expect(token.isInsignificant).toBeFalsy();
     expect(token.id).toEqual('msgid_plural');
-    expect(token.value).toEqual('There are {0} items.');
+    expect(token.value).toEqual('"There are {0} items."');
 });

@@ -77,7 +77,7 @@ test('API: read file->translate->apply->write', async () => {
                             summary.newFileCount++;
                             summary.newFileTranslations += translatableTextMap.ordinals.length;
                         }
-                        writeFile(newPath, translatedXml);
+                        // writeFile(newPath, translatedXml);
                     }
                 });
             }
@@ -85,8 +85,8 @@ test('API: read file->translate->apply->write', async () => {
     }
 
     const [title, details] = summarize(summary);
-    expect(title).toEqual('');
-    expect(details).toEqual('');
+    expect(title).toEqual('Machine-translated 77 files, a total of 1,155 translations');
+    expect(details).toBeTruthy();
 });
 
 jest.setTimeout(15000);
@@ -120,7 +120,7 @@ test('API: translate correctly performs translation', async () => {
                 'SurveyTitle': '¿Cómo funciona Blazor para ti? Pruebas...'
             },
             'fr': {
-                'Greeting': 'Bienvenue sur votre nouvelle application',
+                'Greeting': 'Bienvenue dans votre nouvelle application',
                 'HelloWorld': 'Salut tout le monde!',
                 'SurveyTitle': 'Comment Blazor travaille-t-il pour vous ? Test...'
             }

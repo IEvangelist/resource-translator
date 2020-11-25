@@ -2675,11 +2675,19 @@ exports.toCommandValue = toCommandValue;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PortableObjectParser = void 0;
+const po_file_1 = __webpack_require__(998);
 const utils_1 = __webpack_require__(163);
 class PortableObjectParser {
     async parseFrom(fileContent) {
-        const portableObject = await utils_1.delay(1, { empty: true });
-        return portableObject; // This is a fake, and will not work.
+        await utils_1.delay(1, {});
+        let portableObjectFile = {
+            tokens: []
+        };
+        if (fileContent) {
+            portableObjectFile.tokens =
+                fileContent.split('\n').map(line => new po_file_1.PortableObjectToken(line));
+        }
+        return portableObjectFile;
     }
     toFileFormatted(instance, defaultValue) {
         throw new Error('Method not implemented.');
@@ -2690,6 +2698,7 @@ class PortableObjectParser {
     toTranslatableTextMap(instance) {
         const text = new Map();
         const ordinals = [];
+        // TODO: This needs to be implemented.
         return {
             text, ordinals
         };
@@ -9495,27 +9504,55 @@ module.exports = resolveCommand;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.XliffParser = void 0;
 const xml2js_1 = __webpack_require__(992);
+const utils_1 = __webpack_require__(163);
 class XliffParser {
     async parseFrom(fileContent) {
         const parser = new xml2js_1.Parser();
-        const xml = await parser.parseStringPromise(fileContent);
-        return xml;
+        const xliffXml = await parser.parseStringPromise(fileContent);
+        return xliffXml;
     }
     toFileFormatted(instance, defaultValue) {
         try {
             const builder = new xml2js_1.Builder();
-            var xml = builder.buildObject(instance);
-            return xml;
+            var xliffXml = builder.buildObject(instance);
+            return xliffXml;
         }
         catch (error) {
             return defaultValue;
         }
     }
     applyTranslations(instance, translations, ordinals) {
-        throw new Error("Method not implemented.");
+        if (instance && translations && ordinals && ordinals.length) {
+            let index = 0;
+            for (let key in translations) {
+                const ordinal = ordinals[index++];
+                const value = translations[key];
+                if (value) {
+                    instance.xliff.file.unit[ordinal].segment[0].target = value;
+                }
+            }
+        }
+        return instance;
     }
     toTranslatableTextMap(instance) {
-        throw new Error("Method not implemented.");
+        const textToTranslate = new Map();
+        const values = instance.xliff.file.unit;
+        if (values && values.length) {
+            for (let i = 0; i < values.length; ++i) {
+                const key = values[i].segment[0].source;
+                const value = values[i].segment[0].target;
+                textToTranslate.set(key, value);
+            }
+        }
+        const translatableText = new Map();
+        [...textToTranslate.keys()].sort((a, b) => utils_1.naturalLanguageCompare(a, b)).forEach(key => {
+            translatableText.set(key, textToTranslate.get(key));
+        });
+        const ordinals = [...translatableText.keys()].map(key => values.findIndex(d => d.segment[0].source === key));
+        return {
+            text: translatableText,
+            ordinals
+        };
     }
 }
 exports.XliffParser = XliffParser;
@@ -9976,14 +10013,14 @@ const utils_1 = __webpack_require__(163);
 class ResxParser {
     async parseFrom(fileContent) {
         const parser = new xml2js_1.Parser();
-        const xml = await parser.parseStringPromise(fileContent);
-        return xml;
+        const resxXml = await parser.parseStringPromise(fileContent);
+        return resxXml;
     }
     toFileFormatted(instance, defaultValue) {
         try {
             const builder = new xml2js_1.Builder();
-            var xml = builder.buildObject(instance);
-            return xml;
+            var resxXml = builder.buildObject(instance);
+            return resxXml;
         }
         catch (error) {
             return defaultValue;
@@ -10595,7 +10632,7 @@ exports.HttpClient = HttpClient;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.applyTranslations = exports.writeFile = exports.readFile = void 0;
+exports.writeFile = exports.readFile = void 0;
 const core_1 = __webpack_require__(470);
 const fs_1 = __webpack_require__(747);
 const path_1 = __webpack_require__(622);
@@ -10611,25 +10648,6 @@ function writeFile(path, content) {
     fs_1.writeFileSync(path, content);
 }
 exports.writeFile = writeFile;
-function applyTranslations(resource, translations, ordinals) {
-    //
-    // Each translation has a named identifier (it's key), for example: { 'SomeKey': 'some translated value' }.
-    // The ordinals map each key to it's appropriate translated value in the resource, for example: [2,0,1].
-    // For each translation, we map its keys value to the corresponding ordinal.
-    //
-    if (resource && translations && ordinals && ordinals.length) {
-        let index = 0;
-        for (let key in translations) {
-            const ordinal = ordinals[index++];
-            const value = [translations[key]];
-            if (value) {
-                resource.root.data[ordinal].value = value;
-            }
-        }
-    }
-    return resource;
-}
-exports.applyTranslations = applyTranslations;
 
 
 /***/ }),
@@ -23161,6 +23179,44 @@ module.exports = Cancel;
   exports.parseStringPromise = parser.parseStringPromise;
 
 }).call(this);
+
+
+/***/ }),
+
+/***/ 998:
+/***/ (function(__unusedmodule, exports) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PortableObjectToken = void 0;
+const firstWhitespace = /\s+(.*)/;
+class PortableObjectToken {
+    constructor(line) {
+        this.line = line;
+        this._identifier = null;
+        this._value = null;
+        if (line && line.trim()) {
+            const keyValuePair = line.split(firstWhitespace);
+            this._identifier = keyValuePair[0];
+            this._value = keyValuePair[1];
+            this._isInsignificant = false;
+        }
+        else {
+            this._isInsignificant = true;
+        }
+    }
+    get id() {
+        return this._identifier;
+    }
+    get value() {
+        return this._value;
+    }
+    get isInsignificant() {
+        return this._isInsignificant;
+    }
+}
+exports.PortableObjectToken = PortableObjectToken;
 
 
 /***/ })

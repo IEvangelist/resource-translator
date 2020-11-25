@@ -29,7 +29,7 @@ test('IO: roundtrip, resolve->read->write->read-> compare', async () => {
     writeFile(fakePath, xml);
 
     const compareXml = readFile(fakePath);
-    expect(resourceXml).toEqual(compareXml);
+    expect(xml).toEqual(compareXml);
 
     expect(resourceXml).toBeTruthy();
     expect(resourceXml.root).toBeTruthy();
@@ -74,7 +74,7 @@ test('IO: apply translations to Index.en.resx', async () => {
         'SurveyTitle': 'I do not like surveys!'
     };
 
-    resourceXml = parser.applyTranslations(resourceXml, fakeResults, [1, 0]);
+    resourceXml = parser.applyTranslations(resourceXml, fakeResults, [1, 0, 2]);
 
     expect(resourceXml).toBeTruthy();
     expect(resourceXml.root).toBeTruthy();
