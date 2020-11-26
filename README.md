@@ -16,7 +16,10 @@ on:
   push:
     branches: [ main ]
     paths:
-    - '**.resx' # only take action when *.resx files change
+    - '**.resx'      # XML-based (resource) translation file format
+    - '**.resxtext'  # Similar to INI-based, key value pair file format
+    - '**.xliff'     # XML-based translation file format
+    - '**.po'        # Portable Object file format
 
 # https://docs.github.com/en/free-pro-team@latest/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
 # GitHub automatically creates a GITHUB_TOKEN secret to use in your workflow.
@@ -39,6 +42,9 @@ jobs:
       - name: resource-translator
         uses: IEvangelist/resource-translator@v2.0.1
         with:
+          # The source locale (for example, 'en') used to create the glob pattern
+          # for which resource (**/*.en.resx) files to use as input
+          sourceLocale: 'en'
           # The Azure Cognitive Services translator resource subscription key
           subscriptionKey: ${{ secrets.AZURE_TRANSLATOR_SUBSCRIPTION_KEY }}
           # The Azure Cognitive Services translator resource endpoint.
@@ -46,9 +52,6 @@ jobs:
           # (Optional) The Azure Cognitive Services translator resource region.
           # This is optional when using a global translator resource.
           region: ${{ secrets.AZURE_TRANSLATOR_REGION }}
-          # The source locale (for example, 'en') used to create the glob pattern
-          # for which resource (**/*.en.resx) files to use as input
-          sourceLocale: 'en'
           # (Optional) Locales to translate to, otherwise all possible locales
           # are targeted. Requires double quotes.
           toLocales: '["es","fr","de"]'
