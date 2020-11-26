@@ -53,10 +53,25 @@ export class PortableObjectParser implements TranslationFileParser {
         //     text: translatableText,
         //     ordinals
         // };
-        
+
         const text: Map<string, string> = new Map();
         const ordinals: number[] = [];
 
+        const tokens = instance.tokens;
+        if (tokens && tokens.length) {
+
+            for (let index = 0; index < tokens.length; ++ index) {
+                const token = tokens[index];
+                if (token) {
+                    if (token.isInsignificant || token.isCommentLine) {
+                        continue;
+                    } else {
+                        const id = token.id;
+                        const value = token.value;
+                    }
+                }
+            }
+        }
         // TODO: This needs to be implemented.
 
         return {

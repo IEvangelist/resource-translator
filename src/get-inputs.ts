@@ -17,5 +17,13 @@ export const getInputs = (): Inputs => {
 
 const getQuestionableArray = (inputName: string): string[] | undefined => {
     const value = getInput(inputName);
-    return !!value ? value.split(',') : undefined;
+    if (value) {
+        if (value.indexOf('[')) {
+            return [...JSON.parse(value)];
+        } else {
+            return value.replace(/\s/g, '').split(',')
+        }
+    }
+
+    return undefined;
 }
