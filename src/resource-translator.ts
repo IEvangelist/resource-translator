@@ -44,7 +44,17 @@ export async function start(inputs: Inputs) {
             const sourceLocale = inputs.sourceLocale;
             const toLocales =
                 Object.keys(availableTranslations.translation)
-                    .filter(locale => locale !== sourceLocale)
+                    .filter(locale => {
+                        if (locale === sourceLocale) {
+                            return false;
+                        }
+                        
+                        if (inputs.toLocales && inputs.toLocales.length) {
+                            return inputs.toLocales.some(l => l === locale);
+                        }
+
+                        return true;
+                    })
                     .sort((a, b) => naturalLanguageCompare(a, b));
             info(`Detected translation targets to: ${toLocales.join(", ")}`);
 

@@ -7,6 +7,9 @@ import { TranslatorResource } from './translator-resource';
 import { chunk } from './utils';
 import { toResultSet } from './api-result-set-mapper';
 
+/**
+* https://docs.microsoft.com/azure/cognitive-services/translator/language-support#translate
+*/ 
 export async function getAvailableTranslations(): Promise<AvailableTranslations> {
     const url = 'https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation';
     const response = await Axios.get<AvailableTranslations>(url);
