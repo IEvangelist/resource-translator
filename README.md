@@ -49,6 +49,9 @@ jobs:
           # The source locale (for example, 'en') used to create the glob pattern
           # for which resource (**/*.en.resx) files to use as input
           sourceLocale: 'en'
+          # (Optional) Locales to translate to, otherwise all possible locales
+          # are targeted. Requires double quotes.
+          toLocales: '["es","fr","de"]'
 
       - name: create-pull-request
         uses: peter-evans/create-pull-request@v3.4.1
