@@ -2696,8 +2696,43 @@ class PortableObjectParser {
         throw new Error("Method not implemented.");
     }
     toTranslatableTextMap(instance) {
+        // const textToTranslate: Map<string, string> = new Map();
+        // const values = instance.root.data;
+        // if (values && values.length) {
+        //     for (let i = 0; i < values.length; ++i) {
+        //         const key = values[i].$.name;
+        //         const value = values[i].value![0];
+        //         textToTranslate.set(key, value);
+        //     }
+        // }
+        // const translatableText: Map<string, string> = new Map();
+        // [...textToTranslate.keys()].sort((a, b) => naturalLanguageCompare(a, b)).forEach(key => {
+        //     translatableText.set(key, textToTranslate.get(key)!);
+        // });
+        // const ordinals: number[] =
+        //     [...translatableText.keys()].map(
+        //         key => values.findIndex(d => d.$.name === key));
+        // return {
+        //     text: translatableText,
+        //     ordinals
+        // };
         const text = new Map();
         const ordinals = [];
+        const tokens = instance.tokens;
+        if (tokens && tokens.length) {
+            for (let index = 0; index < tokens.length; ++index) {
+                const token = tokens[index];
+                if (token) {
+                    if (token.isInsignificant || token.isCommentLine) {
+                        continue;
+                    }
+                    else {
+                        const id = token.id;
+                        const value = token.value;
+                    }
+                }
+            }
+        }
         // TODO: This needs to be implemented.
         return {
             text, ordinals
@@ -4525,6 +4560,9 @@ const uuid_1 = __webpack_require__(898);
 const axios_1 = __importDefault(__webpack_require__(53));
 const utils_1 = __webpack_require__(163);
 const api_result_set_mapper_1 = __webpack_require__(243);
+/**
+* https://docs.microsoft.com/azure/cognitive-services/translator/language-support#translate
+*/
 async function getAvailableTranslations() {
     const url = 'https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation';
     const response = await axios_1.default.get(url);
@@ -6285,7 +6323,7 @@ module.exports = require("assert");
 /***/ 361:
 /***/ (function(module) {
 
-module.exports = {"_from":"axios@^0.20.0","_id":"axios@0.20.0","_inBundle":false,"_integrity":"sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.20.0","name":"axios","escapedName":"axios","rawSpec":"^0.20.0","saveSpec":null,"fetchSpec":"^0.20.0"},"_requiredBy":["/","/@types/axios"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.20.0.tgz","_shasum":"057ba30f04884694993a8cd07fa394cff11c50bd","_spec":"axios@^0.20.0","_where":"C:\\Users\\david\\source\\repos\\resource-translator","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.10.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"bundlesize":"^0.17.0","coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.0.2","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^20.1.0","grunt-karma":"^2.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^1.0.18","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^1.3.0","karma-chrome-launcher":"^2.2.0","karma-coverage":"^1.1.1","karma-firefox-launcher":"^1.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-opera-launcher":"^1.0.0","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^1.2.0","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.7","karma-webpack":"^1.7.0","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^5.2.0","sinon":"^4.5.0","typescript":"^2.8.1","url-search-params":"^0.10.0","webpack":"^1.13.1","webpack-dev-server":"^1.14.1"},"homepage":"https://github.com/axios/axios","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test && bundlesize","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.20.0"};
+module.exports = {"_args":[["axios@0.20.0","C:\\Users\\dapine\\source\\repos\\resource-translator"]],"_from":"axios@0.20.0","_id":"axios@0.20.0","_inBundle":false,"_integrity":"sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.20.0","name":"axios","escapedName":"axios","rawSpec":"0.20.0","saveSpec":null,"fetchSpec":"0.20.0"},"_requiredBy":["/","/@types/axios"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.20.0.tgz","_spec":"0.20.0","_where":"C:\\Users\\dapine\\source\\repos\\resource-translator","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.10.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"bundlesize":"^0.17.0","coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.0.2","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^20.1.0","grunt-karma":"^2.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^1.0.18","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^1.3.0","karma-chrome-launcher":"^2.2.0","karma-coverage":"^1.1.1","karma-firefox-launcher":"^1.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-opera-launcher":"^1.0.0","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^1.2.0","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.7","karma-webpack":"^1.7.0","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^5.2.0","sinon":"^4.5.0","typescript":"^2.8.1","url-search-params":"^0.10.0","webpack":"^1.13.1","webpack-dev-server":"^1.14.1"},"homepage":"https://github.com/axios/axios","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test && bundlesize","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.20.0"};
 
 /***/ }),
 
@@ -7745,9 +7783,22 @@ exports.getInputs = () => {
         subscriptionKey: core_1.getInput('subscriptionKey', { required: true }),
         endpoint: core_1.getInput('endpoint', { required: true }),
         sourceLocale,
-        region: core_1.getInput('region')
+        region: core_1.getInput('region'),
+        toLocales: getQuestionableArray('toLocales')
     };
     return inputs;
+};
+const getQuestionableArray = (inputName) => {
+    const value = core_1.getInput(inputName);
+    if (value) {
+        if (value.indexOf('[')) {
+            return [...JSON.parse(value)];
+        }
+        else {
+            return value.replace(/\s/g, '').split(',');
+        }
+    }
+    return undefined;
 };
 
 
@@ -12320,31 +12371,36 @@ const github_1 = __webpack_require__(469);
 const io_util_1 = __webpack_require__(672);
 const core_1 = __webpack_require__(470);
 const path_1 = __webpack_require__(622);
-async function findAllTranslationFiles(baseFileGlob) {
+async function findAllTranslationFiles(sourceLocale) {
     const filesToInclude = await getFilesToInclude();
-    const globber = await glob_1.create(baseFileGlob);
-    const filesAndDirectories = await globber.glob();
-    const includeFile = (filepath) => {
-        if (filesToInclude && filesToInclude.length > 0) {
-            const filename = path_1.basename(filepath);
-            const include = filesToInclude.some(f => f.toLowerCase() === filename.toLowerCase());
-            core_1.debug(`include=${include}, ${filename}`);
-            return include;
-        }
-        return true;
-    };
-    const promises = filesAndDirectories.map(async (path) => {
-        return {
-            path,
-            isDirectory: await io_util_1.isDirectory(path),
-            include: includeFile(path)
+    const translationFileMap = {};
+    for (let kind in ['resx', 'xliff', 'po', 'restext']) {
+        const baseFileGlob = `**.${sourceLocale}.${kind}`;
+        const globber = await glob_1.create(baseFileGlob);
+        const filesAndDirectories = await globber.glob();
+        const includeFile = (filepath) => {
+            if (filesToInclude && filesToInclude.length > 0) {
+                const filename = path_1.basename(filepath);
+                const include = filesToInclude.some(f => f.toLowerCase() === filename.toLowerCase());
+                core_1.debug(`include=${include}, ${filename}`);
+                return include;
+            }
+            return true;
         };
-    });
-    const files = await Promise.all(promises);
-    const results = files.filter(file => file.include && !file.isDirectory)
-        .map(file => file.path);
-    core_1.debug(`Files to translate:\n\t${results.join('\n\t')}`);
-    return results;
+        const promises = filesAndDirectories.map(async (path) => {
+            return {
+                path,
+                isDirectory: await io_util_1.isDirectory(path),
+                include: includeFile(path)
+            };
+        });
+        const files = await Promise.all(promises);
+        const results = files.filter(file => file.include && !file.isDirectory)
+            .map(file => file.path);
+        core_1.debug(`Files to translate:\n\t${results.join('\n\t')}`);
+        translationFileMap[kind] = results;
+    }
+    return translationFileMap;
 }
 exports.findAllTranslationFiles = findAllTranslationFiles;
 async function getFilesToInclude() {
@@ -12530,13 +12586,14 @@ const po_parser_1 = __webpack_require__(85);
 const restext_parser_1 = __webpack_require__(893);
 const resx_parser_1 = __webpack_require__(537);
 const xliff_parser_1 = __webpack_require__(503);
-exports.translationFileParserFactory = (resourceKind) => {
-    switch (resourceKind) {
+exports.translationFileParserFactory = (translationFileKind) => {
+    switch (translationFileKind) {
         case 'resx': return new resx_parser_1.ResxParser();
         case 'xliff': return new xliff_parser_1.XliffParser();
         case 'restext': return new restext_parser_1.RestextParser();
         case 'po': return new po_parser_1.PortableObjectParser();
-        default: throw new Error(`Unrecognized resource kind: ${resourceKind}`);
+        default:
+            throw new Error(`Unrecognized resource kind: ${translationFileKind}`);
     }
 };
 
@@ -19148,17 +19205,33 @@ async function start(inputs) {
             }
             const sourceLocale = inputs.sourceLocale;
             const toLocales = Object.keys(availableTranslations.translation)
-                .filter(locale => locale !== sourceLocale)
+                .filter(locale => {
+                if (locale === sourceLocale) {
+                    return false;
+                }
+                if (inputs.toLocales && inputs.toLocales.length) {
+                    return inputs.toLocales.some(l => l === locale);
+                }
+                return true;
+            })
                 .sort((a, b) => utils_1.naturalLanguageCompare(a, b));
             core_1.info(`Detected translation targets to: ${toLocales.join(", ")}`);
-            const resourceFiles = await translation_file_finder_1.findAllTranslationFiles(inputs.baseFileGlob);
-            if (!resourceFiles || !resourceFiles.length) {
+            const translationFiles = await translation_file_finder_1.findAllTranslationFiles(inputs.sourceLocale);
+            if (!translationFiles ||
+                (!translationFiles.po &&
+                    !translationFiles.restext &&
+                    !translationFiles.resx &&
+                    !translationFiles.xliff)) {
                 core_1.setFailed("Unable to get target resource files.");
                 return;
             }
-            core_1.debug(`Discovered target resource files: ${resourceFiles.join(", ")}`);
             let summary = new summary_1.Summary(sourceLocale, toLocales);
-            for (let kind of inputs.resourceKinds || ['resx']) {
+            for (let key of Object.keys(translationFiles)) {
+                const kind = key;
+                const resourceFiles = translationFiles[kind];
+                if (!resourceFiles || !resourceFiles.length) {
+                    continue;
+                }
                 const translationFileParser = translation_file_parser_factory_1.translationFileParserFactory(kind);
                 for (let index = 0; index < resourceFiles.length; ++index) {
                     const resourceFilePath = resourceFiles[index];
@@ -23191,6 +23264,7 @@ module.exports = Cancel;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PortableObjectToken = void 0;
 const firstWhitespace = /\s+(.*)/;
+// https://www.yogihosting.com/portable-object-aspnet-core/
 class PortableObjectToken {
     constructor(line) {
         this.line = line;
@@ -23214,6 +23288,9 @@ class PortableObjectToken {
     }
     get isInsignificant() {
         return this._isInsignificant;
+    }
+    get isCommentLine() {
+        return !!this.line && this.line.startsWith('#:');
     }
 }
 exports.PortableObjectToken = PortableObjectToken;

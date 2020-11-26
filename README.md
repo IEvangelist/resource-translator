@@ -17,7 +17,7 @@ on:
     branches: [ main ]
     paths:
     - '**.resx'      # XML-based (resource) translation file format
-    - '**.resxtext'  # Similar to INI-based, key value pair file format
+    - '**.restext'   # Similar to INI-based, key value pair file format
     - '**.xliff'     # XML-based translation file format
     - '**.po'        # Portable Object file format
 
@@ -40,7 +40,7 @@ jobs:
 
       # Use the resource translator to automatically translate resource files
       - name: resource-translator
-        uses: IEvangelist/resource-translator@v2.0.1
+        uses: IEvangelist/resource-translator@v2.1.0
         with:
           # The source locale (for example, 'en') used to create the glob pattern
           # for which resource (**/*.en.resx) files to use as input
