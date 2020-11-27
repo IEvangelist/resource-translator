@@ -18,7 +18,7 @@ export class PortableObjectParser implements TranslationFileParser {
     }
 
     toFileFormatted(instance: PortableObjectFile, defaultValue: string): string {
-        throw new Error('Method not implemented.');
+        return !!instance ? instance.tokens.map(t => t.line).join('\n') : defaultValue;
     }
 
     applyTranslations(
@@ -69,7 +69,7 @@ export class PortableObjectParser implements TranslationFileParser {
         };
     }
 
-    private batchTokens(tokens: PortableObjectToken[], index: number): [lastIndex: number, batch: PortableObjectToken[]] {
+    private batchTokens(tokens: PortableObjectToken[], index: number): [number, PortableObjectToken[]] {
         let batch: PortableObjectToken[] = [];
         let lastIndex = index;
         for (lastIndex; lastIndex < tokens.length; ++lastIndex) {
