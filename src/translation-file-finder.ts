@@ -11,11 +11,20 @@ export interface TranslationFileMap {
     xliff?: string[] | undefined;
 }
 
+const translationFileSchemes = {
+    po: `**.po`,
+    restext: (locale: string) => `**.${locale}.restext`,
+    resx : (locale: string) => `**.${locale}.resx`,
+    xliff : (locale: string) => `**.${locale}.xliff`,
+}
+
 export async function findAllTranslationFiles(sourceLocale: string): Promise<TranslationFileMap> {
     const filesToInclude = await getFilesToInclude();
     const translationFileMap: TranslationFileMap = {};
-    for (let kind in ['resx', 'xliff', 'po', 'restext']) {
-        const baseFileGlob = `**.${sourceLocale}.${kind}`;
+    const entries = Object.entries(translationFileSchemes);
+    for (let index = 0; index < entries.length; ++index) {
+        let [kind, fileScheme] = entries[index];
+        const baseFileGlob = "function" === typeof fileScheme ? fileScheme(sourceLocale) : fileScheme;
         const globber = await create(baseFileGlob);
         const filesAndDirectories = await globber.glob();
 
