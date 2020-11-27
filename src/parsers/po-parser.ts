@@ -34,7 +34,11 @@ export class PortableObjectParser implements TranslationFileParser {
         if (tokens && tokens.length) {
             let index = 0;
             let [lastIndex, batch] = this.batchTokens(tokens, index);
-            for ()
+            if (batch && batch.length) {
+                if (tokens.length !== lastIndex) {
+
+                }
+            }
 
             // let foundMsgId = false;
             // let foundMsgPlural = false;
@@ -70,7 +74,7 @@ export class PortableObjectParser implements TranslationFileParser {
         };
     }
 
-    private batchTokens(tokens: PortableObjectToken[], index: number): [ lastIndex: number, batch: PortableObjectToken[] ] {
+    private batchTokens(tokens: PortableObjectToken[], index: number): [lastIndex: number, batch: PortableObjectToken[]] {
         let batch: PortableObjectToken[] = [];
         let lastIndex = index;
         for (lastIndex; lastIndex < tokens.length; ++lastIndex) {
