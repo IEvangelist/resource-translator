@@ -32,31 +32,26 @@ export class PortableObjectParser implements TranslationFileParser {
         const textToTranslate: Map<string, string> = new Map();
         const tokens = instance.tokens;
         if (tokens && tokens.length) {
+            const tryGetKeyValuePair = (batchedTokens: PortableObjectToken[]): { key: string, value: string } | undefined => {
+                if (batchedTokens && batchedTokens.length) {
+                    const key = batchedTokens.find(t => t.id === 'msgid')?.value;
+                    const value = batchedTokens.find(t => t.id === 'msgstr')?.value;
+
+                    return !!key && !!value ? { key, value } : undefined;
+                }
+                return undefined;
+            };
+
+            const values = [];
             let index = 0;
             let [lastIndex, batch] = this.batchTokens(tokens, index);
-            if (batch && batch.length) {
-                if (tokens.length !== lastIndex) {
-
+            while (batch && lastIndex !== tokens.length) {
+                let pair = tryGetKeyValuePair(batch);
+                if (pair) {
+                    textToTranslate.set(pair.key, pair.value);
                 }
+                [lastIndex, batch] = this.batchTokens(tokens, lastIndex);
             }
-
-            // let foundMsgId = false;
-            // let foundMsgPlural = false;
-            // for (let index = 0; index < tokens.length; ++index) {
-            //     const token = tokens[index];
-            //     if (token) {
-            //         if (token.isInsignificant || token.isCommentLine) {
-            //             continue;
-            //         } else {
-            //             if (token.id === 'msgid') {
-            //                 foundMsgId = true;
-            //             }
-            //             if (id)
-            //                 const value = token.value;
-
-            //         }
-            //     }
-            //}
         }
 
         const translatableText: Map<string, string> = new Map();
