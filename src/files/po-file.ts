@@ -19,6 +19,10 @@ export class PortableObjectToken {
         return this._value;
     }
 
+    set value(value: string | null) {
+        this._value = value;
+    }
+
     get isInsignificant(): boolean {
         return this._isInsignificant;
     }
@@ -40,6 +44,18 @@ export class PortableObjectToken {
 }
 
 export type PortableObjectTokenIdentifier =
+    /**
+     * Used to identify a translatable string, which is the source.
+    */
     'msgid' |
+    
+    /**
+     * Used to identify a translatable string alternative, in plural form as the source.
+    */
     'msgid_plural' |
+    
+    /**
+     * Used to identify the translated string value. Multiple can exist as an array, 
+     * (for example, msgstr[0], msgstr[1], msgstr[2], etc.).
+    */
     'msgstr';

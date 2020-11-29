@@ -5,7 +5,7 @@ import { delay, naturalLanguageCompare } from "../utils";
 
 export class RestextParser implements TranslationFileParser {
     async parseFrom(fileContent: string): Promise<RestextFile> {
-        await delay(1, null);
+        await delay(0, null);
         let restextFile: RestextFile = {};
         if (fileContent) {
             fileContent.split('\n').map(kvp => {

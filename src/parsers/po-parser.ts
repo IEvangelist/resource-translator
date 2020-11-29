@@ -1,11 +1,11 @@
-import { PortableObjectFile, PortableObjectToken } from "../files/po-file";
+import { PortableObjectFile, PortableObjectToken, PortableObjectTokenIdentifier } from "../files/po-file";
 import { TranslationFileParser } from "../translation-file-parser";
 import { TranslatableTextMap } from "../translatable-text-map";
-import { delay, naturalLanguageCompare } from "../utils";
+import { delay, findNext, naturalLanguageCompare } from "../utils";
 
 export class PortableObjectParser implements TranslationFileParser {
     async parseFrom(fileContent: string): Promise<PortableObjectFile> {
-        await delay(1, null);
+        await delay(0, null);
         let portableObjectFile: PortableObjectFile = {
             tokens: []
         };
@@ -22,10 +22,30 @@ export class PortableObjectParser implements TranslationFileParser {
     }
 
     applyTranslations(
-        instance: PortableObjectFile,
+        portableObject: PortableObjectFile,
         translations: { [key: string]: string; } | undefined,
         ordinals: number[] | undefined): PortableObjectFile {
-        throw new Error("Method not implemented.");
+        //
+        // Each translation has a named identifier (it's key), for example: { 'SomeKey': 'some translated value' }.
+        // The ordinals map each key to it's appropriate translated value in the resource, for example: [2,0,1].
+        // For each translation, we map its keys value to the corresponding ordinal.
+        //
+        if (portableObject && translations) {
+            let lastIndex = 0;
+            for (let key in translations) {
+                const value = translations[key];
+                if (value) {
+                    lastIndex = findNext(
+                        portableObject.tokens,
+                        lastIndex,
+                        token => !token.isInsignificant && token.id === 'msgid' && token.value === key,
+                        token => !token.isInsignificant && token.id === 'msgstr',
+                        token => token.value = value);
+                }
+            }
+        }
+
+        return portableObject;
     }
 
     toTranslatableTextMap(instance: PortableObjectFile): TranslatableTextMap {
@@ -34,15 +54,14 @@ export class PortableObjectParser implements TranslationFileParser {
         if (tokens && tokens.length) {
             const tryGetKeyValuePair = (batchedTokens: PortableObjectToken[]): { key: string, value: string } | undefined => {
                 if (batchedTokens && batchedTokens.length) {
-                    const key = batchedTokens.find(t => t.id === 'msgid')?.value;
-                    const value = batchedTokens.find(t => t.id === 'msgstr')?.value;
+                    const key = this.findTokenValueById('msgid', batchedTokens);
+                    const value = this.findTokenValueById('msgstr', batchedTokens);
 
                     return !!key && !!value ? { key, value } : undefined;
                 }
                 return undefined;
             };
 
-            const values = [];
             let index = 0;
             let [lastIndex, batch] = this.batchTokens(tokens, index);
             while (batch && lastIndex !== tokens.length) {
@@ -80,5 +99,9 @@ export class PortableObjectParser implements TranslationFileParser {
         }
 
         return [lastIndex, batch];
+    }
+
+    private findTokenValueById(tokenId: PortableObjectTokenIdentifier, tokens: PortableObjectToken[]): string | null | undefined {
+        return tokens.find(t => t.id === tokenId)?.value;
     }
 }

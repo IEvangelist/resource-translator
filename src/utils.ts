@@ -70,3 +70,28 @@ export function zip<TFirst, TSecond>(first: TFirst[], second: TSecond[]): (TFirs
 export const delay = <T>(ms: number, result?: T) => {
     return new Promise(resolve => setTimeout(() => resolve(result), ms));
 }
+
+export const findNext = <T>(
+    items: T[],
+    startIndex: number,
+    firstPredicate: (tOne: T) => boolean,   
+    secondPredicate: (tTwo: T) => boolean,
+    actionOfNext: (next: T) => void): number => {
+    if (items && items.length) {
+        let foundFirst = false;
+        for (let index = startIndex; index < items.length; ++index) {
+            const item = items[index];
+            if (firstPredicate(item)) {
+                foundFirst = true;
+                continue;
+            }
+
+            if (foundFirst && secondPredicate(item)) {
+                actionOfNext(item);
+                return index;
+            }
+        }
+    }
+
+    return -1;
+}
