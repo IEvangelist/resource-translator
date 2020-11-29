@@ -2679,7 +2679,7 @@ const po_file_1 = __webpack_require__(998);
 const utils_1 = __webpack_require__(163);
 class PortableObjectParser {
     async parseFrom(fileContent) {
-        await utils_1.delay(1, null);
+        await utils_1.delay(0, null);
         let portableObjectFile = {
             tokens: []
         };
@@ -2692,23 +2692,35 @@ class PortableObjectParser {
     toFileFormatted(instance, defaultValue) {
         return !!instance ? instance.tokens.map(t => t.line).join('\n') : defaultValue;
     }
-    applyTranslations(instance, translations, ordinals) {
-        throw new Error("Method not implemented.");
+    applyTranslations(portableObject, translations, ordinals) {
+        //
+        // Each translation has a named identifier (it's key), for example: { 'SomeKey': 'some translated value' }.
+        // The ordinals map each key to it's appropriate translated value in the resource, for example: [2,0,1].
+        // For each translation, we map its keys value to the corresponding ordinal.
+        //
+        if (portableObject && translations) {
+            let lastIndex = 0;
+            for (let key in translations) {
+                const value = translations[key];
+                if (value) {
+                    lastIndex = utils_1.findNext(portableObject.tokens, lastIndex, token => !token.isInsignificant && token.id === 'msgid' && token.value === key, token => !token.isInsignificant && token.id === 'msgstr', token => token.value = value);
+                }
+            }
+        }
+        return portableObject;
     }
     toTranslatableTextMap(instance) {
         const textToTranslate = new Map();
         const tokens = instance.tokens;
         if (tokens && tokens.length) {
             const tryGetKeyValuePair = (batchedTokens) => {
-                var _a, _b;
                 if (batchedTokens && batchedTokens.length) {
-                    const key = (_a = batchedTokens.find(t => t.id === 'msgid')) === null || _a === void 0 ? void 0 : _a.value;
-                    const value = (_b = batchedTokens.find(t => t.id === 'msgstr')) === null || _b === void 0 ? void 0 : _b.value;
+                    const key = this.findTokenValueById('msgid', batchedTokens);
+                    const value = this.findTokenValueById('msgstr', batchedTokens);
                     return !!key && !!value ? { key, value } : undefined;
                 }
                 return undefined;
             };
-            const values = [];
             let index = 0;
             let [lastIndex, batch] = this.batchTokens(tokens, index);
             while (batch && lastIndex !== tokens.length) {
@@ -2739,6 +2751,10 @@ class PortableObjectParser {
             }
         }
         return [lastIndex, batch];
+    }
+    findTokenValueById(tokenId, tokens) {
+        var _a;
+        return (_a = tokens.find(t => t.id === tokenId)) === null || _a === void 0 ? void 0 : _a.value;
     }
 }
 exports.PortableObjectParser = PortableObjectParser;
@@ -4430,7 +4446,7 @@ module.exports.MaxBufferError = MaxBufferError;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.delay = exports.zip = exports.chunk = exports.findValueByKey = exports.stringifyMap = exports.naturalLanguageCompare = exports.getLocaleName = exports.groupBy = void 0;
+exports.findNext = exports.delay = exports.zip = exports.chunk = exports.findValueByKey = exports.stringifyMap = exports.naturalLanguageCompare = exports.getLocaleName = exports.groupBy = void 0;
 const path_1 = __webpack_require__(622);
 exports.groupBy = (array, key) => array.reduce((result, obj) => {
     const value = obj[key];
@@ -4493,6 +4509,23 @@ function zip(first, second) {
 exports.zip = zip;
 exports.delay = (ms, result) => {
     return new Promise(resolve => setTimeout(() => resolve(result), ms));
+};
+exports.findNext = (items, startIndex, firstPredicate, secondPredicate, actionOfNext) => {
+    if (items && items.length) {
+        let foundFirst = false;
+        for (let index = startIndex; index < items.length; ++index) {
+            const item = items[index];
+            if (firstPredicate(item)) {
+                foundFirst = true;
+                continue;
+            }
+            if (foundFirst && secondPredicate(item)) {
+                actionOfNext(item);
+                return index;
+            }
+        }
+    }
+    return -1;
 };
 
 
@@ -12373,11 +12406,19 @@ const github_1 = __webpack_require__(469);
 const io_util_1 = __webpack_require__(672);
 const core_1 = __webpack_require__(470);
 const path_1 = __webpack_require__(622);
+const translationFileSchemes = {
+    po: `**.po`,
+    restext: (locale) => `**.${locale}.restext`,
+    resx: (locale) => `**.${locale}.resx`,
+    xliff: (locale) => `**.${locale}.xliff`,
+};
 async function findAllTranslationFiles(sourceLocale) {
     const filesToInclude = await getFilesToInclude();
     const translationFileMap = {};
-    for (let kind in ['resx', 'xliff', 'po', 'restext']) {
-        const baseFileGlob = `**.${sourceLocale}.${kind}`;
+    const entries = Object.entries(translationFileSchemes);
+    for (let index = 0; index < entries.length; ++index) {
+        let [kind, fileScheme] = entries[index];
+        const baseFileGlob = "function" === typeof fileScheme ? fileScheme(sourceLocale) : fileScheme;
         const globber = await glob_1.create(baseFileGlob);
         const filesAndDirectories = await globber.glob();
         const includeFile = (filepath) => {
@@ -22071,7 +22112,7 @@ exports.RestextParser = void 0;
 const utils_1 = __webpack_require__(163);
 class RestextParser {
     async parseFrom(fileContent) {
-        await utils_1.delay(1, null);
+        await utils_1.delay(0, null);
         let restextFile = {};
         if (fileContent) {
             fileContent.split('\n').map(kvp => {
@@ -23287,6 +23328,9 @@ class PortableObjectToken {
     }
     get value() {
         return this._value;
+    }
+    set value(value) {
+        this._value = value;
     }
     get isInsignificant() {
         return this._isInsignificant;
