@@ -12407,13 +12407,22 @@ const io_util_1 = __webpack_require__(672);
 const core_1 = __webpack_require__(470);
 const path_1 = __webpack_require__(622);
 const translationFileSchemes = {
-    po: `**.po`,
-    restext: (locale) => `**.${locale}.restext`,
-    resx: (locale) => `**.${locale}.resx`,
-    xliff: (locale) => `**.${locale}.xliff`,
+    po: `**/*.po`,
+    restext: (locale) => `**/*.${locale}.restext`,
+    resx: (locale) => `**/*.${locale}.resx`,
+    xliff: (locale) => `**/*.${locale}.xliff`,
 };
 async function findAllTranslationFiles(sourceLocale) {
     const filesToInclude = await getFilesToInclude();
+    const includeFile = (filepath) => {
+        if (filesToInclude && filesToInclude.length > 0) {
+            const filename = path_1.basename(filepath);
+            const include = filesToInclude.some(f => f.toLowerCase() === filename.toLowerCase());
+            core_1.debug(`include=${include}, ${filename}`);
+            return include;
+        }
+        return true;
+    };
     const translationFileMap = {};
     const entries = Object.entries(translationFileSchemes);
     for (let index = 0; index < entries.length; ++index) {
@@ -12421,15 +12430,6 @@ async function findAllTranslationFiles(sourceLocale) {
         const baseFileGlob = "function" === typeof fileScheme ? fileScheme(sourceLocale) : fileScheme;
         const globber = await glob_1.create(baseFileGlob);
         const filesAndDirectories = await globber.glob();
-        const includeFile = (filepath) => {
-            if (filesToInclude && filesToInclude.length > 0) {
-                const filename = path_1.basename(filepath);
-                const include = filesToInclude.some(f => f.toLowerCase() === filename.toLowerCase());
-                core_1.debug(`include=${include}, ${filename}`);
-                return include;
-            }
-            return true;
-        };
         const promises = filesAndDirectories.map(async (path) => {
             return {
                 path,

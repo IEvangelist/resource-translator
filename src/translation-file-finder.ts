@@ -12,33 +12,33 @@ export interface TranslationFileMap {
 }
 
 const translationFileSchemes = {
-    po: `**.po`,
-    restext: (locale: string) => `**.${locale}.restext`,
-    resx : (locale: string) => `**.${locale}.resx`,
-    xliff : (locale: string) => `**.${locale}.xliff`,
+    po: `**/*.po`,
+    restext: (locale: string) => `**/*.${locale}.restext`,
+    resx: (locale: string) => `**/*.${locale}.resx`,
+    xliff: (locale: string) => `**/*.${locale}.xliff`,
 }
 
 export async function findAllTranslationFiles(sourceLocale: string): Promise<TranslationFileMap> {
     const filesToInclude = await getFilesToInclude();
+    const includeFile = (filepath: string) => {
+        if (filesToInclude && filesToInclude.length > 0) {
+            const filename = basename(filepath);
+            const include = filesToInclude.some(f => f.toLowerCase() === filename.toLowerCase());
+            debug(`include=${include}, ${filename}`);
+            return include;
+        }
+
+        return true;
+    };
+
     const translationFileMap: TranslationFileMap = {};
+
     const entries = Object.entries(translationFileSchemes);
     for (let index = 0; index < entries.length; ++index) {
         let [kind, fileScheme] = entries[index];
         const baseFileGlob = "function" === typeof fileScheme ? fileScheme(sourceLocale) : fileScheme;
         const globber = await create(baseFileGlob);
         const filesAndDirectories = await globber.glob();
-
-        const includeFile = (filepath: string) => {
-            if (filesToInclude && filesToInclude.length > 0) {
-                const filename = basename(filepath);
-                const include = filesToInclude.some(f => f.toLowerCase() === filename.toLowerCase());
-                debug(`include=${include}, ${filename}`);
-                return include;
-            }
-
-            return true;
-        };
-
         const promises = filesAndDirectories.map(async path => {
             return {
                 path,
