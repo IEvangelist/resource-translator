@@ -1,4 +1,4 @@
-import { readFile, writeFile } from '../src/resource-io';
+import { readFile } from '../src/resource-io';
 import { getAvailableTranslations, translate } from '../src/api';
 import { ResourceFile } from '../src/files/resource-file';
 import { resolve } from 'path';
@@ -23,17 +23,17 @@ const expectedLocales = [
 
 const parser = new ResxParser();
 
+jest.setTimeout(60000);
+jest.useFakeTimers();
+
 test('API: get available translations correctly gets all locales', async () => {
     const translations = await getAvailableTranslations();
 
     expect(translations).toBeTruthy();
 
     const locales = Object.keys(translations.translation).join(', ');
-    expect(locales)
-        .toEqual(expectedLocales.join(', '));
+    expect(locales).toEqual(expectedLocales.join(', '));
 });
-
-jest.setTimeout(30000);
 
 test('API: read file->translate->apply->write', async () => {
     const availableTranslations = await getAvailableTranslations();
@@ -46,7 +46,7 @@ test('API: read file->translate->apply->write', async () => {
     const resourceFiles = [resolve(__dirname, './data/UIStrings.en.resx')];
     let summary = new Summary(sourceLocale, toLocales);
 
-    for (let index = 0; index < resourceFiles.length; ++ index) {
+    for (let index = 0; index < resourceFiles.length; ++index) {
         const resourceFilePath = resourceFiles[index];
         const resourceFileXml = readFile(resourceFilePath);
         const file = await parser.parseFrom(resourceFileXml);
@@ -64,7 +64,7 @@ test('API: read file->translate->apply->write', async () => {
 
             if (resultSet) {
                 toLocales.forEach(locale => {
-                    const translations = resultSet[locale];                    
+                    const translations = resultSet[locale];
                     const clone = Object.assign({} as ResourceFile, file);
                     const result = parser.applyTranslations(clone, translations, translatableTextMap.ordinals);
                     const translatedXml = parser.toFileFormatted(result, "");
@@ -88,8 +88,6 @@ test('API: read file->translate->apply->write', async () => {
     expect(title).toEqual('Machine-translated 77 files, a total of 1,155 translations');
     expect(details).toBeTruthy();
 });
-
-jest.setTimeout(15000);
 
 test('API: translate correctly performs translation', async () => {
     const resourceXml: ResourceFile = {

@@ -5,6 +5,8 @@ import { ResxParser } from '../src/parsers/resx-parser';
 
 const parser = new ResxParser();
 
+jest.useFakeTimers();
+
 test('IO: read file correctly parses known XML', async () => {
     const resourcePath = resolve(__dirname, './data/Test.en.resx');
     const text = readFile(resourcePath);

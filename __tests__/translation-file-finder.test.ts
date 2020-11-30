@@ -8,7 +8,7 @@ test("IO: finds all resource files correctly", async () => {
     expect(translationFiles.po![0]).toMatch(/.po/);
     expect(translationFiles.restext![0]).toMatch(/.restext/);
     expect(translationFiles.resx![0]).toMatch(/.resx/);
-    expect(translationFiles.xliff.length).toEqual(0);
+    expect(translationFiles.xliff!.length).toEqual(0);
 
     translationFiles = await findAllTranslationFiles('jp');
     expect(translationFiles.xliff![0]).toMatch(/.xliff/);

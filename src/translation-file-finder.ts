@@ -3,6 +3,7 @@ import { context, getOctokit } from '@actions/github';
 import { isDirectory } from '@actions/io/lib/io-util';
 import { debug } from '@actions/core';
 import { basename, resolve } from 'path';
+import { groupBy } from './utils';
 
 export interface TranslationFileMap {
     po?: string[] | undefined;
@@ -31,32 +32,32 @@ export async function findAllTranslationFiles(sourceLocale: string): Promise<Tra
         return true;
     };
 
-    const translationFileMap: TranslationFileMap = {};
+    const patterns = Object.values(translationFileSchemes).map(fileScheme => {
+        return "function" === typeof fileScheme ? fileScheme(sourceLocale) : fileScheme;
+    });
 
-    const entries = Object.entries(translationFileSchemes);
-    for (let index = 0; index < entries.length; ++index) {
-        let [kind, fileScheme] = entries[index];
-        const baseFileGlob = "function" === typeof fileScheme ? fileScheme(sourceLocale) : fileScheme;
-        const globber = await create(baseFileGlob);
-        const filesAndDirectories = await globber.glob();
-        const promises = filesAndDirectories.map(async path => {
-            return {
-                path,
-                isDirectory: await isDirectory(path),
-                include: includeFile(path)
-            }
-        });
-        const files = await Promise.all(promises);
-        const results =
-            files.filter(file => file.include && !file.isDirectory)
-                .map(file => file.path);
+    const globber = await create(patterns.join('\n'));
+    const filesAndDirectories = await globber.glob();
+    const promises = filesAndDirectories.map(async path => {
+        return {
+            path,
+            isDirectory: await isDirectory(path),
+            include: includeFile(path)
+        }
+    });
+    const files = await Promise.all(promises);
+    const results =
+        files.filter(file => file.include && !file.isDirectory)
+            .map(file => file.path);
 
-        debug(`Files to translate:\n\t${results.join('\n\t')}`);
+    debug(`Files to translate:\n\t${results.join('\n\t')}`);
 
-        translationFileMap[kind] = results;
-    }
-
-    return translationFileMap;
+    return {
+        po: results.filter(f => f.endsWith('.po')),
+        restext: results.filter(f => f.endsWith('.restext')),
+        resx: results.filter(f => f.endsWith('.resx')),
+        xliff: results.filter(f => f.endsWith('.xliff'))
+    } as TranslationFileMap;
 }
 
 async function getFilesToInclude(): Promise<string[]> {

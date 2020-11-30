@@ -38,8 +38,26 @@ export class PortableObjectParser implements TranslationFileParser {
                     lastIndex = findNext(
                         portableObject.tokens,
                         lastIndex,
-                        token => !token.isInsignificant && token.id === 'msgid' && token.value === key,
-                        token => !token.isInsignificant && token.id === 'msgstr',
+                        token => {
+                            let foundFirst = false;
+                            let secondOffset = 0;
+                            if (!token.isInsignificant) {
+                                if (token.value === key) {
+                                    foundFirst = true;
+                                    secondOffset = token.id === 'msgid' ? 0 : 1;
+                                }
+                            }
+                            return [foundFirst, secondOffset];
+                        },
+                        (token, secondOffset) => {
+                            let foundSecond = false;
+                            if (!token.isInsignificant) {
+                                foundSecond = secondOffset
+                                    ? token.id!.startsWith(`msgstr[${secondOffset}]`)
+                                    : token.id!.startsWith('msgstr');
+                            }
+                            return foundSecond;
+                        },
                         token => token.value = value);
                 }
             }
@@ -52,22 +70,22 @@ export class PortableObjectParser implements TranslationFileParser {
         const textToTranslate: Map<string, string> = new Map();
         const tokens = instance.tokens;
         if (tokens && tokens.length) {
-            const tryGetKeyValuePair = (batchedTokens: PortableObjectToken[]): { key: string, value: string } | undefined => {
+            const tryGetKeyValuePair = (batchedTokens: PortableObjectToken[]): [string, string] => {
+                let key: string = '';
+                let value: string = '';
                 if (batchedTokens && batchedTokens.length) {
-                    const key = this.findTokenValueById('msgid', batchedTokens);
-                    const value = this.findTokenValueById('msgstr', batchedTokens);
-
-                    return !!key && !!value ? { key, value } : undefined;
+                    key = this.findTokenValueById('msgid', batchedTokens);
+                    value = this.findTokenValueById('msgstr', batchedTokens);
                 }
-                return undefined;
+                return [key, value];
             };
 
             let index = 0;
             let [lastIndex, batch] = this.batchTokens(tokens, index);
-            while (batch && lastIndex !== tokens.length) {
-                let pair = tryGetKeyValuePair(batch);
-                if (pair) {
-                    textToTranslate.set(pair.key, pair.value);
+            while (batch && batch.length && lastIndex) {
+                let [key, value]: [string, string] = tryGetKeyValuePair(batch);
+                if (key && value) {
+                    textToTranslate.set(key, value);
                 }
                 [lastIndex, batch] = this.batchTokens(tokens, lastIndex);
             }
@@ -101,7 +119,10 @@ export class PortableObjectParser implements TranslationFileParser {
         return [lastIndex, batch];
     }
 
-    private findTokenValueById(tokenId: PortableObjectTokenIdentifier, tokens: PortableObjectToken[]): string | null | undefined {
-        return tokens.find(t => t.id === tokenId)?.value;
+    private findTokenValueById(tokenId: PortableObjectTokenIdentifier, tokens: PortableObjectToken[]): string {
+        return tokens.find(t =>
+            !t.isInsignificant &&
+            !t.isCommentLine &&
+            t.id!.startsWith(tokenId))?.value || '';
     }
 }

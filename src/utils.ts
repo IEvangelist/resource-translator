@@ -74,19 +74,22 @@ export const delay = <T>(ms: number, result?: T) => {
 export const findNext = <T>(
     items: T[],
     startIndex: number,
-    firstPredicate: (tOne: T) => boolean,   
-    secondPredicate: (tTwo: T) => boolean,
+    firstPredicate: (tOne: T) => [boolean, number],
+    secondPredicate: (tTwo: T, secondOffset: number) => boolean,
     actionOfNext: (next: T) => void): number => {
     if (items && items.length) {
         let foundFirst = false;
+        let secondOffset = 0;
         for (let index = startIndex; index < items.length; ++index) {
             const item = items[index];
-            if (firstPredicate(item)) {
+            const [first, i] = firstPredicate(item);
+            if (first) {
                 foundFirst = true;
+                secondOffset = i;
                 continue;
             }
 
-            if (foundFirst && secondPredicate(item)) {
+            if (foundFirst && secondPredicate(item, secondOffset)) {
                 actionOfNext(item);
                 return index;
             }

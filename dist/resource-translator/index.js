@@ -2703,7 +2703,25 @@ class PortableObjectParser {
             for (let key in translations) {
                 const value = translations[key];
                 if (value) {
-                    lastIndex = utils_1.findNext(portableObject.tokens, lastIndex, token => !token.isInsignificant && token.id === 'msgid' && token.value === key, token => !token.isInsignificant && token.id === 'msgstr', token => token.value = value);
+                    lastIndex = utils_1.findNext(portableObject.tokens, lastIndex, token => {
+                        let foundFirst = false;
+                        let secondOffset = 0;
+                        if (!token.isInsignificant) {
+                            if (token.value === key) {
+                                foundFirst = true;
+                                secondOffset = token.id === 'msgid' ? 0 : 1;
+                            }
+                        }
+                        return [foundFirst, secondOffset];
+                    }, (token, secondOffset) => {
+                        let foundSecond = false;
+                        if (!token.isInsignificant) {
+                            foundSecond = secondOffset
+                                ? token.id.startsWith(`msgstr[${secondOffset}]`)
+                                : token.id.startsWith('msgstr');
+                        }
+                        return foundSecond;
+                    }, token => token.value = value);
                 }
             }
         }
@@ -2714,19 +2732,20 @@ class PortableObjectParser {
         const tokens = instance.tokens;
         if (tokens && tokens.length) {
             const tryGetKeyValuePair = (batchedTokens) => {
+                let key = '';
+                let value = '';
                 if (batchedTokens && batchedTokens.length) {
-                    const key = this.findTokenValueById('msgid', batchedTokens);
-                    const value = this.findTokenValueById('msgstr', batchedTokens);
-                    return !!key && !!value ? { key, value } : undefined;
+                    key = this.findTokenValueById('msgid', batchedTokens);
+                    value = this.findTokenValueById('msgstr', batchedTokens);
                 }
-                return undefined;
+                return [key, value];
             };
             let index = 0;
             let [lastIndex, batch] = this.batchTokens(tokens, index);
-            while (batch && lastIndex !== tokens.length) {
-                let pair = tryGetKeyValuePair(batch);
-                if (pair) {
-                    textToTranslate.set(pair.key, pair.value);
+            while (batch && batch.length && lastIndex) {
+                let [key, value] = tryGetKeyValuePair(batch);
+                if (key && value) {
+                    textToTranslate.set(key, value);
                 }
                 [lastIndex, batch] = this.batchTokens(tokens, lastIndex);
             }
@@ -2754,7 +2773,9 @@ class PortableObjectParser {
     }
     findTokenValueById(tokenId, tokens) {
         var _a;
-        return (_a = tokens.find(t => t.id === tokenId)) === null || _a === void 0 ? void 0 : _a.value;
+        return ((_a = tokens.find(t => !t.isInsignificant &&
+            !t.isCommentLine &&
+            t.id.startsWith(tokenId))) === null || _a === void 0 ? void 0 : _a.value) || '';
     }
 }
 exports.PortableObjectParser = PortableObjectParser;
@@ -4513,13 +4534,16 @@ exports.delay = (ms, result) => {
 exports.findNext = (items, startIndex, firstPredicate, secondPredicate, actionOfNext) => {
     if (items && items.length) {
         let foundFirst = false;
+        let secondOffset = 0;
         for (let index = startIndex; index < items.length; ++index) {
             const item = items[index];
-            if (firstPredicate(item)) {
+            const [first, i] = firstPredicate(item);
+            if (first) {
                 foundFirst = true;
+                secondOffset = i;
                 continue;
             }
-            if (foundFirst && secondPredicate(item)) {
+            if (foundFirst && secondPredicate(item, secondOffset)) {
                 actionOfNext(item);
                 return index;
             }
@@ -6358,7 +6382,7 @@ module.exports = require("assert");
 /***/ 361:
 /***/ (function(module) {
 
-module.exports = {"_from":"axios@^0.20.0","_id":"axios@0.20.0","_inBundle":false,"_integrity":"sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.20.0","name":"axios","escapedName":"axios","rawSpec":"^0.20.0","saveSpec":null,"fetchSpec":"^0.20.0"},"_requiredBy":["/","/@types/axios"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.20.0.tgz","_shasum":"057ba30f04884694993a8cd07fa394cff11c50bd","_spec":"axios@^0.20.0","_where":"C:\\Users\\david\\source\\repos\\resource-translator","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.10.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"bundlesize":"^0.17.0","coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.0.2","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^20.1.0","grunt-karma":"^2.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^1.0.18","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^1.3.0","karma-chrome-launcher":"^2.2.0","karma-coverage":"^1.1.1","karma-firefox-launcher":"^1.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-opera-launcher":"^1.0.0","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^1.2.0","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.7","karma-webpack":"^1.7.0","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^5.2.0","sinon":"^4.5.0","typescript":"^2.8.1","url-search-params":"^0.10.0","webpack":"^1.13.1","webpack-dev-server":"^1.14.1"},"homepage":"https://github.com/axios/axios","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test && bundlesize","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.20.0"};
+module.exports = {"_args":[["axios@0.20.0","C:\\Users\\dapine\\source\\repos\\resource-translator"]],"_from":"axios@0.20.0","_id":"axios@0.20.0","_inBundle":false,"_integrity":"sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.20.0","name":"axios","escapedName":"axios","rawSpec":"0.20.0","saveSpec":null,"fetchSpec":"0.20.0"},"_requiredBy":["/","/@types/axios"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.20.0.tgz","_spec":"0.20.0","_where":"C:\\Users\\dapine\\source\\repos\\resource-translator","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.10.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"bundlesize":"^0.17.0","coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.0.2","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^20.1.0","grunt-karma":"^2.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^1.0.18","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^1.3.0","karma-chrome-launcher":"^2.2.0","karma-coverage":"^1.1.1","karma-firefox-launcher":"^1.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-opera-launcher":"^1.0.0","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^1.2.0","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.7","karma-webpack":"^1.7.0","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^5.2.0","sinon":"^4.5.0","typescript":"^2.8.1","url-search-params":"^0.10.0","webpack":"^1.13.1","webpack-dev-server":"^1.14.1"},"homepage":"https://github.com/axios/axios","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test && bundlesize","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.20.0"};
 
 /***/ }),
 
@@ -23316,7 +23340,7 @@ class PortableObjectToken {
         if (line && line.trim()) {
             const keyValuePair = line.split(firstWhitespace);
             this._identifier = keyValuePair[0];
-            this._value = keyValuePair[1];
+            this._value = keyValuePair.length > 1 ? keyValuePair[1] : null;
             this._isInsignificant = false;
         }
         else {

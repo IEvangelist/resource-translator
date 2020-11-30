@@ -35,7 +35,7 @@ export class PortableObjectToken {
         if (line && line.trim()) {
             const keyValuePair = line.split(firstWhitespace);
             this._identifier = keyValuePair[0];
-            this._value = keyValuePair[1];
+            this._value = keyValuePair.length > 1 ? keyValuePair[1] : null;
             this._isInsignificant = false;
         } else {
             this._isInsignificant = true;
