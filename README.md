@@ -44,8 +44,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Use the resource translator to automatically translate resource files
-      - name: resource-translator
+      # Use the machine-translator to automatically translate resource files
+      - name: translator
         uses: IEvangelist/resource-translator@v2.1.0
         with:
           # The source locale (for example, 'en') used to create the glob pattern
@@ -64,8 +64,8 @@ jobs:
 
       - name: create-pull-request
         uses: peter-evans/create-pull-request@v3.4.1
-        if: ${{ steps.resource-translator.outputs.has-new-translations }} == 'true'
+        if: ${{ steps.translator.outputs.has-new-translations }} == 'true'
         with:
-          title: '${{ steps.resource-translator.outputs.summary-title }}'
-          commit-message: '${{ steps.resource-translator.outputs.summary-details }}'
+          title: '${{ steps.translator.outputs.summary-title }}'
+          commit-message: '${{ steps.translator.outputs.summary-details }}'
 ```
