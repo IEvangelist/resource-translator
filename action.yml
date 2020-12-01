@@ -1,5 +1,5 @@
 name: 'Machine Translator'
-description: 'GitHub Action that automatically creates machine-translated PRs of translation files. Supported file formats include, .resx, .restext, .ini, .xliff, and .po.'
+description: 'Automatically create machine-translated PRs of translation files. Supported formats: .resx, .restext, .ini, .xliff, and .po.'
 branding:
   icon: flag
   color: blue
