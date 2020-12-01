@@ -1,21 +1,17 @@
-import { Builder, Parser } from "xml2js";
 import { XliffFile } from "../files/xliff-file";
 import { TranslationFileParser } from "../translation-file-parser";
 import { TranslatableTextMap } from "../translatable-text-map";
 import { naturalLanguageCompare } from "../utils";
+import { XmlFileParser } from "./xml-file-parser";
 
 export class XliffParser implements TranslationFileParser {
     async parseFrom(fileContent: string): Promise<XliffFile> {
-        const parser = new Parser();
-        const xliffXml = await parser.parseStringPromise(fileContent);
-        return xliffXml as XliffFile;
+        return await XmlFileParser.fromXml<XliffFile>(fileContent);
     }
 
     toFileFormatted(instance: XliffFile, defaultValue: string): string {
         try {
-            const builder = new Builder();
-            var xliffXml = builder.buildObject(instance);
-            return xliffXml;
+            return XmlFileParser.toXml(instance);
         } catch (error) {
             return defaultValue;
         }

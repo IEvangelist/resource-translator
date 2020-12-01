@@ -1,20 +1,16 @@
-import { Builder, Parser } from 'xml2js';
 import { ResourceFile } from '../files/resource-file';
 import { TranslationFileParser } from '../translation-file-parser';
 import { naturalLanguageCompare } from '../utils';
+import { XmlFileParser } from './xml-file-parser';
 
 export class ResxParser implements TranslationFileParser {
     async parseFrom(fileContent: string): Promise<ResourceFile> {
-        const parser = new Parser();
-        const resxXml = await parser.parseStringPromise(fileContent);
-        return resxXml as ResourceFile;
+        return await XmlFileParser.fromXml<ResourceFile>(fileContent);
     }
 
     toFileFormatted(instance: ResourceFile, defaultValue: string): string {
         try {
-            const builder = new Builder();
-            var resxXml = builder.buildObject(instance);
-            return resxXml;
+            return XmlFileParser.toXml(instance);
         } catch (error) {
             return defaultValue;
         }

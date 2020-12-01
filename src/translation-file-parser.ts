@@ -27,7 +27,7 @@ export interface TranslationFileParser {
     applyTranslations(
         instance: TranslationFile,
         translations: { [key: string]: string } | undefined,
-        ordinals: number[] | undefined): TranslationFile;
+        ordinals?: number[] | undefined): TranslationFile;
 
     /**
      * Converts the given instance into a translatable text map for processing.
