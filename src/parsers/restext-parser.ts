@@ -8,7 +8,10 @@ const whiteSpace: RegExp = /\S/;
 export class RestextParser implements TranslationFileParser {
     async parseFrom(fileContent: string): Promise<RestextFile> {
         await delay(0, null);
-        let restextFile: RestextFile = {};
+
+        let map: Map<number, string> = new Map();
+        let restextFile = { map: new Map() };
+
         if (fileContent) {
             fileContent.split('\n').map((line, index) => {
                 if (this.isComment(line) || this.isSection(line) || this.isWhitespace(line)) {
@@ -18,21 +21,37 @@ export class RestextParser implements TranslationFileParser {
                     }
                 } else {
                     const keyValuePair = line.split('=');
+                    const key = keyValuePair[0];
+                    const val = keyValuePair[1];
+                    map.set(index, key);
                     restextFile = {
                         ...restextFile,
-                        [keyValuePair[0]]: keyValuePair[1]
+                        [key]: val
                     }
                 }
             });
         }
+
+        restextFile.map = map;
         return restextFile as RestextFile;
     }
 
     toFileFormatted(instance: RestextFile, defaultValue: string): string {
-        const text =
-            Object.keys(instance).filter(key => !!key).map(key => {
-                return typeof key === 'number' ? instance[key] : `${key}=${instance[key]}`;
-            }).join('\n');
+        const map = instance.map;
+        const keys = Object.keys(instance);
+        const length = map.size + keys.length - 1;
+        let text = '';
+        for (let index = 0; index < length; ++ index) {
+            const line = instance[index];
+            const delimiter = index === 0 ? '' : '\n';
+            if (this.isComment(line) || this.isSection(line) || this.isWhitespace(line)) {
+                text += `${delimiter}${line}`;
+            } else if (map.has(index)) {
+                const key = map.get(index)!;
+                text += `${delimiter}${key}=${instance[key]}`;
+            }
+        }
+
         return text || defaultValue;
     }
 
