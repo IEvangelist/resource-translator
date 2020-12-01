@@ -4,8 +4,8 @@ const parser = new RestextParser();
 
 test('RESTEXT PARSER: correctly parses from string', async () => {
     const content = `Title=Title Casing For The Win
-    Strings=This is the first string, in a series of several.
-    Message=Button is clicked!`;
+Strings=This is the first string, in a series of several.
+Message=Button is clicked!`;
 
     const file = await parser.parseFrom(content);
     expect(file).toBeTruthy();
@@ -16,8 +16,8 @@ test('RESTEXT PARSER: correctly parses from string', async () => {
 
 test('RESTEXT PARSER: correctly formats back as string', async () => {
     const content = `Title=Title Casing For The Win
-    Strings=This is the first string, in a series of several.
-    Message=Button is clicked!`;
+Strings=This is the first string, in a series of several.
+Message=Button is clicked!`;
 
     const file = await parser.parseFrom(content);
     expect(file).toBeTruthy();
@@ -28,8 +28,8 @@ test('RESTEXT PARSER: correctly formats back as string', async () => {
 
 test('RESTEXT PARSER: correctly applies translations', async () => {
     const content = `Title=Title Casing For The Win
-    Strings=This is the first string, in a series of several.
-    Message=Button is clicked!`;
+Strings=This is the first string, in a series of several.
+Message=Button is clicked!`;
 
     const file = await parser.parseFrom(content);
     expect(file).toBeTruthy();
@@ -46,8 +46,8 @@ test('RESTEXT PARSER: correctly applies translations', async () => {
 
 test('RESTEXT PARSER: correctly creates translatable text map', async () => {
     const content = `Title=Title Casing For The Win
-    Strings=This is the first string, in a series of several.
-    Message=Button is clicked!`;
+Strings=This is the first string, in a series of several.
+Message=Button is clicked!`;
 
     const file = await parser.parseFrom(content);
     expect(file).toBeTruthy();
