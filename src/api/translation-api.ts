@@ -1,11 +1,11 @@
 import { debug, setFailed } from '@actions/core';
-import { AvailableTranslations } from './available-translations';
-import { TranslationResult, TranslationResults, TranslationResultSet } from './translation-results';
+import { AvailableTranslations } from '../abstractions/available-translations';
+import { TranslationResult, TranslationResults, TranslationResultSet } from '../abstractions/translation-results';
 import { v4 } from 'uuid';
 import Axios, { AxiosRequestConfig } from 'axios';
-import { TranslatorResource } from './translator-resource';
-import { chunk } from './utils';
-import { toResultSet } from './api-result-set-mapper';
+import { TranslatorResource } from '../abstractions/translator-resource';
+import { chunk } from '../helpers/utils';
+import { toResultSet } from '../helpers/api-result-set-mapper';
 
 /**
 * https://docs.microsoft.com/azure/cognitive-services/translator/language-support#translate

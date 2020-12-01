@@ -1,11 +1,11 @@
-import { readFile } from '../src/resource-io';
-import { getAvailableTranslations, translate } from '../src/api';
-import { ResourceFile } from '../src/files/resource-file';
+import { readFile } from '../src/io/reader-writer';
+import { getAvailableTranslations, translate } from '../src/api/translation-api';
+import { ResourceFile } from '../src/file-formats/resource-file';
 import { resolve } from 'path';
-import { getLocaleName, naturalLanguageCompare } from '../src/utils';
-import { summarize } from '../src/summarizer';
+import { getLocaleName, naturalLanguageCompare } from '../src/helpers/utils';
+import { summarize } from '../src/helpers/summarizer';
 import { existsSync } from 'fs';
-import { Summary } from '../src/summary';
+import { Summary } from '../src/abstractions/summary';
 import { ResxParser } from '../src/parsers/resx-parser';
 
 const expectedLocales = [

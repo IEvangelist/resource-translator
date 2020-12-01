@@ -1,4 +1,4 @@
-export type TranslationFileKind = 
+export type TranslationFileKind =
     /**
      * XML-based standard `*.resx` file format.
      * For more information, see

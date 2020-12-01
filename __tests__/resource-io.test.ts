@@ -1,6 +1,6 @@
-import { readFile, writeFile } from '../src/resource-io';
+import { readFile, writeFile } from '../src/io/reader-writer';
 import { resolve } from 'path';
-import { getLocaleName } from '../src/utils';
+import { getLocaleName } from '../src/helpers/utils';
 import { ResxParser } from '../src/parsers/resx-parser';
 
 const parser = new ResxParser();

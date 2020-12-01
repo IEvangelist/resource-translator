@@ -1,6 +1,6 @@
-import { traverseXliff, XliffFile } from "../files/xliff-file";
-import { TranslationFileParser } from "../translation-file-parser";
-import { TranslatableTextMap } from "../translatable-text-map";
+import { traverseXliff, XliffFile } from "../file-formats/xliff-file";
+import { TranslationFileParser } from "./translation-file-parser";
+import { TranslatableTextMap } from "../abstractions/translatable-text-map";
 import { XmlFileParser } from "./xml-file-parser";
 
 export class XliffParser implements TranslationFileParser {

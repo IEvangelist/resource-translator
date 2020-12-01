@@ -2347,37 +2347,6 @@ module.exports = __webpack_require__(352);
 
 /***/ }),
 
-/***/ 76:
-/***/ (function(__unusedmodule, exports) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Summary = void 0;
-class Summary {
-    constructor(sourceLocale, toLocales) {
-        this.sourceLocale = sourceLocale;
-        this.toLocales = toLocales;
-        this.newFileCount = 0;
-        this.newFileTranslations = 0;
-        this.updatedFileCount = 0;
-        this.updatedFileTranslations = 0;
-    }
-    get totalFileCount() {
-        return this.newFileCount + this.updatedFileCount;
-    }
-    get totalTranslations() {
-        return this.newFileTranslations + this.updatedFileTranslations;
-    }
-    get hasNewTranslations() {
-        return this.totalTranslations > 0;
-    }
-}
-exports.Summary = Summary;
-
-
-/***/ }),
-
 /***/ 81:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2675,8 +2644,8 @@ exports.toCommandValue = toCommandValue;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PortableObjectParser = void 0;
-const po_file_1 = __webpack_require__(998);
-const utils_1 = __webpack_require__(163);
+const po_file_1 = __webpack_require__(390);
+const utils_1 = __webpack_require__(834);
 class PortableObjectParser {
     async parseFrom(fileContent) {
         await utils_1.delay(0, null);
@@ -2692,7 +2661,7 @@ class PortableObjectParser {
     toFileFormatted(instance, defaultValue) {
         return !!instance ? instance.tokens.map(t => t.line).join('\n') : defaultValue;
     }
-    applyTranslations(portableObject, translations) {
+    applyTranslations(portableObject, translations, targetLocale) {
         if (portableObject && translations) {
             let lastIndex = 0;
             for (let key in translations) {
@@ -4423,101 +4392,6 @@ module.exports.MaxBufferError = MaxBufferError;
 
 /***/ }),
 
-/***/ 163:
-/***/ (function(__unusedmodule, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.findNext = exports.delay = exports.zip = exports.chunk = exports.findValueByKey = exports.stringifyMap = exports.naturalLanguageCompare = exports.getLocaleName = exports.groupBy = void 0;
-const path_1 = __webpack_require__(622);
-exports.groupBy = (array, key) => array.reduce((result, obj) => {
-    const value = obj[key];
-    result[value] = [...(result[value] || []), obj];
-    return result;
-}, {});
-exports.getLocaleName = (existingPath, locale) => {
-    const fileName = path_1.basename(existingPath);
-    const segments = fileName.split('.');
-    switch (segments.length) {
-        case 3:
-            return __webpack_require__.ab + "resource-translator\\" + path_1.dirname(existingPath) + '\\' + segments[0] + '.' + locale + '.' + segments[2];
-        case 2:
-            return __webpack_require__.ab + "resource-translator\\" + path_1.dirname(existingPath) + '\\' + locale + '.' + segments[1];
-    }
-    return null;
-};
-exports.naturalLanguageCompare = (a, b) => {
-    return !!a && !!b ? a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }) : 0;
-};
-function stringifyMap(key, value) {
-    const obj = this[key];
-    return (obj instanceof Map)
-        ? {
-            dataType: 'Map',
-            value: Array.from(obj.entries())
-        }
-        : value;
-}
-exports.stringifyMap = stringifyMap;
-function findValueByKey(object, key) {
-    let value;
-    Object.keys(object).some(function (k) {
-        if (k === key) {
-            value = object[k];
-            return true;
-        }
-        if (object[k] && typeof object[k] === 'object') {
-            value = findValueByKey(object[k], key);
-            return value !== undefined;
-        }
-    });
-    return value;
-}
-exports.findValueByKey = findValueByKey;
-function chunk(array, size) {
-    const chunked = [];
-    let index = 0;
-    while (index < array.length) {
-        chunked.push(array.slice(index, size + index));
-        index += size;
-    }
-    return chunked;
-}
-exports.chunk = chunk;
-function zip(first, second) {
-    return first.map((value, i) => {
-        return [value, second[i]];
-    });
-}
-exports.zip = zip;
-exports.delay = (ms, result) => {
-    return new Promise(resolve => setTimeout(() => resolve(result), ms));
-};
-exports.findNext = (items, startIndex, firstPredicate, secondPredicate, actionOfNext) => {
-    if (items && items.length) {
-        let foundFirst = false;
-        let secondOffset = 0;
-        for (let index = startIndex; index < items.length; ++index) {
-            const item = items[index];
-            const [first, i] = firstPredicate(item);
-            if (first) {
-                foundFirst = true;
-                secondOffset = i;
-                continue;
-            }
-            if (foundFirst && secondPredicate(item, secondOffset)) {
-                actionOfNext(item);
-                return index;
-            }
-        }
-    }
-    return -1;
-};
-
-
-/***/ }),
-
 /***/ 168:
 /***/ (function(module) {
 
@@ -4563,94 +4437,6 @@ module.exports = opts => {
 
 	return result;
 };
-
-
-/***/ }),
-
-/***/ 172:
-/***/ (function(__unusedmodule, exports, __webpack_require__) {
-
-"use strict";
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.translate = exports.getAvailableTranslations = void 0;
-const core_1 = __webpack_require__(470);
-const uuid_1 = __webpack_require__(898);
-const axios_1 = __importDefault(__webpack_require__(53));
-const utils_1 = __webpack_require__(163);
-const api_result_set_mapper_1 = __webpack_require__(243);
-/**
-* https://docs.microsoft.com/azure/cognitive-services/translator/language-support#translate
-*/
-async function getAvailableTranslations() {
-    const url = 'https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation';
-    const response = await axios_1.default.get(url);
-    return response.data;
-}
-exports.getAvailableTranslations = getAvailableTranslations;
-async function translate(translatorResource, toLocales, translatableText) {
-    try {
-        const data = [...translatableText.values()].map(value => {
-            return { text: value };
-        });
-        const headers = {
-            'Ocp-Apim-Subscription-Key': translatorResource.subscriptionKey,
-            'Content-type': 'application/json',
-            'X-ClientTraceId': uuid_1.v4()
-        };
-        if (translatorResource.region) {
-            headers['Ocp-Apim-Subscription-Region'] = translatorResource.region;
-        }
-        const options = {
-            method: 'POST',
-            headers,
-            data,
-            responseType: 'json'
-        };
-        const baseUrl = translatorResource.endpoint.endsWith('/')
-            ? translatorResource.endpoint
-            : `${translatorResource.endpoint}/`;
-        // Current Azure Translator API rate limit
-        // https://docs.microsoft.com/azure/cognitive-services/translator/request-limits#character-and-array-limits-per-request
-        const apiRateLimit = 10000;
-        const localeCount = toLocales.length;
-        const characters = JSON.stringify(data).length;
-        const batchCount = Math.ceil(characters * localeCount / apiRateLimit);
-        const batchedLocales = batchCount > 1
-            ? utils_1.chunk(toLocales, batchCount)
-            : [toLocales];
-        let results = [];
-        for (let i = 0; i < batchedLocales.length; i++) {
-            const locales = batchedLocales[i];
-            const to = locales.map(to => `to=${to}`).join('&');
-            core_1.debug(`Batch ${i + 1} locales: ${to}`);
-            const url = `${baseUrl}translate?api-version=3.0&${to}`;
-            const response = await axios_1.default.post(url, data, options);
-            const responseData = response.data;
-            core_1.debug(`Batch ${i + 1} response: ${JSON.stringify(responseData)}`);
-            results = [...results, ...responseData];
-        }
-        return api_result_set_mapper_1.toResultSet(results, toLocales, translatableText);
-    }
-    catch (ex) {
-        // Try to write explicit error:
-        // https://docs.microsoft.com/en-us/azure/cognitive-services/translator/reference/v3-0-reference#errors
-        const e = ex.response
-            && ex.response.data
-            && ex.response.data;
-        if (e) {
-            core_1.setFailed(`error: { code: ${e.error.code}, message: '${e.error.message}' }}`);
-        }
-        else {
-            core_1.setFailed(`Failed to translate input: ${ex}`);
-        }
-        return undefined;
-    }
-}
-exports.translate = translate;
 
 
 /***/ }),
@@ -4925,52 +4711,6 @@ module.exports = function xhrAdapter(config) {
     // Send the request
     request.send(requestData);
   });
-};
-
-
-/***/ }),
-
-/***/ 243:
-/***/ (function(__unusedmodule, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.toResultSet = void 0;
-const utils_1 = __webpack_require__(163);
-exports.toResultSet = (results, toLocales, translatableText) => {
-    const translatableKeys = [...translatableText.keys()];
-    const resultSet = {};
-    if (results && results.length) {
-        toLocales.forEach(locale => {
-            let result = {};
-            const matches = results.filter(r => r.translations.some(t => t.to === locale));
-            if (matches) {
-                const translations = toRawTextArray(matches, locale);
-                const zipped = utils_1.zip(translatableKeys, translations);
-                for (let i = 0; i < zipped.length; ++i) {
-                    const key = zipped[i][0];
-                    result[key] = zipped[i][1];
-                }
-                resultSet[locale] = result;
-            }
-        });
-    }
-    return resultSet;
-};
-const toRawTextArray = (translationResults, locale) => {
-    const rawTextArray = [];
-    if (translationResults && translationResults.length) {
-        for (let i = 0; i < translationResults.length; ++i) {
-            const translations = translationResults[i].translations;
-            translations.forEach(translation => {
-                if (translation.to === locale && translation.text) {
-                    rawTextArray.push(translation.text);
-                }
-            });
-        }
-    }
-    return rawTextArray;
 };
 
 
@@ -5507,6 +5247,61 @@ InterceptorManager.prototype.forEach = function forEach(fn) {
 };
 
 module.exports = InterceptorManager;
+
+
+/***/ }),
+
+/***/ 296:
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.summarize = void 0;
+const core_1 = __webpack_require__(470);
+/**
+ * Example output: https://gist.github.com/IEvangelist/8e7101bda2bacce98d418b5d0fdda756
+ * @param summary The object representing the summary of the action's execution.
+ */
+exports.summarize = (summary) => {
+    const fileCount = summary.totalFileCount.toLocaleString('en');
+    const translations = summary.totalTranslations.toLocaleString('en');
+    const title = `Machine-translated ${fileCount} files, a total of ${translations} translations`;
+    const env = process.env;
+    const server = env['GITHUB_SERVER_URL'];
+    const repo = env['GITHUB_REPOSITORY'];
+    const commit = env['GITHUB_SHA'];
+    const triggeredByUrl = `${server}/${repo}/commit/${commit}`;
+    const nfc = summary.newFileCount.toLocaleString('en');
+    const nft = summary.newFileTranslations.toLocaleString('en');
+    const ufc = summary.updatedFileCount.toLocaleString('en');
+    const uft = summary.updatedFileTranslations.toLocaleString('en');
+    // Pull request message template
+    let details = [
+        '# Translation pull request summary',
+        '',
+        `Action triggered by ${triggeredByUrl}.`,
+        '',
+        `- Source locale: \`${summary.sourceLocale}\``,
+        `- Destination locale(s): ${summary.toLocales.map(locale => `\`${locale}\``).join(', ')}`,
+        '',
+        '## File translation details',
+        '',
+        '| Type    | File count | Translation count |',
+        '|---------|------------|-------------------|',
+        `| New     | ${nfc}     | ${nft}            |`,
+        `| Updated | ${ufc}     | ${uft}            |`,
+        '',
+        `Of the ${fileCount} translated files, there are a total of ${translations} individual translations.`,
+        '',
+        '> These machine translations are a result of Azure Cognitive Services Translator, and the [Resource translator](https://github.com/marketplace/actions/resource-translator) GitHub action. For more information, see [Translator v3.0](https://docs.microsoft.com/azure/cognitive-services/translator/reference/v3-0-reference?WT.mc_id=dapine). To post an issue, or feature request please do here [here](https://github.com/IEvangelist/resource-translator/issues).',
+    ];
+    core_1.debug(JSON.stringify({
+        title,
+        details
+    }));
+    return [title, details.join('\n')];
+};
 
 
 /***/ }),
@@ -6194,7 +5989,7 @@ isStream.transform = function (stream) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = __webpack_require__(470);
-const get_inputs_1 = __webpack_require__(452);
+const get_inputs_1 = __webpack_require__(379);
 const resource_translator_1 = __webpack_require__(781);
 const run = async () => {
     try {
@@ -6410,6 +6205,45 @@ module.exports = function enhanceError(error, config, code, request, response) {
     };
   };
   return error;
+};
+
+
+/***/ }),
+
+/***/ 379:
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getQuestionableArray = exports.getInputs = void 0;
+const core_1 = __webpack_require__(470);
+exports.getInputs = () => {
+    const inputs = {
+        subscriptionKey: core_1.getInput('subscriptionKey', { required: true }),
+        endpoint: core_1.getInput('endpoint', { required: true }),
+        sourceLocale: core_1.getInput('sourceLocale', { required: true }),
+        region: core_1.getInput('region'),
+        toLocales: exports.getQuestionableArray('toLocales')
+    };
+    return inputs;
+};
+/**
+ * Valid formats for parsing string into JS array:
+ *   "'es','de','fr'"
+ *   "[ 'es', 'de', 'fr' ]"
+*/
+exports.getQuestionableArray = (inputName) => {
+    const value = core_1.getInput(inputName);
+    if (value) {
+        if (value.indexOf('[') > -1) {
+            return [...JSON.parse(value)];
+        }
+        else {
+            return value.replace(/\s/g, '').split(',');
+        }
+    }
+    return undefined;
 };
 
 
@@ -6935,6 +6769,51 @@ function readShebang(command) {
 }
 
 module.exports = readShebang;
+
+
+/***/ }),
+
+/***/ 390:
+/***/ (function(__unusedmodule, exports) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PortableObjectToken = void 0;
+const firstWhitespace = /\s+(.*)/;
+// https://www.yogihosting.com/portable-object-aspnet-core/
+class PortableObjectToken {
+    constructor(line) {
+        this.line = line;
+        this._identifier = null;
+        this._value = null;
+        if (line && line.trim()) {
+            const keyValuePair = line.split(firstWhitespace);
+            this._identifier = keyValuePair[0];
+            this._value = keyValuePair.length > 1 ? keyValuePair[1] : null;
+            this._isInsignificant = false;
+        }
+        else {
+            this._isInsignificant = true;
+        }
+    }
+    get id() {
+        return this._identifier;
+    }
+    get value() {
+        return this._value;
+    }
+    set value(value) {
+        this._value = value;
+    }
+    get isInsignificant() {
+        return this._isInsignificant;
+    }
+    get isCommentLine() {
+        return !!this.line && this.line.startsWith('#:');
+    }
+}
+exports.PortableObjectToken = PortableObjectToken;
 
 
 /***/ }),
@@ -7541,6 +7420,98 @@ function escapeProperty(s) {
 
 /***/ }),
 
+/***/ 442:
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.findAllTranslationFiles = void 0;
+const glob_1 = __webpack_require__(281);
+const github_1 = __webpack_require__(469);
+const io_util_1 = __webpack_require__(672);
+const core_1 = __webpack_require__(470);
+const path_1 = __webpack_require__(622);
+const translationFileSchemes = {
+    ini: (locale) => `**/*.${locale}.ini`,
+    po: `**/*.po`,
+    restext: (locale) => `**/*.${locale}.restext`,
+    resx: (locale) => `**/*.${locale}.resx`,
+    xliff: (locale) => `**/*.${locale}.xliff`
+};
+async function findAllTranslationFiles(sourceLocale) {
+    const filesToInclude = await getFilesToInclude();
+    const includeFile = (filepath) => {
+        if (filesToInclude && filesToInclude.length > 0) {
+            const filename = path_1.basename(filepath);
+            const include = filesToInclude.some(f => f.toLowerCase() === filename.toLowerCase());
+            core_1.debug(`include=${include}, ${filename}`);
+            return include;
+        }
+        return true;
+    };
+    const patterns = Object.values(translationFileSchemes).map(fileScheme => {
+        return "function" === typeof fileScheme ? fileScheme(sourceLocale) : fileScheme;
+    });
+    const globber = await glob_1.create(patterns.join('\n'));
+    const filesAndDirectories = await globber.glob();
+    const promises = filesAndDirectories.map(async (path) => {
+        return {
+            path,
+            isDirectory: await io_util_1.isDirectory(path),
+            include: includeFile(path)
+        };
+    });
+    const files = await Promise.all(promises);
+    const results = files.filter(file => file.include && !file.isDirectory)
+        .map(file => file.path);
+    core_1.debug(`Files to translate:\n\t${results.join('\n\t')}`);
+    return {
+        po: results.filter(f => f.endsWith('.po')),
+        restext: results.filter(f => f.endsWith('.restext')),
+        ini: results.filter(f => f.endsWith('.ini')),
+        resx: results.filter(f => f.endsWith('.resx')),
+        xliff: results.filter(f => f.endsWith('.xliff'))
+    };
+}
+exports.findAllTranslationFiles = findAllTranslationFiles;
+async function getFilesToInclude() {
+    try {
+        // Get all files related to trigger.
+        const token = process.env['GITHUB_TOKEN'] || null;
+        if (token) {
+            const octokit = github_1.getOctokit(token);
+            const options = {
+                ...github_1.context.repo,
+                ref: github_1.context.ref
+            };
+            core_1.debug(JSON.stringify(options));
+            const response = await octokit.repos.getCommit(options);
+            core_1.debug(JSON.stringify(response));
+            if (response.data) {
+                const files = [
+                    ...new Set(response.data.files.map(file => {
+                        const path = path_1.resolve(__dirname, file.filename);
+                        return path_1.basename(path);
+                    }))
+                ];
+                core_1.debug(`Files from trigger:\n\t${files.join('\n\t')}`);
+                return files;
+            }
+        }
+        else {
+            core_1.debug("Unable to get the GITHUB_TOKEN from the environment.");
+        }
+    }
+    catch (error) {
+        core_1.debug(error);
+    }
+    return [];
+}
+
+
+/***/ }),
+
 /***/ 448:
 /***/ (function(__unusedmodule, exports, __webpack_require__) {
 
@@ -7786,45 +7757,6 @@ exports.Octokit = Octokit;
   })();
 
 }).call(this);
-
-
-/***/ }),
-
-/***/ 452:
-/***/ (function(__unusedmodule, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getQuestionableArray = exports.getInputs = void 0;
-const core_1 = __webpack_require__(470);
-exports.getInputs = () => {
-    const inputs = {
-        subscriptionKey: core_1.getInput('subscriptionKey', { required: true }),
-        endpoint: core_1.getInput('endpoint', { required: true }),
-        sourceLocale: core_1.getInput('sourceLocale', { required: true }),
-        region: core_1.getInput('region'),
-        toLocales: exports.getQuestionableArray('toLocales')
-    };
-    return inputs;
-};
-/**
- * Valid formats for parsing string into JS array:
- *   "'es','de','fr'"
- *   "[ 'es', 'de', 'fr' ]"
-*/
-exports.getQuestionableArray = (inputName) => {
-    const value = core_1.getInput(inputName);
-    if (value) {
-        if (value.indexOf('[') > -1) {
-            return [...JSON.parse(value)];
-        }
-        else {
-            return value.replace(/\s/g, '').split(',');
-        }
-    }
-    return undefined;
-};
 
 
 /***/ }),
@@ -9579,6 +9511,7 @@ module.exports = resolveCommand;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.XliffParser = void 0;
+const xliff_file_1 = __webpack_require__(574);
 const xml_file_parser_1 = __webpack_require__(695);
 class XliffParser {
     async parseFrom(fileContent) {
@@ -9592,18 +9525,16 @@ class XliffParser {
             return defaultValue;
         }
     }
-    applyTranslations(instance, translations, ordinals) {
-        if (instance && translations) {
+    applyTranslations(instance, translations, targetLocale) {
+        if (instance && translations && targetLocale) {
+            instance.$.trgLang = targetLocale;
             for (let key in translations) {
                 const compositeKey = key.split('::');
                 const index = parseInt(compositeKey[0]);
                 const sourceKey = compositeKey[1];
                 const value = translations[key];
                 if (value) {
-                    const unit = instance.xliff.file[index].unit.find(u => u.segment.source === sourceKey);
-                    if (unit) {
-                        unit.segment.target = value;
-                    }
+                    xliff_file_1.traverseXliff(instance, index, sourceKey, s => s.source = [value]);
                 }
             }
         }
@@ -9615,7 +9546,7 @@ class XliffParser {
             const values = instance.xliff.file[i].unit;
             if (values && values.length) {
                 for (let f = 0; f < values.length; ++f) {
-                    const key = values[f].segment.source;
+                    const key = values[f].segment[0].source[0];
                     textToTranslate.set(`${i}::${key}`, key);
                 }
             }
@@ -9725,6 +9656,52 @@ module.exports.env = opts => {
 	env[path] = module.exports(opts);
 
 	return env;
+};
+
+
+/***/ }),
+
+/***/ 513:
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.toResultSet = void 0;
+const utils_1 = __webpack_require__(834);
+exports.toResultSet = (results, toLocales, translatableText) => {
+    const translatableKeys = [...translatableText.keys()];
+    const resultSet = {};
+    if (results && results.length) {
+        toLocales.forEach(locale => {
+            let result = {};
+            const matches = results.filter(r => r.translations.some(t => t.to === locale));
+            if (matches) {
+                const translations = toRawTextArray(matches, locale);
+                const zipped = utils_1.zip(translatableKeys, translations);
+                for (let i = 0; i < zipped.length; ++i) {
+                    const key = zipped[i][0];
+                    result[key] = zipped[i][1];
+                }
+                resultSet[locale] = result;
+            }
+        });
+    }
+    return resultSet;
+};
+const toRawTextArray = (translationResults, locale) => {
+    const rawTextArray = [];
+    if (translationResults && translationResults.length) {
+        for (let i = 0; i < translationResults.length; ++i) {
+            const translations = translationResults[i].translations;
+            translations.forEach(translation => {
+                if (translation.to === locale && translation.text) {
+                    rawTextArray.push(translation.text);
+                }
+            });
+        }
+    }
+    return rawTextArray;
 };
 
 
@@ -10078,6 +10055,7 @@ module.exports = defaults;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ResxParser = void 0;
+const resource_file_1 = __webpack_require__(685);
 const xml_file_parser_1 = __webpack_require__(695);
 class ResxParser {
     async parseFrom(fileContent) {
@@ -10091,15 +10069,13 @@ class ResxParser {
             return defaultValue;
         }
     }
-    applyTranslations(resource, translations) {
+    applyTranslations(resource, translations, targetLocale) {
         if (resource && translations) {
-            let index = 0;
             for (let key in translations) {
-                const value = [translations[key]];
+                const value = translations[key];
                 if (value) {
-                    resource.root.data[index].value = value;
+                    resource_file_1.traverseResx(resource, key, (data) => data.value = [value]);
                 }
-                index++;
             }
         }
         return resource;
@@ -10680,32 +10656,6 @@ exports.HttpClient = HttpClient;
 
 /***/ }),
 
-/***/ 545:
-/***/ (function(__unusedmodule, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.writeFile = exports.readFile = void 0;
-const core_1 = __webpack_require__(470);
-const fs_1 = __webpack_require__(747);
-const path_1 = __webpack_require__(622);
-function readFile(path) {
-    const resolved = path_1.resolve(path);
-    const file = fs_1.readFileSync(resolved, 'utf-8');
-    core_1.debug(`Read file: ${file}`);
-    return file;
-}
-exports.readFile = readFile;
-function writeFile(path, content) {
-    core_1.debug(`Write file, path: ${path}\nContent: ${content}`);
-    fs_1.writeFileSync(path, content);
-}
-exports.writeFile = writeFile;
-
-
-/***/ }),
-
 /***/ 549:
 /***/ (function(module, __unusedexports, __webpack_require__) {
 
@@ -11211,6 +11161,94 @@ module.exports.wrap = wrap;
 
 /***/ }),
 
+/***/ 553:
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.translate = exports.getAvailableTranslations = void 0;
+const core_1 = __webpack_require__(470);
+const uuid_1 = __webpack_require__(898);
+const axios_1 = __importDefault(__webpack_require__(53));
+const utils_1 = __webpack_require__(834);
+const api_result_set_mapper_1 = __webpack_require__(513);
+/**
+* https://docs.microsoft.com/azure/cognitive-services/translator/language-support#translate
+*/
+async function getAvailableTranslations() {
+    const url = 'https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation';
+    const response = await axios_1.default.get(url);
+    return response.data;
+}
+exports.getAvailableTranslations = getAvailableTranslations;
+async function translate(translatorResource, toLocales, translatableText) {
+    try {
+        const data = [...translatableText.values()].map(value => {
+            return { text: value };
+        });
+        const headers = {
+            'Ocp-Apim-Subscription-Key': translatorResource.subscriptionKey,
+            'Content-type': 'application/json',
+            'X-ClientTraceId': uuid_1.v4()
+        };
+        if (translatorResource.region) {
+            headers['Ocp-Apim-Subscription-Region'] = translatorResource.region;
+        }
+        const options = {
+            method: 'POST',
+            headers,
+            data,
+            responseType: 'json'
+        };
+        const baseUrl = translatorResource.endpoint.endsWith('/')
+            ? translatorResource.endpoint
+            : `${translatorResource.endpoint}/`;
+        // Current Azure Translator API rate limit
+        // https://docs.microsoft.com/azure/cognitive-services/translator/request-limits#character-and-array-limits-per-request
+        const apiRateLimit = 10000;
+        const localeCount = toLocales.length;
+        const characters = JSON.stringify(data).length;
+        const batchCount = Math.ceil(characters * localeCount / apiRateLimit);
+        const batchedLocales = batchCount > 1
+            ? utils_1.chunk(toLocales, batchCount)
+            : [toLocales];
+        let results = [];
+        for (let i = 0; i < batchedLocales.length; i++) {
+            const locales = batchedLocales[i];
+            const to = locales.map(to => `to=${to}`).join('&');
+            core_1.debug(`Batch ${i + 1} locales: ${to}`);
+            const url = `${baseUrl}translate?api-version=3.0&${to}`;
+            const response = await axios_1.default.post(url, data, options);
+            const responseData = response.data;
+            core_1.debug(`Batch ${i + 1} response: ${JSON.stringify(responseData)}`);
+            results = [...results, ...responseData];
+        }
+        return api_result_set_mapper_1.toResultSet(results, toLocales, translatableText);
+    }
+    catch (ex) {
+        // Try to write explicit error:
+        // https://docs.microsoft.com/en-us/azure/cognitive-services/translator/reference/v3-0-reference#errors
+        const e = ex.response
+            && ex.response.data
+            && ex.response.data;
+        if (e) {
+            core_1.setFailed(`error: { code: ${e.error.code}, message: '${e.error.message}' }}`);
+        }
+        else {
+            core_1.setFailed(`Failed to translate input: ${ex}`);
+        }
+        return undefined;
+    }
+}
+exports.translate = translate;
+
+
+/***/ }),
+
 /***/ 556:
 /***/ (function(module) {
 
@@ -11657,6 +11695,37 @@ function parse(command, args, options) {
 }
 
 module.exports = parse;
+
+
+/***/ }),
+
+/***/ 574:
+/***/ (function(__unusedmodule, exports) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.findInXliff = exports.traverseXliff = void 0;
+exports.traverseXliff = (instance, fileIndex, sourceName, segmentAction) => {
+    if (instance && segmentAction) {
+        if (instance.xliff.file && instance.xliff.file.length > fileIndex) {
+            const unit = instance.xliff.file[fileIndex].unit.find(unit => unit.segment.find(s => s.source.includes(sourceName)));
+            if (unit) {
+                segmentAction(unit.segment.find(s => s.source.includes(sourceName)));
+            }
+        }
+    }
+};
+exports.findInXliff = (instance, fileIndex, sourceName) => {
+    if (instance) {
+        if (instance.xliff.file && instance.xliff.file.length > fileIndex) {
+            const unit = instance.xliff.file[fileIndex].unit.find(unit => unit.segment.find(s => s.source.includes(sourceName)));
+            if (unit) {
+                return unit.segment.find(s => s.source.includes(sourceName));
+            }
+        }
+    }
+};
 
 
 /***/ }),
@@ -12359,98 +12428,6 @@ module.exports = require("http");
 /***/ (function(module) {
 
 module.exports = require("events");
-
-/***/ }),
-
-/***/ 615:
-/***/ (function(__unusedmodule, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.findAllTranslationFiles = void 0;
-const glob_1 = __webpack_require__(281);
-const github_1 = __webpack_require__(469);
-const io_util_1 = __webpack_require__(672);
-const core_1 = __webpack_require__(470);
-const path_1 = __webpack_require__(622);
-const translationFileSchemes = {
-    ini: (locale) => `**/*.${locale}.ini`,
-    po: `**/*.po`,
-    restext: (locale) => `**/*.${locale}.restext`,
-    resx: (locale) => `**/*.${locale}.resx`,
-    xliff: (locale) => `**/*.${locale}.xliff`
-};
-async function findAllTranslationFiles(sourceLocale) {
-    const filesToInclude = await getFilesToInclude();
-    const includeFile = (filepath) => {
-        if (filesToInclude && filesToInclude.length > 0) {
-            const filename = path_1.basename(filepath);
-            const include = filesToInclude.some(f => f.toLowerCase() === filename.toLowerCase());
-            core_1.debug(`include=${include}, ${filename}`);
-            return include;
-        }
-        return true;
-    };
-    const patterns = Object.values(translationFileSchemes).map(fileScheme => {
-        return "function" === typeof fileScheme ? fileScheme(sourceLocale) : fileScheme;
-    });
-    const globber = await glob_1.create(patterns.join('\n'));
-    const filesAndDirectories = await globber.glob();
-    const promises = filesAndDirectories.map(async (path) => {
-        return {
-            path,
-            isDirectory: await io_util_1.isDirectory(path),
-            include: includeFile(path)
-        };
-    });
-    const files = await Promise.all(promises);
-    const results = files.filter(file => file.include && !file.isDirectory)
-        .map(file => file.path);
-    core_1.debug(`Files to translate:\n\t${results.join('\n\t')}`);
-    return {
-        po: results.filter(f => f.endsWith('.po')),
-        restext: results.filter(f => f.endsWith('.restext')),
-        ini: results.filter(f => f.endsWith('.ini')),
-        resx: results.filter(f => f.endsWith('.resx')),
-        xliff: results.filter(f => f.endsWith('.xliff'))
-    };
-}
-exports.findAllTranslationFiles = findAllTranslationFiles;
-async function getFilesToInclude() {
-    try {
-        // Get all files related to trigger.
-        const token = process.env['GITHUB_TOKEN'] || null;
-        if (token) {
-            const octokit = github_1.getOctokit(token);
-            const options = {
-                ...github_1.context.repo,
-                ref: github_1.context.ref
-            };
-            core_1.debug(JSON.stringify(options));
-            const response = await octokit.repos.getCommit(options);
-            core_1.debug(JSON.stringify(response));
-            if (response.data) {
-                const files = [
-                    ...new Set(response.data.files.map(file => {
-                        const path = path_1.resolve(__dirname, file.filename);
-                        return path_1.basename(path);
-                    }))
-                ];
-                core_1.debug(`Files from trigger:\n\t${files.join('\n\t')}`);
-                return files;
-            }
-        }
-        else {
-            core_1.debug("Unable to get the GITHUB_TOKEN from the environment.");
-        }
-    }
-    catch (error) {
-        core_1.debug(error);
-    }
-    return [];
-}
-
 
 /***/ }),
 
@@ -15052,6 +15029,25 @@ function isUnixExecutable(stats) {
   };
 
 }).call(this);
+
+
+/***/ }),
+
+/***/ 685:
+/***/ (function(__unusedmodule, exports) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.traverseResx = void 0;
+exports.traverseResx = (instance, name, dataAction) => {
+    if (instance && dataAction) {
+        const data = instance.root.data.find(d => d.$.name === name);
+        if (data) {
+            dataAction(data);
+        }
+    }
+};
 
 
 /***/ }),
@@ -18670,61 +18666,6 @@ module.exports = require("fs");
 
 /***/ }),
 
-/***/ 752:
-/***/ (function(__unusedmodule, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.summarize = void 0;
-const core_1 = __webpack_require__(470);
-/**
- * Example output: https://gist.github.com/IEvangelist/8e7101bda2bacce98d418b5d0fdda756
- * @param summary The object representing the summary of the action's execution.
- */
-exports.summarize = (summary) => {
-    const fileCount = summary.totalFileCount.toLocaleString('en');
-    const translations = summary.totalTranslations.toLocaleString('en');
-    const title = `Machine-translated ${fileCount} files, a total of ${translations} translations`;
-    const env = process.env;
-    const server = env['GITHUB_SERVER_URL'];
-    const repo = env['GITHUB_REPOSITORY'];
-    const commit = env['GITHUB_SHA'];
-    const triggeredByUrl = `${server}/${repo}/commit/${commit}`;
-    const nfc = summary.newFileCount.toLocaleString('en');
-    const nft = summary.newFileTranslations.toLocaleString('en');
-    const ufc = summary.updatedFileCount.toLocaleString('en');
-    const uft = summary.updatedFileTranslations.toLocaleString('en');
-    // Pull request message template
-    let details = [
-        '# Translation pull request summary',
-        '',
-        `Action triggered by ${triggeredByUrl}.`,
-        '',
-        `- Source locale: \`${summary.sourceLocale}\``,
-        `- Destination locale(s): ${summary.toLocales.map(locale => `\`${locale}\``).join(', ')}`,
-        '',
-        '## File translation details',
-        '',
-        '| Type    | File count | Translation count |',
-        '|---------|------------|-------------------|',
-        `| New     | ${nfc}     | ${nft}            |`,
-        `| Updated | ${ufc}     | ${uft}            |`,
-        '',
-        `Of the ${fileCount} translated files, there are a total of ${translations} individual translations.`,
-        '',
-        '> These machine translations are a result of Azure Cognitive Services Translator, and the [Resource translator](https://github.com/marketplace/actions/resource-translator) GitHub action. For more information, see [Translator v3.0](https://docs.microsoft.com/azure/cognitive-services/translator/reference/v3-0-reference?WT.mc_id=dapine). To post an issue, or feature request please do here [here](https://github.com/IEvangelist/resource-translator/issues).',
-    ];
-    core_1.debug(JSON.stringify({
-        title,
-        details
-    }));
-    return [title, details.join('\n')];
-};
-
-
-/***/ }),
-
 /***/ 753:
 /***/ (function(__unusedmodule, exports, __webpack_require__) {
 
@@ -19204,33 +19145,16 @@ module.exports = Axios;
 
 "use strict";
 
-// sourceLocale:    en
-// subscriptionKey: c57xxxxxxxxxxxxxxxxxxxxxxxxxxac3
-// region:          canadacentral
-// endpoint:        https://api.cognitive.microsofttranslator.com/
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.start = void 0;
-//  This looks interesting: https://github.com/ryanluton/translate-resx/blob/master/translate-resx.js
-/**
- * WORKFLOW
- *
- * Determine if 'baseFileGlob' files match files that were changed in the current contextual PR
- *    If not, nop... cleanly exit
- *
- * Get input/validate 'subscriptionKey' and 'endpoint' or exit
- * Get resource files based on 'baseFileGlob' from source
- * For each resource file:
- *    Parse XML, translate each key/value pair, write out resulting translations
- * Create PR based on newly created translation files *
- */
 const core_1 = __webpack_require__(470);
-const api_1 = __webpack_require__(172);
-const translation_file_finder_1 = __webpack_require__(615);
+const translation_api_1 = __webpack_require__(553);
+const translation_file_finder_1 = __webpack_require__(442);
 const fs_1 = __webpack_require__(747);
-const resource_io_1 = __webpack_require__(545);
-const summarizer_1 = __webpack_require__(752);
-const summary_1 = __webpack_require__(76);
-const utils_1 = __webpack_require__(163);
+const reader_writer_1 = __webpack_require__(874);
+const summarizer_1 = __webpack_require__(296);
+const summary_1 = __webpack_require__(974);
+const utils_1 = __webpack_require__(834);
 const translation_file_parser_factory_1 = __webpack_require__(638);
 async function start(inputs) {
     try {
@@ -19238,7 +19162,7 @@ async function start(inputs) {
             core_1.setFailed('Both a subscriptionKey and endpoint are required.');
         }
         else {
-            const availableTranslations = await api_1.getAvailableTranslations();
+            const availableTranslations = await translation_api_1.getAvailableTranslations();
             if (!availableTranslations || !availableTranslations.translation) {
                 core_1.setFailed("Unable to get target translations.");
                 return;
@@ -19276,12 +19200,12 @@ async function start(inputs) {
                 const translationFileParser = translation_file_parser_factory_1.translationFileParserFactory(kind);
                 for (let index = 0; index < files.length; ++index) {
                     const filePath = files[index];
-                    const fileContent = resource_io_1.readFile(filePath);
+                    const fileContent = reader_writer_1.readFile(filePath);
                     const parsedFile = await translationFileParser.parseFrom(fileContent);
                     const translatableTextMap = translationFileParser.toTranslatableTextMap(parsedFile);
                     core_1.debug(`Translatable text:\n ${JSON.stringify(translatableTextMap, utils_1.stringifyMap)}`);
                     if (translatableTextMap) {
-                        const resultSet = await api_1.translate(inputs, toLocales, translatableTextMap.text);
+                        const resultSet = await translation_api_1.translate(inputs, toLocales, translatableTextMap.text);
                         core_1.debug(`Translation result:\n ${JSON.stringify(resultSet)}`);
                         if (resultSet) {
                             const length = translatableTextMap.text.size;
@@ -19291,7 +19215,7 @@ async function start(inputs) {
                                     return;
                                 }
                                 const clone = Object.assign({}, fileContent);
-                                const result = translationFileParser.applyTranslations(clone, translations);
+                                const result = translationFileParser.applyTranslations(clone, translations, locale);
                                 const translatedFile = translationFileParser.toFileFormatted(result, "");
                                 const newPath = utils_1.getLocaleName(filePath, locale);
                                 if (translatedFile && newPath) {
@@ -19303,7 +19227,7 @@ async function start(inputs) {
                                         summary.newFileCount++;
                                         summary.newFileTranslations += length;
                                     }
-                                    resource_io_1.writeFile(newPath, translatedFile);
+                                    reader_writer_1.writeFile(newPath, translatedFile);
                                 }
                             });
                         }
@@ -20170,6 +20094,101 @@ function v4(options, buf, offset) {
 }
 
 module.exports = v4;
+
+
+/***/ }),
+
+/***/ 834:
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.findNext = exports.delay = exports.zip = exports.chunk = exports.findValueByKey = exports.stringifyMap = exports.naturalLanguageCompare = exports.getLocaleName = exports.groupBy = void 0;
+const path_1 = __webpack_require__(622);
+exports.groupBy = (array, key) => array.reduce((result, obj) => {
+    const value = obj[key];
+    result[value] = [...(result[value] || []), obj];
+    return result;
+}, {});
+exports.getLocaleName = (existingPath, locale) => {
+    const fileName = path_1.basename(existingPath);
+    const segments = fileName.split('.');
+    switch (segments.length) {
+        case 3:
+            return __webpack_require__.ab + "resource-translator\\" + path_1.dirname(existingPath) + '\\' + segments[0] + '.' + locale + '.' + segments[2];
+        case 2:
+            return __webpack_require__.ab + "resource-translator\\" + path_1.dirname(existingPath) + '\\' + locale + '.' + segments[1];
+    }
+    return null;
+};
+exports.naturalLanguageCompare = (a, b) => {
+    return !!a && !!b ? a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }) : 0;
+};
+function stringifyMap(key, value) {
+    const obj = this[key];
+    return (obj instanceof Map)
+        ? {
+            dataType: 'Map',
+            value: Array.from(obj.entries())
+        }
+        : value;
+}
+exports.stringifyMap = stringifyMap;
+function findValueByKey(object, key) {
+    let value;
+    Object.keys(object).some(function (k) {
+        if (k === key) {
+            value = object[k];
+            return true;
+        }
+        if (object[k] && typeof object[k] === 'object') {
+            value = findValueByKey(object[k], key);
+            return value !== undefined;
+        }
+    });
+    return value;
+}
+exports.findValueByKey = findValueByKey;
+function chunk(array, size) {
+    const chunked = [];
+    let index = 0;
+    while (index < array.length) {
+        chunked.push(array.slice(index, size + index));
+        index += size;
+    }
+    return chunked;
+}
+exports.chunk = chunk;
+function zip(first, second) {
+    return first.map((value, i) => {
+        return [value, second[i]];
+    });
+}
+exports.zip = zip;
+exports.delay = (ms, result) => {
+    return new Promise(resolve => setTimeout(() => resolve(result), ms));
+};
+exports.findNext = (items, startIndex, firstPredicate, secondPredicate, actionOfNext) => {
+    if (items && items.length) {
+        let foundFirst = false;
+        let secondOffset = 0;
+        for (let index = startIndex; index < items.length; ++index) {
+            const item = items[index];
+            const [first, i] = firstPredicate(item);
+            if (first) {
+                foundFirst = true;
+                secondOffset = i;
+                continue;
+            }
+            if (foundFirst && secondPredicate(item, secondOffset)) {
+                actionOfNext(item);
+                return index;
+            }
+        }
+    }
+    return -1;
+};
 
 
 /***/ }),
@@ -21474,6 +21493,32 @@ module.exports = require("tty");
 
 /***/ }),
 
+/***/ 874:
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.writeFile = exports.readFile = void 0;
+const core_1 = __webpack_require__(470);
+const fs_1 = __webpack_require__(747);
+const path_1 = __webpack_require__(622);
+function readFile(path) {
+    const resolved = path_1.resolve(path);
+    const file = fs_1.readFileSync(resolved, 'utf-8');
+    core_1.debug(`Read file: ${file}`);
+    return file;
+}
+exports.readFile = readFile;
+function writeFile(path, content) {
+    core_1.debug(`Write file, path: ${path}\nContent: ${content}`);
+    fs_1.writeFileSync(path, content);
+}
+exports.writeFile = writeFile;
+
+
+/***/ }),
+
 /***/ 879:
 /***/ (function(module) {
 
@@ -22108,7 +22153,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RestextParser = void 0;
-const utils_1 = __webpack_require__(163);
+const utils_1 = __webpack_require__(834);
 const whiteSpace = /\S/;
 class RestextParser {
     constructor() {
@@ -22167,7 +22212,7 @@ class RestextParser {
         }
         return text || defaultValue;
     }
-    applyTranslations(instance, translations) {
+    applyTranslations(instance, translations, targetLocale) {
         if (instance && translations) {
             for (let key in translations) {
                 const value = translations[key];
@@ -23290,6 +23335,37 @@ module.exports = Cancel;
 
 /***/ }),
 
+/***/ 974:
+/***/ (function(__unusedmodule, exports) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Summary = void 0;
+class Summary {
+    constructor(sourceLocale, toLocales) {
+        this.sourceLocale = sourceLocale;
+        this.toLocales = toLocales;
+        this.newFileCount = 0;
+        this.newFileTranslations = 0;
+        this.updatedFileCount = 0;
+        this.updatedFileTranslations = 0;
+    }
+    get totalFileCount() {
+        return this.newFileCount + this.updatedFileCount;
+    }
+    get totalTranslations() {
+        return this.newFileTranslations + this.updatedFileTranslations;
+    }
+    get hasNewTranslations() {
+        return this.totalTranslations > 0;
+    }
+}
+exports.Summary = Summary;
+
+
+/***/ }),
+
 /***/ 992:
 /***/ (function(__unusedmodule, exports, __webpack_require__) {
 
@@ -23332,51 +23408,6 @@ module.exports = Cancel;
   exports.parseStringPromise = parser.parseStringPromise;
 
 }).call(this);
-
-
-/***/ }),
-
-/***/ 998:
-/***/ (function(__unusedmodule, exports) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.PortableObjectToken = void 0;
-const firstWhitespace = /\s+(.*)/;
-// https://www.yogihosting.com/portable-object-aspnet-core/
-class PortableObjectToken {
-    constructor(line) {
-        this.line = line;
-        this._identifier = null;
-        this._value = null;
-        if (line && line.trim()) {
-            const keyValuePair = line.split(firstWhitespace);
-            this._identifier = keyValuePair[0];
-            this._value = keyValuePair.length > 1 ? keyValuePair[1] : null;
-            this._isInsignificant = false;
-        }
-        else {
-            this._isInsignificant = true;
-        }
-    }
-    get id() {
-        return this._identifier;
-    }
-    get value() {
-        return this._value;
-    }
-    set value(value) {
-        this._value = value;
-    }
-    get isInsignificant() {
-        return this._isInsignificant;
-    }
-    get isCommentLine() {
-        return !!this.line && this.line.startsWith('#:');
-    }
-}
-exports.PortableObjectToken = PortableObjectToken;
 
 
 /***/ })

@@ -1,5 +1,5 @@
-import { Data, ResourceFile, traverseResx } from '../files/resource-file';
-import { TranslationFileParser } from '../translation-file-parser';
+import { Data, ResourceFile, traverseResx } from '../file-formats/resource-file';
+import { TranslationFileParser } from './translation-file-parser';
 import { XmlFileParser } from './xml-file-parser';
 
 export class ResxParser implements TranslationFileParser {

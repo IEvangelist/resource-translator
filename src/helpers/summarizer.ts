@@ -1,5 +1,5 @@
 import { debug } from "@actions/core";
-import { Summary } from "./summary";
+import { Summary } from "../abstractions/summary";
 
 /**
  * Example output: https://gist.github.com/IEvangelist/8e7101bda2bacce98d418b5d0fdda756

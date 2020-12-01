@@ -1,4 +1,4 @@
-import { PortableObjectToken } from '../../src/files/po-file';
+import { PortableObjectToken } from '../../src/file-formats/po-file';
 import { PortableObjectParser } from '../../src/parsers/po-parser';
 
 const parser = new PortableObjectParser();

@@ -1,6 +1,6 @@
 import { PortableObjectParser } from "../parsers/po-parser";
-import { TranslationFileKind } from "../translation-file-kind";
-import { TranslationFileParser } from "../translation-file-parser";
+import { TranslationFileKind } from "../abstractions/translation-file-kind";
+import { TranslationFileParser } from "../parsers/translation-file-parser";
 import { RestextParser } from "../parsers/restext-parser";
 import { ResxParser } from "../parsers/resx-parser";
 import { XliffParser } from "../parsers/xliff-parser";

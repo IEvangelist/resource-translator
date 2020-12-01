@@ -1,4 +1,4 @@
-import { TranslationResults, TranslationResultSet } from "./translation-results";
+import { TranslationResults, TranslationResultSet } from "../abstractions/translation-results";
 import { zip } from "./utils";
 
 export const toResultSet = (

@@ -1,35 +1,15 @@
-// sourceLocale:    en
-// subscriptionKey: c57xxxxxxxxxxxxxxxxxxxxxxxxxxac3
-// region:          canadacentral
-// endpoint:        https://api.cognitive.microsofttranslator.com/
-
-//  This looks interesting: https://github.com/ryanluton/translate-resx/blob/master/translate-resx.js
-
-/**
- * WORKFLOW
- * 
- * Determine if 'baseFileGlob' files match files that were changed in the current contextual PR
- *    If not, nop... cleanly exit
- * 
- * Get input/validate 'subscriptionKey' and 'endpoint' or exit
- * Get resource files based on 'baseFileGlob' from source
- * For each resource file:
- *    Parse XML, translate each key/value pair, write out resulting translations
- * Create PR based on newly created translation files * 
- */
-
 import { info, setFailed, setOutput, debug } from '@actions/core';
-import { getAvailableTranslations, translate } from './api';
-import { findAllTranslationFiles } from './translation-file-finder';
+import { getAvailableTranslations, translate } from './api/translation-api';
+import { findAllTranslationFiles } from './io/translation-file-finder';
 import { existsSync } from 'fs';
-import { readFile, writeFile } from './resource-io';
-import { summarize } from './summarizer';
-import { Summary } from './summary';
-import { getLocaleName, naturalLanguageCompare, stringifyMap } from './utils';
-import { Inputs } from './inputs';
+import { readFile, writeFile } from './io/reader-writer';
+import { summarize } from './helpers/summarizer';
+import { Summary } from './abstractions/summary';
+import { getLocaleName, naturalLanguageCompare, stringifyMap } from './helpers/utils';
+import { Inputs } from './action/inputs';
 import { translationFileParserFactory } from './factories/translation-file-parser-factory';
-import { TranslationFile } from './files/translation-file';
-import { TranslationFileKind } from './translation-file-kind';
+import { TranslationFile } from './file-formats/translation-file';
+import { TranslationFileKind } from './abstractions/translation-file-kind';
 
 export async function start(inputs: Inputs) {
     try {

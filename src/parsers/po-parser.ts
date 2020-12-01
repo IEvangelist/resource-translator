@@ -1,7 +1,7 @@
-import { PortableObjectFile, PortableObjectToken } from "../files/po-file";
-import { TranslationFileParser } from "../translation-file-parser";
-import { TranslatableTextMap } from "../translatable-text-map";
-import { delay, findNext } from "../utils";
+import { PortableObjectFile, PortableObjectToken } from "../file-formats/po-file";
+import { TranslationFileParser } from "./translation-file-parser";
+import { TranslatableTextMap } from "../abstractions/translatable-text-map";
+import { delay, findNext } from "../helpers/utils";
 
 export class PortableObjectParser implements TranslationFileParser {
     async parseFrom(fileContent: string): Promise<PortableObjectFile> {

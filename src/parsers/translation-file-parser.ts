@@ -1,5 +1,5 @@
-import { TranslationFile } from "./files/translation-file";
-import { TranslatableTextMap } from "./translatable-text-map";
+import { TranslationFile } from "../file-formats/translation-file";
+import { TranslatableTextMap } from "../abstractions/translatable-text-map";
 
 /**
  * A translation file parser interface that defines common functionality for:

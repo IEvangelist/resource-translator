@@ -1,7 +1,7 @@
-import { RestextFile } from "../files/restext-file";
-import { TranslationFileParser } from "../translation-file-parser";
-import { TranslatableTextMap } from "../translatable-text-map";
-import { delay } from "../utils";
+import { RestextFile } from "../file-formats/restext-file";
+import { TranslationFileParser } from "./translation-file-parser";
+import { TranslatableTextMap } from "../abstractions/translatable-text-map";
+import { delay } from "../helpers/utils";
 
 const whiteSpace: RegExp = /\S/;
 

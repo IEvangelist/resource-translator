@@ -1,6 +1,6 @@
-import { readFile } from '../src/resource-io';
+import { readFile } from '../src/io/reader-writer';
 import { resolve } from 'path';
-import { ResourceFile } from '../src/files/resource-file';
+import { ResourceFile } from '../src/file-formats/resource-file';
 import { ResxParser } from '../src/parsers/resx-parser';
 
 let resourceFile: ResourceFile;

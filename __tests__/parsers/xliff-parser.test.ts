@@ -1,4 +1,4 @@
-import { findInXliff } from '../../src/files/xliff-file';
+import { findInXliff } from '../../src/file-formats/xliff-file';
 import { XliffParser } from '../../src/parsers/xliff-parser';
 
 const parser = new XliffParser();
