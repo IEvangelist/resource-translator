@@ -3,13 +3,15 @@ import { TranslationFileParser } from "../translation-file-parser";
 import { TranslatableTextMap } from "../translatable-text-map";
 import { delay } from "../utils";
 
+const whiteSpace: RegExp = /\S/;
+
 export class RestextParser implements TranslationFileParser {
     async parseFrom(fileContent: string): Promise<RestextFile> {
         await delay(0, null);
         let restextFile: RestextFile = {};
         if (fileContent) {
             fileContent.split('\n').map((line, index) => {
-                if (this.isComment(line) || this.isSection(line)) {
+                if (this.isComment(line) || this.isSection(line) || this.isWhitespace(line)) {
                     restextFile = {
                         ...restextFile,
                         [index]: line
@@ -70,4 +72,8 @@ export class RestextParser implements TranslationFileParser {
     private isSection = (line: string) => {
         return !!line && line.startsWith('[');
     };
+
+    private isWhitespace = (line: string) => {
+        return !whiteSpace.test(line);
+    }
 }

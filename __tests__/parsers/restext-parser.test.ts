@@ -3,7 +3,12 @@ import { RestextParser } from '../../src/parsers/restext-parser';
 const parser = new RestextParser();
 
 test('RESTEXT PARSER: correctly parses from string', async () => {
-    const content = `Title=Title Casing For The Win
+    const content = `; Title section
+[Title Section]
+Title=Title Casing For The Win
+
+; General section
+[General strings, etc]
 Strings=This is the first string, in a series of several.
 Message=Button is clicked!`;
 
@@ -15,7 +20,12 @@ Message=Button is clicked!`;
 });
 
 test('RESTEXT PARSER: correctly formats back as string', async () => {
-    const content = `Title=Title Casing For The Win
+    const content = `; Title section
+[Title Section]
+Title=Title Casing For The Win
+
+; General section
+[General strings, etc]
 Strings=This is the first string, in a series of several.
 Message=Button is clicked!`;
 
@@ -27,7 +37,12 @@ Message=Button is clicked!`;
 });
 
 test('RESTEXT PARSER: correctly applies translations', async () => {
-    const content = `Title=Title Casing For The Win
+    const content = `; Title section
+[Title Section]
+Title=Title Casing For The Win
+
+; General section
+[General strings, etc]
 Strings=This is the first string, in a series of several.
 Message=Button is clicked!`;
 
@@ -45,7 +60,12 @@ Message=Button is clicked!`;
 });
 
 test('RESTEXT PARSER: correctly creates translatable text map', async () => {
-    const content = `Title=Title Casing For The Win
+    const content = `; Title section
+[Title Section]
+Title=Title Casing For The Win
+
+; General section
+[General strings, etc]
 Strings=This is the first string, in a series of several.
 Message=Button is clicked!`;
 
