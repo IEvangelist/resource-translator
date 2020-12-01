@@ -2731,19 +2731,26 @@ class PortableObjectParser {
         const textToTranslate = new Map();
         const tokens = instance.tokens;
         if (tokens && tokens.length) {
-            const tryGetKeyValuePair = (batchedTokens) => {
+            const tryGetKeyValuePair = (batchedTokens, keyId, valueId) => {
                 let key = '';
                 let value = '';
                 if (batchedTokens && batchedTokens.length) {
-                    key = this.findTokenValueById('msgid', batchedTokens);
-                    value = this.findTokenValueById('msgstr', batchedTokens);
+                    const isPlural = keyId === 'msgid_plural';
+                    key = this.findTokenValueById(keyId, batchedTokens);
+                    value =
+                        this.findTokenValueById(isPlural ? `${valueId}[1]` : valueId, batchedTokens) ||
+                            this.findTokenValueById(`${valueId}[0]`, batchedTokens);
                 }
                 return [key, value];
             };
             let index = 0;
             let [lastIndex, batch] = this.batchTokens(tokens, index);
             while (batch && batch.length && lastIndex) {
-                let [key, value] = tryGetKeyValuePair(batch);
+                let [key, value] = tryGetKeyValuePair(batch, 'msgid', 'msgstr');
+                if (key && value) {
+                    textToTranslate.set(key, value);
+                }
+                [key, value] = tryGetKeyValuePair(batch, 'msgid_plural', 'msgstr');
                 if (key && value) {
                     textToTranslate.set(key, value);
                 }
@@ -6382,7 +6389,7 @@ module.exports = require("assert");
 /***/ 361:
 /***/ (function(module) {
 
-module.exports = {"_args":[["axios@0.20.0","C:\\Users\\dapine\\source\\repos\\resource-translator"]],"_from":"axios@0.20.0","_id":"axios@0.20.0","_inBundle":false,"_integrity":"sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.20.0","name":"axios","escapedName":"axios","rawSpec":"0.20.0","saveSpec":null,"fetchSpec":"0.20.0"},"_requiredBy":["/","/@types/axios"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.20.0.tgz","_spec":"0.20.0","_where":"C:\\Users\\dapine\\source\\repos\\resource-translator","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.10.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"bundlesize":"^0.17.0","coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.0.2","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^20.1.0","grunt-karma":"^2.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^1.0.18","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^1.3.0","karma-chrome-launcher":"^2.2.0","karma-coverage":"^1.1.1","karma-firefox-launcher":"^1.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-opera-launcher":"^1.0.0","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^1.2.0","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.7","karma-webpack":"^1.7.0","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^5.2.0","sinon":"^4.5.0","typescript":"^2.8.1","url-search-params":"^0.10.0","webpack":"^1.13.1","webpack-dev-server":"^1.14.1"},"homepage":"https://github.com/axios/axios","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test && bundlesize","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.20.0"};
+module.exports = {"_from":"axios@^0.20.0","_id":"axios@0.20.0","_inBundle":false,"_integrity":"sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.20.0","name":"axios","escapedName":"axios","rawSpec":"^0.20.0","saveSpec":null,"fetchSpec":"^0.20.0"},"_requiredBy":["/","/@types/axios"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.20.0.tgz","_shasum":"057ba30f04884694993a8cd07fa394cff11c50bd","_spec":"axios@^0.20.0","_where":"C:\\Users\\david\\source\\repos\\resource-translator","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.10.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"bundlesize":"^0.17.0","coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.0.2","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^20.1.0","grunt-karma":"^2.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^1.0.18","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^1.3.0","karma-chrome-launcher":"^2.2.0","karma-coverage":"^1.1.1","karma-firefox-launcher":"^1.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-opera-launcher":"^1.0.0","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^1.2.0","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.7","karma-webpack":"^1.7.0","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^5.2.0","sinon":"^4.5.0","typescript":"^2.8.1","url-search-params":"^0.10.0","webpack":"^1.13.1","webpack-dev-server":"^1.14.1"},"homepage":"https://github.com/axios/axios","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test && bundlesize","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.20.0"};
 
 /***/ }),
 
@@ -12447,27 +12454,28 @@ async function findAllTranslationFiles(sourceLocale) {
         }
         return true;
     };
-    const translationFileMap = {};
-    const entries = Object.entries(translationFileSchemes);
-    for (let index = 0; index < entries.length; ++index) {
-        let [kind, fileScheme] = entries[index];
-        const baseFileGlob = "function" === typeof fileScheme ? fileScheme(sourceLocale) : fileScheme;
-        const globber = await glob_1.create(baseFileGlob);
-        const filesAndDirectories = await globber.glob();
-        const promises = filesAndDirectories.map(async (path) => {
-            return {
-                path,
-                isDirectory: await io_util_1.isDirectory(path),
-                include: includeFile(path)
-            };
-        });
-        const files = await Promise.all(promises);
-        const results = files.filter(file => file.include && !file.isDirectory)
-            .map(file => file.path);
-        core_1.debug(`Files to translate:\n\t${results.join('\n\t')}`);
-        translationFileMap[kind] = results;
-    }
-    return translationFileMap;
+    const patterns = Object.values(translationFileSchemes).map(fileScheme => {
+        return "function" === typeof fileScheme ? fileScheme(sourceLocale) : fileScheme;
+    });
+    const globber = await glob_1.create(patterns.join('\n'));
+    const filesAndDirectories = await globber.glob();
+    const promises = filesAndDirectories.map(async (path) => {
+        return {
+            path,
+            isDirectory: await io_util_1.isDirectory(path),
+            include: includeFile(path)
+        };
+    });
+    const files = await Promise.all(promises);
+    const results = files.filter(file => file.include && !file.isDirectory)
+        .map(file => file.path);
+    core_1.debug(`Files to translate:\n\t${results.join('\n\t')}`);
+    return {
+        po: results.filter(f => f.endsWith('.po')),
+        restext: results.filter(f => f.endsWith('.restext')),
+        resx: results.filter(f => f.endsWith('.resx')),
+        xliff: results.filter(f => f.endsWith('.xliff'))
+    };
 }
 exports.findAllTranslationFiles = findAllTranslationFiles;
 async function getFilesToInclude() {
