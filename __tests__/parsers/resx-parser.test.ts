@@ -3,31 +3,31 @@ import { ResxParser } from '../../src/parsers/resx-parser';
 const parser = new ResxParser();
 
 test('RESX PARSER: correctly parses from string', async () => {
-    const content = `<?xml version="1.0" encoding="utf-8"?>
+    const content = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <root>
-    <data name="Greetings" xml:space="preserve">
+  <data name="Greetings" xml:space="preserve">
     <value>Hello world, this is a test.... only a test!</value>
-    </data>
-    <data name="MyFriend" xml:space="preserve">
+  </data>
+  <data name="MyFriend" xml:space="preserve">
     <value>Where have you gone?</value>
-    </data>
+  </data>
 </root>`;
 
     const file = await parser.parseFrom(content);
     expect(file).toBeTruthy();
-    expect(file.root.data.find(d => d.$.name = 'Greetings')!.value).toEqual('Hello world, this is a test.... only a test!');
-    expect(file.root.data.find(d => d.$.name = 'MyFriend')!.value).toEqual('Where have you gone?');
+    expect(file.root.data.find(d => d.$.name = 'Greetings')!.value[0]).toEqual('Hello world, this is a test.... only a test!');
+    expect(file.root.data.find(d => d.$.name = 'MyFriend')!.value[0]).toEqual('Where have you gone?');
 });
 
 test('RESX PARSER: correctly formats back as string', async () => {
-    const content = `<?xml version="1.0" encoding="utf-8"?>
+    const content = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <root>
-    <data name="Greetings" xml:space="preserve">
+  <data name="Greetings" xml:space="preserve">
     <value>Hello world, this is a test.... only a test!</value>
-    </data>
-    <data name="MyFriend" xml:space="preserve">
+  </data>
+  <data name="MyFriend" xml:space="preserve">
     <value>Where have you gone?</value>
-    </data>
+  </data>
 </root>`;
 
     const file = await parser.parseFrom(content);
@@ -38,14 +38,14 @@ test('RESX PARSER: correctly formats back as string', async () => {
 });
 
 test('RESX PARSER: correctly applies translations', async () => {
-    const content = `<?xml version="1.0" encoding="utf-8"?>
+    const content = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <root>
-    <data name="Greetings" xml:space="preserve">
+  <data name="Greetings" xml:space="preserve">
     <value>Hello world, this is a test.... only a test!</value>
-    </data>
-    <data name="MyFriend" xml:space="preserve">
+  </data>
+  <data name="MyFriend" xml:space="preserve">
     <value>Where have you gone?</value>
-    </data>
+  </data>
 </root>`;
 
     const file = await parser.parseFrom(content);
@@ -53,23 +53,23 @@ test('RESX PARSER: correctly applies translations', async () => {
 
     const result = parser.applyTranslations(file, {
         'Greetings': 'I am a robot!'
-    }, [])
+    }, [0])
 
     expect(result).toBeTruthy();
-    expect(result.root.data.find(d => d.$.name = 'Greetings')!.value).toEqual('I am a robot!');
-    expect(result.root.data.find(d => d.$.name = 'MyFriend')!.value).toEqual('Where have you gone?');
+    expect(result.root.data.find(d => d.$.name = 'Greetings')!.value[0]).toEqual('I am a robot!');
+    expect(result.root.data.find(d => d.$.name = 'MyFriend')!.value[0]).toEqual('Where have you gone?');
 });
 
 test('RESX PARSER: correctly creates translatable text map', async () => {
-    const content = `<?xml version="1.0" encoding="utf-8"?>
-    <root>
-        <data name="Greetings" xml:space="preserve">
-        <value>Hello world, this is a test.... only a test!</value>
-        </data>
-        <data name="MyFriend" xml:space="preserve">
-        <value>Where have you gone?</value>
-        </data>
-    </root>`;
+    const content = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+  <data name="Greetings" xml:space="preserve">
+    <value>Hello world, this is a test.... only a test!</value>
+  </data>
+  <data name="MyFriend" xml:space="preserve">
+    <value>Where have you gone?</value>
+  </data>
+</root>`;
 
     const file = await parser.parseFrom(content);
     expect(file).toBeTruthy();
