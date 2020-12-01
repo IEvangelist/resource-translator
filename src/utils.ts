@@ -12,11 +12,11 @@ export const groupBy = <T extends Record<K, string>, K extends string>
 export const getLocaleName = (existingPath: string, locale: string) => {
     const fileName = basename(existingPath);
     const segments = fileName.split('.');
-    if (segments.length === 3) {
-        const newName = `${segments[0]}.${locale}.${segments[2]}`;
-        const directory = dirname(existingPath);
-
-        return resolve(directory, newName);
+    switch (segments.length) {
+        case 3:
+            return resolve(dirname(existingPath), `${segments[0]}.${locale}.${segments[2]}`);
+        case 2:
+            return resolve(dirname(existingPath), `${locale}.${segments[1]}`);
     }
 
     return null;

@@ -1,6 +1,5 @@
-import { ResourceFile } from '../files/resource-file';
+import { Data, ResourceFile, traverseResx } from '../files/resource-file';
 import { TranslationFileParser } from '../translation-file-parser';
-import { naturalLanguageCompare } from '../utils';
 import { XmlFileParser } from './xml-file-parser';
 
 export class ResxParser implements TranslationFileParser {
@@ -19,19 +18,12 @@ export class ResxParser implements TranslationFileParser {
     applyTranslations(
         resource: ResourceFile,
         translations: { [key: string]: string } | undefined,
-        ordinals: number[] | undefined) {
-        //
-        // Each translation has a named identifier (it's key), for example: { 'SomeKey': 'some translated value' }.
-        // The ordinals map each key to it's appropriate translated value in the resource, for example: [2,0,1].
-        // For each translation, we map its keys value to the corresponding ordinal.
-        //
-        if (resource && translations && ordinals && ordinals.length) {
-            let index = 0;
+        targetLocale?: string) {
+        if (resource && translations) {
             for (let key in translations) {
-                const ordinal = ordinals[index++];
-                const value = [translations[key]];
+                const value = translations[key];
                 if (value) {
-                    resource.root.data[ordinal].value = value;
+                    traverseResx(resource, key, (data: Data)  => data.value = [value]);
                 }
             }
         }
@@ -51,18 +43,8 @@ export class ResxParser implements TranslationFileParser {
             }
         }
 
-        const translatableText: Map<string, string> = new Map();
-        [...textToTranslate.keys()].sort((a, b) => naturalLanguageCompare(a, b)).forEach(key => {
-            translatableText.set(key, textToTranslate.get(key)!);
-        });
-
-        const ordinals: number[] =
-            [...translatableText.keys()].map(
-                key => values.findIndex(d => d.$.name === key));
-
         return {
-            text: translatableText,
-            ordinals
+            text: textToTranslate
         };
     }
 }

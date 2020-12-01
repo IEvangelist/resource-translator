@@ -1,9 +1,15 @@
 export interface XliffFile {
+    $: LanguageAttributes;
     xliff: Xliff;
 }
 
+export interface LanguageAttributes {
+    srcLang: string;
+    trgLang: string;
+}
+
 export interface Xliff {
-    file: File;
+    file: File[];
 }
 
 export interface File {
@@ -20,6 +26,35 @@ export interface Unit {
 }
 
 export interface Segment {
-    source: string;
-    target: string;
+    source: string[];
+    target: string[];
 }
+
+export const traverseXliff =
+    (instance: XliffFile, fileIndex: number, sourceName: string, segmentAction: (segment: Segment) => void) => {
+        if (instance && segmentAction) {
+            if (instance.xliff.file && instance.xliff.file.length > fileIndex) {
+                const unit =
+                    instance.xliff.file[fileIndex].unit.find(
+                        unit => unit.segment.find(s => s.source.includes(sourceName)));
+                if (unit) {
+                    segmentAction(
+                        unit.segment.find(s => s.source.includes(sourceName))!);
+                }
+            }
+        }
+    }
+
+export const findInXliff =
+    (instance: XliffFile, fileIndex: number, sourceName: string): Segment | undefined => {
+        if (instance) {
+            if (instance.xliff.file && instance.xliff.file.length > fileIndex) {
+                const unit =
+                    instance.xliff.file[fileIndex].unit.find(
+                        unit => unit.segment.find(s => s.source.includes(sourceName)));
+                if (unit) {
+                    return unit.segment.find(s => s.source.includes(sourceName))!;
+                }
+            }
+        }
+    }

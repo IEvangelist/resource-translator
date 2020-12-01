@@ -31,7 +31,6 @@ test('IO: get translatable text map', async () => {
     const translatableTextMap = parser.toTranslatableTextMap(file);
 
     expect(translatableTextMap).toBeTruthy();
-    expect(translatableTextMap.ordinals).toEqual([0,1,2]);
     expect(translatableTextMap.text).toBeTruthy();
 
     expect(translatableTextMap.text.get('Greeting')).toEqual('Welcome to your new app.');

@@ -48,7 +48,7 @@ msgstr[1] "Il y a {0} éléments."`;
 
     const result = parser.applyTranslations(portableObject, {
         '"There is one item."': '"Does this work?"'
-    }, [])
+    })
     const assertToken = (token: PortableObjectToken, expectedId: string, expectedValue: string) => {
         expect(token).toBeTruthy();
         expect(token.id).toEqual(expectedId);
@@ -71,7 +71,8 @@ msgstr[1] "Il y a {0} éléments."`;
     expect(portableObject.tokens).toBeTruthy();
 
     const translatableTextMap = parser.toTranslatableTextMap(portableObject);
+
     expect(translatableTextMap).toBeTruthy();
-    expect(translatableTextMap.text.get('"There is one item."')).toEqual('"Il y a un élément."');
-    expect(translatableTextMap.text.get('"There are {0} items."')).toEqual('"Il y a {0} éléments."');
+    expect(translatableTextMap.text.get('"There is one item."')).toEqual('"There is one item."');
+    expect(translatableTextMap.text.get('"There are {0} items."')).toEqual('"There are {0} items."');
 });

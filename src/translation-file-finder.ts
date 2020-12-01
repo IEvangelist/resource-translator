@@ -5,6 +5,7 @@ import { debug } from '@actions/core';
 import { basename, resolve } from 'path';
 
 export interface TranslationFileMap {
+    ini?: string[] | undefined;
     po?: string[] | undefined;
     restext?: string[] | undefined;
     resx?: string[] | undefined;
@@ -12,11 +13,11 @@ export interface TranslationFileMap {
 }
 
 const translationFileSchemes = {
+    ini: (locale: string) => `**/*.${locale}.ini`,
     po: `**/*.po`,
     restext: (locale: string) => `**/*.${locale}.restext`,
-    ini: (locale: string) => `**/*.${locale}.ini`,
     resx: (locale: string) => `**/*.${locale}.resx`,
-    xliff: (locale: string) => `**/*.${locale}.xliff`,
+    xliff: (locale: string) => `**/*.${locale}.xliff`
 }
 
 export async function findAllTranslationFiles(sourceLocale: string): Promise<TranslationFileMap> {

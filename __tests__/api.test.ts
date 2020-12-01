@@ -63,19 +63,20 @@ test('API: read file->translate->apply->write', async () => {
                 translatableTextMap.text);
 
             if (resultSet) {
+                const length = translatableTextMap.text.size;
                 toLocales.forEach(locale => {
                     const translations = resultSet[locale];
                     const clone = Object.assign({} as ResourceFile, file);
-                    const result = parser.applyTranslations(clone, translations, translatableTextMap.ordinals);
+                    const result = parser.applyTranslations(clone, translations);
                     const translatedXml = parser.toFileFormatted(result, "");
                     const newPath = getLocaleName(resourceFilePath, locale);
                     if (translatedXml && newPath) {
                         if (existsSync(newPath)) {
                             summary.updatedFileCount++;
-                            summary.updatedFileTranslations += translatableTextMap.ordinals.length;
+                            summary.updatedFileTranslations += length;
                         } else {
                             summary.newFileCount++;
-                            summary.newFileTranslations += translatableTextMap.ordinals.length;
+                            summary.newFileTranslations += length;
                         }
                         // writeFile(newPath, translatedXml);
                     }
@@ -85,7 +86,7 @@ test('API: read file->translate->apply->write', async () => {
     }
 
     const [title, details] = summarize(summary);
-    expect(title).toEqual('Machine-translated 77 files, a total of 1,155 translations');
+    expect(title).toEqual('Machine-translated 79 files, a total of 1,185 translations');
     expect(details).toBeTruthy();
 });
 

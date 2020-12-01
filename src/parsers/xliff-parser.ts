@@ -1,7 +1,6 @@
-import { XliffFile } from "../files/xliff-file";
+import { traverseXliff, XliffFile } from "../files/xliff-file";
 import { TranslationFileParser } from "../translation-file-parser";
 import { TranslatableTextMap } from "../translatable-text-map";
-import { naturalLanguageCompare } from "../utils";
 import { XmlFileParser } from "./xml-file-parser";
 
 export class XliffParser implements TranslationFileParser {
@@ -20,14 +19,16 @@ export class XliffParser implements TranslationFileParser {
     applyTranslations(
         instance: XliffFile,
         translations: { [key: string]: string; } | undefined,
-        ordinals: number[] | undefined): XliffFile {
-        if (instance && translations && ordinals && ordinals.length) {
-            let index = 0;
+        targetLocale?: string): XliffFile {
+        if (instance && translations && targetLocale) {
+            instance.$.trgLang = targetLocale;
             for (let key in translations) {
-                const ordinal = ordinals[index++];
+                const compositeKey = key.split('::');
+                const index = parseInt(compositeKey[0]);
+                const sourceKey = compositeKey[1];
                 const value = translations[key];
                 if (value) {
-                    instance.xliff.file.unit[ordinal].segment[0].target = value;
+                    traverseXliff(instance, index, sourceKey, s => s.source = [value]);
                 }
             }
         }
@@ -37,28 +38,18 @@ export class XliffParser implements TranslationFileParser {
 
     toTranslatableTextMap(instance: XliffFile): TranslatableTextMap {
         const textToTranslate: Map<string, string> = new Map();
-        const values = instance.xliff.file.unit;
-        if (values && values.length) {
-            for (let i = 0; i < values.length; ++i) {
-                const key = values[i].segment[0].source;
-                const value = values[i].segment[0].target;
-
-                textToTranslate.set(key, value);
+        for (let i = 0; i < instance.xliff.file.length; ++i) {
+            const values = instance.xliff.file[i].unit;
+            if (values && values.length) {
+                for (let f = 0; f < values.length; ++f) {
+                    const key = values[f].segment[0].source[0];
+                    textToTranslate.set(`${i}::${key}`, key);
+                }
             }
         }
 
-        const translatableText: Map<string, string> = new Map();
-        [...textToTranslate.keys()].sort((a, b) => naturalLanguageCompare(a, b)).forEach(key => {
-            translatableText.set(key, textToTranslate.get(key)!);
-        });
-
-        const ordinals: number[] =
-            [...translatableText.keys()].map(
-                key => values.findIndex(d => d.segment[0].source === key));
-
         return {
-            text: translatableText,
-            ordinals
+            text: textToTranslate
         };
     }
 }

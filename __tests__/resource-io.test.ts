@@ -53,7 +53,7 @@ test('IO: apply translations to Test.en.resx', async () => {
         'Greetings': 'This is a fake translation'
     };
 
-    resourceXml = parser.applyTranslations(resourceXml, fakeResults, [1, 0]);
+    resourceXml = parser.applyTranslations(resourceXml, fakeResults);
 
     expect(resourceXml).toBeTruthy();
     expect(resourceXml.root).toBeTruthy();
@@ -76,7 +76,7 @@ test('IO: apply translations to Index.en.resx', async () => {
         'SurveyTitle': 'I do not like surveys!'
     };
 
-    resourceXml = parser.applyTranslations(resourceXml, fakeResults, [1, 0, 2]);
+    resourceXml = parser.applyTranslations(resourceXml, fakeResults);
 
     expect(resourceXml).toBeTruthy();
     expect(resourceXml.root).toBeTruthy();

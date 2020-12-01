@@ -63,7 +63,8 @@ export async function start(inputs: Inputs) {
                 (!translationFiles.po &&
                     !translationFiles.restext &&
                     !translationFiles.resx &&
-                    !translationFiles.xliff)) {
+                    !translationFiles.xliff &&
+                    !translationFiles.ini)) {
                 setFailed("Unable to get target resource files.");
                 return;
             }
@@ -72,17 +73,16 @@ export async function start(inputs: Inputs) {
 
             for (let key of Object.keys(translationFiles)) {
                 const kind = key as TranslationFileKind;
-                const resourceFiles = translationFiles[kind];
-                if (!resourceFiles || !resourceFiles.length) {
+                const files = translationFiles[kind];
+                if (!files || !files.length) {
                     continue;
                 }
 
                 const translationFileParser = translationFileParserFactory(kind);
-                for (let index = 0; index < resourceFiles.length; ++index) {
-                    const resourceFilePath = resourceFiles[index];
-                    const resourceFileContent = readFile(resourceFilePath);
-
-                    const parsedFile = await translationFileParser.parseFrom(resourceFileContent);
+                for (let index = 0; index < files.length; ++index) {
+                    const filePath = files[index];
+                    const fileContent = readFile(filePath);
+                    const parsedFile = await translationFileParser.parseFrom(fileContent);
                     const translatableTextMap = translationFileParser.toTranslatableTextMap(parsedFile);
 
                     debug(`Translatable text:\n ${JSON.stringify(translatableTextMap, stringifyMap)}`);
@@ -96,25 +96,26 @@ export async function start(inputs: Inputs) {
                         debug(`Translation result:\n ${JSON.stringify(resultSet)}`);
 
                         if (resultSet) {
+                            const length = translatableTextMap.text.size;
                             toLocales.forEach(locale => {
                                 const translations = resultSet[locale];
                                 if (!translations) {
                                     return;
                                 }
-                                const clone = Object.assign({} as TranslationFile, resourceFileContent);
+                                const clone = Object.assign({} as TranslationFile, fileContent);
                                 const result =
                                     translationFileParser.applyTranslations(
-                                        clone, translations, translatableTextMap.ordinals);
+                                        clone, translations, locale);
 
                                 const translatedFile = translationFileParser.toFileFormatted(result, "");
-                                const newPath = getLocaleName(resourceFilePath, locale);
+                                const newPath = getLocaleName(filePath, locale);
                                 if (translatedFile && newPath) {
                                     if (existsSync(newPath)) {
                                         summary.updatedFileCount++;
-                                        summary.updatedFileTranslations += translatableTextMap.ordinals.length;
+                                        summary.updatedFileTranslations += length;
                                     } else {
                                         summary.newFileCount++;
-                                        summary.newFileTranslations += translatableTextMap.ordinals.length;
+                                        summary.newFileTranslations += length;
                                     }
                                     writeFile(newPath, translatedFile);
                                 }

@@ -2692,12 +2692,7 @@ class PortableObjectParser {
     toFileFormatted(instance, defaultValue) {
         return !!instance ? instance.tokens.map(t => t.line).join('\n') : defaultValue;
     }
-    applyTranslations(portableObject, translations, ordinals) {
-        //
-        // Each translation has a named identifier (it's key), for example: { 'SomeKey': 'some translated value' }.
-        // The ordinals map each key to it's appropriate translated value in the resource, for example: [2,0,1].
-        // For each translation, we map its keys value to the corresponding ordinal.
-        //
+    applyTranslations(portableObject, translations) {
         if (portableObject && translations) {
             let lastIndex = 0;
             for (let key in translations) {
@@ -2731,58 +2726,18 @@ class PortableObjectParser {
         const textToTranslate = new Map();
         const tokens = instance.tokens;
         if (tokens && tokens.length) {
-            const tryGetKeyValuePair = (batchedTokens, keyId, valueId) => {
-                let key = '';
-                let value = '';
-                if (batchedTokens && batchedTokens.length) {
-                    const isPlural = keyId === 'msgid_plural';
-                    key = this.findTokenValueById(keyId, batchedTokens);
-                    value =
-                        this.findTokenValueById(isPlural ? `${valueId}[1]` : valueId, batchedTokens) ||
-                            this.findTokenValueById(`${valueId}[0]`, batchedTokens);
+            tokens.forEach(token => {
+                if (token.isCommentLine || token.isInsignificant || !token.value) {
+                    return;
                 }
-                return [key, value];
-            };
-            let index = 0;
-            let [lastIndex, batch] = this.batchTokens(tokens, index);
-            while (batch && batch.length && lastIndex) {
-                let [key, value] = tryGetKeyValuePair(batch, 'msgid', 'msgstr');
-                if (key && value) {
-                    textToTranslate.set(key, value);
+                if (token.id === 'msgid' || token.id === 'msgid_plural') {
+                    textToTranslate.set(token.value, token.value);
                 }
-                [key, value] = tryGetKeyValuePair(batch, 'msgid_plural', 'msgstr');
-                if (key && value) {
-                    textToTranslate.set(key, value);
-                }
-                [lastIndex, batch] = this.batchTokens(tokens, lastIndex);
-            }
+            });
         }
-        const translatableText = new Map();
-        [...textToTranslate.keys()].sort((a, b) => utils_1.naturalLanguageCompare(a, b)).forEach(key => {
-            translatableText.set(key, textToTranslate.get(key));
-        });
-        const ordinals = [...translatableText.keys()].map(key => tokens.findIndex(t => t.value === key));
         return {
-            text: translatableText,
-            ordinals
+            text: textToTranslate
         };
-    }
-    batchTokens(tokens, index) {
-        let batch = [];
-        let lastIndex = index;
-        for (lastIndex; lastIndex < tokens.length; ++lastIndex) {
-            const token = tokens[lastIndex];
-            if (!token.isInsignificant) {
-                batch.push(token);
-            }
-        }
-        return [lastIndex, batch];
-    }
-    findTokenValueById(tokenId, tokens) {
-        var _a;
-        return ((_a = tokens.find(t => !t.isInsignificant &&
-            !t.isCommentLine &&
-            t.id.startsWith(tokenId))) === null || _a === void 0 ? void 0 : _a.value) || '';
     }
 }
 exports.PortableObjectParser = PortableObjectParser;
@@ -4484,10 +4439,11 @@ exports.groupBy = (array, key) => array.reduce((result, obj) => {
 exports.getLocaleName = (existingPath, locale) => {
     const fileName = path_1.basename(existingPath);
     const segments = fileName.split('.');
-    if (segments.length === 3) {
-        const newName = `${segments[0]}.${locale}.${segments[2]}`;
-        const directory = path_1.dirname(existingPath);
-        return path_1.resolve(directory, newName);
+    switch (segments.length) {
+        case 3:
+            return __webpack_require__.ab + "resource-translator\\" + path_1.dirname(existingPath) + '\\' + segments[0] + '.' + locale + '.' + segments[2];
+        case 2:
+            return __webpack_require__.ab + "resource-translator\\" + path_1.dirname(existingPath) + '\\' + locale + '.' + segments[1];
     }
     return null;
 };
@@ -6389,7 +6345,7 @@ module.exports = require("assert");
 /***/ 361:
 /***/ (function(module) {
 
-module.exports = {"_from":"axios@^0.20.0","_id":"axios@0.20.0","_inBundle":false,"_integrity":"sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.20.0","name":"axios","escapedName":"axios","rawSpec":"^0.20.0","saveSpec":null,"fetchSpec":"^0.20.0"},"_requiredBy":["/","/@types/axios"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.20.0.tgz","_shasum":"057ba30f04884694993a8cd07fa394cff11c50bd","_spec":"axios@^0.20.0","_where":"C:\\Users\\david\\source\\repos\\resource-translator","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.10.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"bundlesize":"^0.17.0","coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.0.2","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^20.1.0","grunt-karma":"^2.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^1.0.18","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^1.3.0","karma-chrome-launcher":"^2.2.0","karma-coverage":"^1.1.1","karma-firefox-launcher":"^1.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-opera-launcher":"^1.0.0","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^1.2.0","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.7","karma-webpack":"^1.7.0","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^5.2.0","sinon":"^4.5.0","typescript":"^2.8.1","url-search-params":"^0.10.0","webpack":"^1.13.1","webpack-dev-server":"^1.14.1"},"homepage":"https://github.com/axios/axios","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test && bundlesize","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.20.0"};
+module.exports = {"_args":[["axios@0.20.0","C:\\Users\\dapine\\source\\repos\\resource-translator"]],"_from":"axios@0.20.0","_id":"axios@0.20.0","_inBundle":false,"_integrity":"sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.20.0","name":"axios","escapedName":"axios","rawSpec":"0.20.0","saveSpec":null,"fetchSpec":"0.20.0"},"_requiredBy":["/","/@types/axios"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.20.0.tgz","_spec":"0.20.0","_where":"C:\\Users\\dapine\\source\\repos\\resource-translator","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.10.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"bundlesize":"^0.17.0","coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.0.2","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^20.1.0","grunt-karma":"^2.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^1.0.18","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^1.3.0","karma-chrome-launcher":"^2.2.0","karma-coverage":"^1.1.1","karma-firefox-launcher":"^1.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-opera-launcher":"^1.0.0","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^1.2.0","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.7","karma-webpack":"^1.7.0","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^5.2.0","sinon":"^4.5.0","typescript":"^2.8.1","url-search-params":"^0.10.0","webpack":"^1.13.1","webpack-dev-server":"^1.14.1"},"homepage":"https://github.com/axios/axios","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test && bundlesize","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.20.0"};
 
 /***/ }),
 
@@ -7840,24 +7796,27 @@ exports.Octokit = Octokit;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getInputs = void 0;
+exports.getQuestionableArray = exports.getInputs = void 0;
 const core_1 = __webpack_require__(470);
 exports.getInputs = () => {
-    const sourceLocale = core_1.getInput('sourceLocale', { required: true });
     const inputs = {
-        baseFileGlob: `**/*.${sourceLocale}.resx`,
         subscriptionKey: core_1.getInput('subscriptionKey', { required: true }),
         endpoint: core_1.getInput('endpoint', { required: true }),
-        sourceLocale,
+        sourceLocale: core_1.getInput('sourceLocale', { required: true }),
         region: core_1.getInput('region'),
-        toLocales: getQuestionableArray('toLocales')
+        toLocales: exports.getQuestionableArray('toLocales')
     };
     return inputs;
 };
-const getQuestionableArray = (inputName) => {
+/**
+ * Valid formats for parsing string into JS array:
+ *   "'es','de','fr'"
+ *   "[ 'es', 'de', 'fr' ]"
+*/
+exports.getQuestionableArray = (inputName) => {
     const value = core_1.getInput(inputName);
     if (value) {
-        if (value.indexOf('[')) {
+        if (value.indexOf('[') > -1) {
             return [...JSON.parse(value)];
         }
         else {
@@ -9620,32 +9579,31 @@ module.exports = resolveCommand;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.XliffParser = void 0;
-const xml2js_1 = __webpack_require__(992);
-const utils_1 = __webpack_require__(163);
+const xml_file_parser_1 = __webpack_require__(695);
 class XliffParser {
     async parseFrom(fileContent) {
-        const parser = new xml2js_1.Parser();
-        const xliffXml = await parser.parseStringPromise(fileContent);
-        return xliffXml;
+        return await xml_file_parser_1.XmlFileParser.fromXml(fileContent);
     }
     toFileFormatted(instance, defaultValue) {
         try {
-            const builder = new xml2js_1.Builder();
-            var xliffXml = builder.buildObject(instance);
-            return xliffXml;
+            return xml_file_parser_1.XmlFileParser.toXml(instance);
         }
         catch (error) {
             return defaultValue;
         }
     }
     applyTranslations(instance, translations, ordinals) {
-        if (instance && translations && ordinals && ordinals.length) {
-            let index = 0;
+        if (instance && translations) {
             for (let key in translations) {
-                const ordinal = ordinals[index++];
+                const compositeKey = key.split('::');
+                const index = parseInt(compositeKey[0]);
+                const sourceKey = compositeKey[1];
                 const value = translations[key];
                 if (value) {
-                    instance.xliff.file.unit[ordinal].segment[0].target = value;
+                    const unit = instance.xliff.file[index].unit.find(u => u.segment.source === sourceKey);
+                    if (unit) {
+                        unit.segment.target = value;
+                    }
                 }
             }
         }
@@ -9653,22 +9611,17 @@ class XliffParser {
     }
     toTranslatableTextMap(instance) {
         const textToTranslate = new Map();
-        const values = instance.xliff.file.unit;
-        if (values && values.length) {
-            for (let i = 0; i < values.length; ++i) {
-                const key = values[i].segment[0].source;
-                const value = values[i].segment[0].target;
-                textToTranslate.set(key, value);
+        for (let i = 0; i < instance.xliff.file.length; ++i) {
+            const values = instance.xliff.file[i].unit;
+            if (values && values.length) {
+                for (let f = 0; f < values.length; ++f) {
+                    const key = values[f].segment.source;
+                    textToTranslate.set(`${i}::${key}`, key);
+                }
             }
         }
-        const translatableText = new Map();
-        [...textToTranslate.keys()].sort((a, b) => utils_1.naturalLanguageCompare(a, b)).forEach(key => {
-            translatableText.set(key, textToTranslate.get(key));
-        });
-        const ordinals = [...translatableText.keys()].map(key => values.findIndex(d => d.segment[0].source === key));
         return {
-            text: translatableText,
-            ordinals
+            text: textToTranslate
         };
     }
 }
@@ -10125,38 +10078,28 @@ module.exports = defaults;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ResxParser = void 0;
-const xml2js_1 = __webpack_require__(992);
-const utils_1 = __webpack_require__(163);
+const xml_file_parser_1 = __webpack_require__(695);
 class ResxParser {
     async parseFrom(fileContent) {
-        const parser = new xml2js_1.Parser();
-        const resxXml = await parser.parseStringPromise(fileContent);
-        return resxXml;
+        return await xml_file_parser_1.XmlFileParser.fromXml(fileContent);
     }
     toFileFormatted(instance, defaultValue) {
         try {
-            const builder = new xml2js_1.Builder();
-            var resxXml = builder.buildObject(instance);
-            return resxXml;
+            return xml_file_parser_1.XmlFileParser.toXml(instance);
         }
         catch (error) {
             return defaultValue;
         }
     }
-    applyTranslations(resource, translations, ordinals) {
-        //
-        // Each translation has a named identifier (it's key), for example: { 'SomeKey': 'some translated value' }.
-        // The ordinals map each key to it's appropriate translated value in the resource, for example: [2,0,1].
-        // For each translation, we map its keys value to the corresponding ordinal.
-        //
-        if (resource && translations && ordinals && ordinals.length) {
+    applyTranslations(resource, translations) {
+        if (resource && translations) {
             let index = 0;
             for (let key in translations) {
-                const ordinal = ordinals[index++];
                 const value = [translations[key]];
                 if (value) {
-                    resource.root.data[ordinal].value = value;
+                    resource.root.data[index].value = value;
                 }
+                index++;
             }
         }
         return resource;
@@ -10171,14 +10114,8 @@ class ResxParser {
                 textToTranslate.set(key, value);
             }
         }
-        const translatableText = new Map();
-        [...textToTranslate.keys()].sort((a, b) => utils_1.naturalLanguageCompare(a, b)).forEach(key => {
-            translatableText.set(key, textToTranslate.get(key));
-        });
-        const ordinals = [...translatableText.keys()].map(key => values.findIndex(d => d.$.name === key));
         return {
-            text: translatableText,
-            ordinals
+            text: textToTranslate
         };
     }
 }
@@ -12438,10 +12375,11 @@ const io_util_1 = __webpack_require__(672);
 const core_1 = __webpack_require__(470);
 const path_1 = __webpack_require__(622);
 const translationFileSchemes = {
+    ini: (locale) => `**/*.${locale}.ini`,
     po: `**/*.po`,
     restext: (locale) => `**/*.${locale}.restext`,
     resx: (locale) => `**/*.${locale}.resx`,
-    xliff: (locale) => `**/*.${locale}.xliff`,
+    xliff: (locale) => `**/*.${locale}.xliff`
 };
 async function findAllTranslationFiles(sourceLocale) {
     const filesToInclude = await getFilesToInclude();
@@ -12473,6 +12411,7 @@ async function findAllTranslationFiles(sourceLocale) {
     return {
         po: results.filter(f => f.endsWith('.po')),
         restext: results.filter(f => f.endsWith('.restext')),
+        ini: results.filter(f => f.endsWith('.ini')),
         resx: results.filter(f => f.endsWith('.resx')),
         xliff: results.filter(f => f.endsWith('.xliff'))
     };
@@ -12666,6 +12605,7 @@ exports.translationFileParserFactory = (translationFileKind) => {
         case 'resx': return new resx_parser_1.ResxParser();
         case 'xliff': return new xliff_parser_1.XliffParser();
         case 'restext': return new restext_parser_1.RestextParser();
+        case 'ini': return new restext_parser_1.RestextParser();
         case 'po': return new po_parser_1.PortableObjectParser();
         default:
             throw new Error(`Unrecognized resource kind: ${translationFileKind}`);
@@ -15216,6 +15156,31 @@ class Deprecation extends Error {
 }
 
 exports.Deprecation = Deprecation;
+
+
+/***/ }),
+
+/***/ 695:
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.XmlFileParser = void 0;
+const xml2js_1 = __webpack_require__(992);
+class XmlFileParser {
+    static async fromXml(xml) {
+        const parser = new xml2js_1.Parser();
+        const xliffXml = await parser.parseStringPromise(xml);
+        return xliffXml;
+    }
+    static toXml(instance) {
+        const builder = new xml2js_1.Builder();
+        var xliffXml = builder.buildObject(instance);
+        return xliffXml;
+    }
+}
+exports.XmlFileParser = XmlFileParser;
 
 
 /***/ }),
@@ -19296,45 +19261,47 @@ async function start(inputs) {
                 (!translationFiles.po &&
                     !translationFiles.restext &&
                     !translationFiles.resx &&
-                    !translationFiles.xliff)) {
+                    !translationFiles.xliff &&
+                    !translationFiles.ini)) {
                 core_1.setFailed("Unable to get target resource files.");
                 return;
             }
             let summary = new summary_1.Summary(sourceLocale, toLocales);
             for (let key of Object.keys(translationFiles)) {
                 const kind = key;
-                const resourceFiles = translationFiles[kind];
-                if (!resourceFiles || !resourceFiles.length) {
+                const files = translationFiles[kind];
+                if (!files || !files.length) {
                     continue;
                 }
                 const translationFileParser = translation_file_parser_factory_1.translationFileParserFactory(kind);
-                for (let index = 0; index < resourceFiles.length; ++index) {
-                    const resourceFilePath = resourceFiles[index];
-                    const resourceFileContent = resource_io_1.readFile(resourceFilePath);
-                    const parsedFile = await translationFileParser.parseFrom(resourceFileContent);
+                for (let index = 0; index < files.length; ++index) {
+                    const filePath = files[index];
+                    const fileContent = resource_io_1.readFile(filePath);
+                    const parsedFile = await translationFileParser.parseFrom(fileContent);
                     const translatableTextMap = translationFileParser.toTranslatableTextMap(parsedFile);
                     core_1.debug(`Translatable text:\n ${JSON.stringify(translatableTextMap, utils_1.stringifyMap)}`);
                     if (translatableTextMap) {
                         const resultSet = await api_1.translate(inputs, toLocales, translatableTextMap.text);
                         core_1.debug(`Translation result:\n ${JSON.stringify(resultSet)}`);
                         if (resultSet) {
+                            const length = translatableTextMap.text.size;
                             toLocales.forEach(locale => {
                                 const translations = resultSet[locale];
                                 if (!translations) {
                                     return;
                                 }
-                                const clone = Object.assign({}, resourceFileContent);
-                                const result = translationFileParser.applyTranslations(clone, translations, translatableTextMap.ordinals);
+                                const clone = Object.assign({}, fileContent);
+                                const result = translationFileParser.applyTranslations(clone, translations);
                                 const translatedFile = translationFileParser.toFileFormatted(result, "");
-                                const newPath = utils_1.getLocaleName(resourceFilePath, locale);
+                                const newPath = utils_1.getLocaleName(filePath, locale);
                                 if (translatedFile && newPath) {
                                     if (fs_1.existsSync(newPath)) {
                                         summary.updatedFileCount++;
-                                        summary.updatedFileTranslations += translatableTextMap.ordinals.length;
+                                        summary.updatedFileTranslations += length;
                                     }
                                     else {
                                         summary.newFileCount++;
-                                        summary.newFileTranslations += translatableTextMap.ordinals.length;
+                                        summary.newFileTranslations += length;
                                     }
                                     resource_io_1.writeFile(newPath, translatedFile);
                                 }
@@ -22142,46 +22109,84 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RestextParser = void 0;
 const utils_1 = __webpack_require__(163);
+const whiteSpace = /\S/;
 class RestextParser {
+    constructor() {
+        this.isComment = (line) => {
+            return !!line && line.startsWith(';');
+        };
+        this.isSection = (line) => {
+            return !!line && line.startsWith('[');
+        };
+        this.isWhitespace = (line) => {
+            return !whiteSpace.test(line);
+        };
+    }
     async parseFrom(fileContent) {
         await utils_1.delay(0, null);
-        let restextFile = {};
+        let map = new Map();
+        let restextFile = { map: new Map() };
         if (fileContent) {
-            fileContent.split('\n').map(kvp => {
-                const keyValuePair = kvp.split('=');
-                restextFile = {
-                    ...restextFile,
-                    [keyValuePair[0]]: keyValuePair[1]
-                };
+            fileContent.split('\n').map((line, index) => {
+                if (this.isComment(line) || this.isSection(line) || this.isWhitespace(line)) {
+                    restextFile = {
+                        ...restextFile,
+                        [index]: line
+                    };
+                }
+                else {
+                    const keyValuePair = line.split('=');
+                    const key = keyValuePair[0];
+                    const val = keyValuePair[1];
+                    map.set(index, key);
+                    restextFile = {
+                        ...restextFile,
+                        [key]: val
+                    };
+                }
             });
         }
+        restextFile.map = map;
         return restextFile;
     }
     toFileFormatted(instance, defaultValue) {
-        const text = Object.keys(instance).filter(key => !!key).map(key => {
-            return `${key}=${instance[key]}`;
-        }).join('\n');
+        const map = instance.map;
+        const keys = Object.keys(instance);
+        const length = map.size + keys.length - 1;
+        let text = '';
+        for (let index = 0; index < length; ++index) {
+            const line = instance[index];
+            const delimiter = index === 0 ? '' : '\n';
+            if (this.isComment(line) || this.isSection(line) || this.isWhitespace(line)) {
+                text += `${delimiter}${line}`;
+            }
+            else if (map.has(index)) {
+                const key = map.get(index);
+                text += `${delimiter}${key}=${instance[key]}`;
+            }
+        }
         return text || defaultValue;
     }
-    applyTranslations(instance, translations, ordinals) {
-        throw new Error("Method not implemented.");
+    applyTranslations(instance, translations) {
+        if (instance && translations) {
+            for (let key in translations) {
+                const value = translations[key];
+                if (value) {
+                    instance[key] = value;
+                }
+            }
+        }
+        return instance;
     }
     toTranslatableTextMap(instance) {
         const textToTranslate = new Map();
-        let index = 0;
         for (const [key, value] of Object.entries(instance)) {
-            textToTranslate.set(key, value);
-            index++;
+            if (typeof key !== 'number') {
+                textToTranslate.set(key, value);
+            }
         }
-        const translatableText = new Map();
-        [...textToTranslate.keys()].sort((a, b) => utils_1.naturalLanguageCompare(a, b)).forEach(key => {
-            translatableText.set(key, textToTranslate.get(key));
-        });
-        const keys = Object.keys(instance);
-        const ordinals = [...translatableText.keys()].map(key => keys.findIndex(objKey => objKey === key));
         return {
-            text: translatableText,
-            ordinals
+            text: textToTranslate
         };
     }
 }
