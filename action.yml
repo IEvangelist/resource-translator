@@ -1,8 +1,8 @@
-name: 'Resource translator'
-description: 'A GitHub Action that uses Azure Cognitive Services Translator to generate translation files, such as .resx resources given a source .resx file. Supported file formats include, .resx, .restext, .xliff, and .po.'
+name: 'Machine Translator'
+description: 'GitHub Action that automatically creates machine-translated PRs of translation files. Supported file formats include, .resx, .restext, .ini, .xliff, and .po.'
 branding:
   icon: flag
-  color: gray-dark
+  color: blue
 inputs:
   sourceLocale:
     description: 'The source locale (for example, ''en'') used to create the glob pattern for finding translation (**/*.en.resx) files as input.'
@@ -17,7 +17,7 @@ inputs:
     description: 'The Azure Cognitive Services translator resource region. This is optional when using a global translator resource.'
     required: false
   toLocales:
-    description: 'Optional locales to translate to, otherwise all possible locales are targeted. Example input, "es,de,fr" or ["es","de","fr"]. Requires double quotes.'
+    description: 'Optional locales to translate to, otherwise all possible locales are targeted. Example input, ''"es,de,fr"'' or ''["es","de","fr"]''. Requires double quotes.'
     required: false
 outputs:
   summary-title:

@@ -1,11 +1,4 @@
-import { TranslationFileKind } from "./translation-file-kind";
-
 export interface Inputs {
-    /**
-     * File glob pattern.
-    */
-    baseFileGlob: string;
-
     /**
      * Azure Cognitive Services Translator subscription key. Store as GitHub secret.
     */

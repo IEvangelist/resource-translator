@@ -8,11 +8,18 @@ export class RestextParser implements TranslationFileParser {
         await delay(0, null);
         let restextFile: RestextFile = {};
         if (fileContent) {
-            fileContent.split('\n').map(kvp => {
-                const keyValuePair = kvp.split('=');
-                restextFile = {
-                    ...restextFile,
-                    [keyValuePair[0]]: keyValuePair[1]
+            fileContent.split('\n').map((line, index) => {
+                if (this.isComment(line) || this.isSection(line)) {
+                    restextFile = {
+                        ...restextFile,
+                        [index]: line
+                    }
+                } else {
+                    const keyValuePair = line.split('=');
+                    restextFile = {
+                        ...restextFile,
+                        [keyValuePair[0]]: keyValuePair[1]
+                    }
                 }
             });
         }
@@ -22,7 +29,7 @@ export class RestextParser implements TranslationFileParser {
     toFileFormatted(instance: RestextFile, defaultValue: string): string {
         const text =
             Object.keys(instance).filter(key => !!key).map(key => {
-                return `${key}=${instance[key]}`;
+                return typeof key === 'number' ? instance[key] : `${key}=${instance[key]}`;
             }).join('\n');
         return text || defaultValue;
     }
@@ -36,13 +43,12 @@ export class RestextParser implements TranslationFileParser {
 
     toTranslatableTextMap(instance: RestextFile): TranslatableTextMap {
         const textToTranslate: Map<string, string> = new Map();
-
-        let index = 0;
         for (const [key, value] of Object.entries(instance)) {
-            textToTranslate.set(key, value);
-            index++;
+            if (typeof key !== 'number') {
+                textToTranslate.set(key, value);
+            }
         }
-        
+
         const translatableText: Map<string, string> = new Map();
         [...textToTranslate.keys()].sort((a, b) => naturalLanguageCompare(a, b)).forEach(key => {
             translatableText.set(key, textToTranslate.get(key)!);
@@ -58,4 +64,12 @@ export class RestextParser implements TranslationFileParser {
             ordinals
         };
     }
+
+    private isComment = (line: string) => {
+        return !!line && line.startsWith(';');
+    };
+
+    private isSection = (line: string) => {
+        return !!line && line.startsWith('[');
+    };
 }

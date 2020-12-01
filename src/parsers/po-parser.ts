@@ -74,7 +74,6 @@ export class PortableObjectParser implements TranslationFileParser {
                 (batchedTokens: PortableObjectToken[],
                     keyId: PortableObjectTokenIdentifier,
                     valueId: PortableObjectTokenIdentifier): [string, string] => {
-
                     let key: string = '';
                     let value: string = '';
                     if (batchedTokens && batchedTokens.length) {

@@ -10,6 +10,7 @@ export const translationFileParserFactory = (translationFileKind: TranslationFil
         case 'resx': return new ResxParser();
         case 'xliff': return new XliffParser();
         case 'restext': return new RestextParser();
+        case 'ini': return new RestextParser();
         case 'po': return new PortableObjectParser();
 
         default:

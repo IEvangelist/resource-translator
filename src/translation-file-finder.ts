@@ -3,7 +3,6 @@ import { context, getOctokit } from '@actions/github';
 import { isDirectory } from '@actions/io/lib/io-util';
 import { debug } from '@actions/core';
 import { basename, resolve } from 'path';
-import { groupBy } from './utils';
 
 export interface TranslationFileMap {
     po?: string[] | undefined;
@@ -15,6 +14,7 @@ export interface TranslationFileMap {
 const translationFileSchemes = {
     po: `**/*.po`,
     restext: (locale: string) => `**/*.${locale}.restext`,
+    ini: (locale: string) => `**/*.${locale}.ini`,
     resx: (locale: string) => `**/*.${locale}.resx`,
     xliff: (locale: string) => `**/*.${locale}.xliff`,
 }
@@ -55,6 +55,7 @@ export async function findAllTranslationFiles(sourceLocale: string): Promise<Tra
     return {
         po: results.filter(f => f.endsWith('.po')),
         restext: results.filter(f => f.endsWith('.restext')),
+        ini: results.filter(f => f.endsWith('.ini')),
         resx: results.filter(f => f.endsWith('.resx')),
         xliff: results.filter(f => f.endsWith('.xliff'))
     } as TranslationFileMap;

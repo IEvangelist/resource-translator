@@ -15,8 +15,8 @@ test('RESX PARSER: correctly parses from string', async () => {
 
     const file = await parser.parseFrom(content);
     expect(file).toBeTruthy();
-    expect(file.root.data.find(d => d.$.name = 'Greetings')!.value[0]).toEqual('Hello world, this is a test.... only a test!');
-    expect(file.root.data.find(d => d.$.name = 'MyFriend')!.value[0]).toEqual('Where have you gone?');
+    expect(file.root.data.find(d => d.$.name === 'Greetings')!.value[0]).toEqual('Hello world, this is a test.... only a test!');
+    expect(file.root.data.find(d => d.$.name === 'MyFriend')!.value[0]).toEqual('Where have you gone?');
 });
 
 test('RESX PARSER: correctly formats back as string', async () => {
@@ -56,8 +56,8 @@ test('RESX PARSER: correctly applies translations', async () => {
     }, [0])
 
     expect(result).toBeTruthy();
-    expect(result.root.data.find(d => d.$.name = 'Greetings')!.value[0]).toEqual('I am a robot!');
-    expect(result.root.data.find(d => d.$.name = 'MyFriend')!.value[0]).toEqual('Where have you gone?');
+    expect(result.root.data.find(d => d.$.name === 'Greetings')!.value[0]).toEqual('I am a robot!');
+    expect(result.root.data.find(d => d.$.name === 'MyFriend')!.value[0]).toEqual('Where have you gone?');
 });
 
 test('RESX PARSER: correctly creates translatable text map', async () => {
