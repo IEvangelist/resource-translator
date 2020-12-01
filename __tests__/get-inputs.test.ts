@@ -1,5 +1,5 @@
 import { InputOptions } from '@actions/core';
-import { getQuestionableArray } from '../src/get-inputs';
+import { getQuestionableArray } from '../src/action/get-inputs';
 
 jest.mock('@actions/core', () => ({
     getInput: (name: string, options?: InputOptions) => {

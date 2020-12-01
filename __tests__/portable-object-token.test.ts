@@ -1,4 +1,4 @@
-import { PortableObjectToken } from "../src/files/po-file";
+import { PortableObjectToken } from "../src/file-formats/po-file";
 
 test("PO-TOKEN: parses invalid values correctly", async () => {
     let token = new PortableObjectToken(undefined);

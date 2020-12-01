@@ -53,7 +53,7 @@ test('RESX PARSER: correctly applies translations', async () => {
 
     const result = parser.applyTranslations(file, {
         'Greetings': 'I am a robot!'
-    }, [0])
+    })
 
     expect(result).toBeTruthy();
     expect(result.root.data.find(d => d.$.name === 'Greetings')!.value[0]).toEqual('I am a robot!');

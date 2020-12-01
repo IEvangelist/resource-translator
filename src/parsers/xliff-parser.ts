@@ -1,4 +1,4 @@
-import { traverseXliff, XliffFile } from "../file-formats/xliff-file";
+import { traverseXliff, XliffFile, XliffFileKeyDelimiter } from "../file-formats/xliff-file";
 import { TranslationFileParser } from "./translation-file-parser";
 import { TranslatableTextMap } from "../abstractions/translatable-text-map";
 import { XmlFileParser } from "./xml-file-parser";
@@ -21,14 +21,14 @@ export class XliffParser implements TranslationFileParser {
         translations: { [key: string]: string; } | undefined,
         targetLocale?: string): XliffFile {
         if (instance && translations && targetLocale) {
-            instance.$.trgLang = targetLocale;
+            instance.xliff.$.trgLang = targetLocale;
             for (let key in translations) {
-                const compositeKey = key.split('::');
+                const compositeKey = key.split(XliffFileKeyDelimiter);
                 const index = parseInt(compositeKey[0]);
                 const sourceKey = compositeKey[1];
                 const value = translations[key];
                 if (value) {
-                    traverseXliff(instance, index, sourceKey, s => s.source = [value]);
+                    traverseXliff(instance, index, sourceKey, s => s.target = [value]);
                 }
             }
         }
@@ -43,7 +43,7 @@ export class XliffParser implements TranslationFileParser {
             if (values && values.length) {
                 for (let f = 0; f < values.length; ++f) {
                     const key = values[f].segment[0].source[0];
-                    textToTranslate.set(`${i}::${key}`, key);
+                    textToTranslate.set(`${i}${XliffFileKeyDelimiter}${key}`, key);
                 }
             }
         }

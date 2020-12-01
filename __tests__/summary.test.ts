@@ -1,4 +1,4 @@
-import { Summary } from '../src/summary';
+import { Summary } from '../src/abstractions/summary';
 
 test('SUMMARY: summary object correctly instantiates and calculates properties', () => {
     const summary = new Summary('es', [ 'en', 'fr', 'de' ]);

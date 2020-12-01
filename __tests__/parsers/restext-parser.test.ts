@@ -51,7 +51,7 @@ Message=Button is clicked!`;
 
     const result = parser.applyTranslations(file, {
         'Strings': 'Does this work?'
-    }, [])
+    })
 
     expect(result).toBeTruthy();
     expect(result['Title']).toEqual('Title Casing For The Win');

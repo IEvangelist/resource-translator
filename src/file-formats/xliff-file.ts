@@ -1,5 +1,4 @@
 export interface XliffFile {
-    $: LanguageAttributes;
     xliff: Xliff;
 }
 
@@ -9,6 +8,7 @@ export interface LanguageAttributes {
 }
 
 export interface Xliff {
+    $: LanguageAttributes;
     file: File[];
 }
 
@@ -29,6 +29,8 @@ export interface Segment {
     source: string[];
     target: string[];
 }
+
+export const XliffFileKeyDelimiter = '::';
 
 export const traverseXliff =
     (instance: XliffFile, fileIndex: number, sourceName: string, segmentAction: (segment: Segment) => void) => {

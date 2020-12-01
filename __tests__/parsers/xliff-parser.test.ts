@@ -100,17 +100,18 @@ test('XLIFF PARSER: correctly applies translations', async () => {
     expect(file).toBeTruthy();
 
     const result = parser.applyTranslations(file, {
-        'An application to manipulate and process XLIFF documents': 'Applying changes for testing.',
-        'Quetzal': 'Wisconsin beer is best!',
-        'XLIFF Data Manager': 'Who is in charge?'
+        '0::An application to manipulate and process XLIFF documents': 'Applying changes for testing.',
+        '0::Quetzal': 'Wisconsin beer is best!',
+        '0::XLIFF Data Manager': 'Who is in charge?'
     }, 'en')
 
     expect(result).toBeTruthy();
-    expect(findInXliff(file, 0, 'Quetzal')!.target[0])
+    expect(result.xliff.$.trgLang).toEqual('en');
+    expect(findInXliff(result, 0, 'Quetzal')!.target[0])
         .toEqual('Wisconsin beer is best!');
-    expect(findInXliff(file, 0, 'An application to manipulate and process XLIFF documents')!.target[0])
+    expect(findInXliff(result, 0, 'An application to manipulate and process XLIFF documents')!.target[0])
         .toEqual('Applying changes for testing.');
-    expect(findInXliff(file, 0, 'XLIFF Data Manager')!.target[0])
+    expect(findInXliff(result, 0, 'XLIFF Data Manager')!.target[0])
         .toEqual('Who is in charge?');
 });
 
@@ -144,9 +145,9 @@ test('XLIFF PARSER: correctly creates translatable text map', async () => {
 
     const translatableTextMap = parser.toTranslatableTextMap(file);
     expect(translatableTextMap).toBeTruthy();
-    expect(translatableTextMap.text.get('Quetzal')).toEqual('Quetzal');
-    expect(translatableTextMap.text.get('An application to manipulate and process XLIFF documents'))
+    expect(translatableTextMap.text.get('0::Quetzal')).toEqual('Quetzal');
+    expect(translatableTextMap.text.get('0::An application to manipulate and process XLIFF documents'))
         .toEqual('An application to manipulate and process XLIFF documents');
-    expect(translatableTextMap.text.get('XLIFF Data Manager'))
+    expect(translatableTextMap.text.get('0::XLIFF Data Manager'))
         .toEqual('XLIFF Data Manager');
 });

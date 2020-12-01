@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
-import { toResultSet } from '../src/api-result-set-mapper';
-import { TranslationResult, TranslationResults } from '../src/translation-results';
+import { toResultSet } from '../src/helpers/api-result-set-mapper';
+import { TranslationResult, TranslationResults } from '../src/abstractions/translation-results';
 
 const toLocales = [
     'af', 'ar', 'as', 'bg', 'bn', 'bs', 'ca', 'cs',

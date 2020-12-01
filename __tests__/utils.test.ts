@@ -1,6 +1,6 @@
 import { dirname, resolve } from 'path';
-import { groupBy, getLocaleName, stringifyMap, chunk, zip } from '../src/utils';
-import { DetectedLanguage, Result, TranslationResult } from '../src/translation-results';
+import { groupBy, getLocaleName, stringifyMap, chunk, zip } from '../src/helpers/utils';
+import { DetectedLanguage, Result, TranslationResult } from '../src/abstractions/translation-results';
 
 test("UTILS: group by functions correctly", () => {
     const cars = [
