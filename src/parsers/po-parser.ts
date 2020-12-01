@@ -70,20 +70,31 @@ export class PortableObjectParser implements TranslationFileParser {
         const textToTranslate: Map<string, string> = new Map();
         const tokens = instance.tokens;
         if (tokens && tokens.length) {
-            const tryGetKeyValuePair = (batchedTokens: PortableObjectToken[]): [string, string] => {
-                let key: string = '';
-                let value: string = '';
-                if (batchedTokens && batchedTokens.length) {
-                    key = this.findTokenValueById('msgid', batchedTokens);
-                    value = this.findTokenValueById('msgstr', batchedTokens);
-                }
-                return [key, value];
-            };
+            const tryGetKeyValuePair =
+                (batchedTokens: PortableObjectToken[],
+                    keyId: PortableObjectTokenIdentifier,
+                    valueId: PortableObjectTokenIdentifier): [string, string] => {
+
+                    let key: string = '';
+                    let value: string = '';
+                    if (batchedTokens && batchedTokens.length) {
+                        const isPlural = keyId === 'msgid_plural';
+                        key = this.findTokenValueById(keyId, batchedTokens);
+                        value =
+                            this.findTokenValueById(isPlural ? `${valueId}[1]` : valueId, batchedTokens) ||
+                            this.findTokenValueById(`${valueId}[0]`, batchedTokens)
+                    }
+                    return [key, value];
+                };
 
             let index = 0;
             let [lastIndex, batch] = this.batchTokens(tokens, index);
             while (batch && batch.length && lastIndex) {
-                let [key, value]: [string, string] = tryGetKeyValuePair(batch);
+                let [key, value] = tryGetKeyValuePair(batch, 'msgid', 'msgstr');
+                if (key && value) {
+                    textToTranslate.set(key, value);
+                }
+                [key, value] = tryGetKeyValuePair(batch, 'msgid_plural', 'msgstr');
                 if (key && value) {
                     textToTranslate.set(key, value);
                 }
@@ -119,7 +130,7 @@ export class PortableObjectParser implements TranslationFileParser {
         return [lastIndex, batch];
     }
 
-    private findTokenValueById(tokenId: PortableObjectTokenIdentifier, tokens: PortableObjectToken[]): string {
+    private findTokenValueById(tokenId: string, tokens: PortableObjectToken[]): string {
         return tokens.find(t =>
             !t.isInsignificant &&
             !t.isCommentLine &&
