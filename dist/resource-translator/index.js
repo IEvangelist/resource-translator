@@ -9527,14 +9527,14 @@ class XliffParser {
     }
     applyTranslations(instance, translations, targetLocale) {
         if (instance && translations && targetLocale) {
-            instance.$.trgLang = targetLocale;
+            instance.xliff.$.trgLang = targetLocale;
             for (let key in translations) {
-                const compositeKey = key.split('::');
+                const compositeKey = key.split(xliff_file_1.XliffFileKeyDelimiter);
                 const index = parseInt(compositeKey[0]);
                 const sourceKey = compositeKey[1];
                 const value = translations[key];
                 if (value) {
-                    xliff_file_1.traverseXliff(instance, index, sourceKey, s => s.source = [value]);
+                    xliff_file_1.traverseXliff(instance, index, sourceKey, s => s.target = [value]);
                 }
             }
         }
@@ -9547,7 +9547,7 @@ class XliffParser {
             if (values && values.length) {
                 for (let f = 0; f < values.length; ++f) {
                     const key = values[f].segment[0].source[0];
-                    textToTranslate.set(`${i}::${key}`, key);
+                    textToTranslate.set(`${i}${xliff_file_1.XliffFileKeyDelimiter}${key}`, key);
                 }
             }
         }
@@ -11705,7 +11705,8 @@ module.exports = parse;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findInXliff = exports.traverseXliff = void 0;
+exports.findInXliff = exports.traverseXliff = exports.XliffFileKeyDelimiter = void 0;
+exports.XliffFileKeyDelimiter = '::';
 exports.traverseXliff = (instance, fileIndex, sourceName, segmentAction) => {
     if (instance && segmentAction) {
         if (instance.xliff.file && instance.xliff.file.length > fileIndex) {
