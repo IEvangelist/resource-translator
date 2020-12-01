@@ -1,8 +1,14 @@
-# 🌐 Resource translator
+# 🌐 Machine Translator
 
 [![GitHub Marketplace](https://img.shields.io/badge/Marketplace-Resource%20translator-blue.svg?colorA=24292e&colorB=0366d6&style=flat&longCache=true&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAM6wAADOsB5dZE0gAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAERSURBVCiRhZG/SsMxFEZPfsVJ61jbxaF0cRQRcRJ9hlYn30IHN/+9iquDCOIsblIrOjqKgy5aKoJQj4O3EEtbPwhJbr6Te28CmdSKeqzeqr0YbfVIrTBKakvtOl5dtTkK+v4HfA9PEyBFCY9AGVgCBLaBp1jPAyfAJ/AAdIEG0dNAiyP7+K1qIfMdonZic6+WJoBJvQlvuwDqcXadUuqPA1NKAlexbRTAIMvMOCjTbMwl1LtI/6KWJ5Q6rT6Ht1MA58AX8Apcqqt5r2qhrgAXQC3CZ6i1+KMd9TRu3MvA3aH/fFPnBodb6oe6HM8+lYHrGdRXW8M9bMZtPXUji69lmf5Cmamq7quNLFZXD9Rq7v0Bpc1o/tp0fisAAAAASUVORK5CYII=)](https://github.com/marketplace/actions/resource-translator)
 
-A GitHub action that uses Azure Cognitive Services Translator to generate .resx resource files given a source .resx file.
+A GitHub Action that automatically creates machine-translated PRs of translation files. Supported file formats include:
+
+- *.ini*
+- *.po*
+- *.restext*
+- *.resx*
+- *.xliff*
 
 ## Usage
 
@@ -16,12 +22,12 @@ on:
   push:
     branches: [ main ]
     paths:
-    - '**.resx'      # XML-based (resource) translation file format
-    - '**.restext'   # Similar to INI-based, key value pair file format
-    - '**.xliff'     # XML-based translation file format
+    - '**.ini'       # INI-based, key value pair file format
     - '**.po'        # Portable Object file format
+    - '**.restext'   # INI-based, key value pair file format
+    - '**.resx'      # XML-based (resource) translation file format, .NET
+    - '**.xliff'     # XML-based translation file format, version 2
 
-# https://docs.github.com/en/free-pro-team@latest/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
 # GitHub automatically creates a GITHUB_TOKEN secret to use in your workflow.
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
