@@ -45,7 +45,8 @@ jobs:
       - uses: actions/checkout@v2
 
       # Use the machine-translator to automatically translate resource files
-      - name: translator
+      - name: Machine Translator
+        id: translator
         uses: IEvangelist/resource-translator@v2.1.0
         with:
           # The source locale (for example, 'en') used to create the glob pattern

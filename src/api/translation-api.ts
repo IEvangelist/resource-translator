@@ -10,16 +10,18 @@ import { toResultSet } from '../helpers/api-result-set-mapper';
 /**
 * https://docs.microsoft.com/azure/cognitive-services/translator/language-support#translate
 */ 
-export async function getAvailableTranslations(): Promise<AvailableTranslations> {
-    const url = 'https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation';
-    const response = await Axios.get<AvailableTranslations>(url);
+export const getAvailableTranslations = async (): Promise<AvailableTranslations> => {
+    const apiUrl = 'https://api.cognitive.microsofttranslator.com/languages';
+    const query = 'api-version=3.0&scope=translation';
+    const response = await Axios.get<AvailableTranslations>(`${apiUrl}?${query}`);
+
     return response.data;
 }
 
-export async function translate(
+export const translate = async (
     translatorResource: TranslatorResource,
     toLocales: string[],
-    translatableText: Map<string, string>): Promise<TranslationResultSet | undefined> {
+    translatableText: Map<string, string>): Promise<TranslationResultSet | undefined> => {
     try {
         const data = [...translatableText.values()].map(value => {
             return { text: value };
