@@ -5294,7 +5294,7 @@ exports.summarize = (summary) => {
         '',
         `Of the ${fileCount} translated files, there are a total of ${translations} individual translations.`,
         '',
-        '> These machine translations are a result of Azure Cognitive Services Translator, and the [Resource translator](https://github.com/marketplace/actions/resource-translator) GitHub action. For more information, see [Translator v3.0](https://docs.microsoft.com/azure/cognitive-services/translator/reference/v3-0-reference?WT.mc_id=dapine). To post an issue, or feature request please do here [here](https://github.com/IEvangelist/resource-translator/issues).',
+        '> These machine translations are a result of Azure Cognitive Services Translator, and the [Machine Translator](https://github.com/marketplace/actions/resource-translator) GitHub action. For more information, see [Translator v3.0](https://docs.microsoft.com/azure/cognitive-services/translator/reference/v3-0-reference?WT.mc_id=dapine). To post an issue, or feature request please do so [here](https://github.com/IEvangelist/resource-translator/issues).',
     ];
     core_1.debug(JSON.stringify({
         title,
@@ -11179,13 +11179,13 @@ const api_result_set_mapper_1 = __webpack_require__(513);
 /**
 * https://docs.microsoft.com/azure/cognitive-services/translator/language-support#translate
 */
-async function getAvailableTranslations() {
-    const url = 'https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation';
-    const response = await axios_1.default.get(url);
+exports.getAvailableTranslations = async () => {
+    const apiUrl = 'https://api.cognitive.microsofttranslator.com/languages';
+    const query = 'api-version=3.0&scope=translation';
+    const response = await axios_1.default.get(`${apiUrl}?${query}`);
     return response.data;
-}
-exports.getAvailableTranslations = getAvailableTranslations;
-async function translate(translatorResource, toLocales, translatableText) {
+};
+exports.translate = async (translatorResource, toLocales, translatableText) => {
     try {
         const data = [...translatableText.values()].map(value => {
             return { text: value };
@@ -11243,8 +11243,7 @@ async function translate(translatorResource, toLocales, translatableText) {
         }
         return undefined;
     }
-}
-exports.translate = translate;
+};
 
 
 /***/ }),
