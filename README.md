@@ -80,6 +80,8 @@ jobs:
 | No       | `region`          | `'canadacentral'`                                  |
 | No       | `toLocales`       | `'"es,de,fr"'` or `'["es","de","fr"]'`             |
 
+For more information, see [GitHub Action using inputs](https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/finding-and-customizing-actions#using-inputs-and-outputs-with-an-action).
+
 ### Outputs
 
 | Input name             | Description                                                                       |
@@ -87,3 +89,5 @@ jobs:
 | `has-new-translations` | A `boolean` value indicating whether or not new translations have been generated. |
 | `summary-title`        | A general summary title of the translations when they occur. Ideal for PR titles. |
 | `summary-details`      | A detailed summary, formatted in Markdown. Ideal for PR message.                  |
+
+For more information, see [GitHub Action outputs](https://docs.github.com/en/free-pro-team@latest/actions/creating-actions/metadata-syntax-for-github-actions#outputs).
