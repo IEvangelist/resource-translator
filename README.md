@@ -69,3 +69,21 @@ jobs:
           title: '${{ steps.translator.outputs.summary-title }}'
           commit-message: '${{ steps.translator.outputs.summary-details }}'
 ```
+
+### Inputs
+
+| Required | Input name        | Example                                            |
+|----------|-------------------|----------------------------------------------------|
+| Yes      | `sourceLocale`    | `'en'`                                             |
+| Yes      | `subscriptionKey` | `'c571d5d8xxxxxxxxxxxxxxxxxx56bac3'`               |
+| Yes      | `endpoint`        | `'https://api.cognitive.microsofttranslator.com/'` |
+| No       | `region`          | `'canadacentral'`                                  |
+| No       | `toLocales`       | `'"es,de,fr"'` or `'["es","de","fr"]'`             |
+
+### Outputs
+
+| Input name             | Description                                                                       |
+|------------------------|-----------------------------------------------------------------------------------|
+| `has-new-translations` | A `boolean` value indicating whether or not new translations have been generated. |
+| `summary-title`        | A general summary title of the translations when they occur. Ideal for PR titles. |
+| `summary-details`      | A detailed summary, formatted in Markdown. Ideal for PR message.                  |
