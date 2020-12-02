@@ -47,7 +47,7 @@ jobs:
       # Use the machine-translator to automatically translate resource files
       - name: Machine Translator
         id: translator
-        uses: IEvangelist/resource-translator@v2.1.0
+        uses: IEvangelist/resource-translator@v2.1.1
         with:
           # The source locale (for example, 'en') used to create the glob pattern
           # for which resource (**/*.en.resx) files to use as input
