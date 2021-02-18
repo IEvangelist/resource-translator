@@ -82,7 +82,7 @@ export async function start(inputs: Inputs) {
                                 if (!translations) {
                                     return;
                                 }
-                                const clone = Object.assign({} as TranslationFile, fileContent);
+                                const clone = Object.assign({} as TranslationFile, parsedFile);
                                 const result =
                                     translationFileParser.applyTranslations(
                                         clone, translations, locale);
