@@ -2,7 +2,7 @@ import { create } from '@actions/glob';
 import { context, getOctokit } from '@actions/github';
 import { isDirectory } from '@actions/io/lib/io-util';
 import { debug } from '@actions/core';
-import { basename, resolve } from 'path';
+import { basename, normalize, resolve } from 'path';
 
 export interface TranslationFileMap {
     ini?: string[] | undefined;
@@ -41,7 +41,7 @@ export async function findAllTranslationFiles(sourceLocale: string): Promise<Tra
     const filesAndDirectories = await globber.glob();
     const promises = filesAndDirectories.map(async path => {
         return {
-            path,
+            path: normalize(path),
             isDirectory: await isDirectory(path),
             include: includeFile(path)
         }

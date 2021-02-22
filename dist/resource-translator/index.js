@@ -7457,7 +7457,7 @@ async function findAllTranslationFiles(sourceLocale) {
     const filesAndDirectories = await globber.glob();
     const promises = filesAndDirectories.map(async (path) => {
         return {
-            path,
+            path: path_1.normalize(path),
             isDirectory: await io_util_1.isDirectory(path),
             include: includeFile(path)
         };
