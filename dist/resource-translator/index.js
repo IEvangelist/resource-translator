@@ -20117,9 +20117,9 @@ exports.getLocaleName = (existingPath, locale) => {
     const segments = fileName.split('.');
     switch (segments.length) {
         case 3:
-            return __webpack_require__.ab + "resource-translator\\" + path_1.dirname(existingPath) + '\\' + segments[0] + '.' + locale + '.' + segments[2];
+            return `${path_1.dirname(existingPath)}${path_1.sep}${segments[0]}.${locale}.${segments[2]}`;
         case 2:
-            return __webpack_require__.ab + "resource-translator\\" + path_1.dirname(existingPath) + '\\' + locale + '.' + segments[1];
+            return `${path_1.dirname(existingPath)}${path_1.sep}${locale}.${segments[1]}`;
     }
     return null;
 };
