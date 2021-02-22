@@ -15041,7 +15041,7 @@ function isUnixExecutable(stats) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.traverseResx = void 0;
 exports.traverseResx = (instance, name, dataAction) => {
-    if (instance && dataAction) {
+    if (instance && instance.root && instance.root.data && dataAction) {
         const data = instance.root.data.find(d => d.$.name === name);
         if (data) {
             dataAction(data);
@@ -19214,7 +19214,7 @@ async function start(inputs) {
                                 if (!translations) {
                                     return;
                                 }
-                                const clone = Object.assign({}, fileContent);
+                                const clone = Object.assign({}, parsedFile);
                                 const result = translationFileParser.applyTranslations(clone, translations, locale);
                                 const translatedFile = translationFileParser.toFileFormatted(result, "");
                                 const newPath = utils_1.getLocaleName(filePath, locale);
@@ -19247,6 +19247,7 @@ async function start(inputs) {
         }
     }
     catch (error) {
+        console.trace();
         core_1.setFailed(error.message);
     }
 }
