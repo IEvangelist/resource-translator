@@ -1,4 +1,4 @@
-import { basename, dirname, resolve, sep } from 'path';
+import { basename, dirname, join } from 'path';
 
 export const groupBy = <T extends Record<K, string>, K extends string>
     (array: T[], key: keyof T): { [group: string]: T[] } =>
@@ -12,12 +12,11 @@ export const groupBy = <T extends Record<K, string>, K extends string>
 export const getLocaleName = (existingPath: string, locale: string) => {
     const fileName = basename(existingPath);
     const segments = fileName.split('.');
-
     switch (segments.length) {
         case 3:
-            return `${dirname(existingPath)}${sep}${segments[0]}.${locale}.${segments[2]}`;
+            return join(dirname(existingPath), `${segments[0]}.${locale}.${segments[2]}`);
         case 2:
-            return `${dirname(existingPath)}${sep}${locale}.${segments[1]}`;
+            return join(dirname(existingPath), `${locale}.${segments[1]}`);
     }
 
     return null;
