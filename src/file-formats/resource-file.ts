@@ -17,7 +17,7 @@ export interface NameAttribute {
 
 export const traverseResx =
     (instance: ResourceFile, name: string, dataAction: (data: Data) => void) => {
-        if (instance && dataAction) {
+        if (instance && instance.root && instance.root.data && dataAction) {
             const data =
                 instance.root.data.find(d => d.$.name === name);
             if (data) {

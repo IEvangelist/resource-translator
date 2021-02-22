@@ -2,6 +2,7 @@ import { readFile, writeFile } from '../src/io/reader-writer';
 import { resolve } from 'path';
 import { getLocaleName } from '../src/helpers/utils';
 import { ResxParser } from '../src/parsers/resx-parser';
+import { TranslationFile } from '../src/file-formats/translation-file';
 
 const parser = new ResxParser();
 
@@ -41,6 +42,36 @@ test('IO: roundtrip, resolve->read->write->read-> compare', async () => {
     expect(resourceXml.root.data[0].value[0]).toEqual('Hello world, this is a test.... only a test!');
     expect(resourceXml.root.data[1].$.name).toEqual('MyFriend');
     expect(resourceXml.root.data[1].value[0]).toEqual('Where have you gone?');
+});
+
+test('IO: apply translations to Sample.en.resx', async () => {
+    const resourcePath = resolve(__dirname, './data/Sample.en.resx');
+    const xml = readFile(resourcePath);
+    let parsedFile = await parser.parseFrom(xml);
+
+    const resultSet = {
+        "es": {
+            "FamilyDescription": "Cadena de muestra para probar la traducción"
+        }
+    };
+
+    ['es'].forEach(locale => {
+        const translations = resultSet[locale];
+        if (!translations) {
+            return;
+        }
+
+        const clone = Object.assign({} as TranslationFile, parsedFile);
+        const result =
+            parser.applyTranslations(clone, translations);
+
+        expect(result).toBeTruthy();
+        expect(result.root).toBeTruthy();
+        expect(result.root.data).toBeTruthy();
+
+        expect(result.root.data[0].$.name).toEqual('FamilyDescription');
+        expect(result.root.data[0].value[0]).toEqual('Cadena de muestra para probar la traducción');
+    });
 });
 
 test('IO: apply translations to Test.en.resx', async () => {

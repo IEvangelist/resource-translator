@@ -116,6 +116,7 @@ export async function start(inputs: Inputs) {
             setOutput('summary-details', details);
         }
     } catch (error) {
+        console.trace();
         setFailed(error.message);
     }
 }
