@@ -3803,6 +3803,25 @@ exports.issueCommand = issueCommand;
 
 /***/ }),
 
+/***/ 104:
+/***/ (function(module) {
+
+"use strict";
+
+
+/**
+ * Determines whether the payload is an error thrown by Axios
+ *
+ * @param {*} payload The value to test
+ * @returns {boolean} True if the payload is an error thrown by Axios, otherwise false
+ */
+module.exports = function isAxiosError(payload) {
+  return (typeof payload === 'object') && (payload.isAxiosError === true);
+};
+
+
+/***/ }),
+
 /***/ 118:
 /***/ (function(module, __unusedexports, __webpack_require__) {
 
@@ -3988,7 +4007,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 "use strict";
 
 
-var Cancel = __webpack_require__(972);
+var Cancel = __webpack_require__(826);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -4546,19 +4565,12 @@ module.exports = function xhrAdapter(config) {
       delete requestHeaders['Content-Type']; // Let the browser set it
     }
 
-    if (
-      (utils.isBlob(requestData) || utils.isFile(requestData)) &&
-      requestData.type
-    ) {
-      delete requestHeaders['Content-Type']; // Let the browser set it
-    }
-
     var request = new XMLHttpRequest();
 
     // HTTP basic authentication
     if (config.auth) {
       var username = config.auth.username || '';
-      var password = unescape(encodeURIComponent(config.auth.password)) || '';
+      var password = config.auth.password ? unescape(encodeURIComponent(config.auth.password)) : '';
       requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
     }
 
@@ -6112,7 +6124,7 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(972);
+axios.Cancel = __webpack_require__(826);
 axios.CancelToken = __webpack_require__(137);
 axios.isCancel = __webpack_require__(732);
 
@@ -6121,6 +6133,9 @@ axios.all = function all(promises) {
   return Promise.all(promises);
 };
 axios.spread = __webpack_require__(879);
+
+// Expose isAxiosError
+axios.isAxiosError = __webpack_require__(104);
 
 module.exports = axios;
 
@@ -6140,7 +6155,7 @@ module.exports = require("assert");
 /***/ 361:
 /***/ (function(module) {
 
-module.exports = {"_args":[["axios@0.20.0","C:\\Users\\dapine\\source\\repos\\resource-translator"]],"_from":"axios@0.20.0","_id":"axios@0.20.0","_inBundle":false,"_integrity":"sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.20.0","name":"axios","escapedName":"axios","rawSpec":"0.20.0","saveSpec":null,"fetchSpec":"0.20.0"},"_requiredBy":["/","/@types/axios"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.20.0.tgz","_spec":"0.20.0","_where":"C:\\Users\\dapine\\source\\repos\\resource-translator","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.10.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"bundlesize":"^0.17.0","coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.0.2","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^20.1.0","grunt-karma":"^2.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^1.0.18","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^1.3.0","karma-chrome-launcher":"^2.2.0","karma-coverage":"^1.1.1","karma-firefox-launcher":"^1.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-opera-launcher":"^1.0.0","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^1.2.0","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.7","karma-webpack":"^1.7.0","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^5.2.0","sinon":"^4.5.0","typescript":"^2.8.1","url-search-params":"^0.10.0","webpack":"^1.13.1","webpack-dev-server":"^1.14.1"},"homepage":"https://github.com/axios/axios","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test && bundlesize","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.20.0"};
+module.exports = {"_args":[["axios@0.21.1","D:\\github\\resource-translator"]],"_from":"axios@0.21.1","_id":"axios@0.21.1","_inBundle":false,"_integrity":"sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.1","name":"axios","escapedName":"axios","rawSpec":"0.21.1","saveSpec":null,"fetchSpec":"0.21.1"},"_requiredBy":["/","/@types/axios"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.1.tgz","_spec":"0.21.1","_where":"D:\\github\\resource-translator","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.10.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"bundlesize":"^0.17.0","coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.0.2","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^20.1.0","grunt-karma":"^2.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^1.0.18","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^1.3.0","karma-chrome-launcher":"^2.2.0","karma-coverage":"^1.1.1","karma-firefox-launcher":"^1.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-opera-launcher":"^1.0.0","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^1.2.0","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.7","karma-webpack":"^1.7.0","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^5.2.0","sinon":"^4.5.0","typescript":"^2.8.1","url-search-params":"^0.10.0","webpack":"^1.13.1","webpack-dev-server":"^1.14.1"},"homepage":"https://github.com/axios/axios","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test && bundlesize","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.1"};
 
 /***/ }),
 
@@ -6257,7 +6272,7 @@ exports.getQuestionableArray = (inputName) => {
 Object.defineProperty(exports, "__esModule", { value: true });
 const assert = __webpack_require__(357);
 const path = __webpack_require__(622);
-const pathHelper = __webpack_require__(591);
+const pathHelper = __webpack_require__(972);
 const IS_WINDOWS = process.platform === 'win32';
 /**
  * Helper class for parsing paths into segments
@@ -9504,6 +9519,42 @@ module.exports = resolveCommand;
 
 /***/ }),
 
+/***/ 494:
+/***/ (function(module, __unusedexports, __webpack_require__) {
+
+var rng = __webpack_require__(139);
+var bytesToUuid = __webpack_require__(722);
+
+function v4(options, buf, offset) {
+  var i = buf && offset || 0;
+
+  if (typeof(options) == 'string') {
+    buf = options === 'binary' ? new Array(16) : null;
+    options = null;
+  }
+  options = options || {};
+
+  var rnds = options.random || (options.rng || rng)();
+
+  // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
+  rnds[6] = (rnds[6] & 0x0f) | 0x40;
+  rnds[8] = (rnds[8] & 0x3f) | 0x80;
+
+  // Copy bytes to buffer, if provided
+  if (buf) {
+    for (var ii = 0; ii < 16; ++ii) {
+      buf[i + ii] = rnds[ii];
+    }
+  }
+
+  return buf || bytesToUuid(rnds);
+}
+
+module.exports = v4;
+
+
+/***/ }),
+
 /***/ 503:
 /***/ (function(__unusedmodule, exports, __webpack_require__) {
 
@@ -11061,7 +11112,7 @@ function wrap(protocols) {
     var wrappedProtocol = exports[scheme] = Object.create(nativeProtocol);
 
     // Executes a request, following redirects
-    wrappedProtocol.request = function (input, options, callback) {
+    function request(input, options, callback) {
       // Parse parameters
       if (typeof input === "string") {
         var urlStr = input;
@@ -11096,14 +11147,20 @@ function wrap(protocols) {
       assert.equal(options.protocol, protocol, "protocol mismatch");
       debug("options", options);
       return new RedirectableRequest(options, callback);
-    };
+    }
 
     // Executes a GET request, following redirects
-    wrappedProtocol.get = function (input, options, callback) {
-      var request = wrappedProtocol.request(input, options, callback);
-      request.end();
-      return request;
-    };
+    function get(input, options, callback) {
+      var wrappedRequest = wrappedProtocol.request(input, options, callback);
+      wrappedRequest.end();
+      return wrappedRequest;
+    }
+
+    // Expose the properties on the wrapped protocol
+    Object.defineProperties(wrappedProtocol, {
+      request: { value: request, configurable: true, enumerable: true, writable: true },
+      get: { value: get, configurable: true, enumerable: true, writable: true },
+    });
   });
   return exports;
 }
@@ -11172,10 +11229,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.translate = exports.getAvailableTranslations = void 0;
 const core_1 = __webpack_require__(470);
-const uuid_1 = __webpack_require__(898);
 const axios_1 = __importDefault(__webpack_require__(53));
-const utils_1 = __webpack_require__(834);
+const uuid_1 = __webpack_require__(898);
 const api_result_set_mapper_1 = __webpack_require__(513);
+const utils_1 = __webpack_require__(834);
 /**
 * https://docs.microsoft.com/azure/cognitive-services/translator/language-support#translate
 */
@@ -11187,6 +11244,21 @@ exports.getAvailableTranslations = async () => {
 };
 exports.translate = async (translatorResource, toLocales, translatableText) => {
     try {
+        // Current Azure Translator API rate limit
+        // https://docs.microsoft.com/azure/cognitive-services/translator/request-limits#character-and-array-limits-per-request
+        const apiRateLimit = 10000;
+        const numberOfElementsLimit = 100;
+        const validationErrors = [];
+        translatableText.forEach((value, key) => {
+            const valueStringifiedLength = JSON.stringify(value).length;
+            if (valueStringifiedLength > apiRateLimit) {
+                validationErrors.push(`Text for key '${key}' is too long (${valueStringifiedLength}). Must be ${apiRateLimit} at most.`);
+            }
+        });
+        if (validationErrors.length) {
+            core_1.setFailed(validationErrors.join('\r\n'));
+            return undefined;
+        }
         const data = [...translatableText.values()].map(value => {
             return { text: value };
         });
@@ -11207,25 +11279,29 @@ exports.translate = async (translatorResource, toLocales, translatableText) => {
         const baseUrl = translatorResource.endpoint.endsWith('/')
             ? translatorResource.endpoint
             : `${translatorResource.endpoint}/`;
-        // Current Azure Translator API rate limit
-        // https://docs.microsoft.com/azure/cognitive-services/translator/request-limits#character-and-array-limits-per-request
-        const apiRateLimit = 10000;
-        const localeCount = toLocales.length;
         const characters = JSON.stringify(data).length;
-        const batchCount = Math.ceil(characters * localeCount / apiRateLimit);
-        const batchedLocales = batchCount > 1
-            ? utils_1.chunk(toLocales, batchCount)
-            : [toLocales];
+        const batchedData = characters > apiRateLimit || data.length > numberOfElementsLimit
+            ? utils_1.batch(data, numberOfElementsLimit, apiRateLimit)
+            : [data];
         let results = [];
-        for (let i = 0; i < batchedLocales.length; i++) {
-            const locales = batchedLocales[i];
-            const to = locales.map(to => `to=${to}`).join('&');
-            core_1.debug(`Batch ${i + 1} locales: ${to}`);
-            const url = `${baseUrl}translate?api-version=3.0&${to}`;
-            const response = await axios_1.default.post(url, data, options);
-            const responseData = response.data;
-            core_1.debug(`Batch ${i + 1} response: ${JSON.stringify(responseData)}`);
-            results = [...results, ...responseData];
+        for (let i = 0; i < batchedData.length; i++) {
+            const batch = batchedData[i];
+            const batchCharacters = JSON.stringify(batch).length;
+            const localeCount = toLocales.length;
+            const localesBatchSize = Math.floor(apiRateLimit / batchCharacters);
+            const batchedLocales = localesBatchSize < localeCount
+                ? utils_1.chunk(toLocales, localesBatchSize)
+                : [toLocales];
+            for (let j = 0; j < batchedLocales.length; j++) {
+                const locales = batchedLocales[j];
+                const to = locales.map(to => `to=${to}`).join('&');
+                core_1.debug(`Data batch ${i + 1}, Locales batch ${j + 1}, locales: ${to}`);
+                const url = `${baseUrl}translate?api-version=3.0&${to}`;
+                const response = await axios_1.default.post(url, batch, options);
+                const responseData = response.data;
+                core_1.debug(`Data batch ${i + 1}, Locales batch ${j + 1}, response: ${JSON.stringify(responseData)}`);
+                results = [...results, ...responseData];
+            }
         }
         return api_result_set_mapper_1.toResultSet(results, toLocales, translatableText);
     }
@@ -11870,195 +11946,13 @@ module.exports = function isAbsoluteURL(url) {
 
 /***/ }),
 
-/***/ 591:
-/***/ (function(__unusedmodule, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const assert = __webpack_require__(357);
-const path = __webpack_require__(622);
-const IS_WINDOWS = process.platform === 'win32';
-/**
- * Similar to path.dirname except normalizes the path separators and slightly better handling for Windows UNC paths.
- *
- * For example, on Linux/macOS:
- * - `/               => /`
- * - `/hello          => /`
- *
- * For example, on Windows:
- * - `C:\             => C:\`
- * - `C:\hello        => C:\`
- * - `C:              => C:`
- * - `C:hello         => C:`
- * - `\               => \`
- * - `\hello          => \`
- * - `\\hello         => \\hello`
- * - `\\hello\world   => \\hello\world`
- */
-function dirname(p) {
-    // Normalize slashes and trim unnecessary trailing slash
-    p = safeTrimTrailingSeparator(p);
-    // Windows UNC root, e.g. \\hello or \\hello\world
-    if (IS_WINDOWS && /^\\\\[^\\]+(\\[^\\]+)?$/.test(p)) {
-        return p;
-    }
-    // Get dirname
-    let result = path.dirname(p);
-    // Trim trailing slash for Windows UNC root, e.g. \\hello\world\
-    if (IS_WINDOWS && /^\\\\[^\\]+\\[^\\]+\\$/.test(result)) {
-        result = safeTrimTrailingSeparator(result);
-    }
-    return result;
-}
-exports.dirname = dirname;
-/**
- * Roots the path if not already rooted. On Windows, relative roots like `\`
- * or `C:` are expanded based on the current working directory.
- */
-function ensureAbsoluteRoot(root, itemPath) {
-    assert(root, `ensureAbsoluteRoot parameter 'root' must not be empty`);
-    assert(itemPath, `ensureAbsoluteRoot parameter 'itemPath' must not be empty`);
-    // Already rooted
-    if (hasAbsoluteRoot(itemPath)) {
-        return itemPath;
-    }
-    // Windows
-    if (IS_WINDOWS) {
-        // Check for itemPath like C: or C:foo
-        if (itemPath.match(/^[A-Z]:[^\\/]|^[A-Z]:$/i)) {
-            let cwd = process.cwd();
-            assert(cwd.match(/^[A-Z]:\\/i), `Expected current directory to start with an absolute drive root. Actual '${cwd}'`);
-            // Drive letter matches cwd? Expand to cwd
-            if (itemPath[0].toUpperCase() === cwd[0].toUpperCase()) {
-                // Drive only, e.g. C:
-                if (itemPath.length === 2) {
-                    // Preserve specified drive letter case (upper or lower)
-                    return `${itemPath[0]}:\\${cwd.substr(3)}`;
-                }
-                // Drive + path, e.g. C:foo
-                else {
-                    if (!cwd.endsWith('\\')) {
-                        cwd += '\\';
-                    }
-                    // Preserve specified drive letter case (upper or lower)
-                    return `${itemPath[0]}:\\${cwd.substr(3)}${itemPath.substr(2)}`;
-                }
-            }
-            // Different drive
-            else {
-                return `${itemPath[0]}:\\${itemPath.substr(2)}`;
-            }
-        }
-        // Check for itemPath like \ or \foo
-        else if (normalizeSeparators(itemPath).match(/^\\$|^\\[^\\]/)) {
-            const cwd = process.cwd();
-            assert(cwd.match(/^[A-Z]:\\/i), `Expected current directory to start with an absolute drive root. Actual '${cwd}'`);
-            return `${cwd[0]}:\\${itemPath.substr(1)}`;
-        }
-    }
-    assert(hasAbsoluteRoot(root), `ensureAbsoluteRoot parameter 'root' must have an absolute root`);
-    // Otherwise ensure root ends with a separator
-    if (root.endsWith('/') || (IS_WINDOWS && root.endsWith('\\'))) {
-        // Intentionally empty
-    }
-    else {
-        // Append separator
-        root += path.sep;
-    }
-    return root + itemPath;
-}
-exports.ensureAbsoluteRoot = ensureAbsoluteRoot;
-/**
- * On Linux/macOS, true if path starts with `/`. On Windows, true for paths like:
- * `\\hello\share` and `C:\hello` (and using alternate separator).
- */
-function hasAbsoluteRoot(itemPath) {
-    assert(itemPath, `hasAbsoluteRoot parameter 'itemPath' must not be empty`);
-    // Normalize separators
-    itemPath = normalizeSeparators(itemPath);
-    // Windows
-    if (IS_WINDOWS) {
-        // E.g. \\hello\share or C:\hello
-        return itemPath.startsWith('\\\\') || /^[A-Z]:\\/i.test(itemPath);
-    }
-    // E.g. /hello
-    return itemPath.startsWith('/');
-}
-exports.hasAbsoluteRoot = hasAbsoluteRoot;
-/**
- * On Linux/macOS, true if path starts with `/`. On Windows, true for paths like:
- * `\`, `\hello`, `\\hello\share`, `C:`, and `C:\hello` (and using alternate separator).
- */
-function hasRoot(itemPath) {
-    assert(itemPath, `isRooted parameter 'itemPath' must not be empty`);
-    // Normalize separators
-    itemPath = normalizeSeparators(itemPath);
-    // Windows
-    if (IS_WINDOWS) {
-        // E.g. \ or \hello or \\hello
-        // E.g. C: or C:\hello
-        return itemPath.startsWith('\\') || /^[A-Z]:/i.test(itemPath);
-    }
-    // E.g. /hello
-    return itemPath.startsWith('/');
-}
-exports.hasRoot = hasRoot;
-/**
- * Removes redundant slashes and converts `/` to `\` on Windows
- */
-function normalizeSeparators(p) {
-    p = p || '';
-    // Windows
-    if (IS_WINDOWS) {
-        // Convert slashes on Windows
-        p = p.replace(/\//g, '\\');
-        // Remove redundant slashes
-        const isUnc = /^\\\\+[^\\]/.test(p); // e.g. \\hello
-        return (isUnc ? '\\' : '') + p.replace(/\\\\+/g, '\\'); // preserve leading \\ for UNC
-    }
-    // Remove redundant slashes
-    return p.replace(/\/\/+/g, '/');
-}
-exports.normalizeSeparators = normalizeSeparators;
-/**
- * Normalizes the path separators and trims the trailing separator (when safe).
- * For example, `/foo/ => /foo` but `/ => /`
- */
-function safeTrimTrailingSeparator(p) {
-    // Short-circuit if empty
-    if (!p) {
-        return '';
-    }
-    // Normalize separators
-    p = normalizeSeparators(p);
-    // No trailing slash
-    if (!p.endsWith(path.sep)) {
-        return p;
-    }
-    // Check '/' on Linux/macOS and '\' on Windows
-    if (p === path.sep) {
-        return p;
-    }
-    // On Windows check if drive root. E.g. C:\
-    if (IS_WINDOWS && /^[A-Z]:\\$/i.test(p)) {
-        return p;
-    }
-    // Otherwise trim trailing slash
-    return p.substr(0, p.length - 1);
-}
-exports.safeTrimTrailingSeparator = safeTrimTrailingSeparator;
-//# sourceMappingURL=internal-path-helper.js.map
-
-/***/ }),
-
 /***/ 597:
 /***/ (function(__unusedmodule, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const pathHelper = __webpack_require__(591);
+const pathHelper = __webpack_require__(972);
 const internal_match_kind_1 = __webpack_require__(327);
 const IS_WINDOWS = process.platform === 'win32';
 /**
@@ -14528,6 +14422,31 @@ var enhanceError = __webpack_require__(369);
 
 var isHttps = /https:?/;
 
+/**
+ *
+ * @param {http.ClientRequestArgs} options
+ * @param {AxiosProxyConfig} proxy
+ * @param {string} location
+ */
+function setProxy(options, proxy, location) {
+  options.hostname = proxy.host;
+  options.host = proxy.host;
+  options.port = proxy.port;
+  options.path = location;
+
+  // Basic proxy authorization
+  if (proxy.auth) {
+    var base64 = Buffer.from(proxy.auth.username + ':' + proxy.auth.password, 'utf8').toString('base64');
+    options.headers['Proxy-Authorization'] = 'Basic ' + base64;
+  }
+
+  // If a proxy is used, any redirects must also pass through the proxy
+  options.beforeRedirect = function beforeRedirect(redirection) {
+    redirection.headers.host = redirection.host;
+    setProxy(redirection, proxy, redirection.href);
+  };
+}
+
 /*eslint consistent-return:0*/
 module.exports = function httpAdapter(config) {
   return new Promise(function dispatchHttpRequest(resolvePromise, rejectPromise) {
@@ -14638,11 +14557,11 @@ module.exports = function httpAdapter(config) {
           });
         }
 
-
         if (shouldProxy) {
           proxy = {
             host: parsedProxyUrl.hostname,
-            port: parsedProxyUrl.port
+            port: parsedProxyUrl.port,
+            protocol: parsedProxyUrl.protocol
           };
 
           if (parsedProxyUrl.auth) {
@@ -14657,17 +14576,8 @@ module.exports = function httpAdapter(config) {
     }
 
     if (proxy) {
-      options.hostname = proxy.host;
-      options.host = proxy.host;
       options.headers.host = parsed.hostname + (parsed.port ? ':' + parsed.port : '');
-      options.port = proxy.port;
-      options.path = protocol + '//' + parsed.hostname + (parsed.port ? ':' + parsed.port : '') + options.path;
-
-      // Basic proxy authorization
-      if (proxy.auth) {
-        var base64 = Buffer.from(proxy.auth.username + ':' + proxy.auth.password, 'utf8').toString('base64');
-        options.headers['Proxy-Authorization'] = 'Basic ' + base64;
-      }
+      setProxy(options, proxy, protocol + '//' + parsed.hostname + (parsed.port ? ':' + parsed.port : '') + options.path);
     }
 
     var transport;
@@ -19119,7 +19029,8 @@ utils.forEach(['delete', 'get', 'head', 'options'], function forEachMethodNoData
   Axios.prototype[method] = function(url, config) {
     return this.request(mergeConfig(config || {}, {
       method: method,
-      url: url
+      url: url,
+      data: (config || {}).data
     }));
   };
 });
@@ -20064,37 +19975,28 @@ module.exports = function mergeConfig(config1, config2) {
 /***/ }),
 
 /***/ 826:
-/***/ (function(module, __unusedexports, __webpack_require__) {
+/***/ (function(module) {
 
-var rng = __webpack_require__(139);
-var bytesToUuid = __webpack_require__(722);
+"use strict";
 
-function v4(options, buf, offset) {
-  var i = buf && offset || 0;
 
-  if (typeof(options) == 'string') {
-    buf = options === 'binary' ? new Array(16) : null;
-    options = null;
-  }
-  options = options || {};
-
-  var rnds = options.random || (options.rng || rng)();
-
-  // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
-  rnds[6] = (rnds[6] & 0x0f) | 0x40;
-  rnds[8] = (rnds[8] & 0x3f) | 0x80;
-
-  // Copy bytes to buffer, if provided
-  if (buf) {
-    for (var ii = 0; ii < 16; ++ii) {
-      buf[i + ii] = rnds[ii];
-    }
-  }
-
-  return buf || bytesToUuid(rnds);
+/**
+ * A `Cancel` is an object that is thrown when an operation is canceled.
+ *
+ * @class
+ * @param {string=} message The message.
+ */
+function Cancel(message) {
+  this.message = message;
 }
 
-module.exports = v4;
+Cancel.prototype.toString = function toString() {
+  return 'Cancel' + (this.message ? ': ' + this.message : '');
+};
+
+Cancel.prototype.__CANCEL__ = true;
+
+module.exports = Cancel;
 
 
 /***/ }),
@@ -20105,7 +20007,7 @@ module.exports = v4;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findNext = exports.delay = exports.zip = exports.chunk = exports.findValueByKey = exports.stringifyMap = exports.naturalLanguageCompare = exports.getLocaleName = exports.groupBy = void 0;
+exports.batch = exports.findNext = exports.delay = exports.zip = exports.chunk = exports.findValueByKey = exports.stringifyMap = exports.naturalLanguageCompare = exports.getLocaleName = exports.groupBy = void 0;
 const path_1 = __webpack_require__(622);
 exports.groupBy = (array, key) => array.reduce((result, obj) => {
     const value = obj[key];
@@ -20190,6 +20092,27 @@ exports.findNext = (items, startIndex, firstPredicate, secondPredicate, actionOf
     }
     return -1;
 };
+function batch(array, maxBatchSize, maxStringifiedSize) {
+    const batches = [];
+    let currentStringifiedSize = 0;
+    let currentBatch = [];
+    array.forEach((value, index) => {
+        currentBatch.push(value);
+        currentStringifiedSize += JSON.stringify(value).length;
+        const isLastElement = index === array.length - 1;
+        const batchIsFull = currentBatch.length === maxBatchSize ||
+            isLastElement ||
+            currentStringifiedSize + JSON.stringify(array[index + 1]).length >= maxStringifiedSize;
+        if (!batchIsFull) {
+            return;
+        }
+        batches.push(currentBatch);
+        currentBatch = [];
+        currentStringifiedSize = 0;
+    });
+    return batches;
+}
+exports.batch = batch;
 
 
 /***/ }),
@@ -22288,7 +22211,7 @@ var isArray = Array.isArray || function (xs) {
 /***/ (function(module, __unusedexports, __webpack_require__) {
 
 var v1 = __webpack_require__(86);
-var v4 = __webpack_require__(826);
+var v4 = __webpack_require__(494);
 
 var uuid = v4;
 uuid.v1 = v1;
@@ -22358,7 +22281,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const assert = __webpack_require__(357);
 const os = __webpack_require__(87);
 const path = __webpack_require__(622);
-const pathHelper = __webpack_require__(591);
+const pathHelper = __webpack_require__(972);
 const minimatch_1 = __webpack_require__(93);
 const internal_match_kind_1 = __webpack_require__(327);
 const internal_path_1 = __webpack_require__(383);
@@ -23310,29 +23233,184 @@ function onceStrict (fn) {
 /***/ }),
 
 /***/ 972:
-/***/ (function(module) {
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
 
 "use strict";
 
-
+Object.defineProperty(exports, "__esModule", { value: true });
+const assert = __webpack_require__(357);
+const path = __webpack_require__(622);
+const IS_WINDOWS = process.platform === 'win32';
 /**
- * A `Cancel` is an object that is thrown when an operation is canceled.
+ * Similar to path.dirname except normalizes the path separators and slightly better handling for Windows UNC paths.
  *
- * @class
- * @param {string=} message The message.
+ * For example, on Linux/macOS:
+ * - `/               => /`
+ * - `/hello          => /`
+ *
+ * For example, on Windows:
+ * - `C:\             => C:\`
+ * - `C:\hello        => C:\`
+ * - `C:              => C:`
+ * - `C:hello         => C:`
+ * - `\               => \`
+ * - `\hello          => \`
+ * - `\\hello         => \\hello`
+ * - `\\hello\world   => \\hello\world`
  */
-function Cancel(message) {
-  this.message = message;
+function dirname(p) {
+    // Normalize slashes and trim unnecessary trailing slash
+    p = safeTrimTrailingSeparator(p);
+    // Windows UNC root, e.g. \\hello or \\hello\world
+    if (IS_WINDOWS && /^\\\\[^\\]+(\\[^\\]+)?$/.test(p)) {
+        return p;
+    }
+    // Get dirname
+    let result = path.dirname(p);
+    // Trim trailing slash for Windows UNC root, e.g. \\hello\world\
+    if (IS_WINDOWS && /^\\\\[^\\]+\\[^\\]+\\$/.test(result)) {
+        result = safeTrimTrailingSeparator(result);
+    }
+    return result;
 }
-
-Cancel.prototype.toString = function toString() {
-  return 'Cancel' + (this.message ? ': ' + this.message : '');
-};
-
-Cancel.prototype.__CANCEL__ = true;
-
-module.exports = Cancel;
-
+exports.dirname = dirname;
+/**
+ * Roots the path if not already rooted. On Windows, relative roots like `\`
+ * or `C:` are expanded based on the current working directory.
+ */
+function ensureAbsoluteRoot(root, itemPath) {
+    assert(root, `ensureAbsoluteRoot parameter 'root' must not be empty`);
+    assert(itemPath, `ensureAbsoluteRoot parameter 'itemPath' must not be empty`);
+    // Already rooted
+    if (hasAbsoluteRoot(itemPath)) {
+        return itemPath;
+    }
+    // Windows
+    if (IS_WINDOWS) {
+        // Check for itemPath like C: or C:foo
+        if (itemPath.match(/^[A-Z]:[^\\/]|^[A-Z]:$/i)) {
+            let cwd = process.cwd();
+            assert(cwd.match(/^[A-Z]:\\/i), `Expected current directory to start with an absolute drive root. Actual '${cwd}'`);
+            // Drive letter matches cwd? Expand to cwd
+            if (itemPath[0].toUpperCase() === cwd[0].toUpperCase()) {
+                // Drive only, e.g. C:
+                if (itemPath.length === 2) {
+                    // Preserve specified drive letter case (upper or lower)
+                    return `${itemPath[0]}:\\${cwd.substr(3)}`;
+                }
+                // Drive + path, e.g. C:foo
+                else {
+                    if (!cwd.endsWith('\\')) {
+                        cwd += '\\';
+                    }
+                    // Preserve specified drive letter case (upper or lower)
+                    return `${itemPath[0]}:\\${cwd.substr(3)}${itemPath.substr(2)}`;
+                }
+            }
+            // Different drive
+            else {
+                return `${itemPath[0]}:\\${itemPath.substr(2)}`;
+            }
+        }
+        // Check for itemPath like \ or \foo
+        else if (normalizeSeparators(itemPath).match(/^\\$|^\\[^\\]/)) {
+            const cwd = process.cwd();
+            assert(cwd.match(/^[A-Z]:\\/i), `Expected current directory to start with an absolute drive root. Actual '${cwd}'`);
+            return `${cwd[0]}:\\${itemPath.substr(1)}`;
+        }
+    }
+    assert(hasAbsoluteRoot(root), `ensureAbsoluteRoot parameter 'root' must have an absolute root`);
+    // Otherwise ensure root ends with a separator
+    if (root.endsWith('/') || (IS_WINDOWS && root.endsWith('\\'))) {
+        // Intentionally empty
+    }
+    else {
+        // Append separator
+        root += path.sep;
+    }
+    return root + itemPath;
+}
+exports.ensureAbsoluteRoot = ensureAbsoluteRoot;
+/**
+ * On Linux/macOS, true if path starts with `/`. On Windows, true for paths like:
+ * `\\hello\share` and `C:\hello` (and using alternate separator).
+ */
+function hasAbsoluteRoot(itemPath) {
+    assert(itemPath, `hasAbsoluteRoot parameter 'itemPath' must not be empty`);
+    // Normalize separators
+    itemPath = normalizeSeparators(itemPath);
+    // Windows
+    if (IS_WINDOWS) {
+        // E.g. \\hello\share or C:\hello
+        return itemPath.startsWith('\\\\') || /^[A-Z]:\\/i.test(itemPath);
+    }
+    // E.g. /hello
+    return itemPath.startsWith('/');
+}
+exports.hasAbsoluteRoot = hasAbsoluteRoot;
+/**
+ * On Linux/macOS, true if path starts with `/`. On Windows, true for paths like:
+ * `\`, `\hello`, `\\hello\share`, `C:`, and `C:\hello` (and using alternate separator).
+ */
+function hasRoot(itemPath) {
+    assert(itemPath, `isRooted parameter 'itemPath' must not be empty`);
+    // Normalize separators
+    itemPath = normalizeSeparators(itemPath);
+    // Windows
+    if (IS_WINDOWS) {
+        // E.g. \ or \hello or \\hello
+        // E.g. C: or C:\hello
+        return itemPath.startsWith('\\') || /^[A-Z]:/i.test(itemPath);
+    }
+    // E.g. /hello
+    return itemPath.startsWith('/');
+}
+exports.hasRoot = hasRoot;
+/**
+ * Removes redundant slashes and converts `/` to `\` on Windows
+ */
+function normalizeSeparators(p) {
+    p = p || '';
+    // Windows
+    if (IS_WINDOWS) {
+        // Convert slashes on Windows
+        p = p.replace(/\//g, '\\');
+        // Remove redundant slashes
+        const isUnc = /^\\\\+[^\\]/.test(p); // e.g. \\hello
+        return (isUnc ? '\\' : '') + p.replace(/\\\\+/g, '\\'); // preserve leading \\ for UNC
+    }
+    // Remove redundant slashes
+    return p.replace(/\/\/+/g, '/');
+}
+exports.normalizeSeparators = normalizeSeparators;
+/**
+ * Normalizes the path separators and trims the trailing separator (when safe).
+ * For example, `/foo/ => /foo` but `/ => /`
+ */
+function safeTrimTrailingSeparator(p) {
+    // Short-circuit if empty
+    if (!p) {
+        return '';
+    }
+    // Normalize separators
+    p = normalizeSeparators(p);
+    // No trailing slash
+    if (!p.endsWith(path.sep)) {
+        return p;
+    }
+    // Check '/' on Linux/macOS and '\' on Windows
+    if (p === path.sep) {
+        return p;
+    }
+    // On Windows check if drive root. E.g. C:\
+    if (IS_WINDOWS && /^[A-Z]:\\$/i.test(p)) {
+        return p;
+    }
+    // Otherwise trim trailing slash
+    return p.substr(0, p.length - 1);
+}
+exports.safeTrimTrailingSeparator = safeTrimTrailingSeparator;
+//# sourceMappingURL=internal-path-helper.js.map
 
 /***/ }),
 

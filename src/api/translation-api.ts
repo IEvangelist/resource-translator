@@ -1,28 +1,46 @@
 import { debug, setFailed } from '@actions/core';
+import Axios, { AxiosRequestConfig } from 'axios';
+import { v4 } from 'uuid';
 import { AvailableTranslations } from '../abstractions/available-translations';
 import { TranslationResult, TranslationResults, TranslationResultSet } from '../abstractions/translation-results';
-import { v4 } from 'uuid';
-import Axios, { AxiosRequestConfig } from 'axios';
 import { TranslatorResource } from '../abstractions/translator-resource';
-import { chunk } from '../helpers/utils';
 import { toResultSet } from '../helpers/api-result-set-mapper';
+import { batch, chunk } from '../helpers/utils';
 
 /**
 * https://docs.microsoft.com/azure/cognitive-services/translator/language-support#translate
-*/ 
+*/
 export const getAvailableTranslations = async (): Promise<AvailableTranslations> => {
     const apiUrl = 'https://api.cognitive.microsofttranslator.com/languages';
     const query = 'api-version=3.0&scope=translation';
     const response = await Axios.get<AvailableTranslations>(`${apiUrl}?${query}`);
 
     return response.data;
-}
+};
 
 export const translate = async (
     translatorResource: TranslatorResource,
     toLocales: string[],
-    translatableText: Map<string, string>): Promise<TranslationResultSet | undefined> => {
+    translatableText: Map<string, string>,
+    filePath: string): Promise<TranslationResultSet | undefined> => {
     try {
+        // Current Azure Translator API rate limit
+        // https://docs.microsoft.com/azure/cognitive-services/translator/request-limits#character-and-array-limits-per-request
+        const apiRateLimit = 10000;
+        const numberOfElementsLimit = 100;
+
+        const validationErrors: string[] = [];
+        translatableText.forEach((value, key) => {
+            const valueStringifiedLength = JSON.stringify(value).length;
+            if (valueStringifiedLength > apiRateLimit) {
+                validationErrors.push(`Text for key '${key}' in file '${filePath}' is too long (${valueStringifiedLength}). Must be ${apiRateLimit} at most.`);
+            }
+        });
+        if (validationErrors.length) {
+            setFailed(validationErrors.join('\r\n'));
+            return undefined;
+        }
+
         const data = [...translatableText.values()].map(value => {
             return { text: value };
         });
@@ -45,28 +63,33 @@ export const translate = async (
             ? translatorResource.endpoint
             : `${translatorResource.endpoint}/`;
 
-        // Current Azure Translator API rate limit
-        // https://docs.microsoft.com/azure/cognitive-services/translator/request-limits#character-and-array-limits-per-request
-        const apiRateLimit = 10000;
-        const localeCount = toLocales.length;
         const characters = JSON.stringify(data).length;
-        const batchCount = Math.ceil(characters * localeCount / apiRateLimit);
-        const batchedLocales = batchCount > 1
-            ? chunk(toLocales, batchCount)
-            : [toLocales];
+        const batchedData = characters > apiRateLimit || data.length > numberOfElementsLimit
+            ? batch(data, numberOfElementsLimit, apiRateLimit)
+            : [data];
 
         let results: TranslationResults = [];
-        for (let i = 0; i < batchedLocales.length; i++) {
-            const locales = batchedLocales[i];
-            const to = locales.map(to => `to=${to}`).join('&');
-            debug(`Batch ${i + 1} locales: ${to}`);
+        for (let i = 0; i < batchedData.length; i++) {
+            const batch = batchedData[i];
+            const batchCharacters = JSON.stringify(batch).length;
+            const localeCount = toLocales.length;
+            const localesBatchSize = Math.floor(apiRateLimit / batchCharacters);
+            const batchedLocales = localesBatchSize < localeCount
+                ? chunk(toLocales, localesBatchSize)
+                : [toLocales];
 
-            const url = `${baseUrl}translate?api-version=3.0&${to}`;
-            const response = await Axios.post<TranslationResult[]>(url, data, options);
-            const responseData = response.data;
-            debug(`Batch ${i + 1} response: ${JSON.stringify(responseData)}`);
+            for (let j = 0; j < batchedLocales.length; j++) {
+                const locales = batchedLocales[j];
+                const to = locales.map(to => `to=${to}`).join('&');
+                debug(`Data batch ${i + 1}, Locales batch ${j + 1}, locales: ${to}`);
 
-            results = [...results, ...responseData];
+                const url = `${baseUrl}translate?api-version=3.0&${to}`;
+                const response = await Axios.post<TranslationResult[]>(url, batch, options);
+                const responseData = response.data;
+                debug(`Data batch ${i + 1}, Locales batch ${j + 1}, response: ${JSON.stringify(responseData)}`);
+
+                results = [...results, ...responseData];
+            }
         }
 
         return toResultSet(results, toLocales, translatableText);
@@ -77,19 +100,18 @@ export const translate = async (
             && ex.response.data
             && ex.response.data as TranslationErrorResponse;
         if (e) {
-            setFailed(`error: { code: ${e.error.code}, message: '${e.error.message}' }}`);
+            setFailed(`file: ${filePath}, error: { code: ${e.error.code}, message: '${e.error.message}' }}`);
         } else {
-            
-            setFailed(`Failed to translate input: ${ex}`);
+            setFailed(`Failed to translate input: file '${filePath}', ${ex}`);
         }
 
         return undefined;
     }
-}
+};
 
 interface TranslationErrorResponse {
     error: {
         code: number,
         message: string;
-    }
+    };
 }
