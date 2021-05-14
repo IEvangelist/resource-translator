@@ -56,8 +56,8 @@ test('API: translate fails to process too long text', async () => {
         filePath);
 
     expect(resultSet).toBeUndefined();
-    const mockAdd = setFailed as jest.MockedFunction<typeof setFailed>;
-    expect(mockAdd).toBeCalledWith(expectedError);
+    const setFailedMock = setFailed as jest.MockedFunction<typeof setFailed>;
+    expect(setFailedMock).toBeCalledWith(expectedError);
 });
 
 test('API: get available translations correctly gets all locales', async () => {
