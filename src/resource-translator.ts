@@ -1,15 +1,15 @@
-import { info, setFailed, setOutput, debug } from '@actions/core';
-import { getAvailableTranslations, translate } from './api/translation-api';
-import { findAllTranslationFiles } from './io/translation-file-finder';
+import { debug, info, setFailed, setOutput } from '@actions/core';
 import { existsSync } from 'fs';
-import { readFile, writeFile } from './io/reader-writer';
-import { summarize } from './helpers/summarizer';
 import { Summary } from './abstractions/summary';
-import { getLocaleName, naturalLanguageCompare, stringifyMap } from './helpers/utils';
+import { TranslationFileKind } from './abstractions/translation-file-kind';
 import { Inputs } from './action/inputs';
+import { getAvailableTranslations, translate } from './api/translation-api';
 import { translationFileParserFactory } from './factories/translation-file-parser-factory';
 import { TranslationFile } from './file-formats/translation-file';
-import { TranslationFileKind } from './abstractions/translation-file-kind';
+import { summarize } from './helpers/summarizer';
+import { getLocaleName, naturalLanguageCompare, stringifyMap } from './helpers/utils';
+import { readFile, writeFile } from './io/reader-writer';
+import { findAllTranslationFiles } from './io/translation-file-finder';
 
 export async function start(inputs: Inputs) {
     try {
@@ -28,7 +28,7 @@ export async function start(inputs: Inputs) {
                         if (locale === sourceLocale) {
                             return false;
                         }
-                        
+
                         if (inputs.toLocales && inputs.toLocales.length) {
                             return inputs.toLocales.some(l => l === locale);
                         }
@@ -71,7 +71,8 @@ export async function start(inputs: Inputs) {
                         const resultSet = await translate(
                             inputs,
                             toLocales,
-                            translatableTextMap.text);
+                            translatableTextMap.text,
+                            filePath);
 
                         debug(`Translation result:\n ${JSON.stringify(resultSet)}`);
 

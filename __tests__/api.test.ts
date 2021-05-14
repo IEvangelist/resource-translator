@@ -29,13 +29,21 @@ jest.useFakeTimers();
 jest.mock('@actions/core');
 
 test('API: translate fails to process too long text', async () => {
+    const longTextLength = 10 * 1000;
     const resourceXml: ResourceFile = {
         root: {
             data: [
-                { $: { name: 'Key' }, value: ['a'.repeat(10 * 1000)] }
+                { $: { name: 'Key1' }, value: ['a'.repeat(longTextLength)] },
+                { $: { name: 'Key2' }, value: ['b'.repeat(longTextLength)] }
             ]
         }
     };
+
+    const filePath = 'file-path';
+    const expectedError = resourceXml.root.data
+        .map(data => `Text for key '${data.$.name}' in file '${filePath}' is too long (${longTextLength + 2}). Must be ${longTextLength} at most.`)
+        .join('\r\n');
+
     const translatableTextMap = parser.toTranslatableTextMap(resourceXml);
     const translatorResource = {
         endpoint: '',
@@ -44,11 +52,12 @@ test('API: translate fails to process too long text', async () => {
     const resultSet = await translate(
         translatorResource,
         [],
-        translatableTextMap.text);
+        translatableTextMap.text,
+        filePath);
 
     expect(resultSet).toBeUndefined();
     const mockAdd = setFailed as jest.MockedFunction<typeof setFailed>;
-    expect(mockAdd).toBeCalledWith(`Text for key 'Key' is too long (10002). Must be 10000 at most.`);
+    expect(mockAdd).toBeCalledWith(expectedError);
 });
 
 test('API: get available translations correctly gets all locales', async () => {
@@ -68,7 +77,8 @@ test.skip('API: read file->translate->apply->write', async () => {
             .filter(locale => locale !== sourceLocale)
             .sort((a, b) => naturalLanguageCompare(a, b));
 
-    const resourceFiles = [resolve(__dirname, './data/UIStrings.en.resx')];
+    const filePath = './data/UIStrings.en.resx';
+    const resourceFiles = [resolve(__dirname, filePath)];
     let summary = new Summary(sourceLocale, toLocales);
 
     for (let index = 0; index < resourceFiles.length; ++index) {
@@ -85,7 +95,8 @@ test.skip('API: read file->translate->apply->write', async () => {
                     region: process.env['AZURE_TRANSLATOR_SUBSCRIPTION_REGION'] || undefined
                 },
                 toLocales,
-                translatableTextMap.text);
+                translatableTextMap.text,
+                filePath);
 
             if (resultSet) {
                 const length = translatableTextMap.text.size;
@@ -134,7 +145,8 @@ test.skip('API: translate correctly performs translation', async () => {
     const resultSet = await translate(
         translatorResource,
         ['fr', 'es'],
-        translatableTextMap.text);
+        translatableTextMap.text,
+        'file-path');
 
     expect(resultSet).toEqual(
         {

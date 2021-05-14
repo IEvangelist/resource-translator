@@ -21,7 +21,8 @@ export const getAvailableTranslations = async (): Promise<AvailableTranslations>
 export const translate = async (
     translatorResource: TranslatorResource,
     toLocales: string[],
-    translatableText: Map<string, string>): Promise<TranslationResultSet | undefined> => {
+    translatableText: Map<string, string>,
+    filePath: string): Promise<TranslationResultSet | undefined> => {
     try {
         // Current Azure Translator API rate limit
         // https://docs.microsoft.com/azure/cognitive-services/translator/request-limits#character-and-array-limits-per-request
@@ -32,7 +33,7 @@ export const translate = async (
         translatableText.forEach((value, key) => {
             const valueStringifiedLength = JSON.stringify(value).length;
             if (valueStringifiedLength > apiRateLimit) {
-                validationErrors.push(`Text for key '${key}' is too long (${valueStringifiedLength}). Must be ${apiRateLimit} at most.`);
+                validationErrors.push(`Text for key '${key}' in file '${filePath}' is too long (${valueStringifiedLength}). Must be ${apiRateLimit} at most.`);
             }
         });
         if (validationErrors.length) {
@@ -99,9 +100,9 @@ export const translate = async (
             && ex.response.data
             && ex.response.data as TranslationErrorResponse;
         if (e) {
-            setFailed(`error: { code: ${e.error.code}, message: '${e.error.message}' }}`);
+            setFailed(`file: ${filePath}, error: { code: ${e.error.code}, message: '${e.error.message}' }}`);
         } else {
-            setFailed(`Failed to translate input: ${ex}`);
+            setFailed(`Failed to translate input: file '${filePath}', ${ex}`);
         }
 
         return undefined;
