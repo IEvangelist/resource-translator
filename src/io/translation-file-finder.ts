@@ -1,7 +1,7 @@
-import { create } from '@actions/glob';
-import { context, getOctokit } from '@actions/github';
-import { isDirectory } from '@actions/io/lib/io-util';
 import { debug } from '@actions/core';
+import { context, getOctokit } from '@actions/github';
+import { create } from '@actions/glob';
+import { isDirectory } from '@actions/io/lib/io-util';
 import { basename, normalize, resolve } from 'path';
 
 export interface TranslationFileMap {
@@ -10,6 +10,7 @@ export interface TranslationFileMap {
     restext?: string[] | undefined;
     resx?: string[] | undefined;
     xliff?: string[] | undefined;
+    json?: string[] | undefined;
 }
 
 const translationFileSchemes = {
@@ -17,8 +18,9 @@ const translationFileSchemes = {
     po: `**/*.po`,
     restext: (locale: string) => `**/*.${locale}.restext`,
     resx: (locale: string) => `**/*.${locale}.resx`,
-    xliff: (locale: string) => `**/*.${locale}.xliff`
-}
+    xliff: (locale: string) => `**/*.${locale}.xliff`,
+    json: (locale: string) => `**/*.${locale}.json`
+};
 
 export async function findAllTranslationFiles(sourceLocale: string): Promise<TranslationFileMap> {
     const filesToInclude = await getFilesToInclude();
@@ -44,7 +46,7 @@ export async function findAllTranslationFiles(sourceLocale: string): Promise<Tra
             path: normalize(path),
             isDirectory: await isDirectory(path),
             include: includeFile(path)
-        }
+        };
     });
     const files = await Promise.all(promises);
     const results =
@@ -58,8 +60,9 @@ export async function findAllTranslationFiles(sourceLocale: string): Promise<Tra
         restext: results.filter(f => f.endsWith('.restext')),
         ini: results.filter(f => f.endsWith('.ini')),
         resx: results.filter(f => f.endsWith('.resx')),
-        xliff: results.filter(f => f.endsWith('.xliff'))
-    } as TranslationFileMap;
+        xliff: results.filter(f => f.endsWith('.xliff')),
+        json: results.filter(f => f.endsWith('.json'))
+    };
 }
 
 async function getFilesToInclude(): Promise<string[]> {

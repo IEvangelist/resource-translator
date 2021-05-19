@@ -7,7 +7,7 @@ export type TranslationFileKind =
     'resx' |
 
     /**
-     * XML-based `*.xliff` file format. 
+     * XML-based `*.xliff` file format.
      * For more information, see https://en.wikipedia.org/wiki/XLIFF
     */
     'xliff' |
@@ -23,7 +23,20 @@ export type TranslationFileKind =
     'ini' |
 
     /**
-     * This might take awhile to support, as I'm not familiar with this 
+     * This might take awhile to support, as I'm not familiar with this
      * file format. I would ❤ for someone from the community to help out here.
     */
-    'po';
+    'po' |
+
+    /**
+     * JSON file format.
+     * Supports nested objects, e.g.
+     * {
+     *      "messages": {
+     *          "foo": {
+     *              "bar": "Hello!"
+     *          }
+     *      }
+     * }
+    */
+    'json';
