@@ -9,6 +9,7 @@ A GitHub Action that automatically creates machine-translated PRs of translation
 - *.restext*
 - *.resx*
 - *.xliff*
+- *.json*
 
 ## Usage
 
@@ -27,6 +28,7 @@ on:
     - '**.restext'   # INI-based, key value pair file format
     - '**.resx'      # XML-based (resource) translation file format, .NET
     - '**.xliff'     # XML-based translation file format, version 2
+    - '**.json'      # JSON-based, key value pair file format
 
 # GitHub automatically creates a GITHUB_TOKEN secret to use in your workflow.
 env:
