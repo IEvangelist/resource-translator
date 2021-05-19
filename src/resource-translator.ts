@@ -44,7 +44,8 @@ export async function start(inputs: Inputs) {
                     !translationFiles.restext &&
                     !translationFiles.resx &&
                     !translationFiles.xliff &&
-                    !translationFiles.ini)) {
+                    !translationFiles.ini &&
+                    !translationFiles.json)) {
                 setFailed("Unable to get target resource files.");
                 return;
             }
