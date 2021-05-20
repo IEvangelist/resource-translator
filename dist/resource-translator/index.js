@@ -3835,8 +3835,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.JsonParser = void 0;
 class JsonParser {
     parseFrom(fileContent) {
-        const content = JSON.parse(fileContent);
-        const map = new Map();
         const buildMap = (obj, parentPath) => {
             for (const [key, value] of Object.entries(obj)) {
                 const path = parentPath ? `${parentPath}.${key}` : key;
@@ -3848,7 +3846,14 @@ class JsonParser {
                 }
             }
         };
-        buildMap(content);
+        const map = new Map();
+        try {
+            const content = JSON.parse(fileContent);
+            buildMap(content);
+        }
+        catch (e) {
+            throw new Error(`Failed to parse json. Error: ${e}. Content: ${fileContent}`);
+        }
         return Promise.resolve(Object.fromEntries(map));
     }
     toFileFormatted(instance, defaultValue) {
