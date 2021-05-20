@@ -1,6 +1,6 @@
 import { dirname, resolve } from 'path';
-import { groupBy, getLocaleName, stringifyMap, chunk, zip } from '../src/helpers/utils';
 import { DetectedLanguage, Result, TranslationResult } from '../src/abstractions/translation-results';
+import { batch, chunk, getLocaleName, groupBy, stringifyMap, zip } from '../src/helpers/utils';
 
 test("UTILS: group by functions correctly", () => {
     const cars = [
@@ -102,4 +102,16 @@ test('UTILS: Zip arrays functions correctly.', () => {
     expect(zipped[1]).toEqual(['b', 2]);
     expect(zipped[2]).toEqual(['c', 3]);
     expect(zipped[3]).toEqual(['d', 4]);
+});
+
+test('UTILS: Batch array functions correctly.', () => {
+    const array = ['a', 'bc', 'd', 'e', 'fg', 'h', 'i'];
+    const batches = batch(array, 2, 7);
+
+    expect(batches.length).toEqual(5);
+    expect(batches[0]).toEqual(['a']);
+    expect(batches[1]).toEqual(['bc']);
+    expect(batches[2]).toEqual(['d', 'e']);
+    expect(batches[3]).toEqual(['fg']);
+    expect(batches[4]).toEqual(['h', 'i']);
 });

@@ -1,13 +1,13 @@
 import { basename, dirname, join } from 'path';
 
 export const groupBy = <T extends Record<K, string>, K extends string>
-    (array: T[], key: keyof T): { [group: string]: T[] } =>
+    (array: T[], key: keyof T): { [group: string]: T[]; } =>
     array.reduce((result, obj) => {
         const value = obj[key];
         result[value] = [...(result[value] || []), obj];
 
         return result;
-    }, {} as { [group: string]: T[] });
+    }, {} as { [group: string]: T[]; });
 
 export const getLocaleName = (existingPath: string, locale: string) => {
     const fileName = basename(existingPath);
@@ -69,7 +69,7 @@ export function zip<TFirst, TSecond>(first: TFirst[], second: TSecond[]): (TFirs
 
 export const delay = <T>(ms: number, result?: T) => {
     return new Promise(resolve => setTimeout(() => resolve(result), ms));
-}
+};
 
 export const findNext = <T>(
     items: T[],
@@ -97,4 +97,28 @@ export const findNext = <T>(
     }
 
     return -1;
+};
+
+export function batch<T>(array: T[], maxBatchSize: number, maxStringifiedSize: number): T[][] {
+    const batches: T[][] = [];
+    let currentStringifiedSize = 0;
+    let currentBatch: T[] = [];
+    array.forEach((value, index) => {
+        currentBatch.push(value);
+        currentStringifiedSize += JSON.stringify(value).length;
+        const isLastElement = index === array.length - 1;
+        const batchIsFull = currentBatch.length === maxBatchSize ||
+            isLastElement ||
+            currentStringifiedSize + JSON.stringify(array[index + 1]).length >= maxStringifiedSize;
+
+        if (!batchIsFull) {
+            return;
+        }
+
+        batches.push(currentBatch);
+        currentBatch = [];
+        currentStringifiedSize = 0;
+    });
+
+    return batches;
 }
