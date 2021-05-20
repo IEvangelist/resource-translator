@@ -4,9 +4,6 @@ import { TranslationFileParser } from "./translation-file-parser";
 
 export class JsonParser implements TranslationFileParser {
     parseFrom(fileContent: string): Promise<JsonFile> {
-        const content = JSON.parse(fileContent);
-        const map = new Map<string, string>();
-
         const buildMap = (obj: any, parentPath?: string) => {
             for (const [key, value] of Object.entries(obj)) {
                 const path = parentPath ? `${parentPath}.${key}` : key;
@@ -18,7 +15,14 @@ export class JsonParser implements TranslationFileParser {
             }
         };
 
-        buildMap(content);
+        const map = new Map<string, string>();
+
+        try {
+            const content = JSON.parse(fileContent);
+            buildMap(content);
+        } catch (e) {
+            throw new Error(`Failed to parse json. Error: ${e}. Content: ${fileContent}`);
+        }
 
         return Promise.resolve(Object.fromEntries(map) as JsonFile);
     }
