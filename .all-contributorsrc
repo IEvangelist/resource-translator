@@ -1,0 +1,25 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "vs-savelich",
+      "name": "vs-savelich",
+      "avatar_url": "https://avatars.githubusercontent.com/u/22545114?v=4",
+      "profile": "https://github.com/vs-savelich",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "resource-translator",
+  "projectOwner": "IEvangelist",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
