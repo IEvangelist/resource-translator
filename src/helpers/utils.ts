@@ -13,6 +13,8 @@ export const getLocaleName = (existingPath: string, locale: string) => {
     const fileName = basename(existingPath);
     const segments = fileName.split('.');
     switch (segments.length) {
+        case 4:
+            return join(dirname(existingPath), `${segments[0]}.${segments[1]}.${locale}.${segments[3]}`);
         case 3:
             return join(dirname(existingPath), `${segments[0]}.${locale}.${segments[2]}`);
         case 2:
