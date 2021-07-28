@@ -1,5 +1,5 @@
 name: 'Machine Translator'
-description: 'Automatically create machine-translated PRs of translation files. Supported formats: .resx, .restext, .ini, .xliff, .po, and .json.'
+description: 'Automatically create machine-translated PRs of translation files. Supports: .resx, .restext, .ini, .xliff, .po, and .json.'
 branding:
   icon: flag
   color: blue
