@@ -100,6 +100,9 @@ export async function start(inputs: Inputs) {
                                         summary.newFileTranslations += length;
                                     }
                                     writeFile(newPath, translatedFile);
+                                } else {
+                                    debug(`The translatedFile value is ${translatedFile}`);
+                                    debug(`The newPath would have been ${newPath}`);
                                 }
                             });
                         } else {
