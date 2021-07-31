@@ -79,30 +79,33 @@ export async function start(inputs: Inputs) {
 
                         if (resultSet) {
                             const length = translatableTextMap.text.size;
+                            debug(`Translation count: ${length}`);
+
                             toLocales.forEach(locale => {
                                 const translations = resultSet[locale];
-                                if (!translations) {
-                                    return;
-                                }
-                                const clone = Object.assign({} as TranslationFile, parsedFile);
-                                const result =
-                                    translationFileParser.applyTranslations(
-                                        clone, translations, locale);
+                                if (translations) {
+                                    const clone = Object.assign({} as TranslationFile, parsedFile);
+                                    const result =
+                                        translationFileParser.applyTranslations(
+                                            clone, translations, locale);
 
-                                const translatedFile = translationFileParser.toFileFormatted(result, "");
-                                const newPath = getLocaleName(filePath, locale);
-                                if (translatedFile && newPath) {
-                                    if (existsSync(newPath)) {
-                                        summary.updatedFileCount++;
-                                        summary.updatedFileTranslations += length;
+                                    const translatedFile = translationFileParser.toFileFormatted(result, "");
+                                    const newPath = getLocaleName(filePath, locale);
+                                    if (translatedFile && newPath) {
+                                        if (existsSync(newPath)) {
+                                            summary.updatedFileCount++;
+                                            summary.updatedFileTranslations += length;
+                                        } else {
+                                            summary.newFileCount++;
+                                            summary.newFileTranslations += length;
+                                        }
+                                        writeFile(newPath, translatedFile);
                                     } else {
-                                        summary.newFileCount++;
-                                        summary.newFileTranslations += length;
+                                        debug(`The translatedFile value is ${translatedFile}`);
+                                        debug(`The newPath would have been ${newPath}`);
                                     }
-                                    writeFile(newPath, translatedFile);
-                                } else {
-                                    debug(`The translatedFile value is ${translatedFile}`);
-                                    debug(`The newPath would have been ${newPath}`);
+                                } else  {
+                                    debug(`Unable to find resulting translations for: ${locale}`);
                                 }
                             });
                         } else {
