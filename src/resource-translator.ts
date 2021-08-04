@@ -53,11 +53,16 @@ export async function start(inputs: Inputs) {
             let summary = new Summary(sourceLocale, toLocales);
 
             for (let key of Object.keys(translationFiles)) {
+                debug(`Iterating translationFiles keys, key: ${key}`);
+                
                 const kind = key as TranslationFileKind;
                 const files = translationFiles[kind];
                 if (!files || !files.length) {
+                    debug(`For kind ${kind}, there are no translation files.`);
                     continue;
                 }
+
+                debug(`Translation file parser kind: ${kind}`);
 
                 const translationFileParser = translationFileParserFactory(kind);
                 for (let index = 0; index < files.length; ++index) {
@@ -77,11 +82,12 @@ export async function start(inputs: Inputs) {
 
                         debug(`Translation result:\n ${JSON.stringify(resultSet)}`);
 
-                        if (resultSet) {
+                        if (resultSet !== undefined) {
                             const length = translatableTextMap.text.size;
-                            debug(`Translation count: ${length}`);
+                            debug(`Translation count: ${length}, toLocales size: ${toLocales.length}`);
 
-                            toLocales.forEach(locale => {
+                            for (let i = 0; i < toLocales.length; ++ i) {
+                                const locale = toLocales[i];
                                 const translations = resultSet[locale];
                                 if (translations) {
                                     const clone = Object.assign({} as TranslationFile, parsedFile);
@@ -92,6 +98,8 @@ export async function start(inputs: Inputs) {
                                     const translatedFile = translationFileParser.toFileFormatted(result, "");
                                     const newPath = getLocaleName(filePath, locale);
                                     if (translatedFile && newPath) {
+                                        debug(`The newPath: ${newPath}`);
+                                        
                                         if (existsSync(newPath)) {
                                             summary.updatedFileCount++;
                                             summary.updatedFileTranslations += length;
@@ -107,7 +115,7 @@ export async function start(inputs: Inputs) {
                                 } else  {
                                     debug(`Unable to find resulting translations for: ${locale}`);
                                 }
-                            });
+                            }
                         } else {
                             setFailed("Unable to translate input text.");
                         }
