@@ -6,7 +6,7 @@ export class JsonParser implements TranslationFileParser {
     parseFrom(fileContent: string): Promise<JsonFile> {
         const buildMap = (obj: any, parentPath?: string) => {
             for (const [key, value] of Object.entries(obj)) {
-                const path = parentPath ? `${parentPath}.${key}` : key;
+                const path = parentPath ? `${parentPath}[--]${key}` : key;
                 if (typeof value === "string") {
                     map.set(path, value);
                 } else {
@@ -41,7 +41,7 @@ export class JsonParser implements TranslationFileParser {
         };
 
         for (const [key, value] of Object.entries(instance)) {
-            const keyParts = key.split(".");
+            const keyParts = key.split("[--]");
             buildObject(content, keyParts, value);
         }
 

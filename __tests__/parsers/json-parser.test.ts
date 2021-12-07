@@ -11,16 +11,20 @@ const content = JSON.stringify(
                 msg2: "world"
             },
         },
-        msg3: "Doe"
+        msg3: "Doe",
+        msg4: "this is a fullstop.",
+        msg5: "this is a fullstop. With another sentance."
     }, null, '\t');
 
 test('JSON PARSER: correctly parses from string', async () => {
     const file = await parser.parseFrom(content);
     expect(file).toBeTruthy();
-    expect(file['messages.foo.msg1']).toEqual('hello {{variable}}');
-    expect(file['messages.foo.msg2']).toEqual('world');
-    expect(file['messages.bar']).toEqual('John');
+    expect(file['messages[--]foo[--]msg1']).toEqual('hello {{variable}}');
+    expect(file['messages[--]foo[--]msg2']).toEqual('world');
+    expect(file['messages[--]bar']).toEqual('John');
     expect(file['msg3']).toEqual('Doe');
+    expect(file['msg4']).toEqual('this is a fullstop.');
+    expect(file['msg5']).toEqual('this is a fullstop. With another sentance.');
 });
 
 test('JSON PARSER: correctly formats back as string', async () => {
@@ -36,14 +40,16 @@ test('JSON PARSER: correctly applies translations', async () => {
     expect(file).toBeTruthy();
 
     const result = parser.applyTranslations(file, {
-        'messages.foo.msg2': 'Does this work?'
+        'messages[--]foo[--]msg2': 'Does this work?'
     });
 
     expect(result).toBeTruthy();
-    expect(file['messages.foo.msg1']).toEqual('hello {{variable}}');
-    expect(file['messages.foo.msg2']).toEqual('Does this work?');
-    expect(file['messages.bar']).toEqual('John');
+    expect(file['messages[--]foo[--]msg1']).toEqual('hello {{variable}}');
+    expect(file['messages[--]foo[--]msg2']).toEqual('Does this work?');
+    expect(file['messages[--]bar']).toEqual('John');
     expect(file['msg3']).toEqual('Doe');
+    expect(file['msg4']).toEqual('this is a fullstop.');
+    expect(file['msg5']).toEqual('this is a fullstop. With another sentance.');
 });
 
 test('JSON PARSER: correctly creates translatable text map', async () => {
@@ -52,8 +58,10 @@ test('JSON PARSER: correctly creates translatable text map', async () => {
 
     const translatableTextMap = parser.toTranslatableTextMap(file);
     expect(translatableTextMap).toBeTruthy();
-    expect(translatableTextMap.text.get('messages.foo.msg1')).toEqual('hello {{variable}}');
-    expect(translatableTextMap.text.get('messages.foo.msg2')).toEqual('world');
-    expect(translatableTextMap.text.get('messages.bar')).toEqual('John');
+    expect(translatableTextMap.text.get('messages[--]foo[--]msg1')).toEqual('hello {{variable}}');
+    expect(translatableTextMap.text.get('messages[--]foo[--]msg2')).toEqual('world');
+    expect(translatableTextMap.text.get('messages[--]bar')).toEqual('John');
     expect(translatableTextMap.text.get('msg3')).toEqual('Doe');
+    expect(translatableTextMap.text.get('msg4')).toEqual('this is a fullstop.');
+    expect(translatableTextMap.text.get('msg5')).toEqual('this is a fullstop. With another sentance.');
 });
