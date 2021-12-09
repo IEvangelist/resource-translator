@@ -3958,7 +3958,7 @@ class JsonParser {
     parseFrom(fileContent) {
         const buildMap = (obj, parentPath) => {
             for (const [key, value] of Object.entries(obj)) {
-                const path = parentPath ? `${parentPath}[--]${key}` : key;
+                const path = parentPath ? `${parentPath}${JsonParser.DELIMITER}${key}` : key;
                 if (typeof value === "string") {
                     map.set(path, value);
                 }
@@ -3989,7 +3989,7 @@ class JsonParser {
             }
         };
         for (const [key, value] of Object.entries(instance)) {
-            const keyParts = key.split("[--]");
+            const keyParts = key.split(JsonParser.DELIMITER);
             buildObject(content, keyParts, value);
         }
         return JSON.stringify(content, null, "\t");
@@ -4016,6 +4016,7 @@ class JsonParser {
     }
 }
 exports.JsonParser = JsonParser;
+JsonParser.DELIMITER = '[--]';
 
 
 /***/ }),
