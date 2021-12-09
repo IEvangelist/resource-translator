@@ -3,10 +3,13 @@ import { JsonFile } from "../file-formats/json-file";
 import { TranslationFileParser } from "./translation-file-parser";
 
 export class JsonParser implements TranslationFileParser {
+
+    static DELIMITER: string = '[--]';
+
     parseFrom(fileContent: string): Promise<JsonFile> {
         const buildMap = (obj: any, parentPath?: string) => {
             for (const [key, value] of Object.entries(obj)) {
-                const path = parentPath ? `${parentPath}[--]${key}` : key;
+                const path = parentPath ? `${parentPath}${JsonParser.DELIMITER}${key}` : key;
                 if (typeof value === "string") {
                     map.set(path, value);
                 } else {
@@ -41,7 +44,7 @@ export class JsonParser implements TranslationFileParser {
         };
 
         for (const [key, value] of Object.entries(instance)) {
-            const keyParts = key.split("[--]");
+            const keyParts = key.split(JsonParser.DELIMITER);
             buildObject(content, keyParts, value);
         }
 
