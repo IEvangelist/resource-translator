@@ -12,8 +12,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16
-      - run: npm build
-      - run: npm test
+      - run: npm run build
+      - run: npm run test
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3.4.1
         with:
