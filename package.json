@@ -1,5 +1,5 @@
 {
-  "name": "@ievangelist/resource-translator",
+  "name": "@sdolgin/resource-translator",
   "version": "v2.1.3",
   "preview": false,
   "keywords": [
@@ -31,14 +31,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/IEvangelist/resource-translator.git"
+    "url": "git+https://github.com/sdolgin/resource-translator.git"
   },
-  "author": "IEvangelist",
+  "author": "sdolgin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/IEvangelist/resource-translator/issues"
+    "url": "https://github.com/sdolgin/resource-translator/issues"
   },
-  "homepage": "https://github.com/IEvangelist/resource-translator#readme",
+  "homepage": "https://github.com/sdolgin/resource-translator#readme",
   "dependencies": {
     "@actions/cache": "^1.0.2",
     "@actions/core": "^1.2.6",
