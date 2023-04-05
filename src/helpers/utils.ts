@@ -38,7 +38,7 @@ export function stringifyMap<T, TValue>(this: T, key: string, value: TValue) {
         : value;
 }
 
-export function findValueByKey<T>(object: T, key: string) {
+export function findValueByKey<T extends object>(object: T, key: string) {
     let value: any;
     Object.keys(object).some(function (k) {
         if (k === key) {

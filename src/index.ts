@@ -5,8 +5,10 @@ import { start } from './resource-translator';
 const run = async (): Promise<void> => {
     try {
         await start(getInputs());
-    } catch (error) {
-        setFailed(error);
+    } catch (error: unknown) {
+        if (error) {
+            setFailed(error.toString());
+        }
     }
 };
 

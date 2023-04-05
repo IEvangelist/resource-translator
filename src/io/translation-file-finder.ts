@@ -76,11 +76,11 @@ async function getFilesToInclude(): Promise<string[]> {
                 ref: context.ref
             };
             debug(JSON.stringify(options));
-            const response = await octokit.repos.getCommit(options);
+            const response = await octokit.rest.repos.getCommit(options);
 
             debug(JSON.stringify(response));
 
-            if (response.data) {
+            if (response.data && response.data.files) {
                 const files = [
                     ...new Set(response.data.files.map(file => {
                         const path = resolve(__dirname, file.filename);
@@ -94,8 +94,10 @@ async function getFilesToInclude(): Promise<string[]> {
         } else {
             debug("Unable to get the GITHUB_TOKEN from the environment.");
         }
-    } catch (error) {
-        debug(error);
+    } catch (error: unknown) {
+        if (error) {
+            debug(error.toString());
+        }
     }
 
     return [];

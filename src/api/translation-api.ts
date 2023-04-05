@@ -93,21 +93,34 @@ export const translate = async (
         }
 
         return toResultSet(results, toLocales, translatableText);
-    } catch (ex) {
+    } catch (ex: unknown) {
         // Try to write explicit error:
         // https://docs.microsoft.com/en-us/azure/cognitive-services/translator/reference/v3-0-reference#errors
-        const e = ex.response
-            && ex.response.data
-            && ex.response.data as TranslationErrorResponse;
-        if (e) {
-            setFailed(`file: ${filePath}, error: { code: ${e.error.code}, message: '${e.error.message}' }}`);
-        } else {
+        if (isResponse(ex)) {
+            const e = ex.response
+                && ex.response.data
+                && ex.response.data as TranslationErrorResponse;
+            if (e) {
+                setFailed(`file: ${filePath}, error: { code: ${e.error.code}, message: '${e.error.message}' }}`);
+            }
+        }
+        else {
             setFailed(`Failed to translate input: file '${filePath}', ${ex}`);
         }
 
         return undefined;
     }
 };
+
+function isResponse(value: unknown): value is ResponseData {
+    return (value as ResponseData).response !== undefined;
+}
+
+interface ResponseData {
+    response: {
+        data: TranslationErrorResponse;
+    }
+}
 
 interface TranslationErrorResponse {
     error: {

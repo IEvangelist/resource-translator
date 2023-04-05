@@ -131,8 +131,10 @@ export async function start(inputs: Inputs) {
             setOutput('summary-title', title);
             setOutput('summary-details', details);
         }
-    } catch (error) {
+    } catch (error: unknown) {
         console.trace();
-        setFailed(error.message);
+        if (error) {
+            setFailed(error.toString());
+        }
     }
 }
