@@ -27,5 +27,5 @@ outputs:
   has-new-translations:
     description: 'A boolean value, indicating whether or not new translations exist as a result of running this action.'
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/resource-translator/index.js'

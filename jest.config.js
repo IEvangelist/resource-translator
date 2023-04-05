@@ -10,12 +10,12 @@ module.exports = {
     verbose: true
 };
 
-const processStdoutWrite = process.stdout.write.bind(process.stdout);
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-process.stdout.write = (str, encoding, cb) => {
-    // Core library will directly call process.stdout.write for commands
-    // We don't want :: commands to be executed by the runner during tests
-    if (!str.match(/^::/)) {
-        return processStdoutWrite(str, encoding, cb);
-    }
-};
+// const processStdoutWrite = process.stdout.write.bind(process.stdout);
+// // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+// process.stdout.write = (str, encoding, cb) => {
+//     // Core library will directly call process.stdout.write for commands
+//     // We don't want :: commands to be executed by the runner during tests
+//     if (!str.match(/^::/)) {
+//         return processStdoutWrite(str, encoding, cb);
+//     }
+// };

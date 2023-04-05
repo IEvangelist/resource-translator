@@ -1,3 +1,3 @@
 export interface JsonFile {
-    [key: string]: string;
-};
+  [key: string]: string;
+}

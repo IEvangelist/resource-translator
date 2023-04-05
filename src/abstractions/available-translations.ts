@@ -1,13 +1,13 @@
 export interface AvailableTranslations {
-    readonly translation: Translations;
+  readonly translation: Translations;
 }
 
 export interface Translations {
-    [locale: string]: Locale;
+  [locale: string]: Locale;
 }
 
 export interface Locale {
-    name: string;
-    nativeName: string;
-    dir: string;
+  name: string;
+  nativeName: string;
+  dir: string;
 }

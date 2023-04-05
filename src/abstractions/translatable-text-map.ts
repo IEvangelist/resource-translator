@@ -1,3 +1,3 @@
 export interface TranslatableTextMap {
-    text: Map<string, string>;
+  text: Map<string, string>;
 }

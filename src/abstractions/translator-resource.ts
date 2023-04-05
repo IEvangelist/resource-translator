@@ -1,5 +1,5 @@
 export interface TranslatorResource {
-    endpoint: string,
-    subscriptionKey: string,
-    region?: string
+  endpoint: string;
+  subscriptionKey: string;
+  region?: string;
 }
