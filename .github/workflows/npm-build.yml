@@ -11,15 +11,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 16
       - run: npm i
       - run: npm run build
       - run: npm run test
       - name: Create pull request
-        uses: peter-evans/create-pull-request@v3.4.1
+        uses: peter-evans/create-pull-request@v5
         with:
           title: 'Latest dist build'
           body: 'Automated build to ensure latest bits are distributed.'

@@ -1,3 +1,3 @@
 export interface OriginalFileMap {
-    map: Map<number, string>;
+  map: Map<number, string>;
 }

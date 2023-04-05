@@ -22539,11 +22539,11 @@ exports.getQuestionableArray = exports.getInputs = void 0;
 const core_1 = __nccwpck_require__(2186);
 const getInputs = () => {
     const inputs = {
-        subscriptionKey: (0, core_1.getInput)('subscriptionKey', { required: true }),
-        endpoint: (0, core_1.getInput)('endpoint', { required: true }),
-        sourceLocale: (0, core_1.getInput)('sourceLocale', { required: true }),
-        region: (0, core_1.getInput)('region'),
-        toLocales: (0, exports.getQuestionableArray)('toLocales')
+        subscriptionKey: (0, core_1.getInput)("subscriptionKey", { required: true }),
+        endpoint: (0, core_1.getInput)("endpoint", { required: true }),
+        sourceLocale: (0, core_1.getInput)("sourceLocale", { required: true }),
+        region: (0, core_1.getInput)("region"),
+        toLocales: (0, exports.getQuestionableArray)("toLocales"),
     };
     return inputs;
 };
@@ -22552,15 +22552,15 @@ exports.getInputs = getInputs;
  * Valid formats for parsing string into JS array:
  *   "'es','de','fr'"
  *   "[ 'es', 'de', 'fr' ]"
-*/
+ */
 const getQuestionableArray = (inputName) => {
     const value = (0, core_1.getInput)(inputName);
     if (value) {
-        if (value.indexOf('[') > -1) {
+        if (value.indexOf("[") > -1) {
             return [...JSON.parse(value)];
         }
         else {
-            return value.replace(/\s/g, '').split(',');
+            return value.replace(/\s/g, "").split(",");
         }
     }
     return undefined;
@@ -22586,11 +22586,11 @@ const uuid_1 = __nccwpck_require__(2155);
 const api_result_set_mapper_1 = __nccwpck_require__(3596);
 const utils_1 = __nccwpck_require__(7134);
 /**
-* https://docs.microsoft.com/azure/cognitive-services/translator/language-support#translate
-*/
+ * https://docs.microsoft.com/azure/cognitive-services/translator/language-support#translate
+ */
 const getAvailableTranslations = async () => {
-    const apiUrl = 'https://api.cognitive.microsofttranslator.com/languages';
-    const query = 'api-version=3.0&scope=translation';
+    const apiUrl = "https://api.cognitive.microsofttranslator.com/languages";
+    const query = "api-version=3.0&scope=translation";
     const response = await axios_1.default.get(`${apiUrl}?${query}`);
     return response.data;
 };
@@ -22609,27 +22609,27 @@ const translate = async (translatorResource, toLocales, translatableText, filePa
             }
         });
         if (validationErrors.length) {
-            (0, core_1.setFailed)(validationErrors.join('\r\n'));
+            (0, core_1.setFailed)(validationErrors.join("\r\n"));
             return undefined;
         }
-        const data = [...translatableText.values()].map(value => {
+        const data = [...translatableText.values()].map((value) => {
             return { text: value };
         });
         const headers = {
-            'Ocp-Apim-Subscription-Key': translatorResource.subscriptionKey,
-            'Content-type': 'application/json',
-            'X-ClientTraceId': (0, uuid_1.v4)()
+            "Ocp-Apim-Subscription-Key": translatorResource.subscriptionKey,
+            "Content-type": "application/json",
+            "X-ClientTraceId": (0, uuid_1.v4)(),
         };
         if (translatorResource.region) {
-            headers['Ocp-Apim-Subscription-Region'] = translatorResource.region;
+            headers["Ocp-Apim-Subscription-Region"] = translatorResource.region;
         }
         const options = {
-            method: 'POST',
+            method: "POST",
             headers,
             data,
-            responseType: 'json'
+            responseType: "json",
         };
-        const baseUrl = translatorResource.endpoint.endsWith('/')
+        const baseUrl = translatorResource.endpoint.endsWith("/")
             ? translatorResource.endpoint
             : `${translatorResource.endpoint}/`;
         const characters = JSON.stringify(data).length;
@@ -22647,7 +22647,7 @@ const translate = async (translatorResource, toLocales, translatableText, filePa
                 : [toLocales];
             for (let j = 0; j < batchedLocales.length; j++) {
                 const locales = batchedLocales[j];
-                const to = locales.map(to => `to=${to}`).join('&');
+                const to = locales.map((to) => `to=${to}`).join("&");
                 (0, core_1.debug)(`Data batch ${i + 1}, Locales batch ${j + 1}, locales: ${to}`);
                 const url = `${baseUrl}translate?api-version=3.0&${to}`;
                 const response = await axios_1.default.post(url, batch, options);
@@ -22662,9 +22662,9 @@ const translate = async (translatorResource, toLocales, translatableText, filePa
         // Try to write explicit error:
         // https://docs.microsoft.com/en-us/azure/cognitive-services/translator/reference/v3-0-reference#errors
         if (isResponse(ex)) {
-            const e = ex.response
-                && ex.response.data
-                && ex.response.data;
+            const e = ex.response &&
+                ex.response.data &&
+                ex.response.data;
             if (e) {
                 (0, core_1.setFailed)(`file: ${filePath}, error: { code: ${e.error.code}, message: '${e.error.message}' }}`);
             }
@@ -22697,12 +22697,18 @@ const resx_parser_1 = __nccwpck_require__(2414);
 const xliff_parser_1 = __nccwpck_require__(2813);
 const translationFileParserFactory = (translationFileKind) => {
     switch (translationFileKind) {
-        case 'resx': return new resx_parser_1.ResxParser();
-        case 'xliff': return new xliff_parser_1.XliffParser();
-        case 'restext': return new restext_parser_1.RestextParser();
-        case 'ini': return new restext_parser_1.RestextParser();
-        case 'po': return new po_parser_1.PortableObjectParser();
-        case 'json': return new json_parser_1.JsonParser();
+        case "resx":
+            return new resx_parser_1.ResxParser();
+        case "xliff":
+            return new xliff_parser_1.XliffParser();
+        case "restext":
+            return new restext_parser_1.RestextParser();
+        case "ini":
+            return new restext_parser_1.RestextParser();
+        case "po":
+            return new po_parser_1.PortableObjectParser();
+        case "json":
+            return new json_parser_1.JsonParser();
         default:
             throw new Error(`Unrecognized resource kind: ${translationFileKind}`);
     }
@@ -22735,7 +22741,7 @@ class PortableObjectToken {
         return this._isInsignificant;
     }
     get isCommentLine() {
-        return !!this.line && this.line.startsWith('#:');
+        return !!this.line && this.line.startsWith("#:");
     }
     constructor(line) {
         this.line = line;
@@ -22766,7 +22772,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.traverseResx = void 0;
 const traverseResx = (instance, name, dataAction) => {
     if (instance && instance.root && instance.root.data) {
-        const data = instance.root.data.find(d => d.$.name === name);
+        const data = instance.root.data.find((d) => d.$.name === name);
         if (data) {
             dataAction(data);
         }
@@ -22784,13 +22790,13 @@ exports.traverseResx = traverseResx;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.findInXliff = exports.traverseXliff = exports.XliffFileKeyDelimiter = void 0;
-exports.XliffFileKeyDelimiter = '::';
+exports.XliffFileKeyDelimiter = "::";
 const traverseXliff = (instance, fileIndex, sourceName, segmentAction) => {
     if (instance && segmentAction) {
         if (instance.xliff.file && instance.xliff.file.length > fileIndex) {
-            const unit = instance.xliff.file[fileIndex].unit.find(unit => unit.segment.find(s => s.source.includes(sourceName)));
+            const unit = instance.xliff.file[fileIndex].unit.find((unit) => unit.segment.find((s) => s.source.includes(sourceName)));
             if (unit) {
-                segmentAction(unit.segment.find(s => s.source.includes(sourceName)));
+                segmentAction(unit.segment.find((s) => s.source.includes(sourceName)));
             }
         }
     }
@@ -22799,9 +22805,9 @@ exports.traverseXliff = traverseXliff;
 const findInXliff = (instance, fileIndex, sourceName) => {
     if (instance) {
         if (instance.xliff.file && instance.xliff.file.length > fileIndex) {
-            const unit = instance.xliff.file[fileIndex].unit.find(unit => unit.segment.find(s => s.source.includes(sourceName)));
+            const unit = instance.xliff.file[fileIndex].unit.find((unit) => unit.segment.find((s) => s.source.includes(sourceName)));
             if (unit) {
-                return unit.segment.find(s => s.source.includes(sourceName));
+                return unit.segment.find((s) => s.source.includes(sourceName));
             }
         }
     }
@@ -22823,9 +22829,9 @@ const toResultSet = (results, toLocales, translatableText) => {
     const translatableKeys = [...translatableText.keys()];
     const resultSet = {};
     if (results && results.length) {
-        toLocales.forEach(locale => {
+        toLocales.forEach((locale) => {
             let result = {};
-            const matches = results.filter(r => r.translations.some(t => t.to === locale));
+            const matches = results.filter((r) => r.translations.some((t) => t.to === locale));
             if (matches) {
                 const translations = toRawTextArray(matches, locale);
                 const zipped = (0, utils_1.zip)(translatableKeys, translations);
@@ -22845,7 +22851,7 @@ const toRawTextArray = (translationResults, locale) => {
     if (translationResults && translationResults.length) {
         for (let i = 0; i < translationResults.length; ++i) {
             const translations = translationResults[i].translations;
-            translations.forEach(translation => {
+            translations.forEach((translation) => {
                 if (translation.to === locale && translation.text) {
                     rawTextArray.push(translation.text);
                 }
@@ -22871,43 +22877,45 @@ const core_1 = __nccwpck_require__(2186);
  * @param summary The object representing the summary of the action's execution.
  */
 const summarize = (summary) => {
-    const fileCount = summary.totalFileCount.toLocaleString('en');
-    const translations = summary.totalTranslations.toLocaleString('en');
+    const fileCount = summary.totalFileCount.toLocaleString("en");
+    const translations = summary.totalTranslations.toLocaleString("en");
     const title = `Machine-translated ${fileCount} files, a total of ${translations} translations`;
     const env = process.env;
-    const server = env['GITHUB_SERVER_URL'];
-    const repo = env['GITHUB_REPOSITORY'];
-    const commit = env['GITHUB_SHA'];
+    const server = env["GITHUB_SERVER_URL"];
+    const repo = env["GITHUB_REPOSITORY"];
+    const commit = env["GITHUB_SHA"];
     const triggeredByUrl = `${server}/${repo}/commit/${commit}`;
-    const nfc = summary.newFileCount.toLocaleString('en');
-    const nft = summary.newFileTranslations.toLocaleString('en');
-    const ufc = summary.updatedFileCount.toLocaleString('en');
-    const uft = summary.updatedFileTranslations.toLocaleString('en');
+    const nfc = summary.newFileCount.toLocaleString("en");
+    const nft = summary.newFileTranslations.toLocaleString("en");
+    const ufc = summary.updatedFileCount.toLocaleString("en");
+    const uft = summary.updatedFileTranslations.toLocaleString("en");
     // Pull request message template
     let details = [
-        '# Translation pull request summary',
-        '',
+        "# Translation pull request summary",
+        "",
         `Action triggered by ${triggeredByUrl}.`,
-        '',
+        "",
         `- Source locale: \`${summary.sourceLocale}\``,
-        `- Destination locale(s): ${summary.toLocales.map(locale => `\`${locale}\``).join(', ')}`,
-        '',
-        '## File translation details',
-        '',
-        '| Type    | File count | Translation count |',
-        '|---------|------------|-------------------|',
+        `- Destination locale(s): ${summary.toLocales
+            .map((locale) => `\`${locale}\``)
+            .join(", ")}`,
+        "",
+        "## File translation details",
+        "",
+        "| Type    | File count | Translation count |",
+        "|---------|------------|-------------------|",
         `| New     | ${nfc}     | ${nft}            |`,
         `| Updated | ${ufc}     | ${uft}            |`,
-        '',
+        "",
         `Of the ${fileCount} translated files, there are a total of ${translations} individual translations.`,
-        '',
-        '> These machine translations are a result of Azure Cognitive Services Translator, and the [Machine Translator](https://github.com/marketplace/actions/resource-translator) GitHub action. For more information, see [Translator v3.0](https://docs.microsoft.com/azure/cognitive-services/translator/reference/v3-0-reference?WT.mc_id=dapine). To post an issue, or feature request please do so [here](https://github.com/IEvangelist/resource-translator/issues).',
+        "",
+        "> These machine translations are a result of Azure Cognitive Services Translator, and the [Machine Translator](https://github.com/marketplace/actions/resource-translator) GitHub action. For more information, see [Translator v3.0](https://docs.microsoft.com/azure/cognitive-services/translator/reference/v3-0-reference?WT.mc_id=dapine). To post an issue, or feature request please do so [here](https://github.com/IEvangelist/resource-translator/issues).",
     ];
     (0, core_1.debug)(JSON.stringify({
         title,
-        details
+        details,
     }));
-    return [title, details.join('\n')];
+    return [title, details.join("\n")];
 };
 exports.summarize = summarize;
 
@@ -22930,7 +22938,7 @@ const groupBy = (array, key) => array.reduce((result, obj) => {
 exports.groupBy = groupBy;
 const getLocaleName = (existingPath, locale) => {
     const fileName = (0, path_1.basename)(existingPath);
-    const segments = fileName.split('.');
+    const segments = fileName.split(".");
     switch (segments.length) {
         case 4:
             return (0, path_1.join)((0, path_1.dirname)(existingPath), `${segments[0]}.${segments[1]}.${locale}.${segments[3]}`);
@@ -22943,15 +22951,17 @@ const getLocaleName = (existingPath, locale) => {
 };
 exports.getLocaleName = getLocaleName;
 const naturalLanguageCompare = (a, b) => {
-    return !!a && !!b ? a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }) : 0;
+    return !!a && !!b
+        ? a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" })
+        : 0;
 };
 exports.naturalLanguageCompare = naturalLanguageCompare;
 function stringifyMap(key, value) {
     const obj = this[key];
-    return (obj instanceof Map)
+    return obj instanceof Map
         ? {
-            dataType: 'Map',
-            value: Array.from(obj.entries())
+            dataType: "Map",
+            value: Array.from(obj.entries()),
         }
         : value;
 }
@@ -22963,7 +22973,7 @@ function findValueByKey(object, key) {
             value = object[k];
             return true;
         }
-        if (object[k] && typeof object[k] === 'object') {
+        if (object[k] && typeof object[k] === "object") {
             value = findValueByKey(object[k], key);
             return value !== undefined;
         }
@@ -22988,7 +22998,7 @@ function zip(first, second) {
 }
 exports.zip = zip;
 const delay = (ms, result) => {
-    return new Promise(resolve => setTimeout(() => resolve(result), ms));
+    return new Promise((resolve) => setTimeout(() => resolve(result), ms));
 };
 exports.delay = delay;
 const findNext = (items, startIndex, firstPredicate, secondPredicate, actionOfNext) => {
@@ -23022,7 +23032,8 @@ function batch(array, maxBatchSize, maxStringifiedSize) {
         const isLastElement = index === array.length - 1;
         const batchIsFull = currentBatch.length === maxBatchSize ||
             isLastElement ||
-            currentStringifiedSize + JSON.stringify(array[index + 1]).length >= maxStringifiedSize;
+            currentStringifiedSize + JSON.stringify(array[index + 1]).length >=
+                maxStringifiedSize;
         if (!batchIsFull) {
             return;
         }
@@ -23049,7 +23060,7 @@ const fs_1 = __nccwpck_require__(7147);
 const path_1 = __nccwpck_require__(1017);
 function readFile(path) {
     const resolved = (0, path_1.resolve)(path);
-    const file = (0, fs_1.readFileSync)(resolved, 'utf-8');
+    const file = (0, fs_1.readFileSync)(resolved, "utf-8");
     (0, core_1.debug)(`Read file: ${file}`);
     return file;
 }
@@ -23081,66 +23092,69 @@ const translationFileSchemes = {
     restext: (locale) => `**/*.${locale}.restext`,
     resx: (locale) => `**/*.${locale}.resx`,
     xliff: (locale) => `**/*.${locale}.xliff`,
-    json: (locale) => `**/*.${locale}.json`
+    json: (locale) => `**/*.${locale}.json`,
 };
 async function findAllTranslationFiles(sourceLocale) {
     const filesToInclude = await getFilesToInclude();
     const includeFile = (filepath) => {
         if (filesToInclude && filesToInclude.length > 0) {
             const filename = (0, path_1.basename)(filepath);
-            const include = filesToInclude.some(f => f.toLowerCase() === filename.toLowerCase());
+            const include = filesToInclude.some((f) => f.toLowerCase() === filename.toLowerCase());
             (0, core_1.debug)(`include=${include}, ${filename}`);
             return include;
         }
         return true;
     };
-    const patterns = Object.values(translationFileSchemes).map(fileScheme => {
-        return "function" === typeof fileScheme ? fileScheme(sourceLocale) : fileScheme;
+    const patterns = Object.values(translationFileSchemes).map((fileScheme) => {
+        return "function" === typeof fileScheme
+            ? fileScheme(sourceLocale)
+            : fileScheme;
     });
-    const globber = await (0, glob_1.create)(patterns.join('\n'));
+    const globber = await (0, glob_1.create)(patterns.join("\n"));
     const filesAndDirectories = await globber.glob();
     const promises = filesAndDirectories.map(async (path) => {
         return {
             path: (0, path_1.normalize)(path),
             isDirectory: await (0, io_util_1.isDirectory)(path),
-            include: includeFile(path)
+            include: includeFile(path),
         };
     });
     const files = await Promise.all(promises);
-    const results = files.filter(file => file.include && !file.isDirectory)
-        .map(file => file.path);
-    (0, core_1.debug)(`Files to translate:\n\t${results.join('\n\t')}`);
+    const results = files
+        .filter((file) => file.include && !file.isDirectory)
+        .map((file) => file.path);
+    (0, core_1.debug)(`Files to translate:\n\t${results.join("\n\t")}`);
     return {
-        po: results.filter(f => f.endsWith('.po')),
-        restext: results.filter(f => f.endsWith('.restext')),
-        ini: results.filter(f => f.endsWith('.ini')),
-        resx: results.filter(f => f.endsWith('.resx')),
-        xliff: results.filter(f => f.endsWith('.xliff')),
-        json: results.filter(f => f.endsWith('.json'))
+        po: results.filter((f) => f.endsWith(".po")),
+        restext: results.filter((f) => f.endsWith(".restext")),
+        ini: results.filter((f) => f.endsWith(".ini")),
+        resx: results.filter((f) => f.endsWith(".resx")),
+        xliff: results.filter((f) => f.endsWith(".xliff")),
+        json: results.filter((f) => f.endsWith(".json")),
     };
 }
 exports.findAllTranslationFiles = findAllTranslationFiles;
 async function getFilesToInclude() {
     try {
         // Get all files related to trigger.
-        const token = process.env['GITHUB_TOKEN'] || null;
+        const token = process.env["GITHUB_TOKEN"] || null;
         if (token) {
             const octokit = (0, github_1.getOctokit)(token);
             const options = {
                 ...github_1.context.repo,
-                ref: github_1.context.ref
+                ref: github_1.context.ref,
             };
             (0, core_1.debug)(JSON.stringify(options));
             const response = await octokit.rest.repos.getCommit(options);
             (0, core_1.debug)(JSON.stringify(response));
             if (response.data && response.data.files) {
                 const files = [
-                    ...new Set(response.data.files.map(file => {
+                    ...new Set(response.data.files.map((file) => {
                         const path = (0, path_1.resolve)(__dirname, file.filename);
                         return (0, path_1.basename)(path);
-                    }))
+                    })),
                 ];
-                (0, core_1.debug)(`Files from trigger:\n\t${files.join('\n\t')}`);
+                (0, core_1.debug)(`Files from trigger:\n\t${files.join("\n\t")}`);
                 return files;
             }
         }
@@ -23170,7 +23184,9 @@ class JsonParser {
     parseFrom(fileContent) {
         const buildMap = (obj, parentPath) => {
             for (const [key, value] of Object.entries(obj)) {
-                const path = parentPath ? `${parentPath}${JsonParser.DELIMITER}${key}` : key;
+                const path = parentPath
+                    ? `${parentPath}${JsonParser.DELIMITER}${key}`
+                    : key;
                 if (typeof value === "string") {
                     map.set(path, value);
                 }
@@ -23223,11 +23239,11 @@ class JsonParser {
             textToTranslate.set(key, value);
         }
         return {
-            text: textToTranslate
+            text: textToTranslate,
         };
     }
 }
-JsonParser.DELIMITER = '[--]';
+JsonParser.DELIMITER = "[--]";
 exports.JsonParser = JsonParser;
 
 
@@ -23246,16 +23262,19 @@ class PortableObjectParser {
     async parseFrom(fileContent) {
         await (0, utils_1.delay)(0, null);
         let portableObjectFile = {
-            tokens: []
+            tokens: [],
         };
         if (fileContent) {
-            portableObjectFile.tokens =
-                fileContent.split('\n').map(line => new po_file_1.PortableObjectToken(line));
+            portableObjectFile.tokens = fileContent
+                .split("\n")
+                .map((line) => new po_file_1.PortableObjectToken(line));
         }
         return portableObjectFile;
     }
     toFileFormatted(instance, defaultValue) {
-        return !!instance ? instance.tokens.map(t => t.line).join('\n') : defaultValue;
+        return !!instance
+            ? instance.tokens.map((t) => t.line).join("\n")
+            : defaultValue;
     }
     applyTranslations(portableObject, translations, targetLocale) {
         if (portableObject && translations) {
@@ -23263,13 +23282,13 @@ class PortableObjectParser {
             for (let key in translations) {
                 const value = translations[key];
                 if (value) {
-                    lastIndex = (0, utils_1.findNext)(portableObject.tokens, lastIndex, token => {
+                    lastIndex = (0, utils_1.findNext)(portableObject.tokens, lastIndex, (token) => {
                         let foundFirst = false;
                         let secondOffset = 0;
                         if (!token.isInsignificant) {
                             if (token.value === key) {
                                 foundFirst = true;
-                                secondOffset = token.id === 'msgid' ? 0 : 1;
+                                secondOffset = token.id === "msgid" ? 0 : 1;
                             }
                         }
                         return [foundFirst, secondOffset];
@@ -23278,10 +23297,10 @@ class PortableObjectParser {
                         if (!token.isInsignificant) {
                             foundSecond = secondOffset
                                 ? token.id.startsWith(`msgstr[${secondOffset}]`)
-                                : token.id.startsWith('msgstr');
+                                : token.id.startsWith("msgstr");
                         }
                         return foundSecond;
-                    }, token => token.value = value);
+                    }, (token) => (token.value = value));
                 }
             }
         }
@@ -23291,17 +23310,17 @@ class PortableObjectParser {
         const textToTranslate = new Map();
         const tokens = instance.tokens;
         if (tokens && tokens.length) {
-            tokens.forEach(token => {
+            tokens.forEach((token) => {
                 if (token.isCommentLine || token.isInsignificant || !token.value) {
                     return;
                 }
-                if (token.id === 'msgid' || token.id === 'msgid_plural') {
+                if (token.id === "msgid" || token.id === "msgid_plural") {
                     textToTranslate.set(token.value, token.value);
                 }
             });
         }
         return {
-            text: textToTranslate
+            text: textToTranslate,
         };
     }
 }
@@ -23322,10 +23341,10 @@ const whiteSpace = /\S/;
 class RestextParser {
     constructor() {
         this.isComment = (line) => {
-            return !!line && line.startsWith(';');
+            return !!line && line.startsWith(";");
         };
         this.isSection = (line) => {
-            return !!line && line.startsWith('[');
+            return !!line && line.startsWith("[");
         };
         this.isWhitespace = (line) => {
             return !whiteSpace.test(line);
@@ -23336,21 +23355,23 @@ class RestextParser {
         let map = new Map();
         let restextFile = { map: new Map() };
         if (fileContent) {
-            fileContent.split('\n').map((line, index) => {
-                if (this.isComment(line) || this.isSection(line) || this.isWhitespace(line)) {
+            fileContent.split("\n").map((line, index) => {
+                if (this.isComment(line) ||
+                    this.isSection(line) ||
+                    this.isWhitespace(line)) {
                     restextFile = {
                         ...restextFile,
-                        [index]: line
+                        [index]: line,
                     };
                 }
                 else {
-                    const keyValuePair = line.split('=');
+                    const keyValuePair = line.split("=");
                     const key = keyValuePair[0];
                     const val = keyValuePair[1];
                     map.set(index, key);
                     restextFile = {
                         ...restextFile,
-                        [key]: val
+                        [key]: val,
                     };
                 }
             });
@@ -23362,11 +23383,13 @@ class RestextParser {
         const map = instance.map;
         const keys = Object.keys(instance);
         const length = map.size + keys.length - 1;
-        let text = '';
+        let text = "";
         for (let index = 0; index < length; ++index) {
             const line = instance[index];
-            const delimiter = index === 0 ? '' : '\n';
-            if (this.isComment(line) || this.isSection(line) || this.isWhitespace(line)) {
+            const delimiter = index === 0 ? "" : "\n";
+            if (this.isComment(line) ||
+                this.isSection(line) ||
+                this.isWhitespace(line)) {
                 text += `${delimiter}${line}`;
             }
             else if (map.has(index)) {
@@ -23390,12 +23413,12 @@ class RestextParser {
     toTranslatableTextMap(instance) {
         const textToTranslate = new Map();
         for (const [key, value] of Object.entries(instance)) {
-            if (typeof key !== 'number') {
+            if (typeof key !== "number") {
                 textToTranslate.set(key, value);
             }
         }
         return {
-            text: textToTranslate
+            text: textToTranslate,
         };
     }
 }
@@ -23430,7 +23453,7 @@ class ResxParser {
             for (let key in translations) {
                 const value = translations[key];
                 if (value) {
-                    (0, resource_file_1.traverseResx)(resource, key, (data) => data.value = [value]);
+                    (0, resource_file_1.traverseResx)(resource, key, (data) => (data.value = [value]));
                 }
             }
         }
@@ -23447,7 +23470,7 @@ class ResxParser {
             }
         }
         return {
-            text: textToTranslate
+            text: textToTranslate,
         };
     }
 }
@@ -23486,7 +23509,7 @@ class XliffParser {
                 const sourceKey = compositeKey[1];
                 const value = translations[key];
                 if (value) {
-                    (0, xliff_file_1.traverseXliff)(instance, index, sourceKey, s => s.target = [value]);
+                    (0, xliff_file_1.traverseXliff)(instance, index, sourceKey, (s) => (s.target = [value]));
                 }
             }
         }
@@ -23504,7 +23527,7 @@ class XliffParser {
             }
         }
         return {
-            text: textToTranslate
+            text: textToTranslate,
         };
     }
 }
@@ -23557,7 +23580,7 @@ const translation_file_finder_1 = __nccwpck_require__(3699);
 async function start(inputs) {
     try {
         if (!inputs) {
-            (0, core_1.setFailed)('Both a subscriptionKey and endpoint are required.');
+            (0, core_1.setFailed)("Both a subscriptionKey and endpoint are required.");
         }
         else {
             const availableTranslations = await (0, translation_api_1.getAvailableTranslations)();
@@ -23567,12 +23590,12 @@ async function start(inputs) {
             }
             const sourceLocale = inputs.sourceLocale;
             const toLocales = Object.keys(availableTranslations.translation)
-                .filter(locale => {
+                .filter((locale) => {
                 if (locale === sourceLocale) {
                     return false;
                 }
                 if (inputs.toLocales && inputs.toLocales.length) {
-                    return inputs.toLocales.some(l => l === locale);
+                    return inputs.toLocales.some((l) => l === locale);
                 }
                 return true;
             })
@@ -23651,10 +23674,10 @@ async function start(inputs) {
                     }
                 }
             }
-            (0, core_1.setOutput)('has-new-translations', summary.hasNewTranslations);
+            (0, core_1.setOutput)("has-new-translations", summary.hasNewTranslations);
             const [title, details] = (0, summarizer_1.summarize)(summary);
-            (0, core_1.setOutput)('summary-title', title);
-            (0, core_1.setOutput)('summary-details', details);
+            (0, core_1.setOutput)("summary-title", title);
+            (0, core_1.setOutput)("summary-details", details);
         }
     }
     catch (error) {

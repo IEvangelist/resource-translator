@@ -5,8 +5,8 @@ import { JsonFile } from "./json-file";
 import { XliffFile } from "./xliff-file";
 
 export type TranslationFile =
-    PortableObjectFile |
-    ResourceFile |
-    RestextFile |
-    XliffFile |
-    JsonFile;
+  | PortableObjectFile
+  | ResourceFile
+  | RestextFile
+  | XliffFile
+  | JsonFile;
