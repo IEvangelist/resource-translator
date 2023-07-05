@@ -26,7 +26,7 @@ export class JsonParser implements TranslationFileParser {
       buildMap(content);
     } catch (e) {
       throw new Error(
-        `Failed to parse json. Error: ${e}. Content: ${fileContent}`
+        `Failed to parse json. Error: ${e}. Content: ${fileContent}`,
       );
     }
 
@@ -57,7 +57,7 @@ export class JsonParser implements TranslationFileParser {
   applyTranslations(
     instance: JsonFile,
     translations: { [key: string]: string } | undefined,
-    targetLocale?: string
+    targetLocale?: string,
   ): JsonFile {
     if (instance && translations) {
       for (let key in translations) {

@@ -7,7 +7,7 @@ import { zip } from "./utils";
 export const toResultSet = (
   results: TranslationResults,
   toLocales: string[],
-  translatableText: Map<string, string>
+  translatableText: Map<string, string>,
 ): TranslationResultSet => {
   const translatableKeys = [...translatableText.keys()];
   const resultSet: TranslationResultSet = {};
@@ -15,7 +15,7 @@ export const toResultSet = (
     toLocales.forEach((locale) => {
       let result = {};
       const matches = results.filter((r) =>
-        r.translations.some((t) => t.to === locale)
+        r.translations.some((t) => t.to === locale),
       );
       if (matches) {
         const translations = toRawTextArray(matches, locale);
@@ -34,7 +34,7 @@ export const toResultSet = (
 
 const toRawTextArray = (
   translationResults: TranslationResults,
-  locale: string
+  locale: string,
 ): string[] => {
   const rawTextArray: string[] = [];
   if (translationResults && translationResults.length) {

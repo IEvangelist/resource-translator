@@ -50,7 +50,7 @@ export const summarize = (summary: Summary): [string, string] => {
     JSON.stringify({
       title,
       details,
-    })
+    }),
   );
 
   return [title, details.join("\n")];

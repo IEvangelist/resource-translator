@@ -42,7 +42,7 @@ export async function start(inputs: Inputs) {
       info(`Detected translation targets to: ${toLocales.join(", ")}`);
 
       const translationFiles = await findAllTranslationFiles(
-        inputs.sourceLocale
+        inputs.sourceLocale,
       );
       if (
         !translationFiles ||
@@ -82,8 +82,8 @@ export async function start(inputs: Inputs) {
           debug(
             `Translatable text:\n ${JSON.stringify(
               translatableTextMap,
-              stringifyMap
-            )}`
+              stringifyMap,
+            )}`,
           );
 
           if (translatableTextMap) {
@@ -91,7 +91,7 @@ export async function start(inputs: Inputs) {
               inputs,
               toLocales,
               translatableTextMap.text,
-              filePath
+              filePath,
             );
 
             debug(`Translation result:\n ${JSON.stringify(resultSet)}`);
@@ -99,7 +99,7 @@ export async function start(inputs: Inputs) {
             if (resultSet !== undefined) {
               const length = translatableTextMap.text.size;
               debug(
-                `Translation count: ${length}, toLocales size: ${toLocales.length}`
+                `Translation count: ${length}, toLocales size: ${toLocales.length}`,
               );
 
               for (let i = 0; i < toLocales.length; ++i) {
@@ -108,17 +108,17 @@ export async function start(inputs: Inputs) {
                 if (translations) {
                   const clone = Object.assign(
                     {} as TranslationFile,
-                    parsedFile
+                    parsedFile,
                   );
                   const result = translationFileParser.applyTranslations(
                     clone,
                     translations,
-                    locale
+                    locale,
                   );
 
                   const translatedFile = translationFileParser.toFileFormatted(
                     result,
-                    ""
+                    "",
                   );
                   const newPath = getLocaleName(filePath, locale);
                   if (translatedFile && newPath) {
@@ -157,8 +157,11 @@ export async function start(inputs: Inputs) {
     }
   } catch (error: unknown) {
     console.trace();
-    if (error) {
-      setFailed(error.toString());
+
+    if (error instanceof Error) {
+      setFailed(error.message);
+    } else {
+      setFailed(`Unknown error: ${error}`);
     }
   }
 }

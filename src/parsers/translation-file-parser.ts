@@ -27,7 +27,7 @@ export interface TranslationFileParser {
   applyTranslations(
     instance: TranslationFile,
     translations: { [key: string]: string } | undefined,
-    targetLocale?: string
+    targetLocale?: string,
   ): TranslationFile;
 
   /**

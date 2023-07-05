@@ -19,7 +19,7 @@ export const getAvailableTranslations =
     const apiUrl = "https://api.cognitive.microsofttranslator.com/languages";
     const query = "api-version=3.0&scope=translation";
     const response = await Axios.get<AvailableTranslations>(
-      `${apiUrl}?${query}`
+      `${apiUrl}?${query}`,
     );
 
     return response.data;
@@ -29,7 +29,7 @@ export const translate = async (
   translatorResource: TranslatorResource,
   toLocales: string[],
   translatableText: Map<string, string>,
-  filePath: string
+  filePath: string,
 ): Promise<TranslationResultSet | undefined> => {
   try {
     // Current Azure Translator API rate limit
@@ -42,7 +42,7 @@ export const translate = async (
       const valueStringifiedLength = JSON.stringify(value).length;
       if (valueStringifiedLength > apiRateLimit) {
         validationErrors.push(
-          `Text for key '${key}' in file '${filePath}' is too long (${valueStringifiedLength}). Must be ${apiRateLimit} at most.`
+          `Text for key '${key}' in file '${filePath}' is too long (${valueStringifiedLength}). Must be ${apiRateLimit} at most.`,
         );
       }
     });
@@ -99,13 +99,13 @@ export const translate = async (
         const response = await Axios.post<TranslationResult[]>(
           url,
           batch,
-          options
+          options,
         );
         const responseData = response.data;
         debug(
           `Data batch ${i + 1}, Locales batch ${
             j + 1
-          }, response: ${JSON.stringify(responseData)}`
+          }, response: ${JSON.stringify(responseData)}`,
         );
 
         results = [...results, ...responseData];
@@ -115,17 +115,14 @@ export const translate = async (
     return toResultSet(results, toLocales, translatableText);
   } catch (ex: unknown) {
     // Try to write explicit error:
-    // https://docs.microsoft.com/en-us/azure/cognitive-services/translator/reference/v3-0-reference#errors
-    if (isResponse(ex)) {
-      const e =
-        ex.response &&
-        ex.response.data &&
-        (ex.response.data as TranslationErrorResponse);
-      if (e) {
-        setFailed(
-          `file: ${filePath}, error: { code: ${e.error.code}, message: '${e.error.message}' }}`
-        );
-      }
+    // https://docs.microsoft.com/azure/cognitive-services/translator/reference/v3-0-reference#errors
+    const e = ex as TranslatorError;
+    const errorResponse = e.response?.data?.error;
+
+    if (e) {
+      setFailed(
+        `file: ${filePath}, error: { code: ${errorResponse.code}, message: '${errorResponse.message}' }}`,
+      );
     } else {
       setFailed(`Failed to translate input: file '${filePath}', ${ex}`);
     }
@@ -134,11 +131,7 @@ export const translate = async (
   }
 };
 
-function isResponse(value: unknown): value is ResponseData {
-  return (value as ResponseData).response !== undefined;
-}
-
-interface ResponseData {
+interface TranslatorError {
   response: {
     data: TranslationErrorResponse;
   };

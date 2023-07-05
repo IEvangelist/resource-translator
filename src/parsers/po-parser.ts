@@ -29,7 +29,7 @@ export class PortableObjectParser implements TranslationFileParser {
   applyTranslations(
     portableObject: PortableObjectFile,
     translations: { [key: string]: string } | undefined,
-    targetLocale?: string
+    targetLocale?: string,
   ): PortableObjectFile {
     if (portableObject && translations) {
       let lastIndex = 0;
@@ -59,7 +59,7 @@ export class PortableObjectParser implements TranslationFileParser {
               }
               return foundSecond;
             },
-            (token) => (token.value = value)
+            (token) => (token.value = value),
           );
         }
       }

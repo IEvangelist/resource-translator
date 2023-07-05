@@ -6,8 +6,10 @@ const run = async (): Promise<void> => {
   try {
     await start(getInputs());
   } catch (error: unknown) {
-    if (error) {
-      setFailed(error.toString());
+    if (error instanceof Error) {
+      setFailed(error);
+    } else {
+      setFailed(`Unknown error: ${error}`);
     }
   }
 };

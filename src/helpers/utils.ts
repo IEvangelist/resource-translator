@@ -2,14 +2,17 @@ import { basename, dirname, join } from "path";
 
 export const groupBy = <T extends Record<K, string>, K extends string>(
   array: T[],
-  key: keyof T
+  key: keyof T,
 ): { [group: string]: T[] } =>
-  array.reduce((result, obj) => {
-    const value = obj[key];
-    result[value] = [...(result[value] || []), obj];
+  array.reduce(
+    (result, obj) => {
+      const value = obj[key];
+      result[value] = [...(result[value] || []), obj];
 
-    return result;
-  }, {} as { [group: string]: T[] });
+      return result;
+    },
+    {} as { [group: string]: T[] },
+  );
 
 export const getLocaleName = (existingPath: string, locale: string) => {
   const fileName = basename(existingPath);
@@ -18,12 +21,12 @@ export const getLocaleName = (existingPath: string, locale: string) => {
     case 4:
       return join(
         dirname(existingPath),
-        `${segments[0]}.${segments[1]}.${locale}.${segments[3]}`
+        `${segments[0]}.${segments[1]}.${locale}.${segments[3]}`,
       );
     case 3:
       return join(
         dirname(existingPath),
-        `${segments[0]}.${locale}.${segments[2]}`
+        `${segments[0]}.${locale}.${segments[2]}`,
       );
     case 2:
       return join(dirname(existingPath), `${locale}.${segments[1]}`);
@@ -75,7 +78,7 @@ export function chunk<T>(array: T[], size: number): T[][] {
 
 export function zip<TFirst, TSecond>(
   first: TFirst[],
-  second: TSecond[]
+  second: TSecond[],
 ): (TFirst | TSecond)[][] {
   return first.map((value, i) => {
     return [value, second[i]];
@@ -91,7 +94,7 @@ export const findNext = <T>(
   startIndex: number,
   firstPredicate: (tOne: T) => [boolean, number],
   secondPredicate: (tTwo: T, secondOffset: number) => boolean,
-  actionOfNext: (next: T) => void
+  actionOfNext: (next: T) => void,
 ): number => {
   if (items && items.length) {
     let foundFirst = false;
@@ -118,7 +121,7 @@ export const findNext = <T>(
 export function batch<T>(
   array: T[],
   maxBatchSize: number,
-  maxStringifiedSize: number
+  maxStringifiedSize: number,
 ): T[][] {
   const batches: T[][] = [];
   let currentStringifiedSize = 0;

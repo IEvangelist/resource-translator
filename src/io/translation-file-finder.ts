@@ -23,14 +23,14 @@ const translationFileSchemes = {
 };
 
 export async function findAllTranslationFiles(
-  sourceLocale: string
+  sourceLocale: string,
 ): Promise<TranslationFileMap> {
   const filesToInclude = await getFilesToInclude();
   const includeFile = (filepath: string) => {
     if (filesToInclude && filesToInclude.length > 0) {
       const filename = basename(filepath);
       const include = filesToInclude.some(
-        (f) => f.toLowerCase() === filename.toLowerCase()
+        (f) => f.toLowerCase() === filename.toLowerCase(),
       );
       debug(`include=${include}, ${filename}`);
       return include;
@@ -82,6 +82,7 @@ async function getFilesToInclude(): Promise<string[]> {
         ref: context.ref,
       };
       debug(JSON.stringify(options));
+
       const response = await octokit.rest.repos.getCommit(options);
 
       debug(JSON.stringify(response));
@@ -92,7 +93,7 @@ async function getFilesToInclude(): Promise<string[]> {
             response.data.files.map((file) => {
               const path = resolve(__dirname, file.filename);
               return basename(path);
-            })
+            }),
           ),
         ];
 
@@ -103,8 +104,10 @@ async function getFilesToInclude(): Promise<string[]> {
       debug("Unable to get the GITHUB_TOKEN from the environment.");
     }
   } catch (error: unknown) {
-    if (error) {
-      debug(error.toString());
+    if (error instanceof Error) {
+      debug(error.message);
+    } else {
+      debug(`Unknown error: ${error}.`);
     }
   }
 

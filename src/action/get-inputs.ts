@@ -19,7 +19,7 @@ export const getInputs = (): Inputs => {
  *   "[ 'es', 'de', 'fr' ]"
  */
 export const getQuestionableArray = (
-  inputName: string
+  inputName: string,
 ): string[] | undefined => {
   const value = getInput(inputName);
   if (value) {

@@ -23,7 +23,7 @@ export class XliffParser implements TranslationFileParser {
   applyTranslations(
     instance: XliffFile,
     translations: { [key: string]: string } | undefined,
-    targetLocale?: string
+    targetLocale?: string,
   ): XliffFile {
     if (instance && translations && targetLocale) {
       instance.xliff.$.trgLang = targetLocale;
@@ -37,7 +37,7 @@ export class XliffParser implements TranslationFileParser {
             instance,
             index,
             sourceKey,
-            (s) => (s.target = [value])
+            (s) => (s.target = [value]),
           );
         }
       }

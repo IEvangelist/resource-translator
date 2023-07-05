@@ -7,7 +7,7 @@ import { TranslationFileParser } from "../parsers/translation-file-parser";
 import { XliffParser } from "../parsers/xliff-parser";
 
 export const translationFileParserFactory = (
-  translationFileKind: TranslationFileKind
+  translationFileKind: TranslationFileKind,
 ): TranslationFileParser => {
   switch (translationFileKind) {
     case "resx":

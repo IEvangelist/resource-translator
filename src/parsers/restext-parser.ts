@@ -66,7 +66,7 @@ export class RestextParser implements TranslationFileParser {
   applyTranslations(
     instance: RestextFile,
     translations: { [key: string]: string } | undefined,
-    targetLocale?: string
+    targetLocale?: string,
   ): RestextFile {
     if (instance && translations) {
       for (let key in translations) {
