@@ -1,6 +1,6 @@
 # 🌐 Machine Translator
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![GitHub Marketplace](https://img.shields.io/badge/Marketplace-Machine%20Translator-blue.svg?colorA=24292e&colorB=0366d6&style=flat&longCache=true&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAM6wAADOsB5dZE0gAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAERSURBVCiRhZG/SsMxFEZPfsVJ61jbxaF0cRQRcRJ9hlYn30IHN/+9iquDCOIsblIrOjqKgy5aKoJQj4O3EEtbPwhJbr6Te28CmdSKeqzeqr0YbfVIrTBKakvtOl5dtTkK+v4HfA9PEyBFCY9AGVgCBLaBp1jPAyfAJ/AAdIEG0dNAiyP7+K1qIfMdonZic6+WJoBJvQlvuwDqcXadUuqPA1NKAlexbRTAIMvMOCjTbMwl1LtI/6KWJ5Q6rT6Ht1MA58AX8Apcqqt5r2qhrgAXQC3CZ6i1+KMd9TRu3MvA3aH/fFPnBodb6oe6HM8+lYHrGdRXW8M9bMZtPXUji69lmf5Cmamq7quNLFZXD9Rq7v0Bpc1o/tp0fisAAAAASUVORK5CYII=)](https://github.com/marketplace/actions/machine-translator)
@@ -107,13 +107,16 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
-  <tr>
-    <td align="center"><a href="https://github.com/vs-savelich"><img src="https://avatars.githubusercontent.com/u/22545114?v=4?s=100" width="100px;" alt=""/><br /><sub><b>vs-savelich</b></sub></a><br /><a href="https://github.com/IEvangelist/resource-translator/commits?author=vs-savelich" title="Code">💻</a> <a href="https://github.com/IEvangelist/resource-translator/commits?author=vs-savelich" title="Tests">⚠️</a></td>
-    <td align="center"><a href="https://github.com/yevgen-nykytenko"><img src="https://avatars.githubusercontent.com/u/15048651?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Yevgen Nykytenko</b></sub></a><br /><a href="https://github.com/IEvangelist/resource-translator/issues?q=author%3Ayevgen-nykytenko" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="https://finterjobs.com"><img src="https://avatars.githubusercontent.com/u/869?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Peter Rekdal Khan-Sunde</b></sub></a><br /><a href="https://github.com/IEvangelist/resource-translator/issues?q=author%3Apeters" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="https://timheuer.com/blog/"><img src="https://avatars.githubusercontent.com/u/4821?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tim Heuer</b></sub></a><br /><a href="https://github.com/IEvangelist/resource-translator/issues?q=author%3Atimheuer" title="Bug reports">🐛</a> <a href="#ideas-timheuer" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/IEvangelist/resource-translator/pulls?q=is%3Apr+reviewed-by%3Atimheuer" title="Reviewed Pull Requests">👀</a></td>
-    <td align="center"><a href="https://github.com/tompatib"><img src="https://avatars.githubusercontent.com/u/16067575?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tibor Tompa</b></sub></a><br /><a href="#ideas-tompatib" title="Ideas, Planning, & Feedback">🤔</a></td>
-  </tr>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/vs-savelich"><img src="https://avatars.githubusercontent.com/u/22545114?v=4?s=100" width="100px;" alt="vs-savelich"/><br /><sub><b>vs-savelich</b></sub></a><br /><a href="https://github.com/IEvangelist/resource-translator/commits?author=vs-savelich" title="Code">💻</a> <a href="https://github.com/IEvangelist/resource-translator/commits?author=vs-savelich" title="Tests">⚠️</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/yevgen-nykytenko"><img src="https://avatars.githubusercontent.com/u/15048651?v=4?s=100" width="100px;" alt="Yevgen Nykytenko"/><br /><sub><b>Yevgen Nykytenko</b></sub></a><br /><a href="https://github.com/IEvangelist/resource-translator/issues?q=author%3Ayevgen-nykytenko" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://finterjobs.com"><img src="https://avatars.githubusercontent.com/u/869?v=4?s=100" width="100px;" alt="Peter Rekdal Khan-Sunde"/><br /><sub><b>Peter Rekdal Khan-Sunde</b></sub></a><br /><a href="https://github.com/IEvangelist/resource-translator/issues?q=author%3Apeters" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://timheuer.com/blog/"><img src="https://avatars.githubusercontent.com/u/4821?v=4?s=100" width="100px;" alt="Tim Heuer"/><br /><sub><b>Tim Heuer</b></sub></a><br /><a href="https://github.com/IEvangelist/resource-translator/issues?q=author%3Atimheuer" title="Bug reports">🐛</a> <a href="#ideas-timheuer" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/IEvangelist/resource-translator/pulls?q=is%3Apr+reviewed-by%3Atimheuer" title="Reviewed Pull Requests">👀</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/tompatib"><img src="https://avatars.githubusercontent.com/u/16067575?v=4?s=100" width="100px;" alt="Tibor Tompa"/><br /><sub><b>Tibor Tompa</b></sub></a><br /><a href="#ideas-tompatib" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://ml-software.ch"><img src="https://avatars.githubusercontent.com/u/4151467?v=4?s=100" width="100px;" alt="Matteo"/><br /><sub><b>Matteo</b></sub></a><br /><a href="https://github.com/IEvangelist/resource-translator/commits?author=Franklin89" title="Code">💻</a> <a href="https://github.com/IEvangelist/resource-translator/commits?author=Franklin89" title="Tests">⚠️</a></td>
+    </tr>
+  </tbody>
 </table>
 
 <!-- markdownlint-restore -->
