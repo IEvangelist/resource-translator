@@ -84,3 +84,54 @@ Message=Button is clicked!`;
   );
   expect(translatableTextMap.text.get("Message")).toEqual("Button is clicked!");
 });
+
+describe("RestextParser edge cases", () => {
+  it("preserves '=' inside values (URLs, query strings, equations)", async () => {
+    // Regression: line.split('=') used to truncate values containing '='.
+    // We now split on the FIRST '=' only.
+    const content = `Url=https://example.com/?a=1&b=2
+Equation=x=y+z
+Empty=
+WithEquals=a=b=c`;
+    const file = await parser.parseFrom(content);
+
+    expect(file["Url"]).toEqual("https://example.com/?a=1&b=2");
+    expect(file["Equation"]).toEqual("x=y+z");
+    expect(file["Empty"]).toEqual("");
+    expect(file["WithEquals"]).toEqual("a=b=c");
+
+    // And the round-trip writes them back unchanged.
+    expect(parser.toFileFormatted(file, "")).toEqual(content);
+  });
+
+  it("returns the defaultValue when given empty content", async () => {
+    const file = await parser.parseFrom("");
+    expect(parser.toFileFormatted(file, "default")).toEqual("default");
+  });
+
+  it("preserves verbatim lines that have no '=' separator", async () => {
+    const content = `; comment
+[Section]
+Key=value
+StrayLineWithoutEquals
+Another=ok`;
+    const file = await parser.parseFrom(content);
+    expect(file["Key"]).toEqual("value");
+    expect(file["Another"]).toEqual("ok");
+    expect(parser.toFileFormatted(file, "")).toEqual(content);
+  });
+
+  it("applies translations and re-emits cleanly", async () => {
+    const content = `[Section]
+Url=https://example.com/?a=1
+Title=Hello`;
+    const file = await parser.parseFrom(content);
+    parser.applyTranslations(file, {
+      Url: "https://example.com/?a=1", // unchanged
+      Title: "Bonjour",
+    });
+    const out = parser.toFileFormatted(file, "");
+    expect(out).toContain("Url=https://example.com/?a=1");
+    expect(out).toContain("Title=Bonjour");
+  });
+});

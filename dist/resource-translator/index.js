@@ -21449,7 +21449,7 @@ var require_core = __commonJS({
     exports2.isDebug = isDebug;
     exports2.debug = debug7;
     exports2.error = error;
-    exports2.warning = warning3;
+    exports2.warning = warning5;
     exports2.notice = notice;
     exports2.info = info2;
     exports2.startGroup = startGroup;
@@ -21542,7 +21542,7 @@ Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
     function error(message, properties = {}) {
       (0, command_1.issueCommand)("error", (0, utils_1.toCommandProperties)(properties), message instanceof Error ? message.toString() : message);
     }
-    function warning3(message, properties = {}) {
+    function warning5(message, properties = {}) {
       (0, command_1.issueCommand)("warning", (0, utils_1.toCommandProperties)(properties), message instanceof Error ? message.toString() : message);
     }
     function notice(message, properties = {}) {
@@ -45643,7 +45643,7 @@ var require_glob = __commonJS({
 });
 
 // src/index.ts
-var import_core8 = __toESM(require_core());
+var import_core10 = __toESM(require_core());
 
 // src/action/get-inputs.ts
 var import_core2 = __toESM(require_core());
@@ -48465,7 +48465,7 @@ var getQuestionableArray = (inputName) => {
 };
 
 // src/resource-translator.ts
-var import_core7 = __toESM(require_core());
+var import_core9 = __toESM(require_core());
 var import_fs2 = require("fs");
 
 // src/abstractions/summary.ts
@@ -53144,41 +53144,69 @@ var translate = async (translatorResource, toLocales, translatableText, filePath
     }
     return toResultSet(results, toLocales, translatableText);
   } catch (ex) {
-    const e = ex;
-    const errorResponse = e.response?.data?.error;
-    if (e) {
+    const errorResponse = ex?.response?.data?.error;
+    if (errorResponse && (errorResponse.code || errorResponse.message)) {
       (0, import_core3.setFailed)(
-        `file: ${filePath}, error: { code: ${errorResponse.code}, message: '${errorResponse.message}' }}`
+        `file: ${filePath}, error: { code: ${errorResponse.code}, message: '${errorResponse.message}' }`
       );
     } else {
-      (0, import_core3.setFailed)(`Failed to translate input: file '${filePath}', ${ex}`);
+      const message = ex instanceof Error ? ex.message : String(ex);
+      (0, import_core3.setFailed)(`Failed to translate input: file '${filePath}', ${message}`);
     }
     return void 0;
   }
 };
 
 // src/parsers/json-parser.ts
+var import_core4 = __toESM(require_core());
 var JsonParser = class _JsonParser {
   static DELIMITER = "[--]";
   parseFrom(fileContent) {
+    const map2 = /* @__PURE__ */ new Map();
+    let containsTranslatableArray = false;
     const buildMap = (obj, parentPath) => {
-      for (const [key, value] of Object.entries(obj)) {
+      if (obj === null || typeof obj !== "object" || Array.isArray(obj)) {
+        if (parentPath !== void 0) {
+          map2.set(parentPath, obj);
+        }
+        if (Array.isArray(obj) && obj.some((item) => typeof item === "string")) {
+          containsTranslatableArray = true;
+        }
+        return;
+      }
+      for (const [key, value] of Object.entries(
+        obj
+      )) {
         const path2 = parentPath ? `${parentPath}${_JsonParser.DELIMITER}${key}` : key;
         if (typeof value === "string") {
           map2.set(path2, value);
-        } else {
+        } else if (value !== null && typeof value === "object" && !Array.isArray(value)) {
           buildMap(value, path2);
+        } else {
+          map2.set(path2, value);
+          if (Array.isArray(value) && value.some((item) => typeof item === "string")) {
+            containsTranslatableArray = true;
+          }
         }
       }
     };
-    const map2 = /* @__PURE__ */ new Map();
     try {
       const content = JSON.parse(fileContent);
+      if (content === null || typeof content !== "object" || Array.isArray(content)) {
+        throw new Error(
+          "Top-level JSON must be an object (got " + (Array.isArray(content) ? "array" : typeof content) + ")."
+        );
+      }
       buildMap(content);
     } catch (e) {
       throw new Error(
         `Failed to parse json. Error: ${e}. Content: ${fileContent}`,
         { cause: e }
+      );
+    }
+    if (containsTranslatableArray) {
+      (0, import_core4.warning)(
+        "JsonParser: encountered an array containing strings \u2014 array values are preserved verbatim and NOT translated. Restructure into nested objects to translate them."
       );
     }
     return Promise.resolve(Object.fromEntries(map2));
@@ -53188,10 +53216,18 @@ var JsonParser = class _JsonParser {
     const buildObject = (obj, keyParts, value) => {
       const keyPart = keyParts[0];
       const isLastChild = keyParts.length === 1;
-      obj[keyPart] = isLastChild ? value : obj[keyPart] ?? {};
-      if (!isLastChild) {
-        buildObject(obj[keyPart], keyParts.slice(1), value);
+      if (isLastChild) {
+        obj[keyPart] = value;
+        return;
       }
+      if (obj[keyPart] === void 0 || obj[keyPart] === null || typeof obj[keyPart] !== "object" || Array.isArray(obj[keyPart])) {
+        obj[keyPart] = {};
+      }
+      buildObject(
+        obj[keyPart],
+        keyParts.slice(1),
+        value
+      );
     };
     for (const [key, value] of Object.entries(instance)) {
       const keyParts = key.split(_JsonParser.DELIMITER);
@@ -53203,7 +53239,7 @@ var JsonParser = class _JsonParser {
     if (instance && translations) {
       for (const key in translations) {
         const value = translations[key];
-        if (value) {
+        if (value && typeof instance[key] === "string") {
           instance[key] = value;
         }
       }
@@ -53213,7 +53249,9 @@ var JsonParser = class _JsonParser {
   toTranslatableTextMap(instance) {
     const textToTranslate = /* @__PURE__ */ new Map();
     for (const [key, value] of Object.entries(instance)) {
-      textToTranslate.set(key, value);
+      if (typeof value === "string") {
+        textToTranslate.set(key, value);
+      }
     }
     return {
       text: textToTranslate
@@ -53223,10 +53261,17 @@ var JsonParser = class _JsonParser {
 
 // src/file-formats/po-file.ts
 var firstWhitespace = /\s+(.*)/;
+var continuationLine = /^\s*"/;
 var PortableObjectToken = class {
   constructor(line) {
     this.line = line;
     if (line && line.trim()) {
+      if (continuationLine.test(line)) {
+        this._isContinuation = true;
+        this._isInsignificant = false;
+        this._value = line.trim();
+        return;
+      }
       const keyValuePair = line.split(firstWhitespace);
       this._identifier = keyValuePair[0];
       this._value = keyValuePair.length > 1 ? keyValuePair[1] : null;
@@ -53237,6 +53282,7 @@ var PortableObjectToken = class {
   }
   line;
   _isInsignificant;
+  _isContinuation = false;
   _identifier = null;
   _value = null;
   get id() {
@@ -53251,12 +53297,21 @@ var PortableObjectToken = class {
   get isInsignificant() {
     return this._isInsignificant;
   }
+  /**
+   * True for lines that are continuations of a previous msgid / msgstr,
+   * e.g. a quoted string literal on its own line. Continuation tokens are
+   * preserved verbatim in the file but are NOT treated as standalone keys.
+   */
+  get isContinuation() {
+    return this._isContinuation;
+  }
   get isCommentLine() {
     return !!this.line && this.line.startsWith("#:");
   }
 };
 
 // src/parsers/po-parser.ts
+var import_core5 = __toESM(require_core());
 var PortableObjectParser = class {
   async parseFrom(fileContent) {
     await delay(0, null);
@@ -53273,8 +53328,10 @@ var PortableObjectParser = class {
   }
   applyTranslations(portableObject, translations, _targetLocale) {
     if (portableObject && translations) {
+      const skipMsgids = this.getMultilineMsgids(portableObject.tokens);
       let lastIndex = 0;
       for (const key in translations) {
+        if (skipMsgids.has(key)) continue;
         const value = translations[key];
         if (value) {
           lastIndex = findNext(
@@ -53283,7 +53340,7 @@ var PortableObjectParser = class {
             (token) => {
               let foundFirst = false;
               let secondOffset = 0;
-              if (!token.isInsignificant) {
+              if (!token.isInsignificant && !token.isContinuation) {
                 if (token.value === key) {
                   foundFirst = true;
                   secondOffset = token.id === "msgid" ? 0 : 1;
@@ -53293,7 +53350,7 @@ var PortableObjectParser = class {
             },
             (token, secondOffset) => {
               let foundSecond = false;
-              if (!token.isInsignificant) {
+              if (!token.isInsignificant && !token.isContinuation) {
                 foundSecond = secondOffset ? token.id.startsWith(`msgstr[${secondOffset}]`) : token.id.startsWith("msgstr");
               }
               return foundSecond;
@@ -53309,18 +53366,85 @@ var PortableObjectParser = class {
     const textToTranslate = /* @__PURE__ */ new Map();
     const tokens = instance.tokens;
     if (tokens && tokens.length) {
-      tokens.forEach((token) => {
-        if (token.isCommentLine || token.isInsignificant || !token.value) {
-          return;
+      const skipMsgids = this.getMultilineMsgids(tokens);
+      let warnedMultiline = false;
+      for (let i = 0; i < tokens.length; i++) {
+        const token = tokens[i];
+        if (token.isCommentLine || token.isInsignificant || token.isContinuation) {
+          continue;
         }
         if (token.id === "msgid" || token.id === "msgid_plural") {
-          textToTranslate.set(token.value, token.value);
+          if (token.value && skipMsgids.has(token.value)) {
+            if (!warnedMultiline) {
+              (0, import_core5.warning)(
+                "PortableObjectParser: multi-line PO continuations (in msgid or msgstr) are not yet supported and will be left unchanged. See https://github.com/IEvangelist/resource-translator/issues for status."
+              );
+              warnedMultiline = true;
+            }
+            continue;
+          }
+          if (token.value) {
+            textToTranslate.set(token.value, token.value);
+          }
         }
-      });
+      }
     }
     return {
       text: textToTranslate
     };
+  }
+  /**
+   * Returns the set of `msgid` (and `msgid_plural`) values whose entry uses
+   * PO continuation syntax on EITHER the source (`msgid ""` + `"..."`) or
+   * the target (`msgstr ""` + `"..."`) side.
+   *
+   * Both halves matter:
+   *  - A multi-line `msgid` cannot be coalesced safely back into the file
+   *    on round-trip.
+   *  - A single-line `msgid` paired with a multi-line `msgstr` is even
+   *    worse: `applyTranslations` would rewrite the first `msgstr` line
+   *    and leave the dangling `"old "` / `"value"` continuation lines
+   *    intact — silently producing a half-translated, half-original mess.
+   *
+   * A single PO entry consists of:
+   *   msgid "..."        ← entry anchor
+   *   [msgid_plural "..."]
+   *   msgstr "..." | msgstr[0..N] "..."
+   * — all of which can carry continuations. The next `msgid` starts a new
+   * entry. We anchor scanning on `msgid` and treat `msgid_plural` /
+   * `msgstr*` as members of the current entry, so a continuation on ANY
+   * of them taints BOTH the singular and plural keys for that entry.
+   *
+   * Until proper coalescing lands we conservatively skip every member of
+   * any tainted entry.
+   */
+  getMultilineMsgids(tokens) {
+    const multiline = /* @__PURE__ */ new Set();
+    const isEmptyQuoted = (value) => value === '""' || value === null;
+    for (let i = 0; i < tokens.length; i++) {
+      const token = tokens[i];
+      if (token.id !== "msgid") continue;
+      const msgidValue = token.value;
+      if (!msgidValue) continue;
+      const entryKeys = [msgidValue];
+      let isMultiline = isEmptyQuoted(msgidValue) && !!tokens[i + 1]?.isContinuation;
+      for (let j = i + 1; j < tokens.length; j++) {
+        const next = tokens[j];
+        if (next.id === "msgid") break;
+        if (next.id === "msgid_plural" && next.value) {
+          entryKeys.push(next.value);
+          if (isEmptyQuoted(next.value) && tokens[j + 1]?.isContinuation) {
+            isMultiline = true;
+          }
+        } else if (next.id?.startsWith("msgstr") && isEmptyQuoted(next.value) && tokens[j + 1]?.isContinuation) {
+          isMultiline = true;
+        }
+      }
+      if (isMultiline) {
+        for (const key of entryKeys) multiline.add(key);
+      }
+    }
+    return multiline;
   }
 };
 
@@ -53339,9 +53463,16 @@ var RestextParser = class {
             [index]: line
           };
         } else {
-          const keyValuePair = line.split("=");
-          const key = keyValuePair[0];
-          const val = keyValuePair[1];
+          const equalsAt = line.indexOf("=");
+          if (equalsAt < 0) {
+            restextFile = {
+              ...restextFile,
+              [index]: line
+            };
+            return;
+          }
+          const key = line.slice(0, equalsAt);
+          const val = line.slice(equalsAt + 1);
           map2.set(index, key);
           restextFile = {
             ...restextFile,
@@ -53366,6 +53497,8 @@ var RestextParser = class {
       } else if (map2.has(index)) {
         const key = map2.get(index);
         text += `${delimiter}${key}=${instance[key]}`;
+      } else if (line !== void 0) {
+        text += `${delimiter}${line}`;
       }
     }
     return text || defaultValue;
@@ -53404,9 +53537,14 @@ var RestextParser = class {
 };
 
 // src/file-formats/resource-file.ts
+var isTranslatable = (data) => {
+  return !data.$.type && !data.$.mimetype;
+};
 var traverseResx = (instance, name, dataAction) => {
   if (instance && instance.root && instance.root.data) {
-    const data = instance.root.data.find((d) => d.$.name === name);
+    const data = instance.root.data.find(
+      (d) => d.$.name === name && isTranslatable(d)
+    );
     if (data) {
       dataAction(data);
     }
@@ -53456,6 +53594,9 @@ var ResxParser = class {
     const values = instance.root.data;
     if (values && values.length) {
       for (let i = 0; i < values.length; ++i) {
+        if (!isTranslatable(values[i])) {
+          continue;
+        }
         const key = values[i].$.name;
         const value = values[i].value[0];
         textToTranslate.set(key, value);
@@ -53498,9 +53639,10 @@ var XliffParser = class {
     if (instance && translations && targetLocale) {
       instance.xliff.$.trgLang = targetLocale;
       for (const key in translations) {
-        const compositeKey = key.split(XliffFileKeyDelimiter);
-        const index = parseInt(compositeKey[0]);
-        const sourceKey = compositeKey[1];
+        const delimiterAt = key.indexOf(XliffFileKeyDelimiter);
+        if (delimiterAt < 0) continue;
+        const index = parseInt(key.slice(0, delimiterAt));
+        const sourceKey = key.slice(delimiterAt + XliffFileKeyDelimiter.length);
         const value = translations[key];
         if (value) {
           traverseXliff(
@@ -53585,7 +53727,7 @@ var buildTermRegex = (term) => {
 };
 
 // src/helpers/summarizer.ts
-var import_core4 = __toESM(require_core());
+var import_core6 = __toESM(require_core());
 var summarize = (summary) => {
   const fileCount = summary.totalFileCount.toLocaleString("en");
   const translations = summary.totalTranslations.toLocaleString("en");
@@ -53618,7 +53760,7 @@ var summarize = (summary) => {
     "",
     "> These machine translations are a result of Azure Cognitive Services Translator, and the [Machine Translator](https://github.com/marketplace/actions/resource-translator) GitHub action. For more information, see [Translator v3.0](https://docs.microsoft.com/azure/cognitive-services/translator/reference/v3-0-reference?WT.mc_id=dapine). To post an issue, or feature request please do so [here](https://github.com/IEvangelist/resource-translator/issues)."
   ];
-  (0, import_core4.debug)(
+  (0, import_core6.debug)(
     JSON.stringify({
       title,
       details
@@ -53628,23 +53770,23 @@ var summarize = (summary) => {
 };
 
 // src/io/reader-writer.ts
-var import_core5 = __toESM(require_core());
+var import_core7 = __toESM(require_core());
 var import_fs = require("fs");
 var import_path3 = require("path");
 function readFile(path2) {
   const resolved = (0, import_path3.resolve)(path2);
   const file = (0, import_fs.readFileSync)(resolved, "utf-8");
-  (0, import_core5.debug)(`Read file: ${file}`);
+  (0, import_core7.debug)(`Read file: ${file}`);
   return file;
 }
 function writeFile(path2, content) {
-  (0, import_core5.debug)(`Write file, path: ${path2}
+  (0, import_core7.debug)(`Write file, path: ${path2}
 Content: ${content}`);
   (0, import_fs.writeFileSync)(path2, content);
 }
 
 // src/io/translation-file-finder.ts
-var import_core6 = __toESM(require_core());
+var import_core8 = __toESM(require_core());
 var import_github = __toESM(require_github());
 var import_glob = __toESM(require_glob());
 var import_node_fs2 = require("node:fs");
@@ -55455,7 +55597,21 @@ minimatch.unescape = unescape;
 // src/io/translation-file-finder.ts
 var translationFileSchemes = {
   ini: (locale) => `**/*.${locale}.ini`,
-  po: `**/*.po`,
+  // PO files conventionally are named after the LOCALE itself (`en.po`,
+  // `fr.po`) rather than the resx-style `<basename>.<locale>.<ext>`. We
+  // therefore have to match three layouts:
+  //   1. exact `<locale>.po` (e.g. `en.po`, `messages/en.po`)
+  //   2. `*.<locale>.po`     (e.g. `messages.en.po`)
+  //   3. gettext             (e.g. `<locale>/LC_MESSAGES/<domain>.po`)
+  // Without this guard, `**/*.po` would also pick up the previous run's
+  // OUTPUT files (`fr.po`, `de.po`, ...) and feed them back as inputs on
+  // the next run — translating Spanish ➝ Spanish is silly at best and
+  // corrupts target files at worst.
+  po: (locale) => [
+    `**/${locale}.po`,
+    `**/*.${locale}.po`,
+    `**/${locale}/LC_MESSAGES/*.po`
+  ],
   restext: (locale) => `**/*.${locale}.restext`,
   resx: (locale) => `**/*.${locale}.resx`,
   xliff: (locale) => `**/*.${locale}.xliff`,
@@ -55484,14 +55640,20 @@ async function findAllTranslationFiles(sourceLocale, options = {}) {
       const include2 = filesToInclude.some(
         (f) => f.toLowerCase() === filename.toLowerCase()
       );
-      (0, import_core6.debug)(`include=${include2}, ${filename}`);
+      (0, import_core8.debug)(`include=${include2}, ${filename}`);
       return include2;
     }
     return true;
   };
-  const patterns = Object.values(translationFileSchemes).map((fileScheme) => {
-    return "function" === typeof fileScheme ? fileScheme(sourceLocale) : fileScheme;
-  });
+  const patterns = Object.values(translationFileSchemes).flatMap(
+    (fileScheme) => {
+      if (typeof fileScheme === "function") {
+        const result = fileScheme(sourceLocale);
+        return Array.isArray(result) ? result : [result];
+      }
+      return [fileScheme];
+    }
+  );
   const globber = await (0, import_glob.create)(patterns.join("\n"));
   const filesAndDirectories = await globber.glob();
   const include = options.include ?? [];
@@ -55505,7 +55667,7 @@ async function findAllTranslationFiles(sourceLocale, options = {}) {
   });
   const files = await Promise.all(promises);
   const results = files.filter((file) => file.include && !file.isDirectory).map((file) => file.path).filter((path2) => include.length ? matchesAny(path2, include) : true).filter((path2) => !matchesAny(path2, exclude));
-  (0, import_core6.debug)(`Files to translate:
+  (0, import_core8.debug)(`Files to translate:
 	${results.join("\n	")}`);
   return {
     po: results.filter((f) => f.endsWith(".po")),
@@ -55525,9 +55687,9 @@ async function getFilesToInclude() {
         ...import_github.context.repo,
         ref: import_github.context.ref
       };
-      (0, import_core6.debug)(JSON.stringify(options));
+      (0, import_core8.debug)(JSON.stringify(options));
       const response = await octokit.rest.repos.getCommit(options);
-      (0, import_core6.debug)(JSON.stringify(response));
+      (0, import_core8.debug)(JSON.stringify(response));
       if (response.data && response.data.files) {
         const files = [
           ...new Set(
@@ -55537,18 +55699,18 @@ async function getFilesToInclude() {
             })
           )
         ];
-        (0, import_core6.debug)(`Files from trigger:
+        (0, import_core8.debug)(`Files from trigger:
 	${files.join("\n	")}`);
         return files;
       }
     } else {
-      (0, import_core6.debug)("Unable to get the GITHUB_TOKEN from the environment.");
+      (0, import_core8.debug)("Unable to get the GITHUB_TOKEN from the environment.");
     }
   } catch (error) {
     if (error instanceof Error) {
-      (0, import_core6.debug)(error.message);
+      (0, import_core8.debug)(error.message);
     } else {
-      (0, import_core6.debug)(`Unknown error: ${error}.`);
+      (0, import_core8.debug)(`Unknown error: ${error}.`);
     }
   }
   return [];
@@ -55560,9 +55722,9 @@ async function start(inputs) {
   const dryRun = inputs.dryRun ?? false;
   const reportError = (message) => {
     if (failOnError) {
-      (0, import_core7.setFailed)(message);
+      (0, import_core9.setFailed)(message);
     } else {
-      (0, import_core7.warning)(message);
+      (0, import_core9.warning)(message);
     }
   };
   try {
@@ -55587,7 +55749,7 @@ async function start(inputs) {
       }
       return true;
     }).sort((a, b) => naturalLanguageCompare(a, b));
-    (0, import_core7.info)(`Detected translation targets to: ${toLocales.join(", ")}`);
+    (0, import_core9.info)(`Detected translation targets to: ${toLocales.join(", ")}`);
     const translationFiles = await findAllTranslationFiles(
       inputs.sourceLocale,
       { include: inputs.include, exclude: inputs.exclude }
@@ -55610,14 +55772,14 @@ async function start(inputs) {
       allowFallback: inputs.allowFallback
     };
     for (const key of Object.keys(translationFiles)) {
-      (0, import_core7.debug)(`Iterating translationFiles keys, key: ${key}`);
+      (0, import_core9.debug)(`Iterating translationFiles keys, key: ${key}`);
       const kind = key;
       const files = translationFiles[kind];
       if (!files || !files.length) {
-        (0, import_core7.debug)(`For kind ${kind}, there are no translation files.`);
+        (0, import_core9.debug)(`For kind ${kind}, there are no translation files.`);
         continue;
       }
-      (0, import_core7.debug)(`Translation file parser kind: ${kind}`);
+      (0, import_core9.debug)(`Translation file parser kind: ${kind}`);
       const translationFileParser = translationFileParserFactory(kind);
       for (let index = 0; index < files.length; ++index) {
         const filePath = files[index];
@@ -55625,7 +55787,7 @@ async function start(inputs) {
           const fileContent = readFile(filePath);
           const parsedFile = await translationFileParser.parseFrom(fileContent);
           const translatableTextMap = translationFileParser.toTranslatableTextMap(parsedFile);
-          (0, import_core7.debug)(
+          (0, import_core9.debug)(
             `Translatable text:
  ${JSON.stringify(
               translatableTextMap,
@@ -55642,14 +55804,14 @@ async function start(inputs) {
             translatableTextMap.text,
             filePath
           );
-          (0, import_core7.debug)(`Translation result:
+          (0, import_core9.debug)(`Translation result:
  ${JSON.stringify(resultSet)}`);
           if (resultSet === void 0) {
             reportError("Unable to translate input text.");
             continue;
           }
           const length = translatableTextMap.text.size;
-          (0, import_core7.debug)(
+          (0, import_core9.debug)(
             `Translation count: ${length}, toLocales size: ${toLocales.length}`
           );
           for (let i = 0; i < toLocales.length; ++i) {
@@ -55659,10 +55821,10 @@ async function start(inputs) {
               inputs.glossary
             );
             if (!translations) {
-              (0, import_core7.debug)(`Unable to find resulting translations for: ${locale}`);
+              (0, import_core9.debug)(`Unable to find resulting translations for: ${locale}`);
               continue;
             }
-            const clone = Object.assign({}, parsedFile);
+            const clone = await translationFileParser.parseFrom(fileContent);
             const result = translationFileParser.applyTranslations(
               clone,
               translations,
@@ -55674,7 +55836,7 @@ async function start(inputs) {
             );
             const newPath = getLocaleName(filePath, locale);
             if (translatedFile && newPath) {
-              (0, import_core7.debug)(`The newPath: ${newPath}`);
+              (0, import_core9.debug)(`The newPath: ${newPath}`);
               if ((0, import_fs2.existsSync)(newPath)) {
                 summary.updatedFileCount++;
                 summary.updatedFileTranslations += length;
@@ -55683,13 +55845,13 @@ async function start(inputs) {
                 summary.newFileTranslations += length;
               }
               if (dryRun) {
-                (0, import_core7.info)(`[dry-run] Would write ${newPath}`);
+                (0, import_core9.info)(`[dry-run] Would write ${newPath}`);
               } else {
                 writeFile(newPath, translatedFile);
               }
             } else {
-              (0, import_core7.debug)(`The translatedFile value is ${translatedFile}`);
-              (0, import_core7.debug)(`The newPath would have been ${newPath}`);
+              (0, import_core9.debug)(`The translatedFile value is ${translatedFile}`);
+              (0, import_core9.debug)(`The newPath would have been ${newPath}`);
             }
           }
         } catch (error) {
@@ -55698,14 +55860,14 @@ async function start(inputs) {
         }
       }
     }
-    (0, import_core7.setOutput)("has-new-translations", summary.hasNewTranslations);
+    (0, import_core9.setOutput)("has-new-translations", summary.hasNewTranslations);
     const [title, details] = summarize(summary);
-    (0, import_core7.setOutput)("summary-title", title);
-    (0, import_core7.setOutput)("summary-details", details);
+    (0, import_core9.setOutput)("summary-title", title);
+    (0, import_core9.setOutput)("summary-details", details);
     try {
-      await import_core7.summary.addRaw(details).write();
+      await import_core9.summary.addRaw(details).write();
     } catch (error) {
-      (0, import_core7.debug)(
+      (0, import_core9.debug)(
         `Failed to write step summary: ${error instanceof Error ? error.message : String(error)}`
       );
     }
@@ -55722,9 +55884,9 @@ var run = async () => {
     await start(getInputs());
   } catch (error) {
     if (error instanceof Error) {
-      (0, import_core8.setFailed)(error);
+      (0, import_core10.setFailed)(error);
     } else {
-      (0, import_core8.setFailed)(`Unknown error: ${error}`);
+      (0, import_core10.setFailed)(`Unknown error: ${error}`);
     }
   }
 };

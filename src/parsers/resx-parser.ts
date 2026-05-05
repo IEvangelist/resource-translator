@@ -1,6 +1,7 @@
 import {
   Data,
   ResourceFile,
+  isTranslatable,
   traverseResx,
 } from "../file-formats/resource-file";
 import { TranslationFileParser } from "./translation-file-parser";
@@ -28,6 +29,9 @@ export class ResxParser implements TranslationFileParser {
       for (const key in translations) {
         const value = translations[key];
         if (value) {
+          // traverseResx already filters out file-ref / binary entries, so
+          // we never overwrite the value of a `<data type="...">` or
+          // `<data mimetype="...">` even if a stray translation key matched.
           traverseResx(resource, key, (data: Data) => (data.value = [value]));
         }
       }
@@ -41,6 +45,12 @@ export class ResxParser implements TranslationFileParser {
     const values = instance.root.data;
     if (values && values.length) {
       for (let i = 0; i < values.length; ++i) {
+        // Skip file references (`type` attribute) and binary blobs
+        // (`mimetype` attribute) — their `<value>` payload is not natural
+        // language and must NOT be sent to Azure.
+        if (!isTranslatable(values[i])) {
+          continue;
+        }
         const key = values[i].$.name;
         const value = values[i].value![0];
 

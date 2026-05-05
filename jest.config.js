@@ -17,13 +17,33 @@ module.exports = {
     "!src/**/*.d.ts",
     "!src/index.ts",
   ],
-  coverageReporters: ["text", "text-summary", "lcov", "html"],
+  coverageReporters: ["text", "text-summary", "lcov", "html", "cobertura"],
+  // Default reporter (console output) + JUnit XML for CI artifacts. The
+  // jest-junit reporter is configured via `reporterOptions` below; the
+  // file lands at coverage/junit.xml so it ships alongside the coverage
+  // reports in a single artifact upload.
+  reporters: [
+    "default",
+    [
+      "jest-junit",
+      {
+        outputDirectory: "coverage",
+        outputName: "junit.xml",
+        suiteNameTemplate: "{filepath}",
+        classNameTemplate: "{classname}",
+        titleTemplate: "{title}",
+        ancestorSeparator: " › ",
+        addFileAttribute: "true",
+        includeConsoleOutput: "false",
+      },
+    ],
+  ],
   coverageThreshold: {
     global: {
-      branches: 65,
-      functions: 90,
-      lines: 78,
-      statements: 78,
+      branches: 75,
+      functions: 93,
+      lines: 85,
+      statements: 85,
     },
   },
   verbose: true,

@@ -37,6 +37,44 @@ jobs:
       - run: npm test
       - run: npm run build
 
+      # Always upload test + coverage artifacts, even when a step above
+      # failed, so failures land in the CI summary alongside their evidence.
+      # Each matrix cell uploads under a unique name so the bundles don't
+      # collide on download.
+      - name: Upload test + coverage artifacts
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: test-results-${{ matrix.os }}-node${{ matrix.node }}
+          path: |
+            coverage/junit.xml
+            coverage/cobertura-coverage.xml
+            coverage/lcov.info
+            coverage/lcov-report
+          if-no-files-found: warn
+          retention-days: 14
+
+      # Surface the JUnit results as a Markdown table on the job summary on
+      # Linux runners only — keeps shell logic portable and avoids running
+      # the same summary 9× across the matrix.
+      - name: Render test summary
+        if: always() && runner.os == 'Linux'
+        shell: bash
+        run: |
+          if [ ! -f coverage/junit.xml ]; then
+            echo "No coverage/junit.xml to summarize." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          # Pull testsuites totals via grep; avoids adding xmlstarlet/jq deps.
+          totals=$(grep -m1 -oE 'tests="[0-9]+" failures="[0-9]+" errors="[0-9]+" time="[0-9.]+"' coverage/junit.xml || true)
+          {
+            echo "### Test results — ${{ matrix.os }} / node ${{ matrix.node }}"
+            echo
+            echo '```'
+            echo "${totals:-(no totals parsed)}"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
   audit:
     name: npm audit
     runs-on: ubuntu-latest

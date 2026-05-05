@@ -283,3 +283,62 @@ test("API: translate omits profanityMarker when profanityAction !== 'Marked'", a
   expect(url).toContain("profanityAction=Deleted");
   expect(url).not.toContain("profanityMarker");
 });
+
+test("API: translate fails gracefully when error has no Azure-shaped response", async () => {
+  // Regression: errorResponse.code/.message used to be accessed without a
+  // null-check, so an axios network error (no .response) threw a TypeError
+  // that escaped the catch and aborted the whole action.
+  const networkError = new Error("ECONNRESET: socket hang up");
+  mockedAxios.post.mockRejectedValueOnce(networkError);
+
+  const result = await translate(
+    {
+      endpoint: "https://api.cognitive.microsofttranslator.com/",
+      subscriptionKey: "k",
+    },
+    ["fr"],
+    new Map<string, string>([["Greeting", "Hello"]]),
+    "f.resx",
+  );
+
+  expect(result).toBeUndefined();
+  const setFailedMock = setFailed as jest.MockedFunction<typeof setFailed>;
+  expect(setFailedMock).toHaveBeenCalledWith(
+    expect.stringContaining("Failed to translate input"),
+  );
+  expect(setFailedMock).toHaveBeenCalledWith(
+    expect.stringContaining("ECONNRESET"),
+  );
+});
+
+test("API: translate surfaces the Azure error code and message when present", async () => {
+  // Happy path for the typed error branch — `response.data.error.{code,message}`
+  // get written into the failure message verbatim.
+  const azureError = {
+    response: {
+      data: {
+        error: { code: 401000, message: "The request is not authorized." },
+      },
+    },
+  };
+  mockedAxios.post.mockRejectedValueOnce(azureError);
+
+  const result = await translate(
+    {
+      endpoint: "https://api.cognitive.microsofttranslator.com/",
+      subscriptionKey: "bad-key",
+    },
+    ["fr"],
+    new Map<string, string>([["Greeting", "Hello"]]),
+    "f.resx",
+  );
+
+  expect(result).toBeUndefined();
+  const setFailedMock = setFailed as jest.MockedFunction<typeof setFailed>;
+  expect(setFailedMock).toHaveBeenCalledWith(
+    expect.stringContaining("code: 401000"),
+  );
+  expect(setFailedMock).toHaveBeenCalledWith(
+    expect.stringContaining("The request is not authorized."),
+  );
+});

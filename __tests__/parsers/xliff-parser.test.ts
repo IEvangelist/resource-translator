@@ -172,3 +172,69 @@ test("XLIFF PARSER: correctly creates translatable text map", async () => {
     "XLIFF Data Manager",
   );
 });
+
+describe("XliffParser edge cases", () => {
+  it("preserves source text containing the '::' delimiter when applying translations", async () => {
+    // Regression: the parser used to split the composite key on EVERY '::'
+    // and read [1], so a source like 'foo::bar' got truncated to 'foo' and
+    // the translation never landed on the matching <target>.
+    const content = `<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="fr">
+  <file id="f1" original="x">
+    <unit id="1">
+      <segment>
+        <source>Namespace::Class</source>
+        <target>Namespace::Class</target>
+      </segment>
+    </unit>
+    <unit id="2">
+      <segment>
+        <source>http://[::1]/path</source>
+        <target>http://[::1]/path</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>`;
+
+    const file = await parser.parseFrom(content);
+    const map = parser.toTranslatableTextMap(file).text;
+    expect(map.get("0::Namespace::Class")).toEqual("Namespace::Class");
+    expect(map.get("0::http://[::1]/path")).toEqual("http://[::1]/path");
+
+    parser.applyTranslations(
+      file,
+      {
+        "0::Namespace::Class": "Espace::Classe",
+        "0::http://[::1]/path": "http://[::1]/chemin",
+      },
+      "fr",
+    );
+
+    expect(findInXliff(file, 0, "Namespace::Class")!.target[0]).toEqual(
+      "Espace::Classe",
+    );
+    expect(findInXliff(file, 0, "http://[::1]/path")!.target[0]).toEqual(
+      "http://[::1]/chemin",
+    );
+  });
+
+  it("indexes <unit> entries across multiple <file> blocks", async () => {
+    const content = `<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="fr">
+  <file id="f1">
+    <unit id="1"><segment><source>One</source><target>One</target></segment></unit>
+  </file>
+  <file id="f2">
+    <unit id="1"><segment><source>Two</source><target>Two</target></segment></unit>
+  </file>
+</xliff>`;
+
+    const file = await parser.parseFrom(content);
+    const map = parser.toTranslatableTextMap(file).text;
+    expect(map.get("0::One")).toEqual("One");
+    expect(map.get("1::Two")).toEqual("Two");
+
+    parser.applyTranslations(file, { "0::One": "Un", "1::Two": "Deux" }, "fr");
+
+    expect(findInXliff(file, 0, "One")!.target[0]).toEqual("Un");
+    expect(findInXliff(file, 1, "Two")!.target[0]).toEqual("Deux");
+  });
+});

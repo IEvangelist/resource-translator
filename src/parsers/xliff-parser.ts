@@ -28,9 +28,14 @@ export class XliffParser implements TranslationFileParser {
     if (instance && translations && targetLocale) {
       instance.xliff.$.trgLang = targetLocale;
       for (const key in translations) {
-        const compositeKey = key.split(XliffFileKeyDelimiter);
-        const index = parseInt(compositeKey[0]);
-        const sourceKey = compositeKey[1];
+        // Split on the FIRST delimiter occurrence only — source text may
+        // contain '::' (URLs, IPv6 literals, namespace tokens, ...) and we
+        // need to preserve the full source key for traverseXliff to find
+        // the right segment.
+        const delimiterAt = key.indexOf(XliffFileKeyDelimiter);
+        if (delimiterAt < 0) continue;
+        const index = parseInt(key.slice(0, delimiterAt));
+        const sourceKey = key.slice(delimiterAt + XliffFileKeyDelimiter.length);
         const value = translations[key];
         if (value) {
           traverseXliff(

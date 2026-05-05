@@ -13,7 +13,6 @@ import { Inputs } from "./action/inputs";
 import { TranslatorResource } from "./abstractions/translator-resource";
 import { getAvailableTranslations, translate } from "./api/translation-api";
 import { translationFileParserFactory } from "./factories/translation-file-parser-factory";
-import { TranslationFile } from "./file-formats/translation-file";
 import { applyGlossary } from "./helpers/glossary";
 import { summarize } from "./helpers/summarizer";
 import {
@@ -157,7 +156,17 @@ export async function start(inputs: Inputs) {
               debug(`Unable to find resulting translations for: ${locale}`);
               continue;
             }
-            const clone = Object.assign({} as TranslationFile, parsedFile);
+            // Re-parse the original file content for each locale instead of
+            // shallow-cloning the parsed object. `Object.assign({}, parsed)`
+            // only copies top-level keys, so nested fields (`root`, `tokens`,
+            // `xliff`, ...) were shared by reference across iterations —
+            // applying French translations mutated the source object in
+            // place, and the next locale's "clone" inherited French strings
+            // instead of the English originals. Re-parsing produces a fully
+            // independent tree (and correctly recreates class instances like
+            // PortableObjectToken / Map<number,string>, which structuredClone
+            // would flatten).
+            const clone = await translationFileParser.parseFrom(fileContent);
             const result = translationFileParser.applyTranslations(
               clone,
               translations,

@@ -23,7 +23,21 @@ export interface FindOptions {
 
 const translationFileSchemes = {
   ini: (locale: string) => `**/*.${locale}.ini`,
-  po: `**/*.po`,
+  // PO files conventionally are named after the LOCALE itself (`en.po`,
+  // `fr.po`) rather than the resx-style `<basename>.<locale>.<ext>`. We
+  // therefore have to match three layouts:
+  //   1. exact `<locale>.po` (e.g. `en.po`, `messages/en.po`)
+  //   2. `*.<locale>.po`     (e.g. `messages.en.po`)
+  //   3. gettext             (e.g. `<locale>/LC_MESSAGES/<domain>.po`)
+  // Without this guard, `**/*.po` would also pick up the previous run's
+  // OUTPUT files (`fr.po`, `de.po`, ...) and feed them back as inputs on
+  // the next run — translating Spanish ➝ Spanish is silly at best and
+  // corrupts target files at worst.
+  po: (locale: string) => [
+    `**/${locale}.po`,
+    `**/*.${locale}.po`,
+    `**/${locale}/LC_MESSAGES/*.po`,
+  ],
   restext: (locale: string) => `**/*.${locale}.restext`,
   resx: (locale: string) => `**/*.${locale}.resx`,
   xliff: (locale: string) => `**/*.${locale}.xliff`,
@@ -74,11 +88,15 @@ export async function findAllTranslationFiles(
     return true;
   };
 
-  const patterns = Object.values(translationFileSchemes).map((fileScheme) => {
-    return "function" === typeof fileScheme
-      ? fileScheme(sourceLocale)
-      : fileScheme;
-  });
+  const patterns = Object.values(translationFileSchemes).flatMap(
+    (fileScheme) => {
+      if (typeof fileScheme === "function") {
+        const result = fileScheme(sourceLocale);
+        return Array.isArray(result) ? result : [result];
+      }
+      return [fileScheme];
+    },
+  );
 
   const globber = await create(patterns.join("\n"));
   const filesAndDirectories = await globber.glob();

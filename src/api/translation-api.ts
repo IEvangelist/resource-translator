@@ -149,15 +149,21 @@ export const translate = async (
   } catch (ex: unknown) {
     // Try to write explicit error:
     // https://docs.microsoft.com/azure/cognitive-services/translator/reference/v3-0-reference#errors
-    const e = ex as TranslatorError;
-    const errorResponse = e.response?.data?.error;
+    // Azure returns errors as `{ response: { data: { error: { code, message } } } }`,
+    // but axios also surfaces network errors with no `.response` at all (DNS,
+    // ECONNRESET, certificate issues, ...). The handler must tolerate both
+    // shapes — falling through to a generic message — instead of throwing
+    // a follow-on TypeError that escapes this catch and aborts the whole run.
+    const errorResponse = (ex as TranslatorError | undefined)?.response?.data
+      ?.error;
 
-    if (e) {
+    if (errorResponse && (errorResponse.code || errorResponse.message)) {
       setFailed(
-        `file: ${filePath}, error: { code: ${errorResponse.code}, message: '${errorResponse.message}' }}`,
+        `file: ${filePath}, error: { code: ${errorResponse.code}, message: '${errorResponse.message}' }`,
       );
     } else {
-      setFailed(`Failed to translate input: file '${filePath}', ${ex}`);
+      const message = ex instanceof Error ? ex.message : String(ex);
+      setFailed(`Failed to translate input: file '${filePath}', ${message}`);
     }
 
     return undefined;

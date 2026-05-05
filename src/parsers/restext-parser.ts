@@ -24,9 +24,20 @@ export class RestextParser implements TranslationFileParser {
             [index]: line,
           };
         } else {
-          const keyValuePair = line.split("=");
-          const key = keyValuePair[0];
-          const val = keyValuePair[1];
+          // Split only on the FIRST '=' so values containing '=' (URLs with
+          // query strings, base64, equation strings, ...) round-trip cleanly.
+          // Lines without an '=' are stored verbatim so we can re-emit them
+          // unchanged on output.
+          const equalsAt = line.indexOf("=");
+          if (equalsAt < 0) {
+            restextFile = {
+              ...restextFile,
+              [index]: line,
+            };
+            return;
+          }
+          const key = line.slice(0, equalsAt);
+          const val = line.slice(equalsAt + 1);
           map.set(index, key);
           restextFile = {
             ...restextFile,
@@ -57,6 +68,11 @@ export class RestextParser implements TranslationFileParser {
       } else if (map.has(index)) {
         const key = map.get(index)!;
         text += `${delimiter}${key}=${instance[key]}`;
+      } else if (line !== undefined) {
+        // Verbatim line that wasn't a recognizable comment/section/whitespace
+        // and wasn't a key=value pair (e.g. a stray line without '='). We
+        // preserve it untouched so round-trips are byte-stable.
+        text += `${delimiter}${line}`;
       }
     }
 
