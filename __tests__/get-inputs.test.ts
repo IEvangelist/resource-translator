@@ -6,9 +6,22 @@ const inputValues: Record<string, string> = {
   arrayValue: '[ "es", "de", "fr" ]',
 };
 
-jest.mock("@actions/core", () => ({
-  getInput: (name: string, _options?: InputOptions) => inputValues[name] ?? "",
-}));
+jest.mock("@actions/core", () => {
+  const actual =
+    jest.requireActual<typeof import("@actions/core")>("@actions/core");
+  return {
+    ...actual,
+    getInput: (name: string, _options?: InputOptions) =>
+      inputValues[name] ?? "",
+    getBooleanInput: (name: string) => {
+      const raw = inputValues[name];
+      if (raw === undefined || raw === "") {
+        throw new Error(`Input ${name} not supplied`);
+      }
+      return ["true", "True", "TRUE"].includes(raw);
+    },
+  };
+});
 
 const setInput = (name: string, value: string) => {
   inputValues[name] = value;
@@ -48,22 +61,28 @@ describe("getQuestionableArray", () => {
 describe("getInputs", () => {
   beforeEach(() => {
     clearInputs();
-    setInput("subscriptionKey", "sk-123");
+    setInput("subscriptionKey", "0123456789abcdef0123456789abcdef");
     setInput("endpoint", "https://example.cognitiveservices.azure.com/");
     setInput("sourceLocale", "en");
     setInput("region", "eastus");
     setInput("toLocales", '["fr","de"]');
+    setInput("failOnError", "true");
+    setInput("dryRun", "false");
+    // Use a non-existent config path so the loader is a no-op.
+    setInput("configPath", "non-existent-config-path.yml");
   });
 
   it("returns the populated Inputs shape", () => {
     const inputs = getInputs();
-    expect(inputs).toEqual({
-      subscriptionKey: "sk-123",
-      endpoint: "https://example.cognitiveservices.azure.com/",
-      sourceLocale: "en",
-      region: "eastus",
-      toLocales: ["fr", "de"],
-    });
+    expect(inputs.subscriptionKey).toEqual("0123456789abcdef0123456789abcdef");
+    expect(inputs.endpoint).toEqual(
+      "https://example.cognitiveservices.azure.com/",
+    );
+    expect(inputs.sourceLocale).toEqual("en");
+    expect(inputs.region).toEqual("eastus");
+    expect(inputs.toLocales).toEqual(["fr", "de"]);
+    expect(inputs.dryRun).toEqual(false);
+    expect(inputs.failOnError).toEqual(true);
   });
 
   it("treats toLocales as optional", () => {
@@ -77,5 +96,14 @@ describe("getInputs", () => {
     const inputs = getInputs();
     expect(inputs.region).toEqual("");
   });
-});
 
+  it("rejects an invalid endpoint", () => {
+    setInput("endpoint", "not-a-url");
+    expect(() => getInputs()).toThrow(/endpoint/);
+  });
+
+  it("rejects a too-short subscription key", () => {
+    setInput("subscriptionKey", "tooshort");
+    expect(() => getInputs()).toThrow(/subscriptionKey/);
+  });
+});

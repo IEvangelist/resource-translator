@@ -14,16 +14,15 @@ import { batch, chunk } from "../helpers/utils";
 /**
  * https://docs.microsoft.com/azure/cognitive-services/translator/language-support#translate
  */
-export const getAvailableTranslations =
-  async (): Promise<AvailableTranslations> => {
-    const apiUrl = "https://api.cognitive.microsofttranslator.com/languages";
-    const query = "api-version=3.0&scope=translation";
-    const response = await Axios.get<AvailableTranslations>(
-      `${apiUrl}?${query}`,
-    );
+export const getAvailableTranslations = async (
+  apiVersion: string = "3.0",
+): Promise<AvailableTranslations> => {
+  const apiUrl = "https://api.cognitive.microsofttranslator.com/languages";
+  const query = `api-version=${encodeURIComponent(apiVersion)}&scope=translation`;
+  const response = await Axios.get<AvailableTranslations>(`${apiUrl}?${query}`);
 
-    return response.data;
-  };
+  return response.data;
+};
 
 export const translate = async (
   translatorResource: TranslatorResource,
@@ -72,6 +71,10 @@ export const translate = async (
     const baseUrl = translatorResource.endpoint.endsWith("/")
       ? translatorResource.endpoint
       : `${translatorResource.endpoint}/`;
+    const apiVersion = translatorResource.apiVersion ?? "3.0";
+    const categorySegment = translatorResource.categoryId
+      ? `&category=${encodeURIComponent(translatorResource.categoryId)}`
+      : "";
 
     const characters = JSON.stringify(data).length;
     const batchedData =
@@ -95,7 +98,9 @@ export const translate = async (
         const to = locales.map((to) => `to=${to}`).join("&");
         debug(`Data batch ${i + 1}, Locales batch ${j + 1}, locales: ${to}`);
 
-        const url = `${baseUrl}translate?api-version=3.0&${to}`;
+        const url = `${baseUrl}translate?api-version=${encodeURIComponent(
+          apiVersion,
+        )}&${to}${categorySegment}`;
         const response = await Axios.post<TranslationResult[]>(
           url,
           batch,

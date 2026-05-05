@@ -55,4 +55,3 @@ describe("findAllTranslationFiles", () => {
     expect(files.xliff?.some((f) => f.endsWith(".jp.xliff"))).toBeTruthy();
   });
 });
-

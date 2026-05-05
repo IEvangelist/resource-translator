@@ -3,6 +3,7 @@ import { context, getOctokit } from "@actions/github";
 import { create } from "@actions/glob";
 import { statSync } from "node:fs";
 import { basename, normalize, resolve } from "path";
+import { minimatch } from "minimatch";
 
 export interface TranslationFileMap {
   ini?: string[] | undefined;
@@ -11,6 +12,13 @@ export interface TranslationFileMap {
   resx?: string[] | undefined;
   xliff?: string[] | undefined;
   json?: string[] | undefined;
+}
+
+export interface FindOptions {
+  /** Glob patterns of files to include. Empty = include all matched. */
+  include?: string[];
+  /** Glob patterns of files to exclude. Applied after include. */
+  exclude?: string[];
 }
 
 const translationFileSchemes = {
@@ -30,8 +38,27 @@ const isDirectorySafe = (path: string): boolean => {
   }
 };
 
+/**
+ * Returns true when `filePath` matches any pattern in `patterns`. The match is
+ * tried against both the absolute path and the workspace-relative path so users
+ * can provide patterns like `src/**` without worrying about runner cwd.
+ */
+const matchesAny = (filePath: string, patterns: string[]): boolean => {
+  if (!patterns.length) return false;
+  const cwd = process.cwd();
+  const relative = filePath.startsWith(cwd)
+    ? filePath.slice(cwd.length).replace(/^[\\/]+/, "")
+    : filePath;
+  return patterns.some(
+    (p) =>
+      minimatch(filePath, p, { dot: true, matchBase: true }) ||
+      minimatch(relative, p, { dot: true, matchBase: true }),
+  );
+};
+
 export async function findAllTranslationFiles(
   sourceLocale: string,
+  options: FindOptions = {},
 ): Promise<TranslationFileMap> {
   const filesToInclude = await getFilesToInclude();
   const includeFile = (filepath: string) => {
@@ -55,6 +82,8 @@ export async function findAllTranslationFiles(
 
   const globber = await create(patterns.join("\n"));
   const filesAndDirectories = await globber.glob();
+  const include = options.include ?? [];
+  const exclude = options.exclude ?? [];
   const promises = filesAndDirectories.map(async (path) => {
     return {
       path: normalize(path),
@@ -65,7 +94,9 @@ export async function findAllTranslationFiles(
   const files = await Promise.all(promises);
   const results = files
     .filter((file) => file.include && !file.isDirectory)
-    .map((file) => file.path);
+    .map((file) => file.path)
+    .filter((path) => (include.length ? matchesAny(path, include) : true))
+    .filter((path) => !matchesAny(path, exclude));
 
   debug(`Files to translate:\n\t${results.join("\n\t")}`);
 

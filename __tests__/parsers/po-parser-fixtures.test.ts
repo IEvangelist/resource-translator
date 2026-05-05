@@ -24,7 +24,9 @@ describe("PortableObjectParser fixture round-trip", () => {
     });
 
     // applyTranslations updates token.value (consumed by writers that walk the token list)
-    const msgstrTokens = result.tokens.filter((t) => t.id?.startsWith("msgstr"));
+    const msgstrTokens = result.tokens.filter((t) =>
+      t.id?.startsWith("msgstr"),
+    );
     expect(msgstrTokens.find((t) => t.value === '"Hi planet!"')).toBeDefined();
     expect(
       msgstrTokens.some((t) => t.value === '"Existuje jedna položka."'),

@@ -19,8 +19,8 @@ describe("translationFileParserFactory", () => {
   });
 
   it("throws on unknown kind", () => {
-    expect(() =>
-      translationFileParserFactory("unknown" as never),
-    ).toThrow(/Unrecognized resource kind/);
+    expect(() => translationFileParserFactory("unknown" as never)).toThrow(
+      /Unrecognized resource kind/,
+    );
   });
 });

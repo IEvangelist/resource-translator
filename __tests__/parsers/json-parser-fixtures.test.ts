@@ -12,12 +12,12 @@ describe("JsonParser fixture round-trip", () => {
     const file = await parser.parseFrom(content);
 
     expect(file).toBeTruthy();
-    expect(
-      file[`app${JsonParser.DELIMITER}title`],
-    ).toEqual("Resource Translator");
-    expect(
-      file[`messages${JsonParser.DELIMITER}welcome`],
-    ).toEqual("Welcome, {{name}}!");
+    expect(file[`app${JsonParser.DELIMITER}title`]).toEqual(
+      "Resource Translator",
+    );
+    expect(file[`messages${JsonParser.DELIMITER}welcome`]).toEqual(
+      "Welcome, {{name}}!",
+    );
     expect(file["unit.dotted.key"]).toEqual("Special key with dots");
     expect(file["empty"]).toEqual("");
   });
@@ -58,7 +58,11 @@ describe("JsonParser edge cases", () => {
   });
 
   it("preserves unicode keys and values", async () => {
-    const content = JSON.stringify({ "café": "espresso", "日本": "Japan" }, null, "\t");
+    const content = JSON.stringify(
+      { café: "espresso", 日本: "Japan" },
+      null,
+      "\t",
+    );
     const file = await parser.parseFrom(content);
     expect(file["café"]).toEqual("espresso");
     expect(file["日本"]).toEqual("Japan");
