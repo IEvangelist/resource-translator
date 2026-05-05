@@ -13,7 +13,11 @@ on:
     types: [completed]
 
 permissions:
-  contents: read
+  # `contents: write` is required because gh pr merge --auto may fall
+  # through to an immediate merge (when no required checks block the PR)
+  # and --delete-branch needs ref-write. The trust boundary is preserved
+  # by the job-level `if:` gate plus the PR-shape validation step below.
+  contents: write
   pull-requests: write
   statuses: write
   checks: write
@@ -137,7 +141,12 @@ jobs:
             -f target_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
       - name: Enable auto-merge (pinned to tested SHA)
+        id: automerge
         if: steps.pr.outputs.found == 'true' && success()
+        # If enabling auto-merge fails (e.g. transient API hiccup, repo
+        # config changes), don't flip the CI status to failure — CI itself
+        # was green. Operator can re-merge manually.
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -160,6 +169,11 @@ jobs:
             --squash \
             --delete-branch \
             --match-head-commit "${{ steps.pr.outputs.sha }}"
+
+      - name: Surface auto-merge failure as a workflow warning
+        if: steps.pr.outputs.found == 'true' && steps.automerge.outcome == 'failure'
+        run: |
+          echo "::warning::CI passed but enabling auto-merge failed; see the previous step's logs. The PR's CI status remains 'success' and can be merged manually."
 
       - name: Mark CI failure on the PR
         if: steps.pr.outputs.found == 'true' && failure()
