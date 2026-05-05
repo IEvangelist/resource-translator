@@ -1,0 +1,30 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer
+  class="mt-16 border-t border-(--border) bg-(--bg-elevated)/50 py-10 text-sm text-(--fg-muted)"
+>
+  <div class="mx-auto flex max-w-7xl flex-col items-center gap-3 px-6 text-center">
+    <p>
+      Made by <a
+        href="https://davidpine.dev"
+        rel="noopener"
+        target="_blank"
+        class="font-medium"
+        >David Pine 🤓</a
+      > · <span>{year}</span>
+    </p>
+    <p class="text-xs">
+      <a
+        href="https://github.com/IEvangelist/resource-translator"
+        rel="noopener"
+        target="_blank">Source on GitHub</a
+      > · Built with <a href="https://astro.build" rel="noopener" target="_blank"
+        >Astro</a
+      > & <a href="https://tailwindcss.com" rel="noopener" target="_blank"
+        >Tailwind CSS</a
+      >
+    </p>
+  </div>
+</footer>

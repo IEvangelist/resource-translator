@@ -32,6 +32,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   transition (no security delta).
 - Modernised `tsconfig` (ES2022, additional strict flags).
 - Migrated to ESLint 9 flat config + Prettier + EditorConfig.
+- Refreshed the docs landing page with a custom translation logo, a
+  vibrant indigo→fuchsia→amber palette, Lucide icons, view transitions,
+  Expressive Code-rendered code samples, and a self-hosted Inter font.
 
 ### Removed
 

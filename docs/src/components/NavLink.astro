@@ -1,17 +1,35 @@
 ---
-const { href, label, current } = Astro.props as {
+import { Icon } from "astro-icon/components";
+
+const { href, label, icon, current } = Astro.props as {
   href: string;
   label: string;
+  icon?: string;
   current?: boolean;
 };
 ---
 
 <a
   href={href}
-  class={`block rounded-md px-3 py-1.5 text-sm transition-colors hover:bg-(--bg-elevated) ${
-    current ? "font-semibold text-(--link)" : "text-(--fg-muted)"
-  }`}
+  class:list={[
+    "group flex items-center gap-2 rounded-md px-3 py-1.5 text-sm transition-colors",
+    current
+      ? "bg-linear-to-r from-(--color-brand-50) to-transparent font-semibold text-(--link) dark:from-(--color-brand-900)/40"
+      : "text-(--fg-muted) hover:bg-(--bg-elevated) hover:text-(--fg)",
+  ]}
   aria-current={current ? "page" : undefined}
 >
-  {label}
+  {
+    icon ? (
+      <Icon
+        name={icon}
+        class:list={[
+          "size-3.5 flex-none transition-colors",
+          current ? "text-(--color-accent-500)" : "opacity-70 group-hover:opacity-100",
+        ]}
+      />
+    ) : null
+  }
+  <span>{label}</span>
 </a>
+

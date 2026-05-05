@@ -1,0 +1,82 @@
+---
+interface Props {
+  size?: number;
+  class?: string;
+}
+
+const { size = 28, class: className = "" } = Astro.props;
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={size}
+  height={size}
+  viewBox="0 0 64 64"
+  fill="none"
+  class={className}
+  aria-hidden="true"
+>
+  <defs>
+    <linearGradient id="rt-grad-a" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="oklch(60% 0.21 280)" />
+      <stop offset="55%" stop-color="oklch(62% 0.27 330)" />
+      <stop offset="100%" stop-color="oklch(72% 0.18 70)" />
+    </linearGradient>
+    <linearGradient id="rt-grad-b" x1="0" y1="64" x2="64" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="oklch(72% 0.18 70)" />
+      <stop offset="100%" stop-color="oklch(60% 0.21 280)" />
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#rt-grad-a)" />
+  <circle
+    cx="32"
+    cy="32"
+    r="20"
+    stroke="white"
+    stroke-opacity="0.35"
+    stroke-width="1.25"
+    fill="none"
+  />
+  <ellipse
+    cx="32"
+    cy="32"
+    rx="20"
+    ry="9"
+    stroke="white"
+    stroke-opacity="0.35"
+    stroke-width="1.25"
+    fill="none"
+  />
+  <path
+    d="M12 32 H52 M32 12 V52"
+    stroke="white"
+    stroke-opacity="0.18"
+    stroke-width="1"
+  />
+  <text
+    x="20"
+    y="36"
+    font-family="ui-sans-serif, system-ui, sans-serif"
+    font-size="16"
+    font-weight="800"
+    fill="white"
+    text-anchor="middle"
+    letter-spacing="-0.5"
+  >A</text>
+  <path
+    d="M27 30 L37 30 M34 27 L37 30 L34 33"
+    stroke="white"
+    stroke-width="1.6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <text
+    x="44"
+    y="36"
+    font-family="ui-sans-serif, system-ui, sans-serif"
+    font-size="14"
+    font-weight="800"
+    fill="white"
+    text-anchor="middle"
+  >文</text>
+</svg>

@@ -1,4 +1,7 @@
 ---
+import { Icon } from "astro-icon/components";
+import Logo from "./Logo.astro";
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const homeHref = base || "/";
 const pagefindBase = base || "";
@@ -6,32 +9,31 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
 ---
 
 <header
-  class="sticky top-0 z-30 border-b border-(--border) bg-(--bg)/80 backdrop-blur"
+  transition:persist
+  class="sticky top-0 z-30 border-b border-(--border) bg-(--bg)/80 backdrop-blur-xl supports-[backdrop-filter]:bg-(--bg)/60"
 >
   <div
     class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3"
   >
     <a
       href={homeHref}
-      class="flex items-center gap-2 text-base font-semibold no-underline"
+      class="group flex items-center gap-2.5 text-base font-semibold no-underline"
     >
-      <span
-        class="inline-flex h-7 w-7 items-center justify-center rounded-md bg-(--color-brand-700) text-white"
-        aria-hidden="true"
-      >
-        ⇄
-      </span>
-      <span>Resource Translator</span>
+      <Logo size={32} class="rounded-lg shadow-sm transition-transform group-hover:rotate-[-6deg]" />
+      <span class="hidden sm:inline">Resource Translator</span>
     </a>
 
     <div class="relative hidden flex-1 max-w-md md:block">
       <label class="sr-only" for="docs-search">Search docs</label>
+      <div class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-(--fg-muted)">
+        <Icon name="lucide:search" class="size-4" />
+      </div>
       <input
         id="docs-search"
         type="search"
         placeholder="Search documentation…"
         autocomplete="off"
-        class="w-full rounded-md border border-(--border) bg-(--bg-elevated) px-3 py-1.5 text-sm placeholder-(--fg-muted) focus:border-(--color-brand-500) focus:outline-none focus:ring-2 focus:ring-(--color-brand-500)/40"
+        class="w-full rounded-md border border-(--border) bg-(--bg-elevated) py-1.5 pl-9 pr-3 text-sm placeholder-(--fg-muted) focus:border-(--color-brand-500) focus:outline-none focus:ring-2 focus:ring-(--color-brand-500)/40"
       />
       <div
         id="search-results"
@@ -39,44 +41,66 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
       ></div>
     </div>
 
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-1.5">
       <button
         type="button"
         id="theme-toggle"
-        class="rounded-md border border-(--border) bg-(--bg-elevated) px-3 py-1 text-xs font-medium text-(--fg-muted) hover:text-(--fg)"
+        class="inline-flex size-8 items-center justify-center rounded-md border border-(--border) bg-(--bg-elevated) text-(--fg-muted) hover:text-(--fg)"
         aria-label="Toggle theme"
       >
-        🌗 Theme
+        <Icon name="lucide:sun" class="size-4 dark:hidden" />
+        <Icon name="lucide:moon" class="size-4 hidden dark:block" />
       </button>
       <a
         href="https://github.com/IEvangelist/resource-translator"
-        class="rounded-md border border-(--border) bg-(--bg-elevated) px-3 py-1 text-xs font-medium no-underline"
+        class="inline-flex size-8 items-center justify-center rounded-md border border-(--border) bg-(--bg-elevated) no-underline hover:text-(--fg)"
         rel="noopener"
-        target="_blank">GitHub →</a
+        target="_blank"
+        aria-label="GitHub repository"
       >
+        <Icon name="simple-icons:github" class="size-4" />
+      </a>
     </div>
   </div>
 </header>
 
 <script is:inline>
-  const stored = localStorage.getItem("theme");
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  if (stored === "dark" || (!stored && prefersDark)) {
-    document.documentElement.classList.add("dark");
-  }
+  const apply = () => {
+    const stored = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
+    document.documentElement.classList.toggle(
+      "dark",
+      stored === "dark" || (!stored && prefersDark),
+    );
+  };
+  apply();
+  document.addEventListener("astro:after-swap", apply);
+</script>
 
-  document.getElementById("theme-toggle")?.addEventListener("click", () => {
-    const root = document.documentElement;
-    const next = root.classList.toggle("dark") ? "dark" : "light";
-    localStorage.setItem("theme", next);
-  });
+<script>
+  // Theme toggle (re-binds across view transitions)
+  function bindToggle() {
+    const btn = document.getElementById("theme-toggle");
+    if (!btn || (btn as any).__bound) return;
+    (btn as any).__bound = true;
+    btn.addEventListener("click", () => {
+      const root = document.documentElement;
+      const next = root.classList.toggle("dark") ? "dark" : "light";
+      localStorage.setItem("theme", next);
+    });
+  }
+  bindToggle();
+  document.addEventListener("astro:page-load", bindToggle);
 </script>
 
 <script is:inline define:vars={{ pagefindScript }}>
-  (() => {
+  function bindSearch() {
     const input = document.getElementById("docs-search");
     const resultsEl = document.getElementById("search-results");
-    if (!input || !resultsEl) return;
+    if (!input || !resultsEl || input.dataset.bound === "1") return;
+    input.dataset.bound = "1";
 
     let pagefind = null;
     let loadAttempted = false;
@@ -89,14 +113,27 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
         pagefind = await import(/* @vite-ignore */ pagefindScript);
         await pagefind.options?.({ excerptLength: 24 });
       } catch (err) {
-        console.warn("Pagefind not available (run `npm run build` to generate it).", err);
+        console.warn(
+          "Pagefind not available (run `npm run build` to generate it).",
+          err,
+        );
         pagefind = null;
       }
       return pagefind;
     }
 
     function escapeHtml(s) {
-      return s.replace(/[&<>\"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+      return s.replace(
+        /[&<>"']/g,
+        (c) =>
+          ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;",
+          })[c],
+      );
     }
 
     async function runSearch(q) {
@@ -109,11 +146,14 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
       }
       const search = await pf.search(q);
       if (!search?.results?.length) {
-        resultsEl.innerHTML = '<div class="px-3 py-2 text-(--fg-muted)">No results.</div>';
+        resultsEl.innerHTML =
+          '<div class="px-3 py-2 text-(--fg-muted)">No results.</div>';
         resultsEl.classList.remove("hidden");
         return;
       }
-      const top = await Promise.all(search.results.slice(0, 8).map((r) => r.data()));
+      const top = await Promise.all(
+        search.results.slice(0, 8).map((r) => r.data()),
+      );
       resultsEl.innerHTML = top
         .map(
           (d) =>
@@ -142,5 +182,8 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
         resultsEl.classList.add("hidden");
       }
     });
-  })();
+  }
+  bindSearch();
+  document.addEventListener("astro:page-load", bindSearch);
 </script>
+

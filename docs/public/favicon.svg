@@ -1,4 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <rect width="32" height="32" rx="6" fill="#1f3a8a" />
-  <path d="M9 11h12M9 11l3-3M9 11l3 3M23 21H11M23 21l-3-3M23 21l-3 3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#5b46d6" />
+      <stop offset="55%" stop-color="#c026d3" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#g)" />
+  <circle cx="32" cy="32" r="20" stroke="white" stroke-opacity="0.35" stroke-width="1.5" fill="none" />
+  <ellipse cx="32" cy="32" rx="20" ry="9" stroke="white" stroke-opacity="0.35" stroke-width="1.5" fill="none" />
+  <text x="20" y="36" font-family="system-ui, sans-serif" font-size="16" font-weight="800" fill="white" text-anchor="middle">A</text>
+  <path d="M27 30 L37 30 M34 27 L37 30 L34 33" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="44" y="36" font-family="system-ui, sans-serif" font-size="14" font-weight="800" fill="white" text-anchor="middle">文</text>
 </svg>

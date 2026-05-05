@@ -1,14 +1,24 @@
 ---
 import "../styles/tailwind.css";
+import "@fontsource-variable/inter/wght.css";
+import { ClientRouter } from "astro:transitions";
 import Header from "../components/Header.astro";
 import Sidebar from "../components/Sidebar.astro";
+import Footer from "../components/Footer.astro";
 
 interface Props {
   title: string;
   description?: string;
+  hideSidebar?: boolean;
+  wide?: boolean;
 }
 
-const { title, description } = Astro.props;
+const {
+  title,
+  description,
+  hideSidebar = false,
+  wide = false,
+} = Astro.props;
 const siteName = "Resource Translator";
 const fullTitle = title === siteName ? title : `${title} · ${siteName}`;
 const desc =
@@ -24,55 +34,47 @@ const faviconHref = `${baseHref}/favicon.svg`;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={desc} />
-    <meta name="theme-color" content="#1f3a8a" />
+    <meta name="theme-color" content="#5b46d6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1a1530" media="(prefers-color-scheme: dark)" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={desc} />
     <meta property="og:type" content="website" />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href={faviconHref}
-    />
-    <link
-      rel="preconnect"
-      href="https://rsms.me"
-      crossorigin
-    />
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <link rel="icon" type="image/svg+xml" href={faviconHref} />
     <title>{fullTitle}</title>
+    <ClientRouter />
     <slot name="head" />
   </head>
   <body>
     <Header />
-    <div class="mx-auto flex max-w-7xl gap-12 px-6 py-10">
-      <aside
-        class="hidden w-56 flex-none lg:block"
-        aria-label="Documentation navigation"
-      >
-        <div class="sticky top-24">
-          <Sidebar />
-        </div>
-      </aside>
-      <main class="min-w-0 flex-1">
-        <article class="prose-rt">
+    {
+      hideSidebar ? (
+        <main class="min-w-0">
           <slot />
-        </article>
-      </main>
-    </div>
-    <footer
-      class="border-t border-(--border) py-8 text-center text-xs text-(--fg-muted)"
-    >
-      <p>
-        Built with <a
-          href="https://astro.build"
-          rel="noopener"
-          target="_blank">Astro</a
-        > and <a
-          href="https://tailwindcss.com"
-          rel="noopener"
-          target="_blank">Tailwind CSS</a
-        >. © IEvangelist.
-      </p>
-    </footer>
+        </main>
+      ) : (
+        <div
+          class:list={[
+            "mx-auto flex gap-12 px-6 py-10",
+            wide ? "max-w-7xl" : "max-w-7xl",
+          ]}
+        >
+          <aside
+            class="hidden w-56 flex-none lg:block"
+            aria-label="Documentation navigation"
+          >
+            <div class="sticky top-24">
+              <Sidebar />
+            </div>
+          </aside>
+          <main class="min-w-0 flex-1">
+            <article class="prose-rt">
+              <slot />
+            </article>
+          </main>
+        </div>
+      )
+    }
+    <Footer />
   </body>
 </html>
+

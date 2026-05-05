@@ -1,70 +1,333 @@
 ---
+import { Icon } from "astro-icon/components";
+import { Code } from "astro-expressive-code/components";
 import DocLayout from "../layouts/DocLayout.astro";
+import Logo from "../components/Logo.astro";
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const link = (path: string) => base + path;
+
+const workflow = `name: translate
+on:
+  push:
+    branches: [main]
+    paths: ["**/*.en.resx", "**/*.en.json"]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - id: translator
+        uses: IEvangelist/resource-translator@v3
+        with:
+          sourceLocale: en
+          subscriptionKey: \${{ secrets.TRANSLATOR_KEY }}
+          endpoint: \${{ secrets.TRANSLATOR_ENDPOINT }}
+          region: \${{ secrets.TRANSLATOR_REGION }}
+          toLocales: '["fr","de","es","ja"]'
+
+      - if: steps.translator.outputs.has-new-translations == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: machine-translation
+          title: \${{ steps.translator.outputs.summary-title }}
+          body:  \${{ steps.translator.outputs.summary-details }}
+          labels: localization
+`;
+
+const features = [
+  {
+    icon: "lucide:languages",
+    title: "Six file formats",
+    body: "Round-trips .resx, .xliff, .po, .json, .ini, and .restext with byte-stable formatting.",
+    accent: "from-(--color-brand-500) to-(--color-accent-500)",
+  },
+  {
+    icon: "lucide:settings-2",
+    title: "Repo-level config",
+    body: "Drop a .github/resource-translator.yml for include globs, glossaries, and Custom Translator categories.",
+    accent: "from-(--color-accent-500) to-(--color-warm-500)",
+  },
+  {
+    icon: "lucide:wand-sparkles",
+    title: "Glossary-aware",
+    body: "Lock brand names and product terms with smart word-boundary regex that handles C++, .NET, and friends.",
+    accent: "from-(--color-warm-500) to-(--color-brand-500)",
+  },
+  {
+    icon: "lucide:shield-check",
+    title: "Dry-run + soft-fail",
+    body: "Preview translations without writing files, or surface every error as a warning while you iterate.",
+    accent: "from-(--color-cool-500) to-(--color-brand-500)",
+  },
+  {
+    icon: "lucide:git-pull-request",
+    title: "PR-friendly outputs",
+    body: "summary-title, summary-details, and has-new-translations slot directly into create-pull-request.",
+    accent: "from-(--color-brand-500) to-(--color-cool-500)",
+  },
+  {
+    icon: "lucide:zap",
+    title: "Fast, audit-clean",
+    body: "esbuild-bundled, Node 24 runner, zero npm-audit findings, CI matrix on Ubuntu/Windows/macOS × Node 20/22/24.",
+    accent: "from-(--color-accent-500) to-(--color-cool-500)",
+  },
+];
+
+const formats = [
+  { ext: ".resx", note: ".NET XML" },
+  { ext: ".xliff", note: "XLIFF 2.0" },
+  { ext: ".po", note: "gettext" },
+  { ext: ".json", note: "nested or flat" },
+  { ext: ".ini", note: "key=value" },
+  { ext: ".restext", note: "MUI text" },
+];
 ---
 
-<DocLayout title="Resource Translator" description="Open machine-translated pull requests for resource files in any repo, in any format.">
-  <section class="not-prose mt-2 mb-12 rounded-2xl border border-(--border) bg-linear-to-br from-(--color-brand-50) via-(--color-paper) to-(--color-paper) p-10 dark:from-(--color-brand-900)/40 dark:via-(--bg) dark:to-(--bg)">
-    <p class="text-sm font-semibold uppercase tracking-wider text-(--color-brand-700) dark:text-(--color-brand-300)">
-      GitHub Action
-    </p>
-    <h1 class="mt-3 text-4xl font-bold tracking-tight md:text-5xl">
-      Localize your repo on every commit.
-    </h1>
-    <p class="mt-4 max-w-2xl text-lg leading-relaxed text-(--fg-muted)">
-      <strong>Resource Translator</strong> opens machine-translated pull requests for your
-      <code>.resx</code>, <code>.xliff</code>, <code>.po</code>, <code>.json</code>,
-      <code>.ini</code>, and <code>.restext</code> files using Azure AI Translator —
-      no extra services, just a workflow.
-    </p>
-    <div class="mt-8 flex flex-wrap gap-3">
+<DocLayout
+  title="Resource Translator"
+  description="Open machine-translated pull requests for resource files in any repo, in any format."
+  hideSidebar
+>
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div
+      aria-hidden="true"
+      class="hero-mesh pointer-events-none absolute inset-0 -z-10"
+    >
+    </div>
+    <div
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,transparent_60%,var(--bg))]"
+    >
+    </div>
+
+    <div class="mx-auto max-w-6xl px-6 pt-16 pb-20 sm:pt-24 sm:pb-28">
+      <div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+        <div>
+          <div
+            class="mb-6 inline-flex items-center gap-2 rounded-full border border-(--border) bg-(--bg-elevated)/70 px-3 py-1 text-xs font-medium text-(--fg-muted) backdrop-blur"
+          >
+            <Icon name="lucide:sparkles" class="size-3.5 text-(--color-warm-600)" />
+            <span>v3.0 — Node 24, repo config, glossary, dry run</span>
+          </div>
+
+          <h1
+            class="text-balance text-5xl font-bold tracking-tight sm:text-6xl"
+            transition:name="hero-title"
+          >
+            Localize your repo on
+            <span class="text-gradient">every commit.</span>
+          </h1>
+
+          <p
+            class="mt-6 max-w-xl text-balance text-lg leading-relaxed text-(--fg-muted)"
+          >
+            <strong class="text-(--fg)">Resource Translator</strong> opens
+            machine-translated pull requests for your <code>.resx</code>,
+            <code>.xliff</code>, <code>.po</code>, <code>.json</code>,
+            <code>.ini</code>, and <code>.restext</code> files using
+            <strong class="text-(--fg)">Azure AI Translator</strong> — no extra
+            services, just a workflow.
+          </p>
+
+          <div class="mt-9 flex flex-wrap items-center gap-3">
+            <a
+              href={link("/getting-started")}
+              class="group inline-flex items-center gap-2 rounded-md bg-linear-to-r from-(--color-brand-600) via-(--color-accent-500) to-(--color-warm-500) px-5 py-2.5 text-sm font-semibold text-white no-underline shadow-lg shadow-(--color-brand-500)/20 hover:shadow-xl hover:shadow-(--color-accent-500)/30 transition-all"
+            >
+              <Icon name="lucide:rocket" class="size-4" />
+              Get started
+              <Icon
+                name="lucide:arrow-right"
+                class="size-4 transition-transform group-hover:translate-x-0.5"
+              />
+            </a>
+            <a
+              href="https://github.com/IEvangelist/resource-translator"
+              rel="noopener"
+              target="_blank"
+              class="inline-flex items-center gap-2 rounded-md border border-(--border) bg-(--bg-elevated)/80 px-5 py-2.5 text-sm font-semibold no-underline backdrop-blur hover:border-(--color-brand-500)/50"
+            >
+              <Icon name="simple-icons:github" class="size-4" />
+              Star on GitHub
+            </a>
+          </div>
+
+          <ul
+            class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-(--fg-muted)"
+          >
+            <li class="inline-flex items-center gap-1.5">
+              <Icon name="lucide:check" class="size-3.5 text-(--color-brand-500)" />
+              0 npm-audit issues
+            </li>
+            <li class="inline-flex items-center gap-1.5">
+              <Icon name="lucide:check" class="size-3.5 text-(--color-brand-500)" />
+              101 tests
+            </li>
+            <li class="inline-flex items-center gap-1.5">
+              <Icon name="lucide:check" class="size-3.5 text-(--color-brand-500)" />
+              Node 20 / 22 / 24
+            </li>
+            <li class="inline-flex items-center gap-1.5">
+              <Icon name="lucide:check" class="size-3.5 text-(--color-brand-500)" />
+              CodeQL on PRs
+            </li>
+          </ul>
+        </div>
+
+        <!-- Floating logo -->
+        <div class="relative hidden lg:block">
+          <div
+            aria-hidden="true"
+            class="absolute -inset-6 rounded-full bg-linear-to-br from-(--color-brand-500)/30 via-(--color-accent-500)/30 to-(--color-warm-500)/30 blur-2xl"
+          >
+          </div>
+          <Logo size={200} class="relative rounded-3xl shadow-2xl shadow-(--color-brand-500)/30" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMAT BADGES -->
+  <section class="border-y border-(--border) bg-(--bg-elevated)/40">
+    <div
+      class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-3 px-6 py-6 sm:gap-6"
+    >
+      <span class="text-xs font-semibold uppercase tracking-wider text-(--fg-muted)">
+        Supports
+      </span>
+      {
+        formats.map((f) => (
+          <span class="group inline-flex items-center gap-1.5 rounded-full border border-(--border) bg-(--bg) px-3 py-1 text-xs font-mono transition-colors hover:border-(--color-brand-500)/50 hover:text-(--color-brand-700) dark:hover:text-(--color-brand-300)">
+            <Icon name="lucide:file-text" class="size-3 opacity-60" />
+            <span class="font-semibold">{f.ext}</span>
+            <span class="text-(--fg-muted)">{f.note}</span>
+          </span>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="mx-auto max-w-6xl px-6 py-20">
+    <div class="mx-auto max-w-2xl text-center">
+      <p
+        class="text-sm font-semibold uppercase tracking-wider text-(--color-accent-600) dark:text-(--color-accent-400)"
+      >
+        Built for shipping
+      </p>
+      <h2 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+        Translation as a workflow,
+        <span class="text-gradient">not a chore.</span>
+      </h2>
+      <p class="mt-4 text-(--fg-muted)">
+        Drop the action into your existing CI, point it at Azure AI Translator,
+        and let your repo speak every language you target.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        features.map((f) => (
+          <div class="group relative overflow-hidden rounded-2xl border border-(--border) bg-(--bg-elevated)/60 p-6 transition-all hover:-translate-y-1 hover:border-(--color-brand-500)/40 hover:shadow-xl hover:shadow-(--color-brand-500)/10">
+            <div
+              aria-hidden="true"
+              class:list={[
+                "absolute -right-12 -top-12 size-32 rounded-full bg-linear-to-br opacity-30 blur-2xl transition-opacity group-hover:opacity-60",
+                f.accent,
+              ]}
+            />
+            <div
+              class:list={[
+                "relative inline-flex size-11 items-center justify-center rounded-xl bg-linear-to-br text-white shadow-md",
+                f.accent,
+              ]}
+            >
+              <Icon name={f.icon} class="size-5" />
+            </div>
+            <h3 class="relative mt-5 text-lg font-semibold">{f.title}</h3>
+            <p class="relative mt-2 text-sm leading-relaxed text-(--fg-muted)">
+              {f.body}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- WORKFLOW PREVIEW -->
+  <section class="mx-auto max-w-5xl px-6 pb-20">
+    <div class="mx-auto max-w-2xl text-center">
+      <p
+        class="text-sm font-semibold uppercase tracking-wider text-(--color-warm-600)"
+      >
+        Drop-in workflow
+      </p>
+      <h2 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+        Copy. Paste.
+        <span class="text-gradient">Translate.</span>
+      </h2>
+      <p class="mt-4 text-(--fg-muted)">
+        Three secrets, four lines, and your repo is multilingual on the next push.
+      </p>
+    </div>
+
+    <div class="mt-10">
+      <Code code={workflow} lang="yaml" title=".github/workflows/translate.yml" />
+    </div>
+
+    <div class="mt-8 flex justify-center">
       <a
         href={link("/getting-started")}
-        class="inline-flex items-center rounded-md bg-(--color-brand-700) px-4 py-2 text-sm font-semibold text-white no-underline hover:bg-(--color-brand-600)"
-        >Get started →</a>
-      <a
-        href="https://github.com/IEvangelist/resource-translator"
-        rel="noopener"
-        target="_blank"
-        class="inline-flex items-center rounded-md border border-(--border) bg-(--bg-elevated) px-4 py-2 text-sm font-semibold no-underline"
-        >View on GitHub</a>
+        class="group inline-flex items-center gap-2 text-sm font-semibold"
+      >
+        Walk through the full setup
+        <Icon
+          name="lucide:arrow-right"
+          class="size-4 transition-transform group-hover:translate-x-1"
+        />
+      </a>
     </div>
   </section>
 
-  <section class="not-prose grid gap-6 md:grid-cols-3">
-    <div class="rounded-xl border border-(--border) bg-(--bg-elevated) p-5">
-      <h3 class="text-base font-semibold">Six formats</h3>
-      <p class="mt-2 text-sm text-(--fg-muted)">
-        Round-trips <code>.resx</code>, <code>.xliff</code>, <code>.po</code>,
-        <code>.json</code>, <code>.ini</code>, and <code>.restext</code>.
-      </p>
+  <!-- CTA -->
+  <section class="mx-auto max-w-5xl px-6 pb-24">
+    <div
+      class="relative overflow-hidden rounded-3xl border border-(--border) bg-linear-to-br from-(--color-brand-600) via-(--color-accent-600) to-(--color-warm-600) p-10 text-white shadow-2xl shadow-(--color-brand-500)/20 sm:p-14"
+    >
+      <div
+        aria-hidden="true"
+        class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.25),transparent_45%)]"
+      >
+      </div>
+      <div class="relative grid gap-8 sm:grid-cols-[1fr_auto] sm:items-center">
+        <div>
+          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">
+            Ready to localize on autopilot?
+          </h2>
+          <p class="mt-3 max-w-xl text-white/85">
+            One Azure AI Translator key, one workflow file. Resource Translator
+            handles the rest.
+          </p>
+        </div>
+        <a
+          href={link("/getting-started")}
+          class="group inline-flex items-center justify-center gap-2 rounded-md bg-white px-6 py-3 text-sm font-bold text-(--color-brand-700) no-underline shadow-lg hover:bg-white/95"
+        >
+          <Icon name="lucide:rocket" class="size-4" />
+          Get started
+          <Icon
+            name="lucide:arrow-right"
+            class="size-4 transition-transform group-hover:translate-x-0.5"
+          />
+        </a>
+      </div>
     </div>
-    <div class="rounded-xl border border-(--border) bg-(--bg-elevated) p-5">
-      <h3 class="text-base font-semibold">Repo-level config</h3>
-      <p class="mt-2 text-sm text-(--fg-muted)">
-        Drop a <code>.github/resource-translator.yml</code> for include globs,
-        glossaries, and Custom Translator categories.
-      </p>
-    </div>
-    <div class="rounded-xl border border-(--border) bg-(--bg-elevated) p-5">
-      <h3 class="text-base font-semibold">Dry-run friendly</h3>
-      <p class="mt-2 text-sm text-(--fg-muted)">
-        Run translations without writing files via <code>dryRun: true</code>;
-        soft-fail with <code>failOnError: false</code>.
-      </p>
-    </div>
-  </section>
-
-  <section class="not-prose my-12 rounded-xl border border-(--border) bg-(--bg-elevated) p-6">
-    <h2 class="text-xl font-semibold">Quick example</h2>
-    <pre class="mt-4 overflow-x-auto rounded-lg bg-(--bg) p-4 text-sm leading-6"><code>{`- uses: IEvangelist/resource-translator@v3
-  with:
-    sourceLocale: en
-    subscriptionKey: \${{ secrets.TRANSLATOR_KEY }}
-    endpoint: \${{ secrets.TRANSLATOR_ENDPOINT }}
-    region: \${{ secrets.TRANSLATOR_REGION }}
-    toLocales: '["fr","de","es"]'
-    dryRun: false`}</code></pre>
   </section>
 </DocLayout>

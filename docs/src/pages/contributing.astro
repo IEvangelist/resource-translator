@@ -1,5 +1,12 @@
 ---
+import { Code } from "astro-expressive-code/components";
 import DocLayout from "../layouts/DocLayout.astro";
+
+const cmd = `git clone https://github.com/IEvangelist/resource-translator
+cd resource-translator
+npm install
+npm run verify   # lint + format:check + test + build
+`;
 ---
 
 <DocLayout title="Contributing">
@@ -10,18 +17,23 @@ import DocLayout from "../layouts/DocLayout.astro";
   </p>
 
   <h2>Local development</h2>
-<pre><code>{`git clone https://github.com/IEvangelist/resource-translator
-cd resource-translator
-npm install
-npm run verify   # lint + format:check + test + build`}</code></pre>
+  <Code code={cmd} lang="bash" />
 
   <h2>Adding a parser</h2>
   <ol>
     <li>Add a fixture under <code>__tests__/data/</code>.</li>
-    <li>Implement <code>TranslationFileParser</code> (parse, format, applyTranslations, toTranslatableTextMap).</li>
+    <li>
+      Implement <code>TranslationFileParser</code> (parse, format,
+      applyTranslations, toTranslatableTextMap).
+    </li>
     <li>Register it in <code>translation-file-parser-factory.ts</code>.</li>
-    <li>Add the file extension to <code>translationFileSchemes</code> in <code>translation-file-finder.ts</code>.</li>
-    <li>Write round-trip tests for parse → format and applyTranslations.</li>
+    <li>
+      Add the file extension to <code>translationFileSchemes</code> in
+      <code>translation-file-finder.ts</code>.
+    </li>
+    <li>
+      Write round-trip tests for parse → format and applyTranslations.
+    </li>
   </ol>
 
   <h2>Coverage thresholds</h2>
@@ -33,7 +45,7 @@ npm run verify   # lint + format:check + test + build`}</code></pre>
 
   <h2>Documentation site</h2>
   <p>
-    The <code>docs/</code> folder is an Astro 5 + Tailwind v4 project. Run
+    The <code>docs/</code> folder is an Astro 6 + Tailwind v4 project. Run
     <code>npm install</code> there once, then <code>npm run dev</code> for
     local preview. The <code>pages.yml</code> workflow ships docs to GitHub
     Pages on every merge.

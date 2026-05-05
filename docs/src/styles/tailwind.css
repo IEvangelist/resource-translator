@@ -7,22 +7,40 @@
   --font-mono:
     "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --color-brand-50: oklch(96% 0.05 250);
-  --color-brand-100: oklch(92% 0.07 250);
-  --color-brand-200: oklch(86% 0.1 250);
-  --color-brand-300: oklch(78% 0.13 250);
-  --color-brand-400: oklch(70% 0.16 250);
-  --color-brand-500: oklch(63% 0.18 250);
-  --color-brand-600: oklch(55% 0.18 250);
-  --color-brand-700: oklch(46% 0.16 250);
-  --color-brand-800: oklch(38% 0.13 250);
-  --color-brand-900: oklch(30% 0.1 250);
+  /* Indigo (primary) */
+  --color-brand-50: oklch(97% 0.02 280);
+  --color-brand-100: oklch(94% 0.04 280);
+  --color-brand-200: oklch(87% 0.08 280);
+  --color-brand-300: oklch(78% 0.13 280);
+  --color-brand-400: oklch(68% 0.18 280);
+  --color-brand-500: oklch(60% 0.21 280);
+  --color-brand-600: oklch(52% 0.22 280);
+  --color-brand-700: oklch(44% 0.2 280);
+  --color-brand-800: oklch(36% 0.16 280);
+  --color-brand-900: oklch(28% 0.12 280);
 
-  --color-ink: oklch(20% 0.02 250);
-  --color-ink-muted: oklch(45% 0.02 250);
-  --color-paper: oklch(99% 0.005 250);
-  --color-paper-elevated: oklch(98% 0.01 250);
-  --color-line: oklch(92% 0.01 250);
+  /* Fuchsia (accent) */
+  --color-accent-50: oklch(97% 0.03 330);
+  --color-accent-200: oklch(86% 0.13 330);
+  --color-accent-400: oklch(68% 0.24 330);
+  --color-accent-500: oklch(62% 0.27 330);
+  --color-accent-600: oklch(54% 0.27 330);
+  --color-accent-700: oklch(46% 0.24 330);
+
+  /* Amber (highlight) */
+  --color-warm-300: oklch(82% 0.16 70);
+  --color-warm-500: oklch(72% 0.18 70);
+  --color-warm-600: oklch(63% 0.18 50);
+
+  /* Cyan (cool counter-accent) */
+  --color-cool-300: oklch(82% 0.13 200);
+  --color-cool-500: oklch(70% 0.16 200);
+
+  --color-ink: oklch(20% 0.03 280);
+  --color-ink-muted: oklch(48% 0.03 280);
+  --color-paper: oklch(99% 0.005 280);
+  --color-paper-elevated: oklch(98% 0.012 280);
+  --color-line: oklch(91% 0.015 280);
 }
 
 @layer base {
@@ -34,18 +52,24 @@
     --fg-muted: var(--color-ink-muted);
     --border: var(--color-line);
     --link: var(--color-brand-700);
-    --link-hover: var(--color-brand-500);
+    --link-hover: var(--color-accent-600);
+    --hero-grad-a: oklch(96% 0.06 280 / 0.85);
+    --hero-grad-b: oklch(94% 0.08 330 / 0.7);
+    --hero-grad-c: oklch(95% 0.1 70 / 0.6);
   }
 
   :root.dark {
     color-scheme: dark;
-    --bg: oklch(18% 0.02 250);
-    --bg-elevated: oklch(22% 0.02 250);
-    --fg: oklch(96% 0.01 250);
-    --fg-muted: oklch(72% 0.02 250);
-    --border: oklch(32% 0.02 250);
+    --bg: oklch(16% 0.03 280);
+    --bg-elevated: oklch(21% 0.04 280);
+    --fg: oklch(96% 0.01 280);
+    --fg-muted: oklch(72% 0.03 280);
+    --border: oklch(30% 0.04 280);
     --link: var(--color-brand-300);
-    --link-hover: var(--color-brand-200);
+    --link-hover: var(--color-accent-400);
+    --hero-grad-a: oklch(28% 0.18 280 / 0.6);
+    --hero-grad-b: oklch(28% 0.22 330 / 0.5);
+    --hero-grad-c: oklch(28% 0.16 200 / 0.5);
   }
 
   html {
@@ -64,6 +88,7 @@
   a {
     color: var(--link);
     text-underline-offset: 3px;
+    transition: color 150ms ease;
   }
 
   a:hover {
@@ -74,6 +99,50 @@
   pre {
     font-family: var(--font-mono);
   }
+
+  /* Smooth view transitions */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 220ms;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation: none !important;
+    }
+  }
+}
+
+@utility text-gradient {
+  background: linear-gradient(
+    100deg,
+    var(--color-brand-600) 0%,
+    var(--color-accent-500) 55%,
+    var(--color-warm-500) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility hero-mesh {
+  background-image:
+    radial-gradient(
+      circle at 12% 18%,
+      var(--hero-grad-a),
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 88% 10%,
+      var(--hero-grad-b),
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 70% 90%,
+      var(--hero-grad-c),
+      transparent 50%
+    );
 }
 
 @layer components {
@@ -103,7 +172,7 @@
     border: 1px solid var(--border);
     @apply rounded px-1.5 py-0.5 text-[0.9em];
   }
-  .prose-rt pre {
+  .prose-rt pre:not(.expressive-code pre) {
     background-color: var(--bg-elevated);
     border: 1px solid var(--border);
     @apply rounded-lg p-4 overflow-x-auto my-6 text-sm;
@@ -114,7 +183,7 @@
     padding: 0;
   }
   .prose-rt blockquote {
-    border-left: 3px solid var(--color-brand-500);
+    border-left: 3px solid var(--color-accent-500);
     color: var(--fg-muted);
     @apply pl-4 my-4 italic;
   }
@@ -129,4 +198,13 @@
   .prose-rt th {
     @apply font-semibold;
   }
+  .prose-rt :is(h2, h3) > a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .expressive-code {
+    @apply my-6;
+  }
 }
+

@@ -1,17 +1,8 @@
 ---
+import { Code } from "astro-expressive-code/components";
 import DocLayout from "../layouts/DocLayout.astro";
----
 
-<DocLayout title="Configuration">
-  <h1>Repository configuration</h1>
-  <p>
-    For project-wide defaults, create <code>.github/resource-translator.yml</code>.
-    Action inputs always win when both are provided. Override the path with the
-    <code>configPath</code> input if needed.
-  </p>
-
-  <h2>Schema</h2>
-<pre><code>{`# .github/resource-translator.yml
+const yaml = `# .github/resource-translator.yml
 sourceLocale: en
 toLocales:
   - fr
@@ -26,7 +17,20 @@ glossary:
   Acme: Contoso
   Octocat: Octocat   # keep brand names verbatim
 categoryId: my-custom-translator-category
-apiVersion: "3.0"`}</code></pre>
+apiVersion: "3.0"
+`;
+---
+
+<DocLayout title="Configuration">
+  <h1>Repository configuration</h1>
+  <p>
+    For project-wide defaults, create <code>.github/resource-translator.yml</code>.
+    Action inputs always win when both are provided. Override the path with the
+    <code>configPath</code> input if needed.
+  </p>
+
+  <h2>Schema</h2>
+  <Code code={yaml} lang="yaml" title=".github/resource-translator.yml" />
 
   <h2>Field reference</h2>
   <table>
