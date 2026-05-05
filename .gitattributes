@@ -1,0 +1,7 @@
+# Default to LF line endings across the repo to keep fixture round-trip tests
+# stable on Windows checkouts.
+* text=auto eol=lf
+
+# Treat the prebundled action JS as a binary blob to avoid noisy line-ending
+# normalization in diffs.
+dist/resource-translator/index.js binary

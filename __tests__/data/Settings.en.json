@@ -1,0 +1,12 @@
+{
+	"app": {
+		"title": "Resource Translator",
+		"description": "Translate resources via Azure AI"
+	},
+	"messages": {
+		"welcome": "Welcome, {{name}}!",
+		"farewell": "See you soon."
+	},
+	"unit.dotted.key": "Special key with dots",
+	"empty": ""
+}
