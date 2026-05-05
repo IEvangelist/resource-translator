@@ -27,6 +27,7 @@ export class JsonParser implements TranslationFileParser {
     } catch (e) {
       throw new Error(
         `Failed to parse json. Error: ${e}. Content: ${fileContent}`,
+        { cause: e },
       );
     }
 

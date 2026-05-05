@@ -53175,7 +53175,8 @@ var JsonParser = class _JsonParser {
       buildMap(content);
     } catch (e) {
       throw new Error(
-        `Failed to parse json. Error: ${e}. Content: ${fileContent}`
+        `Failed to parse json. Error: ${e}. Content: ${fileContent}`,
+        { cause: e }
       );
     }
     return Promise.resolve(Object.fromEntries(map2));

@@ -36,6 +36,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   transition (no security delta).
 - Modernised `tsconfig` (ES2022, additional strict flags).
 - Migrated to ESLint 9 flat config + Prettier + EditorConfig.
+- Bumped `eslint` and `@eslint/js` to v10, `globals` to v17, docs
+  `typescript` to v6 to match root, and the workflow GitHub Actions
+  `actions/checkout@v6`, `actions/upload-pages-artifact@v5`,
+  `peter-evans/create-pull-request@v8`, `softprops/action-gh-release@v3`,
+  `dependabot/fetch-metadata@v3`.
 - Refreshed the docs landing page with a custom translation logo, a
   vibrant indigo→fuchsia→amber palette, Lucide icons, view transitions,
   Expressive Code-rendered code samples, and a self-hosted Inter font.
