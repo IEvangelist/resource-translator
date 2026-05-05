@@ -9,7 +9,7 @@ export class RestextParser implements TranslationFileParser {
   async parseFrom(fileContent: string): Promise<RestextFile> {
     await delay(0, null);
 
-    let map: Map<number, string> = new Map();
+    const map: Map<number, string> = new Map();
     let restextFile = { map: new Map() };
 
     if (fileContent) {
@@ -66,10 +66,10 @@ export class RestextParser implements TranslationFileParser {
   applyTranslations(
     instance: RestextFile,
     translations: { [key: string]: string } | undefined,
-    targetLocale?: string,
+    _targetLocale?: string,
   ): RestextFile {
     if (instance && translations) {
-      for (let key in translations) {
+      for (const key in translations) {
         const value = translations[key];
         if (value) {
           instance[key] = value;

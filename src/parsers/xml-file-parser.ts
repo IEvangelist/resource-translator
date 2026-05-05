@@ -9,7 +9,7 @@ export class XmlFileParser {
 
   static toXml<T>(instance: T): string {
     const builder = new Builder();
-    var xliffXml = builder.buildObject(instance);
+    const xliffXml = builder.buildObject(instance);
     return xliffXml;
   }
 }

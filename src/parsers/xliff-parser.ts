@@ -15,7 +15,7 @@ export class XliffParser implements TranslationFileParser {
   toFileFormatted(instance: XliffFile, defaultValue: string): string {
     try {
       return XmlFileParser.toXml(instance);
-    } catch (error) {
+    } catch {
       return defaultValue;
     }
   }
@@ -27,7 +27,7 @@ export class XliffParser implements TranslationFileParser {
   ): XliffFile {
     if (instance && translations && targetLocale) {
       instance.xliff.$.trgLang = targetLocale;
-      for (let key in translations) {
+      for (const key in translations) {
         const compositeKey = key.split(XliffFileKeyDelimiter);
         const index = parseInt(compositeKey[0]);
         const sourceKey = compositeKey[1];

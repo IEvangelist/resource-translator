@@ -9,7 +9,7 @@ import { delay, findNext } from "../helpers/utils";
 export class PortableObjectParser implements TranslationFileParser {
   async parseFrom(fileContent: string): Promise<PortableObjectFile> {
     await delay(0, null);
-    let portableObjectFile: PortableObjectFile = {
+    const portableObjectFile: PortableObjectFile = {
       tokens: [],
     };
     if (fileContent) {
@@ -21,7 +21,7 @@ export class PortableObjectParser implements TranslationFileParser {
   }
 
   toFileFormatted(instance: PortableObjectFile, defaultValue: string): string {
-    return !!instance
+    return instance
       ? instance.tokens.map((t) => t.line).join("\n")
       : defaultValue;
   }
@@ -29,11 +29,11 @@ export class PortableObjectParser implements TranslationFileParser {
   applyTranslations(
     portableObject: PortableObjectFile,
     translations: { [key: string]: string } | undefined,
-    targetLocale?: string,
+    _targetLocale?: string,
   ): PortableObjectFile {
     if (portableObject && translations) {
       let lastIndex = 0;
-      for (let key in translations) {
+      for (const key in translations) {
         const value = translations[key];
         if (value) {
           lastIndex = findNext(

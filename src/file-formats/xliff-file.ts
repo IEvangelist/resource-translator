@@ -65,4 +65,5 @@ export const findInXliff = (
       }
     }
   }
+  return undefined;
 };

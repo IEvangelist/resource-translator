@@ -13,7 +13,7 @@ export const toResultSet = (
   const resultSet: TranslationResultSet = {};
   if (results && results.length) {
     toLocales.forEach((locale) => {
-      let result = {};
+      const result = {};
       const matches = results.filter((r) =>
         r.translations.some((t) => t.to === locale),
       );

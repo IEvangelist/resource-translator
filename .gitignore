@@ -24,7 +24,10 @@ coverage
 
 # Build
 lib/**
-dist/**
+
+# Action distribution: track dist/resource-translator only.
+dist/*
+!dist/resource-translator/
 
 test-7.en.resx
 
@@ -86,7 +89,6 @@ typings/
 
 # Nuxt.js build / generate output
 .nuxt
-dist
 
 # Gatsby files
 .cache/

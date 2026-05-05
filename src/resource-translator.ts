@@ -57,9 +57,9 @@ export async function start(inputs: Inputs) {
         return;
       }
 
-      let summary = new Summary(sourceLocale, toLocales);
+      const summary = new Summary(sourceLocale, toLocales);
 
-      for (let key of Object.keys(translationFiles)) {
+      for (const key of Object.keys(translationFiles)) {
         debug(`Iterating translationFiles keys, key: ${key}`);
 
         const kind = key as TranslationFileKind;

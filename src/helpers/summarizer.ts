@@ -24,7 +24,7 @@ export const summarize = (summary: Summary): [string, string] => {
   const uft = summary.updatedFileTranslations.toLocaleString("en");
 
   // Pull request message template
-  let details: string[] = [
+  const details: string[] = [
     "# Translation pull request summary",
     "",
     `Action triggered by ${triggeredByUrl}.`,

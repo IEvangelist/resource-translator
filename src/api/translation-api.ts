@@ -1,6 +1,6 @@
 import { debug, setFailed } from "@actions/core";
 import Axios, { AxiosRequestConfig } from "axios";
-import { v4 } from "uuid";
+import { randomUUID } from "node:crypto";
 import { AvailableTranslations } from "../abstractions/available-translations";
 import {
   TranslationResult,
@@ -57,7 +57,7 @@ export const translate = async (
     const headers = {
       "Ocp-Apim-Subscription-Key": translatorResource.subscriptionKey,
       "Content-type": "application/json",
-      "X-ClientTraceId": v4(),
+      "X-ClientTraceId": randomUUID(),
     };
     if (translatorResource.region) {
       headers["Ocp-Apim-Subscription-Region"] = translatorResource.region;

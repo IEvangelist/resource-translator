@@ -62,6 +62,7 @@ export function findValueByKey<T extends object>(object: T, key: string) {
       value = findValueByKey(object[k], key);
       return value !== undefined;
     }
+    return false;
   });
   return value;
 }

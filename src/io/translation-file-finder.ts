@@ -1,7 +1,7 @@
 import { debug } from "@actions/core";
 import { context, getOctokit } from "@actions/github";
 import { create } from "@actions/glob";
-import { isDirectory } from "@actions/io/lib/io-util";
+import { statSync } from "node:fs";
 import { basename, normalize, resolve } from "path";
 
 export interface TranslationFileMap {
@@ -20,6 +20,14 @@ const translationFileSchemes = {
   resx: (locale: string) => `**/*.${locale}.resx`,
   xliff: (locale: string) => `**/*.${locale}.xliff`,
   json: (locale: string) => `**/*.${locale}.json`,
+};
+
+const isDirectorySafe = (path: string): boolean => {
+  try {
+    return statSync(path).isDirectory();
+  } catch {
+    return false;
+  }
 };
 
 export async function findAllTranslationFiles(
@@ -50,7 +58,7 @@ export async function findAllTranslationFiles(
   const promises = filesAndDirectories.map(async (path) => {
     return {
       path: normalize(path),
-      isDirectory: await isDirectory(path),
+      isDirectory: isDirectorySafe(path),
       include: includeFile(path),
     };
   });
@@ -88,9 +96,9 @@ async function getFilesToInclude(): Promise<string[]> {
       debug(JSON.stringify(response));
 
       if (response.data && response.data.files) {
-        const files = [
+        const files: string[] = [
           ...new Set(
-            response.data.files.map((file) => {
+            (response.data.files as Array<{ filename: string }>).map((file) => {
               const path = resolve(__dirname, file.filename);
               return basename(path);
             }),

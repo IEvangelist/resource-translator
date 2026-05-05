@@ -33,13 +33,13 @@ export class JsonParser implements TranslationFileParser {
     return Promise.resolve(Object.fromEntries(map) as JsonFile);
   }
 
-  toFileFormatted(instance: JsonFile, defaultValue: string): string {
+  toFileFormatted(instance: JsonFile, _defaultValue: string): string {
     const content = {};
 
     const buildObject = (obj: any, keyParts: string[], value: string) => {
       const keyPart = keyParts[0];
       const isLastChild = keyParts.length === 1;
-      obj[keyPart] = isLastChild ? value : obj[keyPart] ?? {};
+      obj[keyPart] = isLastChild ? value : (obj[keyPart] ?? {});
 
       if (!isLastChild) {
         buildObject(obj[keyPart], keyParts.slice(1), value);
@@ -57,10 +57,10 @@ export class JsonParser implements TranslationFileParser {
   applyTranslations(
     instance: JsonFile,
     translations: { [key: string]: string } | undefined,
-    targetLocale?: string,
+    _targetLocale?: string,
   ): JsonFile {
     if (instance && translations) {
-      for (let key in translations) {
+      for (const key in translations) {
         const value = translations[key];
         if (value) {
           instance[key] = value;

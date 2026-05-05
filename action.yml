@@ -1,31 +1,58 @@
 name: 'Machine Translator'
-description: 'Automatically create machine-translated PRs of translation files. Supports: .resx, .restext, .ini, .xliff, .po, and .json.'
+description: 'Automatically open machine-translated pull requests for resource files. Supports .resx, .restext, .ini, .xliff, .po, and .json.'
+author: 'David Pine'
 branding:
   icon: flag
   color: blue
 inputs:
   sourceLocale:
-    description: 'The source locale (for example, ''en'') used to create the glob pattern for finding translation (**/*.en.resx) files as input.'
+    description: "Source locale (e.g. 'en') used to find translation files (e.g. **/*.en.resx)."
     required: true
   subscriptionKey:
-    description: 'The Azure Cognitive Services translator resource subscription key.'
+    description: 'Azure AI Translator resource subscription key. Pass via secrets.'
     required: true
   endpoint:
-    description: 'The Azure Cognitive Services translator resource endpoint.'
+    description: "Azure AI Translator resource endpoint (e.g. 'https://api.cognitive.microsofttranslator.com/')."
     required: true
   region:
-    description: 'The Azure Cognitive Services translator resource region. This is optional when using a global translator resource.'
+    description: 'Azure AI Translator resource region (optional for global resources).'
     required: false
   toLocales:
-    description: 'Optional locales to translate to, otherwise all possible locales are targeted. Example input, ''"es,de,fr"'' or ''["es","de","fr"]''. Requires double quotes.'
+    description: 'Optional locales to translate to. Accepts a JSON array (`["es","de","fr"]`) or comma-separated values (`es,de,fr`). When omitted, every supported locale is targeted.'
     required: false
+  include:
+    description: 'Optional newline-separated glob patterns to include. When set, only matching files are translated.'
+    required: false
+  exclude:
+    description: 'Optional newline-separated glob patterns to exclude. Applied after `include`.'
+    required: false
+  configPath:
+    description: 'Optional path to a YAML config file (defaults to `.github/resource-translator.yml`). Repository config keys are merged underneath the action inputs.'
+    required: false
+    default: '.github/resource-translator.yml'
+  categoryId:
+    description: 'Optional Azure AI Translator Custom Translator category ID.'
+    required: false
+  apiVersion:
+    description: "Translator API version. Defaults to '3.0'."
+    required: false
+    default: '3.0'
+  dryRun:
+    description: "When 'true', perform translations and emit summary outputs but do not write files."
+    required: false
+    default: 'false'
+  failOnError:
+    description: "When 'true' (default), unexpected errors fail the action. When 'false', errors are logged as warnings."
+    required: false
+    default: 'true'
 outputs:
   summary-title:
-    description: 'The summary details as a title, for example: "Machine-translated 320 files, a total of 5,418 translations"'
-  summary-message:
-    description: 'GitHub flavored markdown translation summary, with details of the resulting translations.'
+    description: 'A short summary suitable for a PR title (e.g. "Machine-translated 320 files, a total of 5,418 translations").'
+  summary-details:
+    description: 'A markdown summary, suitable for a PR body or job summary.'
   has-new-translations:
-    description: 'A boolean value, indicating whether or not new translations exist as a result of running this action.'
+    description: "Boolean as string. 'true' when one or more new translations were generated."
 runs:
-  using: 'node16'
+  using: 'node24'
   main: 'dist/resource-translator/index.js'
+

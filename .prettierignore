@@ -1,0 +1,10 @@
+node_modules
+dist
+lib
+coverage
+docs/dist
+docs/.astro
+*.lock
+package-lock.json
+__tests__/data
+.github/copilot-spaces

@@ -14,7 +14,7 @@ export class ResxParser implements TranslationFileParser {
   toFileFormatted(instance: ResourceFile, defaultValue: string): string {
     try {
       return XmlFileParser.toXml(instance);
-    } catch (error) {
+    } catch {
       return defaultValue;
     }
   }
@@ -22,10 +22,10 @@ export class ResxParser implements TranslationFileParser {
   applyTranslations(
     resource: ResourceFile,
     translations: { [key: string]: string } | undefined,
-    targetLocale?: string,
+    _targetLocale?: string,
   ) {
     if (resource && translations) {
-      for (let key in translations) {
+      for (const key in translations) {
         const value = translations[key];
         if (value) {
           traverseResx(resource, key, (data: Data) => (data.value = [value]));
