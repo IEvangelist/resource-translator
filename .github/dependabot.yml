@@ -10,6 +10,17 @@ updates:
     labels:
       - dependencies
       - npm
+    # The @actions/* packages went ESM-only at the versions below.
+    # The action is bundled as CommonJS for the Node 24 runner, so we
+    # stay on the last CJS major until a future ESM migration. See
+    # CHANGELOG.md "Path A pin decision".
+    ignore:
+      - dependency-name: "@actions/core"
+        versions: [">=3.0.0"]
+      - dependency-name: "@actions/github"
+        versions: [">=9.0.0"]
+      - dependency-name: "@actions/glob"
+        versions: [">=0.6.0"]
     groups:
       production-deps:
         dependency-type: production
@@ -54,3 +65,4 @@ updates:
         update-types:
           - minor
           - patch
+
