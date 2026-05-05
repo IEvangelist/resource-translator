@@ -10,22 +10,40 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
 
 <header
   transition:persist
-  class="sticky top-0 z-30 border-b border-(--border) bg-(--bg)/80 backdrop-blur-xl supports-[backdrop-filter]:bg-(--bg)/60"
+  class="sticky top-0 z-30 border-b border-(--border) bg-(--bg)/85 backdrop-blur-xl supports-[backdrop-filter]:bg-(--bg)/65"
 >
   <div
-    class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3"
+    class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:gap-4 sm:px-6"
   >
-    <a
-      href={homeHref}
-      class="group flex items-center gap-2.5 text-base font-semibold no-underline"
-    >
-      <Logo size={32} class="rounded-lg shadow-sm transition-transform group-hover:rotate-[-6deg]" />
-      <span class="hidden sm:inline">Resource Translator</span>
-    </a>
+    <div class="flex items-center gap-2">
+      <button
+        type="button"
+        id="sidebar-toggle"
+        class="inline-flex size-9 items-center justify-center rounded-md border border-(--border) bg-(--bg-elevated) text-(--fg-muted) hover:text-(--fg) lg:hidden"
+        aria-label="Open navigation"
+        aria-controls="sidebar-drawer"
+        aria-expanded="false"
+        hidden
+      >
+        <Icon name="lucide:menu" class="size-4" />
+      </button>
+      <a
+        href={homeHref}
+        class="group flex items-center gap-2.5 text-base font-semibold no-underline"
+      >
+        <Logo
+          size={32}
+          class="rounded-lg shadow-sm transition-transform group-hover:rotate-[-6deg]"
+        />
+        <span class="hidden sm:inline">Resource Translator</span>
+      </a>
+    </div>
 
     <div class="relative hidden flex-1 max-w-md md:block">
       <label class="sr-only" for="docs-search">Search docs</label>
-      <div class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-(--fg-muted)">
+      <div
+        class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-(--fg-muted)"
+      >
         <Icon name="lucide:search" class="size-4" />
       </div>
       <input
@@ -33,19 +51,20 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
         type="search"
         placeholder="Search documentation…"
         autocomplete="off"
-        class="w-full rounded-md border border-(--border) bg-(--bg-elevated) py-1.5 pl-9 pr-3 text-sm placeholder-(--fg-muted) focus:border-(--color-brand-500) focus:outline-none focus:ring-2 focus:ring-(--color-brand-500)/40"
+        class="w-full rounded-md border border-(--border) bg-(--bg-elevated) py-2 pl-9 pr-3 text-sm placeholder-(--fg-muted) focus:border-(--color-brand-500) focus:outline-none focus:ring-2 focus:ring-(--color-brand-500)/40"
       />
       <div
         id="search-results"
         class="absolute right-0 left-0 z-40 mt-1 hidden max-h-[60vh] overflow-y-auto rounded-md border border-(--border) bg-(--bg-elevated) p-2 text-sm shadow-lg"
-      ></div>
+      >
+      </div>
     </div>
 
     <div class="flex items-center gap-1.5">
       <button
         type="button"
         id="theme-toggle"
-        class="inline-flex size-8 items-center justify-center rounded-md border border-(--border) bg-(--bg-elevated) text-(--fg-muted) hover:text-(--fg)"
+        class="inline-flex size-9 items-center justify-center rounded-md border border-(--border) bg-(--bg-elevated) text-(--fg-muted) hover:text-(--fg)"
         aria-label="Toggle theme"
       >
         <Icon name="lucide:sun" class="size-4 dark:hidden" />
@@ -53,7 +72,7 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
       </button>
       <a
         href="https://github.com/IEvangelist/resource-translator"
-        class="inline-flex size-8 items-center justify-center rounded-md border border-(--border) bg-(--bg-elevated) no-underline hover:text-(--fg)"
+        class="inline-flex size-9 items-center justify-center rounded-md border border-(--border) bg-(--bg-elevated) text-(--fg-muted) no-underline hover:text-(--fg)"
         rel="noopener"
         target="_blank"
         aria-label="GitHub repository"
@@ -93,6 +112,17 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
   }
   bindToggle();
   document.addEventListener("astro:page-load", bindToggle);
+
+  // Hamburger button is rendered with `hidden` so server-rendered pages without
+  // JS won't show a non-functional button. Reveal it as soon as the page loads.
+  function showSidebarToggle() {
+    const btn = document.getElementById("sidebar-toggle");
+    if (btn && btn.hasAttribute("hidden") && document.getElementById("sidebar-drawer")) {
+      btn.removeAttribute("hidden");
+    }
+  }
+  showSidebarToggle();
+  document.addEventListener("astro:page-load", showSidebarToggle);
 </script>
 
 <script is:inline define:vars={{ pagefindScript }}>
@@ -186,4 +216,5 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
   bindSearch();
   document.addEventListener("astro:page-load", bindSearch);
 </script>
+
 

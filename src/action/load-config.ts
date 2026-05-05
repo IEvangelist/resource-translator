@@ -2,7 +2,15 @@ import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { warning, debug } from "@actions/core";
 import * as yaml from "js-yaml";
-import { RepoConfig } from "./inputs";
+import {
+  PROFANITY_ACTIONS,
+  PROFANITY_MARKERS,
+  ProfanityAction,
+  ProfanityMarker,
+  RepoConfig,
+  TEXT_TYPES,
+  TextType,
+} from "./inputs";
 
 /**
  * Loads `.github/resource-translator.yml` (or a custom `configPath`) from the
@@ -51,6 +59,27 @@ const normalizeRepoConfig = (raw: RepoConfig): RepoConfig => {
     return undefined;
   };
 
+  const enumOf = <T extends string>(
+    value: unknown,
+    allowed: readonly T[],
+  ): T | undefined => {
+    if (typeof value !== "string") return undefined;
+    const trimmed = value.trim();
+    if (!trimmed) return undefined;
+    return allowed.includes(trimmed as T) ? (trimmed as T) : undefined;
+  };
+
+  const booleanOrUndefined = (value: unknown): boolean | undefined => {
+    if (value === undefined || value === null) return undefined;
+    if (typeof value === "boolean") return value;
+    if (typeof value === "string") {
+      const v = value.trim().toLowerCase();
+      if (["true", "yes", "on", "1"].includes(v)) return true;
+      if (["false", "no", "off", "0"].includes(v)) return false;
+    }
+    return undefined;
+  };
+
   return {
     sourceLocale:
       typeof raw.sourceLocale === "string" ? raw.sourceLocale : undefined,
@@ -63,6 +92,16 @@ const normalizeRepoConfig = (raw: RepoConfig): RepoConfig => {
         : undefined,
     categoryId: typeof raw.categoryId === "string" ? raw.categoryId : undefined,
     apiVersion: typeof raw.apiVersion === "string" ? raw.apiVersion : undefined,
+    textType: enumOf<TextType>(raw.textType, TEXT_TYPES),
+    profanityAction: enumOf<ProfanityAction>(
+      raw.profanityAction,
+      PROFANITY_ACTIONS,
+    ),
+    profanityMarker: enumOf<ProfanityMarker>(
+      raw.profanityMarker,
+      PROFANITY_MARKERS,
+    ),
+    allowFallback: booleanOrUndefined(raw.allowFallback),
   };
 };
 
@@ -83,6 +122,10 @@ export const mergeInputsAndConfig = <T extends RepoConfig>(
     "glossary",
     "categoryId",
     "apiVersion",
+    "textType",
+    "profanityAction",
+    "profanityMarker",
+    "allowFallback",
   ];
   for (const key of keys) {
     if (merged[key] === undefined || isEmpty(merged[key])) {
@@ -97,6 +140,7 @@ export const mergeInputsAndConfig = <T extends RepoConfig>(
 
 const isEmpty = (value: unknown): boolean => {
   if (value === undefined || value === null) return true;
+  if (typeof value === "boolean") return false;
   if (Array.isArray(value)) return value.length === 0;
   if (typeof value === "string") return value.trim() === "";
   if (typeof value === "object") return Object.keys(value).length === 0;

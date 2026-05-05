@@ -1,13 +1,19 @@
 ---
 import DocLayout from "../layouts/DocLayout.astro";
+import PageHero from "../components/PageHero.astro";
 ---
 
 <DocLayout title="Inputs & outputs">
-  <h1>Inputs & outputs</h1>
+  <PageHero
+    slot="hero"
+    eyebrow="Reference"
+    title="Inputs & outputs"
+    icon="lucide:file-text"
+    lede="Every input is also accepted in the optional repo config file. When both are set, the action input wins."
+  />
   <p>
-    Every input is also accepted in the optional repo config file. When both
-    are set, the action input wins. See <a href="./configuration">Configuration</a>
-    for the YAML schema.
+    See <a href="./configuration">Configuration</a> for the YAML schema and
+    loading order.
   </p>
 
   <h2>Required inputs</h2>
@@ -16,13 +22,13 @@ import DocLayout from "../layouts/DocLayout.astro";
       <tr><th>Name</th><th>Description</th></tr>
     </thead>
     <tbody>
-      <tr><td><code>sourceLocale</code></td><td>Source locale (e.g. <code>en</code>) used to find resource files such as <code>**/*.en.resx</code>.</td></tr>
+      <tr><td><code>sourceLocale</code></td><td>Source locale (e.g. <code>en</code>) used to find resource files such as <code>**/*.en.resx</code>. Also forwarded to Translator as <code>from=&lt;locale&gt;</code>.</td></tr>
       <tr><td><code>subscriptionKey</code></td><td>Azure AI Translator subscription key. Pass via <code>secrets</code>.</td></tr>
       <tr><td><code>endpoint</code></td><td>Translator endpoint URL, e.g. <code>https://api.cognitive.microsofttranslator.com/</code>.</td></tr>
     </tbody>
   </table>
 
-  <h2>Optional inputs</h2>
+  <h2>Common optional inputs</h2>
   <table>
     <thead>
       <tr><th>Name</th><th>Default</th><th>Description</th></tr>
@@ -33,10 +39,27 @@ import DocLayout from "../layouts/DocLayout.astro";
       <tr><td><code>include</code></td><td><em>none</em></td><td>Newline-separated glob patterns; only matching files are translated.</td></tr>
       <tr><td><code>exclude</code></td><td><em>none</em></td><td>Newline-separated glob patterns; matching files are skipped (applied after include).</td></tr>
       <tr><td><code>configPath</code></td><td><code>.github/resource-translator.yml</code></td><td>Path to the YAML config file (relative to the workspace root).</td></tr>
-      <tr><td><code>categoryId</code></td><td><em>none</em></td><td>Custom Translator category ID, forwarded as the <code>category</code> query string.</td></tr>
-      <tr><td><code>apiVersion</code></td><td><code>3.0</code></td><td>Translator REST API version.</td></tr>
       <tr><td><code>dryRun</code></td><td><code>false</code></td><td>When <code>true</code>, run translations and emit summaries but do not write files.</td></tr>
       <tr><td><code>failOnError</code></td><td><code>true</code></td><td>When <code>true</code>, unexpected errors fail the action; when <code>false</code>, errors are warnings.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Translator request inputs</h2>
+  <p>
+    These map directly onto Azure AI Translator v3 query parameters. Every one
+    is optional; the Translator defaults apply when unset.
+  </p>
+  <table>
+    <thead>
+      <tr><th>Name</th><th>Default</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>categoryId</code></td><td><em>general</em></td><td>Azure <a href="https://learn.microsoft.com/azure/ai-services/translator/custom-translator/overview" rel="noopener" target="_blank">Custom Translator</a> category — the industry/domain/tone knob. Forwarded as <code>?category=...</code>.</td></tr>
+      <tr><td><code>textType</code></td><td><code>plain</code></td><td><code>plain</code> or <code>html</code>. Use <code>html</code> only when your resource values are real HTML fragments.</td></tr>
+      <tr><td><code>profanityAction</code></td><td><code>NoAction</code></td><td><code>NoAction</code>, <code>Marked</code>, or <code>Deleted</code>. Controls how profane terms are emitted in translations.</td></tr>
+      <tr><td><code>profanityMarker</code></td><td><code>Asterisk</code></td><td><code>Asterisk</code> or <code>Tag</code>. Only meaningful when <code>profanityAction</code> is <code>Marked</code>.</td></tr>
+      <tr><td><code>allowFallback</code></td><td><em>true (Translator default)</em></td><td>When <code>false</code>, Translator returns an error instead of falling back to the general system if your <code>categoryId</code> has no deployment for a target locale.</td></tr>
+      <tr><td><code>apiVersion</code></td><td><code>3.0</code></td><td>Translator REST API version.</td></tr>
     </tbody>
   </table>
 
@@ -52,3 +75,4 @@ import DocLayout from "../layouts/DocLayout.astro";
     </tbody>
   </table>
 </DocLayout>
+

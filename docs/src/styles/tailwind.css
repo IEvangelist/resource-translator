@@ -22,6 +22,7 @@
   /* Fuchsia (accent) */
   --color-accent-50: oklch(97% 0.03 330);
   --color-accent-200: oklch(86% 0.13 330);
+  --color-accent-300: oklch(80% 0.18 330);
   --color-accent-400: oklch(68% 0.24 330);
   --color-accent-500: oklch(62% 0.27 330);
   --color-accent-600: oklch(54% 0.27 330);
@@ -31,19 +32,26 @@
   --color-warm-300: oklch(82% 0.16 70);
   --color-warm-500: oklch(72% 0.18 70);
   --color-warm-600: oklch(63% 0.18 50);
+  --color-warm-700: oklch(54% 0.16 50);
 
   /* Cyan (cool counter-accent) */
   --color-cool-300: oklch(82% 0.13 200);
   --color-cool-500: oklch(70% 0.16 200);
 
   --color-ink: oklch(20% 0.03 280);
-  --color-ink-muted: oklch(48% 0.03 280);
+  --color-ink-muted: oklch(42% 0.03 280);
   --color-paper: oklch(99% 0.005 280);
   --color-paper-elevated: oklch(98% 0.012 280);
   --color-line: oklch(91% 0.015 280);
 }
 
 @layer base {
+  /* Bumped from the browser-default 16px so the entire rem-based type scale
+     gets a comfortable boost without touching every utility. */
+  html {
+    font-size: 17px;
+  }
+
   :root {
     color-scheme: light;
     --bg: var(--color-paper);
@@ -52,10 +60,11 @@
     --fg-muted: var(--color-ink-muted);
     --border: var(--color-line);
     --link: var(--color-brand-700);
-    --link-hover: var(--color-accent-600);
+    --link-hover: var(--color-accent-700);
     --hero-grad-a: oklch(96% 0.06 280 / 0.85);
     --hero-grad-b: oklch(94% 0.08 330 / 0.7);
     --hero-grad-c: oklch(95% 0.1 70 / 0.6);
+    --focus-ring: var(--color-brand-600);
   }
 
   :root.dark {
@@ -63,13 +72,14 @@
     --bg: oklch(16% 0.03 280);
     --bg-elevated: oklch(21% 0.04 280);
     --fg: oklch(96% 0.01 280);
-    --fg-muted: oklch(72% 0.03 280);
-    --border: oklch(30% 0.04 280);
+    --fg-muted: oklch(78% 0.03 280);
+    --border: oklch(32% 0.04 280);
     --link: var(--color-brand-300);
-    --link-hover: var(--color-accent-400);
+    --link-hover: var(--color-accent-300);
     --hero-grad-a: oklch(28% 0.18 280 / 0.6);
     --hero-grad-b: oklch(28% 0.22 330 / 0.5);
     --hero-grad-c: oklch(28% 0.16 200 / 0.5);
+    --focus-ring: var(--color-accent-300);
   }
 
   html {
@@ -100,6 +110,40 @@
     font-family: var(--font-mono);
   }
 
+  /* Buttons should always use a pointer cursor — browsers default to default. */
+  button:not(:disabled),
+  summary,
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [role="button"][aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+
+  /* Default focus ring for keyboard users; mouse focus stays clean. */
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Sidebar collapsibles: rotate the chevron when the section is open. */
+  [data-chevron] {
+    transition: transform 200ms ease;
+  }
+  details[open] > summary [data-chevron] {
+    transform: rotate(90deg);
+  }
+  /* Native marker is replaced by our chevron icon. */
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary {
+    list-style: none;
+  }
+
   /* Smooth view transitions */
   ::view-transition-old(root),
   ::view-transition-new(root) {
@@ -111,15 +155,36 @@
     ::view-transition-new(root) {
       animation: none !important;
     }
+    [data-chevron] {
+      transition: none;
+    }
   }
 }
 
+/*
+ * Light-mode gradient text uses deeper stops (brand-700 → accent-600 →
+ * warm-700) so the brightest stop still meets WCAG AA against `--bg`.
+ * Dark mode uses light stops (brand-300 → accent-300 → warm-300) for the
+ * same reason against the dark background.
+ */
 @utility text-gradient {
   background: linear-gradient(
     100deg,
-    var(--color-brand-600) 0%,
-    var(--color-accent-500) 55%,
-    var(--color-warm-500) 100%
+    var(--color-brand-700) 0%,
+    var(--color-accent-600) 55%,
+    var(--color-warm-700) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+:root.dark .text-gradient {
+  background: linear-gradient(
+    100deg,
+    var(--color-brand-300) 0%,
+    var(--color-accent-300) 55%,
+    var(--color-warm-300) 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -147,7 +212,8 @@
 
 @layer components {
   .prose-rt {
-    @apply max-w-3xl leading-7;
+    @apply max-w-3xl leading-8;
+    font-size: 1.0625rem;
   }
   .prose-rt h1 {
     @apply text-4xl font-bold tracking-tight mt-0 mb-6;
@@ -183,17 +249,21 @@
     padding: 0;
   }
   .prose-rt blockquote {
-    border-left: 3px solid var(--color-accent-500);
+    border-left: 3px solid var(--color-accent-600);
     color: var(--fg-muted);
     @apply pl-4 my-4 italic;
   }
   .prose-rt table {
     @apply w-full text-left text-sm my-6;
+    /* Keep tables horizontally scrollable on mobile rather than overflowing the layout. */
+    display: block;
+    overflow-x: auto;
+    white-space: normal;
   }
   .prose-rt th,
   .prose-rt td {
     border-bottom: 1px solid var(--border);
-    @apply py-2 pr-4;
+    @apply py-2 pr-4 align-top;
   }
   .prose-rt th {
     @apply font-semibold;
@@ -205,6 +275,12 @@
 
   .expressive-code {
     @apply my-6;
+  }
+  /* Wrap long code lines on mobile so horizontal overflow is contained. */
+  @media (max-width: 640px) {
+    .expressive-code .frame .code {
+      font-size: 0.85rem;
+    }
   }
 }
 

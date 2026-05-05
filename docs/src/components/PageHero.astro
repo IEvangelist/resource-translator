@@ -1,0 +1,60 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lede?: string;
+  icon?: string;
+  /** Optional gradient stops override, comma-separated Tailwind utilities. */
+  accent?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  lede,
+  icon,
+  accent = "from-(--color-brand-600) via-(--color-accent-500) to-(--color-warm-500)",
+} = Astro.props;
+---
+
+<header class="not-prose mb-10 border-b border-(--border) pb-8">
+  {
+    eyebrow && (
+      <p class="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-(--color-accent-700) dark:text-(--color-accent-300)">
+        {eyebrow}
+      </p>
+    )
+  }
+
+  <div class="flex items-center gap-4">
+    {
+      icon && (
+        <span
+          aria-hidden="true"
+          class:list={[
+            "inline-flex size-12 flex-none items-center justify-center rounded-2xl bg-linear-to-br text-white shadow-md shadow-(--color-brand-500)/30",
+            accent,
+          ]}
+        >
+          <Icon name={icon} class="size-6" />
+        </span>
+      )
+    }
+    <h1
+      class="text-balance text-4xl font-extrabold tracking-tight sm:text-5xl"
+      transition:name="page-title"
+    >
+      <span class="text-gradient">{title}</span>
+    </h1>
+  </div>
+
+  {
+    lede && (
+      <p class="mt-5 max-w-2xl text-lg leading-relaxed text-(--fg-muted)">
+        {lede}
+      </p>
+    )
+  }
+</header>

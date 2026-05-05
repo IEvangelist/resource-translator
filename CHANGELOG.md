@@ -10,9 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 
 - New action inputs: `include`, `exclude`, `configPath`, `categoryId`,
-  `apiVersion`, `dryRun`, `failOnError`.
+  `apiVersion`, `dryRun`, `failOnError`, plus advanced Translator request
+  knobs `textType`, `profanityAction`, `profanityMarker`, and
+  `allowFallback`.
 - Optional repository configuration via `.github/resource-translator.yml`
   (action inputs always win over repo config).
+- Source locale is now always forwarded to Translator as `from=<locale>`
+  so short strings aren't autodetected.
 - Post-translation glossary support for fixed term overrides.
 - Step summary emitted via `core.summary` in addition to outputs.
 - Astro + Tailwind v4 docs site at `docs/`, deployed to GitHub Pages.
@@ -35,6 +39,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Refreshed the docs landing page with a custom translation logo, a
   vibrant indigo→fuchsia→amber palette, Lucide icons, view transitions,
   Expressive Code-rendered code samples, and a self-hosted Inter font.
+- Polished docs UX with a collapsible sidebar, a mobile drawer with
+  `inert` background + skip-link, larger base type, AA-tuned gradient
+  headings, `cursor: pointer` on every interactive element, per-format
+  spec links + examples, and Catppuccin Expressive Code themes that
+  match the brand palette.
 
 ### Removed
 

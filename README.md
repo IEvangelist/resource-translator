@@ -78,11 +78,20 @@ jobs:
 | No       | `configPath`      | `.github/resource-translator.yml`                  |
 | No       | `categoryId`      | Azure Custom Translator category id                |
 | No       | `apiVersion`      | Translator REST API version (default `3.0`)       |
+| No       | `textType`        | `plain` or `html`                                  |
+| No       | `profanityAction` | `NoAction`, `Marked`, or `Deleted`                 |
+| No       | `profanityMarker` | `Asterisk` or `Tag` (only with `Marked`)           |
+| No       | `allowFallback`   | `false` to fail when category lacks a deployment   |
 | No       | `dryRun`          | `true` to skip writing files                       |
 | No       | `failOnError`     | `false` to soft-fail on errors                     |
 
 For repo-level defaults you can also drop a `.github/resource-translator.yml`
 file. See **[Configuration](https://ievangelist.github.io/resource-translator/configuration)**.
+
+> **Tip — tone & industry.** Pair `categoryId` (an Azure Custom Translator
+> deployment trained on your domain) with `profanityAction` and a glossary
+> in `.github/resource-translator.yml` to keep voice consistent across
+> locales. See the [tone recipe](https://ievangelist.github.io/resource-translator/recipes#tone-control--strict-fallback).
 
 ## Outputs
 

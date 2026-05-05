@@ -1,53 +1,215 @@
 ---
+import { Code } from "astro-expressive-code/components";
+import { Icon } from "astro-icon/components";
 import DocLayout from "../layouts/DocLayout.astro";
+import PageHero from "../components/PageHero.astro";
+
+const resx = `<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Greeting" xml:space="preserve">
+    <value>Hello, world!</value>
+    <comment>Shown on the home page</comment>
+  </data>
+  <data name="Goodbye" xml:space="preserve">
+    <value>See you later</value>
+  </data>
+</root>
+`;
+
+const xliff = `<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en">
+  <file id="ui">
+    <unit id="greeting">
+      <segment>
+        <source>Hello, world!</source>
+      </segment>
+    </unit>
+  </file>
+</xliff>
+`;
+
+const po = `msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\\n"
+
+msgid "Hello, world!"
+msgstr ""
+
+msgid "%d apple"
+msgid_plural "%d apples"
+msgstr[0] ""
+msgstr[1] ""
+`;
+
+const json = `{
+  "app": {
+    "title": "Resource Translator",
+    "tagline": "Localize your repo on every commit"
+  },
+  "buttons": {
+    "save": "Save",
+    "cancel": "Cancel"
+  }
+}
+`;
+
+const ini = `# Display strings
+[ui]
+greeting=Hello, world!
+goodbye=See you later
+
+[errors]
+not_found=The resource you requested was not found.
+`;
+
+const restext = `Greeting=Hello, world!
+Goodbye=See you later
+NotFound=The resource you requested was not found.
+`;
+
+const formats = [
+  {
+    id: "resx",
+    name: ".resx",
+    icon: "lucide:file-code-2",
+    accent: "from-(--color-brand-600) to-(--color-accent-500)",
+    blurb:
+      "XML-based .NET resource files. Translates the inner text of each <data><value> node, preserving comments and metadata.",
+    spec: {
+      label: "Microsoft Learn — Resources in .resx files",
+      href: "https://learn.microsoft.com/dotnet/framework/resources/working-with-resx-files-programmatically",
+    },
+    code: resx,
+    lang: "xml",
+  },
+  {
+    id: "xliff",
+    name: ".xliff",
+    icon: "lucide:file-code-2",
+    accent: "from-(--color-accent-500) to-(--color-warm-500)",
+    blurb:
+      "OASIS XLIFF 2.0 documents. Translates each <source> and writes the result into the corresponding <target>, setting trgLang for the locale.",
+    spec: {
+      label: "OASIS XLIFF 2.0 specification",
+      href: "https://docs.oasis-open.org/xliff/xliff-core/v2.0/xliff-core-v2.0.html",
+    },
+    code: xliff,
+    lang: "xml",
+  },
+  {
+    id: "po",
+    name: ".po",
+    icon: "lucide:file-code-2",
+    accent: "from-(--color-warm-500) to-(--color-brand-500)",
+    blurb:
+      "GNU gettext Portable Object files. Translates each msgid / msgid_plural into msgstr / msgstr[n] forms.",
+    spec: {
+      label: "GNU gettext — PO file format",
+      href: "https://www.gnu.org/software/gettext/manual/html_node/PO-Files.html",
+    },
+    code: po,
+    lang: "po",
+  },
+  {
+    id: "json",
+    name: ".json",
+    icon: "lucide:file-code-2",
+    accent: "from-(--color-cool-500) to-(--color-brand-500)",
+    blurb:
+      "Arbitrary JSON files. Nested objects are flattened with the [--] delimiter for translation, then re-nested on output. Dotted keys (\"unit.dotted.key\") are preserved verbatim.",
+    spec: {
+      label: "JSON specification (RFC 8259)",
+      href: "https://datatracker.ietf.org/doc/html/rfc8259",
+    },
+    code: json,
+    lang: "json",
+  },
+  {
+    id: "ini",
+    name: ".ini",
+    icon: "lucide:file-code-2",
+    accent: "from-(--color-brand-500) to-(--color-cool-500)",
+    blurb:
+      "Simple key=value files (Win32-style INI or any flat config). Section headers and comments are preserved.",
+    spec: {
+      label: "INI file format on Wikipedia",
+      href: "https://en.wikipedia.org/wiki/INI_file",
+    },
+    code: ini,
+    lang: "ini",
+  },
+  {
+    id: "restext",
+    name: ".restext",
+    icon: "lucide:file-code-2",
+    accent: "from-(--color-accent-500) to-(--color-cool-500)",
+    blurb:
+      "Microsoft MUI text resources — flat key=value pairs used as a textual companion to .resx.",
+    spec: {
+      label: "Microsoft MUI overview",
+      href: "https://learn.microsoft.com/windows/win32/intl/mui-overview",
+    },
+    code: restext,
+    lang: "ini",
+  },
+];
 ---
 
 <DocLayout title="File formats">
-  <h1>Supported file formats</h1>
-  <p>
-    All formats use the <code>{`Name.<sourceLocale>.<ext>`}</code> naming convention.
-    The action reads the source file, translates the values, and writes a sibling
-    file per target locale (e.g. <code>Greetings.fr.resx</code>).
+  <PageHero
+    slot="hero"
+    eyebrow="Reference"
+    title="Supported file formats"
+    icon="lucide:package"
+    lede="Six round-trippable resource formats. The action reads each source-locale file, translates the values, and writes a sibling per target locale (e.g. Greetings.fr.resx)."
+  />
+
+  <p class="not-prose mb-6 inline-flex items-center gap-2 rounded-md border border-(--border) bg-(--bg-elevated)/60 px-3 py-2 text-sm text-(--fg-muted)">
+    <Icon name="lucide:info" class="size-4 text-(--color-brand-600) dark:text-(--color-brand-300)" />
+    All files use the
+    <code class="mx-1">{`Name.<sourceLocale>.<ext>`}</code>
+    naming convention.
   </p>
 
-  <h2>.resx (.NET resource)</h2>
-  <p>
-    XML-based .NET resource files. Translates the inner text of each
-    <code>&lt;data&gt;&lt;value&gt;</code> node, preserving comments and
-    metadata.
-  </p>
-
-  <h2>.xliff (XLIFF 2.0)</h2>
-  <p>
-    OASIS XLIFF 2.0 documents. Translates each <code>&lt;source&gt;</code>
-    and writes the result into the corresponding <code>&lt;target&gt;</code>,
-    setting <code>trgLang</code> for the locale.
-  </p>
-
-  <h2>.po (gettext)</h2>
-  <p>
-    GNU gettext Portable Object files. Translates each <code>msgid</code> /
-    <code>msgid_plural</code> into <code>msgstr</code> / <code>msgstr[n]</code>
-    forms.
-  </p>
-
-  <h2>.json</h2>
-  <p>
-    Arbitrary JSON files. Nested objects are flattened with the
-    <code>[--]</code> delimiter for translation, then re-nested on output.
-    Dotted keys (e.g. <code>"unit.dotted.key"</code>) are preserved verbatim.
-  </p>
-
-  <h2>.ini / .restext</h2>
-  <p>
-    Simple <code>key=value</code> files (Win32-style INI, MUI <code>.restext</code>,
-    or any flat config). Section headers and comments are preserved.
-  </p>
+  {
+    formats.map((f) => (
+      <section id={f.id} class="not-prose my-10 scroll-mt-24">
+        <header class="mb-3 flex flex-wrap items-center gap-3">
+          <span
+            aria-hidden="true"
+            class:list={[
+              "inline-flex size-9 items-center justify-center rounded-lg bg-linear-to-br text-white shadow-md shadow-(--color-brand-500)/20",
+              f.accent,
+            ]}
+          >
+            <Icon name={f.icon} class="size-4" />
+          </span>
+          <h2 class="m-0 text-2xl font-bold tracking-tight">{f.name}</h2>
+          <a
+            class="ml-auto inline-flex items-center gap-1 text-sm font-medium"
+            href={f.spec.href}
+            rel="noopener"
+            target="_blank"
+          >
+            <Icon name="lucide:external-link" class="size-3.5" />
+            Learn more
+          </a>
+        </header>
+        <p class="mt-0 mb-4 text-(--fg-muted)">{f.blurb}</p>
+        <Code code={f.code} lang={f.lang} title={`example${f.name}`} />
+      </section>
+    ))
+  }
 
   <h2>Round-trip guarantees</h2>
   <p>
     The test suite verifies byte-for-byte round-tripping for representative
     fixtures of every format. If a format quirk breaks round-tripping in
-    your codebase, please open an issue with a minimal sample.
+    your codebase, please <a
+      href="https://github.com/IEvangelist/resource-translator/issues/new/choose"
+      rel="noopener"
+      target="_blank">open an issue</a
+    > with a minimal sample.
   </p>
 </DocLayout>
+

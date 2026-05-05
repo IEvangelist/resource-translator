@@ -1,6 +1,7 @@
 ---
 import { Code } from "astro-expressive-code/components";
 import DocLayout from "../layouts/DocLayout.astro";
+import PageHero from "../components/PageHero.astro";
 
 const pr = `- id: translate
   uses: IEvangelist/resource-translator@v3
@@ -43,6 +44,18 @@ const customCat = `with:
   categoryId: 1234abcd-5678-90ef-...
 `;
 
+const tone = `# .github/resource-translator.yml
+# Industry / domain — choose your tone via a Custom Translator category
+categoryId: legal-en
+
+# Treat profanity strictly for content aimed at younger audiences
+profanityAction: Marked
+profanityMarker: Tag
+
+# Fail the run rather than silently fall back to the general model
+allowFallback: false
+`;
+
 const dryRun = `with:
   dryRun: true
   failOnError: false
@@ -50,7 +63,13 @@ const dryRun = `with:
 ---
 
 <DocLayout title="Recipes">
-  <h1>Recipes</h1>
+  <PageHero
+    slot="hero"
+    eyebrow="Cookbook"
+    title="Recipes"
+    icon="lucide:wand-sparkles"
+    lede="Common patterns for shipping translations: monorepos, glossaries, custom categories, dry runs, and tone control."
+  />
 
   <h2>Open a pull request after each run</h2>
   <Code code={pr} lang="yaml" title="translate.yml (excerpt)" />
@@ -67,8 +86,29 @@ const dryRun = `with:
     swapped it for a synonym.
   </p>
 
-  <h2>Custom Translator category</h2>
+  <h2>Custom Translator category (industry / domain)</h2>
   <Code code={customCat} lang="yaml" />
+  <p>
+    Train an Azure
+    <a
+      href="https://learn.microsoft.com/azure/ai-services/translator/custom-translator/overview"
+      rel="noopener"
+      target="_blank">Custom Translator</a
+    > category on a corpus that captures your industry vocabulary and tone (legal,
+    medical, marketing, internal-engineering, etc.) and pass its ID via <code
+      >categoryId</code
+    >. This is the strongest tone lever Azure offers.
+  </p>
+
+  <h2>Tone control + strict fallback</h2>
+  <Code code={tone} lang="yaml" title=".github/resource-translator.yml" />
+  <p>
+    Combine a Custom Translator <code>categoryId</code> with <code
+      >profanityAction</code
+    > and <code>allowFallback: false</code> to enforce a consistent voice and
+    fail the workflow if the chosen category does not have a deployment for one
+    of your target locales.
+  </p>
 
   <h2>Dry run before turning the workflow on</h2>
   <Code code={dryRun} lang="yaml" />
@@ -78,3 +118,4 @@ const dryRun = `with:
     issue as a warning while you iterate.
   </p>
 </DocLayout>
+

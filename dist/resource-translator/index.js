@@ -45648,6 +45648,18 @@ var import_core8 = __toESM(require_core());
 // src/action/get-inputs.ts
 var import_core2 = __toESM(require_core());
 
+// src/action/inputs.ts
+var TEXT_TYPES = ["plain", "html"];
+var PROFANITY_ACTIONS = [
+  "NoAction",
+  "Marked",
+  "Deleted"
+];
+var PROFANITY_MARKERS = [
+  "Asterisk",
+  "Tag"
+];
+
 // src/action/load-config.ts
 var import_node_fs = require("node:fs");
 var import_node_path = require("node:path");
@@ -48271,6 +48283,22 @@ var normalizeRepoConfig = (raw) => {
       return value.split(/\r?\n|,/).map((v) => v.trim()).filter(Boolean);
     return void 0;
   };
+  const enumOf = (value, allowed) => {
+    if (typeof value !== "string") return void 0;
+    const trimmed = value.trim();
+    if (!trimmed) return void 0;
+    return allowed.includes(trimmed) ? trimmed : void 0;
+  };
+  const booleanOrUndefined = (value) => {
+    if (value === void 0 || value === null) return void 0;
+    if (typeof value === "boolean") return value;
+    if (typeof value === "string") {
+      const v = value.trim().toLowerCase();
+      if (["true", "yes", "on", "1"].includes(v)) return true;
+      if (["false", "no", "off", "0"].includes(v)) return false;
+    }
+    return void 0;
+  };
   return {
     sourceLocale: typeof raw.sourceLocale === "string" ? raw.sourceLocale : void 0,
     toLocales: stringList(raw.toLocales),
@@ -48278,7 +48306,17 @@ var normalizeRepoConfig = (raw) => {
     exclude: stringList(raw.exclude),
     glossary: raw.glossary && typeof raw.glossary === "object" ? raw.glossary : void 0,
     categoryId: typeof raw.categoryId === "string" ? raw.categoryId : void 0,
-    apiVersion: typeof raw.apiVersion === "string" ? raw.apiVersion : void 0
+    apiVersion: typeof raw.apiVersion === "string" ? raw.apiVersion : void 0,
+    textType: enumOf(raw.textType, TEXT_TYPES),
+    profanityAction: enumOf(
+      raw.profanityAction,
+      PROFANITY_ACTIONS
+    ),
+    profanityMarker: enumOf(
+      raw.profanityMarker,
+      PROFANITY_MARKERS
+    ),
+    allowFallback: booleanOrUndefined(raw.allowFallback)
   };
 };
 var mergeInputsAndConfig = (inputs, config) => {
@@ -48290,7 +48328,11 @@ var mergeInputsAndConfig = (inputs, config) => {
     "exclude",
     "glossary",
     "categoryId",
-    "apiVersion"
+    "apiVersion",
+    "textType",
+    "profanityAction",
+    "profanityMarker",
+    "allowFallback"
   ];
   for (const key of keys) {
     if (merged[key] === void 0 || isEmpty(merged[key])) {
@@ -48304,6 +48346,7 @@ var mergeInputsAndConfig = (inputs, config) => {
 };
 var isEmpty = (value) => {
   if (value === void 0 || value === null) return true;
+  if (typeof value === "boolean") return false;
   if (Array.isArray(value)) return value.length === 0;
   if (typeof value === "string") return value.trim() === "";
   if (typeof value === "object") return Object.keys(value).length === 0;
@@ -48323,12 +48366,24 @@ var getInputs = () => {
     configPath: (0, import_core2.getInput)("configPath") || void 0,
     categoryId: (0, import_core2.getInput)("categoryId") || void 0,
     apiVersion: (0, import_core2.getInput)("apiVersion") || void 0,
+    textType: getOptionalEnum("textType", TEXT_TYPES),
+    profanityAction: getOptionalEnum(
+      "profanityAction",
+      PROFANITY_ACTIONS
+    ),
+    profanityMarker: getOptionalEnum(
+      "profanityMarker",
+      PROFANITY_MARKERS
+    ),
+    allowFallback: getOptionalBooleanOrUndefined("allowFallback"),
     dryRun: getOptionalBoolean("dryRun", false),
     failOnError: getOptionalBoolean("failOnError", true)
   };
   validate(inputs);
   const config = loadRepoConfig(inputs.configPath);
-  return mergeInputsAndConfig(inputs, config);
+  const merged = mergeInputsAndConfig(inputs, config);
+  validateMerged(merged);
+  return merged;
 };
 var validate = (inputs) => {
   if (!inputs.endpoint || !/^https?:\/\//i.test(inputs.endpoint)) {
@@ -48345,6 +48400,24 @@ var validate = (inputs) => {
     throw new Error(`Input 'sourceLocale' is required.`);
   }
 };
+var validateMerged = (inputs) => {
+  const oneOf = (name, allowed) => {
+    const value = inputs[name];
+    if (value !== void 0 && !allowed.includes(value)) {
+      throw new Error(
+        `Invalid value for '${String(name)}': '${value}'. Expected one of: ${allowed.join(", ")}.`
+      );
+    }
+  };
+  oneOf("textType", TEXT_TYPES);
+  oneOf("profanityAction", PROFANITY_ACTIONS);
+  oneOf("profanityMarker", PROFANITY_MARKERS);
+  if (inputs.profanityMarker && inputs.profanityAction !== "Marked") {
+    throw new Error(
+      `'profanityMarker' is only meaningful when 'profanityAction' is 'Marked'. Got profanityAction='${inputs.profanityAction ?? "undefined"}'.`
+    );
+  }
+};
 var getOptionalBoolean = (name, defaultValue) => {
   const raw = (0, import_core2.getInput)(name);
   if (!raw) return defaultValue;
@@ -48353,6 +48426,25 @@ var getOptionalBoolean = (name, defaultValue) => {
   } catch {
     return defaultValue;
   }
+};
+var getOptionalBooleanOrUndefined = (name) => {
+  const raw = (0, import_core2.getInput)(name);
+  if (!raw) return void 0;
+  try {
+    return (0, import_core2.getBooleanInput)(name);
+  } catch {
+    return void 0;
+  }
+};
+var getOptionalEnum = (name, allowed) => {
+  const raw = (0, import_core2.getInput)(name)?.trim();
+  if (!raw) return void 0;
+  if (!allowed.includes(raw)) {
+    throw new Error(
+      `Invalid value for '${name}': '${raw}'. Expected one of: ${allowed.join(", ")}.`
+    );
+  }
+  return raw;
 };
 var getMultilineList = (name) => {
   const value = (0, import_core2.getInput)(name);
@@ -52999,7 +53091,27 @@ var translate = async (translatorResource, toLocales, translatableText, filePath
     };
     const baseUrl = translatorResource.endpoint.endsWith("/") ? translatorResource.endpoint : `${translatorResource.endpoint}/`;
     const apiVersion = translatorResource.apiVersion ?? "3.0";
-    const categorySegment = translatorResource.categoryId ? `&category=${encodeURIComponent(translatorResource.categoryId)}` : "";
+    const extraParams = [];
+    const append2 = (k, v) => extraParams.push(`${k}=${encodeURIComponent(v)}`);
+    if (translatorResource.categoryId) {
+      append2("category", translatorResource.categoryId);
+    }
+    if (translatorResource.sourceLocale) {
+      append2("from", translatorResource.sourceLocale);
+    }
+    if (translatorResource.textType) {
+      append2("textType", translatorResource.textType);
+    }
+    if (translatorResource.profanityAction) {
+      append2("profanityAction", translatorResource.profanityAction);
+    }
+    if (translatorResource.profanityMarker && translatorResource.profanityAction === "Marked") {
+      append2("profanityMarker", translatorResource.profanityMarker);
+    }
+    if (translatorResource.allowFallback !== void 0) {
+      append2("allowFallback", String(translatorResource.allowFallback));
+    }
+    const extraSegment = extraParams.length ? `&${extraParams.join("&")}` : "";
     const characters = JSON.stringify(data).length;
     const batchedData = characters > apiRateLimit || data.length > numberOfElementsLimit ? batch(data, numberOfElementsLimit, apiRateLimit) : [data];
     let results = [];
@@ -53015,7 +53127,7 @@ var translate = async (translatorResource, toLocales, translatableText, filePath
         (0, import_core3.debug)(`Data batch ${i + 1}, Locales batch ${j + 1}, locales: ${to}`);
         const url2 = `${baseUrl}translate?api-version=${encodeURIComponent(
           apiVersion
-        )}&${to}${categorySegment}`;
+        )}&${to}${extraSegment}`;
         const response = await axios_default.post(
           url2,
           batch2,
@@ -55481,7 +55593,12 @@ async function start(inputs) {
       subscriptionKey: inputs.subscriptionKey,
       region: inputs.region,
       apiVersion: inputs.apiVersion,
-      categoryId: inputs.categoryId
+      categoryId: inputs.categoryId,
+      sourceLocale: inputs.sourceLocale,
+      textType: inputs.textType,
+      profanityAction: inputs.profanityAction,
+      profanityMarker: inputs.profanityMarker,
+      allowFallback: inputs.allowFallback
     };
     for (const key of Object.keys(translationFiles)) {
       (0, import_core7.debug)(`Iterating translationFiles keys, key: ${key}`);

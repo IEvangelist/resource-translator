@@ -88,6 +88,11 @@ export async function start(inputs: Inputs) {
       region: inputs.region,
       apiVersion: inputs.apiVersion,
       categoryId: inputs.categoryId,
+      sourceLocale: inputs.sourceLocale,
+      textType: inputs.textType,
+      profanityAction: inputs.profanityAction,
+      profanityMarker: inputs.profanityMarker,
+      allowFallback: inputs.allowFallback,
     };
 
     for (const key of Object.keys(translationFiles)) {

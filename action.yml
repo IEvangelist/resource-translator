@@ -37,6 +37,18 @@ inputs:
     description: "Translator API version. Defaults to '3.0'."
     required: false
     default: '3.0'
+  textType:
+    description: "Translator request text type — 'plain' (default) or 'html'. Use 'html' only when resource values contain real HTML fragments."
+    required: false
+  profanityAction:
+    description: "How to handle profanity in translations: 'NoAction' (default), 'Marked', or 'Deleted'."
+    required: false
+  profanityMarker:
+    description: "How to mark profanity when 'profanityAction' is 'Marked': 'Asterisk' (default) or 'Tag'."
+    required: false
+  allowFallback:
+    description: "When 'false', Translator returns an error instead of falling back to the general system if the chosen 'categoryId' has no deployment for a target locale. Defaults to the Translator default (true) when unset."
+    required: false
   dryRun:
     description: "When 'true', perform translations and emit summary outputs but do not write files."
     required: false

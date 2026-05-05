@@ -88,6 +88,39 @@ describe("loadRepoConfig", () => {
     expect(config.toLocales).toEqual(["fr", "de", "es"]);
     expect(config.include).toEqual(["src/**"]);
   });
+
+  it("parses textType, profanityAction, profanityMarker, and allowFallback", () => {
+    mkdirSync(join(tempWorkspace, ".github"), { recursive: true });
+    writeFileSync(
+      join(tempWorkspace, ".github", "resource-translator.yml"),
+      [
+        "textType: html",
+        "profanityAction: Marked",
+        "profanityMarker: Tag",
+        "allowFallback: false",
+      ].join("\n"),
+      "utf-8",
+    );
+
+    const config = loadRepoConfig();
+    expect(config.textType).toEqual("html");
+    expect(config.profanityAction).toEqual("Marked");
+    expect(config.profanityMarker).toEqual("Tag");
+    expect(config.allowFallback).toEqual(false);
+  });
+
+  it("drops invalid enum values silently from YAML", () => {
+    mkdirSync(join(tempWorkspace, ".github"), { recursive: true });
+    writeFileSync(
+      join(tempWorkspace, ".github", "resource-translator.yml"),
+      ["textType: markdown", "profanityAction: Mask"].join("\n"),
+      "utf-8",
+    );
+
+    const config = loadRepoConfig();
+    expect(config.textType).toBeUndefined();
+    expect(config.profanityAction).toBeUndefined();
+  });
 });
 
 describe("mergeInputsAndConfig", () => {
@@ -126,5 +159,30 @@ describe("mergeInputsAndConfig", () => {
     );
     expect(merged.toLocales).toEqual(["fr"]);
     expect(merged.categoryId).toEqual("from-config");
+  });
+
+  it("preserves explicit boolean false from inputs over a config value", () => {
+    const merged = mergeInputsAndConfig(
+      { ...baseInputs, allowFallback: false },
+      { allowFallback: true },
+    );
+    // false is meaningful — must not fall through to the YAML default.
+    expect(merged.allowFallback).toEqual(false);
+  });
+
+  it("falls back to YAML allowFallback when the input is undefined", () => {
+    const merged = mergeInputsAndConfig(baseInputs, { allowFallback: false });
+    expect(merged.allowFallback).toEqual(false);
+  });
+
+  it("merges textType, profanityAction, profanityMarker from YAML", () => {
+    const merged = mergeInputsAndConfig(baseInputs, {
+      textType: "html",
+      profanityAction: "Marked",
+      profanityMarker: "Tag",
+    });
+    expect(merged.textType).toEqual("html");
+    expect(merged.profanityAction).toEqual("Marked");
+    expect(merged.profanityMarker).toEqual("Tag");
   });
 });

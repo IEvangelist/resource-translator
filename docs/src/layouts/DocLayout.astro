@@ -2,6 +2,7 @@
 import "../styles/tailwind.css";
 import "@fontsource-variable/inter/wght.css";
 import { ClientRouter } from "astro:transitions";
+import { Icon } from "astro-icon/components";
 import Header from "../components/Header.astro";
 import Sidebar from "../components/Sidebar.astro";
 import Footer from "../components/Footer.astro";
@@ -34,8 +35,16 @@ const faviconHref = `${baseHref}/favicon.svg`;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={desc} />
-    <meta name="theme-color" content="#5b46d6" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#1a1530" media="(prefers-color-scheme: dark)" />
+    <meta
+      name="theme-color"
+      content="#5b46d6"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#1a1530"
+      media="(prefers-color-scheme: dark)"
+    />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={desc} />
     <meta property="og:type" content="website" />
@@ -45,36 +54,133 @@ const faviconHref = `${baseHref}/favicon.svg`;
     <slot name="head" />
   </head>
   <body>
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded focus:bg-(--bg-elevated) focus:px-3 focus:py-1.5 focus:text-sm focus:font-semibold focus:shadow-lg"
+      >Skip to content</a
+    >
     <Header />
     {
       hideSidebar ? (
-        <main class="min-w-0">
+        <main id="main" class="min-w-0">
           <slot />
         </main>
       ) : (
-        <div
-          class:list={[
-            "mx-auto flex gap-12 px-6 py-10",
-            wide ? "max-w-7xl" : "max-w-7xl",
-          ]}
-        >
-          <aside
-            class="hidden w-56 flex-none lg:block"
-            aria-label="Documentation navigation"
+        <Fragment>
+          <div
+            class:list={[
+              "mx-auto flex gap-12 px-4 py-10 sm:px-6",
+              wide ? "max-w-7xl" : "max-w-7xl",
+            ]}
           >
-            <div class="sticky top-24">
-              <Sidebar />
+            <aside
+              class="hidden w-56 flex-none lg:block"
+              aria-label="Documentation navigation"
+            >
+              <div class="sticky top-24">
+                <Sidebar />
+              </div>
+            </aside>
+            <main id="main" class="min-w-0 flex-1">
+              <slot name="hero" />
+              <article class="prose-rt">
+                <slot />
+              </article>
+            </main>
+          </div>
+
+          <div
+            id="sidebar-drawer"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Documentation navigation"
+            class="fixed inset-0 z-40 lg:hidden"
+            hidden
+          >
+            <div
+              data-drawer-overlay
+              class="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            />
+            <div
+              class="absolute inset-y-0 left-0 flex w-72 max-w-[85vw] flex-col overflow-y-auto border-r border-(--border) bg-(--bg) shadow-2xl"
+            >
+              <div class="flex items-center justify-between border-b border-(--border) px-4 py-3">
+                <span class="text-sm font-semibold">Navigation</span>
+                <button
+                  type="button"
+                  data-drawer-close
+                  class="inline-flex size-9 items-center justify-center rounded-md border border-(--border) bg-(--bg-elevated) text-(--fg-muted) hover:text-(--fg)"
+                  aria-label="Close navigation"
+                >
+                  <Icon name="lucide:x" class="size-4" />
+                </button>
+              </div>
+              <div class="flex-1 px-3 py-4">
+                <Sidebar />
+              </div>
             </div>
-          </aside>
-          <main class="min-w-0 flex-1">
-            <article class="prose-rt">
-              <slot />
-            </article>
-          </main>
-        </div>
+          </div>
+        </Fragment>
       )
     }
     <Footer />
+
+    <script>
+      // Mobile sidebar drawer: open/close, focus management, ESC handling.
+      // Re-binds on every navigation because ClientRouter swaps the body.
+      function bindDrawer() {
+        const btn = document.getElementById("sidebar-toggle");
+        const drawer = document.getElementById("sidebar-drawer");
+        if (!btn || !drawer) return;
+        if ((drawer as any).__bound) return;
+        (drawer as any).__bound = true;
+
+        const overlay = drawer.querySelector<HTMLElement>(
+          "[data-drawer-overlay]",
+        );
+        const closeBtn = drawer.querySelector<HTMLButtonElement>(
+          "[data-drawer-close]",
+        );
+        const main = document.getElementById("main");
+
+        const open = () => {
+          drawer.hidden = false;
+          btn.setAttribute("aria-expanded", "true");
+          document.body.style.overflow = "hidden";
+          if (main) main.setAttribute("inert", "");
+          // Move focus into the drawer for screen readers.
+          (
+            closeBtn ||
+            drawer.querySelector<HTMLElement>("a, button")
+          )?.focus();
+        };
+        const close = () => {
+          if (drawer.hidden) return;
+          drawer.hidden = true;
+          btn.setAttribute("aria-expanded", "false");
+          document.body.style.overflow = "";
+          if (main) main.removeAttribute("inert");
+          btn.focus();
+        };
+
+        btn.addEventListener("click", open);
+        overlay?.addEventListener("click", close);
+        closeBtn?.addEventListener("click", close);
+        drawer.addEventListener("click", (e) => {
+          // Close when a navigation link is selected.
+          const target = e.target as HTMLElement;
+          if (target.closest("a")) close();
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && !drawer.hidden) close();
+        });
+        // Close before any client-side navigation.
+        document.addEventListener("astro:before-preparation", close);
+      }
+      bindDrawer();
+      document.addEventListener("astro:page-load", bindDrawer);
+    </script>
   </body>
 </html>
+
 

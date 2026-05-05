@@ -24,29 +24,42 @@ const sections = [
       { href: "/inputs", label: "Inputs & outputs", icon: "lucide:file-text" },
       { href: "/formats", label: "File formats", icon: "lucide:package" },
       { href: "/recipes", label: "Recipes", icon: "lucide:wand-sparkles" },
-      { href: "/faq", label: "FAQ", icon: "lucide:circle-dashed" },
+      { href: "/faq", label: "FAQ", icon: "lucide:circle-help" },
     ],
   },
   {
     title: "Project",
-    icon: "lucide:git-pull-request",
+    icon: "lucide:folder-git-2",
     items: [
-      { href: "/contributing", label: "Contributing", icon: "lucide:git-pull-request" },
-      { href: "/changelog", label: "Changelog", icon: "lucide:check" },
+      { href: "/contributing", label: "Contributing", icon: "lucide:hand-heart" },
+      { href: "/changelog", label: "Changelog", icon: "lucide:history" },
     ],
   },
 ];
 ---
 
-<nav aria-label="Documentation" class="space-y-7">
+<nav aria-label="Documentation" class="space-y-3">
   {
     sections.map((section) => (
-      <div>
-        <p class="flex items-center gap-2 px-3 text-xs font-semibold uppercase tracking-wider text-(--fg-muted)">
-          <Icon name={section.icon} class="size-3.5" />
-          {section.title}
-        </p>
-        <ul class="mt-2 space-y-0.5">
+      <details
+        open
+        data-sidebar-section={section.title}
+        class="group rounded-lg border border-transparent transition-colors open:bg-(--bg-elevated)/40"
+      >
+        <summary class="flex select-none items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold tracking-wide text-(--fg) transition-colors hover:bg-(--bg-elevated)">
+          <Icon
+            name={section.icon}
+            class="size-4 flex-none text-(--color-accent-700) dark:text-(--color-accent-300)"
+          />
+          <span class="flex-1">{section.title}</span>
+          <Icon
+            name="lucide:chevron-right"
+            data-chevron
+            aria-hidden="true"
+            class="size-4 flex-none text-(--fg-muted)"
+          />
+        </summary>
+        <ul class="mt-1 mb-2 space-y-0.5 px-1.5">
           {section.items.map((item) => {
             const target = normalize(item.href);
             const current = pathname === target;
@@ -62,8 +75,38 @@ const sections = [
             );
           })}
         </ul>
-      </div>
+      </details>
     ))
   }
 </nav>
+
+<script>
+  // Persist collapsible state across navigations and sessions.
+  function bindSidebarSections() {
+    document
+      .querySelectorAll<HTMLDetailsElement>("details[data-sidebar-section]")
+      .forEach((d) => {
+        const key = `rt:sb:${d.dataset.sidebarSection}`;
+        try {
+          const stored = localStorage.getItem(key);
+          if (stored === "closed") d.removeAttribute("open");
+          else if (stored === "open") d.setAttribute("open", "");
+        } catch {
+          /* localStorage may be unavailable (private mode, file://, etc.) */
+        }
+        if (d.dataset.bound === "1") return;
+        d.dataset.bound = "1";
+        d.addEventListener("toggle", () => {
+          try {
+            localStorage.setItem(key, d.open ? "open" : "closed");
+          } catch {
+            /* ignore */
+          }
+        });
+      });
+  }
+  bindSidebarSections();
+  document.addEventListener("astro:page-load", bindSidebarSections);
+</script>
+
 

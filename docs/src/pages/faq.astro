@@ -1,16 +1,24 @@
 ---
 import DocLayout from "../layouts/DocLayout.astro";
+import PageHero from "../components/PageHero.astro";
 ---
 
 <DocLayout title="FAQ">
-  <h1>FAQ</h1>
+  <PageHero
+    slot="hero"
+    eyebrow="Help"
+    title="Frequently asked questions"
+    icon="lucide:circle-help"
+    lede="Quick answers to the questions that come up most often when adopting the action."
+  />
 
   <h2>Why are translations sometimes off-brand or off-tone?</h2>
   <p>
-    Machine translation defaults to general models. Two knobs help: a
-    <a href="./configuration#glossary">glossary</a> for hard term overrides,
-    and a <a href="./configuration#field-reference">Custom Translator
-    category</a> for fine-tuned models.
+    Machine translation defaults to a general-purpose model. Three knobs help:
+    a <a href="./configuration#field-reference">glossary</a> for hard term
+    overrides, a <a href="./configuration#field-reference">Custom Translator
+    category</a> for fine-tuned models trained on your tone and vocabulary,
+    and <code>profanityAction</code> to scrub or flag profane terms.
   </p>
 
   <h2>How do I avoid translating the same file twice?</h2>
@@ -45,8 +53,12 @@ import DocLayout from "../layouts/DocLayout.astro";
   <h2>What about other resource formats?</h2>
   <p>
     Today: <code>.resx</code>, <code>.xliff</code>, <code>.po</code>,
-    <code>.json</code>, <code>.ini</code>, <code>.restext</code>. Open an
-    issue if you need another — the parser interface is small (parse → map →
-    apply translations → format) and contributions are welcome.
+    <code>.json</code>, <code>.ini</code>, <code>.restext</code>. <a
+      href="https://github.com/IEvangelist/resource-translator/issues/new/choose"
+      rel="noopener"
+      target="_blank">Open an issue</a
+    > if you need another — the parser interface is small (parse → map → apply translations
+    → format) and contributions are welcome.
   </p>
 </DocLayout>
+

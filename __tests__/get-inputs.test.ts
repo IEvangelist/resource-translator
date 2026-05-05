@@ -106,4 +106,37 @@ describe("getInputs", () => {
     setInput("subscriptionKey", "tooshort");
     expect(() => getInputs()).toThrow(/subscriptionKey/);
   });
+
+  it("reads textType, profanityAction, profanityMarker, and allowFallback inputs", () => {
+    setInput("textType", "html");
+    setInput("profanityAction", "Marked");
+    setInput("profanityMarker", "Tag");
+    setInput("allowFallback", "false");
+    const inputs = getInputs();
+    expect(inputs.textType).toEqual("html");
+    expect(inputs.profanityAction).toEqual("Marked");
+    expect(inputs.profanityMarker).toEqual("Tag");
+    expect(inputs.allowFallback).toEqual(false);
+  });
+
+  it("returns undefined for allowFallback when not provided", () => {
+    const inputs = getInputs();
+    expect(inputs.allowFallback).toBeUndefined();
+  });
+
+  it("rejects an invalid textType", () => {
+    setInput("textType", "markdown");
+    expect(() => getInputs()).toThrow(/textType/);
+  });
+
+  it("rejects an invalid profanityAction", () => {
+    setInput("profanityAction", "Mask");
+    expect(() => getInputs()).toThrow(/profanityAction/);
+  });
+
+  it("rejects profanityMarker without profanityAction='Marked'", () => {
+    setInput("profanityAction", "Deleted");
+    setInput("profanityMarker", "Tag");
+    expect(() => getInputs()).toThrow(/profanityMarker/);
+  });
 });

@@ -203,3 +203,83 @@ test("API: translate posts to the configured endpoint with the right headers", a
   expect(opts.headers["Ocp-Apim-Subscription-Key"]).toBe("key-123");
   expect(opts.headers["Ocp-Apim-Subscription-Region"]).toBe("westus");
 });
+
+test("API: translate forwards advanced Translator options as query params", async () => {
+  const translatorResource = {
+    endpoint: "https://api.cognitive.microsofttranslator.com/",
+    subscriptionKey: "key-123",
+    sourceLocale: "en",
+    categoryId: "legal-en",
+    textType: "html" as const,
+    profanityAction: "Marked" as const,
+    profanityMarker: "Tag" as const,
+    allowFallback: true,
+  };
+
+  mockedAxios.post.mockResolvedValueOnce({
+    data: [{ translations: [{ to: "fr", text: "Salut" }] }],
+  } as any);
+
+  await translate(
+    translatorResource,
+    ["fr"],
+    new Map<string, string>([["Greeting", "Hello"]]),
+    "f.resx",
+  );
+
+  const url = mockedAxios.post.mock.calls[0][0];
+  expect(url).toContain("from=en");
+  expect(url).toContain("category=legal-en");
+  expect(url).toContain("textType=html");
+  expect(url).toContain("profanityAction=Marked");
+  expect(url).toContain("profanityMarker=Tag");
+  expect(url).toContain("allowFallback=true");
+});
+
+test("API: translate serializes allowFallback=false explicitly", async () => {
+  // `false` is a meaningful value — the URL must include it (not omit it).
+  const translatorResource = {
+    endpoint: "https://api.cognitive.microsofttranslator.com/",
+    subscriptionKey: "key-123",
+    allowFallback: false,
+  };
+
+  mockedAxios.post.mockResolvedValueOnce({
+    data: [{ translations: [{ to: "fr", text: "Salut" }] }],
+  } as any);
+
+  await translate(
+    translatorResource,
+    ["fr"],
+    new Map<string, string>([["Greeting", "Hello"]]),
+    "f.resx",
+  );
+
+  const url = mockedAxios.post.mock.calls[0][0];
+  expect(url).toContain("allowFallback=false");
+});
+
+test("API: translate omits profanityMarker when profanityAction !== 'Marked'", async () => {
+  const translatorResource = {
+    endpoint: "https://api.cognitive.microsofttranslator.com/",
+    subscriptionKey: "key-123",
+    profanityAction: "Deleted" as const,
+    // marker is meaningless without Marked — should not be sent
+    profanityMarker: "Asterisk" as const,
+  };
+
+  mockedAxios.post.mockResolvedValueOnce({
+    data: [{ translations: [{ to: "fr", text: "Salut" }] }],
+  } as any);
+
+  await translate(
+    translatorResource,
+    ["fr"],
+    new Map<string, string>([["Greeting", "Hello"]]),
+    "f.resx",
+  );
+
+  const url = mockedAxios.post.mock.calls[0][0];
+  expect(url).toContain("profanityAction=Deleted");
+  expect(url).not.toContain("profanityMarker");
+});

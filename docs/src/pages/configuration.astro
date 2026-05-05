@@ -1,6 +1,7 @@
 ---
 import { Code } from "astro-expressive-code/components";
 import DocLayout from "../layouts/DocLayout.astro";
+import PageHero from "../components/PageHero.astro";
 
 const yaml = `# .github/resource-translator.yml
 sourceLocale: en
@@ -16,17 +17,32 @@ exclude:
 glossary:
   Acme: Contoso
   Octocat: Octocat   # keep brand names verbatim
+
+# Domain / industry — uses an Azure Custom Translator category trained on
+# your tone and vocabulary. Leave unset for the general model.
 categoryId: my-custom-translator-category
+
+# Translator request shape — most users can ignore these.
+textType: plain                  # plain | html
+profanityAction: NoAction        # NoAction | Marked | Deleted
+profanityMarker: Asterisk        # Asterisk | Tag (only when profanityAction == Marked)
+allowFallback: true              # false fails when the categoryId has no deployment
+
 apiVersion: "3.0"
 `;
 ---
 
 <DocLayout title="Configuration">
-  <h1>Repository configuration</h1>
+  <PageHero
+    slot="hero"
+    eyebrow="YAML"
+    title="Repository configuration"
+    icon="lucide:settings-2"
+    lede="Express defaults once in .github/resource-translator.yml and let every workflow inherit them. Action inputs always win when both are provided."
+  />
   <p>
-    For project-wide defaults, create <code>.github/resource-translator.yml</code>.
-    Action inputs always win when both are provided. Override the path with the
-    <code>configPath</code> input if needed.
+    Override the path with the <code>configPath</code> input if you need a
+    non-default location.
   </p>
 
   <h2>Schema</h2>
@@ -38,11 +54,15 @@ apiVersion: "3.0"
       <tr><th>Field</th><th>Type</th><th>Notes</th></tr>
     </thead>
     <tbody>
-      <tr><td><code>sourceLocale</code></td><td>string</td><td>Falls back to the <code>sourceLocale</code> input if not set.</td></tr>
+      <tr><td><code>sourceLocale</code></td><td>string</td><td>Falls back to the <code>sourceLocale</code> input if not set. Also forwarded to Translator as <code>from=&lt;locale&gt;</code> so short strings aren't autodetected.</td></tr>
       <tr><td><code>toLocales</code></td><td>string[]</td><td>Either an array or a comma-separated string.</td></tr>
       <tr><td><code>include</code> / <code>exclude</code></td><td>string[]</td><td>Glob patterns evaluated against absolute and workspace-relative paths.</td></tr>
       <tr><td><code>glossary</code></td><td>map&lt;string,string&gt;</td><td>Post-translation term overrides. Word-boundary aware (handles <code>C++</code>, <code>.NET</code>).</td></tr>
-      <tr><td><code>categoryId</code></td><td>string</td><td>Azure Custom Translator category. Sent as <code>?category=...</code>.</td></tr>
+      <tr><td><code>categoryId</code></td><td>string</td><td>Azure <a href="https://learn.microsoft.com/azure/ai-services/translator/custom-translator/concepts/customization" rel="noopener" target="_blank">Custom Translator</a> category — your industry/domain knob (legal, medical, marketing tone, etc.). Sent as <code>?category=...</code>.</td></tr>
+      <tr><td><code>textType</code></td><td><code>"plain"</code> | <code>"html"</code></td><td>Defaults to <code>plain</code>. Use <code>html</code> only if your resource values contain real HTML fragments.</td></tr>
+      <tr><td><code>profanityAction</code></td><td><code>"NoAction"</code> | <code>"Marked"</code> | <code>"Deleted"</code></td><td>How to treat profane terms in translated output.</td></tr>
+      <tr><td><code>profanityMarker</code></td><td><code>"Asterisk"</code> | <code>"Tag"</code></td><td>Only meaningful when <code>profanityAction</code> is <code>"Marked"</code>.</td></tr>
+      <tr><td><code>allowFallback</code></td><td>boolean</td><td>Set to <code>false</code> to fail the translation when your <code>categoryId</code> has no deployment for a target locale instead of falling back to the general model.</td></tr>
       <tr><td><code>apiVersion</code></td><td>string</td><td>Translator REST API version. Defaults to <code>3.0</code>.</td></tr>
     </tbody>
   </table>
@@ -52,5 +72,32 @@ apiVersion: "3.0"
     <li>The action reads explicit inputs from the workflow.</li>
     <li>It loads the YAML config from <code>configPath</code>.</li>
     <li>For every shared field, the input wins; otherwise the YAML value is used.</li>
+    <li>The merged values are validated. Invalid enums (e.g. <code>profanityAction: Mask</code>) cause the action to fail fast with a clear message.</li>
   </ol>
+
+  <h2>Tone and industry, in plain terms</h2>
+  <p>
+    The Azure AI Translator v3 API does not have a single &ldquo;tone&rdquo;
+    knob. Two settings combine to give you most of the same control:
+  </p>
+  <ul>
+    <li>
+      <strong>Industry / domain:</strong> use <code>categoryId</code> to point
+      at an Azure
+      <a
+        href="https://learn.microsoft.com/azure/ai-services/translator/custom-translator/overview"
+        rel="noopener"
+        target="_blank">Custom Translator</a
+      > category trained on your own corpus — legal, technical, medical, marketing,
+      or anything else. This is the strongest lever for tone, brand voice, and vocabulary.
+    </li>
+    <li>
+      <strong>Surface text:</strong> use the <a href="#field-reference"
+        >glossary</a
+      > to lock brand names and product terms verbatim, and use
+      <code>profanityAction</code> to scrub profane terms when targeting localization
+      for younger audiences.
+    </li>
+  </ul>
 </DocLayout>
+

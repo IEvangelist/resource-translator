@@ -72,9 +72,37 @@ export const translate = async (
       ? translatorResource.endpoint
       : `${translatorResource.endpoint}/`;
     const apiVersion = translatorResource.apiVersion ?? "3.0";
-    const categorySegment = translatorResource.categoryId
-      ? `&category=${encodeURIComponent(translatorResource.categoryId)}`
-      : "";
+
+    // Build the optional query-string segment. Each parameter is appended only
+    // when it has a meaningful value — `allowFallback` is intentionally
+    // serialized when explicitly false so the Translator default (true) can be
+    // turned off.
+    const extraParams: string[] = [];
+    const append = (k: string, v: string) =>
+      extraParams.push(`${k}=${encodeURIComponent(v)}`);
+
+    if (translatorResource.categoryId) {
+      append("category", translatorResource.categoryId);
+    }
+    if (translatorResource.sourceLocale) {
+      append("from", translatorResource.sourceLocale);
+    }
+    if (translatorResource.textType) {
+      append("textType", translatorResource.textType);
+    }
+    if (translatorResource.profanityAction) {
+      append("profanityAction", translatorResource.profanityAction);
+    }
+    if (
+      translatorResource.profanityMarker &&
+      translatorResource.profanityAction === "Marked"
+    ) {
+      append("profanityMarker", translatorResource.profanityMarker);
+    }
+    if (translatorResource.allowFallback !== undefined) {
+      append("allowFallback", String(translatorResource.allowFallback));
+    }
+    const extraSegment = extraParams.length ? `&${extraParams.join("&")}` : "";
 
     const characters = JSON.stringify(data).length;
     const batchedData =
@@ -100,7 +128,7 @@ export const translate = async (
 
         const url = `${baseUrl}translate?api-version=${encodeURIComponent(
           apiVersion,
-        )}&${to}${categorySegment}`;
+        )}&${to}${extraSegment}`;
         const response = await Axios.post<TranslationResult[]>(
           url,
           batch,

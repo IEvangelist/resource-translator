@@ -1,5 +1,14 @@
 import { getBooleanInput, getInput } from "@actions/core";
-import { Inputs } from "./inputs";
+import {
+  Inputs,
+  PROFANITY_ACTIONS,
+  PROFANITY_MARKERS,
+  ProfanityAction,
+  ProfanityMarker,
+  RepoConfig,
+  TEXT_TYPES,
+  TextType,
+} from "./inputs";
 import { loadRepoConfig, mergeInputsAndConfig } from "./load-config";
 
 export const getInputs = (): Inputs => {
@@ -14,6 +23,16 @@ export const getInputs = (): Inputs => {
     configPath: getInput("configPath") || undefined,
     categoryId: getInput("categoryId") || undefined,
     apiVersion: getInput("apiVersion") || undefined,
+    textType: getOptionalEnum<TextType>("textType", TEXT_TYPES),
+    profanityAction: getOptionalEnum<ProfanityAction>(
+      "profanityAction",
+      PROFANITY_ACTIONS,
+    ),
+    profanityMarker: getOptionalEnum<ProfanityMarker>(
+      "profanityMarker",
+      PROFANITY_MARKERS,
+    ),
+    allowFallback: getOptionalBooleanOrUndefined("allowFallback"),
     dryRun: getOptionalBoolean("dryRun", false),
     failOnError: getOptionalBoolean("failOnError", true),
   };
@@ -21,7 +40,9 @@ export const getInputs = (): Inputs => {
   validate(inputs);
 
   const config = loadRepoConfig(inputs.configPath);
-  return mergeInputsAndConfig(inputs, config);
+  const merged = mergeInputsAndConfig(inputs, config);
+  validateMerged(merged);
+  return merged;
 };
 
 const validate = (inputs: Inputs) => {
@@ -40,6 +61,38 @@ const validate = (inputs: Inputs) => {
   }
 };
 
+/**
+ * Validations applied after action inputs and the YAML repo config have been
+ * merged. These cover values that may originate from either source so a typo
+ * in `.github/resource-translator.yml` fails fast instead of producing a
+ * Translator 400 deep in a run.
+ */
+const validateMerged = (inputs: Inputs) => {
+  const oneOf = <T extends string>(
+    name: keyof RepoConfig,
+    allowed: readonly T[],
+  ) => {
+    const value = inputs[name] as T | undefined;
+    if (value !== undefined && !allowed.includes(value)) {
+      throw new Error(
+        `Invalid value for '${String(name)}': '${value}'. Expected one of: ${allowed.join(", ")}.`,
+      );
+    }
+  };
+
+  oneOf("textType", TEXT_TYPES);
+  oneOf("profanityAction", PROFANITY_ACTIONS);
+  oneOf("profanityMarker", PROFANITY_MARKERS);
+
+  if (inputs.profanityMarker && inputs.profanityAction !== "Marked") {
+    throw new Error(
+      `'profanityMarker' is only meaningful when 'profanityAction' is 'Marked'. Got profanityAction='${
+        inputs.profanityAction ?? "undefined"
+      }'.`,
+    );
+  }
+};
+
 const getOptionalBoolean = (name: string, defaultValue: boolean): boolean => {
   const raw = getInput(name);
   if (!raw) return defaultValue;
@@ -48,6 +101,35 @@ const getOptionalBoolean = (name: string, defaultValue: boolean): boolean => {
   } catch {
     return defaultValue;
   }
+};
+
+/**
+ * Reads a tri-state boolean input: returns `undefined` when the input is
+ * missing, the parsed boolean otherwise. Used for inputs whose Translator
+ * default is meaningful (e.g. `allowFallback`).
+ */
+const getOptionalBooleanOrUndefined = (name: string): boolean | undefined => {
+  const raw = getInput(name);
+  if (!raw) return undefined;
+  try {
+    return getBooleanInput(name);
+  } catch {
+    return undefined;
+  }
+};
+
+const getOptionalEnum = <T extends string>(
+  name: string,
+  allowed: readonly T[],
+): T | undefined => {
+  const raw = getInput(name)?.trim();
+  if (!raw) return undefined;
+  if (!allowed.includes(raw as T)) {
+    throw new Error(
+      `Invalid value for '${name}': '${raw}'. Expected one of: ${allowed.join(", ")}.`,
+    );
+  }
+  return raw as T;
 };
 
 const getMultilineList = (name: string): string[] | undefined => {

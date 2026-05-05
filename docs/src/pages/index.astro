@@ -107,7 +107,7 @@ const formats = [
     >
     </div>
 
-    <div class="mx-auto max-w-6xl px-6 pt-16 pb-20 sm:pt-24 sm:pb-28">
+    <div class="mx-auto max-w-6xl px-4 pt-12 pb-16 sm:px-6 sm:pt-24 sm:pb-28">
       <div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
         <div>
           <div
@@ -182,13 +182,16 @@ const formats = [
         </div>
 
         <!-- Floating logo -->
-        <div class="relative hidden lg:block">
+        <div class="relative mx-auto lg:mx-0">
           <div
             aria-hidden="true"
             class="absolute -inset-6 rounded-full bg-linear-to-br from-(--color-brand-500)/30 via-(--color-accent-500)/30 to-(--color-warm-500)/30 blur-2xl"
           >
           </div>
-          <Logo size={200} class="relative rounded-3xl shadow-2xl shadow-(--color-brand-500)/30" />
+          <Logo
+            size={160}
+            class="relative rounded-3xl shadow-2xl shadow-(--color-brand-500)/30 sm:size-[200px] lg:size-[220px]"
+          />
         </div>
       </div>
     </div>
