@@ -178,6 +178,11 @@ const sourceCard: Card = {
               <p class="mt-1 text-xs text-(--fg-muted)">
                 {card.messages!.tagline}
               </p>
+              {card.messages!.phrases.thank_you && (
+                <p class="mt-2 text-[11px] italic text-(--fg-muted)">
+                  {card.messages!.phrases.thank_you}
+                </p>
+              )}
             </>
           ) : (
             <p
