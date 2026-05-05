@@ -1,0 +1,173 @@
+name: translation-pr-ci
+
+# Bot-created translation PRs (from translate-docs.yml) don't trigger ci.yml
+# because PRs opened with GITHUB_TOKEN can't fan out to other workflows.
+# This workflow plugs that gap: when translate-docs completes successfully,
+# it locates the open bot PR, runs the same CI checks against the PR head,
+# posts a commit status onto the PR, and enables GitHub auto-merge so the
+# PR merges automatically once everything is green.
+
+on:
+  workflow_run:
+    workflows: [translate-docs]
+    types: [completed]
+
+permissions:
+  contents: read
+  pull-requests: write
+  statuses: write
+  checks: write
+
+concurrency:
+  group: translation-pr-ci-${{ github.event.workflow_run.head_branch }}
+  cancel-in-progress: true
+
+jobs:
+  ci-and-merge:
+    # Trust-boundary gate: only run when translate-docs completed
+    # successfully AND was triggered against `main` from this same repo.
+    # workflow_dispatch can target arbitrary refs, so we explicitly require
+    # `head_branch == main` to avoid a manual dispatch from another branch
+    # ever reaching the privileged checkout/merge path below.
+    if: |
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_branch == 'main' &&
+      github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ubuntu-latest
+    env:
+      BOT_BRANCH: machine-translation/docs-i18n
+      STATUS_CONTEXT: translation-pr-ci
+
+    steps:
+      - name: Locate and validate the open translation PR
+        id: pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Pull base/head/author/state in one query so we can validate
+          # everything matches the bot's expected shape before we touch it.
+          json=$(gh pr list \
+            --repo "${{ github.repository }}" \
+            --head "$BOT_BRANCH" \
+            --state open \
+            --json number,headRefOid,headRefName,baseRefName,author,isCrossRepository \
+            --jq '.[0] // empty')
+
+          if [ -z "$json" ]; then
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::No open PR for $BOT_BRANCH; nothing to do."
+            exit 0
+          fi
+
+          number=$(echo "$json" | jq -r '.number')
+          sha=$(echo "$json" | jq -r '.headRefOid')
+          baseRef=$(echo "$json" | jq -r '.baseRefName')
+          headRef=$(echo "$json" | jq -r '.headRefName')
+          author=$(echo "$json" | jq -r '.author.login')
+          xrepo=$(echo "$json" | jq -r '.isCrossRepository')
+
+          # Hard guard: refuse to act on anything that doesn't look exactly
+          # like one of our own bot-opened PRs.
+          if [ "$baseRef" != "main" ] || [ "$headRef" != "$BOT_BRANCH" ] \
+             || [ "$xrepo" != "false" ] \
+             || { [ "$author" != "github-actions[bot]" ] && [ "$author" != "app/github-actions" ]; }; then
+            echo "::error::PR #$number does not match the expected bot shape."
+            echo "  base=$baseRef head=$headRef author=$author cross_repo=$xrepo"
+            exit 1
+          fi
+
+          {
+            echo "found=true"
+            echo "number=$number"
+            echo "sha=$sha"
+          } >> "$GITHUB_OUTPUT"
+          echo "Validated PR #$number @ $sha (author=$author)"
+
+      - name: Mark CI pending on the PR
+        if: steps.pr.outputs.found == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api -X POST "repos/${{ github.repository }}/statuses/${{ steps.pr.outputs.sha }}" \
+            -f state=pending \
+            -f context="$STATUS_CONTEXT" \
+            -f description="Running lint + test + docs build..." \
+            -f target_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+      - name: Checkout PR head
+        if: steps.pr.outputs.found == 'true'
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ steps.pr.outputs.sha }}
+
+      - name: Use Node.js 24
+        if: steps.pr.outputs.found == 'true'
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - name: Install action deps
+        if: steps.pr.outputs.found == 'true'
+        run: npm ci
+
+      - name: Verify action (lint + test + build)
+        if: steps.pr.outputs.found == 'true'
+        run: npm run verify
+
+      - name: Install docs deps
+        if: steps.pr.outputs.found == 'true'
+        working-directory: docs
+        run: npm ci
+
+      - name: Build docs
+        if: steps.pr.outputs.found == 'true'
+        working-directory: docs
+        run: npm run build
+
+      - name: Mark CI success on the PR
+        if: steps.pr.outputs.found == 'true' && success()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api -X POST "repos/${{ github.repository }}/statuses/${{ steps.pr.outputs.sha }}" \
+            -f state=success \
+            -f context="$STATUS_CONTEXT" \
+            -f description="All checks passed" \
+            -f target_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+      - name: Enable auto-merge (pinned to tested SHA)
+        if: steps.pr.outputs.found == 'true' && success()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Re-fetch head SHA right before merging. If a newer commit landed
+          # on the bot branch while CI was running, abort instead of merging
+          # an untested SHA. --match-head-commit additionally hard-pins
+          # GitHub's auto-merge to the exact SHA we tested above.
+          current=$(gh pr view "${{ steps.pr.outputs.number }}" \
+            --repo "${{ github.repository }}" \
+            --json headRefOid --jq '.headRefOid')
+
+          if [ "$current" != "${{ steps.pr.outputs.sha }}" ]; then
+            echo "::warning::PR head moved from ${{ steps.pr.outputs.sha }} to $current during CI; skipping auto-merge so the new SHA can be tested by a follow-up run."
+            exit 0
+          fi
+
+          gh pr merge "${{ steps.pr.outputs.number }}" \
+            --repo "${{ github.repository }}" \
+            --auto \
+            --squash \
+            --delete-branch \
+            --match-head-commit "${{ steps.pr.outputs.sha }}"
+
+      - name: Mark CI failure on the PR
+        if: steps.pr.outputs.found == 'true' && failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api -X POST "repos/${{ github.repository }}/statuses/${{ steps.pr.outputs.sha }}" \
+            -f state=failure \
+            -f context="$STATUS_CONTEXT" \
+            -f description="CI failed — see workflow run" \
+            -f target_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
