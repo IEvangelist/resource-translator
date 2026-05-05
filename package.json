@@ -53,7 +53,7 @@
   "homepage": "https://github.com/IEvangelist/resource-translator#readme",
   "dependencies": {
     "@actions/core": "^2.0.3",
-    "@actions/github": "^8.0.1",
+    "@actions/github": "^9.1.1",
     "@actions/glob": "^0.5.1",
     "axios": "^1.16.0",
     "js-yaml": "^4.1.1",
