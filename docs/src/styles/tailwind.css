@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans:
+    "InterVariable", "Inter", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, sans-serif;
+  --font-mono:
+    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-brand-50: oklch(96% 0.05 250);
+  --color-brand-100: oklch(92% 0.07 250);
+  --color-brand-200: oklch(86% 0.1 250);
+  --color-brand-300: oklch(78% 0.13 250);
+  --color-brand-400: oklch(70% 0.16 250);
+  --color-brand-500: oklch(63% 0.18 250);
+  --color-brand-600: oklch(55% 0.18 250);
+  --color-brand-700: oklch(46% 0.16 250);
+  --color-brand-800: oklch(38% 0.13 250);
+  --color-brand-900: oklch(30% 0.1 250);
+
+  --color-ink: oklch(20% 0.02 250);
+  --color-ink-muted: oklch(45% 0.02 250);
+  --color-paper: oklch(99% 0.005 250);
+  --color-paper-elevated: oklch(98% 0.01 250);
+  --color-line: oklch(92% 0.01 250);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --bg: var(--color-paper);
+    --bg-elevated: var(--color-paper-elevated);
+    --fg: var(--color-ink);
+    --fg-muted: var(--color-ink-muted);
+    --border: var(--color-line);
+    --link: var(--color-brand-700);
+    --link-hover: var(--color-brand-500);
+  }
+
+  :root.dark {
+    color-scheme: dark;
+    --bg: oklch(18% 0.02 250);
+    --bg-elevated: oklch(22% 0.02 250);
+    --fg: oklch(96% 0.01 250);
+    --fg-muted: oklch(72% 0.02 250);
+    --border: oklch(32% 0.02 250);
+    --link: var(--color-brand-300);
+    --link-hover: var(--color-brand-200);
+  }
+
+  html {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  a {
+    color: var(--link);
+    text-underline-offset: 3px;
+  }
+
+  a:hover {
+    color: var(--link-hover);
+  }
+
+  code,
+  pre {
+    font-family: var(--font-mono);
+  }
+}
+
+@layer components {
+  .prose-rt {
+    @apply max-w-3xl leading-7;
+  }
+  .prose-rt h1 {
+    @apply text-4xl font-bold tracking-tight mt-0 mb-6;
+  }
+  .prose-rt h2 {
+    @apply text-2xl font-semibold tracking-tight mt-12 mb-4;
+  }
+  .prose-rt h3 {
+    @apply text-xl font-semibold mt-8 mb-3;
+  }
+  .prose-rt p {
+    @apply my-4;
+  }
+  .prose-rt ul {
+    @apply list-disc pl-6 my-4 space-y-1;
+  }
+  .prose-rt ol {
+    @apply list-decimal pl-6 my-4 space-y-1;
+  }
+  .prose-rt code:not(pre code) {
+    background-color: var(--bg-elevated);
+    border: 1px solid var(--border);
+    @apply rounded px-1.5 py-0.5 text-[0.9em];
+  }
+  .prose-rt pre {
+    background-color: var(--bg-elevated);
+    border: 1px solid var(--border);
+    @apply rounded-lg p-4 overflow-x-auto my-6 text-sm;
+  }
+  .prose-rt pre code {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+  }
+  .prose-rt blockquote {
+    border-left: 3px solid var(--color-brand-500);
+    color: var(--fg-muted);
+    @apply pl-4 my-4 italic;
+  }
+  .prose-rt table {
+    @apply w-full text-left text-sm my-6;
+  }
+  .prose-rt th,
+  .prose-rt td {
+    border-bottom: 1px solid var(--border);
+    @apply py-2 pr-4;
+  }
+  .prose-rt th {
+    @apply font-semibold;
+  }
+}

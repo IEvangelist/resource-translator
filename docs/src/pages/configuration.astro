@@ -1,0 +1,52 @@
+---
+import DocLayout from "../layouts/DocLayout.astro";
+---
+
+<DocLayout title="Configuration">
+  <h1>Repository configuration</h1>
+  <p>
+    For project-wide defaults, create <code>.github/resource-translator.yml</code>.
+    Action inputs always win when both are provided. Override the path with the
+    <code>configPath</code> input if needed.
+  </p>
+
+  <h2>Schema</h2>
+<pre><code>{`# .github/resource-translator.yml
+sourceLocale: en
+toLocales:
+  - fr
+  - de
+  - es
+include:
+  - "src/**/*.en.json"
+  - "apps/**/*.en.resx"
+exclude:
+  - "**/__tests__/**"
+glossary:
+  Acme: Contoso
+  Octocat: Octocat   # keep brand names verbatim
+categoryId: my-custom-translator-category
+apiVersion: "3.0"`}</code></pre>
+
+  <h2>Field reference</h2>
+  <table>
+    <thead>
+      <tr><th>Field</th><th>Type</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>sourceLocale</code></td><td>string</td><td>Falls back to the <code>sourceLocale</code> input if not set.</td></tr>
+      <tr><td><code>toLocales</code></td><td>string[]</td><td>Either an array or a comma-separated string.</td></tr>
+      <tr><td><code>include</code> / <code>exclude</code></td><td>string[]</td><td>Glob patterns evaluated against absolute and workspace-relative paths.</td></tr>
+      <tr><td><code>glossary</code></td><td>map&lt;string,string&gt;</td><td>Post-translation term overrides. Word-boundary aware (handles <code>C++</code>, <code>.NET</code>).</td></tr>
+      <tr><td><code>categoryId</code></td><td>string</td><td>Azure Custom Translator category. Sent as <code>?category=...</code>.</td></tr>
+      <tr><td><code>apiVersion</code></td><td>string</td><td>Translator REST API version. Defaults to <code>3.0</code>.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Loading order</h2>
+  <ol>
+    <li>The action reads explicit inputs from the workflow.</li>
+    <li>It loads the YAML config from <code>configPath</code>.</li>
+    <li>For every shared field, the input wins; otherwise the YAML value is used.</li>
+  </ol>
+</DocLayout>

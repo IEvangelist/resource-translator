@@ -1,0 +1,17 @@
+---
+const { href, label, current } = Astro.props as {
+  href: string;
+  label: string;
+  current?: boolean;
+};
+---
+
+<a
+  href={href}
+  class={`block rounded-md px-3 py-1.5 text-sm transition-colors hover:bg-(--bg-elevated) ${
+    current ? "font-semibold text-(--link)" : "text-(--fg-muted)"
+  }`}
+  aria-current={current ? "page" : undefined}
+>
+  {label}
+</a>

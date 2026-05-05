@@ -1,0 +1,54 @@
+---
+import DocLayout from "../layouts/DocLayout.astro";
+---
+
+<DocLayout title="Inputs & outputs">
+  <h1>Inputs & outputs</h1>
+  <p>
+    Every input is also accepted in the optional repo config file. When both
+    are set, the action input wins. See <a href="./configuration">Configuration</a>
+    for the YAML schema.
+  </p>
+
+  <h2>Required inputs</h2>
+  <table>
+    <thead>
+      <tr><th>Name</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>sourceLocale</code></td><td>Source locale (e.g. <code>en</code>) used to find resource files such as <code>**/*.en.resx</code>.</td></tr>
+      <tr><td><code>subscriptionKey</code></td><td>Azure AI Translator subscription key. Pass via <code>secrets</code>.</td></tr>
+      <tr><td><code>endpoint</code></td><td>Translator endpoint URL, e.g. <code>https://api.cognitive.microsofttranslator.com/</code>.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Optional inputs</h2>
+  <table>
+    <thead>
+      <tr><th>Name</th><th>Default</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>region</code></td><td><em>none</em></td><td>Translator resource region (omit for global resources).</td></tr>
+      <tr><td><code>toLocales</code></td><td><em>all supported</em></td><td>Locales to translate to. Accepts a JSON array (<code>["fr","de"]</code>) or comma-separated values.</td></tr>
+      <tr><td><code>include</code></td><td><em>none</em></td><td>Newline-separated glob patterns; only matching files are translated.</td></tr>
+      <tr><td><code>exclude</code></td><td><em>none</em></td><td>Newline-separated glob patterns; matching files are skipped (applied after include).</td></tr>
+      <tr><td><code>configPath</code></td><td><code>.github/resource-translator.yml</code></td><td>Path to the YAML config file (relative to the workspace root).</td></tr>
+      <tr><td><code>categoryId</code></td><td><em>none</em></td><td>Custom Translator category ID, forwarded as the <code>category</code> query string.</td></tr>
+      <tr><td><code>apiVersion</code></td><td><code>3.0</code></td><td>Translator REST API version.</td></tr>
+      <tr><td><code>dryRun</code></td><td><code>false</code></td><td>When <code>true</code>, run translations and emit summaries but do not write files.</td></tr>
+      <tr><td><code>failOnError</code></td><td><code>true</code></td><td>When <code>true</code>, unexpected errors fail the action; when <code>false</code>, errors are warnings.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Outputs</h2>
+  <table>
+    <thead>
+      <tr><th>Name</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>summary-title</code></td><td>Short PR-title-friendly summary, e.g. <em>"Machine-translated 320 files, a total of 5,418 translations"</em>.</td></tr>
+      <tr><td><code>summary-details</code></td><td>Markdown summary suitable for a PR body or job summary.</td></tr>
+      <tr><td><code>has-new-translations</code></td><td><code>'true'</code> when one or more new translations were generated.</td></tr>
+    </tbody>
+  </table>
+</DocLayout>

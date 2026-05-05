@@ -1,0 +1,70 @@
+---
+import DocLayout from "../layouts/DocLayout.astro";
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const link = (path: string) => base + path;
+---
+
+<DocLayout title="Resource Translator" description="Open machine-translated pull requests for resource files in any repo, in any format.">
+  <section class="not-prose mt-2 mb-12 rounded-2xl border border-(--border) bg-linear-to-br from-(--color-brand-50) via-(--color-paper) to-(--color-paper) p-10 dark:from-(--color-brand-900)/40 dark:via-(--bg) dark:to-(--bg)">
+    <p class="text-sm font-semibold uppercase tracking-wider text-(--color-brand-700) dark:text-(--color-brand-300)">
+      GitHub Action
+    </p>
+    <h1 class="mt-3 text-4xl font-bold tracking-tight md:text-5xl">
+      Localize your repo on every commit.
+    </h1>
+    <p class="mt-4 max-w-2xl text-lg leading-relaxed text-(--fg-muted)">
+      <strong>Resource Translator</strong> opens machine-translated pull requests for your
+      <code>.resx</code>, <code>.xliff</code>, <code>.po</code>, <code>.json</code>,
+      <code>.ini</code>, and <code>.restext</code> files using Azure AI Translator —
+      no extra services, just a workflow.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a
+        href={link("/getting-started")}
+        class="inline-flex items-center rounded-md bg-(--color-brand-700) px-4 py-2 text-sm font-semibold text-white no-underline hover:bg-(--color-brand-600)"
+        >Get started →</a>
+      <a
+        href="https://github.com/IEvangelist/resource-translator"
+        rel="noopener"
+        target="_blank"
+        class="inline-flex items-center rounded-md border border-(--border) bg-(--bg-elevated) px-4 py-2 text-sm font-semibold no-underline"
+        >View on GitHub</a>
+    </div>
+  </section>
+
+  <section class="not-prose grid gap-6 md:grid-cols-3">
+    <div class="rounded-xl border border-(--border) bg-(--bg-elevated) p-5">
+      <h3 class="text-base font-semibold">Six formats</h3>
+      <p class="mt-2 text-sm text-(--fg-muted)">
+        Round-trips <code>.resx</code>, <code>.xliff</code>, <code>.po</code>,
+        <code>.json</code>, <code>.ini</code>, and <code>.restext</code>.
+      </p>
+    </div>
+    <div class="rounded-xl border border-(--border) bg-(--bg-elevated) p-5">
+      <h3 class="text-base font-semibold">Repo-level config</h3>
+      <p class="mt-2 text-sm text-(--fg-muted)">
+        Drop a <code>.github/resource-translator.yml</code> for include globs,
+        glossaries, and Custom Translator categories.
+      </p>
+    </div>
+    <div class="rounded-xl border border-(--border) bg-(--bg-elevated) p-5">
+      <h3 class="text-base font-semibold">Dry-run friendly</h3>
+      <p class="mt-2 text-sm text-(--fg-muted)">
+        Run translations without writing files via <code>dryRun: true</code>;
+        soft-fail with <code>failOnError: false</code>.
+      </p>
+    </div>
+  </section>
+
+  <section class="not-prose my-12 rounded-xl border border-(--border) bg-(--bg-elevated) p-6">
+    <h2 class="text-xl font-semibold">Quick example</h2>
+    <pre class="mt-4 overflow-x-auto rounded-lg bg-(--bg) p-4 text-sm leading-6"><code>{`- uses: IEvangelist/resource-translator@v3
+  with:
+    sourceLocale: en
+    subscriptionKey: \${{ secrets.TRANSLATOR_KEY }}
+    endpoint: \${{ secrets.TRANSLATOR_ENDPOINT }}
+    region: \${{ secrets.TRANSLATOR_REGION }}
+    toLocales: '["fr","de","es"]'
+    dryRun: false`}</code></pre>
+  </section>
+</DocLayout>

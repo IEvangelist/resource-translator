@@ -1,0 +1,32 @@
+---
+import DocLayout from "../layouts/DocLayout.astro";
+---
+
+<DocLayout title="Changelog">
+  <h1>Changelog</h1>
+  <p>
+    See the canonical
+    <a href="https://github.com/IEvangelist/resource-translator/blob/main/CHANGELOG.md"
+      rel="noopener" target="_blank">CHANGELOG.md</a>
+    in the repository for the authoritative list of changes. The major bullets:
+  </p>
+
+  <h2>v3 (in development)</h2>
+  <ul>
+    <li>Bumped to <code>node24</code> runtime (BREAKING).</li>
+    <li>New inputs: <code>include</code>, <code>exclude</code>, <code>configPath</code>,
+      <code>categoryId</code>, <code>apiVersion</code>, <code>dryRun</code>,
+      <code>failOnError</code>.</li>
+    <li>Repo-level config via <code>.github/resource-translator.yml</code>.</li>
+    <li>Glossary support, step summary via <code>core.summary</code>.</li>
+    <li>esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.</li>
+    <li>npm audit clean (0 vulnerabilities).</li>
+    <li>Astro + Tailwind v4 docs site.</li>
+    <li>Dependabot auto-merge, CodeQL scanning, CI matrix.</li>
+  </ul>
+
+  <h2>v2.x</h2>
+  <ul>
+    <li>See git history.</li>
+  </ul>
+</DocLayout>

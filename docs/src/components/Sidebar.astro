@@ -1,0 +1,58 @@
+---
+import NavLink from "./NavLink.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+const normalize = (href: string) =>
+  (base + href).replace(/\/$/, "") || "/";
+
+const sections = [
+  {
+    title: "Start here",
+    items: [
+      { href: "/", label: "Overview" },
+      { href: "/getting-started", label: "Getting started" },
+      { href: "/configuration", label: "Configuration" },
+    ],
+  },
+  {
+    title: "Reference",
+    items: [
+      { href: "/inputs", label: "Inputs & outputs" },
+      { href: "/formats", label: "File formats" },
+      { href: "/recipes", label: "Recipes" },
+      { href: "/faq", label: "FAQ" },
+    ],
+  },
+  {
+    title: "Project",
+    items: [
+      { href: "/contributing", label: "Contributing" },
+      { href: "/changelog", label: "Changelog" },
+    ],
+  },
+];
+---
+
+<nav aria-label="Documentation" class="space-y-8">
+  {
+    sections.map((section) => (
+      <div>
+        <p class="px-3 text-xs font-semibold uppercase tracking-wider text-(--fg-muted)">
+          {section.title}
+        </p>
+        <ul class="mt-2 space-y-0.5">
+          {section.items.map((item) => {
+            const target = normalize(item.href);
+            const current = pathname === target;
+            return (
+              <li>
+                <NavLink href={target} label={item.label} current={current} />
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    ))
+  }
+</nav>

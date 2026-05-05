@@ -1,0 +1,53 @@
+---
+import DocLayout from "../layouts/DocLayout.astro";
+---
+
+<DocLayout title="File formats">
+  <h1>Supported file formats</h1>
+  <p>
+    All formats use the <code>{`Name.<sourceLocale>.<ext>`}</code> naming convention.
+    The action reads the source file, translates the values, and writes a sibling
+    file per target locale (e.g. <code>Greetings.fr.resx</code>).
+  </p>
+
+  <h2>.resx (.NET resource)</h2>
+  <p>
+    XML-based .NET resource files. Translates the inner text of each
+    <code>&lt;data&gt;&lt;value&gt;</code> node, preserving comments and
+    metadata.
+  </p>
+
+  <h2>.xliff (XLIFF 2.0)</h2>
+  <p>
+    OASIS XLIFF 2.0 documents. Translates each <code>&lt;source&gt;</code>
+    and writes the result into the corresponding <code>&lt;target&gt;</code>,
+    setting <code>trgLang</code> for the locale.
+  </p>
+
+  <h2>.po (gettext)</h2>
+  <p>
+    GNU gettext Portable Object files. Translates each <code>msgid</code> /
+    <code>msgid_plural</code> into <code>msgstr</code> / <code>msgstr[n]</code>
+    forms.
+  </p>
+
+  <h2>.json</h2>
+  <p>
+    Arbitrary JSON files. Nested objects are flattened with the
+    <code>[--]</code> delimiter for translation, then re-nested on output.
+    Dotted keys (e.g. <code>"unit.dotted.key"</code>) are preserved verbatim.
+  </p>
+
+  <h2>.ini / .restext</h2>
+  <p>
+    Simple <code>key=value</code> files (Win32-style INI, MUI <code>.restext</code>,
+    or any flat config). Section headers and comments are preserved.
+  </p>
+
+  <h2>Round-trip guarantees</h2>
+  <p>
+    The test suite verifies byte-for-byte round-tripping for representative
+    fixtures of every format. If a format quirk breaks round-tripping in
+    your codebase, please open an issue with a minimal sample.
+  </p>
+</DocLayout>

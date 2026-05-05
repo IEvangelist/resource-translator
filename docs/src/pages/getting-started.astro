@@ -1,0 +1,71 @@
+---
+import DocLayout from "../layouts/DocLayout.astro";
+---
+
+<DocLayout title="Getting started">
+  <h1>Getting started</h1>
+  <p>
+    The Resource Translator action runs in a regular GitHub Actions workflow. Add a workflow file, point it at your Azure AI Translator credentials, and it will scan the repo for source-language resource files and emit translated siblings.
+  </p>
+
+  <h2>1. Provision an Azure AI Translator resource</h2>
+  <p>
+    Create an Azure AI Translator resource in the Azure portal, then copy the subscription key, endpoint, and region. Store them as GitHub repository secrets — for example <code>TRANSLATOR_KEY</code>, <code>TRANSLATOR_ENDPOINT</code>, and <code>TRANSLATOR_REGION</code>.
+  </p>
+
+  <h2>2. Add the workflow</h2>
+  <p>
+    Create <code>.github/workflows/translate.yml</code>:
+  </p>
+<pre><code>{`name: translate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/**/*.en.resx"
+      - "src/**/*.en.json"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - id: translate
+        uses: IEvangelist/resource-translator@v3
+        with:
+          sourceLocale: en
+          subscriptionKey: \${{ secrets.TRANSLATOR_KEY }}
+          endpoint: \${{ secrets.TRANSLATOR_ENDPOINT }}
+          region: \${{ secrets.TRANSLATOR_REGION }}
+          toLocales: '["fr","de","es"]'
+      - if: steps.translate.outputs.has-new-translations == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          title: \${{ steps.translate.outputs.summary-title }}
+          body: \${{ steps.translate.outputs.summary-details }}
+          branch: machine-translation
+`}</code></pre>
+
+  <h2>3. Commit a source resource file</h2>
+  <p>
+    Resource files use the <code>{`Name.<sourceLocale>.<ext>`}</code> convention.
+    For example <code>Greetings.en.resx</code> becomes <code>Greetings.fr.resx</code>,
+    <code>Greetings.de.resx</code>, and so on after a run.
+  </p>
+
+  <h2>4. Inspect the output</h2>
+  <p>
+    Once the workflow finishes, the action exposes three outputs you can wire into a PR description: <code>summary-title</code>, <code>summary-details</code>, and <code>has-new-translations</code>. It also writes a Markdown summary into the job page via <code>core.summary</code>.
+  </p>
+
+  <h2>Next steps</h2>
+  <ul>
+    <li><a href="./configuration">Configure repo-level defaults</a> with <code>.github/resource-translator.yml</code>.</li>
+    <li><a href="./recipes">See recipes</a> for monorepos, custom glossaries, and Custom Translator categories.</li>
+  </ul>
+</DocLayout>

@@ -1,0 +1,66 @@
+---
+import DocLayout from "../layouts/DocLayout.astro";
+---
+
+<DocLayout title="Recipes">
+  <h1>Recipes</h1>
+
+  <h2>Open a pull request after each run</h2>
+<pre><code>{`- id: translate
+  uses: IEvangelist/resource-translator@v3
+  with:
+    sourceLocale: en
+    subscriptionKey: \${{ secrets.TRANSLATOR_KEY }}
+    endpoint: \${{ secrets.TRANSLATOR_ENDPOINT }}
+    region: \${{ secrets.TRANSLATOR_REGION }}
+
+- if: steps.translate.outputs.has-new-translations == 'true'
+  uses: peter-evans/create-pull-request@v7
+  with:
+    branch: machine-translation
+    title: \${{ steps.translate.outputs.summary-title }}
+    body: \${{ steps.translate.outputs.summary-details }}
+    labels: localization`}</code></pre>
+
+  <h2>Monorepos: scope translation per package</h2>
+<pre><code>{`with:
+  sourceLocale: en
+  include: |
+    apps/web/**/*.en.resx
+    packages/shared/**/*.en.json
+  exclude: |
+    **/dist/**
+    **/__tests__/**`}</code></pre>
+
+  <h2>Glossary for brand names and product terms</h2>
+  <p>
+    Drop a <code>.github/resource-translator.yml</code> into the repo:
+  </p>
+<pre><code>{`glossary:
+  Acme: Contoso
+  Octocat: Octocat
+  ".NET": ".NET"
+  "C++": "C++"`}</code></pre>
+  <p>
+    Glossary terms are applied <em>after</em> translation, so the machine-
+    translated output keeps your preferred branding even when the model
+    swapped it for a synonym.
+  </p>
+
+  <h2>Custom Translator category</h2>
+<pre><code>{`with:
+  sourceLocale: en
+  subscriptionKey: \${{ secrets.TRANSLATOR_KEY }}
+  endpoint: \${{ secrets.TRANSLATOR_ENDPOINT }}
+  categoryId: 1234abcd-5678-90ef-...`}</code></pre>
+
+  <h2>Dry run before turning the workflow on</h2>
+<pre><code>{`with:
+  dryRun: true
+  failOnError: false`}</code></pre>
+  <p>
+    The action still emits summary outputs and a step summary, but no files
+    are written. Combine with <code>failOnError: false</code> to surface every
+    issue as a warning while you iterate.
+  </p>
+</DocLayout>

@@ -1,0 +1,146 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const homeHref = base || "/";
+const pagefindBase = base || "";
+const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
+---
+
+<header
+  class="sticky top-0 z-30 border-b border-(--border) bg-(--bg)/80 backdrop-blur"
+>
+  <div
+    class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3"
+  >
+    <a
+      href={homeHref}
+      class="flex items-center gap-2 text-base font-semibold no-underline"
+    >
+      <span
+        class="inline-flex h-7 w-7 items-center justify-center rounded-md bg-(--color-brand-700) text-white"
+        aria-hidden="true"
+      >
+        ⇄
+      </span>
+      <span>Resource Translator</span>
+    </a>
+
+    <div class="relative hidden flex-1 max-w-md md:block">
+      <label class="sr-only" for="docs-search">Search docs</label>
+      <input
+        id="docs-search"
+        type="search"
+        placeholder="Search documentation…"
+        autocomplete="off"
+        class="w-full rounded-md border border-(--border) bg-(--bg-elevated) px-3 py-1.5 text-sm placeholder-(--fg-muted) focus:border-(--color-brand-500) focus:outline-none focus:ring-2 focus:ring-(--color-brand-500)/40"
+      />
+      <div
+        id="search-results"
+        class="absolute right-0 left-0 z-40 mt-1 hidden max-h-[60vh] overflow-y-auto rounded-md border border-(--border) bg-(--bg-elevated) p-2 text-sm shadow-lg"
+      ></div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button
+        type="button"
+        id="theme-toggle"
+        class="rounded-md border border-(--border) bg-(--bg-elevated) px-3 py-1 text-xs font-medium text-(--fg-muted) hover:text-(--fg)"
+        aria-label="Toggle theme"
+      >
+        🌗 Theme
+      </button>
+      <a
+        href="https://github.com/IEvangelist/resource-translator"
+        class="rounded-md border border-(--border) bg-(--bg-elevated) px-3 py-1 text-xs font-medium no-underline"
+        rel="noopener"
+        target="_blank">GitHub →</a
+      >
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  const stored = localStorage.getItem("theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  if (stored === "dark" || (!stored && prefersDark)) {
+    document.documentElement.classList.add("dark");
+  }
+
+  document.getElementById("theme-toggle")?.addEventListener("click", () => {
+    const root = document.documentElement;
+    const next = root.classList.toggle("dark") ? "dark" : "light";
+    localStorage.setItem("theme", next);
+  });
+</script>
+
+<script is:inline define:vars={{ pagefindScript }}>
+  (() => {
+    const input = document.getElementById("docs-search");
+    const resultsEl = document.getElementById("search-results");
+    if (!input || !resultsEl) return;
+
+    let pagefind = null;
+    let loadAttempted = false;
+    let debounceId;
+
+    async function loadPagefind() {
+      if (pagefind || loadAttempted) return pagefind;
+      loadAttempted = true;
+      try {
+        pagefind = await import(/* @vite-ignore */ pagefindScript);
+        await pagefind.options?.({ excerptLength: 24 });
+      } catch (err) {
+        console.warn("Pagefind not available (run `npm run build` to generate it).", err);
+        pagefind = null;
+      }
+      return pagefind;
+    }
+
+    function escapeHtml(s) {
+      return s.replace(/[&<>\"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+    }
+
+    async function runSearch(q) {
+      const pf = await loadPagefind();
+      if (!pf) {
+        resultsEl.innerHTML =
+          '<div class="px-3 py-2 text-(--fg-muted)">Search index not available in dev. Run a production build.</div>';
+        resultsEl.classList.remove("hidden");
+        return;
+      }
+      const search = await pf.search(q);
+      if (!search?.results?.length) {
+        resultsEl.innerHTML = '<div class="px-3 py-2 text-(--fg-muted)">No results.</div>';
+        resultsEl.classList.remove("hidden");
+        return;
+      }
+      const top = await Promise.all(search.results.slice(0, 8).map((r) => r.data()));
+      resultsEl.innerHTML = top
+        .map(
+          (d) =>
+            `<a href="${d.url}" class="block rounded-md px-3 py-2 hover:bg-(--bg) no-underline">
+              <div class="font-medium">${escapeHtml(d.meta?.title || d.url)}</div>
+              <div class="text-(--fg-muted) text-xs">${d.excerpt}</div>
+            </a>`,
+        )
+        .join("");
+      resultsEl.classList.remove("hidden");
+    }
+
+    input.addEventListener("input", (e) => {
+      const q = e.target.value.trim();
+      clearTimeout(debounceId);
+      if (!q) {
+        resultsEl.classList.add("hidden");
+        resultsEl.innerHTML = "";
+        return;
+      }
+      debounceId = setTimeout(() => runSearch(q), 120);
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!resultsEl.contains(e.target) && e.target !== input) {
+        resultsEl.classList.add("hidden");
+      }
+    });
+  })();
+</script>
