@@ -16,9 +16,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Post-translation glossary support for fixed term overrides.
 - Step summary emitted via `core.summary` in addition to outputs.
 - Astro + Tailwind v4 docs site at `docs/`, deployed to GitHub Pages.
-- Dependabot auto-merge workflow for green minor/patch updates.
+- Dependabot auto-merge workflow for green minor/patch updates, with
+  explicit ignore rules for `@actions/{core,github,glob}` ESM majors so
+  the CommonJS bundle stays runnable.
 - CodeQL JS/TS scanning on PRs and weekly.
 - CI matrix across Ubuntu, Windows, macOS × Node 20/22/24.
+- `SECURITY.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, plus issue + PR
+  templates.
 
 ### Changed
 

@@ -1,0 +1,51 @@
+name: Bug report
+description: Something isn't working as expected.
+title: "[bug] "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug report! Please fill out the
+        sections below so we can reproduce and investigate.
+  - type: input
+    id: action-version
+    attributes:
+      label: Action version
+      description: e.g. `IEvangelist/resource-translator@v3.0.0`
+      placeholder: v3.0.0
+    validations:
+      required: true
+  - type: input
+    id: runner
+    attributes:
+      label: Runner
+      placeholder: ubuntu-latest / windows-latest / macos-latest / self-hosted
+    validations:
+      required: true
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Minimal workflow snippet
+      description: Paste the relevant `.github/workflows/*.yml` step.
+      render: yaml
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include any error output, run logs, or screenshots.
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional context
+      description: Anything else we should know? Repro repo, sample fixture, etc.
