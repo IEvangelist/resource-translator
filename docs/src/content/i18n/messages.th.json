@@ -1,0 +1,31 @@
+{
+	"tagline": "แปลที่เก็บของคุณในทุกการคอมมิต",
+	"hero": {
+		"eyebrow": "ตู้โชว์",
+		"title": "สวัสดีในทุกภาษา",
+		"lede": "หน้านี้แปลโดย Resource Translator เองในทุกการผลักดันไปยังหลักเป็นทุกภาษาที่ Azure AI Translator รองรับ"
+	},
+	"phrases": {
+		"greeting": "สวัสดีโลก!",
+		"welcome": "ยินดีต้อนรับสู่ Resource Translator",
+		"machine_translated": "แปลด้วยเครื่องโดย Azure AI Translator",
+		"open_pull_request": "เปิดคําขอดึงข้อมูลพร้อมคําแปลใหม่",
+		"ship_anywhere": "จัดส่งซอฟต์แวร์ของคุณได้ทุกที่บนโลก"
+	},
+	"ctas": {
+		"view_source": "ดูแหล่งที่มา",
+		"translate_now": "แปลที่เก็บของฉัน",
+		"read_the_docs": "อ่านเอกสาร",
+		"contribute": "มีส่วนร่วมบน GitHub"
+	},
+	"features": {
+		"fast": "แปลทรัพยากรในไม่กี่วินาที",
+		"reliable": "ไปกลับทุกไบต์ของไฟล์ต้นฉบับของคุณ",
+		"configurable": "น้ําเสียง อุตสาหกรรม อภิธานศัพท์ คําหยาบคาย — ทั้งหมดสามารถกําหนดค่าได้",
+		"ci_native": "ออกแบบมาสําหรับ GitHub Actions และเวิร์กโฟลว์คําขอดึงข้อมูล"
+	},
+	"footer": {
+		"powered_by": "ขับเคลื่อนโดย Resource Translator และ Azure AI Translator",
+		"view_translation_pr": "ดูคําขอดึงคําแปลล่าสุด"
+	}
+}

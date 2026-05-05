@@ -1,0 +1,31 @@
+{
+	"tagline": "ធ្វើមូលដ្ឋានីយកម្ម repo របស់អ្នកនៅលើរាល់ការប្តេជ្ញាចិត្ត។",
+	"hero": {
+		"eyebrow": "បង្ហាញ",
+		"title": "ជំរាបសួរគ្រប់ភាសា",
+		"lede": "ទំព័រនេះត្រូវបានបកប្រែដោយ Resource Translator ខ្លួនឯង រាល់ការជំរុញទៅកាន់មេ ទៅជាគ្រប់ភាសា Azure AI Translator គាំទ្រ។"
+	},
+	"phrases": {
+		"greeting": "សួស្តី​ពិភពលោក!",
+		"welcome": "សូមស្វាគមន៍មកកាន់ Resource Translator.",
+		"machine_translated": "បកប្រែម៉ាស៊ីនដោយ Azure AI Translator ។",
+		"open_pull_request": "បើកសំណើទាញជាមួយនឹងការបកប្រែថ្មី។",
+		"ship_anywhere": "ដឹកជញ្ជូនកម្មវិធីរបស់អ្នកគ្រប់ទីកន្លែងនៅលើផែនដី។"
+	},
+	"ctas": {
+		"view_source": "មើលប្រភព",
+		"translate_now": "បកប្រែ repo របស់ខ្ញុំ",
+		"read_the_docs": "អានឯកសារ",
+		"contribute": "រួមចំណែកនៅលើ GitHub"
+	},
+	"features": {
+		"fast": "បកប្រែធនធានក្នុងរយៈពេលប៉ុន្មានវិនាទី។",
+		"reliable": "Round-trips រាល់បៃនៃឯកសារប្រភពរបស់អ្នក។",
+		"configurable": "សម្លេង, ឧស្សាហកម្ម, សទ្ទានុក្រម, ពាក្យប្រមាថ - ទាំងអស់ត្រូវបានកំណត់រចនាសម្ព័ន្ធ។",
+		"ci_native": "រចនាឡើងសម្រាប់ GitHub Actions និងលំហូរការងារទាញសំណើ។"
+	},
+	"footer": {
+		"powered_by": "ដំណើរការដោយ Resource Translator និង Azure AI Translator ។",
+		"view_translation_pr": "មើលសំណើទាញការបកប្រែថ្មីបំផុត។"
+	}
+}

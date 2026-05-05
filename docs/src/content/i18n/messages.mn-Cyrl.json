@@ -1,0 +1,31 @@
+{
+	"tagline": "Бүх коммит дээр репогоо локалчил.",
+	"hero": {
+		"eyebrow": "Үзүүлбэр",
+		"title": "Бүх хэлээр сайн байна уу",
+		"lede": "Энэ хуудсыг Resource Translator өөрөө үндсэн рүү түлхэх бүрт Azure AI Translator-ийн дэмждэг бүх хэл рүү хөрвүүлсэн."
+	},
+	"phrases": {
+		"greeting": "Сайн уу дэлхий минь!",
+		"welcome": "Resource Translator-д тавтай морилно уу.",
+		"machine_translated": "Azure AI Translator-аар машин орчуулсан.",
+		"open_pull_request": "Шинэ орчуулгатай pull request нээ.",
+		"ship_anywhere": "Програм хангамжаа дэлхийн хаана ч илгээ."
+	},
+	"ctas": {
+		"view_source": "Эх сурвалжийг үзэх",
+		"translate_now": "Миний репо-г орчуул",
+		"read_the_docs": "Баримт бичгийг унш",
+		"contribute": "GitHub дээр хувь нэмэр оруулна"
+	},
+	"features": {
+		"fast": "Нөөцийг секундын дотор орчуулдаг.",
+		"reliable": "Таны эх файлын бүх байтыг эргүүлэн илгээдэг.",
+		"configurable": "Өнгө аяс, үйлдвэрлэл, толь бичиг, хараал үг — бүгд тохируулж болно.",
+		"ci_native": "GitHub үйлдлүүд болон pull-request workflow-д зориулагдсан."
+	},
+	"footer": {
+		"powered_by": "Resource Translator болон Azure AI Translator-ээр ажилладаг.",
+		"view_translation_pr": "Хамгийн сүүлийн үеийн орчуулгын pull request-ийг үзнэ үү."
+	}
+}

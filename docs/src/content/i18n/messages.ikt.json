@@ -1,0 +1,31 @@
+{
+	"tagline": "Localislugu repo tamainni commit-mi.",
+	"hero": {
+		"eyebrow": "Tautuktitiyut",
+		"title": "Haluqaffi tamainni uqauhini",
+		"lede": "Una makpirnia numiktiqtauhimayuq Resource Translator inmikkut, tamainni naqitaraangat pilluagakhamut, tamainut uqauhirnut Azure AI Translator ikayuqtainut."
+	},
+	"phrases": {
+		"greeting": "Haluu nunarjuaq!",
+		"welcome": "Tunngahugitti uumunga Resource Translator.",
+		"machine_translated": "Qaritauyakkut-numiktiqtauyuq haffumanga Azure AI Translator.",
+		"open_pull_request": "Angmaqlugu pull request nutaanik numiktiqhimayunik.",
+		"ship_anywhere": "Tuyuqlugit qaritauyaliqutit humiliqaa Nunaqyuami."
+	},
+	"ctas": {
+		"view_source": "Takulugit pivikhat",
+		"translate_now": "Numiktirlugu utiqtiffaarutiga",
+		"read_the_docs": "Taigurlugit titiqqat",
+		"contribute": "Aituihimaarniq talvuuna GitHub"
+	},
+	"features": {
+		"fast": "Numiktirlugit atuqtakhat qilaminnuaq.",
+		"reliable": "Utiqtaqtut tamaita byte-guyut ihuaqutit tutquumaviit.",
+		"configurable": "Nipait, havagvikyuat, naunaitkutit, uqamaluktut — tamaita ihuaqhaqtaaqtut.",
+		"ci_native": "Piliurhimayuq uumunnga GitHub Qanuriliurutingit unalu pull request workflows."
+	},
+	"footer": {
+		"powered_by": "Powered by Resource Translator and Azure AI Translator.",
+		"view_translation_pr": "Takulugit nutanngutqijat numiktigakhat tukhiutait."
+	}
+}

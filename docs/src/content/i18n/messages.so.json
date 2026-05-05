@@ -1,0 +1,31 @@
+{
+	"tagline": "Goob ku samee repo-gaaga commit kasta.",
+	"hero": {
+		"eyebrow": "Bandhig",
+		"title": "Salaan luqad kasta",
+		"lede": "Boggan waxaa turjumay Resource Translator laftiisa, mar kasta oo la riixayo main, luqadaha kasta ee Azure AI Translator taageero."
+	},
+	"phrases": {
+		"greeting": "Haye caalamkow!",
+		"welcome": "Ku soo dhawoow Resource Translator.",
+		"machine_translated": "Waxaa si mashiin ah u turjumay Azure AI Translator.",
+		"open_pull_request": "Fur codsi pull ah oo leh turjumaado cusub.",
+		"ship_anywhere": "U dir software-kaaga meel kasta oo dhulka ah."
+	},
+	"ctas": {
+		"view_source": "Eeg isha",
+		"translate_now": "Turju repo-gayga",
+		"read_the_docs": "Akhri dukumentiyada",
+		"contribute": "Ka qayb qaado GitHub"
+	},
+	"features": {
+		"fast": "Waxay turjumaysaa kheyraadka daqiiqado gudaheed.",
+		"reliable": "Dib u soo laabasho byte kasta oo faylasha ilahaaga ah.",
+		"configurable": "Cod, warshad, qaamuus, erayo aflagaado — dhammaantood waa la habeyn karaa.",
+		"ci_native": "Waxaa loogu talagalay GitHub Actions iyo workflow-yada codsiyada jiidashada."
+	},
+	"footer": {
+		"powered_by": "Waxaa ku shaqeeya Resource Translator iyo Azure AI Translator.",
+		"view_translation_pr": "Eeg codsiga ugu dambeeyay ee turjumaadda."
+	}
+}

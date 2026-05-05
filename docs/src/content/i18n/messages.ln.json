@@ -1,0 +1,31 @@
+{
+	"tagline": "Localiser your repo on every commit.",
+	"hero": {
+		"eyebrow": "Vitrine",
+		"title": "Hello dans toutes les langues",
+		"lede": "Lokasa oyo ebongolami na Resource Translator yango moko, na bopusi nyonso ya main, na minoko nyonso oyo Azure AI Translator esungaka."
+	},
+	"phrases": {
+		"greeting": "Mbote mokili!",
+		"welcome": "Boyei bolamu na mobongoli ya Resource",
+		"machine_translated": "Traduction automatique par Azure AI Translator.",
+		"open_pull_request": "Fungola lisengi ya kobenda na babongoli ya sika.",
+		"ship_anywhere": "Kotinda software na yo bisika nyonso na mokili."
+	},
+	"ctas": {
+		"view_source": "Voir la source",
+		"translate_now": "Traduire mon repo",
+		"read_the_docs": "Bala Doc",
+		"contribute": "Contribute on GitHub"
+	},
+	"features": {
+		"fast": "Kobongola biloko na basegɔnde.",
+		"reliable": "Zonga na ba octets nionso ya ba fichiers source na yo.",
+		"configurable": "Toni, industrie, glossaire, maloba ya kofinga — nyonso ekoki kobongisama.",
+		"ci_native": "Ebongisami mpo na misala ya GitHub mpe misala ya kobendana."
+	},
+	"footer": {
+		"powered_by": "Powered by Resource Translator and Azure AI Translator.",
+		"view_translation_pr": "Voir la demande de traduction récente."
+	}
+}

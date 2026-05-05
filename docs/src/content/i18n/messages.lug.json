@@ -1,0 +1,31 @@
+{
+	"tagline": "Localize your repo on every commit.",
+	"hero": {
+		"eyebrow": "Okulaga",
+		"title": "Hello Mu lulimi Lwonna",
+		"lede": "This page is translated by Resource Translator itself, on every push to main, into every language Azure AI Translators supports."
+	},
+	"phrases": {
+		"greeting": "Oli otya ensi!",
+		"welcome": "Welcome to Resource Translator.",
+		"machine_translated": "Machine-translated by Azure AI Translator.",
+		"open_pull_request": "Open a pull request with fresh translations.",
+		"ship_anywhere": "Weereza kompyuta yo wonna wonna w'ensi yonna."
+	},
+	"ctas": {
+		"view_source": "View source",
+		"translate_now": "Translate my repo",
+		"read_the_docs": "Soma Docs",
+		"contribute": "Contribute on GitHub"
+	},
+	"features": {
+		"fast": "Okuvvuunula ebikozesebwa mu ddakiika ntono.",
+		"reliable": "Round-trips every byte of your source files.",
+		"configurable": "Tone, industry, glossary, profanity — all configurable.",
+		"ci_native": "Designed for GitHub Actions and pull-request workflows."
+	},
+	"footer": {
+		"powered_by": "Powered by Resource Translator and Azure AI Translator.",
+		"view_translation_pr": "View the most recent translation pull request."
+	}
+}

@@ -1,0 +1,31 @@
+{
+	"tagline": "Ampidiro ny repo amin'ny fanoloran-tena rehetra.",
+	"hero": {
+		"eyebrow": "Fampisehoana",
+		"title": "Miarahaba amin'ny fiteny rehetra",
+		"lede": "Ity pejy ity dia nadikan'ny Resource Translator mihitsy, isaky ny manosika ny main, amin'ny fiteny rehetra tohanan'ny Azure AI Translator."
+	},
+	"phrases": {
+		"greeting": "Miarahaba an'izao tontolo izao!",
+		"welcome": "Arahaba maraina ry Revolisionan'ny fanaovana fandidiana atidoha alefa fahitalavitra.",
+		"machine_translated": "Nadikan'ny milina avy amin'ny Azure AI Translator.",
+		"open_pull_request": "Sokafy ny fangatahana misintona miaraka amin'ny fandikan-teny vaovao.",
+		"ship_anywhere": "Alefaso ny rindrambaiko na aiza na aiza eto an-tany."
+	},
+	"ctas": {
+		"view_source": "Jereo ny loharano",
+		"translate_now": "Adika ny repo",
+		"read_the_docs": "Vakio ny antontan-taratasy",
+		"contribute": "Mandray anjara amin'ny GitHub"
+	},
+	"features": {
+		"fast": "Mandika ny loharano ao anatin'ny segondra vitsy.",
+		"reliable": "Mivezivezy isaky ny byte amin'ny rakitra loharano.",
+		"configurable": "Feo, indostria, rakibolana, teny ratsy - azo ovaina avokoa.",
+		"ci_native": "Natao ho an'ny GitHub Actions sy ny fizotran'ny fangatahana."
+	},
+	"footer": {
+		"powered_by": "Powered by Resource Translator sy Azure AI Translator.",
+		"view_translation_pr": "Jereo ny fangatahana fandikan-teny farany indrindra."
+	}
+}

@@ -1,0 +1,31 @@
+{
+	"tagline": "Localize your repo pane yega yega commit.",
+	"hero": {
+		"eyebrow": "Kuratidzira",
+		"title": "Mhoro mumitauro yega yega",
+		"lede": "Iri peji rinoshandurwa neResource Translator pachayo, pane yega yega kusundidzira kune huru, mumutauro wega wega Azure AI Muturikiri inotsigira."
+	},
+	"phrases": {
+		"greeting": "Muri sei pasi rese!",
+		"welcome": "Kugamuchirwa kuResource Translator.",
+		"machine_translated": "Yakashandurwa nemuchina weAzure AI mushanduri.",
+		"open_pull_request": "Vhura chikumbiro chekudhonza neshanduro nyowani.",
+		"ship_anywhere": "Tumira software yako chero kupi zvako pasi."
+	},
+	"ctas": {
+		"view_source": "Ona kunobva",
+		"translate_now": "Translate my repo",
+		"read_the_docs": "Verenga Docs",
+		"contribute": "Ipa paGitHub"
+	},
+	"features": {
+		"fast": "Shandura zviwanikwa mumasekondi.",
+		"reliable": "Dzvanya bhatani rega rega rezvinyorwa zvako.",
+		"configurable": "Toni, indasitiri, glossary, kutuka — zvese zvinogadziriswa.",
+		"ci_native": "Yakagadzirirwa GitHub Zviito uye dhonza-chikumbiro workflows."
+	},
+	"footer": {
+		"powered_by": "Powered by Resource Translator uye Azure AI Translator.",
+		"view_translation_pr": "Tarisa uone chikumbiro chazvino chekushandura."
+	}
+}

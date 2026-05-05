@@ -1,0 +1,31 @@
+{
+	"tagline": "I-localize ang iyong repo sa bawat commit.",
+	"hero": {
+		"eyebrow": "Ipakita",
+		"title": "Kamusta sa lahat ng wika",
+		"lede": "Ang pahinang ito ay isinalin mismo ng Resource Translator, sa bawat push sa pangunahing, sa bawat wika na sinusuportahan ng Azure AI Translator."
+	},
+	"phrases": {
+		"greeting": "Kumusta, mundo!",
+		"welcome": "Maligayang pagdating sa Resource Translator.",
+		"machine_translated": "Isinalin ng makina sa pamamagitan ng Azure AI Translator.",
+		"open_pull_request": "Buksan ang isang kahilingan sa pull na may mga sariwang pagsasalin.",
+		"ship_anywhere": "Ipadala ang iyong software kahit saan sa Earth."
+	},
+	"ctas": {
+		"view_source": "Tingnan ang pinagmulan",
+		"translate_now": "Isalin ang aking repo",
+		"read_the_docs": "Basahin ang Docs",
+		"contribute": "Mag-ambag sa GitHub"
+	},
+	"features": {
+		"fast": "Isinasalin ang mga mapagkukunan sa loob ng ilang segundo.",
+		"reliable": "I-round-trip ang bawat byte ng iyong pinagmulan ng mga file.",
+		"configurable": "Tono, industriya, talasalitaan, kalapastanganan - lahat ay mai-configure.",
+		"ci_native": "Dinisenyo para sa Mga Pagkilos ng GitHub at mga daloy ng trabaho ng pull-request."
+	},
+	"footer": {
+		"powered_by": "Pinapagana ng Resource Translator at Azure AI Translator.",
+		"view_translation_pr": "Tingnan ang pinakabagong kahilingan sa pull ng pagsasalin."
+	}
+}

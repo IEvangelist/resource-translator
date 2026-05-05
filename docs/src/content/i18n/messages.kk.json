@@ -1,0 +1,31 @@
+{
+	"tagline": "Әрбір коммитте репозиторды локализациялаңыз.",
+	"hero": {
+		"eyebrow": "Көрсетілім",
+		"title": "Барлық тілде сәлем",
+		"lede": "Бұл бетті Resource Translator өзі аударады, әрбір негізгі іске басу кезінде Azure AI Translator қолдайтын барлық тілдерге аударылады."
+	},
+	"phrases": {
+		"greeting": "Сәлемет пе әлем!",
+		"welcome": "Resource Translator-ға қош келдіңіздер.",
+		"machine_translated": "Azure AI Translator арқылы машиналық аударма.",
+		"open_pull_request": "Жаңа аудармалармен pull request ашыңыз.",
+		"ship_anywhere": "Бағдарламаңызды Жердің кез келген жеріне жіберіңіз."
+	},
+	"ctas": {
+		"view_source": "Дереккөзді қарау",
+		"translate_now": "Менің репозиторымды аударшы",
+		"read_the_docs": "Құжаттарды оқыңыз",
+		"contribute": "GitHub-та үлес қосыңыз"
+	},
+	"features": {
+		"fast": "Ресурстарды секундтарда аударады.",
+		"reliable": "Бастапқы файлдарыңның әр байтын қайтарып береді.",
+		"configurable": "Тон, өнеркәсіп, сөздік, боқтық сөздер — бәрі бапталады.",
+		"ci_native": "GitHub әрекеттері мен pull-request жұмыс процестері үшін жасалған."
+	},
+	"footer": {
+		"powered_by": "Resource Translator және Azure AI Translator арқылы жұмыс істейді.",
+		"view_translation_pr": "Ең соңғы аударма pull request-ті қараңыз."
+	}
+}

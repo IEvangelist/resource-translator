@@ -1,0 +1,31 @@
+{
+	"tagline": "Localize gị repo na ọ bụla commit.",
+	"hero": {
+		"eyebrow": "Ihe ngosi",
+		"title": "Hello n'asụsụ ọ bụla.",
+		"lede": "A na-asụgharị ibe a site na Resource Translator n'onwe ya, na nkwalite ọ bụla na isi, n'asụsụ ọ bụla Azure AI Translator na-akwado."
+	},
+	"phrases": {
+		"greeting": "Ndewo Ụwa!",
+		"welcome": "Nabata na Resource Translator!",
+		"machine_translated": "A na-asụgharị ya site n'aka onye ntụgharị Azure AI.",
+		"open_pull_request": "Mepee arịrịọ na-adọta na nsụgharị ọhụrụ.",
+		"ship_anywhere": "Nkowasi: Jikwaa gị software n'ebe ọ bụla n'ụwa."
+	},
+	"ctas": {
+		"view_source": "Lelee isi mmalite",
+		"translate_now": "Sụgharịa repo m",
+		"read_the_docs": "Gụọ Docs",
+		"contribute": "Nye aka na GitHub"
+	},
+	"features": {
+		"fast": "Sụgharịa ihe onwunwe na sekọnd.",
+		"reliable": "Gbaa mbọ hụ na ị na-eme ka ọ bụrụ na",
+		"configurable": "Ụda, ụlọ ọrụ, glossary, okwu rụrụ arụ — ihe niile nwere ike ịhazi.",
+		"ci_native": "Ezubere maka GitHub Actions na Pull-Request workflows."
+	},
+	"footer": {
+		"powered_by": "Kwadoro site na Resource Translator na Azure AI Translator.",
+		"view_translation_pr": "Lelee arịrịọ nsụgharị kachasị ọhụrụ."
+	}
+}

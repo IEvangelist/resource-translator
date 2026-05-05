@@ -1,0 +1,31 @@
+{
+	"tagline": "Staðsettu geymsluna þína á hverju átaki.",
+	"hero": {
+		"eyebrow": "Sýning",
+		"title": "Halló á öllum tungumálum",
+		"lede": "Þessi síða er þýdd af Resource Translator sjálfum, við hvert skipti yfir í aðal, yfir á öll tungumál sem Azure AI Translator styður."
+	},
+	"phrases": {
+		"greeting": "Halló, heimur!",
+		"welcome": "Velkomin í Resource Translator.",
+		"machine_translated": "Vélrænt þýtt af Azure AI Translator.",
+		"open_pull_request": "Opnaðu pull request með ferskum þýðingum.",
+		"ship_anywhere": "Sendu hugbúnaðinn þinn hvar sem er á jörðinni."
+	},
+	"ctas": {
+		"view_source": "Skoða heimild",
+		"translate_now": "Þýddu geymsluna mína",
+		"read_the_docs": "Lestu skjölin",
+		"contribute": "Leggðu þitt af mörkum á GitHub"
+	},
+	"features": {
+		"fast": "Þýðir auðlindir á sekúndum.",
+		"reliable": "Hringferðaðu hvert bæti af upprunaskránum þínum.",
+		"configurable": "Tónn, iðnaður, orðalisti, blótsyrði — allt stillanlegt.",
+		"ci_native": "Hannað fyrir GitHub aðgerðir og vinnuflæði með pull requests."
+	},
+	"footer": {
+		"powered_by": "Knúið áfram af Resource Translator og Azure AI Translator.",
+		"view_translation_pr": "Skoðaðu nýjustu þýðingarbeiðnina."
+	}
+}

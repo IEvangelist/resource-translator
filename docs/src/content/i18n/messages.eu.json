@@ -1,0 +1,31 @@
+{
+	"tagline": "Lokalizatu zure repositorioa commit bakoitzean.",
+	"hero": {
+		"eyebrow": "Erakusleihoa",
+		"title": "Kaixo hizkuntza guztietan",
+		"lede": "Orrialde hau Resource Translator-ek berak itzultzen du, bultzada bakoitzean, Azure AI Translator-ek onartzen dituen hizkuntza guztietara."
+	},
+	"phrases": {
+		"greeting": "Kaixo mundua!",
+		"welcome": "Ongi etorri itzultzaile baliabidera.",
+		"machine_translated": "Itzulpen automatikoa: Azure AI Translator.",
+		"open_pull_request": "Ireki pull eskaera itzulpen berriekin.",
+		"ship_anywhere": "Bidali zure softwarea Lurreko edozein lekutan."
+	},
+	"ctas": {
+		"view_source": "Ikusi iturburua",
+		"translate_now": "Itzuli nire biltegia",
+		"read_the_docs": "Irakurri dokumentuak",
+		"contribute": "Lagundu GitHub-en"
+	},
+	"features": {
+		"fast": "Baliabideak segundotan itzultzen ditu.",
+		"reliable": "Iturburu-fitxategien byte bakoitza joan-etorri egiten du.",
+		"configurable": "Tonua, industria, glosarioa, profanitatea - dena konfiguragarria.",
+		"ci_native": "GitHub ekintzetarako eta pull-request workflowetarako diseinatua."
+	},
+	"footer": {
+		"powered_by": "Powered by Resource Translator eta Azure AI Translator.",
+		"view_translation_pr": "Ikusi itzulpenaren azken pull eskaera."
+	}
+}

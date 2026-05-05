@@ -1,0 +1,31 @@
+{
+	"tagline": "Lokalizujte svoj repo na svakom urezivanju.",
+	"hero": {
+		"eyebrow": "Vitrina",
+		"title": "Pozdrav na svim jezicima",
+		"lede": "Ovu stranicu prevodi sam Resource Translator, na svakom pritisku na glavni, na svaki jezik koji Azure AI Translator podržava."
+	},
+	"phrases": {
+		"greeting": "Zdravo, svet!",
+		"welcome": "Dobrodošli u Resource Translator.",
+		"machine_translated": "Mašinski prevedeno od strane Azure AI Translator.",
+		"open_pull_request": "Otvorite zahtev za spajanje sa svežim prevodima.",
+		"ship_anywhere": "Isporučite svoj softver bilo gde na Zemlji."
+	},
+	"ctas": {
+		"view_source": "Pogledaj izvor",
+		"translate_now": "Prevedi moj repo",
+		"read_the_docs": "Pročitajte dokumente",
+		"contribute": "Doprineti na GitHub-u"
+	},
+	"features": {
+		"fast": "Prevodi resurse u sekundi.",
+		"reliable": "Povratna putovanja svaki bajt vaših izvornih datoteka.",
+		"configurable": "Ton, industrija, rečnik, psovke — sve konfigurabilno.",
+		"ci_native": "Dizajniran za GitHub akcije i tokove posla za povlačenje."
+	},
+	"footer": {
+		"powered_by": "Pokreće ga Resource Translator i Azure AI Translator.",
+		"view_translation_pr": "Pogledaj najnoviji prevod zahtev za spajanje."
+	}
+}

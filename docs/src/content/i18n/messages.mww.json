@@ -1,0 +1,31 @@
+{
+	"tagline": "Localize koj repo ntawm txhua qhov kev cog lus.",
+	"hero": {
+		"eyebrow": "Nthuav tawm",
+		"title": "Nyob zoo hauv txhua hom lus",
+		"lede": "Nplooj ntawv no yog txhais los ntawm Resource Translator nws tus kheej, ntawm txhua qhov kev thawb mus rau qhov tseem ceeb, ua txhua hom lus Azure AI Translator txhawb nqa."
+	},
+	"phrases": {
+		"greeting": "Nyob zoo, lub ntiaj teb!",
+		"welcome": "Zoo siab txais tos rau Resource Translator.",
+		"machine_translated": "Tshuab-txhais los ntawm Azure AI Tus Neeg Txhais Lus.",
+		"open_pull_request": "Qhib ib tug rub thov nrog tshiab txhais lus.",
+		"ship_anywhere": "Nkoj koj cov software nyob txhua qhov chaw hauv ntiaj teb."
+	},
+	"ctas": {
+		"view_source": "Saib qhov chaw",
+		"translate_now": "Txhais kuv repo",
+		"read_the_docs": "Nyeem cov docs",
+		"contribute": "Pab txhawb rau GitHub"
+	},
+	"features": {
+		"fast": "Txhais cov peev txheej hauv vib nas this.",
+		"reliable": "Round-trips txhua byte ntawm koj cov ntaub ntawv qhov chaw.",
+		"configurable": "Suab, kev lag luam, glossary, profanity — tag nrho cov configurable.",
+		"ci_native": "Tsim rau GitHub Kev Ua Haujlwm thiab rub-thov workflows."
+	},
+	"footer": {
+		"powered_by": "Powered los ntawm Resource Translator thiab Azure AI Tus Neeg Txhais Lus.",
+		"view_translation_pr": "Saib qhov kev txhais lus rub thov."
+	}
+}

@@ -1,0 +1,31 @@
+{
+	"tagline": "Lokalisera títt repo á hvørjum commit.",
+	"hero": {
+		"eyebrow": "Framsýning",
+		"title": "Halló á øllum málum",
+		"lede": "Henda síða er týdd av Resource Translator sjálvum, á hvørjum push-to-main, til øll mál, sum Azure AI Translator stuðlar."
+	},
+	"phrases": {
+		"greeting": "Hey heimur!",
+		"welcome": "Vælkomin til Resource Translator.",
+		"machine_translated": "Maskinumsett av Azure AI Translator.",
+		"open_pull_request": "Lat upp eina pull request við nýggjum týðingum.",
+		"ship_anywhere": "Send forritið hvar sum helst á jørðini."
+	},
+	"ctas": {
+		"view_source": "Sí keldu",
+		"translate_now": "Umset mítt repository",
+		"read_the_docs": "Les dokumentatiónina",
+		"contribute": "Legg til á GitHub"
+	},
+	"features": {
+		"fast": "Umsetur tilfeingi upp á fá sekund.",
+		"reliable": "Endur-túr hvørja byte av keldufílunum hjá tær.",
+		"configurable": "Tónur, vinnugrein, orðalisti, grov orð — alt kann stillast.",
+		"ci_native": "Sniðgivið til GitHub Actions og pull-request arbeiðsgongdir."
+	},
+	"footer": {
+		"powered_by": "Drivin av Resource Translator og Azure AI Translator.",
+		"view_translation_pr": "Sí nýggjastu týðingarpull request."
+	}
+}

@@ -1,0 +1,31 @@
+{
+	"tagline": "مخزن خود را در هر کامیت محلی سازی کنید.",
+	"hero": {
+		"eyebrow": "نمایش",
+		"title": "سلام به همه زبان ها",
+		"lede": "این صفحه توسط خود Resource Translator ترجمه می شود، در هر بار فشار به main، به هر زبانی که Azure AI Translator پشتیبانی می کند."
+	},
+	"phrases": {
+		"greeting": "سلام دنیا!",
+		"welcome": "به مترجم منابع خوش آمدید.",
+		"machine_translated": "ترجمه ماشینی توسط Azure AI Translator.",
+		"open_pull_request": "یک درخواست کشیدن با ترجمه های تازه باز کنید.",
+		"ship_anywhere": "نرم افزار خود را به هر نقطه ای از زمین ارسال کنید."
+	},
+	"ctas": {
+		"view_source": "مشاهده منبع",
+		"translate_now": "مخزن من را ترجمه کن",
+		"read_the_docs": "مستندات را بخوانید",
+		"contribute": "در گیت هاب مشارکت کنید"
+	},
+	"features": {
+		"fast": "منابع را در چند ثانیه ترجمه می کند.",
+		"reliable": "هر بایت از فایل های منبع شما را رفت و برگشت می کند.",
+		"configurable": "لحن، صنعت، واژه نامه، الفاظ رکیک — همه قابل تنظیم هستند.",
+		"ci_native": "طراحی شده برای اقدامات گیت هاب و جریان های کاری درخواست کشش."
+	},
+	"footer": {
+		"powered_by": "با پشتیبانی از Resource Translator و Azure AI Translator.",
+		"view_translation_pr": "آخرین درخواست ترجمه را مشاهده کنید."
+	}
+}

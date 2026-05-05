@@ -1,0 +1,31 @@
+{
+	"tagline": "Weka repo yako kwenye kila ahadi.",
+	"hero": {
+		"eyebrow": "Kuonyesha",
+		"title": "Halo katika kila lugha",
+		"lede": "Ukurasa huu unatafsiriwa na Mtafsiri wa Rasilimali yenyewe, kwa kila msukumo kuu, katika kila lugha ambayo Azure AI Translator inasaidia."
+	},
+	"phrases": {
+		"greeting": "Habari, ulimwengu!",
+		"welcome": "Karibu kwa Mtafsiri wa Rasilimali.",
+		"machine_translated": "Imetafsiriwa kwa mashine na Azure AI Translator.",
+		"open_pull_request": "Fungua ombi la kuvuta na tafsiri mpya.",
+		"ship_anywhere": "Safirisha programu yako popote duniani."
+	},
+	"ctas": {
+		"view_source": "Tazama chanzo",
+		"translate_now": "Tafsiri repo yangu",
+		"read_the_docs": "Soma hati",
+		"contribute": "Changia kwenye GitHub"
+	},
+	"features": {
+		"fast": "Hutafsiri rasilimali kwa sekunde.",
+		"reliable": "Safari za kwenda na kurudi kila baiti ya faili zako chanzo.",
+		"configurable": "Toni, tasnia, faharasa, lugha chafu - zote zinaweza kusanidiwa.",
+		"ci_native": "Iliyoundwa kwa Vitendo vya GitHub na mtiririko wa kazi wa ombi la kuvuta."
+	},
+	"footer": {
+		"powered_by": "Inaendeshwa na Mtafsiri wa Rasilimali na Mtafsiri wa Azure AI.",
+		"view_translation_pr": "Tazama ombi la hivi karibuni la kuvuta tafsiri."
+	}
+}

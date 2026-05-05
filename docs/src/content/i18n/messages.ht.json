@@ -1,0 +1,31 @@
+{
+	"tagline": "Lokalize repo ou sou chak komèt",
+	"hero": {
+		"eyebrow": "Vitrin",
+		"title": "Bonjou nan tout lang",
+		"lede": "Paj sa a tradui pa Tradiktè Resous tèt li, sou chak pouse nan prensipal, nan chak lang Azure AI tradiktè sipòte."
+	},
+	"phrases": {
+		"greeting": "Bonjou mond la!",
+		"welcome": "Byenveni nan Tradiktè Resous",
+		"machine_translated": "Tradui machin pa Azure AI tradiktè",
+		"open_pull_request": "Louvri yon demann rale ak tradiksyon fre",
+		"ship_anywhere": "Bato lojisyèl ou nenpòt kote sou Latè"
+	},
+	"ctas": {
+		"view_source": "Gade sous",
+		"translate_now": "Tradwi repo mwen an",
+		"read_the_docs": "Li dokiman yo",
+		"contribute": "Kontribye sou GitHub"
+	},
+	"features": {
+		"fast": "Tradui resous nan segonn.",
+		"reliable": "Roundtrips chak byte nan dosye sous ou.",
+		"configurable": "Tone, endistri, glosè, pwofanite — tout configurable.",
+		"ci_native": "Ki fèt pou GitHub Aksyon ak rale-demann workflows."
+	},
+	"footer": {
+		"powered_by": "Powered by Resource Translator ak Azure AI Translator",
+		"view_translation_pr": "Gade pi resan tradiksyon rale demann lan"
+	}
+}

@@ -1,0 +1,31 @@
+{
+	"tagline": "Localitza el teu repositori a cada commit.",
+	"hero": {
+		"eyebrow": "Exhibició",
+		"title": "Hola en totes les llengües",
+		"lede": "Aquesta pàgina està traduïda pel mateix Resource Translator, en cada impuls a main, a tots els idiomes que suporta Azure AI Translator."
+	},
+	"phrases": {
+		"greeting": "Hola, món!",
+		"welcome": "Benvingut a Resource Translator.",
+		"machine_translated": "Traduït automàticament per Azure AI Translator.",
+		"open_pull_request": "Obre una pull request amb traduccions noves.",
+		"ship_anywhere": "Envia el teu programari a qualsevol lloc de la Terra."
+	},
+	"ctas": {
+		"view_source": "Veure la font",
+		"translate_now": "Tradueix el meu repositori",
+		"read_the_docs": "Llegeix la documentació",
+		"contribute": "Contribueix a GitHub"
+	},
+	"features": {
+		"fast": "Tradueix recursos en segons.",
+		"reliable": "Fa viatges d'anada i tornada a cada byte dels teus fitxers font.",
+		"configurable": "To, indústria, glossari, paraulotes — tot configurable.",
+		"ci_native": "Dissenyat per a GitHub Actions i fluxos de treball pull-request."
+	},
+	"footer": {
+		"powered_by": "Impulsat per Resource Translator i Azure AI Translator.",
+		"view_translation_pr": "Vegeu la sol·licitud pull de traducció més recent."
+	}
+}

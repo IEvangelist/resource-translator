@@ -1,0 +1,31 @@
+{
+	"tagline": "Localize repo ຂອງເຈົ້າໃນທຸກໆ commit.",
+	"hero": {
+		"eyebrow": "ສະ ແດງ",
+		"title": "ສະບາຍດີໃນທຸກພາສາ",
+		"lede": "ຫນ້າ ນີ້ ຖືກ ແປ ໂດຍ Resource Translator ເອງ, ໃນ ທຸກ ການ ຊຸກ ຍູ້ ໃຫ້ main, ເປັນ ທຸກ ພາ ສາ ທີ່ Azure AI Translator ສະ ຫນັບ ສະ ຫນູນ."
+	},
+	"phrases": {
+		"greeting": "ສະບາຍດີໂລກ!",
+		"welcome": "ຍິນດີຕ້ອນຮັບສູ່ Resource Translator.",
+		"machine_translated": "ແປດ້ວຍເຄື່ອງຈັກໂດຍ Azure AI Translator.",
+		"open_pull_request": "ເປີດຄໍາຮ້ອງຂໍດຶງດ້ວຍການແປໃຫມ່.",
+		"ship_anywhere": "ສົ່ງ software ຂອງ ທ່ານ ໄປ ຫາ ບ່ອນ ໃດ ກໍ ຕາມ ໃນ ໂລກ."
+	},
+	"ctas": {
+		"view_source": "ເບິ່ງແຫຼ່ງຂໍ້ມູນ",
+		"translate_now": "ແປ repo ຂອງຂ້ອຍ",
+		"read_the_docs": "ອ່ານ ເອກະສານ",
+		"contribute": "ບໍລິຈາກໃນ GitHub"
+	},
+	"features": {
+		"fast": "ແປຊັບພະຍາກອນພາຍໃນວິນາທີ.",
+		"reliable": "Round-trips ທຸກໆ byte ຂອງແຟ້ມແຫຼ່ງຂອງທ່ານ.",
+		"configurable": "ນ້ໍາສຽງ, ອຸດສາຫະກໍາ, ຄໍາສັບ, ຄໍາຫມິ່ນປະຫມາດ - ທັງຫມົດສາມາດຕັ້ງຄ່າໄດ້.",
+		"ci_native": "ອອກແບບສໍາລັບ GitHub Actions ແລະ pull-request workflows."
+	},
+	"footer": {
+		"powered_by": "Powered by Resource Translator ແລະ Azure AI Translator.",
+		"view_translation_pr": "ເບິ່ງຄໍາຮ້ອງຂໍດຶງການແປຫຼ້າສຸດ."
+	}
+}

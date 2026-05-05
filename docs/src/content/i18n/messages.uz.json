@@ -1,0 +1,31 @@
+{
+	"tagline": "Har bir commitda repo-ni lokalizatsiya qiling.",
+	"hero": {
+		"eyebrow": "Ko'rgazma",
+		"title": "Har bir tilda salom",
+		"lede": "Ushbu sahifa Resource Translator tomonidan har safar asosiy formatga bosilganda, Azure AI Translator qo'llab-quvvatlaydigan barcha tillarga tarjima qilinadi."
+	},
+	"phrases": {
+		"greeting": "Salom dunyo!",
+		"welcome": "Resource Translatorga xush kelibsiz.",
+		"machine_translated": "Azure AI Translator tomonidan mashinada tarjima qilingan.",
+		"open_pull_request": "Yangi tarjimalar bilan pull so'rovini oching.",
+		"ship_anywhere": "Dasturiy ta'minotingizni Yer yuzining istalgan joyiga yuboring."
+	},
+	"ctas": {
+		"view_source": "Manbani ko'rish",
+		"translate_now": "Mening repomni tarjima qil",
+		"read_the_docs": "Hujjatlarni o'qing",
+		"contribute": "GitHub'da hissa qo'shing"
+	},
+	"features": {
+		"fast": "Resurslarni soniyalarda tarjima qiladi.",
+		"reliable": "Manba fayllaringizning har bir baytini borib bo'ldi.",
+		"configurable": "Ohang, sanoat, lug'at, so'kinishlar — bularning barchasi sozlanishi mumkin.",
+		"ci_native": "GitHub harakatlari va pull-request ish jarayonlari uchun mo'ljallangan."
+	},
+	"footer": {
+		"powered_by": "Resource Translator va Azure AI Translator tomonidan quvvatlanadi.",
+		"view_translation_pr": "Eng so'nggi tarjima pull so'rovini ko'ring."
+	}
+}

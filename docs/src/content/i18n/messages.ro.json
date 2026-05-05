@@ -1,0 +1,31 @@
+{
+	"tagline": "Localizează-ți repo-ul la fiecare commit.",
+	"hero": {
+		"eyebrow": "Prezentare",
+		"title": "Salut în orice limbă",
+		"lede": "Această pagină este tradusă chiar de Resource Translator, la fiecare trimitere către main, în toate limbile suportate de Azure AI Translator."
+	},
+	"phrases": {
+		"greeting": "Salut, lume!",
+		"welcome": "Bine ați venit la Resource Translator.",
+		"machine_translated": "Tradus automat de Azure AI Translator.",
+		"open_pull_request": "Deschide o pull request cu traduceri noi.",
+		"ship_anywhere": "Trimite-ți software-ul oriunde pe Pământ."
+	},
+	"ctas": {
+		"view_source": "Vizualizare sursă",
+		"translate_now": "Traduce-mi depozitul",
+		"read_the_docs": "Citește documentația",
+		"contribute": "Contribuie pe GitHub"
+	},
+	"features": {
+		"fast": "Traduce resursele în câteva secunde.",
+		"reliable": "Face tur-trip la fiecare octet al fișierelor sursă.",
+		"configurable": "Ton, industrie, glosar, limbaj vulgar — toate configurabile.",
+		"ci_native": "Conceput pentru GitHub Actions și fluxuri de lucru pull-request."
+	},
+	"footer": {
+		"powered_by": "Alimentat de Resource Translator și Azure AI Translator.",
+		"view_translation_pr": "Vezi cea mai recentă pull request de traducere."
+	}
+}

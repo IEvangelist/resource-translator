@@ -1,0 +1,31 @@
+{
+	"tagline": "Lokalizoni depon tuaj në çdo angazhim.",
+	"hero": {
+		"eyebrow": "Vitrina",
+		"title": "Përshëndetje në çdo gjuhë",
+		"lede": "Kjo faqe është përkthyer nga vetë Resource Translator, në çdo shtytje në kryesor, në çdo gjuhë që mbështet Azure AI Translator."
+	},
+	"phrases": {
+		"greeting": "Përshëndetje botë!",
+		"welcome": "Mirë se vini në Përkthyesin e Burimeve.",
+		"machine_translated": "Përkthyer me makinë nga Azure AI Translator.",
+		"open_pull_request": "Hapni një kërkesë tërheqjeje me përkthime të reja.",
+		"ship_anywhere": "Dërgoni softuerin tuaj kudo në Tokë."
+	},
+	"ctas": {
+		"view_source": "Shiko burimin",
+		"translate_now": "Përkthej depon time",
+		"read_the_docs": "Lexoni dokumentet",
+		"contribute": "Kontribuoni në GitHub"
+	},
+	"features": {
+		"fast": "Përkthen burimet në sekonda.",
+		"reliable": "Udhëton çdo bajt të skedarëve tuaj burimor.",
+		"configurable": "Toni, industria, fjalori, shpifjet - të gjitha të konfigurueshme.",
+		"ci_native": "Projektuar për veprimet GitHub dhe rrjedhat e punës së kërkesave tërheqëse."
+	},
+	"footer": {
+		"powered_by": "Mundësuar nga Resource Translator dhe Azure AI Translator.",
+		"view_translation_pr": "Shikoni kërkesën më të fundit për tërheqjen e përkthimit."
+	}
+}

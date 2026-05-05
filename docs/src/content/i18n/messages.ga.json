@@ -1,0 +1,31 @@
+{
+	"tagline": "Logánaigh do repo ar gach gealltanas.",
+	"hero": {
+		"eyebrow": "Taispeántas",
+		"title": "Dia duit i ngach teanga",
+		"lede": "Tá an leathanach seo aistrithe ag Resource Translator féin, ar gach brú go príomh, i ngach teanga a thacaíonn le Azure AI Translator."
+	},
+	"phrases": {
+		"greeting": "Haigh ansin!",
+		"welcome": "Fáilte go dtí an tAistritheoir Acmhainne.",
+		"machine_translated": "Meaisín-aistrithe ag Azure AI Translator.",
+		"open_pull_request": "Oscail iarratas tarraingthe le haistriúcháin úra.",
+		"ship_anywhere": "Long do bhogearraí áit ar bith ar an Domhan."
+	},
+	"ctas": {
+		"view_source": "Féach ar an bhfoinse",
+		"translate_now": "Aistrigh mo repo",
+		"read_the_docs": "Léigh na doiciméid",
+		"contribute": "Rannchuidigh ar GitHub"
+	},
+	"features": {
+		"fast": "Aistríonn acmhainní i soicind.",
+		"reliable": "Babhta turais gach beart de do chuid comhad foinse.",
+		"configurable": "Ton, tionscal, gluais, profanity - gach inchumraithe.",
+		"ci_native": "Deartha le haghaidh Gníomhartha GitHub agus sreafaí oibre tarraingthe-iarraidh."
+	},
+	"footer": {
+		"powered_by": "Faoi thiomáint ag Resource Translator agus Azure AI Translator.",
+		"view_translation_pr": "Féach ar an iarratas tarraingthe aistriúcháin is déanaí."
+	}
+}

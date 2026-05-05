@@ -1,0 +1,31 @@
+{
+	"tagline": "Локализирајте го вашиот репозиториум на секој комит.",
+	"hero": {
+		"eyebrow": "Презентација",
+		"title": "Здраво на секој јазик",
+		"lede": "Оваа страница е преведена од самиот Resource Translator, при секое поттикнување кон main, на секој јазик што Azure AI Translator го поддржува."
+	},
+	"phrases": {
+		"greeting": "Здраво свету!",
+		"welcome": "Добредојдовте во Resource Translator.",
+		"machine_translated": "Машински преведено од Azure AI Translator.",
+		"open_pull_request": "Отвори pull request со свежи преводи.",
+		"ship_anywhere": "Испратете го вашиот софтвер било каде на Земјата."
+	},
+	"ctas": {
+		"view_source": "Погледни извор",
+		"translate_now": "Преведи го мојот репо",
+		"read_the_docs": "Прочитај ги документите",
+		"contribute": "Придонеси на GitHub"
+	},
+	"features": {
+		"fast": "Ги преведува ресурсите за неколку секунди.",
+		"reliable": "Враќа секој бајт од твоите изворни датотеки.",
+		"configurable": "Тон, индустрија, речник, пцовки — сè може да се прилагоди.",
+		"ci_native": "Дизајниран за GitHub Actions и pull-request workflows."
+	},
+	"footer": {
+		"powered_by": "Поддржано од Resource Translator и Azure AI Translator.",
+		"view_translation_pr": "Погледнете го најновиот pull request за превод."
+	}
+}

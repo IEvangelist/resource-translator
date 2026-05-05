@@ -1,0 +1,31 @@
+{
+	"tagline": "Localize repo ea hau ho boitlamo bo bong le bo bong.",
+	"hero": {
+		"eyebrow": "Pontšo",
+		"title": "Hello Hello",
+		"lede": "Leqephe lena le fetoleloa ke Resource Translator ka boeona, ka ho sutumelletsa ho ea holimo, puong e 'ngoe le e' ngoe eo Azure AI Translator e e tšehetsang."
+	},
+	"phrases": {
+		"greeting": "Lefatshe ha le dumele!",
+		"welcome": "Rea u amohela ho mofetoleli oa lisebelisoa.",
+		"machine_translated": "E fetoletsoeng ka mochini ke mofetoleli oa Azure AI.",
+		"open_pull_request": "Bula kopo ea ho hula ka liphetolelo tse ncha.",
+		"ship_anywhere": "Tsamaisa software ea hau kae kapa kae lefatšeng."
+	},
+	"ctas": {
+		"view_source": "Sheba mohloli",
+		"translate_now": "Fetolela repo ea ka",
+		"read_the_docs": "Bala li-docs",
+		"contribute": "Tlatsetso ho GitHub"
+	},
+	"features": {
+		"fast": "Fetolela lisebelisoa ka metsotsoana.",
+		"reliable": "Tobetsa konopo e 'ngoe le e' ngoe ea lifaele tsa hau tsa mohloli.",
+		"configurable": "Molumo, indasteri, glossary, lipolelo tse nyefolang — kaofela li ka hlophisoa.",
+		"ci_native": "E etselitsoe liketso tsa GitHub le li-workflows tsa ho hula."
+	},
+	"footer": {
+		"powered_by": "E tsamaisoa ke mofetoleli oa lisebelisoa le mofetoleli oa Azure AI.",
+		"view_translation_pr": "Sheba kopo ea morao-rao ea phetolelo."
+	}
+}

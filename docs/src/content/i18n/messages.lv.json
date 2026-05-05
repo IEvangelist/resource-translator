@@ -1,0 +1,31 @@
+{
+	"tagline": "Lokalizējiet savu repo katrā saistībā.",
+	"hero": {
+		"eyebrow": "Vitrīna",
+		"title": "Sveiki visās valodās",
+		"lede": "Šo lapu tulko pats resursu tulkotājs, katru reizi piespiežot uz galveno, visās valodās, ko atbalsta Azure AI Translator."
+	},
+	"phrases": {
+		"greeting": "Labdien, pasaule!",
+		"welcome": "Laipni lūdzam resursu tulkotājā.",
+		"machine_translated": "Mašīntulkojis Azure AI Translator.",
+		"open_pull_request": "Atveriet pull pieprasījumu ar jauniem tulkojumiem.",
+		"ship_anywhere": "Nosūtiet savu programmatūru uz jebkuras vietas uz Zemes."
+	},
+	"ctas": {
+		"view_source": "Skatīt avotu",
+		"translate_now": "Tulkot manu repo",
+		"read_the_docs": "Lasīt dokumentus",
+		"contribute": "Ieguldījums vietnē GitHub"
+	},
+	"features": {
+		"fast": "Tulko resursus dažu sekunžu laikā.",
+		"reliable": "Turp un atpakaļ katru avota failu baitu.",
+		"configurable": "Tonis, industrija, glosārijs, rupjības — tas viss ir konfigurējams.",
+		"ci_native": "Izstrādāts GitHub darbībām un pull-request darbplūsmām."
+	},
+	"footer": {
+		"powered_by": "Nodrošina resursu tulkotājs un Azure AI tulkotājs.",
+		"view_translation_pr": "Skatīt jaunāko tulkošanas pieprasījumu."
+	}
+}

@@ -1,0 +1,31 @@
+{
+	"tagline": "Khazikitsani repo yanu pakudzipereka kulikonse.",
+	"hero": {
+		"eyebrow": "Chiwonetsero",
+		"title": "Moni m'chilankhulo chilichonse",
+		"lede": "Tsambali limamasuliridwa ndi Resource Translator palokha, pa kukankha kulikonse kwakukulu, m'chinenero chilichonse chomwe Azure AI Translator imathandizira."
+	},
+	"phrases": {
+		"greeting": "Halo dziko lonse!",
+		"welcome": "Takulandilani ku Resource Translator.",
+		"machine_translated": "Makina omasuliridwa ndi Azure AI Translator.",
+		"open_pull_request": "Tsegulani pempho lokoka ndi matembenuzidwe atsopano.",
+		"ship_anywhere": "Tumizani mapulogalamu anu kulikonse padziko lapansi."
+	},
+	"ctas": {
+		"view_source": "Onani gwero",
+		"translate_now": "Masulirani repo yanga",
+		"read_the_docs": "Werengani ma docs",
+		"contribute": "Thandizani pa GitHub"
+	},
+	"features": {
+		"fast": "Kumasulira chuma m'masekondi.",
+		"reliable": "Maulendo ozungulira bayiti iliyonse ya mafayilo anu ogwera.",
+		"configurable": "Kamvekedwe, mafakitale, glossary, kutukwana - zonse zimakonzedwa.",
+		"ci_native": "Zopangidwira GitHub Zochita ndi kukoka-kupempha ntchito."
+	},
+	"footer": {
+		"powered_by": "Zoyendetsedwa ndi Resource Translator ndi Azure AI Translator.",
+		"view_translation_pr": "Onani pempho laposachedwa kwambiri lomasulira."
+	}
+}

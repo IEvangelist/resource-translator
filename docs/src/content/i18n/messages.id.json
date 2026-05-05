@@ -1,0 +1,31 @@
+{
+	"tagline": "Lokalkan repositori Anda pada setiap penerapan.",
+	"hero": {
+		"eyebrow": "Etalase",
+		"title": "Halo dalam setiap bahasa",
+		"lede": "Halaman ini diterjemahkan oleh Penerjemah Sumber Daya itu sendiri, pada setiap dorongan ke utama, ke dalam setiap bahasa yang didukung Azure AI Translator."
+	},
+	"phrases": {
+		"greeting": "Halo, dunia!",
+		"welcome": "Selamat datang di Penerjemah Sumber Daya.",
+		"machine_translated": "Diterjemahkan oleh mesin oleh Azure AI Translator.",
+		"open_pull_request": "Buka permintaan pull dengan terjemahan baru.",
+		"ship_anywhere": "Kirim perangkat lunak Anda ke mana saja di Bumi."
+	},
+	"ctas": {
+		"view_source": "Lihat sumber",
+		"translate_now": "Terjemahkan repositori saya",
+		"read_the_docs": "Baca dokumennya",
+		"contribute": "Berkontribusi di GitHub"
+	},
+	"features": {
+		"fast": "Menerjemahkan sumber daya dalam hitungan detik.",
+		"reliable": "Pulang pergi setiap byte file sumber Anda.",
+		"configurable": "Nada, industri, glosarium, kata-kata kotor — semuanya dapat dikonfigurasi.",
+		"ci_native": "Dirancang untuk Tindakan GitHub dan alur kerja permintaan tarik."
+	},
+	"footer": {
+		"powered_by": "Didukung oleh Penerjemah Sumber Daya dan Penerjemah AI Azure.",
+		"view_translation_pr": "Lihat permintaan pull terjemahan terbaru."
+	}
+}
