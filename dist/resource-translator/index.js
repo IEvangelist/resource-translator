@@ -53025,7 +53025,9 @@ var toResultSet = (results, toLocales, translatableText) => {
         const zipped = zip(translatableKeys, translations);
         for (let i = 0; i < zipped.length; ++i) {
           const key = zipped[i][0];
-          result[key] = zipped[i][1];
+          const value = zipped[i][1];
+          if (typeof value !== "string") continue;
+          result[key] = value;
         }
         resultSet[locale] = result;
       }
@@ -53559,6 +53561,12 @@ var applyGlossary = (translations, glossary) => {
   if (!entries.length) return translations;
   const out = {};
   for (const [key, value] of Object.entries(translations)) {
+    if (typeof value !== "string") {
+      if (value !== void 0 && value !== null) {
+        out[key] = value;
+      }
+      continue;
+    }
     let next = value;
     for (const [term, replacement] of entries) {
       next = next.replace(buildTermRegex(term), replacement);

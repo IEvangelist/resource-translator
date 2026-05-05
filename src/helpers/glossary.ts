@@ -19,6 +19,15 @@ export const applyGlossary = (
 
   const out: Record<string, string> = {};
   for (const [key, value] of Object.entries(translations)) {
+    // Defend against non-string values that may sneak through the API
+    // response (e.g., when a translation is empty/missing for a locale).
+    // Without this, `value.replace(...)` below would throw on undefined.
+    if (typeof value !== "string") {
+      if (value !== undefined && value !== null) {
+        out[key] = value as unknown as string;
+      }
+      continue;
+    }
     let next = value;
     for (const [term, replacement] of entries) {
       next = next.replace(buildTermRegex(term), replacement);

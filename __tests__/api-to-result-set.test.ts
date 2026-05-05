@@ -103,3 +103,40 @@ test("API toResultSet: correctly maps results to set", async () => {
     expect(actual[locale]).toBeTruthy();
   });
 });
+
+test("API toResultSet: skips keys when Azure returns empty translations", () => {
+  // Simulates Azure returning an empty translation for the second source
+  // string (e.g. low-resource locale). `toRawTextArray` filters those out,
+  // so the translations array is shorter than the source-key array. The
+  // mapper must not insert `undefined` into the result for the missing key.
+  const results: TranslationResults = [
+    {
+      detectedLanguage: { language: "en", score: 1 },
+      translations: [
+        { to: "es", text: "Hola" },
+        { to: "fr", text: "Bonjour" },
+      ],
+    },
+    {
+      detectedLanguage: { language: "en", score: 1 },
+      // Empty text for "es" — gets filtered by toRawTextArray.
+      translations: [
+        { to: "es", text: "" },
+        { to: "fr", text: "Salut" },
+      ],
+    },
+  ];
+
+  const translatableText = new Map<string, string>();
+  translatableText.set("first", "Hello");
+  translatableText.set("second", "Hi");
+
+  const actual = toResultSet(results, ["es", "fr"], translatableText);
+
+  expect(actual.es).toEqual({ first: "Hola" });
+  expect(actual.fr).toEqual({ first: "Bonjour", second: "Salut" });
+  // No undefined values must appear in the result map.
+  expect(Object.values(actual.es).every((v) => typeof v === "string")).toBe(
+    true,
+  );
+});

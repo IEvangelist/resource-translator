@@ -44,4 +44,18 @@ describe("applyGlossary", () => {
     });
     expect(out!.title).toEqual("Acme is great");
   });
+
+  it("does not throw on undefined values inside the translations record", () => {
+    // Azure occasionally returns empty translations for low-resource locales,
+    // which leaves the value as `undefined` after toResultSet zip-merging.
+    // Glossary application must not blow up on those keys.
+    const translations = {
+      good: "Acme rocks",
+      missing: undefined as unknown as string,
+    };
+    const out = applyGlossary(translations, { Acme: "Contoso" });
+    expect(out).toBeDefined();
+    expect(out!.good).toEqual("Contoso rocks");
+    expect(out!.missing).toBeUndefined();
+  });
 });

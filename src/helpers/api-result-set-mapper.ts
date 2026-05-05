@@ -22,7 +22,14 @@ export const toResultSet = (
         const zipped = zip(translatableKeys, translations);
         for (let i = 0; i < zipped.length; ++i) {
           const key: string = zipped[i][0];
-          result[key] = zipped[i][1];
+          const value = zipped[i][1];
+          // Azure occasionally returns an empty translation for a given key
+          // (especially for low-resource locales), which `toRawTextArray`
+          // filters out. Skip those keys entirely so downstream consumers
+          // receive a `Record<string, string>` whose values really are
+          // strings; the file writers will fall back to the source text.
+          if (typeof value !== "string") continue;
+          result[key] = value;
         }
         resultSet[locale] = result;
       }
