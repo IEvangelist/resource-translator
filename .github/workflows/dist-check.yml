@@ -1,0 +1,35 @@
+name: dist-check
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "package.json"
+      - "package-lock.json"
+      - "scripts/build.mjs"
+      - "tsconfig.json"
+
+permissions:
+  contents: read
+
+jobs:
+  verify-dist:
+    name: verify dist/ is up to date
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - name: Rebuild dist/
+        run: npm run build
+      - name: Compare against committed dist/
+        run: |
+          if [ -n "$(git status --porcelain dist/)" ]; then
+            echo "::error::dist/ is out of date. Run 'npm run build' and commit the result."
+            git --no-pager diff dist/
+            exit 1
+          fi

@@ -1,0 +1,52 @@
+name: dist-build
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "package.json"
+      - "package-lock.json"
+      - "scripts/build.mjs"
+      - "tsconfig.json"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: dist-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rebuild-dist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+
+      - name: Detect changes
+        id: diff
+        run: |
+          if [ -n "$(git status --porcelain dist/)" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open pull request
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "chore(dist): refresh dist/ output"
+          title: "chore(dist): refresh dist/ output"
+          body: |
+            Automated rebuild of `dist/resource-translator/index.js` from `main`.
+          branch: dist-refresh
+          delete-branch: true
+          add-paths: dist/
