@@ -1,0 +1,31 @@
+{
+	"tagline": "在每次提交時本地化你的存儲庫。",
+	"hero": {
+		"eyebrow": "出櫃",
+		"title": "你好，用各種語言",
+		"lede": "此頁面由 Resource Translator 本身翻譯成 Azure AI Translator 支援的每種語言。"
+	},
+	"phrases": {
+		"greeting": "世界你好!",
+		"welcome": "歡迎使用資源翻譯器。",
+		"machine_translated": "由 Azure AI Translator 機器翻譯。",
+		"open_pull_request": "打開一個包含新翻譯嘅拉取請求。",
+		"ship_anywhere": "將你的軟件運送到地球上任何地方。"
+	},
+	"ctas": {
+		"view_source": "查看來源",
+		"translate_now": "翻譯我嘅 repo",
+		"read_the_docs": "閱讀文件",
+		"contribute": "在 GitHub 上貢獻"
+	},
+	"features": {
+		"fast": "在幾秒鐘內翻譯資源。",
+		"reliable": "來回移動源文件的每個位元組。",
+		"configurable": "語氣、行業、詞彙表、粗言穢語 -- 全部都可以設定。",
+		"ci_native": "專為 GitHub Actions 和拉取請求工作流程而設計。"
+	},
+	"footer": {
+		"powered_by": "由 Resource Translator 和 Azure AI Translator 提供支持。",
+		"view_translation_pr": "查看最新的翻譯提取請求。"
+	}
+}

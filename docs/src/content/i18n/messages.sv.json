@@ -1,0 +1,31 @@
+{
+	"tagline": "Lokalisera ditt repo vid varje commit.",
+	"hero": {
+		"eyebrow": "Showcase",
+		"title": "Hej på alla språk",
+		"lede": "Denna sida översätts av Resource Translator själv, vid varje push-to-main, till alla språk som Azure AI Translator stödjer."
+	},
+	"phrases": {
+		"greeting": "Hej, världen!",
+		"welcome": "Välkommen till Resource Translator.",
+		"machine_translated": "Maskinöversatt av Azure AI Translator.",
+		"open_pull_request": "Öppna en pull request med nya översättningar.",
+		"ship_anywhere": "Skicka din mjukvara var som helst på jorden."
+	},
+	"ctas": {
+		"view_source": "Visa källa",
+		"translate_now": "Översätt mitt repark",
+		"read_the_docs": "Läs dokumentationen",
+		"contribute": "Bidra på GitHub"
+	},
+	"features": {
+		"fast": "Översätter resurser på några sekunder.",
+		"reliable": "Gör en rundtur på varje byte av dina källfiler.",
+		"configurable": "Ton, bransch, ordlista, svordomar — allt konfigurerbart.",
+		"ci_native": "Designad för GitHub-åtgärder och pull-request-arbetsflöden."
+	},
+	"footer": {
+		"powered_by": "Drivs av Resource Translator och Azure AI Translator.",
+		"view_translation_pr": "Se den senaste översättningspull requesten."
+	}
+}

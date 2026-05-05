@@ -1,0 +1,31 @@
+{
+	"tagline": "ኣብ ነፍሲ ወከፍ ቃል ኪዳን ሪፖ ግበሮ።",
+	"hero": {
+		"eyebrow": "መርኣዪ",
+		"title": "ሰላምታ ብዅሉ ቛንቋታት",
+		"lede": "እዚ ገጽ እዚ ብResource Translator ባዕሉ ተተርጒሙ ኣብ ነፍሲ ወከፍ ጸቕጢ ናብ ቀንዲ ናብ ኵሉ ቛንቋታት Azure AI Translator ይተርጐም።"
+	},
+	"phrases": {
+		"greeting": "ሃሎ ዓለም!",
+		"welcome": "ናብ ተርጓሚ ምንጪ እንቋዕ ብደሓን መጻእኩም።",
+		"machine_translated": "ብማሽን እተተርጐመ ብAzure AI ተርጓሚ።",
+		"open_pull_request": "ብሓድሽ ትርጕማት ናይ ስሕበት ሕቶ ክፈት።",
+		"ship_anywhere": "ነቲ ሶፍትዌርካ ናብ ዝዀነ ይኹን ቦታ ኣብ ምድሪ ኣመሓላልፎ።"
+	},
+	"ctas": {
+		"view_source": "ምንጪ ርአ",
+		"translate_now": "ሪፖይ ተርጕሞ",
+		"read_the_docs": "ሰነዳት ኣንብብ",
+		"contribute": "ኣብ GitHub ኣበርክቶ ግበር"
+	},
+	"features": {
+		"fast": "ምንጪታት ኣብ ካልኢታት ይትርጕም።",
+		"reliable": "ንነፍሲ ወከፍ ምንጪ ፋይላትካ ኣቐምጦ።",
+		"configurable": "ቃና ኢንዱስትሪ መዝገበ ቃላት ጽዩፍ ቃላት — ኵሉ ኺዋሃሃድ ይኽእል እዩ።",
+		"ci_native": "GitHub Actionsን Pull-Request Workflowን ተባሂሉ እተዳለወ እዩ።"
+	},
+	"footer": {
+		"powered_by": "ብተርጓሚ ምንጪ ከምኡውን ብAzure AI ተርጓሚ እተደገፈ።",
+		"view_translation_pr": "ነቲ ናይ ቀረባ ግዜ ናይ ትርጉም ሕቶ ርአ።"
+	}
+}

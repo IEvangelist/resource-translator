@@ -1,0 +1,31 @@
+{
+	"tagline": "Lleoleiddio eich repo ar bob ymrwymiad.",
+	"hero": {
+		"eyebrow": "Arddangos",
+		"title": "Helo ym mhob iaith",
+		"lede": "Mae'r dudalen hon yn cael ei chyfieithu gan Resource Translator ei hun, ar bob gwthio i'r prif, i bob iaith y mae Azure AI Translator yn ei chefnogi."
+	},
+	"phrases": {
+		"greeting": "Helo byd!",
+		"welcome": "Croeso i Gyfieithydd Adnoddau.",
+		"machine_translated": "Cyfieithwyd gan Azure AI Translator.",
+		"open_pull_request": "Agor cais tynnu gyda chyfieithiadau newydd.",
+		"ship_anywhere": "Llongiwch eich meddalwedd unrhyw le ar y Ddaear."
+	},
+	"ctas": {
+		"view_source": "Gweld y ffynhonnell",
+		"translate_now": "Cyfieithu fy repo",
+		"read_the_docs": "Darllenwch y dogfennau",
+		"contribute": "Cyfrannu ar GitHub"
+	},
+	"features": {
+		"fast": "Cyfieithu adnoddau mewn eiliadau.",
+		"reliable": "Rownd-deithiau pob beit o'ch ffeiliau ffynhonnell.",
+		"configurable": "Tone, industry, glossary, profanity — all configurable.",
+		"ci_native": "Wedi'i gynllunio ar gyfer GitHub Actions a llifoedd gwaith tynnu-gais."
+	},
+	"footer": {
+		"powered_by": "Wedi'i bweru gan Resource Translator ac Azure AI Translator.",
+		"view_translation_pr": "Gweld y cais tynnu cyfieithu diweddaraf."
+	}
+}

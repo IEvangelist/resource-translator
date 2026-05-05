@@ -1,0 +1,31 @@
+{
+	"tagline": "Локалізуйте репозиторій на кожному коміті.",
+	"hero": {
+		"eyebrow": "Шоукейс",
+		"title": "Вітаю кожною мовою",
+		"lede": "Ця сторінка перекладена самим Resource Translator при кожному натисканні на main, на всі мови, які підтримує Azure AI Translator."
+	},
+	"phrases": {
+		"greeting": "Привіт, світе!",
+		"welcome": "Ласкаво просимо до Resource Translator.",
+		"machine_translated": "Машинний переклад Azure AI Translator.",
+		"open_pull_request": "Відкрийте pull request з новими перекладами.",
+		"ship_anywhere": "Відправляйте своє програмне забезпечення будь-куди на Землі."
+	},
+	"ctas": {
+		"view_source": "Переглянути джерело",
+		"translate_now": "Передай мій репозиторій",
+		"read_the_docs": "Прочитайте документацію",
+		"contribute": "Долучайтеся до GitHub"
+	},
+	"features": {
+		"fast": "Перекладає ресурси за секунди.",
+		"reliable": "Обирає кожен байт ваших вихідних файлів туди й назад.",
+		"configurable": "Тон, індустрія, глосарій, лайка — все це можна налаштувати.",
+		"ci_native": "Розроблено для дій на GitHub та робочих процесів із pull-request."
+	},
+	"footer": {
+		"powered_by": "Працює на основі Resource Translator та Azure AI Translator.",
+		"view_translation_pr": "Перегляньте найсвіжіший pull request на переклад."
+	}
+}

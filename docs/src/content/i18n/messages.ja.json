@@ -1,0 +1,31 @@
+{
+	"tagline": "すべてのコミットでリポジトリをローカライズしてください。",
+	"hero": {
+		"eyebrow": "ショーケース",
+		"title": "すべての言語でこんにちは",
+		"lede": "このページは、Resource Translator自身によって、メインへのすべてのプッシュでAzure AI Translatorがサポートするすべての言語に翻訳されています。"
+	},
+	"phrases": {
+		"greeting": "こんにちは、世界!",
+		"welcome": "リソーストランスレーターへようこそ。",
+		"machine_translated": "Azure AI Translatorによる機械翻訳。",
+		"open_pull_request": "新しい翻訳でプルリクエストを開きます。",
+		"ship_anywhere": "地球上のどこにでもソフトウェアを出荷してください。"
+	},
+	"ctas": {
+		"view_source": "出典を見る",
+		"translate_now": "私のリポジトリを翻訳してください",
+		"read_the_docs": "ドキュメントを読んでください",
+		"contribute": "GitHubで貢献してください"
+	},
+	"features": {
+		"fast": "リソースを数秒で翻訳できます。",
+		"reliable": "ソースファイルの全バイトを往復します。",
+		"configurable": "口調、業界、用語集、罵り言葉――すべて設定可能です。",
+		"ci_native": "GitHub Actionsやプルリクエストワークフロー向けに設計されています。"
+	},
+	"footer": {
+		"powered_by": "Resource TranslatorとAzure AIトランスレーターによって提供されています。",
+		"view_translation_pr": "最新の翻訳プルリクエストをご覧ください。"
+	}
+}

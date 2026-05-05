@@ -1,0 +1,31 @@
+{
+	"tagline": "Localize nomu repo ena veidinadinati yadua.",
+	"hero": {
+		"eyebrow": "Vakaraitaki",
+		"title": "Bula ena veivosa kecega",
+		"lede": "Na tabana oqo e vakadewataki mai na Resource Translator vakaikoya, ena veisasaga kece ki na main, ki na veivosa kece e tokona na Azure AI Translator."
+	},
+	"phrases": {
+		"greeting": "Bula vuravura!",
+		"welcome": "Kidavaki ki na iVurevure ni Dauvakadewa.",
+		"machine_translated": "Vakadewataki vakamisini mai na Azure AI Translator.",
+		"open_pull_request": "Dolava e dua na kerekere ni pull vata kei na vakadewa vou.",
+		"ship_anywhere": "Vakauta na nomu parokaramu vakompiuta ena dua ga na vanua e vuravura."
+	},
+	"ctas": {
+		"view_source": "Raica na ivurevure",
+		"translate_now": "Vakadewataka na noqu repo",
+		"read_the_docs": "Wilika na ivola",
+		"contribute": "Cau ena GitHub"
+	},
+	"features": {
+		"fast": "Vakadewataka na ivurevure ena sekodi.",
+		"reliable": "Round-trips na byte yadua ni nomu faile ni ivurevure.",
+		"configurable": "Rorogo, cakacaka, glossary, vosa ca — configurable kece.",
+		"ci_native": "Designed for GitHub Actions and pull-request workflows."
+	},
+	"footer": {
+		"powered_by": "Powered by Resource Translator and Azure AI Translator.",
+		"view_translation_pr": "Raica na kerekere ni pull ni vakadewa se qai oti ga oqo."
+	}
+}

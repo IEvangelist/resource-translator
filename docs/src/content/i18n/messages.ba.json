@@ -1,0 +1,31 @@
+{
+	"tagline": "Һәр коммитта репозиторийҙы локализациялағыҙ.",
+	"hero": {
+		"eyebrow": "Күргәҙмә",
+		"title": "Һәр телдә сәләм",
+		"lede": "Был бит Resource Translator үҙе тарафынан, һәр баҫыуҙа, Azure AI Translator хуплаған һәр телгә тәржемә ителә."
+	},
+	"phrases": {
+		"greeting": "Донъя сәләм!",
+		"welcome": "Ресурс тәржемәсеһенә рәхим итегеҙ.",
+		"machine_translated": "Azure AI Translator тарафынан машиналы тәржемә ителде.",
+		"open_pull_request": "Яңы тәржемәләр менән pull request-ты асығыҙ.",
+		"ship_anywhere": "Программа тәьминәтегеҙҙе Ерҙең теләһә ҡайһы урынында ебәрегеҙ."
+	},
+	"ctas": {
+		"view_source": "Сығанаҡты ҡарау",
+		"translate_now": "Минең репозиториямды тәржемә ит",
+		"read_the_docs": "Документтарҙы уҡығыҙ",
+		"contribute": "GitHub-та өлөш индерегеҙ"
+	},
+	"features": {
+		"fast": "Ресурстарҙы секундтар эсендә тәржемә итә.",
+		"reliable": "Сығанаҡ файлдарығыҙҙың һәр байтын ике яҡҡа ебәрә.",
+		"configurable": "Тон, индустрия, глоссарий, һүгенеү һүҙҙәре — барыһы ла көйләнә ала.",
+		"ci_native": "GitHub Actions һәм pull-request эш ағымдары өсөн эшләнгән."
+	},
+	"footer": {
+		"powered_by": "Resource Translator һәм Azure AI Translator ярҙамында эшләй.",
+		"view_translation_pr": "Иң һуңғы тәржемә pull request-ты ҡарағыҙ."
+	}
+}

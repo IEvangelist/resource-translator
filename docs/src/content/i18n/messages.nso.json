@@ -1,0 +1,31 @@
+{
+	"tagline": "Localize your repo on every commit.",
+	"hero": {
+		"eyebrow": "Pontšho",
+		"title": "Goodbye Moka",
+		"lede": "This page is translated by Resource Translator itself, on every push to main, into every language Azure AI Translators supports."
+	},
+	"phrases": {
+		"greeting": "Dumela lefatshe!",
+		"welcome": "O amogetšwe go Resource Translator.",
+		"machine_translated": "Na Ghar Ke Na Ghaat Ke Translator",
+		"open_pull_request": "Bula kgopelo ya go goga ka diphetolelo tše mpsha.",
+		"ship_anywhere": "Tsenya lenaneo la gago kae le kae mo lefaseng."
+	},
+	"ctas": {
+		"view_source": "View source",
+		"translate_now": "Translate my repo",
+		"read_the_docs": "Bala Bala Docs",
+		"contribute": "Contribute on GitHub"
+	},
+	"features": {
+		"fast": "Fetolela methopo ka metsotswana.",
+		"reliable": "Ngwala difaele tša gago tša methopo ye mengwe le ye mengwe.",
+		"configurable": "Tone, industry, glossary, profanity — all configurable.",
+		"ci_native": "Designed for GitHub Actions and pull-request workflows."
+	},
+	"footer": {
+		"powered_by": "Powered by Resource Translator and Azure AI Translator.",
+		"view_translation_pr": "View the most recent translation pull request."
+	}
+}

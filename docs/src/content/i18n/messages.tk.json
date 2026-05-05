@@ -1,0 +1,31 @@
+{
+	"tagline": "Her commitde repoňyzy ýerleşdiriň.",
+	"hero": {
+		"eyebrow": "Sergi",
+		"title": "Her dilde salam",
+		"lede": "Bu sahypa Resource Translator tarapyndan Azure AI Translatoryň goldaýan her diline terjime edilýär."
+	},
+	"phrases": {
+		"greeting": "Salam dünýä!",
+		"welcome": "Resource Translator-a hoş geldiňiz.",
+		"machine_translated": "Azure AI Translator tarapyndan makina terjime edildi.",
+		"open_pull_request": "Täze terjimeler bilen çekme haýyşyny açyň.",
+		"ship_anywhere": "Programmaňyzy Ýeriň islendik künjegine iberiň."
+	},
+	"ctas": {
+		"view_source": "Çeşmäni gör",
+		"translate_now": "Repomy terjime et",
+		"read_the_docs": "Dokumentleri okaň",
+		"contribute": "GitHub-da goşant goşuň"
+	},
+	"features": {
+		"fast": "Serişdeleri sekuntda terjime edýär.",
+		"reliable": "Çeşme faýllaryňyzyň her baytyny round-trip.",
+		"configurable": "Äheň, senagat, sözlük, hapa sözler — bularyň ählisi konfigurasiýa edilip bolýar.",
+		"ci_native": "GitHub hereketleri we pull-request iş akışlary üçin niýetlenen."
+	},
+	"footer": {
+		"powered_by": "Resource Translator we Azure AI Translator tarapyndan goldanylýar.",
+		"view_translation_pr": "Iň soňky terjime çekme haýyşyny gör."
+	}
+}

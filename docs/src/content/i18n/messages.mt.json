@@ -1,0 +1,31 @@
+{
+	"tagline": "Lokalizza r-repo tiegħek fuq kull commit.",
+	"hero": {
+		"eyebrow": "Wirja",
+		"title": "Bongu f'kull lingwa",
+		"lede": "Din il-paġna tiġi tradotta minn Resource Translator innifsu, f'kull push lejn main, f'kull lingwa li Azure AI Translator jappoġġja."
+	},
+	"phrases": {
+		"greeting": "Bonġu dinja!",
+		"welcome": "Merħba għal Resource Translator.",
+		"machine_translated": "Tradott bil-magna minn Azure AI Translator.",
+		"open_pull_request": "Iftaħ pull request b'traduzzjonijiet ġodda.",
+		"ship_anywhere": "Ibgħat is-softwer tiegħek kullimkien fid-dinja."
+	},
+	"ctas": {
+		"view_source": "Ara s-sors",
+		"translate_now": "Ittraduċi r-repo tiegħi",
+		"read_the_docs": "Aqra d-dokumentazzjoni",
+		"contribute": "Ikkontribwixxi fuq GitHub"
+	},
+	"features": {
+		"fast": "Jittraduċi r-riżorsi f'sekondi.",
+		"reliable": "Jagħmel round-trips ta' kull bajt tal-fajls sors tiegħek.",
+		"configurable": "Ton, industrija, glossarju, kliem vulgari — kollha jistgħu jiġu kkonfigurati.",
+		"ci_native": "Iddisinjat għal GitHub Actions u flussi tax-xogħol pull-request."
+	},
+	"footer": {
+		"powered_by": "Imħaddem minn Resource Translator u Azure AI Translator.",
+		"view_translation_pr": "Ara l-aħħar pull request għat-traduzzjoni."
+	}
+}

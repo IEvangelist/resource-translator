@@ -1,0 +1,31 @@
+{
+	"tagline": "Lokaliseer jou repo op elke commit.",
+	"hero": {
+		"eyebrow": "Uitstalling",
+		"title": "Hallo in elke taal",
+		"lede": "Hierdie bladsy word deur Resource Translator self vertaal, by elke skuif na hoof, in elke taal wat Azure AI Translator ondersteun."
+	},
+	"phrases": {
+		"greeting": "Hallo wêreld!",
+		"welcome": "Welkom by Resource Translator.",
+		"machine_translated": "Masjien-vertaal deur Azure AI Translator.",
+		"open_pull_request": "Maak 'n pull request oop met vars vertalings.",
+		"ship_anywhere": "Stuur jou sagteware enige plek op Aarde."
+	},
+	"ctas": {
+		"view_source": "Sien bron",
+		"translate_now": "Vertaal my repo",
+		"read_the_docs": "Lees die dokumentasie",
+		"contribute": "Dra by op GitHub"
+	},
+	"features": {
+		"fast": "Vertaal hulpbronne binne sekondes.",
+		"reliable": "Draai elke greep van jou bronlêers heen en terug.",
+		"configurable": "Toon, bedryf, woordelys, vloekwoorde — alles konfigureerbaar.",
+		"ci_native": "Ontwerp vir GitHub-aksies en pull-request werkvloeie."
+	},
+	"footer": {
+		"powered_by": "Aangedryf deur Resource Translator en Azure AI Translator.",
+		"view_translation_pr": "Kyk na die mees onlangse vertaal-pull request."
+	}
+}

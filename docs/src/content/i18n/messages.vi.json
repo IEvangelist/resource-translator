@@ -1,0 +1,31 @@
+{
+	"tagline": "Bản địa hóa repo của bạn trên mỗi commit.",
+	"hero": {
+		"eyebrow": "Trưng bày",
+		"title": "Xin chào bằng mọi ngôn ngữ",
+		"lede": "Trang này được dịch bởi chính Resource Translator, trên mỗi lần đẩy sang chính, sang mọi ngôn ngữ mà Azure AI Translator hỗ trợ."
+	},
+	"phrases": {
+		"greeting": "Xin chào, thế giới!",
+		"welcome": "Chào mừng bạn đến với Trình dịch tài nguyên.",
+		"machine_translated": "Được dịch bằng máy bởi Azure AI Translator.",
+		"open_pull_request": "Mở một yêu cầu kéo với các bản dịch mới.",
+		"ship_anywhere": "Vận chuyển phần mềm của bạn đến bất cứ đâu trên Trái đất."
+	},
+	"ctas": {
+		"view_source": "Xem nguồn",
+		"translate_now": "Dịch kho lưu trữ của tôi",
+		"read_the_docs": "Đọc tài liệu",
+		"contribute": "Đóng góp trên GitHub"
+	},
+	"features": {
+		"fast": "Dịch tài nguyên trong vài giây.",
+		"reliable": "Khứ hồi từng byte của tệp nguồn của bạn.",
+		"configurable": "Giọng điệu, ngành, thuật ngữ, ngôn từ tục tĩu - tất cả đều có thể định cấu hình.",
+		"ci_native": "Được thiết kế cho GitHub Actions và quy trình làm việc pull-request."
+	},
+	"footer": {
+		"powered_by": "Được hỗ trợ bởi Resource Translator và Azure AI Translator.",
+		"view_translation_pr": "Xem yêu cầu kéo bản dịch gần đây nhất."
+	}
+}

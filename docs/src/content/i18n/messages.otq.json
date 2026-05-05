@@ -1,0 +1,31 @@
+{
+	"tagline": "Localizar ár repo ja ya cometido.",
+	"hero": {
+		"eyebrow": "Escaparate",
+		"title": "Hadi ga̲tho ya hñä",
+		"lede": "Nuna ar página ar traducido ya Traductor recursos hä xkagentho, ja ya empuje ar principal, ja ya hñä admite Azure AI Translator."
+	},
+	"phrases": {
+		"greeting": "¡Hadi ar ximha̲i!",
+		"welcome": "Hogu̲ntso̲ho̲ da traductor recursos.",
+		"machine_translated": "Traducido ar máquina ya Azure AI Translator.",
+		"open_pull_request": "Abra 'nar petición pull ko ya traducciones frescas.",
+		"ship_anywhere": "Envíe ár software 'na lugar ar ximha̲i."
+	},
+	"ctas": {
+		"view_source": "Ga fuente",
+		"translate_now": "'rats'u̲hñä ma repo",
+		"read_the_docs": "Lei ya documentos",
+		"contribute": "Contribuir jar GitHub"
+	},
+	"features": {
+		"fast": "Gi traduce recursos ja ya 'na̲te ya mfe̲ts'i.",
+		"reliable": "Viajes ar ida y vuelta ya byte yá archivos fuente.",
+		"configurable": "Wa ar ñhöñhö, industria, glosario, blasfemias — ga̲tho configurables.",
+		"ci_native": "Diseñado pa GitHub Acciones ne flujo ar 'be̲fi 'nehe pull."
+	},
+	"footer": {
+		"powered_by": "Desarrollado ya Resource Translator ne Azure AI Translator.",
+		"view_translation_pr": "Ga mäs reciente zohni 'nehe pull ar traducción."
+	}
+}

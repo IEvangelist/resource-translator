@@ -1,0 +1,31 @@
+{
+	"tagline": "Локализирай репозиторията си на всеки коммит.",
+	"hero": {
+		"eyebrow": "Витрина",
+		"title": "Здравейте на всеки език",
+		"lede": "Тази страница е преведена от самия Resource Translator, при всяко натискане към main, на всички езици, които Azure AI Translator поддържа."
+	},
+	"phrases": {
+		"greeting": "Здравей, свят!",
+		"welcome": "Добре дошли в Resource Translator.",
+		"machine_translated": "Машинно преведено от Azure AI Translator.",
+		"open_pull_request": "Отворете pull request с нови преводи.",
+		"ship_anywhere": "Изпращайте софтуера си навсякъде по Земята."
+	},
+	"ctas": {
+		"view_source": "Вижте източника",
+		"translate_now": "Преведи моето репо",
+		"read_the_docs": "Прочетете документацията",
+		"contribute": "Допринасяйте в GitHub"
+	},
+	"features": {
+		"fast": "Превежда ресурсите за секунди.",
+		"reliable": "Връща всеки байт от изходните файлове.",
+		"configurable": "Тон, индустрия, речник, ругатни — всичко може да се конфигурира.",
+		"ci_native": "Създаден за GitHub Actions и pull-request работни процеси."
+	},
+	"footer": {
+		"powered_by": "Задвижвано от Resource Translator и Azure AI Translator.",
+		"view_translation_pr": "Вижте най-новата pull заявка за превод."
+	}
+}

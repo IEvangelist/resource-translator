@@ -1,0 +1,31 @@
+{
+	"tagline": "Lokalisoi repositio jokaisessa commitissa.",
+	"hero": {
+		"eyebrow": "Näyttely",
+		"title": "Hei kaikilla kielillä",
+		"lede": "Tämä sivu on käännetty Resource Translatorin toimesta jokaisella pääkäännöksellä kaikille Azure AI Translatorin tukemille kielille."
+	},
+	"phrases": {
+		"greeting": "Moi maailma!",
+		"welcome": "Tervetuloa Resource Translatoriin.",
+		"machine_translated": "Konekäännös Azure AI Translatorilla.",
+		"open_pull_request": "Avaa pull-pyyntö uusilla käännöksillä.",
+		"ship_anywhere": "Lähetä ohjelmistosi minne tahansa Maassa."
+	},
+	"ctas": {
+		"view_source": "Katso lähde",
+		"translate_now": "Käännä takaisinottoni",
+		"read_the_docs": "Lue dokumentit",
+		"contribute": "Osallistu GitHubissa"
+	},
+	"features": {
+		"fast": "Kääntää resurssit sekunneissa.",
+		"reliable": "Edestakaiset kierrokset jokaista tavua lähdetiedostoistasi.",
+		"configurable": "Sävy, teollisuus, sanasto, kiroilu — kaikki muokattavissa.",
+		"ci_native": "Suunniteltu GitHub-toimintoihin ja pull-request -työnkulkuihin."
+	},
+	"footer": {
+		"powered_by": "Toimii Resource Translatorilla ja Azure AI Translatorilla.",
+		"view_translation_pr": "Katso uusin käännöshakupyyntö."
+	}
+}

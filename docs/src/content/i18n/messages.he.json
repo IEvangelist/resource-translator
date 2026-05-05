@@ -1,0 +1,31 @@
+{
+	"tagline": "לוקליז את המאגר שלך בכל קומיט.",
+	"hero": {
+		"eyebrow": "תצוגה",
+		"title": "שלום בכל שפה",
+		"lede": "עמוד זה מתורגם על ידי Resource Translator עצמו, בכל דחיפה ל-main, לכל שפה ש-Azure AI Translator תומך בה."
+	},
+	"phrases": {
+		"greeting": "שלום, עולם!",
+		"welcome": "ברוכים הבאים ל-Resource Translator.",
+		"machine_translated": "תרגום מכונה על ידי Azure AI Translator.",
+		"open_pull_request": "פתח בקשת משיכה עם תרגומים חדשים.",
+		"ship_anywhere": "שלח את התוכנה שלך לכל מקום על פני כדור הארץ."
+	},
+	"ctas": {
+		"view_source": "הצג מקור",
+		"translate_now": "תרגם את המאגר שלי",
+		"read_the_docs": "קרא את המסמכים",
+		"contribute": "תרמו ב-GitHub"
+	},
+	"features": {
+		"fast": "מתרגם משאבים בשניות.",
+		"reliable": "מבצע הלוך ושוב כל בית בקבצי המקור שלך.",
+		"configurable": "טון, תעשייה, מילון מונחים, קללות — הכל ניתן להגדרה.",
+		"ci_native": "מעוצב עבור פעולות GitHub וזרימות עבודה עם בקשות משיכה."
+	},
+	"footer": {
+		"powered_by": "מופעל על ידי Resource Translator ו-Azure AI Translator.",
+		"view_translation_pr": "צפה בבקשת המשיכה האחרונה לתרגום."
+	}
+}

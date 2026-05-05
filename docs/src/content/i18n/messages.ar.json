@@ -1,0 +1,31 @@
+{
+	"tagline": "حدد موقع المستودع الخاص بك في كل الالتزام.",
+	"hero": {
+		"eyebrow": "العرض",
+		"title": "مرحبا بكل اللغات",
+		"lede": "تمت ترجمة هذه الصفحة بواسطة مترجم الموارد نفسه، في كل محاولة للاستخدام الرئيسي، إلى كل لغة يدعمها Azure AI Translator."
+	},
+	"phrases": {
+		"greeting": "مرحبا يا عالم!",
+		"welcome": "مرحبا بكم في مترجم الموارد.",
+		"machine_translated": "ترجمة آلية بواسطة Azure AI Translator.",
+		"open_pull_request": "افتح طلب سحب مع ترجمات جديدة.",
+		"ship_anywhere": "اشحن برنامجك إلى أي مكان على الأرض."
+	},
+	"ctas": {
+		"view_source": "عرض المصدر",
+		"translate_now": "ترجمة مستودعي",
+		"read_the_docs": "اقرأ الوثائق",
+		"contribute": "ساهم على GitHub"
+	},
+	"features": {
+		"fast": "يترجم الموارد في ثوان.",
+		"reliable": "ينقل كل بايت من ملفاتك المصدرية.",
+		"configurable": "النبرة، الصناعة، القامود، الألفاظ النابية — كلها قابلة للتكوين.",
+		"ci_native": "مصمم لإجراءات GitHub وسير عمل طلبات السحب."
+	},
+	"footer": {
+		"powered_by": "مدعوم من Resource Translator وAzure AI Translator.",
+		"view_translation_pr": "عرض أحدث طلب ترجمة."
+	}
+}

@@ -1,0 +1,31 @@
+{
+	"tagline": "Lokalizujte repozitář u každého commitu.",
+	"hero": {
+		"eyebrow": "Ukázka",
+		"title": "Ahoj ve všech jazycích",
+		"lede": "Tato stránka je přeložena samotným Resource Translatorem při každém pushu na hlavní platformu do všech jazyků, které Azure AI Translator podporuje."
+	},
+	"phrases": {
+		"greeting": "Ahoj, světe!",
+		"welcome": "Vítejte v Resource Translator.",
+		"machine_translated": "Strojově přeloženo Azure AI Translator.",
+		"open_pull_request": "Otevřete pull request s novými překlady.",
+		"ship_anywhere": "Pošlete svůj software kamkoli na Zemi."
+	},
+	"ctas": {
+		"view_source": "Zobrazit zdroj",
+		"translate_now": "Přelož můj repozitář",
+		"read_the_docs": "Přečti si dokumentaci",
+		"contribute": "Přispívejte na GitHubu"
+	},
+	"features": {
+		"fast": "Překládá zdroje během několika sekund.",
+		"reliable": "Zmíní každý bajt vašich zdrojových souborů.",
+		"configurable": "Tón, průmysl, slovníček, sprostá slova — vše lze nastavit.",
+		"ci_native": "Navrženo pro GitHub Actions a workflowy pro pull-requesty."
+	},
+	"footer": {
+		"powered_by": "Poháněno Resource Translatorem a Azure AI Translatorem.",
+		"view_translation_pr": "Prohledejte nejnovější pull request pro překlad."
+	}
+}

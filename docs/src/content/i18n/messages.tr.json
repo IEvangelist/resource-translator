@@ -1,0 +1,31 @@
+{
+	"tagline": "Her commit'ta depoyu yerelleştir.",
+	"hero": {
+		"eyebrow": "Vitrin",
+		"title": "Her dilde merhaba",
+		"lede": "Bu sayfa, Resource Translator tarafından, ana sayfaya her baskıda, Azure AI Translator'ın desteklediği her dile çevriliyor."
+	},
+	"phrases": {
+		"greeting": "Merhaba dünya!",
+		"welcome": "Resource Translator'a hoş geldiniz.",
+		"machine_translated": "Azure AI Translator tarafından makine çevirisi.",
+		"open_pull_request": "Yeni çeviriler içeren bir pull request açın.",
+		"ship_anywhere": "Yazılımınızı dünyanın herhangi bir yerine gönderin."
+	},
+	"ctas": {
+		"view_source": "Kaynağı görüntüle",
+		"translate_now": "Depo işlemlerimi çevir",
+		"read_the_docs": "Dokümanları okuyun",
+		"contribute": "GitHub'da Katkıda Bulun"
+	},
+	"features": {
+		"fast": "Kaynakları saniyeler içinde çeviriyor.",
+		"reliable": "Kaynak dosyalarınızın her baytını gidiş-dönüş yapar.",
+		"configurable": "Ton, endüstri, sözlük, küfürler — hepsi ayarlanabilir.",
+		"ci_native": "GitHub Eylemleri ve pull-request iş akışları için tasarlandı."
+	},
+	"footer": {
+		"powered_by": "Resource Translator ve Azure AI Translator tarafından desteklenmektedir.",
+		"view_translation_pr": "En güncel çeviri çekme isteğini görüntüleyin."
+	}
+}

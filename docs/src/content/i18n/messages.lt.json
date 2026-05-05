@@ -1,0 +1,31 @@
+{
+	"tagline": "Lokalizuokite savo atpirkimo sandorius kiekviename įsipareigojime.",
+	"hero": {
+		"eyebrow": "Vitrina",
+		"title": "Sveiki visomis kalbomis",
+		"lede": "Šį puslapį išverčia pats išteklių vertėjas, kiekvieną kartą paspaudus į pagrindinę, į visas kalbas, kurias palaiko \"Azure AI Translator\"."
+	},
+	"phrases": {
+		"greeting": "Sveikas, pasauli!",
+		"welcome": "Sveiki atvykę į Resource Translator.",
+		"machine_translated": "Mašininiu būdu išversta \"Azure AI Translator\".",
+		"open_pull_request": "Atidarykite ištraukimo užklausą su naujais vertimais.",
+		"ship_anywhere": "Siųskite savo programinę įrangą į bet kurią Žemės vietą."
+	},
+	"ctas": {
+		"view_source": "Žiūrėti šaltinį",
+		"translate_now": "Išversti mano saugyklą",
+		"read_the_docs": "Skaityti dokumentus",
+		"contribute": "Prisidėkite prie \"GitHub\""
+	},
+	"features": {
+		"fast": "Išverčia išteklius per kelias sekundes.",
+		"reliable": "Pirmyn ir atgal kiekvieną šaltinio failų baitą.",
+		"configurable": "Tonas, pramonė, žodynėlis, nešvankybės - visi konfigūruojami.",
+		"ci_native": "Sukurta \"GitHub\" veiksmams ir ištraukimo užklausų darbo eigoms."
+	},
+	"footer": {
+		"powered_by": "Parengta naudojant \"Resource Translator\" ir \"Azure AI Translator\".",
+		"view_translation_pr": "Peržiūrėkite naujausią vertimo užklausą."
+	}
+}

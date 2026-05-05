@@ -1,0 +1,31 @@
+{
+	"tagline": "Lokalisiere dein Repository bei jedem Commit.",
+	"hero": {
+		"eyebrow": "Präsentation",
+		"title": "Hallo in jeder Sprache",
+		"lede": "Diese Seite wird von Resource Translator selbst übersetzt, bei jedem Push auf main, in jede Sprache, die Azure AI Translator unterstützt."
+	},
+	"phrases": {
+		"greeting": "Hallo Welt!",
+		"welcome": "Willkommen bei Resource Translator.",
+		"machine_translated": "Maschinell übersetzt von Azure AI Translator.",
+		"open_pull_request": "Öffne eine Pull Request mit frischen Übersetzungen.",
+		"ship_anywhere": "Verschickt eure Software überall auf der Erde."
+	},
+	"ctas": {
+		"view_source": "Quelle anzeigen",
+		"translate_now": "Übersetze mein Repository",
+		"read_the_docs": "Lies die Dokumentation",
+		"contribute": "Beitrag auf GitHub"
+	},
+	"features": {
+		"fast": "Übersetzt Ressourcen in Sekunden.",
+		"reliable": "Runden Sie jedes Byte Ihrer Quelldateien.",
+		"configurable": "Tonfall, Industrie, Glossar, Flüche – alles konfigurierbar.",
+		"ci_native": "Entwickelt für GitHub-Aktionen und Pull-Request-Workflows."
+	},
+	"footer": {
+		"powered_by": "Angetrieben von Resource Translator und Azure AI Translator.",
+		"view_translation_pr": "Sehen Sie sich die aktuellste Übersetzungs-Pull Request an."
+	}
+}

@@ -1,0 +1,31 @@
+{
+	"tagline": "Beka i-repo yakho kuzo zonke izibophezelo.",
+	"hero": {
+		"eyebrow": "Umbukiso",
+		"title": "Sawubona kuzo zonke izilimi",
+		"lede": "Leli khasi lihunyushwa yi-Resource Translator uqobo, kuzo zonke izilimi ezisekelwayo, kuzo zonke izilimi ezisekelwa yi-Azure AI Translator."
+	},
+	"phrases": {
+		"greeting": "Sawubona, umhlaba!",
+		"welcome": "Siyakwamukela ku-Resource Translator.",
+		"machine_translated": "Ukuhunyushwa komshini ngu-Azure AI Translator.",
+		"open_pull_request": "Vula isicelo sokudonsa ngezinguqulo ezintsha.",
+		"ship_anywhere": "Thumela isoftware yakho noma kuphi emhlabeni."
+	},
+	"ctas": {
+		"view_source": "Buka umthombo",
+		"translate_now": "Humusha i-repo yami",
+		"read_the_docs": "Funda amadokhumenti",
+		"contribute": "Faka isandla ku-GitHub"
+	},
+	"features": {
+		"fast": "Ukuhumusha izinsiza ngemizuzwana.",
+		"reliable": "Phinda ujikeleze yonke i-byte yamafayela akho omthombo.",
+		"configurable": "Ithoni, imboni, i-glossary, ukuhlambalaza - konke kulungiselelwe.",
+		"ci_native": "Yakhelwe Izenzo zeGitHub kanye nokudonsa-isicelo sokuhamba komsebenzi."
+	},
+	"footer": {
+		"powered_by": "Inikwe amandla yi-Resource Translator ne-Azure AI Translator.",
+		"view_translation_pr": "Bheka isicelo sokudonsa sokuhumusha kwakamuva."
+	}
+}

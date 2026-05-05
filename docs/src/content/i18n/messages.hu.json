@@ -1,0 +1,31 @@
+{
+	"tagline": "Lokalizáld a repódat minden commit-en.",
+	"hero": {
+		"eyebrow": "Bemutató",
+		"title": "Üdvözlöm minden nyelven",
+		"lede": "Ezt az oldalt maga a Resource Translator fordítja le, minden fő irányba történő indításkor, minden Azure AI Fordító által támogatott nyelvre."
+	},
+	"phrases": {
+		"greeting": "Szia, világ!",
+		"welcome": "Üdvözlünk a Resource Translatorban.",
+		"machine_translated": "Gépi fordítás Azure AI Translator által.",
+		"open_pull_request": "Nyiss egy pull requestet friss fordításokkal.",
+		"ship_anywhere": "Küldd a szoftveredet bárhová a Földön."
+	},
+	"ctas": {
+		"view_source": "Forrás megtekintése",
+		"translate_now": "Fordítsd le a repo-mat",
+		"read_the_docs": "Olvasd el a dokumentumokat",
+		"contribute": "Hozzájárulás a GitHubon"
+	},
+	"features": {
+		"fast": "Másodpercek alatt fordítja le az erőforrásokat.",
+		"reliable": "A forrásfájlok minden bájtját oda-vissza járja.",
+		"configurable": "Hangnem, ipar, szószedés, káromkodás — mind konfigurálható.",
+		"ci_native": "GitHub műveletekre és pull-request munkafolyamatokra tervezték."
+	},
+	"footer": {
+		"powered_by": "Resource Translator és Azure AI Translator által működtetve.",
+		"view_translation_pr": "Tekintse meg a legfrissebb fordítási pull requestet."
+	}
+}

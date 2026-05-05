@@ -1,0 +1,31 @@
+{
+	"tagline": "Εντοπίστε το αποθετήριο σας σε κάθε υποβολή.",
+	"hero": {
+		"eyebrow": "Βιτρίνα",
+		"title": "Γεια σας σε κάθε γλώσσα",
+		"lede": "Αυτή η σελίδα μεταφράζεται από το ίδιο το Resource Translator, σε κάθε ώθηση προς την κύρια, σε κάθε γλώσσα που υποστηρίζει το Azure AI Translator."
+	},
+	"phrases": {
+		"greeting": "Γεια σου κόσμε!",
+		"welcome": "Καλώς ήρθατε στο Resource Translator.",
+		"machine_translated": "Μηχανική μετάφραση από το Azure AI Translator.",
+		"open_pull_request": "Ανοίξτε ένα αίτημα έλξης με νέες μεταφράσεις.",
+		"ship_anywhere": "Στείλτε το λογισμικό σας οπουδήποτε στη Γη."
+	},
+	"ctas": {
+		"view_source": "Προβολή πηγής",
+		"translate_now": "Μετάφραση του repo μου",
+		"read_the_docs": "Διαβάστε τα έγγραφα",
+		"contribute": "Συνεισφέρετε στο GitHub"
+	},
+	"features": {
+		"fast": "Μεταφράζει πόρους σε δευτερόλεπτα.",
+		"reliable": "Ταξίδια μετ' επιστροφής σε κάθε byte των αρχείων προέλευσης.",
+		"configurable": "Τόνος, βιομηχανία, γλωσσάρι, βωμολοχίες — όλα διαμορφώσιμα.",
+		"ci_native": "Σχεδιασμένο για ενέργειες GitHub και ροές εργασιών pull-request."
+	},
+	"footer": {
+		"powered_by": "Με την υποστήριξη του Resource Translator και του Azure AI Translator.",
+		"view_translation_pr": "Δείτε το πιο πρόσφατο αίτημα έλξης μετάφρασης."
+	}
+}

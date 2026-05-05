@@ -1,0 +1,31 @@
+{
+	"tagline": "Lokaliséier däi Repo bei all Commit.",
+	"hero": {
+		"eyebrow": "Showcase",
+		"title": "Hallo an all Sprooch",
+		"lede": "Dës Säit gëtt vum Resource Translator selwer iwwersat, bei all Push op Main, an all Sprooch, déi Azure AI Translator ënnerstëtzt."
+	},
+	"phrases": {
+		"greeting": "Hallo Welt!",
+		"welcome": "Wëllkomm bei Resource Translator.",
+		"machine_translated": "Maschinell iwwersat vum Azure AI Translator.",
+		"open_pull_request": "Maach eng Pull Request mat frëschen Iwwersetzungen op.",
+		"ship_anywhere": "Schéck deng Software iwwerall op der Äerd."
+	},
+	"ctas": {
+		"view_source": "Quell kucken",
+		"translate_now": "Iwwersetzt mäi Repository",
+		"read_the_docs": "Lies d'Dokumenter",
+		"contribute": "Bäidroen op GitHub"
+	},
+	"features": {
+		"fast": "Iwwersetzt Ressourcen an e puer Sekonnen.",
+		"reliable": "Maacht all Byte vun Äre Quellfichieren hin an zréck.",
+		"configurable": "Toun, Industrie, Glossar, Fluchwuert — alles konfiguréierbar.",
+		"ci_native": "Entworf fir GitHub Actions an Pull-Request Workflows."
+	},
+	"footer": {
+		"powered_by": "Ugedriwwen vum Resource Translator an Azure AI Translator.",
+		"view_translation_pr": "Kuckt déi lescht Iwwersetzungspull Request."
+	}
+}

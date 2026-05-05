@@ -1,0 +1,31 @@
+{
+	"tagline": "모든 커밋마다 저장소를 현지화하세요.",
+	"hero": {
+		"eyebrow": "쇼케이스",
+		"title": "모든 언어로 인사하세요",
+		"lede": "이 페이지는 Resource Translator 자체에 의해 메인 배포 시 Azure AI Translator가 지원하는 모든 언어로 번역됩니다."
+	},
+	"phrases": {
+		"greeting": "안녕, 세상!",
+		"welcome": "리소스 번역기에 오신 것을 환영합니다.",
+		"machine_translated": "Azure AI 번역기가 기계 번역을 제공함.",
+		"open_pull_request": "새 번역으로 풀 리퀘스트를 열어보세요.",
+		"ship_anywhere": "소프트웨어를 전 세계 어디든 배송하세요."
+	},
+	"ctas": {
+		"view_source": "출처 보기",
+		"translate_now": "내 리포를 번역해 줘",
+		"read_the_docs": "문서를 읽어보세요",
+		"contribute": "GitHub에 기여하세요"
+	},
+	"features": {
+		"fast": "자원을 몇 초 만에 번역할 수 있습니다.",
+		"reliable": "소스 파일의 모든 바이트를 왕복합니다.",
+		"configurable": "어조, 업계, 용어집, 욕설 — 모두 설정 가능합니다.",
+		"ci_native": "GitHub Actions와 풀 리퀘스트 워크플로우를 위해 설계되었습니다."
+	},
+	"footer": {
+		"powered_by": "리소스 번역기와 Azure AI 번역기로 구동됩니다.",
+		"view_translation_pr": "가장 최근의 번역 풀 요청을 확인하세요."
+	}
+}

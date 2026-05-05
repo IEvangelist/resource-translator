@@ -1,0 +1,31 @@
+{
+	"tagline": "Fakafeituʻu hoʻo repo ʻi he tukupa kotoa pe.",
+	"hero": {
+		"eyebrow": "Fakaʻaliʻali",
+		"title": "Malo e lelei ʻi he lea fakafonua kotoa pe",
+		"lede": "ʻOku liliu ʻa e peesi ko ʻeni ʻe he Resource Translator, ʻi he teke kotoa pe ki he main, ki he lea fakafonua kotoa pe ʻoku poupouʻi ʻe he Azure AI Translator."
+	},
+	"phrases": {
+		"greeting": "Malo e lelei, mamani!",
+		"welcome": "ʻOku talitali lelei koe ki he Resource Translator.",
+		"machine_translated": "Liliu fakamisini ʻe he Azure AI Translator.",
+		"open_pull_request": "Fakaava ha pull request mo ha ngaahi liliu foʻou.",
+		"ship_anywhere": "Fakafolau hoʻo polokalama fakakomipiuta ki ha feituʻu pe ʻi he mamani."
+	},
+	"ctas": {
+		"view_source": "Vakai ki he maʻuʻanga fakamatala",
+		"translate_now": "Liliu ʻeku repo",
+		"read_the_docs": "Lau ʻa e ngaahi fakamatala",
+		"contribute": "Tokoni ʻi he GitHub"
+	},
+	"features": {
+		"fast": "Liliu ʻa e ngaahi maʻuʻanga tokoni ʻi ha lau sekoni.",
+		"reliable": "Takai ʻi he byte kotoa pe ʻo hoʻo ngaahi faile maʻuʻanga tokoni.",
+		"configurable": "Ongo, ngaueʻanga, glossary, lea kovi — configurable kotoa.",
+		"ci_native": "Fokotuʻutuʻu ki he GitHub Actions mo e pull-request workflows."
+	},
+	"footer": {
+		"powered_by": "Fakalele ʻe he Resource Translator mo e Azure AI Translator.",
+		"view_translation_pr": "Vakai ki he kole toʻo ʻo e liliu fakamuimuitaha."
+	}
+}

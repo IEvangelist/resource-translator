@@ -1,0 +1,31 @@
+{
+	"tagline": "Lokalizirajte svoj repozitorij pri vsakem commitu.",
+	"hero": {
+		"eyebrow": "Predstavitev",
+		"title": "Pozdravljeni v vseh jezikih",
+		"lede": "To stran je prevedena s strani Resource Translator sam, ob vsakem pushu na main, v vse jezike, ki jih podpira Azure AI Translator."
+	},
+	"phrases": {
+		"greeting": "Pozdravljen, svet!",
+		"welcome": "Dobrodošli v Resource Translatorju.",
+		"machine_translated": "Strojno prevedeno: Azure AI Translator.",
+		"open_pull_request": "Odprite pull request s svežimi prevodi.",
+		"ship_anywhere": "Pošljite svojo programsko opremo kamorkoli na Zemlji."
+	},
+	"ctas": {
+		"view_source": "Oglejte si vir",
+		"translate_now": "Prevedi moj repozitorij",
+		"read_the_docs": "Preberi dokumentacijo",
+		"contribute": "Prispevajte na GitHubu"
+	},
+	"features": {
+		"fast": "Vire prevede v nekaj sekundah.",
+		"reliable": "Potuje v oba smeri vsak bajt vaših izvornih datotek.",
+		"configurable": "Ton, industrija, slovarček, kletvice — vse nastavljivo.",
+		"ci_native": "Zasnovano za GitHub Actions in delovne tokove za pull request."
+	},
+	"footer": {
+		"powered_by": "Poganjata ga Resource Translator in Azure AI Translator.",
+		"view_translation_pr": "Oglejte si najnovejši pull request za prevod."
+	}
+}

@@ -1,0 +1,31 @@
+{
+	"tagline": "په هر کمیټ کې خپل ریپو محلی کړئ.",
+	"hero": {
+		"eyebrow": "شوکیس",
+		"title": "په هره ژبه سلام",
+		"lede": "دا پاڼه د Resource Translator له خوا خپله ژباړل کېږی، هر ځل چې اصلی ته فشار ورکړی، هرې ژبې ته چې Azure AI Translator ملاتړ کوی."
+	},
+	"phrases": {
+		"greeting": "سلام نړۍ!",
+		"welcome": "د سرچینې ژباړونکی ته ښه راغلاست.",
+		"machine_translated": "د Azure AI Translator لخوا ماشین ژباړل شوی.",
+		"open_pull_request": "د تازه ژباړو سره د کش غوښتنه خلاصه کړه.",
+		"ship_anywhere": "خپل سافټویر د ځمکې هر ځای ته واستوه."
+	},
+	"ctas": {
+		"view_source": "سرچینه وګورئ",
+		"translate_now": "زما ریپو وژباړه",
+		"read_the_docs": "اسناد ولولئ",
+		"contribute": "په GitHub کې مرسته وکړئ"
+	},
+	"features": {
+		"fast": "سرچینې په څو ثانیو کې ژباړی.",
+		"reliable": "ستا د سرچینې فایلونو هر بایټ ته شاته ګرځوی.",
+		"configurable": "ټون، صنعت، لغت، بد الفاظ — ټول تنظیمېدونکی دی.",
+		"ci_native": "د GitHub Actions او pull-request workflows لپاره ډیزاین شوی."
+	},
+	"footer": {
+		"powered_by": "د سرچینې ژباړونکی او Azure AI ټرانسلیټر لخوا ځواکمن شوی.",
+		"view_translation_pr": "د وروستی ژباړې راکش غوښتنه وګورئ."
+	}
+}

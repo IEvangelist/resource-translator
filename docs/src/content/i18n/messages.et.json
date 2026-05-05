@@ -1,0 +1,31 @@
+{
+	"tagline": "Lokaliseeri oma repositsioon igal commitil.",
+	"hero": {
+		"eyebrow": "Showcase",
+		"title": "Tere igas keeles",
+		"lede": "See leht tõlgitakse Resource Translatori enda poolt iga peamise keele tõukega igasse keelde, mida Azure AI Translator toetab."
+	},
+	"phrases": {
+		"greeting": "Tere, maailm!",
+		"welcome": "Tere tulemast Resource Translatorisse.",
+		"machine_translated": "Masintõlkija Azure AI Translatori poolt.",
+		"open_pull_request": "Ava tõmbetaotlus värskete tõlgetega.",
+		"ship_anywhere": "Saada oma tarkvara ükskõik kuhu Maal."
+	},
+	"ctas": {
+		"view_source": "Vaata allikat",
+		"translate_now": "Tõlgi mu repositsioon",
+		"read_the_docs": "Loe dokumentatsiooni",
+		"contribute": "Panusta GitHubis"
+	},
+	"features": {
+		"fast": "Tõlgib ressursid sekunditega.",
+		"reliable": "Käib edasi-tagasi iga bait sinu lähtefailidest.",
+		"configurable": "Toon, tööstus, sõnastik, roppused — kõik seadistatavad.",
+		"ci_native": "Loodud GitHubi toimingute ja pull-request töövoogude jaoks."
+	},
+	"footer": {
+		"powered_by": "Toidab Resource Translator ja Azure AI Translator.",
+		"view_translation_pr": "Vaata kõige värskemat tõlke tõmbetaotlust."
+	}
+}
