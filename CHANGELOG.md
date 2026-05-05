@@ -20,6 +20,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Post-translation glossary support for fixed term overrides.
 - Step summary emitted via `core.summary` in addition to outputs.
 - Astro + Tailwind v4 docs site at `docs/`, deployed to GitHub Pages.
+- **Translations showcase**: `/translations` page that renders the docs
+  site's i18n source in every Azure-supported locale, plus a new
+  `translate-docs` workflow that dogfoods this action on its own docs
+  whenever `docs/src/content/i18n/messages.en.json` changes. Source of
+  truth for supported locales is `docs/src/data/azure-locales.json`.
 - Dependabot auto-merge workflow for green minor/patch updates, with
   explicit ignore rules for `@actions/{core,github,glob}` ESM majors so
   the CommonJS bundle stays runnable.

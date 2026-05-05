@@ -1,0 +1,141 @@
+name: translate-docs
+
+# Dogfoods Resource Translator on its own docs site.
+#
+# Triggers when the English source-of-truth messages file changes (or the
+# repo-level config changes), translates it into every Azure-supported
+# locale, validates the docs build, and opens a pull request with the
+# new sibling messages.<locale>.json files.
+#
+# Required repo secrets:
+#   AZURE_TRANSLATOR_SUBSCRIPTION_KEY
+#   AZURE_TRANSLATOR_ENDPOINT          (e.g. https://api.cognitive.microsofttranslator.com/)
+#   AZURE_TRANSLATOR_REGION            (e.g. canadacentral)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/src/content/i18n/messages.en.json"
+      - "docs/src/data/azure-locales.json"
+      - ".github/resource-translator.yml"
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: "Dry run (no files written, no PR opened)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: translate-docs-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  translate:
+    if: github.actor != 'dependabot[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Verify Azure Translator secrets are configured
+        env:
+          AZURE_TRANSLATOR_SUBSCRIPTION_KEY: ${{ secrets.AZURE_TRANSLATOR_SUBSCRIPTION_KEY }}
+          AZURE_TRANSLATOR_ENDPOINT: ${{ secrets.AZURE_TRANSLATOR_ENDPOINT }}
+        run: |
+          if [ -z "$AZURE_TRANSLATOR_SUBSCRIPTION_KEY" ] || [ -z "$AZURE_TRANSLATOR_ENDPOINT" ]; then
+            {
+              echo "::error::Azure Translator secrets are not configured."
+              echo "::error::Add AZURE_TRANSLATOR_SUBSCRIPTION_KEY, AZURE_TRANSLATOR_ENDPOINT, and AZURE_TRANSLATOR_REGION to the repository secrets."
+            }
+            echo "## ❌ Missing secrets" >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "This workflow requires the following repository secrets:" >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "- \`AZURE_TRANSLATOR_SUBSCRIPTION_KEY\`" >> "$GITHUB_STEP_SUMMARY"
+            echo "- \`AZURE_TRANSLATOR_ENDPOINT\` (e.g. \`https://api.cognitive.microsofttranslator.com/\`)" >> "$GITHUB_STEP_SUMMARY"
+            echo "- \`AZURE_TRANSLATOR_REGION\` (e.g. \`canadacentral\`)" >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+
+      - name: Use Node.js 24
+        uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+
+      # Source-of-truth for the locale list lives in docs/src/data/azure-locales.json.
+      # Extract the codes and pin them to a JSON-array string the action accepts.
+      - name: Compute toLocales from azure-locales.json
+        id: locales
+        run: |
+          codes=$(node -e "console.log(JSON.stringify(require('./docs/src/data/azure-locales.json').map(l => l.code)))")
+          echo "json<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$codes" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+          count=$(node -e "console.log(require('./docs/src/data/azure-locales.json').length)")
+          echo "Targeting $count locales."
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+
+      # NOTE: We deliberately do NOT export GITHUB_TOKEN to the action's env.
+      # When GITHUB_TOKEN is set the action narrows candidate files to those
+      # in the latest commit, which would skip messages.en.json on
+      # config-only triggers and on workflow_dispatch.
+      - name: Translate docs i18n
+        id: translator
+        uses: ./
+        with:
+          sourceLocale: en
+          subscriptionKey: ${{ secrets.AZURE_TRANSLATOR_SUBSCRIPTION_KEY }}
+          endpoint: ${{ secrets.AZURE_TRANSLATOR_ENDPOINT }}
+          region: ${{ secrets.AZURE_TRANSLATOR_REGION }}
+          include: docs/src/content/i18n/messages.en.json
+          configPath: .github/resource-translator.yml
+          toLocales: ${{ steps.locales.outputs.json }}
+          dryRun: ${{ inputs.dry-run || 'false' }}
+          failOnError: false
+          allowFallback: true
+
+      - name: Summary
+        run: |
+          echo "### Translate docs results" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Targeted **${{ steps.locales.outputs.count }}** locales" >> "$GITHUB_STEP_SUMMARY"
+          echo "- has-new-translations: \`${{ steps.translator.outputs.has-new-translations }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- ${{ steps.translator.outputs.summary-title }}" >> "$GITHUB_STEP_SUMMARY"
+
+      # Validate that the freshly-translated JSONs don't break the docs
+      # build before we open a PR. Runs only when the action wrote files.
+      - name: Validate docs build
+        if: steps.translator.outputs.has-new-translations == 'true' && inputs.dry-run != true
+        working-directory: docs
+        run: |
+          npm ci
+          npm run build
+
+      - name: Open pull request with translations
+        if: steps.translator.outputs.has-new-translations == 'true' && inputs.dry-run != true
+        uses: peter-evans/create-pull-request@v8
+        with:
+          branch: machine-translation/docs-i18n
+          delete-branch: true
+          base: main
+          commit-message: "docs(i18n): refresh machine-translated messages"
+          title: ${{ steps.translator.outputs.summary-title }}
+          body: |
+            ${{ steps.translator.outputs.summary-details }}
+
+            ---
+
+            🤖 Auto-generated by [`translate-docs.yml`](https://github.com/IEvangelist/resource-translator/blob/main/.github/workflows/translate-docs.yml).
+            Source of truth: `docs/src/content/i18n/messages.en.json`.
+            Locale list: `docs/src/data/azure-locales.json`.
+          labels: |
+            localization
+            docs
+            automated
+          add-paths: |
+            docs/src/content/i18n/messages.*.json

@@ -1,0 +1,258 @@
+---
+import { Icon } from "astro-icon/components";
+import DocLayout from "../layouts/DocLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import locales from "../data/azure-locales.json";
+import enMessages from "../content/i18n/messages.en.json";
+
+type Messages = typeof enMessages;
+type Locale = (typeof locales)[number];
+
+// Build-time eager glob of every translated messages.<locale>.json. The
+// translate-docs workflow lands these via PR; once merged, the next docs
+// build picks them up automatically.
+const modules = import.meta.glob<{ default: Messages }>(
+  "../content/i18n/messages.*.json",
+  { eager: true },
+);
+
+function lookup(code: string): Messages | null {
+  const key = `../content/i18n/messages.${code}.json`;
+  const mod = modules[key];
+  return mod ? mod.default : null;
+}
+
+interface Card {
+  locale: Locale;
+  messages: Messages | null;
+  translated: boolean;
+}
+
+const cards: Card[] = locales
+  .slice()
+  .sort((a, b) => a.englishName.localeCompare(b.englishName))
+  .map((locale) => ({
+    locale,
+    messages: lookup(locale.code),
+    translated: lookup(locale.code) !== null,
+  }));
+
+const translatedCount = cards.filter((c) => c.translated).length;
+const totalCount = cards.length;
+const sourceCard: Card = {
+  locale: { code: "en", englishName: "English", nativeName: "English", rtl: false },
+  messages: enMessages,
+  translated: true,
+};
+---
+
+<DocLayout title="Translations">
+  <PageHero
+    slot="hero"
+    eyebrow="Showcase"
+    title="Hello in every language"
+    icon="lucide:languages"
+    lede={enMessages.hero.lede}
+  />
+
+  <div
+    class="not-prose mb-8 flex flex-wrap items-center gap-3 rounded-xl border border-(--border) bg-(--bg-elevated)/60 p-4 text-sm"
+  >
+    <span
+      class="inline-flex items-center gap-1.5 rounded-md bg-(--color-brand-600) px-2.5 py-1 font-semibold text-white"
+    >
+      <Icon name="lucide:globe" class="size-3.5" />
+      {totalCount} locales
+    </span>
+    <span class="text-(--fg-muted)">
+      <strong class="text-(--fg)">{translatedCount}</strong> currently rendered
+      {translatedCount === totalCount
+        ? "— complete!"
+        : `— ${totalCount - translatedCount} pending the next translate-docs run.`}
+    </span>
+    <a
+      class="ml-auto inline-flex items-center gap-1 text-sm font-medium"
+      href="https://github.com/IEvangelist/resource-translator/actions/workflows/translate-docs.yml"
+      rel="noopener"
+      target="_blank"
+    >
+      <Icon name="lucide:external-link" class="size-3.5" />
+      View workflow runs
+    </a>
+  </div>
+
+  <div class="not-prose mb-6">
+    <label class="block text-sm font-semibold text-(--fg)" for="locale-search">
+      Filter
+    </label>
+    <input
+      id="locale-search"
+      type="search"
+      placeholder="Search by language, code, or native name…"
+      autocomplete="off"
+      class="mt-1 w-full rounded-lg border border-(--border) bg-(--bg) px-3 py-2 text-sm shadow-sm focus-visible:border-(--color-brand-500)"
+    />
+  </div>
+
+  <h2 class="not-prose mt-12 mb-4 text-xl font-semibold tracking-tight">
+    <Icon
+      name="lucide:flag"
+      class="mr-1 inline size-5 align-text-bottom text-(--color-warm-600)"
+    />
+    Source
+  </h2>
+
+  <article
+    class="not-prose mb-10 rounded-2xl border-2 border-(--color-brand-500)/40 bg-linear-to-br from-(--color-brand-500)/5 via-(--color-accent-500)/5 to-(--color-warm-500)/5 p-5 shadow-sm"
+    data-locale-card
+    data-search-haystack={`${sourceCard.locale.code} ${sourceCard.locale.englishName} ${sourceCard.locale.nativeName} english source`}
+    lang={sourceCard.locale.code}
+  >
+    <header class="mb-3 flex items-baseline justify-between gap-3">
+      <div>
+        <p class="text-base font-bold text-(--fg)">{sourceCard.locale.englishName}</p>
+        <p class="text-sm text-(--fg-muted)">{sourceCard.locale.nativeName}</p>
+      </div>
+      <code
+        class="rounded-md bg-(--bg-elevated) px-2 py-0.5 text-xs font-mono text-(--fg-muted)"
+      >
+        {sourceCard.locale.code}
+      </code>
+    </header>
+    <p class="text-base leading-relaxed text-(--fg)">
+      {sourceCard.messages!.phrases.greeting}
+    </p>
+    <p class="mt-1 text-sm text-(--fg-muted)">
+      {sourceCard.messages!.tagline}
+    </p>
+  </article>
+
+  <h2 class="not-prose mt-12 mb-4 text-xl font-semibold tracking-tight">
+    <Icon
+      name="lucide:globe"
+      class="mr-1 inline size-5 align-text-bottom text-(--color-accent-600)"
+    />
+    Machine translations
+  </h2>
+
+  <div
+    class="not-prose grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+    id="locale-grid"
+  >
+    {
+      cards.map((card) => (
+        <article
+          class:list={[
+            "group rounded-xl border bg-(--bg-elevated)/40 p-4 transition-shadow hover:shadow-md",
+            card.translated
+              ? "border-(--border)"
+              : "border-dashed border-(--border) opacity-70",
+          ]}
+          data-locale-card
+          data-translated={card.translated ? "true" : "false"}
+          data-search-haystack={`${card.locale.code} ${card.locale.englishName} ${card.locale.nativeName}`}
+          lang={card.locale.code}
+          dir={card.locale.rtl ? "rtl" : "ltr"}
+        >
+          <header class="mb-2 flex items-baseline justify-between gap-2">
+            <div class="min-w-0">
+              <p class="truncate text-sm font-semibold text-(--fg)" dir="ltr">
+                {card.locale.englishName}
+              </p>
+              <p class="truncate text-xs text-(--fg-muted)">
+                {card.locale.nativeName}
+              </p>
+            </div>
+            <code
+              class="flex-none rounded bg-(--bg) px-1.5 py-0.5 text-[10px] font-mono text-(--fg-muted)"
+              dir="ltr"
+            >
+              {card.locale.code}
+            </code>
+          </header>
+          {card.translated ? (
+            <>
+              <p class="text-sm leading-relaxed text-(--fg)">
+                {card.messages!.phrases.greeting}
+              </p>
+              <p class="mt-1 text-xs text-(--fg-muted)">
+                {card.messages!.tagline}
+              </p>
+            </>
+          ) : (
+            <p
+              class="flex items-center gap-1.5 text-xs italic text-(--fg-muted)"
+              dir="ltr"
+            >
+              <Icon name="lucide:hourglass" class="size-3.5 flex-none" />
+              Translation pending — open a translate-docs run.
+            </p>
+          )}
+        </article>
+      ))
+    }
+  </div>
+
+  <p
+    id="locale-empty"
+    hidden
+    class="not-prose mt-6 rounded-lg border border-dashed border-(--border) bg-(--bg-elevated)/40 p-6 text-center text-sm text-(--fg-muted)"
+  >
+    No locales match that filter.
+  </p>
+
+  <h2 class="mt-16">How this works</h2>
+  <ol>
+    <li>
+      The English source file lives at
+      <code>docs/src/content/i18n/messages.en.json</code>.
+    </li>
+    <li>
+      Pushes that touch it kick off
+      <a
+        href="https://github.com/IEvangelist/resource-translator/blob/main/.github/workflows/translate-docs.yml"
+        rel="noopener"
+        target="_blank">.github/workflows/translate-docs.yml</a
+      >, which runs <strong>this very action</strong> against itself.
+    </li>
+    <li>
+      The action fans out to every Azure AI Translator-supported locale
+      (configured in <code>.github/resource-translator.yml</code>) and
+      writes a sibling <code>messages.&lt;locale&gt;.json</code> per
+      target.
+    </li>
+    <li>
+      A pull request is opened with the new translations. Merging it
+      republishes this page with the cards filled in.
+    </li>
+  </ol>
+
+  <p class="mt-8 text-sm text-(--fg-muted)">
+    {enMessages.footer.powered_by}
+  </p>
+</DocLayout>
+
+<script>
+  function bindLocaleSearch() {
+    const input = document.getElementById("locale-search") as HTMLInputElement | null;
+    const empty = document.getElementById("locale-empty") as HTMLElement | null;
+    if (!input || input.dataset.bound === "1") return;
+    input.dataset.bound = "1";
+    const cards = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-locale-card]"),
+    );
+    input.addEventListener("input", () => {
+      const q = input.value.trim().toLowerCase();
+      let visible = 0;
+      for (const card of cards) {
+        const haystack = (card.dataset.searchHaystack ?? "").toLowerCase();
+        const match = q === "" || haystack.includes(q);
+        card.hidden = !match;
+        if (match) visible++;
+      }
+      if (empty) empty.hidden = visible !== 0 || q === "";
+    });
+  }
+  bindLocaleSearch();
+  document.addEventListener("astro:page-load", bindLocaleSearch);
+</script>
