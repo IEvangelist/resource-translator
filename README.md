@@ -10,7 +10,9 @@
 [![docs](https://img.shields.io/badge/docs-ievangelist.github.io%2Fresource--translator-1f3a8a)](https://ievangelist.github.io/resource-translator/)
 
 A GitHub Action that opens machine-translated pull requests for resource files
-in your repository, powered by **Azure AI Translator**.
+in your repository, powered by **Azure AI Translator** via Microsoft's official
+[`@azure-rest/ai-translation-text`](https://www.npmjs.com/package/@azure-rest/ai-translation-text)
+SDK — built-in retry/throttling, no hand-rolled HTTP clients.
 
 Supported formats: `.resx`, `.xliff`, `.po`, `.json`, `.ini`, `.restext`.
 
