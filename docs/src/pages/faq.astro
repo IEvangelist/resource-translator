@@ -12,6 +12,24 @@ import PageHero from "../components/PageHero.astro";
     lede="Quick answers to the questions that come up most often when adopting the action."
   />
 
+  <h2>How does the action talk to Azure?</h2>
+  <p>
+    Through Microsoft's official
+    <a
+      href="https://www.npmjs.com/package/@azure-rest/ai-translation-text"
+      rel="noopener"
+      target="_blank"><code>@azure-rest/ai-translation-text</code></a
+    > SDK, layered on
+    <a
+      href="https://www.npmjs.com/package/@azure/core-rest-pipeline"
+      rel="noopener"
+      target="_blank"><code>@azure/core-rest-pipeline</code></a
+    >. That gets you automatic retries on 408/429/5xx, typed request and
+    response models, and authentication header handling for free —
+    everything that used to be a hand-rolled <code>axios</code> call. The
+    public action surface (inputs, outputs, file outputs) is unchanged.
+  </p>
+
   <h2>Why are translations sometimes off-brand or off-tone?</h2>
   <p>
     Machine translation defaults to a general-purpose model. Three knobs help:

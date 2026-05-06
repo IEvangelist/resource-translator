@@ -73,8 +73,8 @@ const features = [
   },
   {
     icon: "lucide:zap",
-    title: "Fast, audit-clean",
-    body: "esbuild-bundled, Node 24 runner, zero npm-audit findings, CI matrix on Ubuntu/Windows/macOS × Node 20/22/24.",
+    title: "Official Azure SDK",
+    body: "Built on @azure-rest/ai-translation-text + @azure/core-rest-pipeline — automatic retries on 408/429/5xx, no hand-rolled HTTP. esbuild-bundled, audit-clean.",
     accent: "from-(--color-accent-500) to-(--color-cool-500)",
   },
 ];
@@ -132,8 +132,9 @@ const formats = [
             machine-translated pull requests for your <code>.resx</code>,
             <code>.xliff</code>, <code>.po</code>, <code>.json</code>,
             <code>.ini</code>, and <code>.restext</code> files using
-            <strong class="text-(--fg)">Azure AI Translator</strong> — no extra
-            services, just a workflow.
+            <strong class="text-(--fg)">Azure AI Translator</strong> via the
+            official <code>@azure-rest/ai-translation-text</code> SDK — no
+            extra services, just a workflow.
           </p>
 
           <div class="mt-9 flex flex-wrap items-center gap-3">
@@ -168,7 +169,7 @@ const formats = [
             </li>
             <li class="inline-flex items-center gap-1.5">
               <Icon name="lucide:check" class="size-3.5 text-(--color-brand-500)" />
-              101 tests
+              150 tests
             </li>
             <li class="inline-flex items-center gap-1.5">
               <Icon name="lucide:check" class="size-3.5 text-(--color-brand-500)" />
@@ -176,7 +177,7 @@ const formats = [
             </li>
             <li class="inline-flex items-center gap-1.5">
               <Icon name="lucide:check" class="size-3.5 text-(--color-brand-500)" />
-              CodeQL on PRs
+              Official Azure SDK
             </li>
           </ul>
         </div>

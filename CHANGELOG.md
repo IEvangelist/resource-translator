@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- **Translator client now uses the official Azure SDK.** Replaced the
+  hand-rolled `axios`-based REST client with
+  [`@azure-rest/ai-translation-text`](https://www.npmjs.com/package/@azure-rest/ai-translation-text)
+  on top of `@azure/core-rest-pipeline`. Retries on 408/429/5xx, auth
+  header injection, error envelope parsing, and request/response typing
+  are now handled by the SDK. Public action behaviour and inputs are
+  unchanged. Net bundle size dropped ~280 KB after dropping `axios`.
+
 ### Added
 
 - New action inputs: `include`, `exclude`, `configPath`, `categoryId`,
