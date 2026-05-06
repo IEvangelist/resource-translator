@@ -1,5 +1,4 @@
 import { setFailed } from "@actions/core";
-import Axios from "axios";
 import {
   getAvailableTranslations,
   translate,
@@ -7,10 +6,50 @@ import {
 import { ResourceFile } from "../src/file-formats/resource-file";
 import { ResxParser } from "../src/parsers/resx-parser";
 
-jest.mock("axios");
-const mockedAxios = Axios as jest.Mocked<typeof Axios>;
+// Mock the Azure SDK at module scope. The factory only sets up jest.fn()
+// stubs; per-test wiring (return values, status discrimination) lives in
+// `beforeEach` so each test is isolated.
+jest.mock("@azure-rest/ai-translation-text", () => ({
+  __esModule: true,
+  default: jest.fn(),
+  isUnexpected: jest.fn(),
+}));
 
 jest.mock("@actions/core");
+
+import createClient, { isUnexpected } from "@azure-rest/ai-translation-text";
+
+const mockedCreateClient = createClient as unknown as jest.Mock;
+const mockedIsUnexpected = isUnexpected as unknown as jest.Mock;
+
+let mockGet: jest.Mock;
+let mockPost: jest.Mock;
+
+beforeEach(() => {
+  jest.clearAllMocks();
+
+  mockGet = jest.fn();
+  mockPost = jest.fn();
+
+  // Each `createClient` call returns a fresh client; `client.path("/x")`
+  // dispatches to the right verb stub. Returning the same `mockGet` /
+  // `mockPost` from every `path()` invocation keeps assertions simple
+  // (one shared call log per HTTP verb).
+  mockedCreateClient.mockImplementation(() => ({
+    path: (path: string) => {
+      if (path === "/languages") return { get: mockGet };
+      if (path === "/translate") return { post: mockPost };
+      throw new Error(`Unexpected path: ${path}`);
+    },
+  }));
+
+  // Default discriminator: any 2xx status is "expected". Tests that need
+  // to simulate Translator's typed 4xx/5xx envelope override this.
+  mockedIsUnexpected.mockImplementation((response: { status: string }) => {
+    const status = String(response?.status ?? "200");
+    return !status.startsWith("2");
+  });
+});
 
 const expectedLocales = [
   "af",
@@ -153,14 +192,20 @@ test("API: get available translations resolves the public languages endpoint", a
       ]),
     ),
   };
-  mockedAxios.get.mockResolvedValueOnce({ data: fakeTranslations } as any);
+  mockGet.mockResolvedValueOnce({ status: "200", body: fakeTranslations });
 
   const translations = await getAvailableTranslations();
 
   expect(translations).toBeTruthy();
-  expect(mockedAxios.get).toHaveBeenCalledWith(
-    expect.stringContaining("api.cognitive.microsofttranslator.com/languages"),
+  // The /languages endpoint is anonymous and pinned to the global Microsoft
+  // Translator host regardless of how the user has configured their resource.
+  expect(mockedCreateClient).toHaveBeenCalledWith(
+    "https://api.cognitive.microsofttranslator.com",
+    expect.objectContaining({ apiVersion: "3.0" }),
   );
+  expect(mockGet).toHaveBeenCalledWith({
+    queryParameters: { scope: "translation" },
+  });
   const locales = Object.keys(translations.translation);
   expect(
     locales.every((locale) => expectedLocales.includes(locale)),
@@ -174,8 +219,9 @@ test("API: translate posts to the configured endpoint with the right headers", a
     region: "westus",
   };
 
-  mockedAxios.post.mockResolvedValueOnce({
-    data: [
+  mockPost.mockResolvedValueOnce({
+    status: "200",
+    body: [
       {
         translations: [
           { to: "fr", text: "Salut" },
@@ -183,7 +229,7 @@ test("API: translate posts to the configured endpoint with the right headers", a
         ],
       },
     ],
-  } as any);
+  });
 
   const text = new Map<string, string>([["Greeting", "Hello"]]);
   const result = await translate(
@@ -194,14 +240,23 @@ test("API: translate posts to the configured endpoint with the right headers", a
   );
 
   expect(result).toBeDefined();
-  expect(mockedAxios.post).toHaveBeenCalledTimes(1);
-  const call = mockedAxios.post.mock.calls[0];
-  expect(call[0]).toContain("/translate?api-version=3.0");
-  expect(call[0]).toContain("to=fr");
-  expect(call[0]).toContain("to=es");
-  const opts = call[2] as any;
-  expect(opts.headers["Ocp-Apim-Subscription-Key"]).toBe("key-123");
-  expect(opts.headers["Ocp-Apim-Subscription-Region"]).toBe("westus");
+  // The SDK client is instantiated with the user-configured endpoint AND a
+  // matching `baseUrl` so we sidestep the SDK's automatic v3 path-rewriting
+  // for *.cognitiveservices.azure.com hosts (preserves byte-compat with the
+  // pre-migration axios behavior).
+  expect(mockedCreateClient).toHaveBeenCalledWith(
+    "https://api.cognitive.microsofttranslator.com/",
+    expect.objectContaining({
+      baseUrl: "https://api.cognitive.microsofttranslator.com/",
+      apiVersion: "3.0",
+    }),
+  );
+  expect(mockPost).toHaveBeenCalledTimes(1);
+  const args = mockPost.mock.calls[0][0];
+  expect(args.queryParameters.to).toBe("fr,es");
+  expect(args.headers["Ocp-Apim-Subscription-Key"]).toBe("key-123");
+  expect(args.headers["Ocp-Apim-Subscription-Region"]).toBe("westus");
+  expect(args.headers["X-ClientTraceId"]).toMatch(/^[0-9a-f-]{36}$/i);
 });
 
 test("API: translate forwards advanced Translator options as query params", async () => {
@@ -216,9 +271,10 @@ test("API: translate forwards advanced Translator options as query params", asyn
     allowFallback: true,
   };
 
-  mockedAxios.post.mockResolvedValueOnce({
-    data: [{ translations: [{ to: "fr", text: "Salut" }] }],
-  } as any);
+  mockPost.mockResolvedValueOnce({
+    status: "200",
+    body: [{ translations: [{ to: "fr", text: "Salut" }] }],
+  });
 
   await translate(
     translatorResource,
@@ -227,26 +283,27 @@ test("API: translate forwards advanced Translator options as query params", asyn
     "f.resx",
   );
 
-  const url = mockedAxios.post.mock.calls[0][0];
-  expect(url).toContain("from=en");
-  expect(url).toContain("category=legal-en");
-  expect(url).toContain("textType=html");
-  expect(url).toContain("profanityAction=Marked");
-  expect(url).toContain("profanityMarker=Tag");
-  expect(url).toContain("allowFallback=true");
+  const params = mockPost.mock.calls[0][0].queryParameters;
+  expect(params.from).toBe("en");
+  expect(params.category).toBe("legal-en");
+  expect(params.textType).toBe("html");
+  expect(params.profanityAction).toBe("Marked");
+  expect(params.profanityMarker).toBe("Tag");
+  expect(params.allowFallback).toBe(true);
 });
 
 test("API: translate serializes allowFallback=false explicitly", async () => {
-  // `false` is a meaningful value — the URL must include it (not omit it).
+  // `false` is a meaningful value — the request must include it (not omit it).
   const translatorResource = {
     endpoint: "https://api.cognitive.microsofttranslator.com/",
     subscriptionKey: "key-123",
     allowFallback: false,
   };
 
-  mockedAxios.post.mockResolvedValueOnce({
-    data: [{ translations: [{ to: "fr", text: "Salut" }] }],
-  } as any);
+  mockPost.mockResolvedValueOnce({
+    status: "200",
+    body: [{ translations: [{ to: "fr", text: "Salut" }] }],
+  });
 
   await translate(
     translatorResource,
@@ -255,8 +312,8 @@ test("API: translate serializes allowFallback=false explicitly", async () => {
     "f.resx",
   );
 
-  const url = mockedAxios.post.mock.calls[0][0];
-  expect(url).toContain("allowFallback=false");
+  const params = mockPost.mock.calls[0][0].queryParameters;
+  expect(params).toHaveProperty("allowFallback", false);
 });
 
 test("API: translate omits profanityMarker when profanityAction !== 'Marked'", async () => {
@@ -268,9 +325,10 @@ test("API: translate omits profanityMarker when profanityAction !== 'Marked'", a
     profanityMarker: "Asterisk" as const,
   };
 
-  mockedAxios.post.mockResolvedValueOnce({
-    data: [{ translations: [{ to: "fr", text: "Salut" }] }],
-  } as any);
+  mockPost.mockResolvedValueOnce({
+    status: "200",
+    body: [{ translations: [{ to: "fr", text: "Salut" }] }],
+  });
 
   await translate(
     translatorResource,
@@ -279,17 +337,19 @@ test("API: translate omits profanityMarker when profanityAction !== 'Marked'", a
     "f.resx",
   );
 
-  const url = mockedAxios.post.mock.calls[0][0];
-  expect(url).toContain("profanityAction=Deleted");
-  expect(url).not.toContain("profanityMarker");
+  const params = mockPost.mock.calls[0][0].queryParameters;
+  expect(params.profanityAction).toBe("Deleted");
+  expect(params).not.toHaveProperty("profanityMarker");
 });
 
-test("API: translate fails gracefully when error has no Azure-shaped response", async () => {
-  // Regression: errorResponse.code/.message used to be accessed without a
-  // null-check, so an axios network error (no .response) threw a TypeError
-  // that escaped the catch and aborted the whole action.
+test("API: translate fails gracefully when the SDK throws a transport error", async () => {
+  // Regression: the prior axios-shaped error parser used to dereference
+  // `error.response.data.error` without a null-check, throwing a follow-on
+  // TypeError that escaped the catch and aborted the whole run. The SDK
+  // now surfaces network failures as plain Error/RestError instances —
+  // make sure we still degrade gracefully and write a clean setFailed.
   const networkError = new Error("ECONNRESET: socket hang up");
-  mockedAxios.post.mockRejectedValueOnce(networkError);
+  mockPost.mockRejectedValueOnce(networkError);
 
   const result = await translate(
     {
@@ -312,16 +372,16 @@ test("API: translate fails gracefully when error has no Azure-shaped response", 
 });
 
 test("API: translate surfaces the Azure error code and message when present", async () => {
-  // Happy path for the typed error branch — `response.data.error.{code,message}`
-  // get written into the failure message verbatim.
-  const azureError = {
-    response: {
-      data: {
-        error: { code: 401000, message: "The request is not authorized." },
-      },
+  // Happy path for the typed error branch — the SDK does NOT throw on
+  // 4xx/5xx; it returns the response, and `isUnexpected` flags it. We then
+  // pull `body.error.{code, message}` straight into the failure message
+  // (same wire format as the previous axios implementation).
+  mockPost.mockResolvedValueOnce({
+    status: "401",
+    body: {
+      error: { code: 401000, message: "The request is not authorized." },
     },
-  };
-  mockedAxios.post.mockRejectedValueOnce(azureError);
+  });
 
   const result = await translate(
     {
@@ -340,5 +400,76 @@ test("API: translate surfaces the Azure error code and message when present", as
   );
   expect(setFailedMock).toHaveBeenCalledWith(
     expect.stringContaining("The request is not authorized."),
+  );
+});
+
+test("API: getAvailableTranslations throws when the SDK returns an unexpected status", async () => {
+  mockGet.mockResolvedValueOnce({
+    status: "500",
+    body: { error: { code: 500000, message: "languages backend down" } },
+  });
+
+  await expect(getAvailableTranslations()).rejects.toThrow(
+    /languages backend down/,
+  );
+});
+
+test("API: getAvailableTranslations falls back to HTTP status when error body is missing", async () => {
+  mockGet.mockResolvedValueOnce({ status: "503", body: undefined });
+
+  await expect(getAvailableTranslations()).rejects.toThrow(/HTTP 503/);
+});
+
+test("API: translate handles the legacy axios-shaped error envelope thrown from the SDK", async () => {
+  // Backwards-compatibility: any caller (or third-party policy) that throws
+  // the previous `{ response: { data: { error: { code, message } } } }`
+  // shape directly should still produce a clean setFailed instead of an
+  // uncaught TypeError.
+  const legacyError = {
+    response: {
+      data: { error: { code: 401000, message: "legacy unauthorized" } },
+    },
+  };
+  mockPost.mockRejectedValueOnce(legacyError);
+
+  const result = await translate(
+    {
+      endpoint: "https://api.cognitive.microsofttranslator.com/",
+      subscriptionKey: "k",
+    },
+    ["fr"],
+    new Map<string, string>([["Greeting", "Hello"]]),
+    "f.resx",
+  );
+
+  expect(result).toBeUndefined();
+  const setFailedMock = setFailed as jest.MockedFunction<typeof setFailed>;
+  expect(setFailedMock).toHaveBeenCalledWith(
+    expect.stringContaining("legacy unauthorized"),
+  );
+});
+
+test("API: translate handles a typed Translator error response without code/message", async () => {
+  // When `response.body.error` exists but has neither code nor message, we
+  // fall back to the generic HTTP-status failure message.
+  mockPost.mockResolvedValueOnce({
+    status: "418",
+    body: { error: {} },
+  });
+
+  const result = await translate(
+    {
+      endpoint: "https://api.cognitive.microsofttranslator.com/",
+      subscriptionKey: "k",
+    },
+    ["fr"],
+    new Map<string, string>([["Greeting", "Hello"]]),
+    "f.resx",
+  );
+
+  expect(result).toBeUndefined();
+  const setFailedMock = setFailed as jest.MockedFunction<typeof setFailed>;
+  expect(setFailedMock).toHaveBeenCalledWith(
+    expect.stringContaining("HTTP 418"),
   );
 });

@@ -23,7 +23,11 @@ import {
 import { tmpdir } from "os";
 import { join } from "path";
 
-jest.mock("axios");
+jest.mock("@azure-rest/ai-translation-text", () => ({
+  __esModule: true,
+  default: jest.fn(),
+  isUnexpected: jest.fn(),
+}));
 jest.mock("@actions/github", () => ({
   context: { repo: { owner: "test", repo: "test" }, ref: "refs/heads/main" },
   getOctokit: jest.fn(() => ({
@@ -50,11 +54,12 @@ jest.mock("@actions/core", () => {
   };
 });
 
-import Axios from "axios";
+import createClient, { isUnexpected } from "@azure-rest/ai-translation-text";
 import { start } from "../src/resource-translator";
 import type { Inputs } from "../src/action/inputs";
 
-const mockedAxios = Axios as jest.Mocked<typeof Axios>;
+const mockedCreateClient = createClient as unknown as jest.Mock;
+const mockedIsUnexpected = isUnexpected as unknown as jest.Mock;
 
 describe("start() integration", () => {
   let tmp: string;
@@ -79,25 +84,44 @@ describe("start() integration", () => {
       "utf-8",
     );
 
+    // Default discriminator: any 2xx is "expected". Both endpoints below
+    // return 200, so this default is enough for the happy path tests.
+    mockedIsUnexpected.mockImplementation((response: { status: string }) => {
+      const status = String(response?.status ?? "200");
+      return !status.startsWith("2");
+    });
+
     // 1) GET /languages – Translator language catalogue. Restrict the set
     //    to fr+es so the orchestrator only attempts those two locales.
-    mockedAxios.get.mockResolvedValue({
-      data: { translation: { fr: {}, es: {} } },
-    } as never);
+    const languagesGet = jest.fn().mockResolvedValue({
+      status: "200",
+      body: { translation: { fr: {}, es: {} } },
+    });
 
     // 2) POST /translate – return locale-specific text per call. Our flow
     //    sends each text item once with all target locales requested, so
     //    each response contains a translations array per item.
-    mockedAxios.post.mockImplementation(async (_url, body: unknown) => {
-      const items = body as Array<{ text: string }>;
-      const data = items.map((item) => ({
-        translations: [
-          { to: "fr", text: `FR:${item.text}` },
-          { to: "es", text: `ES:${item.text}` },
-        ],
-      }));
-      return { data } as never;
-    });
+    const translatePost = jest
+      .fn()
+      .mockImplementation(
+        async ({ body }: { body: Array<{ text: string }> }) => {
+          const responseBody = body.map((item) => ({
+            translations: [
+              { to: "fr", text: `FR:${item.text}` },
+              { to: "es", text: `ES:${item.text}` },
+            ],
+          }));
+          return { status: "200", body: responseBody };
+        },
+      );
+
+    mockedCreateClient.mockImplementation(() => ({
+      path: (path: string) => {
+        if (path === "/languages") return { get: languagesGet };
+        if (path === "/translate") return { post: translatePost };
+        throw new Error(`Unexpected path: ${path}`);
+      },
+    }));
   });
 
   afterEach(() => {

@@ -36,8 +36,8 @@ Useful scripts:
 
 1. Fork the repository and create a feature branch.
 2. Add or update tests under `__tests__/`. Tests must remain offline-safe
-   (no live HTTP); use `jest.mock("axios")` and `jest.mock("@actions/github")`
-   patterns already in the suite.
+   (no live HTTP); use `jest.mock("@azure-rest/ai-translation-text")` and
+   `jest.mock("@actions/github")` patterns already in the suite.
 3. Run `npm run verify` and make sure it passes.
 4. Run `npm run build` so `dist/resource-translator/index.js` is in sync
    with your source changes. The CI `dist-check` workflow will fail PRs

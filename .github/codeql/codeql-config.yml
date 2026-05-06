@@ -1,0 +1,21 @@
+name: "CodeQL config"
+
+# This is a GitHub Action; per-convention the runtime entry point
+# (`dist/resource-translator/index.js`) is a fully-bundled file containing
+# our source PLUS every transitive npm dependency. Scanning it duplicates
+# alerts against vendor code we don't author and creates noise that drowns
+# out real findings in our actual source tree (`src/`, `__tests__/`,
+# `scripts/`). We exclude:
+#
+# - `dist/`     - the bundled action entry point (vendor + source).
+# - `lib/`      - intermediate `tsc` output (also derived from `src/`).
+# - `coverage/` - Jest/Istanbul reports, JS-but-not-source.
+# - `node_modules/` - already excluded by CodeQL by default; listed here
+#                    for clarity.
+# - `**/*.d.ts` - declaration files (no executable code).
+paths-ignore:
+  - "dist/**"
+  - "lib/**"
+  - "coverage/**"
+  - "node_modules/**"
+  - "**/*.d.ts"
