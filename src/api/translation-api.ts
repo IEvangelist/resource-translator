@@ -1,6 +1,7 @@
 import { debug, setFailed } from "@actions/core";
-import Axios, { AxiosRequestConfig } from "axios";
 import { randomUUID } from "node:crypto";
+import createClient, { isUnexpected } from "@azure-rest/ai-translation-text";
+import type { TextTranslationClient } from "@azure-rest/ai-translation-text";
 import { AvailableTranslations } from "../abstractions/available-translations";
 import {
   TranslationResult,
@@ -11,17 +12,58 @@ import { TranslatorResource } from "../abstractions/translator-resource";
 import { toResultSet } from "../helpers/api-result-set-mapper";
 import { batch, chunk } from "../helpers/utils";
 
-/**
- * https://docs.microsoft.com/azure/cognitive-services/translator/language-support#translate
- */
+// The Translator "languages" lookup is anonymous and lives on the global
+// Microsoft endpoint regardless of how the user has configured their
+// resource. Pinning it here matches the previous axios call exactly.
+const PUBLIC_ENDPOINT = "https://api.cognitive.microsofttranslator.com";
+
+// Build a Text Translation REST client. We override `baseUrl` with the raw
+// configured endpoint so the SDK does NOT rewrite
+// `*.cognitiveservices.azure.com` hosts to `${endpoint}/translator/text/v3.0`
+// — the previous implementation never rewrote, and existing users almost
+// certainly hand-craft their endpoint to point at the v3 root already.
+const buildClient = (
+  endpoint: string,
+  apiVersion: string,
+): TextTranslationClient =>
+  createClient(endpoint, { baseUrl: endpoint, apiVersion });
+
+// Authentication is intentionally injected per-request rather than via the
+// SDK's credential overloads. In v1.0.x the credential type guards both
+// match any object with a `key` field, so passing `AzureKeyCredential` for
+// the regionless case still hits `TranslatorAuthenticationPolicy`, which
+// unconditionally writes `Ocp-Apim-Subscription-Region` (with the value
+// `undefined`) into the request headers. Per-call header injection
+// sidesteps that bug and matches the previous axios behavior exactly.
+const buildAuthHeaders = (
+  translatorResource: TranslatorResource,
+): Record<string, string> => {
+  const headers: Record<string, string> = {
+    "Ocp-Apim-Subscription-Key": translatorResource.subscriptionKey,
+    "X-ClientTraceId": randomUUID(),
+  };
+  if (translatorResource.region) {
+    headers["Ocp-Apim-Subscription-Region"] = translatorResource.region;
+  }
+  return headers;
+};
+
+// https://docs.microsoft.com/azure/cognitive-services/translator/language-support#translate
 export const getAvailableTranslations = async (
   apiVersion: string = "3.0",
 ): Promise<AvailableTranslations> => {
-  const apiUrl = "https://api.cognitive.microsofttranslator.com/languages";
-  const query = `api-version=${encodeURIComponent(apiVersion)}&scope=translation`;
-  const response = await Axios.get<AvailableTranslations>(`${apiUrl}?${query}`);
+  const client = buildClient(PUBLIC_ENDPOINT, apiVersion);
+  const response = await client.path("/languages").get({
+    queryParameters: { scope: "translation" },
+  });
 
-  return response.data;
+  if (isUnexpected(response)) {
+    const errorMessage =
+      response.body?.error?.message ?? `HTTP ${response.status}`;
+    throw new Error(`Failed to fetch supported languages: ${errorMessage}`);
+  }
+
+  return response.body as AvailableTranslations;
 };
 
 export const translate = async (
@@ -50,59 +92,13 @@ export const translate = async (
       return undefined;
     }
 
-    const data = [...translatableText.values()].map((value) => {
-      return { text: value };
-    });
-    const headers = {
-      "Ocp-Apim-Subscription-Key": translatorResource.subscriptionKey,
-      "Content-type": "application/json",
-      "X-ClientTraceId": randomUUID(),
-    };
-    if (translatorResource.region) {
-      headers["Ocp-Apim-Subscription-Region"] = translatorResource.region;
-    }
-    const options: AxiosRequestConfig = {
-      method: "POST",
-      headers,
-      data,
-      responseType: "json",
-    };
+    const data = [...translatableText.values()].map((value) => ({
+      text: value,
+    }));
 
-    const baseUrl = translatorResource.endpoint.endsWith("/")
-      ? translatorResource.endpoint
-      : `${translatorResource.endpoint}/`;
     const apiVersion = translatorResource.apiVersion ?? "3.0";
-
-    // Build the optional query-string segment. Each parameter is appended only
-    // when it has a meaningful value — `allowFallback` is intentionally
-    // serialized when explicitly false so the Translator default (true) can be
-    // turned off.
-    const extraParams: string[] = [];
-    const append = (k: string, v: string) =>
-      extraParams.push(`${k}=${encodeURIComponent(v)}`);
-
-    if (translatorResource.categoryId) {
-      append("category", translatorResource.categoryId);
-    }
-    if (translatorResource.sourceLocale) {
-      append("from", translatorResource.sourceLocale);
-    }
-    if (translatorResource.textType) {
-      append("textType", translatorResource.textType);
-    }
-    if (translatorResource.profanityAction) {
-      append("profanityAction", translatorResource.profanityAction);
-    }
-    if (
-      translatorResource.profanityMarker &&
-      translatorResource.profanityAction === "Marked"
-    ) {
-      append("profanityMarker", translatorResource.profanityMarker);
-    }
-    if (translatorResource.allowFallback !== undefined) {
-      append("allowFallback", String(translatorResource.allowFallback));
-    }
-    const extraSegment = extraParams.length ? `&${extraParams.join("&")}` : "";
+    const client = buildClient(translatorResource.endpoint, apiVersion);
+    const headers = buildAuthHeaders(translatorResource);
 
     const characters = JSON.stringify(data).length;
     const batchedData =
@@ -112,8 +108,8 @@ export const translate = async (
 
     let results: TranslationResults = [];
     for (let i = 0; i < batchedData.length; i++) {
-      const batch = batchedData[i];
-      const batchCharacters = JSON.stringify(batch).length;
+      const dataBatch = batchedData[i];
+      const batchCharacters = JSON.stringify(dataBatch).length;
       const localeCount = toLocales.length;
       const localesBatchSize = Math.floor(apiRateLimit / batchCharacters);
       const batchedLocales =
@@ -123,18 +119,63 @@ export const translate = async (
 
       for (let j = 0; j < batchedLocales.length; j++) {
         const locales = batchedLocales[j];
-        const to = locales.map((to) => `to=${to}`).join("&");
-        debug(`Data batch ${i + 1}, Locales batch ${j + 1}, locales: ${to}`);
-
-        const url = `${baseUrl}translate?api-version=${encodeURIComponent(
-          apiVersion,
-        )}&${to}${extraSegment}`;
-        const response = await Axios.post<TranslationResult[]>(
-          url,
-          batch,
-          options,
+        debug(
+          `Data batch ${i + 1}, Locales batch ${j + 1}, locales: ${locales.join(
+            ", ",
+          )}`,
         );
-        const responseData = response.data;
+
+        // Build the optional query-string segment. Each parameter is
+        // forwarded only when it has a meaningful value — `allowFallback`
+        // is intentionally serialized when explicitly false so the
+        // Translator default (true) can be turned off.
+        // Multiple `to` values are accepted as a comma-separated list by
+        // the Translator REST API; this is the form used by the
+        // ai-translation-text-rest 1.0.x sample suite.
+        const queryParameters = {
+          to: locales.join(","),
+          ...(translatorResource.sourceLocale && {
+            from: translatorResource.sourceLocale,
+          }),
+          ...(translatorResource.categoryId && {
+            category: translatorResource.categoryId,
+          }),
+          ...(translatorResource.textType && {
+            textType: translatorResource.textType,
+          }),
+          ...(translatorResource.profanityAction && {
+            profanityAction: translatorResource.profanityAction,
+          }),
+          ...(translatorResource.profanityMarker &&
+          translatorResource.profanityAction === "Marked"
+            ? { profanityMarker: translatorResource.profanityMarker }
+            : {}),
+          ...(translatorResource.allowFallback !== undefined && {
+            allowFallback: translatorResource.allowFallback,
+          }),
+        };
+
+        const response = await client.path("/translate").post({
+          body: dataBatch,
+          headers,
+          queryParameters,
+        });
+
+        if (isUnexpected(response)) {
+          const azureError = response.body?.error;
+          if (azureError && (azureError.code || azureError.message)) {
+            setFailed(
+              `file: ${filePath}, error: { code: ${azureError.code}, message: '${azureError.message}' }`,
+            );
+          } else {
+            setFailed(
+              `Failed to translate input: file '${filePath}', HTTP ${response.status}`,
+            );
+          }
+          return undefined;
+        }
+
+        const responseData = response.body as unknown as TranslationResult[];
         debug(
           `Data batch ${i + 1}, Locales batch ${
             j + 1
@@ -147,19 +188,22 @@ export const translate = async (
 
     return toResultSet(results, toLocales, translatableText);
   } catch (ex: unknown) {
-    // Try to write explicit error:
-    // https://docs.microsoft.com/azure/cognitive-services/translator/reference/v3-0-reference#errors
-    // Azure returns errors as `{ response: { data: { error: { code, message } } } }`,
-    // but axios also surfaces network errors with no `.response` at all (DNS,
-    // ECONNRESET, certificate issues, ...). The handler must tolerate both
-    // shapes — falling through to a generic message — instead of throwing
-    // a follow-on TypeError that escapes this catch and aborts the whole run.
-    const errorResponse = (ex as TranslatorError | undefined)?.response?.data
-      ?.error;
+    // The SDK surfaces transport-layer failures (DNS, ECONNRESET, TLS, ...)
+    // as RestError/Error instances thrown from the awaited `.post()` call.
+    // Azure-shaped 4xx/5xx responses are *not* thrown — they come back
+    // through `isUnexpected` above. We still tolerate the legacy
+    // `{ response: { data: { error: {...} } } }` envelope here for
+    // backwards compatibility with any caller (or test) that throws that
+    // shape directly.
+    const legacyAzureError = (ex as LegacyTranslatorError | undefined)?.response
+      ?.data?.error;
 
-    if (errorResponse && (errorResponse.code || errorResponse.message)) {
+    if (
+      legacyAzureError &&
+      (legacyAzureError.code || legacyAzureError.message)
+    ) {
       setFailed(
-        `file: ${filePath}, error: { code: ${errorResponse.code}, message: '${errorResponse.message}' }`,
+        `file: ${filePath}, error: { code: ${legacyAzureError.code}, message: '${legacyAzureError.message}' }`,
       );
     } else {
       const message = ex instanceof Error ? ex.message : String(ex);
@@ -170,15 +214,13 @@ export const translate = async (
   }
 };
 
-interface TranslatorError {
+interface LegacyTranslatorError {
   response: {
-    data: TranslationErrorResponse;
-  };
-}
-
-interface TranslationErrorResponse {
-  error: {
-    code: number;
-    message: string;
+    data: {
+      error: {
+        code: number;
+        message: string;
+      };
+    };
   };
 }

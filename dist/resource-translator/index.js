@@ -11,9 +11,9 @@ var __esm = (fn, res) => function __init() {
 var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
-var __export = (target, all3) => {
-  for (var name in all3)
-    __defProp(target, name, { get: all3[name], enumerable: true });
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
 };
 var __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
@@ -108,11 +108,11 @@ var require_command = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.issueCommand = issueCommand;
     exports2.issue = issue;
-    var os = __importStar(require("os"));
+    var os3 = __importStar(require("os"));
     var utils_1 = require_utils();
     function issueCommand(command, properties, message) {
       const cmd = new Command(command, properties, message);
-      process.stdout.write(cmd.toString() + os.EOL);
+      process.stdout.write(cmd.toString() + os3.EOL);
     }
     function issue(name, message = "") {
       issueCommand(name, {}, message);
@@ -205,7 +205,7 @@ var require_file_command = __commonJS({
     exports2.prepareKeyValueMessage = prepareKeyValueMessage;
     var crypto2 = __importStar(require("crypto"));
     var fs = __importStar(require("fs"));
-    var os = __importStar(require("os"));
+    var os3 = __importStar(require("os"));
     var utils_1 = require_utils();
     function issueFileCommand(command, message) {
       const filePath = process.env[`GITHUB_${command}`];
@@ -215,7 +215,7 @@ var require_file_command = __commonJS({
       if (!fs.existsSync(filePath)) {
         throw new Error(`Missing file at path: ${filePath}`);
       }
-      fs.appendFileSync(filePath, `${(0, utils_1.toCommandValue)(message)}${os.EOL}`, {
+      fs.appendFileSync(filePath, `${(0, utils_1.toCommandValue)(message)}${os3.EOL}`, {
         encoding: "utf8"
       });
     }
@@ -228,7 +228,7 @@ var require_file_command = __commonJS({
       if (convertedValue.includes(delimiter)) {
         throw new Error(`Unexpected input: value should not contain the delimiter "${delimiter}"`);
       }
-      return `${key}<<${delimiter}${os.EOL}${convertedValue}${os.EOL}${delimiter}`;
+      return `${key}<<${delimiter}${os3.EOL}${convertedValue}${os3.EOL}${delimiter}`;
     }
   }
 });
@@ -299,8 +299,8 @@ var require_proxy = __commonJS({
       return hostLower === "localhost" || hostLower.startsWith("127.") || hostLower.startsWith("[::1]") || hostLower.startsWith("[0:0:0:0:0:0:0:1]");
     }
     var DecodedURL = class extends URL {
-      constructor(url2, base) {
-        super(url2, base);
+      constructor(url, base) {
+        super(url, base);
         this._decodedUsername = decodeURIComponent(super.username);
         this._decodedPassword = decodeURIComponent(super.password);
       }
@@ -320,23 +320,23 @@ var require_tunnel = __commonJS({
     "use strict";
     var net = require("net");
     var tls = require("tls");
-    var http3 = require("http");
+    var http2 = require("http");
     var https2 = require("https");
     var events = require("events");
     var assert = require("assert");
-    var util3 = require("util");
+    var util2 = require("util");
     exports2.httpOverHttp = httpOverHttp;
     exports2.httpsOverHttp = httpsOverHttp;
     exports2.httpOverHttps = httpOverHttps;
     exports2.httpsOverHttps = httpsOverHttps;
     function httpOverHttp(options) {
       var agent = new TunnelingAgent(options);
-      agent.request = http3.request;
+      agent.request = http2.request;
       return agent;
     }
     function httpsOverHttp(options) {
       var agent = new TunnelingAgent(options);
-      agent.request = http3.request;
+      agent.request = http2.request;
       agent.createSocket = createSecureSocket;
       agent.defaultPort = 443;
       return agent;
@@ -357,7 +357,7 @@ var require_tunnel = __commonJS({
       var self2 = this;
       self2.options = options || {};
       self2.proxyOptions = self2.options.proxy || {};
-      self2.maxSockets = self2.options.maxSockets || http3.Agent.defaultMaxSockets;
+      self2.maxSockets = self2.options.maxSockets || http2.Agent.defaultMaxSockets;
       self2.requests = [];
       self2.sockets = [];
       self2.on("free", function onFree(socket, host, port, localAddress) {
@@ -374,7 +374,7 @@ var require_tunnel = __commonJS({
         self2.removeSocket(socket);
       });
     }
-    util3.inherits(TunnelingAgent, events.EventEmitter);
+    util2.inherits(TunnelingAgent, events.EventEmitter);
     TunnelingAgent.prototype.addRequest = function addRequest(req, host, port, localAddress) {
       var self2 = this;
       var options = mergeOptions({ request: req }, self2.options, toOptions(host, port, localAddress));
@@ -736,7 +736,7 @@ var require_errors = __commonJS({
       [kInvalidReturnValueError] = true;
     };
     var kAbortError = /* @__PURE__ */ Symbol.for("undici.error.UND_ERR_ABORT");
-    var AbortError = class extends UndiciError {
+    var AbortError3 = class extends UndiciError {
       constructor(message) {
         super(message);
         this.name = "AbortError";
@@ -749,7 +749,7 @@ var require_errors = __commonJS({
       [kAbortError] = true;
     };
     var kRequestAbortedError = /* @__PURE__ */ Symbol.for("undici.error.UND_ERR_ABORTED");
-    var RequestAbortedError = class extends AbortError {
+    var RequestAbortedError = class extends AbortError3 {
       constructor(message) {
         super(message);
         this.name = "AbortError";
@@ -954,7 +954,7 @@ var require_errors = __commonJS({
       }
     };
     module2.exports = {
-      AbortError,
+      AbortError: AbortError3,
       HTTPParserError,
       UndiciError,
       HeadersTimeoutError,
@@ -1244,7 +1244,7 @@ var require_util = __commonJS({
     var assert = require("node:assert");
     var { kDestroyed, kBodyUsed, kListeners, kBody } = require_symbols();
     var { IncomingMessage } = require("node:http");
-    var stream4 = require("node:stream");
+    var stream = require("node:stream");
     var net = require("node:net");
     var { Blob: Blob2 } = require("node:buffer");
     var nodeUtil = require("node:util");
@@ -1266,7 +1266,7 @@ var require_util = __commonJS({
       }
     };
     function wrapRequestBody(body) {
-      if (isStream2(body)) {
+      if (isStream(body)) {
         if (bodyLength(body) === 0) {
           body.on("data", function() {
             assert(false);
@@ -1281,7 +1281,7 @@ var require_util = __commonJS({
         return body;
       } else if (body && typeof body.pipeTo === "function") {
         return new BodyAsyncIterable(body);
-      } else if (body && typeof body !== "string" && !ArrayBuffer.isView(body) && isIterable2(body)) {
+      } else if (body && typeof body !== "string" && !ArrayBuffer.isView(body) && isIterable(body)) {
         return new BodyAsyncIterable(body);
       } else {
         return body;
@@ -1289,7 +1289,7 @@ var require_util = __commonJS({
     }
     function nop() {
     }
-    function isStream2(obj) {
+    function isStream(obj) {
       return obj && typeof obj === "object" && typeof obj.pipe === "function" && typeof obj.on === "function";
     }
     function isBlobLike(object) {
@@ -1304,15 +1304,15 @@ var require_util = __commonJS({
         return (sTag === "Blob" || sTag === "File") && ("stream" in object && typeof object.stream === "function" || "arrayBuffer" in object && typeof object.arrayBuffer === "function");
       }
     }
-    function buildURL2(url2, queryParams) {
-      if (url2.includes("?") || url2.includes("#")) {
+    function buildURL(url, queryParams) {
+      if (url.includes("?") || url.includes("#")) {
         throw new Error('Query params cannot be passed when url already contains "?" or "#".');
       }
       const stringified = stringify(queryParams);
       if (stringified) {
-        url2 += "?" + stringified;
+        url += "?" + stringified;
       }
-      return url2;
+      return url;
     }
     function isValidPort(port) {
       const value = parseInt(port, 10);
@@ -1321,58 +1321,58 @@ var require_util = __commonJS({
     function isHttpOrHttpsPrefixed(value) {
       return value != null && value[0] === "h" && value[1] === "t" && value[2] === "t" && value[3] === "p" && (value[4] === ":" || value[4] === "s" && value[5] === ":");
     }
-    function parseURL(url2) {
-      if (typeof url2 === "string") {
-        url2 = new URL(url2);
-        if (!isHttpOrHttpsPrefixed(url2.origin || url2.protocol)) {
+    function parseURL(url) {
+      if (typeof url === "string") {
+        url = new URL(url);
+        if (!isHttpOrHttpsPrefixed(url.origin || url.protocol)) {
           throw new InvalidArgumentError("Invalid URL protocol: the URL must start with `http:` or `https:`.");
         }
-        return url2;
+        return url;
       }
-      if (!url2 || typeof url2 !== "object") {
+      if (!url || typeof url !== "object") {
         throw new InvalidArgumentError("Invalid URL: The URL argument must be a non-null object.");
       }
-      if (!(url2 instanceof URL)) {
-        if (url2.port != null && url2.port !== "" && isValidPort(url2.port) === false) {
+      if (!(url instanceof URL)) {
+        if (url.port != null && url.port !== "" && isValidPort(url.port) === false) {
           throw new InvalidArgumentError("Invalid URL: port must be a valid integer or a string representation of an integer.");
         }
-        if (url2.path != null && typeof url2.path !== "string") {
+        if (url.path != null && typeof url.path !== "string") {
           throw new InvalidArgumentError("Invalid URL path: the path must be a string or null/undefined.");
         }
-        if (url2.pathname != null && typeof url2.pathname !== "string") {
+        if (url.pathname != null && typeof url.pathname !== "string") {
           throw new InvalidArgumentError("Invalid URL pathname: the pathname must be a string or null/undefined.");
         }
-        if (url2.hostname != null && typeof url2.hostname !== "string") {
+        if (url.hostname != null && typeof url.hostname !== "string") {
           throw new InvalidArgumentError("Invalid URL hostname: the hostname must be a string or null/undefined.");
         }
-        if (url2.origin != null && typeof url2.origin !== "string") {
+        if (url.origin != null && typeof url.origin !== "string") {
           throw new InvalidArgumentError("Invalid URL origin: the origin must be a string or null/undefined.");
         }
-        if (!isHttpOrHttpsPrefixed(url2.origin || url2.protocol)) {
+        if (!isHttpOrHttpsPrefixed(url.origin || url.protocol)) {
           throw new InvalidArgumentError("Invalid URL protocol: the URL must start with `http:` or `https:`.");
         }
-        const port = url2.port != null ? url2.port : url2.protocol === "https:" ? 443 : 80;
-        let origin2 = url2.origin != null ? url2.origin : `${url2.protocol || ""}//${url2.hostname || ""}:${port}`;
-        let path2 = url2.path != null ? url2.path : `${url2.pathname || ""}${url2.search || ""}`;
-        if (origin2[origin2.length - 1] === "/") {
-          origin2 = origin2.slice(0, origin2.length - 1);
+        const port = url.port != null ? url.port : url.protocol === "https:" ? 443 : 80;
+        let origin = url.origin != null ? url.origin : `${url.protocol || ""}//${url.hostname || ""}:${port}`;
+        let path2 = url.path != null ? url.path : `${url.pathname || ""}${url.search || ""}`;
+        if (origin[origin.length - 1] === "/") {
+          origin = origin.slice(0, origin.length - 1);
         }
         if (path2 && path2[0] !== "/") {
           path2 = `/${path2}`;
         }
-        return new URL(`${origin2}${path2}`);
+        return new URL(`${origin}${path2}`);
       }
-      if (!isHttpOrHttpsPrefixed(url2.origin || url2.protocol)) {
+      if (!isHttpOrHttpsPrefixed(url.origin || url.protocol)) {
         throw new InvalidArgumentError("Invalid URL protocol: the URL must start with `http:` or `https:`.");
       }
-      return url2;
+      return url;
     }
-    function parseOrigin(url2) {
-      url2 = parseURL(url2);
-      if (url2.pathname !== "/" || url2.search || url2.hash) {
+    function parseOrigin(url) {
+      url = parseURL(url);
+      if (url.pathname !== "/" || url.search || url.hash) {
         throw new InvalidArgumentError("invalid url");
       }
-      return url2;
+      return url;
     }
     function getHostname(host) {
       if (host[0] === "[") {
@@ -1401,41 +1401,41 @@ var require_util = __commonJS({
     function isAsyncIterable(obj) {
       return !!(obj != null && typeof obj[Symbol.asyncIterator] === "function");
     }
-    function isIterable2(obj) {
+    function isIterable(obj) {
       return !!(obj != null && (typeof obj[Symbol.iterator] === "function" || typeof obj[Symbol.asyncIterator] === "function"));
     }
     function bodyLength(body) {
       if (body == null) {
         return 0;
-      } else if (isStream2(body)) {
-        const state = body._readableState;
-        return state && state.objectMode === false && state.ended === true && Number.isFinite(state.length) ? state.length : null;
+      } else if (isStream(body)) {
+        const state2 = body._readableState;
+        return state2 && state2.objectMode === false && state2.ended === true && Number.isFinite(state2.length) ? state2.length : null;
       } else if (isBlobLike(body)) {
         return body.size != null ? body.size : null;
-      } else if (isBuffer2(body)) {
+      } else if (isBuffer(body)) {
         return body.byteLength;
       }
       return null;
     }
     function isDestroyed(body) {
-      return body && !!(body.destroyed || body[kDestroyed] || stream4.isDestroyed?.(body));
+      return body && !!(body.destroyed || body[kDestroyed] || stream.isDestroyed?.(body));
     }
-    function destroy(stream5, err) {
-      if (stream5 == null || !isStream2(stream5) || isDestroyed(stream5)) {
+    function destroy2(stream2, err) {
+      if (stream2 == null || !isStream(stream2) || isDestroyed(stream2)) {
         return;
       }
-      if (typeof stream5.destroy === "function") {
-        if (Object.getPrototypeOf(stream5).constructor === IncomingMessage) {
-          stream5.socket = null;
+      if (typeof stream2.destroy === "function") {
+        if (Object.getPrototypeOf(stream2).constructor === IncomingMessage) {
+          stream2.socket = null;
         }
-        stream5.destroy(err);
+        stream2.destroy(err);
       } else if (err) {
         queueMicrotask(() => {
-          stream5.emit("error", err);
+          stream2.emit("error", err);
         });
       }
-      if (stream5.destroyed !== true) {
-        stream5[kDestroyed] = true;
+      if (stream2.destroyed !== true) {
+        stream2[kDestroyed] = true;
       }
     }
     var KEEPALIVE_TIMEOUT_EXPR = /timeout=(\d+)/;
@@ -1501,7 +1501,7 @@ var require_util = __commonJS({
       }
       return ret;
     }
-    function isBuffer2(buffer) {
+    function isBuffer(buffer) {
       return buffer instanceof Uint8Array || Buffer.isBuffer(buffer);
     }
     function validateHandler(handler2, method, upgrade) {
@@ -1534,13 +1534,13 @@ var require_util = __commonJS({
       }
     }
     function isDisturbed(body) {
-      return !!(body && (stream4.isDisturbed(body) || body[kBodyUsed]));
+      return !!(body && (stream.isDisturbed(body) || body[kBodyUsed]));
     }
     function isErrored(body) {
-      return !!(body && stream4.isErrored(body));
+      return !!(body && stream.isErrored(body));
     }
     function isReadable(body) {
-      return !!(body && stream4.isReadable(body));
+      return !!(body && stream.isReadable(body));
     }
     function getSocketInfo(socket) {
       return {
@@ -1555,14 +1555,14 @@ var require_util = __commonJS({
       };
     }
     function ReadableStreamFrom(iterable) {
-      let iterator3;
+      let iterator2;
       return new ReadableStream(
         {
           async start() {
-            iterator3 = iterable[Symbol.asyncIterator]();
+            iterator2 = iterable[Symbol.asyncIterator]();
           },
           async pull(controller) {
-            const { done, value } = await iterator3.next();
+            const { done, value } = await iterator2.next();
             if (done) {
               queueMicrotask(() => {
                 controller.close();
@@ -1577,7 +1577,7 @@ var require_util = __commonJS({
             return controller.desiredSize > 0;
           },
           async cancel(reason) {
-            await iterator3.return();
+            await iterator2.return();
           },
           type: "bytes"
         }
@@ -1705,8 +1705,8 @@ var require_util = __commonJS({
       parseOrigin,
       parseURL,
       getServerName,
-      isStream: isStream2,
-      isIterable: isIterable2,
+      isStream,
+      isIterable,
       isAsyncIterable,
       isDestroyed,
       headerNameToString,
@@ -1717,15 +1717,15 @@ var require_util = __commonJS({
       parseRawHeaders,
       parseHeaders,
       parseKeepAliveTimeout,
-      destroy,
+      destroy: destroy2,
       bodyLength,
       deepClone,
       ReadableStreamFrom,
-      isBuffer: isBuffer2,
+      isBuffer,
       validateHandler,
       getSocketInfo,
       isFormDataLike,
-      buildURL: buildURL2,
+      buildURL,
       addAbortListener,
       isValidHTTPToken,
       isValidHeaderValue,
@@ -1748,10 +1748,10 @@ var require_diagnostics = __commonJS({
   "node_modules/undici/lib/core/diagnostics.js"(exports2, module2) {
     "use strict";
     var diagnosticsChannel = require("node:diagnostics_channel");
-    var util3 = require("node:util");
-    var undiciDebugLog = util3.debuglog("undici");
-    var fetchDebuglog = util3.debuglog("fetch");
-    var websocketDebuglog = util3.debuglog("websocket");
+    var util2 = require("node:util");
+    var undiciDebugLog = util2.debuglog("undici");
+    var fetchDebuglog = util2.debuglog("fetch");
+    var websocketDebuglog = util2.debuglog("websocket");
     var isClientSet = false;
     var channels = {
       // Client
@@ -1811,38 +1811,38 @@ var require_diagnostics = __commonJS({
       });
       diagnosticsChannel.channel("undici:client:sendHeaders").subscribe((evt) => {
         const {
-          request: { method, path: path2, origin: origin2 }
+          request: { method, path: path2, origin }
         } = evt;
-        debuglog("sending request to %s %s/%s", method, origin2, path2);
+        debuglog("sending request to %s %s/%s", method, origin, path2);
       });
       diagnosticsChannel.channel("undici:request:headers").subscribe((evt) => {
         const {
-          request: { method, path: path2, origin: origin2 },
+          request: { method, path: path2, origin },
           response: { statusCode }
         } = evt;
         debuglog(
           "received response to %s %s/%s - HTTP %d",
           method,
-          origin2,
+          origin,
           path2,
           statusCode
         );
       });
       diagnosticsChannel.channel("undici:request:trailers").subscribe((evt) => {
         const {
-          request: { method, path: path2, origin: origin2 }
+          request: { method, path: path2, origin }
         } = evt;
-        debuglog("trailers received from %s %s/%s", method, origin2, path2);
+        debuglog("trailers received from %s %s/%s", method, origin, path2);
       });
       diagnosticsChannel.channel("undici:request:error").subscribe((evt) => {
         const {
-          request: { method, path: path2, origin: origin2 },
+          request: { method, path: path2, origin },
           error
         } = evt;
         debuglog(
           "request to %s %s/%s errored - %s",
           method,
-          origin2,
+          origin,
           path2,
           error.message
         );
@@ -1892,9 +1892,9 @@ var require_diagnostics = __commonJS({
         });
         diagnosticsChannel.channel("undici:client:sendHeaders").subscribe((evt) => {
           const {
-            request: { method, path: path2, origin: origin2 }
+            request: { method, path: path2, origin }
           } = evt;
-          debuglog("sending request to %s %s/%s", method, origin2, path2);
+          debuglog("sending request to %s %s/%s", method, origin, path2);
         });
       }
       diagnosticsChannel.channel("undici:websocket:open").subscribe((evt) => {
@@ -1940,13 +1940,13 @@ var require_request = __commonJS({
     var {
       isValidHTTPToken,
       isValidHeaderValue,
-      isStream: isStream2,
-      destroy,
-      isBuffer: isBuffer2,
+      isStream,
+      destroy: destroy2,
+      isBuffer,
       isFormDataLike,
-      isIterable: isIterable2,
+      isIterable,
       isBlobLike,
-      buildURL: buildURL2,
+      buildURL,
       validateHandler,
       getServerName,
       normalizedMethodRecords
@@ -1956,7 +1956,7 @@ var require_request = __commonJS({
     var invalidPathRegex = /[^\u0021-\u00ff]/;
     var kHandler = /* @__PURE__ */ Symbol("handler");
     var Request = class {
-      constructor(origin2, {
+      constructor(origin, {
         path: path2,
         method,
         body,
@@ -2009,12 +2009,12 @@ var require_request = __commonJS({
         this.abort = null;
         if (body == null) {
           this.body = null;
-        } else if (isStream2(body)) {
+        } else if (isStream(body)) {
           this.body = body;
           const rState = this.body._readableState;
           if (!rState || !rState.autoDestroy) {
             this.endHandler = function autoDestroy() {
-              destroy(this);
+              destroy2(this);
             };
             this.body.on("end", this.endHandler);
           }
@@ -2026,7 +2026,7 @@ var require_request = __commonJS({
             }
           };
           this.body.on("error", this.errorHandler);
-        } else if (isBuffer2(body)) {
+        } else if (isBuffer(body)) {
           this.body = body.byteLength ? body : null;
         } else if (ArrayBuffer.isView(body)) {
           this.body = body.buffer.byteLength ? Buffer.from(body.buffer, body.byteOffset, body.byteLength) : null;
@@ -2034,7 +2034,7 @@ var require_request = __commonJS({
           this.body = body.byteLength ? Buffer.from(body) : null;
         } else if (typeof body === "string") {
           this.body = body.length ? Buffer.from(body) : null;
-        } else if (isFormDataLike(body) || isIterable2(body) || isBlobLike(body)) {
+        } else if (isFormDataLike(body) || isIterable(body) || isBlobLike(body)) {
           this.body = body;
         } else {
           throw new InvalidArgumentError("body must be a string, a Buffer, a Readable stream, an iterable, or an async iterable");
@@ -2042,8 +2042,8 @@ var require_request = __commonJS({
         this.completed = false;
         this.aborted = false;
         this.upgrade = upgrade || null;
-        this.path = query ? buildURL2(path2, query) : path2;
-        this.origin = origin2;
+        this.path = query ? buildURL(path2, query) : path2;
+        this.origin = origin;
         this.idempotent = idempotent == null ? method === "HEAD" || method === "GET" : idempotent;
         this.blocking = blocking == null ? false : blocking;
         this.reset = reset == null ? null : reset;
@@ -2265,8 +2265,8 @@ var require_request = __commonJS({
 var require_dispatcher = __commonJS({
   "node_modules/undici/lib/dispatcher/dispatcher.js"(exports2, module2) {
     "use strict";
-    var EventEmitter2 = require("node:events");
-    var Dispatcher = class extends EventEmitter2 {
+    var EventEmitter = require("node:events");
+    var Dispatcher = class extends EventEmitter {
       dispatch() {
         throw new Error("not implemented");
       }
@@ -2587,9 +2587,9 @@ var require_timers = __commonJS({
        * before the specified function or code is executed.
        * @param {*} arg
        */
-      constructor(callback, delay2, arg) {
+      constructor(callback, delay4, arg) {
         this._onTimeout = callback;
-        this._idleTimeout = delay2;
+        this._idleTimeout = delay4;
         this._timerArg = arg;
         this.refresh();
       }
@@ -2634,8 +2634,8 @@ var require_timers = __commonJS({
        * when the timer expires.
        * @returns {NodeJS.Timeout|FastTimer}
        */
-      setTimeout(callback, delay2, arg) {
-        return delay2 <= RESOLUTION_MS ? setTimeout(callback, delay2, arg) : new FastTimer(callback, delay2, arg);
+      setTimeout(callback, delay4, arg) {
+        return delay4 <= RESOLUTION_MS ? setTimeout(callback, delay4, arg) : new FastTimer(callback, delay4, arg);
       },
       /**
        * The clearTimeout method cancels an instantiated Timer previously created
@@ -2661,8 +2661,8 @@ var require_timers = __commonJS({
        * when the timer expires.
        * @returns {FastTimer}
        */
-      setFastTimeout(callback, delay2, arg) {
-        return new FastTimer(callback, delay2, arg);
+      setFastTimeout(callback, delay4, arg) {
+        return new FastTimer(callback, delay4, arg);
       },
       /**
        * The clearTimeout method cancels an instantiated FastTimer previously
@@ -2688,8 +2688,8 @@ var require_timers = __commonJS({
        * @deprecated
        * @param {number} [delay=0] The delay in milliseconds to add to the now value.
        */
-      tick(delay2 = 0) {
-        fastNow += delay2 - RESOLUTION_MS + 1;
+      tick(delay4 = 0) {
+        fastNow += delay4 - RESOLUTION_MS + 1;
         onTick();
         onTick();
       },
@@ -2721,10 +2721,10 @@ var require_connect = __commonJS({
     "use strict";
     var net = require("node:net");
     var assert = require("node:assert");
-    var util3 = require_util();
+    var util2 = require_util();
     var { InvalidArgumentError, ConnectTimeoutError } = require_errors();
     var timers = require_timers();
-    function noop4() {
+    function noop3() {
     }
     var tls;
     var SessionCache;
@@ -2790,7 +2790,7 @@ var require_connect = __commonJS({
           if (!tls) {
             tls = require("node:tls");
           }
-          servername = servername || options.servername || util3.getServerName(host) || null;
+          servername = servername || options.servername || util2.getServerName(host) || null;
           const sessionKey = servername || hostname;
           assert(sessionKey);
           const session = customSession || sessionCache.get(sessionKey) || null;
@@ -2849,7 +2849,7 @@ var require_connect = __commonJS({
     }
     var setupConnectTimeout = process.platform === "win32" ? (socketWeakRef, opts) => {
       if (!opts.timeout) {
-        return noop4;
+        return noop3;
       }
       let s1 = null;
       let s2 = null;
@@ -2865,7 +2865,7 @@ var require_connect = __commonJS({
       };
     } : (socketWeakRef, opts) => {
       if (!opts.timeout) {
-        return noop4;
+        return noop3;
       }
       let s1 = null;
       const fastTimer = timers.setFastTimeout(() => {
@@ -2889,7 +2889,7 @@ var require_connect = __commonJS({
         message += ` (attempted address: ${opts.hostname}:${opts.port},`;
       }
       message += ` timeout: ${opts.timeout}ms)`;
-      util3.destroy(socket, new ConnectTimeoutError(message));
+      util2.destroy(socket, new ConnectTimeoutError(message));
     }
     module2.exports = buildConnector;
   }
@@ -3555,12 +3555,12 @@ var require_data_url = __commonJS({
       }
       return { mimeType: mimeTypeRecord, body };
     }
-    function URLSerializer(url2, excludeFragment = false) {
+    function URLSerializer(url, excludeFragment = false) {
       if (!excludeFragment) {
-        return url2.href;
+        return url.href;
       }
-      const href = url2.href;
-      const hashLength = url2.hash.length;
+      const href = url.href;
+      const hashLength = url.hash.length;
       const serialized = hashLength === 0 ? href : href.substring(0, href.length - hashLength);
       if (!hashLength && href.endsWith("#")) {
         return serialized.slice(0, -1);
@@ -3864,7 +3864,7 @@ var require_data_url = __commonJS({
 var require_webidl = __commonJS({
   "node_modules/undici/lib/web/fetch/webidl.js"(exports2, module2) {
     "use strict";
-    var { types: types2, inspect } = require("node:util");
+    var { types: types2, inspect: inspect2 } = require("node:util");
     var { markAsUncloneable } = require("node:worker_threads");
     var { toUSVString } = require_util();
     var webidl = {};
@@ -3874,18 +3874,18 @@ var require_webidl = __commonJS({
     webidl.errors.exception = function(message) {
       return new TypeError(`${message.header}: ${message.message}`);
     };
-    webidl.errors.conversionFailed = function(context2) {
-      const plural = context2.types.length === 1 ? "" : " one of";
-      const message = `${context2.argument} could not be converted to${plural}: ${context2.types.join(", ")}.`;
+    webidl.errors.conversionFailed = function(context4) {
+      const plural = context4.types.length === 1 ? "" : " one of";
+      const message = `${context4.argument} could not be converted to${plural}: ${context4.types.join(", ")}.`;
       return webidl.errors.exception({
-        header: context2.prefix,
+        header: context4.prefix,
         message
       });
     };
-    webidl.errors.invalidArgument = function(context2) {
+    webidl.errors.invalidArgument = function(context4) {
       return webidl.errors.exception({
-        header: context2.prefix,
-        message: `"${context2.value}" is an invalid ${context2.type}.`
+        header: context4.prefix,
+        message: `"${context4.value}" is an invalid ${context4.type}.`
       });
     };
     webidl.brandCheck = function(V, I, opts) {
@@ -4011,7 +4011,7 @@ var require_webidl = __commonJS({
         case "Symbol":
           return `Symbol(${V.description})`;
         case "Object":
-          return inspect(V);
+          return inspect2(V);
         case "String":
           return `"${V}"`;
         default:
@@ -4283,7 +4283,7 @@ var require_webidl = __commonJS({
 var require_util2 = __commonJS({
   "node_modules/undici/lib/web/fetch/util.js"(exports2, module2) {
     "use strict";
-    var { Transform } = require("node:stream");
+    var { Transform: Transform2 } = require("node:stream");
     var zlib2 = require("node:zlib");
     var { redirectStatusSet, referrerPolicySet: referrerPolicyTokens, badPortsSet } = require_constants3();
     var { getGlobalOrigin } = require_global();
@@ -4322,9 +4322,9 @@ var require_util2 = __commonJS({
       }
       return location;
     }
-    function isValidEncodedURL(url2) {
-      for (let i = 0; i < url2.length; ++i) {
-        const code = url2.charCodeAt(i);
+    function isValidEncodedURL(url) {
+      for (let i = 0; i < url.length; ++i) {
+        const code = url.charCodeAt(i);
         if (code > 126 || // Non-US-ASCII + DEL
         code < 32) {
           return false;
@@ -4339,8 +4339,8 @@ var require_util2 = __commonJS({
       return request2.urlList[request2.urlList.length - 1];
     }
     function requestBadPort(request2) {
-      const url2 = requestCurrentURL(request2);
-      if (urlIsHttpHttpsScheme(url2) && badPortsSet.has(url2.port)) {
+      const url = requestCurrentURL(request2);
+      if (urlIsHttpHttpsScheme(url) && badPortsSet.has(url.port)) {
         return "blocked";
       }
       return "allowed";
@@ -4359,7 +4359,7 @@ var require_util2 = __commonJS({
       }
       return true;
     }
-    var isValidHeaderName2 = isValidHTTPToken;
+    var isValidHeaderName = isValidHTTPToken;
     function isValidHeaderValue(potentialValue) {
       return (potentialValue[0] === "	" || potentialValue[0] === " " || potentialValue[potentialValue.length - 1] === "	" || potentialValue[potentialValue.length - 1] === " " || potentialValue.includes("\n") || potentialValue.includes("\r") || potentialValue.includes("\0")) === false;
     }
@@ -4533,34 +4533,34 @@ var require_util2 = __commonJS({
           return isNonPotentiallyTrustWorthy ? "no-referrer" : referrerOrigin;
       }
     }
-    function stripURLForReferrer(url2, originOnly) {
-      assert(url2 instanceof URL);
-      url2 = new URL(url2);
-      if (url2.protocol === "file:" || url2.protocol === "about:" || url2.protocol === "blank:") {
+    function stripURLForReferrer(url, originOnly) {
+      assert(url instanceof URL);
+      url = new URL(url);
+      if (url.protocol === "file:" || url.protocol === "about:" || url.protocol === "blank:") {
         return "no-referrer";
       }
-      url2.username = "";
-      url2.password = "";
-      url2.hash = "";
+      url.username = "";
+      url.password = "";
+      url.hash = "";
       if (originOnly) {
-        url2.pathname = "";
-        url2.search = "";
+        url.pathname = "";
+        url.search = "";
       }
-      return url2;
+      return url;
     }
-    function isURLPotentiallyTrustworthy(url2) {
-      if (!(url2 instanceof URL)) {
+    function isURLPotentiallyTrustworthy(url) {
+      if (!(url instanceof URL)) {
         return false;
       }
-      if (url2.href === "about:blank" || url2.href === "about:srcdoc") {
+      if (url.href === "about:blank" || url.href === "about:srcdoc") {
         return true;
       }
-      if (url2.protocol === "data:") return true;
-      if (url2.protocol === "file:") return true;
-      return isOriginPotentiallyTrustworthy(url2.origin);
-      function isOriginPotentiallyTrustworthy(origin2) {
-        if (origin2 == null || origin2 === "null") return false;
-        const originAsURL = new URL(origin2);
+      if (url.protocol === "data:") return true;
+      if (url.protocol === "file:") return true;
+      return isOriginPotentiallyTrustworthy(url.origin);
+      function isOriginPotentiallyTrustworthy(origin) {
+        if (origin == null || origin === "null") return false;
+        const originAsURL = new URL(origin);
         if (originAsURL.protocol === "https:" || originAsURL.protocol === "wss:") {
           return true;
         }
@@ -4805,7 +4805,7 @@ var require_util2 = __commonJS({
           writable: true,
           enumerable: true,
           configurable: true,
-          value: function forEach2(callbackfn, thisArg = globalThis) {
+          value: function forEach(callbackfn, thisArg = globalThis) {
             webidl.brandCheck(this, object);
             webidl.argumentLengthCheck(arguments, 1, `${name}.forEach`);
             if (typeof callbackfn !== "function") {
@@ -4845,8 +4845,8 @@ var require_util2 = __commonJS({
         errorSteps(e);
       }
     }
-    function isReadableStreamLike(stream4) {
-      return stream4 instanceof ReadableStream || stream4[Symbol.toStringTag] === "ReadableStream" && typeof stream4.tee === "function";
+    function isReadableStreamLike(stream) {
+      return stream instanceof ReadableStream || stream[Symbol.toStringTag] === "ReadableStream" && typeof stream.tee === "function";
     }
     function readableStreamClose(controller) {
       try {
@@ -4878,17 +4878,17 @@ var require_util2 = __commonJS({
         byteLength += chunk2.length;
       }
     }
-    function urlIsLocal(url2) {
-      assert("protocol" in url2);
-      const protocol = url2.protocol;
+    function urlIsLocal(url) {
+      assert("protocol" in url);
+      const protocol = url.protocol;
       return protocol === "about:" || protocol === "blob:" || protocol === "data:";
     }
-    function urlHasHttpsScheme(url2) {
-      return typeof url2 === "string" && url2[5] === ":" && url2[0] === "h" && url2[1] === "t" && url2[2] === "t" && url2[3] === "p" && url2[4] === "s" || url2.protocol === "https:";
+    function urlHasHttpsScheme(url) {
+      return typeof url === "string" && url[5] === ":" && url[0] === "h" && url[1] === "t" && url[2] === "t" && url[3] === "p" && url[4] === "s" || url.protocol === "https:";
     }
-    function urlIsHttpHttpsScheme(url2) {
-      assert("protocol" in url2);
-      const protocol = url2.protocol;
+    function urlIsHttpHttpsScheme(url) {
+      assert("protocol" in url);
+      const protocol = url.protocol;
       return protocol === "http:" || protocol === "https:";
     }
     function simpleRangeHeaderValue(value, allowWhitespace) {
@@ -4971,12 +4971,12 @@ var require_util2 = __commonJS({
       contentRange += isomorphicEncode(`${fullLength}`);
       return contentRange;
     }
-    var InflateStream = class extends Transform {
+    var InflateStream = class extends Transform2 {
       #zlibOptions;
       /** @param {zlib.ZlibOptions} [zlibOptions] */
-      constructor(zlibOptions2) {
+      constructor(zlibOptions) {
         super();
-        this.#zlibOptions = zlibOptions2;
+        this.#zlibOptions = zlibOptions;
       }
       _transform(chunk2, encoding, callback) {
         if (!this._inflateStream) {
@@ -4999,8 +4999,8 @@ var require_util2 = __commonJS({
         callback();
       }
     };
-    function createInflate(zlibOptions2) {
-      return new InflateStream(zlibOptions2);
+    function createInflate(zlibOptions) {
+      return new InflateStream(zlibOptions);
     }
     function extractMimeType(headers) {
       let charset = null;
@@ -5125,7 +5125,7 @@ var require_util2 = __commonJS({
       serializeJavascriptValueToJSONString,
       iteratorMixin,
       createIterator,
-      isValidHeaderName: isValidHeaderName2,
+      isValidHeaderName,
       isValidHeaderValue,
       isErrorLike,
       fullyReadBody,
@@ -5167,7 +5167,7 @@ var require_symbols2 = __commonJS({
 var require_file = __commonJS({
   "node_modules/undici/lib/web/fetch/file.js"(exports2, module2) {
     "use strict";
-    var { Blob: Blob2, File } = require("node:buffer");
+    var { Blob: Blob2, File: File2 } = require("node:buffer");
     var { kState } = require_symbols2();
     var { webidl } = require_webidl();
     var FileLike = class _FileLike {
@@ -5220,7 +5220,7 @@ var require_file = __commonJS({
     };
     webidl.converters.Blob = webidl.interfaceConverter(Blob2);
     function isFileLike(object) {
-      return object instanceof File || object && (typeof object.stream === "function" || typeof object.arrayBuffer === "function") && object[Symbol.toStringTag] === "File";
+      return object instanceof File2 || object && (typeof object.stream === "function" || typeof object.arrayBuffer === "function") && object[Symbol.toStringTag] === "File";
     }
     module2.exports = { FileLike, isFileLike };
   }
@@ -5237,8 +5237,8 @@ var require_formdata = __commonJS({
     var { webidl } = require_webidl();
     var { File: NativeFile } = require("node:buffer");
     var nodeUtil = require("node:util");
-    var File = globalThis.File ?? NativeFile;
-    var FormData3 = class _FormData {
+    var File2 = globalThis.File ?? NativeFile;
+    var FormData2 = class _FormData {
       constructor(form) {
         webidl.util.markAsUncloneable(this);
         if (form !== void 0) {
@@ -5322,7 +5322,7 @@ var require_formdata = __commonJS({
         }
       }
       [nodeUtil.inspect.custom](depth, options) {
-        const state = this[kState].reduce((a, b) => {
+        const state2 = this[kState].reduce((a, b) => {
           if (a[b.name]) {
             if (Array.isArray(a[b.name])) {
               a[b.name].push(b.value);
@@ -5336,12 +5336,12 @@ var require_formdata = __commonJS({
         }, { __proto__: null });
         options.depth ??= depth;
         options.colors ??= true;
-        const output = nodeUtil.formatWithOptions(options, state);
+        const output = nodeUtil.formatWithOptions(options, state2);
         return `FormData ${output.slice(output.indexOf("]") + 2)}`;
       }
     };
-    iteratorMixin("FormData", FormData3, kState, "name", "value");
-    Object.defineProperties(FormData3.prototype, {
+    iteratorMixin("FormData", FormData2, kState, "name", "value");
+    Object.defineProperties(FormData2.prototype, {
       append: kEnumerableProperty,
       delete: kEnumerableProperty,
       get: kEnumerableProperty,
@@ -5357,19 +5357,19 @@ var require_formdata = __commonJS({
       if (typeof value === "string") {
       } else {
         if (!isFileLike(value)) {
-          value = value instanceof Blob ? new File([value], "blob", { type: value.type }) : new FileLike(value, "blob", { type: value.type });
+          value = value instanceof Blob ? new File2([value], "blob", { type: value.type }) : new FileLike(value, "blob", { type: value.type });
         }
         if (filename !== void 0) {
           const options = {
             type: value.type,
             lastModified: value.lastModified
           };
-          value = value instanceof NativeFile ? new File([value], filename, options) : new FileLike(value, filename, options);
+          value = value instanceof NativeFile ? new File2([value], filename, options) : new FileLike(value, filename, options);
         }
       }
       return { name, value };
     }
-    module2.exports = { FormData: FormData3, makeEntry };
+    module2.exports = { FormData: FormData2, makeEntry };
   }
 });
 
@@ -5384,7 +5384,7 @@ var require_formdata_parser = __commonJS({
     var { makeEntry } = require_formdata();
     var assert = require("node:assert");
     var { File: NodeFile } = require("node:buffer");
-    var File = globalThis.File ?? NodeFile;
+    var File2 = globalThis.File ?? NodeFile;
     var formDataNameBuffer = Buffer.from('form-data; name="');
     var filenameBuffer = Buffer.from("; filename");
     var dd = Buffer.from("--");
@@ -5471,7 +5471,7 @@ var require_formdata_parser = __commonJS({
           if (!isAsciiString(contentType)) {
             contentType = "";
           }
-          value = new File([body], filename, { type: contentType });
+          value = new File2([body], filename, { type: contentType });
         } else {
           value = utf8DecodeBytes(Buffer.from(body));
         }
@@ -5628,7 +5628,7 @@ var require_formdata_parser = __commonJS({
 var require_body = __commonJS({
   "node_modules/undici/lib/web/fetch/body.js"(exports2, module2) {
     "use strict";
-    var util3 = require_util();
+    var util2 = require_util();
     var {
       ReadableStreamFrom,
       isBlobLike,
@@ -5639,7 +5639,7 @@ var require_body = __commonJS({
       extractMimeType,
       utf8DecodeBytes
     } = require_util2();
-    var { FormData: FormData3 } = require_formdata();
+    var { FormData: FormData2 } = require_formdata();
     var { kState } = require_symbols2();
     var { webidl } = require_webidl();
     var { Blob: Blob2 } = require("node:buffer");
@@ -5655,29 +5655,29 @@ var require_body = __commonJS({
     } catch {
       random = (max) => Math.floor(Math.random(max));
     }
-    var textEncoder2 = new TextEncoder();
-    function noop4() {
+    var textEncoder = new TextEncoder();
+    function noop3() {
     }
     var hasFinalizationRegistry = globalThis.FinalizationRegistry && process.version.indexOf("v18") !== 0;
     var streamRegistry;
     if (hasFinalizationRegistry) {
       streamRegistry = new FinalizationRegistry((weakRef) => {
-        const stream4 = weakRef.deref();
-        if (stream4 && !stream4.locked && !isDisturbed(stream4) && !isErrored(stream4)) {
-          stream4.cancel("Response object has been garbage collected").catch(noop4);
+        const stream = weakRef.deref();
+        if (stream && !stream.locked && !isDisturbed(stream) && !isErrored(stream)) {
+          stream.cancel("Response object has been garbage collected").catch(noop3);
         }
       });
     }
     function extractBody(object, keepalive = false) {
-      let stream4 = null;
+      let stream = null;
       if (object instanceof ReadableStream) {
-        stream4 = object;
+        stream = object;
       } else if (isBlobLike(object)) {
-        stream4 = object.stream();
+        stream = object.stream();
       } else {
-        stream4 = new ReadableStream({
+        stream = new ReadableStream({
           async pull(controller) {
-            const buffer = typeof source === "string" ? textEncoder2.encode(source) : source;
+            const buffer = typeof source === "string" ? textEncoder.encode(source) : source;
             if (buffer.byteLength) {
               controller.enqueue(buffer);
             }
@@ -5688,7 +5688,7 @@ var require_body = __commonJS({
           type: "bytes"
         });
       }
-      assert(isReadableStreamLike(stream4));
+      assert(isReadableStreamLike(stream));
       let action = null;
       let source = null;
       let length = null;
@@ -5703,7 +5703,7 @@ var require_body = __commonJS({
         source = new Uint8Array(object.slice());
       } else if (ArrayBuffer.isView(object)) {
         source = new Uint8Array(object.buffer.slice(object.byteOffset, object.byteOffset + object.byteLength));
-      } else if (util3.isFormDataLike(object)) {
+      } else if (util2.isFormDataLike(object)) {
         const boundary = `----formdata-undici-0${`${random(1e11)}`.padStart(11, "0")}`;
         const prefix = `--${boundary}\r
 Content-Disposition: form-data`;
@@ -5715,14 +5715,14 @@ Content-Disposition: form-data`;
         let hasUnknownSizeValue = false;
         for (const [name, value] of object) {
           if (typeof value === "string") {
-            const chunk3 = textEncoder2.encode(prefix + `; name="${escape2(normalizeLinefeeds(name))}"\r
+            const chunk3 = textEncoder.encode(prefix + `; name="${escape2(normalizeLinefeeds(name))}"\r
 \r
 ${normalizeLinefeeds(value)}\r
 `);
             blobParts.push(chunk3);
             length += chunk3.byteLength;
           } else {
-            const chunk3 = textEncoder2.encode(`${prefix}; name="${escape2(normalizeLinefeeds(name))}"` + (value.name ? `; filename="${escape2(value.name)}"` : "") + `\r
+            const chunk3 = textEncoder.encode(`${prefix}; name="${escape2(normalizeLinefeeds(name))}"` + (value.name ? `; filename="${escape2(value.name)}"` : "") + `\r
 Content-Type: ${value.type || "application/octet-stream"}\r
 \r
 `);
@@ -5734,7 +5734,7 @@ Content-Type: ${value.type || "application/octet-stream"}\r
             }
           }
         }
-        const chunk2 = textEncoder2.encode(`--${boundary}--\r
+        const chunk2 = textEncoder.encode(`--${boundary}--\r
 `);
         blobParts.push(chunk2);
         length += chunk2.byteLength;
@@ -5762,31 +5762,31 @@ Content-Type: ${value.type || "application/octet-stream"}\r
         if (keepalive) {
           throw new TypeError("keepalive");
         }
-        if (util3.isDisturbed(object) || object.locked) {
+        if (util2.isDisturbed(object) || object.locked) {
           throw new TypeError(
             "Response body object should not be disturbed or locked"
           );
         }
-        stream4 = object instanceof ReadableStream ? object : ReadableStreamFrom(object);
+        stream = object instanceof ReadableStream ? object : ReadableStreamFrom(object);
       }
-      if (typeof source === "string" || util3.isBuffer(source)) {
+      if (typeof source === "string" || util2.isBuffer(source)) {
         length = Buffer.byteLength(source);
       }
       if (action != null) {
-        let iterator3;
-        stream4 = new ReadableStream({
+        let iterator2;
+        stream = new ReadableStream({
           async start() {
-            iterator3 = action(object)[Symbol.asyncIterator]();
+            iterator2 = action(object)[Symbol.asyncIterator]();
           },
           async pull(controller) {
-            const { value, done } = await iterator3.next();
+            const { value, done } = await iterator2.next();
             if (done) {
               queueMicrotask(() => {
                 controller.close();
                 controller.byobRequest?.respond(0);
               });
             } else {
-              if (!isErrored(stream4)) {
+              if (!isErrored(stream)) {
                 const buffer = new Uint8Array(value);
                 if (buffer.byteLength) {
                   controller.enqueue(buffer);
@@ -5796,17 +5796,17 @@ Content-Type: ${value.type || "application/octet-stream"}\r
             return controller.desiredSize > 0;
           },
           async cancel(reason) {
-            await iterator3.return();
+            await iterator2.return();
           },
           type: "bytes"
         });
       }
-      const body = { stream: stream4, source, length };
+      const body = { stream, source, length };
       return [body, type2];
     }
     function safelyExtractBody(object, keepalive = false) {
       if (object instanceof ReadableStream) {
-        assert(!util3.isDisturbed(object), "The body has already been consumed.");
+        assert(!util2.isDisturbed(object), "The body has already been consumed.");
         assert(!object.locked, "The stream is locked.");
       }
       return extractBody(object, keepalive);
@@ -5820,8 +5820,8 @@ Content-Type: ${value.type || "application/octet-stream"}\r
         source: body.source
       };
     }
-    function throwIfAborted(state) {
-      if (state.aborted) {
+    function throwIfAborted(state2) {
+      if (state2.aborted) {
         throw new DOMException("The operation was aborted.", "AbortError");
       }
     }
@@ -5859,13 +5859,13 @@ Content-Type: ${value.type || "application/octet-stream"}\r
                   if (parsed === "failure") {
                     throw new TypeError("Failed to parse body as FormData.");
                   }
-                  const fd = new FormData3();
+                  const fd = new FormData2();
                   fd[kState] = parsed;
                   return fd;
                 }
                 case "application/x-www-form-urlencoded": {
                   const entries = new URLSearchParams(value.toString());
-                  const fd = new FormData3();
+                  const fd = new FormData2();
                   for (const [name, value2] of entries) {
                     fd.append(name, value2);
                   }
@@ -5886,8 +5886,8 @@ Content-Type: ${value.type || "application/octet-stream"}\r
       };
       return methods;
     }
-    function mixinBody(prototype2) {
-      Object.assign(prototype2.prototype, bodyMixinMethods(prototype2));
+    function mixinBody(prototype) {
+      Object.assign(prototype.prototype, bodyMixinMethods(prototype));
     }
     async function consumeBody(object, convertBytesToJSValue, instance) {
       webidl.brandCheck(object, instance);
@@ -5913,7 +5913,7 @@ Content-Type: ${value.type || "application/octet-stream"}\r
     }
     function bodyUnusable(object) {
       const body = object[kState].body;
-      return body != null && (body.stream.locked || util3.isDisturbed(body.stream));
+      return body != null && (body.stream.locked || util2.isDisturbed(body.stream));
     }
     function parseJSONFromBytes(bytes) {
       return JSON.parse(utf8DecodeBytes(bytes));
@@ -5943,7 +5943,7 @@ var require_client_h1 = __commonJS({
   "node_modules/undici/lib/dispatcher/client-h1.js"(exports2, module2) {
     "use strict";
     var assert = require("node:assert");
-    var util3 = require_util();
+    var util2 = require_util();
     var { channels } = require_diagnostics();
     var timers = require_timers();
     var {
@@ -5994,8 +5994,8 @@ var require_client_h1 = __commonJS({
     var constants = require_constants2();
     var EMPTY_BUF = Buffer.alloc(0);
     var FastBuffer = Buffer[Symbol.species];
-    var addListener = util3.addListener;
-    var removeAllListeners = util3.removeAllListeners;
+    var addListener = util2.addListener;
+    var removeAllListeners = util2.removeAllListeners;
     var extractBody;
     async function lazyllhttp() {
       const llhttpWasmData = process.env.JEST_WORKER_ID ? require_llhttp_wasm() : void 0;
@@ -6084,21 +6084,21 @@ var require_client_h1 = __commonJS({
         this.connection = "";
         this.maxResponseSize = client[kMaxResponseSize];
       }
-      setTimeout(delay2, type2) {
-        if (delay2 !== this.timeoutValue || type2 & USE_FAST_TIMER ^ this.timeoutType & USE_FAST_TIMER) {
+      setTimeout(delay4, type2) {
+        if (delay4 !== this.timeoutValue || type2 & USE_FAST_TIMER ^ this.timeoutType & USE_FAST_TIMER) {
           if (this.timeout) {
             timers.clearTimeout(this.timeout);
             this.timeout = null;
           }
-          if (delay2) {
+          if (delay4) {
             if (type2 & USE_FAST_TIMER) {
-              this.timeout = timers.setFastTimeout(onParserTimeout, delay2, new WeakRef(this));
+              this.timeout = timers.setFastTimeout(onParserTimeout, delay4, new WeakRef(this));
             } else {
-              this.timeout = setTimeout(onParserTimeout, delay2, new WeakRef(this));
+              this.timeout = setTimeout(onParserTimeout, delay4, new WeakRef(this));
               this.timeout.unref();
             }
           }
-          this.timeoutValue = delay2;
+          this.timeoutValue = delay4;
         } else if (this.timeout) {
           if (this.timeout.refresh) {
             this.timeout.refresh();
@@ -6173,7 +6173,7 @@ var require_client_h1 = __commonJS({
             throw new HTTPParserError(message, constants.ERROR[ret], data.slice(offset));
           }
         } catch (err) {
-          util3.destroy(socket, err);
+          util2.destroy(socket, err);
         }
       }
       destroy() {
@@ -6220,13 +6220,13 @@ var require_client_h1 = __commonJS({
         }
         const key = this.headers[len - 2];
         if (key.length === 10) {
-          const headerName = util3.bufferToLowerCasedHeaderName(key);
+          const headerName = util2.bufferToLowerCasedHeaderName(key);
           if (headerName === "keep-alive") {
             this.keepAlive += buf.toString();
           } else if (headerName === "connection") {
             this.connection += buf.toString();
           }
-        } else if (key.length === 14 && util3.bufferToLowerCasedHeaderName(key) === "content-length") {
+        } else if (key.length === 14 && util2.bufferToLowerCasedHeaderName(key) === "content-length") {
           this.contentLength += buf.toString();
         }
         this.trackHeader(buf.length);
@@ -6234,7 +6234,7 @@ var require_client_h1 = __commonJS({
       trackHeader(len) {
         this.headersSize += len;
         if (this.headersSize >= this.headersMaxSize) {
-          util3.destroy(this.socket, new HeadersOverflowError());
+          util2.destroy(this.socket, new HeadersOverflowError());
         }
       }
       onUpgrade(head) {
@@ -6265,7 +6265,7 @@ var require_client_h1 = __commonJS({
         try {
           request2.onUpgrade(statusCode, headers, socket);
         } catch (err) {
-          util3.destroy(socket, err);
+          util2.destroy(socket, err);
         }
         client[kResume]();
       }
@@ -6281,11 +6281,11 @@ var require_client_h1 = __commonJS({
         assert(!this.upgrade);
         assert(this.statusCode < 200);
         if (statusCode === 100) {
-          util3.destroy(socket, new SocketError("bad response", util3.getSocketInfo(socket)));
+          util2.destroy(socket, new SocketError("bad response", util2.getSocketInfo(socket)));
           return -1;
         }
         if (upgrade && !request2.upgrade) {
-          util3.destroy(socket, new SocketError("bad upgrade", util3.getSocketInfo(socket)));
+          util2.destroy(socket, new SocketError("bad upgrade", util2.getSocketInfo(socket)));
           return -1;
         }
         assert(this.timeoutType === TIMEOUT_HEADERS);
@@ -6314,7 +6314,7 @@ var require_client_h1 = __commonJS({
         this.headers = [];
         this.headersSize = 0;
         if (this.shouldKeepAlive && client[kPipelining]) {
-          const keepAliveTimeout = this.keepAlive ? util3.parseKeepAliveTimeout(this.keepAlive) : null;
+          const keepAliveTimeout = this.keepAlive ? util2.parseKeepAliveTimeout(this.keepAlive) : null;
           if (keepAliveTimeout != null) {
             const timeout = Math.min(
               keepAliveTimeout - client[kKeepAliveTimeoutThreshold],
@@ -6362,7 +6362,7 @@ var require_client_h1 = __commonJS({
         }
         assert(statusCode >= 200);
         if (maxResponseSize > -1 && this.bytesRead + buf.length > maxResponseSize) {
-          util3.destroy(socket, new ResponseExceededMaxSizeError());
+          util2.destroy(socket, new ResponseExceededMaxSizeError());
           return -1;
         }
         this.bytesRead += buf.length;
@@ -6394,20 +6394,20 @@ var require_client_h1 = __commonJS({
           return;
         }
         if (request2.method !== "HEAD" && contentLength && bytesRead !== parseInt(contentLength, 10)) {
-          util3.destroy(socket, new ResponseContentLengthMismatchError());
+          util2.destroy(socket, new ResponseContentLengthMismatchError());
           return -1;
         }
         request2.onComplete(headers);
         client[kQueue][client[kRunningIdx]++] = null;
         if (socket[kWriting]) {
           assert(client[kRunning] === 0);
-          util3.destroy(socket, new InformationalError("reset"));
+          util2.destroy(socket, new InformationalError("reset"));
           return constants.ERROR.PAUSED;
         } else if (!shouldKeepAlive) {
-          util3.destroy(socket, new InformationalError("reset"));
+          util2.destroy(socket, new InformationalError("reset"));
           return constants.ERROR.PAUSED;
         } else if (socket[kReset] && client[kRunning] === 0) {
-          util3.destroy(socket, new InformationalError("reset"));
+          util2.destroy(socket, new InformationalError("reset"));
           return constants.ERROR.PAUSED;
         } else if (client[kPipelining] == null || client[kPipelining] === 1) {
           setImmediate(() => client[kResume]());
@@ -6421,15 +6421,15 @@ var require_client_h1 = __commonJS({
       if (timeoutType === TIMEOUT_HEADERS) {
         if (!socket[kWriting] || socket.writableNeedDrain || client[kRunning] > 1) {
           assert(!paused, "cannot be paused while waiting for headers");
-          util3.destroy(socket, new HeadersTimeoutError());
+          util2.destroy(socket, new HeadersTimeoutError());
         }
       } else if (timeoutType === TIMEOUT_BODY) {
         if (!paused) {
-          util3.destroy(socket, new BodyTimeoutError());
+          util2.destroy(socket, new BodyTimeoutError());
         }
       } else if (timeoutType === TIMEOUT_KEEP_ALIVE) {
         assert(client[kRunning] === 0 && client[kKeepAliveTimeoutValue]);
-        util3.destroy(socket, new InformationalError("socket idle timeout"));
+        util2.destroy(socket, new InformationalError("socket idle timeout"));
       }
     }
     async function connectH1(client, socket) {
@@ -6465,7 +6465,7 @@ var require_client_h1 = __commonJS({
           parser.onMessageComplete();
           return;
         }
-        util3.destroy(this, new SocketError("other side closed", util3.getSocketInfo(this)));
+        util2.destroy(this, new SocketError("other side closed", util2.getSocketInfo(this)));
       });
       addListener(socket, "close", function() {
         const client2 = this[kClient];
@@ -6477,7 +6477,7 @@ var require_client_h1 = __commonJS({
           this[kParser].destroy();
           this[kParser] = null;
         }
-        const err = this[kError] || new SocketError("closed", util3.getSocketInfo(this));
+        const err = this[kError] || new SocketError("closed", util2.getSocketInfo(this));
         client2[kSocket] = null;
         client2[kHTTPContext] = null;
         if (client2.destroyed) {
@@ -6485,12 +6485,12 @@ var require_client_h1 = __commonJS({
           const requests = client2[kQueue].splice(client2[kRunningIdx]);
           for (let i = 0; i < requests.length; i++) {
             const request2 = requests[i];
-            util3.errorRequest(client2, request2, err);
+            util2.errorRequest(client2, request2, err);
           }
         } else if (client2[kRunning] > 0 && err.code !== "UND_ERR_INFO") {
           const request2 = client2[kQueue][client2[kRunningIdx]];
           client2[kQueue][client2[kRunningIdx]++] = null;
-          util3.errorRequest(client2, request2, err);
+          util2.errorRequest(client2, request2, err);
         }
         client2[kPendingIdx] = client2[kRunningIdx];
         assert(client2[kRunning] === 0);
@@ -6531,7 +6531,7 @@ var require_client_h1 = __commonJS({
             if (client[kRunning] > 0 && (request2.upgrade || request2.method === "CONNECT")) {
               return true;
             }
-            if (client[kRunning] > 0 && util3.bodyLength(request2.body) !== 0 && (util3.isStream(request2.body) || util3.isAsyncIterable(request2.body) || util3.isFormDataLike(request2.body))) {
+            if (client[kRunning] > 0 && util2.bodyLength(request2.body) !== 0 && (util2.isStream(request2.body) || util2.isAsyncIterable(request2.body) || util2.isFormDataLike(request2.body))) {
               return true;
             }
           }
@@ -6571,7 +6571,7 @@ var require_client_h1 = __commonJS({
       const { method, path: path2, host, upgrade, blocking, reset } = request2;
       let { body, headers, contentLength } = request2;
       const expectsPayload = method === "PUT" || method === "POST" || method === "PATCH" || method === "QUERY" || method === "PROPFIND" || method === "PROPPATCH";
-      if (util3.isFormDataLike(body)) {
+      if (util2.isFormDataLike(body)) {
         if (!extractBody) {
           extractBody = require_body().extractBody;
         }
@@ -6581,13 +6581,13 @@ var require_client_h1 = __commonJS({
         }
         body = bodyStream.stream;
         contentLength = bodyStream.length;
-      } else if (util3.isBlobLike(body) && request2.contentType == null && body.type) {
+      } else if (util2.isBlobLike(body) && request2.contentType == null && body.type) {
         headers.push("content-type", body.type);
       }
       if (body && typeof body.read === "function") {
         body.read(0);
       }
-      const bodyLength = util3.bodyLength(body);
+      const bodyLength = util2.bodyLength(body);
       contentLength = bodyLength ?? contentLength;
       if (contentLength === null) {
         contentLength = request2.contentLength;
@@ -6597,7 +6597,7 @@ var require_client_h1 = __commonJS({
       }
       if (shouldSendContentLength(method) && contentLength > 0 && request2.contentLength !== null && request2.contentLength !== contentLength) {
         if (client[kStrictContentLength]) {
-          util3.errorRequest(client, request2, new RequestContentLengthMismatchError());
+          util2.errorRequest(client, request2, new RequestContentLengthMismatchError());
           return false;
         }
         process.emitWarning(new RequestContentLengthMismatchError());
@@ -6607,14 +6607,14 @@ var require_client_h1 = __commonJS({
         if (request2.aborted || request2.completed) {
           return;
         }
-        util3.errorRequest(client, request2, err || new RequestAbortedError());
-        util3.destroy(body);
-        util3.destroy(socket, new InformationalError("aborted"));
+        util2.errorRequest(client, request2, err || new RequestAbortedError());
+        util2.destroy(body);
+        util2.destroy(socket, new InformationalError("aborted"));
       };
       try {
         request2.onConnect(abort);
       } catch (err) {
-        util3.errorRequest(client, request2, err);
+        util2.errorRequest(client, request2, err);
       }
       if (request2.aborted) {
         return false;
@@ -6671,17 +6671,17 @@ upgrade: ${upgrade}\r
       }
       if (!body || bodyLength === 0) {
         writeBuffer(abort, null, client, request2, socket, contentLength, header, expectsPayload);
-      } else if (util3.isBuffer(body)) {
+      } else if (util2.isBuffer(body)) {
         writeBuffer(abort, body, client, request2, socket, contentLength, header, expectsPayload);
-      } else if (util3.isBlobLike(body)) {
+      } else if (util2.isBlobLike(body)) {
         if (typeof body.stream === "function") {
           writeIterable(abort, body.stream(), client, request2, socket, contentLength, header, expectsPayload);
         } else {
           writeBlob(abort, body, client, request2, socket, contentLength, header, expectsPayload);
         }
-      } else if (util3.isStream(body)) {
+      } else if (util2.isStream(body)) {
         writeStream(abort, body, client, request2, socket, contentLength, header, expectsPayload);
-      } else if (util3.isIterable(body)) {
+      } else if (util2.isIterable(body)) {
         writeIterable(abort, body, client, request2, socket, contentLength, header, expectsPayload);
       } else {
         assert(false);
@@ -6701,7 +6701,7 @@ upgrade: ${upgrade}\r
             this.pause();
           }
         } catch (err) {
-          util3.destroy(this, err);
+          util2.destroy(this, err);
         }
       };
       const onDrain = function() {
@@ -6738,9 +6738,9 @@ upgrade: ${upgrade}\r
         }
         writer.destroy(err);
         if (err && (err.code !== "UND_ERR_INFO" || err.message !== "reset")) {
-          util3.destroy(body, err);
+          util2.destroy(body, err);
         } else {
-          util3.destroy(body);
+          util2.destroy(body);
         }
       };
       body.on("data", onData).on("end", onFinished).on("error", onFinished).on("close", onClose);
@@ -6769,7 +6769,7 @@ upgrade: ${upgrade}\r
             socket.write(`${header}\r
 `, "latin1");
           }
-        } else if (util3.isBuffer(body)) {
+        } else if (util2.isBuffer(body)) {
           assert(contentLength === body.byteLength, "buffer body must have content length");
           socket.cork();
           socket.write(`${header}content-length: ${contentLength}\r
@@ -6964,7 +6964,7 @@ var require_client_h2 = __commonJS({
     "use strict";
     var assert = require("node:assert");
     var { pipeline } = require("node:stream");
-    var util3 = require_util();
+    var util2 = require_util();
     var {
       RequestContentLengthMismatchError,
       RequestAbortedError,
@@ -6993,11 +6993,11 @@ var require_client_h2 = __commonJS({
     var kOpenStreams = /* @__PURE__ */ Symbol("open streams");
     var extractBody;
     var h2ExperimentalWarned = false;
-    var http22;
+    var http2;
     try {
-      http22 = require("node:http2");
+      http2 = require("node:http2");
     } catch {
-      http22 = { constants: {} };
+      http2 = { constants: {} };
     }
     var {
       constants: {
@@ -7009,7 +7009,7 @@ var require_client_h2 = __commonJS({
         HTTP2_HEADER_EXPECT,
         HTTP2_HEADER_STATUS
       }
-    } = http22;
+    } = http2;
     function parseH2Headers(headers) {
       const result = [];
       for (const [name, value] of Object.entries(headers)) {
@@ -7031,44 +7031,44 @@ var require_client_h2 = __commonJS({
           code: "UNDICI-H2"
         });
       }
-      const session = http22.connect(client[kUrl], {
+      const session = http2.connect(client[kUrl], {
         createConnection: () => socket,
         peerMaxConcurrentStreams: client[kMaxConcurrentStreams]
       });
       session[kOpenStreams] = 0;
       session[kClient] = client;
       session[kSocket] = socket;
-      util3.addListener(session, "error", onHttp2SessionError);
-      util3.addListener(session, "frameError", onHttp2FrameError);
-      util3.addListener(session, "end", onHttp2SessionEnd);
-      util3.addListener(session, "goaway", onHTTP2GoAway);
-      util3.addListener(session, "close", function() {
+      util2.addListener(session, "error", onHttp2SessionError);
+      util2.addListener(session, "frameError", onHttp2FrameError);
+      util2.addListener(session, "end", onHttp2SessionEnd);
+      util2.addListener(session, "goaway", onHTTP2GoAway);
+      util2.addListener(session, "close", function() {
         const { [kClient]: client2 } = this;
         const { [kSocket]: socket2 } = client2;
-        const err = this[kSocket][kError] || this[kError] || new SocketError("closed", util3.getSocketInfo(socket2));
+        const err = this[kSocket][kError] || this[kError] || new SocketError("closed", util2.getSocketInfo(socket2));
         client2[kHTTP2Session] = null;
         if (client2.destroyed) {
           assert(client2[kPending] === 0);
           const requests = client2[kQueue].splice(client2[kRunningIdx]);
           for (let i = 0; i < requests.length; i++) {
             const request2 = requests[i];
-            util3.errorRequest(client2, request2, err);
+            util2.errorRequest(client2, request2, err);
           }
         }
       });
       session.unref();
       client[kHTTP2Session] = session;
       socket[kHTTP2Session] = session;
-      util3.addListener(socket, "error", function(err) {
+      util2.addListener(socket, "error", function(err) {
         assert(err.code !== "ERR_TLS_CERT_ALTNAME_INVALID");
         this[kError] = err;
         this[kClient][kOnError](err);
       });
-      util3.addListener(socket, "end", function() {
-        util3.destroy(this, new SocketError("other side closed", util3.getSocketInfo(this)));
+      util2.addListener(socket, "end", function() {
+        util2.destroy(this, new SocketError("other side closed", util2.getSocketInfo(this)));
       });
-      util3.addListener(socket, "close", function() {
-        const err = this[kError] || new SocketError("closed", util3.getSocketInfo(this));
+      util2.addListener(socket, "close", function() {
+        const err = this[kError] || new SocketError("closed", util2.getSocketInfo(this));
         client[kSocket] = null;
         if (this[kHTTP2Session] != null) {
           this[kHTTP2Session].destroy(err);
@@ -7131,12 +7131,12 @@ var require_client_h2 = __commonJS({
       }
     }
     function onHttp2SessionEnd() {
-      const err = new SocketError("other side closed", util3.getSocketInfo(this[kSocket]));
+      const err = new SocketError("other side closed", util2.getSocketInfo(this[kSocket]));
       this.destroy(err);
-      util3.destroy(this[kSocket], err);
+      util2.destroy(this[kSocket], err);
     }
     function onHTTP2GoAway(code) {
-      const err = this[kError] || new SocketError(`HTTP/2: "GOAWAY" frame received with code ${code}`, util3.getSocketInfo(this));
+      const err = this[kError] || new SocketError(`HTTP/2: "GOAWAY" frame received with code ${code}`, util2.getSocketInfo(this));
       const client = this[kClient];
       client[kSocket] = null;
       client[kHTTPContext] = null;
@@ -7144,11 +7144,11 @@ var require_client_h2 = __commonJS({
         this[kHTTP2Session].destroy(err);
         this[kHTTP2Session] = null;
       }
-      util3.destroy(this[kSocket], err);
+      util2.destroy(this[kSocket], err);
       if (client[kRunningIdx] < client[kQueue].length) {
         const request2 = client[kQueue][client[kRunningIdx]];
         client[kQueue][client[kRunningIdx]++] = null;
-        util3.errorRequest(client, request2, err);
+        util2.errorRequest(client, request2, err);
         client[kPendingIdx] = client[kRunningIdx];
       }
       assert(client[kRunning] === 0);
@@ -7163,7 +7163,7 @@ var require_client_h2 = __commonJS({
       const { method, path: path2, host, upgrade, expectContinue, signal, headers: reqHeaders } = request2;
       let { body } = request2;
       if (upgrade) {
-        util3.errorRequest(client, request2, new Error("Upgrade not supported for H2"));
+        util2.errorRequest(client, request2, new Error("Upgrade not supported for H2"));
         return false;
       }
       const headers = {};
@@ -7182,7 +7182,7 @@ var require_client_h2 = __commonJS({
           headers[key] = val;
         }
       }
-      let stream4;
+      let stream;
       const { hostname, port } = client[kUrl];
       headers[HTTP2_HEADER_AUTHORITY] = host || `${hostname}${port ? `:${port}` : ""}`;
       headers[HTTP2_HEADER_METHOD] = method;
@@ -7191,37 +7191,37 @@ var require_client_h2 = __commonJS({
           return;
         }
         err = err || new RequestAbortedError();
-        util3.errorRequest(client, request2, err);
-        if (stream4 != null) {
-          util3.destroy(stream4, err);
+        util2.errorRequest(client, request2, err);
+        if (stream != null) {
+          util2.destroy(stream, err);
         }
-        util3.destroy(body, err);
+        util2.destroy(body, err);
         client[kQueue][client[kRunningIdx]++] = null;
         client[kResume]();
       };
       try {
         request2.onConnect(abort);
       } catch (err) {
-        util3.errorRequest(client, request2, err);
+        util2.errorRequest(client, request2, err);
       }
       if (request2.aborted) {
         return false;
       }
       if (method === "CONNECT") {
         session.ref();
-        stream4 = session.request(headers, { endStream: false, signal });
-        if (stream4.id && !stream4.pending) {
-          request2.onUpgrade(null, null, stream4);
+        stream = session.request(headers, { endStream: false, signal });
+        if (stream.id && !stream.pending) {
+          request2.onUpgrade(null, null, stream);
           ++session[kOpenStreams];
           client[kQueue][client[kRunningIdx]++] = null;
         } else {
-          stream4.once("ready", () => {
-            request2.onUpgrade(null, null, stream4);
+          stream.once("ready", () => {
+            request2.onUpgrade(null, null, stream);
             ++session[kOpenStreams];
             client[kQueue][client[kRunningIdx]++] = null;
           });
         }
-        stream4.once("close", () => {
+        stream.once("close", () => {
           session[kOpenStreams] -= 1;
           if (session[kOpenStreams] === 0) session.unref();
         });
@@ -7233,8 +7233,8 @@ var require_client_h2 = __commonJS({
       if (body && typeof body.read === "function") {
         body.read(0);
       }
-      let contentLength = util3.bodyLength(body);
-      if (util3.isFormDataLike(body)) {
+      let contentLength = util2.bodyLength(body);
+      if (util2.isFormDataLike(body)) {
         extractBody ??= require_body().extractBody;
         const [bodyStream, contentType] = extractBody(body);
         headers["content-type"] = contentType;
@@ -7249,7 +7249,7 @@ var require_client_h2 = __commonJS({
       }
       if (shouldSendContentLength(method) && contentLength > 0 && request2.contentLength != null && request2.contentLength !== contentLength) {
         if (client[kStrictContentLength]) {
-          util3.errorRequest(client, request2, new RequestContentLengthMismatchError());
+          util2.errorRequest(client, request2, new RequestContentLengthMismatchError());
           return false;
         }
         process.emitWarning(new RequestContentLengthMismatchError());
@@ -7262,36 +7262,36 @@ var require_client_h2 = __commonJS({
       const shouldEndStream = method === "GET" || method === "HEAD" || body === null;
       if (expectContinue) {
         headers[HTTP2_HEADER_EXPECT] = "100-continue";
-        stream4 = session.request(headers, { endStream: shouldEndStream, signal });
-        stream4.once("continue", writeBodyH2);
+        stream = session.request(headers, { endStream: shouldEndStream, signal });
+        stream.once("continue", writeBodyH2);
       } else {
-        stream4 = session.request(headers, {
+        stream = session.request(headers, {
           endStream: shouldEndStream,
           signal
         });
         writeBodyH2();
       }
       ++session[kOpenStreams];
-      stream4.once("response", (headers2) => {
+      stream.once("response", (headers2) => {
         const { [HTTP2_HEADER_STATUS]: statusCode, ...realHeaders } = headers2;
         request2.onResponseStarted();
         if (request2.aborted) {
           const err = new RequestAbortedError();
-          util3.errorRequest(client, request2, err);
-          util3.destroy(stream4, err);
+          util2.errorRequest(client, request2, err);
+          util2.destroy(stream, err);
           return;
         }
-        if (request2.onHeaders(Number(statusCode), parseH2Headers(realHeaders), stream4.resume.bind(stream4), "") === false) {
-          stream4.pause();
+        if (request2.onHeaders(Number(statusCode), parseH2Headers(realHeaders), stream.resume.bind(stream), "") === false) {
+          stream.pause();
         }
-        stream4.on("data", (chunk2) => {
+        stream.on("data", (chunk2) => {
           if (request2.onData(chunk2) === false) {
-            stream4.pause();
+            stream.pause();
           }
         });
       });
-      stream4.once("end", () => {
-        if (stream4.state?.state == null || stream4.state.state < 6) {
+      stream.once("end", () => {
+        if (stream.state?.state == null || stream.state.state < 6) {
           request2.onComplete([]);
         }
         if (session[kOpenStreams] === 0) {
@@ -7302,16 +7302,16 @@ var require_client_h2 = __commonJS({
         client[kPendingIdx] = client[kRunningIdx];
         client[kResume]();
       });
-      stream4.once("close", () => {
+      stream.once("close", () => {
         session[kOpenStreams] -= 1;
         if (session[kOpenStreams] === 0) {
           session.unref();
         }
       });
-      stream4.once("error", function(err) {
+      stream.once("error", function(err) {
         abort(err);
       });
-      stream4.once("frameError", (type2, code) => {
+      stream.once("frameError", (type2, code) => {
         abort(new InformationalError(`HTTP/2: "frameError" received - type ${type2}, code ${code}`));
       });
       return true;
@@ -7319,7 +7319,7 @@ var require_client_h2 = __commonJS({
         if (!body || contentLength === 0) {
           writeBuffer(
             abort,
-            stream4,
+            stream,
             null,
             client,
             request2,
@@ -7327,10 +7327,10 @@ var require_client_h2 = __commonJS({
             contentLength,
             expectsPayload
           );
-        } else if (util3.isBuffer(body)) {
+        } else if (util2.isBuffer(body)) {
           writeBuffer(
             abort,
-            stream4,
+            stream,
             body,
             client,
             request2,
@@ -7338,11 +7338,11 @@ var require_client_h2 = __commonJS({
             contentLength,
             expectsPayload
           );
-        } else if (util3.isBlobLike(body)) {
+        } else if (util2.isBlobLike(body)) {
           if (typeof body.stream === "function") {
             writeIterable(
               abort,
-              stream4,
+              stream,
               body.stream(),
               client,
               request2,
@@ -7353,7 +7353,7 @@ var require_client_h2 = __commonJS({
           } else {
             writeBlob(
               abort,
-              stream4,
+              stream,
               body,
               client,
               request2,
@@ -7362,21 +7362,21 @@ var require_client_h2 = __commonJS({
               expectsPayload
             );
           }
-        } else if (util3.isStream(body)) {
+        } else if (util2.isStream(body)) {
           writeStream(
             abort,
             client[kSocket],
             expectsPayload,
-            stream4,
+            stream,
             body,
             client,
             request2,
             contentLength
           );
-        } else if (util3.isIterable(body)) {
+        } else if (util2.isIterable(body)) {
           writeIterable(
             abort,
-            stream4,
+            stream,
             body,
             client,
             request2,
@@ -7391,7 +7391,7 @@ var require_client_h2 = __commonJS({
     }
     function writeBuffer(abort, h2stream, body, client, request2, socket, contentLength, expectsPayload) {
       try {
-        if (body != null && util3.isBuffer(body)) {
+        if (body != null && util2.isBuffer(body)) {
           assert(contentLength === body.byteLength, "buffer body must have content length");
           h2stream.cork();
           h2stream.write(body);
@@ -7415,10 +7415,10 @@ var require_client_h2 = __commonJS({
         h2stream,
         (err) => {
           if (err) {
-            util3.destroy(pipe, err);
+            util2.destroy(pipe, err);
             abort(err);
           } else {
-            util3.removeAllListeners(pipe);
+            util2.removeAllListeners(pipe);
             request2.onRequestSent();
             if (!expectsPayload) {
               socket[kReset] = true;
@@ -7427,7 +7427,7 @@ var require_client_h2 = __commonJS({
           }
         }
       );
-      util3.addListener(pipe, "data", onPipeData);
+      util2.addListener(pipe, "data", onPipeData);
       function onPipeData(chunk2) {
         request2.onBodySent(chunk2);
       }
@@ -7503,7 +7503,7 @@ var require_client_h2 = __commonJS({
 var require_redirect_handler = __commonJS({
   "node_modules/undici/lib/handler/redirect-handler.js"(exports2, module2) {
     "use strict";
-    var util3 = require_util();
+    var util2 = require_util();
     var { kBodyUsed } = require_symbols();
     var assert = require("node:assert");
     var { InvalidArgumentError } = require_errors();
@@ -7526,7 +7526,7 @@ var require_redirect_handler = __commonJS({
         if (maxRedirections != null && (!Number.isInteger(maxRedirections) || maxRedirections < 0)) {
           throw new InvalidArgumentError("maxRedirections must be a positive number");
         }
-        util3.validateHandler(handler2, opts.method, opts.upgrade);
+        util2.validateHandler(handler2, opts.method, opts.upgrade);
         this.dispatch = dispatch;
         this.location = null;
         this.abort = null;
@@ -7535,8 +7535,8 @@ var require_redirect_handler = __commonJS({
         this.handler = handler2;
         this.history = [];
         this.redirectionLimitReached = false;
-        if (util3.isStream(this.opts.body)) {
-          if (util3.bodyLength(this.opts.body) === 0) {
+        if (util2.isStream(this.opts.body)) {
+          if (util2.bodyLength(this.opts.body) === 0) {
             this.opts.body.on("data", function() {
               assert(false);
             });
@@ -7549,7 +7549,7 @@ var require_redirect_handler = __commonJS({
           }
         } else if (this.opts.body && typeof this.opts.body.pipeTo === "function") {
           this.opts.body = new BodyAsyncIterable(this.opts.body);
-        } else if (this.opts.body && typeof this.opts.body !== "string" && !ArrayBuffer.isView(this.opts.body) && util3.isIterable(this.opts.body)) {
+        } else if (this.opts.body && typeof this.opts.body !== "string" && !ArrayBuffer.isView(this.opts.body) && util2.isIterable(this.opts.body)) {
           this.opts.body = new BodyAsyncIterable(this.opts.body);
         }
       }
@@ -7564,7 +7564,7 @@ var require_redirect_handler = __commonJS({
         this.handler.onError(error);
       }
       onHeaders(statusCode, headers, resume, statusText) {
-        this.location = this.history.length >= this.maxRedirections || util3.isDisturbed(this.opts.body) ? null : parseLocation(statusCode, headers);
+        this.location = this.history.length >= this.maxRedirections || util2.isDisturbed(this.opts.body) ? null : parseLocation(statusCode, headers);
         if (this.opts.throwOnMaxRedirect && this.history.length >= this.maxRedirections) {
           if (this.request) {
             this.request.abort(new Error("max redirects"));
@@ -7579,11 +7579,11 @@ var require_redirect_handler = __commonJS({
         if (!this.location) {
           return this.handler.onHeaders(statusCode, headers, resume, statusText);
         }
-        const { origin: origin2, pathname, search } = util3.parseURL(new URL(this.location, this.opts.origin && new URL(this.opts.path, this.opts.origin)));
+        const { origin, pathname, search } = util2.parseURL(new URL(this.location, this.opts.origin && new URL(this.opts.path, this.opts.origin)));
         const path2 = search ? `${pathname}${search}` : pathname;
-        this.opts.headers = cleanRequestHeaders(this.opts.headers, statusCode === 303, this.opts.origin !== origin2);
+        this.opts.headers = cleanRequestHeaders(this.opts.headers, statusCode === 303, this.opts.origin !== origin);
         this.opts.path = path2;
-        this.opts.origin = origin2;
+        this.opts.origin = origin;
         this.opts.maxRedirections = 0;
         this.opts.query = null;
         if (statusCode === 303 && this.opts.method !== "HEAD") {
@@ -7617,20 +7617,20 @@ var require_redirect_handler = __commonJS({
         return null;
       }
       for (let i = 0; i < headers.length; i += 2) {
-        if (headers[i].length === 8 && util3.headerNameToString(headers[i]) === "location") {
+        if (headers[i].length === 8 && util2.headerNameToString(headers[i]) === "location") {
           return headers[i + 1];
         }
       }
     }
     function shouldRemoveHeader(header, removeContent, unknownOrigin) {
       if (header.length === 4) {
-        return util3.headerNameToString(header) === "host";
+        return util2.headerNameToString(header) === "host";
       }
-      if (removeContent && util3.headerNameToString(header).startsWith("content-")) {
+      if (removeContent && util2.headerNameToString(header).startsWith("content-")) {
         return true;
       }
       if (unknownOrigin && (header.length === 13 || header.length === 6 || header.length === 19)) {
-        const name = util3.headerNameToString(header);
+        const name = util2.headerNameToString(header);
         return name === "authorization" || name === "cookie" || name === "proxy-authorization";
       }
       return false;
@@ -7686,8 +7686,8 @@ var require_client = __commonJS({
     "use strict";
     var assert = require("node:assert");
     var net = require("node:net");
-    var http3 = require("node:http");
-    var util3 = require_util();
+    var http2 = require("node:http");
+    var util2 = require_util();
     var { channels } = require_diagnostics();
     var Request = require_request();
     var DispatcherBase = require_dispatcher_base();
@@ -7743,7 +7743,7 @@ var require_client = __commonJS({
     var connectH2 = require_client_h2();
     var deprecatedInterceptorWarned = false;
     var kClosedResolve = /* @__PURE__ */ Symbol("kClosedResolve");
-    var noop4 = () => {
+    var noop3 = () => {
     };
     function getPipelining(client) {
       return client[kPipelining] ?? client[kHTTPContext]?.defaultPipelining ?? 1;
@@ -7754,7 +7754,7 @@ var require_client = __commonJS({
        * @param {string|URL} url
        * @param {import('../../types/client.js').Client.Options} options
        */
-      constructor(url2, {
+      constructor(url, {
         interceptors,
         maxHeaderSize,
         headersTimeout,
@@ -7871,10 +7871,10 @@ var require_client = __commonJS({
         } else {
           this[kInterceptors] = [createRedirectInterceptor({ maxRedirections })];
         }
-        this[kUrl] = util3.parseOrigin(url2);
+        this[kUrl] = util2.parseOrigin(url);
         this[kConnector] = connect2;
         this[kPipelining] = pipelining != null ? pipelining : 1;
-        this[kMaxHeadersSize] = maxHeaderSize || http3.maxHeaderSize;
+        this[kMaxHeadersSize] = maxHeaderSize || http2.maxHeaderSize;
         this[kKeepAliveDefaultTimeout] = keepAliveTimeout == null ? 4e3 : keepAliveTimeout;
         this[kKeepAliveMaxTimeout] = keepAliveMaxTimeout == null ? 6e5 : keepAliveMaxTimeout;
         this[kKeepAliveTimeoutThreshold] = keepAliveTimeoutThreshold == null ? 2e3 : keepAliveTimeoutThreshold;
@@ -7930,11 +7930,11 @@ var require_client = __commonJS({
         this.once("connect", cb);
       }
       [kDispatch](opts, handler2) {
-        const origin2 = opts.origin || this[kUrl].origin;
-        const request2 = new Request(origin2, opts, handler2);
+        const origin = opts.origin || this[kUrl].origin;
+        const request2 = new Request(origin, opts, handler2);
         this[kQueue].push(request2);
         if (this[kResuming]) {
-        } else if (util3.bodyLength(request2.body) == null && util3.isIterable(request2.body)) {
+        } else if (util2.bodyLength(request2.body) == null && util2.isIterable(request2.body)) {
           this[kResuming] = 1;
           queueMicrotask(() => resume(this));
         } else {
@@ -7959,7 +7959,7 @@ var require_client = __commonJS({
           const requests = this[kQueue].splice(this[kPendingIdx]);
           for (let i = 0; i < requests.length; i++) {
             const request2 = requests[i];
-            util3.errorRequest(this, request2, err);
+            util2.errorRequest(this, request2, err);
           }
           const callback = () => {
             if (this[kClosedResolve]) {
@@ -7985,7 +7985,7 @@ var require_client = __commonJS({
         const requests = client[kQueue].splice(client[kRunningIdx]);
         for (let i = 0; i < requests.length; i++) {
           const request2 = requests[i];
-          util3.errorRequest(client, request2, err);
+          util2.errorRequest(client, request2, err);
         }
         assert(client[kSize] === 0);
       }
@@ -8034,14 +8034,14 @@ var require_client = __commonJS({
           });
         });
         if (client.destroyed) {
-          util3.destroy(socket.on("error", noop4), new ClientDestroyedError());
+          util2.destroy(socket.on("error", noop3), new ClientDestroyedError());
           return;
         }
         assert(socket);
         try {
           client[kHTTPContext] = socket.alpnProtocol === "h2" ? await connectH2(client, socket) : await connectH1(client, socket);
         } catch (err) {
-          socket.destroy().on("error", noop4);
+          socket.destroy().on("error", noop3);
           throw err;
         }
         client[kConnecting] = false;
@@ -8089,7 +8089,7 @@ var require_client = __commonJS({
           assert(client[kRunning] === 0);
           while (client[kPending] > 0 && client[kQueue][client[kPendingIdx]].servername === client[kServerName]) {
             const request2 = client[kQueue][client[kPendingIdx]++];
-            util3.errorRequest(client, request2, err);
+            util2.errorRequest(client, request2, err);
           }
         } else {
           onError(client, err);
@@ -8297,7 +8297,7 @@ var require_pool_base = __commonJS({
         this[kClients] = [];
         this[kQueued] = 0;
         const pool = this;
-        this[kOnDrain] = function onDrain(origin2, targets) {
+        this[kOnDrain] = function onDrain(origin, targets) {
           const queue = pool[kQueue];
           let needDrain = false;
           while (!needDrain) {
@@ -8311,20 +8311,20 @@ var require_pool_base = __commonJS({
           this[kNeedDrain] = needDrain;
           if (!this[kNeedDrain] && pool[kNeedDrain]) {
             pool[kNeedDrain] = false;
-            pool.emit("drain", origin2, [pool, ...targets]);
+            pool.emit("drain", origin, [pool, ...targets]);
           }
           if (pool[kClosedResolve] && queue.isEmpty()) {
             Promise.all(pool[kClients].map((c) => c.close())).then(pool[kClosedResolve]);
           }
         };
-        this[kOnConnect] = (origin2, targets) => {
-          pool.emit("connect", origin2, [pool, ...targets]);
+        this[kOnConnect] = (origin, targets) => {
+          pool.emit("connect", origin, [pool, ...targets]);
         };
-        this[kOnDisconnect] = (origin2, targets, err) => {
-          pool.emit("disconnect", origin2, [pool, ...targets], err);
+        this[kOnDisconnect] = (origin, targets, err) => {
+          pool.emit("disconnect", origin, [pool, ...targets], err);
         };
-        this[kOnConnectionError] = (origin2, targets, err) => {
-          pool.emit("connectionError", origin2, [pool, ...targets], err);
+        this[kOnConnectionError] = (origin, targets, err) => {
+          pool.emit("connectionError", origin, [pool, ...targets], err);
         };
         this[kStats] = new PoolStats(this);
       }
@@ -8440,19 +8440,19 @@ var require_pool = __commonJS({
     var {
       InvalidArgumentError
     } = require_errors();
-    var util3 = require_util();
+    var util2 = require_util();
     var { kUrl, kInterceptors } = require_symbols();
     var buildConnector = require_connect();
     var kOptions = /* @__PURE__ */ Symbol("options");
     var kConnections = /* @__PURE__ */ Symbol("connections");
     var kFactory = /* @__PURE__ */ Symbol("factory");
-    function defaultFactory(origin2, opts) {
-      return new Client(origin2, opts);
+    function defaultFactory(origin, opts) {
+      return new Client(origin, opts);
     }
     var Pool = class extends PoolBase {
-      constructor(origin2, {
+      constructor(origin, {
         connections,
-        factory: factory2 = defaultFactory,
+        factory = defaultFactory,
         connect,
         connectTimeout,
         tls,
@@ -8466,7 +8466,7 @@ var require_pool = __commonJS({
         if (connections != null && (!Number.isFinite(connections) || connections < 0)) {
           throw new InvalidArgumentError("invalid connections");
         }
-        if (typeof factory2 !== "function") {
+        if (typeof factory !== "function") {
           throw new InvalidArgumentError("factory must be a function.");
         }
         if (connect != null && typeof connect !== "function" && typeof connect !== "object") {
@@ -8486,11 +8486,11 @@ var require_pool = __commonJS({
         super(options);
         this[kInterceptors] = options.interceptors?.Pool && Array.isArray(options.interceptors.Pool) ? options.interceptors.Pool : [];
         this[kConnections] = connections || null;
-        this[kUrl] = util3.parseOrigin(origin2);
-        this[kOptions] = { ...util3.deepClone(options), connect, allowH2 };
+        this[kUrl] = util2.parseOrigin(origin);
+        this[kOptions] = { ...util2.deepClone(options), connect, allowH2 };
         this[kOptions].interceptors = options.interceptors ? { ...options.interceptors } : void 0;
-        this[kFactory] = factory2;
-        this.on("connectionError", (origin3, targets, error) => {
+        this[kFactory] = factory;
+        this.on("connectionError", (origin2, targets, error) => {
           for (const target of targets) {
             const idx = this[kClients].indexOf(target);
             if (idx !== -1) {
@@ -8552,11 +8552,11 @@ var require_balanced_pool = __commonJS({
       }
       return a;
     }
-    function defaultFactory(origin2, opts) {
-      return new Pool(origin2, opts);
+    function defaultFactory(origin, opts) {
+      return new Pool(origin, opts);
     }
     var BalancedPool = class extends PoolBase {
-      constructor(upstreams = [], { factory: factory2 = defaultFactory, ...opts } = {}) {
+      constructor(upstreams = [], { factory = defaultFactory, ...opts } = {}) {
         super();
         this[kOptions] = opts;
         this[kIndex] = -1;
@@ -8566,11 +8566,11 @@ var require_balanced_pool = __commonJS({
         if (!Array.isArray(upstreams)) {
           upstreams = [upstreams];
         }
-        if (typeof factory2 !== "function") {
+        if (typeof factory !== "function") {
           throw new InvalidArgumentError("factory must be a function.");
         }
         this[kInterceptors] = opts.interceptors?.BalancedPool && Array.isArray(opts.interceptors.BalancedPool) ? opts.interceptors.BalancedPool : [];
-        this[kFactory] = factory2;
+        this[kFactory] = factory;
         for (const upstream of upstreams) {
           this.addUpstream(upstream);
         }
@@ -8669,7 +8669,7 @@ var require_agent = __commonJS({
     var DispatcherBase = require_dispatcher_base();
     var Pool = require_pool();
     var Client = require_client();
-    var util3 = require_util();
+    var util2 = require_util();
     var createRedirectInterceptor = require_redirect_interceptor();
     var kOnConnect = /* @__PURE__ */ Symbol("onConnect");
     var kOnDisconnect = /* @__PURE__ */ Symbol("onDisconnect");
@@ -8678,12 +8678,12 @@ var require_agent = __commonJS({
     var kOnDrain = /* @__PURE__ */ Symbol("onDrain");
     var kFactory = /* @__PURE__ */ Symbol("factory");
     var kOptions = /* @__PURE__ */ Symbol("options");
-    function defaultFactory(origin2, opts) {
-      return opts && opts.connections === 1 ? new Client(origin2, opts) : new Pool(origin2, opts);
+    function defaultFactory(origin, opts) {
+      return opts && opts.connections === 1 ? new Client(origin, opts) : new Pool(origin, opts);
     }
     var Agent = class extends DispatcherBase {
-      constructor({ factory: factory2 = defaultFactory, maxRedirections = 0, connect, ...options } = {}) {
-        if (typeof factory2 !== "function") {
+      constructor({ factory = defaultFactory, maxRedirections = 0, connect, ...options } = {}) {
+        if (typeof factory !== "function") {
           throw new InvalidArgumentError("factory must be a function.");
         }
         if (connect != null && typeof connect !== "function" && typeof connect !== "object") {
@@ -8697,22 +8697,22 @@ var require_agent = __commonJS({
           connect = { ...connect };
         }
         this[kInterceptors] = options.interceptors?.Agent && Array.isArray(options.interceptors.Agent) ? options.interceptors.Agent : [createRedirectInterceptor({ maxRedirections })];
-        this[kOptions] = { ...util3.deepClone(options), connect };
+        this[kOptions] = { ...util2.deepClone(options), connect };
         this[kOptions].interceptors = options.interceptors ? { ...options.interceptors } : void 0;
         this[kMaxRedirections] = maxRedirections;
-        this[kFactory] = factory2;
+        this[kFactory] = factory;
         this[kClients] = /* @__PURE__ */ new Map();
-        this[kOnDrain] = (origin2, targets) => {
-          this.emit("drain", origin2, [this, ...targets]);
+        this[kOnDrain] = (origin, targets) => {
+          this.emit("drain", origin, [this, ...targets]);
         };
-        this[kOnConnect] = (origin2, targets) => {
-          this.emit("connect", origin2, [this, ...targets]);
+        this[kOnConnect] = (origin, targets) => {
+          this.emit("connect", origin, [this, ...targets]);
         };
-        this[kOnDisconnect] = (origin2, targets, err) => {
-          this.emit("disconnect", origin2, [this, ...targets], err);
+        this[kOnDisconnect] = (origin, targets, err) => {
+          this.emit("disconnect", origin, [this, ...targets], err);
         };
-        this[kOnConnectionError] = (origin2, targets, err) => {
-          this.emit("connectionError", origin2, [this, ...targets], err);
+        this[kOnConnectionError] = (origin, targets, err) => {
+          this.emit("connectionError", origin, [this, ...targets], err);
         };
       }
       get [kRunning]() {
@@ -8779,27 +8779,27 @@ var require_proxy_agent = __commonJS({
     function defaultProtocolPort(protocol) {
       return protocol === "https:" ? 443 : 80;
     }
-    function defaultFactory(origin2, opts) {
-      return new Pool(origin2, opts);
+    function defaultFactory(origin, opts) {
+      return new Pool(origin, opts);
     }
-    var noop4 = () => {
+    var noop3 = () => {
     };
-    function defaultAgentFactory(origin2, opts) {
+    function defaultAgentFactory(origin, opts) {
       if (opts.connections === 1) {
-        return new Client(origin2, opts);
+        return new Client(origin, opts);
       }
-      return new Pool(origin2, opts);
+      return new Pool(origin, opts);
     }
     var Http1ProxyWrapper = class extends DispatcherBase {
       #client;
-      constructor(proxyUrl, { headers = {}, connect, factory: factory2 }) {
+      constructor(proxyUrl, { headers = {}, connect, factory }) {
         super();
         if (!proxyUrl) {
           throw new InvalidArgumentError("Proxy URL is mandatory");
         }
         this[kProxyHeaders] = headers;
-        if (factory2) {
-          this.#client = factory2(proxyUrl, { connect });
+        if (factory) {
+          this.#client = factory(proxyUrl, { connect });
         } else {
           this.#client = new Client(proxyUrl, { connect });
         }
@@ -8816,13 +8816,13 @@ var require_proxy_agent = __commonJS({
           if (onHeaders) onHeaders.call(this, statusCode, data, resume);
         };
         const {
-          origin: origin2,
+          origin,
           path: path2 = "/",
           headers = {}
         } = opts;
-        opts.path = origin2 + path2;
+        opts.path = origin + path2;
         if (!("host" in headers) && !("Host" in headers)) {
-          const { host } = new URL2(origin2);
+          const { host } = new URL2(origin);
           headers.host = host;
         }
         opts.headers = { ...this[kProxyHeaders], ...headers };
@@ -8846,8 +8846,8 @@ var require_proxy_agent = __commonJS({
           throw new InvalidArgumentError("Proxy opts.clientFactory must be a function.");
         }
         const { proxyTunnel = true } = opts;
-        const url2 = this.#getUrl(opts);
-        const { href, origin: origin2, port, protocol, username, password, hostname: proxyHostname } = url2;
+        const url = this.#getUrl(opts);
+        const { href, origin, port, protocol, username, password, hostname: proxyHostname } = url;
         this[kProxy] = { uri: href, protocol };
         this[kInterceptors] = opts.interceptors?.ProxyAgent && Array.isArray(opts.interceptors.ProxyAgent) ? opts.interceptors.ProxyAgent : [];
         this[kRequestTls] = opts.requestTls;
@@ -8866,8 +8866,8 @@ var require_proxy_agent = __commonJS({
         const connect = buildConnector({ ...opts.proxyTls });
         this[kConnectEndpoint] = buildConnector({ ...opts.requestTls });
         const agentFactory = opts.factory || defaultAgentFactory;
-        const factory2 = (origin3, options) => {
-          const { protocol: protocol2 } = new URL2(origin3);
+        const factory = (origin2, options) => {
+          const { protocol: protocol2 } = new URL2(origin2);
           if (!this[kTunnelProxy] && protocol2 === "http:" && this[kProxy].protocol === "http:") {
             return new Http1ProxyWrapper(this[kProxy].uri, {
               headers: this[kProxyHeaders],
@@ -8875,12 +8875,12 @@ var require_proxy_agent = __commonJS({
               factory: agentFactory
             });
           }
-          return agentFactory(origin3, options);
+          return agentFactory(origin2, options);
         };
-        this[kClient] = clientFactory(url2, { connect });
+        this[kClient] = clientFactory(url, { connect });
         this[kAgent] = new Agent({
           ...opts,
-          factory: factory2,
+          factory,
           connect: async (opts2, callback) => {
             let requestedPath = opts2.host;
             if (!opts2.port) {
@@ -8888,7 +8888,7 @@ var require_proxy_agent = __commonJS({
             }
             try {
               const { socket, statusCode } = await this[kClient].connect({
-                origin: origin2,
+                origin,
                 port,
                 path: requestedPath,
                 signal: opts2.signal,
@@ -8899,7 +8899,7 @@ var require_proxy_agent = __commonJS({
                 servername: this[kProxyTls]?.servername || proxyHostname
               });
               if (statusCode !== 200) {
-                socket.on("error", noop4).destroy();
+                socket.on("error", noop3).destroy();
                 callback(new RequestAbortedError(`Proxy response (${statusCode}) !== 200 when HTTP Tunneling`));
               }
               if (opts2.protocol !== "https:") {
@@ -8988,7 +8988,7 @@ var require_env_http_proxy_agent = __commonJS({
     var { kClose, kDestroy, kClosed, kDestroyed, kDispatch, kNoProxyAgent, kHttpProxyAgent, kHttpsProxyAgent } = require_symbols();
     var ProxyAgent = require_proxy_agent();
     var Agent = require_agent();
-    var DEFAULT_PORTS3 = {
+    var DEFAULT_PORTS = {
       "http:": 80,
       "https:": 443
     };
@@ -9008,23 +9008,23 @@ var require_env_http_proxy_agent = __commonJS({
         }
         const { httpProxy, httpsProxy, noProxy, ...agentOpts } = opts;
         this[kNoProxyAgent] = new Agent(agentOpts);
-        const HTTP_PROXY = httpProxy ?? process.env.http_proxy ?? process.env.HTTP_PROXY;
-        if (HTTP_PROXY) {
-          this[kHttpProxyAgent] = new ProxyAgent({ ...agentOpts, uri: HTTP_PROXY });
+        const HTTP_PROXY2 = httpProxy ?? process.env.http_proxy ?? process.env.HTTP_PROXY;
+        if (HTTP_PROXY2) {
+          this[kHttpProxyAgent] = new ProxyAgent({ ...agentOpts, uri: HTTP_PROXY2 });
         } else {
           this[kHttpProxyAgent] = this[kNoProxyAgent];
         }
-        const HTTPS_PROXY = httpsProxy ?? process.env.https_proxy ?? process.env.HTTPS_PROXY;
-        if (HTTPS_PROXY) {
-          this[kHttpsProxyAgent] = new ProxyAgent({ ...agentOpts, uri: HTTPS_PROXY });
+        const HTTPS_PROXY2 = httpsProxy ?? process.env.https_proxy ?? process.env.HTTPS_PROXY;
+        if (HTTPS_PROXY2) {
+          this[kHttpsProxyAgent] = new ProxyAgent({ ...agentOpts, uri: HTTPS_PROXY2 });
         } else {
           this[kHttpsProxyAgent] = this[kHttpProxyAgent];
         }
         this.#parseNoProxy();
       }
       [kDispatch](opts, handler2) {
-        const url2 = new URL(opts.origin);
-        const agent = this.#getProxyAgentForUrl(url2);
+        const url = new URL(opts.origin);
+        const agent = this.#getProxyAgentForUrl(url);
         return agent.dispatch(opts, handler2);
       }
       async [kClose]() {
@@ -9045,10 +9045,10 @@ var require_env_http_proxy_agent = __commonJS({
           await this[kHttpsProxyAgent].destroy(err);
         }
       }
-      #getProxyAgentForUrl(url2) {
-        let { protocol, host: hostname, port } = url2;
+      #getProxyAgentForUrl(url) {
+        let { protocol, host: hostname, port } = url;
         hostname = hostname.replace(/:\d*$/, "").toLowerCase();
-        port = Number.parseInt(port, 10) || DEFAULT_PORTS3[protocol] || 0;
+        port = Number.parseInt(port, 10) || DEFAULT_PORTS[protocol] || 0;
         if (!this.#shouldProxy(hostname, port)) {
           return this[kNoProxyAgent];
         }
@@ -9215,7 +9215,7 @@ var require_retry_handler = __commonJS({
       onBodySent(chunk2) {
         if (this.handler.onBodySent) return this.handler.onBodySent(chunk2);
       }
-      static [kRetryHandlerDefaultRetry](err, { state, opts }, cb) {
+      static [kRetryHandlerDefaultRetry](err, { state: state2, opts }, cb) {
         const { statusCode, code, headers } = err;
         const { method, retryOptions } = opts;
         const {
@@ -9227,7 +9227,7 @@ var require_retry_handler = __commonJS({
           errorCodes,
           methods
         } = retryOptions;
-        const { counter } = state;
+        const { counter } = state2;
         if (code && code !== "UND_ERR_REQ_RETRY" && !errorCodes.includes(code)) {
           cb(err);
           return;
@@ -9455,8 +9455,8 @@ var require_readable = __commonJS({
     "use strict";
     var assert = require("node:assert");
     var { Readable: Readable2 } = require("node:stream");
-    var { RequestAbortedError, NotSupportedError, InvalidArgumentError, AbortError } = require_errors();
-    var util3 = require_util();
+    var { RequestAbortedError, NotSupportedError, InvalidArgumentError, AbortError: AbortError3 } = require_errors();
+    var util2 = require_util();
     var { ReadableStreamFrom } = require_util();
     var kConsume = /* @__PURE__ */ Symbol("kConsume");
     var kReading = /* @__PURE__ */ Symbol("kReading");
@@ -9464,7 +9464,7 @@ var require_readable = __commonJS({
     var kAbort = /* @__PURE__ */ Symbol("kAbort");
     var kContentType = /* @__PURE__ */ Symbol("kContentType");
     var kContentLength = /* @__PURE__ */ Symbol("kContentLength");
-    var noop4 = () => {
+    var noop3 = () => {
     };
     var BodyReadable = class extends Readable2 {
       constructor({
@@ -9558,7 +9558,7 @@ var require_readable = __commonJS({
       }
       // https://fetch.spec.whatwg.org/#dom-body-bodyused
       get bodyUsed() {
-        return util3.isDisturbed(this);
+        return util2.isDisturbed(this);
       }
       // https://fetch.spec.whatwg.org/#dom-body-body
       get body() {
@@ -9583,20 +9583,20 @@ var require_readable = __commonJS({
         }
         return await new Promise((resolve4, reject) => {
           if (this[kContentLength] > limit) {
-            this.destroy(new AbortError());
+            this.destroy(new AbortError3());
           }
           const onAbort = () => {
-            this.destroy(signal.reason ?? new AbortError());
+            this.destroy(signal.reason ?? new AbortError3());
           };
           signal?.addEventListener("abort", onAbort);
           this.on("close", function() {
             signal?.removeEventListener("abort", onAbort);
             if (signal?.aborted) {
-              reject(signal.reason ?? new AbortError());
+              reject(signal.reason ?? new AbortError3());
             } else {
               resolve4(null);
             }
-          }).on("error", noop4).on("data", function(chunk2) {
+          }).on("error", noop3).on("data", function(chunk2) {
             limit -= chunk2.length;
             if (limit <= 0) {
               this.destroy();
@@ -9609,15 +9609,15 @@ var require_readable = __commonJS({
       return self2[kBody] && self2[kBody].locked === true || self2[kConsume];
     }
     function isUnusable(self2) {
-      return util3.isDisturbed(self2) || isLocked(self2);
+      return util2.isDisturbed(self2) || isLocked(self2);
     }
-    async function consume(stream4, type2) {
-      assert(!stream4[kConsume]);
+    async function consume(stream, type2) {
+      assert(!stream[kConsume]);
       return new Promise((resolve4, reject) => {
-        if (isUnusable(stream4)) {
-          const rState = stream4._readableState;
+        if (isUnusable(stream)) {
+          const rState = stream._readableState;
           if (rState.destroyed && rState.closeEmitted === false) {
-            stream4.on("error", (err) => {
+            stream.on("error", (err) => {
               reject(err);
             }).on("close", () => {
               reject(new TypeError("unusable"));
@@ -9627,22 +9627,22 @@ var require_readable = __commonJS({
           }
         } else {
           queueMicrotask(() => {
-            stream4[kConsume] = {
+            stream[kConsume] = {
               type: type2,
-              stream: stream4,
+              stream,
               resolve: resolve4,
               reject,
               length: 0,
               body: []
             };
-            stream4.on("error", function(err) {
+            stream.on("error", function(err) {
               consumeFinish(this[kConsume], err);
             }).on("close", function() {
               if (this[kConsume].body !== null) {
                 consumeFinish(this[kConsume], new RequestAbortedError());
               }
             });
-            consumeStart(stream4[kConsume]);
+            consumeStart(stream[kConsume]);
           });
         }
       });
@@ -9651,19 +9651,19 @@ var require_readable = __commonJS({
       if (consume2.body === null) {
         return;
       }
-      const { _readableState: state } = consume2.stream;
-      if (state.bufferIndex) {
-        const start2 = state.bufferIndex;
-        const end = state.buffer.length;
+      const { _readableState: state2 } = consume2.stream;
+      if (state2.bufferIndex) {
+        const start2 = state2.bufferIndex;
+        const end = state2.buffer.length;
         for (let n = start2; n < end; n++) {
-          consumePush(consume2, state.buffer[n]);
+          consumePush(consume2, state2.buffer[n]);
         }
       } else {
-        for (const chunk2 of state.buffer) {
+        for (const chunk2 of state2.buffer) {
           consumePush(consume2, chunk2);
         }
       }
-      if (state.endEmitted) {
+      if (state2.endEmitted) {
         consumeEnd(this[kConsume]);
       } else {
         consume2.stream.on("end", function() {
@@ -9700,7 +9700,7 @@ var require_readable = __commonJS({
       return buffer;
     }
     function consumeEnd(consume2) {
-      const { type: type2, body, resolve: resolve4, stream: stream4, length } = consume2;
+      const { type: type2, body, resolve: resolve4, stream, length } = consume2;
       try {
         if (type2 === "text") {
           resolve4(chunksDecode(body, length));
@@ -9709,13 +9709,13 @@ var require_readable = __commonJS({
         } else if (type2 === "arrayBuffer") {
           resolve4(chunksConcat(body, length).buffer);
         } else if (type2 === "blob") {
-          resolve4(new Blob(body, { type: stream4[kContentType] }));
+          resolve4(new Blob(body, { type: stream[kContentType] }));
         } else if (type2 === "bytes") {
           resolve4(chunksConcat(body, length));
         }
         consumeFinish(consume2);
       } catch (err) {
-        stream4.destroy(err);
+        stream.destroy(err);
       }
     }
     function consumePush(consume2, chunk2) {
@@ -9810,7 +9810,7 @@ var require_api_request = __commonJS({
     var assert = require("node:assert");
     var { Readable: Readable2 } = require_readable();
     var { InvalidArgumentError, RequestAbortedError } = require_errors();
-    var util3 = require_util();
+    var util2 = require_util();
     var { getResolveErrorBodyCallback } = require_util3();
     var { AsyncResource } = require("node:async_hooks");
     var RequestHandler = class extends AsyncResource {
@@ -9837,8 +9837,8 @@ var require_api_request = __commonJS({
           }
           super("UNDICI_REQUEST");
         } catch (err) {
-          if (util3.isStream(body)) {
-            util3.destroy(body.on("error", util3.nop), err);
+          if (util2.isStream(body)) {
+            util2.destroy(body.on("error", util2.nop), err);
           }
           throw err;
         }
@@ -9857,7 +9857,7 @@ var require_api_request = __commonJS({
         this.signal = signal;
         this.reason = null;
         this.removeAbortListener = null;
-        if (util3.isStream(body)) {
+        if (util2.isStream(body)) {
           body.on("error", (err) => {
             this.onError(err);
           });
@@ -9866,10 +9866,10 @@ var require_api_request = __commonJS({
           if (this.signal.aborted) {
             this.reason = this.signal.reason ?? new RequestAbortedError();
           } else {
-            this.removeAbortListener = util3.addAbortListener(this.signal, () => {
+            this.removeAbortListener = util2.addAbortListener(this.signal, () => {
               this.reason = this.signal.reason ?? new RequestAbortedError();
               if (this.res) {
-                util3.destroy(this.res.on("error", util3.nop), this.reason);
+                util2.destroy(this.res.on("error", util2.nop), this.reason);
               } else if (this.abort) {
                 this.abort(this.reason);
               }
@@ -9882,25 +9882,25 @@ var require_api_request = __commonJS({
           }
         }
       }
-      onConnect(abort, context2) {
+      onConnect(abort, context4) {
         if (this.reason) {
           abort(this.reason);
           return;
         }
         assert(this.callback);
         this.abort = abort;
-        this.context = context2;
+        this.context = context4;
       }
       onHeaders(statusCode, rawHeaders, resume, statusMessage) {
-        const { callback, opaque, abort, context: context2, responseHeaders, highWaterMark } = this;
-        const headers = responseHeaders === "raw" ? util3.parseRawHeaders(rawHeaders) : util3.parseHeaders(rawHeaders);
+        const { callback, opaque, abort, context: context4, responseHeaders, highWaterMark } = this;
+        const headers = responseHeaders === "raw" ? util2.parseRawHeaders(rawHeaders) : util2.parseHeaders(rawHeaders);
         if (statusCode < 200) {
           if (this.onInfo) {
             this.onInfo({ statusCode, headers });
           }
           return;
         }
-        const parsedHeaders = responseHeaders === "raw" ? util3.parseHeaders(rawHeaders) : headers;
+        const parsedHeaders = responseHeaders === "raw" ? util2.parseHeaders(rawHeaders) : headers;
         const contentType = parsedHeaders["content-type"];
         const contentLength = parsedHeaders["content-length"];
         const res = new Readable2({
@@ -9929,7 +9929,7 @@ var require_api_request = __commonJS({
               trailers: this.trailers,
               opaque,
               body: res,
-              context: context2
+              context: context4
             });
           }
         }
@@ -9938,7 +9938,7 @@ var require_api_request = __commonJS({
         return this.res.push(chunk2);
       }
       onComplete(trailers) {
-        util3.parseHeaders(trailers, this.trailers);
+        util2.parseHeaders(trailers, this.trailers);
         this.res.push(null);
       }
       onError(err) {
@@ -9952,12 +9952,12 @@ var require_api_request = __commonJS({
         if (res) {
           this.res = null;
           queueMicrotask(() => {
-            util3.destroy(res, err);
+            util2.destroy(res, err);
           });
         }
         if (body) {
           this.body = null;
-          util3.destroy(body, err);
+          util2.destroy(body, err);
         }
         if (this.removeAbortListener) {
           res?.off("close", this.removeAbortListener);
@@ -10047,12 +10047,12 @@ var require_api_stream = __commonJS({
     var assert = require("node:assert");
     var { finished, PassThrough } = require("node:stream");
     var { InvalidArgumentError, InvalidReturnValueError } = require_errors();
-    var util3 = require_util();
+    var util2 = require_util();
     var { getResolveErrorBodyCallback } = require_util3();
     var { AsyncResource } = require("node:async_hooks");
     var { addSignal, removeSignal } = require_abort_signal();
     var StreamHandler = class extends AsyncResource {
-      constructor(opts, factory2, callback) {
+      constructor(opts, factory, callback) {
         if (!opts || typeof opts !== "object") {
           throw new InvalidArgumentError("invalid opts");
         }
@@ -10061,7 +10061,7 @@ var require_api_stream = __commonJS({
           if (typeof callback !== "function") {
             throw new InvalidArgumentError("invalid callback");
           }
-          if (typeof factory2 !== "function") {
+          if (typeof factory !== "function") {
             throw new InvalidArgumentError("invalid factory");
           }
           if (signal && typeof signal.on !== "function" && typeof signal.addEventListener !== "function") {
@@ -10075,14 +10075,14 @@ var require_api_stream = __commonJS({
           }
           super("UNDICI_STREAM");
         } catch (err) {
-          if (util3.isStream(body)) {
-            util3.destroy(body.on("error", util3.nop), err);
+          if (util2.isStream(body)) {
+            util2.destroy(body.on("error", util2.nop), err);
           }
           throw err;
         }
         this.responseHeaders = responseHeaders || null;
         this.opaque = opaque || null;
-        this.factory = factory2;
+        this.factory = factory;
         this.callback = callback;
         this.res = null;
         this.abort = null;
@@ -10091,25 +10091,25 @@ var require_api_stream = __commonJS({
         this.body = body;
         this.onInfo = onInfo || null;
         this.throwOnError = throwOnError || false;
-        if (util3.isStream(body)) {
+        if (util2.isStream(body)) {
           body.on("error", (err) => {
             this.onError(err);
           });
         }
         addSignal(this, signal);
       }
-      onConnect(abort, context2) {
+      onConnect(abort, context4) {
         if (this.reason) {
           abort(this.reason);
           return;
         }
         assert(this.callback);
         this.abort = abort;
-        this.context = context2;
+        this.context = context4;
       }
       onHeaders(statusCode, rawHeaders, resume, statusMessage) {
-        const { factory: factory2, opaque, context: context2, callback, responseHeaders } = this;
-        const headers = responseHeaders === "raw" ? util3.parseRawHeaders(rawHeaders) : util3.parseHeaders(rawHeaders);
+        const { factory, opaque, context: context4, callback, responseHeaders } = this;
+        const headers = responseHeaders === "raw" ? util2.parseRawHeaders(rawHeaders) : util2.parseHeaders(rawHeaders);
         if (statusCode < 200) {
           if (this.onInfo) {
             this.onInfo({ statusCode, headers });
@@ -10119,7 +10119,7 @@ var require_api_stream = __commonJS({
         this.factory = null;
         let res;
         if (this.throwOnError && statusCode >= 400) {
-          const parsedHeaders = responseHeaders === "raw" ? util3.parseHeaders(rawHeaders) : headers;
+          const parsedHeaders = responseHeaders === "raw" ? util2.parseHeaders(rawHeaders) : headers;
           const contentType = parsedHeaders["content-type"];
           res = new PassThrough();
           this.callback = null;
@@ -10129,14 +10129,14 @@ var require_api_stream = __commonJS({
             { callback, body: res, contentType, statusCode, statusMessage, headers }
           );
         } else {
-          if (factory2 === null) {
+          if (factory === null) {
             return;
           }
-          res = this.runInAsyncScope(factory2, null, {
+          res = this.runInAsyncScope(factory, null, {
             statusCode,
             headers,
             opaque,
-            context: context2
+            context: context4
           });
           if (!res || typeof res.write !== "function" || typeof res.end !== "function" || typeof res.on !== "function") {
             throw new InvalidReturnValueError("expected Writable");
@@ -10145,7 +10145,7 @@ var require_api_stream = __commonJS({
             const { callback: callback2, res: res2, opaque: opaque2, trailers, abort } = this;
             this.res = null;
             if (err || !res2.readable) {
-              util3.destroy(res2, err);
+              util2.destroy(res2, err);
             }
             this.callback = null;
             this.runInAsyncScope(callback2, null, err || null, { opaque: opaque2, trailers });
@@ -10169,7 +10169,7 @@ var require_api_stream = __commonJS({
         if (!res) {
           return;
         }
-        this.trailers = util3.parseHeaders(trailers);
+        this.trailers = util2.parseHeaders(trailers);
         res.end();
       }
       onError(err) {
@@ -10178,7 +10178,7 @@ var require_api_stream = __commonJS({
         this.factory = null;
         if (res) {
           this.res = null;
-          util3.destroy(res, err);
+          util2.destroy(res, err);
         } else if (callback) {
           this.callback = null;
           queueMicrotask(() => {
@@ -10187,20 +10187,20 @@ var require_api_stream = __commonJS({
         }
         if (body) {
           this.body = null;
-          util3.destroy(body, err);
+          util2.destroy(body, err);
         }
       }
     };
-    function stream4(opts, factory2, callback) {
+    function stream(opts, factory, callback) {
       if (callback === void 0) {
         return new Promise((resolve4, reject) => {
-          stream4.call(this, opts, factory2, (err, data) => {
+          stream.call(this, opts, factory, (err, data) => {
             return err ? reject(err) : resolve4(data);
           });
         });
       }
       try {
-        this.dispatch(opts, new StreamHandler(opts, factory2, callback));
+        this.dispatch(opts, new StreamHandler(opts, factory, callback));
       } catch (err) {
         if (typeof callback !== "function") {
           throw err;
@@ -10209,7 +10209,7 @@ var require_api_stream = __commonJS({
         queueMicrotask(() => callback(err, { opaque }));
       }
     }
-    module2.exports = stream4;
+    module2.exports = stream;
   }
 });
 
@@ -10227,7 +10227,7 @@ var require_api_pipeline = __commonJS({
       InvalidReturnValueError,
       RequestAbortedError
     } = require_errors();
-    var util3 = require_util();
+    var util2 = require_util();
     var { AsyncResource } = require("node:async_hooks");
     var { addSignal, removeSignal } = require_abort_signal();
     var assert = require("node:assert");
@@ -10289,7 +10289,7 @@ var require_api_pipeline = __commonJS({
         this.abort = null;
         this.context = null;
         this.onInfo = onInfo || null;
-        this.req = new PipelineRequest().on("error", util3.nop);
+        this.req = new PipelineRequest().on("error", util2.nop);
         this.ret = new Duplex({
           readableObjectMode: opts.objectMode,
           autoDestroy: true,
@@ -10315,9 +10315,9 @@ var require_api_pipeline = __commonJS({
             if (abort && err) {
               abort();
             }
-            util3.destroy(body, err);
-            util3.destroy(req, err);
-            util3.destroy(res, err);
+            util2.destroy(body, err);
+            util2.destroy(req, err);
+            util2.destroy(res, err);
             removeSignal(this);
             callback(err);
           }
@@ -10328,7 +10328,7 @@ var require_api_pipeline = __commonJS({
         this.res = null;
         addSignal(this, signal);
       }
-      onConnect(abort, context2) {
+      onConnect(abort, context4) {
         const { ret, res } = this;
         if (this.reason) {
           abort(this.reason);
@@ -10337,13 +10337,13 @@ var require_api_pipeline = __commonJS({
         assert(!res, "pipeline cannot be retried");
         assert(!ret.destroyed);
         this.abort = abort;
-        this.context = context2;
+        this.context = context4;
       }
       onHeaders(statusCode, rawHeaders, resume) {
-        const { opaque, handler: handler2, context: context2 } = this;
+        const { opaque, handler: handler2, context: context4 } = this;
         if (statusCode < 200) {
           if (this.onInfo) {
-            const headers = this.responseHeaders === "raw" ? util3.parseRawHeaders(rawHeaders) : util3.parseHeaders(rawHeaders);
+            const headers = this.responseHeaders === "raw" ? util2.parseRawHeaders(rawHeaders) : util2.parseHeaders(rawHeaders);
             this.onInfo({ statusCode, headers });
           }
           return;
@@ -10352,16 +10352,16 @@ var require_api_pipeline = __commonJS({
         let body;
         try {
           this.handler = null;
-          const headers = this.responseHeaders === "raw" ? util3.parseRawHeaders(rawHeaders) : util3.parseHeaders(rawHeaders);
+          const headers = this.responseHeaders === "raw" ? util2.parseRawHeaders(rawHeaders) : util2.parseHeaders(rawHeaders);
           body = this.runInAsyncScope(handler2, null, {
             statusCode,
             headers,
             opaque,
             body: this.res,
-            context: context2
+            context: context4
           });
         } catch (err) {
-          this.res.on("error", util3.nop);
+          this.res.on("error", util2.nop);
           throw err;
         }
         if (!body || typeof body.on !== "function") {
@@ -10374,14 +10374,14 @@ var require_api_pipeline = __commonJS({
           }
         }).on("error", (err) => {
           const { ret } = this;
-          util3.destroy(ret, err);
+          util2.destroy(ret, err);
         }).on("end", () => {
           const { ret } = this;
           ret.push(null);
         }).on("close", () => {
           const { ret } = this;
           if (!ret._readableState.ended) {
-            util3.destroy(ret, new RequestAbortedError());
+            util2.destroy(ret, new RequestAbortedError());
           }
         });
         this.body = body;
@@ -10397,7 +10397,7 @@ var require_api_pipeline = __commonJS({
       onError(err) {
         const { ret } = this;
         this.handler = null;
-        util3.destroy(ret, err);
+        util2.destroy(ret, err);
       }
     };
     function pipeline(opts, handler2) {
@@ -10419,7 +10419,7 @@ var require_api_upgrade = __commonJS({
     "use strict";
     var { InvalidArgumentError, SocketError } = require_errors();
     var { AsyncResource } = require("node:async_hooks");
-    var util3 = require_util();
+    var util2 = require_util();
     var { addSignal, removeSignal } = require_abort_signal();
     var assert = require("node:assert");
     var UpgradeHandler = class extends AsyncResource {
@@ -10442,7 +10442,7 @@ var require_api_upgrade = __commonJS({
         this.context = null;
         addSignal(this, signal);
       }
-      onConnect(abort, context2) {
+      onConnect(abort, context4) {
         if (this.reason) {
           abort(this.reason);
           return;
@@ -10456,15 +10456,15 @@ var require_api_upgrade = __commonJS({
       }
       onUpgrade(statusCode, rawHeaders, socket) {
         assert(statusCode === 101);
-        const { callback, opaque, context: context2 } = this;
+        const { callback, opaque, context: context4 } = this;
         removeSignal(this);
         this.callback = null;
-        const headers = this.responseHeaders === "raw" ? util3.parseRawHeaders(rawHeaders) : util3.parseHeaders(rawHeaders);
+        const headers = this.responseHeaders === "raw" ? util2.parseRawHeaders(rawHeaders) : util2.parseHeaders(rawHeaders);
         this.runInAsyncScope(callback, null, null, {
           headers,
           socket,
           opaque,
-          context: context2
+          context: context4
         });
       }
       onError(err) {
@@ -10512,7 +10512,7 @@ var require_api_connect = __commonJS({
     var assert = require("node:assert");
     var { AsyncResource } = require("node:async_hooks");
     var { InvalidArgumentError, SocketError } = require_errors();
-    var util3 = require_util();
+    var util2 = require_util();
     var { addSignal, removeSignal } = require_abort_signal();
     var ConnectHandler = class extends AsyncResource {
       constructor(opts, callback) {
@@ -10533,32 +10533,32 @@ var require_api_connect = __commonJS({
         this.abort = null;
         addSignal(this, signal);
       }
-      onConnect(abort, context2) {
+      onConnect(abort, context4) {
         if (this.reason) {
           abort(this.reason);
           return;
         }
         assert(this.callback);
         this.abort = abort;
-        this.context = context2;
+        this.context = context4;
       }
       onHeaders() {
         throw new SocketError("bad connect", null);
       }
       onUpgrade(statusCode, rawHeaders, socket) {
-        const { callback, opaque, context: context2 } = this;
+        const { callback, opaque, context: context4 } = this;
         removeSignal(this);
         this.callback = null;
         let headers = rawHeaders;
         if (headers != null) {
-          headers = this.responseHeaders === "raw" ? util3.parseRawHeaders(rawHeaders) : util3.parseHeaders(rawHeaders);
+          headers = this.responseHeaders === "raw" ? util2.parseRawHeaders(rawHeaders) : util2.parseHeaders(rawHeaders);
         }
         this.runInAsyncScope(callback, null, null, {
           statusCode,
           headers,
           socket,
           opaque,
-          context: context2
+          context: context4
         });
       }
       onError(err) {
@@ -10672,7 +10672,7 @@ var require_mock_utils = __commonJS({
       kOrigin,
       kGetNetConnect
     } = require_mock_symbols();
-    var { buildURL: buildURL2 } = require_util();
+    var { buildURL } = require_util();
     var { STATUS_CODES } = require("node:http");
     var {
       types: {
@@ -10733,9 +10733,9 @@ var require_mock_utils = __commonJS({
       if (typeof headers !== "object" || typeof mockDispatch2.headers !== "object") {
         return false;
       }
-      for (const [matchHeaderName, matchHeaderValue2] of Object.entries(mockDispatch2.headers)) {
+      for (const [matchHeaderName, matchHeaderValue] of Object.entries(mockDispatch2.headers)) {
         const headerValue = getHeaderByName(headers, matchHeaderName);
-        if (!matchValue(matchHeaderValue2, headerValue)) {
+        if (!matchValue(matchHeaderValue, headerValue)) {
           return false;
         }
       }
@@ -10774,7 +10774,7 @@ var require_mock_utils = __commonJS({
       }
     }
     function getMockDispatch(mockDispatches, key) {
-      const basePath = key.query ? buildURL2(key.path, key.query) : key.path;
+      const basePath = key.query ? buildURL(key.path, key.query) : key.path;
       const resolvedPath = typeof basePath === "string" ? safeUrl(basePath) : basePath;
       let matchedMockDispatches = mockDispatches.filter(({ consumed }) => !consumed).filter(({ path: path2 }) => matchValue(safeUrl(path2), resolvedPath));
       if (matchedMockDispatches.length === 0) {
@@ -10857,7 +10857,7 @@ var require_mock_utils = __commonJS({
       if (mockDispatch2.data.callback) {
         mockDispatch2.data = { ...mockDispatch2.data, ...mockDispatch2.data.callback(opts) };
       }
-      const { data: { statusCode, data, headers, trailers, error }, delay: delay2, persist } = mockDispatch2;
+      const { data: { statusCode, data, headers, trailers, error }, delay: delay4, persist } = mockDispatch2;
       const { timesInvoked, times } = mockDispatch2;
       mockDispatch2.consumed = !persist && timesInvoked >= times;
       mockDispatch2.pending = timesInvoked < times;
@@ -10866,10 +10866,10 @@ var require_mock_utils = __commonJS({
         handler2.onError(error);
         return true;
       }
-      if (typeof delay2 === "number" && delay2 > 0) {
+      if (typeof delay4 === "number" && delay4 > 0) {
         setTimeout(() => {
           handleReply(this[kDispatches]);
-        }, delay2);
+        }, delay4);
       } else {
         handleReply(this[kDispatches]);
       }
@@ -10895,7 +10895,7 @@ var require_mock_utils = __commonJS({
     }
     function buildMockDispatch() {
       const agent = this[kMockAgent];
-      const origin2 = this[kOrigin];
+      const origin = this[kOrigin];
       const originalDispatch = this[kOriginalDispatch];
       return function dispatch(opts, handler2) {
         if (agent.isMockActive) {
@@ -10905,12 +10905,12 @@ var require_mock_utils = __commonJS({
             if (error instanceof MockNotMatchedError) {
               const netConnect = agent[kGetNetConnect]();
               if (netConnect === false) {
-                throw new MockNotMatchedError(`${error.message}: subsequent request to origin ${origin2} was not allowed (net.connect disabled)`);
+                throw new MockNotMatchedError(`${error.message}: subsequent request to origin ${origin} was not allowed (net.connect disabled)`);
               }
-              if (checkNetConnect(netConnect, origin2)) {
+              if (checkNetConnect(netConnect, origin)) {
                 originalDispatch.call(this, opts, handler2);
               } else {
-                throw new MockNotMatchedError(`${error.message}: subsequent request to origin ${origin2} was not allowed (net.connect is not enabled for this origin)`);
+                throw new MockNotMatchedError(`${error.message}: subsequent request to origin ${origin} was not allowed (net.connect is not enabled for this origin)`);
               }
             } else {
               throw error;
@@ -10921,11 +10921,11 @@ var require_mock_utils = __commonJS({
         }
       };
     }
-    function checkNetConnect(netConnect, origin2) {
-      const url2 = new URL(origin2);
+    function checkNetConnect(netConnect, origin) {
+      const url = new URL(origin);
       if (netConnect === true) {
         return true;
-      } else if (Array.isArray(netConnect) && netConnect.some((matcher) => matchValue(matcher, url2.host))) {
+      } else if (Array.isArray(netConnect) && netConnect.some((matcher) => matchValue(matcher, url.host))) {
         return true;
       }
       return false;
@@ -10970,7 +10970,7 @@ var require_mock_interceptor = __commonJS({
       kMockDispatch
     } = require_mock_symbols();
     var { InvalidArgumentError } = require_errors();
-    var { buildURL: buildURL2 } = require_util();
+    var { buildURL } = require_util();
     var MockScope = class {
       constructor(mockDispatch) {
         this[kMockDispatch] = mockDispatch;
@@ -11016,7 +11016,7 @@ var require_mock_interceptor = __commonJS({
         }
         if (typeof opts.path === "string") {
           if (opts.query) {
-            opts.path = buildURL2(opts.path, opts.query);
+            opts.path = buildURL(opts.path, opts.query);
           } else {
             const parsedURL = new URL(opts.path, "data://");
             opts.path = parsedURL.pathname + parsedURL.search;
@@ -11138,13 +11138,13 @@ var require_mock_client = __commonJS({
     var Symbols = require_symbols();
     var { InvalidArgumentError } = require_errors();
     var MockClient = class extends Client {
-      constructor(origin2, opts) {
-        super(origin2, opts);
+      constructor(origin, opts) {
+        super(origin, opts);
         if (!opts || !opts.agent || typeof opts.agent.dispatch !== "function") {
           throw new InvalidArgumentError("Argument opts.agent must implement Agent");
         }
         this[kMockAgent] = opts.agent;
-        this[kOrigin] = origin2;
+        this[kOrigin] = origin;
         this[kDispatches] = [];
         this[kConnected] = 1;
         this[kOriginalDispatch] = this.dispatch;
@@ -11191,13 +11191,13 @@ var require_mock_pool = __commonJS({
     var Symbols = require_symbols();
     var { InvalidArgumentError } = require_errors();
     var MockPool = class extends Pool {
-      constructor(origin2, opts) {
-        super(origin2, opts);
+      constructor(origin, opts) {
+        super(origin, opts);
         if (!opts || !opts.agent || typeof opts.agent.dispatch !== "function") {
           throw new InvalidArgumentError("Argument opts.agent must implement Agent");
         }
         this[kMockAgent] = opts.agent;
-        this[kOrigin] = origin2;
+        this[kOrigin] = origin;
         this[kDispatches] = [];
         this[kConnected] = 1;
         this[kOriginalDispatch] = this.dispatch;
@@ -11259,13 +11259,13 @@ var require_pluralizer = __commonJS({
 var require_pending_interceptors_formatter = __commonJS({
   "node_modules/undici/lib/mock/pending-interceptors-formatter.js"(exports2, module2) {
     "use strict";
-    var { Transform } = require("node:stream");
+    var { Transform: Transform2 } = require("node:stream");
     var { Console } = require("node:console");
     var PERSISTENT = process.versions.icu ? "\u2705" : "Y ";
     var NOT_PERSISTENT = process.versions.icu ? "\u274C" : "N ";
     module2.exports = class PendingInterceptorsFormatter {
       constructor({ disableColors } = {}) {
-        this.transform = new Transform({
+        this.transform = new Transform2({
           transform(chunk2, _enc, cb) {
             cb(null, chunk2);
           }
@@ -11279,9 +11279,9 @@ var require_pending_interceptors_formatter = __commonJS({
       }
       format(pendingInterceptors) {
         const withPrettyHeaders = pendingInterceptors.map(
-          ({ method, path: path2, data: { statusCode }, persist, times, timesInvoked, origin: origin2 }) => ({
+          ({ method, path: path2, data: { statusCode }, persist, times, timesInvoked, origin }) => ({
             Method: method,
-            Origin: origin2,
+            Origin: origin,
             Path: path2,
             "Status code": statusCode,
             Persistent: persist ? PERSISTENT : NOT_PERSISTENT,
@@ -11333,11 +11333,11 @@ var require_mock_agent = __commonJS({
         this[kClients] = agent[kClients];
         this[kOptions] = buildMockOptions(opts);
       }
-      get(origin2) {
-        let dispatcher = this[kMockAgentGet](origin2);
+      get(origin) {
+        let dispatcher = this[kMockAgentGet](origin);
         if (!dispatcher) {
-          dispatcher = this[kFactory](origin2);
-          this[kMockAgentSet](origin2, dispatcher);
+          dispatcher = this[kFactory](origin);
+          this[kMockAgentSet](origin, dispatcher);
         }
         return dispatcher;
       }
@@ -11376,27 +11376,27 @@ var require_mock_agent = __commonJS({
       get isMockActive() {
         return this[kIsMockActive];
       }
-      [kMockAgentSet](origin2, dispatcher) {
-        this[kClients].set(origin2, dispatcher);
+      [kMockAgentSet](origin, dispatcher) {
+        this[kClients].set(origin, dispatcher);
       }
-      [kFactory](origin2) {
+      [kFactory](origin) {
         const mockOptions = Object.assign({ agent: this }, this[kOptions]);
-        return this[kOptions] && this[kOptions].connections === 1 ? new MockClient(origin2, mockOptions) : new MockPool(origin2, mockOptions);
+        return this[kOptions] && this[kOptions].connections === 1 ? new MockClient(origin, mockOptions) : new MockPool(origin, mockOptions);
       }
-      [kMockAgentGet](origin2) {
-        const client = this[kClients].get(origin2);
+      [kMockAgentGet](origin) {
+        const client = this[kClients].get(origin);
         if (client) {
           return client;
         }
-        if (typeof origin2 !== "string") {
+        if (typeof origin !== "string") {
           const dispatcher = this[kFactory]("http://localhost:9999");
-          this[kMockAgentSet](origin2, dispatcher);
+          this[kMockAgentSet](origin, dispatcher);
           return dispatcher;
         }
         for (const [keyMatcher, nonExplicitDispatcher] of Array.from(this[kClients])) {
-          if (nonExplicitDispatcher && typeof keyMatcher !== "string" && matchValue(keyMatcher, origin2)) {
-            const dispatcher = this[kFactory](origin2);
-            this[kMockAgentSet](origin2, dispatcher);
+          if (nonExplicitDispatcher && typeof keyMatcher !== "string" && matchValue(keyMatcher, origin)) {
+            const dispatcher = this[kFactory](origin);
+            this[kMockAgentSet](origin, dispatcher);
             dispatcher[kDispatches] = nonExplicitDispatcher[kDispatches];
             return dispatcher;
           }
@@ -11407,7 +11407,7 @@ var require_mock_agent = __commonJS({
       }
       pendingInterceptors() {
         const mockAgentClients = this[kClients];
-        return Array.from(mockAgentClients.entries()).flatMap(([origin2, scope]) => scope[kDispatches].map((dispatch) => ({ ...dispatch, origin: origin2 }))).filter(({ pending }) => pending);
+        return Array.from(mockAgentClients.entries()).flatMap(([origin, scope]) => scope[kDispatches].map((dispatch) => ({ ...dispatch, origin }))).filter(({ pending }) => pending);
       }
       assertNoPendingInterceptors({ pendingInterceptorsFormatter = new PendingInterceptorsFormatter() } = {}) {
         const pending = this.pendingInterceptors();
@@ -11551,7 +11551,7 @@ var require_retry = __commonJS({
 var require_dump = __commonJS({
   "node_modules/undici/lib/interceptor/dump.js"(exports2, module2) {
     "use strict";
-    var util3 = require_util();
+    var util2 = require_util();
     var { InvalidArgumentError, RequestAbortedError } = require_errors();
     var DecoratorHandler = require_decorator_handler();
     var DumpHandler = class extends DecoratorHandler {
@@ -11580,7 +11580,7 @@ var require_dump = __commonJS({
       }
       // TODO: will require adjustment after new hooks are out
       onHeaders(statusCode, rawHeaders, resume, statusMessage) {
-        const headers = util3.parseHeaders(rawHeaders);
+        const headers = util2.parseHeaders(rawHeaders);
         const contentLength = headers["content-length"];
         if (contentLength != null && contentLength > this.#maxSize) {
           throw new RequestAbortedError(
@@ -11673,10 +11673,10 @@ var require_dns = __commonJS({
       get full() {
         return this.#records.size === this.#maxItems;
       }
-      runLookup(origin2, opts, cb) {
-        const ips = this.#records.get(origin2.hostname);
+      runLookup(origin, opts, cb) {
+        const ips = this.#records.get(origin.hostname);
         if (ips == null && this.full) {
-          cb(null, origin2.origin);
+          cb(null, origin.origin);
           return;
         }
         const newOpts = {
@@ -11689,59 +11689,59 @@ var require_dns = __commonJS({
           maxItems: this.#maxItems
         };
         if (ips == null) {
-          this.lookup(origin2, newOpts, (err, addresses) => {
+          this.lookup(origin, newOpts, (err, addresses) => {
             if (err || addresses == null || addresses.length === 0) {
               cb(err ?? new InformationalError("No DNS entries found"));
               return;
             }
-            this.setRecords(origin2, addresses);
-            const records = this.#records.get(origin2.hostname);
+            this.setRecords(origin, addresses);
+            const records = this.#records.get(origin.hostname);
             const ip = this.pick(
-              origin2,
+              origin,
               records,
               newOpts.affinity
             );
             let port;
             if (typeof ip.port === "number") {
               port = `:${ip.port}`;
-            } else if (origin2.port !== "") {
-              port = `:${origin2.port}`;
+            } else if (origin.port !== "") {
+              port = `:${origin.port}`;
             } else {
               port = "";
             }
             cb(
               null,
-              `${origin2.protocol}//${ip.family === 6 ? `[${ip.address}]` : ip.address}${port}`
+              `${origin.protocol}//${ip.family === 6 ? `[${ip.address}]` : ip.address}${port}`
             );
           });
         } else {
           const ip = this.pick(
-            origin2,
+            origin,
             ips,
             newOpts.affinity
           );
           if (ip == null) {
-            this.#records.delete(origin2.hostname);
-            this.runLookup(origin2, opts, cb);
+            this.#records.delete(origin.hostname);
+            this.runLookup(origin, opts, cb);
             return;
           }
           let port;
           if (typeof ip.port === "number") {
             port = `:${ip.port}`;
-          } else if (origin2.port !== "") {
-            port = `:${origin2.port}`;
+          } else if (origin.port !== "") {
+            port = `:${origin.port}`;
           } else {
             port = "";
           }
           cb(
             null,
-            `${origin2.protocol}//${ip.family === 6 ? `[${ip.address}]` : ip.address}${port}`
+            `${origin.protocol}//${ip.family === 6 ? `[${ip.address}]` : ip.address}${port}`
           );
         }
       }
-      #defaultLookup(origin2, opts, cb) {
+      #defaultLookup(origin, opts, cb) {
         lookup(
-          origin2.hostname,
+          origin.hostname,
           {
             all: true,
             family: this.dualStack === false ? this.affinity : 0,
@@ -11759,7 +11759,7 @@ var require_dns = __commonJS({
           }
         );
       }
-      #defaultPick(origin2, hostnameRecords, affinity) {
+      #defaultPick(origin, hostnameRecords, affinity) {
         let ip = null;
         const { records, offset } = hostnameRecords;
         let family;
@@ -11796,11 +11796,11 @@ var require_dns = __commonJS({
         }
         if (Date.now() - ip.timestamp > ip.ttl) {
           family.ips.splice(position, 1);
-          return this.pick(origin2, hostnameRecords, affinity);
+          return this.pick(origin, hostnameRecords, affinity);
         }
         return ip;
       }
-      setRecords(origin2, addresses) {
+      setRecords(origin, addresses) {
         const timestamp2 = Date.now();
         const records = { records: { 4: null, 6: null } };
         for (const record of addresses) {
@@ -11814,7 +11814,7 @@ var require_dns = __commonJS({
           familyRecords.ips.push(record);
           records.records[record.family] = familyRecords;
         }
-        this.#records.set(origin2.hostname, records);
+        this.#records.set(origin.hostname, records);
       }
       getHandler(meta, opts) {
         return new DNSDispatchHandler(this, meta, opts);
@@ -11826,12 +11826,12 @@ var require_dns = __commonJS({
       #dispatch = null;
       #handler = null;
       #origin = null;
-      constructor(state, { origin: origin2, handler: handler2, dispatch }, opts) {
+      constructor(state2, { origin, handler: handler2, dispatch }, opts) {
         super(handler2);
-        this.#origin = origin2;
+        this.#origin = origin;
         this.#handler = handler2;
         this.#opts = { ...opts };
-        this.#state = state;
+        this.#state = state2;
         this.#dispatch = dispatch;
       }
       onError(err) {
@@ -11903,28 +11903,28 @@ var require_dns = __commonJS({
       const instance = new DNSInstance(opts);
       return (dispatch) => {
         return function dnsInterceptor(origDispatchOpts, handler2) {
-          const origin2 = origDispatchOpts.origin.constructor === URL ? origDispatchOpts.origin : new URL(origDispatchOpts.origin);
-          if (isIP(origin2.hostname) !== 0) {
+          const origin = origDispatchOpts.origin.constructor === URL ? origDispatchOpts.origin : new URL(origDispatchOpts.origin);
+          if (isIP(origin.hostname) !== 0) {
             return dispatch(origDispatchOpts, handler2);
           }
-          instance.runLookup(origin2, origDispatchOpts, (err, newOrigin) => {
+          instance.runLookup(origin, origDispatchOpts, (err, newOrigin) => {
             if (err) {
               return handler2.onError(err);
             }
             let dispatchOpts = null;
             dispatchOpts = {
               ...origDispatchOpts,
-              servername: origin2.hostname,
+              servername: origin.hostname,
               // For SNI on TLS
               origin: newOrigin,
               headers: {
-                host: origin2.hostname,
+                host: origin.hostname,
                 ...origDispatchOpts.headers
               }
             };
             dispatch(
               dispatchOpts,
-              instance.getHandler({ origin: origin2, dispatch, handler: handler2 }, origDispatchOpts)
+              instance.getHandler({ origin, dispatch, handler: handler2 }, origDispatchOpts)
             );
           });
           return true;
@@ -11942,12 +11942,12 @@ var require_headers = __commonJS({
     var { kEnumerableProperty } = require_util();
     var {
       iteratorMixin,
-      isValidHeaderName: isValidHeaderName2,
+      isValidHeaderName,
       isValidHeaderValue
     } = require_util2();
     var { webidl } = require_webidl();
     var assert = require("node:assert");
-    var util3 = require("node:util");
+    var util2 = require("node:util");
     var kHeadersMap = /* @__PURE__ */ Symbol("headers map");
     var kHeadersSortedMap = /* @__PURE__ */ Symbol("headers map sorted");
     function isHTTPWhiteSpaceCharCode(code) {
@@ -11987,7 +11987,7 @@ var require_headers = __commonJS({
     }
     function appendHeader(headers, name, value) {
       value = headerValueNormalize(value);
-      if (!isValidHeaderName2(name)) {
+      if (!isValidHeaderName(name)) {
         throw webidl.errors.invalidArgument({
           prefix: "Headers.append",
           value: name,
@@ -12133,12 +12133,12 @@ var require_headers = __commonJS({
           if (size === 0) {
             return array;
           }
-          const iterator3 = this[kHeadersMap][Symbol.iterator]();
-          const firstValue = iterator3.next().value;
+          const iterator2 = this[kHeadersMap][Symbol.iterator]();
+          const firstValue = iterator2.next().value;
           array[0] = [firstValue[0], firstValue[1].value];
           assert(firstValue[1].value !== null);
           for (let i = 1, j = 0, right = 0, left = 0, pivot = 0, x, value; i < size; ++i) {
-            value = iterator3.next().value;
+            value = iterator2.next().value;
             x = array[i] = [value[0], value[1].value];
             assert(x[1] !== null);
             left = 0;
@@ -12159,7 +12159,7 @@ var require_headers = __commonJS({
               array[left] = x;
             }
           }
-          if (!iterator3.next().done) {
+          if (!iterator2.next().done) {
             throw new TypeError("Unreachable");
           }
           return array;
@@ -12203,7 +12203,7 @@ var require_headers = __commonJS({
         webidl.argumentLengthCheck(arguments, 1, "Headers.delete");
         const prefix = "Headers.delete";
         name = webidl.converters.ByteString(name, prefix, "name");
-        if (!isValidHeaderName2(name)) {
+        if (!isValidHeaderName(name)) {
           throw webidl.errors.invalidArgument({
             prefix: "Headers.delete",
             value: name,
@@ -12224,7 +12224,7 @@ var require_headers = __commonJS({
         webidl.argumentLengthCheck(arguments, 1, "Headers.get");
         const prefix = "Headers.get";
         name = webidl.converters.ByteString(name, prefix, "name");
-        if (!isValidHeaderName2(name)) {
+        if (!isValidHeaderName(name)) {
           throw webidl.errors.invalidArgument({
             prefix,
             value: name,
@@ -12239,7 +12239,7 @@ var require_headers = __commonJS({
         webidl.argumentLengthCheck(arguments, 1, "Headers.has");
         const prefix = "Headers.has";
         name = webidl.converters.ByteString(name, prefix, "name");
-        if (!isValidHeaderName2(name)) {
+        if (!isValidHeaderName(name)) {
           throw webidl.errors.invalidArgument({
             prefix,
             value: name,
@@ -12256,7 +12256,7 @@ var require_headers = __commonJS({
         name = webidl.converters.ByteString(name, prefix, "name");
         value = webidl.converters.ByteString(value, prefix, "value");
         value = headerValueNormalize(value);
-        if (!isValidHeaderName2(name)) {
+        if (!isValidHeaderName(name)) {
           throw webidl.errors.invalidArgument({
             prefix,
             value: name,
@@ -12306,9 +12306,9 @@ var require_headers = __commonJS({
         }
         return this.#headersList[kHeadersSortedMap] = headers;
       }
-      [util3.inspect.custom](depth, options) {
+      [util2.inspect.custom](depth, options) {
         options.depth ??= depth;
-        return `Headers ${util3.formatWithOptions(options, this.#headersList.entries)}`;
+        return `Headers ${util2.formatWithOptions(options, this.#headersList.entries)}`;
       }
       static getHeadersGuard(o) {
         return o.#guard;
@@ -12340,21 +12340,21 @@ var require_headers = __commonJS({
         value: "Headers",
         configurable: true
       },
-      [util3.inspect.custom]: {
+      [util2.inspect.custom]: {
         enumerable: false
       }
     });
     webidl.converters.HeadersInit = function(V, prefix, argument) {
       if (webidl.util.Type(V) === "Object") {
-        const iterator3 = Reflect.get(V, Symbol.iterator);
-        if (!util3.types.isProxy(V) && iterator3 === Headers.prototype.entries) {
+        const iterator2 = Reflect.get(V, Symbol.iterator);
+        if (!util2.types.isProxy(V) && iterator2 === Headers.prototype.entries) {
           try {
             return getHeadersList(V).entriesList;
           } catch {
           }
         }
-        if (typeof iterator3 === "function") {
-          return webidl.converters["sequence<sequence<ByteString>>"](V, prefix, argument, iterator3.bind(V));
+        if (typeof iterator2 === "function") {
+          return webidl.converters["sequence<sequence<ByteString>>"](V, prefix, argument, iterator2.bind(V));
         }
         return webidl.converters["record<ByteString, ByteString>"](V, prefix, argument);
       }
@@ -12384,9 +12384,9 @@ var require_response = __commonJS({
     "use strict";
     var { Headers, HeadersList, fill, getHeadersGuard, setHeadersGuard, setHeadersList } = require_headers();
     var { extractBody, cloneBody, mixinBody, hasFinalizationRegistry, streamRegistry, bodyUnusable } = require_body();
-    var util3 = require_util();
+    var util2 = require_util();
     var nodeUtil = require("node:util");
-    var { kEnumerableProperty } = util3;
+    var { kEnumerableProperty } = util2;
     var {
       isValidReasonPhrase,
       isCancelled,
@@ -12403,12 +12403,12 @@ var require_response = __commonJS({
     } = require_constants3();
     var { kState, kHeaders } = require_symbols2();
     var { webidl } = require_webidl();
-    var { FormData: FormData3 } = require_formdata();
+    var { FormData: FormData2 } = require_formdata();
     var { URLSerializer } = require_data_url();
     var { kConstruct } = require_symbols();
     var assert = require("node:assert");
     var { types: types2 } = require("node:util");
-    var textEncoder2 = new TextEncoder("utf-8");
+    var textEncoder = new TextEncoder("utf-8");
     var Response = class _Response {
       // Creates network error Response.
       static error() {
@@ -12421,7 +12421,7 @@ var require_response = __commonJS({
         if (init !== null) {
           init = webidl.converters.ResponseInit(init);
         }
-        const bytes = textEncoder2.encode(
+        const bytes = textEncoder.encode(
           serializeJavascriptValueToJSONString(data)
         );
         const body = extractBody(bytes);
@@ -12430,15 +12430,15 @@ var require_response = __commonJS({
         return responseObject;
       }
       // Creates a redirect Response that redirects to url with status status.
-      static redirect(url2, status = 302) {
+      static redirect(url, status = 302) {
         webidl.argumentLengthCheck(arguments, 1, "Response.redirect");
-        url2 = webidl.converters.USVString(url2);
+        url = webidl.converters.USVString(url);
         status = webidl.converters["unsigned short"](status);
         let parsedURL;
         try {
-          parsedURL = new URL(url2, relevantRealm.settingsObject.baseUrl);
+          parsedURL = new URL(url, relevantRealm.settingsObject.baseUrl);
         } catch (err) {
-          throw new TypeError(`Failed to parse URL from ${url2}`, { cause: err });
+          throw new TypeError(`Failed to parse URL from ${url}`, { cause: err });
         }
         if (!redirectStatusSet.has(status)) {
           throw new RangeError(`Invalid status code ${status}`);
@@ -12479,11 +12479,11 @@ var require_response = __commonJS({
       get url() {
         webidl.brandCheck(this, _Response);
         const urlList = this[kState].urlList;
-        const url2 = urlList[urlList.length - 1] ?? null;
-        if (url2 === null) {
+        const url = urlList[urlList.length - 1] ?? null;
+        if (url === null) {
           return "";
         }
-        return URLSerializer(url2, true);
+        return URLSerializer(url, true);
       }
       // Returns whether response was obtained through a redirect.
       get redirected() {
@@ -12516,7 +12516,7 @@ var require_response = __commonJS({
       }
       get bodyUsed() {
         webidl.brandCheck(this, _Response);
-        return !!this[kState].body && util3.isDisturbed(this[kState].body.stream);
+        return !!this[kState].body && util2.isDisturbed(this[kState].body.stream);
       }
       // Returns a clone of response.
       clone() {
@@ -12604,11 +12604,11 @@ var require_response = __commonJS({
       };
     }
     function makeNetworkError(reason) {
-      const isError = isErrorLike(reason);
+      const isError3 = isErrorLike(reason);
       return makeResponse({
         type: "error",
         status: 0,
-        error: isError ? reason : new Error(reason ? String(reason) : reason),
+        error: isError3 ? reason : new Error(reason ? String(reason) : reason),
         aborted: reason && reason.name === "AbortError"
       });
     }
@@ -12619,17 +12619,17 @@ var require_response = __commonJS({
         response.status === 0
       );
     }
-    function makeFilteredResponse(response, state) {
-      state = {
+    function makeFilteredResponse(response, state2) {
+      state2 = {
         internalResponse: response,
-        ...state
+        ...state2
       };
       return new Proxy(response, {
         get(target, p) {
-          return p in state ? state[p] : target[p];
+          return p in state2 ? state2[p] : target[p];
         },
         set(target, p, value) {
-          assert(!(p in state));
+          assert(!(p in state2));
           target[p] = value;
           return true;
         }
@@ -12716,7 +12716,7 @@ var require_response = __commonJS({
       ReadableStream
     );
     webidl.converters.FormData = webidl.interfaceConverter(
-      FormData3
+      FormData2
     );
     webidl.converters.URLSearchParams = webidl.interfaceConverter(
       URLSearchParams
@@ -12731,7 +12731,7 @@ var require_response = __commonJS({
       if (ArrayBuffer.isView(V) || types2.isArrayBuffer(V)) {
         return webidl.converters.BufferSource(V, prefix, name);
       }
-      if (util3.isFormDataLike(V)) {
+      if (util2.isFormDataLike(V)) {
         return webidl.converters.FormData(V, prefix, name, { strict: false });
       }
       if (V instanceof URLSearchParams) {
@@ -12826,7 +12826,7 @@ var require_request2 = __commonJS({
     var { extractBody, mixinBody, cloneBody, bodyUnusable } = require_body();
     var { Headers, fill: fillHeaders, HeadersList, setHeadersGuard, getHeadersGuard, setHeadersList, getHeadersList } = require_headers();
     var { FinalizationRegistry: FinalizationRegistry2 } = require_dispatcher_weakref()();
-    var util3 = require_util();
+    var util2 = require_util();
     var nodeUtil = require("node:util");
     var {
       isValidHTTPToken,
@@ -12843,7 +12843,7 @@ var require_request2 = __commonJS({
       requestCache,
       requestDuplex
     } = require_constants3();
-    var { kEnumerableProperty, normalizedMethodRecordsBase, normalizedMethodRecords } = util3;
+    var { kEnumerableProperty, normalizedMethodRecordsBase, normalizedMethodRecords } = util2;
     var { kHeaders, kSignal, kState, kDispatcher } = require_symbols2();
     var { webidl } = require_webidl();
     var { URLSerializer } = require_data_url();
@@ -12916,9 +12916,9 @@ var require_request2 = __commonJS({
           request2 = input[kState];
           signal = input[kSignal];
         }
-        const origin2 = environmentSettingsObject.settingsObject.origin;
+        const origin = environmentSettingsObject.settingsObject.origin;
         let window2 = "client";
-        if (request2.window?.constructor?.name === "EnvironmentSettingsObject" && sameOrigin(request2.window, origin2)) {
+        if (request2.window?.constructor?.name === "EnvironmentSettingsObject" && sameOrigin(request2.window, origin)) {
           window2 = request2.window;
         }
         if (init.window != null) {
@@ -12994,7 +12994,7 @@ var require_request2 = __commonJS({
             } catch (err) {
               throw new TypeError(`Referrer "${referrer}" is not a valid URL.`, { cause: err });
             }
-            if (parsedReferrer.protocol === "about:" && parsedReferrer.hostname === "client" || origin2 && !sameOrigin(parsedReferrer, environmentSettingsObject.settingsObject.baseUrl)) {
+            if (parsedReferrer.protocol === "about:" && parsedReferrer.hostname === "client" || origin && !sameOrigin(parsedReferrer, environmentSettingsObject.settingsObject.baseUrl)) {
               request2.referrer = "client";
             } else {
               request2.referrer = parsedReferrer;
@@ -13088,7 +13088,7 @@ var require_request2 = __commonJS({
               }
             } catch {
             }
-            util3.addAbortListener(signal, abort);
+            util2.addAbortListener(signal, abort);
             requestFinalizer.register(ac, { signal, abort }, abort);
           }
         }
@@ -13271,7 +13271,7 @@ var require_request2 = __commonJS({
       }
       get bodyUsed() {
         webidl.brandCheck(this, _Request);
-        return !!this[kState].body && util3.isDisturbed(this[kState].body.stream);
+        return !!this[kState].body && util2.isDisturbed(this[kState].body.stream);
       }
       get duplex() {
         webidl.brandCheck(this, _Request);
@@ -13295,7 +13295,7 @@ var require_request2 = __commonJS({
           }
           const acRef = new WeakRef(ac);
           list.add(acRef);
-          util3.addAbortListener(
+          util2.addAbortListener(
             ac.signal,
             buildAbort(acRef)
           );
@@ -13616,7 +13616,7 @@ var require_fetch = __commonJS({
     function handleFetchDone(response) {
       finalizeAndReportTiming(response, "fetch");
     }
-    function fetch2(input, init = void 0) {
+    function fetch(input, init = void 0) {
       webidl.argumentLengthCheck(arguments, 1, "globalThis.fetch");
       let p = createDeferredPromise();
       let requestObject;
@@ -14340,8 +14340,8 @@ var require_fetch = __commonJS({
         if (socket) {
           response = makeResponse({ status, statusText, headersList, socket });
         } else {
-          const iterator3 = body[Symbol.asyncIterator]();
-          fetchParams.controller.next = () => iterator3.next();
+          const iterator2 = body[Symbol.asyncIterator]();
+          fetchParams.controller.next = () => iterator2.next();
           response = makeResponse({ status, statusText, headersList });
         }
       } catch (err) {
@@ -14359,7 +14359,7 @@ var require_fetch = __commonJS({
           fetchParams.controller.abort(reason);
         }
       };
-      const stream4 = new ReadableStream(
+      const stream = new ReadableStream(
         {
           async start(controller) {
             fetchParams.controller.controller = controller;
@@ -14373,7 +14373,7 @@ var require_fetch = __commonJS({
           type: "bytes"
         }
       );
-      response.body = { stream: stream4, source: null, length: null };
+      response.body = { stream, source: null, length: null };
       fetchParams.controller.onAborted = onAborted;
       fetchParams.controller.on("terminated", onAborted);
       fetchParams.controller.resume = async () => {
@@ -14408,7 +14408,7 @@ var require_fetch = __commonJS({
           if (buffer.byteLength) {
             fetchParams.controller.controller.enqueue(buffer);
           }
-          if (isErrored(stream4)) {
+          if (isErrored(stream)) {
             fetchParams.controller.terminate();
             return;
           }
@@ -14420,13 +14420,13 @@ var require_fetch = __commonJS({
       function onAborted(reason) {
         if (isAborted(fetchParams)) {
           response.aborted = true;
-          if (isReadable(stream4)) {
+          if (isReadable(stream)) {
             fetchParams.controller.controller.error(
               fetchParams.controller.serializedAbortReason
             );
           }
         } else {
-          if (isReadable(stream4)) {
+          if (isReadable(stream)) {
             fetchParams.controller.controller.error(new TypeError("terminated", {
               cause: isErrorLike(reason) ? reason : void 0
             }));
@@ -14436,12 +14436,12 @@ var require_fetch = __commonJS({
       }
       return response;
       function dispatch({ body }) {
-        const url2 = requestCurrentURL(request2);
+        const url = requestCurrentURL(request2);
         const agent = fetchParams.controller.dispatcher;
         return new Promise((resolve4, reject) => agent.dispatch(
           {
-            path: url2.pathname + url2.search,
-            origin: url2.origin,
+            path: url.pathname + url.search,
+            origin: url.origin,
             method: request2.method,
             body: agent.isMockActive ? request2.body && (request2.body.source || request2.body.stream) : body,
             headers: request2.headersList.entries,
@@ -14573,7 +14573,7 @@ var require_fetch = __commonJS({
       }
     }
     module2.exports = {
-      fetch: fetch2,
+      fetch,
       Fetch,
       fetching,
       finalizeAndReportTiming
@@ -14966,7 +14966,7 @@ var require_util4 = __commonJS({
     var { serializeAMimeType, parseMIMEType } = require_data_url();
     var { types: types2 } = require("node:util");
     var { StringDecoder } = require("string_decoder");
-    var { btoa: btoa2 } = require("node:buffer");
+    var { btoa } = require("node:buffer");
     var staticPropertyDescriptors = {
       enumerable: true,
       writable: false,
@@ -14979,8 +14979,8 @@ var require_util4 = __commonJS({
       fr[kState] = "loading";
       fr[kResult] = null;
       fr[kError] = null;
-      const stream4 = blob.stream();
-      const reader = stream4.getReader();
+      const stream = blob.stream();
+      const reader = stream.getReader();
       const bytes = [];
       let chunkPromise = reader.read();
       let isFirstChunk = true;
@@ -15058,9 +15058,9 @@ var require_util4 = __commonJS({
           dataURL += ";base64,";
           const decoder = new StringDecoder("latin1");
           for (const chunk2 of bytes) {
-            dataURL += btoa2(decoder.write(chunk2));
+            dataURL += btoa(decoder.write(chunk2));
           }
-          dataURL += btoa2(decoder.end());
+          dataURL += btoa(decoder.end());
           return dataURL;
         }
         case "Text": {
@@ -15410,7 +15410,7 @@ var require_util5 = __commonJS({
     "use strict";
     var assert = require("node:assert");
     var { URLSerializer } = require_data_url();
-    var { isValidHeaderName: isValidHeaderName2 } = require_util2();
+    var { isValidHeaderName } = require_util2();
     function urlEquals(A, B, excludeFragment = false) {
       const serializedA = URLSerializer(A, excludeFragment);
       const serializedB = URLSerializer(B, excludeFragment);
@@ -15421,7 +15421,7 @@ var require_util5 = __commonJS({
       const values = [];
       for (let value of header.split(",")) {
         value = value.trim();
-        if (isValidHeaderName2(value)) {
+        if (isValidHeaderName(value)) {
           values.push(value);
         }
       }
@@ -15639,8 +15639,8 @@ var require_cache = __commonJS({
         const clonedResponse = cloneResponse(innerResponse);
         const bodyReadPromise = createDeferredPromise();
         if (innerResponse.body != null) {
-          const stream4 = innerResponse.body.stream;
-          const reader = stream4.getReader();
+          const stream = innerResponse.body.stream;
+          const reader = stream.getReader();
           readAllBytes(reader).then(bodyReadPromise.resolve, bodyReadPromise.reject);
         } else {
           bodyReadPromise.resolve(void 0);
@@ -16588,14 +16588,14 @@ var require_events = __commonJS({
         }
         return this.#eventInit.ports;
       }
-      initMessageEvent(type2, bubbles = false, cancelable = false, data = null, origin2 = "", lastEventId = "", source = null, ports = []) {
+      initMessageEvent(type2, bubbles = false, cancelable = false, data = null, origin = "", lastEventId = "", source = null, ports = []) {
         webidl.brandCheck(this, _MessageEvent);
         webidl.argumentLengthCheck(arguments, 1, "MessageEvent.initMessageEvent");
         return new _MessageEvent(type2, {
           bubbles,
           cancelable,
           data,
-          origin: origin2,
+          origin,
           lastEventId,
           source,
           ports
@@ -17156,9 +17156,9 @@ var require_connection = __commonJS({
       crypto2 = require("node:crypto");
     } catch {
     }
-    function establishWebSocketConnection(url2, protocols, client, ws, onEstablish, options) {
-      const requestURL = url2;
-      requestURL.protocol = url2.protocol === "ws:" ? "http:" : "https:";
+    function establishWebSocketConnection(url, protocols, client, ws, onEstablish, options) {
+      const requestURL = url;
+      requestURL.protocol = url.protocol === "ws:" ? "http:" : "https:";
       const request2 = makeRequest({
         urlList: [requestURL],
         client,
@@ -17881,18 +17881,18 @@ var require_websocket = __commonJS({
        * @param {string} url
        * @param {string|string[]} protocols
        */
-      constructor(url2, protocols = []) {
+      constructor(url, protocols = []) {
         super();
         webidl.util.markAsUncloneable(this);
         const prefix = "WebSocket constructor";
         webidl.argumentLengthCheck(arguments, 1, prefix);
         const options = webidl.converters["DOMString or sequence<DOMString> or WebSocketInit"](protocols, prefix, "options");
-        url2 = webidl.converters.USVString(url2, prefix, "url");
+        url = webidl.converters.USVString(url, prefix, "url");
         protocols = options.protocols;
         const baseURL = environmentSettingsObject.settingsObject.baseUrl;
         let urlRecord;
         try {
-          urlRecord = new URL(url2, baseURL);
+          urlRecord = new URL(url, baseURL);
         } catch (e) {
           throw new DOMException(e, "SyntaxError");
         }
@@ -18235,7 +18235,7 @@ var require_util8 = __commonJS({
       }
       return true;
     }
-    function delay2(ms) {
+    function delay4(ms) {
       return new Promise((resolve4) => {
         setTimeout(resolve4, ms).unref();
       });
@@ -18243,7 +18243,7 @@ var require_util8 = __commonJS({
     module2.exports = {
       isValidLastEventId,
       isASCIINumber,
-      delay: delay2
+      delay: delay4
     };
   }
 });
@@ -18252,14 +18252,14 @@ var require_util8 = __commonJS({
 var require_eventsource_stream = __commonJS({
   "node_modules/undici/lib/web/eventsource/eventsource-stream.js"(exports2, module2) {
     "use strict";
-    var { Transform } = require("node:stream");
+    var { Transform: Transform2 } = require("node:stream");
     var { isASCIINumber, isValidLastEventId } = require_util8();
     var BOM = [239, 187, 191];
     var LF = 10;
     var CR = 13;
     var COLON = 58;
     var SPACE = 32;
-    var EventSourceStream = class extends Transform {
+    var EventSourceStream = class extends Transform2 {
       /**
        * @type {eventSourceSettings}
        */
@@ -18490,7 +18490,7 @@ var require_eventsource = __commonJS({
     var { parseMIMEType } = require_data_url();
     var { createFastMessageEvent } = require_events();
     var { isNetworkError } = require_response();
-    var { delay: delay2 } = require_util8();
+    var { delay: delay4 } = require_util8();
     var { kEnumerableProperty } = require_util();
     var { environmentSettingsObject } = require_util2();
     var experimentalWarned = false;
@@ -18522,7 +18522,7 @@ var require_eventsource = __commonJS({
        * @param {EventSourceInit} [eventSourceInitDict]
        * @see https://html.spec.whatwg.org/multipage/server-sent-events.html#the-eventsource-interface
        */
-      constructor(url2, eventSourceInitDict = {}) {
+      constructor(url, eventSourceInitDict = {}) {
         super();
         webidl.util.markAsUncloneable(this);
         const prefix = "EventSource constructor";
@@ -18533,7 +18533,7 @@ var require_eventsource = __commonJS({
             code: "UNDICI-ES"
           });
         }
-        url2 = webidl.converters.USVString(url2, prefix, "url");
+        url = webidl.converters.USVString(url, prefix, "url");
         eventSourceInitDict = webidl.converters.EventSourceInitDict(eventSourceInitDict, prefix, "eventSourceInitDict");
         this.#dispatcher = eventSourceInitDict.dispatcher;
         this.#state = {
@@ -18543,7 +18543,7 @@ var require_eventsource = __commonJS({
         const settings = environmentSettingsObject;
         let urlRecord;
         try {
-          urlRecord = new URL(url2, settings.settingsObject.baseUrl);
+          urlRecord = new URL(url, settings.settingsObject.baseUrl);
           this.#state.origin = urlRecord.origin;
         } catch (e) {
           throw new DOMException(e, "SyntaxError");
@@ -18661,7 +18661,7 @@ var require_eventsource = __commonJS({
         if (this.#readyState === CLOSED) return;
         this.#readyState = CONNECTING;
         this.dispatchEvent(new Event("error"));
-        await delay2(this.#state.reconnectionTime);
+        await delay4(this.#state.reconnectionTime);
         if (this.#readyState !== CONNECTING) return;
         if (this.#state.lastEventId.length) {
           this.#request.headersList.set("last-event-id", this.#state.lastEventId, true);
@@ -18788,7 +18788,7 @@ var require_undici = __commonJS({
     var EnvHttpProxyAgent = require_env_http_proxy_agent();
     var RetryAgent = require_retry_agent();
     var errors = require_errors();
-    var util3 = require_util();
+    var util2 = require_util();
     var { InvalidArgumentError } = errors;
     var api = require_api();
     var buildConnector = require_connect();
@@ -18823,16 +18823,16 @@ var require_undici = __commonJS({
     module2.exports.buildConnector = buildConnector;
     module2.exports.errors = errors;
     module2.exports.util = {
-      parseHeaders: util3.parseHeaders,
-      headerNameToString: util3.headerNameToString
+      parseHeaders: util2.parseHeaders,
+      headerNameToString: util2.headerNameToString
     };
     function makeDispatcher(fn) {
-      return (url2, opts, handler2) => {
+      return (url, opts, handler2) => {
         if (typeof opts === "function") {
           handler2 = opts;
           opts = null;
         }
-        if (!url2 || typeof url2 !== "string" && typeof url2 !== "object" && !(url2 instanceof URL)) {
+        if (!url || typeof url !== "string" && typeof url !== "object" && !(url instanceof URL)) {
           throw new InvalidArgumentError("invalid url");
         }
         if (opts != null && typeof opts !== "object") {
@@ -18846,12 +18846,12 @@ var require_undici = __commonJS({
           if (!opts.path.startsWith("/")) {
             path2 = `/${path2}`;
           }
-          url2 = new URL(util3.parseOrigin(url2).origin + path2);
+          url = new URL(util2.parseOrigin(url).origin + path2);
         } else {
           if (!opts) {
-            opts = typeof url2 === "object" ? url2 : {};
+            opts = typeof url === "object" ? url : {};
           }
-          url2 = util3.parseURL(url2);
+          url = util2.parseURL(url);
         }
         const { agent, dispatcher = getGlobalDispatcher() } = opts;
         if (agent) {
@@ -18859,8 +18859,8 @@ var require_undici = __commonJS({
         }
         return fn.call(dispatcher, {
           ...opts,
-          origin: url2.origin,
-          path: url2.search ? `${url2.pathname}${url2.search}` : url2.pathname,
+          origin: url.origin,
+          path: url.search ? `${url.pathname}${url.search}` : url.pathname,
           method: opts.method || (opts.body ? "PUT" : "GET")
         }, handler2);
       };
@@ -18868,7 +18868,7 @@ var require_undici = __commonJS({
     module2.exports.setGlobalDispatcher = setGlobalDispatcher;
     module2.exports.getGlobalDispatcher = getGlobalDispatcher;
     var fetchImpl = require_fetch().fetch;
-    module2.exports.fetch = async function fetch2(init, options = void 0) {
+    module2.exports.fetch = async function fetch(init, options = void 0) {
       try {
         return await fetchImpl(init, options);
       } catch (err) {
@@ -18988,8 +18988,8 @@ var require_lib = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.HttpClient = exports2.HttpClientResponse = exports2.HttpClientError = exports2.MediaTypes = exports2.Headers = exports2.HttpCodes = void 0;
     exports2.getProxyUrl = getProxyUrl;
-    exports2.isHttps = isHttps2;
-    var http3 = __importStar(require("http"));
+    exports2.isHttps = isHttps;
+    var http2 = __importStar(require("http"));
     var https2 = __importStar(require("https"));
     var pm = __importStar(require_proxy());
     var tunnel = __importStar(require_tunnel2());
@@ -19093,7 +19093,7 @@ var require_lib = __commonJS({
       }
     };
     exports2.HttpClientResponse = HttpClientResponse;
-    function isHttps2(requestUrl) {
+    function isHttps(requestUrl) {
       const parsedUrl = new URL(requestUrl);
       return parsedUrl.protocol === "https:";
     }
@@ -19170,9 +19170,9 @@ var require_lib = __commonJS({
           return this.request("HEAD", requestUrl, null, additionalHeaders || {});
         });
       }
-      sendStream(verb, requestUrl, stream4, additionalHeaders) {
+      sendStream(verb, requestUrl, stream, additionalHeaders) {
         return __awaiter(this, void 0, void 0, function* () {
-          return this.request(verb, requestUrl, stream4, additionalHeaders);
+          return this.request(verb, requestUrl, stream, additionalHeaders);
         });
       }
       /**
@@ -19379,7 +19379,7 @@ var require_lib = __commonJS({
         const info2 = {};
         info2.parsedUrl = requestUrl;
         const usingSsl = info2.parsedUrl.protocol === "https:";
-        info2.httpModule = usingSsl ? https2 : http3;
+        info2.httpModule = usingSsl ? https2 : http2;
         const defaultPort = usingSsl ? 443 : 80;
         info2.options = {};
         info2.options.host = info2.parsedUrl.hostname;
@@ -19480,7 +19480,7 @@ var require_lib = __commonJS({
         const usingSsl = parsedUrl.protocol === "https:";
         let maxSockets = 100;
         if (this.requestOptions) {
-          maxSockets = this.requestOptions.maxSockets || http3.globalAgent.maxSockets;
+          maxSockets = this.requestOptions.maxSockets || http2.globalAgent.maxSockets;
         }
         if (proxyUrl && proxyUrl.hostname) {
           const agentOptions = {
@@ -19502,7 +19502,7 @@ var require_lib = __commonJS({
         }
         if (!agent) {
           const options = { keepAlive: this._keepAlive, maxSockets };
-          agent = usingSsl ? new https2.Agent(options) : new http3.Agent(options);
+          agent = usingSsl ? new https2.Agent(options) : new http2.Agent(options);
           this._agent = agent;
         }
         if (usingSsl && this._ignoreSslError) {
@@ -20691,7 +20691,7 @@ var require_toolrunner = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ToolRunner = void 0;
     exports2.argStringToArray = argStringToArray;
-    var os = __importStar(require("os"));
+    var os3 = __importStar(require("os"));
     var events = __importStar(require("events"));
     var child = __importStar(require("child_process"));
     var path2 = __importStar(require("path"));
@@ -20746,12 +20746,12 @@ var require_toolrunner = __commonJS({
       _processLineBuffer(data, strBuffer, onLine) {
         try {
           let s = strBuffer + data.toString();
-          let n = s.indexOf(os.EOL);
+          let n = s.indexOf(os3.EOL);
           while (n > -1) {
             const line = s.substring(0, n);
             onLine(line);
-            s = s.substring(n + os.EOL.length);
-            n = s.indexOf(os.EOL);
+            s = s.substring(n + os3.EOL.length);
+            n = s.indexOf(os3.EOL);
           }
           return s;
         } catch (err) {
@@ -20920,10 +20920,10 @@ var require_toolrunner = __commonJS({
             }
             const optionsNonNull = this._cloneExecOptions(this.options);
             if (!optionsNonNull.silent && optionsNonNull.outStream) {
-              optionsNonNull.outStream.write(this._getCommandString(optionsNonNull) + os.EOL);
+              optionsNonNull.outStream.write(this._getCommandString(optionsNonNull) + os3.EOL);
             }
-            const state = new ExecState(optionsNonNull, this.toolPath);
-            state.on("debug", (message) => {
+            const state2 = new ExecState(optionsNonNull, this.toolPath);
+            state2.on("debug", (message) => {
               this._debug(message);
             });
             if (this.options.cwd && !(yield ioUtil.exists(this.options.cwd))) {
@@ -20950,7 +20950,7 @@ var require_toolrunner = __commonJS({
             let errbuffer = "";
             if (cp.stderr) {
               cp.stderr.on("data", (data) => {
-                state.processStderr = true;
+                state2.processStderr = true;
                 if (this.options.listeners && this.options.listeners.stderr) {
                   this.options.listeners.stderr(data);
                 }
@@ -20966,25 +20966,25 @@ var require_toolrunner = __commonJS({
               });
             }
             cp.on("error", (err) => {
-              state.processError = err.message;
-              state.processExited = true;
-              state.processClosed = true;
-              state.CheckComplete();
+              state2.processError = err.message;
+              state2.processExited = true;
+              state2.processClosed = true;
+              state2.CheckComplete();
             });
             cp.on("exit", (code) => {
-              state.processExitCode = code;
-              state.processExited = true;
+              state2.processExitCode = code;
+              state2.processExited = true;
               this._debug(`Exit code ${code} received from tool '${this.toolPath}'`);
-              state.CheckComplete();
+              state2.CheckComplete();
             });
             cp.on("close", (code) => {
-              state.processExitCode = code;
-              state.processExited = true;
-              state.processClosed = true;
+              state2.processExitCode = code;
+              state2.processExited = true;
+              state2.processClosed = true;
               this._debug(`STDIO streams have closed for tool '${this.toolPath}'`);
-              state.CheckComplete();
+              state2.CheckComplete();
             });
-            state.on("done", (error, exitCode) => {
+            state2.on("done", (error, exitCode) => {
               if (stdbuffer.length > 0) {
                 this.emit("stdline", stdbuffer);
               }
@@ -21014,7 +21014,7 @@ var require_toolrunner = __commonJS({
       let inQuotes = false;
       let escaped = false;
       let arg = "";
-      function append2(c) {
+      function append(c) {
         if (escaped && c !== '"') {
           arg += "\\";
         }
@@ -21027,12 +21027,12 @@ var require_toolrunner = __commonJS({
           if (!escaped) {
             inQuotes = !inQuotes;
           } else {
-            append2(c);
+            append(c);
           }
           continue;
         }
         if (c === "\\" && escaped) {
-          append2(c);
+          append(c);
           continue;
         }
         if (c === "\\" && inQuotes) {
@@ -21046,7 +21046,7 @@ var require_toolrunner = __commonJS({
           }
           continue;
         }
-        append2(c);
+        append(c);
       }
       if (arg.length > 0) {
         args.push(arg.trim());
@@ -21104,15 +21104,15 @@ var require_toolrunner = __commonJS({
         this.done = true;
         this.emit("done", error, this.processExitCode);
       }
-      static HandleTimeout(state) {
-        if (state.done) {
+      static HandleTimeout(state2) {
+        if (state2.done) {
           return;
         }
-        if (!state.processClosed && state.processExited) {
-          const message = `The STDIO streams did not close within ${state.delay / 1e3} seconds of the exit event from process '${state.toolPath}'. This may indicate a child process inherited the STDIO streams and has not yet exited.`;
-          state._debug(message);
+        if (!state2.processClosed && state2.processExited) {
+          const message = `The STDIO streams did not close within ${state2.delay / 1e3} seconds of the exit event from process '${state2.toolPath}'. This may indicate a child process inherited the STDIO streams and has not yet exited.`;
+          state2._debug(message);
         }
-        state._setResult();
+        state2._setResult();
       }
     };
   }
@@ -21461,7 +21461,7 @@ var require_core = __commonJS({
     var command_1 = require_command();
     var file_command_1 = require_file_command();
     var utils_1 = require_utils();
-    var os = __importStar(require("os"));
+    var os3 = __importStar(require("os"));
     var path2 = __importStar(require("path"));
     var oidc_utils_1 = require_oidc_utils();
     var ExitCode;
@@ -21523,11 +21523,11 @@ Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
       if (filePath) {
         return (0, file_command_1.issueFileCommand)("OUTPUT", (0, file_command_1.prepareKeyValueMessage)(name, value));
       }
-      process.stdout.write(os.EOL);
+      process.stdout.write(os3.EOL);
       (0, command_1.issueCommand)("set-output", { name }, (0, utils_1.toCommandValue)(value));
     }
-    function setCommandEcho(enabled) {
-      (0, command_1.issue)("echo", enabled ? "on" : "off");
+    function setCommandEcho(enabled2) {
+      (0, command_1.issue)("echo", enabled2 ? "on" : "off");
     }
     function setFailed4(message) {
       process.exitCode = ExitCode.Failure;
@@ -21549,7 +21549,7 @@ Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
       (0, command_1.issueCommand)("notice", (0, utils_1.toCommandProperties)(properties), message instanceof Error ? message.toString() : message);
     }
     function info2(message) {
-      process.stdout.write(message + os.EOL);
+      process.stdout.write(message + os3.EOL);
     }
     function startGroup(name) {
       (0, command_1.issue)("group", name);
@@ -21603,10275 +21603,6 @@ Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
       return path_utils_1.toPlatformPath;
     } });
     exports2.platform = __importStar(require_platform());
-  }
-});
-
-// node_modules/delayed-stream/lib/delayed_stream.js
-var require_delayed_stream = __commonJS({
-  "node_modules/delayed-stream/lib/delayed_stream.js"(exports2, module2) {
-    var Stream = require("stream").Stream;
-    var util3 = require("util");
-    module2.exports = DelayedStream;
-    function DelayedStream() {
-      this.source = null;
-      this.dataSize = 0;
-      this.maxDataSize = 1024 * 1024;
-      this.pauseStream = true;
-      this._maxDataSizeExceeded = false;
-      this._released = false;
-      this._bufferedEvents = [];
-    }
-    util3.inherits(DelayedStream, Stream);
-    DelayedStream.create = function(source, options) {
-      var delayedStream = new this();
-      options = options || {};
-      for (var option in options) {
-        delayedStream[option] = options[option];
-      }
-      delayedStream.source = source;
-      var realEmit = source.emit;
-      source.emit = function() {
-        delayedStream._handleEmit(arguments);
-        return realEmit.apply(source, arguments);
-      };
-      source.on("error", function() {
-      });
-      if (delayedStream.pauseStream) {
-        source.pause();
-      }
-      return delayedStream;
-    };
-    Object.defineProperty(DelayedStream.prototype, "readable", {
-      configurable: true,
-      enumerable: true,
-      get: function() {
-        return this.source.readable;
-      }
-    });
-    DelayedStream.prototype.setEncoding = function() {
-      return this.source.setEncoding.apply(this.source, arguments);
-    };
-    DelayedStream.prototype.resume = function() {
-      if (!this._released) {
-        this.release();
-      }
-      this.source.resume();
-    };
-    DelayedStream.prototype.pause = function() {
-      this.source.pause();
-    };
-    DelayedStream.prototype.release = function() {
-      this._released = true;
-      this._bufferedEvents.forEach(function(args) {
-        this.emit.apply(this, args);
-      }.bind(this));
-      this._bufferedEvents = [];
-    };
-    DelayedStream.prototype.pipe = function() {
-      var r = Stream.prototype.pipe.apply(this, arguments);
-      this.resume();
-      return r;
-    };
-    DelayedStream.prototype._handleEmit = function(args) {
-      if (this._released) {
-        this.emit.apply(this, args);
-        return;
-      }
-      if (args[0] === "data") {
-        this.dataSize += args[1].length;
-        this._checkIfMaxDataSizeExceeded();
-      }
-      this._bufferedEvents.push(args);
-    };
-    DelayedStream.prototype._checkIfMaxDataSizeExceeded = function() {
-      if (this._maxDataSizeExceeded) {
-        return;
-      }
-      if (this.dataSize <= this.maxDataSize) {
-        return;
-      }
-      this._maxDataSizeExceeded = true;
-      var message = "DelayedStream#maxDataSize of " + this.maxDataSize + " bytes exceeded.";
-      this.emit("error", new Error(message));
-    };
-  }
-});
-
-// node_modules/combined-stream/lib/combined_stream.js
-var require_combined_stream = __commonJS({
-  "node_modules/combined-stream/lib/combined_stream.js"(exports2, module2) {
-    var util3 = require("util");
-    var Stream = require("stream").Stream;
-    var DelayedStream = require_delayed_stream();
-    module2.exports = CombinedStream;
-    function CombinedStream() {
-      this.writable = false;
-      this.readable = true;
-      this.dataSize = 0;
-      this.maxDataSize = 2 * 1024 * 1024;
-      this.pauseStreams = true;
-      this._released = false;
-      this._streams = [];
-      this._currentStream = null;
-      this._insideLoop = false;
-      this._pendingNext = false;
-    }
-    util3.inherits(CombinedStream, Stream);
-    CombinedStream.create = function(options) {
-      var combinedStream = new this();
-      options = options || {};
-      for (var option in options) {
-        combinedStream[option] = options[option];
-      }
-      return combinedStream;
-    };
-    CombinedStream.isStreamLike = function(stream4) {
-      return typeof stream4 !== "function" && typeof stream4 !== "string" && typeof stream4 !== "boolean" && typeof stream4 !== "number" && !Buffer.isBuffer(stream4);
-    };
-    CombinedStream.prototype.append = function(stream4) {
-      var isStreamLike = CombinedStream.isStreamLike(stream4);
-      if (isStreamLike) {
-        if (!(stream4 instanceof DelayedStream)) {
-          var newStream = DelayedStream.create(stream4, {
-            maxDataSize: Infinity,
-            pauseStream: this.pauseStreams
-          });
-          stream4.on("data", this._checkDataSize.bind(this));
-          stream4 = newStream;
-        }
-        this._handleErrors(stream4);
-        if (this.pauseStreams) {
-          stream4.pause();
-        }
-      }
-      this._streams.push(stream4);
-      return this;
-    };
-    CombinedStream.prototype.pipe = function(dest, options) {
-      Stream.prototype.pipe.call(this, dest, options);
-      this.resume();
-      return dest;
-    };
-    CombinedStream.prototype._getNext = function() {
-      this._currentStream = null;
-      if (this._insideLoop) {
-        this._pendingNext = true;
-        return;
-      }
-      this._insideLoop = true;
-      try {
-        do {
-          this._pendingNext = false;
-          this._realGetNext();
-        } while (this._pendingNext);
-      } finally {
-        this._insideLoop = false;
-      }
-    };
-    CombinedStream.prototype._realGetNext = function() {
-      var stream4 = this._streams.shift();
-      if (typeof stream4 == "undefined") {
-        this.end();
-        return;
-      }
-      if (typeof stream4 !== "function") {
-        this._pipeNext(stream4);
-        return;
-      }
-      var getStream = stream4;
-      getStream(function(stream5) {
-        var isStreamLike = CombinedStream.isStreamLike(stream5);
-        if (isStreamLike) {
-          stream5.on("data", this._checkDataSize.bind(this));
-          this._handleErrors(stream5);
-        }
-        this._pipeNext(stream5);
-      }.bind(this));
-    };
-    CombinedStream.prototype._pipeNext = function(stream4) {
-      this._currentStream = stream4;
-      var isStreamLike = CombinedStream.isStreamLike(stream4);
-      if (isStreamLike) {
-        stream4.on("end", this._getNext.bind(this));
-        stream4.pipe(this, { end: false });
-        return;
-      }
-      var value = stream4;
-      this.write(value);
-      this._getNext();
-    };
-    CombinedStream.prototype._handleErrors = function(stream4) {
-      var self2 = this;
-      stream4.on("error", function(err) {
-        self2._emitError(err);
-      });
-    };
-    CombinedStream.prototype.write = function(data) {
-      this.emit("data", data);
-    };
-    CombinedStream.prototype.pause = function() {
-      if (!this.pauseStreams) {
-        return;
-      }
-      if (this.pauseStreams && this._currentStream && typeof this._currentStream.pause == "function") this._currentStream.pause();
-      this.emit("pause");
-    };
-    CombinedStream.prototype.resume = function() {
-      if (!this._released) {
-        this._released = true;
-        this.writable = true;
-        this._getNext();
-      }
-      if (this.pauseStreams && this._currentStream && typeof this._currentStream.resume == "function") this._currentStream.resume();
-      this.emit("resume");
-    };
-    CombinedStream.prototype.end = function() {
-      this._reset();
-      this.emit("end");
-    };
-    CombinedStream.prototype.destroy = function() {
-      this._reset();
-      this.emit("close");
-    };
-    CombinedStream.prototype._reset = function() {
-      this.writable = false;
-      this._streams = [];
-      this._currentStream = null;
-    };
-    CombinedStream.prototype._checkDataSize = function() {
-      this._updateDataSize();
-      if (this.dataSize <= this.maxDataSize) {
-        return;
-      }
-      var message = "DelayedStream#maxDataSize of " + this.maxDataSize + " bytes exceeded.";
-      this._emitError(new Error(message));
-    };
-    CombinedStream.prototype._updateDataSize = function() {
-      this.dataSize = 0;
-      var self2 = this;
-      this._streams.forEach(function(stream4) {
-        if (!stream4.dataSize) {
-          return;
-        }
-        self2.dataSize += stream4.dataSize;
-      });
-      if (this._currentStream && this._currentStream.dataSize) {
-        this.dataSize += this._currentStream.dataSize;
-      }
-    };
-    CombinedStream.prototype._emitError = function(err) {
-      this._reset();
-      this.emit("error", err);
-    };
-  }
-});
-
-// node_modules/mime-db/db.json
-var require_db = __commonJS({
-  "node_modules/mime-db/db.json"(exports2, module2) {
-    module2.exports = {
-      "application/1d-interleaved-parityfec": {
-        source: "iana"
-      },
-      "application/3gpdash-qoe-report+xml": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true
-      },
-      "application/3gpp-ims+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/3gpphal+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/3gpphalforms+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/a2l": {
-        source: "iana"
-      },
-      "application/ace+cbor": {
-        source: "iana"
-      },
-      "application/activemessage": {
-        source: "iana"
-      },
-      "application/activity+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/alto-costmap+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/alto-costmapfilter+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/alto-directory+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/alto-endpointcost+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/alto-endpointcostparams+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/alto-endpointprop+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/alto-endpointpropparams+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/alto-error+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/alto-networkmap+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/alto-networkmapfilter+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/alto-updatestreamcontrol+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/alto-updatestreamparams+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/aml": {
-        source: "iana"
-      },
-      "application/andrew-inset": {
-        source: "iana",
-        extensions: ["ez"]
-      },
-      "application/applefile": {
-        source: "iana"
-      },
-      "application/applixware": {
-        source: "apache",
-        extensions: ["aw"]
-      },
-      "application/at+jwt": {
-        source: "iana"
-      },
-      "application/atf": {
-        source: "iana"
-      },
-      "application/atfx": {
-        source: "iana"
-      },
-      "application/atom+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["atom"]
-      },
-      "application/atomcat+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["atomcat"]
-      },
-      "application/atomdeleted+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["atomdeleted"]
-      },
-      "application/atomicmail": {
-        source: "iana"
-      },
-      "application/atomsvc+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["atomsvc"]
-      },
-      "application/atsc-dwd+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["dwd"]
-      },
-      "application/atsc-dynamic-event-message": {
-        source: "iana"
-      },
-      "application/atsc-held+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["held"]
-      },
-      "application/atsc-rdt+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/atsc-rsat+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["rsat"]
-      },
-      "application/atxml": {
-        source: "iana"
-      },
-      "application/auth-policy+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/bacnet-xdd+zip": {
-        source: "iana",
-        compressible: false
-      },
-      "application/batch-smtp": {
-        source: "iana"
-      },
-      "application/bdoc": {
-        compressible: false,
-        extensions: ["bdoc"]
-      },
-      "application/beep+xml": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true
-      },
-      "application/calendar+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/calendar+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["xcs"]
-      },
-      "application/call-completion": {
-        source: "iana"
-      },
-      "application/cals-1840": {
-        source: "iana"
-      },
-      "application/captive+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/cbor": {
-        source: "iana"
-      },
-      "application/cbor-seq": {
-        source: "iana"
-      },
-      "application/cccex": {
-        source: "iana"
-      },
-      "application/ccmp+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/ccxml+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["ccxml"]
-      },
-      "application/cdfx+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["cdfx"]
-      },
-      "application/cdmi-capability": {
-        source: "iana",
-        extensions: ["cdmia"]
-      },
-      "application/cdmi-container": {
-        source: "iana",
-        extensions: ["cdmic"]
-      },
-      "application/cdmi-domain": {
-        source: "iana",
-        extensions: ["cdmid"]
-      },
-      "application/cdmi-object": {
-        source: "iana",
-        extensions: ["cdmio"]
-      },
-      "application/cdmi-queue": {
-        source: "iana",
-        extensions: ["cdmiq"]
-      },
-      "application/cdni": {
-        source: "iana"
-      },
-      "application/cea": {
-        source: "iana"
-      },
-      "application/cea-2018+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/cellml+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/cfw": {
-        source: "iana"
-      },
-      "application/city+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/clr": {
-        source: "iana"
-      },
-      "application/clue+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/clue_info+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/cms": {
-        source: "iana"
-      },
-      "application/cnrp+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/coap-group+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/coap-payload": {
-        source: "iana"
-      },
-      "application/commonground": {
-        source: "iana"
-      },
-      "application/conference-info+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/cose": {
-        source: "iana"
-      },
-      "application/cose-key": {
-        source: "iana"
-      },
-      "application/cose-key-set": {
-        source: "iana"
-      },
-      "application/cpl+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["cpl"]
-      },
-      "application/csrattrs": {
-        source: "iana"
-      },
-      "application/csta+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/cstadata+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/csvm+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/cu-seeme": {
-        source: "apache",
-        extensions: ["cu"]
-      },
-      "application/cwt": {
-        source: "iana"
-      },
-      "application/cybercash": {
-        source: "iana"
-      },
-      "application/dart": {
-        compressible: true
-      },
-      "application/dash+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["mpd"]
-      },
-      "application/dash-patch+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["mpp"]
-      },
-      "application/dashdelta": {
-        source: "iana"
-      },
-      "application/davmount+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["davmount"]
-      },
-      "application/dca-rft": {
-        source: "iana"
-      },
-      "application/dcd": {
-        source: "iana"
-      },
-      "application/dec-dx": {
-        source: "iana"
-      },
-      "application/dialog-info+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/dicom": {
-        source: "iana"
-      },
-      "application/dicom+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/dicom+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/dii": {
-        source: "iana"
-      },
-      "application/dit": {
-        source: "iana"
-      },
-      "application/dns": {
-        source: "iana"
-      },
-      "application/dns+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/dns-message": {
-        source: "iana"
-      },
-      "application/docbook+xml": {
-        source: "apache",
-        compressible: true,
-        extensions: ["dbk"]
-      },
-      "application/dots+cbor": {
-        source: "iana"
-      },
-      "application/dskpp+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/dssc+der": {
-        source: "iana",
-        extensions: ["dssc"]
-      },
-      "application/dssc+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["xdssc"]
-      },
-      "application/dvcs": {
-        source: "iana"
-      },
-      "application/ecmascript": {
-        source: "iana",
-        compressible: true,
-        extensions: ["es", "ecma"]
-      },
-      "application/edi-consent": {
-        source: "iana"
-      },
-      "application/edi-x12": {
-        source: "iana",
-        compressible: false
-      },
-      "application/edifact": {
-        source: "iana",
-        compressible: false
-      },
-      "application/efi": {
-        source: "iana"
-      },
-      "application/elm+json": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true
-      },
-      "application/elm+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/emergencycalldata.cap+xml": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true
-      },
-      "application/emergencycalldata.comment+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/emergencycalldata.control+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/emergencycalldata.deviceinfo+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/emergencycalldata.ecall.msd": {
-        source: "iana"
-      },
-      "application/emergencycalldata.providerinfo+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/emergencycalldata.serviceinfo+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/emergencycalldata.subscriberinfo+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/emergencycalldata.veds+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/emma+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["emma"]
-      },
-      "application/emotionml+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["emotionml"]
-      },
-      "application/encaprtp": {
-        source: "iana"
-      },
-      "application/epp+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/epub+zip": {
-        source: "iana",
-        compressible: false,
-        extensions: ["epub"]
-      },
-      "application/eshop": {
-        source: "iana"
-      },
-      "application/exi": {
-        source: "iana",
-        extensions: ["exi"]
-      },
-      "application/expect-ct-report+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/express": {
-        source: "iana",
-        extensions: ["exp"]
-      },
-      "application/fastinfoset": {
-        source: "iana"
-      },
-      "application/fastsoap": {
-        source: "iana"
-      },
-      "application/fdt+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["fdt"]
-      },
-      "application/fhir+json": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true
-      },
-      "application/fhir+xml": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true
-      },
-      "application/fido.trusted-apps+json": {
-        compressible: true
-      },
-      "application/fits": {
-        source: "iana"
-      },
-      "application/flexfec": {
-        source: "iana"
-      },
-      "application/font-sfnt": {
-        source: "iana"
-      },
-      "application/font-tdpfr": {
-        source: "iana",
-        extensions: ["pfr"]
-      },
-      "application/font-woff": {
-        source: "iana",
-        compressible: false
-      },
-      "application/framework-attributes+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/geo+json": {
-        source: "iana",
-        compressible: true,
-        extensions: ["geojson"]
-      },
-      "application/geo+json-seq": {
-        source: "iana"
-      },
-      "application/geopackage+sqlite3": {
-        source: "iana"
-      },
-      "application/geoxacml+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/gltf-buffer": {
-        source: "iana"
-      },
-      "application/gml+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["gml"]
-      },
-      "application/gpx+xml": {
-        source: "apache",
-        compressible: true,
-        extensions: ["gpx"]
-      },
-      "application/gxf": {
-        source: "apache",
-        extensions: ["gxf"]
-      },
-      "application/gzip": {
-        source: "iana",
-        compressible: false,
-        extensions: ["gz"]
-      },
-      "application/h224": {
-        source: "iana"
-      },
-      "application/held+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/hjson": {
-        extensions: ["hjson"]
-      },
-      "application/http": {
-        source: "iana"
-      },
-      "application/hyperstudio": {
-        source: "iana",
-        extensions: ["stk"]
-      },
-      "application/ibe-key-request+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/ibe-pkg-reply+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/ibe-pp-data": {
-        source: "iana"
-      },
-      "application/iges": {
-        source: "iana"
-      },
-      "application/im-iscomposing+xml": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true
-      },
-      "application/index": {
-        source: "iana"
-      },
-      "application/index.cmd": {
-        source: "iana"
-      },
-      "application/index.obj": {
-        source: "iana"
-      },
-      "application/index.response": {
-        source: "iana"
-      },
-      "application/index.vnd": {
-        source: "iana"
-      },
-      "application/inkml+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["ink", "inkml"]
-      },
-      "application/iotp": {
-        source: "iana"
-      },
-      "application/ipfix": {
-        source: "iana",
-        extensions: ["ipfix"]
-      },
-      "application/ipp": {
-        source: "iana"
-      },
-      "application/isup": {
-        source: "iana"
-      },
-      "application/its+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["its"]
-      },
-      "application/java-archive": {
-        source: "apache",
-        compressible: false,
-        extensions: ["jar", "war", "ear"]
-      },
-      "application/java-serialized-object": {
-        source: "apache",
-        compressible: false,
-        extensions: ["ser"]
-      },
-      "application/java-vm": {
-        source: "apache",
-        compressible: false,
-        extensions: ["class"]
-      },
-      "application/javascript": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true,
-        extensions: ["js", "mjs"]
-      },
-      "application/jf2feed+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/jose": {
-        source: "iana"
-      },
-      "application/jose+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/jrd+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/jscalendar+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/json": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true,
-        extensions: ["json", "map"]
-      },
-      "application/json-patch+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/json-seq": {
-        source: "iana"
-      },
-      "application/json5": {
-        extensions: ["json5"]
-      },
-      "application/jsonml+json": {
-        source: "apache",
-        compressible: true,
-        extensions: ["jsonml"]
-      },
-      "application/jwk+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/jwk-set+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/jwt": {
-        source: "iana"
-      },
-      "application/kpml-request+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/kpml-response+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/ld+json": {
-        source: "iana",
-        compressible: true,
-        extensions: ["jsonld"]
-      },
-      "application/lgr+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["lgr"]
-      },
-      "application/link-format": {
-        source: "iana"
-      },
-      "application/load-control+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/lost+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["lostxml"]
-      },
-      "application/lostsync+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/lpf+zip": {
-        source: "iana",
-        compressible: false
-      },
-      "application/lxf": {
-        source: "iana"
-      },
-      "application/mac-binhex40": {
-        source: "iana",
-        extensions: ["hqx"]
-      },
-      "application/mac-compactpro": {
-        source: "apache",
-        extensions: ["cpt"]
-      },
-      "application/macwriteii": {
-        source: "iana"
-      },
-      "application/mads+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["mads"]
-      },
-      "application/manifest+json": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true,
-        extensions: ["webmanifest"]
-      },
-      "application/marc": {
-        source: "iana",
-        extensions: ["mrc"]
-      },
-      "application/marcxml+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["mrcx"]
-      },
-      "application/mathematica": {
-        source: "iana",
-        extensions: ["ma", "nb", "mb"]
-      },
-      "application/mathml+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["mathml"]
-      },
-      "application/mathml-content+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/mathml-presentation+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/mbms-associated-procedure-description+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/mbms-deregister+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/mbms-envelope+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/mbms-msk+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/mbms-msk-response+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/mbms-protection-description+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/mbms-reception-report+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/mbms-register+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/mbms-register-response+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/mbms-schedule+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/mbms-user-service-description+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/mbox": {
-        source: "iana",
-        extensions: ["mbox"]
-      },
-      "application/media-policy-dataset+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["mpf"]
-      },
-      "application/media_control+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/mediaservercontrol+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["mscml"]
-      },
-      "application/merge-patch+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/metalink+xml": {
-        source: "apache",
-        compressible: true,
-        extensions: ["metalink"]
-      },
-      "application/metalink4+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["meta4"]
-      },
-      "application/mets+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["mets"]
-      },
-      "application/mf4": {
-        source: "iana"
-      },
-      "application/mikey": {
-        source: "iana"
-      },
-      "application/mipc": {
-        source: "iana"
-      },
-      "application/missing-blocks+cbor-seq": {
-        source: "iana"
-      },
-      "application/mmt-aei+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["maei"]
-      },
-      "application/mmt-usd+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["musd"]
-      },
-      "application/mods+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["mods"]
-      },
-      "application/moss-keys": {
-        source: "iana"
-      },
-      "application/moss-signature": {
-        source: "iana"
-      },
-      "application/mosskey-data": {
-        source: "iana"
-      },
-      "application/mosskey-request": {
-        source: "iana"
-      },
-      "application/mp21": {
-        source: "iana",
-        extensions: ["m21", "mp21"]
-      },
-      "application/mp4": {
-        source: "iana",
-        extensions: ["mp4s", "m4p"]
-      },
-      "application/mpeg4-generic": {
-        source: "iana"
-      },
-      "application/mpeg4-iod": {
-        source: "iana"
-      },
-      "application/mpeg4-iod-xmt": {
-        source: "iana"
-      },
-      "application/mrb-consumer+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/mrb-publish+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/msc-ivr+xml": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true
-      },
-      "application/msc-mixer+xml": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true
-      },
-      "application/msword": {
-        source: "iana",
-        compressible: false,
-        extensions: ["doc", "dot"]
-      },
-      "application/mud+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/multipart-core": {
-        source: "iana"
-      },
-      "application/mxf": {
-        source: "iana",
-        extensions: ["mxf"]
-      },
-      "application/n-quads": {
-        source: "iana",
-        extensions: ["nq"]
-      },
-      "application/n-triples": {
-        source: "iana",
-        extensions: ["nt"]
-      },
-      "application/nasdata": {
-        source: "iana"
-      },
-      "application/news-checkgroups": {
-        source: "iana",
-        charset: "US-ASCII"
-      },
-      "application/news-groupinfo": {
-        source: "iana",
-        charset: "US-ASCII"
-      },
-      "application/news-transmission": {
-        source: "iana"
-      },
-      "application/nlsml+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/node": {
-        source: "iana",
-        extensions: ["cjs"]
-      },
-      "application/nss": {
-        source: "iana"
-      },
-      "application/oauth-authz-req+jwt": {
-        source: "iana"
-      },
-      "application/oblivious-dns-message": {
-        source: "iana"
-      },
-      "application/ocsp-request": {
-        source: "iana"
-      },
-      "application/ocsp-response": {
-        source: "iana"
-      },
-      "application/octet-stream": {
-        source: "iana",
-        compressible: false,
-        extensions: ["bin", "dms", "lrf", "mar", "so", "dist", "distz", "pkg", "bpk", "dump", "elc", "deploy", "exe", "dll", "deb", "dmg", "iso", "img", "msi", "msp", "msm", "buffer"]
-      },
-      "application/oda": {
-        source: "iana",
-        extensions: ["oda"]
-      },
-      "application/odm+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/odx": {
-        source: "iana"
-      },
-      "application/oebps-package+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["opf"]
-      },
-      "application/ogg": {
-        source: "iana",
-        compressible: false,
-        extensions: ["ogx"]
-      },
-      "application/omdoc+xml": {
-        source: "apache",
-        compressible: true,
-        extensions: ["omdoc"]
-      },
-      "application/onenote": {
-        source: "apache",
-        extensions: ["onetoc", "onetoc2", "onetmp", "onepkg"]
-      },
-      "application/opc-nodeset+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/oscore": {
-        source: "iana"
-      },
-      "application/oxps": {
-        source: "iana",
-        extensions: ["oxps"]
-      },
-      "application/p21": {
-        source: "iana"
-      },
-      "application/p21+zip": {
-        source: "iana",
-        compressible: false
-      },
-      "application/p2p-overlay+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["relo"]
-      },
-      "application/parityfec": {
-        source: "iana"
-      },
-      "application/passport": {
-        source: "iana"
-      },
-      "application/patch-ops-error+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["xer"]
-      },
-      "application/pdf": {
-        source: "iana",
-        compressible: false,
-        extensions: ["pdf"]
-      },
-      "application/pdx": {
-        source: "iana"
-      },
-      "application/pem-certificate-chain": {
-        source: "iana"
-      },
-      "application/pgp-encrypted": {
-        source: "iana",
-        compressible: false,
-        extensions: ["pgp"]
-      },
-      "application/pgp-keys": {
-        source: "iana",
-        extensions: ["asc"]
-      },
-      "application/pgp-signature": {
-        source: "iana",
-        extensions: ["asc", "sig"]
-      },
-      "application/pics-rules": {
-        source: "apache",
-        extensions: ["prf"]
-      },
-      "application/pidf+xml": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true
-      },
-      "application/pidf-diff+xml": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true
-      },
-      "application/pkcs10": {
-        source: "iana",
-        extensions: ["p10"]
-      },
-      "application/pkcs12": {
-        source: "iana"
-      },
-      "application/pkcs7-mime": {
-        source: "iana",
-        extensions: ["p7m", "p7c"]
-      },
-      "application/pkcs7-signature": {
-        source: "iana",
-        extensions: ["p7s"]
-      },
-      "application/pkcs8": {
-        source: "iana",
-        extensions: ["p8"]
-      },
-      "application/pkcs8-encrypted": {
-        source: "iana"
-      },
-      "application/pkix-attr-cert": {
-        source: "iana",
-        extensions: ["ac"]
-      },
-      "application/pkix-cert": {
-        source: "iana",
-        extensions: ["cer"]
-      },
-      "application/pkix-crl": {
-        source: "iana",
-        extensions: ["crl"]
-      },
-      "application/pkix-pkipath": {
-        source: "iana",
-        extensions: ["pkipath"]
-      },
-      "application/pkixcmp": {
-        source: "iana",
-        extensions: ["pki"]
-      },
-      "application/pls+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["pls"]
-      },
-      "application/poc-settings+xml": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true
-      },
-      "application/postscript": {
-        source: "iana",
-        compressible: true,
-        extensions: ["ai", "eps", "ps"]
-      },
-      "application/ppsp-tracker+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/problem+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/problem+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/provenance+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["provx"]
-      },
-      "application/prs.alvestrand.titrax-sheet": {
-        source: "iana"
-      },
-      "application/prs.cww": {
-        source: "iana",
-        extensions: ["cww"]
-      },
-      "application/prs.cyn": {
-        source: "iana",
-        charset: "7-BIT"
-      },
-      "application/prs.hpub+zip": {
-        source: "iana",
-        compressible: false
-      },
-      "application/prs.nprend": {
-        source: "iana"
-      },
-      "application/prs.plucker": {
-        source: "iana"
-      },
-      "application/prs.rdf-xml-crypt": {
-        source: "iana"
-      },
-      "application/prs.xsf+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/pskc+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["pskcxml"]
-      },
-      "application/pvd+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/qsig": {
-        source: "iana"
-      },
-      "application/raml+yaml": {
-        compressible: true,
-        extensions: ["raml"]
-      },
-      "application/raptorfec": {
-        source: "iana"
-      },
-      "application/rdap+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/rdf+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["rdf", "owl"]
-      },
-      "application/reginfo+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["rif"]
-      },
-      "application/relax-ng-compact-syntax": {
-        source: "iana",
-        extensions: ["rnc"]
-      },
-      "application/remote-printing": {
-        source: "iana"
-      },
-      "application/reputon+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/resource-lists+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["rl"]
-      },
-      "application/resource-lists-diff+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["rld"]
-      },
-      "application/rfc+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/riscos": {
-        source: "iana"
-      },
-      "application/rlmi+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/rls-services+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["rs"]
-      },
-      "application/route-apd+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["rapd"]
-      },
-      "application/route-s-tsid+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["sls"]
-      },
-      "application/route-usd+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["rusd"]
-      },
-      "application/rpki-ghostbusters": {
-        source: "iana",
-        extensions: ["gbr"]
-      },
-      "application/rpki-manifest": {
-        source: "iana",
-        extensions: ["mft"]
-      },
-      "application/rpki-publication": {
-        source: "iana"
-      },
-      "application/rpki-roa": {
-        source: "iana",
-        extensions: ["roa"]
-      },
-      "application/rpki-updown": {
-        source: "iana"
-      },
-      "application/rsd+xml": {
-        source: "apache",
-        compressible: true,
-        extensions: ["rsd"]
-      },
-      "application/rss+xml": {
-        source: "apache",
-        compressible: true,
-        extensions: ["rss"]
-      },
-      "application/rtf": {
-        source: "iana",
-        compressible: true,
-        extensions: ["rtf"]
-      },
-      "application/rtploopback": {
-        source: "iana"
-      },
-      "application/rtx": {
-        source: "iana"
-      },
-      "application/samlassertion+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/samlmetadata+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/sarif+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/sarif-external-properties+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/sbe": {
-        source: "iana"
-      },
-      "application/sbml+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["sbml"]
-      },
-      "application/scaip+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/scim+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/scvp-cv-request": {
-        source: "iana",
-        extensions: ["scq"]
-      },
-      "application/scvp-cv-response": {
-        source: "iana",
-        extensions: ["scs"]
-      },
-      "application/scvp-vp-request": {
-        source: "iana",
-        extensions: ["spq"]
-      },
-      "application/scvp-vp-response": {
-        source: "iana",
-        extensions: ["spp"]
-      },
-      "application/sdp": {
-        source: "iana",
-        extensions: ["sdp"]
-      },
-      "application/secevent+jwt": {
-        source: "iana"
-      },
-      "application/senml+cbor": {
-        source: "iana"
-      },
-      "application/senml+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/senml+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["senmlx"]
-      },
-      "application/senml-etch+cbor": {
-        source: "iana"
-      },
-      "application/senml-etch+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/senml-exi": {
-        source: "iana"
-      },
-      "application/sensml+cbor": {
-        source: "iana"
-      },
-      "application/sensml+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/sensml+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["sensmlx"]
-      },
-      "application/sensml-exi": {
-        source: "iana"
-      },
-      "application/sep+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/sep-exi": {
-        source: "iana"
-      },
-      "application/session-info": {
-        source: "iana"
-      },
-      "application/set-payment": {
-        source: "iana"
-      },
-      "application/set-payment-initiation": {
-        source: "iana",
-        extensions: ["setpay"]
-      },
-      "application/set-registration": {
-        source: "iana"
-      },
-      "application/set-registration-initiation": {
-        source: "iana",
-        extensions: ["setreg"]
-      },
-      "application/sgml": {
-        source: "iana"
-      },
-      "application/sgml-open-catalog": {
-        source: "iana"
-      },
-      "application/shf+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["shf"]
-      },
-      "application/sieve": {
-        source: "iana",
-        extensions: ["siv", "sieve"]
-      },
-      "application/simple-filter+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/simple-message-summary": {
-        source: "iana"
-      },
-      "application/simplesymbolcontainer": {
-        source: "iana"
-      },
-      "application/sipc": {
-        source: "iana"
-      },
-      "application/slate": {
-        source: "iana"
-      },
-      "application/smil": {
-        source: "iana"
-      },
-      "application/smil+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["smi", "smil"]
-      },
-      "application/smpte336m": {
-        source: "iana"
-      },
-      "application/soap+fastinfoset": {
-        source: "iana"
-      },
-      "application/soap+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/sparql-query": {
-        source: "iana",
-        extensions: ["rq"]
-      },
-      "application/sparql-results+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["srx"]
-      },
-      "application/spdx+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/spirits-event+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/sql": {
-        source: "iana"
-      },
-      "application/srgs": {
-        source: "iana",
-        extensions: ["gram"]
-      },
-      "application/srgs+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["grxml"]
-      },
-      "application/sru+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["sru"]
-      },
-      "application/ssdl+xml": {
-        source: "apache",
-        compressible: true,
-        extensions: ["ssdl"]
-      },
-      "application/ssml+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["ssml"]
-      },
-      "application/stix+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/swid+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["swidtag"]
-      },
-      "application/tamp-apex-update": {
-        source: "iana"
-      },
-      "application/tamp-apex-update-confirm": {
-        source: "iana"
-      },
-      "application/tamp-community-update": {
-        source: "iana"
-      },
-      "application/tamp-community-update-confirm": {
-        source: "iana"
-      },
-      "application/tamp-error": {
-        source: "iana"
-      },
-      "application/tamp-sequence-adjust": {
-        source: "iana"
-      },
-      "application/tamp-sequence-adjust-confirm": {
-        source: "iana"
-      },
-      "application/tamp-status-query": {
-        source: "iana"
-      },
-      "application/tamp-status-response": {
-        source: "iana"
-      },
-      "application/tamp-update": {
-        source: "iana"
-      },
-      "application/tamp-update-confirm": {
-        source: "iana"
-      },
-      "application/tar": {
-        compressible: true
-      },
-      "application/taxii+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/td+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/tei+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["tei", "teicorpus"]
-      },
-      "application/tetra_isi": {
-        source: "iana"
-      },
-      "application/thraud+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["tfi"]
-      },
-      "application/timestamp-query": {
-        source: "iana"
-      },
-      "application/timestamp-reply": {
-        source: "iana"
-      },
-      "application/timestamped-data": {
-        source: "iana",
-        extensions: ["tsd"]
-      },
-      "application/tlsrpt+gzip": {
-        source: "iana"
-      },
-      "application/tlsrpt+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/tnauthlist": {
-        source: "iana"
-      },
-      "application/token-introspection+jwt": {
-        source: "iana"
-      },
-      "application/toml": {
-        compressible: true,
-        extensions: ["toml"]
-      },
-      "application/trickle-ice-sdpfrag": {
-        source: "iana"
-      },
-      "application/trig": {
-        source: "iana",
-        extensions: ["trig"]
-      },
-      "application/ttml+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["ttml"]
-      },
-      "application/tve-trigger": {
-        source: "iana"
-      },
-      "application/tzif": {
-        source: "iana"
-      },
-      "application/tzif-leap": {
-        source: "iana"
-      },
-      "application/ubjson": {
-        compressible: false,
-        extensions: ["ubj"]
-      },
-      "application/ulpfec": {
-        source: "iana"
-      },
-      "application/urc-grpsheet+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/urc-ressheet+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["rsheet"]
-      },
-      "application/urc-targetdesc+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["td"]
-      },
-      "application/urc-uisocketdesc+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vcard+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vcard+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vemmi": {
-        source: "iana"
-      },
-      "application/vividence.scriptfile": {
-        source: "apache"
-      },
-      "application/vnd.1000minds.decision-model+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["1km"]
-      },
-      "application/vnd.3gpp-prose+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp-prose-pc3ch+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp-v2x-local-service-information": {
-        source: "iana"
-      },
-      "application/vnd.3gpp.5gnas": {
-        source: "iana"
-      },
-      "application/vnd.3gpp.access-transfer-events+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.bsf+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.gmop+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.gtpc": {
-        source: "iana"
-      },
-      "application/vnd.3gpp.interworking-data": {
-        source: "iana"
-      },
-      "application/vnd.3gpp.lpp": {
-        source: "iana"
-      },
-      "application/vnd.3gpp.mc-signalling-ear": {
-        source: "iana"
-      },
-      "application/vnd.3gpp.mcdata-affiliation-command+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.mcdata-info+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.mcdata-payload": {
-        source: "iana"
-      },
-      "application/vnd.3gpp.mcdata-service-config+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.mcdata-signalling": {
-        source: "iana"
-      },
-      "application/vnd.3gpp.mcdata-ue-config+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.mcdata-user-profile+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.mcptt-affiliation-command+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.mcptt-floor-request+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.mcptt-info+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.mcptt-location-info+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.mcptt-mbms-usage-info+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.mcptt-service-config+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.mcptt-signed+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.mcptt-ue-config+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.mcptt-ue-init-config+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.mcptt-user-profile+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.mcvideo-affiliation-command+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.mcvideo-affiliation-info+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.mcvideo-info+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.mcvideo-location-info+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.mcvideo-mbms-usage-info+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.mcvideo-service-config+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.mcvideo-transmission-request+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.mcvideo-ue-config+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.mcvideo-user-profile+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.mid-call+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.ngap": {
-        source: "iana"
-      },
-      "application/vnd.3gpp.pfcp": {
-        source: "iana"
-      },
-      "application/vnd.3gpp.pic-bw-large": {
-        source: "iana",
-        extensions: ["plb"]
-      },
-      "application/vnd.3gpp.pic-bw-small": {
-        source: "iana",
-        extensions: ["psb"]
-      },
-      "application/vnd.3gpp.pic-bw-var": {
-        source: "iana",
-        extensions: ["pvb"]
-      },
-      "application/vnd.3gpp.s1ap": {
-        source: "iana"
-      },
-      "application/vnd.3gpp.sms": {
-        source: "iana"
-      },
-      "application/vnd.3gpp.sms+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.srvcc-ext+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.srvcc-info+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.state-and-event-info+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp.ussd+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp2.bcmcsinfo+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.3gpp2.sms": {
-        source: "iana"
-      },
-      "application/vnd.3gpp2.tcap": {
-        source: "iana",
-        extensions: ["tcap"]
-      },
-      "application/vnd.3lightssoftware.imagescal": {
-        source: "iana"
-      },
-      "application/vnd.3m.post-it-notes": {
-        source: "iana",
-        extensions: ["pwn"]
-      },
-      "application/vnd.accpac.simply.aso": {
-        source: "iana",
-        extensions: ["aso"]
-      },
-      "application/vnd.accpac.simply.imp": {
-        source: "iana",
-        extensions: ["imp"]
-      },
-      "application/vnd.acucobol": {
-        source: "iana",
-        extensions: ["acu"]
-      },
-      "application/vnd.acucorp": {
-        source: "iana",
-        extensions: ["atc", "acutc"]
-      },
-      "application/vnd.adobe.air-application-installer-package+zip": {
-        source: "apache",
-        compressible: false,
-        extensions: ["air"]
-      },
-      "application/vnd.adobe.flash.movie": {
-        source: "iana"
-      },
-      "application/vnd.adobe.formscentral.fcdt": {
-        source: "iana",
-        extensions: ["fcdt"]
-      },
-      "application/vnd.adobe.fxp": {
-        source: "iana",
-        extensions: ["fxp", "fxpl"]
-      },
-      "application/vnd.adobe.partial-upload": {
-        source: "iana"
-      },
-      "application/vnd.adobe.xdp+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["xdp"]
-      },
-      "application/vnd.adobe.xfdf": {
-        source: "iana",
-        extensions: ["xfdf"]
-      },
-      "application/vnd.aether.imp": {
-        source: "iana"
-      },
-      "application/vnd.afpc.afplinedata": {
-        source: "iana"
-      },
-      "application/vnd.afpc.afplinedata-pagedef": {
-        source: "iana"
-      },
-      "application/vnd.afpc.cmoca-cmresource": {
-        source: "iana"
-      },
-      "application/vnd.afpc.foca-charset": {
-        source: "iana"
-      },
-      "application/vnd.afpc.foca-codedfont": {
-        source: "iana"
-      },
-      "application/vnd.afpc.foca-codepage": {
-        source: "iana"
-      },
-      "application/vnd.afpc.modca": {
-        source: "iana"
-      },
-      "application/vnd.afpc.modca-cmtable": {
-        source: "iana"
-      },
-      "application/vnd.afpc.modca-formdef": {
-        source: "iana"
-      },
-      "application/vnd.afpc.modca-mediummap": {
-        source: "iana"
-      },
-      "application/vnd.afpc.modca-objectcontainer": {
-        source: "iana"
-      },
-      "application/vnd.afpc.modca-overlay": {
-        source: "iana"
-      },
-      "application/vnd.afpc.modca-pagesegment": {
-        source: "iana"
-      },
-      "application/vnd.age": {
-        source: "iana",
-        extensions: ["age"]
-      },
-      "application/vnd.ah-barcode": {
-        source: "iana"
-      },
-      "application/vnd.ahead.space": {
-        source: "iana",
-        extensions: ["ahead"]
-      },
-      "application/vnd.airzip.filesecure.azf": {
-        source: "iana",
-        extensions: ["azf"]
-      },
-      "application/vnd.airzip.filesecure.azs": {
-        source: "iana",
-        extensions: ["azs"]
-      },
-      "application/vnd.amadeus+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.amazon.ebook": {
-        source: "apache",
-        extensions: ["azw"]
-      },
-      "application/vnd.amazon.mobi8-ebook": {
-        source: "iana"
-      },
-      "application/vnd.americandynamics.acc": {
-        source: "iana",
-        extensions: ["acc"]
-      },
-      "application/vnd.amiga.ami": {
-        source: "iana",
-        extensions: ["ami"]
-      },
-      "application/vnd.amundsen.maze+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.android.ota": {
-        source: "iana"
-      },
-      "application/vnd.android.package-archive": {
-        source: "apache",
-        compressible: false,
-        extensions: ["apk"]
-      },
-      "application/vnd.anki": {
-        source: "iana"
-      },
-      "application/vnd.anser-web-certificate-issue-initiation": {
-        source: "iana",
-        extensions: ["cii"]
-      },
-      "application/vnd.anser-web-funds-transfer-initiation": {
-        source: "apache",
-        extensions: ["fti"]
-      },
-      "application/vnd.antix.game-component": {
-        source: "iana",
-        extensions: ["atx"]
-      },
-      "application/vnd.apache.arrow.file": {
-        source: "iana"
-      },
-      "application/vnd.apache.arrow.stream": {
-        source: "iana"
-      },
-      "application/vnd.apache.thrift.binary": {
-        source: "iana"
-      },
-      "application/vnd.apache.thrift.compact": {
-        source: "iana"
-      },
-      "application/vnd.apache.thrift.json": {
-        source: "iana"
-      },
-      "application/vnd.api+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.aplextor.warrp+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.apothekende.reservation+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.apple.installer+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["mpkg"]
-      },
-      "application/vnd.apple.keynote": {
-        source: "iana",
-        extensions: ["key"]
-      },
-      "application/vnd.apple.mpegurl": {
-        source: "iana",
-        extensions: ["m3u8"]
-      },
-      "application/vnd.apple.numbers": {
-        source: "iana",
-        extensions: ["numbers"]
-      },
-      "application/vnd.apple.pages": {
-        source: "iana",
-        extensions: ["pages"]
-      },
-      "application/vnd.apple.pkpass": {
-        compressible: false,
-        extensions: ["pkpass"]
-      },
-      "application/vnd.arastra.swi": {
-        source: "iana"
-      },
-      "application/vnd.aristanetworks.swi": {
-        source: "iana",
-        extensions: ["swi"]
-      },
-      "application/vnd.artisan+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.artsquare": {
-        source: "iana"
-      },
-      "application/vnd.astraea-software.iota": {
-        source: "iana",
-        extensions: ["iota"]
-      },
-      "application/vnd.audiograph": {
-        source: "iana",
-        extensions: ["aep"]
-      },
-      "application/vnd.autopackage": {
-        source: "iana"
-      },
-      "application/vnd.avalon+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.avistar+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.balsamiq.bmml+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["bmml"]
-      },
-      "application/vnd.balsamiq.bmpr": {
-        source: "iana"
-      },
-      "application/vnd.banana-accounting": {
-        source: "iana"
-      },
-      "application/vnd.bbf.usp.error": {
-        source: "iana"
-      },
-      "application/vnd.bbf.usp.msg": {
-        source: "iana"
-      },
-      "application/vnd.bbf.usp.msg+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.bekitzur-stech+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.bint.med-content": {
-        source: "iana"
-      },
-      "application/vnd.biopax.rdf+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.blink-idb-value-wrapper": {
-        source: "iana"
-      },
-      "application/vnd.blueice.multipass": {
-        source: "iana",
-        extensions: ["mpm"]
-      },
-      "application/vnd.bluetooth.ep.oob": {
-        source: "iana"
-      },
-      "application/vnd.bluetooth.le.oob": {
-        source: "iana"
-      },
-      "application/vnd.bmi": {
-        source: "iana",
-        extensions: ["bmi"]
-      },
-      "application/vnd.bpf": {
-        source: "iana"
-      },
-      "application/vnd.bpf3": {
-        source: "iana"
-      },
-      "application/vnd.businessobjects": {
-        source: "iana",
-        extensions: ["rep"]
-      },
-      "application/vnd.byu.uapi+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.cab-jscript": {
-        source: "iana"
-      },
-      "application/vnd.canon-cpdl": {
-        source: "iana"
-      },
-      "application/vnd.canon-lips": {
-        source: "iana"
-      },
-      "application/vnd.capasystems-pg+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.cendio.thinlinc.clientconf": {
-        source: "iana"
-      },
-      "application/vnd.century-systems.tcp_stream": {
-        source: "iana"
-      },
-      "application/vnd.chemdraw+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["cdxml"]
-      },
-      "application/vnd.chess-pgn": {
-        source: "iana"
-      },
-      "application/vnd.chipnuts.karaoke-mmd": {
-        source: "iana",
-        extensions: ["mmd"]
-      },
-      "application/vnd.ciedi": {
-        source: "iana"
-      },
-      "application/vnd.cinderella": {
-        source: "iana",
-        extensions: ["cdy"]
-      },
-      "application/vnd.cirpack.isdn-ext": {
-        source: "iana"
-      },
-      "application/vnd.citationstyles.style+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["csl"]
-      },
-      "application/vnd.claymore": {
-        source: "iana",
-        extensions: ["cla"]
-      },
-      "application/vnd.cloanto.rp9": {
-        source: "iana",
-        extensions: ["rp9"]
-      },
-      "application/vnd.clonk.c4group": {
-        source: "iana",
-        extensions: ["c4g", "c4d", "c4f", "c4p", "c4u"]
-      },
-      "application/vnd.cluetrust.cartomobile-config": {
-        source: "iana",
-        extensions: ["c11amc"]
-      },
-      "application/vnd.cluetrust.cartomobile-config-pkg": {
-        source: "iana",
-        extensions: ["c11amz"]
-      },
-      "application/vnd.coffeescript": {
-        source: "iana"
-      },
-      "application/vnd.collabio.xodocuments.document": {
-        source: "iana"
-      },
-      "application/vnd.collabio.xodocuments.document-template": {
-        source: "iana"
-      },
-      "application/vnd.collabio.xodocuments.presentation": {
-        source: "iana"
-      },
-      "application/vnd.collabio.xodocuments.presentation-template": {
-        source: "iana"
-      },
-      "application/vnd.collabio.xodocuments.spreadsheet": {
-        source: "iana"
-      },
-      "application/vnd.collabio.xodocuments.spreadsheet-template": {
-        source: "iana"
-      },
-      "application/vnd.collection+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.collection.doc+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.collection.next+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.comicbook+zip": {
-        source: "iana",
-        compressible: false
-      },
-      "application/vnd.comicbook-rar": {
-        source: "iana"
-      },
-      "application/vnd.commerce-battelle": {
-        source: "iana"
-      },
-      "application/vnd.commonspace": {
-        source: "iana",
-        extensions: ["csp"]
-      },
-      "application/vnd.contact.cmsg": {
-        source: "iana",
-        extensions: ["cdbcmsg"]
-      },
-      "application/vnd.coreos.ignition+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.cosmocaller": {
-        source: "iana",
-        extensions: ["cmc"]
-      },
-      "application/vnd.crick.clicker": {
-        source: "iana",
-        extensions: ["clkx"]
-      },
-      "application/vnd.crick.clicker.keyboard": {
-        source: "iana",
-        extensions: ["clkk"]
-      },
-      "application/vnd.crick.clicker.palette": {
-        source: "iana",
-        extensions: ["clkp"]
-      },
-      "application/vnd.crick.clicker.template": {
-        source: "iana",
-        extensions: ["clkt"]
-      },
-      "application/vnd.crick.clicker.wordbank": {
-        source: "iana",
-        extensions: ["clkw"]
-      },
-      "application/vnd.criticaltools.wbs+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["wbs"]
-      },
-      "application/vnd.cryptii.pipe+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.crypto-shade-file": {
-        source: "iana"
-      },
-      "application/vnd.cryptomator.encrypted": {
-        source: "iana"
-      },
-      "application/vnd.cryptomator.vault": {
-        source: "iana"
-      },
-      "application/vnd.ctc-posml": {
-        source: "iana",
-        extensions: ["pml"]
-      },
-      "application/vnd.ctct.ws+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.cups-pdf": {
-        source: "iana"
-      },
-      "application/vnd.cups-postscript": {
-        source: "iana"
-      },
-      "application/vnd.cups-ppd": {
-        source: "iana",
-        extensions: ["ppd"]
-      },
-      "application/vnd.cups-raster": {
-        source: "iana"
-      },
-      "application/vnd.cups-raw": {
-        source: "iana"
-      },
-      "application/vnd.curl": {
-        source: "iana"
-      },
-      "application/vnd.curl.car": {
-        source: "apache",
-        extensions: ["car"]
-      },
-      "application/vnd.curl.pcurl": {
-        source: "apache",
-        extensions: ["pcurl"]
-      },
-      "application/vnd.cyan.dean.root+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.cybank": {
-        source: "iana"
-      },
-      "application/vnd.cyclonedx+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.cyclonedx+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.d2l.coursepackage1p0+zip": {
-        source: "iana",
-        compressible: false
-      },
-      "application/vnd.d3m-dataset": {
-        source: "iana"
-      },
-      "application/vnd.d3m-problem": {
-        source: "iana"
-      },
-      "application/vnd.dart": {
-        source: "iana",
-        compressible: true,
-        extensions: ["dart"]
-      },
-      "application/vnd.data-vision.rdz": {
-        source: "iana",
-        extensions: ["rdz"]
-      },
-      "application/vnd.datapackage+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.dataresource+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.dbf": {
-        source: "iana",
-        extensions: ["dbf"]
-      },
-      "application/vnd.debian.binary-package": {
-        source: "iana"
-      },
-      "application/vnd.dece.data": {
-        source: "iana",
-        extensions: ["uvf", "uvvf", "uvd", "uvvd"]
-      },
-      "application/vnd.dece.ttml+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["uvt", "uvvt"]
-      },
-      "application/vnd.dece.unspecified": {
-        source: "iana",
-        extensions: ["uvx", "uvvx"]
-      },
-      "application/vnd.dece.zip": {
-        source: "iana",
-        extensions: ["uvz", "uvvz"]
-      },
-      "application/vnd.denovo.fcselayout-link": {
-        source: "iana",
-        extensions: ["fe_launch"]
-      },
-      "application/vnd.desmume.movie": {
-        source: "iana"
-      },
-      "application/vnd.dir-bi.plate-dl-nosuffix": {
-        source: "iana"
-      },
-      "application/vnd.dm.delegation+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.dna": {
-        source: "iana",
-        extensions: ["dna"]
-      },
-      "application/vnd.document+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.dolby.mlp": {
-        source: "apache",
-        extensions: ["mlp"]
-      },
-      "application/vnd.dolby.mobile.1": {
-        source: "iana"
-      },
-      "application/vnd.dolby.mobile.2": {
-        source: "iana"
-      },
-      "application/vnd.doremir.scorecloud-binary-document": {
-        source: "iana"
-      },
-      "application/vnd.dpgraph": {
-        source: "iana",
-        extensions: ["dpg"]
-      },
-      "application/vnd.dreamfactory": {
-        source: "iana",
-        extensions: ["dfac"]
-      },
-      "application/vnd.drive+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.ds-keypoint": {
-        source: "apache",
-        extensions: ["kpxx"]
-      },
-      "application/vnd.dtg.local": {
-        source: "iana"
-      },
-      "application/vnd.dtg.local.flash": {
-        source: "iana"
-      },
-      "application/vnd.dtg.local.html": {
-        source: "iana"
-      },
-      "application/vnd.dvb.ait": {
-        source: "iana",
-        extensions: ["ait"]
-      },
-      "application/vnd.dvb.dvbisl+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.dvb.dvbj": {
-        source: "iana"
-      },
-      "application/vnd.dvb.esgcontainer": {
-        source: "iana"
-      },
-      "application/vnd.dvb.ipdcdftnotifaccess": {
-        source: "iana"
-      },
-      "application/vnd.dvb.ipdcesgaccess": {
-        source: "iana"
-      },
-      "application/vnd.dvb.ipdcesgaccess2": {
-        source: "iana"
-      },
-      "application/vnd.dvb.ipdcesgpdd": {
-        source: "iana"
-      },
-      "application/vnd.dvb.ipdcroaming": {
-        source: "iana"
-      },
-      "application/vnd.dvb.iptv.alfec-base": {
-        source: "iana"
-      },
-      "application/vnd.dvb.iptv.alfec-enhancement": {
-        source: "iana"
-      },
-      "application/vnd.dvb.notif-aggregate-root+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.dvb.notif-container+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.dvb.notif-generic+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.dvb.notif-ia-msglist+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.dvb.notif-ia-registration-request+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.dvb.notif-ia-registration-response+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.dvb.notif-init+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.dvb.pfr": {
-        source: "iana"
-      },
-      "application/vnd.dvb.service": {
-        source: "iana",
-        extensions: ["svc"]
-      },
-      "application/vnd.dxr": {
-        source: "iana"
-      },
-      "application/vnd.dynageo": {
-        source: "iana",
-        extensions: ["geo"]
-      },
-      "application/vnd.dzr": {
-        source: "iana"
-      },
-      "application/vnd.easykaraoke.cdgdownload": {
-        source: "iana"
-      },
-      "application/vnd.ecdis-update": {
-        source: "iana"
-      },
-      "application/vnd.ecip.rlp": {
-        source: "iana"
-      },
-      "application/vnd.eclipse.ditto+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.ecowin.chart": {
-        source: "iana",
-        extensions: ["mag"]
-      },
-      "application/vnd.ecowin.filerequest": {
-        source: "iana"
-      },
-      "application/vnd.ecowin.fileupdate": {
-        source: "iana"
-      },
-      "application/vnd.ecowin.series": {
-        source: "iana"
-      },
-      "application/vnd.ecowin.seriesrequest": {
-        source: "iana"
-      },
-      "application/vnd.ecowin.seriesupdate": {
-        source: "iana"
-      },
-      "application/vnd.efi.img": {
-        source: "iana"
-      },
-      "application/vnd.efi.iso": {
-        source: "iana"
-      },
-      "application/vnd.emclient.accessrequest+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.enliven": {
-        source: "iana",
-        extensions: ["nml"]
-      },
-      "application/vnd.enphase.envoy": {
-        source: "iana"
-      },
-      "application/vnd.eprints.data+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.epson.esf": {
-        source: "iana",
-        extensions: ["esf"]
-      },
-      "application/vnd.epson.msf": {
-        source: "iana",
-        extensions: ["msf"]
-      },
-      "application/vnd.epson.quickanime": {
-        source: "iana",
-        extensions: ["qam"]
-      },
-      "application/vnd.epson.salt": {
-        source: "iana",
-        extensions: ["slt"]
-      },
-      "application/vnd.epson.ssf": {
-        source: "iana",
-        extensions: ["ssf"]
-      },
-      "application/vnd.ericsson.quickcall": {
-        source: "iana"
-      },
-      "application/vnd.espass-espass+zip": {
-        source: "iana",
-        compressible: false
-      },
-      "application/vnd.eszigno3+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["es3", "et3"]
-      },
-      "application/vnd.etsi.aoc+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.etsi.asic-e+zip": {
-        source: "iana",
-        compressible: false
-      },
-      "application/vnd.etsi.asic-s+zip": {
-        source: "iana",
-        compressible: false
-      },
-      "application/vnd.etsi.cug+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.etsi.iptvcommand+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.etsi.iptvdiscovery+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.etsi.iptvprofile+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.etsi.iptvsad-bc+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.etsi.iptvsad-cod+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.etsi.iptvsad-npvr+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.etsi.iptvservice+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.etsi.iptvsync+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.etsi.iptvueprofile+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.etsi.mcid+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.etsi.mheg5": {
-        source: "iana"
-      },
-      "application/vnd.etsi.overload-control-policy-dataset+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.etsi.pstn+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.etsi.sci+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.etsi.simservs+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.etsi.timestamp-token": {
-        source: "iana"
-      },
-      "application/vnd.etsi.tsl+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.etsi.tsl.der": {
-        source: "iana"
-      },
-      "application/vnd.eu.kasparian.car+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.eudora.data": {
-        source: "iana"
-      },
-      "application/vnd.evolv.ecig.profile": {
-        source: "iana"
-      },
-      "application/vnd.evolv.ecig.settings": {
-        source: "iana"
-      },
-      "application/vnd.evolv.ecig.theme": {
-        source: "iana"
-      },
-      "application/vnd.exstream-empower+zip": {
-        source: "iana",
-        compressible: false
-      },
-      "application/vnd.exstream-package": {
-        source: "iana"
-      },
-      "application/vnd.ezpix-album": {
-        source: "iana",
-        extensions: ["ez2"]
-      },
-      "application/vnd.ezpix-package": {
-        source: "iana",
-        extensions: ["ez3"]
-      },
-      "application/vnd.f-secure.mobile": {
-        source: "iana"
-      },
-      "application/vnd.familysearch.gedcom+zip": {
-        source: "iana",
-        compressible: false
-      },
-      "application/vnd.fastcopy-disk-image": {
-        source: "iana"
-      },
-      "application/vnd.fdf": {
-        source: "iana",
-        extensions: ["fdf"]
-      },
-      "application/vnd.fdsn.mseed": {
-        source: "iana",
-        extensions: ["mseed"]
-      },
-      "application/vnd.fdsn.seed": {
-        source: "iana",
-        extensions: ["seed", "dataless"]
-      },
-      "application/vnd.ffsns": {
-        source: "iana"
-      },
-      "application/vnd.ficlab.flb+zip": {
-        source: "iana",
-        compressible: false
-      },
-      "application/vnd.filmit.zfc": {
-        source: "iana"
-      },
-      "application/vnd.fints": {
-        source: "iana"
-      },
-      "application/vnd.firemonkeys.cloudcell": {
-        source: "iana"
-      },
-      "application/vnd.flographit": {
-        source: "iana",
-        extensions: ["gph"]
-      },
-      "application/vnd.fluxtime.clip": {
-        source: "iana",
-        extensions: ["ftc"]
-      },
-      "application/vnd.font-fontforge-sfd": {
-        source: "iana"
-      },
-      "application/vnd.framemaker": {
-        source: "iana",
-        extensions: ["fm", "frame", "maker", "book"]
-      },
-      "application/vnd.frogans.fnc": {
-        source: "iana",
-        extensions: ["fnc"]
-      },
-      "application/vnd.frogans.ltf": {
-        source: "iana",
-        extensions: ["ltf"]
-      },
-      "application/vnd.fsc.weblaunch": {
-        source: "iana",
-        extensions: ["fsc"]
-      },
-      "application/vnd.fujifilm.fb.docuworks": {
-        source: "iana"
-      },
-      "application/vnd.fujifilm.fb.docuworks.binder": {
-        source: "iana"
-      },
-      "application/vnd.fujifilm.fb.docuworks.container": {
-        source: "iana"
-      },
-      "application/vnd.fujifilm.fb.jfi+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.fujitsu.oasys": {
-        source: "iana",
-        extensions: ["oas"]
-      },
-      "application/vnd.fujitsu.oasys2": {
-        source: "iana",
-        extensions: ["oa2"]
-      },
-      "application/vnd.fujitsu.oasys3": {
-        source: "iana",
-        extensions: ["oa3"]
-      },
-      "application/vnd.fujitsu.oasysgp": {
-        source: "iana",
-        extensions: ["fg5"]
-      },
-      "application/vnd.fujitsu.oasysprs": {
-        source: "iana",
-        extensions: ["bh2"]
-      },
-      "application/vnd.fujixerox.art-ex": {
-        source: "iana"
-      },
-      "application/vnd.fujixerox.art4": {
-        source: "iana"
-      },
-      "application/vnd.fujixerox.ddd": {
-        source: "iana",
-        extensions: ["ddd"]
-      },
-      "application/vnd.fujixerox.docuworks": {
-        source: "iana",
-        extensions: ["xdw"]
-      },
-      "application/vnd.fujixerox.docuworks.binder": {
-        source: "iana",
-        extensions: ["xbd"]
-      },
-      "application/vnd.fujixerox.docuworks.container": {
-        source: "iana"
-      },
-      "application/vnd.fujixerox.hbpl": {
-        source: "iana"
-      },
-      "application/vnd.fut-misnet": {
-        source: "iana"
-      },
-      "application/vnd.futoin+cbor": {
-        source: "iana"
-      },
-      "application/vnd.futoin+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.fuzzysheet": {
-        source: "iana",
-        extensions: ["fzs"]
-      },
-      "application/vnd.genomatix.tuxedo": {
-        source: "iana",
-        extensions: ["txd"]
-      },
-      "application/vnd.gentics.grd+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.geo+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.geocube+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.geogebra.file": {
-        source: "iana",
-        extensions: ["ggb"]
-      },
-      "application/vnd.geogebra.slides": {
-        source: "iana"
-      },
-      "application/vnd.geogebra.tool": {
-        source: "iana",
-        extensions: ["ggt"]
-      },
-      "application/vnd.geometry-explorer": {
-        source: "iana",
-        extensions: ["gex", "gre"]
-      },
-      "application/vnd.geonext": {
-        source: "iana",
-        extensions: ["gxt"]
-      },
-      "application/vnd.geoplan": {
-        source: "iana",
-        extensions: ["g2w"]
-      },
-      "application/vnd.geospace": {
-        source: "iana",
-        extensions: ["g3w"]
-      },
-      "application/vnd.gerber": {
-        source: "iana"
-      },
-      "application/vnd.globalplatform.card-content-mgt": {
-        source: "iana"
-      },
-      "application/vnd.globalplatform.card-content-mgt-response": {
-        source: "iana"
-      },
-      "application/vnd.gmx": {
-        source: "iana",
-        extensions: ["gmx"]
-      },
-      "application/vnd.google-apps.document": {
-        compressible: false,
-        extensions: ["gdoc"]
-      },
-      "application/vnd.google-apps.presentation": {
-        compressible: false,
-        extensions: ["gslides"]
-      },
-      "application/vnd.google-apps.spreadsheet": {
-        compressible: false,
-        extensions: ["gsheet"]
-      },
-      "application/vnd.google-earth.kml+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["kml"]
-      },
-      "application/vnd.google-earth.kmz": {
-        source: "iana",
-        compressible: false,
-        extensions: ["kmz"]
-      },
-      "application/vnd.gov.sk.e-form+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.gov.sk.e-form+zip": {
-        source: "iana",
-        compressible: false
-      },
-      "application/vnd.gov.sk.xmldatacontainer+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.grafeq": {
-        source: "iana",
-        extensions: ["gqf", "gqs"]
-      },
-      "application/vnd.gridmp": {
-        source: "iana"
-      },
-      "application/vnd.groove-account": {
-        source: "iana",
-        extensions: ["gac"]
-      },
-      "application/vnd.groove-help": {
-        source: "iana",
-        extensions: ["ghf"]
-      },
-      "application/vnd.groove-identity-message": {
-        source: "iana",
-        extensions: ["gim"]
-      },
-      "application/vnd.groove-injector": {
-        source: "iana",
-        extensions: ["grv"]
-      },
-      "application/vnd.groove-tool-message": {
-        source: "iana",
-        extensions: ["gtm"]
-      },
-      "application/vnd.groove-tool-template": {
-        source: "iana",
-        extensions: ["tpl"]
-      },
-      "application/vnd.groove-vcard": {
-        source: "iana",
-        extensions: ["vcg"]
-      },
-      "application/vnd.hal+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.hal+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["hal"]
-      },
-      "application/vnd.handheld-entertainment+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["zmm"]
-      },
-      "application/vnd.hbci": {
-        source: "iana",
-        extensions: ["hbci"]
-      },
-      "application/vnd.hc+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.hcl-bireports": {
-        source: "iana"
-      },
-      "application/vnd.hdt": {
-        source: "iana"
-      },
-      "application/vnd.heroku+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.hhe.lesson-player": {
-        source: "iana",
-        extensions: ["les"]
-      },
-      "application/vnd.hl7cda+xml": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true
-      },
-      "application/vnd.hl7v2+xml": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true
-      },
-      "application/vnd.hp-hpgl": {
-        source: "iana",
-        extensions: ["hpgl"]
-      },
-      "application/vnd.hp-hpid": {
-        source: "iana",
-        extensions: ["hpid"]
-      },
-      "application/vnd.hp-hps": {
-        source: "iana",
-        extensions: ["hps"]
-      },
-      "application/vnd.hp-jlyt": {
-        source: "iana",
-        extensions: ["jlt"]
-      },
-      "application/vnd.hp-pcl": {
-        source: "iana",
-        extensions: ["pcl"]
-      },
-      "application/vnd.hp-pclxl": {
-        source: "iana",
-        extensions: ["pclxl"]
-      },
-      "application/vnd.httphone": {
-        source: "iana"
-      },
-      "application/vnd.hydrostatix.sof-data": {
-        source: "iana",
-        extensions: ["sfd-hdstx"]
-      },
-      "application/vnd.hyper+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.hyper-item+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.hyperdrive+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.hzn-3d-crossword": {
-        source: "iana"
-      },
-      "application/vnd.ibm.afplinedata": {
-        source: "iana"
-      },
-      "application/vnd.ibm.electronic-media": {
-        source: "iana"
-      },
-      "application/vnd.ibm.minipay": {
-        source: "iana",
-        extensions: ["mpy"]
-      },
-      "application/vnd.ibm.modcap": {
-        source: "iana",
-        extensions: ["afp", "listafp", "list3820"]
-      },
-      "application/vnd.ibm.rights-management": {
-        source: "iana",
-        extensions: ["irm"]
-      },
-      "application/vnd.ibm.secure-container": {
-        source: "iana",
-        extensions: ["sc"]
-      },
-      "application/vnd.iccprofile": {
-        source: "iana",
-        extensions: ["icc", "icm"]
-      },
-      "application/vnd.ieee.1905": {
-        source: "iana"
-      },
-      "application/vnd.igloader": {
-        source: "iana",
-        extensions: ["igl"]
-      },
-      "application/vnd.imagemeter.folder+zip": {
-        source: "iana",
-        compressible: false
-      },
-      "application/vnd.imagemeter.image+zip": {
-        source: "iana",
-        compressible: false
-      },
-      "application/vnd.immervision-ivp": {
-        source: "iana",
-        extensions: ["ivp"]
-      },
-      "application/vnd.immervision-ivu": {
-        source: "iana",
-        extensions: ["ivu"]
-      },
-      "application/vnd.ims.imsccv1p1": {
-        source: "iana"
-      },
-      "application/vnd.ims.imsccv1p2": {
-        source: "iana"
-      },
-      "application/vnd.ims.imsccv1p3": {
-        source: "iana"
-      },
-      "application/vnd.ims.lis.v2.result+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.ims.lti.v2.toolconsumerprofile+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.ims.lti.v2.toolproxy+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.ims.lti.v2.toolproxy.id+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.ims.lti.v2.toolsettings+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.ims.lti.v2.toolsettings.simple+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.informedcontrol.rms+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.informix-visionary": {
-        source: "iana"
-      },
-      "application/vnd.infotech.project": {
-        source: "iana"
-      },
-      "application/vnd.infotech.project+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.innopath.wamp.notification": {
-        source: "iana"
-      },
-      "application/vnd.insors.igm": {
-        source: "iana",
-        extensions: ["igm"]
-      },
-      "application/vnd.intercon.formnet": {
-        source: "iana",
-        extensions: ["xpw", "xpx"]
-      },
-      "application/vnd.intergeo": {
-        source: "iana",
-        extensions: ["i2g"]
-      },
-      "application/vnd.intertrust.digibox": {
-        source: "iana"
-      },
-      "application/vnd.intertrust.nncp": {
-        source: "iana"
-      },
-      "application/vnd.intu.qbo": {
-        source: "iana",
-        extensions: ["qbo"]
-      },
-      "application/vnd.intu.qfx": {
-        source: "iana",
-        extensions: ["qfx"]
-      },
-      "application/vnd.iptc.g2.catalogitem+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.iptc.g2.conceptitem+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.iptc.g2.knowledgeitem+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.iptc.g2.newsitem+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.iptc.g2.newsmessage+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.iptc.g2.packageitem+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.iptc.g2.planningitem+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.ipunplugged.rcprofile": {
-        source: "iana",
-        extensions: ["rcprofile"]
-      },
-      "application/vnd.irepository.package+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["irp"]
-      },
-      "application/vnd.is-xpr": {
-        source: "iana",
-        extensions: ["xpr"]
-      },
-      "application/vnd.isac.fcs": {
-        source: "iana",
-        extensions: ["fcs"]
-      },
-      "application/vnd.iso11783-10+zip": {
-        source: "iana",
-        compressible: false
-      },
-      "application/vnd.jam": {
-        source: "iana",
-        extensions: ["jam"]
-      },
-      "application/vnd.japannet-directory-service": {
-        source: "iana"
-      },
-      "application/vnd.japannet-jpnstore-wakeup": {
-        source: "iana"
-      },
-      "application/vnd.japannet-payment-wakeup": {
-        source: "iana"
-      },
-      "application/vnd.japannet-registration": {
-        source: "iana"
-      },
-      "application/vnd.japannet-registration-wakeup": {
-        source: "iana"
-      },
-      "application/vnd.japannet-setstore-wakeup": {
-        source: "iana"
-      },
-      "application/vnd.japannet-verification": {
-        source: "iana"
-      },
-      "application/vnd.japannet-verification-wakeup": {
-        source: "iana"
-      },
-      "application/vnd.jcp.javame.midlet-rms": {
-        source: "iana",
-        extensions: ["rms"]
-      },
-      "application/vnd.jisp": {
-        source: "iana",
-        extensions: ["jisp"]
-      },
-      "application/vnd.joost.joda-archive": {
-        source: "iana",
-        extensions: ["joda"]
-      },
-      "application/vnd.jsk.isdn-ngn": {
-        source: "iana"
-      },
-      "application/vnd.kahootz": {
-        source: "iana",
-        extensions: ["ktz", "ktr"]
-      },
-      "application/vnd.kde.karbon": {
-        source: "iana",
-        extensions: ["karbon"]
-      },
-      "application/vnd.kde.kchart": {
-        source: "iana",
-        extensions: ["chrt"]
-      },
-      "application/vnd.kde.kformula": {
-        source: "iana",
-        extensions: ["kfo"]
-      },
-      "application/vnd.kde.kivio": {
-        source: "iana",
-        extensions: ["flw"]
-      },
-      "application/vnd.kde.kontour": {
-        source: "iana",
-        extensions: ["kon"]
-      },
-      "application/vnd.kde.kpresenter": {
-        source: "iana",
-        extensions: ["kpr", "kpt"]
-      },
-      "application/vnd.kde.kspread": {
-        source: "iana",
-        extensions: ["ksp"]
-      },
-      "application/vnd.kde.kword": {
-        source: "iana",
-        extensions: ["kwd", "kwt"]
-      },
-      "application/vnd.kenameaapp": {
-        source: "iana",
-        extensions: ["htke"]
-      },
-      "application/vnd.kidspiration": {
-        source: "iana",
-        extensions: ["kia"]
-      },
-      "application/vnd.kinar": {
-        source: "iana",
-        extensions: ["kne", "knp"]
-      },
-      "application/vnd.koan": {
-        source: "iana",
-        extensions: ["skp", "skd", "skt", "skm"]
-      },
-      "application/vnd.kodak-descriptor": {
-        source: "iana",
-        extensions: ["sse"]
-      },
-      "application/vnd.las": {
-        source: "iana"
-      },
-      "application/vnd.las.las+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.las.las+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["lasxml"]
-      },
-      "application/vnd.laszip": {
-        source: "iana"
-      },
-      "application/vnd.leap+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.liberty-request+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.llamagraphics.life-balance.desktop": {
-        source: "iana",
-        extensions: ["lbd"]
-      },
-      "application/vnd.llamagraphics.life-balance.exchange+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["lbe"]
-      },
-      "application/vnd.logipipe.circuit+zip": {
-        source: "iana",
-        compressible: false
-      },
-      "application/vnd.loom": {
-        source: "iana"
-      },
-      "application/vnd.lotus-1-2-3": {
-        source: "iana",
-        extensions: ["123"]
-      },
-      "application/vnd.lotus-approach": {
-        source: "iana",
-        extensions: ["apr"]
-      },
-      "application/vnd.lotus-freelance": {
-        source: "iana",
-        extensions: ["pre"]
-      },
-      "application/vnd.lotus-notes": {
-        source: "iana",
-        extensions: ["nsf"]
-      },
-      "application/vnd.lotus-organizer": {
-        source: "iana",
-        extensions: ["org"]
-      },
-      "application/vnd.lotus-screencam": {
-        source: "iana",
-        extensions: ["scm"]
-      },
-      "application/vnd.lotus-wordpro": {
-        source: "iana",
-        extensions: ["lwp"]
-      },
-      "application/vnd.macports.portpkg": {
-        source: "iana",
-        extensions: ["portpkg"]
-      },
-      "application/vnd.mapbox-vector-tile": {
-        source: "iana",
-        extensions: ["mvt"]
-      },
-      "application/vnd.marlin.drm.actiontoken+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.marlin.drm.conftoken+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.marlin.drm.license+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.marlin.drm.mdcf": {
-        source: "iana"
-      },
-      "application/vnd.mason+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.maxar.archive.3tz+zip": {
-        source: "iana",
-        compressible: false
-      },
-      "application/vnd.maxmind.maxmind-db": {
-        source: "iana"
-      },
-      "application/vnd.mcd": {
-        source: "iana",
-        extensions: ["mcd"]
-      },
-      "application/vnd.medcalcdata": {
-        source: "iana",
-        extensions: ["mc1"]
-      },
-      "application/vnd.mediastation.cdkey": {
-        source: "iana",
-        extensions: ["cdkey"]
-      },
-      "application/vnd.meridian-slingshot": {
-        source: "iana"
-      },
-      "application/vnd.mfer": {
-        source: "iana",
-        extensions: ["mwf"]
-      },
-      "application/vnd.mfmp": {
-        source: "iana",
-        extensions: ["mfm"]
-      },
-      "application/vnd.micro+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.micrografx.flo": {
-        source: "iana",
-        extensions: ["flo"]
-      },
-      "application/vnd.micrografx.igx": {
-        source: "iana",
-        extensions: ["igx"]
-      },
-      "application/vnd.microsoft.portable-executable": {
-        source: "iana"
-      },
-      "application/vnd.microsoft.windows.thumbnail-cache": {
-        source: "iana"
-      },
-      "application/vnd.miele+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.mif": {
-        source: "iana",
-        extensions: ["mif"]
-      },
-      "application/vnd.minisoft-hp3000-save": {
-        source: "iana"
-      },
-      "application/vnd.mitsubishi.misty-guard.trustweb": {
-        source: "iana"
-      },
-      "application/vnd.mobius.daf": {
-        source: "iana",
-        extensions: ["daf"]
-      },
-      "application/vnd.mobius.dis": {
-        source: "iana",
-        extensions: ["dis"]
-      },
-      "application/vnd.mobius.mbk": {
-        source: "iana",
-        extensions: ["mbk"]
-      },
-      "application/vnd.mobius.mqy": {
-        source: "iana",
-        extensions: ["mqy"]
-      },
-      "application/vnd.mobius.msl": {
-        source: "iana",
-        extensions: ["msl"]
-      },
-      "application/vnd.mobius.plc": {
-        source: "iana",
-        extensions: ["plc"]
-      },
-      "application/vnd.mobius.txf": {
-        source: "iana",
-        extensions: ["txf"]
-      },
-      "application/vnd.mophun.application": {
-        source: "iana",
-        extensions: ["mpn"]
-      },
-      "application/vnd.mophun.certificate": {
-        source: "iana",
-        extensions: ["mpc"]
-      },
-      "application/vnd.motorola.flexsuite": {
-        source: "iana"
-      },
-      "application/vnd.motorola.flexsuite.adsi": {
-        source: "iana"
-      },
-      "application/vnd.motorola.flexsuite.fis": {
-        source: "iana"
-      },
-      "application/vnd.motorola.flexsuite.gotap": {
-        source: "iana"
-      },
-      "application/vnd.motorola.flexsuite.kmr": {
-        source: "iana"
-      },
-      "application/vnd.motorola.flexsuite.ttc": {
-        source: "iana"
-      },
-      "application/vnd.motorola.flexsuite.wem": {
-        source: "iana"
-      },
-      "application/vnd.motorola.iprm": {
-        source: "iana"
-      },
-      "application/vnd.mozilla.xul+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["xul"]
-      },
-      "application/vnd.ms-3mfdocument": {
-        source: "iana"
-      },
-      "application/vnd.ms-artgalry": {
-        source: "iana",
-        extensions: ["cil"]
-      },
-      "application/vnd.ms-asf": {
-        source: "iana"
-      },
-      "application/vnd.ms-cab-compressed": {
-        source: "iana",
-        extensions: ["cab"]
-      },
-      "application/vnd.ms-color.iccprofile": {
-        source: "apache"
-      },
-      "application/vnd.ms-excel": {
-        source: "iana",
-        compressible: false,
-        extensions: ["xls", "xlm", "xla", "xlc", "xlt", "xlw"]
-      },
-      "application/vnd.ms-excel.addin.macroenabled.12": {
-        source: "iana",
-        extensions: ["xlam"]
-      },
-      "application/vnd.ms-excel.sheet.binary.macroenabled.12": {
-        source: "iana",
-        extensions: ["xlsb"]
-      },
-      "application/vnd.ms-excel.sheet.macroenabled.12": {
-        source: "iana",
-        extensions: ["xlsm"]
-      },
-      "application/vnd.ms-excel.template.macroenabled.12": {
-        source: "iana",
-        extensions: ["xltm"]
-      },
-      "application/vnd.ms-fontobject": {
-        source: "iana",
-        compressible: true,
-        extensions: ["eot"]
-      },
-      "application/vnd.ms-htmlhelp": {
-        source: "iana",
-        extensions: ["chm"]
-      },
-      "application/vnd.ms-ims": {
-        source: "iana",
-        extensions: ["ims"]
-      },
-      "application/vnd.ms-lrm": {
-        source: "iana",
-        extensions: ["lrm"]
-      },
-      "application/vnd.ms-office.activex+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.ms-officetheme": {
-        source: "iana",
-        extensions: ["thmx"]
-      },
-      "application/vnd.ms-opentype": {
-        source: "apache",
-        compressible: true
-      },
-      "application/vnd.ms-outlook": {
-        compressible: false,
-        extensions: ["msg"]
-      },
-      "application/vnd.ms-package.obfuscated-opentype": {
-        source: "apache"
-      },
-      "application/vnd.ms-pki.seccat": {
-        source: "apache",
-        extensions: ["cat"]
-      },
-      "application/vnd.ms-pki.stl": {
-        source: "apache",
-        extensions: ["stl"]
-      },
-      "application/vnd.ms-playready.initiator+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.ms-powerpoint": {
-        source: "iana",
-        compressible: false,
-        extensions: ["ppt", "pps", "pot"]
-      },
-      "application/vnd.ms-powerpoint.addin.macroenabled.12": {
-        source: "iana",
-        extensions: ["ppam"]
-      },
-      "application/vnd.ms-powerpoint.presentation.macroenabled.12": {
-        source: "iana",
-        extensions: ["pptm"]
-      },
-      "application/vnd.ms-powerpoint.slide.macroenabled.12": {
-        source: "iana",
-        extensions: ["sldm"]
-      },
-      "application/vnd.ms-powerpoint.slideshow.macroenabled.12": {
-        source: "iana",
-        extensions: ["ppsm"]
-      },
-      "application/vnd.ms-powerpoint.template.macroenabled.12": {
-        source: "iana",
-        extensions: ["potm"]
-      },
-      "application/vnd.ms-printdevicecapabilities+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.ms-printing.printticket+xml": {
-        source: "apache",
-        compressible: true
-      },
-      "application/vnd.ms-printschematicket+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.ms-project": {
-        source: "iana",
-        extensions: ["mpp", "mpt"]
-      },
-      "application/vnd.ms-tnef": {
-        source: "iana"
-      },
-      "application/vnd.ms-windows.devicepairing": {
-        source: "iana"
-      },
-      "application/vnd.ms-windows.nwprinting.oob": {
-        source: "iana"
-      },
-      "application/vnd.ms-windows.printerpairing": {
-        source: "iana"
-      },
-      "application/vnd.ms-windows.wsd.oob": {
-        source: "iana"
-      },
-      "application/vnd.ms-wmdrm.lic-chlg-req": {
-        source: "iana"
-      },
-      "application/vnd.ms-wmdrm.lic-resp": {
-        source: "iana"
-      },
-      "application/vnd.ms-wmdrm.meter-chlg-req": {
-        source: "iana"
-      },
-      "application/vnd.ms-wmdrm.meter-resp": {
-        source: "iana"
-      },
-      "application/vnd.ms-word.document.macroenabled.12": {
-        source: "iana",
-        extensions: ["docm"]
-      },
-      "application/vnd.ms-word.template.macroenabled.12": {
-        source: "iana",
-        extensions: ["dotm"]
-      },
-      "application/vnd.ms-works": {
-        source: "iana",
-        extensions: ["wps", "wks", "wcm", "wdb"]
-      },
-      "application/vnd.ms-wpl": {
-        source: "iana",
-        extensions: ["wpl"]
-      },
-      "application/vnd.ms-xpsdocument": {
-        source: "iana",
-        compressible: false,
-        extensions: ["xps"]
-      },
-      "application/vnd.msa-disk-image": {
-        source: "iana"
-      },
-      "application/vnd.mseq": {
-        source: "iana",
-        extensions: ["mseq"]
-      },
-      "application/vnd.msign": {
-        source: "iana"
-      },
-      "application/vnd.multiad.creator": {
-        source: "iana"
-      },
-      "application/vnd.multiad.creator.cif": {
-        source: "iana"
-      },
-      "application/vnd.music-niff": {
-        source: "iana"
-      },
-      "application/vnd.musician": {
-        source: "iana",
-        extensions: ["mus"]
-      },
-      "application/vnd.muvee.style": {
-        source: "iana",
-        extensions: ["msty"]
-      },
-      "application/vnd.mynfc": {
-        source: "iana",
-        extensions: ["taglet"]
-      },
-      "application/vnd.nacamar.ybrid+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.ncd.control": {
-        source: "iana"
-      },
-      "application/vnd.ncd.reference": {
-        source: "iana"
-      },
-      "application/vnd.nearst.inv+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.nebumind.line": {
-        source: "iana"
-      },
-      "application/vnd.nervana": {
-        source: "iana"
-      },
-      "application/vnd.netfpx": {
-        source: "iana"
-      },
-      "application/vnd.neurolanguage.nlu": {
-        source: "iana",
-        extensions: ["nlu"]
-      },
-      "application/vnd.nimn": {
-        source: "iana"
-      },
-      "application/vnd.nintendo.nitro.rom": {
-        source: "iana"
-      },
-      "application/vnd.nintendo.snes.rom": {
-        source: "iana"
-      },
-      "application/vnd.nitf": {
-        source: "iana",
-        extensions: ["ntf", "nitf"]
-      },
-      "application/vnd.noblenet-directory": {
-        source: "iana",
-        extensions: ["nnd"]
-      },
-      "application/vnd.noblenet-sealer": {
-        source: "iana",
-        extensions: ["nns"]
-      },
-      "application/vnd.noblenet-web": {
-        source: "iana",
-        extensions: ["nnw"]
-      },
-      "application/vnd.nokia.catalogs": {
-        source: "iana"
-      },
-      "application/vnd.nokia.conml+wbxml": {
-        source: "iana"
-      },
-      "application/vnd.nokia.conml+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.nokia.iptv.config+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.nokia.isds-radio-presets": {
-        source: "iana"
-      },
-      "application/vnd.nokia.landmark+wbxml": {
-        source: "iana"
-      },
-      "application/vnd.nokia.landmark+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.nokia.landmarkcollection+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.nokia.n-gage.ac+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["ac"]
-      },
-      "application/vnd.nokia.n-gage.data": {
-        source: "iana",
-        extensions: ["ngdat"]
-      },
-      "application/vnd.nokia.n-gage.symbian.install": {
-        source: "iana",
-        extensions: ["n-gage"]
-      },
-      "application/vnd.nokia.ncd": {
-        source: "iana"
-      },
-      "application/vnd.nokia.pcd+wbxml": {
-        source: "iana"
-      },
-      "application/vnd.nokia.pcd+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.nokia.radio-preset": {
-        source: "iana",
-        extensions: ["rpst"]
-      },
-      "application/vnd.nokia.radio-presets": {
-        source: "iana",
-        extensions: ["rpss"]
-      },
-      "application/vnd.novadigm.edm": {
-        source: "iana",
-        extensions: ["edm"]
-      },
-      "application/vnd.novadigm.edx": {
-        source: "iana",
-        extensions: ["edx"]
-      },
-      "application/vnd.novadigm.ext": {
-        source: "iana",
-        extensions: ["ext"]
-      },
-      "application/vnd.ntt-local.content-share": {
-        source: "iana"
-      },
-      "application/vnd.ntt-local.file-transfer": {
-        source: "iana"
-      },
-      "application/vnd.ntt-local.ogw_remote-access": {
-        source: "iana"
-      },
-      "application/vnd.ntt-local.sip-ta_remote": {
-        source: "iana"
-      },
-      "application/vnd.ntt-local.sip-ta_tcp_stream": {
-        source: "iana"
-      },
-      "application/vnd.oasis.opendocument.chart": {
-        source: "iana",
-        extensions: ["odc"]
-      },
-      "application/vnd.oasis.opendocument.chart-template": {
-        source: "iana",
-        extensions: ["otc"]
-      },
-      "application/vnd.oasis.opendocument.database": {
-        source: "iana",
-        extensions: ["odb"]
-      },
-      "application/vnd.oasis.opendocument.formula": {
-        source: "iana",
-        extensions: ["odf"]
-      },
-      "application/vnd.oasis.opendocument.formula-template": {
-        source: "iana",
-        extensions: ["odft"]
-      },
-      "application/vnd.oasis.opendocument.graphics": {
-        source: "iana",
-        compressible: false,
-        extensions: ["odg"]
-      },
-      "application/vnd.oasis.opendocument.graphics-template": {
-        source: "iana",
-        extensions: ["otg"]
-      },
-      "application/vnd.oasis.opendocument.image": {
-        source: "iana",
-        extensions: ["odi"]
-      },
-      "application/vnd.oasis.opendocument.image-template": {
-        source: "iana",
-        extensions: ["oti"]
-      },
-      "application/vnd.oasis.opendocument.presentation": {
-        source: "iana",
-        compressible: false,
-        extensions: ["odp"]
-      },
-      "application/vnd.oasis.opendocument.presentation-template": {
-        source: "iana",
-        extensions: ["otp"]
-      },
-      "application/vnd.oasis.opendocument.spreadsheet": {
-        source: "iana",
-        compressible: false,
-        extensions: ["ods"]
-      },
-      "application/vnd.oasis.opendocument.spreadsheet-template": {
-        source: "iana",
-        extensions: ["ots"]
-      },
-      "application/vnd.oasis.opendocument.text": {
-        source: "iana",
-        compressible: false,
-        extensions: ["odt"]
-      },
-      "application/vnd.oasis.opendocument.text-master": {
-        source: "iana",
-        extensions: ["odm"]
-      },
-      "application/vnd.oasis.opendocument.text-template": {
-        source: "iana",
-        extensions: ["ott"]
-      },
-      "application/vnd.oasis.opendocument.text-web": {
-        source: "iana",
-        extensions: ["oth"]
-      },
-      "application/vnd.obn": {
-        source: "iana"
-      },
-      "application/vnd.ocf+cbor": {
-        source: "iana"
-      },
-      "application/vnd.oci.image.manifest.v1+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oftn.l10n+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oipf.contentaccessdownload+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oipf.contentaccessstreaming+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oipf.cspg-hexbinary": {
-        source: "iana"
-      },
-      "application/vnd.oipf.dae.svg+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oipf.dae.xhtml+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oipf.mippvcontrolmessage+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oipf.pae.gem": {
-        source: "iana"
-      },
-      "application/vnd.oipf.spdiscovery+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oipf.spdlist+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oipf.ueprofile+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oipf.userprofile+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.olpc-sugar": {
-        source: "iana",
-        extensions: ["xo"]
-      },
-      "application/vnd.oma-scws-config": {
-        source: "iana"
-      },
-      "application/vnd.oma-scws-http-request": {
-        source: "iana"
-      },
-      "application/vnd.oma-scws-http-response": {
-        source: "iana"
-      },
-      "application/vnd.oma.bcast.associated-procedure-parameter+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oma.bcast.drm-trigger+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oma.bcast.imd+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oma.bcast.ltkm": {
-        source: "iana"
-      },
-      "application/vnd.oma.bcast.notification+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oma.bcast.provisioningtrigger": {
-        source: "iana"
-      },
-      "application/vnd.oma.bcast.sgboot": {
-        source: "iana"
-      },
-      "application/vnd.oma.bcast.sgdd+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oma.bcast.sgdu": {
-        source: "iana"
-      },
-      "application/vnd.oma.bcast.simple-symbol-container": {
-        source: "iana"
-      },
-      "application/vnd.oma.bcast.smartcard-trigger+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oma.bcast.sprov+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oma.bcast.stkm": {
-        source: "iana"
-      },
-      "application/vnd.oma.cab-address-book+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oma.cab-feature-handler+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oma.cab-pcc+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oma.cab-subs-invite+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oma.cab-user-prefs+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oma.dcd": {
-        source: "iana"
-      },
-      "application/vnd.oma.dcdc": {
-        source: "iana"
-      },
-      "application/vnd.oma.dd2+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["dd2"]
-      },
-      "application/vnd.oma.drm.risd+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oma.group-usage-list+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oma.lwm2m+cbor": {
-        source: "iana"
-      },
-      "application/vnd.oma.lwm2m+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oma.lwm2m+tlv": {
-        source: "iana"
-      },
-      "application/vnd.oma.pal+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oma.poc.detailed-progress-report+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oma.poc.final-report+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oma.poc.groups+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oma.poc.invocation-descriptor+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oma.poc.optimized-progress-report+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oma.push": {
-        source: "iana"
-      },
-      "application/vnd.oma.scidm.messages+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oma.xcap-directory+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.omads-email+xml": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true
-      },
-      "application/vnd.omads-file+xml": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true
-      },
-      "application/vnd.omads-folder+xml": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true
-      },
-      "application/vnd.omaloc-supl-init": {
-        source: "iana"
-      },
-      "application/vnd.onepager": {
-        source: "iana"
-      },
-      "application/vnd.onepagertamp": {
-        source: "iana"
-      },
-      "application/vnd.onepagertamx": {
-        source: "iana"
-      },
-      "application/vnd.onepagertat": {
-        source: "iana"
-      },
-      "application/vnd.onepagertatp": {
-        source: "iana"
-      },
-      "application/vnd.onepagertatx": {
-        source: "iana"
-      },
-      "application/vnd.openblox.game+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["obgx"]
-      },
-      "application/vnd.openblox.game-binary": {
-        source: "iana"
-      },
-      "application/vnd.openeye.oeb": {
-        source: "iana"
-      },
-      "application/vnd.openofficeorg.extension": {
-        source: "apache",
-        extensions: ["oxt"]
-      },
-      "application/vnd.openstreetmap.data+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["osm"]
-      },
-      "application/vnd.opentimestamps.ots": {
-        source: "iana"
-      },
-      "application/vnd.openxmlformats-officedocument.custom-properties+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.customxmlproperties+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.drawing+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.drawingml.chart+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.drawingml.chartshapes+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.drawingml.diagramcolors+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.drawingml.diagramdata+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.drawingml.diagramlayout+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.drawingml.diagramstyle+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.extended-properties+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.presentationml.commentauthors+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.presentationml.comments+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.presentationml.handoutmaster+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.presentationml.notesmaster+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.presentationml.notesslide+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.presentationml.presentation": {
-        source: "iana",
-        compressible: false,
-        extensions: ["pptx"]
-      },
-      "application/vnd.openxmlformats-officedocument.presentationml.presentation.main+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.presentationml.presprops+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.presentationml.slide": {
-        source: "iana",
-        extensions: ["sldx"]
-      },
-      "application/vnd.openxmlformats-officedocument.presentationml.slide+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.presentationml.slidelayout+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.presentationml.slidemaster+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.presentationml.slideshow": {
-        source: "iana",
-        extensions: ["ppsx"]
-      },
-      "application/vnd.openxmlformats-officedocument.presentationml.slideshow.main+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.presentationml.slideupdateinfo+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.presentationml.tablestyles+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.presentationml.tags+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.presentationml.template": {
-        source: "iana",
-        extensions: ["potx"]
-      },
-      "application/vnd.openxmlformats-officedocument.presentationml.template.main+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.presentationml.viewprops+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.calcchain+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.chartsheet+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.comments+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.connections+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.dialogsheet+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.externallink+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.pivotcachedefinition+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.pivotcacherecords+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.pivottable+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.querytable+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.revisionheaders+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.revisionlog+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.sharedstrings+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
-        source: "iana",
-        compressible: false,
-        extensions: ["xlsx"]
-      },
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheetmetadata+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.table+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.tablesinglecells+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.template": {
-        source: "iana",
-        extensions: ["xltx"]
-      },
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.template.main+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.usernames+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.volatiledependencies+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.theme+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.themeoverride+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.vmldrawing": {
-        source: "iana"
-      },
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.comments+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document": {
-        source: "iana",
-        compressible: false,
-        extensions: ["docx"]
-      },
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document.glossary+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.endnotes+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.fonttable+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.footnotes+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.numbering+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.settings+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.template": {
-        source: "iana",
-        extensions: ["dotx"]
-      },
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.template.main+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.websettings+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-package.core-properties+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-package.digital-signature-xmlsignature+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.openxmlformats-package.relationships+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oracle.resource+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.orange.indata": {
-        source: "iana"
-      },
-      "application/vnd.osa.netdeploy": {
-        source: "iana"
-      },
-      "application/vnd.osgeo.mapguide.package": {
-        source: "iana",
-        extensions: ["mgp"]
-      },
-      "application/vnd.osgi.bundle": {
-        source: "iana"
-      },
-      "application/vnd.osgi.dp": {
-        source: "iana",
-        extensions: ["dp"]
-      },
-      "application/vnd.osgi.subsystem": {
-        source: "iana",
-        extensions: ["esa"]
-      },
-      "application/vnd.otps.ct-kip+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.oxli.countgraph": {
-        source: "iana"
-      },
-      "application/vnd.pagerduty+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.palm": {
-        source: "iana",
-        extensions: ["pdb", "pqa", "oprc"]
-      },
-      "application/vnd.panoply": {
-        source: "iana"
-      },
-      "application/vnd.paos.xml": {
-        source: "iana"
-      },
-      "application/vnd.patentdive": {
-        source: "iana"
-      },
-      "application/vnd.patientecommsdoc": {
-        source: "iana"
-      },
-      "application/vnd.pawaafile": {
-        source: "iana",
-        extensions: ["paw"]
-      },
-      "application/vnd.pcos": {
-        source: "iana"
-      },
-      "application/vnd.pg.format": {
-        source: "iana",
-        extensions: ["str"]
-      },
-      "application/vnd.pg.osasli": {
-        source: "iana",
-        extensions: ["ei6"]
-      },
-      "application/vnd.piaccess.application-licence": {
-        source: "iana"
-      },
-      "application/vnd.picsel": {
-        source: "iana",
-        extensions: ["efif"]
-      },
-      "application/vnd.pmi.widget": {
-        source: "iana",
-        extensions: ["wg"]
-      },
-      "application/vnd.poc.group-advertisement+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.pocketlearn": {
-        source: "iana",
-        extensions: ["plf"]
-      },
-      "application/vnd.powerbuilder6": {
-        source: "iana",
-        extensions: ["pbd"]
-      },
-      "application/vnd.powerbuilder6-s": {
-        source: "iana"
-      },
-      "application/vnd.powerbuilder7": {
-        source: "iana"
-      },
-      "application/vnd.powerbuilder7-s": {
-        source: "iana"
-      },
-      "application/vnd.powerbuilder75": {
-        source: "iana"
-      },
-      "application/vnd.powerbuilder75-s": {
-        source: "iana"
-      },
-      "application/vnd.preminet": {
-        source: "iana"
-      },
-      "application/vnd.previewsystems.box": {
-        source: "iana",
-        extensions: ["box"]
-      },
-      "application/vnd.proteus.magazine": {
-        source: "iana",
-        extensions: ["mgz"]
-      },
-      "application/vnd.psfs": {
-        source: "iana"
-      },
-      "application/vnd.publishare-delta-tree": {
-        source: "iana",
-        extensions: ["qps"]
-      },
-      "application/vnd.pvi.ptid1": {
-        source: "iana",
-        extensions: ["ptid"]
-      },
-      "application/vnd.pwg-multiplexed": {
-        source: "iana"
-      },
-      "application/vnd.pwg-xhtml-print+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.qualcomm.brew-app-res": {
-        source: "iana"
-      },
-      "application/vnd.quarantainenet": {
-        source: "iana"
-      },
-      "application/vnd.quark.quarkxpress": {
-        source: "iana",
-        extensions: ["qxd", "qxt", "qwd", "qwt", "qxl", "qxb"]
-      },
-      "application/vnd.quobject-quoxdocument": {
-        source: "iana"
-      },
-      "application/vnd.radisys.moml+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.radisys.msml+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.radisys.msml-audit+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.radisys.msml-audit-conf+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.radisys.msml-audit-conn+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.radisys.msml-audit-dialog+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.radisys.msml-audit-stream+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.radisys.msml-conf+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.radisys.msml-dialog+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.radisys.msml-dialog-base+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.radisys.msml-dialog-fax-detect+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.radisys.msml-dialog-fax-sendrecv+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.radisys.msml-dialog-group+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.radisys.msml-dialog-speech+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.radisys.msml-dialog-transform+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.rainstor.data": {
-        source: "iana"
-      },
-      "application/vnd.rapid": {
-        source: "iana"
-      },
-      "application/vnd.rar": {
-        source: "iana",
-        extensions: ["rar"]
-      },
-      "application/vnd.realvnc.bed": {
-        source: "iana",
-        extensions: ["bed"]
-      },
-      "application/vnd.recordare.musicxml": {
-        source: "iana",
-        extensions: ["mxl"]
-      },
-      "application/vnd.recordare.musicxml+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["musicxml"]
-      },
-      "application/vnd.renlearn.rlprint": {
-        source: "iana"
-      },
-      "application/vnd.resilient.logic": {
-        source: "iana"
-      },
-      "application/vnd.restful+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.rig.cryptonote": {
-        source: "iana",
-        extensions: ["cryptonote"]
-      },
-      "application/vnd.rim.cod": {
-        source: "apache",
-        extensions: ["cod"]
-      },
-      "application/vnd.rn-realmedia": {
-        source: "apache",
-        extensions: ["rm"]
-      },
-      "application/vnd.rn-realmedia-vbr": {
-        source: "apache",
-        extensions: ["rmvb"]
-      },
-      "application/vnd.route66.link66+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["link66"]
-      },
-      "application/vnd.rs-274x": {
-        source: "iana"
-      },
-      "application/vnd.ruckus.download": {
-        source: "iana"
-      },
-      "application/vnd.s3sms": {
-        source: "iana"
-      },
-      "application/vnd.sailingtracker.track": {
-        source: "iana",
-        extensions: ["st"]
-      },
-      "application/vnd.sar": {
-        source: "iana"
-      },
-      "application/vnd.sbm.cid": {
-        source: "iana"
-      },
-      "application/vnd.sbm.mid2": {
-        source: "iana"
-      },
-      "application/vnd.scribus": {
-        source: "iana"
-      },
-      "application/vnd.sealed.3df": {
-        source: "iana"
-      },
-      "application/vnd.sealed.csf": {
-        source: "iana"
-      },
-      "application/vnd.sealed.doc": {
-        source: "iana"
-      },
-      "application/vnd.sealed.eml": {
-        source: "iana"
-      },
-      "application/vnd.sealed.mht": {
-        source: "iana"
-      },
-      "application/vnd.sealed.net": {
-        source: "iana"
-      },
-      "application/vnd.sealed.ppt": {
-        source: "iana"
-      },
-      "application/vnd.sealed.tiff": {
-        source: "iana"
-      },
-      "application/vnd.sealed.xls": {
-        source: "iana"
-      },
-      "application/vnd.sealedmedia.softseal.html": {
-        source: "iana"
-      },
-      "application/vnd.sealedmedia.softseal.pdf": {
-        source: "iana"
-      },
-      "application/vnd.seemail": {
-        source: "iana",
-        extensions: ["see"]
-      },
-      "application/vnd.seis+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.sema": {
-        source: "iana",
-        extensions: ["sema"]
-      },
-      "application/vnd.semd": {
-        source: "iana",
-        extensions: ["semd"]
-      },
-      "application/vnd.semf": {
-        source: "iana",
-        extensions: ["semf"]
-      },
-      "application/vnd.shade-save-file": {
-        source: "iana"
-      },
-      "application/vnd.shana.informed.formdata": {
-        source: "iana",
-        extensions: ["ifm"]
-      },
-      "application/vnd.shana.informed.formtemplate": {
-        source: "iana",
-        extensions: ["itp"]
-      },
-      "application/vnd.shana.informed.interchange": {
-        source: "iana",
-        extensions: ["iif"]
-      },
-      "application/vnd.shana.informed.package": {
-        source: "iana",
-        extensions: ["ipk"]
-      },
-      "application/vnd.shootproof+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.shopkick+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.shp": {
-        source: "iana"
-      },
-      "application/vnd.shx": {
-        source: "iana"
-      },
-      "application/vnd.sigrok.session": {
-        source: "iana"
-      },
-      "application/vnd.simtech-mindmapper": {
-        source: "iana",
-        extensions: ["twd", "twds"]
-      },
-      "application/vnd.siren+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.smaf": {
-        source: "iana",
-        extensions: ["mmf"]
-      },
-      "application/vnd.smart.notebook": {
-        source: "iana"
-      },
-      "application/vnd.smart.teacher": {
-        source: "iana",
-        extensions: ["teacher"]
-      },
-      "application/vnd.snesdev-page-table": {
-        source: "iana"
-      },
-      "application/vnd.software602.filler.form+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["fo"]
-      },
-      "application/vnd.software602.filler.form-xml-zip": {
-        source: "iana"
-      },
-      "application/vnd.solent.sdkm+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["sdkm", "sdkd"]
-      },
-      "application/vnd.spotfire.dxp": {
-        source: "iana",
-        extensions: ["dxp"]
-      },
-      "application/vnd.spotfire.sfs": {
-        source: "iana",
-        extensions: ["sfs"]
-      },
-      "application/vnd.sqlite3": {
-        source: "iana"
-      },
-      "application/vnd.sss-cod": {
-        source: "iana"
-      },
-      "application/vnd.sss-dtf": {
-        source: "iana"
-      },
-      "application/vnd.sss-ntf": {
-        source: "iana"
-      },
-      "application/vnd.stardivision.calc": {
-        source: "apache",
-        extensions: ["sdc"]
-      },
-      "application/vnd.stardivision.draw": {
-        source: "apache",
-        extensions: ["sda"]
-      },
-      "application/vnd.stardivision.impress": {
-        source: "apache",
-        extensions: ["sdd"]
-      },
-      "application/vnd.stardivision.math": {
-        source: "apache",
-        extensions: ["smf"]
-      },
-      "application/vnd.stardivision.writer": {
-        source: "apache",
-        extensions: ["sdw", "vor"]
-      },
-      "application/vnd.stardivision.writer-global": {
-        source: "apache",
-        extensions: ["sgl"]
-      },
-      "application/vnd.stepmania.package": {
-        source: "iana",
-        extensions: ["smzip"]
-      },
-      "application/vnd.stepmania.stepchart": {
-        source: "iana",
-        extensions: ["sm"]
-      },
-      "application/vnd.street-stream": {
-        source: "iana"
-      },
-      "application/vnd.sun.wadl+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["wadl"]
-      },
-      "application/vnd.sun.xml.calc": {
-        source: "apache",
-        extensions: ["sxc"]
-      },
-      "application/vnd.sun.xml.calc.template": {
-        source: "apache",
-        extensions: ["stc"]
-      },
-      "application/vnd.sun.xml.draw": {
-        source: "apache",
-        extensions: ["sxd"]
-      },
-      "application/vnd.sun.xml.draw.template": {
-        source: "apache",
-        extensions: ["std"]
-      },
-      "application/vnd.sun.xml.impress": {
-        source: "apache",
-        extensions: ["sxi"]
-      },
-      "application/vnd.sun.xml.impress.template": {
-        source: "apache",
-        extensions: ["sti"]
-      },
-      "application/vnd.sun.xml.math": {
-        source: "apache",
-        extensions: ["sxm"]
-      },
-      "application/vnd.sun.xml.writer": {
-        source: "apache",
-        extensions: ["sxw"]
-      },
-      "application/vnd.sun.xml.writer.global": {
-        source: "apache",
-        extensions: ["sxg"]
-      },
-      "application/vnd.sun.xml.writer.template": {
-        source: "apache",
-        extensions: ["stw"]
-      },
-      "application/vnd.sus-calendar": {
-        source: "iana",
-        extensions: ["sus", "susp"]
-      },
-      "application/vnd.svd": {
-        source: "iana",
-        extensions: ["svd"]
-      },
-      "application/vnd.swiftview-ics": {
-        source: "iana"
-      },
-      "application/vnd.sycle+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.syft+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.symbian.install": {
-        source: "apache",
-        extensions: ["sis", "sisx"]
-      },
-      "application/vnd.syncml+xml": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true,
-        extensions: ["xsm"]
-      },
-      "application/vnd.syncml.dm+wbxml": {
-        source: "iana",
-        charset: "UTF-8",
-        extensions: ["bdm"]
-      },
-      "application/vnd.syncml.dm+xml": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true,
-        extensions: ["xdm"]
-      },
-      "application/vnd.syncml.dm.notification": {
-        source: "iana"
-      },
-      "application/vnd.syncml.dmddf+wbxml": {
-        source: "iana"
-      },
-      "application/vnd.syncml.dmddf+xml": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true,
-        extensions: ["ddf"]
-      },
-      "application/vnd.syncml.dmtnds+wbxml": {
-        source: "iana"
-      },
-      "application/vnd.syncml.dmtnds+xml": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true
-      },
-      "application/vnd.syncml.ds.notification": {
-        source: "iana"
-      },
-      "application/vnd.tableschema+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.tao.intent-module-archive": {
-        source: "iana",
-        extensions: ["tao"]
-      },
-      "application/vnd.tcpdump.pcap": {
-        source: "iana",
-        extensions: ["pcap", "cap", "dmp"]
-      },
-      "application/vnd.think-cell.ppttc+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.tmd.mediaflex.api+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.tml": {
-        source: "iana"
-      },
-      "application/vnd.tmobile-livetv": {
-        source: "iana",
-        extensions: ["tmo"]
-      },
-      "application/vnd.tri.onesource": {
-        source: "iana"
-      },
-      "application/vnd.trid.tpt": {
-        source: "iana",
-        extensions: ["tpt"]
-      },
-      "application/vnd.triscape.mxs": {
-        source: "iana",
-        extensions: ["mxs"]
-      },
-      "application/vnd.trueapp": {
-        source: "iana",
-        extensions: ["tra"]
-      },
-      "application/vnd.truedoc": {
-        source: "iana"
-      },
-      "application/vnd.ubisoft.webplayer": {
-        source: "iana"
-      },
-      "application/vnd.ufdl": {
-        source: "iana",
-        extensions: ["ufd", "ufdl"]
-      },
-      "application/vnd.uiq.theme": {
-        source: "iana",
-        extensions: ["utz"]
-      },
-      "application/vnd.umajin": {
-        source: "iana",
-        extensions: ["umj"]
-      },
-      "application/vnd.unity": {
-        source: "iana",
-        extensions: ["unityweb"]
-      },
-      "application/vnd.uoml+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["uoml"]
-      },
-      "application/vnd.uplanet.alert": {
-        source: "iana"
-      },
-      "application/vnd.uplanet.alert-wbxml": {
-        source: "iana"
-      },
-      "application/vnd.uplanet.bearer-choice": {
-        source: "iana"
-      },
-      "application/vnd.uplanet.bearer-choice-wbxml": {
-        source: "iana"
-      },
-      "application/vnd.uplanet.cacheop": {
-        source: "iana"
-      },
-      "application/vnd.uplanet.cacheop-wbxml": {
-        source: "iana"
-      },
-      "application/vnd.uplanet.channel": {
-        source: "iana"
-      },
-      "application/vnd.uplanet.channel-wbxml": {
-        source: "iana"
-      },
-      "application/vnd.uplanet.list": {
-        source: "iana"
-      },
-      "application/vnd.uplanet.list-wbxml": {
-        source: "iana"
-      },
-      "application/vnd.uplanet.listcmd": {
-        source: "iana"
-      },
-      "application/vnd.uplanet.listcmd-wbxml": {
-        source: "iana"
-      },
-      "application/vnd.uplanet.signal": {
-        source: "iana"
-      },
-      "application/vnd.uri-map": {
-        source: "iana"
-      },
-      "application/vnd.valve.source.material": {
-        source: "iana"
-      },
-      "application/vnd.vcx": {
-        source: "iana",
-        extensions: ["vcx"]
-      },
-      "application/vnd.vd-study": {
-        source: "iana"
-      },
-      "application/vnd.vectorworks": {
-        source: "iana"
-      },
-      "application/vnd.vel+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.verimatrix.vcas": {
-        source: "iana"
-      },
-      "application/vnd.veritone.aion+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.veryant.thin": {
-        source: "iana"
-      },
-      "application/vnd.ves.encrypted": {
-        source: "iana"
-      },
-      "application/vnd.vidsoft.vidconference": {
-        source: "iana"
-      },
-      "application/vnd.visio": {
-        source: "iana",
-        extensions: ["vsd", "vst", "vss", "vsw"]
-      },
-      "application/vnd.visionary": {
-        source: "iana",
-        extensions: ["vis"]
-      },
-      "application/vnd.vividence.scriptfile": {
-        source: "iana"
-      },
-      "application/vnd.vsf": {
-        source: "iana",
-        extensions: ["vsf"]
-      },
-      "application/vnd.wap.sic": {
-        source: "iana"
-      },
-      "application/vnd.wap.slc": {
-        source: "iana"
-      },
-      "application/vnd.wap.wbxml": {
-        source: "iana",
-        charset: "UTF-8",
-        extensions: ["wbxml"]
-      },
-      "application/vnd.wap.wmlc": {
-        source: "iana",
-        extensions: ["wmlc"]
-      },
-      "application/vnd.wap.wmlscriptc": {
-        source: "iana",
-        extensions: ["wmlsc"]
-      },
-      "application/vnd.webturbo": {
-        source: "iana",
-        extensions: ["wtb"]
-      },
-      "application/vnd.wfa.dpp": {
-        source: "iana"
-      },
-      "application/vnd.wfa.p2p": {
-        source: "iana"
-      },
-      "application/vnd.wfa.wsc": {
-        source: "iana"
-      },
-      "application/vnd.windows.devicepairing": {
-        source: "iana"
-      },
-      "application/vnd.wmc": {
-        source: "iana"
-      },
-      "application/vnd.wmf.bootstrap": {
-        source: "iana"
-      },
-      "application/vnd.wolfram.mathematica": {
-        source: "iana"
-      },
-      "application/vnd.wolfram.mathematica.package": {
-        source: "iana"
-      },
-      "application/vnd.wolfram.player": {
-        source: "iana",
-        extensions: ["nbp"]
-      },
-      "application/vnd.wordperfect": {
-        source: "iana",
-        extensions: ["wpd"]
-      },
-      "application/vnd.wqd": {
-        source: "iana",
-        extensions: ["wqd"]
-      },
-      "application/vnd.wrq-hp3000-labelled": {
-        source: "iana"
-      },
-      "application/vnd.wt.stf": {
-        source: "iana",
-        extensions: ["stf"]
-      },
-      "application/vnd.wv.csp+wbxml": {
-        source: "iana"
-      },
-      "application/vnd.wv.csp+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.wv.ssp+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.xacml+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.xara": {
-        source: "iana",
-        extensions: ["xar"]
-      },
-      "application/vnd.xfdl": {
-        source: "iana",
-        extensions: ["xfdl"]
-      },
-      "application/vnd.xfdl.webform": {
-        source: "iana"
-      },
-      "application/vnd.xmi+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vnd.xmpie.cpkg": {
-        source: "iana"
-      },
-      "application/vnd.xmpie.dpkg": {
-        source: "iana"
-      },
-      "application/vnd.xmpie.plan": {
-        source: "iana"
-      },
-      "application/vnd.xmpie.ppkg": {
-        source: "iana"
-      },
-      "application/vnd.xmpie.xlim": {
-        source: "iana"
-      },
-      "application/vnd.yamaha.hv-dic": {
-        source: "iana",
-        extensions: ["hvd"]
-      },
-      "application/vnd.yamaha.hv-script": {
-        source: "iana",
-        extensions: ["hvs"]
-      },
-      "application/vnd.yamaha.hv-voice": {
-        source: "iana",
-        extensions: ["hvp"]
-      },
-      "application/vnd.yamaha.openscoreformat": {
-        source: "iana",
-        extensions: ["osf"]
-      },
-      "application/vnd.yamaha.openscoreformat.osfpvg+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["osfpvg"]
-      },
-      "application/vnd.yamaha.remote-setup": {
-        source: "iana"
-      },
-      "application/vnd.yamaha.smaf-audio": {
-        source: "iana",
-        extensions: ["saf"]
-      },
-      "application/vnd.yamaha.smaf-phrase": {
-        source: "iana",
-        extensions: ["spf"]
-      },
-      "application/vnd.yamaha.through-ngn": {
-        source: "iana"
-      },
-      "application/vnd.yamaha.tunnel-udpencap": {
-        source: "iana"
-      },
-      "application/vnd.yaoweme": {
-        source: "iana"
-      },
-      "application/vnd.yellowriver-custom-menu": {
-        source: "iana",
-        extensions: ["cmp"]
-      },
-      "application/vnd.youtube.yt": {
-        source: "iana"
-      },
-      "application/vnd.zul": {
-        source: "iana",
-        extensions: ["zir", "zirz"]
-      },
-      "application/vnd.zzazz.deck+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["zaz"]
-      },
-      "application/voicexml+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["vxml"]
-      },
-      "application/voucher-cms+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/vq-rtcpxr": {
-        source: "iana"
-      },
-      "application/wasm": {
-        source: "iana",
-        compressible: true,
-        extensions: ["wasm"]
-      },
-      "application/watcherinfo+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["wif"]
-      },
-      "application/webpush-options+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/whoispp-query": {
-        source: "iana"
-      },
-      "application/whoispp-response": {
-        source: "iana"
-      },
-      "application/widget": {
-        source: "iana",
-        extensions: ["wgt"]
-      },
-      "application/winhlp": {
-        source: "apache",
-        extensions: ["hlp"]
-      },
-      "application/wita": {
-        source: "iana"
-      },
-      "application/wordperfect5.1": {
-        source: "iana"
-      },
-      "application/wsdl+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["wsdl"]
-      },
-      "application/wspolicy+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["wspolicy"]
-      },
-      "application/x-7z-compressed": {
-        source: "apache",
-        compressible: false,
-        extensions: ["7z"]
-      },
-      "application/x-abiword": {
-        source: "apache",
-        extensions: ["abw"]
-      },
-      "application/x-ace-compressed": {
-        source: "apache",
-        extensions: ["ace"]
-      },
-      "application/x-amf": {
-        source: "apache"
-      },
-      "application/x-apple-diskimage": {
-        source: "apache",
-        extensions: ["dmg"]
-      },
-      "application/x-arj": {
-        compressible: false,
-        extensions: ["arj"]
-      },
-      "application/x-authorware-bin": {
-        source: "apache",
-        extensions: ["aab", "x32", "u32", "vox"]
-      },
-      "application/x-authorware-map": {
-        source: "apache",
-        extensions: ["aam"]
-      },
-      "application/x-authorware-seg": {
-        source: "apache",
-        extensions: ["aas"]
-      },
-      "application/x-bcpio": {
-        source: "apache",
-        extensions: ["bcpio"]
-      },
-      "application/x-bdoc": {
-        compressible: false,
-        extensions: ["bdoc"]
-      },
-      "application/x-bittorrent": {
-        source: "apache",
-        extensions: ["torrent"]
-      },
-      "application/x-blorb": {
-        source: "apache",
-        extensions: ["blb", "blorb"]
-      },
-      "application/x-bzip": {
-        source: "apache",
-        compressible: false,
-        extensions: ["bz"]
-      },
-      "application/x-bzip2": {
-        source: "apache",
-        compressible: false,
-        extensions: ["bz2", "boz"]
-      },
-      "application/x-cbr": {
-        source: "apache",
-        extensions: ["cbr", "cba", "cbt", "cbz", "cb7"]
-      },
-      "application/x-cdlink": {
-        source: "apache",
-        extensions: ["vcd"]
-      },
-      "application/x-cfs-compressed": {
-        source: "apache",
-        extensions: ["cfs"]
-      },
-      "application/x-chat": {
-        source: "apache",
-        extensions: ["chat"]
-      },
-      "application/x-chess-pgn": {
-        source: "apache",
-        extensions: ["pgn"]
-      },
-      "application/x-chrome-extension": {
-        extensions: ["crx"]
-      },
-      "application/x-cocoa": {
-        source: "nginx",
-        extensions: ["cco"]
-      },
-      "application/x-compress": {
-        source: "apache"
-      },
-      "application/x-conference": {
-        source: "apache",
-        extensions: ["nsc"]
-      },
-      "application/x-cpio": {
-        source: "apache",
-        extensions: ["cpio"]
-      },
-      "application/x-csh": {
-        source: "apache",
-        extensions: ["csh"]
-      },
-      "application/x-deb": {
-        compressible: false
-      },
-      "application/x-debian-package": {
-        source: "apache",
-        extensions: ["deb", "udeb"]
-      },
-      "application/x-dgc-compressed": {
-        source: "apache",
-        extensions: ["dgc"]
-      },
-      "application/x-director": {
-        source: "apache",
-        extensions: ["dir", "dcr", "dxr", "cst", "cct", "cxt", "w3d", "fgd", "swa"]
-      },
-      "application/x-doom": {
-        source: "apache",
-        extensions: ["wad"]
-      },
-      "application/x-dtbncx+xml": {
-        source: "apache",
-        compressible: true,
-        extensions: ["ncx"]
-      },
-      "application/x-dtbook+xml": {
-        source: "apache",
-        compressible: true,
-        extensions: ["dtb"]
-      },
-      "application/x-dtbresource+xml": {
-        source: "apache",
-        compressible: true,
-        extensions: ["res"]
-      },
-      "application/x-dvi": {
-        source: "apache",
-        compressible: false,
-        extensions: ["dvi"]
-      },
-      "application/x-envoy": {
-        source: "apache",
-        extensions: ["evy"]
-      },
-      "application/x-eva": {
-        source: "apache",
-        extensions: ["eva"]
-      },
-      "application/x-font-bdf": {
-        source: "apache",
-        extensions: ["bdf"]
-      },
-      "application/x-font-dos": {
-        source: "apache"
-      },
-      "application/x-font-framemaker": {
-        source: "apache"
-      },
-      "application/x-font-ghostscript": {
-        source: "apache",
-        extensions: ["gsf"]
-      },
-      "application/x-font-libgrx": {
-        source: "apache"
-      },
-      "application/x-font-linux-psf": {
-        source: "apache",
-        extensions: ["psf"]
-      },
-      "application/x-font-pcf": {
-        source: "apache",
-        extensions: ["pcf"]
-      },
-      "application/x-font-snf": {
-        source: "apache",
-        extensions: ["snf"]
-      },
-      "application/x-font-speedo": {
-        source: "apache"
-      },
-      "application/x-font-sunos-news": {
-        source: "apache"
-      },
-      "application/x-font-type1": {
-        source: "apache",
-        extensions: ["pfa", "pfb", "pfm", "afm"]
-      },
-      "application/x-font-vfont": {
-        source: "apache"
-      },
-      "application/x-freearc": {
-        source: "apache",
-        extensions: ["arc"]
-      },
-      "application/x-futuresplash": {
-        source: "apache",
-        extensions: ["spl"]
-      },
-      "application/x-gca-compressed": {
-        source: "apache",
-        extensions: ["gca"]
-      },
-      "application/x-glulx": {
-        source: "apache",
-        extensions: ["ulx"]
-      },
-      "application/x-gnumeric": {
-        source: "apache",
-        extensions: ["gnumeric"]
-      },
-      "application/x-gramps-xml": {
-        source: "apache",
-        extensions: ["gramps"]
-      },
-      "application/x-gtar": {
-        source: "apache",
-        extensions: ["gtar"]
-      },
-      "application/x-gzip": {
-        source: "apache"
-      },
-      "application/x-hdf": {
-        source: "apache",
-        extensions: ["hdf"]
-      },
-      "application/x-httpd-php": {
-        compressible: true,
-        extensions: ["php"]
-      },
-      "application/x-install-instructions": {
-        source: "apache",
-        extensions: ["install"]
-      },
-      "application/x-iso9660-image": {
-        source: "apache",
-        extensions: ["iso"]
-      },
-      "application/x-iwork-keynote-sffkey": {
-        extensions: ["key"]
-      },
-      "application/x-iwork-numbers-sffnumbers": {
-        extensions: ["numbers"]
-      },
-      "application/x-iwork-pages-sffpages": {
-        extensions: ["pages"]
-      },
-      "application/x-java-archive-diff": {
-        source: "nginx",
-        extensions: ["jardiff"]
-      },
-      "application/x-java-jnlp-file": {
-        source: "apache",
-        compressible: false,
-        extensions: ["jnlp"]
-      },
-      "application/x-javascript": {
-        compressible: true
-      },
-      "application/x-keepass2": {
-        extensions: ["kdbx"]
-      },
-      "application/x-latex": {
-        source: "apache",
-        compressible: false,
-        extensions: ["latex"]
-      },
-      "application/x-lua-bytecode": {
-        extensions: ["luac"]
-      },
-      "application/x-lzh-compressed": {
-        source: "apache",
-        extensions: ["lzh", "lha"]
-      },
-      "application/x-makeself": {
-        source: "nginx",
-        extensions: ["run"]
-      },
-      "application/x-mie": {
-        source: "apache",
-        extensions: ["mie"]
-      },
-      "application/x-mobipocket-ebook": {
-        source: "apache",
-        extensions: ["prc", "mobi"]
-      },
-      "application/x-mpegurl": {
-        compressible: false
-      },
-      "application/x-ms-application": {
-        source: "apache",
-        extensions: ["application"]
-      },
-      "application/x-ms-shortcut": {
-        source: "apache",
-        extensions: ["lnk"]
-      },
-      "application/x-ms-wmd": {
-        source: "apache",
-        extensions: ["wmd"]
-      },
-      "application/x-ms-wmz": {
-        source: "apache",
-        extensions: ["wmz"]
-      },
-      "application/x-ms-xbap": {
-        source: "apache",
-        extensions: ["xbap"]
-      },
-      "application/x-msaccess": {
-        source: "apache",
-        extensions: ["mdb"]
-      },
-      "application/x-msbinder": {
-        source: "apache",
-        extensions: ["obd"]
-      },
-      "application/x-mscardfile": {
-        source: "apache",
-        extensions: ["crd"]
-      },
-      "application/x-msclip": {
-        source: "apache",
-        extensions: ["clp"]
-      },
-      "application/x-msdos-program": {
-        extensions: ["exe"]
-      },
-      "application/x-msdownload": {
-        source: "apache",
-        extensions: ["exe", "dll", "com", "bat", "msi"]
-      },
-      "application/x-msmediaview": {
-        source: "apache",
-        extensions: ["mvb", "m13", "m14"]
-      },
-      "application/x-msmetafile": {
-        source: "apache",
-        extensions: ["wmf", "wmz", "emf", "emz"]
-      },
-      "application/x-msmoney": {
-        source: "apache",
-        extensions: ["mny"]
-      },
-      "application/x-mspublisher": {
-        source: "apache",
-        extensions: ["pub"]
-      },
-      "application/x-msschedule": {
-        source: "apache",
-        extensions: ["scd"]
-      },
-      "application/x-msterminal": {
-        source: "apache",
-        extensions: ["trm"]
-      },
-      "application/x-mswrite": {
-        source: "apache",
-        extensions: ["wri"]
-      },
-      "application/x-netcdf": {
-        source: "apache",
-        extensions: ["nc", "cdf"]
-      },
-      "application/x-ns-proxy-autoconfig": {
-        compressible: true,
-        extensions: ["pac"]
-      },
-      "application/x-nzb": {
-        source: "apache",
-        extensions: ["nzb"]
-      },
-      "application/x-perl": {
-        source: "nginx",
-        extensions: ["pl", "pm"]
-      },
-      "application/x-pilot": {
-        source: "nginx",
-        extensions: ["prc", "pdb"]
-      },
-      "application/x-pkcs12": {
-        source: "apache",
-        compressible: false,
-        extensions: ["p12", "pfx"]
-      },
-      "application/x-pkcs7-certificates": {
-        source: "apache",
-        extensions: ["p7b", "spc"]
-      },
-      "application/x-pkcs7-certreqresp": {
-        source: "apache",
-        extensions: ["p7r"]
-      },
-      "application/x-pki-message": {
-        source: "iana"
-      },
-      "application/x-rar-compressed": {
-        source: "apache",
-        compressible: false,
-        extensions: ["rar"]
-      },
-      "application/x-redhat-package-manager": {
-        source: "nginx",
-        extensions: ["rpm"]
-      },
-      "application/x-research-info-systems": {
-        source: "apache",
-        extensions: ["ris"]
-      },
-      "application/x-sea": {
-        source: "nginx",
-        extensions: ["sea"]
-      },
-      "application/x-sh": {
-        source: "apache",
-        compressible: true,
-        extensions: ["sh"]
-      },
-      "application/x-shar": {
-        source: "apache",
-        extensions: ["shar"]
-      },
-      "application/x-shockwave-flash": {
-        source: "apache",
-        compressible: false,
-        extensions: ["swf"]
-      },
-      "application/x-silverlight-app": {
-        source: "apache",
-        extensions: ["xap"]
-      },
-      "application/x-sql": {
-        source: "apache",
-        extensions: ["sql"]
-      },
-      "application/x-stuffit": {
-        source: "apache",
-        compressible: false,
-        extensions: ["sit"]
-      },
-      "application/x-stuffitx": {
-        source: "apache",
-        extensions: ["sitx"]
-      },
-      "application/x-subrip": {
-        source: "apache",
-        extensions: ["srt"]
-      },
-      "application/x-sv4cpio": {
-        source: "apache",
-        extensions: ["sv4cpio"]
-      },
-      "application/x-sv4crc": {
-        source: "apache",
-        extensions: ["sv4crc"]
-      },
-      "application/x-t3vm-image": {
-        source: "apache",
-        extensions: ["t3"]
-      },
-      "application/x-tads": {
-        source: "apache",
-        extensions: ["gam"]
-      },
-      "application/x-tar": {
-        source: "apache",
-        compressible: true,
-        extensions: ["tar"]
-      },
-      "application/x-tcl": {
-        source: "apache",
-        extensions: ["tcl", "tk"]
-      },
-      "application/x-tex": {
-        source: "apache",
-        extensions: ["tex"]
-      },
-      "application/x-tex-tfm": {
-        source: "apache",
-        extensions: ["tfm"]
-      },
-      "application/x-texinfo": {
-        source: "apache",
-        extensions: ["texinfo", "texi"]
-      },
-      "application/x-tgif": {
-        source: "apache",
-        extensions: ["obj"]
-      },
-      "application/x-ustar": {
-        source: "apache",
-        extensions: ["ustar"]
-      },
-      "application/x-virtualbox-hdd": {
-        compressible: true,
-        extensions: ["hdd"]
-      },
-      "application/x-virtualbox-ova": {
-        compressible: true,
-        extensions: ["ova"]
-      },
-      "application/x-virtualbox-ovf": {
-        compressible: true,
-        extensions: ["ovf"]
-      },
-      "application/x-virtualbox-vbox": {
-        compressible: true,
-        extensions: ["vbox"]
-      },
-      "application/x-virtualbox-vbox-extpack": {
-        compressible: false,
-        extensions: ["vbox-extpack"]
-      },
-      "application/x-virtualbox-vdi": {
-        compressible: true,
-        extensions: ["vdi"]
-      },
-      "application/x-virtualbox-vhd": {
-        compressible: true,
-        extensions: ["vhd"]
-      },
-      "application/x-virtualbox-vmdk": {
-        compressible: true,
-        extensions: ["vmdk"]
-      },
-      "application/x-wais-source": {
-        source: "apache",
-        extensions: ["src"]
-      },
-      "application/x-web-app-manifest+json": {
-        compressible: true,
-        extensions: ["webapp"]
-      },
-      "application/x-www-form-urlencoded": {
-        source: "iana",
-        compressible: true
-      },
-      "application/x-x509-ca-cert": {
-        source: "iana",
-        extensions: ["der", "crt", "pem"]
-      },
-      "application/x-x509-ca-ra-cert": {
-        source: "iana"
-      },
-      "application/x-x509-next-ca-cert": {
-        source: "iana"
-      },
-      "application/x-xfig": {
-        source: "apache",
-        extensions: ["fig"]
-      },
-      "application/x-xliff+xml": {
-        source: "apache",
-        compressible: true,
-        extensions: ["xlf"]
-      },
-      "application/x-xpinstall": {
-        source: "apache",
-        compressible: false,
-        extensions: ["xpi"]
-      },
-      "application/x-xz": {
-        source: "apache",
-        extensions: ["xz"]
-      },
-      "application/x-zmachine": {
-        source: "apache",
-        extensions: ["z1", "z2", "z3", "z4", "z5", "z6", "z7", "z8"]
-      },
-      "application/x400-bp": {
-        source: "iana"
-      },
-      "application/xacml+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/xaml+xml": {
-        source: "apache",
-        compressible: true,
-        extensions: ["xaml"]
-      },
-      "application/xcap-att+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["xav"]
-      },
-      "application/xcap-caps+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["xca"]
-      },
-      "application/xcap-diff+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["xdf"]
-      },
-      "application/xcap-el+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["xel"]
-      },
-      "application/xcap-error+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/xcap-ns+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["xns"]
-      },
-      "application/xcon-conference-info+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/xcon-conference-info-diff+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/xenc+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["xenc"]
-      },
-      "application/xhtml+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["xhtml", "xht"]
-      },
-      "application/xhtml-voice+xml": {
-        source: "apache",
-        compressible: true
-      },
-      "application/xliff+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["xlf"]
-      },
-      "application/xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["xml", "xsl", "xsd", "rng"]
-      },
-      "application/xml-dtd": {
-        source: "iana",
-        compressible: true,
-        extensions: ["dtd"]
-      },
-      "application/xml-external-parsed-entity": {
-        source: "iana"
-      },
-      "application/xml-patch+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/xmpp+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/xop+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["xop"]
-      },
-      "application/xproc+xml": {
-        source: "apache",
-        compressible: true,
-        extensions: ["xpl"]
-      },
-      "application/xslt+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["xsl", "xslt"]
-      },
-      "application/xspf+xml": {
-        source: "apache",
-        compressible: true,
-        extensions: ["xspf"]
-      },
-      "application/xv+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["mxml", "xhvml", "xvml", "xvm"]
-      },
-      "application/yang": {
-        source: "iana",
-        extensions: ["yang"]
-      },
-      "application/yang-data+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/yang-data+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/yang-patch+json": {
-        source: "iana",
-        compressible: true
-      },
-      "application/yang-patch+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "application/yin+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["yin"]
-      },
-      "application/zip": {
-        source: "iana",
-        compressible: false,
-        extensions: ["zip"]
-      },
-      "application/zlib": {
-        source: "iana"
-      },
-      "application/zstd": {
-        source: "iana"
-      },
-      "audio/1d-interleaved-parityfec": {
-        source: "iana"
-      },
-      "audio/32kadpcm": {
-        source: "iana"
-      },
-      "audio/3gpp": {
-        source: "iana",
-        compressible: false,
-        extensions: ["3gpp"]
-      },
-      "audio/3gpp2": {
-        source: "iana"
-      },
-      "audio/aac": {
-        source: "iana"
-      },
-      "audio/ac3": {
-        source: "iana"
-      },
-      "audio/adpcm": {
-        source: "apache",
-        extensions: ["adp"]
-      },
-      "audio/amr": {
-        source: "iana",
-        extensions: ["amr"]
-      },
-      "audio/amr-wb": {
-        source: "iana"
-      },
-      "audio/amr-wb+": {
-        source: "iana"
-      },
-      "audio/aptx": {
-        source: "iana"
-      },
-      "audio/asc": {
-        source: "iana"
-      },
-      "audio/atrac-advanced-lossless": {
-        source: "iana"
-      },
-      "audio/atrac-x": {
-        source: "iana"
-      },
-      "audio/atrac3": {
-        source: "iana"
-      },
-      "audio/basic": {
-        source: "iana",
-        compressible: false,
-        extensions: ["au", "snd"]
-      },
-      "audio/bv16": {
-        source: "iana"
-      },
-      "audio/bv32": {
-        source: "iana"
-      },
-      "audio/clearmode": {
-        source: "iana"
-      },
-      "audio/cn": {
-        source: "iana"
-      },
-      "audio/dat12": {
-        source: "iana"
-      },
-      "audio/dls": {
-        source: "iana"
-      },
-      "audio/dsr-es201108": {
-        source: "iana"
-      },
-      "audio/dsr-es202050": {
-        source: "iana"
-      },
-      "audio/dsr-es202211": {
-        source: "iana"
-      },
-      "audio/dsr-es202212": {
-        source: "iana"
-      },
-      "audio/dv": {
-        source: "iana"
-      },
-      "audio/dvi4": {
-        source: "iana"
-      },
-      "audio/eac3": {
-        source: "iana"
-      },
-      "audio/encaprtp": {
-        source: "iana"
-      },
-      "audio/evrc": {
-        source: "iana"
-      },
-      "audio/evrc-qcp": {
-        source: "iana"
-      },
-      "audio/evrc0": {
-        source: "iana"
-      },
-      "audio/evrc1": {
-        source: "iana"
-      },
-      "audio/evrcb": {
-        source: "iana"
-      },
-      "audio/evrcb0": {
-        source: "iana"
-      },
-      "audio/evrcb1": {
-        source: "iana"
-      },
-      "audio/evrcnw": {
-        source: "iana"
-      },
-      "audio/evrcnw0": {
-        source: "iana"
-      },
-      "audio/evrcnw1": {
-        source: "iana"
-      },
-      "audio/evrcwb": {
-        source: "iana"
-      },
-      "audio/evrcwb0": {
-        source: "iana"
-      },
-      "audio/evrcwb1": {
-        source: "iana"
-      },
-      "audio/evs": {
-        source: "iana"
-      },
-      "audio/flexfec": {
-        source: "iana"
-      },
-      "audio/fwdred": {
-        source: "iana"
-      },
-      "audio/g711-0": {
-        source: "iana"
-      },
-      "audio/g719": {
-        source: "iana"
-      },
-      "audio/g722": {
-        source: "iana"
-      },
-      "audio/g7221": {
-        source: "iana"
-      },
-      "audio/g723": {
-        source: "iana"
-      },
-      "audio/g726-16": {
-        source: "iana"
-      },
-      "audio/g726-24": {
-        source: "iana"
-      },
-      "audio/g726-32": {
-        source: "iana"
-      },
-      "audio/g726-40": {
-        source: "iana"
-      },
-      "audio/g728": {
-        source: "iana"
-      },
-      "audio/g729": {
-        source: "iana"
-      },
-      "audio/g7291": {
-        source: "iana"
-      },
-      "audio/g729d": {
-        source: "iana"
-      },
-      "audio/g729e": {
-        source: "iana"
-      },
-      "audio/gsm": {
-        source: "iana"
-      },
-      "audio/gsm-efr": {
-        source: "iana"
-      },
-      "audio/gsm-hr-08": {
-        source: "iana"
-      },
-      "audio/ilbc": {
-        source: "iana"
-      },
-      "audio/ip-mr_v2.5": {
-        source: "iana"
-      },
-      "audio/isac": {
-        source: "apache"
-      },
-      "audio/l16": {
-        source: "iana"
-      },
-      "audio/l20": {
-        source: "iana"
-      },
-      "audio/l24": {
-        source: "iana",
-        compressible: false
-      },
-      "audio/l8": {
-        source: "iana"
-      },
-      "audio/lpc": {
-        source: "iana"
-      },
-      "audio/melp": {
-        source: "iana"
-      },
-      "audio/melp1200": {
-        source: "iana"
-      },
-      "audio/melp2400": {
-        source: "iana"
-      },
-      "audio/melp600": {
-        source: "iana"
-      },
-      "audio/mhas": {
-        source: "iana"
-      },
-      "audio/midi": {
-        source: "apache",
-        extensions: ["mid", "midi", "kar", "rmi"]
-      },
-      "audio/mobile-xmf": {
-        source: "iana",
-        extensions: ["mxmf"]
-      },
-      "audio/mp3": {
-        compressible: false,
-        extensions: ["mp3"]
-      },
-      "audio/mp4": {
-        source: "iana",
-        compressible: false,
-        extensions: ["m4a", "mp4a"]
-      },
-      "audio/mp4a-latm": {
-        source: "iana"
-      },
-      "audio/mpa": {
-        source: "iana"
-      },
-      "audio/mpa-robust": {
-        source: "iana"
-      },
-      "audio/mpeg": {
-        source: "iana",
-        compressible: false,
-        extensions: ["mpga", "mp2", "mp2a", "mp3", "m2a", "m3a"]
-      },
-      "audio/mpeg4-generic": {
-        source: "iana"
-      },
-      "audio/musepack": {
-        source: "apache"
-      },
-      "audio/ogg": {
-        source: "iana",
-        compressible: false,
-        extensions: ["oga", "ogg", "spx", "opus"]
-      },
-      "audio/opus": {
-        source: "iana"
-      },
-      "audio/parityfec": {
-        source: "iana"
-      },
-      "audio/pcma": {
-        source: "iana"
-      },
-      "audio/pcma-wb": {
-        source: "iana"
-      },
-      "audio/pcmu": {
-        source: "iana"
-      },
-      "audio/pcmu-wb": {
-        source: "iana"
-      },
-      "audio/prs.sid": {
-        source: "iana"
-      },
-      "audio/qcelp": {
-        source: "iana"
-      },
-      "audio/raptorfec": {
-        source: "iana"
-      },
-      "audio/red": {
-        source: "iana"
-      },
-      "audio/rtp-enc-aescm128": {
-        source: "iana"
-      },
-      "audio/rtp-midi": {
-        source: "iana"
-      },
-      "audio/rtploopback": {
-        source: "iana"
-      },
-      "audio/rtx": {
-        source: "iana"
-      },
-      "audio/s3m": {
-        source: "apache",
-        extensions: ["s3m"]
-      },
-      "audio/scip": {
-        source: "iana"
-      },
-      "audio/silk": {
-        source: "apache",
-        extensions: ["sil"]
-      },
-      "audio/smv": {
-        source: "iana"
-      },
-      "audio/smv-qcp": {
-        source: "iana"
-      },
-      "audio/smv0": {
-        source: "iana"
-      },
-      "audio/sofa": {
-        source: "iana"
-      },
-      "audio/sp-midi": {
-        source: "iana"
-      },
-      "audio/speex": {
-        source: "iana"
-      },
-      "audio/t140c": {
-        source: "iana"
-      },
-      "audio/t38": {
-        source: "iana"
-      },
-      "audio/telephone-event": {
-        source: "iana"
-      },
-      "audio/tetra_acelp": {
-        source: "iana"
-      },
-      "audio/tetra_acelp_bb": {
-        source: "iana"
-      },
-      "audio/tone": {
-        source: "iana"
-      },
-      "audio/tsvcis": {
-        source: "iana"
-      },
-      "audio/uemclip": {
-        source: "iana"
-      },
-      "audio/ulpfec": {
-        source: "iana"
-      },
-      "audio/usac": {
-        source: "iana"
-      },
-      "audio/vdvi": {
-        source: "iana"
-      },
-      "audio/vmr-wb": {
-        source: "iana"
-      },
-      "audio/vnd.3gpp.iufp": {
-        source: "iana"
-      },
-      "audio/vnd.4sb": {
-        source: "iana"
-      },
-      "audio/vnd.audiokoz": {
-        source: "iana"
-      },
-      "audio/vnd.celp": {
-        source: "iana"
-      },
-      "audio/vnd.cisco.nse": {
-        source: "iana"
-      },
-      "audio/vnd.cmles.radio-events": {
-        source: "iana"
-      },
-      "audio/vnd.cns.anp1": {
-        source: "iana"
-      },
-      "audio/vnd.cns.inf1": {
-        source: "iana"
-      },
-      "audio/vnd.dece.audio": {
-        source: "iana",
-        extensions: ["uva", "uvva"]
-      },
-      "audio/vnd.digital-winds": {
-        source: "iana",
-        extensions: ["eol"]
-      },
-      "audio/vnd.dlna.adts": {
-        source: "iana"
-      },
-      "audio/vnd.dolby.heaac.1": {
-        source: "iana"
-      },
-      "audio/vnd.dolby.heaac.2": {
-        source: "iana"
-      },
-      "audio/vnd.dolby.mlp": {
-        source: "iana"
-      },
-      "audio/vnd.dolby.mps": {
-        source: "iana"
-      },
-      "audio/vnd.dolby.pl2": {
-        source: "iana"
-      },
-      "audio/vnd.dolby.pl2x": {
-        source: "iana"
-      },
-      "audio/vnd.dolby.pl2z": {
-        source: "iana"
-      },
-      "audio/vnd.dolby.pulse.1": {
-        source: "iana"
-      },
-      "audio/vnd.dra": {
-        source: "iana",
-        extensions: ["dra"]
-      },
-      "audio/vnd.dts": {
-        source: "iana",
-        extensions: ["dts"]
-      },
-      "audio/vnd.dts.hd": {
-        source: "iana",
-        extensions: ["dtshd"]
-      },
-      "audio/vnd.dts.uhd": {
-        source: "iana"
-      },
-      "audio/vnd.dvb.file": {
-        source: "iana"
-      },
-      "audio/vnd.everad.plj": {
-        source: "iana"
-      },
-      "audio/vnd.hns.audio": {
-        source: "iana"
-      },
-      "audio/vnd.lucent.voice": {
-        source: "iana",
-        extensions: ["lvp"]
-      },
-      "audio/vnd.ms-playready.media.pya": {
-        source: "iana",
-        extensions: ["pya"]
-      },
-      "audio/vnd.nokia.mobile-xmf": {
-        source: "iana"
-      },
-      "audio/vnd.nortel.vbk": {
-        source: "iana"
-      },
-      "audio/vnd.nuera.ecelp4800": {
-        source: "iana",
-        extensions: ["ecelp4800"]
-      },
-      "audio/vnd.nuera.ecelp7470": {
-        source: "iana",
-        extensions: ["ecelp7470"]
-      },
-      "audio/vnd.nuera.ecelp9600": {
-        source: "iana",
-        extensions: ["ecelp9600"]
-      },
-      "audio/vnd.octel.sbc": {
-        source: "iana"
-      },
-      "audio/vnd.presonus.multitrack": {
-        source: "iana"
-      },
-      "audio/vnd.qcelp": {
-        source: "iana"
-      },
-      "audio/vnd.rhetorex.32kadpcm": {
-        source: "iana"
-      },
-      "audio/vnd.rip": {
-        source: "iana",
-        extensions: ["rip"]
-      },
-      "audio/vnd.rn-realaudio": {
-        compressible: false
-      },
-      "audio/vnd.sealedmedia.softseal.mpeg": {
-        source: "iana"
-      },
-      "audio/vnd.vmx.cvsd": {
-        source: "iana"
-      },
-      "audio/vnd.wave": {
-        compressible: false
-      },
-      "audio/vorbis": {
-        source: "iana",
-        compressible: false
-      },
-      "audio/vorbis-config": {
-        source: "iana"
-      },
-      "audio/wav": {
-        compressible: false,
-        extensions: ["wav"]
-      },
-      "audio/wave": {
-        compressible: false,
-        extensions: ["wav"]
-      },
-      "audio/webm": {
-        source: "apache",
-        compressible: false,
-        extensions: ["weba"]
-      },
-      "audio/x-aac": {
-        source: "apache",
-        compressible: false,
-        extensions: ["aac"]
-      },
-      "audio/x-aiff": {
-        source: "apache",
-        extensions: ["aif", "aiff", "aifc"]
-      },
-      "audio/x-caf": {
-        source: "apache",
-        compressible: false,
-        extensions: ["caf"]
-      },
-      "audio/x-flac": {
-        source: "apache",
-        extensions: ["flac"]
-      },
-      "audio/x-m4a": {
-        source: "nginx",
-        extensions: ["m4a"]
-      },
-      "audio/x-matroska": {
-        source: "apache",
-        extensions: ["mka"]
-      },
-      "audio/x-mpegurl": {
-        source: "apache",
-        extensions: ["m3u"]
-      },
-      "audio/x-ms-wax": {
-        source: "apache",
-        extensions: ["wax"]
-      },
-      "audio/x-ms-wma": {
-        source: "apache",
-        extensions: ["wma"]
-      },
-      "audio/x-pn-realaudio": {
-        source: "apache",
-        extensions: ["ram", "ra"]
-      },
-      "audio/x-pn-realaudio-plugin": {
-        source: "apache",
-        extensions: ["rmp"]
-      },
-      "audio/x-realaudio": {
-        source: "nginx",
-        extensions: ["ra"]
-      },
-      "audio/x-tta": {
-        source: "apache"
-      },
-      "audio/x-wav": {
-        source: "apache",
-        extensions: ["wav"]
-      },
-      "audio/xm": {
-        source: "apache",
-        extensions: ["xm"]
-      },
-      "chemical/x-cdx": {
-        source: "apache",
-        extensions: ["cdx"]
-      },
-      "chemical/x-cif": {
-        source: "apache",
-        extensions: ["cif"]
-      },
-      "chemical/x-cmdf": {
-        source: "apache",
-        extensions: ["cmdf"]
-      },
-      "chemical/x-cml": {
-        source: "apache",
-        extensions: ["cml"]
-      },
-      "chemical/x-csml": {
-        source: "apache",
-        extensions: ["csml"]
-      },
-      "chemical/x-pdb": {
-        source: "apache"
-      },
-      "chemical/x-xyz": {
-        source: "apache",
-        extensions: ["xyz"]
-      },
-      "font/collection": {
-        source: "iana",
-        extensions: ["ttc"]
-      },
-      "font/otf": {
-        source: "iana",
-        compressible: true,
-        extensions: ["otf"]
-      },
-      "font/sfnt": {
-        source: "iana"
-      },
-      "font/ttf": {
-        source: "iana",
-        compressible: true,
-        extensions: ["ttf"]
-      },
-      "font/woff": {
-        source: "iana",
-        extensions: ["woff"]
-      },
-      "font/woff2": {
-        source: "iana",
-        extensions: ["woff2"]
-      },
-      "image/aces": {
-        source: "iana",
-        extensions: ["exr"]
-      },
-      "image/apng": {
-        compressible: false,
-        extensions: ["apng"]
-      },
-      "image/avci": {
-        source: "iana",
-        extensions: ["avci"]
-      },
-      "image/avcs": {
-        source: "iana",
-        extensions: ["avcs"]
-      },
-      "image/avif": {
-        source: "iana",
-        compressible: false,
-        extensions: ["avif"]
-      },
-      "image/bmp": {
-        source: "iana",
-        compressible: true,
-        extensions: ["bmp"]
-      },
-      "image/cgm": {
-        source: "iana",
-        extensions: ["cgm"]
-      },
-      "image/dicom-rle": {
-        source: "iana",
-        extensions: ["drle"]
-      },
-      "image/emf": {
-        source: "iana",
-        extensions: ["emf"]
-      },
-      "image/fits": {
-        source: "iana",
-        extensions: ["fits"]
-      },
-      "image/g3fax": {
-        source: "iana",
-        extensions: ["g3"]
-      },
-      "image/gif": {
-        source: "iana",
-        compressible: false,
-        extensions: ["gif"]
-      },
-      "image/heic": {
-        source: "iana",
-        extensions: ["heic"]
-      },
-      "image/heic-sequence": {
-        source: "iana",
-        extensions: ["heics"]
-      },
-      "image/heif": {
-        source: "iana",
-        extensions: ["heif"]
-      },
-      "image/heif-sequence": {
-        source: "iana",
-        extensions: ["heifs"]
-      },
-      "image/hej2k": {
-        source: "iana",
-        extensions: ["hej2"]
-      },
-      "image/hsj2": {
-        source: "iana",
-        extensions: ["hsj2"]
-      },
-      "image/ief": {
-        source: "iana",
-        extensions: ["ief"]
-      },
-      "image/jls": {
-        source: "iana",
-        extensions: ["jls"]
-      },
-      "image/jp2": {
-        source: "iana",
-        compressible: false,
-        extensions: ["jp2", "jpg2"]
-      },
-      "image/jpeg": {
-        source: "iana",
-        compressible: false,
-        extensions: ["jpeg", "jpg", "jpe"]
-      },
-      "image/jph": {
-        source: "iana",
-        extensions: ["jph"]
-      },
-      "image/jphc": {
-        source: "iana",
-        extensions: ["jhc"]
-      },
-      "image/jpm": {
-        source: "iana",
-        compressible: false,
-        extensions: ["jpm"]
-      },
-      "image/jpx": {
-        source: "iana",
-        compressible: false,
-        extensions: ["jpx", "jpf"]
-      },
-      "image/jxr": {
-        source: "iana",
-        extensions: ["jxr"]
-      },
-      "image/jxra": {
-        source: "iana",
-        extensions: ["jxra"]
-      },
-      "image/jxrs": {
-        source: "iana",
-        extensions: ["jxrs"]
-      },
-      "image/jxs": {
-        source: "iana",
-        extensions: ["jxs"]
-      },
-      "image/jxsc": {
-        source: "iana",
-        extensions: ["jxsc"]
-      },
-      "image/jxsi": {
-        source: "iana",
-        extensions: ["jxsi"]
-      },
-      "image/jxss": {
-        source: "iana",
-        extensions: ["jxss"]
-      },
-      "image/ktx": {
-        source: "iana",
-        extensions: ["ktx"]
-      },
-      "image/ktx2": {
-        source: "iana",
-        extensions: ["ktx2"]
-      },
-      "image/naplps": {
-        source: "iana"
-      },
-      "image/pjpeg": {
-        compressible: false
-      },
-      "image/png": {
-        source: "iana",
-        compressible: false,
-        extensions: ["png"]
-      },
-      "image/prs.btif": {
-        source: "iana",
-        extensions: ["btif"]
-      },
-      "image/prs.pti": {
-        source: "iana",
-        extensions: ["pti"]
-      },
-      "image/pwg-raster": {
-        source: "iana"
-      },
-      "image/sgi": {
-        source: "apache",
-        extensions: ["sgi"]
-      },
-      "image/svg+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["svg", "svgz"]
-      },
-      "image/t38": {
-        source: "iana",
-        extensions: ["t38"]
-      },
-      "image/tiff": {
-        source: "iana",
-        compressible: false,
-        extensions: ["tif", "tiff"]
-      },
-      "image/tiff-fx": {
-        source: "iana",
-        extensions: ["tfx"]
-      },
-      "image/vnd.adobe.photoshop": {
-        source: "iana",
-        compressible: true,
-        extensions: ["psd"]
-      },
-      "image/vnd.airzip.accelerator.azv": {
-        source: "iana",
-        extensions: ["azv"]
-      },
-      "image/vnd.cns.inf2": {
-        source: "iana"
-      },
-      "image/vnd.dece.graphic": {
-        source: "iana",
-        extensions: ["uvi", "uvvi", "uvg", "uvvg"]
-      },
-      "image/vnd.djvu": {
-        source: "iana",
-        extensions: ["djvu", "djv"]
-      },
-      "image/vnd.dvb.subtitle": {
-        source: "iana",
-        extensions: ["sub"]
-      },
-      "image/vnd.dwg": {
-        source: "iana",
-        extensions: ["dwg"]
-      },
-      "image/vnd.dxf": {
-        source: "iana",
-        extensions: ["dxf"]
-      },
-      "image/vnd.fastbidsheet": {
-        source: "iana",
-        extensions: ["fbs"]
-      },
-      "image/vnd.fpx": {
-        source: "iana",
-        extensions: ["fpx"]
-      },
-      "image/vnd.fst": {
-        source: "iana",
-        extensions: ["fst"]
-      },
-      "image/vnd.fujixerox.edmics-mmr": {
-        source: "iana",
-        extensions: ["mmr"]
-      },
-      "image/vnd.fujixerox.edmics-rlc": {
-        source: "iana",
-        extensions: ["rlc"]
-      },
-      "image/vnd.globalgraphics.pgb": {
-        source: "iana"
-      },
-      "image/vnd.microsoft.icon": {
-        source: "iana",
-        compressible: true,
-        extensions: ["ico"]
-      },
-      "image/vnd.mix": {
-        source: "iana"
-      },
-      "image/vnd.mozilla.apng": {
-        source: "iana"
-      },
-      "image/vnd.ms-dds": {
-        compressible: true,
-        extensions: ["dds"]
-      },
-      "image/vnd.ms-modi": {
-        source: "iana",
-        extensions: ["mdi"]
-      },
-      "image/vnd.ms-photo": {
-        source: "apache",
-        extensions: ["wdp"]
-      },
-      "image/vnd.net-fpx": {
-        source: "iana",
-        extensions: ["npx"]
-      },
-      "image/vnd.pco.b16": {
-        source: "iana",
-        extensions: ["b16"]
-      },
-      "image/vnd.radiance": {
-        source: "iana"
-      },
-      "image/vnd.sealed.png": {
-        source: "iana"
-      },
-      "image/vnd.sealedmedia.softseal.gif": {
-        source: "iana"
-      },
-      "image/vnd.sealedmedia.softseal.jpg": {
-        source: "iana"
-      },
-      "image/vnd.svf": {
-        source: "iana"
-      },
-      "image/vnd.tencent.tap": {
-        source: "iana",
-        extensions: ["tap"]
-      },
-      "image/vnd.valve.source.texture": {
-        source: "iana",
-        extensions: ["vtf"]
-      },
-      "image/vnd.wap.wbmp": {
-        source: "iana",
-        extensions: ["wbmp"]
-      },
-      "image/vnd.xiff": {
-        source: "iana",
-        extensions: ["xif"]
-      },
-      "image/vnd.zbrush.pcx": {
-        source: "iana",
-        extensions: ["pcx"]
-      },
-      "image/webp": {
-        source: "apache",
-        extensions: ["webp"]
-      },
-      "image/wmf": {
-        source: "iana",
-        extensions: ["wmf"]
-      },
-      "image/x-3ds": {
-        source: "apache",
-        extensions: ["3ds"]
-      },
-      "image/x-cmu-raster": {
-        source: "apache",
-        extensions: ["ras"]
-      },
-      "image/x-cmx": {
-        source: "apache",
-        extensions: ["cmx"]
-      },
-      "image/x-freehand": {
-        source: "apache",
-        extensions: ["fh", "fhc", "fh4", "fh5", "fh7"]
-      },
-      "image/x-icon": {
-        source: "apache",
-        compressible: true,
-        extensions: ["ico"]
-      },
-      "image/x-jng": {
-        source: "nginx",
-        extensions: ["jng"]
-      },
-      "image/x-mrsid-image": {
-        source: "apache",
-        extensions: ["sid"]
-      },
-      "image/x-ms-bmp": {
-        source: "nginx",
-        compressible: true,
-        extensions: ["bmp"]
-      },
-      "image/x-pcx": {
-        source: "apache",
-        extensions: ["pcx"]
-      },
-      "image/x-pict": {
-        source: "apache",
-        extensions: ["pic", "pct"]
-      },
-      "image/x-portable-anymap": {
-        source: "apache",
-        extensions: ["pnm"]
-      },
-      "image/x-portable-bitmap": {
-        source: "apache",
-        extensions: ["pbm"]
-      },
-      "image/x-portable-graymap": {
-        source: "apache",
-        extensions: ["pgm"]
-      },
-      "image/x-portable-pixmap": {
-        source: "apache",
-        extensions: ["ppm"]
-      },
-      "image/x-rgb": {
-        source: "apache",
-        extensions: ["rgb"]
-      },
-      "image/x-tga": {
-        source: "apache",
-        extensions: ["tga"]
-      },
-      "image/x-xbitmap": {
-        source: "apache",
-        extensions: ["xbm"]
-      },
-      "image/x-xcf": {
-        compressible: false
-      },
-      "image/x-xpixmap": {
-        source: "apache",
-        extensions: ["xpm"]
-      },
-      "image/x-xwindowdump": {
-        source: "apache",
-        extensions: ["xwd"]
-      },
-      "message/cpim": {
-        source: "iana"
-      },
-      "message/delivery-status": {
-        source: "iana"
-      },
-      "message/disposition-notification": {
-        source: "iana",
-        extensions: [
-          "disposition-notification"
-        ]
-      },
-      "message/external-body": {
-        source: "iana"
-      },
-      "message/feedback-report": {
-        source: "iana"
-      },
-      "message/global": {
-        source: "iana",
-        extensions: ["u8msg"]
-      },
-      "message/global-delivery-status": {
-        source: "iana",
-        extensions: ["u8dsn"]
-      },
-      "message/global-disposition-notification": {
-        source: "iana",
-        extensions: ["u8mdn"]
-      },
-      "message/global-headers": {
-        source: "iana",
-        extensions: ["u8hdr"]
-      },
-      "message/http": {
-        source: "iana",
-        compressible: false
-      },
-      "message/imdn+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "message/news": {
-        source: "iana"
-      },
-      "message/partial": {
-        source: "iana",
-        compressible: false
-      },
-      "message/rfc822": {
-        source: "iana",
-        compressible: true,
-        extensions: ["eml", "mime"]
-      },
-      "message/s-http": {
-        source: "iana"
-      },
-      "message/sip": {
-        source: "iana"
-      },
-      "message/sipfrag": {
-        source: "iana"
-      },
-      "message/tracking-status": {
-        source: "iana"
-      },
-      "message/vnd.si.simp": {
-        source: "iana"
-      },
-      "message/vnd.wfa.wsc": {
-        source: "iana",
-        extensions: ["wsc"]
-      },
-      "model/3mf": {
-        source: "iana",
-        extensions: ["3mf"]
-      },
-      "model/e57": {
-        source: "iana"
-      },
-      "model/gltf+json": {
-        source: "iana",
-        compressible: true,
-        extensions: ["gltf"]
-      },
-      "model/gltf-binary": {
-        source: "iana",
-        compressible: true,
-        extensions: ["glb"]
-      },
-      "model/iges": {
-        source: "iana",
-        compressible: false,
-        extensions: ["igs", "iges"]
-      },
-      "model/mesh": {
-        source: "iana",
-        compressible: false,
-        extensions: ["msh", "mesh", "silo"]
-      },
-      "model/mtl": {
-        source: "iana",
-        extensions: ["mtl"]
-      },
-      "model/obj": {
-        source: "iana",
-        extensions: ["obj"]
-      },
-      "model/step": {
-        source: "iana"
-      },
-      "model/step+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["stpx"]
-      },
-      "model/step+zip": {
-        source: "iana",
-        compressible: false,
-        extensions: ["stpz"]
-      },
-      "model/step-xml+zip": {
-        source: "iana",
-        compressible: false,
-        extensions: ["stpxz"]
-      },
-      "model/stl": {
-        source: "iana",
-        extensions: ["stl"]
-      },
-      "model/vnd.collada+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["dae"]
-      },
-      "model/vnd.dwf": {
-        source: "iana",
-        extensions: ["dwf"]
-      },
-      "model/vnd.flatland.3dml": {
-        source: "iana"
-      },
-      "model/vnd.gdl": {
-        source: "iana",
-        extensions: ["gdl"]
-      },
-      "model/vnd.gs-gdl": {
-        source: "apache"
-      },
-      "model/vnd.gs.gdl": {
-        source: "iana"
-      },
-      "model/vnd.gtw": {
-        source: "iana",
-        extensions: ["gtw"]
-      },
-      "model/vnd.moml+xml": {
-        source: "iana",
-        compressible: true
-      },
-      "model/vnd.mts": {
-        source: "iana",
-        extensions: ["mts"]
-      },
-      "model/vnd.opengex": {
-        source: "iana",
-        extensions: ["ogex"]
-      },
-      "model/vnd.parasolid.transmit.binary": {
-        source: "iana",
-        extensions: ["x_b"]
-      },
-      "model/vnd.parasolid.transmit.text": {
-        source: "iana",
-        extensions: ["x_t"]
-      },
-      "model/vnd.pytha.pyox": {
-        source: "iana"
-      },
-      "model/vnd.rosette.annotated-data-model": {
-        source: "iana"
-      },
-      "model/vnd.sap.vds": {
-        source: "iana",
-        extensions: ["vds"]
-      },
-      "model/vnd.usdz+zip": {
-        source: "iana",
-        compressible: false,
-        extensions: ["usdz"]
-      },
-      "model/vnd.valve.source.compiled-map": {
-        source: "iana",
-        extensions: ["bsp"]
-      },
-      "model/vnd.vtu": {
-        source: "iana",
-        extensions: ["vtu"]
-      },
-      "model/vrml": {
-        source: "iana",
-        compressible: false,
-        extensions: ["wrl", "vrml"]
-      },
-      "model/x3d+binary": {
-        source: "apache",
-        compressible: false,
-        extensions: ["x3db", "x3dbz"]
-      },
-      "model/x3d+fastinfoset": {
-        source: "iana",
-        extensions: ["x3db"]
-      },
-      "model/x3d+vrml": {
-        source: "apache",
-        compressible: false,
-        extensions: ["x3dv", "x3dvz"]
-      },
-      "model/x3d+xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["x3d", "x3dz"]
-      },
-      "model/x3d-vrml": {
-        source: "iana",
-        extensions: ["x3dv"]
-      },
-      "multipart/alternative": {
-        source: "iana",
-        compressible: false
-      },
-      "multipart/appledouble": {
-        source: "iana"
-      },
-      "multipart/byteranges": {
-        source: "iana"
-      },
-      "multipart/digest": {
-        source: "iana"
-      },
-      "multipart/encrypted": {
-        source: "iana",
-        compressible: false
-      },
-      "multipart/form-data": {
-        source: "iana",
-        compressible: false
-      },
-      "multipart/header-set": {
-        source: "iana"
-      },
-      "multipart/mixed": {
-        source: "iana"
-      },
-      "multipart/multilingual": {
-        source: "iana"
-      },
-      "multipart/parallel": {
-        source: "iana"
-      },
-      "multipart/related": {
-        source: "iana",
-        compressible: false
-      },
-      "multipart/report": {
-        source: "iana"
-      },
-      "multipart/signed": {
-        source: "iana",
-        compressible: false
-      },
-      "multipart/vnd.bint.med-plus": {
-        source: "iana"
-      },
-      "multipart/voice-message": {
-        source: "iana"
-      },
-      "multipart/x-mixed-replace": {
-        source: "iana"
-      },
-      "text/1d-interleaved-parityfec": {
-        source: "iana"
-      },
-      "text/cache-manifest": {
-        source: "iana",
-        compressible: true,
-        extensions: ["appcache", "manifest"]
-      },
-      "text/calendar": {
-        source: "iana",
-        extensions: ["ics", "ifb"]
-      },
-      "text/calender": {
-        compressible: true
-      },
-      "text/cmd": {
-        compressible: true
-      },
-      "text/coffeescript": {
-        extensions: ["coffee", "litcoffee"]
-      },
-      "text/cql": {
-        source: "iana"
-      },
-      "text/cql-expression": {
-        source: "iana"
-      },
-      "text/cql-identifier": {
-        source: "iana"
-      },
-      "text/css": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true,
-        extensions: ["css"]
-      },
-      "text/csv": {
-        source: "iana",
-        compressible: true,
-        extensions: ["csv"]
-      },
-      "text/csv-schema": {
-        source: "iana"
-      },
-      "text/directory": {
-        source: "iana"
-      },
-      "text/dns": {
-        source: "iana"
-      },
-      "text/ecmascript": {
-        source: "iana"
-      },
-      "text/encaprtp": {
-        source: "iana"
-      },
-      "text/enriched": {
-        source: "iana"
-      },
-      "text/fhirpath": {
-        source: "iana"
-      },
-      "text/flexfec": {
-        source: "iana"
-      },
-      "text/fwdred": {
-        source: "iana"
-      },
-      "text/gff3": {
-        source: "iana"
-      },
-      "text/grammar-ref-list": {
-        source: "iana"
-      },
-      "text/html": {
-        source: "iana",
-        compressible: true,
-        extensions: ["html", "htm", "shtml"]
-      },
-      "text/jade": {
-        extensions: ["jade"]
-      },
-      "text/javascript": {
-        source: "iana",
-        compressible: true
-      },
-      "text/jcr-cnd": {
-        source: "iana"
-      },
-      "text/jsx": {
-        compressible: true,
-        extensions: ["jsx"]
-      },
-      "text/less": {
-        compressible: true,
-        extensions: ["less"]
-      },
-      "text/markdown": {
-        source: "iana",
-        compressible: true,
-        extensions: ["markdown", "md"]
-      },
-      "text/mathml": {
-        source: "nginx",
-        extensions: ["mml"]
-      },
-      "text/mdx": {
-        compressible: true,
-        extensions: ["mdx"]
-      },
-      "text/mizar": {
-        source: "iana"
-      },
-      "text/n3": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true,
-        extensions: ["n3"]
-      },
-      "text/parameters": {
-        source: "iana",
-        charset: "UTF-8"
-      },
-      "text/parityfec": {
-        source: "iana"
-      },
-      "text/plain": {
-        source: "iana",
-        compressible: true,
-        extensions: ["txt", "text", "conf", "def", "list", "log", "in", "ini"]
-      },
-      "text/provenance-notation": {
-        source: "iana",
-        charset: "UTF-8"
-      },
-      "text/prs.fallenstein.rst": {
-        source: "iana"
-      },
-      "text/prs.lines.tag": {
-        source: "iana",
-        extensions: ["dsc"]
-      },
-      "text/prs.prop.logic": {
-        source: "iana"
-      },
-      "text/raptorfec": {
-        source: "iana"
-      },
-      "text/red": {
-        source: "iana"
-      },
-      "text/rfc822-headers": {
-        source: "iana"
-      },
-      "text/richtext": {
-        source: "iana",
-        compressible: true,
-        extensions: ["rtx"]
-      },
-      "text/rtf": {
-        source: "iana",
-        compressible: true,
-        extensions: ["rtf"]
-      },
-      "text/rtp-enc-aescm128": {
-        source: "iana"
-      },
-      "text/rtploopback": {
-        source: "iana"
-      },
-      "text/rtx": {
-        source: "iana"
-      },
-      "text/sgml": {
-        source: "iana",
-        extensions: ["sgml", "sgm"]
-      },
-      "text/shaclc": {
-        source: "iana"
-      },
-      "text/shex": {
-        source: "iana",
-        extensions: ["shex"]
-      },
-      "text/slim": {
-        extensions: ["slim", "slm"]
-      },
-      "text/spdx": {
-        source: "iana",
-        extensions: ["spdx"]
-      },
-      "text/strings": {
-        source: "iana"
-      },
-      "text/stylus": {
-        extensions: ["stylus", "styl"]
-      },
-      "text/t140": {
-        source: "iana"
-      },
-      "text/tab-separated-values": {
-        source: "iana",
-        compressible: true,
-        extensions: ["tsv"]
-      },
-      "text/troff": {
-        source: "iana",
-        extensions: ["t", "tr", "roff", "man", "me", "ms"]
-      },
-      "text/turtle": {
-        source: "iana",
-        charset: "UTF-8",
-        extensions: ["ttl"]
-      },
-      "text/ulpfec": {
-        source: "iana"
-      },
-      "text/uri-list": {
-        source: "iana",
-        compressible: true,
-        extensions: ["uri", "uris", "urls"]
-      },
-      "text/vcard": {
-        source: "iana",
-        compressible: true,
-        extensions: ["vcard"]
-      },
-      "text/vnd.a": {
-        source: "iana"
-      },
-      "text/vnd.abc": {
-        source: "iana"
-      },
-      "text/vnd.ascii-art": {
-        source: "iana"
-      },
-      "text/vnd.curl": {
-        source: "iana",
-        extensions: ["curl"]
-      },
-      "text/vnd.curl.dcurl": {
-        source: "apache",
-        extensions: ["dcurl"]
-      },
-      "text/vnd.curl.mcurl": {
-        source: "apache",
-        extensions: ["mcurl"]
-      },
-      "text/vnd.curl.scurl": {
-        source: "apache",
-        extensions: ["scurl"]
-      },
-      "text/vnd.debian.copyright": {
-        source: "iana",
-        charset: "UTF-8"
-      },
-      "text/vnd.dmclientscript": {
-        source: "iana"
-      },
-      "text/vnd.dvb.subtitle": {
-        source: "iana",
-        extensions: ["sub"]
-      },
-      "text/vnd.esmertec.theme-descriptor": {
-        source: "iana",
-        charset: "UTF-8"
-      },
-      "text/vnd.familysearch.gedcom": {
-        source: "iana",
-        extensions: ["ged"]
-      },
-      "text/vnd.ficlab.flt": {
-        source: "iana"
-      },
-      "text/vnd.fly": {
-        source: "iana",
-        extensions: ["fly"]
-      },
-      "text/vnd.fmi.flexstor": {
-        source: "iana",
-        extensions: ["flx"]
-      },
-      "text/vnd.gml": {
-        source: "iana"
-      },
-      "text/vnd.graphviz": {
-        source: "iana",
-        extensions: ["gv"]
-      },
-      "text/vnd.hans": {
-        source: "iana"
-      },
-      "text/vnd.hgl": {
-        source: "iana"
-      },
-      "text/vnd.in3d.3dml": {
-        source: "iana",
-        extensions: ["3dml"]
-      },
-      "text/vnd.in3d.spot": {
-        source: "iana",
-        extensions: ["spot"]
-      },
-      "text/vnd.iptc.newsml": {
-        source: "iana"
-      },
-      "text/vnd.iptc.nitf": {
-        source: "iana"
-      },
-      "text/vnd.latex-z": {
-        source: "iana"
-      },
-      "text/vnd.motorola.reflex": {
-        source: "iana"
-      },
-      "text/vnd.ms-mediapackage": {
-        source: "iana"
-      },
-      "text/vnd.net2phone.commcenter.command": {
-        source: "iana"
-      },
-      "text/vnd.radisys.msml-basic-layout": {
-        source: "iana"
-      },
-      "text/vnd.senx.warpscript": {
-        source: "iana"
-      },
-      "text/vnd.si.uricatalogue": {
-        source: "iana"
-      },
-      "text/vnd.sosi": {
-        source: "iana"
-      },
-      "text/vnd.sun.j2me.app-descriptor": {
-        source: "iana",
-        charset: "UTF-8",
-        extensions: ["jad"]
-      },
-      "text/vnd.trolltech.linguist": {
-        source: "iana",
-        charset: "UTF-8"
-      },
-      "text/vnd.wap.si": {
-        source: "iana"
-      },
-      "text/vnd.wap.sl": {
-        source: "iana"
-      },
-      "text/vnd.wap.wml": {
-        source: "iana",
-        extensions: ["wml"]
-      },
-      "text/vnd.wap.wmlscript": {
-        source: "iana",
-        extensions: ["wmls"]
-      },
-      "text/vtt": {
-        source: "iana",
-        charset: "UTF-8",
-        compressible: true,
-        extensions: ["vtt"]
-      },
-      "text/x-asm": {
-        source: "apache",
-        extensions: ["s", "asm"]
-      },
-      "text/x-c": {
-        source: "apache",
-        extensions: ["c", "cc", "cxx", "cpp", "h", "hh", "dic"]
-      },
-      "text/x-component": {
-        source: "nginx",
-        extensions: ["htc"]
-      },
-      "text/x-fortran": {
-        source: "apache",
-        extensions: ["f", "for", "f77", "f90"]
-      },
-      "text/x-gwt-rpc": {
-        compressible: true
-      },
-      "text/x-handlebars-template": {
-        extensions: ["hbs"]
-      },
-      "text/x-java-source": {
-        source: "apache",
-        extensions: ["java"]
-      },
-      "text/x-jquery-tmpl": {
-        compressible: true
-      },
-      "text/x-lua": {
-        extensions: ["lua"]
-      },
-      "text/x-markdown": {
-        compressible: true,
-        extensions: ["mkd"]
-      },
-      "text/x-nfo": {
-        source: "apache",
-        extensions: ["nfo"]
-      },
-      "text/x-opml": {
-        source: "apache",
-        extensions: ["opml"]
-      },
-      "text/x-org": {
-        compressible: true,
-        extensions: ["org"]
-      },
-      "text/x-pascal": {
-        source: "apache",
-        extensions: ["p", "pas"]
-      },
-      "text/x-processing": {
-        compressible: true,
-        extensions: ["pde"]
-      },
-      "text/x-sass": {
-        extensions: ["sass"]
-      },
-      "text/x-scss": {
-        extensions: ["scss"]
-      },
-      "text/x-setext": {
-        source: "apache",
-        extensions: ["etx"]
-      },
-      "text/x-sfv": {
-        source: "apache",
-        extensions: ["sfv"]
-      },
-      "text/x-suse-ymp": {
-        compressible: true,
-        extensions: ["ymp"]
-      },
-      "text/x-uuencode": {
-        source: "apache",
-        extensions: ["uu"]
-      },
-      "text/x-vcalendar": {
-        source: "apache",
-        extensions: ["vcs"]
-      },
-      "text/x-vcard": {
-        source: "apache",
-        extensions: ["vcf"]
-      },
-      "text/xml": {
-        source: "iana",
-        compressible: true,
-        extensions: ["xml"]
-      },
-      "text/xml-external-parsed-entity": {
-        source: "iana"
-      },
-      "text/yaml": {
-        compressible: true,
-        extensions: ["yaml", "yml"]
-      },
-      "video/1d-interleaved-parityfec": {
-        source: "iana"
-      },
-      "video/3gpp": {
-        source: "iana",
-        extensions: ["3gp", "3gpp"]
-      },
-      "video/3gpp-tt": {
-        source: "iana"
-      },
-      "video/3gpp2": {
-        source: "iana",
-        extensions: ["3g2"]
-      },
-      "video/av1": {
-        source: "iana"
-      },
-      "video/bmpeg": {
-        source: "iana"
-      },
-      "video/bt656": {
-        source: "iana"
-      },
-      "video/celb": {
-        source: "iana"
-      },
-      "video/dv": {
-        source: "iana"
-      },
-      "video/encaprtp": {
-        source: "iana"
-      },
-      "video/ffv1": {
-        source: "iana"
-      },
-      "video/flexfec": {
-        source: "iana"
-      },
-      "video/h261": {
-        source: "iana",
-        extensions: ["h261"]
-      },
-      "video/h263": {
-        source: "iana",
-        extensions: ["h263"]
-      },
-      "video/h263-1998": {
-        source: "iana"
-      },
-      "video/h263-2000": {
-        source: "iana"
-      },
-      "video/h264": {
-        source: "iana",
-        extensions: ["h264"]
-      },
-      "video/h264-rcdo": {
-        source: "iana"
-      },
-      "video/h264-svc": {
-        source: "iana"
-      },
-      "video/h265": {
-        source: "iana"
-      },
-      "video/iso.segment": {
-        source: "iana",
-        extensions: ["m4s"]
-      },
-      "video/jpeg": {
-        source: "iana",
-        extensions: ["jpgv"]
-      },
-      "video/jpeg2000": {
-        source: "iana"
-      },
-      "video/jpm": {
-        source: "apache",
-        extensions: ["jpm", "jpgm"]
-      },
-      "video/jxsv": {
-        source: "iana"
-      },
-      "video/mj2": {
-        source: "iana",
-        extensions: ["mj2", "mjp2"]
-      },
-      "video/mp1s": {
-        source: "iana"
-      },
-      "video/mp2p": {
-        source: "iana"
-      },
-      "video/mp2t": {
-        source: "iana",
-        extensions: ["ts"]
-      },
-      "video/mp4": {
-        source: "iana",
-        compressible: false,
-        extensions: ["mp4", "mp4v", "mpg4"]
-      },
-      "video/mp4v-es": {
-        source: "iana"
-      },
-      "video/mpeg": {
-        source: "iana",
-        compressible: false,
-        extensions: ["mpeg", "mpg", "mpe", "m1v", "m2v"]
-      },
-      "video/mpeg4-generic": {
-        source: "iana"
-      },
-      "video/mpv": {
-        source: "iana"
-      },
-      "video/nv": {
-        source: "iana"
-      },
-      "video/ogg": {
-        source: "iana",
-        compressible: false,
-        extensions: ["ogv"]
-      },
-      "video/parityfec": {
-        source: "iana"
-      },
-      "video/pointer": {
-        source: "iana"
-      },
-      "video/quicktime": {
-        source: "iana",
-        compressible: false,
-        extensions: ["qt", "mov"]
-      },
-      "video/raptorfec": {
-        source: "iana"
-      },
-      "video/raw": {
-        source: "iana"
-      },
-      "video/rtp-enc-aescm128": {
-        source: "iana"
-      },
-      "video/rtploopback": {
-        source: "iana"
-      },
-      "video/rtx": {
-        source: "iana"
-      },
-      "video/scip": {
-        source: "iana"
-      },
-      "video/smpte291": {
-        source: "iana"
-      },
-      "video/smpte292m": {
-        source: "iana"
-      },
-      "video/ulpfec": {
-        source: "iana"
-      },
-      "video/vc1": {
-        source: "iana"
-      },
-      "video/vc2": {
-        source: "iana"
-      },
-      "video/vnd.cctv": {
-        source: "iana"
-      },
-      "video/vnd.dece.hd": {
-        source: "iana",
-        extensions: ["uvh", "uvvh"]
-      },
-      "video/vnd.dece.mobile": {
-        source: "iana",
-        extensions: ["uvm", "uvvm"]
-      },
-      "video/vnd.dece.mp4": {
-        source: "iana"
-      },
-      "video/vnd.dece.pd": {
-        source: "iana",
-        extensions: ["uvp", "uvvp"]
-      },
-      "video/vnd.dece.sd": {
-        source: "iana",
-        extensions: ["uvs", "uvvs"]
-      },
-      "video/vnd.dece.video": {
-        source: "iana",
-        extensions: ["uvv", "uvvv"]
-      },
-      "video/vnd.directv.mpeg": {
-        source: "iana"
-      },
-      "video/vnd.directv.mpeg-tts": {
-        source: "iana"
-      },
-      "video/vnd.dlna.mpeg-tts": {
-        source: "iana"
-      },
-      "video/vnd.dvb.file": {
-        source: "iana",
-        extensions: ["dvb"]
-      },
-      "video/vnd.fvt": {
-        source: "iana",
-        extensions: ["fvt"]
-      },
-      "video/vnd.hns.video": {
-        source: "iana"
-      },
-      "video/vnd.iptvforum.1dparityfec-1010": {
-        source: "iana"
-      },
-      "video/vnd.iptvforum.1dparityfec-2005": {
-        source: "iana"
-      },
-      "video/vnd.iptvforum.2dparityfec-1010": {
-        source: "iana"
-      },
-      "video/vnd.iptvforum.2dparityfec-2005": {
-        source: "iana"
-      },
-      "video/vnd.iptvforum.ttsavc": {
-        source: "iana"
-      },
-      "video/vnd.iptvforum.ttsmpeg2": {
-        source: "iana"
-      },
-      "video/vnd.motorola.video": {
-        source: "iana"
-      },
-      "video/vnd.motorola.videop": {
-        source: "iana"
-      },
-      "video/vnd.mpegurl": {
-        source: "iana",
-        extensions: ["mxu", "m4u"]
-      },
-      "video/vnd.ms-playready.media.pyv": {
-        source: "iana",
-        extensions: ["pyv"]
-      },
-      "video/vnd.nokia.interleaved-multimedia": {
-        source: "iana"
-      },
-      "video/vnd.nokia.mp4vr": {
-        source: "iana"
-      },
-      "video/vnd.nokia.videovoip": {
-        source: "iana"
-      },
-      "video/vnd.objectvideo": {
-        source: "iana"
-      },
-      "video/vnd.radgamettools.bink": {
-        source: "iana"
-      },
-      "video/vnd.radgamettools.smacker": {
-        source: "iana"
-      },
-      "video/vnd.sealed.mpeg1": {
-        source: "iana"
-      },
-      "video/vnd.sealed.mpeg4": {
-        source: "iana"
-      },
-      "video/vnd.sealed.swf": {
-        source: "iana"
-      },
-      "video/vnd.sealedmedia.softseal.mov": {
-        source: "iana"
-      },
-      "video/vnd.uvvu.mp4": {
-        source: "iana",
-        extensions: ["uvu", "uvvu"]
-      },
-      "video/vnd.vivo": {
-        source: "iana",
-        extensions: ["viv"]
-      },
-      "video/vnd.youtube.yt": {
-        source: "iana"
-      },
-      "video/vp8": {
-        source: "iana"
-      },
-      "video/vp9": {
-        source: "iana"
-      },
-      "video/webm": {
-        source: "apache",
-        compressible: false,
-        extensions: ["webm"]
-      },
-      "video/x-f4v": {
-        source: "apache",
-        extensions: ["f4v"]
-      },
-      "video/x-fli": {
-        source: "apache",
-        extensions: ["fli"]
-      },
-      "video/x-flv": {
-        source: "apache",
-        compressible: false,
-        extensions: ["flv"]
-      },
-      "video/x-m4v": {
-        source: "apache",
-        extensions: ["m4v"]
-      },
-      "video/x-matroska": {
-        source: "apache",
-        compressible: false,
-        extensions: ["mkv", "mk3d", "mks"]
-      },
-      "video/x-mng": {
-        source: "apache",
-        extensions: ["mng"]
-      },
-      "video/x-ms-asf": {
-        source: "apache",
-        extensions: ["asf", "asx"]
-      },
-      "video/x-ms-vob": {
-        source: "apache",
-        extensions: ["vob"]
-      },
-      "video/x-ms-wm": {
-        source: "apache",
-        extensions: ["wm"]
-      },
-      "video/x-ms-wmv": {
-        source: "apache",
-        compressible: false,
-        extensions: ["wmv"]
-      },
-      "video/x-ms-wmx": {
-        source: "apache",
-        extensions: ["wmx"]
-      },
-      "video/x-ms-wvx": {
-        source: "apache",
-        extensions: ["wvx"]
-      },
-      "video/x-msvideo": {
-        source: "apache",
-        extensions: ["avi"]
-      },
-      "video/x-sgi-movie": {
-        source: "apache",
-        extensions: ["movie"]
-      },
-      "video/x-smv": {
-        source: "apache",
-        extensions: ["smv"]
-      },
-      "x-conference/x-cooltalk": {
-        source: "apache",
-        extensions: ["ice"]
-      },
-      "x-shader/x-fragment": {
-        compressible: true
-      },
-      "x-shader/x-vertex": {
-        compressible: true
-      }
-    };
-  }
-});
-
-// node_modules/mime-db/index.js
-var require_mime_db = __commonJS({
-  "node_modules/mime-db/index.js"(exports2, module2) {
-    module2.exports = require_db();
-  }
-});
-
-// node_modules/mime-types/index.js
-var require_mime_types = __commonJS({
-  "node_modules/mime-types/index.js"(exports2) {
-    "use strict";
-    var db = require_mime_db();
-    var extname = require("path").extname;
-    var EXTRACT_TYPE_REGEXP = /^\s*([^;\s]*)(?:;|\s|$)/;
-    var TEXT_TYPE_REGEXP = /^text\//i;
-    exports2.charset = charset;
-    exports2.charsets = { lookup: charset };
-    exports2.contentType = contentType;
-    exports2.extension = extension;
-    exports2.extensions = /* @__PURE__ */ Object.create(null);
-    exports2.lookup = lookup;
-    exports2.types = /* @__PURE__ */ Object.create(null);
-    populateMaps(exports2.extensions, exports2.types);
-    function charset(type2) {
-      if (!type2 || typeof type2 !== "string") {
-        return false;
-      }
-      var match2 = EXTRACT_TYPE_REGEXP.exec(type2);
-      var mime = match2 && db[match2[1].toLowerCase()];
-      if (mime && mime.charset) {
-        return mime.charset;
-      }
-      if (match2 && TEXT_TYPE_REGEXP.test(match2[1])) {
-        return "UTF-8";
-      }
-      return false;
-    }
-    function contentType(str2) {
-      if (!str2 || typeof str2 !== "string") {
-        return false;
-      }
-      var mime = str2.indexOf("/") === -1 ? exports2.lookup(str2) : str2;
-      if (!mime) {
-        return false;
-      }
-      if (mime.indexOf("charset") === -1) {
-        var charset2 = exports2.charset(mime);
-        if (charset2) mime += "; charset=" + charset2.toLowerCase();
-      }
-      return mime;
-    }
-    function extension(type2) {
-      if (!type2 || typeof type2 !== "string") {
-        return false;
-      }
-      var match2 = EXTRACT_TYPE_REGEXP.exec(type2);
-      var exts = match2 && exports2.extensions[match2[1].toLowerCase()];
-      if (!exts || !exts.length) {
-        return false;
-      }
-      return exts[0];
-    }
-    function lookup(path2) {
-      if (!path2 || typeof path2 !== "string") {
-        return false;
-      }
-      var extension2 = extname("x." + path2).toLowerCase().substr(1);
-      if (!extension2) {
-        return false;
-      }
-      return exports2.types[extension2] || false;
-    }
-    function populateMaps(extensions, types2) {
-      var preference = ["nginx", "apache", void 0, "iana"];
-      Object.keys(db).forEach(function forEachMimeType(type2) {
-        var mime = db[type2];
-        var exts = mime.extensions;
-        if (!exts || !exts.length) {
-          return;
-        }
-        extensions[type2] = exts;
-        for (var i = 0; i < exts.length; i++) {
-          var extension2 = exts[i];
-          if (types2[extension2]) {
-            var from = preference.indexOf(db[types2[extension2]].source);
-            var to = preference.indexOf(mime.source);
-            if (types2[extension2] !== "application/octet-stream" && (from > to || from === to && types2[extension2].substr(0, 12) === "application/")) {
-              continue;
-            }
-          }
-          types2[extension2] = type2;
-        }
-      });
-    }
-  }
-});
-
-// node_modules/asynckit/lib/defer.js
-var require_defer = __commonJS({
-  "node_modules/asynckit/lib/defer.js"(exports2, module2) {
-    module2.exports = defer;
-    function defer(fn) {
-      var nextTick = typeof setImmediate == "function" ? setImmediate : typeof process == "object" && typeof process.nextTick == "function" ? process.nextTick : null;
-      if (nextTick) {
-        nextTick(fn);
-      } else {
-        setTimeout(fn, 0);
-      }
-    }
-  }
-});
-
-// node_modules/asynckit/lib/async.js
-var require_async = __commonJS({
-  "node_modules/asynckit/lib/async.js"(exports2, module2) {
-    var defer = require_defer();
-    module2.exports = async;
-    function async(callback) {
-      var isAsync = false;
-      defer(function() {
-        isAsync = true;
-      });
-      return function async_callback(err, result) {
-        if (isAsync) {
-          callback(err, result);
-        } else {
-          defer(function nextTick_callback() {
-            callback(err, result);
-          });
-        }
-      };
-    }
-  }
-});
-
-// node_modules/asynckit/lib/abort.js
-var require_abort = __commonJS({
-  "node_modules/asynckit/lib/abort.js"(exports2, module2) {
-    module2.exports = abort;
-    function abort(state) {
-      Object.keys(state.jobs).forEach(clean.bind(state));
-      state.jobs = {};
-    }
-    function clean(key) {
-      if (typeof this.jobs[key] == "function") {
-        this.jobs[key]();
-      }
-    }
-  }
-});
-
-// node_modules/asynckit/lib/iterate.js
-var require_iterate = __commonJS({
-  "node_modules/asynckit/lib/iterate.js"(exports2, module2) {
-    var async = require_async();
-    var abort = require_abort();
-    module2.exports = iterate;
-    function iterate(list, iterator3, state, callback) {
-      var key = state["keyedList"] ? state["keyedList"][state.index] : state.index;
-      state.jobs[key] = runJob(iterator3, key, list[key], function(error, output) {
-        if (!(key in state.jobs)) {
-          return;
-        }
-        delete state.jobs[key];
-        if (error) {
-          abort(state);
-        } else {
-          state.results[key] = output;
-        }
-        callback(error, state.results);
-      });
-    }
-    function runJob(iterator3, key, item, callback) {
-      var aborter;
-      if (iterator3.length == 2) {
-        aborter = iterator3(item, async(callback));
-      } else {
-        aborter = iterator3(item, key, async(callback));
-      }
-      return aborter;
-    }
-  }
-});
-
-// node_modules/asynckit/lib/state.js
-var require_state = __commonJS({
-  "node_modules/asynckit/lib/state.js"(exports2, module2) {
-    module2.exports = state;
-    function state(list, sortMethod) {
-      var isNamedList = !Array.isArray(list), initState = {
-        index: 0,
-        keyedList: isNamedList || sortMethod ? Object.keys(list) : null,
-        jobs: {},
-        results: isNamedList ? {} : [],
-        size: isNamedList ? Object.keys(list).length : list.length
-      };
-      if (sortMethod) {
-        initState.keyedList.sort(isNamedList ? sortMethod : function(a, b) {
-          return sortMethod(list[a], list[b]);
-        });
-      }
-      return initState;
-    }
-  }
-});
-
-// node_modules/asynckit/lib/terminator.js
-var require_terminator = __commonJS({
-  "node_modules/asynckit/lib/terminator.js"(exports2, module2) {
-    var abort = require_abort();
-    var async = require_async();
-    module2.exports = terminator;
-    function terminator(callback) {
-      if (!Object.keys(this.jobs).length) {
-        return;
-      }
-      this.index = this.size;
-      abort(this);
-      async(callback)(null, this.results);
-    }
-  }
-});
-
-// node_modules/asynckit/parallel.js
-var require_parallel = __commonJS({
-  "node_modules/asynckit/parallel.js"(exports2, module2) {
-    var iterate = require_iterate();
-    var initState = require_state();
-    var terminator = require_terminator();
-    module2.exports = parallel;
-    function parallel(list, iterator3, callback) {
-      var state = initState(list);
-      while (state.index < (state["keyedList"] || list).length) {
-        iterate(list, iterator3, state, function(error, result) {
-          if (error) {
-            callback(error, result);
-            return;
-          }
-          if (Object.keys(state.jobs).length === 0) {
-            callback(null, state.results);
-            return;
-          }
-        });
-        state.index++;
-      }
-      return terminator.bind(state, callback);
-    }
-  }
-});
-
-// node_modules/asynckit/serialOrdered.js
-var require_serialOrdered = __commonJS({
-  "node_modules/asynckit/serialOrdered.js"(exports2, module2) {
-    var iterate = require_iterate();
-    var initState = require_state();
-    var terminator = require_terminator();
-    module2.exports = serialOrdered;
-    module2.exports.ascending = ascending;
-    module2.exports.descending = descending;
-    function serialOrdered(list, iterator3, sortMethod, callback) {
-      var state = initState(list, sortMethod);
-      iterate(list, iterator3, state, function iteratorHandler(error, result) {
-        if (error) {
-          callback(error, result);
-          return;
-        }
-        state.index++;
-        if (state.index < (state["keyedList"] || list).length) {
-          iterate(list, iterator3, state, iteratorHandler);
-          return;
-        }
-        callback(null, state.results);
-      });
-      return terminator.bind(state, callback);
-    }
-    function ascending(a, b) {
-      return a < b ? -1 : a > b ? 1 : 0;
-    }
-    function descending(a, b) {
-      return -1 * ascending(a, b);
-    }
-  }
-});
-
-// node_modules/asynckit/serial.js
-var require_serial = __commonJS({
-  "node_modules/asynckit/serial.js"(exports2, module2) {
-    var serialOrdered = require_serialOrdered();
-    module2.exports = serial;
-    function serial(list, iterator3, callback) {
-      return serialOrdered(list, iterator3, null, callback);
-    }
-  }
-});
-
-// node_modules/asynckit/index.js
-var require_asynckit = __commonJS({
-  "node_modules/asynckit/index.js"(exports2, module2) {
-    module2.exports = {
-      parallel: require_parallel(),
-      serial: require_serial(),
-      serialOrdered: require_serialOrdered()
-    };
-  }
-});
-
-// node_modules/es-object-atoms/index.js
-var require_es_object_atoms = __commonJS({
-  "node_modules/es-object-atoms/index.js"(exports2, module2) {
-    "use strict";
-    module2.exports = Object;
-  }
-});
-
-// node_modules/es-errors/index.js
-var require_es_errors = __commonJS({
-  "node_modules/es-errors/index.js"(exports2, module2) {
-    "use strict";
-    module2.exports = Error;
-  }
-});
-
-// node_modules/es-errors/eval.js
-var require_eval = __commonJS({
-  "node_modules/es-errors/eval.js"(exports2, module2) {
-    "use strict";
-    module2.exports = EvalError;
-  }
-});
-
-// node_modules/es-errors/range.js
-var require_range = __commonJS({
-  "node_modules/es-errors/range.js"(exports2, module2) {
-    "use strict";
-    module2.exports = RangeError;
-  }
-});
-
-// node_modules/es-errors/ref.js
-var require_ref = __commonJS({
-  "node_modules/es-errors/ref.js"(exports2, module2) {
-    "use strict";
-    module2.exports = ReferenceError;
-  }
-});
-
-// node_modules/es-errors/syntax.js
-var require_syntax = __commonJS({
-  "node_modules/es-errors/syntax.js"(exports2, module2) {
-    "use strict";
-    module2.exports = SyntaxError;
-  }
-});
-
-// node_modules/es-errors/type.js
-var require_type = __commonJS({
-  "node_modules/es-errors/type.js"(exports2, module2) {
-    "use strict";
-    module2.exports = TypeError;
-  }
-});
-
-// node_modules/es-errors/uri.js
-var require_uri = __commonJS({
-  "node_modules/es-errors/uri.js"(exports2, module2) {
-    "use strict";
-    module2.exports = URIError;
-  }
-});
-
-// node_modules/math-intrinsics/abs.js
-var require_abs = __commonJS({
-  "node_modules/math-intrinsics/abs.js"(exports2, module2) {
-    "use strict";
-    module2.exports = Math.abs;
-  }
-});
-
-// node_modules/math-intrinsics/floor.js
-var require_floor = __commonJS({
-  "node_modules/math-intrinsics/floor.js"(exports2, module2) {
-    "use strict";
-    module2.exports = Math.floor;
-  }
-});
-
-// node_modules/math-intrinsics/max.js
-var require_max = __commonJS({
-  "node_modules/math-intrinsics/max.js"(exports2, module2) {
-    "use strict";
-    module2.exports = Math.max;
-  }
-});
-
-// node_modules/math-intrinsics/min.js
-var require_min = __commonJS({
-  "node_modules/math-intrinsics/min.js"(exports2, module2) {
-    "use strict";
-    module2.exports = Math.min;
-  }
-});
-
-// node_modules/math-intrinsics/pow.js
-var require_pow = __commonJS({
-  "node_modules/math-intrinsics/pow.js"(exports2, module2) {
-    "use strict";
-    module2.exports = Math.pow;
-  }
-});
-
-// node_modules/math-intrinsics/round.js
-var require_round = __commonJS({
-  "node_modules/math-intrinsics/round.js"(exports2, module2) {
-    "use strict";
-    module2.exports = Math.round;
-  }
-});
-
-// node_modules/math-intrinsics/isNaN.js
-var require_isNaN = __commonJS({
-  "node_modules/math-intrinsics/isNaN.js"(exports2, module2) {
-    "use strict";
-    module2.exports = Number.isNaN || function isNaN2(a) {
-      return a !== a;
-    };
-  }
-});
-
-// node_modules/math-intrinsics/sign.js
-var require_sign = __commonJS({
-  "node_modules/math-intrinsics/sign.js"(exports2, module2) {
-    "use strict";
-    var $isNaN = require_isNaN();
-    module2.exports = function sign(number) {
-      if ($isNaN(number) || number === 0) {
-        return number;
-      }
-      return number < 0 ? -1 : 1;
-    };
-  }
-});
-
-// node_modules/gopd/gOPD.js
-var require_gOPD = __commonJS({
-  "node_modules/gopd/gOPD.js"(exports2, module2) {
-    "use strict";
-    module2.exports = Object.getOwnPropertyDescriptor;
-  }
-});
-
-// node_modules/gopd/index.js
-var require_gopd = __commonJS({
-  "node_modules/gopd/index.js"(exports2, module2) {
-    "use strict";
-    var $gOPD = require_gOPD();
-    if ($gOPD) {
-      try {
-        $gOPD([], "length");
-      } catch (e) {
-        $gOPD = null;
-      }
-    }
-    module2.exports = $gOPD;
-  }
-});
-
-// node_modules/es-define-property/index.js
-var require_es_define_property = __commonJS({
-  "node_modules/es-define-property/index.js"(exports2, module2) {
-    "use strict";
-    var $defineProperty = Object.defineProperty || false;
-    if ($defineProperty) {
-      try {
-        $defineProperty({}, "a", { value: 1 });
-      } catch (e) {
-        $defineProperty = false;
-      }
-    }
-    module2.exports = $defineProperty;
-  }
-});
-
-// node_modules/has-symbols/shams.js
-var require_shams = __commonJS({
-  "node_modules/has-symbols/shams.js"(exports2, module2) {
-    "use strict";
-    module2.exports = function hasSymbols() {
-      if (typeof Symbol !== "function" || typeof Object.getOwnPropertySymbols !== "function") {
-        return false;
-      }
-      if (typeof Symbol.iterator === "symbol") {
-        return true;
-      }
-      var obj = {};
-      var sym = /* @__PURE__ */ Symbol("test");
-      var symObj = Object(sym);
-      if (typeof sym === "string") {
-        return false;
-      }
-      if (Object.prototype.toString.call(sym) !== "[object Symbol]") {
-        return false;
-      }
-      if (Object.prototype.toString.call(symObj) !== "[object Symbol]") {
-        return false;
-      }
-      var symVal = 42;
-      obj[sym] = symVal;
-      for (var _ in obj) {
-        return false;
-      }
-      if (typeof Object.keys === "function" && Object.keys(obj).length !== 0) {
-        return false;
-      }
-      if (typeof Object.getOwnPropertyNames === "function" && Object.getOwnPropertyNames(obj).length !== 0) {
-        return false;
-      }
-      var syms = Object.getOwnPropertySymbols(obj);
-      if (syms.length !== 1 || syms[0] !== sym) {
-        return false;
-      }
-      if (!Object.prototype.propertyIsEnumerable.call(obj, sym)) {
-        return false;
-      }
-      if (typeof Object.getOwnPropertyDescriptor === "function") {
-        var descriptor = (
-          /** @type {PropertyDescriptor} */
-          Object.getOwnPropertyDescriptor(obj, sym)
-        );
-        if (descriptor.value !== symVal || descriptor.enumerable !== true) {
-          return false;
-        }
-      }
-      return true;
-    };
-  }
-});
-
-// node_modules/has-symbols/index.js
-var require_has_symbols = __commonJS({
-  "node_modules/has-symbols/index.js"(exports2, module2) {
-    "use strict";
-    var origSymbol = typeof Symbol !== "undefined" && Symbol;
-    var hasSymbolSham = require_shams();
-    module2.exports = function hasNativeSymbols() {
-      if (typeof origSymbol !== "function") {
-        return false;
-      }
-      if (typeof Symbol !== "function") {
-        return false;
-      }
-      if (typeof origSymbol("foo") !== "symbol") {
-        return false;
-      }
-      if (typeof /* @__PURE__ */ Symbol("bar") !== "symbol") {
-        return false;
-      }
-      return hasSymbolSham();
-    };
-  }
-});
-
-// node_modules/get-proto/Reflect.getPrototypeOf.js
-var require_Reflect_getPrototypeOf = __commonJS({
-  "node_modules/get-proto/Reflect.getPrototypeOf.js"(exports2, module2) {
-    "use strict";
-    module2.exports = typeof Reflect !== "undefined" && Reflect.getPrototypeOf || null;
-  }
-});
-
-// node_modules/get-proto/Object.getPrototypeOf.js
-var require_Object_getPrototypeOf = __commonJS({
-  "node_modules/get-proto/Object.getPrototypeOf.js"(exports2, module2) {
-    "use strict";
-    var $Object = require_es_object_atoms();
-    module2.exports = $Object.getPrototypeOf || null;
-  }
-});
-
-// node_modules/function-bind/implementation.js
-var require_implementation = __commonJS({
-  "node_modules/function-bind/implementation.js"(exports2, module2) {
-    "use strict";
-    var ERROR_MESSAGE = "Function.prototype.bind called on incompatible ";
-    var toStr = Object.prototype.toString;
-    var max = Math.max;
-    var funcType = "[object Function]";
-    var concatty = function concatty2(a, b) {
-      var arr = [];
-      for (var i = 0; i < a.length; i += 1) {
-        arr[i] = a[i];
-      }
-      for (var j = 0; j < b.length; j += 1) {
-        arr[j + a.length] = b[j];
-      }
-      return arr;
-    };
-    var slicy = function slicy2(arrLike, offset) {
-      var arr = [];
-      for (var i = offset || 0, j = 0; i < arrLike.length; i += 1, j += 1) {
-        arr[j] = arrLike[i];
-      }
-      return arr;
-    };
-    var joiny = function(arr, joiner) {
-      var str2 = "";
-      for (var i = 0; i < arr.length; i += 1) {
-        str2 += arr[i];
-        if (i + 1 < arr.length) {
-          str2 += joiner;
-        }
-      }
-      return str2;
-    };
-    module2.exports = function bind3(that) {
-      var target = this;
-      if (typeof target !== "function" || toStr.apply(target) !== funcType) {
-        throw new TypeError(ERROR_MESSAGE + target);
-      }
-      var args = slicy(arguments, 1);
-      var bound;
-      var binder = function() {
-        if (this instanceof bound) {
-          var result = target.apply(
-            this,
-            concatty(args, arguments)
-          );
-          if (Object(result) === result) {
-            return result;
-          }
-          return this;
-        }
-        return target.apply(
-          that,
-          concatty(args, arguments)
-        );
-      };
-      var boundLength = max(0, target.length - args.length);
-      var boundArgs = [];
-      for (var i = 0; i < boundLength; i++) {
-        boundArgs[i] = "$" + i;
-      }
-      bound = Function("binder", "return function (" + joiny(boundArgs, ",") + "){ return binder.apply(this,arguments); }")(binder);
-      if (target.prototype) {
-        var Empty = function Empty2() {
-        };
-        Empty.prototype = target.prototype;
-        bound.prototype = new Empty();
-        Empty.prototype = null;
-      }
-      return bound;
-    };
-  }
-});
-
-// node_modules/function-bind/index.js
-var require_function_bind = __commonJS({
-  "node_modules/function-bind/index.js"(exports2, module2) {
-    "use strict";
-    var implementation = require_implementation();
-    module2.exports = Function.prototype.bind || implementation;
-  }
-});
-
-// node_modules/call-bind-apply-helpers/functionCall.js
-var require_functionCall = __commonJS({
-  "node_modules/call-bind-apply-helpers/functionCall.js"(exports2, module2) {
-    "use strict";
-    module2.exports = Function.prototype.call;
-  }
-});
-
-// node_modules/call-bind-apply-helpers/functionApply.js
-var require_functionApply = __commonJS({
-  "node_modules/call-bind-apply-helpers/functionApply.js"(exports2, module2) {
-    "use strict";
-    module2.exports = Function.prototype.apply;
-  }
-});
-
-// node_modules/call-bind-apply-helpers/reflectApply.js
-var require_reflectApply = __commonJS({
-  "node_modules/call-bind-apply-helpers/reflectApply.js"(exports2, module2) {
-    "use strict";
-    module2.exports = typeof Reflect !== "undefined" && Reflect && Reflect.apply;
-  }
-});
-
-// node_modules/call-bind-apply-helpers/actualApply.js
-var require_actualApply = __commonJS({
-  "node_modules/call-bind-apply-helpers/actualApply.js"(exports2, module2) {
-    "use strict";
-    var bind3 = require_function_bind();
-    var $apply = require_functionApply();
-    var $call = require_functionCall();
-    var $reflectApply = require_reflectApply();
-    module2.exports = $reflectApply || bind3.call($call, $apply);
-  }
-});
-
-// node_modules/call-bind-apply-helpers/index.js
-var require_call_bind_apply_helpers = __commonJS({
-  "node_modules/call-bind-apply-helpers/index.js"(exports2, module2) {
-    "use strict";
-    var bind3 = require_function_bind();
-    var $TypeError = require_type();
-    var $call = require_functionCall();
-    var $actualApply = require_actualApply();
-    module2.exports = function callBindBasic(args) {
-      if (args.length < 1 || typeof args[0] !== "function") {
-        throw new $TypeError("a function is required");
-      }
-      return $actualApply(bind3, $call, args);
-    };
-  }
-});
-
-// node_modules/dunder-proto/get.js
-var require_get = __commonJS({
-  "node_modules/dunder-proto/get.js"(exports2, module2) {
-    "use strict";
-    var callBind = require_call_bind_apply_helpers();
-    var gOPD = require_gopd();
-    var hasProtoAccessor;
-    try {
-      hasProtoAccessor = /** @type {{ __proto__?: typeof Array.prototype }} */
-      [].__proto__ === Array.prototype;
-    } catch (e) {
-      if (!e || typeof e !== "object" || !("code" in e) || e.code !== "ERR_PROTO_ACCESS") {
-        throw e;
-      }
-    }
-    var desc = !!hasProtoAccessor && gOPD && gOPD(
-      Object.prototype,
-      /** @type {keyof typeof Object.prototype} */
-      "__proto__"
-    );
-    var $Object = Object;
-    var $getPrototypeOf = $Object.getPrototypeOf;
-    module2.exports = desc && typeof desc.get === "function" ? callBind([desc.get]) : typeof $getPrototypeOf === "function" ? (
-      /** @type {import('./get')} */
-      function getDunder(value) {
-        return $getPrototypeOf(value == null ? value : $Object(value));
-      }
-    ) : false;
-  }
-});
-
-// node_modules/get-proto/index.js
-var require_get_proto = __commonJS({
-  "node_modules/get-proto/index.js"(exports2, module2) {
-    "use strict";
-    var reflectGetProto = require_Reflect_getPrototypeOf();
-    var originalGetProto = require_Object_getPrototypeOf();
-    var getDunderProto = require_get();
-    module2.exports = reflectGetProto ? function getProto(O) {
-      return reflectGetProto(O);
-    } : originalGetProto ? function getProto(O) {
-      if (!O || typeof O !== "object" && typeof O !== "function") {
-        throw new TypeError("getProto: not an object");
-      }
-      return originalGetProto(O);
-    } : getDunderProto ? function getProto(O) {
-      return getDunderProto(O);
-    } : null;
-  }
-});
-
-// node_modules/hasown/index.js
-var require_hasown = __commonJS({
-  "node_modules/hasown/index.js"(exports2, module2) {
-    "use strict";
-    var call = Function.prototype.call;
-    var $hasOwn = Object.prototype.hasOwnProperty;
-    var bind3 = require_function_bind();
-    module2.exports = bind3.call(call, $hasOwn);
-  }
-});
-
-// node_modules/get-intrinsic/index.js
-var require_get_intrinsic = __commonJS({
-  "node_modules/get-intrinsic/index.js"(exports2, module2) {
-    "use strict";
-    var undefined2;
-    var $Object = require_es_object_atoms();
-    var $Error = require_es_errors();
-    var $EvalError = require_eval();
-    var $RangeError = require_range();
-    var $ReferenceError = require_ref();
-    var $SyntaxError = require_syntax();
-    var $TypeError = require_type();
-    var $URIError = require_uri();
-    var abs = require_abs();
-    var floor = require_floor();
-    var max = require_max();
-    var min = require_min();
-    var pow = require_pow();
-    var round = require_round();
-    var sign = require_sign();
-    var $Function = Function;
-    var getEvalledConstructor = function(expressionSyntax) {
-      try {
-        return $Function('"use strict"; return (' + expressionSyntax + ").constructor;")();
-      } catch (e) {
-      }
-    };
-    var $gOPD = require_gopd();
-    var $defineProperty = require_es_define_property();
-    var throwTypeError = function() {
-      throw new $TypeError();
-    };
-    var ThrowTypeError = $gOPD ? (function() {
-      try {
-        arguments.callee;
-        return throwTypeError;
-      } catch (calleeThrows) {
-        try {
-          return $gOPD(arguments, "callee").get;
-        } catch (gOPDthrows) {
-          return throwTypeError;
-        }
-      }
-    })() : throwTypeError;
-    var hasSymbols = require_has_symbols()();
-    var getProto = require_get_proto();
-    var $ObjectGPO = require_Object_getPrototypeOf();
-    var $ReflectGPO = require_Reflect_getPrototypeOf();
-    var $apply = require_functionApply();
-    var $call = require_functionCall();
-    var needsEval = {};
-    var TypedArray = typeof Uint8Array === "undefined" || !getProto ? undefined2 : getProto(Uint8Array);
-    var INTRINSICS = {
-      __proto__: null,
-      "%AggregateError%": typeof AggregateError === "undefined" ? undefined2 : AggregateError,
-      "%Array%": Array,
-      "%ArrayBuffer%": typeof ArrayBuffer === "undefined" ? undefined2 : ArrayBuffer,
-      "%ArrayIteratorPrototype%": hasSymbols && getProto ? getProto([][Symbol.iterator]()) : undefined2,
-      "%AsyncFromSyncIteratorPrototype%": undefined2,
-      "%AsyncFunction%": needsEval,
-      "%AsyncGenerator%": needsEval,
-      "%AsyncGeneratorFunction%": needsEval,
-      "%AsyncIteratorPrototype%": needsEval,
-      "%Atomics%": typeof Atomics === "undefined" ? undefined2 : Atomics,
-      "%BigInt%": typeof BigInt === "undefined" ? undefined2 : BigInt,
-      "%BigInt64Array%": typeof BigInt64Array === "undefined" ? undefined2 : BigInt64Array,
-      "%BigUint64Array%": typeof BigUint64Array === "undefined" ? undefined2 : BigUint64Array,
-      "%Boolean%": Boolean,
-      "%DataView%": typeof DataView === "undefined" ? undefined2 : DataView,
-      "%Date%": Date,
-      "%decodeURI%": decodeURI,
-      "%decodeURIComponent%": decodeURIComponent,
-      "%encodeURI%": encodeURI,
-      "%encodeURIComponent%": encodeURIComponent,
-      "%Error%": $Error,
-      "%eval%": eval,
-      // eslint-disable-line no-eval
-      "%EvalError%": $EvalError,
-      "%Float16Array%": typeof Float16Array === "undefined" ? undefined2 : Float16Array,
-      "%Float32Array%": typeof Float32Array === "undefined" ? undefined2 : Float32Array,
-      "%Float64Array%": typeof Float64Array === "undefined" ? undefined2 : Float64Array,
-      "%FinalizationRegistry%": typeof FinalizationRegistry === "undefined" ? undefined2 : FinalizationRegistry,
-      "%Function%": $Function,
-      "%GeneratorFunction%": needsEval,
-      "%Int8Array%": typeof Int8Array === "undefined" ? undefined2 : Int8Array,
-      "%Int16Array%": typeof Int16Array === "undefined" ? undefined2 : Int16Array,
-      "%Int32Array%": typeof Int32Array === "undefined" ? undefined2 : Int32Array,
-      "%isFinite%": isFinite,
-      "%isNaN%": isNaN,
-      "%IteratorPrototype%": hasSymbols && getProto ? getProto(getProto([][Symbol.iterator]())) : undefined2,
-      "%JSON%": typeof JSON === "object" ? JSON : undefined2,
-      "%Map%": typeof Map === "undefined" ? undefined2 : Map,
-      "%MapIteratorPrototype%": typeof Map === "undefined" || !hasSymbols || !getProto ? undefined2 : getProto((/* @__PURE__ */ new Map())[Symbol.iterator]()),
-      "%Math%": Math,
-      "%Number%": Number,
-      "%Object%": $Object,
-      "%Object.getOwnPropertyDescriptor%": $gOPD,
-      "%parseFloat%": parseFloat,
-      "%parseInt%": parseInt,
-      "%Promise%": typeof Promise === "undefined" ? undefined2 : Promise,
-      "%Proxy%": typeof Proxy === "undefined" ? undefined2 : Proxy,
-      "%RangeError%": $RangeError,
-      "%ReferenceError%": $ReferenceError,
-      "%Reflect%": typeof Reflect === "undefined" ? undefined2 : Reflect,
-      "%RegExp%": RegExp,
-      "%Set%": typeof Set === "undefined" ? undefined2 : Set,
-      "%SetIteratorPrototype%": typeof Set === "undefined" || !hasSymbols || !getProto ? undefined2 : getProto((/* @__PURE__ */ new Set())[Symbol.iterator]()),
-      "%SharedArrayBuffer%": typeof SharedArrayBuffer === "undefined" ? undefined2 : SharedArrayBuffer,
-      "%String%": String,
-      "%StringIteratorPrototype%": hasSymbols && getProto ? getProto(""[Symbol.iterator]()) : undefined2,
-      "%Symbol%": hasSymbols ? Symbol : undefined2,
-      "%SyntaxError%": $SyntaxError,
-      "%ThrowTypeError%": ThrowTypeError,
-      "%TypedArray%": TypedArray,
-      "%TypeError%": $TypeError,
-      "%Uint8Array%": typeof Uint8Array === "undefined" ? undefined2 : Uint8Array,
-      "%Uint8ClampedArray%": typeof Uint8ClampedArray === "undefined" ? undefined2 : Uint8ClampedArray,
-      "%Uint16Array%": typeof Uint16Array === "undefined" ? undefined2 : Uint16Array,
-      "%Uint32Array%": typeof Uint32Array === "undefined" ? undefined2 : Uint32Array,
-      "%URIError%": $URIError,
-      "%WeakMap%": typeof WeakMap === "undefined" ? undefined2 : WeakMap,
-      "%WeakRef%": typeof WeakRef === "undefined" ? undefined2 : WeakRef,
-      "%WeakSet%": typeof WeakSet === "undefined" ? undefined2 : WeakSet,
-      "%Function.prototype.call%": $call,
-      "%Function.prototype.apply%": $apply,
-      "%Object.defineProperty%": $defineProperty,
-      "%Object.getPrototypeOf%": $ObjectGPO,
-      "%Math.abs%": abs,
-      "%Math.floor%": floor,
-      "%Math.max%": max,
-      "%Math.min%": min,
-      "%Math.pow%": pow,
-      "%Math.round%": round,
-      "%Math.sign%": sign,
-      "%Reflect.getPrototypeOf%": $ReflectGPO
-    };
-    if (getProto) {
-      try {
-        null.error;
-      } catch (e) {
-        errorProto = getProto(getProto(e));
-        INTRINSICS["%Error.prototype%"] = errorProto;
-      }
-    }
-    var errorProto;
-    var doEval = function doEval2(name) {
-      var value;
-      if (name === "%AsyncFunction%") {
-        value = getEvalledConstructor("async function () {}");
-      } else if (name === "%GeneratorFunction%") {
-        value = getEvalledConstructor("function* () {}");
-      } else if (name === "%AsyncGeneratorFunction%") {
-        value = getEvalledConstructor("async function* () {}");
-      } else if (name === "%AsyncGenerator%") {
-        var fn = doEval2("%AsyncGeneratorFunction%");
-        if (fn) {
-          value = fn.prototype;
-        }
-      } else if (name === "%AsyncIteratorPrototype%") {
-        var gen = doEval2("%AsyncGenerator%");
-        if (gen && getProto) {
-          value = getProto(gen.prototype);
-        }
-      }
-      INTRINSICS[name] = value;
-      return value;
-    };
-    var LEGACY_ALIASES = {
-      __proto__: null,
-      "%ArrayBufferPrototype%": ["ArrayBuffer", "prototype"],
-      "%ArrayPrototype%": ["Array", "prototype"],
-      "%ArrayProto_entries%": ["Array", "prototype", "entries"],
-      "%ArrayProto_forEach%": ["Array", "prototype", "forEach"],
-      "%ArrayProto_keys%": ["Array", "prototype", "keys"],
-      "%ArrayProto_values%": ["Array", "prototype", "values"],
-      "%AsyncFunctionPrototype%": ["AsyncFunction", "prototype"],
-      "%AsyncGenerator%": ["AsyncGeneratorFunction", "prototype"],
-      "%AsyncGeneratorPrototype%": ["AsyncGeneratorFunction", "prototype", "prototype"],
-      "%BooleanPrototype%": ["Boolean", "prototype"],
-      "%DataViewPrototype%": ["DataView", "prototype"],
-      "%DatePrototype%": ["Date", "prototype"],
-      "%ErrorPrototype%": ["Error", "prototype"],
-      "%EvalErrorPrototype%": ["EvalError", "prototype"],
-      "%Float32ArrayPrototype%": ["Float32Array", "prototype"],
-      "%Float64ArrayPrototype%": ["Float64Array", "prototype"],
-      "%FunctionPrototype%": ["Function", "prototype"],
-      "%Generator%": ["GeneratorFunction", "prototype"],
-      "%GeneratorPrototype%": ["GeneratorFunction", "prototype", "prototype"],
-      "%Int8ArrayPrototype%": ["Int8Array", "prototype"],
-      "%Int16ArrayPrototype%": ["Int16Array", "prototype"],
-      "%Int32ArrayPrototype%": ["Int32Array", "prototype"],
-      "%JSONParse%": ["JSON", "parse"],
-      "%JSONStringify%": ["JSON", "stringify"],
-      "%MapPrototype%": ["Map", "prototype"],
-      "%NumberPrototype%": ["Number", "prototype"],
-      "%ObjectPrototype%": ["Object", "prototype"],
-      "%ObjProto_toString%": ["Object", "prototype", "toString"],
-      "%ObjProto_valueOf%": ["Object", "prototype", "valueOf"],
-      "%PromisePrototype%": ["Promise", "prototype"],
-      "%PromiseProto_then%": ["Promise", "prototype", "then"],
-      "%Promise_all%": ["Promise", "all"],
-      "%Promise_reject%": ["Promise", "reject"],
-      "%Promise_resolve%": ["Promise", "resolve"],
-      "%RangeErrorPrototype%": ["RangeError", "prototype"],
-      "%ReferenceErrorPrototype%": ["ReferenceError", "prototype"],
-      "%RegExpPrototype%": ["RegExp", "prototype"],
-      "%SetPrototype%": ["Set", "prototype"],
-      "%SharedArrayBufferPrototype%": ["SharedArrayBuffer", "prototype"],
-      "%StringPrototype%": ["String", "prototype"],
-      "%SymbolPrototype%": ["Symbol", "prototype"],
-      "%SyntaxErrorPrototype%": ["SyntaxError", "prototype"],
-      "%TypedArrayPrototype%": ["TypedArray", "prototype"],
-      "%TypeErrorPrototype%": ["TypeError", "prototype"],
-      "%Uint8ArrayPrototype%": ["Uint8Array", "prototype"],
-      "%Uint8ClampedArrayPrototype%": ["Uint8ClampedArray", "prototype"],
-      "%Uint16ArrayPrototype%": ["Uint16Array", "prototype"],
-      "%Uint32ArrayPrototype%": ["Uint32Array", "prototype"],
-      "%URIErrorPrototype%": ["URIError", "prototype"],
-      "%WeakMapPrototype%": ["WeakMap", "prototype"],
-      "%WeakSetPrototype%": ["WeakSet", "prototype"]
-    };
-    var bind3 = require_function_bind();
-    var hasOwn = require_hasown();
-    var $concat = bind3.call($call, Array.prototype.concat);
-    var $spliceApply = bind3.call($apply, Array.prototype.splice);
-    var $replace = bind3.call($call, String.prototype.replace);
-    var $strSlice = bind3.call($call, String.prototype.slice);
-    var $exec = bind3.call($call, RegExp.prototype.exec);
-    var rePropName = /[^%.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|%$))/g;
-    var reEscapeChar = /\\(\\)?/g;
-    var stringToPath = function stringToPath2(string) {
-      var first = $strSlice(string, 0, 1);
-      var last = $strSlice(string, -1);
-      if (first === "%" && last !== "%") {
-        throw new $SyntaxError("invalid intrinsic syntax, expected closing `%`");
-      } else if (last === "%" && first !== "%") {
-        throw new $SyntaxError("invalid intrinsic syntax, expected opening `%`");
-      }
-      var result = [];
-      $replace(string, rePropName, function(match2, number, quote, subString) {
-        result[result.length] = quote ? $replace(subString, reEscapeChar, "$1") : number || match2;
-      });
-      return result;
-    };
-    var getBaseIntrinsic = function getBaseIntrinsic2(name, allowMissing) {
-      var intrinsicName = name;
-      var alias;
-      if (hasOwn(LEGACY_ALIASES, intrinsicName)) {
-        alias = LEGACY_ALIASES[intrinsicName];
-        intrinsicName = "%" + alias[0] + "%";
-      }
-      if (hasOwn(INTRINSICS, intrinsicName)) {
-        var value = INTRINSICS[intrinsicName];
-        if (value === needsEval) {
-          value = doEval(intrinsicName);
-        }
-        if (typeof value === "undefined" && !allowMissing) {
-          throw new $TypeError("intrinsic " + name + " exists, but is not available. Please file an issue!");
-        }
-        return {
-          alias,
-          name: intrinsicName,
-          value
-        };
-      }
-      throw new $SyntaxError("intrinsic " + name + " does not exist!");
-    };
-    module2.exports = function GetIntrinsic(name, allowMissing) {
-      if (typeof name !== "string" || name.length === 0) {
-        throw new $TypeError("intrinsic name must be a non-empty string");
-      }
-      if (arguments.length > 1 && typeof allowMissing !== "boolean") {
-        throw new $TypeError('"allowMissing" argument must be a boolean');
-      }
-      if ($exec(/^%?[^%]*%?$/, name) === null) {
-        throw new $SyntaxError("`%` may not be present anywhere but at the beginning and end of the intrinsic name");
-      }
-      var parts = stringToPath(name);
-      var intrinsicBaseName = parts.length > 0 ? parts[0] : "";
-      var intrinsic = getBaseIntrinsic("%" + intrinsicBaseName + "%", allowMissing);
-      var intrinsicRealName = intrinsic.name;
-      var value = intrinsic.value;
-      var skipFurtherCaching = false;
-      var alias = intrinsic.alias;
-      if (alias) {
-        intrinsicBaseName = alias[0];
-        $spliceApply(parts, $concat([0, 1], alias));
-      }
-      for (var i = 1, isOwn = true; i < parts.length; i += 1) {
-        var part = parts[i];
-        var first = $strSlice(part, 0, 1);
-        var last = $strSlice(part, -1);
-        if ((first === '"' || first === "'" || first === "`" || (last === '"' || last === "'" || last === "`")) && first !== last) {
-          throw new $SyntaxError("property names with quotes must have matching quotes");
-        }
-        if (part === "constructor" || !isOwn) {
-          skipFurtherCaching = true;
-        }
-        intrinsicBaseName += "." + part;
-        intrinsicRealName = "%" + intrinsicBaseName + "%";
-        if (hasOwn(INTRINSICS, intrinsicRealName)) {
-          value = INTRINSICS[intrinsicRealName];
-        } else if (value != null) {
-          if (!(part in value)) {
-            if (!allowMissing) {
-              throw new $TypeError("base intrinsic for " + name + " exists, but the property is not available.");
-            }
-            return void undefined2;
-          }
-          if ($gOPD && i + 1 >= parts.length) {
-            var desc = $gOPD(value, part);
-            isOwn = !!desc;
-            if (isOwn && "get" in desc && !("originalValue" in desc.get)) {
-              value = desc.get;
-            } else {
-              value = value[part];
-            }
-          } else {
-            isOwn = hasOwn(value, part);
-            value = value[part];
-          }
-          if (isOwn && !skipFurtherCaching) {
-            INTRINSICS[intrinsicRealName] = value;
-          }
-        }
-      }
-      return value;
-    };
-  }
-});
-
-// node_modules/has-tostringtag/shams.js
-var require_shams2 = __commonJS({
-  "node_modules/has-tostringtag/shams.js"(exports2, module2) {
-    "use strict";
-    var hasSymbols = require_shams();
-    module2.exports = function hasToStringTagShams() {
-      return hasSymbols() && !!Symbol.toStringTag;
-    };
-  }
-});
-
-// node_modules/es-set-tostringtag/index.js
-var require_es_set_tostringtag = __commonJS({
-  "node_modules/es-set-tostringtag/index.js"(exports2, module2) {
-    "use strict";
-    var GetIntrinsic = require_get_intrinsic();
-    var $defineProperty = GetIntrinsic("%Object.defineProperty%", true);
-    var hasToStringTag = require_shams2()();
-    var hasOwn = require_hasown();
-    var $TypeError = require_type();
-    var toStringTag2 = hasToStringTag ? Symbol.toStringTag : null;
-    module2.exports = function setToStringTag(object, value) {
-      var overrideIfSet = arguments.length > 2 && !!arguments[2] && arguments[2].force;
-      var nonConfigurable = arguments.length > 2 && !!arguments[2] && arguments[2].nonConfigurable;
-      if (typeof overrideIfSet !== "undefined" && typeof overrideIfSet !== "boolean" || typeof nonConfigurable !== "undefined" && typeof nonConfigurable !== "boolean") {
-        throw new $TypeError("if provided, the `overrideIfSet` and `nonConfigurable` options must be booleans");
-      }
-      if (toStringTag2 && (overrideIfSet || !hasOwn(object, toStringTag2))) {
-        if ($defineProperty) {
-          $defineProperty(object, toStringTag2, {
-            configurable: !nonConfigurable,
-            enumerable: false,
-            value,
-            writable: false
-          });
-        } else {
-          object[toStringTag2] = value;
-        }
-      }
-    };
-  }
-});
-
-// node_modules/form-data/lib/populate.js
-var require_populate = __commonJS({
-  "node_modules/form-data/lib/populate.js"(exports2, module2) {
-    "use strict";
-    module2.exports = function(dst, src) {
-      Object.keys(src).forEach(function(prop) {
-        dst[prop] = dst[prop] || src[prop];
-      });
-      return dst;
-    };
-  }
-});
-
-// node_modules/form-data/lib/form_data.js
-var require_form_data = __commonJS({
-  "node_modules/form-data/lib/form_data.js"(exports2, module2) {
-    "use strict";
-    var CombinedStream = require_combined_stream();
-    var util3 = require("util");
-    var path2 = require("path");
-    var http3 = require("http");
-    var https2 = require("https");
-    var parseUrl3 = require("url").parse;
-    var fs = require("fs");
-    var Stream = require("stream").Stream;
-    var crypto2 = require("crypto");
-    var mime = require_mime_types();
-    var asynckit = require_asynckit();
-    var setToStringTag = require_es_set_tostringtag();
-    var hasOwn = require_hasown();
-    var populate = require_populate();
-    function FormData3(options) {
-      if (!(this instanceof FormData3)) {
-        return new FormData3(options);
-      }
-      this._overheadLength = 0;
-      this._valueLength = 0;
-      this._valuesToMeasure = [];
-      CombinedStream.call(this);
-      options = options || {};
-      for (var option in options) {
-        this[option] = options[option];
-      }
-    }
-    util3.inherits(FormData3, CombinedStream);
-    FormData3.LINE_BREAK = "\r\n";
-    FormData3.DEFAULT_CONTENT_TYPE = "application/octet-stream";
-    FormData3.prototype.append = function(field, value, options) {
-      options = options || {};
-      if (typeof options === "string") {
-        options = { filename: options };
-      }
-      var append2 = CombinedStream.prototype.append.bind(this);
-      if (typeof value === "number" || value == null) {
-        value = String(value);
-      }
-      if (Array.isArray(value)) {
-        this._error(new Error("Arrays are not supported."));
-        return;
-      }
-      var header = this._multiPartHeader(field, value, options);
-      var footer = this._multiPartFooter();
-      append2(header);
-      append2(value);
-      append2(footer);
-      this._trackLength(header, value, options);
-    };
-    FormData3.prototype._trackLength = function(header, value, options) {
-      var valueLength = 0;
-      if (options.knownLength != null) {
-        valueLength += Number(options.knownLength);
-      } else if (Buffer.isBuffer(value)) {
-        valueLength = value.length;
-      } else if (typeof value === "string") {
-        valueLength = Buffer.byteLength(value);
-      }
-      this._valueLength += valueLength;
-      this._overheadLength += Buffer.byteLength(header) + FormData3.LINE_BREAK.length;
-      if (!value || !value.path && !(value.readable && hasOwn(value, "httpVersion")) && !(value instanceof Stream)) {
-        return;
-      }
-      if (!options.knownLength) {
-        this._valuesToMeasure.push(value);
-      }
-    };
-    FormData3.prototype._lengthRetriever = function(value, callback) {
-      if (hasOwn(value, "fd")) {
-        if (value.end != void 0 && value.end != Infinity && value.start != void 0) {
-          callback(null, value.end + 1 - (value.start ? value.start : 0));
-        } else {
-          fs.stat(value.path, function(err, stat) {
-            if (err) {
-              callback(err);
-              return;
-            }
-            var fileSize = stat.size - (value.start ? value.start : 0);
-            callback(null, fileSize);
-          });
-        }
-      } else if (hasOwn(value, "httpVersion")) {
-        callback(null, Number(value.headers["content-length"]));
-      } else if (hasOwn(value, "httpModule")) {
-        value.on("response", function(response) {
-          value.pause();
-          callback(null, Number(response.headers["content-length"]));
-        });
-        value.resume();
-      } else {
-        callback("Unknown stream");
-      }
-    };
-    FormData3.prototype._multiPartHeader = function(field, value, options) {
-      if (typeof options.header === "string") {
-        return options.header;
-      }
-      var contentDisposition = this._getContentDisposition(value, options);
-      var contentType = this._getContentType(value, options);
-      var contents = "";
-      var headers = {
-        // add custom disposition as third element or keep it two elements if not
-        "Content-Disposition": ["form-data", 'name="' + field + '"'].concat(contentDisposition || []),
-        // if no content type. allow it to be empty array
-        "Content-Type": [].concat(contentType || [])
-      };
-      if (typeof options.header === "object") {
-        populate(headers, options.header);
-      }
-      var header;
-      for (var prop in headers) {
-        if (hasOwn(headers, prop)) {
-          header = headers[prop];
-          if (header == null) {
-            continue;
-          }
-          if (!Array.isArray(header)) {
-            header = [header];
-          }
-          if (header.length) {
-            contents += prop + ": " + header.join("; ") + FormData3.LINE_BREAK;
-          }
-        }
-      }
-      return "--" + this.getBoundary() + FormData3.LINE_BREAK + contents + FormData3.LINE_BREAK;
-    };
-    FormData3.prototype._getContentDisposition = function(value, options) {
-      var filename;
-      if (typeof options.filepath === "string") {
-        filename = path2.normalize(options.filepath).replace(/\\/g, "/");
-      } else if (options.filename || value && (value.name || value.path)) {
-        filename = path2.basename(options.filename || value && (value.name || value.path));
-      } else if (value && value.readable && hasOwn(value, "httpVersion")) {
-        filename = path2.basename(value.client._httpMessage.path || "");
-      }
-      if (filename) {
-        return 'filename="' + filename + '"';
-      }
-    };
-    FormData3.prototype._getContentType = function(value, options) {
-      var contentType = options.contentType;
-      if (!contentType && value && value.name) {
-        contentType = mime.lookup(value.name);
-      }
-      if (!contentType && value && value.path) {
-        contentType = mime.lookup(value.path);
-      }
-      if (!contentType && value && value.readable && hasOwn(value, "httpVersion")) {
-        contentType = value.headers["content-type"];
-      }
-      if (!contentType && (options.filepath || options.filename)) {
-        contentType = mime.lookup(options.filepath || options.filename);
-      }
-      if (!contentType && value && typeof value === "object") {
-        contentType = FormData3.DEFAULT_CONTENT_TYPE;
-      }
-      return contentType;
-    };
-    FormData3.prototype._multiPartFooter = function() {
-      return function(next) {
-        var footer = FormData3.LINE_BREAK;
-        var lastPart = this._streams.length === 0;
-        if (lastPart) {
-          footer += this._lastBoundary();
-        }
-        next(footer);
-      }.bind(this);
-    };
-    FormData3.prototype._lastBoundary = function() {
-      return "--" + this.getBoundary() + "--" + FormData3.LINE_BREAK;
-    };
-    FormData3.prototype.getHeaders = function(userHeaders) {
-      var header;
-      var formHeaders = {
-        "content-type": "multipart/form-data; boundary=" + this.getBoundary()
-      };
-      for (header in userHeaders) {
-        if (hasOwn(userHeaders, header)) {
-          formHeaders[header.toLowerCase()] = userHeaders[header];
-        }
-      }
-      return formHeaders;
-    };
-    FormData3.prototype.setBoundary = function(boundary) {
-      if (typeof boundary !== "string") {
-        throw new TypeError("FormData boundary must be a string");
-      }
-      this._boundary = boundary;
-    };
-    FormData3.prototype.getBoundary = function() {
-      if (!this._boundary) {
-        this._generateBoundary();
-      }
-      return this._boundary;
-    };
-    FormData3.prototype.getBuffer = function() {
-      var dataBuffer = new Buffer.alloc(0);
-      var boundary = this.getBoundary();
-      for (var i = 0, len = this._streams.length; i < len; i++) {
-        if (typeof this._streams[i] !== "function") {
-          if (Buffer.isBuffer(this._streams[i])) {
-            dataBuffer = Buffer.concat([dataBuffer, this._streams[i]]);
-          } else {
-            dataBuffer = Buffer.concat([dataBuffer, Buffer.from(this._streams[i])]);
-          }
-          if (typeof this._streams[i] !== "string" || this._streams[i].substring(2, boundary.length + 2) !== boundary) {
-            dataBuffer = Buffer.concat([dataBuffer, Buffer.from(FormData3.LINE_BREAK)]);
-          }
-        }
-      }
-      return Buffer.concat([dataBuffer, Buffer.from(this._lastBoundary())]);
-    };
-    FormData3.prototype._generateBoundary = function() {
-      this._boundary = "--------------------------" + crypto2.randomBytes(12).toString("hex");
-    };
-    FormData3.prototype.getLengthSync = function() {
-      var knownLength = this._overheadLength + this._valueLength;
-      if (this._streams.length) {
-        knownLength += this._lastBoundary().length;
-      }
-      if (!this.hasKnownLength()) {
-        this._error(new Error("Cannot calculate proper length in synchronous way."));
-      }
-      return knownLength;
-    };
-    FormData3.prototype.hasKnownLength = function() {
-      var hasKnownLength = true;
-      if (this._valuesToMeasure.length) {
-        hasKnownLength = false;
-      }
-      return hasKnownLength;
-    };
-    FormData3.prototype.getLength = function(cb) {
-      var knownLength = this._overheadLength + this._valueLength;
-      if (this._streams.length) {
-        knownLength += this._lastBoundary().length;
-      }
-      if (!this._valuesToMeasure.length) {
-        process.nextTick(cb.bind(this, null, knownLength));
-        return;
-      }
-      asynckit.parallel(this._valuesToMeasure, this._lengthRetriever, function(err, values) {
-        if (err) {
-          cb(err);
-          return;
-        }
-        values.forEach(function(length) {
-          knownLength += length;
-        });
-        cb(null, knownLength);
-      });
-    };
-    FormData3.prototype.submit = function(params, cb) {
-      var request2;
-      var options;
-      var defaults3 = { method: "post" };
-      if (typeof params === "string") {
-        params = parseUrl3(params);
-        options = populate({
-          port: params.port,
-          path: params.pathname,
-          host: params.hostname,
-          protocol: params.protocol
-        }, defaults3);
-      } else {
-        options = populate(params, defaults3);
-        if (!options.port) {
-          options.port = options.protocol === "https:" ? 443 : 80;
-        }
-      }
-      options.headers = this.getHeaders(params.headers);
-      if (options.protocol === "https:") {
-        request2 = https2.request(options);
-      } else {
-        request2 = http3.request(options);
-      }
-      this.getLength(function(err, length) {
-        if (err && err !== "Unknown stream") {
-          this._error(err);
-          return;
-        }
-        if (length) {
-          request2.setHeader("Content-Length", length);
-        }
-        this.pipe(request2);
-        if (cb) {
-          var onResponse;
-          var callback = function(error, responce) {
-            request2.removeListener("error", callback);
-            request2.removeListener("response", onResponse);
-            return cb.call(this, error, responce);
-          };
-          onResponse = callback.bind(this, null);
-          request2.on("error", callback);
-          request2.on("response", onResponse);
-        }
-      }.bind(this));
-      return request2;
-    };
-    FormData3.prototype._error = function(err) {
-      if (!this.error) {
-        this.error = err;
-        this.pause();
-        this.emit("error", err);
-      }
-    };
-    FormData3.prototype.toString = function() {
-      return "[object FormData]";
-    };
-    setToStringTag(FormData3.prototype, "FormData");
-    module2.exports = FormData3;
   }
 });
 
@@ -31998,11 +21729,11 @@ var require_common = __commonJS({
       createDebug.debug = createDebug;
       createDebug.default = createDebug;
       createDebug.coerce = coerce;
-      createDebug.disable = disable;
-      createDebug.enable = enable;
-      createDebug.enabled = enabled;
+      createDebug.disable = disable2;
+      createDebug.enable = enable2;
+      createDebug.enabled = enabled2;
       createDebug.humanize = require_ms();
-      createDebug.destroy = destroy;
+      createDebug.destroy = destroy2;
       Object.keys(env).forEach((key) => {
         createDebug[key] = env[key];
       });
@@ -32089,7 +21820,7 @@ var require_common = __commonJS({
         newDebug.log = this.log;
         return newDebug;
       }
-      function enable(namespaces) {
+      function enable2(namespaces) {
         createDebug.save(namespaces);
         createDebug.namespaces = namespaces;
         createDebug.names = [];
@@ -32131,7 +21862,7 @@ var require_common = __commonJS({
         }
         return templateIndex === template.length;
       }
-      function disable() {
+      function disable2() {
         const namespaces = [
           ...createDebug.names,
           ...createDebug.skips.map((namespace) => "-" + namespace)
@@ -32139,7 +21870,7 @@ var require_common = __commonJS({
         createDebug.enable("");
         return namespaces;
       }
-      function enabled(name) {
+      function enabled2(name) {
         for (const skip of createDebug.skips) {
           if (matchesTemplate(name, skip)) {
             return false;
@@ -32158,7 +21889,7 @@ var require_common = __commonJS({
         }
         return val;
       }
-      function destroy() {
+      function destroy2() {
         console.warn("Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`.");
       }
       createDebug.enable(createDebug.load());
@@ -32355,7 +22086,7 @@ var require_has_flag = __commonJS({
 var require_supports_color = __commonJS({
   "node_modules/supports-color/index.js"(exports2, module2) {
     "use strict";
-    var os = require("os");
+    var os3 = require("os");
     var tty = require("tty");
     var hasFlag = require_has_flag();
     var { env } = process;
@@ -32403,7 +22134,7 @@ var require_supports_color = __commonJS({
         return min;
       }
       if (process.platform === "win32") {
-        const osRelease = os.release().split(".");
+        const osRelease = os3.release().split(".");
         if (Number(osRelease[0]) >= 10 && Number(osRelease[2]) >= 10586) {
           return Number(osRelease[2]) >= 14931 ? 3 : 2;
         }
@@ -32441,8 +22172,8 @@ var require_supports_color = __commonJS({
       }
       return min;
     }
-    function getSupportLevel(stream4) {
-      const level = supportsColor(stream4, stream4 && stream4.isTTY);
+    function getSupportLevel(stream) {
+      const level = supportsColor(stream, stream && stream.isTTY);
       return translateLevel(level);
     }
     module2.exports = {
@@ -32457,14 +22188,14 @@ var require_supports_color = __commonJS({
 var require_node = __commonJS({
   "node_modules/debug/src/node.js"(exports2, module2) {
     var tty = require("tty");
-    var util3 = require("util");
+    var util2 = require("util");
     exports2.init = init;
-    exports2.log = log;
+    exports2.log = log2;
     exports2.formatArgs = formatArgs;
     exports2.save = save;
     exports2.load = load2;
     exports2.useColors = useColors;
-    exports2.destroy = util3.deprecate(
+    exports2.destroy = util2.deprecate(
       () => {
       },
       "Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`."
@@ -32594,8 +22325,8 @@ var require_node = __commonJS({
       }
       return (/* @__PURE__ */ new Date()).toISOString() + " ";
     }
-    function log(...args) {
-      return process.stderr.write(util3.formatWithOptions(exports2.inspectOpts, ...args) + "\n");
+    function log2(...args) {
+      return process.stderr.write(util2.formatWithOptions(exports2.inspectOpts, ...args) + "\n");
     }
     function save(namespaces) {
       if (namespaces) {
@@ -32618,11 +22349,11 @@ var require_node = __commonJS({
     var { formatters } = module2.exports;
     formatters.o = function(v) {
       this.inspectOpts.colors = this.useColors;
-      return util3.inspect(v, this.inspectOpts).split("\n").map((str2) => str2.trim()).join(" ");
+      return util2.inspect(v, this.inspectOpts).split("\n").map((str2) => str2.trim()).join(" ");
     };
     formatters.O = function(v) {
       this.inspectOpts.colors = this.useColors;
-      return util3.inspect(v, this.inspectOpts);
+      return util2.inspect(v, this.inspectOpts);
     };
   }
 });
@@ -32638,534 +22369,617 @@ var require_src = __commonJS({
   }
 });
 
-// node_modules/follow-redirects/debug.js
-var require_debug = __commonJS({
-  "node_modules/follow-redirects/debug.js"(exports2, module2) {
-    var debug7;
-    module2.exports = function() {
-      if (!debug7) {
-        try {
-          debug7 = require_src()("follow-redirects");
-        } catch (error) {
-        }
-        if (typeof debug7 !== "function") {
-          debug7 = function() {
-          };
-        }
+// node_modules/agent-base/dist/helpers.js
+var require_helpers = __commonJS({
+  "node_modules/agent-base/dist/helpers.js"(exports2) {
+    "use strict";
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? (function(o, m, k, k2) {
+      if (k2 === void 0) k2 = k;
+      var desc = Object.getOwnPropertyDescriptor(m, k);
+      if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+        desc = { enumerable: true, get: function() {
+          return m[k];
+        } };
       }
-      debug7.apply(null, arguments);
+      Object.defineProperty(o, k2, desc);
+    }) : (function(o, m, k, k2) {
+      if (k2 === void 0) k2 = k;
+      o[k2] = m[k];
+    }));
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? (function(o, v) {
+      Object.defineProperty(o, "default", { enumerable: true, value: v });
+    }) : function(o, v) {
+      o["default"] = v;
+    });
+    var __importStar = exports2 && exports2.__importStar || function(mod) {
+      if (mod && mod.__esModule) return mod;
+      var result = {};
+      if (mod != null) {
+        for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+      }
+      __setModuleDefault(result, mod);
+      return result;
     };
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.req = exports2.json = exports2.toBuffer = void 0;
+    var http2 = __importStar(require("http"));
+    var https2 = __importStar(require("https"));
+    async function toBuffer(stream) {
+      let length = 0;
+      const chunks = [];
+      for await (const chunk2 of stream) {
+        length += chunk2.length;
+        chunks.push(chunk2);
+      }
+      return Buffer.concat(chunks, length);
+    }
+    exports2.toBuffer = toBuffer;
+    async function json2(stream) {
+      const buf = await toBuffer(stream);
+      const str2 = buf.toString("utf8");
+      try {
+        return JSON.parse(str2);
+      } catch (_err) {
+        const err = _err;
+        err.message += ` (input: ${str2})`;
+        throw err;
+      }
+    }
+    exports2.json = json2;
+    function req(url, opts = {}) {
+      const href = typeof url === "string" ? url : url.href;
+      const req2 = (href.startsWith("https:") ? https2 : http2).request(url, opts);
+      const promise = new Promise((resolve4, reject) => {
+        req2.once("response", resolve4).once("error", reject).end();
+      });
+      req2.then = promise.then.bind(promise);
+      return req2;
+    }
+    exports2.req = req;
   }
 });
 
-// node_modules/follow-redirects/index.js
-var require_follow_redirects = __commonJS({
-  "node_modules/follow-redirects/index.js"(exports2, module2) {
-    var url2 = require("url");
-    var URL2 = url2.URL;
-    var http3 = require("http");
-    var https2 = require("https");
-    var Writable = require("stream").Writable;
-    var assert = require("assert");
-    var debug7 = require_debug();
-    (function detectUnsupportedEnvironment() {
-      var looksLikeNode = typeof process !== "undefined";
-      var looksLikeBrowser = typeof window !== "undefined" && typeof document !== "undefined";
-      var looksLikeV8 = isFunction3(Error.captureStackTrace);
-      if (!looksLikeNode && (looksLikeBrowser || !looksLikeV8)) {
-        console.warn("The follow-redirects package should be excluded from browser builds.");
+// node_modules/agent-base/dist/index.js
+var require_dist = __commonJS({
+  "node_modules/agent-base/dist/index.js"(exports2) {
+    "use strict";
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? (function(o, m, k, k2) {
+      if (k2 === void 0) k2 = k;
+      var desc = Object.getOwnPropertyDescriptor(m, k);
+      if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+        desc = { enumerable: true, get: function() {
+          return m[k];
+        } };
       }
-    })();
-    var useNativeURL = false;
-    try {
-      assert(new URL2(""));
-    } catch (error) {
-      useNativeURL = error.code === "ERR_INVALID_URL";
-    }
-    var sensitiveHeaders = [
-      "Authorization",
-      "Proxy-Authorization",
-      "Cookie"
-    ];
-    var preservedUrlFields = [
-      "auth",
-      "host",
-      "hostname",
-      "href",
-      "path",
-      "pathname",
-      "port",
-      "protocol",
-      "query",
-      "search",
-      "hash"
-    ];
-    var events = ["abort", "aborted", "connect", "error", "socket", "timeout"];
-    var eventHandlers = /* @__PURE__ */ Object.create(null);
-    events.forEach(function(event) {
-      eventHandlers[event] = function(arg1, arg2, arg3) {
-        this._redirectable.emit(event, arg1, arg2, arg3);
-      };
+      Object.defineProperty(o, k2, desc);
+    }) : (function(o, m, k, k2) {
+      if (k2 === void 0) k2 = k;
+      o[k2] = m[k];
+    }));
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? (function(o, v) {
+      Object.defineProperty(o, "default", { enumerable: true, value: v });
+    }) : function(o, v) {
+      o["default"] = v;
     });
-    var InvalidUrlError = createErrorType(
-      "ERR_INVALID_URL",
-      "Invalid URL",
-      TypeError
-    );
-    var RedirectionError = createErrorType(
-      "ERR_FR_REDIRECTION_FAILURE",
-      "Redirected request failed"
-    );
-    var TooManyRedirectsError = createErrorType(
-      "ERR_FR_TOO_MANY_REDIRECTS",
-      "Maximum number of redirects exceeded",
-      RedirectionError
-    );
-    var MaxBodyLengthExceededError = createErrorType(
-      "ERR_FR_MAX_BODY_LENGTH_EXCEEDED",
-      "Request body larger than maxBodyLength limit"
-    );
-    var WriteAfterEndError = createErrorType(
-      "ERR_STREAM_WRITE_AFTER_END",
-      "write after end"
-    );
-    var destroy = Writable.prototype.destroy || noop4;
-    function RedirectableRequest(options, responseCallback) {
-      Writable.call(this);
-      this._sanitizeOptions(options);
-      this._options = options;
-      this._ended = false;
-      this._ending = false;
-      this._redirectCount = 0;
-      this._redirects = [];
-      this._requestBodyLength = 0;
-      this._requestBodyBuffers = [];
-      if (responseCallback) {
-        this.on("response", responseCallback);
+    var __importStar = exports2 && exports2.__importStar || function(mod) {
+      if (mod && mod.__esModule) return mod;
+      var result = {};
+      if (mod != null) {
+        for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
       }
-      var self2 = this;
-      this._onNativeResponse = function(response) {
-        try {
-          self2._processResponse(response);
-        } catch (cause) {
-          self2.emit("error", cause instanceof RedirectionError ? cause : new RedirectionError({ cause }));
-        }
-      };
-      this._headerFilter = new RegExp("^(?:" + sensitiveHeaders.concat(options.sensitiveHeaders).map(escapeRegex).join("|") + ")$", "i");
-      this._performRequest();
-    }
-    RedirectableRequest.prototype = Object.create(Writable.prototype);
-    RedirectableRequest.prototype.abort = function() {
-      destroyRequest(this._currentRequest);
-      this._currentRequest.abort();
-      this.emit("abort");
+      __setModuleDefault(result, mod);
+      return result;
     };
-    RedirectableRequest.prototype.destroy = function(error) {
-      destroyRequest(this._currentRequest, error);
-      destroy.call(this, error);
-      return this;
+    var __exportStar = exports2 && exports2.__exportStar || function(m, exports3) {
+      for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports3, p)) __createBinding(exports3, m, p);
     };
-    RedirectableRequest.prototype.write = function(data, encoding, callback) {
-      if (this._ending) {
-        throw new WriteAfterEndError();
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.Agent = void 0;
+    var net = __importStar(require("net"));
+    var http2 = __importStar(require("http"));
+    var https_1 = require("https");
+    __exportStar(require_helpers(), exports2);
+    var INTERNAL = /* @__PURE__ */ Symbol("AgentBaseInternalState");
+    var Agent = class extends http2.Agent {
+      constructor(opts) {
+        super(opts);
+        this[INTERNAL] = {};
       }
-      if (!isString2(data) && !isBuffer2(data)) {
-        throw new TypeError("data should be a string, Buffer or Uint8Array");
-      }
-      if (isFunction3(encoding)) {
-        callback = encoding;
-        encoding = null;
-      }
-      if (data.length === 0) {
-        if (callback) {
-          callback();
+      /**
+       * Determine whether this is an `http` or `https` request.
+       */
+      isSecureEndpoint(options) {
+        if (options) {
+          if (typeof options.secureEndpoint === "boolean") {
+            return options.secureEndpoint;
+          }
+          if (typeof options.protocol === "string") {
+            return options.protocol === "https:";
+          }
         }
-        return;
+        const { stack } = new Error();
+        if (typeof stack !== "string")
+          return false;
+        return stack.split("\n").some((l) => l.indexOf("(https.js:") !== -1 || l.indexOf("node:https:") !== -1);
       }
-      if (this._requestBodyLength + data.length <= this._options.maxBodyLength) {
-        this._requestBodyLength += data.length;
-        this._requestBodyBuffers.push({ data, encoding });
-        this._currentRequest.write(data, encoding, callback);
-      } else {
-        this.emit("error", new MaxBodyLengthExceededError());
-        this.abort();
-      }
-    };
-    RedirectableRequest.prototype.end = function(data, encoding, callback) {
-      if (isFunction3(data)) {
-        callback = data;
-        data = encoding = null;
-      } else if (isFunction3(encoding)) {
-        callback = encoding;
-        encoding = null;
-      }
-      if (!data) {
-        this._ended = this._ending = true;
-        this._currentRequest.end(null, null, callback);
-      } else {
-        var self2 = this;
-        var currentRequest = this._currentRequest;
-        this.write(data, encoding, function() {
-          self2._ended = true;
-          currentRequest.end(null, null, callback);
-        });
-        this._ending = true;
-      }
-    };
-    RedirectableRequest.prototype.setHeader = function(name, value) {
-      this._options.headers[name] = value;
-      this._currentRequest.setHeader(name, value);
-    };
-    RedirectableRequest.prototype.removeHeader = function(name) {
-      delete this._options.headers[name];
-      this._currentRequest.removeHeader(name);
-    };
-    RedirectableRequest.prototype.setTimeout = function(msecs, callback) {
-      var self2 = this;
-      function destroyOnTimeout(socket) {
-        socket.setTimeout(msecs);
-        socket.removeListener("timeout", socket.destroy);
-        socket.addListener("timeout", socket.destroy);
-      }
-      function startTimer(socket) {
-        if (self2._timeout) {
-          clearTimeout(self2._timeout);
+      // In order to support async signatures in `connect()` and Node's native
+      // connection pooling in `http.Agent`, the array of sockets for each origin
+      // has to be updated synchronously. This is so the length of the array is
+      // accurate when `addRequest()` is next called. We achieve this by creating a
+      // fake socket and adding it to `sockets[origin]` and incrementing
+      // `totalSocketCount`.
+      incrementSockets(name) {
+        if (this.maxSockets === Infinity && this.maxTotalSockets === Infinity) {
+          return null;
         }
-        self2._timeout = setTimeout(function() {
-          self2.emit("timeout");
-          clearTimer();
-        }, msecs);
-        destroyOnTimeout(socket);
+        if (!this.sockets[name]) {
+          this.sockets[name] = [];
+        }
+        const fakeSocket = new net.Socket({ writable: false });
+        this.sockets[name].push(fakeSocket);
+        this.totalSocketCount++;
+        return fakeSocket;
       }
-      function clearTimer() {
-        if (self2._timeout) {
-          clearTimeout(self2._timeout);
-          self2._timeout = null;
+      decrementSockets(name, socket) {
+        if (!this.sockets[name] || socket === null) {
+          return;
         }
-        self2.removeListener("abort", clearTimer);
-        self2.removeListener("error", clearTimer);
-        self2.removeListener("response", clearTimer);
-        self2.removeListener("close", clearTimer);
-        if (callback) {
-          self2.removeListener("timeout", callback);
-        }
-        if (!self2.socket) {
-          self2._currentRequest.removeListener("socket", startTimer);
+        const sockets = this.sockets[name];
+        const index = sockets.indexOf(socket);
+        if (index !== -1) {
+          sockets.splice(index, 1);
+          this.totalSocketCount--;
+          if (sockets.length === 0) {
+            delete this.sockets[name];
+          }
         }
       }
-      if (callback) {
-        this.on("timeout", callback);
-      }
-      if (this.socket) {
-        startTimer(this.socket);
-      } else {
-        this._currentRequest.once("socket", startTimer);
-      }
-      this.on("socket", destroyOnTimeout);
-      this.on("abort", clearTimer);
-      this.on("error", clearTimer);
-      this.on("response", clearTimer);
-      this.on("close", clearTimer);
-      return this;
-    };
-    [
-      "flushHeaders",
-      "getHeader",
-      "setNoDelay",
-      "setSocketKeepAlive"
-    ].forEach(function(method) {
-      RedirectableRequest.prototype[method] = function(a, b) {
-        return this._currentRequest[method](a, b);
-      };
-    });
-    ["aborted", "connection", "socket"].forEach(function(property) {
-      Object.defineProperty(RedirectableRequest.prototype, property, {
-        get: function() {
-          return this._currentRequest[property];
+      // In order to properly update the socket pool, we need to call `getName()` on
+      // the core `https.Agent` if it is a secureEndpoint.
+      getName(options) {
+        const secureEndpoint = this.isSecureEndpoint(options);
+        if (secureEndpoint) {
+          return https_1.Agent.prototype.getName.call(this, options);
         }
-      });
-    });
-    RedirectableRequest.prototype._sanitizeOptions = function(options) {
-      if (!options.headers) {
-        options.headers = {};
+        return super.getName(options);
       }
-      if (!isArray2(options.sensitiveHeaders)) {
-        options.sensitiveHeaders = [];
-      }
-      if (options.host) {
-        if (!options.hostname) {
-          options.hostname = options.host;
-        }
-        delete options.host;
-      }
-      if (!options.pathname && options.path) {
-        var searchPos = options.path.indexOf("?");
-        if (searchPos < 0) {
-          options.pathname = options.path;
-        } else {
-          options.pathname = options.path.substring(0, searchPos);
-          options.search = options.path.substring(searchPos);
-        }
-      }
-    };
-    RedirectableRequest.prototype._performRequest = function() {
-      var protocol = this._options.protocol;
-      var nativeProtocol = this._options.nativeProtocols[protocol];
-      if (!nativeProtocol) {
-        throw new TypeError("Unsupported protocol " + protocol);
-      }
-      if (this._options.agents) {
-        var scheme = protocol.slice(0, -1);
-        this._options.agent = this._options.agents[scheme];
-      }
-      var request2 = this._currentRequest = nativeProtocol.request(this._options, this._onNativeResponse);
-      request2._redirectable = this;
-      for (var event of events) {
-        request2.on(event, eventHandlers[event]);
-      }
-      this._currentUrl = /^\//.test(this._options.path) ? url2.format(this._options) : (
-        // When making a request to a proxy, […]
-        // a client MUST send the target URI in absolute-form […].
-        this._options.path
-      );
-      if (this._isRedirect) {
-        var i = 0;
-        var self2 = this;
-        var buffers = this._requestBodyBuffers;
-        (function writeNext(error) {
-          if (request2 === self2._currentRequest) {
-            if (error) {
-              self2.emit("error", error);
-            } else if (i < buffers.length) {
-              var buffer = buffers[i++];
-              if (!request2.finished) {
-                request2.write(buffer.data, buffer.encoding, writeNext);
-              }
-            } else if (self2._ended) {
-              request2.end();
+      createSocket(req, options, cb) {
+        const connectOpts = {
+          ...options,
+          secureEndpoint: this.isSecureEndpoint(options)
+        };
+        const name = this.getName(connectOpts);
+        const fakeSocket = this.incrementSockets(name);
+        Promise.resolve().then(() => this.connect(req, connectOpts)).then((socket) => {
+          this.decrementSockets(name, fakeSocket);
+          if (socket instanceof http2.Agent) {
+            try {
+              return socket.addRequest(req, connectOpts);
+            } catch (err) {
+              return cb(err);
             }
           }
-        })();
-      }
-    };
-    RedirectableRequest.prototype._processResponse = function(response) {
-      var statusCode = response.statusCode;
-      if (this._options.trackRedirects) {
-        this._redirects.push({
-          url: this._currentUrl,
-          headers: response.headers,
-          statusCode
+          this[INTERNAL].currentSocket = socket;
+          super.createSocket(req, options, cb);
+        }, (err) => {
+          this.decrementSockets(name, fakeSocket);
+          cb(err);
         });
       }
-      var location = response.headers.location;
-      if (!location || this._options.followRedirects === false || statusCode < 300 || statusCode >= 400) {
-        response.responseUrl = this._currentUrl;
-        response.redirects = this._redirects;
-        this.emit("response", response);
-        this._requestBodyBuffers = [];
-        return;
+      createConnection() {
+        const socket = this[INTERNAL].currentSocket;
+        this[INTERNAL].currentSocket = void 0;
+        if (!socket) {
+          throw new Error("No socket was returned in the `connect()` function");
+        }
+        return socket;
       }
-      destroyRequest(this._currentRequest);
-      response.destroy();
-      if (++this._redirectCount > this._options.maxRedirects) {
-        throw new TooManyRedirectsError();
+      get defaultPort() {
+        return this[INTERNAL].defaultPort ?? (this.protocol === "https:" ? 443 : 80);
       }
-      var requestHeaders;
-      var beforeRedirect = this._options.beforeRedirect;
-      if (beforeRedirect) {
-        requestHeaders = Object.assign({
-          // The Host header was set by nativeProtocol.request
-          Host: response.req.getHeader("host")
-        }, this._options.headers);
+      set defaultPort(v) {
+        if (this[INTERNAL]) {
+          this[INTERNAL].defaultPort = v;
+        }
       }
-      var method = this._options.method;
-      if ((statusCode === 301 || statusCode === 302) && this._options.method === "POST" || // RFC7231§6.4.4: The 303 (See Other) status code indicates that
-      // the server is redirecting the user agent to a different resource […]
-      // A user agent can perform a retrieval request targeting that URI
-      // (a GET or HEAD request if using HTTP) […]
-      statusCode === 303 && !/^(?:GET|HEAD)$/.test(this._options.method)) {
-        this._options.method = "GET";
-        this._requestBodyBuffers = [];
-        removeMatchingHeaders(/^content-/i, this._options.headers);
+      get protocol() {
+        return this[INTERNAL].protocol ?? (this.isSecureEndpoint() ? "https:" : "http:");
       }
-      var currentHostHeader = removeMatchingHeaders(/^host$/i, this._options.headers);
-      var currentUrlParts = parseUrl3(this._currentUrl);
-      var currentHost = currentHostHeader || currentUrlParts.host;
-      var currentUrl = /^\w+:/.test(location) ? this._currentUrl : url2.format(Object.assign(currentUrlParts, { host: currentHost }));
-      var redirectUrl = resolveUrl(location, currentUrl);
-      debug7("redirecting to", redirectUrl.href);
-      this._isRedirect = true;
-      spreadUrlObject(redirectUrl, this._options);
-      if (redirectUrl.protocol !== currentUrlParts.protocol && redirectUrl.protocol !== "https:" || redirectUrl.host !== currentHost && !isSubdomain(redirectUrl.host, currentHost)) {
-        removeMatchingHeaders(this._headerFilter, this._options.headers);
+      set protocol(v) {
+        if (this[INTERNAL]) {
+          this[INTERNAL].protocol = v;
+        }
       }
-      if (isFunction3(beforeRedirect)) {
-        var responseDetails = {
-          headers: response.headers,
-          statusCode
-        };
-        var requestDetails = {
-          url: currentUrl,
-          method,
-          headers: requestHeaders
-        };
-        beforeRedirect(this._options, responseDetails, requestDetails);
-        this._sanitizeOptions(this._options);
-      }
-      this._performRequest();
     };
-    function wrap(protocols) {
-      var exports3 = {
-        maxRedirects: 21,
-        maxBodyLength: 10 * 1024 * 1024
-      };
-      var nativeProtocols = {};
-      Object.keys(protocols).forEach(function(scheme) {
-        var protocol = scheme + ":";
-        var nativeProtocol = nativeProtocols[protocol] = protocols[scheme];
-        var wrappedProtocol = exports3[scheme] = Object.create(nativeProtocol);
-        function request2(input, options, callback) {
-          if (isURL(input)) {
-            input = spreadUrlObject(input);
-          } else if (isString2(input)) {
-            input = spreadUrlObject(parseUrl3(input));
-          } else {
-            callback = options;
-            options = validateUrl(input);
-            input = { protocol };
-          }
-          if (isFunction3(options)) {
-            callback = options;
-            options = null;
-          }
-          options = Object.assign({
-            maxRedirects: exports3.maxRedirects,
-            maxBodyLength: exports3.maxBodyLength
-          }, input, options);
-          options.nativeProtocols = nativeProtocols;
-          if (!isString2(options.host) && !isString2(options.hostname)) {
-            options.hostname = "::1";
-          }
-          assert.equal(options.protocol, protocol, "protocol mismatch");
-          debug7("options", options);
-          return new RedirectableRequest(options, callback);
+    exports2.Agent = Agent;
+  }
+});
+
+// node_modules/https-proxy-agent/dist/parse-proxy-response.js
+var require_parse_proxy_response = __commonJS({
+  "node_modules/https-proxy-agent/dist/parse-proxy-response.js"(exports2) {
+    "use strict";
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+      return mod && mod.__esModule ? mod : { "default": mod };
+    };
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.parseProxyResponse = void 0;
+    var debug_1 = __importDefault(require_src());
+    var debug7 = (0, debug_1.default)("https-proxy-agent:parse-proxy-response");
+    function parseProxyResponse(socket) {
+      return new Promise((resolve4, reject) => {
+        let buffersLength = 0;
+        const buffers = [];
+        function read() {
+          const b = socket.read();
+          if (b)
+            ondata(b);
+          else
+            socket.once("readable", read);
         }
-        function get(input, options, callback) {
-          var wrappedRequest = wrappedProtocol.request(input, options, callback);
-          wrappedRequest.end();
-          return wrappedRequest;
+        function cleanup() {
+          socket.removeListener("end", onend);
+          socket.removeListener("error", onerror);
+          socket.removeListener("readable", read);
         }
-        Object.defineProperties(wrappedProtocol, {
-          request: { value: request2, configurable: true, enumerable: true, writable: true },
-          get: { value: get, configurable: true, enumerable: true, writable: true }
+        function onend() {
+          cleanup();
+          debug7("onend");
+          reject(new Error("Proxy connection ended before receiving CONNECT response"));
+        }
+        function onerror(err) {
+          cleanup();
+          debug7("onerror %o", err);
+          reject(err);
+        }
+        function ondata(b) {
+          buffers.push(b);
+          buffersLength += b.length;
+          const buffered = Buffer.concat(buffers, buffersLength);
+          const endOfHeaders = buffered.indexOf("\r\n\r\n");
+          if (endOfHeaders === -1) {
+            debug7("have not received end of HTTP headers yet...");
+            read();
+            return;
+          }
+          const headerParts = buffered.slice(0, endOfHeaders).toString("ascii").split("\r\n");
+          const firstLine = headerParts.shift();
+          if (!firstLine) {
+            socket.destroy();
+            return reject(new Error("No header received from proxy CONNECT response"));
+          }
+          const firstLineParts = firstLine.split(" ");
+          const statusCode = +firstLineParts[1];
+          const statusText = firstLineParts.slice(2).join(" ");
+          const headers = {};
+          for (const header of headerParts) {
+            if (!header)
+              continue;
+            const firstColon = header.indexOf(":");
+            if (firstColon === -1) {
+              socket.destroy();
+              return reject(new Error(`Invalid header from proxy CONNECT response: "${header}"`));
+            }
+            const key = header.slice(0, firstColon).toLowerCase();
+            const value = header.slice(firstColon + 1).trimStart();
+            const current = headers[key];
+            if (typeof current === "string") {
+              headers[key] = [current, value];
+            } else if (Array.isArray(current)) {
+              current.push(value);
+            } else {
+              headers[key] = value;
+            }
+          }
+          debug7("got proxy server response: %o %o", firstLine, headers);
+          cleanup();
+          resolve4({
+            connect: {
+              statusCode,
+              statusText,
+              headers
+            },
+            buffered
+          });
+        }
+        socket.on("error", onerror);
+        socket.on("end", onend);
+        read();
+      });
+    }
+    exports2.parseProxyResponse = parseProxyResponse;
+  }
+});
+
+// node_modules/https-proxy-agent/dist/index.js
+var require_dist2 = __commonJS({
+  "node_modules/https-proxy-agent/dist/index.js"(exports2) {
+    "use strict";
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? (function(o, m, k, k2) {
+      if (k2 === void 0) k2 = k;
+      var desc = Object.getOwnPropertyDescriptor(m, k);
+      if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+        desc = { enumerable: true, get: function() {
+          return m[k];
+        } };
+      }
+      Object.defineProperty(o, k2, desc);
+    }) : (function(o, m, k, k2) {
+      if (k2 === void 0) k2 = k;
+      o[k2] = m[k];
+    }));
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? (function(o, v) {
+      Object.defineProperty(o, "default", { enumerable: true, value: v });
+    }) : function(o, v) {
+      o["default"] = v;
+    });
+    var __importStar = exports2 && exports2.__importStar || function(mod) {
+      if (mod && mod.__esModule) return mod;
+      var result = {};
+      if (mod != null) {
+        for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+      }
+      __setModuleDefault(result, mod);
+      return result;
+    };
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+      return mod && mod.__esModule ? mod : { "default": mod };
+    };
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.HttpsProxyAgent = void 0;
+    var net = __importStar(require("net"));
+    var tls = __importStar(require("tls"));
+    var assert_1 = __importDefault(require("assert"));
+    var debug_1 = __importDefault(require_src());
+    var agent_base_1 = require_dist();
+    var url_1 = require("url");
+    var parse_proxy_response_1 = require_parse_proxy_response();
+    var debug7 = (0, debug_1.default)("https-proxy-agent");
+    var setServernameFromNonIpHost = (options) => {
+      if (options.servername === void 0 && options.host && !net.isIP(options.host)) {
+        return {
+          ...options,
+          servername: options.host
+        };
+      }
+      return options;
+    };
+    var HttpsProxyAgent2 = class extends agent_base_1.Agent {
+      constructor(proxy, opts) {
+        super(opts);
+        this.options = { path: void 0 };
+        this.proxy = typeof proxy === "string" ? new url_1.URL(proxy) : proxy;
+        this.proxyHeaders = opts?.headers ?? {};
+        debug7("Creating new HttpsProxyAgent instance: %o", this.proxy.href);
+        const host = (this.proxy.hostname || this.proxy.host).replace(/^\[|\]$/g, "");
+        const port = this.proxy.port ? parseInt(this.proxy.port, 10) : this.proxy.protocol === "https:" ? 443 : 80;
+        this.connectOpts = {
+          // Attempt to negotiate http/1.1 for proxy servers that support http/2
+          ALPNProtocols: ["http/1.1"],
+          ...opts ? omit2(opts, "headers") : null,
+          host,
+          port
+        };
+      }
+      /**
+       * Called when the node-core HTTP client library is creating a
+       * new HTTP request.
+       */
+      async connect(req, opts) {
+        const { proxy } = this;
+        if (!opts.host) {
+          throw new TypeError('No "host" provided');
+        }
+        let socket;
+        if (proxy.protocol === "https:") {
+          debug7("Creating `tls.Socket`: %o", this.connectOpts);
+          socket = tls.connect(setServernameFromNonIpHost(this.connectOpts));
+        } else {
+          debug7("Creating `net.Socket`: %o", this.connectOpts);
+          socket = net.connect(this.connectOpts);
+        }
+        const headers = typeof this.proxyHeaders === "function" ? this.proxyHeaders() : { ...this.proxyHeaders };
+        const host = net.isIPv6(opts.host) ? `[${opts.host}]` : opts.host;
+        let payload = `CONNECT ${host}:${opts.port} HTTP/1.1\r
+`;
+        if (proxy.username || proxy.password) {
+          const auth2 = `${decodeURIComponent(proxy.username)}:${decodeURIComponent(proxy.password)}`;
+          headers["Proxy-Authorization"] = `Basic ${Buffer.from(auth2).toString("base64")}`;
+        }
+        headers.Host = `${host}:${opts.port}`;
+        if (!headers["Proxy-Connection"]) {
+          headers["Proxy-Connection"] = this.keepAlive ? "Keep-Alive" : "close";
+        }
+        for (const name of Object.keys(headers)) {
+          payload += `${name}: ${headers[name]}\r
+`;
+        }
+        const proxyResponsePromise = (0, parse_proxy_response_1.parseProxyResponse)(socket);
+        socket.write(`${payload}\r
+`);
+        const { connect, buffered } = await proxyResponsePromise;
+        req.emit("proxyConnect", connect);
+        this.emit("proxyConnect", connect, req);
+        if (connect.statusCode === 200) {
+          req.once("socket", resume);
+          if (opts.secureEndpoint) {
+            debug7("Upgrading socket connection to TLS");
+            return tls.connect({
+              ...omit2(setServernameFromNonIpHost(opts), "host", "path", "port"),
+              socket
+            });
+          }
+          return socket;
+        }
+        socket.destroy();
+        const fakeSocket = new net.Socket({ writable: false });
+        fakeSocket.readable = true;
+        req.once("socket", (s) => {
+          debug7("Replaying proxy buffer for failed request");
+          (0, assert_1.default)(s.listenerCount("data") > 0);
+          s.push(buffered);
+          s.push(null);
         });
-      });
-      return exports3;
+        return fakeSocket;
+      }
+    };
+    HttpsProxyAgent2.protocols = ["http", "https"];
+    exports2.HttpsProxyAgent = HttpsProxyAgent2;
+    function resume(socket) {
+      socket.resume();
     }
-    function noop4() {
-    }
-    function parseUrl3(input) {
-      var parsed;
-      if (useNativeURL) {
-        parsed = new URL2(input);
-      } else {
-        parsed = validateUrl(url2.parse(input));
-        if (!isString2(parsed.protocol)) {
-          throw new InvalidUrlError({ input });
+    function omit2(obj, ...keys) {
+      const ret = {};
+      let key;
+      for (key in obj) {
+        if (!keys.includes(key)) {
+          ret[key] = obj[key];
         }
       }
-      return parsed;
+      return ret;
     }
-    function resolveUrl(relative, base) {
-      return useNativeURL ? new URL2(relative, base) : parseUrl3(url2.resolve(base, relative));
-    }
-    function validateUrl(input) {
-      if (/^\[/.test(input.hostname) && !/^\[[:0-9a-f]+\]$/i.test(input.hostname)) {
-        throw new InvalidUrlError({ input: input.href || input });
+  }
+});
+
+// node_modules/http-proxy-agent/dist/index.js
+var require_dist3 = __commonJS({
+  "node_modules/http-proxy-agent/dist/index.js"(exports2) {
+    "use strict";
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? (function(o, m, k, k2) {
+      if (k2 === void 0) k2 = k;
+      var desc = Object.getOwnPropertyDescriptor(m, k);
+      if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+        desc = { enumerable: true, get: function() {
+          return m[k];
+        } };
       }
-      if (/^\[/.test(input.host) && !/^\[[:0-9a-f]+\](:\d+)?$/i.test(input.host)) {
-        throw new InvalidUrlError({ input: input.href || input });
+      Object.defineProperty(o, k2, desc);
+    }) : (function(o, m, k, k2) {
+      if (k2 === void 0) k2 = k;
+      o[k2] = m[k];
+    }));
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? (function(o, v) {
+      Object.defineProperty(o, "default", { enumerable: true, value: v });
+    }) : function(o, v) {
+      o["default"] = v;
+    });
+    var __importStar = exports2 && exports2.__importStar || function(mod) {
+      if (mod && mod.__esModule) return mod;
+      var result = {};
+      if (mod != null) {
+        for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
       }
-      return input;
-    }
-    function spreadUrlObject(urlObject, target) {
-      var spread3 = target || {};
-      for (var key of preservedUrlFields) {
-        spread3[key] = urlObject[key];
+      __setModuleDefault(result, mod);
+      return result;
+    };
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+      return mod && mod.__esModule ? mod : { "default": mod };
+    };
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.HttpProxyAgent = void 0;
+    var net = __importStar(require("net"));
+    var tls = __importStar(require("tls"));
+    var debug_1 = __importDefault(require_src());
+    var events_1 = require("events");
+    var agent_base_1 = require_dist();
+    var url_1 = require("url");
+    var debug7 = (0, debug_1.default)("http-proxy-agent");
+    var HttpProxyAgent2 = class extends agent_base_1.Agent {
+      constructor(proxy, opts) {
+        super(opts);
+        this.proxy = typeof proxy === "string" ? new url_1.URL(proxy) : proxy;
+        this.proxyHeaders = opts?.headers ?? {};
+        debug7("Creating new HttpProxyAgent instance: %o", this.proxy.href);
+        const host = (this.proxy.hostname || this.proxy.host).replace(/^\[|\]$/g, "");
+        const port = this.proxy.port ? parseInt(this.proxy.port, 10) : this.proxy.protocol === "https:" ? 443 : 80;
+        this.connectOpts = {
+          ...opts ? omit2(opts, "headers") : null,
+          host,
+          port
+        };
       }
-      if (spread3.hostname.startsWith("[")) {
-        spread3.hostname = spread3.hostname.slice(1, -1);
+      addRequest(req, opts) {
+        req._header = null;
+        this.setRequestProps(req, opts);
+        super.addRequest(req, opts);
       }
-      if (spread3.port !== "") {
-        spread3.port = Number(spread3.port);
-      }
-      spread3.path = spread3.search ? spread3.pathname + spread3.search : spread3.pathname;
-      return spread3;
-    }
-    function removeMatchingHeaders(regex, headers) {
-      var lastValue;
-      for (var header in headers) {
-        if (regex.test(header)) {
-          lastValue = headers[header];
-          delete headers[header];
+      setRequestProps(req, opts) {
+        const { proxy } = this;
+        const protocol = opts.secureEndpoint ? "https:" : "http:";
+        const hostname = req.getHeader("host") || "localhost";
+        const base = `${protocol}//${hostname}`;
+        const url = new url_1.URL(req.path, base);
+        if (opts.port !== 80) {
+          url.port = String(opts.port);
+        }
+        req.path = String(url);
+        const headers = typeof this.proxyHeaders === "function" ? this.proxyHeaders() : { ...this.proxyHeaders };
+        if (proxy.username || proxy.password) {
+          const auth2 = `${decodeURIComponent(proxy.username)}:${decodeURIComponent(proxy.password)}`;
+          headers["Proxy-Authorization"] = `Basic ${Buffer.from(auth2).toString("base64")}`;
+        }
+        if (!headers["Proxy-Connection"]) {
+          headers["Proxy-Connection"] = this.keepAlive ? "Keep-Alive" : "close";
+        }
+        for (const name of Object.keys(headers)) {
+          const value = headers[name];
+          if (value) {
+            req.setHeader(name, value);
+          }
         }
       }
-      return lastValue === null || typeof lastValue === "undefined" ? void 0 : String(lastValue).trim();
-    }
-    function createErrorType(code, message, baseClass) {
-      function CustomError(properties) {
-        if (isFunction3(Error.captureStackTrace)) {
-          Error.captureStackTrace(this, this.constructor);
+      async connect(req, opts) {
+        req._header = null;
+        if (!req.path.includes("://")) {
+          this.setRequestProps(req, opts);
         }
-        Object.assign(this, properties || {});
-        this.code = code;
-        this.message = this.cause ? message + ": " + this.cause.message : message;
-      }
-      CustomError.prototype = new (baseClass || Error)();
-      Object.defineProperties(CustomError.prototype, {
-        constructor: {
-          value: CustomError,
-          enumerable: false
-        },
-        name: {
-          value: "Error [" + code + "]",
-          enumerable: false
+        let first;
+        let endOfHeaders;
+        debug7("Regenerating stored HTTP header string for request");
+        req._implicitHeader();
+        if (req.outputData && req.outputData.length > 0) {
+          debug7("Patching connection write() output buffer with updated header");
+          first = req.outputData[0].data;
+          endOfHeaders = first.indexOf("\r\n\r\n") + 4;
+          req.outputData[0].data = req._header + first.substring(endOfHeaders);
+          debug7("Output buffer: %o", req.outputData[0].data);
         }
-      });
-      return CustomError;
-    }
-    function destroyRequest(request2, error) {
-      for (var event of events) {
-        request2.removeListener(event, eventHandlers[event]);
+        let socket;
+        if (this.proxy.protocol === "https:") {
+          debug7("Creating `tls.Socket`: %o", this.connectOpts);
+          socket = tls.connect(this.connectOpts);
+        } else {
+          debug7("Creating `net.Socket`: %o", this.connectOpts);
+          socket = net.connect(this.connectOpts);
+        }
+        await (0, events_1.once)(socket, "connect");
+        return socket;
       }
-      request2.on("error", noop4);
-      request2.destroy(error);
+    };
+    HttpProxyAgent2.protocols = ["http", "https"];
+    exports2.HttpProxyAgent = HttpProxyAgent2;
+    function omit2(obj, ...keys) {
+      const ret = {};
+      let key;
+      for (key in obj) {
+        if (!keys.includes(key)) {
+          ret[key] = obj[key];
+        }
+      }
+      return ret;
     }
-    function isSubdomain(subdomain, domain) {
-      assert(isString2(subdomain) && isString2(domain));
-      var dot = subdomain.length - domain.length - 1;
-      return dot > 0 && subdomain[dot] === "." && subdomain.endsWith(domain);
-    }
-    function isArray2(value) {
-      return value instanceof Array;
-    }
-    function isString2(value) {
-      return typeof value === "string" || value instanceof String;
-    }
-    function isFunction3(value) {
-      return typeof value === "function";
-    }
-    function isBuffer2(value) {
-      return typeof value === "object" && "length" in value;
-    }
-    function isURL(value) {
-      return URL2 && value instanceof URL2;
-    }
-    function escapeRegex(regex) {
-      return regex.replace(/[\]\\/()*+?.$]/g, "\\$&");
-    }
-    module2.exports = wrap({ http: http3, https: https2 });
-    module2.exports.wrap = wrap;
+  }
+});
+
+// node_modules/@azure/core-tracing/dist/commonjs/state.js
+var require_state = __commonJS({
+  "node_modules/@azure/core-tracing/dist/commonjs/state.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.state = void 0;
+    exports2.state = {
+      instrumenterImplementation: void 0
+    };
   }
 });
 
@@ -33249,11 +23063,11 @@ var require_defaults = __commonJS({
 var require_Utility = __commonJS({
   "node_modules/xmlbuilder/lib/Utility.js"(exports2, module2) {
     (function() {
-      var assign, getValue, isArray2, isEmpty2, isFunction3, isObject3, isPlainObject4, slice = [].slice, hasProp = {}.hasOwnProperty;
+      var assign, getValue, isArray, isEmpty2, isFunction, isObject3, isPlainObject3, slice = [].slice, hasProp = {}.hasOwnProperty;
       assign = function() {
         var i, key, len, source, sources, target;
         target = arguments[0], sources = 2 <= arguments.length ? slice.call(arguments, 1) : [];
-        if (isFunction3(Object.assign)) {
+        if (isFunction(Object.assign)) {
           Object.assign.apply(null, arguments);
         } else {
           for (i = 0, len = sources.length; i < len; i++) {
@@ -33268,15 +23082,15 @@ var require_Utility = __commonJS({
         }
         return target;
       };
-      isFunction3 = function(val) {
+      isFunction = function(val) {
         return !!val && Object.prototype.toString.call(val) === "[object Function]";
       };
       isObject3 = function(val) {
         var ref;
         return !!val && ((ref = typeof val) === "function" || ref === "object");
       };
-      isArray2 = function(val) {
-        if (isFunction3(Array.isArray)) {
+      isArray = function(val) {
+        if (isFunction(Array.isArray)) {
           return Array.isArray(val);
         } else {
           return Object.prototype.toString.call(val) === "[object Array]";
@@ -33284,7 +23098,7 @@ var require_Utility = __commonJS({
       };
       isEmpty2 = function(val) {
         var key;
-        if (isArray2(val)) {
+        if (isArray(val)) {
           return !val.length;
         } else {
           for (key in val) {
@@ -33294,23 +23108,23 @@ var require_Utility = __commonJS({
           return true;
         }
       };
-      isPlainObject4 = function(val) {
+      isPlainObject3 = function(val) {
         var ctor, proto;
         return isObject3(val) && (proto = Object.getPrototypeOf(val)) && (ctor = proto.constructor) && typeof ctor === "function" && ctor instanceof ctor && Function.prototype.toString.call(ctor) === Function.prototype.toString.call(Object);
       };
       getValue = function(obj) {
-        if (isFunction3(obj.valueOf)) {
+        if (isFunction(obj.valueOf)) {
           return obj.valueOf();
         } else {
           return obj;
         }
       };
       module2.exports.assign = assign;
-      module2.exports.isFunction = isFunction3;
+      module2.exports.isFunction = isFunction;
       module2.exports.isObject = isObject3;
-      module2.exports.isArray = isArray2;
+      module2.exports.isArray = isArray;
       module2.exports.isEmpty = isEmpty2;
-      module2.exports.isPlainObject = isPlainObject4;
+      module2.exports.isPlainObject = isPlainObject3;
       module2.exports.getValue = getValue;
     }).call(exports2);
   }
@@ -33624,7 +23438,7 @@ var require_XMLNamedNodeMap = __commonJS({
 var require_XMLElement = __commonJS({
   "node_modules/xmlbuilder/lib/XMLElement.js"(exports2, module2) {
     (function() {
-      var NodeType, XMLAttribute, XMLElement, XMLNamedNodeMap, XMLNode, getValue, isFunction3, isObject3, ref, extend4 = function(child, parent) {
+      var NodeType, XMLAttribute, XMLElement, XMLNamedNodeMap, XMLNode, getValue, isFunction, isObject3, ref, extend4 = function(child, parent) {
         for (var key in parent) {
           if (hasProp.call(parent, key)) child[key] = parent[key];
         }
@@ -33636,7 +23450,7 @@ var require_XMLElement = __commonJS({
         child.__super__ = parent.prototype;
         return child;
       }, hasProp = {}.hasOwnProperty;
-      ref = require_Utility(), isObject3 = ref.isObject, isFunction3 = ref.isFunction, getValue = ref.getValue;
+      ref = require_Utility(), isObject3 = ref.isObject, isFunction = ref.isFunction, getValue = ref.getValue;
       XMLNode = require_XMLNode();
       NodeType = require_NodeType();
       XMLAttribute = require_XMLAttribute();
@@ -33749,7 +23563,7 @@ var require_XMLElement = __commonJS({
               this.attribute(attName, attValue);
             }
           } else {
-            if (isFunction3(value)) {
+            if (isFunction(value)) {
               value = value.apply();
             }
             if (this.options.keepNullAttributes && value == null) {
@@ -34765,8 +24579,8 @@ var require_DocumentPosition = __commonJS({
 var require_XMLNode = __commonJS({
   "node_modules/xmlbuilder/lib/XMLNode.js"(exports2, module2) {
     (function() {
-      var DocumentPosition, NodeType, XMLCData, XMLComment, XMLDeclaration, XMLDocType, XMLDummy, XMLElement, XMLNamedNodeMap, XMLNode, XMLNodeList, XMLProcessingInstruction, XMLRaw, XMLText, getValue, isEmpty2, isFunction3, isObject3, ref1, hasProp = {}.hasOwnProperty;
-      ref1 = require_Utility(), isObject3 = ref1.isObject, isFunction3 = ref1.isFunction, isEmpty2 = ref1.isEmpty, getValue = ref1.getValue;
+      var DocumentPosition, NodeType, XMLCData, XMLComment, XMLDeclaration, XMLDocType, XMLDummy, XMLElement, XMLNamedNodeMap, XMLNode, XMLNodeList, XMLProcessingInstruction, XMLRaw, XMLText, getValue, isEmpty2, isFunction, isObject3, ref1, hasProp = {}.hasOwnProperty;
+      ref1 = require_Utility(), isObject3 = ref1.isObject, isFunction = ref1.isFunction, isEmpty2 = ref1.isEmpty, getValue = ref1.getValue;
       XMLElement = null;
       XMLCData = null;
       XMLComment = null;
@@ -34920,13 +24734,13 @@ var require_XMLNode = __commonJS({
               item = name[j];
               lastChild = this.element(item);
             }
-          } else if (isFunction3(name)) {
+          } else if (isFunction(name)) {
             lastChild = this.element(name.apply());
           } else if (isObject3(name)) {
             for (key in name) {
               if (!hasProp.call(name, key)) continue;
               val = name[key];
-              if (isFunction3(val)) {
+              if (isFunction(val)) {
                 val = val.apply();
               }
               if (!this.options.ignoreDecorators && this.stringify.convertAttKey && key.indexOf(this.stringify.convertAttKey) === 0) {
@@ -35108,7 +24922,7 @@ var require_XMLNode = __commonJS({
               this.instruction(insTarget, insValue);
             }
           } else {
-            if (isFunction3(value)) {
+            if (isFunction(value)) {
               value = value.apply();
             }
             instruction = new XMLProcessingInstruction(this, target, value);
@@ -35458,15 +25272,15 @@ var require_XMLNode = __commonJS({
 var require_XMLStringifier = __commonJS({
   "node_modules/xmlbuilder/lib/XMLStringifier.js"(exports2, module2) {
     (function() {
-      var XMLStringifier, bind3 = function(fn, me) {
+      var XMLStringifier, bind2 = function(fn, me) {
         return function() {
           return fn.apply(me, arguments);
         };
       }, hasProp = {}.hasOwnProperty;
       module2.exports = XMLStringifier = (function() {
         function XMLStringifier2(options) {
-          this.assertLegalName = bind3(this.assertLegalName, this);
-          this.assertLegalChar = bind3(this.assertLegalChar, this);
+          this.assertLegalName = bind2(this.assertLegalName, this);
+          this.assertLegalChar = bind2(this.assertLegalChar, this);
           var key, ref, value;
           options || (options = {});
           this.options = options;
@@ -36124,7 +25938,7 @@ var require_XMLStringWriter = __commonJS({
 var require_XMLDocument = __commonJS({
   "node_modules/xmlbuilder/lib/XMLDocument.js"(exports2, module2) {
     (function() {
-      var NodeType, XMLDOMConfiguration, XMLDOMImplementation, XMLDocument, XMLNode, XMLStringWriter, XMLStringifier, isPlainObject4, extend4 = function(child, parent) {
+      var NodeType, XMLDOMConfiguration, XMLDOMImplementation, XMLDocument, XMLNode, XMLStringWriter, XMLStringifier, isPlainObject3, extend4 = function(child, parent) {
         for (var key in parent) {
           if (hasProp.call(parent, key)) child[key] = parent[key];
         }
@@ -36136,7 +25950,7 @@ var require_XMLDocument = __commonJS({
         child.__super__ = parent.prototype;
         return child;
       }, hasProp = {}.hasOwnProperty;
-      isPlainObject4 = require_Utility().isPlainObject;
+      isPlainObject3 = require_Utility().isPlainObject;
       XMLDOMImplementation = require_XMLDOMImplementation();
       XMLDOMConfiguration = require_XMLDOMConfiguration();
       XMLNode = require_XMLNode();
@@ -36246,7 +26060,7 @@ var require_XMLDocument = __commonJS({
           writerOptions = {};
           if (!writer) {
             writer = this.options.writer;
-          } else if (isPlainObject4(writer)) {
+          } else if (isPlainObject3(writer)) {
             writerOptions = writer;
             writer = this.options.writer;
           }
@@ -36315,10 +26129,10 @@ var require_XMLDocument = __commonJS({
         XMLDocument2.prototype.createRange = function() {
           throw new Error("This DOM method is not implemented." + this.debugInfo());
         };
-        XMLDocument2.prototype.createNodeIterator = function(root, whatToShow, filter3) {
+        XMLDocument2.prototype.createNodeIterator = function(root, whatToShow, filter2) {
           throw new Error("This DOM method is not implemented." + this.debugInfo());
         };
-        XMLDocument2.prototype.createTreeWalker = function(root, whatToShow, filter3) {
+        XMLDocument2.prototype.createTreeWalker = function(root, whatToShow, filter2) {
           throw new Error("This DOM method is not implemented." + this.debugInfo());
         };
         return XMLDocument2;
@@ -36331,8 +26145,8 @@ var require_XMLDocument = __commonJS({
 var require_XMLDocumentCB = __commonJS({
   "node_modules/xmlbuilder/lib/XMLDocumentCB.js"(exports2, module2) {
     (function() {
-      var NodeType, WriterState, XMLAttribute, XMLCData, XMLComment, XMLDTDAttList, XMLDTDElement, XMLDTDEntity, XMLDTDNotation, XMLDeclaration, XMLDocType, XMLDocument, XMLDocumentCB, XMLElement, XMLProcessingInstruction, XMLRaw, XMLStringWriter, XMLStringifier, XMLText, getValue, isFunction3, isObject3, isPlainObject4, ref, hasProp = {}.hasOwnProperty;
-      ref = require_Utility(), isObject3 = ref.isObject, isFunction3 = ref.isFunction, isPlainObject4 = ref.isPlainObject, getValue = ref.getValue;
+      var NodeType, WriterState, XMLAttribute, XMLCData, XMLComment, XMLDTDAttList, XMLDTDElement, XMLDTDEntity, XMLDTDNotation, XMLDeclaration, XMLDocType, XMLDocument, XMLDocumentCB, XMLElement, XMLProcessingInstruction, XMLRaw, XMLStringWriter, XMLStringifier, XMLText, getValue, isFunction, isObject3, isPlainObject3, ref, hasProp = {}.hasOwnProperty;
+      ref = require_Utility(), isObject3 = ref.isObject, isFunction = ref.isFunction, isPlainObject3 = ref.isPlainObject, getValue = ref.getValue;
       NodeType = require_NodeType();
       XMLDocument = require_XMLDocument();
       XMLElement = require_XMLElement();
@@ -36360,7 +26174,7 @@ var require_XMLDocumentCB = __commonJS({
           writerOptions = {};
           if (!options.writer) {
             options.writer = new XMLStringWriter();
-          } else if (isPlainObject4(options.writer)) {
+          } else if (isPlainObject3(options.writer)) {
             writerOptions = options.writer;
             options.writer = new XMLStringWriter();
           }
@@ -36457,7 +26271,7 @@ var require_XMLDocumentCB = __commonJS({
           if (this.currentNode && this.currentNode.type === NodeType.DocType) {
             this.dtdElement.apply(this, arguments);
           } else {
-            if (Array.isArray(name) || isObject3(name) || isFunction3(name)) {
+            if (Array.isArray(name) || isObject3(name) || isFunction(name)) {
               oldValidationFlag = this.options.noValidation;
               this.options.noValidation = true;
               root = new XMLDocument(this.options).element("TEMP_ROOT");
@@ -36492,7 +26306,7 @@ var require_XMLDocumentCB = __commonJS({
               this.attribute(attName, attValue);
             }
           } else {
-            if (isFunction3(value)) {
+            if (isFunction(value)) {
               value = value.apply();
             }
             if (this.options.keepNullAttributes && value == null) {
@@ -36552,7 +26366,7 @@ var require_XMLDocumentCB = __commonJS({
               this.instruction(insTarget, insValue);
             }
           } else {
-            if (isFunction3(value)) {
+            if (isFunction(value)) {
               value = value.apply();
             }
             node = new XMLProcessingInstruction(this, target, value);
@@ -36814,8 +26628,8 @@ var require_XMLStreamWriter = __commonJS({
       WriterState = require_WriterState();
       module2.exports = XMLStreamWriter = (function(superClass) {
         extend4(XMLStreamWriter2, superClass);
-        function XMLStreamWriter2(stream4, options) {
-          this.stream = stream4;
+        function XMLStreamWriter2(stream, options) {
+          this.stream = stream;
           XMLStreamWriter2.__super__.constructor.call(this, options);
         }
         XMLStreamWriter2.prototype.endline = function(node, options, level) {
@@ -36964,8 +26778,8 @@ var require_XMLStreamWriter = __commonJS({
 var require_lib2 = __commonJS({
   "node_modules/xmlbuilder/lib/index.js"(exports2, module2) {
     (function() {
-      var NodeType, WriterState, XMLDOMImplementation, XMLDocument, XMLDocumentCB, XMLStreamWriter, XMLStringWriter, assign, isFunction3, ref;
-      ref = require_Utility(), assign = ref.assign, isFunction3 = ref.isFunction;
+      var NodeType, WriterState, XMLDOMImplementation, XMLDocument, XMLDocumentCB, XMLStreamWriter, XMLStringWriter, assign, isFunction, ref;
+      ref = require_Utility(), assign = ref.assign, isFunction = ref.isFunction;
       XMLDOMImplementation = require_XMLDOMImplementation();
       XMLDocument = require_XMLDocument();
       XMLDocumentCB = require_XMLDocumentCB();
@@ -36991,7 +26805,7 @@ var require_lib2 = __commonJS({
       };
       module2.exports.begin = function(options, onData, onEnd) {
         var ref1;
-        if (isFunction3(options)) {
+        if (isFunction(options)) {
           ref1 = [options, onData], onData = ref1[0], onEnd = ref1[1];
           options = {};
         }
@@ -37004,8 +26818,8 @@ var require_lib2 = __commonJS({
       module2.exports.stringWriter = function(options) {
         return new XMLStringWriter(options);
       };
-      module2.exports.streamWriter = function(stream4, options) {
-        return new XMLStreamWriter(stream4, options);
+      module2.exports.streamWriter = function(stream, options) {
+        return new XMLStreamWriter(stream, options);
       };
       module2.exports.implementation = new XMLDOMImplementation();
       module2.exports.nodeType = NodeType;
@@ -37019,9 +26833,9 @@ var require_builder = __commonJS({
   "node_modules/xml2js/lib/builder.js"(exports2) {
     (function() {
       "use strict";
-      var builder, defaults3, escapeCDATA, requiresCDATA, wrapCDATA, hasProp = {}.hasOwnProperty;
+      var builder, defaults2, escapeCDATA, requiresCDATA, wrapCDATA, hasProp = {}.hasOwnProperty;
       builder = require_lib2();
-      defaults3 = require_defaults().defaults;
+      defaults2 = require_defaults().defaults;
       requiresCDATA = function(entry) {
         return typeof entry === "string" && (entry.indexOf("&") >= 0 || entry.indexOf(">") >= 0 || entry.indexOf("<") >= 0);
       };
@@ -37035,7 +26849,7 @@ var require_builder = __commonJS({
         function Builder2(opts) {
           var key, ref, value;
           this.options = {};
-          ref = defaults3["0.2"];
+          ref = defaults2["0.2"];
           for (key in ref) {
             if (!hasProp.call(ref, key)) continue;
             value = ref[key];
@@ -37051,7 +26865,7 @@ var require_builder = __commonJS({
           var attrkey, charkey, render, rootElement, rootName;
           attrkey = this.options.attrkey;
           charkey = this.options.charkey;
-          if (Object.keys(rootObj).length === 1 && this.options.rootName === defaults3["0.2"].rootName) {
+          if (Object.keys(rootObj).length === 1 && this.options.rootName === defaults2["0.2"].rootName) {
             rootName = Object.keys(rootObj)[0];
             rootObj = rootObj[rootName];
           } else {
@@ -38779,7 +28593,7 @@ var require_parser = __commonJS({
   "node_modules/xml2js/lib/parser.js"(exports2) {
     (function() {
       "use strict";
-      var bom, defaults3, defineProperty, events, isEmpty2, processItem, processors, sax, setImmediate2, bind3 = function(fn, me) {
+      var bom, defaults2, defineProperty, events, isEmpty2, processItem, processors, sax, setImmediate2, bind2 = function(fn, me) {
         return function() {
           return fn.apply(me, arguments);
         };
@@ -38800,15 +28614,15 @@ var require_parser = __commonJS({
       bom = require_bom();
       processors = require_processors();
       setImmediate2 = require("timers").setImmediate;
-      defaults3 = require_defaults().defaults;
+      defaults2 = require_defaults().defaults;
       isEmpty2 = function(thing) {
         return typeof thing === "object" && thing != null && Object.keys(thing).length === 0;
       };
       processItem = function(processors2, item, key) {
-        var i, len, process2;
+        var i, len, process5;
         for (i = 0, len = processors2.length; i < len; i++) {
-          process2 = processors2[i];
-          item = process2(item, key);
+          process5 = processors2[i];
+          item = process5(item, key);
         }
         return item;
       };
@@ -38824,17 +28638,17 @@ var require_parser = __commonJS({
       exports2.Parser = (function(superClass) {
         extend4(Parser2, superClass);
         function Parser2(opts) {
-          this.parseStringPromise = bind3(this.parseStringPromise, this);
-          this.parseString = bind3(this.parseString, this);
-          this.reset = bind3(this.reset, this);
-          this.assignOrPush = bind3(this.assignOrPush, this);
-          this.processAsync = bind3(this.processAsync, this);
+          this.parseStringPromise = bind2(this.parseStringPromise, this);
+          this.parseString = bind2(this.parseString, this);
+          this.reset = bind2(this.reset, this);
+          this.assignOrPush = bind2(this.assignOrPush, this);
+          this.processAsync = bind2(this.processAsync, this);
           var key, ref, value;
           if (!(this instanceof exports2.Parser)) {
             return new exports2.Parser(opts);
           }
           this.options = {};
-          ref = defaults3["0.2"];
+          ref = defaults2["0.2"];
           for (key in ref) {
             if (!hasProp.call(ref, key)) continue;
             value = ref[key];
@@ -39170,7 +28984,7 @@ var require_xml2js = __commonJS({
   "node_modules/xml2js/lib/xml2js.js"(exports2) {
     (function() {
       "use strict";
-      var builder, defaults3, parser, processors, extend4 = function(child, parent) {
+      var builder, defaults2, parser, processors, extend4 = function(child, parent) {
         for (var key in parent) {
           if (hasProp.call(parent, key)) child[key] = parent[key];
         }
@@ -39182,11 +28996,11 @@ var require_xml2js = __commonJS({
         child.__super__ = parent.prototype;
         return child;
       }, hasProp = {}.hasOwnProperty;
-      defaults3 = require_defaults();
+      defaults2 = require_defaults();
       builder = require_builder();
       parser = require_parser();
       processors = require_processors();
-      exports2.defaults = defaults3.defaults;
+      exports2.defaults = defaults2.defaults;
       exports2.processors = processors;
       exports2.ValidationError = (function(superClass) {
         extend4(ValidationError, superClass);
@@ -39356,8 +29170,8 @@ var require_utils3 = __commonJS({
     }
     function getProxyFetch(destinationUrl) {
       const httpDispatcher = getProxyAgentDispatcher(destinationUrl);
-      const proxyFetch = (url2, opts) => __awaiter(this, void 0, void 0, function* () {
-        return (0, undici_1.fetch)(url2, Object.assign(Object.assign({}, opts), { dispatcher: httpDispatcher }));
+      const proxyFetch = (url, opts) => __awaiter(this, void 0, void 0, function* () {
+        return (0, undici_1.fetch)(url, Object.assign(Object.assign({}, opts), { dispatcher: httpDispatcher }));
       });
       return proxyFetch;
     }
@@ -39383,7 +29197,7 @@ var init_universal_user_agent = __esm({
 });
 
 // node_modules/before-after-hook/lib/register.js
-function register(state, name, method, options) {
+function register(state2, name, method, options) {
   if (typeof method !== "function") {
     throw new Error("method for before hook must be a function");
   }
@@ -39392,14 +29206,14 @@ function register(state, name, method, options) {
   }
   if (Array.isArray(name)) {
     return name.reverse().reduce((callback, name2) => {
-      return register.bind(null, state, name2, callback, options);
+      return register.bind(null, state2, name2, callback, options);
     }, method)();
   }
   return Promise.resolve().then(() => {
-    if (!state.registry[name]) {
+    if (!state2.registry[name]) {
       return method(options);
     }
-    return state.registry[name].reduce((method2, registered) => {
+    return state2.registry[name].reduce((method2, registered) => {
       return registered.hook.bind(null, method2, options);
     }, method)();
   });
@@ -39410,10 +29224,10 @@ var init_register = __esm({
 });
 
 // node_modules/before-after-hook/lib/add.js
-function addHook(state, kind, name, hook2) {
+function addHook(state2, kind, name, hook2) {
   const orig = hook2;
-  if (!state.registry[name]) {
-    state.registry[name] = [];
+  if (!state2.registry[name]) {
+    state2.registry[name] = [];
   }
   if (kind === "before") {
     hook2 = (method, options) => {
@@ -39438,7 +29252,7 @@ function addHook(state, kind, name, hook2) {
       });
     };
   }
-  state.registry[name].push({
+  state2.registry[name].push({
     hook: hook2,
     orig
   });
@@ -39449,17 +29263,17 @@ var init_add = __esm({
 });
 
 // node_modules/before-after-hook/lib/remove.js
-function removeHook(state, name, method) {
-  if (!state.registry[name]) {
+function removeHook(state2, name, method) {
+  if (!state2.registry[name]) {
     return;
   }
-  const index = state.registry[name].map((registered) => {
+  const index = state2.registry[name].map((registered) => {
     return registered.orig;
   }).indexOf(method);
   if (index === -1) {
     return;
   }
-  state.registry[name].splice(index, 1);
+  state2.registry[name].splice(index, 1);
 }
 var init_remove = __esm({
   "node_modules/before-after-hook/lib/remove.js"() {
@@ -39467,15 +29281,15 @@ var init_remove = __esm({
 });
 
 // node_modules/before-after-hook/index.js
-function bindApi(hook2, state, name) {
+function bindApi(hook2, state2, name) {
   const removeHookRef = bindable(removeHook, null).apply(
     null,
-    name ? [state, name] : [state]
+    name ? [state2, name] : [state2]
   );
   hook2.api = { remove: removeHookRef };
   hook2.remove = removeHookRef;
   ["before", "error", "after", "wrap"].forEach((kind) => {
-    const args = name ? [state, kind, name] : [state, kind];
+    const args = name ? [state2, kind, name] : [state2, kind];
     hook2[kind] = hook2.api[kind] = bindable(addHook, null).apply(null, args);
   });
 }
@@ -39489,21 +29303,21 @@ function Singular() {
   return singularHook;
 }
 function Collection() {
-  const state = {
+  const state2 = {
     registry: {}
   };
-  const hook2 = register.bind(null, state);
-  bindApi(hook2, state);
+  const hook2 = register.bind(null, state2);
+  bindApi(hook2, state2);
   return hook2;
 }
-var bind2, bindable, before_after_hook_default;
+var bind, bindable, before_after_hook_default;
 var init_before_after_hook = __esm({
   "node_modules/before-after-hook/index.js"() {
     init_register();
     init_add();
     init_remove();
-    bind2 = Function.bind;
-    bindable = bind2.bind(bind2);
+    bind = Function.bind;
+    bindable = bind.bind(bind);
     before_after_hook_default = { Singular, Collection };
   }
 });
@@ -39518,7 +29332,7 @@ function lowercaseKeys(object) {
     return newObj;
   }, {});
 }
-function isPlainObject2(value) {
+function isPlainObject(value) {
   if (typeof value !== "object" || value === null) return false;
   if (Object.prototype.toString.call(value) !== "[object Object]") return false;
   const proto = Object.getPrototypeOf(value);
@@ -39526,12 +29340,12 @@ function isPlainObject2(value) {
   const Ctor = Object.prototype.hasOwnProperty.call(proto, "constructor") && proto.constructor;
   return typeof Ctor === "function" && Ctor instanceof Ctor && Function.prototype.call(Ctor) === Function.prototype.call(value);
 }
-function mergeDeep(defaults3, options) {
-  const result = Object.assign({}, defaults3);
+function mergeDeep(defaults2, options) {
+  const result = Object.assign({}, defaults2);
   Object.keys(options).forEach((key) => {
-    if (isPlainObject2(options[key])) {
-      if (!(key in defaults3)) Object.assign(result, { [key]: options[key] });
-      else result[key] = mergeDeep(defaults3[key], options[key]);
+    if (isPlainObject(options[key])) {
+      if (!(key in defaults2)) Object.assign(result, { [key]: options[key] });
+      else result[key] = mergeDeep(defaults2[key], options[key]);
     } else {
       Object.assign(result, { [key]: options[key] });
     }
@@ -39546,20 +29360,20 @@ function removeUndefinedProperties(obj) {
   }
   return obj;
 }
-function merge3(defaults3, route, options) {
+function merge2(defaults2, route, options) {
   if (typeof route === "string") {
-    let [method, url2] = route.split(" ");
-    options = Object.assign(url2 ? { method, url: url2 } : { url: method }, options);
+    let [method, url] = route.split(" ");
+    options = Object.assign(url ? { method, url } : { url: method }, options);
   } else {
     options = Object.assign({}, route);
   }
   options.headers = lowercaseKeys(options.headers);
   removeUndefinedProperties(options);
   removeUndefinedProperties(options.headers);
-  const mergedOptions = mergeDeep(defaults3 || {}, options);
+  const mergedOptions = mergeDeep(defaults2 || {}, options);
   if (options.url === "/graphql") {
-    if (defaults3 && defaults3.mediaType.previews?.length) {
-      mergedOptions.mediaType.previews = defaults3.mediaType.previews.filter(
+    if (defaults2 && defaults2.mediaType.previews?.length) {
+      mergedOptions.mediaType.previews = defaults2.mediaType.previews.filter(
         (preview) => !mergedOptions.mediaType.previews.includes(preview)
       ).concat(mergedOptions.mediaType.previews);
     }
@@ -39567,13 +29381,13 @@ function merge3(defaults3, route, options) {
   }
   return mergedOptions;
 }
-function addQueryParameters(url2, parameters) {
-  const separator = /\?/.test(url2) ? "&" : "?";
+function addQueryParameters(url, parameters) {
+  const separator = /\?/.test(url) ? "&" : "?";
   const names = Object.keys(parameters);
   if (names.length === 0) {
-    return url2;
+    return url;
   }
-  return url2 + separator + names.map((name) => {
+  return url + separator + names.map((name) => {
     if (name === "q") {
       return "q=" + parameters.q.split("+").map(encodeURIComponent).join("+");
     }
@@ -39583,8 +29397,8 @@ function addQueryParameters(url2, parameters) {
 function removeNonChars(variableName) {
   return variableName.replace(/(?:^\W+)|(?:(?<!\W)\W+$)/g, "").split(/,/);
 }
-function extractUrlVariableNames(url2) {
-  const matches = url2.match(urlVariableRegex);
+function extractUrlVariableNames(url) {
+  const matches = url.match(urlVariableRegex);
   if (!matches) {
     return [];
   }
@@ -39620,15 +29434,15 @@ function encodeValue(operator, value, key) {
     return value;
   }
 }
-function isDefined(value) {
+function isDefined2(value) {
   return value !== void 0 && value !== null;
 }
 function isKeyOperator(operator) {
   return operator === ";" || operator === "&" || operator === "?";
 }
-function getValues(context2, operator, key, modifier) {
-  var value = context2[key], result = [];
-  if (isDefined(value) && value !== "") {
+function getValues(context4, operator, key, modifier) {
+  var value = context4[key], result = [];
+  if (isDefined2(value) && value !== "") {
     if (typeof value === "string" || typeof value === "number" || typeof value === "bigint" || typeof value === "boolean") {
       value = value.toString();
       if (modifier && modifier !== "*") {
@@ -39640,14 +29454,14 @@ function getValues(context2, operator, key, modifier) {
     } else {
       if (modifier === "*") {
         if (Array.isArray(value)) {
-          value.filter(isDefined).forEach(function(value2) {
+          value.filter(isDefined2).forEach(function(value2) {
             result.push(
               encodeValue(operator, value2, isKeyOperator(operator) ? key : "")
             );
           });
         } else {
           Object.keys(value).forEach(function(k) {
-            if (isDefined(value[k])) {
+            if (isDefined2(value[k])) {
               result.push(encodeValue(operator, value[k], k));
             }
           });
@@ -39655,12 +29469,12 @@ function getValues(context2, operator, key, modifier) {
       } else {
         const tmp = [];
         if (Array.isArray(value)) {
-          value.filter(isDefined).forEach(function(value2) {
+          value.filter(isDefined2).forEach(function(value2) {
             tmp.push(encodeValue(operator, value2));
           });
         } else {
           Object.keys(value).forEach(function(k) {
-            if (isDefined(value[k])) {
+            if (isDefined2(value[k])) {
               tmp.push(encodeUnreserved(k));
               tmp.push(encodeValue(operator, value[k].toString()));
             }
@@ -39675,7 +29489,7 @@ function getValues(context2, operator, key, modifier) {
     }
   } else {
     if (operator === ";") {
-      if (isDefined(value)) {
+      if (isDefined2(value)) {
         result.push(encodeUnreserved(key));
       }
     } else if (value === "" && (operator === "&" || operator === "?")) {
@@ -39686,12 +29500,12 @@ function getValues(context2, operator, key, modifier) {
   }
   return result;
 }
-function parseUrl2(template) {
+function parseUrl(template) {
   return {
     expand: expand.bind(null, template)
   };
 }
-function expand(template, context2) {
+function expand(template, context4) {
   var operators = ["+", "#", ".", "/", ";", "?", "&"];
   template = template.replace(
     /\{([^\{\}]+)\}|([^\{\}]+)/g,
@@ -39705,7 +29519,7 @@ function expand(template, context2) {
         }
         expression.split(/,/g).forEach(function(variable) {
           var tmp = /([^:\*]*)(?::(\d+)|(\*))?/.exec(variable);
-          values.push(getValues(context2, operator, tmp[1], tmp[2] || tmp[3]));
+          values.push(getValues(context4, operator, tmp[1], tmp[2] || tmp[3]));
         });
         if (operator && operator !== "+") {
           var separator = ",";
@@ -39731,7 +29545,7 @@ function expand(template, context2) {
 }
 function parse(options) {
   let method = options.method.toUpperCase();
-  let url2 = (options.url || "/").replace(/:([a-z]\w+)/g, "{$1}");
+  let url = (options.url || "/").replace(/:([a-z]\w+)/g, "{$1}");
   let headers = Object.assign({}, options.headers);
   let body;
   let parameters = omit(options, [
@@ -39742,10 +29556,10 @@ function parse(options) {
     "request",
     "mediaType"
   ]);
-  const urlVariableNames = extractUrlVariableNames(url2);
-  url2 = parseUrl2(url2).expand(parameters);
-  if (!/^http/.test(url2)) {
-    url2 = options.baseUrl + url2;
+  const urlVariableNames = extractUrlVariableNames(url);
+  url = parseUrl(url).expand(parameters);
+  if (!/^http/.test(url)) {
+    url = options.baseUrl + url;
   }
   const omittedParameters = Object.keys(options).filter((option) => urlVariableNames.includes(option)).concat("baseUrl");
   const remainingParameters = omit(parameters, omittedParameters);
@@ -39759,7 +29573,7 @@ function parse(options) {
         )
       ).join(",");
     }
-    if (url2.endsWith("/graphql")) {
+    if (url.endsWith("/graphql")) {
       if (options.mediaType.previews?.length) {
         const previewsFromAcceptHeader = headers.accept.match(/(?<![\w-])[\w-]+(?=-preview)/g) || [];
         headers.accept = previewsFromAcceptHeader.concat(options.mediaType.previews).map((preview) => {
@@ -39770,7 +29584,7 @@ function parse(options) {
     }
   }
   if (["GET", "HEAD"].includes(method)) {
-    url2 = addQueryParameters(url2, remainingParameters);
+    url = addQueryParameters(url, remainingParameters);
   } else {
     if ("data" in remainingParameters) {
       body = remainingParameters.data;
@@ -39787,30 +29601,30 @@ function parse(options) {
     body = "";
   }
   return Object.assign(
-    { method, url: url2, headers },
+    { method, url, headers },
     typeof body !== "undefined" ? { body } : null,
     options.request ? { request: options.request } : null
   );
 }
-function endpointWithDefaults(defaults3, route, options) {
-  return parse(merge3(defaults3, route, options));
+function endpointWithDefaults(defaults2, route, options) {
+  return parse(merge2(defaults2, route, options));
 }
 function withDefaults(oldDefaults, newDefaults) {
-  const DEFAULTS2 = merge3(oldDefaults, newDefaults);
+  const DEFAULTS2 = merge2(oldDefaults, newDefaults);
   const endpoint2 = endpointWithDefaults.bind(null, DEFAULTS2);
   return Object.assign(endpoint2, {
     DEFAULTS: DEFAULTS2,
     defaults: withDefaults.bind(null, DEFAULTS2),
-    merge: merge3.bind(null, DEFAULTS2),
+    merge: merge2.bind(null, DEFAULTS2),
     parse
   });
 }
-var VERSION3, userAgent, DEFAULTS, urlVariableRegex, endpoint;
+var VERSION, userAgent, DEFAULTS, urlVariableRegex, endpoint;
 var init_dist_bundle = __esm({
   "node_modules/@octokit/endpoint/dist-bundle/index.js"() {
     init_universal_user_agent();
-    VERSION3 = "0.0.0-development";
-    userAgent = `octokit-endpoint.js/${VERSION3} ${getUserAgent()}`;
+    VERSION = "0.0.0-development";
+    userAgent = `octokit-endpoint.js/${VERSION} ${getUserAgent()}`;
     DEFAULTS = {
       method: "GET",
       baseUrl: "https://api.github.com",
@@ -39976,7 +29790,7 @@ var init_json_with_bigint = __esm({
       try {
         const result = JSON.parse(
           "1",
-          (_, __, context2) => !!context2?.source && context2.source === "1"
+          (_, __, context4) => !!context4?.source && context4.source === "1"
         );
         featureCache.set(parseFingerprint, result);
         return result;
@@ -39985,22 +29799,22 @@ var init_json_with_bigint = __esm({
         return false;
       }
     };
-    convertMarkedBigIntsReviver = (key, value, context2, userReviver) => {
+    convertMarkedBigIntsReviver = (key, value, context4, userReviver) => {
       const isCustomFormatBigInt = typeof value === "string" && customFormat.test(value);
       if (isCustomFormatBigInt) return BigInt(value.slice(0, -1));
       const isNoiseValue = typeof value === "string" && noiseValue.test(value);
       if (isNoiseValue) return value.slice(0, -1);
       if (typeof userReviver !== "function") return value;
-      return userReviver(key, value, context2);
+      return userReviver(key, value, context4);
     };
     JSONParseV2 = (text, reviver) => {
-      return JSON.parse(text, (key, value, context2) => {
+      return JSON.parse(text, (key, value, context4) => {
         const isBigNumber = typeof value === "number" && (value > Number.MAX_SAFE_INTEGER || value < Number.MIN_SAFE_INTEGER);
-        const isInt = context2 && intRegex.test(context2.source);
+        const isInt = context4 && intRegex.test(context4.source);
         const isBigInt = isBigNumber && isInt;
-        if (isBigInt) return BigInt(context2.source);
+        if (isBigInt) return BigInt(context4.source);
         if (typeof reviver !== "function") return value;
-        return reviver(key, value, context2);
+        return reviver(key, value, context4);
       });
     };
     MAX_INT = Number.MAX_SAFE_INTEGER.toString();
@@ -40013,19 +29827,19 @@ var init_json_with_bigint = __esm({
       const serializedData = text.replace(
         stringsOrLargeNumbers,
         (text2, digits, fractional, exponential) => {
-          const isString2 = text2[0] === '"';
-          const isNoise = isString2 && noiseValueWithQuotes.test(text2);
+          const isString = text2[0] === '"';
+          const isNoise = isString && noiseValueWithQuotes.test(text2);
           if (isNoise) return text2.substring(0, text2.length - 1) + 'n"';
           const isFractionalOrExponential = fractional || exponential;
           const isLessThanMaxSafeInt = digits && (digits.length < MAX_DIGITS || digits.length === MAX_DIGITS && digits <= MAX_INT);
-          if (isString2 || isFractionalOrExponential || isLessThanMaxSafeInt)
+          if (isString || isFractionalOrExponential || isLessThanMaxSafeInt)
             return text2;
           return '"' + text2 + 'n"';
         }
       );
       return originalParse(
         serializedData,
-        (key, value, context2) => convertMarkedBigIntsReviver(key, value, context2, reviver)
+        (key, value, context4) => convertMarkedBigIntsReviver(key, value, context4, reviver)
       );
     };
   }
@@ -40076,7 +29890,7 @@ var init_dist_src = __esm({
 });
 
 // node_modules/@octokit/request/dist-bundle/index.js
-function isPlainObject3(value) {
+function isPlainObject2(value) {
   if (typeof value !== "object" || value === null) return false;
   if (Object.prototype.toString.call(value) !== "[object Object]") return false;
   const proto = Object.getPrototypeOf(value);
@@ -40085,15 +29899,15 @@ function isPlainObject3(value) {
   return typeof Ctor === "function" && Ctor instanceof Ctor && Function.prototype.call(Ctor) === Function.prototype.call(value);
 }
 async function fetchWrapper(requestOptions) {
-  const fetch2 = requestOptions.request?.fetch || globalThis.fetch;
-  if (!fetch2) {
+  const fetch = requestOptions.request?.fetch || globalThis.fetch;
+  if (!fetch) {
     throw new Error(
       "fetch is not set. Please pass a fetch implementation as new Octokit({ request: { fetch }}). Learn more at https://github.com/octokit/octokit.js/#fetch-missing"
     );
   }
-  const log = requestOptions.request?.log || console;
+  const log2 = requestOptions.request?.log || console;
   const parseSuccessResponseBody = requestOptions.request?.parseSuccessResponseBody !== false;
-  const body = isPlainObject3(requestOptions.body) || Array.isArray(requestOptions.body) ? JSONStringify(requestOptions.body) : requestOptions.body;
+  const body = isPlainObject2(requestOptions.body) || Array.isArray(requestOptions.body) ? JSONStringify(requestOptions.body) : requestOptions.body;
   const requestHeaders = Object.fromEntries(
     Object.entries(requestOptions.headers).map(([name, value]) => [
       name,
@@ -40102,7 +29916,7 @@ async function fetchWrapper(requestOptions) {
   );
   let fetchResponse;
   try {
-    fetchResponse = await fetch2(requestOptions.url, {
+    fetchResponse = await fetch(requestOptions.url, {
       method: requestOptions.method,
       body,
       redirect: requestOptions.request?.redirect,
@@ -40135,13 +29949,13 @@ async function fetchWrapper(requestOptions) {
     throw requestError;
   }
   const status = fetchResponse.status;
-  const url2 = fetchResponse.url;
+  const url = fetchResponse.url;
   const responseHeaders = {};
   for (const [key, value] of fetchResponse.headers) {
     responseHeaders[key] = value;
   }
   const octokitResponse = {
-    url: url2,
+    url,
     status,
     headers: responseHeaders,
     data: ""
@@ -40149,7 +29963,7 @@ async function fetchWrapper(requestOptions) {
   if ("deprecation" in responseHeaders) {
     const matches = responseHeaders.link && responseHeaders.link.match(/<([^<>]+)>; rel="deprecation"/);
     const deprecationLink = matches && matches.pop();
-    log.warn(
+    log2.warn(
       `[@octokit/request] "${requestOptions.method} ${requestOptions.url}" is deprecated. It is scheduled to be removed on ${responseHeaders.sunset}${deprecationLink ? `. See ${deprecationLink}` : ""}`
     );
   }
@@ -40185,7 +29999,7 @@ async function fetchWrapper(requestOptions) {
 async function getResponseData(response) {
   const contentType = response.headers.get("content-type");
   if (!contentType) {
-    return response.text().catch(noop2);
+    return response.text().catch(noop);
   }
   const mimetype = (0, import_fast_content_type_parse.safeParse)(contentType);
   if (isJSONResponse(mimetype)) {
@@ -40197,7 +30011,7 @@ async function getResponseData(response) {
       return text;
     }
   } else if (mimetype.type.startsWith("text/") || mimetype.parameters.charset?.toLowerCase() === "utf-8") {
-    return response.text().catch(noop2);
+    return response.text().catch(noop);
   } else {
     return response.arrayBuffer().catch(
       /* v8 ignore next -- @preserve */
@@ -40244,7 +30058,7 @@ function withDefaults2(oldEndpoint, newDefaults) {
     defaults: withDefaults2.bind(null, endpoint2)
   });
 }
-var import_fast_content_type_parse, VERSION4, defaults_default2, noop2, request;
+var import_fast_content_type_parse, VERSION2, defaults_default, noop, request;
 var init_dist_bundle2 = __esm({
   "node_modules/@octokit/request/dist-bundle/index.js"() {
     init_dist_bundle();
@@ -40252,14 +30066,14 @@ var init_dist_bundle2 = __esm({
     import_fast_content_type_parse = __toESM(require_fast_content_type_parse(), 1);
     init_json_with_bigint();
     init_dist_src();
-    VERSION4 = "10.0.8";
-    defaults_default2 = {
+    VERSION2 = "10.0.8";
+    defaults_default = {
       headers: {
-        "user-agent": `octokit-request.js/${VERSION4} ${getUserAgent()}`
+        "user-agent": `octokit-request.js/${VERSION2} ${getUserAgent()}`
       }
     };
-    noop2 = () => "";
-    request = withDefaults2(endpoint, defaults_default2);
+    noop = () => "";
+    request = withDefaults2(endpoint, defaults_default);
   }
 });
 
@@ -40333,12 +30147,12 @@ function withCustomRequest(customRequest) {
     url: "/graphql"
   });
 }
-var VERSION5, GraphqlResponseError, NON_VARIABLE_OPTIONS, FORBIDDEN_VARIABLE_OPTIONS, GHES_V3_SUFFIX_REGEX, graphql2;
+var VERSION3, GraphqlResponseError, NON_VARIABLE_OPTIONS, FORBIDDEN_VARIABLE_OPTIONS, GHES_V3_SUFFIX_REGEX, graphql2;
 var init_dist_bundle3 = __esm({
   "node_modules/@octokit/graphql/dist-bundle/index.js"() {
     init_dist_bundle2();
     init_universal_user_agent();
-    VERSION5 = "0.0.0-development";
+    VERSION3 = "0.0.0-development";
     GraphqlResponseError = class extends Error {
       constructor(request2, headers, response) {
         super(_buildMessageForResponseErrors(response));
@@ -40369,7 +30183,7 @@ var init_dist_bundle3 = __esm({
     GHES_V3_SUFFIX_REGEX = /\/api\/v3\/?$/;
     graphql2 = withDefaults3(request, {
       headers: {
-        "user-agent": `octokit-graphql.js/${VERSION5} ${getUserAgent()}`
+        "user-agent": `octokit-graphql.js/${VERSION3} ${getUserAgent()}`
       },
       method: "POST",
       url: "/graphql"
@@ -40428,10 +30242,10 @@ var init_dist_bundle4 = __esm({
 });
 
 // node_modules/@octokit/core/dist-src/version.js
-var VERSION6;
+var VERSION4;
 var init_version = __esm({
   "node_modules/@octokit/core/dist-src/version.js"() {
-    VERSION6 = "7.0.6";
+    VERSION4 = "7.0.6";
   }
 });
 
@@ -40440,22 +30254,22 @@ var dist_src_exports = {};
 __export(dist_src_exports, {
   Octokit: () => Octokit
 });
-function createLogger(logger = {}) {
-  if (typeof logger.debug !== "function") {
-    logger.debug = noop3;
+function createLogger(logger4 = {}) {
+  if (typeof logger4.debug !== "function") {
+    logger4.debug = noop2;
   }
-  if (typeof logger.info !== "function") {
-    logger.info = noop3;
+  if (typeof logger4.info !== "function") {
+    logger4.info = noop2;
   }
-  if (typeof logger.warn !== "function") {
-    logger.warn = consoleWarn;
+  if (typeof logger4.warn !== "function") {
+    logger4.warn = consoleWarn;
   }
-  if (typeof logger.error !== "function") {
-    logger.error = consoleError;
+  if (typeof logger4.error !== "function") {
+    logger4.error = consoleError;
   }
-  return logger;
+  return logger4;
 }
-var noop3, consoleWarn, consoleError, userAgentTrail, Octokit;
+var noop2, consoleWarn, consoleError, userAgentTrail, Octokit;
 var init_dist_src2 = __esm({
   "node_modules/@octokit/core/dist-src/index.js"() {
     init_universal_user_agent();
@@ -40464,28 +30278,28 @@ var init_dist_src2 = __esm({
     init_dist_bundle3();
     init_dist_bundle4();
     init_version();
-    noop3 = () => {
+    noop2 = () => {
     };
     consoleWarn = console.warn.bind(console);
     consoleError = console.error.bind(console);
-    userAgentTrail = `octokit-core.js/${VERSION6} ${getUserAgent()}`;
+    userAgentTrail = `octokit-core.js/${VERSION4} ${getUserAgent()}`;
     Octokit = class {
-      static VERSION = VERSION6;
-      static defaults(defaults3) {
+      static VERSION = VERSION4;
+      static defaults(defaults2) {
         const OctokitWithDefaults = class extends this {
           constructor(...args) {
             const options = args[0] || {};
-            if (typeof defaults3 === "function") {
-              super(defaults3(options));
+            if (typeof defaults2 === "function") {
+              super(defaults2(options));
               return;
             }
             super(
               Object.assign(
                 {},
-                defaults3,
+                defaults2,
                 options,
-                options.userAgent && defaults3.userAgent ? {
-                  userAgent: `${options.userAgent} ${defaults3.userAgent}`
+                options.userAgent && defaults2.userAgent ? {
+                  userAgent: `${options.userAgent} ${defaults2.userAgent}`
                 } : null
               )
             );
@@ -40585,10 +30399,10 @@ var init_dist_src2 = __esm({
 });
 
 // node_modules/@octokit/plugin-rest-endpoint-methods/dist-src/version.js
-var VERSION7;
+var VERSION5;
 var init_version2 = __esm({
   "node_modules/@octokit/plugin-rest-endpoint-methods/dist-src/version.js"() {
-    VERSION7 = "17.0.0";
+    VERSION5 = "17.0.0";
   }
 });
 
@@ -42897,8 +32711,8 @@ function endpointsToMethods(octokit) {
   }
   return newMethods;
 }
-function decorate(octokit, scope, methodName, defaults3, decorations) {
-  const requestWithDefaults = octokit.request.defaults(defaults3);
+function decorate(octokit, scope, methodName, defaults2, decorations) {
+  const requestWithDefaults = octokit.request.defaults(defaults2);
   function withDecorations(...args) {
     let options = requestWithDefaults.endpoint.merge(...args);
     if (decorations.mapToData) {
@@ -42945,14 +32759,14 @@ var init_endpoints_to_methods = __esm({
     endpointMethodsMap = /* @__PURE__ */ new Map();
     for (const [scope, endpoints] of Object.entries(endpoints_default)) {
       for (const [methodName, endpoint2] of Object.entries(endpoints)) {
-        const [route, defaults3, decorations] = endpoint2;
-        const [method, url2] = route.split(/ /);
+        const [route, defaults2, decorations] = endpoint2;
+        const [method, url] = route.split(/ /);
         const endpointDefaults = Object.assign(
           {
             method,
-            url: url2
+            url
           },
-          defaults3
+          defaults2
         );
         if (!endpointMethodsMap.has(scope)) {
           endpointMethodsMap.set(scope, /* @__PURE__ */ new Map());
@@ -43041,8 +32855,8 @@ var init_dist_src3 = __esm({
   "node_modules/@octokit/plugin-rest-endpoint-methods/dist-src/index.js"() {
     init_version2();
     init_endpoints_to_methods();
-    restEndpointMethods.VERSION = VERSION7;
-    legacyRestEndpointMethods.VERSION = VERSION7;
+    restEndpointMethods.VERSION = VERSION5;
+    legacyRestEndpointMethods.VERSION = VERSION5;
   }
 });
 
@@ -43084,36 +32898,36 @@ function normalizePaginatedListResponse(response) {
   response.data.total_commits = totalCommits;
   return response;
 }
-function iterator2(octokit, route, parameters) {
+function iterator(octokit, route, parameters) {
   const options = typeof route === "function" ? route.endpoint(parameters) : octokit.request.endpoint(route, parameters);
   const requestMethod = typeof route === "function" ? route : octokit.request;
   const method = options.method;
   const headers = options.headers;
-  let url2 = options.url;
+  let url = options.url;
   return {
     [Symbol.asyncIterator]: () => ({
       async next() {
-        if (!url2) return { done: true };
+        if (!url) return { done: true };
         try {
-          const response = await requestMethod({ method, url: url2, headers });
+          const response = await requestMethod({ method, url, headers });
           const normalizedResponse = normalizePaginatedListResponse(response);
-          url2 = ((normalizedResponse.headers.link || "").match(
+          url = ((normalizedResponse.headers.link || "").match(
             /<([^<>]+)>;\s*rel="next"/
           ) || [])[1];
-          if (!url2 && "total_commits" in normalizedResponse.data) {
+          if (!url && "total_commits" in normalizedResponse.data) {
             const parsedUrl = new URL(normalizedResponse.url);
             const params = parsedUrl.searchParams;
             const page = parseInt(params.get("page") || "1", 10);
             const per_page = parseInt(params.get("per_page") || "250", 10);
             if (page * per_page < normalizedResponse.data.total_commits) {
               params.set("page", String(page + 1));
-              url2 = parsedUrl.toString();
+              url = parsedUrl.toString();
             }
           }
           return { value: normalizedResponse };
         } catch (error) {
           if (error.status !== 409) throw error;
-          url2 = "";
+          url = "";
           return {
             value: {
               status: 200,
@@ -43134,12 +32948,12 @@ function paginate(octokit, route, parameters, mapFn) {
   return gather(
     octokit,
     [],
-    iterator2(octokit, route, parameters)[Symbol.asyncIterator](),
+    iterator(octokit, route, parameters)[Symbol.asyncIterator](),
     mapFn
   );
 }
-function gather(octokit, results, iterator22, mapFn) {
-  return iterator22.next().then((result) => {
+function gather(octokit, results, iterator2, mapFn) {
+  return iterator2.next().then((result) => {
     if (result.done) {
       return results;
     }
@@ -43153,7 +32967,7 @@ function gather(octokit, results, iterator22, mapFn) {
     if (earlyExit) {
       return results;
     }
-    return gather(octokit, results, iterator22, mapFn);
+    return gather(octokit, results, iterator2, mapFn);
   });
 }
 function isPaginatingEndpoint(arg) {
@@ -43166,16 +32980,16 @@ function isPaginatingEndpoint(arg) {
 function paginateRest(octokit) {
   return {
     paginate: Object.assign(paginate.bind(null, octokit), {
-      iterator: iterator2.bind(null, octokit)
+      iterator: iterator.bind(null, octokit)
     })
   };
 }
-var VERSION8, composePaginateRest, paginatingEndpoints;
+var VERSION6, composePaginateRest, paginatingEndpoints;
 var init_dist_bundle5 = __esm({
   "node_modules/@octokit/plugin-paginate-rest/dist-bundle/index.js"() {
-    VERSION8 = "0.0.0-development";
+    VERSION6 = "0.0.0-development";
     composePaginateRest = Object.assign(paginate, {
-      iterator: iterator2
+      iterator
     });
     paginatingEndpoints = [
       "GET /advisories",
@@ -43450,7 +33264,7 @@ var init_dist_bundle5 = __esm({
       "GET /users/{username}/starred",
       "GET /users/{username}/subscriptions"
     ];
-    paginateRest.VERSION = VERSION8;
+    paginateRest.VERSION = VERSION6;
   }
 });
 
@@ -43920,12 +33734,12 @@ var require_concat_map = __commonJS({
       var res = [];
       for (var i = 0; i < xs.length; i++) {
         var x = fn(xs[i], i);
-        if (isArray2(x)) res.push.apply(res, x);
+        if (isArray(x)) res.push.apply(res, x);
         else res.push(x);
       }
       return res;
     };
-    var isArray2 = Array.isArray || function(xs) {
+    var isArray = Array.isArray || function(xs) {
       return Object.prototype.toString.call(xs) === "[object Array]";
     };
   }
@@ -44089,15 +33903,15 @@ var require_brace_expansion = __commonJS({
         var y = numeric2(n[1]);
         var width = Math.max(n[0].length, n[1].length);
         var incr = n.length == 3 ? Math.max(Math.abs(numeric2(n[2])), 1) : 1;
-        var test2 = lte2;
+        var test = lte2;
         var reverse = y < x;
         if (reverse) {
           incr *= -1;
-          test2 = gte2;
+          test = gte2;
         }
         var pad = n.some(isPadded2);
         N = [];
-        for (var i = x; test2(i, y); i += incr) {
+        for (var i = x; test(i, y); i += incr) {
           var c;
           if (isAlphaSequence) {
             c = String.fromCharCode(i);
@@ -44170,8 +33984,8 @@ var require_minimatch = __commonJS({
       }, {});
     }
     var slashSplit = /\/+/;
-    minimatch2.filter = filter3;
-    function filter3(pattern, options) {
+    minimatch2.filter = filter2;
+    function filter2(pattern, options) {
       options = options || {};
       return function(p, i, list) {
         return minimatch2(p, pattern, options);
@@ -44199,13 +34013,13 @@ var require_minimatch = __commonJS({
       m.Minimatch = function Minimatch3(pattern, options) {
         return new orig.Minimatch(pattern, ext2(def, options));
       };
-      m.Minimatch.defaults = function defaults3(options) {
+      m.Minimatch.defaults = function defaults2(options) {
         return orig.defaults(ext2(def, options)).Minimatch;
       };
-      m.filter = function filter4(pattern, options) {
+      m.filter = function filter3(pattern, options) {
         return orig.filter(pattern, ext2(def, options));
       };
-      m.defaults = function defaults3(options) {
+      m.defaults = function defaults2(options) {
         return orig.defaults(ext2(def, options));
       };
       m.makeRe = function makeRe3(pattern, options) {
@@ -44964,7 +34778,7 @@ var require_internal_pattern = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Pattern = void 0;
-    var os = __importStar(require("os"));
+    var os3 = __importStar(require("os"));
     var path2 = __importStar(require("path"));
     var pathHelper = __importStar(require_internal_path_helper());
     var assert_1 = __importDefault(require("assert"));
@@ -45057,7 +34871,7 @@ var require_internal_pattern = __commonJS({
         if (pattern === "." || pattern.startsWith(`.${path2.sep}`)) {
           pattern = _Pattern.globEscape(process.cwd()) + pattern.substr(1);
         } else if (pattern === "~" || pattern.startsWith(`~${path2.sep}`)) {
-          homedir = homedir || os.homedir();
+          homedir = homedir || os3.homedir();
           (0, assert_1.default)(homedir, "Unable to determine HOME directory");
           (0, assert_1.default)(pathHelper.hasAbsoluteRoot(homedir), `Expected HOME directory to be a rooted path. Actual '${homedir}'`);
           pattern = _Pattern.globEscape(homedir) + pattern.substr(1);
@@ -45226,11 +35040,11 @@ var require_internal_globber = __commonJS({
       function verb(n) {
         i[n] = o[n] && function(v) {
           return new Promise(function(resolve4, reject) {
-            v = o[n](v), settle2(resolve4, reject, v.done, v.value);
+            v = o[n](v), settle(resolve4, reject, v.done, v.value);
           });
         };
       }
-      function settle2(resolve4, reject, d, v) {
+      function settle(resolve4, reject, d, v) {
         Promise.resolve(v).then(function(v2) {
           resolve4({ value: v2, done: d });
         }, reject);
@@ -45264,11 +35078,11 @@ var require_internal_globber = __commonJS({
         try {
           step(g[n](v));
         } catch (e) {
-          settle2(q[0][3], e);
+          settle(q[0][3], e);
         }
       }
       function step(r) {
-        r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle2(q[0][2], r);
+        r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r);
       }
       function fulfill(value) {
         resume("next", value);
@@ -45276,7 +35090,7 @@ var require_internal_globber = __commonJS({
       function reject(value) {
         resume("throw", value);
       }
-      function settle2(f, v) {
+      function settle(f, v) {
         if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]);
       }
     };
@@ -45516,11 +35330,11 @@ var require_internal_hash_files = __commonJS({
       function verb(n) {
         i[n] = o[n] && function(v) {
           return new Promise(function(resolve4, reject) {
-            v = o[n](v), settle2(resolve4, reject, v.done, v.value);
+            v = o[n](v), settle(resolve4, reject, v.done, v.value);
           });
         };
       }
-      function settle2(resolve4, reject, d, v) {
+      function settle(resolve4, reject, d, v) {
         Promise.resolve(v).then(function(v2) {
           resolve4({ value: v2, done: d });
         }, reject);
@@ -45531,8 +35345,8 @@ var require_internal_hash_files = __commonJS({
     var crypto2 = __importStar(require("crypto"));
     var core2 = __importStar(require_core());
     var fs = __importStar(require("fs"));
-    var stream4 = __importStar(require("stream"));
-    var util3 = __importStar(require("util"));
+    var stream = __importStar(require("stream"));
+    var util2 = __importStar(require("util"));
     var path2 = __importStar(require("path"));
     function hashFiles(globber_1, currentWorkspace_1) {
       return __awaiter(this, arguments, void 0, function* (globber, currentWorkspace, verbose = false) {
@@ -45558,7 +35372,7 @@ var require_internal_hash_files = __commonJS({
               continue;
             }
             const hash = crypto2.createHash("sha256");
-            const pipeline = util3.promisify(stream4.pipeline);
+            const pipeline = util2.promisify(stream.pipeline);
             yield pipeline(fs.createReadStream(file), hash);
             result.write(hash.digest());
             count++;
@@ -45620,11 +35434,11 @@ var require_glob = __commonJS({
       });
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
-    exports2.create = create3;
+    exports2.create = create2;
     exports2.hashFiles = hashFiles;
     var internal_globber_1 = require_internal_globber();
     var internal_hash_files_1 = require_internal_hash_files();
-    function create3(patterns, options) {
+    function create2(patterns, options) {
       return __awaiter(this, void 0, void 0, function* () {
         return yield internal_globber_1.DefaultGlobber.create(patterns, options);
       });
@@ -45635,7 +35449,7 @@ var require_glob = __commonJS({
         if (options && typeof options.followSymbolicLinks === "boolean") {
           followSymbolicLinks = options.followSymbolicLinks;
         }
-        const globber = yield create3(patterns, { followSymbolicLinks });
+        const globber = yield create2(patterns, { followSymbolicLinks });
         return (0, internal_hash_files_1.hashFiles)(globber, currentWorkspace, verbose);
       });
     }
@@ -46566,95 +36380,95 @@ function State$1(input, options) {
   this.firstTabInLine = -1;
   this.documents = [];
 }
-function generateError(state, message) {
+function generateError(state2, message) {
   var mark = {
-    name: state.filename,
-    buffer: state.input.slice(0, -1),
+    name: state2.filename,
+    buffer: state2.input.slice(0, -1),
     // omit trailing \0
-    position: state.position,
-    line: state.line,
-    column: state.position - state.lineStart
+    position: state2.position,
+    line: state2.line,
+    column: state2.position - state2.lineStart
   };
   mark.snippet = snippet(mark);
   return new exception(message, mark);
 }
-function throwError(state, message) {
-  throw generateError(state, message);
+function throwError(state2, message) {
+  throw generateError(state2, message);
 }
-function throwWarning(state, message) {
-  if (state.onWarning) {
-    state.onWarning.call(null, generateError(state, message));
+function throwWarning(state2, message) {
+  if (state2.onWarning) {
+    state2.onWarning.call(null, generateError(state2, message));
   }
 }
 var directiveHandlers = {
-  YAML: function handleYamlDirective(state, name, args) {
+  YAML: function handleYamlDirective(state2, name, args) {
     var match2, major, minor;
-    if (state.version !== null) {
-      throwError(state, "duplication of %YAML directive");
+    if (state2.version !== null) {
+      throwError(state2, "duplication of %YAML directive");
     }
     if (args.length !== 1) {
-      throwError(state, "YAML directive accepts exactly one argument");
+      throwError(state2, "YAML directive accepts exactly one argument");
     }
     match2 = /^([0-9]+)\.([0-9]+)$/.exec(args[0]);
     if (match2 === null) {
-      throwError(state, "ill-formed argument of the YAML directive");
+      throwError(state2, "ill-formed argument of the YAML directive");
     }
     major = parseInt(match2[1], 10);
     minor = parseInt(match2[2], 10);
     if (major !== 1) {
-      throwError(state, "unacceptable YAML version of the document");
+      throwError(state2, "unacceptable YAML version of the document");
     }
-    state.version = args[0];
-    state.checkLineBreaks = minor < 2;
+    state2.version = args[0];
+    state2.checkLineBreaks = minor < 2;
     if (minor !== 1 && minor !== 2) {
-      throwWarning(state, "unsupported YAML version of the document");
+      throwWarning(state2, "unsupported YAML version of the document");
     }
   },
-  TAG: function handleTagDirective(state, name, args) {
+  TAG: function handleTagDirective(state2, name, args) {
     var handle, prefix;
     if (args.length !== 2) {
-      throwError(state, "TAG directive accepts exactly two arguments");
+      throwError(state2, "TAG directive accepts exactly two arguments");
     }
     handle = args[0];
     prefix = args[1];
     if (!PATTERN_TAG_HANDLE.test(handle)) {
-      throwError(state, "ill-formed tag handle (first argument) of the TAG directive");
+      throwError(state2, "ill-formed tag handle (first argument) of the TAG directive");
     }
-    if (_hasOwnProperty$1.call(state.tagMap, handle)) {
-      throwError(state, 'there is a previously declared suffix for "' + handle + '" tag handle');
+    if (_hasOwnProperty$1.call(state2.tagMap, handle)) {
+      throwError(state2, 'there is a previously declared suffix for "' + handle + '" tag handle');
     }
     if (!PATTERN_TAG_URI.test(prefix)) {
-      throwError(state, "ill-formed tag prefix (second argument) of the TAG directive");
+      throwError(state2, "ill-formed tag prefix (second argument) of the TAG directive");
     }
     try {
       prefix = decodeURIComponent(prefix);
     } catch (err) {
-      throwError(state, "tag prefix is malformed: " + prefix);
+      throwError(state2, "tag prefix is malformed: " + prefix);
     }
-    state.tagMap[handle] = prefix;
+    state2.tagMap[handle] = prefix;
   }
 };
-function captureSegment(state, start2, end, checkJson) {
+function captureSegment(state2, start2, end, checkJson) {
   var _position, _length, _character, _result;
   if (start2 < end) {
-    _result = state.input.slice(start2, end);
+    _result = state2.input.slice(start2, end);
     if (checkJson) {
       for (_position = 0, _length = _result.length; _position < _length; _position += 1) {
         _character = _result.charCodeAt(_position);
         if (!(_character === 9 || 32 <= _character && _character <= 1114111)) {
-          throwError(state, "expected valid JSON character");
+          throwError(state2, "expected valid JSON character");
         }
       }
     } else if (PATTERN_NON_PRINTABLE.test(_result)) {
-      throwError(state, "the stream contains non-printable characters");
+      throwError(state2, "the stream contains non-printable characters");
     }
-    state.result += _result;
+    state2.result += _result;
   }
 }
-function mergeMappings(state, destination, source, overridableKeys) {
+function mergeMappings(state2, destination, source, overridableKeys) {
   var sourceKeys, key, index, quantity;
   if (!common.isObject(source)) {
-    throwError(state, "cannot merge mappings; the provided source object is unacceptable");
+    throwError(state2, "cannot merge mappings; the provided source object is unacceptable");
   }
   sourceKeys = Object.keys(source);
   for (index = 0, quantity = sourceKeys.length; index < quantity; index += 1) {
@@ -46665,13 +36479,13 @@ function mergeMappings(state, destination, source, overridableKeys) {
     }
   }
 }
-function storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, valueNode, startLine, startLineStart, startPos) {
+function storeMappingPair(state2, _result, overridableKeys, keyTag, keyNode, valueNode, startLine, startLineStart, startPos) {
   var index, quantity;
   if (Array.isArray(keyNode)) {
     keyNode = Array.prototype.slice.call(keyNode);
     for (index = 0, quantity = keyNode.length; index < quantity; index += 1) {
       if (Array.isArray(keyNode[index])) {
-        throwError(state, "nested arrays are not supported inside keys");
+        throwError(state2, "nested arrays are not supported inside keys");
       }
       if (typeof keyNode === "object" && _class(keyNode[index]) === "[object Object]") {
         keyNode[index] = "[object Object]";
@@ -46688,246 +36502,246 @@ function storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, valu
   if (keyTag === "tag:yaml.org,2002:merge") {
     if (Array.isArray(valueNode)) {
       for (index = 0, quantity = valueNode.length; index < quantity; index += 1) {
-        mergeMappings(state, _result, valueNode[index], overridableKeys);
+        mergeMappings(state2, _result, valueNode[index], overridableKeys);
       }
     } else {
-      mergeMappings(state, _result, valueNode, overridableKeys);
+      mergeMappings(state2, _result, valueNode, overridableKeys);
     }
   } else {
-    if (!state.json && !_hasOwnProperty$1.call(overridableKeys, keyNode) && _hasOwnProperty$1.call(_result, keyNode)) {
-      state.line = startLine || state.line;
-      state.lineStart = startLineStart || state.lineStart;
-      state.position = startPos || state.position;
-      throwError(state, "duplicated mapping key");
+    if (!state2.json && !_hasOwnProperty$1.call(overridableKeys, keyNode) && _hasOwnProperty$1.call(_result, keyNode)) {
+      state2.line = startLine || state2.line;
+      state2.lineStart = startLineStart || state2.lineStart;
+      state2.position = startPos || state2.position;
+      throwError(state2, "duplicated mapping key");
     }
     setProperty(_result, keyNode, valueNode);
     delete overridableKeys[keyNode];
   }
   return _result;
 }
-function readLineBreak(state) {
+function readLineBreak(state2) {
   var ch;
-  ch = state.input.charCodeAt(state.position);
+  ch = state2.input.charCodeAt(state2.position);
   if (ch === 10) {
-    state.position++;
+    state2.position++;
   } else if (ch === 13) {
-    state.position++;
-    if (state.input.charCodeAt(state.position) === 10) {
-      state.position++;
+    state2.position++;
+    if (state2.input.charCodeAt(state2.position) === 10) {
+      state2.position++;
     }
   } else {
-    throwError(state, "a line break is expected");
+    throwError(state2, "a line break is expected");
   }
-  state.line += 1;
-  state.lineStart = state.position;
-  state.firstTabInLine = -1;
+  state2.line += 1;
+  state2.lineStart = state2.position;
+  state2.firstTabInLine = -1;
 }
-function skipSeparationSpace(state, allowComments, checkIndent) {
-  var lineBreaks = 0, ch = state.input.charCodeAt(state.position);
+function skipSeparationSpace(state2, allowComments, checkIndent) {
+  var lineBreaks = 0, ch = state2.input.charCodeAt(state2.position);
   while (ch !== 0) {
     while (is_WHITE_SPACE(ch)) {
-      if (ch === 9 && state.firstTabInLine === -1) {
-        state.firstTabInLine = state.position;
+      if (ch === 9 && state2.firstTabInLine === -1) {
+        state2.firstTabInLine = state2.position;
       }
-      ch = state.input.charCodeAt(++state.position);
+      ch = state2.input.charCodeAt(++state2.position);
     }
     if (allowComments && ch === 35) {
       do {
-        ch = state.input.charCodeAt(++state.position);
+        ch = state2.input.charCodeAt(++state2.position);
       } while (ch !== 10 && ch !== 13 && ch !== 0);
     }
     if (is_EOL(ch)) {
-      readLineBreak(state);
-      ch = state.input.charCodeAt(state.position);
+      readLineBreak(state2);
+      ch = state2.input.charCodeAt(state2.position);
       lineBreaks++;
-      state.lineIndent = 0;
+      state2.lineIndent = 0;
       while (ch === 32) {
-        state.lineIndent++;
-        ch = state.input.charCodeAt(++state.position);
+        state2.lineIndent++;
+        ch = state2.input.charCodeAt(++state2.position);
       }
     } else {
       break;
     }
   }
-  if (checkIndent !== -1 && lineBreaks !== 0 && state.lineIndent < checkIndent) {
-    throwWarning(state, "deficient indentation");
+  if (checkIndent !== -1 && lineBreaks !== 0 && state2.lineIndent < checkIndent) {
+    throwWarning(state2, "deficient indentation");
   }
   return lineBreaks;
 }
-function testDocumentSeparator(state) {
-  var _position = state.position, ch;
-  ch = state.input.charCodeAt(_position);
-  if ((ch === 45 || ch === 46) && ch === state.input.charCodeAt(_position + 1) && ch === state.input.charCodeAt(_position + 2)) {
+function testDocumentSeparator(state2) {
+  var _position = state2.position, ch;
+  ch = state2.input.charCodeAt(_position);
+  if ((ch === 45 || ch === 46) && ch === state2.input.charCodeAt(_position + 1) && ch === state2.input.charCodeAt(_position + 2)) {
     _position += 3;
-    ch = state.input.charCodeAt(_position);
+    ch = state2.input.charCodeAt(_position);
     if (ch === 0 || is_WS_OR_EOL(ch)) {
       return true;
     }
   }
   return false;
 }
-function writeFoldedLines(state, count) {
+function writeFoldedLines(state2, count) {
   if (count === 1) {
-    state.result += " ";
+    state2.result += " ";
   } else if (count > 1) {
-    state.result += common.repeat("\n", count - 1);
+    state2.result += common.repeat("\n", count - 1);
   }
 }
-function readPlainScalar(state, nodeIndent, withinFlowCollection) {
-  var preceding, following, captureStart, captureEnd, hasPendingContent, _line, _lineStart, _lineIndent, _kind = state.kind, _result = state.result, ch;
-  ch = state.input.charCodeAt(state.position);
+function readPlainScalar(state2, nodeIndent, withinFlowCollection) {
+  var preceding, following, captureStart, captureEnd, hasPendingContent, _line, _lineStart, _lineIndent, _kind = state2.kind, _result = state2.result, ch;
+  ch = state2.input.charCodeAt(state2.position);
   if (is_WS_OR_EOL(ch) || is_FLOW_INDICATOR(ch) || ch === 35 || ch === 38 || ch === 42 || ch === 33 || ch === 124 || ch === 62 || ch === 39 || ch === 34 || ch === 37 || ch === 64 || ch === 96) {
     return false;
   }
   if (ch === 63 || ch === 45) {
-    following = state.input.charCodeAt(state.position + 1);
+    following = state2.input.charCodeAt(state2.position + 1);
     if (is_WS_OR_EOL(following) || withinFlowCollection && is_FLOW_INDICATOR(following)) {
       return false;
     }
   }
-  state.kind = "scalar";
-  state.result = "";
-  captureStart = captureEnd = state.position;
+  state2.kind = "scalar";
+  state2.result = "";
+  captureStart = captureEnd = state2.position;
   hasPendingContent = false;
   while (ch !== 0) {
     if (ch === 58) {
-      following = state.input.charCodeAt(state.position + 1);
+      following = state2.input.charCodeAt(state2.position + 1);
       if (is_WS_OR_EOL(following) || withinFlowCollection && is_FLOW_INDICATOR(following)) {
         break;
       }
     } else if (ch === 35) {
-      preceding = state.input.charCodeAt(state.position - 1);
+      preceding = state2.input.charCodeAt(state2.position - 1);
       if (is_WS_OR_EOL(preceding)) {
         break;
       }
-    } else if (state.position === state.lineStart && testDocumentSeparator(state) || withinFlowCollection && is_FLOW_INDICATOR(ch)) {
+    } else if (state2.position === state2.lineStart && testDocumentSeparator(state2) || withinFlowCollection && is_FLOW_INDICATOR(ch)) {
       break;
     } else if (is_EOL(ch)) {
-      _line = state.line;
-      _lineStart = state.lineStart;
-      _lineIndent = state.lineIndent;
-      skipSeparationSpace(state, false, -1);
-      if (state.lineIndent >= nodeIndent) {
+      _line = state2.line;
+      _lineStart = state2.lineStart;
+      _lineIndent = state2.lineIndent;
+      skipSeparationSpace(state2, false, -1);
+      if (state2.lineIndent >= nodeIndent) {
         hasPendingContent = true;
-        ch = state.input.charCodeAt(state.position);
+        ch = state2.input.charCodeAt(state2.position);
         continue;
       } else {
-        state.position = captureEnd;
-        state.line = _line;
-        state.lineStart = _lineStart;
-        state.lineIndent = _lineIndent;
+        state2.position = captureEnd;
+        state2.line = _line;
+        state2.lineStart = _lineStart;
+        state2.lineIndent = _lineIndent;
         break;
       }
     }
     if (hasPendingContent) {
-      captureSegment(state, captureStart, captureEnd, false);
-      writeFoldedLines(state, state.line - _line);
-      captureStart = captureEnd = state.position;
+      captureSegment(state2, captureStart, captureEnd, false);
+      writeFoldedLines(state2, state2.line - _line);
+      captureStart = captureEnd = state2.position;
       hasPendingContent = false;
     }
     if (!is_WHITE_SPACE(ch)) {
-      captureEnd = state.position + 1;
+      captureEnd = state2.position + 1;
     }
-    ch = state.input.charCodeAt(++state.position);
+    ch = state2.input.charCodeAt(++state2.position);
   }
-  captureSegment(state, captureStart, captureEnd, false);
-  if (state.result) {
+  captureSegment(state2, captureStart, captureEnd, false);
+  if (state2.result) {
     return true;
   }
-  state.kind = _kind;
-  state.result = _result;
+  state2.kind = _kind;
+  state2.result = _result;
   return false;
 }
-function readSingleQuotedScalar(state, nodeIndent) {
+function readSingleQuotedScalar(state2, nodeIndent) {
   var ch, captureStart, captureEnd;
-  ch = state.input.charCodeAt(state.position);
+  ch = state2.input.charCodeAt(state2.position);
   if (ch !== 39) {
     return false;
   }
-  state.kind = "scalar";
-  state.result = "";
-  state.position++;
-  captureStart = captureEnd = state.position;
-  while ((ch = state.input.charCodeAt(state.position)) !== 0) {
+  state2.kind = "scalar";
+  state2.result = "";
+  state2.position++;
+  captureStart = captureEnd = state2.position;
+  while ((ch = state2.input.charCodeAt(state2.position)) !== 0) {
     if (ch === 39) {
-      captureSegment(state, captureStart, state.position, true);
-      ch = state.input.charCodeAt(++state.position);
+      captureSegment(state2, captureStart, state2.position, true);
+      ch = state2.input.charCodeAt(++state2.position);
       if (ch === 39) {
-        captureStart = state.position;
-        state.position++;
-        captureEnd = state.position;
+        captureStart = state2.position;
+        state2.position++;
+        captureEnd = state2.position;
       } else {
         return true;
       }
     } else if (is_EOL(ch)) {
-      captureSegment(state, captureStart, captureEnd, true);
-      writeFoldedLines(state, skipSeparationSpace(state, false, nodeIndent));
-      captureStart = captureEnd = state.position;
-    } else if (state.position === state.lineStart && testDocumentSeparator(state)) {
-      throwError(state, "unexpected end of the document within a single quoted scalar");
+      captureSegment(state2, captureStart, captureEnd, true);
+      writeFoldedLines(state2, skipSeparationSpace(state2, false, nodeIndent));
+      captureStart = captureEnd = state2.position;
+    } else if (state2.position === state2.lineStart && testDocumentSeparator(state2)) {
+      throwError(state2, "unexpected end of the document within a single quoted scalar");
     } else {
-      state.position++;
-      captureEnd = state.position;
+      state2.position++;
+      captureEnd = state2.position;
     }
   }
-  throwError(state, "unexpected end of the stream within a single quoted scalar");
+  throwError(state2, "unexpected end of the stream within a single quoted scalar");
 }
-function readDoubleQuotedScalar(state, nodeIndent) {
+function readDoubleQuotedScalar(state2, nodeIndent) {
   var captureStart, captureEnd, hexLength, hexResult, tmp, ch;
-  ch = state.input.charCodeAt(state.position);
+  ch = state2.input.charCodeAt(state2.position);
   if (ch !== 34) {
     return false;
   }
-  state.kind = "scalar";
-  state.result = "";
-  state.position++;
-  captureStart = captureEnd = state.position;
-  while ((ch = state.input.charCodeAt(state.position)) !== 0) {
+  state2.kind = "scalar";
+  state2.result = "";
+  state2.position++;
+  captureStart = captureEnd = state2.position;
+  while ((ch = state2.input.charCodeAt(state2.position)) !== 0) {
     if (ch === 34) {
-      captureSegment(state, captureStart, state.position, true);
-      state.position++;
+      captureSegment(state2, captureStart, state2.position, true);
+      state2.position++;
       return true;
     } else if (ch === 92) {
-      captureSegment(state, captureStart, state.position, true);
-      ch = state.input.charCodeAt(++state.position);
+      captureSegment(state2, captureStart, state2.position, true);
+      ch = state2.input.charCodeAt(++state2.position);
       if (is_EOL(ch)) {
-        skipSeparationSpace(state, false, nodeIndent);
+        skipSeparationSpace(state2, false, nodeIndent);
       } else if (ch < 256 && simpleEscapeCheck[ch]) {
-        state.result += simpleEscapeMap[ch];
-        state.position++;
+        state2.result += simpleEscapeMap[ch];
+        state2.position++;
       } else if ((tmp = escapedHexLen(ch)) > 0) {
         hexLength = tmp;
         hexResult = 0;
         for (; hexLength > 0; hexLength--) {
-          ch = state.input.charCodeAt(++state.position);
+          ch = state2.input.charCodeAt(++state2.position);
           if ((tmp = fromHexCode(ch)) >= 0) {
             hexResult = (hexResult << 4) + tmp;
           } else {
-            throwError(state, "expected hexadecimal character");
+            throwError(state2, "expected hexadecimal character");
           }
         }
-        state.result += charFromCodepoint(hexResult);
-        state.position++;
+        state2.result += charFromCodepoint(hexResult);
+        state2.position++;
       } else {
-        throwError(state, "unknown escape sequence");
+        throwError(state2, "unknown escape sequence");
       }
-      captureStart = captureEnd = state.position;
+      captureStart = captureEnd = state2.position;
     } else if (is_EOL(ch)) {
-      captureSegment(state, captureStart, captureEnd, true);
-      writeFoldedLines(state, skipSeparationSpace(state, false, nodeIndent));
-      captureStart = captureEnd = state.position;
-    } else if (state.position === state.lineStart && testDocumentSeparator(state)) {
-      throwError(state, "unexpected end of the document within a double quoted scalar");
+      captureSegment(state2, captureStart, captureEnd, true);
+      writeFoldedLines(state2, skipSeparationSpace(state2, false, nodeIndent));
+      captureStart = captureEnd = state2.position;
+    } else if (state2.position === state2.lineStart && testDocumentSeparator(state2)) {
+      throwError(state2, "unexpected end of the document within a double quoted scalar");
     } else {
-      state.position++;
-      captureEnd = state.position;
+      state2.position++;
+      captureEnd = state2.position;
     }
   }
-  throwError(state, "unexpected end of the stream within a double quoted scalar");
+  throwError(state2, "unexpected end of the stream within a double quoted scalar");
 }
-function readFlowCollection(state, nodeIndent) {
-  var readNext = true, _line, _lineStart, _pos, _tag = state.tag, _result, _anchor = state.anchor, following, terminator, isPair, isExplicitPair, isMapping, overridableKeys = /* @__PURE__ */ Object.create(null), keyNode, keyTag, valueNode, ch;
-  ch = state.input.charCodeAt(state.position);
+function readFlowCollection(state2, nodeIndent) {
+  var readNext = true, _line, _lineStart, _pos, _tag = state2.tag, _result, _anchor = state2.anchor, following, terminator, isPair, isExplicitPair, isMapping, overridableKeys = /* @__PURE__ */ Object.create(null), keyNode, keyTag, valueNode, ch;
+  ch = state2.input.charCodeAt(state2.position);
   if (ch === 91) {
     terminator = 93;
     isMapping = false;
@@ -46939,71 +36753,71 @@ function readFlowCollection(state, nodeIndent) {
   } else {
     return false;
   }
-  if (state.anchor !== null) {
-    state.anchorMap[state.anchor] = _result;
+  if (state2.anchor !== null) {
+    state2.anchorMap[state2.anchor] = _result;
   }
-  ch = state.input.charCodeAt(++state.position);
+  ch = state2.input.charCodeAt(++state2.position);
   while (ch !== 0) {
-    skipSeparationSpace(state, true, nodeIndent);
-    ch = state.input.charCodeAt(state.position);
+    skipSeparationSpace(state2, true, nodeIndent);
+    ch = state2.input.charCodeAt(state2.position);
     if (ch === terminator) {
-      state.position++;
-      state.tag = _tag;
-      state.anchor = _anchor;
-      state.kind = isMapping ? "mapping" : "sequence";
-      state.result = _result;
+      state2.position++;
+      state2.tag = _tag;
+      state2.anchor = _anchor;
+      state2.kind = isMapping ? "mapping" : "sequence";
+      state2.result = _result;
       return true;
     } else if (!readNext) {
-      throwError(state, "missed comma between flow collection entries");
+      throwError(state2, "missed comma between flow collection entries");
     } else if (ch === 44) {
-      throwError(state, "expected the node content, but found ','");
+      throwError(state2, "expected the node content, but found ','");
     }
     keyTag = keyNode = valueNode = null;
     isPair = isExplicitPair = false;
     if (ch === 63) {
-      following = state.input.charCodeAt(state.position + 1);
+      following = state2.input.charCodeAt(state2.position + 1);
       if (is_WS_OR_EOL(following)) {
         isPair = isExplicitPair = true;
-        state.position++;
-        skipSeparationSpace(state, true, nodeIndent);
+        state2.position++;
+        skipSeparationSpace(state2, true, nodeIndent);
       }
     }
-    _line = state.line;
-    _lineStart = state.lineStart;
-    _pos = state.position;
-    composeNode(state, nodeIndent, CONTEXT_FLOW_IN, false, true);
-    keyTag = state.tag;
-    keyNode = state.result;
-    skipSeparationSpace(state, true, nodeIndent);
-    ch = state.input.charCodeAt(state.position);
-    if ((isExplicitPair || state.line === _line) && ch === 58) {
+    _line = state2.line;
+    _lineStart = state2.lineStart;
+    _pos = state2.position;
+    composeNode(state2, nodeIndent, CONTEXT_FLOW_IN, false, true);
+    keyTag = state2.tag;
+    keyNode = state2.result;
+    skipSeparationSpace(state2, true, nodeIndent);
+    ch = state2.input.charCodeAt(state2.position);
+    if ((isExplicitPair || state2.line === _line) && ch === 58) {
       isPair = true;
-      ch = state.input.charCodeAt(++state.position);
-      skipSeparationSpace(state, true, nodeIndent);
-      composeNode(state, nodeIndent, CONTEXT_FLOW_IN, false, true);
-      valueNode = state.result;
+      ch = state2.input.charCodeAt(++state2.position);
+      skipSeparationSpace(state2, true, nodeIndent);
+      composeNode(state2, nodeIndent, CONTEXT_FLOW_IN, false, true);
+      valueNode = state2.result;
     }
     if (isMapping) {
-      storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, valueNode, _line, _lineStart, _pos);
+      storeMappingPair(state2, _result, overridableKeys, keyTag, keyNode, valueNode, _line, _lineStart, _pos);
     } else if (isPair) {
-      _result.push(storeMappingPair(state, null, overridableKeys, keyTag, keyNode, valueNode, _line, _lineStart, _pos));
+      _result.push(storeMappingPair(state2, null, overridableKeys, keyTag, keyNode, valueNode, _line, _lineStart, _pos));
     } else {
       _result.push(keyNode);
     }
-    skipSeparationSpace(state, true, nodeIndent);
-    ch = state.input.charCodeAt(state.position);
+    skipSeparationSpace(state2, true, nodeIndent);
+    ch = state2.input.charCodeAt(state2.position);
     if (ch === 44) {
       readNext = true;
-      ch = state.input.charCodeAt(++state.position);
+      ch = state2.input.charCodeAt(++state2.position);
     } else {
       readNext = false;
     }
   }
-  throwError(state, "unexpected end of the stream within a flow collection");
+  throwError(state2, "unexpected end of the stream within a flow collection");
 }
-function readBlockScalar(state, nodeIndent) {
+function readBlockScalar(state2, nodeIndent) {
   var captureStart, folding, chomping = CHOMPING_CLIP, didReadContent = false, detectedIndent = false, textIndent = nodeIndent, emptyLines = 0, atMoreIndented = false, tmp, ch;
-  ch = state.input.charCodeAt(state.position);
+  ch = state2.input.charCodeAt(state2.position);
   if (ch === 124) {
     folding = false;
   } else if (ch === 62) {
@@ -47011,24 +36825,24 @@ function readBlockScalar(state, nodeIndent) {
   } else {
     return false;
   }
-  state.kind = "scalar";
-  state.result = "";
+  state2.kind = "scalar";
+  state2.result = "";
   while (ch !== 0) {
-    ch = state.input.charCodeAt(++state.position);
+    ch = state2.input.charCodeAt(++state2.position);
     if (ch === 43 || ch === 45) {
       if (CHOMPING_CLIP === chomping) {
         chomping = ch === 43 ? CHOMPING_KEEP : CHOMPING_STRIP;
       } else {
-        throwError(state, "repeat of a chomping mode identifier");
+        throwError(state2, "repeat of a chomping mode identifier");
       }
     } else if ((tmp = fromDecimalCode(ch)) >= 0) {
       if (tmp === 0) {
-        throwError(state, "bad explicit indentation width of a block scalar; it cannot be less than one");
+        throwError(state2, "bad explicit indentation width of a block scalar; it cannot be less than one");
       } else if (!detectedIndent) {
         textIndent = nodeIndent + tmp - 1;
         detectedIndent = true;
       } else {
-        throwError(state, "repeat of an indentation width identifier");
+        throwError(state2, "repeat of an indentation width identifier");
       }
     } else {
       break;
@@ -47036,35 +36850,35 @@ function readBlockScalar(state, nodeIndent) {
   }
   if (is_WHITE_SPACE(ch)) {
     do {
-      ch = state.input.charCodeAt(++state.position);
+      ch = state2.input.charCodeAt(++state2.position);
     } while (is_WHITE_SPACE(ch));
     if (ch === 35) {
       do {
-        ch = state.input.charCodeAt(++state.position);
+        ch = state2.input.charCodeAt(++state2.position);
       } while (!is_EOL(ch) && ch !== 0);
     }
   }
   while (ch !== 0) {
-    readLineBreak(state);
-    state.lineIndent = 0;
-    ch = state.input.charCodeAt(state.position);
-    while ((!detectedIndent || state.lineIndent < textIndent) && ch === 32) {
-      state.lineIndent++;
-      ch = state.input.charCodeAt(++state.position);
+    readLineBreak(state2);
+    state2.lineIndent = 0;
+    ch = state2.input.charCodeAt(state2.position);
+    while ((!detectedIndent || state2.lineIndent < textIndent) && ch === 32) {
+      state2.lineIndent++;
+      ch = state2.input.charCodeAt(++state2.position);
     }
-    if (!detectedIndent && state.lineIndent > textIndent) {
-      textIndent = state.lineIndent;
+    if (!detectedIndent && state2.lineIndent > textIndent) {
+      textIndent = state2.lineIndent;
     }
     if (is_EOL(ch)) {
       emptyLines++;
       continue;
     }
-    if (state.lineIndent < textIndent) {
+    if (state2.lineIndent < textIndent) {
       if (chomping === CHOMPING_KEEP) {
-        state.result += common.repeat("\n", didReadContent ? 1 + emptyLines : emptyLines);
+        state2.result += common.repeat("\n", didReadContent ? 1 + emptyLines : emptyLines);
       } else if (chomping === CHOMPING_CLIP) {
         if (didReadContent) {
-          state.result += "\n";
+          state2.result += "\n";
         }
       }
       break;
@@ -47072,97 +36886,97 @@ function readBlockScalar(state, nodeIndent) {
     if (folding) {
       if (is_WHITE_SPACE(ch)) {
         atMoreIndented = true;
-        state.result += common.repeat("\n", didReadContent ? 1 + emptyLines : emptyLines);
+        state2.result += common.repeat("\n", didReadContent ? 1 + emptyLines : emptyLines);
       } else if (atMoreIndented) {
         atMoreIndented = false;
-        state.result += common.repeat("\n", emptyLines + 1);
+        state2.result += common.repeat("\n", emptyLines + 1);
       } else if (emptyLines === 0) {
         if (didReadContent) {
-          state.result += " ";
+          state2.result += " ";
         }
       } else {
-        state.result += common.repeat("\n", emptyLines);
+        state2.result += common.repeat("\n", emptyLines);
       }
     } else {
-      state.result += common.repeat("\n", didReadContent ? 1 + emptyLines : emptyLines);
+      state2.result += common.repeat("\n", didReadContent ? 1 + emptyLines : emptyLines);
     }
     didReadContent = true;
     detectedIndent = true;
     emptyLines = 0;
-    captureStart = state.position;
+    captureStart = state2.position;
     while (!is_EOL(ch) && ch !== 0) {
-      ch = state.input.charCodeAt(++state.position);
+      ch = state2.input.charCodeAt(++state2.position);
     }
-    captureSegment(state, captureStart, state.position, false);
+    captureSegment(state2, captureStart, state2.position, false);
   }
   return true;
 }
-function readBlockSequence(state, nodeIndent) {
-  var _line, _tag = state.tag, _anchor = state.anchor, _result = [], following, detected = false, ch;
-  if (state.firstTabInLine !== -1) return false;
-  if (state.anchor !== null) {
-    state.anchorMap[state.anchor] = _result;
+function readBlockSequence(state2, nodeIndent) {
+  var _line, _tag = state2.tag, _anchor = state2.anchor, _result = [], following, detected = false, ch;
+  if (state2.firstTabInLine !== -1) return false;
+  if (state2.anchor !== null) {
+    state2.anchorMap[state2.anchor] = _result;
   }
-  ch = state.input.charCodeAt(state.position);
+  ch = state2.input.charCodeAt(state2.position);
   while (ch !== 0) {
-    if (state.firstTabInLine !== -1) {
-      state.position = state.firstTabInLine;
-      throwError(state, "tab characters must not be used in indentation");
+    if (state2.firstTabInLine !== -1) {
+      state2.position = state2.firstTabInLine;
+      throwError(state2, "tab characters must not be used in indentation");
     }
     if (ch !== 45) {
       break;
     }
-    following = state.input.charCodeAt(state.position + 1);
+    following = state2.input.charCodeAt(state2.position + 1);
     if (!is_WS_OR_EOL(following)) {
       break;
     }
     detected = true;
-    state.position++;
-    if (skipSeparationSpace(state, true, -1)) {
-      if (state.lineIndent <= nodeIndent) {
+    state2.position++;
+    if (skipSeparationSpace(state2, true, -1)) {
+      if (state2.lineIndent <= nodeIndent) {
         _result.push(null);
-        ch = state.input.charCodeAt(state.position);
+        ch = state2.input.charCodeAt(state2.position);
         continue;
       }
     }
-    _line = state.line;
-    composeNode(state, nodeIndent, CONTEXT_BLOCK_IN, false, true);
-    _result.push(state.result);
-    skipSeparationSpace(state, true, -1);
-    ch = state.input.charCodeAt(state.position);
-    if ((state.line === _line || state.lineIndent > nodeIndent) && ch !== 0) {
-      throwError(state, "bad indentation of a sequence entry");
-    } else if (state.lineIndent < nodeIndent) {
+    _line = state2.line;
+    composeNode(state2, nodeIndent, CONTEXT_BLOCK_IN, false, true);
+    _result.push(state2.result);
+    skipSeparationSpace(state2, true, -1);
+    ch = state2.input.charCodeAt(state2.position);
+    if ((state2.line === _line || state2.lineIndent > nodeIndent) && ch !== 0) {
+      throwError(state2, "bad indentation of a sequence entry");
+    } else if (state2.lineIndent < nodeIndent) {
       break;
     }
   }
   if (detected) {
-    state.tag = _tag;
-    state.anchor = _anchor;
-    state.kind = "sequence";
-    state.result = _result;
+    state2.tag = _tag;
+    state2.anchor = _anchor;
+    state2.kind = "sequence";
+    state2.result = _result;
     return true;
   }
   return false;
 }
-function readBlockMapping(state, nodeIndent, flowIndent) {
-  var following, allowCompact, _line, _keyLine, _keyLineStart, _keyPos, _tag = state.tag, _anchor = state.anchor, _result = {}, overridableKeys = /* @__PURE__ */ Object.create(null), keyTag = null, keyNode = null, valueNode = null, atExplicitKey = false, detected = false, ch;
-  if (state.firstTabInLine !== -1) return false;
-  if (state.anchor !== null) {
-    state.anchorMap[state.anchor] = _result;
+function readBlockMapping(state2, nodeIndent, flowIndent) {
+  var following, allowCompact, _line, _keyLine, _keyLineStart, _keyPos, _tag = state2.tag, _anchor = state2.anchor, _result = {}, overridableKeys = /* @__PURE__ */ Object.create(null), keyTag = null, keyNode = null, valueNode = null, atExplicitKey = false, detected = false, ch;
+  if (state2.firstTabInLine !== -1) return false;
+  if (state2.anchor !== null) {
+    state2.anchorMap[state2.anchor] = _result;
   }
-  ch = state.input.charCodeAt(state.position);
+  ch = state2.input.charCodeAt(state2.position);
   while (ch !== 0) {
-    if (!atExplicitKey && state.firstTabInLine !== -1) {
-      state.position = state.firstTabInLine;
-      throwError(state, "tab characters must not be used in indentation");
+    if (!atExplicitKey && state2.firstTabInLine !== -1) {
+      state2.position = state2.firstTabInLine;
+      throwError(state2, "tab characters must not be used in indentation");
     }
-    following = state.input.charCodeAt(state.position + 1);
-    _line = state.line;
+    following = state2.input.charCodeAt(state2.position + 1);
+    _line = state2.line;
     if ((ch === 63 || ch === 58) && is_WS_OR_EOL(following)) {
       if (ch === 63) {
         if (atExplicitKey) {
-          storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, null, _keyLine, _keyLineStart, _keyPos);
+          storeMappingPair(state2, _result, overridableKeys, keyTag, keyNode, null, _keyLine, _keyLineStart, _keyPos);
           keyTag = keyNode = valueNode = null;
         }
         detected = true;
@@ -47172,229 +36986,229 @@ function readBlockMapping(state, nodeIndent, flowIndent) {
         atExplicitKey = false;
         allowCompact = true;
       } else {
-        throwError(state, "incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line");
+        throwError(state2, "incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line");
       }
-      state.position += 1;
+      state2.position += 1;
       ch = following;
     } else {
-      _keyLine = state.line;
-      _keyLineStart = state.lineStart;
-      _keyPos = state.position;
-      if (!composeNode(state, flowIndent, CONTEXT_FLOW_OUT, false, true)) {
+      _keyLine = state2.line;
+      _keyLineStart = state2.lineStart;
+      _keyPos = state2.position;
+      if (!composeNode(state2, flowIndent, CONTEXT_FLOW_OUT, false, true)) {
         break;
       }
-      if (state.line === _line) {
-        ch = state.input.charCodeAt(state.position);
+      if (state2.line === _line) {
+        ch = state2.input.charCodeAt(state2.position);
         while (is_WHITE_SPACE(ch)) {
-          ch = state.input.charCodeAt(++state.position);
+          ch = state2.input.charCodeAt(++state2.position);
         }
         if (ch === 58) {
-          ch = state.input.charCodeAt(++state.position);
+          ch = state2.input.charCodeAt(++state2.position);
           if (!is_WS_OR_EOL(ch)) {
-            throwError(state, "a whitespace character is expected after the key-value separator within a block mapping");
+            throwError(state2, "a whitespace character is expected after the key-value separator within a block mapping");
           }
           if (atExplicitKey) {
-            storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, null, _keyLine, _keyLineStart, _keyPos);
+            storeMappingPair(state2, _result, overridableKeys, keyTag, keyNode, null, _keyLine, _keyLineStart, _keyPos);
             keyTag = keyNode = valueNode = null;
           }
           detected = true;
           atExplicitKey = false;
           allowCompact = false;
-          keyTag = state.tag;
-          keyNode = state.result;
+          keyTag = state2.tag;
+          keyNode = state2.result;
         } else if (detected) {
-          throwError(state, "can not read an implicit mapping pair; a colon is missed");
+          throwError(state2, "can not read an implicit mapping pair; a colon is missed");
         } else {
-          state.tag = _tag;
-          state.anchor = _anchor;
+          state2.tag = _tag;
+          state2.anchor = _anchor;
           return true;
         }
       } else if (detected) {
-        throwError(state, "can not read a block mapping entry; a multiline key may not be an implicit key");
+        throwError(state2, "can not read a block mapping entry; a multiline key may not be an implicit key");
       } else {
-        state.tag = _tag;
-        state.anchor = _anchor;
+        state2.tag = _tag;
+        state2.anchor = _anchor;
         return true;
       }
     }
-    if (state.line === _line || state.lineIndent > nodeIndent) {
+    if (state2.line === _line || state2.lineIndent > nodeIndent) {
       if (atExplicitKey) {
-        _keyLine = state.line;
-        _keyLineStart = state.lineStart;
-        _keyPos = state.position;
+        _keyLine = state2.line;
+        _keyLineStart = state2.lineStart;
+        _keyPos = state2.position;
       }
-      if (composeNode(state, nodeIndent, CONTEXT_BLOCK_OUT, true, allowCompact)) {
+      if (composeNode(state2, nodeIndent, CONTEXT_BLOCK_OUT, true, allowCompact)) {
         if (atExplicitKey) {
-          keyNode = state.result;
+          keyNode = state2.result;
         } else {
-          valueNode = state.result;
+          valueNode = state2.result;
         }
       }
       if (!atExplicitKey) {
-        storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, valueNode, _keyLine, _keyLineStart, _keyPos);
+        storeMappingPair(state2, _result, overridableKeys, keyTag, keyNode, valueNode, _keyLine, _keyLineStart, _keyPos);
         keyTag = keyNode = valueNode = null;
       }
-      skipSeparationSpace(state, true, -1);
-      ch = state.input.charCodeAt(state.position);
+      skipSeparationSpace(state2, true, -1);
+      ch = state2.input.charCodeAt(state2.position);
     }
-    if ((state.line === _line || state.lineIndent > nodeIndent) && ch !== 0) {
-      throwError(state, "bad indentation of a mapping entry");
-    } else if (state.lineIndent < nodeIndent) {
+    if ((state2.line === _line || state2.lineIndent > nodeIndent) && ch !== 0) {
+      throwError(state2, "bad indentation of a mapping entry");
+    } else if (state2.lineIndent < nodeIndent) {
       break;
     }
   }
   if (atExplicitKey) {
-    storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, null, _keyLine, _keyLineStart, _keyPos);
+    storeMappingPair(state2, _result, overridableKeys, keyTag, keyNode, null, _keyLine, _keyLineStart, _keyPos);
   }
   if (detected) {
-    state.tag = _tag;
-    state.anchor = _anchor;
-    state.kind = "mapping";
-    state.result = _result;
+    state2.tag = _tag;
+    state2.anchor = _anchor;
+    state2.kind = "mapping";
+    state2.result = _result;
   }
   return detected;
 }
-function readTagProperty(state) {
+function readTagProperty(state2) {
   var _position, isVerbatim = false, isNamed = false, tagHandle, tagName, ch;
-  ch = state.input.charCodeAt(state.position);
+  ch = state2.input.charCodeAt(state2.position);
   if (ch !== 33) return false;
-  if (state.tag !== null) {
-    throwError(state, "duplication of a tag property");
+  if (state2.tag !== null) {
+    throwError(state2, "duplication of a tag property");
   }
-  ch = state.input.charCodeAt(++state.position);
+  ch = state2.input.charCodeAt(++state2.position);
   if (ch === 60) {
     isVerbatim = true;
-    ch = state.input.charCodeAt(++state.position);
+    ch = state2.input.charCodeAt(++state2.position);
   } else if (ch === 33) {
     isNamed = true;
     tagHandle = "!!";
-    ch = state.input.charCodeAt(++state.position);
+    ch = state2.input.charCodeAt(++state2.position);
   } else {
     tagHandle = "!";
   }
-  _position = state.position;
+  _position = state2.position;
   if (isVerbatim) {
     do {
-      ch = state.input.charCodeAt(++state.position);
+      ch = state2.input.charCodeAt(++state2.position);
     } while (ch !== 0 && ch !== 62);
-    if (state.position < state.length) {
-      tagName = state.input.slice(_position, state.position);
-      ch = state.input.charCodeAt(++state.position);
+    if (state2.position < state2.length) {
+      tagName = state2.input.slice(_position, state2.position);
+      ch = state2.input.charCodeAt(++state2.position);
     } else {
-      throwError(state, "unexpected end of the stream within a verbatim tag");
+      throwError(state2, "unexpected end of the stream within a verbatim tag");
     }
   } else {
     while (ch !== 0 && !is_WS_OR_EOL(ch)) {
       if (ch === 33) {
         if (!isNamed) {
-          tagHandle = state.input.slice(_position - 1, state.position + 1);
+          tagHandle = state2.input.slice(_position - 1, state2.position + 1);
           if (!PATTERN_TAG_HANDLE.test(tagHandle)) {
-            throwError(state, "named tag handle cannot contain such characters");
+            throwError(state2, "named tag handle cannot contain such characters");
           }
           isNamed = true;
-          _position = state.position + 1;
+          _position = state2.position + 1;
         } else {
-          throwError(state, "tag suffix cannot contain exclamation marks");
+          throwError(state2, "tag suffix cannot contain exclamation marks");
         }
       }
-      ch = state.input.charCodeAt(++state.position);
+      ch = state2.input.charCodeAt(++state2.position);
     }
-    tagName = state.input.slice(_position, state.position);
+    tagName = state2.input.slice(_position, state2.position);
     if (PATTERN_FLOW_INDICATORS.test(tagName)) {
-      throwError(state, "tag suffix cannot contain flow indicator characters");
+      throwError(state2, "tag suffix cannot contain flow indicator characters");
     }
   }
   if (tagName && !PATTERN_TAG_URI.test(tagName)) {
-    throwError(state, "tag name cannot contain such characters: " + tagName);
+    throwError(state2, "tag name cannot contain such characters: " + tagName);
   }
   try {
     tagName = decodeURIComponent(tagName);
   } catch (err) {
-    throwError(state, "tag name is malformed: " + tagName);
+    throwError(state2, "tag name is malformed: " + tagName);
   }
   if (isVerbatim) {
-    state.tag = tagName;
-  } else if (_hasOwnProperty$1.call(state.tagMap, tagHandle)) {
-    state.tag = state.tagMap[tagHandle] + tagName;
+    state2.tag = tagName;
+  } else if (_hasOwnProperty$1.call(state2.tagMap, tagHandle)) {
+    state2.tag = state2.tagMap[tagHandle] + tagName;
   } else if (tagHandle === "!") {
-    state.tag = "!" + tagName;
+    state2.tag = "!" + tagName;
   } else if (tagHandle === "!!") {
-    state.tag = "tag:yaml.org,2002:" + tagName;
+    state2.tag = "tag:yaml.org,2002:" + tagName;
   } else {
-    throwError(state, 'undeclared tag handle "' + tagHandle + '"');
+    throwError(state2, 'undeclared tag handle "' + tagHandle + '"');
   }
   return true;
 }
-function readAnchorProperty(state) {
+function readAnchorProperty(state2) {
   var _position, ch;
-  ch = state.input.charCodeAt(state.position);
+  ch = state2.input.charCodeAt(state2.position);
   if (ch !== 38) return false;
-  if (state.anchor !== null) {
-    throwError(state, "duplication of an anchor property");
+  if (state2.anchor !== null) {
+    throwError(state2, "duplication of an anchor property");
   }
-  ch = state.input.charCodeAt(++state.position);
-  _position = state.position;
+  ch = state2.input.charCodeAt(++state2.position);
+  _position = state2.position;
   while (ch !== 0 && !is_WS_OR_EOL(ch) && !is_FLOW_INDICATOR(ch)) {
-    ch = state.input.charCodeAt(++state.position);
+    ch = state2.input.charCodeAt(++state2.position);
   }
-  if (state.position === _position) {
-    throwError(state, "name of an anchor node must contain at least one character");
+  if (state2.position === _position) {
+    throwError(state2, "name of an anchor node must contain at least one character");
   }
-  state.anchor = state.input.slice(_position, state.position);
+  state2.anchor = state2.input.slice(_position, state2.position);
   return true;
 }
-function readAlias(state) {
+function readAlias(state2) {
   var _position, alias, ch;
-  ch = state.input.charCodeAt(state.position);
+  ch = state2.input.charCodeAt(state2.position);
   if (ch !== 42) return false;
-  ch = state.input.charCodeAt(++state.position);
-  _position = state.position;
+  ch = state2.input.charCodeAt(++state2.position);
+  _position = state2.position;
   while (ch !== 0 && !is_WS_OR_EOL(ch) && !is_FLOW_INDICATOR(ch)) {
-    ch = state.input.charCodeAt(++state.position);
+    ch = state2.input.charCodeAt(++state2.position);
   }
-  if (state.position === _position) {
-    throwError(state, "name of an alias node must contain at least one character");
+  if (state2.position === _position) {
+    throwError(state2, "name of an alias node must contain at least one character");
   }
-  alias = state.input.slice(_position, state.position);
-  if (!_hasOwnProperty$1.call(state.anchorMap, alias)) {
-    throwError(state, 'unidentified alias "' + alias + '"');
+  alias = state2.input.slice(_position, state2.position);
+  if (!_hasOwnProperty$1.call(state2.anchorMap, alias)) {
+    throwError(state2, 'unidentified alias "' + alias + '"');
   }
-  state.result = state.anchorMap[alias];
-  skipSeparationSpace(state, true, -1);
+  state2.result = state2.anchorMap[alias];
+  skipSeparationSpace(state2, true, -1);
   return true;
 }
-function composeNode(state, parentIndent, nodeContext, allowToSeek, allowCompact) {
+function composeNode(state2, parentIndent, nodeContext, allowToSeek, allowCompact) {
   var allowBlockStyles, allowBlockScalars, allowBlockCollections, indentStatus = 1, atNewLine = false, hasContent = false, typeIndex, typeQuantity, typeList, type2, flowIndent, blockIndent;
-  if (state.listener !== null) {
-    state.listener("open", state);
+  if (state2.listener !== null) {
+    state2.listener("open", state2);
   }
-  state.tag = null;
-  state.anchor = null;
-  state.kind = null;
-  state.result = null;
+  state2.tag = null;
+  state2.anchor = null;
+  state2.kind = null;
+  state2.result = null;
   allowBlockStyles = allowBlockScalars = allowBlockCollections = CONTEXT_BLOCK_OUT === nodeContext || CONTEXT_BLOCK_IN === nodeContext;
   if (allowToSeek) {
-    if (skipSeparationSpace(state, true, -1)) {
+    if (skipSeparationSpace(state2, true, -1)) {
       atNewLine = true;
-      if (state.lineIndent > parentIndent) {
+      if (state2.lineIndent > parentIndent) {
         indentStatus = 1;
-      } else if (state.lineIndent === parentIndent) {
+      } else if (state2.lineIndent === parentIndent) {
         indentStatus = 0;
-      } else if (state.lineIndent < parentIndent) {
+      } else if (state2.lineIndent < parentIndent) {
         indentStatus = -1;
       }
     }
   }
   if (indentStatus === 1) {
-    while (readTagProperty(state) || readAnchorProperty(state)) {
-      if (skipSeparationSpace(state, true, -1)) {
+    while (readTagProperty(state2) || readAnchorProperty(state2)) {
+      if (skipSeparationSpace(state2, true, -1)) {
         atNewLine = true;
         allowBlockCollections = allowBlockStyles;
-        if (state.lineIndent > parentIndent) {
+        if (state2.lineIndent > parentIndent) {
           indentStatus = 1;
-        } else if (state.lineIndent === parentIndent) {
+        } else if (state2.lineIndent === parentIndent) {
           indentStatus = 0;
-        } else if (state.lineIndent < parentIndent) {
+        } else if (state2.lineIndent < parentIndent) {
           indentStatus = -1;
         }
       } else {
@@ -47411,153 +37225,153 @@ function composeNode(state, parentIndent, nodeContext, allowToSeek, allowCompact
     } else {
       flowIndent = parentIndent + 1;
     }
-    blockIndent = state.position - state.lineStart;
+    blockIndent = state2.position - state2.lineStart;
     if (indentStatus === 1) {
-      if (allowBlockCollections && (readBlockSequence(state, blockIndent) || readBlockMapping(state, blockIndent, flowIndent)) || readFlowCollection(state, flowIndent)) {
+      if (allowBlockCollections && (readBlockSequence(state2, blockIndent) || readBlockMapping(state2, blockIndent, flowIndent)) || readFlowCollection(state2, flowIndent)) {
         hasContent = true;
       } else {
-        if (allowBlockScalars && readBlockScalar(state, flowIndent) || readSingleQuotedScalar(state, flowIndent) || readDoubleQuotedScalar(state, flowIndent)) {
+        if (allowBlockScalars && readBlockScalar(state2, flowIndent) || readSingleQuotedScalar(state2, flowIndent) || readDoubleQuotedScalar(state2, flowIndent)) {
           hasContent = true;
-        } else if (readAlias(state)) {
+        } else if (readAlias(state2)) {
           hasContent = true;
-          if (state.tag !== null || state.anchor !== null) {
-            throwError(state, "alias node should not have any properties");
+          if (state2.tag !== null || state2.anchor !== null) {
+            throwError(state2, "alias node should not have any properties");
           }
-        } else if (readPlainScalar(state, flowIndent, CONTEXT_FLOW_IN === nodeContext)) {
+        } else if (readPlainScalar(state2, flowIndent, CONTEXT_FLOW_IN === nodeContext)) {
           hasContent = true;
-          if (state.tag === null) {
-            state.tag = "?";
+          if (state2.tag === null) {
+            state2.tag = "?";
           }
         }
-        if (state.anchor !== null) {
-          state.anchorMap[state.anchor] = state.result;
+        if (state2.anchor !== null) {
+          state2.anchorMap[state2.anchor] = state2.result;
         }
       }
     } else if (indentStatus === 0) {
-      hasContent = allowBlockCollections && readBlockSequence(state, blockIndent);
+      hasContent = allowBlockCollections && readBlockSequence(state2, blockIndent);
     }
   }
-  if (state.tag === null) {
-    if (state.anchor !== null) {
-      state.anchorMap[state.anchor] = state.result;
+  if (state2.tag === null) {
+    if (state2.anchor !== null) {
+      state2.anchorMap[state2.anchor] = state2.result;
     }
-  } else if (state.tag === "?") {
-    if (state.result !== null && state.kind !== "scalar") {
-      throwError(state, 'unacceptable node kind for !<?> tag; it should be "scalar", not "' + state.kind + '"');
+  } else if (state2.tag === "?") {
+    if (state2.result !== null && state2.kind !== "scalar") {
+      throwError(state2, 'unacceptable node kind for !<?> tag; it should be "scalar", not "' + state2.kind + '"');
     }
-    for (typeIndex = 0, typeQuantity = state.implicitTypes.length; typeIndex < typeQuantity; typeIndex += 1) {
-      type2 = state.implicitTypes[typeIndex];
-      if (type2.resolve(state.result)) {
-        state.result = type2.construct(state.result);
-        state.tag = type2.tag;
-        if (state.anchor !== null) {
-          state.anchorMap[state.anchor] = state.result;
+    for (typeIndex = 0, typeQuantity = state2.implicitTypes.length; typeIndex < typeQuantity; typeIndex += 1) {
+      type2 = state2.implicitTypes[typeIndex];
+      if (type2.resolve(state2.result)) {
+        state2.result = type2.construct(state2.result);
+        state2.tag = type2.tag;
+        if (state2.anchor !== null) {
+          state2.anchorMap[state2.anchor] = state2.result;
         }
         break;
       }
     }
-  } else if (state.tag !== "!") {
-    if (_hasOwnProperty$1.call(state.typeMap[state.kind || "fallback"], state.tag)) {
-      type2 = state.typeMap[state.kind || "fallback"][state.tag];
+  } else if (state2.tag !== "!") {
+    if (_hasOwnProperty$1.call(state2.typeMap[state2.kind || "fallback"], state2.tag)) {
+      type2 = state2.typeMap[state2.kind || "fallback"][state2.tag];
     } else {
       type2 = null;
-      typeList = state.typeMap.multi[state.kind || "fallback"];
+      typeList = state2.typeMap.multi[state2.kind || "fallback"];
       for (typeIndex = 0, typeQuantity = typeList.length; typeIndex < typeQuantity; typeIndex += 1) {
-        if (state.tag.slice(0, typeList[typeIndex].tag.length) === typeList[typeIndex].tag) {
+        if (state2.tag.slice(0, typeList[typeIndex].tag.length) === typeList[typeIndex].tag) {
           type2 = typeList[typeIndex];
           break;
         }
       }
     }
     if (!type2) {
-      throwError(state, "unknown tag !<" + state.tag + ">");
+      throwError(state2, "unknown tag !<" + state2.tag + ">");
     }
-    if (state.result !== null && type2.kind !== state.kind) {
-      throwError(state, "unacceptable node kind for !<" + state.tag + '> tag; it should be "' + type2.kind + '", not "' + state.kind + '"');
+    if (state2.result !== null && type2.kind !== state2.kind) {
+      throwError(state2, "unacceptable node kind for !<" + state2.tag + '> tag; it should be "' + type2.kind + '", not "' + state2.kind + '"');
     }
-    if (!type2.resolve(state.result, state.tag)) {
-      throwError(state, "cannot resolve a node with !<" + state.tag + "> explicit tag");
+    if (!type2.resolve(state2.result, state2.tag)) {
+      throwError(state2, "cannot resolve a node with !<" + state2.tag + "> explicit tag");
     } else {
-      state.result = type2.construct(state.result, state.tag);
-      if (state.anchor !== null) {
-        state.anchorMap[state.anchor] = state.result;
+      state2.result = type2.construct(state2.result, state2.tag);
+      if (state2.anchor !== null) {
+        state2.anchorMap[state2.anchor] = state2.result;
       }
     }
   }
-  if (state.listener !== null) {
-    state.listener("close", state);
+  if (state2.listener !== null) {
+    state2.listener("close", state2);
   }
-  return state.tag !== null || state.anchor !== null || hasContent;
+  return state2.tag !== null || state2.anchor !== null || hasContent;
 }
-function readDocument(state) {
-  var documentStart = state.position, _position, directiveName, directiveArgs, hasDirectives = false, ch;
-  state.version = null;
-  state.checkLineBreaks = state.legacy;
-  state.tagMap = /* @__PURE__ */ Object.create(null);
-  state.anchorMap = /* @__PURE__ */ Object.create(null);
-  while ((ch = state.input.charCodeAt(state.position)) !== 0) {
-    skipSeparationSpace(state, true, -1);
-    ch = state.input.charCodeAt(state.position);
-    if (state.lineIndent > 0 || ch !== 37) {
+function readDocument(state2) {
+  var documentStart = state2.position, _position, directiveName, directiveArgs, hasDirectives = false, ch;
+  state2.version = null;
+  state2.checkLineBreaks = state2.legacy;
+  state2.tagMap = /* @__PURE__ */ Object.create(null);
+  state2.anchorMap = /* @__PURE__ */ Object.create(null);
+  while ((ch = state2.input.charCodeAt(state2.position)) !== 0) {
+    skipSeparationSpace(state2, true, -1);
+    ch = state2.input.charCodeAt(state2.position);
+    if (state2.lineIndent > 0 || ch !== 37) {
       break;
     }
     hasDirectives = true;
-    ch = state.input.charCodeAt(++state.position);
-    _position = state.position;
+    ch = state2.input.charCodeAt(++state2.position);
+    _position = state2.position;
     while (ch !== 0 && !is_WS_OR_EOL(ch)) {
-      ch = state.input.charCodeAt(++state.position);
+      ch = state2.input.charCodeAt(++state2.position);
     }
-    directiveName = state.input.slice(_position, state.position);
+    directiveName = state2.input.slice(_position, state2.position);
     directiveArgs = [];
     if (directiveName.length < 1) {
-      throwError(state, "directive name must not be less than one character in length");
+      throwError(state2, "directive name must not be less than one character in length");
     }
     while (ch !== 0) {
       while (is_WHITE_SPACE(ch)) {
-        ch = state.input.charCodeAt(++state.position);
+        ch = state2.input.charCodeAt(++state2.position);
       }
       if (ch === 35) {
         do {
-          ch = state.input.charCodeAt(++state.position);
+          ch = state2.input.charCodeAt(++state2.position);
         } while (ch !== 0 && !is_EOL(ch));
         break;
       }
       if (is_EOL(ch)) break;
-      _position = state.position;
+      _position = state2.position;
       while (ch !== 0 && !is_WS_OR_EOL(ch)) {
-        ch = state.input.charCodeAt(++state.position);
+        ch = state2.input.charCodeAt(++state2.position);
       }
-      directiveArgs.push(state.input.slice(_position, state.position));
+      directiveArgs.push(state2.input.slice(_position, state2.position));
     }
-    if (ch !== 0) readLineBreak(state);
+    if (ch !== 0) readLineBreak(state2);
     if (_hasOwnProperty$1.call(directiveHandlers, directiveName)) {
-      directiveHandlers[directiveName](state, directiveName, directiveArgs);
+      directiveHandlers[directiveName](state2, directiveName, directiveArgs);
     } else {
-      throwWarning(state, 'unknown document directive "' + directiveName + '"');
+      throwWarning(state2, 'unknown document directive "' + directiveName + '"');
     }
   }
-  skipSeparationSpace(state, true, -1);
-  if (state.lineIndent === 0 && state.input.charCodeAt(state.position) === 45 && state.input.charCodeAt(state.position + 1) === 45 && state.input.charCodeAt(state.position + 2) === 45) {
-    state.position += 3;
-    skipSeparationSpace(state, true, -1);
+  skipSeparationSpace(state2, true, -1);
+  if (state2.lineIndent === 0 && state2.input.charCodeAt(state2.position) === 45 && state2.input.charCodeAt(state2.position + 1) === 45 && state2.input.charCodeAt(state2.position + 2) === 45) {
+    state2.position += 3;
+    skipSeparationSpace(state2, true, -1);
   } else if (hasDirectives) {
-    throwError(state, "directives end mark is expected");
+    throwError(state2, "directives end mark is expected");
   }
-  composeNode(state, state.lineIndent - 1, CONTEXT_BLOCK_OUT, false, true);
-  skipSeparationSpace(state, true, -1);
-  if (state.checkLineBreaks && PATTERN_NON_ASCII_LINE_BREAKS.test(state.input.slice(documentStart, state.position))) {
-    throwWarning(state, "non-ASCII line breaks are interpreted as content");
+  composeNode(state2, state2.lineIndent - 1, CONTEXT_BLOCK_OUT, false, true);
+  skipSeparationSpace(state2, true, -1);
+  if (state2.checkLineBreaks && PATTERN_NON_ASCII_LINE_BREAKS.test(state2.input.slice(documentStart, state2.position))) {
+    throwWarning(state2, "non-ASCII line breaks are interpreted as content");
   }
-  state.documents.push(state.result);
-  if (state.position === state.lineStart && testDocumentSeparator(state)) {
-    if (state.input.charCodeAt(state.position) === 46) {
-      state.position += 3;
-      skipSeparationSpace(state, true, -1);
+  state2.documents.push(state2.result);
+  if (state2.position === state2.lineStart && testDocumentSeparator(state2)) {
+    if (state2.input.charCodeAt(state2.position) === 46) {
+      state2.position += 3;
+      skipSeparationSpace(state2, true, -1);
     }
     return;
   }
-  if (state.position < state.length - 1) {
-    throwError(state, "end of the stream or a document separator is expected");
+  if (state2.position < state2.length - 1) {
+    throwError(state2, "end of the stream or a document separator is expected");
   } else {
     return;
   }
@@ -47573,33 +37387,33 @@ function loadDocuments(input, options) {
       input = input.slice(1);
     }
   }
-  var state = new State$1(input, options);
+  var state2 = new State$1(input, options);
   var nullpos = input.indexOf("\0");
   if (nullpos !== -1) {
-    state.position = nullpos;
-    throwError(state, "null byte is not allowed in input");
+    state2.position = nullpos;
+    throwError(state2, "null byte is not allowed in input");
   }
-  state.input += "\0";
-  while (state.input.charCodeAt(state.position) === 32) {
-    state.lineIndent += 1;
-    state.position += 1;
+  state2.input += "\0";
+  while (state2.input.charCodeAt(state2.position) === 32) {
+    state2.lineIndent += 1;
+    state2.position += 1;
   }
-  while (state.position < state.length - 1) {
-    readDocument(state);
+  while (state2.position < state2.length - 1) {
+    readDocument(state2);
   }
-  return state.documents;
+  return state2.documents;
 }
-function loadAll$1(input, iterator3, options) {
-  if (iterator3 !== null && typeof iterator3 === "object" && typeof options === "undefined") {
-    options = iterator3;
-    iterator3 = null;
+function loadAll$1(input, iterator2, options) {
+  if (iterator2 !== null && typeof iterator2 === "object" && typeof options === "undefined") {
+    options = iterator2;
+    iterator2 = null;
   }
   var documents = loadDocuments(input, options);
-  if (typeof iterator3 !== "function") {
+  if (typeof iterator2 !== "function") {
     return documents;
   }
   for (var index = 0, length = documents.length; index < length; index += 1) {
-    iterator3(documents[index]);
+    iterator2(documents[index]);
   }
 }
 function load$1(input, options) {
@@ -47755,13 +37569,13 @@ function indentString(string, spaces) {
   }
   return result;
 }
-function generateNextLine(state, level) {
-  return "\n" + common.repeat(" ", state.indent * level);
+function generateNextLine(state2, level) {
+  return "\n" + common.repeat(" ", state2.indent * level);
 }
-function testImplicitResolving(state, str2) {
+function testImplicitResolving(state2, str2) {
   var index, length, type2;
-  for (index = 0, length = state.implicitTypes.length; index < length; index += 1) {
-    type2 = state.implicitTypes[index];
+  for (index = 0, length = state2.implicitTypes.length; index < length; index += 1) {
+    type2 = state2.implicitTypes[index];
     if (type2.resolve(str2)) {
       return true;
     }
@@ -47863,30 +37677,30 @@ function chooseScalarStyle(string, singleLineOnly, indentPerLevel, lineWidth, te
   }
   return quotingType === QUOTING_TYPE_DOUBLE ? STYLE_DOUBLE : STYLE_SINGLE;
 }
-function writeScalar(state, string, level, iskey, inblock) {
-  state.dump = (function() {
+function writeScalar(state2, string, level, iskey, inblock) {
+  state2.dump = (function() {
     if (string.length === 0) {
-      return state.quotingType === QUOTING_TYPE_DOUBLE ? '""' : "''";
+      return state2.quotingType === QUOTING_TYPE_DOUBLE ? '""' : "''";
     }
-    if (!state.noCompatMode) {
+    if (!state2.noCompatMode) {
       if (DEPRECATED_BOOLEANS_SYNTAX.indexOf(string) !== -1 || DEPRECATED_BASE60_SYNTAX.test(string)) {
-        return state.quotingType === QUOTING_TYPE_DOUBLE ? '"' + string + '"' : "'" + string + "'";
+        return state2.quotingType === QUOTING_TYPE_DOUBLE ? '"' + string + '"' : "'" + string + "'";
       }
     }
-    var indent = state.indent * Math.max(1, level);
-    var lineWidth = state.lineWidth === -1 ? -1 : Math.max(Math.min(state.lineWidth, 40), state.lineWidth - indent);
-    var singleLineOnly = iskey || state.flowLevel > -1 && level >= state.flowLevel;
+    var indent = state2.indent * Math.max(1, level);
+    var lineWidth = state2.lineWidth === -1 ? -1 : Math.max(Math.min(state2.lineWidth, 40), state2.lineWidth - indent);
+    var singleLineOnly = iskey || state2.flowLevel > -1 && level >= state2.flowLevel;
     function testAmbiguity(string2) {
-      return testImplicitResolving(state, string2);
+      return testImplicitResolving(state2, string2);
     }
     switch (chooseScalarStyle(
       string,
       singleLineOnly,
-      state.indent,
+      state2.indent,
       lineWidth,
       testAmbiguity,
-      state.quotingType,
-      state.forceQuotes && !iskey,
+      state2.quotingType,
+      state2.forceQuotes && !iskey,
       inblock
     )) {
       case STYLE_PLAIN:
@@ -47894,9 +37708,9 @@ function writeScalar(state, string, level, iskey, inblock) {
       case STYLE_SINGLE:
         return "'" + string.replace(/'/g, "''") + "'";
       case STYLE_LITERAL:
-        return "|" + blockHeader(string, state.indent) + dropEndingNewline(indentString(string, indent));
+        return "|" + blockHeader(string, state2.indent) + dropEndingNewline(indentString(string, indent));
       case STYLE_FOLDED:
-        return ">" + blockHeader(string, state.indent) + dropEndingNewline(indentString(foldString(string, lineWidth), indent));
+        return ">" + blockHeader(string, state2.indent) + dropEndingNewline(indentString(foldString(string, lineWidth), indent));
       case STYLE_DOUBLE:
         return '"' + escapeString(string) + '"';
       default:
@@ -47972,133 +37786,133 @@ function escapeString(string) {
   }
   return result;
 }
-function writeFlowSequence(state, level, object) {
-  var _result = "", _tag = state.tag, index, length, value;
+function writeFlowSequence(state2, level, object) {
+  var _result = "", _tag = state2.tag, index, length, value;
   for (index = 0, length = object.length; index < length; index += 1) {
     value = object[index];
-    if (state.replacer) {
-      value = state.replacer.call(object, String(index), value);
+    if (state2.replacer) {
+      value = state2.replacer.call(object, String(index), value);
     }
-    if (writeNode(state, level, value, false, false) || typeof value === "undefined" && writeNode(state, level, null, false, false)) {
-      if (_result !== "") _result += "," + (!state.condenseFlow ? " " : "");
-      _result += state.dump;
+    if (writeNode(state2, level, value, false, false) || typeof value === "undefined" && writeNode(state2, level, null, false, false)) {
+      if (_result !== "") _result += "," + (!state2.condenseFlow ? " " : "");
+      _result += state2.dump;
     }
   }
-  state.tag = _tag;
-  state.dump = "[" + _result + "]";
+  state2.tag = _tag;
+  state2.dump = "[" + _result + "]";
 }
-function writeBlockSequence(state, level, object, compact) {
-  var _result = "", _tag = state.tag, index, length, value;
+function writeBlockSequence(state2, level, object, compact) {
+  var _result = "", _tag = state2.tag, index, length, value;
   for (index = 0, length = object.length; index < length; index += 1) {
     value = object[index];
-    if (state.replacer) {
-      value = state.replacer.call(object, String(index), value);
+    if (state2.replacer) {
+      value = state2.replacer.call(object, String(index), value);
     }
-    if (writeNode(state, level + 1, value, true, true, false, true) || typeof value === "undefined" && writeNode(state, level + 1, null, true, true, false, true)) {
+    if (writeNode(state2, level + 1, value, true, true, false, true) || typeof value === "undefined" && writeNode(state2, level + 1, null, true, true, false, true)) {
       if (!compact || _result !== "") {
-        _result += generateNextLine(state, level);
+        _result += generateNextLine(state2, level);
       }
-      if (state.dump && CHAR_LINE_FEED === state.dump.charCodeAt(0)) {
+      if (state2.dump && CHAR_LINE_FEED === state2.dump.charCodeAt(0)) {
         _result += "-";
       } else {
         _result += "- ";
       }
-      _result += state.dump;
+      _result += state2.dump;
     }
   }
-  state.tag = _tag;
-  state.dump = _result || "[]";
+  state2.tag = _tag;
+  state2.dump = _result || "[]";
 }
-function writeFlowMapping(state, level, object) {
-  var _result = "", _tag = state.tag, objectKeyList = Object.keys(object), index, length, objectKey, objectValue, pairBuffer;
+function writeFlowMapping(state2, level, object) {
+  var _result = "", _tag = state2.tag, objectKeyList = Object.keys(object), index, length, objectKey, objectValue, pairBuffer;
   for (index = 0, length = objectKeyList.length; index < length; index += 1) {
     pairBuffer = "";
     if (_result !== "") pairBuffer += ", ";
-    if (state.condenseFlow) pairBuffer += '"';
+    if (state2.condenseFlow) pairBuffer += '"';
     objectKey = objectKeyList[index];
     objectValue = object[objectKey];
-    if (state.replacer) {
-      objectValue = state.replacer.call(object, objectKey, objectValue);
+    if (state2.replacer) {
+      objectValue = state2.replacer.call(object, objectKey, objectValue);
     }
-    if (!writeNode(state, level, objectKey, false, false)) {
+    if (!writeNode(state2, level, objectKey, false, false)) {
       continue;
     }
-    if (state.dump.length > 1024) pairBuffer += "? ";
-    pairBuffer += state.dump + (state.condenseFlow ? '"' : "") + ":" + (state.condenseFlow ? "" : " ");
-    if (!writeNode(state, level, objectValue, false, false)) {
+    if (state2.dump.length > 1024) pairBuffer += "? ";
+    pairBuffer += state2.dump + (state2.condenseFlow ? '"' : "") + ":" + (state2.condenseFlow ? "" : " ");
+    if (!writeNode(state2, level, objectValue, false, false)) {
       continue;
     }
-    pairBuffer += state.dump;
+    pairBuffer += state2.dump;
     _result += pairBuffer;
   }
-  state.tag = _tag;
-  state.dump = "{" + _result + "}";
+  state2.tag = _tag;
+  state2.dump = "{" + _result + "}";
 }
-function writeBlockMapping(state, level, object, compact) {
-  var _result = "", _tag = state.tag, objectKeyList = Object.keys(object), index, length, objectKey, objectValue, explicitPair, pairBuffer;
-  if (state.sortKeys === true) {
+function writeBlockMapping(state2, level, object, compact) {
+  var _result = "", _tag = state2.tag, objectKeyList = Object.keys(object), index, length, objectKey, objectValue, explicitPair, pairBuffer;
+  if (state2.sortKeys === true) {
     objectKeyList.sort();
-  } else if (typeof state.sortKeys === "function") {
-    objectKeyList.sort(state.sortKeys);
-  } else if (state.sortKeys) {
+  } else if (typeof state2.sortKeys === "function") {
+    objectKeyList.sort(state2.sortKeys);
+  } else if (state2.sortKeys) {
     throw new exception("sortKeys must be a boolean or a function");
   }
   for (index = 0, length = objectKeyList.length; index < length; index += 1) {
     pairBuffer = "";
     if (!compact || _result !== "") {
-      pairBuffer += generateNextLine(state, level);
+      pairBuffer += generateNextLine(state2, level);
     }
     objectKey = objectKeyList[index];
     objectValue = object[objectKey];
-    if (state.replacer) {
-      objectValue = state.replacer.call(object, objectKey, objectValue);
+    if (state2.replacer) {
+      objectValue = state2.replacer.call(object, objectKey, objectValue);
     }
-    if (!writeNode(state, level + 1, objectKey, true, true, true)) {
+    if (!writeNode(state2, level + 1, objectKey, true, true, true)) {
       continue;
     }
-    explicitPair = state.tag !== null && state.tag !== "?" || state.dump && state.dump.length > 1024;
+    explicitPair = state2.tag !== null && state2.tag !== "?" || state2.dump && state2.dump.length > 1024;
     if (explicitPair) {
-      if (state.dump && CHAR_LINE_FEED === state.dump.charCodeAt(0)) {
+      if (state2.dump && CHAR_LINE_FEED === state2.dump.charCodeAt(0)) {
         pairBuffer += "?";
       } else {
         pairBuffer += "? ";
       }
     }
-    pairBuffer += state.dump;
+    pairBuffer += state2.dump;
     if (explicitPair) {
-      pairBuffer += generateNextLine(state, level);
+      pairBuffer += generateNextLine(state2, level);
     }
-    if (!writeNode(state, level + 1, objectValue, true, explicitPair)) {
+    if (!writeNode(state2, level + 1, objectValue, true, explicitPair)) {
       continue;
     }
-    if (state.dump && CHAR_LINE_FEED === state.dump.charCodeAt(0)) {
+    if (state2.dump && CHAR_LINE_FEED === state2.dump.charCodeAt(0)) {
       pairBuffer += ":";
     } else {
       pairBuffer += ": ";
     }
-    pairBuffer += state.dump;
+    pairBuffer += state2.dump;
     _result += pairBuffer;
   }
-  state.tag = _tag;
-  state.dump = _result || "{}";
+  state2.tag = _tag;
+  state2.dump = _result || "{}";
 }
-function detectType(state, object, explicit) {
+function detectType(state2, object, explicit) {
   var _result, typeList, index, length, type2, style;
-  typeList = explicit ? state.explicitTypes : state.implicitTypes;
+  typeList = explicit ? state2.explicitTypes : state2.implicitTypes;
   for (index = 0, length = typeList.length; index < length; index += 1) {
     type2 = typeList[index];
     if ((type2.instanceOf || type2.predicate) && (!type2.instanceOf || typeof object === "object" && object instanceof type2.instanceOf) && (!type2.predicate || type2.predicate(object))) {
       if (explicit) {
         if (type2.multi && type2.representName) {
-          state.tag = type2.representName(object);
+          state2.tag = type2.representName(object);
         } else {
-          state.tag = type2.tag;
+          state2.tag = type2.tag;
         }
       } else {
-        state.tag = "?";
+        state2.tag = "?";
       }
       if (type2.represent) {
-        style = state.styleMap[type2.tag] || type2.defaultStyle;
+        style = state2.styleMap[type2.tag] || type2.defaultStyle;
         if (_toString.call(type2.represent) === "[object Function]") {
           _result = type2.represent(object, style);
         } else if (_hasOwnProperty.call(type2.represent, style)) {
@@ -48106,100 +37920,100 @@ function detectType(state, object, explicit) {
         } else {
           throw new exception("!<" + type2.tag + '> tag resolver accepts not "' + style + '" style');
         }
-        state.dump = _result;
+        state2.dump = _result;
       }
       return true;
     }
   }
   return false;
 }
-function writeNode(state, level, object, block, compact, iskey, isblockseq) {
-  state.tag = null;
-  state.dump = object;
-  if (!detectType(state, object, false)) {
-    detectType(state, object, true);
+function writeNode(state2, level, object, block, compact, iskey, isblockseq) {
+  state2.tag = null;
+  state2.dump = object;
+  if (!detectType(state2, object, false)) {
+    detectType(state2, object, true);
   }
-  var type2 = _toString.call(state.dump);
+  var type2 = _toString.call(state2.dump);
   var inblock = block;
   var tagStr;
   if (block) {
-    block = state.flowLevel < 0 || state.flowLevel > level;
+    block = state2.flowLevel < 0 || state2.flowLevel > level;
   }
   var objectOrArray = type2 === "[object Object]" || type2 === "[object Array]", duplicateIndex, duplicate;
   if (objectOrArray) {
-    duplicateIndex = state.duplicates.indexOf(object);
+    duplicateIndex = state2.duplicates.indexOf(object);
     duplicate = duplicateIndex !== -1;
   }
-  if (state.tag !== null && state.tag !== "?" || duplicate || state.indent !== 2 && level > 0) {
+  if (state2.tag !== null && state2.tag !== "?" || duplicate || state2.indent !== 2 && level > 0) {
     compact = false;
   }
-  if (duplicate && state.usedDuplicates[duplicateIndex]) {
-    state.dump = "*ref_" + duplicateIndex;
+  if (duplicate && state2.usedDuplicates[duplicateIndex]) {
+    state2.dump = "*ref_" + duplicateIndex;
   } else {
-    if (objectOrArray && duplicate && !state.usedDuplicates[duplicateIndex]) {
-      state.usedDuplicates[duplicateIndex] = true;
+    if (objectOrArray && duplicate && !state2.usedDuplicates[duplicateIndex]) {
+      state2.usedDuplicates[duplicateIndex] = true;
     }
     if (type2 === "[object Object]") {
-      if (block && Object.keys(state.dump).length !== 0) {
-        writeBlockMapping(state, level, state.dump, compact);
+      if (block && Object.keys(state2.dump).length !== 0) {
+        writeBlockMapping(state2, level, state2.dump, compact);
         if (duplicate) {
-          state.dump = "&ref_" + duplicateIndex + state.dump;
+          state2.dump = "&ref_" + duplicateIndex + state2.dump;
         }
       } else {
-        writeFlowMapping(state, level, state.dump);
+        writeFlowMapping(state2, level, state2.dump);
         if (duplicate) {
-          state.dump = "&ref_" + duplicateIndex + " " + state.dump;
+          state2.dump = "&ref_" + duplicateIndex + " " + state2.dump;
         }
       }
     } else if (type2 === "[object Array]") {
-      if (block && state.dump.length !== 0) {
-        if (state.noArrayIndent && !isblockseq && level > 0) {
-          writeBlockSequence(state, level - 1, state.dump, compact);
+      if (block && state2.dump.length !== 0) {
+        if (state2.noArrayIndent && !isblockseq && level > 0) {
+          writeBlockSequence(state2, level - 1, state2.dump, compact);
         } else {
-          writeBlockSequence(state, level, state.dump, compact);
+          writeBlockSequence(state2, level, state2.dump, compact);
         }
         if (duplicate) {
-          state.dump = "&ref_" + duplicateIndex + state.dump;
+          state2.dump = "&ref_" + duplicateIndex + state2.dump;
         }
       } else {
-        writeFlowSequence(state, level, state.dump);
+        writeFlowSequence(state2, level, state2.dump);
         if (duplicate) {
-          state.dump = "&ref_" + duplicateIndex + " " + state.dump;
+          state2.dump = "&ref_" + duplicateIndex + " " + state2.dump;
         }
       }
     } else if (type2 === "[object String]") {
-      if (state.tag !== "?") {
-        writeScalar(state, state.dump, level, iskey, inblock);
+      if (state2.tag !== "?") {
+        writeScalar(state2, state2.dump, level, iskey, inblock);
       }
     } else if (type2 === "[object Undefined]") {
       return false;
     } else {
-      if (state.skipInvalid) return false;
+      if (state2.skipInvalid) return false;
       throw new exception("unacceptable kind of an object to dump " + type2);
     }
-    if (state.tag !== null && state.tag !== "?") {
+    if (state2.tag !== null && state2.tag !== "?") {
       tagStr = encodeURI(
-        state.tag[0] === "!" ? state.tag.slice(1) : state.tag
+        state2.tag[0] === "!" ? state2.tag.slice(1) : state2.tag
       ).replace(/!/g, "%21");
-      if (state.tag[0] === "!") {
+      if (state2.tag[0] === "!") {
         tagStr = "!" + tagStr;
       } else if (tagStr.slice(0, 18) === "tag:yaml.org,2002:") {
         tagStr = "!!" + tagStr.slice(18);
       } else {
         tagStr = "!<" + tagStr + ">";
       }
-      state.dump = tagStr + " " + state.dump;
+      state2.dump = tagStr + " " + state2.dump;
     }
   }
   return true;
 }
-function getDuplicateReferences(object, state) {
+function getDuplicateReferences(object, state2) {
   var objects = [], duplicatesIndexes = [], index, length;
   inspectNode(object, objects, duplicatesIndexes);
   for (index = 0, length = duplicatesIndexes.length; index < length; index += 1) {
-    state.duplicates.push(objects[duplicatesIndexes[index]]);
+    state2.duplicates.push(objects[duplicatesIndexes[index]]);
   }
-  state.usedDuplicates = new Array(length);
+  state2.usedDuplicates = new Array(length);
 }
 function inspectNode(object, objects, duplicatesIndexes) {
   var objectKeyList, index, length;
@@ -48226,13 +38040,13 @@ function inspectNode(object, objects, duplicatesIndexes) {
 }
 function dump$1(input, options) {
   options = options || {};
-  var state = new State(options);
-  if (!state.noRefs) getDuplicateReferences(input, state);
+  var state2 = new State(options);
+  if (!state2.noRefs) getDuplicateReferences(input, state2);
   var value = input;
-  if (state.replacer) {
-    value = state.replacer.call({ "": value }, "", value);
+  if (state2.replacer) {
+    value = state2.replacer.call({ "": value }, "", value);
   }
-  if (writeNode(state, 0, value, true, true)) return state.dump + "\n";
+  if (writeNode(state2, 0, value, true, true)) return state2.dump + "\n";
   return "";
 }
 var dump_1 = dump$1;
@@ -48493,4454 +38307,3780 @@ var Summary = class {
 
 // src/api/translation-api.ts
 var import_core3 = __toESM(require_core());
+var import_node_crypto = require("node:crypto");
 
-// node_modules/axios/lib/helpers/bind.js
-function bind(fn, thisArg) {
-  return function wrap() {
-    return fn.apply(thisArg, arguments);
-  };
+// node_modules/@typespec/ts-http-runtime/dist/esm/abort-controller/AbortError.js
+var AbortError = class extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "AbortError";
+  }
+};
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/logger/log.js
+var import_node_os = require("node:os");
+var import_node_util = __toESM(require("node:util"), 1);
+var import_node_process = __toESM(require("node:process"), 1);
+function log(message, ...args) {
+  import_node_process.default.stderr.write(`${import_node_util.default.format(message, ...args)}${import_node_os.EOL}`);
 }
 
-// node_modules/axios/lib/utils.js
-var { toString: toString2 } = Object.prototype;
-var { getPrototypeOf } = Object;
-var { iterator, toStringTag } = Symbol;
-var kindOf = /* @__PURE__ */ ((cache) => (thing) => {
-  const str2 = toString2.call(thing);
-  return cache[str2] || (cache[str2] = str2.slice(8, -1).toLowerCase());
-})(/* @__PURE__ */ Object.create(null));
-var kindOfTest = (type2) => {
-  type2 = type2.toLowerCase();
-  return (thing) => kindOf(thing) === type2;
-};
-var typeOfTest = (type2) => (thing) => typeof thing === type2;
-var { isArray } = Array;
-var isUndefined = typeOfTest("undefined");
-function isBuffer(val) {
-  return val !== null && !isUndefined(val) && val.constructor !== null && !isUndefined(val.constructor) && isFunction(val.constructor.isBuffer) && val.constructor.isBuffer(val);
+// node_modules/@typespec/ts-http-runtime/dist/esm/logger/debug.js
+var debugEnvVariable = typeof process !== "undefined" && process.env && process.env.DEBUG || void 0;
+var enabledString;
+var enabledNamespaces = [];
+var skippedNamespaces = [];
+var debuggers = [];
+if (debugEnvVariable) {
+  enable(debugEnvVariable);
 }
-var isArrayBuffer = kindOfTest("ArrayBuffer");
-function isArrayBufferView(val) {
-  let result;
-  if (typeof ArrayBuffer !== "undefined" && ArrayBuffer.isView) {
-    result = ArrayBuffer.isView(val);
-  } else {
-    result = val && val.buffer && isArrayBuffer(val.buffer);
-  }
-  return result;
-}
-var isString = typeOfTest("string");
-var isFunction = typeOfTest("function");
-var isNumber = typeOfTest("number");
-var isObject2 = (thing) => thing !== null && typeof thing === "object";
-var isBoolean2 = (thing) => thing === true || thing === false;
-var isPlainObject = (val) => {
-  if (kindOf(val) !== "object") {
-    return false;
-  }
-  const prototype2 = getPrototypeOf(val);
-  return (prototype2 === null || prototype2 === Object.prototype || Object.getPrototypeOf(prototype2) === null) && !(toStringTag in val) && !(iterator in val);
-};
-var isEmptyObject = (val) => {
-  if (!isObject2(val) || isBuffer(val)) {
-    return false;
-  }
-  try {
-    return Object.keys(val).length === 0 && Object.getPrototypeOf(val) === Object.prototype;
-  } catch (e) {
-    return false;
-  }
-};
-var isDate = kindOfTest("Date");
-var isFile = kindOfTest("File");
-var isReactNativeBlob = (value) => {
-  return !!(value && typeof value.uri !== "undefined");
-};
-var isReactNative = (formData) => formData && typeof formData.getParts !== "undefined";
-var isBlob = kindOfTest("Blob");
-var isFileList = kindOfTest("FileList");
-var isStream = (val) => isObject2(val) && isFunction(val.pipe);
-function getGlobal() {
-  if (typeof globalThis !== "undefined") return globalThis;
-  if (typeof self !== "undefined") return self;
-  if (typeof window !== "undefined") return window;
-  if (typeof global !== "undefined") return global;
-  return {};
-}
-var G = getGlobal();
-var FormDataCtor = typeof G.FormData !== "undefined" ? G.FormData : void 0;
-var isFormData = (thing) => {
-  if (!thing) return false;
-  if (FormDataCtor && thing instanceof FormDataCtor) return true;
-  const proto = getPrototypeOf(thing);
-  if (!proto || proto === Object.prototype) return false;
-  if (!isFunction(thing.append)) return false;
-  const kind = kindOf(thing);
-  return kind === "formdata" || // detect form-data instance
-  kind === "object" && isFunction(thing.toString) && thing.toString() === "[object FormData]";
-};
-var isURLSearchParams = kindOfTest("URLSearchParams");
-var [isReadableStream, isRequest, isResponse, isHeaders] = [
-  "ReadableStream",
-  "Request",
-  "Response",
-  "Headers"
-].map(kindOfTest);
-var trim = (str2) => {
-  return str2.trim ? str2.trim() : str2.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "");
-};
-function forEach(obj, fn, { allOwnKeys = false } = {}) {
-  if (obj === null || typeof obj === "undefined") {
-    return;
-  }
-  let i;
-  let l;
-  if (typeof obj !== "object") {
-    obj = [obj];
-  }
-  if (isArray(obj)) {
-    for (i = 0, l = obj.length; i < l; i++) {
-      fn.call(null, obj[i], i, obj);
+var debugObj = Object.assign((namespace) => {
+  return createDebugger(namespace);
+}, {
+  enable,
+  enabled,
+  disable,
+  log
+});
+function enable(namespaces) {
+  enabledString = namespaces;
+  enabledNamespaces = [];
+  skippedNamespaces = [];
+  const namespaceList = namespaces.split(",").map((ns) => ns.trim());
+  for (const ns of namespaceList) {
+    if (ns.startsWith("-")) {
+      skippedNamespaces.push(ns.substring(1));
+    } else {
+      enabledNamespaces.push(ns);
     }
-  } else {
-    if (isBuffer(obj)) {
-      return;
-    }
-    const keys = allOwnKeys ? Object.getOwnPropertyNames(obj) : Object.keys(obj);
-    const len = keys.length;
-    let key;
-    for (i = 0; i < len; i++) {
-      key = keys[i];
-      fn.call(null, obj[key], key, obj);
-    }
+  }
+  for (const instance of debuggers) {
+    instance.enabled = enabled(instance.namespace);
   }
 }
-function findKey(obj, key) {
-  if (isBuffer(obj)) {
-    return null;
+function enabled(namespace) {
+  if (namespace.endsWith("*")) {
+    return true;
   }
-  key = key.toLowerCase();
-  const keys = Object.keys(obj);
-  let i = keys.length;
-  let _key;
-  while (i-- > 0) {
-    _key = keys[i];
-    if (key === _key.toLowerCase()) {
-      return _key;
-    }
-  }
-  return null;
-}
-var _global = (() => {
-  if (typeof globalThis !== "undefined") return globalThis;
-  return typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : global;
-})();
-var isContextDefined = (context2) => !isUndefined(context2) && context2 !== _global;
-function merge2(...objs) {
-  const { caseless, skipUndefined } = isContextDefined(this) && this || {};
-  const result = {};
-  const assignValue = (val, key) => {
-    if (key === "__proto__" || key === "constructor" || key === "prototype") {
-      return;
-    }
-    const targetKey = caseless && findKey(result, key) || key;
-    const existing = hasOwnProperty(result, targetKey) ? result[targetKey] : void 0;
-    if (isPlainObject(existing) && isPlainObject(val)) {
-      result[targetKey] = merge2(existing, val);
-    } else if (isPlainObject(val)) {
-      result[targetKey] = merge2({}, val);
-    } else if (isArray(val)) {
-      result[targetKey] = val.slice();
-    } else if (!skipUndefined || !isUndefined(val)) {
-      result[targetKey] = val;
-    }
-  };
-  for (let i = 0, l = objs.length; i < l; i++) {
-    objs[i] && forEach(objs[i], assignValue);
-  }
-  return result;
-}
-var extend3 = (a, b, thisArg, { allOwnKeys } = {}) => {
-  forEach(
-    b,
-    (val, key) => {
-      if (thisArg && isFunction(val)) {
-        Object.defineProperty(a, key, {
-          // Null-proto descriptor so a polluted Object.prototype.get cannot
-          // hijack defineProperty's accessor-vs-data resolution.
-          __proto__: null,
-          value: bind(val, thisArg),
-          writable: true,
-          enumerable: true,
-          configurable: true
-        });
-      } else {
-        Object.defineProperty(a, key, {
-          __proto__: null,
-          value: val,
-          writable: true,
-          enumerable: true,
-          configurable: true
-        });
-      }
-    },
-    { allOwnKeys }
-  );
-  return a;
-};
-var stripBOM = (content) => {
-  if (content.charCodeAt(0) === 65279) {
-    content = content.slice(1);
-  }
-  return content;
-};
-var inherits = (constructor, superConstructor, props, descriptors) => {
-  constructor.prototype = Object.create(superConstructor.prototype, descriptors);
-  Object.defineProperty(constructor.prototype, "constructor", {
-    __proto__: null,
-    value: constructor,
-    writable: true,
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(constructor, "super", {
-    __proto__: null,
-    value: superConstructor.prototype
-  });
-  props && Object.assign(constructor.prototype, props);
-};
-var toFlatObject = (sourceObj, destObj, filter3, propFilter) => {
-  let props;
-  let i;
-  let prop;
-  const merged = {};
-  destObj = destObj || {};
-  if (sourceObj == null) return destObj;
-  do {
-    props = Object.getOwnPropertyNames(sourceObj);
-    i = props.length;
-    while (i-- > 0) {
-      prop = props[i];
-      if ((!propFilter || propFilter(prop, sourceObj, destObj)) && !merged[prop]) {
-        destObj[prop] = sourceObj[prop];
-        merged[prop] = true;
-      }
-    }
-    sourceObj = filter3 !== false && getPrototypeOf(sourceObj);
-  } while (sourceObj && (!filter3 || filter3(sourceObj, destObj)) && sourceObj !== Object.prototype);
-  return destObj;
-};
-var endsWith = (str2, searchString, position) => {
-  str2 = String(str2);
-  if (position === void 0 || position > str2.length) {
-    position = str2.length;
-  }
-  position -= searchString.length;
-  const lastIndex = str2.indexOf(searchString, position);
-  return lastIndex !== -1 && lastIndex === position;
-};
-var toArray2 = (thing) => {
-  if (!thing) return null;
-  if (isArray(thing)) return thing;
-  let i = thing.length;
-  if (!isNumber(i)) return null;
-  const arr = new Array(i);
-  while (i-- > 0) {
-    arr[i] = thing[i];
-  }
-  return arr;
-};
-var isTypedArray = /* @__PURE__ */ ((TypedArray) => {
-  return (thing) => {
-    return TypedArray && thing instanceof TypedArray;
-  };
-})(typeof Uint8Array !== "undefined" && getPrototypeOf(Uint8Array));
-var forEachEntry = (obj, fn) => {
-  const generator = obj && obj[iterator];
-  const _iterator = generator.call(obj);
-  let result;
-  while ((result = _iterator.next()) && !result.done) {
-    const pair = result.value;
-    fn.call(obj, pair[0], pair[1]);
-  }
-};
-var matchAll = (regExp, str2) => {
-  let matches;
-  const arr = [];
-  while ((matches = regExp.exec(str2)) !== null) {
-    arr.push(matches);
-  }
-  return arr;
-};
-var isHTMLForm = kindOfTest("HTMLFormElement");
-var toCamelCase = (str2) => {
-  return str2.toLowerCase().replace(/[-_\s]([a-z\d])(\w*)/g, function replacer(m, p1, p2) {
-    return p1.toUpperCase() + p2;
-  });
-};
-var hasOwnProperty = (({ hasOwnProperty: hasOwnProperty2 }) => (obj, prop) => hasOwnProperty2.call(obj, prop))(Object.prototype);
-var isRegExp = kindOfTest("RegExp");
-var reduceDescriptors = (obj, reducer) => {
-  const descriptors = Object.getOwnPropertyDescriptors(obj);
-  const reducedDescriptors = {};
-  forEach(descriptors, (descriptor, name) => {
-    let ret;
-    if ((ret = reducer(descriptor, name, obj)) !== false) {
-      reducedDescriptors[name] = ret || descriptor;
-    }
-  });
-  Object.defineProperties(obj, reducedDescriptors);
-};
-var freezeMethods = (obj) => {
-  reduceDescriptors(obj, (descriptor, name) => {
-    if (isFunction(obj) && ["arguments", "caller", "callee"].includes(name)) {
+  for (const skipped of skippedNamespaces) {
+    if (namespaceMatches(namespace, skipped)) {
       return false;
     }
-    const value = obj[name];
-    if (!isFunction(value)) return;
-    descriptor.enumerable = false;
-    if ("writable" in descriptor) {
-      descriptor.writable = false;
+  }
+  for (const enabledNamespace of enabledNamespaces) {
+    if (namespaceMatches(namespace, enabledNamespace)) {
+      return true;
+    }
+  }
+  return false;
+}
+function namespaceMatches(namespace, patternToMatch) {
+  if (patternToMatch.indexOf("*") === -1) {
+    return namespace === patternToMatch;
+  }
+  let pattern = patternToMatch;
+  if (patternToMatch.indexOf("**") !== -1) {
+    const patternParts = [];
+    let lastCharacter = "";
+    for (const character of patternToMatch) {
+      if (character === "*" && lastCharacter === "*") {
+        continue;
+      } else {
+        lastCharacter = character;
+        patternParts.push(character);
+      }
+    }
+    pattern = patternParts.join("");
+  }
+  let namespaceIndex = 0;
+  let patternIndex = 0;
+  const patternLength = pattern.length;
+  const namespaceLength = namespace.length;
+  let lastWildcard = -1;
+  let lastWildcardNamespace = -1;
+  while (namespaceIndex < namespaceLength && patternIndex < patternLength) {
+    if (pattern[patternIndex] === "*") {
+      lastWildcard = patternIndex;
+      patternIndex++;
+      if (patternIndex === patternLength) {
+        return true;
+      }
+      while (namespace[namespaceIndex] !== pattern[patternIndex]) {
+        namespaceIndex++;
+        if (namespaceIndex === namespaceLength) {
+          return false;
+        }
+      }
+      lastWildcardNamespace = namespaceIndex;
+      namespaceIndex++;
+      patternIndex++;
+      continue;
+    } else if (pattern[patternIndex] === namespace[namespaceIndex]) {
+      patternIndex++;
+      namespaceIndex++;
+    } else if (lastWildcard >= 0) {
+      patternIndex = lastWildcard + 1;
+      namespaceIndex = lastWildcardNamespace + 1;
+      if (namespaceIndex === namespaceLength) {
+        return false;
+      }
+      while (namespace[namespaceIndex] !== pattern[patternIndex]) {
+        namespaceIndex++;
+        if (namespaceIndex === namespaceLength) {
+          return false;
+        }
+      }
+      lastWildcardNamespace = namespaceIndex;
+      namespaceIndex++;
+      patternIndex++;
+      continue;
+    } else {
+      return false;
+    }
+  }
+  const namespaceDone = namespaceIndex === namespace.length;
+  const patternDone = patternIndex === pattern.length;
+  const trailingWildCard = patternIndex === pattern.length - 1 && pattern[patternIndex] === "*";
+  return namespaceDone && (patternDone || trailingWildCard);
+}
+function disable() {
+  const result = enabledString || "";
+  enable("");
+  return result;
+}
+function createDebugger(namespace) {
+  const newDebugger = Object.assign(debug7, {
+    enabled: enabled(namespace),
+    destroy,
+    log: debugObj.log,
+    namespace,
+    extend: extend3
+  });
+  function debug7(...args) {
+    if (!newDebugger.enabled) {
       return;
     }
-    if (!descriptor.set) {
-      descriptor.set = () => {
-        throw Error("Can not rewrite read-only method '" + name + "'");
+    if (args.length > 0) {
+      args[0] = `${namespace} ${args[0]}`;
+    }
+    newDebugger.log(...args);
+  }
+  debuggers.push(newDebugger);
+  return newDebugger;
+}
+function destroy() {
+  const index = debuggers.indexOf(this);
+  if (index >= 0) {
+    debuggers.splice(index, 1);
+    return true;
+  }
+  return false;
+}
+function extend3(namespace) {
+  const newDebugger = createDebugger(`${this.namespace}:${namespace}`);
+  newDebugger.log = this.log;
+  return newDebugger;
+}
+var debug_default = debugObj;
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/logger/logger.js
+var TYPESPEC_RUNTIME_LOG_LEVELS = ["verbose", "info", "warning", "error"];
+var levelMap = {
+  verbose: 400,
+  info: 300,
+  warning: 200,
+  error: 100
+};
+function patchLogMethod(parent, child) {
+  child.log = (...args) => {
+    parent.log(...args);
+  };
+}
+function isTypeSpecRuntimeLogLevel(level) {
+  return TYPESPEC_RUNTIME_LOG_LEVELS.includes(level);
+}
+function createLoggerContext(options) {
+  const registeredLoggers = /* @__PURE__ */ new Set();
+  const logLevelFromEnv = typeof process !== "undefined" && process.env && process.env[options.logLevelEnvVarName] || void 0;
+  let logLevel;
+  const clientLogger = debug_default(options.namespace);
+  clientLogger.log = (...args) => {
+    debug_default.log(...args);
+  };
+  function contextSetLogLevel(level) {
+    if (level && !isTypeSpecRuntimeLogLevel(level)) {
+      throw new Error(`Unknown log level '${level}'. Acceptable values: ${TYPESPEC_RUNTIME_LOG_LEVELS.join(",")}`);
+    }
+    logLevel = level;
+    const enabledNamespaces2 = [];
+    for (const logger4 of registeredLoggers) {
+      if (shouldEnable(logger4)) {
+        enabledNamespaces2.push(logger4.namespace);
+      }
+    }
+    debug_default.enable(enabledNamespaces2.join(","));
+  }
+  if (logLevelFromEnv) {
+    if (isTypeSpecRuntimeLogLevel(logLevelFromEnv)) {
+      contextSetLogLevel(logLevelFromEnv);
+    } else {
+      console.error(`${options.logLevelEnvVarName} set to unknown log level '${logLevelFromEnv}'; logging is not enabled. Acceptable values: ${TYPESPEC_RUNTIME_LOG_LEVELS.join(", ")}.`);
+    }
+  }
+  function shouldEnable(logger4) {
+    return Boolean(logLevel && levelMap[logger4.level] <= levelMap[logLevel]);
+  }
+  function createLogger2(parent, level) {
+    const logger4 = Object.assign(parent.extend(level), {
+      level
+    });
+    patchLogMethod(parent, logger4);
+    if (shouldEnable(logger4)) {
+      const enabledNamespaces2 = debug_default.disable();
+      debug_default.enable(enabledNamespaces2 + "," + logger4.namespace);
+    }
+    registeredLoggers.add(logger4);
+    return logger4;
+  }
+  function contextGetLogLevel() {
+    return logLevel;
+  }
+  function contextCreateClientLogger(namespace) {
+    const clientRootLogger = clientLogger.extend(namespace);
+    patchLogMethod(clientLogger, clientRootLogger);
+    return {
+      error: createLogger2(clientRootLogger, "error"),
+      warning: createLogger2(clientRootLogger, "warning"),
+      info: createLogger2(clientRootLogger, "info"),
+      verbose: createLogger2(clientRootLogger, "verbose")
+    };
+  }
+  return {
+    setLogLevel: contextSetLogLevel,
+    getLogLevel: contextGetLogLevel,
+    createClientLogger: contextCreateClientLogger,
+    logger: clientLogger
+  };
+}
+var context = createLoggerContext({
+  logLevelEnvVarName: "TYPESPEC_RUNTIME_LOG_LEVEL",
+  namespace: "typeSpecRuntime"
+});
+var TypeSpecRuntimeLogger = context.logger;
+function createClientLogger(namespace) {
+  return context.createClientLogger(namespace);
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/httpHeaders.js
+function normalizeName(name) {
+  return name.toLowerCase();
+}
+function* headerIterator(map2) {
+  for (const entry of map2.values()) {
+    yield [entry.name, entry.value];
+  }
+}
+var HttpHeadersImpl = class {
+  _headersMap;
+  constructor(rawHeaders) {
+    this._headersMap = /* @__PURE__ */ new Map();
+    if (rawHeaders) {
+      for (const headerName of Object.keys(rawHeaders)) {
+        this.set(headerName, rawHeaders[headerName]);
+      }
+    }
+  }
+  /**
+   * Set a header in this collection with the provided name and value. The name is
+   * case-insensitive.
+   * @param name - The name of the header to set. This value is case-insensitive.
+   * @param value - The value of the header to set.
+   */
+  set(name, value) {
+    this._headersMap.set(normalizeName(name), { name, value: String(value).trim() });
+  }
+  /**
+   * Get the header value for the provided header name, or undefined if no header exists in this
+   * collection with the provided name.
+   * @param name - The name of the header. This value is case-insensitive.
+   */
+  get(name) {
+    return this._headersMap.get(normalizeName(name))?.value;
+  }
+  /**
+   * Get whether or not this header collection contains a header entry for the provided header name.
+   * @param name - The name of the header to set. This value is case-insensitive.
+   */
+  has(name) {
+    return this._headersMap.has(normalizeName(name));
+  }
+  /**
+   * Remove the header with the provided headerName.
+   * @param name - The name of the header to remove.
+   */
+  delete(name) {
+    this._headersMap.delete(normalizeName(name));
+  }
+  /**
+   * Get the JSON object representation of this HTTP header collection.
+   */
+  toJSON(options = {}) {
+    const result = {};
+    if (options.preserveCase) {
+      for (const entry of this._headersMap.values()) {
+        result[entry.name] = entry.value;
+      }
+    } else {
+      for (const [normalizedName, entry] of this._headersMap) {
+        result[normalizedName] = entry.value;
+      }
+    }
+    return result;
+  }
+  /**
+   * Get the string representation of this HTTP header collection.
+   */
+  toString() {
+    return JSON.stringify(this.toJSON({ preserveCase: true }));
+  }
+  /**
+   * Iterate over tuples of header [name, value] pairs.
+   */
+  [Symbol.iterator]() {
+    return headerIterator(this._headersMap);
+  }
+};
+function createHttpHeaders(rawHeaders) {
+  return new HttpHeadersImpl(rawHeaders);
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/util/uuidUtils.js
+function randomUUID() {
+  return crypto.randomUUID();
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/pipelineRequest.js
+var PipelineRequestImpl = class {
+  url;
+  method;
+  headers;
+  timeout;
+  withCredentials;
+  body;
+  multipartBody;
+  formData;
+  streamResponseStatusCodes;
+  enableBrowserStreams;
+  proxySettings;
+  disableKeepAlive;
+  abortSignal;
+  requestId;
+  allowInsecureConnection;
+  onUploadProgress;
+  onDownloadProgress;
+  requestOverrides;
+  authSchemes;
+  constructor(options) {
+    this.url = options.url;
+    this.body = options.body;
+    this.headers = options.headers ?? createHttpHeaders();
+    this.method = options.method ?? "GET";
+    this.timeout = options.timeout ?? 0;
+    this.multipartBody = options.multipartBody;
+    this.formData = options.formData;
+    this.disableKeepAlive = options.disableKeepAlive ?? false;
+    this.proxySettings = options.proxySettings;
+    this.streamResponseStatusCodes = options.streamResponseStatusCodes;
+    this.withCredentials = options.withCredentials ?? false;
+    this.abortSignal = options.abortSignal;
+    this.onUploadProgress = options.onUploadProgress;
+    this.onDownloadProgress = options.onDownloadProgress;
+    this.requestId = options.requestId || randomUUID();
+    this.allowInsecureConnection = options.allowInsecureConnection ?? false;
+    this.enableBrowserStreams = options.enableBrowserStreams ?? false;
+    this.requestOverrides = options.requestOverrides;
+    this.authSchemes = options.authSchemes;
+  }
+};
+function createPipelineRequest(options) {
+  return new PipelineRequestImpl(options);
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/pipeline.js
+var ValidPhaseNames = /* @__PURE__ */ new Set(["Deserialize", "Serialize", "Retry", "Sign"]);
+var HttpPipeline = class _HttpPipeline {
+  _policies = [];
+  _orderedPolicies;
+  constructor(policies) {
+    this._policies = policies?.slice(0) ?? [];
+    this._orderedPolicies = void 0;
+  }
+  addPolicy(policy, options = {}) {
+    if (options.phase && options.afterPhase) {
+      throw new Error("Policies inside a phase cannot specify afterPhase.");
+    }
+    if (options.phase && !ValidPhaseNames.has(options.phase)) {
+      throw new Error(`Invalid phase name: ${options.phase}`);
+    }
+    if (options.afterPhase && !ValidPhaseNames.has(options.afterPhase)) {
+      throw new Error(`Invalid afterPhase name: ${options.afterPhase}`);
+    }
+    this._policies.push({
+      policy,
+      options
+    });
+    this._orderedPolicies = void 0;
+  }
+  removePolicy(options) {
+    const removedPolicies = [];
+    this._policies = this._policies.filter((policyDescriptor) => {
+      if (options.name && policyDescriptor.policy.name === options.name || options.phase && policyDescriptor.options.phase === options.phase) {
+        removedPolicies.push(policyDescriptor.policy);
+        return false;
+      } else {
+        return true;
+      }
+    });
+    this._orderedPolicies = void 0;
+    return removedPolicies;
+  }
+  sendRequest(httpClient, request2) {
+    const policies = this.getOrderedPolicies();
+    const pipeline = policies.reduceRight((next, policy) => {
+      return (req) => {
+        return policy.sendRequest(req, next);
+      };
+    }, (req) => httpClient.sendRequest(req));
+    return pipeline(request2);
+  }
+  getOrderedPolicies() {
+    if (!this._orderedPolicies) {
+      this._orderedPolicies = this.orderPolicies();
+    }
+    return this._orderedPolicies;
+  }
+  clone() {
+    return new _HttpPipeline(this._policies);
+  }
+  static create() {
+    return new _HttpPipeline();
+  }
+  orderPolicies() {
+    const result = [];
+    const policyMap = /* @__PURE__ */ new Map();
+    function createPhase(name) {
+      return {
+        name,
+        policies: /* @__PURE__ */ new Set(),
+        hasRun: false,
+        hasAfterPolicies: false
       };
     }
-  });
-};
-var toObjectSet = (arrayOrString, delimiter) => {
-  const obj = {};
-  const define = (arr) => {
-    arr.forEach((value) => {
-      obj[value] = true;
-    });
-  };
-  isArray(arrayOrString) ? define(arrayOrString) : define(String(arrayOrString).split(delimiter));
-  return obj;
-};
-var noop = () => {
-};
-var toFiniteNumber = (value, defaultValue) => {
-  return value != null && Number.isFinite(value = +value) ? value : defaultValue;
-};
-function isSpecCompliantForm(thing) {
-  return !!(thing && isFunction(thing.append) && thing[toStringTag] === "FormData" && thing[iterator]);
-}
-var toJSONObject = (obj) => {
-  const stack = new Array(10);
-  const visit = (source, i) => {
-    if (isObject2(source)) {
-      if (stack.indexOf(source) >= 0) {
-        return;
-      }
-      if (isBuffer(source)) {
-        return source;
-      }
-      if (!("toJSON" in source)) {
-        stack[i] = source;
-        const target = isArray(source) ? [] : {};
-        forEach(source, (value, key) => {
-          const reducedValue = visit(value, i + 1);
-          !isUndefined(reducedValue) && (target[key] = reducedValue);
-        });
-        stack[i] = void 0;
-        return target;
-      }
-    }
-    return source;
-  };
-  return visit(obj, 0);
-};
-var isAsyncFn = kindOfTest("AsyncFunction");
-var isThenable = (thing) => thing && (isObject2(thing) || isFunction(thing)) && isFunction(thing.then) && isFunction(thing.catch);
-var _setImmediate = ((setImmediateSupported, postMessageSupported) => {
-  if (setImmediateSupported) {
-    return setImmediate;
-  }
-  return postMessageSupported ? ((token, callbacks) => {
-    _global.addEventListener(
-      "message",
-      ({ source, data }) => {
-        if (source === _global && data === token) {
-          callbacks.length && callbacks.shift()();
-        }
-      },
-      false
-    );
-    return (cb) => {
-      callbacks.push(cb);
-      _global.postMessage(token, "*");
-    };
-  })(`axios@${Math.random()}`, []) : (cb) => setTimeout(cb);
-})(typeof setImmediate === "function", isFunction(_global.postMessage));
-var asap = typeof queueMicrotask !== "undefined" ? queueMicrotask.bind(_global) : typeof process !== "undefined" && process.nextTick || _setImmediate;
-var isIterable = (thing) => thing != null && isFunction(thing[iterator]);
-var utils_default = {
-  isArray,
-  isArrayBuffer,
-  isBuffer,
-  isFormData,
-  isArrayBufferView,
-  isString,
-  isNumber,
-  isBoolean: isBoolean2,
-  isObject: isObject2,
-  isPlainObject,
-  isEmptyObject,
-  isReadableStream,
-  isRequest,
-  isResponse,
-  isHeaders,
-  isUndefined,
-  isDate,
-  isFile,
-  isReactNativeBlob,
-  isReactNative,
-  isBlob,
-  isRegExp,
-  isFunction,
-  isStream,
-  isURLSearchParams,
-  isTypedArray,
-  isFileList,
-  forEach,
-  merge: merge2,
-  extend: extend3,
-  trim,
-  stripBOM,
-  inherits,
-  toFlatObject,
-  kindOf,
-  kindOfTest,
-  endsWith,
-  toArray: toArray2,
-  forEachEntry,
-  matchAll,
-  isHTMLForm,
-  hasOwnProperty,
-  hasOwnProp: hasOwnProperty,
-  // an alias to avoid ESLint no-prototype-builtins detection
-  reduceDescriptors,
-  freezeMethods,
-  toObjectSet,
-  toCamelCase,
-  noop,
-  toFiniteNumber,
-  findKey,
-  global: _global,
-  isContextDefined,
-  isSpecCompliantForm,
-  toJSONObject,
-  isAsyncFn,
-  isThenable,
-  setImmediate: _setImmediate,
-  asap,
-  isIterable
-};
-
-// node_modules/axios/lib/helpers/parseHeaders.js
-var ignoreDuplicateOf = utils_default.toObjectSet([
-  "age",
-  "authorization",
-  "content-length",
-  "content-type",
-  "etag",
-  "expires",
-  "from",
-  "host",
-  "if-modified-since",
-  "if-unmodified-since",
-  "last-modified",
-  "location",
-  "max-forwards",
-  "proxy-authorization",
-  "referer",
-  "retry-after",
-  "user-agent"
-]);
-var parseHeaders_default = (rawHeaders) => {
-  const parsed = {};
-  let key;
-  let val;
-  let i;
-  rawHeaders && rawHeaders.split("\n").forEach(function parser(line) {
-    i = line.indexOf(":");
-    key = line.substring(0, i).trim().toLowerCase();
-    val = line.substring(i + 1).trim();
-    if (!key || parsed[key] && ignoreDuplicateOf[key]) {
-      return;
-    }
-    if (key === "set-cookie") {
-      if (parsed[key]) {
-        parsed[key].push(val);
+    const serializePhase = createPhase("Serialize");
+    const noPhase = createPhase("None");
+    const deserializePhase = createPhase("Deserialize");
+    const retryPhase = createPhase("Retry");
+    const signPhase = createPhase("Sign");
+    const orderedPhases = [serializePhase, noPhase, deserializePhase, retryPhase, signPhase];
+    function getPhase(phase) {
+      if (phase === "Retry") {
+        return retryPhase;
+      } else if (phase === "Serialize") {
+        return serializePhase;
+      } else if (phase === "Deserialize") {
+        return deserializePhase;
+      } else if (phase === "Sign") {
+        return signPhase;
       } else {
-        parsed[key] = [val];
+        return noPhase;
       }
-    } else {
-      parsed[key] = parsed[key] ? parsed[key] + ", " + val : val;
     }
-  });
-  return parsed;
+    for (const descriptor of this._policies) {
+      const policy = descriptor.policy;
+      const options = descriptor.options;
+      const policyName = policy.name;
+      if (policyMap.has(policyName)) {
+        throw new Error("Duplicate policy names not allowed in pipeline");
+      }
+      const node = {
+        policy,
+        dependsOn: /* @__PURE__ */ new Set(),
+        dependants: /* @__PURE__ */ new Set()
+      };
+      if (options.afterPhase) {
+        node.afterPhase = getPhase(options.afterPhase);
+        node.afterPhase.hasAfterPolicies = true;
+      }
+      policyMap.set(policyName, node);
+      const phase = getPhase(options.phase);
+      phase.policies.add(node);
+    }
+    for (const descriptor of this._policies) {
+      const { policy, options } = descriptor;
+      const policyName = policy.name;
+      const node = policyMap.get(policyName);
+      if (!node) {
+        throw new Error(`Missing node for policy ${policyName}`);
+      }
+      if (options.afterPolicies) {
+        for (const afterPolicyName of options.afterPolicies) {
+          const afterNode = policyMap.get(afterPolicyName);
+          if (afterNode) {
+            node.dependsOn.add(afterNode);
+            afterNode.dependants.add(node);
+          }
+        }
+      }
+      if (options.beforePolicies) {
+        for (const beforePolicyName of options.beforePolicies) {
+          const beforeNode = policyMap.get(beforePolicyName);
+          if (beforeNode) {
+            beforeNode.dependsOn.add(node);
+            node.dependants.add(beforeNode);
+          }
+        }
+      }
+    }
+    function walkPhase(phase) {
+      phase.hasRun = true;
+      for (const node of phase.policies) {
+        if (node.afterPhase && (!node.afterPhase.hasRun || node.afterPhase.policies.size)) {
+          continue;
+        }
+        if (node.dependsOn.size === 0) {
+          result.push(node.policy);
+          for (const dependant of node.dependants) {
+            dependant.dependsOn.delete(node);
+          }
+          policyMap.delete(node.policy.name);
+          phase.policies.delete(node);
+        }
+      }
+    }
+    function walkPhases() {
+      for (const phase of orderedPhases) {
+        walkPhase(phase);
+        if (phase.policies.size > 0 && phase !== noPhase) {
+          if (!noPhase.hasRun) {
+            walkPhase(noPhase);
+          }
+          return;
+        }
+        if (phase.hasAfterPolicies) {
+          walkPhase(noPhase);
+        }
+      }
+    }
+    let iteration = 0;
+    while (policyMap.size > 0) {
+      iteration++;
+      const initialResultLength = result.length;
+      walkPhases();
+      if (result.length <= initialResultLength && iteration > 1) {
+        throw new Error("Cannot satisfy policy dependencies due to requirements cycle.");
+      }
+    }
+    return result;
+  }
 };
+function createEmptyPipeline() {
+  return HttpPipeline.create();
+}
 
-// node_modules/axios/lib/core/AxiosHeaders.js
-var $internals = /* @__PURE__ */ Symbol("internals");
-var INVALID_HEADER_VALUE_CHARS_RE = /[^\x09\x20-\x7E\x80-\xFF]/g;
-function trimSPorHTAB(str2) {
-  let start2 = 0;
-  let end = str2.length;
-  while (start2 < end) {
-    const code = str2.charCodeAt(start2);
-    if (code !== 9 && code !== 32) {
-      break;
-    }
-    start2 += 1;
-  }
-  while (end > start2) {
-    const code = str2.charCodeAt(end - 1);
-    if (code !== 9 && code !== 32) {
-      break;
-    }
-    end -= 1;
-  }
-  return start2 === 0 && end === str2.length ? str2 : str2.slice(start2, end);
+// node_modules/@typespec/ts-http-runtime/dist/esm/util/object.js
+function isObject2(input) {
+  return typeof input === "object" && input !== null && !Array.isArray(input) && !(input instanceof RegExp) && !(input instanceof Date);
 }
-function normalizeHeader(header) {
-  return header && String(header).trim().toLowerCase();
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/util/error.js
+function isError(e) {
+  if (isObject2(e)) {
+    const hasName = typeof e.name === "string";
+    const hasMessage = typeof e.message === "string";
+    return hasName && hasMessage;
+  }
+  return false;
 }
-function sanitizeHeaderValue(str2) {
-  return trimSPorHTAB(str2.replace(INVALID_HEADER_VALUE_CHARS_RE, ""));
-}
-function normalizeValue(value) {
-  if (value === false || value == null) {
-    return value;
-  }
-  return utils_default.isArray(value) ? value.map(normalizeValue) : sanitizeHeaderValue(String(value));
-}
-function parseTokens(str2) {
-  const tokens = /* @__PURE__ */ Object.create(null);
-  const tokensRE = /([^\s,;=]+)\s*(?:=\s*([^,;]+))?/g;
-  let match2;
-  while (match2 = tokensRE.exec(str2)) {
-    tokens[match2[1]] = match2[2];
-  }
-  return tokens;
-}
-var isValidHeaderName = (str2) => /^[-_a-zA-Z0-9^`|~,!#$%&'*+.]+$/.test(str2.trim());
-function matchHeaderValue(context2, value, header, filter3, isHeaderNameFilter) {
-  if (utils_default.isFunction(filter3)) {
-    return filter3.call(this, value, header);
-  }
-  if (isHeaderNameFilter) {
-    value = header;
-  }
-  if (!utils_default.isString(value)) return;
-  if (utils_default.isString(filter3)) {
-    return value.indexOf(filter3) !== -1;
-  }
-  if (utils_default.isRegExp(filter3)) {
-    return filter3.test(value);
-  }
-}
-function formatHeader(header) {
-  return header.trim().toLowerCase().replace(/([a-z\d])(\w*)/g, (w, char, str2) => {
-    return char.toUpperCase() + str2;
-  });
-}
-function buildAccessors(obj, header) {
-  const accessorName = utils_default.toCamelCase(" " + header);
-  ["get", "set", "has"].forEach((methodName) => {
-    Object.defineProperty(obj, methodName + accessorName, {
-      // Null-proto descriptor so a polluted Object.prototype.get cannot turn
-      // this data descriptor into an accessor descriptor on the way in.
-      __proto__: null,
-      value: function(arg1, arg2, arg3) {
-        return this[methodName].call(this, header, arg1, arg2, arg3);
-      },
-      configurable: true
-    });
-  });
-}
-var AxiosHeaders = class {
-  constructor(headers) {
-    headers && this.set(headers);
-  }
-  set(header, valueOrRewrite, rewrite) {
-    const self2 = this;
-    function setHeader(_value, _header, _rewrite) {
-      const lHeader = normalizeHeader(_header);
-      if (!lHeader) {
-        throw new Error("header name must be a non-empty string");
-      }
-      const key = utils_default.findKey(self2, lHeader);
-      if (!key || self2[key] === void 0 || _rewrite === true || _rewrite === void 0 && self2[key] !== false) {
-        self2[key || _header] = normalizeValue(_value);
-      }
-    }
-    const setHeaders = (headers, _rewrite) => utils_default.forEach(headers, (_value, _header) => setHeader(_value, _header, _rewrite));
-    if (utils_default.isPlainObject(header) || header instanceof this.constructor) {
-      setHeaders(header, valueOrRewrite);
-    } else if (utils_default.isString(header) && (header = header.trim()) && !isValidHeaderName(header)) {
-      setHeaders(parseHeaders_default(header), valueOrRewrite);
-    } else if (utils_default.isObject(header) && utils_default.isIterable(header)) {
-      let obj = {}, dest, key;
-      for (const entry of header) {
-        if (!utils_default.isArray(entry)) {
-          throw TypeError("Object iterator must return a key-value pair");
-        }
-        obj[key = entry[0]] = (dest = obj[key]) ? utils_default.isArray(dest) ? [...dest, entry[1]] : [dest, entry[1]] : entry[1];
-      }
-      setHeaders(obj, valueOrRewrite);
-    } else {
-      header != null && setHeader(valueOrRewrite, header, rewrite);
-    }
-    return this;
-  }
-  get(header, parser) {
-    header = normalizeHeader(header);
-    if (header) {
-      const key = utils_default.findKey(this, header);
-      if (key) {
-        const value = this[key];
-        if (!parser) {
-          return value;
-        }
-        if (parser === true) {
-          return parseTokens(value);
-        }
-        if (utils_default.isFunction(parser)) {
-          return parser.call(this, value, key);
-        }
-        if (utils_default.isRegExp(parser)) {
-          return parser.exec(value);
-        }
-        throw new TypeError("parser must be boolean|regexp|function");
-      }
-    }
-  }
-  has(header, matcher) {
-    header = normalizeHeader(header);
-    if (header) {
-      const key = utils_default.findKey(this, header);
-      return !!(key && this[key] !== void 0 && (!matcher || matchHeaderValue(this, this[key], key, matcher)));
-    }
-    return false;
-  }
-  delete(header, matcher) {
-    const self2 = this;
-    let deleted = false;
-    function deleteHeader(_header) {
-      _header = normalizeHeader(_header);
-      if (_header) {
-        const key = utils_default.findKey(self2, _header);
-        if (key && (!matcher || matchHeaderValue(self2, self2[key], key, matcher))) {
-          delete self2[key];
-          deleted = true;
-        }
-      }
-    }
-    if (utils_default.isArray(header)) {
-      header.forEach(deleteHeader);
-    } else {
-      deleteHeader(header);
-    }
-    return deleted;
-  }
-  clear(matcher) {
-    const keys = Object.keys(this);
-    let i = keys.length;
-    let deleted = false;
-    while (i--) {
-      const key = keys[i];
-      if (!matcher || matchHeaderValue(this, this[key], key, matcher, true)) {
-        delete this[key];
-        deleted = true;
-      }
-    }
-    return deleted;
-  }
-  normalize(format) {
-    const self2 = this;
-    const headers = {};
-    utils_default.forEach(this, (value, header) => {
-      const key = utils_default.findKey(headers, header);
-      if (key) {
-        self2[key] = normalizeValue(value);
-        delete self2[header];
-        return;
-      }
-      const normalized = format ? formatHeader(header) : String(header).trim();
-      if (normalized !== header) {
-        delete self2[header];
-      }
-      self2[normalized] = normalizeValue(value);
-      headers[normalized] = true;
-    });
-    return this;
-  }
-  concat(...targets) {
-    return this.constructor.concat(this, ...targets);
-  }
-  toJSON(asStrings) {
-    const obj = /* @__PURE__ */ Object.create(null);
-    utils_default.forEach(this, (value, header) => {
-      value != null && value !== false && (obj[header] = asStrings && utils_default.isArray(value) ? value.join(", ") : value);
-    });
-    return obj;
-  }
-  [Symbol.iterator]() {
-    return Object.entries(this.toJSON())[Symbol.iterator]();
-  }
-  toString() {
-    return Object.entries(this.toJSON()).map(([header, value]) => header + ": " + value).join("\n");
-  }
-  getSetCookie() {
-    return this.get("set-cookie") || [];
-  }
-  get [Symbol.toStringTag]() {
-    return "AxiosHeaders";
-  }
-  static from(thing) {
-    return thing instanceof this ? thing : new this(thing);
-  }
-  static concat(first, ...targets) {
-    const computed = new this(first);
-    targets.forEach((target) => computed.set(target));
-    return computed;
-  }
-  static accessor(header) {
-    const internals = this[$internals] = this[$internals] = {
-      accessors: {}
-    };
-    const accessors = internals.accessors;
-    const prototype2 = this.prototype;
-    function defineAccessor(_header) {
-      const lHeader = normalizeHeader(_header);
-      if (!accessors[lHeader]) {
-        buildAccessors(prototype2, _header);
-        accessors[lHeader] = true;
-      }
-    }
-    utils_default.isArray(header) ? header.forEach(defineAccessor) : defineAccessor(header);
-    return this;
-  }
-};
-AxiosHeaders.accessor([
-  "Content-Type",
-  "Content-Length",
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/util/inspect.js
+var import_node_util2 = require("node:util");
+var custom = import_node_util2.inspect.custom;
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/util/sanitizer.js
+var RedactedString = "REDACTED";
+var defaultAllowedHeaderNames = [
+  "x-ms-client-request-id",
+  "x-ms-return-client-request-id",
+  "x-ms-useragent",
+  "x-ms-correlation-request-id",
+  "x-ms-request-id",
+  "client-request-id",
+  "ms-cv",
+  "return-client-request-id",
+  "traceparent",
+  "Access-Control-Allow-Credentials",
+  "Access-Control-Allow-Headers",
+  "Access-Control-Allow-Methods",
+  "Access-Control-Allow-Origin",
+  "Access-Control-Expose-Headers",
+  "Access-Control-Max-Age",
+  "Access-Control-Request-Headers",
+  "Access-Control-Request-Method",
+  "Origin",
   "Accept",
   "Accept-Encoding",
+  "Cache-Control",
+  "Connection",
+  "Content-Length",
+  "Content-Type",
+  "Date",
+  "ETag",
+  "Expires",
+  "If-Match",
+  "If-Modified-Since",
+  "If-None-Match",
+  "If-Unmodified-Since",
+  "Last-Modified",
+  "Pragma",
+  "Request-Id",
+  "Retry-After",
+  "Server",
+  "Transfer-Encoding",
   "User-Agent",
-  "Authorization"
-]);
-utils_default.reduceDescriptors(AxiosHeaders.prototype, ({ value }, key) => {
-  let mapped = key[0].toUpperCase() + key.slice(1);
-  return {
-    get: () => value,
-    set(headerValue) {
-      this[mapped] = headerValue;
+  "WWW-Authenticate"
+];
+var defaultAllowedQueryParameters = ["api-version"];
+var Sanitizer = class {
+  allowedHeaderNames;
+  allowedQueryParameters;
+  constructor({ additionalAllowedHeaderNames: allowedHeaderNames = [], additionalAllowedQueryParameters: allowedQueryParameters = [] } = {}) {
+    allowedHeaderNames = defaultAllowedHeaderNames.concat(allowedHeaderNames);
+    allowedQueryParameters = defaultAllowedQueryParameters.concat(allowedQueryParameters);
+    this.allowedHeaderNames = new Set(allowedHeaderNames.map((n) => n.toLowerCase()));
+    this.allowedQueryParameters = new Set(allowedQueryParameters.map((p) => p.toLowerCase()));
+  }
+  /**
+   * Sanitizes an object for logging.
+   * @param obj - The object to sanitize
+   * @returns - The sanitized object as a string
+   */
+  sanitize(obj) {
+    const seen = /* @__PURE__ */ new Set();
+    return JSON.stringify(obj, (key, value) => {
+      if (value instanceof Error) {
+        return {
+          ...value,
+          name: value.name,
+          message: value.message
+        };
+      }
+      if (key === "headers" && isObject2(value)) {
+        return this.sanitizeHeaders(value);
+      } else if (key === "url" && typeof value === "string") {
+        return this.sanitizeUrl(value);
+      } else if (key === "query" && isObject2(value)) {
+        return this.sanitizeQuery(value);
+      } else if (key === "body") {
+        return void 0;
+      } else if (key === "response") {
+        return void 0;
+      } else if (key === "operationSpec") {
+        return void 0;
+      } else if (Array.isArray(value) || isObject2(value)) {
+        if (seen.has(value)) {
+          return "[Circular]";
+        }
+        seen.add(value);
+      }
+      return value;
+    }, 2);
+  }
+  /**
+   * Sanitizes a URL for logging.
+   * @param value - The URL to sanitize
+   * @returns - The sanitized URL as a string
+   */
+  sanitizeUrl(value) {
+    if (typeof value !== "string" || value === null || value === "") {
+      return value;
     }
-  };
-});
-utils_default.freezeMethods(AxiosHeaders);
-var AxiosHeaders_default = AxiosHeaders;
+    const url = new URL(value);
+    if (!url.search) {
+      return value;
+    }
+    for (const [key] of url.searchParams) {
+      if (!this.allowedQueryParameters.has(key.toLowerCase())) {
+        url.searchParams.set(key, RedactedString);
+      }
+    }
+    return url.toString();
+  }
+  sanitizeHeaders(obj) {
+    const sanitized = {};
+    for (const key of Object.keys(obj)) {
+      if (this.allowedHeaderNames.has(key.toLowerCase())) {
+        sanitized[key] = obj[key];
+      } else {
+        sanitized[key] = RedactedString;
+      }
+    }
+    return sanitized;
+  }
+  sanitizeQuery(value) {
+    if (typeof value !== "object" || value === null) {
+      return value;
+    }
+    const sanitized = {};
+    for (const k of Object.keys(value)) {
+      if (this.allowedQueryParameters.has(k.toLowerCase())) {
+        sanitized[k] = value[k];
+      } else {
+        sanitized[k] = RedactedString;
+      }
+    }
+    return sanitized;
+  }
+};
 
-// node_modules/axios/lib/core/AxiosError.js
-var REDACTED = "[REDACTED ****]";
-function hasOwnOrPrototypeToJSON(source) {
-  if (utils_default.hasOwnProp(source, "toJSON")) {
+// node_modules/@typespec/ts-http-runtime/dist/esm/restError.js
+var errorSanitizer = new Sanitizer();
+var RestError = class _RestError extends Error {
+  /**
+   * Something went wrong when making the request.
+   * This means the actual request failed for some reason,
+   * such as a DNS issue or the connection being lost.
+   */
+  static REQUEST_SEND_ERROR = "REQUEST_SEND_ERROR";
+  /**
+   * This means that parsing the response from the server failed.
+   * It may have been malformed.
+   */
+  static PARSE_ERROR = "PARSE_ERROR";
+  /**
+   * The code of the error itself (use statics on RestError if possible.)
+   */
+  code;
+  /**
+   * The HTTP status code of the request (if applicable.)
+   */
+  statusCode;
+  /**
+   * The request that was made.
+   * This property is non-enumerable.
+   */
+  request;
+  /**
+   * The response received (if any.)
+   * This property is non-enumerable.
+   */
+  response;
+  /**
+   * Bonus property set by the throw site.
+   */
+  details;
+  constructor(message, options = {}) {
+    super(message);
+    this.name = "RestError";
+    this.code = options.code;
+    this.statusCode = options.statusCode;
+    Object.defineProperty(this, "request", { value: options.request, enumerable: false });
+    Object.defineProperty(this, "response", { value: options.response, enumerable: false });
+    const agent = this.request?.agent ? {
+      maxFreeSockets: this.request.agent.maxFreeSockets,
+      maxSockets: this.request.agent.maxSockets
+    } : void 0;
+    Object.defineProperty(this, custom, {
+      value: () => {
+        return `RestError: ${this.message} 
+ ${errorSanitizer.sanitize({
+          ...this,
+          request: { ...this.request, agent },
+          response: this.response
+        })}`;
+      },
+      enumerable: false
+    });
+    Object.setPrototypeOf(this, _RestError.prototype);
+  }
+};
+function isRestError(e) {
+  if (e instanceof RestError) {
     return true;
   }
-  let prototype2 = Object.getPrototypeOf(source);
-  while (prototype2 && prototype2 !== Object.prototype) {
-    if (utils_default.hasOwnProp(prototype2, "toJSON")) {
-      return true;
-    }
-    prototype2 = Object.getPrototypeOf(prototype2);
-  }
-  return false;
+  return isError(e) && e.name === "RestError";
 }
-function redactConfig(config, redactKeys) {
-  const lowerKeys = new Set(redactKeys.map((k) => String(k).toLowerCase()));
-  const seen = [];
-  const visit = (source) => {
-    if (source === null || typeof source !== "object") return source;
-    if (utils_default.isBuffer(source)) return source;
-    if (seen.indexOf(source) !== -1) return void 0;
-    if (source instanceof AxiosHeaders_default) {
-      source = source.toJSON();
-    }
-    seen.push(source);
-    let result;
-    if (utils_default.isArray(source)) {
-      result = [];
-      source.forEach((v, i) => {
-        const reducedValue = visit(v);
-        if (!utils_default.isUndefined(reducedValue)) {
-          result[i] = reducedValue;
-        }
-      });
-    } else {
-      if (!utils_default.isPlainObject(source) && hasOwnOrPrototypeToJSON(source)) {
-        seen.pop();
-        return source;
-      }
-      result = /* @__PURE__ */ Object.create(null);
-      for (const [key, value] of Object.entries(source)) {
-        const reducedValue = lowerKeys.has(key.toLowerCase()) ? REDACTED : visit(value);
-        if (!utils_default.isUndefined(reducedValue)) {
-          result[key] = reducedValue;
-        }
-      }
-    }
-    seen.pop();
-    return result;
-  };
-  return visit(config);
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/util/bytesEncoding.js
+function uint8ArrayToString(bytes, format) {
+  return Buffer.from(bytes).toString(format);
 }
-var AxiosError = class _AxiosError extends Error {
-  static from(error, code, config, request2, response, customProps) {
-    const axiosError = new _AxiosError(error.message, code || error.code, config, request2, response);
-    axiosError.cause = error;
-    axiosError.name = error.name;
-    if (error.status != null && axiosError.status == null) {
-      axiosError.status = error.status;
-    }
-    customProps && Object.assign(axiosError, customProps);
-    return axiosError;
+function stringToUint8Array(value, format) {
+  return Buffer.from(value, format);
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/nodeHttpClient.js
+var import_node_http = __toESM(require("node:http"), 1);
+var import_node_https = __toESM(require("node:https"), 1);
+var import_node_zlib = __toESM(require("node:zlib"), 1);
+var import_node_stream = require("node:stream");
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/log.js
+var logger = createClientLogger("ts-http-runtime");
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/nodeHttpClient.js
+var DEFAULT_TLS_SETTINGS = {};
+function isReadableStream(body) {
+  return body && typeof body.pipe === "function";
+}
+function isStreamComplete(stream) {
+  if (stream.readable === false) {
+    return Promise.resolve();
   }
-  /**
-   * Create an Error with the specified message, config, error code, request and response.
-   *
-   * @param {string} message The error message.
-   * @param {string} [code] The error code (for example, 'ECONNABORTED').
-   * @param {Object} [config] The config.
-   * @param {Object} [request] The request.
-   * @param {Object} [response] The response.
-   *
-   * @returns {Error} The created error.
-   */
-  constructor(message, code, config, request2, response) {
-    super(message);
-    Object.defineProperty(this, "message", {
-      // Null-proto descriptor so a polluted Object.prototype.get cannot turn
-      // this data descriptor into an accessor descriptor on the way in.
-      __proto__: null,
-      value: message,
-      enumerable: true,
-      writable: true,
-      configurable: true
-    });
-    this.name = "AxiosError";
-    this.isAxiosError = true;
-    code && (this.code = code);
-    config && (this.config = config);
-    request2 && (this.request = request2);
-    if (response) {
-      this.response = response;
-      this.status = response.status;
-    }
-  }
-  toJSON() {
-    const config = this.config;
-    const redactKeys = config && utils_default.hasOwnProp(config, "redact") ? config.redact : void 0;
-    const serializedConfig = utils_default.isArray(redactKeys) && redactKeys.length > 0 ? redactConfig(config, redactKeys) : utils_default.toJSONObject(config);
-    return {
-      // Standard
-      message: this.message,
-      name: this.name,
-      // Microsoft
-      description: this.description,
-      number: this.number,
-      // Mozilla
-      fileName: this.fileName,
-      lineNumber: this.lineNumber,
-      columnNumber: this.columnNumber,
-      stack: this.stack,
-      // Axios
-      config: serializedConfig,
-      code: this.code,
-      status: this.status
+  return new Promise((resolve4) => {
+    const handler2 = () => {
+      resolve4();
+      stream.removeListener("close", handler2);
+      stream.removeListener("end", handler2);
+      stream.removeListener("error", handler2);
     };
-  }
-};
-AxiosError.ERR_BAD_OPTION_VALUE = "ERR_BAD_OPTION_VALUE";
-AxiosError.ERR_BAD_OPTION = "ERR_BAD_OPTION";
-AxiosError.ECONNABORTED = "ECONNABORTED";
-AxiosError.ETIMEDOUT = "ETIMEDOUT";
-AxiosError.ECONNREFUSED = "ECONNREFUSED";
-AxiosError.ERR_NETWORK = "ERR_NETWORK";
-AxiosError.ERR_FR_TOO_MANY_REDIRECTS = "ERR_FR_TOO_MANY_REDIRECTS";
-AxiosError.ERR_DEPRECATED = "ERR_DEPRECATED";
-AxiosError.ERR_BAD_RESPONSE = "ERR_BAD_RESPONSE";
-AxiosError.ERR_BAD_REQUEST = "ERR_BAD_REQUEST";
-AxiosError.ERR_CANCELED = "ERR_CANCELED";
-AxiosError.ERR_NOT_SUPPORT = "ERR_NOT_SUPPORT";
-AxiosError.ERR_INVALID_URL = "ERR_INVALID_URL";
-AxiosError.ERR_FORM_DATA_DEPTH_EXCEEDED = "ERR_FORM_DATA_DEPTH_EXCEEDED";
-var AxiosError_default = AxiosError;
-
-// node_modules/axios/lib/platform/node/classes/FormData.js
-var import_form_data = __toESM(require_form_data(), 1);
-var FormData_default = import_form_data.default;
-
-// node_modules/axios/lib/helpers/toFormData.js
-function isVisitable(thing) {
-  return utils_default.isPlainObject(thing) || utils_default.isArray(thing);
-}
-function removeBrackets(key) {
-  return utils_default.endsWith(key, "[]") ? key.slice(0, -2) : key;
-}
-function renderKey(path2, key, dots) {
-  if (!path2) return key;
-  return path2.concat(key).map(function each(token, i) {
-    token = removeBrackets(token);
-    return !dots && i ? "[" + token + "]" : token;
-  }).join(dots ? "." : "");
-}
-function isFlatArray(arr) {
-  return utils_default.isArray(arr) && !arr.some(isVisitable);
-}
-var predicates = utils_default.toFlatObject(utils_default, {}, null, function filter(prop) {
-  return /^is[A-Z]/.test(prop);
-});
-function toFormData(obj, formData, options) {
-  if (!utils_default.isObject(obj)) {
-    throw new TypeError("target must be an object");
-  }
-  formData = formData || new (FormData_default || FormData)();
-  options = utils_default.toFlatObject(
-    options,
-    {
-      metaTokens: true,
-      dots: false,
-      indexes: false
-    },
-    false,
-    function defined(option, source) {
-      return !utils_default.isUndefined(source[option]);
-    }
-  );
-  const metaTokens = options.metaTokens;
-  const visitor = options.visitor || defaultVisitor;
-  const dots = options.dots;
-  const indexes = options.indexes;
-  const _Blob = options.Blob || typeof Blob !== "undefined" && Blob;
-  const maxDepth = options.maxDepth === void 0 ? 100 : options.maxDepth;
-  const useBlob = _Blob && utils_default.isSpecCompliantForm(formData);
-  if (!utils_default.isFunction(visitor)) {
-    throw new TypeError("visitor must be a function");
-  }
-  function convertValue(value) {
-    if (value === null) return "";
-    if (utils_default.isDate(value)) {
-      return value.toISOString();
-    }
-    if (utils_default.isBoolean(value)) {
-      return value.toString();
-    }
-    if (!useBlob && utils_default.isBlob(value)) {
-      throw new AxiosError_default("Blob is not supported. Use a Buffer instead.");
-    }
-    if (utils_default.isArrayBuffer(value) || utils_default.isTypedArray(value)) {
-      return useBlob && typeof Blob === "function" ? new Blob([value]) : Buffer.from(value);
-    }
-    return value;
-  }
-  function defaultVisitor(value, key, path2) {
-    let arr = value;
-    if (utils_default.isReactNative(formData) && utils_default.isReactNativeBlob(value)) {
-      formData.append(renderKey(path2, key, dots), convertValue(value));
-      return false;
-    }
-    if (value && !path2 && typeof value === "object") {
-      if (utils_default.endsWith(key, "{}")) {
-        key = metaTokens ? key : key.slice(0, -2);
-        value = JSON.stringify(value);
-      } else if (utils_default.isArray(value) && isFlatArray(value) || (utils_default.isFileList(value) || utils_default.endsWith(key, "[]")) && (arr = utils_default.toArray(value))) {
-        key = removeBrackets(key);
-        arr.forEach(function each(el, index) {
-          !(utils_default.isUndefined(el) || el === null) && formData.append(
-            // eslint-disable-next-line no-nested-ternary
-            indexes === true ? renderKey([key], index, dots) : indexes === null ? key : key + "[]",
-            convertValue(el)
-          );
-        });
-        return false;
-      }
-    }
-    if (isVisitable(value)) {
-      return true;
-    }
-    formData.append(renderKey(path2, key, dots), convertValue(value));
-    return false;
-  }
-  const stack = [];
-  const exposedHelpers = Object.assign(predicates, {
-    defaultVisitor,
-    convertValue,
-    isVisitable
-  });
-  function build(value, path2, depth = 0) {
-    if (utils_default.isUndefined(value)) return;
-    if (depth > maxDepth) {
-      throw new AxiosError_default(
-        "Object is too deeply nested (" + depth + " levels). Max depth: " + maxDepth,
-        AxiosError_default.ERR_FORM_DATA_DEPTH_EXCEEDED
-      );
-    }
-    if (stack.indexOf(value) !== -1) {
-      throw Error("Circular reference detected in " + path2.join("."));
-    }
-    stack.push(value);
-    utils_default.forEach(value, function each(el, key) {
-      const result = !(utils_default.isUndefined(el) || el === null) && visitor.call(formData, el, utils_default.isString(key) ? key.trim() : key, path2, exposedHelpers);
-      if (result === true) {
-        build(el, path2 ? path2.concat(key) : [key], depth + 1);
-      }
-    });
-    stack.pop();
-  }
-  if (!utils_default.isObject(obj)) {
-    throw new TypeError("data must be an object");
-  }
-  build(obj);
-  return formData;
-}
-var toFormData_default = toFormData;
-
-// node_modules/axios/lib/helpers/AxiosURLSearchParams.js
-function encode(str2) {
-  const charMap = {
-    "!": "%21",
-    "'": "%27",
-    "(": "%28",
-    ")": "%29",
-    "~": "%7E",
-    "%20": "+"
-  };
-  return encodeURIComponent(str2).replace(/[!'()~]|%20/g, function replacer(match2) {
-    return charMap[match2];
+    stream.on("close", handler2);
+    stream.on("end", handler2);
+    stream.on("error", handler2);
   });
 }
-function AxiosURLSearchParams(params, options) {
-  this._pairs = [];
-  params && toFormData_default(params, this, options);
+function isArrayBuffer(body) {
+  return body && typeof body.byteLength === "number";
 }
-var prototype = AxiosURLSearchParams.prototype;
-prototype.append = function append(name, value) {
-  this._pairs.push([name, value]);
-};
-prototype.toString = function toString3(encoder) {
-  const _encode = encoder ? function(value) {
-    return encoder.call(this, value, encode);
-  } : encode;
-  return this._pairs.map(function each(pair) {
-    return _encode(pair[0]) + "=" + _encode(pair[1]);
-  }, "").join("&");
-};
-var AxiosURLSearchParams_default = AxiosURLSearchParams;
-
-// node_modules/axios/lib/helpers/buildURL.js
-function encode2(val) {
-  return encodeURIComponent(val).replace(/%3A/gi, ":").replace(/%24/g, "$").replace(/%2C/gi, ",").replace(/%20/g, "+");
-}
-function buildURL(url2, params, options) {
-  if (!params) {
-    return url2;
-  }
-  const _encode = options && options.encode || encode2;
-  const _options = utils_default.isFunction(options) ? {
-    serialize: options
-  } : options;
-  const serializeFn = _options && _options.serialize;
-  let serializedParams;
-  if (serializeFn) {
-    serializedParams = serializeFn(params, _options);
-  } else {
-    serializedParams = utils_default.isURLSearchParams(params) ? params.toString() : new AxiosURLSearchParams_default(params, _options).toString(_encode);
-  }
-  if (serializedParams) {
-    const hashmarkIndex = url2.indexOf("#");
-    if (hashmarkIndex !== -1) {
-      url2 = url2.slice(0, hashmarkIndex);
-    }
-    url2 += (url2.indexOf("?") === -1 ? "?" : "&") + serializedParams;
-  }
-  return url2;
-}
-
-// node_modules/axios/lib/core/InterceptorManager.js
-var InterceptorManager = class {
-  constructor() {
-    this.handlers = [];
-  }
-  /**
-   * Add a new interceptor to the stack
-   *
-   * @param {Function} fulfilled The function to handle `then` for a `Promise`
-   * @param {Function} rejected The function to handle `reject` for a `Promise`
-   * @param {Object} options The options for the interceptor, synchronous and runWhen
-   *
-   * @return {Number} An ID used to remove interceptor later
-   */
-  use(fulfilled, rejected, options) {
-    this.handlers.push({
-      fulfilled,
-      rejected,
-      synchronous: options ? options.synchronous : false,
-      runWhen: options ? options.runWhen : null
-    });
-    return this.handlers.length - 1;
-  }
-  /**
-   * Remove an interceptor from the stack
-   *
-   * @param {Number} id The ID that was returned by `use`
-   *
-   * @returns {void}
-   */
-  eject(id) {
-    if (this.handlers[id]) {
-      this.handlers[id] = null;
-    }
-  }
-  /**
-   * Clear all interceptors from the stack
-   *
-   * @returns {void}
-   */
-  clear() {
-    if (this.handlers) {
-      this.handlers = [];
-    }
-  }
-  /**
-   * Iterate over all the registered interceptors
-   *
-   * This method is particularly useful for skipping over any
-   * interceptors that may have become `null` calling `eject`.
-   *
-   * @param {Function} fn The function to call for each interceptor
-   *
-   * @returns {void}
-   */
-  forEach(fn) {
-    utils_default.forEach(this.handlers, function forEachHandler(h) {
-      if (h !== null) {
-        fn(h);
-      }
-    });
-  }
-};
-var InterceptorManager_default = InterceptorManager;
-
-// node_modules/axios/lib/defaults/transitional.js
-var transitional_default = {
-  silentJSONParsing: true,
-  forcedJSONParsing: true,
-  clarifyTimeoutError: false,
-  legacyInterceptorReqResOrdering: true
-};
-
-// node_modules/axios/lib/platform/node/index.js
-var import_crypto = __toESM(require("crypto"), 1);
-
-// node_modules/axios/lib/platform/node/classes/URLSearchParams.js
-var import_url = __toESM(require("url"), 1);
-var URLSearchParams_default = import_url.default.URLSearchParams;
-
-// node_modules/axios/lib/platform/node/index.js
-var ALPHA = "abcdefghijklmnopqrstuvwxyz";
-var DIGIT = "0123456789";
-var ALPHABET = {
-  DIGIT,
-  ALPHA,
-  ALPHA_DIGIT: ALPHA + ALPHA.toUpperCase() + DIGIT
-};
-var generateString = (size = 16, alphabet = ALPHABET.ALPHA_DIGIT) => {
-  let str2 = "";
-  const { length } = alphabet;
-  const randomValues = new Uint32Array(size);
-  import_crypto.default.randomFillSync(randomValues);
-  for (let i = 0; i < size; i++) {
-    str2 += alphabet[randomValues[i] % length];
-  }
-  return str2;
-};
-var node_default = {
-  isNode: true,
-  classes: {
-    URLSearchParams: URLSearchParams_default,
-    FormData: FormData_default,
-    Blob: typeof Blob !== "undefined" && Blob || null
-  },
-  ALPHABET,
-  generateString,
-  protocols: ["http", "https", "file", "data"]
-};
-
-// node_modules/axios/lib/platform/common/utils.js
-var utils_exports = {};
-__export(utils_exports, {
-  hasBrowserEnv: () => hasBrowserEnv,
-  hasStandardBrowserEnv: () => hasStandardBrowserEnv,
-  hasStandardBrowserWebWorkerEnv: () => hasStandardBrowserWebWorkerEnv,
-  navigator: () => _navigator,
-  origin: () => origin
-});
-var hasBrowserEnv = typeof window !== "undefined" && typeof document !== "undefined";
-var _navigator = typeof navigator === "object" && navigator || void 0;
-var hasStandardBrowserEnv = hasBrowserEnv && (!_navigator || ["ReactNative", "NativeScript", "NS"].indexOf(_navigator.product) < 0);
-var hasStandardBrowserWebWorkerEnv = (() => {
-  return typeof WorkerGlobalScope !== "undefined" && // eslint-disable-next-line no-undef
-  self instanceof WorkerGlobalScope && typeof self.importScripts === "function";
-})();
-var origin = hasBrowserEnv && window.location.href || "http://localhost";
-
-// node_modules/axios/lib/platform/index.js
-var platform_default = {
-  ...utils_exports,
-  ...node_default
-};
-
-// node_modules/axios/lib/helpers/toURLEncodedForm.js
-function toURLEncodedForm(data, options) {
-  return toFormData_default(data, new platform_default.classes.URLSearchParams(), {
-    visitor: function(value, key, path2, helpers) {
-      if (platform_default.isNode && utils_default.isBuffer(value)) {
-        this.append(key, value.toString("base64"));
-        return false;
-      }
-      return helpers.defaultVisitor.apply(this, arguments);
-    },
-    ...options
-  });
-}
-
-// node_modules/axios/lib/helpers/formDataToJSON.js
-function parsePropPath(name) {
-  return utils_default.matchAll(/\w+|\[(\w*)]/g, name).map((match2) => {
-    return match2[0] === "[]" ? "" : match2[1] || match2[0];
-  });
-}
-function arrayToObject(arr) {
-  const obj = {};
-  const keys = Object.keys(arr);
-  let i;
-  const len = keys.length;
-  let key;
-  for (i = 0; i < len; i++) {
-    key = keys[i];
-    obj[key] = arr[key];
-  }
-  return obj;
-}
-function formDataToJSON(formData) {
-  function buildPath(path2, value, target, index) {
-    let name = path2[index++];
-    if (name === "__proto__") return true;
-    const isNumericKey = Number.isFinite(+name);
-    const isLast = index >= path2.length;
-    name = !name && utils_default.isArray(target) ? target.length : name;
-    if (isLast) {
-      if (utils_default.hasOwnProp(target, name)) {
-        target[name] = utils_default.isArray(target[name]) ? target[name].concat(value) : [target[name], value];
-      } else {
-        target[name] = value;
-      }
-      return !isNumericKey;
-    }
-    if (!target[name] || !utils_default.isObject(target[name])) {
-      target[name] = [];
-    }
-    const result = buildPath(path2, value, target[name], index);
-    if (result && utils_default.isArray(target[name])) {
-      target[name] = arrayToObject(target[name]);
-    }
-    return !isNumericKey;
-  }
-  if (utils_default.isFormData(formData) && utils_default.isFunction(formData.entries)) {
-    const obj = {};
-    utils_default.forEachEntry(formData, (name, value) => {
-      buildPath(parsePropPath(name), value, obj, 0);
-    });
-    return obj;
-  }
-  return null;
-}
-var formDataToJSON_default = formDataToJSON;
-
-// node_modules/axios/lib/defaults/index.js
-var own = (obj, key) => obj != null && utils_default.hasOwnProp(obj, key) ? obj[key] : void 0;
-function stringifySafely(rawValue, parser, encoder) {
-  if (utils_default.isString(rawValue)) {
+var ReportTransform = class extends import_node_stream.Transform {
+  loadedBytes = 0;
+  progressCallback;
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+  _transform(chunk2, _encoding, callback) {
+    this.push(chunk2);
+    this.loadedBytes += chunk2.length;
     try {
-      (parser || JSON.parse)(rawValue);
-      return utils_default.trim(rawValue);
+      this.progressCallback({ loadedBytes: this.loadedBytes });
+      callback();
     } catch (e) {
-      if (e.name !== "SyntaxError") {
-        throw e;
-      }
+      callback(e);
     }
   }
-  return (encoder || JSON.stringify)(rawValue);
-}
-var defaults = {
-  transitional: transitional_default,
-  adapter: ["xhr", "http", "fetch"],
-  transformRequest: [
-    function transformRequest(data, headers) {
-      const contentType = headers.getContentType() || "";
-      const hasJSONContentType = contentType.indexOf("application/json") > -1;
-      const isObjectPayload = utils_default.isObject(data);
-      if (isObjectPayload && utils_default.isHTMLForm(data)) {
-        data = new FormData(data);
+  constructor(progressCallback) {
+    super();
+    this.progressCallback = progressCallback;
+  }
+};
+var NodeHttpClient = class {
+  cachedHttpAgent;
+  cachedHttpsAgents = /* @__PURE__ */ new WeakMap();
+  /**
+   * Makes a request over an underlying transport layer and returns the response.
+   * @param request - The request to be made.
+   */
+  async sendRequest(request2) {
+    const abortController = new AbortController();
+    let abortListener;
+    if (request2.abortSignal) {
+      if (request2.abortSignal.aborted) {
+        throw new AbortError("The operation was aborted. Request has already been canceled.");
       }
-      const isFormData2 = utils_default.isFormData(data);
-      if (isFormData2) {
-        return hasJSONContentType ? JSON.stringify(formDataToJSON_default(data)) : data;
-      }
-      if (utils_default.isArrayBuffer(data) || utils_default.isBuffer(data) || utils_default.isStream(data) || utils_default.isFile(data) || utils_default.isBlob(data) || utils_default.isReadableStream(data)) {
-        return data;
-      }
-      if (utils_default.isArrayBufferView(data)) {
-        return data.buffer;
-      }
-      if (utils_default.isURLSearchParams(data)) {
-        headers.setContentType("application/x-www-form-urlencoded;charset=utf-8", false);
-        return data.toString();
-      }
-      let isFileList2;
-      if (isObjectPayload) {
-        const formSerializer = own(this, "formSerializer");
-        if (contentType.indexOf("application/x-www-form-urlencoded") > -1) {
-          return toURLEncodedForm(data, formSerializer).toString();
+      abortListener = (event) => {
+        if (event.type === "abort") {
+          abortController.abort();
         }
-        if ((isFileList2 = utils_default.isFileList(data)) || contentType.indexOf("multipart/form-data") > -1) {
-          const env = own(this, "env");
-          const _FormData = env && env.FormData;
-          return toFormData_default(
-            isFileList2 ? { "files[]": data } : data,
-            _FormData && new _FormData(),
-            formSerializer
-          );
-        }
-      }
-      if (isObjectPayload || hasJSONContentType) {
-        headers.setContentType("application/json", false);
-        return stringifySafely(data);
-      }
-      return data;
+      };
+      request2.abortSignal.addEventListener("abort", abortListener);
     }
-  ],
-  transformResponse: [
-    function transformResponse(data) {
-      const transitional2 = own(this, "transitional") || defaults.transitional;
-      const forcedJSONParsing = transitional2 && transitional2.forcedJSONParsing;
-      const responseType = own(this, "responseType");
-      const JSONRequested = responseType === "json";
-      if (utils_default.isResponse(data) || utils_default.isReadableStream(data)) {
-        return data;
+    let timeoutId;
+    if (request2.timeout > 0) {
+      timeoutId = setTimeout(() => {
+        const sanitizer = new Sanitizer();
+        logger.info(`request to '${sanitizer.sanitizeUrl(request2.url)}' timed out. canceling...`);
+        abortController.abort();
+      }, request2.timeout);
+    }
+    const acceptEncoding = request2.headers.get("Accept-Encoding");
+    const shouldDecompress = acceptEncoding?.includes("gzip") || acceptEncoding?.includes("deflate");
+    let body = typeof request2.body === "function" ? request2.body() : request2.body;
+    if (body && !request2.headers.has("Content-Length")) {
+      const bodyLength = getBodyLength(body);
+      if (bodyLength !== null) {
+        request2.headers.set("Content-Length", bodyLength);
       }
-      if (data && utils_default.isString(data) && (forcedJSONParsing && !responseType || JSONRequested)) {
-        const silentJSONParsing = transitional2 && transitional2.silentJSONParsing;
-        const strictJSONParsing = !silentJSONParsing && JSONRequested;
-        try {
-          return JSON.parse(data, own(this, "parseReviver"));
-        } catch (e) {
-          if (strictJSONParsing) {
-            if (e.name === "SyntaxError") {
-              throw AxiosError_default.from(e, AxiosError_default.ERR_BAD_RESPONSE, this, null, own(this, "response"));
-            }
-            throw e;
+    }
+    let responseStream;
+    try {
+      if (body && request2.onUploadProgress) {
+        const onUploadProgress = request2.onUploadProgress;
+        const uploadReportStream = new ReportTransform(onUploadProgress);
+        uploadReportStream.on("error", (e) => {
+          logger.error("Error in upload progress", e);
+        });
+        if (isReadableStream(body)) {
+          body.pipe(uploadReportStream);
+        } else {
+          uploadReportStream.end(body);
+        }
+        body = uploadReportStream;
+      }
+      const res = await this.makeRequest(request2, abortController, body);
+      if (timeoutId !== void 0) {
+        clearTimeout(timeoutId);
+      }
+      const headers = getResponseHeaders(res);
+      const status = res.statusCode ?? 0;
+      const response = {
+        status,
+        headers,
+        request: request2
+      };
+      if (request2.method === "HEAD") {
+        res.resume();
+        return response;
+      }
+      responseStream = shouldDecompress ? getDecodedResponseStream(res, headers) : res;
+      const onDownloadProgress = request2.onDownloadProgress;
+      if (onDownloadProgress) {
+        const downloadReportStream = new ReportTransform(onDownloadProgress);
+        downloadReportStream.on("error", (e) => {
+          logger.error("Error in download progress", e);
+        });
+        responseStream.pipe(downloadReportStream);
+        responseStream = downloadReportStream;
+      }
+      if (
+        // Value of POSITIVE_INFINITY in streamResponseStatusCodes is considered as any status code
+        request2.streamResponseStatusCodes?.has(Number.POSITIVE_INFINITY) || request2.streamResponseStatusCodes?.has(response.status)
+      ) {
+        response.readableStreamBody = responseStream;
+      } else {
+        response.bodyAsText = await streamToText(responseStream);
+      }
+      return response;
+    } finally {
+      if (request2.abortSignal && abortListener) {
+        let uploadStreamDone = Promise.resolve();
+        if (isReadableStream(body)) {
+          uploadStreamDone = isStreamComplete(body);
+        }
+        let downloadStreamDone = Promise.resolve();
+        if (isReadableStream(responseStream)) {
+          downloadStreamDone = isStreamComplete(responseStream);
+        }
+        Promise.all([uploadStreamDone, downloadStreamDone]).then(() => {
+          if (abortListener) {
+            request2.abortSignal?.removeEventListener("abort", abortListener);
           }
-        }
+        }).catch((e) => {
+          logger.warning("Error when cleaning up abortListener on httpRequest", e);
+        });
       }
-      return data;
     }
-  ],
-  /**
-   * A timeout in milliseconds to abort a request. If set to 0 (default) a
-   * timeout is not created.
-   */
-  timeout: 0,
-  xsrfCookieName: "XSRF-TOKEN",
-  xsrfHeaderName: "X-XSRF-TOKEN",
-  maxContentLength: -1,
-  maxBodyLength: -1,
-  env: {
-    FormData: platform_default.classes.FormData,
-    Blob: platform_default.classes.Blob
-  },
-  validateStatus: function validateStatus(status) {
-    return status >= 200 && status < 300;
-  },
-  headers: {
-    common: {
-      Accept: "application/json, text/plain, */*",
-      "Content-Type": void 0
+  }
+  makeRequest(request2, abortController, body) {
+    const url = new URL(request2.url);
+    const isInsecure = url.protocol !== "https:";
+    if (isInsecure && !request2.allowInsecureConnection) {
+      throw new Error(`Cannot connect to ${request2.url} while allowInsecureConnection is false.`);
+    }
+    const agent = request2.agent ?? this.getOrCreateAgent(request2, isInsecure);
+    const options = {
+      agent,
+      hostname: url.hostname,
+      path: `${url.pathname}${url.search}`,
+      port: url.port,
+      method: request2.method,
+      headers: request2.headers.toJSON({ preserveCase: true }),
+      ...request2.requestOverrides
+    };
+    return new Promise((resolve4, reject) => {
+      const req = isInsecure ? import_node_http.default.request(options, resolve4) : import_node_https.default.request(options, resolve4);
+      req.once("error", (err) => {
+        reject(new RestError(err.message, { code: err.code ?? RestError.REQUEST_SEND_ERROR, request: request2 }));
+      });
+      abortController.signal.addEventListener("abort", () => {
+        const abortError = new AbortError("The operation was aborted. Rejecting from abort signal callback while making request.");
+        req.destroy(abortError);
+        reject(abortError);
+      });
+      if (body && isReadableStream(body)) {
+        body.pipe(req);
+      } else if (body) {
+        if (typeof body === "string" || Buffer.isBuffer(body)) {
+          req.end(body);
+        } else if (isArrayBuffer(body)) {
+          req.end(ArrayBuffer.isView(body) ? Buffer.from(body.buffer) : Buffer.from(body));
+        } else {
+          logger.error("Unrecognized body type", body);
+          reject(new RestError("Unrecognized body type"));
+        }
+      } else {
+        req.end();
+      }
+    });
+  }
+  getOrCreateAgent(request2, isInsecure) {
+    const disableKeepAlive = request2.disableKeepAlive;
+    if (isInsecure) {
+      if (disableKeepAlive) {
+        return import_node_http.default.globalAgent;
+      }
+      if (!this.cachedHttpAgent) {
+        this.cachedHttpAgent = new import_node_http.default.Agent({ keepAlive: true });
+      }
+      return this.cachedHttpAgent;
+    } else {
+      if (disableKeepAlive && !request2.tlsSettings) {
+        return import_node_https.default.globalAgent;
+      }
+      const tlsSettings = request2.tlsSettings ?? DEFAULT_TLS_SETTINGS;
+      let agent = this.cachedHttpsAgents.get(tlsSettings);
+      if (agent && agent.options.keepAlive === !disableKeepAlive) {
+        return agent;
+      }
+      logger.info("No cached TLS Agent exist, creating a new Agent");
+      agent = new import_node_https.default.Agent({
+        // keepAlive is true if disableKeepAlive is false.
+        keepAlive: !disableKeepAlive,
+        // Since we are spreading, if no tslSettings were provided, nothing is added to the agent options.
+        ...tlsSettings
+      });
+      this.cachedHttpsAgents.set(tlsSettings, agent);
+      return agent;
     }
   }
 };
-utils_default.forEach(["delete", "get", "head", "post", "put", "patch", "query"], (method) => {
-  defaults.headers[method] = {};
-});
-var defaults_default = defaults;
-
-// node_modules/axios/lib/core/transformData.js
-function transformData(fns, response) {
-  const config = this || defaults_default;
-  const context2 = response || config;
-  const headers = AxiosHeaders_default.from(context2.headers);
-  let data = context2.data;
-  utils_default.forEach(fns, function transform(fn) {
-    data = fn.call(config, data, headers.normalize(), response ? response.status : void 0);
+function getResponseHeaders(res) {
+  const headers = createHttpHeaders();
+  for (const header of Object.keys(res.headers)) {
+    const value = res.headers[header];
+    if (Array.isArray(value)) {
+      if (value.length > 0) {
+        headers.set(header, value[0]);
+      }
+    } else if (value) {
+      headers.set(header, value);
+    }
+  }
+  return headers;
+}
+function getDecodedResponseStream(stream, headers) {
+  const contentEncoding = headers.get("Content-Encoding");
+  if (contentEncoding === "gzip") {
+    const unzip = import_node_zlib.default.createGunzip();
+    stream.pipe(unzip);
+    return unzip;
+  } else if (contentEncoding === "deflate") {
+    const inflate = import_node_zlib.default.createInflate();
+    stream.pipe(inflate);
+    return inflate;
+  }
+  return stream;
+}
+function streamToText(stream) {
+  return new Promise((resolve4, reject) => {
+    const buffer = [];
+    stream.on("data", (chunk2) => {
+      if (Buffer.isBuffer(chunk2)) {
+        buffer.push(chunk2);
+      } else {
+        buffer.push(Buffer.from(chunk2));
+      }
+    });
+    stream.on("end", () => {
+      resolve4(Buffer.concat(buffer).toString("utf8"));
+    });
+    stream.on("error", (e) => {
+      if (e && e?.name === "AbortError") {
+        reject(e);
+      } else {
+        reject(new RestError(`Error reading response as text: ${e.message}`, {
+          code: RestError.PARSE_ERROR
+        }));
+      }
+    });
   });
-  headers.normalize();
-  return data;
 }
-
-// node_modules/axios/lib/cancel/isCancel.js
-function isCancel(value) {
-  return !!(value && value.__CANCEL__);
-}
-
-// node_modules/axios/lib/cancel/CanceledError.js
-var CanceledError = class extends AxiosError_default {
-  /**
-   * A `CanceledError` is an object that is thrown when an operation is canceled.
-   *
-   * @param {string=} message The message.
-   * @param {Object=} config The config.
-   * @param {Object=} request The request.
-   *
-   * @returns {CanceledError} The created error.
-   */
-  constructor(message, config, request2) {
-    super(message == null ? "canceled" : message, AxiosError_default.ERR_CANCELED, config, request2);
-    this.name = "CanceledError";
-    this.__CANCEL__ = true;
-  }
-};
-var CanceledError_default = CanceledError;
-
-// node_modules/axios/lib/core/settle.js
-function settle(resolve4, reject, response) {
-  const validateStatus2 = response.config.validateStatus;
-  if (!response.status || !validateStatus2 || validateStatus2(response.status)) {
-    resolve4(response);
+function getBodyLength(body) {
+  if (!body) {
+    return 0;
+  } else if (Buffer.isBuffer(body)) {
+    return body.length;
+  } else if (isReadableStream(body)) {
+    return null;
+  } else if (isArrayBuffer(body)) {
+    return body.byteLength;
+  } else if (typeof body === "string") {
+    return Buffer.from(body).length;
   } else {
-    reject(new AxiosError_default(
-      "Request failed with status code " + response.status,
-      response.status >= 400 && response.status < 500 ? AxiosError_default.ERR_BAD_REQUEST : AxiosError_default.ERR_BAD_RESPONSE,
-      response.config,
-      response.request,
-      response
-    ));
-  }
-}
-
-// node_modules/axios/lib/helpers/isAbsoluteURL.js
-function isAbsoluteURL(url2) {
-  if (typeof url2 !== "string") {
-    return false;
-  }
-  return /^([a-z][a-z\d+\-.]*:)?\/\//i.test(url2);
-}
-
-// node_modules/axios/lib/helpers/combineURLs.js
-function combineURLs(baseURL, relativeURL) {
-  return relativeURL ? baseURL.replace(/\/?\/$/, "") + "/" + relativeURL.replace(/^\/+/, "") : baseURL;
-}
-
-// node_modules/axios/lib/core/buildFullPath.js
-function buildFullPath(baseURL, requestedURL, allowAbsoluteUrls) {
-  let isRelativeUrl = !isAbsoluteURL(requestedURL);
-  if (baseURL && (isRelativeUrl || allowAbsoluteUrls === false)) {
-    return combineURLs(baseURL, requestedURL);
-  }
-  return requestedURL;
-}
-
-// node_modules/proxy-from-env/index.js
-var DEFAULT_PORTS = {
-  ftp: 21,
-  gopher: 70,
-  http: 80,
-  https: 443,
-  ws: 80,
-  wss: 443
-};
-function parseUrl(urlString) {
-  try {
-    return new URL(urlString);
-  } catch {
     return null;
   }
 }
-function getProxyForUrl(url2) {
-  var parsedUrl = (typeof url2 === "string" ? parseUrl(url2) : url2) || {};
-  var proto = parsedUrl.protocol;
-  var hostname = parsedUrl.host;
-  var port = parsedUrl.port;
-  if (typeof hostname !== "string" || !hostname || typeof proto !== "string") {
-    return "";
-  }
-  proto = proto.split(":", 1)[0];
-  hostname = hostname.replace(/:\d*$/, "");
-  port = parseInt(port) || DEFAULT_PORTS[proto] || 0;
-  if (!shouldProxy(hostname, port)) {
-    return "";
-  }
-  var proxy = getEnv(proto + "_proxy") || getEnv("all_proxy");
-  if (proxy && proxy.indexOf("://") === -1) {
-    proxy = proto + "://" + proxy;
-  }
-  return proxy;
+function createNodeHttpClient() {
+  return new NodeHttpClient();
 }
-function shouldProxy(hostname, port) {
-  var NO_PROXY = getEnv("no_proxy").toLowerCase();
-  if (!NO_PROXY) {
-    return true;
-  }
-  if (NO_PROXY === "*") {
-    return false;
-  }
-  return NO_PROXY.split(/[,\s]/).every(function(proxy) {
-    if (!proxy) {
-      return true;
-    }
-    var parsedProxy = proxy.match(/^(.+):(\d+)$/);
-    var parsedProxyHostname = parsedProxy ? parsedProxy[1] : proxy;
-    var parsedProxyPort = parsedProxy ? parseInt(parsedProxy[2]) : 0;
-    if (parsedProxyPort && parsedProxyPort !== port) {
-      return true;
-    }
-    if (!/^[.*]/.test(parsedProxyHostname)) {
-      return hostname !== parsedProxyHostname;
-    }
-    if (parsedProxyHostname.charAt(0) === "*") {
-      parsedProxyHostname = parsedProxyHostname.slice(1);
-    }
-    return !hostname.endsWith(parsedProxyHostname);
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/defaultHttpClient.js
+function createDefaultHttpClient() {
+  return createNodeHttpClient();
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/policies/logPolicy.js
+var logPolicyName = "logPolicy";
+function logPolicy(options = {}) {
+  const logger4 = options.logger ?? logger.info;
+  const sanitizer = new Sanitizer({
+    additionalAllowedHeaderNames: options.additionalAllowedHeaderNames,
+    additionalAllowedQueryParameters: options.additionalAllowedQueryParameters
   });
-}
-function getEnv(key) {
-  return process.env[key.toLowerCase()] || process.env[key.toUpperCase()] || "";
-}
-
-// node_modules/axios/lib/adapters/http.js
-var import_http = __toESM(require("http"), 1);
-var import_https = __toESM(require("https"), 1);
-var import_http2 = __toESM(require("http2"), 1);
-var import_util2 = __toESM(require("util"), 1);
-var import_path = require("path");
-var import_follow_redirects = __toESM(require_follow_redirects(), 1);
-var import_zlib = __toESM(require("zlib"), 1);
-
-// node_modules/axios/lib/env/data.js
-var VERSION = "1.16.0";
-
-// node_modules/axios/lib/helpers/parseProtocol.js
-function parseProtocol(url2) {
-  const match2 = /^([-+\w]{1,25}):(?:\/\/)?/.exec(url2);
-  return match2 && match2[1] || "";
-}
-
-// node_modules/axios/lib/helpers/fromDataURI.js
-var DATA_URL_PATTERN = /^(?:([^;]+);)?(?:[^;]+;)?(base64|),([\s\S]*)$/;
-function fromDataURI(uri, asBlob, options) {
-  const _Blob = options && options.Blob || platform_default.classes.Blob;
-  const protocol = parseProtocol(uri);
-  if (asBlob === void 0 && _Blob) {
-    asBlob = true;
-  }
-  if (protocol === "data") {
-    uri = protocol.length ? uri.slice(protocol.length + 1) : uri;
-    const match2 = DATA_URL_PATTERN.exec(uri);
-    if (!match2) {
-      throw new AxiosError_default("Invalid URL", AxiosError_default.ERR_INVALID_URL);
-    }
-    const mime = match2[1];
-    const isBase64 = match2[2];
-    const body = match2[3];
-    const buffer = Buffer.from(decodeURIComponent(body), isBase64 ? "base64" : "utf8");
-    if (asBlob) {
-      if (!_Blob) {
-        throw new AxiosError_default("Blob is not supported", AxiosError_default.ERR_NOT_SUPPORT);
-      }
-      return new _Blob([buffer], { type: mime });
-    }
-    return buffer;
-  }
-  throw new AxiosError_default("Unsupported protocol " + protocol, AxiosError_default.ERR_NOT_SUPPORT);
-}
-
-// node_modules/axios/lib/adapters/http.js
-var import_stream4 = __toESM(require("stream"), 1);
-
-// node_modules/axios/lib/helpers/AxiosTransformStream.js
-var import_stream = __toESM(require("stream"), 1);
-var kInternals = /* @__PURE__ */ Symbol("internals");
-var AxiosTransformStream = class extends import_stream.default.Transform {
-  constructor(options) {
-    options = utils_default.toFlatObject(
-      options,
-      {
-        maxRate: 0,
-        chunkSize: 64 * 1024,
-        minChunkSize: 100,
-        timeWindow: 500,
-        ticksRate: 2,
-        samplesCount: 15
-      },
-      null,
-      (prop, source) => {
-        return !utils_default.isUndefined(source[prop]);
-      }
-    );
-    super({
-      readableHighWaterMark: options.chunkSize
-    });
-    const internals = this[kInternals] = {
-      timeWindow: options.timeWindow,
-      chunkSize: options.chunkSize,
-      maxRate: options.maxRate,
-      minChunkSize: options.minChunkSize,
-      bytesSeen: 0,
-      isCaptured: false,
-      notifiedBytesLoaded: 0,
-      ts: Date.now(),
-      bytes: 0,
-      onReadCallback: null
-    };
-    this.on("newListener", (event) => {
-      if (event === "progress") {
-        if (!internals.isCaptured) {
-          internals.isCaptured = true;
-        }
-      }
-    });
-  }
-  _read(size) {
-    const internals = this[kInternals];
-    if (internals.onReadCallback) {
-      internals.onReadCallback();
-    }
-    return super._read(size);
-  }
-  _transform(chunk2, encoding, callback) {
-    const internals = this[kInternals];
-    const maxRate = internals.maxRate;
-    const readableHighWaterMark = this.readableHighWaterMark;
-    const timeWindow = internals.timeWindow;
-    const divider = 1e3 / timeWindow;
-    const bytesThreshold = maxRate / divider;
-    const minChunkSize = internals.minChunkSize !== false ? Math.max(internals.minChunkSize, bytesThreshold * 0.01) : 0;
-    const pushChunk = (_chunk, _callback) => {
-      const bytes = Buffer.byteLength(_chunk);
-      internals.bytesSeen += bytes;
-      internals.bytes += bytes;
-      internals.isCaptured && this.emit("progress", internals.bytesSeen);
-      if (this.push(_chunk)) {
-        process.nextTick(_callback);
-      } else {
-        internals.onReadCallback = () => {
-          internals.onReadCallback = null;
-          process.nextTick(_callback);
-        };
-      }
-    };
-    const transformChunk = (_chunk, _callback) => {
-      const chunkSize = Buffer.byteLength(_chunk);
-      let chunkRemainder = null;
-      let maxChunkSize = readableHighWaterMark;
-      let bytesLeft;
-      let passed = 0;
-      if (maxRate) {
-        const now = Date.now();
-        if (!internals.ts || (passed = now - internals.ts) >= timeWindow) {
-          internals.ts = now;
-          bytesLeft = bytesThreshold - internals.bytes;
-          internals.bytes = bytesLeft < 0 ? -bytesLeft : 0;
-          passed = 0;
-        }
-        bytesLeft = bytesThreshold - internals.bytes;
-      }
-      if (maxRate) {
-        if (bytesLeft <= 0) {
-          return setTimeout(() => {
-            _callback(null, _chunk);
-          }, timeWindow - passed);
-        }
-        if (bytesLeft < maxChunkSize) {
-          maxChunkSize = bytesLeft;
-        }
-      }
-      if (maxChunkSize && chunkSize > maxChunkSize && chunkSize - maxChunkSize > minChunkSize) {
-        chunkRemainder = _chunk.subarray(maxChunkSize);
-        _chunk = _chunk.subarray(0, maxChunkSize);
-      }
-      pushChunk(
-        _chunk,
-        chunkRemainder ? () => {
-          process.nextTick(_callback, null, chunkRemainder);
-        } : _callback
-      );
-    };
-    transformChunk(chunk2, function transformNextChunk(err, _chunk) {
-      if (err) {
-        return callback(err);
-      }
-      if (_chunk) {
-        transformChunk(_chunk, transformNextChunk);
-      } else {
-        callback(null);
-      }
-    });
-  }
-};
-var AxiosTransformStream_default = AxiosTransformStream;
-
-// node_modules/axios/lib/adapters/http.js
-var import_events = require("events");
-
-// node_modules/axios/lib/helpers/formDataToStream.js
-var import_util = __toESM(require("util"), 1);
-var import_stream2 = require("stream");
-
-// node_modules/axios/lib/helpers/readBlob.js
-var { asyncIterator } = Symbol;
-var readBlob = async function* (blob) {
-  if (blob.stream) {
-    yield* blob.stream();
-  } else if (blob.arrayBuffer) {
-    yield await blob.arrayBuffer();
-  } else if (blob[asyncIterator]) {
-    yield* blob[asyncIterator]();
-  } else {
-    yield blob;
-  }
-};
-var readBlob_default = readBlob;
-
-// node_modules/axios/lib/helpers/formDataToStream.js
-var BOUNDARY_ALPHABET = platform_default.ALPHABET.ALPHA_DIGIT + "-_";
-var textEncoder = typeof TextEncoder === "function" ? new TextEncoder() : new import_util.default.TextEncoder();
-var CRLF = "\r\n";
-var CRLF_BYTES = textEncoder.encode(CRLF);
-var CRLF_BYTES_COUNT = 2;
-var FormDataPart = class {
-  constructor(name, value) {
-    const { escapeName } = this.constructor;
-    const isStringValue = utils_default.isString(value);
-    let headers = `Content-Disposition: form-data; name="${escapeName(name)}"${!isStringValue && value.name ? `; filename="${escapeName(value.name)}"` : ""}${CRLF}`;
-    if (isStringValue) {
-      value = textEncoder.encode(String(value).replace(/\r?\n|\r\n?/g, CRLF));
-    } else {
-      const safeType = String(value.type || "application/octet-stream").replace(/[\r\n]/g, "");
-      headers += `Content-Type: ${safeType}${CRLF}`;
-    }
-    this.headers = textEncoder.encode(headers + CRLF);
-    this.contentLength = isStringValue ? value.byteLength : value.size;
-    this.size = this.headers.byteLength + this.contentLength + CRLF_BYTES_COUNT;
-    this.name = name;
-    this.value = value;
-  }
-  async *encode() {
-    yield this.headers;
-    const { value } = this;
-    if (utils_default.isTypedArray(value)) {
-      yield value;
-    } else {
-      yield* readBlob_default(value);
-    }
-    yield CRLF_BYTES;
-  }
-  static escapeName(name) {
-    return String(name).replace(
-      /[\r\n"]/g,
-      (match2) => ({
-        "\r": "%0D",
-        "\n": "%0A",
-        '"': "%22"
-      })[match2]
-    );
-  }
-};
-var formDataToStream = (form, headersHandler, options) => {
-  const {
-    tag = "form-data-boundary",
-    size = 25,
-    boundary = tag + "-" + platform_default.generateString(size, BOUNDARY_ALPHABET)
-  } = options || {};
-  if (!utils_default.isFormData(form)) {
-    throw TypeError("FormData instance required");
-  }
-  if (boundary.length < 1 || boundary.length > 70) {
-    throw Error("boundary must be 1-70 characters long");
-  }
-  const boundaryBytes = textEncoder.encode("--" + boundary + CRLF);
-  const footerBytes = textEncoder.encode("--" + boundary + "--" + CRLF);
-  let contentLength = footerBytes.byteLength;
-  const parts = Array.from(form.entries()).map(([name, value]) => {
-    const part = new FormDataPart(name, value);
-    contentLength += part.size;
-    return part;
-  });
-  contentLength += boundaryBytes.byteLength * parts.length;
-  contentLength = utils_default.toFiniteNumber(contentLength);
-  const computedHeaders = {
-    "Content-Type": `multipart/form-data; boundary=${boundary}`
-  };
-  if (Number.isFinite(contentLength)) {
-    computedHeaders["Content-Length"] = contentLength;
-  }
-  headersHandler && headersHandler(computedHeaders);
-  return import_stream2.Readable.from(
-    (async function* () {
-      for (const part of parts) {
-        yield boundaryBytes;
-        yield* part.encode();
-      }
-      yield footerBytes;
-    })()
-  );
-};
-var formDataToStream_default = formDataToStream;
-
-// node_modules/axios/lib/helpers/ZlibHeaderTransformStream.js
-var import_stream3 = __toESM(require("stream"), 1);
-var ZlibHeaderTransformStream = class extends import_stream3.default.Transform {
-  __transform(chunk2, encoding, callback) {
-    this.push(chunk2);
-    callback();
-  }
-  _transform(chunk2, encoding, callback) {
-    if (chunk2.length !== 0) {
-      this._transform = this.__transform;
-      if (chunk2[0] !== 120) {
-        const header = Buffer.alloc(2);
-        header[0] = 120;
-        header[1] = 156;
-        this.push(header, encoding);
-      }
-    }
-    this.__transform(chunk2, encoding, callback);
-  }
-};
-var ZlibHeaderTransformStream_default = ZlibHeaderTransformStream;
-
-// node_modules/axios/lib/helpers/callbackify.js
-var callbackify = (fn, reducer) => {
-  return utils_default.isAsyncFn(fn) ? function(...args) {
-    const cb = args.pop();
-    fn.apply(this, args).then((value) => {
-      try {
-        reducer ? cb(null, ...reducer(value)) : cb(null, value);
-      } catch (err) {
-        cb(err);
-      }
-    }, cb);
-  } : fn;
-};
-var callbackify_default = callbackify;
-
-// node_modules/axios/lib/helpers/shouldBypassProxy.js
-var LOOPBACK_HOSTNAMES = /* @__PURE__ */ new Set(["localhost"]);
-var isIPv4Loopback = (host) => {
-  const parts = host.split(".");
-  if (parts.length !== 4) return false;
-  if (parts[0] !== "127") return false;
-  return parts.every((p) => /^\d+$/.test(p) && Number(p) >= 0 && Number(p) <= 255);
-};
-var isIPv6Loopback = (host) => {
-  if (host === "::1") return true;
-  const v4MappedDotted = host.match(/^::ffff:(\d+\.\d+\.\d+\.\d+)$/i);
-  if (v4MappedDotted) return isIPv4Loopback(v4MappedDotted[1]);
-  const v4MappedHex = host.match(/^::ffff:([0-9a-f]{1,4}):([0-9a-f]{1,4})$/i);
-  if (v4MappedHex) {
-    const high = parseInt(v4MappedHex[1], 16);
-    return high >= 32512 && high <= 32767;
-  }
-  const groups = host.split(":");
-  if (groups.length === 8) {
-    for (let i = 0; i < 7; i++) {
-      if (!/^0+$/.test(groups[i])) return false;
-    }
-    return /^0*1$/.test(groups[7]);
-  }
-  return false;
-};
-var isLoopback = (host) => {
-  if (!host) return false;
-  if (LOOPBACK_HOSTNAMES.has(host)) return true;
-  if (isIPv4Loopback(host)) return true;
-  return isIPv6Loopback(host);
-};
-var DEFAULT_PORTS2 = {
-  http: 80,
-  https: 443,
-  ws: 80,
-  wss: 443,
-  ftp: 21
-};
-var parseNoProxyEntry = (entry) => {
-  let entryHost = entry;
-  let entryPort = 0;
-  if (entryHost.charAt(0) === "[") {
-    const bracketIndex = entryHost.indexOf("]");
-    if (bracketIndex !== -1) {
-      const host = entryHost.slice(1, bracketIndex);
-      const rest = entryHost.slice(bracketIndex + 1);
-      if (rest.charAt(0) === ":" && /^\d+$/.test(rest.slice(1))) {
-        entryPort = Number.parseInt(rest.slice(1), 10);
-      }
-      return [host, entryPort];
-    }
-  }
-  const firstColon = entryHost.indexOf(":");
-  const lastColon = entryHost.lastIndexOf(":");
-  if (firstColon !== -1 && firstColon === lastColon && /^\d+$/.test(entryHost.slice(lastColon + 1))) {
-    entryPort = Number.parseInt(entryHost.slice(lastColon + 1), 10);
-    entryHost = entryHost.slice(0, lastColon);
-  }
-  return [entryHost, entryPort];
-};
-var IPV4_MAPPED_DOTTED_RE = /^(?:::|(?:0{1,4}:){1,4}:|(?:0{1,4}:){5})ffff:(\d+\.\d+\.\d+\.\d+)$/i;
-var IPV4_MAPPED_HEX_RE = /^(?:::|(?:0{1,4}:){1,4}:|(?:0{1,4}:){5})ffff:([0-9a-f]{1,4}):([0-9a-f]{1,4})$/i;
-var unmapIPv4MappedIPv6 = (host) => {
-  if (typeof host !== "string" || host.indexOf(":") === -1) return host;
-  const dotted = host.match(IPV4_MAPPED_DOTTED_RE);
-  if (dotted) return dotted[1];
-  const hex = host.match(IPV4_MAPPED_HEX_RE);
-  if (hex) {
-    const high = parseInt(hex[1], 16);
-    const low = parseInt(hex[2], 16);
-    return `${high >> 8}.${high & 255}.${low >> 8}.${low & 255}`;
-  }
-  return host;
-};
-var normalizeNoProxyHost = (hostname) => {
-  if (!hostname) {
-    return hostname;
-  }
-  if (hostname.charAt(0) === "[" && hostname.charAt(hostname.length - 1) === "]") {
-    hostname = hostname.slice(1, -1);
-  }
-  return unmapIPv4MappedIPv6(hostname.replace(/\.+$/, ""));
-};
-function shouldBypassProxy(location) {
-  let parsed;
-  try {
-    parsed = new URL(location);
-  } catch (_err) {
-    return false;
-  }
-  const noProxy = (process.env.no_proxy || process.env.NO_PROXY || "").toLowerCase();
-  if (!noProxy) {
-    return false;
-  }
-  if (noProxy === "*") {
-    return true;
-  }
-  const port = Number.parseInt(parsed.port, 10) || DEFAULT_PORTS2[parsed.protocol.split(":", 1)[0]] || 0;
-  const hostname = normalizeNoProxyHost(parsed.hostname.toLowerCase());
-  return noProxy.split(/[\s,]+/).some((entry) => {
-    if (!entry) {
-      return false;
-    }
-    let [entryHost, entryPort] = parseNoProxyEntry(entry);
-    entryHost = normalizeNoProxyHost(entryHost);
-    if (!entryHost) {
-      return false;
-    }
-    if (entryPort && entryPort !== port) {
-      return false;
-    }
-    if (entryHost.charAt(0) === "*") {
-      entryHost = entryHost.slice(1);
-    }
-    if (entryHost.charAt(0) === ".") {
-      return hostname.endsWith(entryHost);
-    }
-    return hostname === entryHost || isLoopback(hostname) && isLoopback(entryHost);
-  });
-}
-
-// node_modules/axios/lib/helpers/speedometer.js
-function speedometer(samplesCount, min) {
-  samplesCount = samplesCount || 10;
-  const bytes = new Array(samplesCount);
-  const timestamps = new Array(samplesCount);
-  let head = 0;
-  let tail = 0;
-  let firstSampleTS;
-  min = min !== void 0 ? min : 1e3;
-  return function push(chunkLength) {
-    const now = Date.now();
-    const startedAt = timestamps[tail];
-    if (!firstSampleTS) {
-      firstSampleTS = now;
-    }
-    bytes[head] = chunkLength;
-    timestamps[head] = now;
-    let i = tail;
-    let bytesCount = 0;
-    while (i !== head) {
-      bytesCount += bytes[i++];
-      i = i % samplesCount;
-    }
-    head = (head + 1) % samplesCount;
-    if (head === tail) {
-      tail = (tail + 1) % samplesCount;
-    }
-    if (now - firstSampleTS < min) {
-      return;
-    }
-    const passed = startedAt && now - startedAt;
-    return passed ? Math.round(bytesCount * 1e3 / passed) : void 0;
-  };
-}
-var speedometer_default = speedometer;
-
-// node_modules/axios/lib/helpers/throttle.js
-function throttle(fn, freq) {
-  let timestamp2 = 0;
-  let threshold = 1e3 / freq;
-  let lastArgs;
-  let timer;
-  const invoke = (args, now = Date.now()) => {
-    timestamp2 = now;
-    lastArgs = null;
-    if (timer) {
-      clearTimeout(timer);
-      timer = null;
-    }
-    fn(...args);
-  };
-  const throttled = (...args) => {
-    const now = Date.now();
-    const passed = now - timestamp2;
-    if (passed >= threshold) {
-      invoke(args, now);
-    } else {
-      lastArgs = args;
-      if (!timer) {
-        timer = setTimeout(() => {
-          timer = null;
-          invoke(lastArgs);
-        }, threshold - passed);
-      }
-    }
-  };
-  const flush = () => lastArgs && invoke(lastArgs);
-  return [throttled, flush];
-}
-var throttle_default = throttle;
-
-// node_modules/axios/lib/helpers/progressEventReducer.js
-var progressEventReducer = (listener, isDownloadStream, freq = 3) => {
-  let bytesNotified = 0;
-  const _speedometer = speedometer_default(50, 250);
-  return throttle_default((e) => {
-    const rawLoaded = e.loaded;
-    const total = e.lengthComputable ? e.total : void 0;
-    const loaded = total != null ? Math.min(rawLoaded, total) : rawLoaded;
-    const progressBytes = Math.max(0, loaded - bytesNotified);
-    const rate = _speedometer(progressBytes);
-    bytesNotified = Math.max(bytesNotified, loaded);
-    const data = {
-      loaded,
-      total,
-      progress: total ? loaded / total : void 0,
-      bytes: progressBytes,
-      rate: rate ? rate : void 0,
-      estimated: rate && total ? (total - loaded) / rate : void 0,
-      event: e,
-      lengthComputable: total != null,
-      [isDownloadStream ? "download" : "upload"]: true
-    };
-    listener(data);
-  }, freq);
-};
-var progressEventDecorator = (total, throttled) => {
-  const lengthComputable = total != null;
-  return [
-    (loaded) => throttled[0]({
-      lengthComputable,
-      total,
-      loaded
-    }),
-    throttled[1]
-  ];
-};
-var asyncDecorator = (fn) => (...args) => utils_default.asap(() => fn(...args));
-
-// node_modules/axios/lib/helpers/estimateDataURLDecodedBytes.js
-function estimateDataURLDecodedBytes(url2) {
-  if (!url2 || typeof url2 !== "string") return 0;
-  if (!url2.startsWith("data:")) return 0;
-  const comma = url2.indexOf(",");
-  if (comma < 0) return 0;
-  const meta = url2.slice(5, comma);
-  const body = url2.slice(comma + 1);
-  const isBase64 = /;base64/i.test(meta);
-  if (isBase64) {
-    let effectiveLen = body.length;
-    const len = body.length;
-    for (let i = 0; i < len; i++) {
-      if (body.charCodeAt(i) === 37 && i + 2 < len) {
-        const a = body.charCodeAt(i + 1);
-        const b = body.charCodeAt(i + 2);
-        const isHex = (a >= 48 && a <= 57 || a >= 65 && a <= 70 || a >= 97 && a <= 102) && (b >= 48 && b <= 57 || b >= 65 && b <= 70 || b >= 97 && b <= 102);
-        if (isHex) {
-          effectiveLen -= 2;
-          i += 2;
-        }
-      }
-    }
-    let pad = 0;
-    let idx = len - 1;
-    const tailIsPct3D = (j) => j >= 2 && body.charCodeAt(j - 2) === 37 && // '%'
-    body.charCodeAt(j - 1) === 51 && // '3'
-    (body.charCodeAt(j) === 68 || body.charCodeAt(j) === 100);
-    if (idx >= 0) {
-      if (body.charCodeAt(idx) === 61) {
-        pad++;
-        idx--;
-      } else if (tailIsPct3D(idx)) {
-        pad++;
-        idx -= 3;
-      }
-    }
-    if (pad === 1 && idx >= 0) {
-      if (body.charCodeAt(idx) === 61) {
-        pad++;
-      } else if (tailIsPct3D(idx)) {
-        pad++;
-      }
-    }
-    const groups = Math.floor(effectiveLen / 4);
-    const bytes2 = groups * 3 - (pad || 0);
-    return bytes2 > 0 ? bytes2 : 0;
-  }
-  if (typeof Buffer !== "undefined" && typeof Buffer.byteLength === "function") {
-    return Buffer.byteLength(body, "utf8");
-  }
-  let bytes = 0;
-  for (let i = 0, len = body.length; i < len; i++) {
-    const c = body.charCodeAt(i);
-    if (c < 128) {
-      bytes += 1;
-    } else if (c < 2048) {
-      bytes += 2;
-    } else if (c >= 55296 && c <= 56319 && i + 1 < len) {
-      const next = body.charCodeAt(i + 1);
-      if (next >= 56320 && next <= 57343) {
-        bytes += 4;
-        i++;
-      } else {
-        bytes += 3;
-      }
-    } else {
-      bytes += 3;
-    }
-  }
-  return bytes;
-}
-
-// node_modules/axios/lib/adapters/http.js
-var zlibOptions = {
-  flush: import_zlib.default.constants.Z_SYNC_FLUSH,
-  finishFlush: import_zlib.default.constants.Z_SYNC_FLUSH
-};
-var brotliOptions = {
-  flush: import_zlib.default.constants.BROTLI_OPERATION_FLUSH,
-  finishFlush: import_zlib.default.constants.BROTLI_OPERATION_FLUSH
-};
-var isBrotliSupported = utils_default.isFunction(import_zlib.default.createBrotliDecompress);
-var { http: httpFollow, https: httpsFollow } = import_follow_redirects.default;
-var isHttps = /https:?/;
-var FORM_DATA_CONTENT_HEADERS = ["content-type", "content-length"];
-function setFormDataHeaders(headers, formHeaders, policy) {
-  if (policy !== "content-only") {
-    headers.set(formHeaders);
-    return;
-  }
-  Object.entries(formHeaders).forEach(([key, val]) => {
-    if (FORM_DATA_CONTENT_HEADERS.includes(key.toLowerCase())) {
-      headers.set(key, val);
-    }
-  });
-}
-var kAxiosSocketListener = /* @__PURE__ */ Symbol("axios.http.socketListener");
-var kAxiosCurrentReq = /* @__PURE__ */ Symbol("axios.http.currentReq");
-var supportedProtocols = platform_default.protocols.map((protocol) => {
-  return protocol + ":";
-});
-var decodeURIComponentSafe = (value) => {
-  if (!utils_default.isString(value)) {
-    return value;
-  }
-  try {
-    return decodeURIComponent(value);
-  } catch (error) {
-    return value;
-  }
-};
-var flushOnFinish = (stream4, [throttled, flush]) => {
-  stream4.on("end", flush).on("error", flush);
-  return throttled;
-};
-var Http2Sessions = class {
-  constructor() {
-    this.sessions = /* @__PURE__ */ Object.create(null);
-  }
-  getSession(authority, options) {
-    options = Object.assign(
-      {
-        sessionTimeout: 1e3
-      },
-      options
-    );
-    let authoritySessions = this.sessions[authority];
-    if (authoritySessions) {
-      let len = authoritySessions.length;
-      for (let i = 0; i < len; i++) {
-        const [sessionHandle, sessionOptions] = authoritySessions[i];
-        if (!sessionHandle.destroyed && !sessionHandle.closed && import_util2.default.isDeepStrictEqual(sessionOptions, options)) {
-          return sessionHandle;
-        }
-      }
-    }
-    const session = import_http2.default.connect(authority, options);
-    let removed;
-    const removeSession = () => {
-      if (removed) {
-        return;
-      }
-      removed = true;
-      let entries = authoritySessions, len = entries.length, i = len;
-      while (i--) {
-        if (entries[i][0] === session) {
-          if (len === 1) {
-            delete this.sessions[authority];
-          } else {
-            entries.splice(i, 1);
-          }
-          if (!session.closed) {
-            session.close();
-          }
-          return;
-        }
-      }
-    };
-    const originalRequestFn = session.request;
-    const { sessionTimeout } = options;
-    if (sessionTimeout != null) {
-      let timer;
-      let streamsCount = 0;
-      session.request = function() {
-        const stream4 = originalRequestFn.apply(this, arguments);
-        streamsCount++;
-        if (timer) {
-          clearTimeout(timer);
-          timer = null;
-        }
-        stream4.once("close", () => {
-          if (!--streamsCount) {
-            timer = setTimeout(() => {
-              timer = null;
-              removeSession();
-            }, sessionTimeout);
-          }
-        });
-        return stream4;
-      };
-    }
-    session.once("close", removeSession);
-    let entry = [session, options];
-    authoritySessions ? authoritySessions.push(entry) : authoritySessions = this.sessions[authority] = [entry];
-    return session;
-  }
-};
-var http2Sessions = new Http2Sessions();
-function dispatchBeforeRedirect(options, responseDetails, requestDetails) {
-  if (options.beforeRedirects.proxy) {
-    options.beforeRedirects.proxy(options);
-  }
-  if (options.beforeRedirects.config) {
-    options.beforeRedirects.config(options, responseDetails, requestDetails);
-  }
-}
-function setProxy(options, configProxy, location, isRedirect) {
-  let proxy = configProxy;
-  if (!proxy && proxy !== false) {
-    const proxyUrl = getProxyForUrl(location);
-    if (proxyUrl) {
-      if (!shouldBypassProxy(location)) {
-        proxy = new URL(proxyUrl);
-      }
-    }
-  }
-  if (isRedirect && options.headers) {
-    for (const name of Object.keys(options.headers)) {
-      if (name.toLowerCase() === "proxy-authorization") {
-        delete options.headers[name];
-      }
-    }
-  }
-  if (proxy) {
-    const isProxyURL = proxy instanceof URL;
-    const readProxyField = (key) => isProxyURL || utils_default.hasOwnProp(proxy, key) ? proxy[key] : void 0;
-    const proxyUsername = readProxyField("username");
-    const proxyPassword = readProxyField("password");
-    let proxyAuth = utils_default.hasOwnProp(proxy, "auth") ? proxy.auth : void 0;
-    if (proxyUsername) {
-      proxyAuth = (proxyUsername || "") + ":" + (proxyPassword || "");
-    }
-    if (proxyAuth) {
-      const authIsObject = typeof proxyAuth === "object";
-      const authUsername = authIsObject && utils_default.hasOwnProp(proxyAuth, "username") ? proxyAuth.username : void 0;
-      const authPassword = authIsObject && utils_default.hasOwnProp(proxyAuth, "password") ? proxyAuth.password : void 0;
-      const validProxyAuth = Boolean(authUsername || authPassword);
-      if (validProxyAuth) {
-        proxyAuth = (authUsername || "") + ":" + (authPassword || "");
-      } else if (authIsObject) {
-        throw new AxiosError_default("Invalid proxy authorization", AxiosError_default.ERR_BAD_OPTION, { proxy });
-      }
-      const base64 = Buffer.from(proxyAuth, "utf8").toString("base64");
-      options.headers["Proxy-Authorization"] = "Basic " + base64;
-    }
-    let hasUserHostHeader = false;
-    for (const name of Object.keys(options.headers)) {
-      if (name.toLowerCase() === "host") {
-        hasUserHostHeader = true;
-        break;
-      }
-    }
-    if (!hasUserHostHeader) {
-      options.headers.host = options.hostname + (options.port ? ":" + options.port : "");
-    }
-    const proxyHost = readProxyField("hostname") || readProxyField("host");
-    options.hostname = proxyHost;
-    options.host = proxyHost;
-    options.port = readProxyField("port");
-    options.path = location;
-    const proxyProtocol = readProxyField("protocol");
-    if (proxyProtocol) {
-      options.protocol = proxyProtocol.includes(":") ? proxyProtocol : `${proxyProtocol}:`;
-    }
-  }
-  options.beforeRedirects.proxy = function beforeRedirect(redirectOptions) {
-    setProxy(redirectOptions, configProxy, redirectOptions.href, true);
-  };
-}
-var isHttpAdapterSupported = typeof process !== "undefined" && utils_default.kindOf(process) === "process";
-var wrapAsync = (asyncExecutor) => {
-  return new Promise((resolve4, reject) => {
-    let onDone;
-    let isDone;
-    const done = (value, isRejected) => {
-      if (isDone) return;
-      isDone = true;
-      onDone && onDone(value, isRejected);
-    };
-    const _resolve = (value) => {
-      done(value);
-      resolve4(value);
-    };
-    const _reject = (reason) => {
-      done(reason, true);
-      reject(reason);
-    };
-    asyncExecutor(_resolve, _reject, (onDoneHandler) => onDone = onDoneHandler).catch(_reject);
-  });
-};
-var resolveFamily = ({ address, family }) => {
-  if (!utils_default.isString(address)) {
-    throw TypeError("address must be a string");
-  }
   return {
-    address,
-    family: family || (address.indexOf(".") < 0 ? 6 : 4)
+    name: logPolicyName,
+    async sendRequest(request2, next) {
+      if (!logger4.enabled) {
+        return next(request2);
+      }
+      logger4(`Request: ${sanitizer.sanitize(request2)}`);
+      const response = await next(request2);
+      logger4(`Response status code: ${response.status}`);
+      logger4(`Headers: ${sanitizer.sanitize(response.headers)}`);
+      return response;
+    }
   };
-};
-var buildAddressEntry = (address, family) => resolveFamily(utils_default.isObject(address) ? address : { address, family });
-var http2Transport = {
-  request(options, cb) {
-    const authority = options.protocol + "//" + options.hostname + ":" + (options.port || (options.protocol === "https:" ? 443 : 80));
-    const { http2Options, headers } = options;
-    const session = http2Sessions.getSession(authority, http2Options);
-    const { HTTP2_HEADER_SCHEME, HTTP2_HEADER_METHOD, HTTP2_HEADER_PATH, HTTP2_HEADER_STATUS } = import_http2.default.constants;
-    const http2Headers = {
-      [HTTP2_HEADER_SCHEME]: options.protocol.replace(":", ""),
-      [HTTP2_HEADER_METHOD]: options.method,
-      [HTTP2_HEADER_PATH]: options.path
-    };
-    utils_default.forEach(headers, (header, name) => {
-      name.charAt(0) !== ":" && (http2Headers[name] = header);
-    });
-    const req = session.request(http2Headers);
-    req.once("response", (responseHeaders) => {
-      const response = req;
-      responseHeaders = Object.assign({}, responseHeaders);
-      const status = responseHeaders[HTTP2_HEADER_STATUS];
-      delete responseHeaders[HTTP2_HEADER_STATUS];
-      response.headers = responseHeaders;
-      response.statusCode = +status;
-      cb(response);
-    });
-    return req;
-  }
-};
-var http_default = isHttpAdapterSupported && function httpAdapter(config) {
-  return wrapAsync(async function dispatchHttpRequest(resolve4, reject, onDone) {
-    const own2 = (key) => utils_default.hasOwnProp(config, key) ? config[key] : void 0;
-    let data = own2("data");
-    let lookup = own2("lookup");
-    let family = own2("family");
-    let httpVersion = own2("httpVersion");
-    if (httpVersion === void 0) httpVersion = 1;
-    let http2Options = own2("http2Options");
-    const responseType = own2("responseType");
-    const responseEncoding = own2("responseEncoding");
-    const method = config.method.toUpperCase();
-    let isDone;
-    let rejected = false;
-    let req;
-    let connectPhaseTimer;
-    httpVersion = +httpVersion;
-    if (Number.isNaN(httpVersion)) {
-      throw TypeError(`Invalid protocol version: '${config.httpVersion}' is not a number`);
-    }
-    if (httpVersion !== 1 && httpVersion !== 2) {
-      throw TypeError(`Unsupported protocol version '${httpVersion}'`);
-    }
-    const isHttp2 = httpVersion === 2;
-    if (lookup) {
-      const _lookup = callbackify_default(lookup, (value) => utils_default.isArray(value) ? value : [value]);
-      lookup = (hostname, opt, cb) => {
-        _lookup(hostname, opt, (err, arg0, arg1) => {
-          if (err) {
-            return cb(err);
-          }
-          const addresses = utils_default.isArray(arg0) ? arg0.map((addr) => buildAddressEntry(addr)) : [buildAddressEntry(arg0, arg1)];
-          opt.all ? cb(err, addresses) : cb(err, addresses[0].address, addresses[0].family);
-        });
-      };
-    }
-    const abortEmitter = new import_events.EventEmitter();
-    function abort(reason) {
-      try {
-        abortEmitter.emit(
-          "abort",
-          !reason || reason.type ? new CanceledError_default(null, config, req) : reason
-        );
-      } catch (err) {
-        console.warn("emit error", err);
-      }
-    }
-    function clearConnectPhaseTimer() {
-      if (connectPhaseTimer) {
-        clearTimeout(connectPhaseTimer);
-        connectPhaseTimer = null;
-      }
-    }
-    function createTimeoutError() {
-      let timeoutErrorMessage = config.timeout ? "timeout of " + config.timeout + "ms exceeded" : "timeout exceeded";
-      const transitional2 = config.transitional || transitional_default;
-      if (config.timeoutErrorMessage) {
-        timeoutErrorMessage = config.timeoutErrorMessage;
-      }
-      return new AxiosError_default(
-        timeoutErrorMessage,
-        transitional2.clarifyTimeoutError ? AxiosError_default.ETIMEDOUT : AxiosError_default.ECONNABORTED,
-        config,
-        req
-      );
-    }
-    abortEmitter.once("abort", reject);
-    const onFinished = () => {
-      clearConnectPhaseTimer();
-      if (config.cancelToken) {
-        config.cancelToken.unsubscribe(abort);
-      }
-      if (config.signal) {
-        config.signal.removeEventListener("abort", abort);
-      }
-      abortEmitter.removeAllListeners();
-    };
-    if (config.cancelToken || config.signal) {
-      config.cancelToken && config.cancelToken.subscribe(abort);
-      if (config.signal) {
-        config.signal.aborted ? abort() : config.signal.addEventListener("abort", abort);
-      }
-    }
-    onDone((response, isRejected) => {
-      isDone = true;
-      clearConnectPhaseTimer();
-      if (isRejected) {
-        rejected = true;
-        onFinished();
-        return;
-      }
-      const { data: data2 } = response;
-      if (data2 instanceof import_stream4.default.Readable || data2 instanceof import_stream4.default.Duplex) {
-        const offListeners = import_stream4.default.finished(data2, () => {
-          offListeners();
-          onFinished();
-        });
-      } else {
-        onFinished();
-      }
-    });
-    const fullPath = buildFullPath(config.baseURL, config.url, config.allowAbsoluteUrls);
-    const parsed = new URL(fullPath, platform_default.hasBrowserEnv ? platform_default.origin : void 0);
-    const protocol = parsed.protocol || supportedProtocols[0];
-    if (protocol === "data:") {
-      if (config.maxContentLength > -1) {
-        const dataUrl = String(config.url || fullPath || "");
-        const estimated = estimateDataURLDecodedBytes(dataUrl);
-        if (estimated > config.maxContentLength) {
-          return reject(
-            new AxiosError_default(
-              "maxContentLength size of " + config.maxContentLength + " exceeded",
-              AxiosError_default.ERR_BAD_RESPONSE,
-              config
-            )
-          );
-        }
-      }
-      let convertedData;
-      if (method !== "GET") {
-        return settle(resolve4, reject, {
-          status: 405,
-          statusText: "method not allowed",
-          headers: {},
-          config
-        });
-      }
-      try {
-        convertedData = fromDataURI(config.url, responseType === "blob", {
-          Blob: config.env && config.env.Blob
-        });
-      } catch (err) {
-        throw AxiosError_default.from(err, AxiosError_default.ERR_BAD_REQUEST, config);
-      }
-      if (responseType === "text") {
-        convertedData = convertedData.toString(responseEncoding);
-        if (!responseEncoding || responseEncoding === "utf8") {
-          convertedData = utils_default.stripBOM(convertedData);
-        }
-      } else if (responseType === "stream") {
-        convertedData = import_stream4.default.Readable.from(convertedData);
-      }
-      return settle(resolve4, reject, {
-        data: convertedData,
-        status: 200,
-        statusText: "OK",
-        headers: new AxiosHeaders_default(),
-        config
-      });
-    }
-    if (supportedProtocols.indexOf(protocol) === -1) {
-      return reject(
-        new AxiosError_default("Unsupported protocol " + protocol, AxiosError_default.ERR_BAD_REQUEST, config)
-      );
-    }
-    const headers = AxiosHeaders_default.from(config.headers).normalize();
-    headers.set("User-Agent", "axios/" + VERSION, false);
-    const { onUploadProgress, onDownloadProgress } = config;
-    const maxRate = config.maxRate;
-    let maxUploadRate = void 0;
-    let maxDownloadRate = void 0;
-    if (utils_default.isSpecCompliantForm(data)) {
-      const userBoundary = headers.getContentType(/boundary=([-_\w\d]{10,70})/i);
-      data = formDataToStream_default(
-        data,
-        (formHeaders) => {
-          headers.set(formHeaders);
-        },
-        {
-          tag: `axios-${VERSION}-boundary`,
-          boundary: userBoundary && userBoundary[1] || void 0
-        }
-      );
-    } else if (utils_default.isFormData(data) && utils_default.isFunction(data.getHeaders) && data.getHeaders !== Object.prototype.getHeaders) {
-      setFormDataHeaders(headers, data.getHeaders(), own2("formDataHeaderPolicy"));
-      if (!headers.hasContentLength()) {
-        try {
-          const knownLength = await import_util2.default.promisify(data.getLength).call(data);
-          Number.isFinite(knownLength) && knownLength >= 0 && headers.setContentLength(knownLength);
-        } catch (e) {
-        }
-      }
-    } else if (utils_default.isBlob(data) || utils_default.isFile(data)) {
-      data.size && headers.setContentType(data.type || "application/octet-stream");
-      headers.setContentLength(data.size || 0);
-      data = import_stream4.default.Readable.from(readBlob_default(data));
-    } else if (data && !utils_default.isStream(data)) {
-      if (Buffer.isBuffer(data)) {
-      } else if (utils_default.isArrayBuffer(data)) {
-        data = Buffer.from(new Uint8Array(data));
-      } else if (utils_default.isString(data)) {
-        data = Buffer.from(data, "utf-8");
-      } else {
-        return reject(
-          new AxiosError_default(
-            "Data after transformation must be a string, an ArrayBuffer, a Buffer, or a Stream",
-            AxiosError_default.ERR_BAD_REQUEST,
-            config
-          )
-        );
-      }
-      headers.setContentLength(data.length, false);
-      if (config.maxBodyLength > -1 && data.length > config.maxBodyLength) {
-        return reject(
-          new AxiosError_default(
-            "Request body larger than maxBodyLength limit",
-            AxiosError_default.ERR_BAD_REQUEST,
-            config
-          )
-        );
-      }
-    }
-    const contentLength = utils_default.toFiniteNumber(headers.getContentLength());
-    if (utils_default.isArray(maxRate)) {
-      maxUploadRate = maxRate[0];
-      maxDownloadRate = maxRate[1];
-    } else {
-      maxUploadRate = maxDownloadRate = maxRate;
-    }
-    if (data && (onUploadProgress || maxUploadRate)) {
-      if (!utils_default.isStream(data)) {
-        data = import_stream4.default.Readable.from(data, { objectMode: false });
-      }
-      data = import_stream4.default.pipeline(
-        [
-          data,
-          new AxiosTransformStream_default({
-            maxRate: utils_default.toFiniteNumber(maxUploadRate)
-          })
-        ],
-        utils_default.noop
-      );
-      onUploadProgress && data.on(
-        "progress",
-        flushOnFinish(
-          data,
-          progressEventDecorator(
-            contentLength,
-            progressEventReducer(asyncDecorator(onUploadProgress), false, 3)
-          )
-        )
-      );
-    }
-    let auth2 = void 0;
-    const configAuth = own2("auth");
-    if (configAuth) {
-      const username = configAuth.username || "";
-      const password = configAuth.password || "";
-      auth2 = username + ":" + password;
-    }
-    if (!auth2 && parsed.username) {
-      const urlUsername = decodeURIComponentSafe(parsed.username);
-      const urlPassword = decodeURIComponentSafe(parsed.password);
-      auth2 = urlUsername + ":" + urlPassword;
-    }
-    auth2 && headers.delete("authorization");
-    let path2;
-    try {
-      path2 = buildURL(
-        parsed.pathname + parsed.search,
-        config.params,
-        config.paramsSerializer
-      ).replace(/^\?/, "");
-    } catch (err) {
-      const customErr = new Error(err.message);
-      customErr.config = config;
-      customErr.url = config.url;
-      customErr.exists = true;
-      return reject(customErr);
-    }
-    headers.set(
-      "Accept-Encoding",
-      "gzip, compress, deflate" + (isBrotliSupported ? ", br" : ""),
-      false
-    );
-    const options = Object.assign(/* @__PURE__ */ Object.create(null), {
-      path: path2,
-      method,
-      headers: headers.toJSON(),
-      agents: { http: config.httpAgent, https: config.httpsAgent },
-      auth: auth2,
-      protocol,
-      family,
-      beforeRedirect: dispatchBeforeRedirect,
-      beforeRedirects: /* @__PURE__ */ Object.create(null),
-      http2Options
-    });
-    !utils_default.isUndefined(lookup) && (options.lookup = lookup);
-    if (config.socketPath) {
-      if (typeof config.socketPath !== "string") {
-        return reject(
-          new AxiosError_default("socketPath must be a string", AxiosError_default.ERR_BAD_OPTION_VALUE, config)
-        );
-      }
-      if (config.allowedSocketPaths != null) {
-        const allowed = Array.isArray(config.allowedSocketPaths) ? config.allowedSocketPaths : [config.allowedSocketPaths];
-        const resolvedSocket = (0, import_path.resolve)(config.socketPath);
-        const isAllowed = allowed.some(
-          (entry) => typeof entry === "string" && (0, import_path.resolve)(entry) === resolvedSocket
-        );
-        if (!isAllowed) {
-          return reject(
-            new AxiosError_default(
-              `socketPath "${config.socketPath}" is not permitted by allowedSocketPaths`,
-              AxiosError_default.ERR_BAD_OPTION_VALUE,
-              config
-            )
-          );
-        }
-      }
-      options.socketPath = config.socketPath;
-    } else {
-      options.hostname = parsed.hostname.startsWith("[") ? parsed.hostname.slice(1, -1) : parsed.hostname;
-      options.port = parsed.port;
-      setProxy(
-        options,
-        config.proxy,
-        protocol + "//" + parsed.hostname + (parsed.port ? ":" + parsed.port : "") + options.path
-      );
-    }
-    let transport;
-    let isNativeTransport = false;
-    const isHttpsRequest = isHttps.test(options.protocol);
-    options.agent = isHttpsRequest ? config.httpsAgent : config.httpAgent;
-    if (isHttp2) {
-      transport = http2Transport;
-    } else {
-      const configTransport = own2("transport");
-      if (configTransport) {
-        transport = configTransport;
-      } else if (config.maxRedirects === 0) {
-        transport = isHttpsRequest ? import_https.default : import_http.default;
-        isNativeTransport = true;
-      } else {
-        if (config.maxRedirects) {
-          options.maxRedirects = config.maxRedirects;
-        }
-        const configBeforeRedirect = own2("beforeRedirect");
-        if (configBeforeRedirect) {
-          options.beforeRedirects.config = configBeforeRedirect;
-        }
-        transport = isHttpsRequest ? httpsFollow : httpFollow;
-      }
-    }
-    if (config.maxBodyLength > -1) {
-      options.maxBodyLength = config.maxBodyLength;
-    } else {
-      options.maxBodyLength = Infinity;
-    }
-    options.insecureHTTPParser = Boolean(own2("insecureHTTPParser"));
-    req = transport.request(options, function handleResponse(res) {
-      clearConnectPhaseTimer();
-      if (req.destroyed) return;
-      const streams = [res];
-      const responseLength = utils_default.toFiniteNumber(res.headers["content-length"]);
-      if (onDownloadProgress || maxDownloadRate) {
-        const transformStream = new AxiosTransformStream_default({
-          maxRate: utils_default.toFiniteNumber(maxDownloadRate)
-        });
-        onDownloadProgress && transformStream.on(
-          "progress",
-          flushOnFinish(
-            transformStream,
-            progressEventDecorator(
-              responseLength,
-              progressEventReducer(asyncDecorator(onDownloadProgress), true, 3)
-            )
-          )
-        );
-        streams.push(transformStream);
-      }
-      let responseStream = res;
-      const lastRequest = res.req || req;
-      if (config.decompress !== false && res.headers["content-encoding"]) {
-        if (method === "HEAD" || res.statusCode === 204) {
-          delete res.headers["content-encoding"];
-        }
-        switch ((res.headers["content-encoding"] || "").toLowerCase()) {
-          /*eslint default-case:0*/
-          case "gzip":
-          case "x-gzip":
-          case "compress":
-          case "x-compress":
-            streams.push(import_zlib.default.createUnzip(zlibOptions));
-            delete res.headers["content-encoding"];
-            break;
-          case "deflate":
-            streams.push(new ZlibHeaderTransformStream_default());
-            streams.push(import_zlib.default.createUnzip(zlibOptions));
-            delete res.headers["content-encoding"];
-            break;
-          case "br":
-            if (isBrotliSupported) {
-              streams.push(import_zlib.default.createBrotliDecompress(brotliOptions));
-              delete res.headers["content-encoding"];
-            }
-        }
-      }
-      responseStream = streams.length > 1 ? import_stream4.default.pipeline(streams, utils_default.noop) : streams[0];
-      const response = {
-        status: res.statusCode,
-        statusText: res.statusMessage,
-        headers: new AxiosHeaders_default(res.headers),
-        config,
-        request: lastRequest
-      };
-      if (responseType === "stream") {
-        if (config.maxContentLength > -1) {
-          const limit = config.maxContentLength;
-          const source = responseStream;
-          async function* enforceMaxContentLength() {
-            let totalResponseBytes = 0;
-            for await (const chunk2 of source) {
-              totalResponseBytes += chunk2.length;
-              if (totalResponseBytes > limit) {
-                throw new AxiosError_default(
-                  "maxContentLength size of " + limit + " exceeded",
-                  AxiosError_default.ERR_BAD_RESPONSE,
-                  config,
-                  lastRequest
-                );
-              }
-              yield chunk2;
-            }
-          }
-          responseStream = import_stream4.default.Readable.from(enforceMaxContentLength(), {
-            objectMode: false
-          });
-        }
-        response.data = responseStream;
-        settle(resolve4, reject, response);
-      } else {
-        const responseBuffer = [];
-        let totalResponseBytes = 0;
-        responseStream.on("data", function handleStreamData(chunk2) {
-          responseBuffer.push(chunk2);
-          totalResponseBytes += chunk2.length;
-          if (config.maxContentLength > -1 && totalResponseBytes > config.maxContentLength) {
-            rejected = true;
-            responseStream.destroy();
-            abort(
-              new AxiosError_default(
-                "maxContentLength size of " + config.maxContentLength + " exceeded",
-                AxiosError_default.ERR_BAD_RESPONSE,
-                config,
-                lastRequest
-              )
-            );
-          }
-        });
-        responseStream.on("aborted", function handlerStreamAborted() {
-          if (rejected) {
-            return;
-          }
-          const err = new AxiosError_default(
-            "stream has been aborted",
-            AxiosError_default.ERR_BAD_RESPONSE,
-            config,
-            lastRequest,
-            response
-          );
-          responseStream.destroy(err);
-          reject(err);
-        });
-        responseStream.on("error", function handleStreamError(err) {
-          if (rejected) return;
-          reject(AxiosError_default.from(err, null, config, lastRequest, response));
-        });
-        responseStream.on("end", function handleStreamEnd() {
-          try {
-            let responseData = responseBuffer.length === 1 ? responseBuffer[0] : Buffer.concat(responseBuffer);
-            if (responseType !== "arraybuffer") {
-              responseData = responseData.toString(responseEncoding);
-              if (!responseEncoding || responseEncoding === "utf8") {
-                responseData = utils_default.stripBOM(responseData);
-              }
-            }
-            response.data = responseData;
-          } catch (err) {
-            return reject(AxiosError_default.from(err, null, config, response.request, response));
-          }
-          settle(resolve4, reject, response);
-        });
-      }
-      abortEmitter.once("abort", (err) => {
-        if (!responseStream.destroyed) {
-          responseStream.emit("error", err);
-          responseStream.destroy();
-        }
-      });
-    });
-    abortEmitter.once("abort", (err) => {
-      if (req.close) {
-        req.close();
-      } else {
-        req.destroy(err);
-      }
-    });
-    req.on("error", function handleRequestError(err) {
-      reject(AxiosError_default.from(err, null, config, req));
-    });
-    const boundSockets = /* @__PURE__ */ new Set();
-    req.on("socket", function handleRequestSocket(socket) {
-      socket.setKeepAlive(true, 1e3 * 60);
-      if (!socket[kAxiosSocketListener]) {
-        socket.on("error", function handleSocketError(err) {
-          const current = socket[kAxiosCurrentReq];
-          if (current && !current.destroyed) {
-            current.destroy(err);
-          }
-        });
-        socket[kAxiosSocketListener] = true;
-      }
-      socket[kAxiosCurrentReq] = req;
-      boundSockets.add(socket);
-    });
-    req.once("close", function clearCurrentReq() {
-      clearConnectPhaseTimer();
-      for (const socket of boundSockets) {
-        if (socket[kAxiosCurrentReq] === req) {
-          socket[kAxiosCurrentReq] = null;
-        }
-      }
-      boundSockets.clear();
-    });
-    if (config.timeout) {
-      const timeout = parseInt(config.timeout, 10);
-      if (Number.isNaN(timeout)) {
-        abort(
-          new AxiosError_default(
-            "error trying to parse `config.timeout` to int",
-            AxiosError_default.ERR_BAD_OPTION_VALUE,
-            config,
-            req
-          )
-        );
-        return;
-      }
-      const handleTimeout = function handleTimeout2() {
-        if (isDone) return;
-        abort(createTimeoutError());
-      };
-      if (isNativeTransport && timeout > 0) {
-        connectPhaseTimer = setTimeout(handleTimeout, timeout);
-      }
-      req.setTimeout(timeout, handleTimeout);
-    } else {
-      req.setTimeout(0);
-    }
-    if (utils_default.isStream(data)) {
-      let ended = false;
-      let errored = false;
-      data.on("end", () => {
-        ended = true;
-      });
-      data.once("error", (err) => {
-        errored = true;
-        req.destroy(err);
-      });
-      data.on("close", () => {
-        if (!ended && !errored) {
-          abort(new CanceledError_default("Request stream has been aborted", config, req));
-        }
-      });
-      let uploadStream = data;
-      if (config.maxBodyLength > -1 && config.maxRedirects === 0) {
-        const limit = config.maxBodyLength;
-        let bytesSent = 0;
-        uploadStream = import_stream4.default.pipeline(
-          [
-            data,
-            new import_stream4.default.Transform({
-              transform(chunk2, _enc, cb) {
-                bytesSent += chunk2.length;
-                if (bytesSent > limit) {
-                  return cb(
-                    new AxiosError_default(
-                      "Request body larger than maxBodyLength limit",
-                      AxiosError_default.ERR_BAD_REQUEST,
-                      config,
-                      req
-                    )
-                  );
-                }
-                cb(null, chunk2);
-              }
-            })
-          ],
-          utils_default.noop
-        );
-        uploadStream.on("error", (err) => {
-          if (!req.destroyed) req.destroy(err);
-        });
-      }
-      uploadStream.pipe(req);
-    } else {
-      data && req.write(data);
-      req.end();
-    }
-  });
-};
-
-// node_modules/axios/lib/helpers/isURLSameOrigin.js
-var isURLSameOrigin_default = platform_default.hasStandardBrowserEnv ? /* @__PURE__ */ ((origin2, isMSIE) => (url2) => {
-  url2 = new URL(url2, platform_default.origin);
-  return origin2.protocol === url2.protocol && origin2.host === url2.host && (isMSIE || origin2.port === url2.port);
-})(
-  new URL(platform_default.origin),
-  platform_default.navigator && /(msie|trident)/i.test(platform_default.navigator.userAgent)
-) : () => true;
-
-// node_modules/axios/lib/helpers/cookies.js
-var cookies_default = platform_default.hasStandardBrowserEnv ? (
-  // Standard browser envs support document.cookie
-  {
-    write(name, value, expires, path2, domain, secure, sameSite) {
-      if (typeof document === "undefined") return;
-      const cookie = [`${name}=${encodeURIComponent(value)}`];
-      if (utils_default.isNumber(expires)) {
-        cookie.push(`expires=${new Date(expires).toUTCString()}`);
-      }
-      if (utils_default.isString(path2)) {
-        cookie.push(`path=${path2}`);
-      }
-      if (utils_default.isString(domain)) {
-        cookie.push(`domain=${domain}`);
-      }
-      if (secure === true) {
-        cookie.push("secure");
-      }
-      if (utils_default.isString(sameSite)) {
-        cookie.push(`SameSite=${sameSite}`);
-      }
-      document.cookie = cookie.join("; ");
-    },
-    read(name) {
-      if (typeof document === "undefined") return null;
-      const cookies = document.cookie.split(";");
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].replace(/^\s+/, "");
-        const eq = cookie.indexOf("=");
-        if (eq !== -1 && cookie.slice(0, eq) === name) {
-          return decodeURIComponent(cookie.slice(eq + 1));
-        }
-      }
-      return null;
-    },
-    remove(name) {
-      this.write(name, "", Date.now() - 864e5, "/");
-    }
-  }
-) : (
-  // Non-standard browser env (web workers, react-native) lack needed support.
-  {
-    write() {
-    },
-    read() {
-      return null;
-    },
-    remove() {
-    }
-  }
-);
-
-// node_modules/axios/lib/core/mergeConfig.js
-var headersToObject = (thing) => thing instanceof AxiosHeaders_default ? { ...thing } : thing;
-function mergeConfig(config1, config2) {
-  config2 = config2 || {};
-  const config = /* @__PURE__ */ Object.create(null);
-  Object.defineProperty(config, "hasOwnProperty", {
-    // Null-proto descriptor so a polluted Object.prototype.get cannot turn
-    // this data descriptor into an accessor descriptor on the way in.
-    __proto__: null,
-    value: Object.prototype.hasOwnProperty,
-    enumerable: false,
-    writable: true,
-    configurable: true
-  });
-  function getMergedValue(target, source, prop, caseless) {
-    if (utils_default.isPlainObject(target) && utils_default.isPlainObject(source)) {
-      return utils_default.merge.call({ caseless }, target, source);
-    } else if (utils_default.isPlainObject(source)) {
-      return utils_default.merge({}, source);
-    } else if (utils_default.isArray(source)) {
-      return source.slice();
-    }
-    return source;
-  }
-  function mergeDeepProperties(a, b, prop, caseless) {
-    if (!utils_default.isUndefined(b)) {
-      return getMergedValue(a, b, prop, caseless);
-    } else if (!utils_default.isUndefined(a)) {
-      return getMergedValue(void 0, a, prop, caseless);
-    }
-  }
-  function valueFromConfig2(a, b) {
-    if (!utils_default.isUndefined(b)) {
-      return getMergedValue(void 0, b);
-    }
-  }
-  function defaultToConfig2(a, b) {
-    if (!utils_default.isUndefined(b)) {
-      return getMergedValue(void 0, b);
-    } else if (!utils_default.isUndefined(a)) {
-      return getMergedValue(void 0, a);
-    }
-  }
-  function mergeDirectKeys(a, b, prop) {
-    if (utils_default.hasOwnProp(config2, prop)) {
-      return getMergedValue(a, b);
-    } else if (utils_default.hasOwnProp(config1, prop)) {
-      return getMergedValue(void 0, a);
-    }
-  }
-  const mergeMap = {
-    url: valueFromConfig2,
-    method: valueFromConfig2,
-    data: valueFromConfig2,
-    baseURL: defaultToConfig2,
-    transformRequest: defaultToConfig2,
-    transformResponse: defaultToConfig2,
-    paramsSerializer: defaultToConfig2,
-    timeout: defaultToConfig2,
-    timeoutMessage: defaultToConfig2,
-    withCredentials: defaultToConfig2,
-    withXSRFToken: defaultToConfig2,
-    adapter: defaultToConfig2,
-    responseType: defaultToConfig2,
-    xsrfCookieName: defaultToConfig2,
-    xsrfHeaderName: defaultToConfig2,
-    onUploadProgress: defaultToConfig2,
-    onDownloadProgress: defaultToConfig2,
-    decompress: defaultToConfig2,
-    maxContentLength: defaultToConfig2,
-    maxBodyLength: defaultToConfig2,
-    beforeRedirect: defaultToConfig2,
-    transport: defaultToConfig2,
-    httpAgent: defaultToConfig2,
-    httpsAgent: defaultToConfig2,
-    cancelToken: defaultToConfig2,
-    socketPath: defaultToConfig2,
-    allowedSocketPaths: defaultToConfig2,
-    responseEncoding: defaultToConfig2,
-    validateStatus: mergeDirectKeys,
-    headers: (a, b, prop) => mergeDeepProperties(headersToObject(a), headersToObject(b), prop, true)
-  };
-  utils_default.forEach(Object.keys({ ...config1, ...config2 }), function computeConfigValue(prop) {
-    if (prop === "__proto__" || prop === "constructor" || prop === "prototype") return;
-    const merge4 = utils_default.hasOwnProp(mergeMap, prop) ? mergeMap[prop] : mergeDeepProperties;
-    const a = utils_default.hasOwnProp(config1, prop) ? config1[prop] : void 0;
-    const b = utils_default.hasOwnProp(config2, prop) ? config2[prop] : void 0;
-    const configValue = merge4(a, b, prop);
-    utils_default.isUndefined(configValue) && merge4 !== mergeDirectKeys || (config[prop] = configValue);
-  });
-  return config;
 }
 
-// node_modules/axios/lib/helpers/resolveConfig.js
-var FORM_DATA_CONTENT_HEADERS2 = ["content-type", "content-length"];
-function setFormDataHeaders2(headers, formHeaders, policy) {
-  if (policy !== "content-only") {
-    headers.set(formHeaders);
-    return;
+// node_modules/@typespec/ts-http-runtime/dist/esm/policies/redirectPolicy.js
+var redirectPolicyName = "redirectPolicy";
+var allowedRedirect = ["GET", "HEAD"];
+function redirectPolicy(options = {}) {
+  const { maxRetries = 20, allowCrossOriginRedirects = false } = options;
+  return {
+    name: redirectPolicyName,
+    async sendRequest(request2, next) {
+      const response = await next(request2);
+      return handleRedirect(next, response, maxRetries, allowCrossOriginRedirects);
+    }
+  };
+}
+async function handleRedirect(next, response, maxRetries, allowCrossOriginRedirects, currentRetries = 0) {
+  const { request: request2, status, headers } = response;
+  const locationHeader = headers.get("location");
+  if (locationHeader && (status === 300 || status === 301 && allowedRedirect.includes(request2.method) || status === 302 && allowedRedirect.includes(request2.method) || status === 303 && request2.method === "POST" || status === 307) && currentRetries < maxRetries) {
+    const url = new URL(locationHeader, request2.url);
+    if (!allowCrossOriginRedirects) {
+      const originalUrl = new URL(request2.url);
+      if (url.origin !== originalUrl.origin) {
+        logger.verbose(`Skipping cross-origin redirect from ${originalUrl.origin} to ${url.origin}.`);
+        return response;
+      }
+    }
+    request2.url = url.toString();
+    if (status === 303) {
+      request2.method = "GET";
+      request2.headers.delete("Content-Length");
+      delete request2.body;
+    }
+    request2.headers.delete("Authorization");
+    const res = await next(request2);
+    return handleRedirect(next, res, maxRetries, allowCrossOriginRedirects, currentRetries + 1);
   }
-  Object.entries(formHeaders).forEach(([key, val]) => {
-    if (FORM_DATA_CONTENT_HEADERS2.includes(key.toLowerCase())) {
-      headers.set(key, val);
+  return response;
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/util/userAgentPlatform.js
+var import_node_os2 = __toESM(require("node:os"), 1);
+var import_node_process2 = __toESM(require("node:process"), 1);
+function getHeaderName() {
+  return "User-Agent";
+}
+async function setPlatformSpecificData(map2) {
+  if (import_node_process2.default && import_node_process2.default.versions) {
+    const osInfo = `${import_node_os2.default.type()} ${import_node_os2.default.release()}; ${import_node_os2.default.arch()}`;
+    if (import_node_process2.default.versions.bun) {
+      map2.set("Bun", `${import_node_process2.default.versions.bun} (${osInfo})`);
+    } else if (import_node_process2.default.versions.deno) {
+      map2.set("Deno", `${import_node_process2.default.versions.deno} (${osInfo})`);
+    } else if (import_node_process2.default.versions.node) {
+      map2.set("Node", `${import_node_process2.default.versions.node} (${osInfo})`);
+    }
+  }
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/constants.js
+var SDK_VERSION = "0.3.5";
+var DEFAULT_RETRY_POLICY_COUNT = 3;
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/util/userAgent.js
+function getUserAgentString(telemetryInfo) {
+  const parts = [];
+  for (const [key, value] of telemetryInfo) {
+    const token = value ? `${key}/${value}` : key;
+    parts.push(token);
+  }
+  return parts.join(" ");
+}
+function getUserAgentHeaderName() {
+  return getHeaderName();
+}
+async function getUserAgentValue(prefix) {
+  const runtimeInfo = /* @__PURE__ */ new Map();
+  runtimeInfo.set("ts-http-runtime", SDK_VERSION);
+  await setPlatformSpecificData(runtimeInfo);
+  const defaultAgent = getUserAgentString(runtimeInfo);
+  const userAgentValue = prefix ? `${prefix} ${defaultAgent}` : defaultAgent;
+  return userAgentValue;
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/policies/userAgentPolicy.js
+var UserAgentHeaderName = getUserAgentHeaderName();
+var userAgentPolicyName = "userAgentPolicy";
+function userAgentPolicy(options = {}) {
+  const userAgentValue = getUserAgentValue(options.userAgentPrefix);
+  return {
+    name: userAgentPolicyName,
+    async sendRequest(request2, next) {
+      if (!request2.headers.has(UserAgentHeaderName)) {
+        request2.headers.set(UserAgentHeaderName, await userAgentValue);
+      }
+      return next(request2);
+    }
+  };
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/policies/decompressResponsePolicy.js
+var decompressResponsePolicyName = "decompressResponsePolicy";
+function decompressResponsePolicy() {
+  return {
+    name: decompressResponsePolicyName,
+    async sendRequest(request2, next) {
+      if (request2.method !== "HEAD") {
+        request2.headers.set("Accept-Encoding", "gzip,deflate");
+      }
+      return next(request2);
+    }
+  };
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/util/random.js
+function getRandomIntegerInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  const offset = Math.floor(Math.random() * (max - min + 1));
+  return offset + min;
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/util/delay.js
+function calculateRetryDelay(retryAttempt, config) {
+  const exponentialDelay = config.retryDelayInMs * Math.pow(2, retryAttempt);
+  const clampedDelay = Math.min(config.maxRetryDelayInMs, exponentialDelay);
+  const retryAfterInMs = clampedDelay / 2 + getRandomIntegerInclusive(0, clampedDelay / 2);
+  return { retryAfterInMs };
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/util/helpers.js
+var StandardAbortMessage = "The operation was aborted.";
+function delay(delayInMs, value, options) {
+  return new Promise((resolve4, reject) => {
+    let timer = void 0;
+    let onAborted = void 0;
+    const rejectOnAbort = () => {
+      return reject(new AbortError(options?.abortErrorMsg ? options?.abortErrorMsg : StandardAbortMessage));
+    };
+    const removeListeners = () => {
+      if (options?.abortSignal && onAborted) {
+        options.abortSignal.removeEventListener("abort", onAborted);
+      }
+    };
+    onAborted = () => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+      removeListeners();
+      return rejectOnAbort();
+    };
+    if (options?.abortSignal && options.abortSignal.aborted) {
+      return rejectOnAbort();
+    }
+    timer = setTimeout(() => {
+      removeListeners();
+      resolve4(value);
+    }, delayInMs);
+    if (options?.abortSignal) {
+      options.abortSignal.addEventListener("abort", onAborted);
     }
   });
 }
-var encodeUTF8 = (str2) => encodeURIComponent(str2).replace(
-  /%([0-9A-F]{2})/gi,
-  (_, hex) => String.fromCharCode(parseInt(hex, 16))
-);
-var resolveConfig_default = (config) => {
-  const newConfig = mergeConfig({}, config);
-  const own2 = (key) => utils_default.hasOwnProp(newConfig, key) ? newConfig[key] : void 0;
-  const data = own2("data");
-  let withXSRFToken = own2("withXSRFToken");
-  const xsrfHeaderName = own2("xsrfHeaderName");
-  const xsrfCookieName = own2("xsrfCookieName");
-  let headers = own2("headers");
-  const auth2 = own2("auth");
-  const baseURL = own2("baseURL");
-  const allowAbsoluteUrls = own2("allowAbsoluteUrls");
-  const url2 = own2("url");
-  newConfig.headers = headers = AxiosHeaders_default.from(headers);
-  newConfig.url = buildURL(
-    buildFullPath(baseURL, url2, allowAbsoluteUrls),
-    config.params,
-    config.paramsSerializer
-  );
-  if (auth2) {
-    headers.set(
-      "Authorization",
-      "Basic " + btoa((auth2.username || "") + ":" + (auth2.password ? encodeUTF8(auth2.password) : ""))
-    );
-  }
-  if (utils_default.isFormData(data)) {
-    if (platform_default.hasStandardBrowserEnv || platform_default.hasStandardBrowserWebWorkerEnv) {
-      headers.setContentType(void 0);
-    } else if (utils_default.isFunction(data.getHeaders)) {
-      setFormDataHeaders2(headers, data.getHeaders(), own2("formDataHeaderPolicy"));
-    }
-  }
-  if (platform_default.hasStandardBrowserEnv) {
-    if (utils_default.isFunction(withXSRFToken)) {
-      withXSRFToken = withXSRFToken(newConfig);
-    }
-    const shouldSendXSRF = withXSRFToken === true || withXSRFToken == null && isURLSameOrigin_default(newConfig.url);
-    if (shouldSendXSRF) {
-      const xsrfValue = xsrfHeaderName && xsrfCookieName && cookies_default.read(xsrfCookieName);
-      if (xsrfValue) {
-        headers.set(xsrfHeaderName, xsrfValue);
-      }
-    }
-  }
-  return newConfig;
-};
-
-// node_modules/axios/lib/adapters/xhr.js
-var isXHRAdapterSupported = typeof XMLHttpRequest !== "undefined";
-var xhr_default = isXHRAdapterSupported && function(config) {
-  return new Promise(function dispatchXhrRequest(resolve4, reject) {
-    const _config = resolveConfig_default(config);
-    let requestData = _config.data;
-    const requestHeaders = AxiosHeaders_default.from(_config.headers).normalize();
-    let { responseType, onUploadProgress, onDownloadProgress } = _config;
-    let onCanceled;
-    let uploadThrottled, downloadThrottled;
-    let flushUpload, flushDownload;
-    function done() {
-      flushUpload && flushUpload();
-      flushDownload && flushDownload();
-      _config.cancelToken && _config.cancelToken.unsubscribe(onCanceled);
-      _config.signal && _config.signal.removeEventListener("abort", onCanceled);
-    }
-    let request2 = new XMLHttpRequest();
-    request2.open(_config.method.toUpperCase(), _config.url, true);
-    request2.timeout = _config.timeout;
-    function onloadend() {
-      if (!request2) {
-        return;
-      }
-      const responseHeaders = AxiosHeaders_default.from(
-        "getAllResponseHeaders" in request2 && request2.getAllResponseHeaders()
-      );
-      const responseData = !responseType || responseType === "text" || responseType === "json" ? request2.responseText : request2.response;
-      const response = {
-        data: responseData,
-        status: request2.status,
-        statusText: request2.statusText,
-        headers: responseHeaders,
-        config,
-        request: request2
-      };
-      settle(
-        function _resolve(value) {
-          resolve4(value);
-          done();
-        },
-        function _reject(err) {
-          reject(err);
-          done();
-        },
-        response
-      );
-      request2 = null;
-    }
-    if ("onloadend" in request2) {
-      request2.onloadend = onloadend;
-    } else {
-      request2.onreadystatechange = function handleLoad() {
-        if (!request2 || request2.readyState !== 4) {
-          return;
-        }
-        if (request2.status === 0 && !(request2.responseURL && request2.responseURL.startsWith("file:"))) {
-          return;
-        }
-        setTimeout(onloadend);
-      };
-    }
-    request2.onabort = function handleAbort() {
-      if (!request2) {
-        return;
-      }
-      reject(new AxiosError_default("Request aborted", AxiosError_default.ECONNABORTED, config, request2));
-      done();
-      request2 = null;
-    };
-    request2.onerror = function handleError(event) {
-      const msg = event && event.message ? event.message : "Network Error";
-      const err = new AxiosError_default(msg, AxiosError_default.ERR_NETWORK, config, request2);
-      err.event = event || null;
-      reject(err);
-      done();
-      request2 = null;
-    };
-    request2.ontimeout = function handleTimeout() {
-      let timeoutErrorMessage = _config.timeout ? "timeout of " + _config.timeout + "ms exceeded" : "timeout exceeded";
-      const transitional2 = _config.transitional || transitional_default;
-      if (_config.timeoutErrorMessage) {
-        timeoutErrorMessage = _config.timeoutErrorMessage;
-      }
-      reject(
-        new AxiosError_default(
-          timeoutErrorMessage,
-          transitional2.clarifyTimeoutError ? AxiosError_default.ETIMEDOUT : AxiosError_default.ECONNABORTED,
-          config,
-          request2
-        )
-      );
-      done();
-      request2 = null;
-    };
-    requestData === void 0 && requestHeaders.setContentType(null);
-    if ("setRequestHeader" in request2) {
-      utils_default.forEach(requestHeaders.toJSON(), function setRequestHeader(val, key) {
-        request2.setRequestHeader(key, val);
-      });
-    }
-    if (!utils_default.isUndefined(_config.withCredentials)) {
-      request2.withCredentials = !!_config.withCredentials;
-    }
-    if (responseType && responseType !== "json") {
-      request2.responseType = _config.responseType;
-    }
-    if (onDownloadProgress) {
-      [downloadThrottled, flushDownload] = progressEventReducer(onDownloadProgress, true);
-      request2.addEventListener("progress", downloadThrottled);
-    }
-    if (onUploadProgress && request2.upload) {
-      [uploadThrottled, flushUpload] = progressEventReducer(onUploadProgress);
-      request2.upload.addEventListener("progress", uploadThrottled);
-      request2.upload.addEventListener("loadend", flushUpload);
-    }
-    if (_config.cancelToken || _config.signal) {
-      onCanceled = (cancel) => {
-        if (!request2) {
-          return;
-        }
-        reject(!cancel || cancel.type ? new CanceledError_default(null, config, request2) : cancel);
-        request2.abort();
-        done();
-        request2 = null;
-      };
-      _config.cancelToken && _config.cancelToken.subscribe(onCanceled);
-      if (_config.signal) {
-        _config.signal.aborted ? onCanceled() : _config.signal.addEventListener("abort", onCanceled);
-      }
-    }
-    const protocol = parseProtocol(_config.url);
-    if (protocol && !platform_default.protocols.includes(protocol)) {
-      reject(
-        new AxiosError_default(
-          "Unsupported protocol " + protocol + ":",
-          AxiosError_default.ERR_BAD_REQUEST,
-          config
-        )
-      );
-      return;
-    }
-    request2.send(requestData || null);
-  });
-};
-
-// node_modules/axios/lib/helpers/composeSignals.js
-var composeSignals = (signals, timeout) => {
-  const { length } = signals = signals ? signals.filter(Boolean) : [];
-  if (timeout || length) {
-    let controller = new AbortController();
-    let aborted;
-    const onabort = function(reason) {
-      if (!aborted) {
-        aborted = true;
-        unsubscribe();
-        const err = reason instanceof Error ? reason : this.reason;
-        controller.abort(
-          err instanceof AxiosError_default ? err : new CanceledError_default(err instanceof Error ? err.message : err)
-        );
-      }
-    };
-    let timer = timeout && setTimeout(() => {
-      timer = null;
-      onabort(new AxiosError_default(`timeout of ${timeout}ms exceeded`, AxiosError_default.ETIMEDOUT));
-    }, timeout);
-    const unsubscribe = () => {
-      if (signals) {
-        timer && clearTimeout(timer);
-        timer = null;
-        signals.forEach((signal2) => {
-          signal2.unsubscribe ? signal2.unsubscribe(onabort) : signal2.removeEventListener("abort", onabort);
-        });
-        signals = null;
-      }
-    };
-    signals.forEach((signal2) => signal2.addEventListener("abort", onabort));
-    const { signal } = controller;
-    signal.unsubscribe = () => utils_default.asap(unsubscribe);
-    return signal;
-  }
-};
-var composeSignals_default = composeSignals;
-
-// node_modules/axios/lib/helpers/trackStream.js
-var streamChunk = function* (chunk2, chunkSize) {
-  let len = chunk2.byteLength;
-  if (!chunkSize || len < chunkSize) {
-    yield chunk2;
+function parseHeaderValueAsNumber(response, headerName) {
+  const value = response.headers.get(headerName);
+  if (!value)
     return;
-  }
-  let pos = 0;
-  let end;
-  while (pos < len) {
-    end = pos + chunkSize;
-    yield chunk2.slice(pos, end);
-    pos = end;
-  }
-};
-var readBytes = async function* (iterable, chunkSize) {
-  for await (const chunk2 of readStream(iterable)) {
-    yield* streamChunk(chunk2, chunkSize);
-  }
-};
-var readStream = async function* (stream4) {
-  if (stream4[Symbol.asyncIterator]) {
-    yield* stream4;
+  const valueAsNum = Number(value);
+  if (Number.isNaN(valueAsNum))
     return;
-  }
-  const reader = stream4.getReader();
+  return valueAsNum;
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/retryStrategies/throttlingRetryStrategy.js
+var RetryAfterHeader = "Retry-After";
+var AllRetryAfterHeaders = ["retry-after-ms", "x-ms-retry-after-ms", RetryAfterHeader];
+function getRetryAfterInMs(response) {
+  if (!(response && [429, 503].includes(response.status)))
+    return void 0;
   try {
-    for (; ; ) {
+    for (const header of AllRetryAfterHeaders) {
+      const retryAfterValue = parseHeaderValueAsNumber(response, header);
+      if (retryAfterValue === 0 || retryAfterValue) {
+        const multiplyingFactor = header === RetryAfterHeader ? 1e3 : 1;
+        return retryAfterValue * multiplyingFactor;
+      }
+    }
+    const retryAfterHeader = response.headers.get(RetryAfterHeader);
+    if (!retryAfterHeader)
+      return;
+    const date = Date.parse(retryAfterHeader);
+    const diff = date - Date.now();
+    return Number.isFinite(diff) ? Math.max(0, diff) : void 0;
+  } catch {
+    return void 0;
+  }
+}
+function isThrottlingRetryResponse(response) {
+  return Number.isFinite(getRetryAfterInMs(response));
+}
+function throttlingRetryStrategy() {
+  return {
+    name: "throttlingRetryStrategy",
+    retry({ response }) {
+      const retryAfterInMs = getRetryAfterInMs(response);
+      if (!Number.isFinite(retryAfterInMs)) {
+        return { skipStrategy: true };
+      }
+      return {
+        retryAfterInMs
+      };
+    }
+  };
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/retryStrategies/exponentialRetryStrategy.js
+var DEFAULT_CLIENT_RETRY_INTERVAL = 1e3;
+var DEFAULT_CLIENT_MAX_RETRY_INTERVAL = 1e3 * 64;
+function exponentialRetryStrategy(options = {}) {
+  const retryInterval = options.retryDelayInMs ?? DEFAULT_CLIENT_RETRY_INTERVAL;
+  const maxRetryInterval = options.maxRetryDelayInMs ?? DEFAULT_CLIENT_MAX_RETRY_INTERVAL;
+  return {
+    name: "exponentialRetryStrategy",
+    retry({ retryCount, response, responseError }) {
+      const matchedSystemError = isSystemError(responseError);
+      const ignoreSystemErrors = matchedSystemError && options.ignoreSystemErrors;
+      const isExponential = isExponentialRetryResponse(response);
+      const ignoreExponentialResponse = isExponential && options.ignoreHttpStatusCodes;
+      const unknownResponse = response && (isThrottlingRetryResponse(response) || !isExponential);
+      if (unknownResponse || ignoreExponentialResponse || ignoreSystemErrors) {
+        return { skipStrategy: true };
+      }
+      if (responseError && !matchedSystemError && !isExponential) {
+        return { errorToThrow: responseError };
+      }
+      return calculateRetryDelay(retryCount, {
+        retryDelayInMs: retryInterval,
+        maxRetryDelayInMs: maxRetryInterval
+      });
+    }
+  };
+}
+function isExponentialRetryResponse(response) {
+  return Boolean(response && response.status !== void 0 && (response.status >= 500 || response.status === 408) && response.status !== 501 && response.status !== 505);
+}
+function isSystemError(err) {
+  if (!err) {
+    return false;
+  }
+  return err.code === "ETIMEDOUT" || err.code === "ESOCKETTIMEDOUT" || err.code === "ECONNREFUSED" || err.code === "ECONNRESET" || err.code === "ENOENT" || err.code === "ENOTFOUND";
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/policies/retryPolicy.js
+var retryPolicyLogger = createClientLogger("ts-http-runtime retryPolicy");
+var retryPolicyName = "retryPolicy";
+function retryPolicy(strategies, options = { maxRetries: DEFAULT_RETRY_POLICY_COUNT }) {
+  const logger4 = options.logger || retryPolicyLogger;
+  return {
+    name: retryPolicyName,
+    async sendRequest(request2, next) {
+      let response;
+      let responseError;
+      let retryCount = -1;
+      retryRequest: while (true) {
+        retryCount += 1;
+        response = void 0;
+        responseError = void 0;
+        try {
+          logger4.info(`Retry ${retryCount}: Attempting to send request`, request2.requestId);
+          response = await next(request2);
+          logger4.info(`Retry ${retryCount}: Received a response from request`, request2.requestId);
+        } catch (e) {
+          logger4.error(`Retry ${retryCount}: Received an error from request`, request2.requestId);
+          if (!isRestError(e)) {
+            throw e;
+          }
+          responseError = e;
+          response = e.response;
+        }
+        if (request2.abortSignal?.aborted) {
+          logger4.error(`Retry ${retryCount}: Request aborted.`);
+          const abortError = new AbortError();
+          throw abortError;
+        }
+        if (retryCount >= (options.maxRetries ?? DEFAULT_RETRY_POLICY_COUNT)) {
+          logger4.info(`Retry ${retryCount}: Maximum retries reached. Returning the last received response, or throwing the last received error.`);
+          if (responseError) {
+            throw responseError;
+          } else if (response) {
+            return response;
+          } else {
+            throw new Error("Maximum retries reached with no response or error to throw");
+          }
+        }
+        logger4.info(`Retry ${retryCount}: Processing ${strategies.length} retry strategies.`);
+        strategiesLoop: for (const strategy of strategies) {
+          const strategyLogger = strategy.logger || logger4;
+          strategyLogger.info(`Retry ${retryCount}: Processing retry strategy ${strategy.name}.`);
+          const modifiers = strategy.retry({
+            retryCount,
+            response,
+            responseError
+          });
+          if (modifiers.skipStrategy) {
+            strategyLogger.info(`Retry ${retryCount}: Skipped.`);
+            continue strategiesLoop;
+          }
+          const { errorToThrow, retryAfterInMs, redirectTo } = modifiers;
+          if (errorToThrow) {
+            strategyLogger.error(`Retry ${retryCount}: Retry strategy ${strategy.name} throws error:`, errorToThrow);
+            throw errorToThrow;
+          }
+          if (retryAfterInMs || retryAfterInMs === 0) {
+            strategyLogger.info(`Retry ${retryCount}: Retry strategy ${strategy.name} retries after ${retryAfterInMs}`);
+            await delay(retryAfterInMs, void 0, { abortSignal: request2.abortSignal });
+            continue retryRequest;
+          }
+          if (redirectTo) {
+            strategyLogger.info(`Retry ${retryCount}: Retry strategy ${strategy.name} redirects to ${redirectTo}`);
+            request2.url = redirectTo;
+            continue retryRequest;
+          }
+        }
+        if (responseError) {
+          logger4.info(`None of the retry strategies could work with the received error. Throwing it.`);
+          throw responseError;
+        }
+        if (response) {
+          logger4.info(`None of the retry strategies could work with the received response. Returning it.`);
+          return response;
+        }
+      }
+    }
+  };
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/policies/defaultRetryPolicy.js
+var defaultRetryPolicyName = "defaultRetryPolicy";
+function defaultRetryPolicy(options = {}) {
+  return {
+    name: defaultRetryPolicyName,
+    sendRequest: retryPolicy([throttlingRetryStrategy(), exponentialRetryStrategy(options)], {
+      maxRetries: options.maxRetries ?? DEFAULT_RETRY_POLICY_COUNT
+    }).sendRequest
+  };
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/util/checkEnvironment.js
+var isBrowser = typeof window !== "undefined" && typeof window.document !== "undefined";
+var isWebWorker = typeof self === "object" && typeof self?.importScripts === "function" && (self.constructor?.name === "DedicatedWorkerGlobalScope" || self.constructor?.name === "ServiceWorkerGlobalScope" || self.constructor?.name === "SharedWorkerGlobalScope");
+var isDeno = typeof Deno !== "undefined" && typeof Deno.version !== "undefined" && typeof Deno.version.deno !== "undefined";
+var isBun = typeof Bun !== "undefined" && typeof Bun.version !== "undefined";
+var isNodeLike = typeof globalThis.process !== "undefined" && Boolean(globalThis.process.version) && Boolean(globalThis.process.versions?.node);
+var isReactNative = typeof navigator !== "undefined" && navigator?.product === "ReactNative";
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/policies/formDataPolicy.js
+var formDataPolicyName = "formDataPolicy";
+function formDataToFormDataMap(formData) {
+  const formDataMap = {};
+  for (const [key, value] of formData.entries()) {
+    formDataMap[key] ??= [];
+    formDataMap[key].push(value);
+  }
+  return formDataMap;
+}
+function formDataPolicy() {
+  return {
+    name: formDataPolicyName,
+    async sendRequest(request2, next) {
+      if (isNodeLike && typeof FormData !== "undefined" && request2.body instanceof FormData) {
+        request2.formData = formDataToFormDataMap(request2.body);
+        request2.body = void 0;
+      }
+      if (request2.formData) {
+        const contentType = request2.headers.get("Content-Type");
+        if (contentType && contentType.indexOf("application/x-www-form-urlencoded") !== -1) {
+          request2.body = wwwFormUrlEncode(request2.formData);
+        } else {
+          await prepareFormData(request2.formData, request2);
+        }
+        request2.formData = void 0;
+      }
+      return next(request2);
+    }
+  };
+}
+function wwwFormUrlEncode(formData) {
+  const urlSearchParams = new URLSearchParams();
+  for (const [key, value] of Object.entries(formData)) {
+    if (Array.isArray(value)) {
+      for (const subValue of value) {
+        urlSearchParams.append(key, subValue.toString());
+      }
+    } else {
+      urlSearchParams.append(key, value.toString());
+    }
+  }
+  return urlSearchParams.toString();
+}
+async function prepareFormData(formData, request2) {
+  const contentType = request2.headers.get("Content-Type");
+  if (contentType && !contentType.startsWith("multipart/form-data")) {
+    return;
+  }
+  request2.headers.set("Content-Type", contentType ?? "multipart/form-data");
+  const parts = [];
+  for (const [fieldName, values] of Object.entries(formData)) {
+    for (const value of Array.isArray(values) ? values : [values]) {
+      if (typeof value === "string") {
+        parts.push({
+          headers: createHttpHeaders({
+            "Content-Disposition": `form-data; name="${fieldName}"`
+          }),
+          body: stringToUint8Array(value, "utf-8")
+        });
+      } else if (value === void 0 || value === null || typeof value !== "object") {
+        throw new Error(`Unexpected value for key ${fieldName}: ${value}. Value should be serialized to string first.`);
+      } else {
+        const fileName = value.name || "blob";
+        const headers = createHttpHeaders();
+        headers.set("Content-Disposition", `form-data; name="${fieldName}"; filename="${fileName}"`);
+        headers.set("Content-Type", value.type || "application/octet-stream");
+        parts.push({
+          headers,
+          body: value
+        });
+      }
+    }
+  }
+  request2.multipartBody = { parts };
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/policies/proxyPolicy.js
+var import_https_proxy_agent = __toESM(require_dist2(), 1);
+var import_http_proxy_agent = __toESM(require_dist3(), 1);
+var HTTPS_PROXY = "HTTPS_PROXY";
+var HTTP_PROXY = "HTTP_PROXY";
+var ALL_PROXY = "ALL_PROXY";
+var NO_PROXY = "NO_PROXY";
+var proxyPolicyName = "proxyPolicy";
+var globalNoProxyList = [];
+var noProxyListLoaded = false;
+var globalBypassedMap = /* @__PURE__ */ new Map();
+function getEnvironmentValue(name) {
+  if (process.env[name]) {
+    return process.env[name];
+  } else if (process.env[name.toLowerCase()]) {
+    return process.env[name.toLowerCase()];
+  }
+  return void 0;
+}
+function loadEnvironmentProxyValue() {
+  if (!process) {
+    return void 0;
+  }
+  const httpsProxy = getEnvironmentValue(HTTPS_PROXY);
+  const allProxy = getEnvironmentValue(ALL_PROXY);
+  const httpProxy = getEnvironmentValue(HTTP_PROXY);
+  return httpsProxy || allProxy || httpProxy;
+}
+function isBypassed(uri, noProxyList, bypassedMap) {
+  if (noProxyList.length === 0) {
+    return false;
+  }
+  const host = new URL(uri).hostname;
+  if (bypassedMap?.has(host)) {
+    return bypassedMap.get(host);
+  }
+  let isBypassedFlag = false;
+  for (const pattern of noProxyList) {
+    if (pattern[0] === ".") {
+      if (host.endsWith(pattern)) {
+        isBypassedFlag = true;
+      } else {
+        if (host.length === pattern.length - 1 && host === pattern.slice(1)) {
+          isBypassedFlag = true;
+        }
+      }
+    } else {
+      if (host === pattern) {
+        isBypassedFlag = true;
+      }
+    }
+  }
+  bypassedMap?.set(host, isBypassedFlag);
+  return isBypassedFlag;
+}
+function loadNoProxy() {
+  const noProxy = getEnvironmentValue(NO_PROXY);
+  noProxyListLoaded = true;
+  if (noProxy) {
+    return noProxy.split(",").map((item) => item.trim()).filter((item) => item.length);
+  }
+  return [];
+}
+function getDefaultProxySettingsInternal() {
+  const envProxy = loadEnvironmentProxyValue();
+  return envProxy ? new URL(envProxy) : void 0;
+}
+function getUrlFromProxySettings(settings) {
+  let parsedProxyUrl;
+  try {
+    parsedProxyUrl = new URL(settings.host);
+  } catch {
+    throw new Error(`Expecting a valid host string in proxy settings, but found "${settings.host}".`);
+  }
+  parsedProxyUrl.port = String(settings.port);
+  if (settings.username) {
+    parsedProxyUrl.username = settings.username;
+  }
+  if (settings.password) {
+    parsedProxyUrl.password = settings.password;
+  }
+  return parsedProxyUrl;
+}
+function setProxyAgentOnRequest(request2, cachedAgents, proxyUrl) {
+  if (request2.agent) {
+    return;
+  }
+  const url = new URL(request2.url);
+  const isInsecure = url.protocol !== "https:";
+  if (request2.tlsSettings) {
+    logger.warning("TLS settings are not supported in combination with custom Proxy, certificates provided to the client will be ignored.");
+  }
+  if (isInsecure) {
+    if (!cachedAgents.httpProxyAgent) {
+      cachedAgents.httpProxyAgent = new import_http_proxy_agent.HttpProxyAgent(proxyUrl);
+    }
+    request2.agent = cachedAgents.httpProxyAgent;
+  } else {
+    if (!cachedAgents.httpsProxyAgent) {
+      cachedAgents.httpsProxyAgent = new import_https_proxy_agent.HttpsProxyAgent(proxyUrl);
+    }
+    request2.agent = cachedAgents.httpsProxyAgent;
+  }
+}
+function proxyPolicy(proxySettings, options) {
+  if (!noProxyListLoaded) {
+    globalNoProxyList.push(...loadNoProxy());
+  }
+  const defaultProxy = proxySettings ? getUrlFromProxySettings(proxySettings) : getDefaultProxySettingsInternal();
+  const cachedAgents = {};
+  return {
+    name: proxyPolicyName,
+    async sendRequest(request2, next) {
+      if (!request2.proxySettings && defaultProxy && !isBypassed(request2.url, options?.customNoProxyList ?? globalNoProxyList, options?.customNoProxyList ? void 0 : globalBypassedMap)) {
+        setProxyAgentOnRequest(request2, cachedAgents, defaultProxy);
+      } else if (request2.proxySettings) {
+        setProxyAgentOnRequest(request2, cachedAgents, getUrlFromProxySettings(request2.proxySettings));
+      }
+      return next(request2);
+    }
+  };
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/policies/agentPolicy.js
+var agentPolicyName = "agentPolicy";
+function agentPolicy(agent) {
+  return {
+    name: agentPolicyName,
+    sendRequest: async (req, next) => {
+      if (!req.agent) {
+        req.agent = agent;
+      }
+      return next(req);
+    }
+  };
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/policies/tlsPolicy.js
+var tlsPolicyName = "tlsPolicy";
+function tlsPolicy(tlsSettings) {
+  return {
+    name: tlsPolicyName,
+    sendRequest: async (req, next) => {
+      if (!req.tlsSettings) {
+        req.tlsSettings = tlsSettings;
+      }
+      return next(req);
+    }
+  };
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/util/typeGuards.js
+function isNodeReadableStream(x) {
+  return Boolean(x && typeof x["pipe"] === "function");
+}
+function isWebReadableStream(x) {
+  return Boolean(x && typeof x.getReader === "function" && typeof x.tee === "function");
+}
+function isBinaryBody(body) {
+  return body !== void 0 && (body instanceof Uint8Array || isReadableStream2(body) || typeof body === "function" || typeof Blob !== "undefined" && body instanceof Blob);
+}
+function isReadableStream2(x) {
+  return isNodeReadableStream(x) || isWebReadableStream(x);
+}
+function isBlob(x) {
+  return typeof Blob !== "undefined" && x instanceof Blob;
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/util/concat.js
+var import_stream = require("stream");
+async function* streamAsyncIterator() {
+  const reader = this.getReader();
+  try {
+    while (true) {
       const { done, value } = await reader.read();
       if (done) {
-        break;
+        return;
       }
       yield value;
     }
   } finally {
-    await reader.cancel();
+    reader.releaseLock();
   }
-};
-var trackStream = (stream4, chunkSize, onProgress, onFinish) => {
-  const iterator3 = readBytes(stream4, chunkSize);
-  let bytes = 0;
-  let done;
-  let _onFinish = (e) => {
-    if (!done) {
-      done = true;
-      onFinish && onFinish(e);
+}
+function makeAsyncIterable(webStream) {
+  if (!webStream[Symbol.asyncIterator]) {
+    webStream[Symbol.asyncIterator] = streamAsyncIterator.bind(webStream);
+  }
+  if (!webStream.values) {
+    webStream.values = streamAsyncIterator.bind(webStream);
+  }
+}
+function ensureNodeStream(stream) {
+  if (stream instanceof ReadableStream) {
+    makeAsyncIterable(stream);
+    return import_stream.Readable.fromWeb(stream);
+  } else {
+    return stream;
+  }
+}
+function toStream(source) {
+  if (source instanceof Uint8Array) {
+    return import_stream.Readable.from(Buffer.from(source));
+  } else if (isBlob(source)) {
+    return ensureNodeStream(source.stream());
+  } else {
+    return ensureNodeStream(source);
+  }
+}
+async function concat(sources) {
+  return function() {
+    const streams = sources.map((x) => typeof x === "function" ? x() : x).map(toStream);
+    return import_stream.Readable.from((async function* () {
+      for (const stream of streams) {
+        for await (const chunk2 of stream) {
+          yield chunk2;
+        }
+      }
+    })());
+  };
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/policies/multipartPolicy.js
+function generateBoundary() {
+  return `----AzSDKFormBoundary${randomUUID()}`;
+}
+function encodeHeaders(headers) {
+  let result = "";
+  for (const [key, value] of headers) {
+    result += `${key}: ${value}\r
+`;
+  }
+  return result;
+}
+function getLength(source) {
+  if (source instanceof Uint8Array) {
+    return source.byteLength;
+  } else if (isBlob(source)) {
+    return source.size === -1 ? void 0 : source.size;
+  } else {
+    return void 0;
+  }
+}
+function getTotalLength(sources) {
+  let total = 0;
+  for (const source of sources) {
+    const partLength = getLength(source);
+    if (partLength === void 0) {
+      return void 0;
+    } else {
+      total += partLength;
+    }
+  }
+  return total;
+}
+async function buildRequestBody(request2, parts, boundary) {
+  const sources = [
+    stringToUint8Array(`--${boundary}`, "utf-8"),
+    ...parts.flatMap((part) => [
+      stringToUint8Array("\r\n", "utf-8"),
+      stringToUint8Array(encodeHeaders(part.headers), "utf-8"),
+      stringToUint8Array("\r\n", "utf-8"),
+      part.body,
+      stringToUint8Array(`\r
+--${boundary}`, "utf-8")
+    ]),
+    stringToUint8Array("--\r\n\r\n", "utf-8")
+  ];
+  const contentLength = getTotalLength(sources);
+  if (contentLength) {
+    request2.headers.set("Content-Length", contentLength);
+  }
+  request2.body = await concat(sources);
+}
+var multipartPolicyName = "multipartPolicy";
+var maxBoundaryLength = 70;
+var validBoundaryCharacters = new Set(`abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'()+,-./:=?`);
+function assertValidBoundary(boundary) {
+  if (boundary.length > maxBoundaryLength) {
+    throw new Error(`Multipart boundary "${boundary}" exceeds maximum length of 70 characters`);
+  }
+  if (Array.from(boundary).some((x) => !validBoundaryCharacters.has(x))) {
+    throw new Error(`Multipart boundary "${boundary}" contains invalid characters`);
+  }
+}
+function multipartPolicy() {
+  return {
+    name: multipartPolicyName,
+    async sendRequest(request2, next) {
+      if (!request2.multipartBody) {
+        return next(request2);
+      }
+      if (request2.body) {
+        throw new Error("multipartBody and regular body cannot be set at the same time");
+      }
+      let boundary = request2.multipartBody.boundary;
+      const contentTypeHeader = request2.headers.get("Content-Type") ?? "multipart/mixed";
+      const parsedHeader = contentTypeHeader.match(/^(multipart\/[^ ;]+)(?:; *boundary=(.+))?$/);
+      if (!parsedHeader) {
+        throw new Error(`Got multipart request body, but content-type header was not multipart: ${contentTypeHeader}`);
+      }
+      const [, contentType, parsedBoundary] = parsedHeader;
+      if (parsedBoundary && boundary && parsedBoundary !== boundary) {
+        throw new Error(`Multipart boundary was specified as ${parsedBoundary} in the header, but got ${boundary} in the request body`);
+      }
+      boundary ??= parsedBoundary;
+      if (boundary) {
+        assertValidBoundary(boundary);
+      } else {
+        boundary = generateBoundary();
+      }
+      request2.headers.set("Content-Type", `${contentType}; boundary=${boundary}`);
+      await buildRequestBody(request2, request2.multipartBody.parts, boundary);
+      request2.multipartBody = void 0;
+      return next(request2);
     }
   };
-  return new ReadableStream(
-    {
-      async pull(controller) {
-        try {
-          const { done: done2, value } = await iterator3.next();
-          if (done2) {
-            _onFinish();
-            controller.close();
-            return;
-          }
-          let len = value.byteLength;
-          if (onProgress) {
-            let loadedBytes = bytes += len;
-            onProgress(loadedBytes);
-          }
-          controller.enqueue(new Uint8Array(value));
-        } catch (err) {
-          _onFinish(err);
-          throw err;
-        }
-      },
-      cancel(reason) {
-        _onFinish(reason);
-        return iterator3.return();
-      }
-    },
-    {
-      highWaterMark: 2
-    }
-  );
-};
+}
 
-// node_modules/axios/lib/adapters/fetch.js
-var DEFAULT_CHUNK_SIZE = 64 * 1024;
-var { isFunction: isFunction2 } = utils_default;
-var test = (fn, ...args) => {
+// node_modules/@typespec/ts-http-runtime/dist/esm/createPipelineFromOptions.js
+function createPipelineFromOptions(options) {
+  const pipeline = createEmptyPipeline();
+  if (isNodeLike) {
+    if (options.agent) {
+      pipeline.addPolicy(agentPolicy(options.agent));
+    }
+    if (options.tlsOptions) {
+      pipeline.addPolicy(tlsPolicy(options.tlsOptions));
+    }
+    pipeline.addPolicy(proxyPolicy(options.proxyOptions));
+    pipeline.addPolicy(decompressResponsePolicy());
+  }
+  pipeline.addPolicy(formDataPolicy(), { beforePolicies: [multipartPolicyName] });
+  pipeline.addPolicy(userAgentPolicy(options.userAgentOptions));
+  pipeline.addPolicy(multipartPolicy(), { afterPhase: "Deserialize" });
+  pipeline.addPolicy(defaultRetryPolicy(options.retryOptions), { phase: "Retry" });
+  if (isNodeLike) {
+    pipeline.addPolicy(redirectPolicy(options.redirectOptions), { afterPhase: "Retry" });
+  }
+  pipeline.addPolicy(logPolicy(options.loggingOptions), { afterPhase: "Sign" });
+  return pipeline;
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/client/apiVersionPolicy.js
+var apiVersionPolicyName = "ApiVersionPolicy";
+function apiVersionPolicy(options) {
+  return {
+    name: apiVersionPolicyName,
+    sendRequest: (req, next) => {
+      const url = new URL(req.url);
+      if (!url.searchParams.get("api-version") && options.apiVersion) {
+        req.url = `${req.url}${Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"}api-version=${options.apiVersion}`;
+      }
+      return next(req);
+    }
+  };
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/auth/credentials.js
+function isOAuth2TokenCredential(credential) {
+  return "getOAuth2Token" in credential;
+}
+function isBearerTokenCredential(credential) {
+  return "getBearerToken" in credential;
+}
+function isBasicCredential(credential) {
+  return "username" in credential && "password" in credential;
+}
+function isApiKeyCredential(credential) {
+  return "key" in credential;
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/policies/auth/checkInsecureConnection.js
+var insecureConnectionWarningEmmitted = false;
+function allowInsecureConnection(request2, options) {
+  if (options.allowInsecureConnection && request2.allowInsecureConnection) {
+    const url = new URL(request2.url);
+    if (url.hostname === "localhost" || url.hostname === "127.0.0.1") {
+      return true;
+    }
+  }
+  return false;
+}
+function emitInsecureConnectionWarning() {
+  const warning5 = "Sending token over insecure transport. Assume any token issued is compromised.";
+  logger.warning(warning5);
+  if (typeof process?.emitWarning === "function" && !insecureConnectionWarningEmmitted) {
+    insecureConnectionWarningEmmitted = true;
+    process.emitWarning(warning5);
+  }
+}
+function ensureSecureConnection(request2, options) {
+  if (!request2.url.toLowerCase().startsWith("https://")) {
+    if (allowInsecureConnection(request2, options)) {
+      emitInsecureConnectionWarning();
+    } else {
+      throw new Error("Authentication is not permitted for non-TLS protected (non-https) URLs when allowInsecureConnection is false.");
+    }
+  }
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/policies/auth/apiKeyAuthenticationPolicy.js
+var apiKeyAuthenticationPolicyName = "apiKeyAuthenticationPolicy";
+function apiKeyAuthenticationPolicy(options) {
+  return {
+    name: apiKeyAuthenticationPolicyName,
+    async sendRequest(request2, next) {
+      ensureSecureConnection(request2, options);
+      const scheme = (request2.authSchemes ?? options.authSchemes)?.find((x) => x.kind === "apiKey");
+      if (!scheme) {
+        return next(request2);
+      }
+      if (scheme.apiKeyLocation !== "header") {
+        throw new Error(`Unsupported API key location: ${scheme.apiKeyLocation}`);
+      }
+      request2.headers.set(scheme.name, options.credential.key);
+      return next(request2);
+    }
+  };
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/policies/auth/basicAuthenticationPolicy.js
+var basicAuthenticationPolicyName = "bearerAuthenticationPolicy";
+function basicAuthenticationPolicy(options) {
+  return {
+    name: basicAuthenticationPolicyName,
+    async sendRequest(request2, next) {
+      ensureSecureConnection(request2, options);
+      const scheme = (request2.authSchemes ?? options.authSchemes)?.find((x) => x.kind === "http" && x.scheme === "basic");
+      if (!scheme) {
+        return next(request2);
+      }
+      const { username, password } = options.credential;
+      const headerValue = uint8ArrayToString(stringToUint8Array(`${username}:${password}`, "utf-8"), "base64");
+      request2.headers.set("Authorization", `Basic ${headerValue}`);
+      return next(request2);
+    }
+  };
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/policies/auth/bearerAuthenticationPolicy.js
+var bearerAuthenticationPolicyName = "bearerAuthenticationPolicy";
+function bearerAuthenticationPolicy(options) {
+  return {
+    name: bearerAuthenticationPolicyName,
+    async sendRequest(request2, next) {
+      ensureSecureConnection(request2, options);
+      const scheme = (request2.authSchemes ?? options.authSchemes)?.find((x) => x.kind === "http" && x.scheme === "bearer");
+      if (!scheme) {
+        return next(request2);
+      }
+      const token = await options.credential.getBearerToken({
+        abortSignal: request2.abortSignal
+      });
+      request2.headers.set("Authorization", `Bearer ${token}`);
+      return next(request2);
+    }
+  };
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/policies/auth/oauth2AuthenticationPolicy.js
+var oauth2AuthenticationPolicyName = "oauth2AuthenticationPolicy";
+function oauth2AuthenticationPolicy(options) {
+  return {
+    name: oauth2AuthenticationPolicyName,
+    async sendRequest(request2, next) {
+      ensureSecureConnection(request2, options);
+      const scheme = (request2.authSchemes ?? options.authSchemes)?.find((x) => x.kind === "oauth2");
+      if (!scheme) {
+        return next(request2);
+      }
+      const token = await options.credential.getOAuth2Token(scheme.flows, {
+        abortSignal: request2.abortSignal
+      });
+      request2.headers.set("Authorization", `Bearer ${token}`);
+      return next(request2);
+    }
+  };
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/client/clientHelpers.js
+var cachedHttpClient;
+function createDefaultPipeline(options = {}) {
+  const pipeline = createPipelineFromOptions(options);
+  pipeline.addPolicy(apiVersionPolicy(options));
+  const { credential, authSchemes, allowInsecureConnection: allowInsecureConnection2 } = options;
+  if (credential) {
+    if (isApiKeyCredential(credential)) {
+      pipeline.addPolicy(apiKeyAuthenticationPolicy({ authSchemes, credential, allowInsecureConnection: allowInsecureConnection2 }));
+    } else if (isBasicCredential(credential)) {
+      pipeline.addPolicy(basicAuthenticationPolicy({ authSchemes, credential, allowInsecureConnection: allowInsecureConnection2 }));
+    } else if (isBearerTokenCredential(credential)) {
+      pipeline.addPolicy(bearerAuthenticationPolicy({ authSchemes, credential, allowInsecureConnection: allowInsecureConnection2 }));
+    } else if (isOAuth2TokenCredential(credential)) {
+      pipeline.addPolicy(oauth2AuthenticationPolicy({ authSchemes, credential, allowInsecureConnection: allowInsecureConnection2 }));
+    }
+  }
+  return pipeline;
+}
+function getCachedDefaultHttpsClient() {
+  if (!cachedHttpClient) {
+    cachedHttpClient = createDefaultHttpClient();
+  }
+  return cachedHttpClient;
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/client/multipart.js
+function getHeaderValue(descriptor, headerName) {
+  if (descriptor.headers) {
+    const actualHeaderName = Object.keys(descriptor.headers).find((x) => x.toLowerCase() === headerName.toLowerCase());
+    if (actualHeaderName) {
+      return descriptor.headers[actualHeaderName];
+    }
+  }
+  return void 0;
+}
+function getPartContentType(descriptor) {
+  const contentTypeHeader = getHeaderValue(descriptor, "content-type");
+  if (contentTypeHeader) {
+    return contentTypeHeader;
+  }
+  if (descriptor.contentType === null) {
+    return void 0;
+  }
+  if (descriptor.contentType) {
+    return descriptor.contentType;
+  }
+  const { body } = descriptor;
+  if (body === null || body === void 0) {
+    return void 0;
+  }
+  if (typeof body === "string" || typeof body === "number" || typeof body === "boolean") {
+    return "text/plain; charset=UTF-8";
+  }
+  if (body instanceof Blob) {
+    return body.type || "application/octet-stream";
+  }
+  if (isBinaryBody(body)) {
+    return "application/octet-stream";
+  }
+  return "application/json";
+}
+function escapeDispositionField(value) {
+  return JSON.stringify(value);
+}
+function getContentDisposition(descriptor) {
+  const contentDispositionHeader = getHeaderValue(descriptor, "content-disposition");
+  if (contentDispositionHeader) {
+    return contentDispositionHeader;
+  }
+  if (descriptor.dispositionType === void 0 && descriptor.name === void 0 && descriptor.filename === void 0) {
+    return void 0;
+  }
+  const dispositionType = descriptor.dispositionType ?? "form-data";
+  let disposition = dispositionType;
+  if (descriptor.name) {
+    disposition += `; name=${escapeDispositionField(descriptor.name)}`;
+  }
+  let filename = void 0;
+  if (descriptor.filename) {
+    filename = descriptor.filename;
+  } else if (typeof File !== "undefined" && descriptor.body instanceof File) {
+    const filenameFromFile = descriptor.body.name;
+    if (filenameFromFile !== "") {
+      filename = filenameFromFile;
+    }
+  }
+  if (filename) {
+    disposition += `; filename=${escapeDispositionField(filename)}`;
+  }
+  return disposition;
+}
+function normalizeBody(body, contentType) {
+  if (body === void 0) {
+    return new Uint8Array([]);
+  }
+  if (isBinaryBody(body)) {
+    return body;
+  }
+  if (typeof body === "string" || typeof body === "number" || typeof body === "boolean") {
+    return stringToUint8Array(String(body), "utf-8");
+  }
+  if (contentType && /application\/(.+\+)?json(;.+)?/i.test(String(contentType))) {
+    return stringToUint8Array(JSON.stringify(body), "utf-8");
+  }
+  throw new RestError(`Unsupported body/content-type combination: ${body}, ${contentType}`);
+}
+function buildBodyPart(descriptor) {
+  const contentType = getPartContentType(descriptor);
+  const contentDisposition = getContentDisposition(descriptor);
+  const headers = createHttpHeaders(descriptor.headers ?? {});
+  if (contentType) {
+    headers.set("content-type", contentType);
+  }
+  if (contentDisposition) {
+    headers.set("content-disposition", contentDisposition);
+  }
+  const body = normalizeBody(descriptor.body, contentType);
+  return {
+    headers,
+    body
+  };
+}
+function buildMultipartBody(parts) {
+  return { parts: parts.map(buildBodyPart) };
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/client/sendRequest.js
+async function sendRequest(method, url, pipeline, options = {}, customHttpClient) {
+  const httpClient = customHttpClient ?? getCachedDefaultHttpsClient();
+  const request2 = buildPipelineRequest(method, url, options);
   try {
-    return !!fn(...args);
-  } catch (e) {
-    return false;
-  }
-};
-var factory = (env) => {
-  const globalObject = utils_default.global ?? globalThis;
-  const { ReadableStream: ReadableStream2, TextEncoder: TextEncoder2 } = globalObject;
-  env = utils_default.merge.call(
-    {
-      skipUndefined: true
-    },
-    {
-      Request: globalObject.Request,
-      Response: globalObject.Response
-    },
-    env
-  );
-  const { fetch: envFetch, Request, Response } = env;
-  const isFetchSupported = envFetch ? isFunction2(envFetch) : typeof fetch === "function";
-  const isRequestSupported = isFunction2(Request);
-  const isResponseSupported = isFunction2(Response);
-  if (!isFetchSupported) {
-    return false;
-  }
-  const isReadableStreamSupported = isFetchSupported && isFunction2(ReadableStream2);
-  const encodeText = isFetchSupported && (typeof TextEncoder2 === "function" ? /* @__PURE__ */ ((encoder) => (str2) => encoder.encode(str2))(new TextEncoder2()) : async (str2) => new Uint8Array(await new Request(str2).arrayBuffer()));
-  const supportsRequestStream = isRequestSupported && isReadableStreamSupported && test(() => {
-    let duplexAccessed = false;
-    const request2 = new Request(platform_default.origin, {
-      body: new ReadableStream2(),
-      method: "POST",
-      get duplex() {
-        duplexAccessed = true;
-        return "half";
-      }
-    });
-    const hasContentType = request2.headers.has("Content-Type");
-    if (request2.body != null) {
-      request2.body.cancel();
+    const response = await pipeline.sendRequest(httpClient, request2);
+    const headers = response.headers.toJSON();
+    const stream = response.readableStreamBody ?? response.browserStreamBody;
+    const parsedBody = options.responseAsStream || stream !== void 0 ? void 0 : getResponseBody(response);
+    const body = stream ?? parsedBody;
+    if (options?.onResponse) {
+      options.onResponse({ ...response, request: request2, rawHeaders: headers, parsedBody });
     }
-    return duplexAccessed && !hasContentType;
-  });
-  const supportsResponseStream = isResponseSupported && isReadableStreamSupported && test(() => utils_default.isReadableStream(new Response("").body));
-  const resolvers = {
-    stream: supportsResponseStream && ((res) => res.body)
-  };
-  isFetchSupported && (() => {
-    ["text", "arrayBuffer", "blob", "formData", "stream"].forEach((type2) => {
-      !resolvers[type2] && (resolvers[type2] = (res, config) => {
-        let method = res && res[type2];
-        if (method) {
-          return method.call(res);
-        }
-        throw new AxiosError_default(
-          `Response type '${type2}' is not supported`,
-          AxiosError_default.ERR_NOT_SUPPORT,
-          config
-        );
-      });
-    });
-  })();
-  const getBodyLength = async (body) => {
-    if (body == null) {
-      return 0;
-    }
-    if (utils_default.isBlob(body)) {
-      return body.size;
-    }
-    if (utils_default.isSpecCompliantForm(body)) {
-      const _request = new Request(platform_default.origin, {
-        method: "POST",
-        body
-      });
-      return (await _request.arrayBuffer()).byteLength;
-    }
-    if (utils_default.isArrayBufferView(body) || utils_default.isArrayBuffer(body)) {
-      return body.byteLength;
-    }
-    if (utils_default.isURLSearchParams(body)) {
-      body = body + "";
-    }
-    if (utils_default.isString(body)) {
-      return (await encodeText(body)).byteLength;
-    }
-  };
-  const resolveBodyLength = async (headers, body) => {
-    const length = utils_default.toFiniteNumber(headers.getContentLength());
-    return length == null ? getBodyLength(body) : length;
-  };
-  return async (config) => {
-    let {
-      url: url2,
-      method,
-      data,
-      signal,
-      cancelToken,
-      timeout,
-      onDownloadProgress,
-      onUploadProgress,
-      responseType,
+    return {
+      request: request2,
       headers,
-      withCredentials = "same-origin",
-      fetchOptions,
-      maxContentLength,
-      maxBodyLength
-    } = resolveConfig_default(config);
-    const hasMaxContentLength = utils_default.isNumber(maxContentLength) && maxContentLength > -1;
-    const hasMaxBodyLength = utils_default.isNumber(maxBodyLength) && maxBodyLength > -1;
-    let _fetch = envFetch || fetch;
-    responseType = responseType ? (responseType + "").toLowerCase() : "text";
-    let composedSignal = composeSignals_default(
-      [signal, cancelToken && cancelToken.toAbortSignal()],
-      timeout
-    );
-    let request2 = null;
-    const unsubscribe = composedSignal && composedSignal.unsubscribe && (() => {
-      composedSignal.unsubscribe();
-    });
-    let requestContentLength;
+      status: `${response.status}`,
+      body
+    };
+  } catch (e) {
+    if (isRestError(e) && e.response && options.onResponse) {
+      const { response } = e;
+      const rawHeaders = response.headers.toJSON();
+      options?.onResponse({ ...response, request: request2, rawHeaders }, e);
+    }
+    throw e;
+  }
+}
+function getRequestContentType(options = {}) {
+  if (options.contentType) {
+    return options.contentType;
+  }
+  const headerContentType = options.headers?.["content-type"];
+  if (typeof headerContentType === "string") {
+    return headerContentType;
+  }
+  return getContentType(options.body);
+}
+function getContentType(body) {
+  if (body === void 0) {
+    return void 0;
+  }
+  if (ArrayBuffer.isView(body)) {
+    return "application/octet-stream";
+  }
+  if (isBlob(body) && body.type) {
+    return body.type;
+  }
+  if (typeof body === "string") {
     try {
-      if (hasMaxContentLength && typeof url2 === "string" && url2.startsWith("data:")) {
-        const estimated = estimateDataURLDecodedBytes(url2);
-        if (estimated > maxContentLength) {
-          throw new AxiosError_default(
-            "maxContentLength size of " + maxContentLength + " exceeded",
-            AxiosError_default.ERR_BAD_RESPONSE,
-            config,
-            request2
-          );
-        }
-      }
-      if (hasMaxBodyLength && method !== "get" && method !== "head") {
-        const outboundLength = await resolveBodyLength(headers, data);
-        if (typeof outboundLength === "number" && isFinite(outboundLength) && outboundLength > maxBodyLength) {
-          throw new AxiosError_default(
-            "Request body larger than maxBodyLength limit",
-            AxiosError_default.ERR_BAD_REQUEST,
-            config,
-            request2
-          );
-        }
-      }
-      if (onUploadProgress && supportsRequestStream && method !== "get" && method !== "head" && (requestContentLength = await resolveBodyLength(headers, data)) !== 0) {
-        let _request = new Request(url2, {
-          method: "POST",
-          body: data,
-          duplex: "half"
-        });
-        let contentTypeHeader;
-        if (utils_default.isFormData(data) && (contentTypeHeader = _request.headers.get("content-type"))) {
-          headers.setContentType(contentTypeHeader);
-        }
-        if (_request.body) {
-          const [onProgress, flush] = progressEventDecorator(
-            requestContentLength,
-            progressEventReducer(asyncDecorator(onUploadProgress))
-          );
-          data = trackStream(_request.body, DEFAULT_CHUNK_SIZE, onProgress, flush);
-        }
-      }
-      if (!utils_default.isString(withCredentials)) {
-        withCredentials = withCredentials ? "include" : "omit";
-      }
-      const isCredentialsSupported = isRequestSupported && "credentials" in Request.prototype;
-      if (utils_default.isFormData(data)) {
-        const contentType = headers.getContentType();
-        if (contentType && /^multipart\/form-data/i.test(contentType) && !/boundary=/i.test(contentType)) {
-          headers.delete("content-type");
-        }
-      }
-      headers.set("User-Agent", "axios/" + VERSION, false);
-      const resolvedOptions = {
-        ...fetchOptions,
-        signal: composedSignal,
-        method: method.toUpperCase(),
-        headers: headers.normalize().toJSON(),
-        body: data,
-        duplex: "half",
-        credentials: isCredentialsSupported ? withCredentials : void 0
-      };
-      request2 = isRequestSupported && new Request(url2, resolvedOptions);
-      let response = await (isRequestSupported ? _fetch(request2, fetchOptions) : _fetch(url2, resolvedOptions));
-      if (hasMaxContentLength) {
-        const declaredLength = utils_default.toFiniteNumber(response.headers.get("content-length"));
-        if (declaredLength != null && declaredLength > maxContentLength) {
-          throw new AxiosError_default(
-            "maxContentLength size of " + maxContentLength + " exceeded",
-            AxiosError_default.ERR_BAD_RESPONSE,
-            config,
-            request2
-          );
-        }
-      }
-      const isStreamResponse = supportsResponseStream && (responseType === "stream" || responseType === "response");
-      if (supportsResponseStream && response.body && (onDownloadProgress || hasMaxContentLength || isStreamResponse && unsubscribe)) {
-        const options = {};
-        ["status", "statusText", "headers"].forEach((prop) => {
-          options[prop] = response[prop];
-        });
-        const responseContentLength = utils_default.toFiniteNumber(response.headers.get("content-length"));
-        const [onProgress, flush] = onDownloadProgress && progressEventDecorator(
-          responseContentLength,
-          progressEventReducer(asyncDecorator(onDownloadProgress), true)
-        ) || [];
-        let bytesRead = 0;
-        const onChunkProgress = (loadedBytes) => {
-          if (hasMaxContentLength) {
-            bytesRead = loadedBytes;
-            if (bytesRead > maxContentLength) {
-              throw new AxiosError_default(
-                "maxContentLength size of " + maxContentLength + " exceeded",
-                AxiosError_default.ERR_BAD_RESPONSE,
-                config,
-                request2
-              );
-            }
-          }
-          onProgress && onProgress(loadedBytes);
-        };
-        response = new Response(
-          trackStream(response.body, DEFAULT_CHUNK_SIZE, onChunkProgress, () => {
-            flush && flush();
-            unsubscribe && unsubscribe();
-          }),
-          options
-        );
-      }
-      responseType = responseType || "text";
-      let responseData = await resolvers[utils_default.findKey(resolvers, responseType) || "text"](
-        response,
-        config
-      );
-      if (hasMaxContentLength && !supportsResponseStream && !isStreamResponse) {
-        let materializedSize;
-        if (responseData != null) {
-          if (typeof responseData.byteLength === "number") {
-            materializedSize = responseData.byteLength;
-          } else if (typeof responseData.size === "number") {
-            materializedSize = responseData.size;
-          } else if (typeof responseData === "string") {
-            materializedSize = typeof TextEncoder2 === "function" ? new TextEncoder2().encode(responseData).byteLength : responseData.length;
-          }
-        }
-        if (typeof materializedSize === "number" && materializedSize > maxContentLength) {
-          throw new AxiosError_default(
-            "maxContentLength size of " + maxContentLength + " exceeded",
-            AxiosError_default.ERR_BAD_RESPONSE,
-            config,
-            request2
-          );
-        }
-      }
-      !isStreamResponse && unsubscribe && unsubscribe();
-      return await new Promise((resolve4, reject) => {
-        settle(resolve4, reject, {
-          data: responseData,
-          headers: AxiosHeaders_default.from(response.headers),
-          status: response.status,
-          statusText: response.statusText,
-          config,
-          request: request2
-        });
-      });
-    } catch (err) {
-      unsubscribe && unsubscribe();
-      if (composedSignal && composedSignal.aborted && composedSignal.reason instanceof AxiosError_default) {
-        const canceledError = composedSignal.reason;
-        canceledError.config = config;
-        request2 && (canceledError.request = request2);
-        err !== canceledError && (canceledError.cause = err);
-        throw canceledError;
-      }
-      if (err && err.name === "TypeError" && /Load failed|fetch/i.test(err.message)) {
-        throw Object.assign(
-          new AxiosError_default(
-            "Network Error",
-            AxiosError_default.ERR_NETWORK,
-            config,
-            request2,
-            err && err.response
-          ),
-          {
-            cause: err.cause || err
-          }
-        );
-      }
-      throw AxiosError_default.from(err, err && err.code, config, request2, err && err.response);
+      JSON.parse(body);
+      return "application/json";
+    } catch (error) {
+      return void 0;
     }
-  };
-};
-var seedCache = /* @__PURE__ */ new Map();
-var getFetch = (config) => {
-  let env = config && config.env || {};
-  const { fetch: fetch2, Request, Response } = env;
-  const seeds = [Request, Response, fetch2];
-  let len = seeds.length, i = len, seed, target, map2 = seedCache;
-  while (i--) {
-    seed = seeds[i];
-    target = map2.get(seed);
-    target === void 0 && map2.set(seed, target = i ? /* @__PURE__ */ new Map() : factory(env));
-    map2 = target;
   }
-  return target;
-};
-var adapter = getFetch();
-
-// node_modules/axios/lib/adapters/adapters.js
-var knownAdapters = {
-  http: http_default,
-  xhr: xhr_default,
-  fetch: {
-    get: getFetch
-  }
-};
-utils_default.forEach(knownAdapters, (fn, value) => {
-  if (fn) {
-    try {
-      Object.defineProperty(fn, "name", { __proto__: null, value });
-    } catch (e) {
-    }
-    Object.defineProperty(fn, "adapterName", { __proto__: null, value });
-  }
-});
-var renderReason = (reason) => `- ${reason}`;
-var isResolvedHandle = (adapter2) => utils_default.isFunction(adapter2) || adapter2 === null || adapter2 === false;
-function getAdapter(adapters, config) {
-  adapters = utils_default.isArray(adapters) ? adapters : [adapters];
-  const { length } = adapters;
-  let nameOrAdapter;
-  let adapter2;
-  const rejectedReasons = {};
-  for (let i = 0; i < length; i++) {
-    nameOrAdapter = adapters[i];
-    let id;
-    adapter2 = nameOrAdapter;
-    if (!isResolvedHandle(nameOrAdapter)) {
-      adapter2 = knownAdapters[(id = String(nameOrAdapter)).toLowerCase()];
-      if (adapter2 === void 0) {
-        throw new AxiosError_default(`Unknown adapter '${id}'`);
-      }
-    }
-    if (adapter2 && (utils_default.isFunction(adapter2) || (adapter2 = adapter2.get(config)))) {
-      break;
-    }
-    rejectedReasons[id || "#" + i] = adapter2;
-  }
-  if (!adapter2) {
-    const reasons = Object.entries(rejectedReasons).map(
-      ([id, state]) => `adapter ${id} ` + (state === false ? "is not supported by the environment" : "is not available in the build")
-    );
-    let s = length ? reasons.length > 1 ? "since :\n" + reasons.map(renderReason).join("\n") : " " + renderReason(reasons[0]) : "as no adapter specified";
-    throw new AxiosError_default(
-      `There is no suitable adapter to dispatch the request ` + s,
-      "ERR_NOT_SUPPORT"
-    );
-  }
-  return adapter2;
+  return "application/json";
 }
-var adapters_default = {
-  /**
-   * Resolve an adapter from a list of adapter names or functions.
-   * @type {Function}
-   */
-  getAdapter,
-  /**
-   * Exposes all known adapters
-   * @type {Object<string, Function|Object>}
-   */
-  adapters: knownAdapters
-};
-
-// node_modules/axios/lib/core/dispatchRequest.js
-function throwIfCancellationRequested(config) {
-  if (config.cancelToken) {
-    config.cancelToken.throwIfRequested();
+function buildPipelineRequest(method, url, options = {}) {
+  const requestContentType = getRequestContentType(options);
+  const { body, multipartBody } = getRequestBody(options.body, requestContentType);
+  const headers = createHttpHeaders({
+    ...options.headers ? options.headers : {},
+    accept: options.accept ?? options.headers?.accept ?? "application/json",
+    ...requestContentType && {
+      "content-type": requestContentType
+    }
+  });
+  return createPipelineRequest({
+    url,
+    method,
+    body,
+    multipartBody,
+    headers,
+    allowInsecureConnection: options.allowInsecureConnection,
+    abortSignal: options.abortSignal,
+    onUploadProgress: options.onUploadProgress,
+    onDownloadProgress: options.onDownloadProgress,
+    timeout: options.timeout,
+    enableBrowserStreams: true,
+    streamResponseStatusCodes: options.responseAsStream ? /* @__PURE__ */ new Set([Number.POSITIVE_INFINITY]) : void 0
+  });
+}
+function getRequestBody(body, contentType = "") {
+  if (body === void 0) {
+    return { body: void 0 };
   }
-  if (config.signal && config.signal.aborted) {
-    throw new CanceledError_default(null, config);
+  if (typeof FormData !== "undefined" && body instanceof FormData) {
+    return { body };
+  }
+  if (isBlob(body)) {
+    return { body };
+  }
+  if (isReadableStream2(body)) {
+    return { body };
+  }
+  if (typeof body === "function") {
+    return { body };
+  }
+  if (ArrayBuffer.isView(body)) {
+    return { body: body instanceof Uint8Array ? body : JSON.stringify(body) };
+  }
+  const firstType = contentType.split(";")[0];
+  switch (firstType) {
+    case "application/json":
+      return { body: JSON.stringify(body) };
+    case "multipart/form-data":
+      if (Array.isArray(body)) {
+        return { multipartBody: buildMultipartBody(body) };
+      }
+      return { body: JSON.stringify(body) };
+    case "text/plain":
+      return { body: String(body) };
+    default:
+      if (typeof body === "string") {
+        return { body };
+      }
+      return { body: JSON.stringify(body) };
   }
 }
-function dispatchRequest(config) {
-  throwIfCancellationRequested(config);
-  config.headers = AxiosHeaders_default.from(config.headers);
-  config.data = transformData.call(config, config.transformRequest);
-  if (["post", "put", "patch"].indexOf(config.method) !== -1) {
-    config.headers.setContentType("application/x-www-form-urlencoded", false);
+function getResponseBody(response) {
+  const contentType = response.headers.get("content-type") ?? "";
+  const firstType = contentType.split(";")[0];
+  const bodyToParse = response.bodyAsText ?? "";
+  if (firstType === "text/plain") {
+    return String(bodyToParse);
   }
-  const adapter2 = adapters_default.getAdapter(config.adapter || defaults_default.adapter, config);
-  return adapter2(config).then(
-    function onAdapterResolution(response) {
-      throwIfCancellationRequested(config);
-      config.response = response;
-      try {
-        response.data = transformData.call(config, config.transformResponse, response);
-      } finally {
-        delete config.response;
-      }
-      response.headers = AxiosHeaders_default.from(response.headers);
-      return response;
-    },
-    function onAdapterRejection(reason) {
-      if (!isCancel(reason)) {
-        throwIfCancellationRequested(config);
-        if (reason && reason.response) {
-          config.response = reason.response;
-          try {
-            reason.response.data = transformData.call(
-              config,
-              config.transformResponse,
-              reason.response
-            );
-          } finally {
-            delete config.response;
-          }
-          reason.response.headers = AxiosHeaders_default.from(reason.response.headers);
-        }
-      }
-      return Promise.reject(reason);
+  try {
+    return bodyToParse ? JSON.parse(bodyToParse) : void 0;
+  } catch (error) {
+    if (firstType === "application/json") {
+      throw createParseError(response, error);
     }
-  );
+    return String(bodyToParse);
+  }
+}
+function createParseError(response, err) {
+  const msg = `Error "${err}" occurred while parsing the response body - ${response.bodyAsText}.`;
+  const errCode = err.code ?? RestError.PARSE_ERROR;
+  return new RestError(msg, {
+    code: errCode,
+    statusCode: response.status,
+    request: response.request,
+    response
+  });
 }
 
-// node_modules/axios/lib/helpers/validator.js
-var validators = {};
-["object", "boolean", "number", "function", "string", "symbol"].forEach((type2, i) => {
-  validators[type2] = function validator(thing) {
-    return typeof thing === type2 || "a" + (i < 1 ? "n " : " ") + type2;
-  };
-});
-var deprecatedWarnings = {};
-validators.transitional = function transitional(validator, version, message) {
-  function formatMessage(opt, desc) {
-    return "[Axios v" + VERSION + "] Transitional option '" + opt + "'" + desc + (message ? ". " + message : "");
+// node_modules/@typespec/ts-http-runtime/dist/esm/client/urlHelpers.js
+function isQueryParameterWithOptions(x) {
+  if (typeof x !== "object" || x === null || !Object.hasOwn(x, "value")) {
+    return false;
   }
-  return (value, opt, opts) => {
-    if (validator === false) {
-      throw new AxiosError_default(
-        formatMessage(opt, " has been removed" + (version ? " in " + version : "")),
-        AxiosError_default.ERR_DEPRECATED
-      );
-    }
-    if (version && !deprecatedWarnings[opt]) {
-      deprecatedWarnings[opt] = true;
-      console.warn(
-        formatMessage(
-          opt,
-          " has been deprecated since v" + version + " and will be removed in the near future"
-        )
-      );
-    }
-    return validator ? validator(value, opt, opts) : true;
-  };
-};
-validators.spelling = function spelling(correctSpelling) {
-  return (value, opt) => {
-    console.warn(`${opt} is likely a misspelling of ${correctSpelling}`);
-    return true;
-  };
-};
-function assertOptions(options, schema2, allowUnknown) {
-  if (typeof options !== "object") {
-    throw new AxiosError_default("options must be an object", AxiosError_default.ERR_BAD_OPTION_VALUE);
+  const value = x.value;
+  return typeof value?.toString === "function";
+}
+function buildRequestUrl(endpoint2, routePath, pathParameters, options = {}) {
+  if (routePath.startsWith("https://") || routePath.startsWith("http://")) {
+    return routePath;
   }
-  const keys = Object.keys(options);
-  let i = keys.length;
-  while (i-- > 0) {
-    const opt = keys[i];
-    const validator = Object.prototype.hasOwnProperty.call(schema2, opt) ? schema2[opt] : void 0;
-    if (validator) {
-      const value = options[opt];
-      const result = value === void 0 || validator(value, opt, options);
-      if (result !== true) {
-        throw new AxiosError_default(
-          "option " + opt + " must be " + result,
-          AxiosError_default.ERR_BAD_OPTION_VALUE
-        );
+  endpoint2 = buildBaseUrl(endpoint2, options);
+  const updatedRoutePath = buildRoutePath(routePath, pathParameters, options);
+  const requestUrl = appendQueryParams(appendPath(endpoint2, updatedRoutePath), options);
+  const url = new URL(requestUrl);
+  return url.toString();
+}
+function appendPath(endpoint2, pathToAppend) {
+  const endpointSearchStart = endpoint2.indexOf("?");
+  const pathSearchStart = pathToAppend.indexOf("?");
+  const endpointParts = endpointSearchStart !== -1 ? [endpoint2.substring(0, endpointSearchStart), endpoint2.substring(endpointSearchStart + 1)] : [endpoint2, ""];
+  const pathParts = pathSearchStart !== -1 ? [pathToAppend.substring(0, pathSearchStart), pathToAppend.substring(pathSearchStart + 1)] : [pathToAppend, ""];
+  const combinedSearch = [endpointParts[1], pathParts[1].replaceAll("?", "&")].filter(Boolean).join("&");
+  const baseEndpoint = endpointParts[0].replace(/(^[^:]+:\/\/[^/]+)\/\/+/, "$1/");
+  const basePathToAppend = pathParts[0];
+  let combinedUrl = baseEndpoint;
+  if (!baseEndpoint.endsWith("/") && !basePathToAppend.startsWith("/") && basePathToAppend !== "") {
+    combinedUrl += `/${basePathToAppend}`;
+  } else if (baseEndpoint.endsWith("/") && basePathToAppend.startsWith("/")) {
+    combinedUrl += basePathToAppend.substring(1);
+  } else {
+    combinedUrl += basePathToAppend;
+  }
+  if (combinedSearch) {
+    combinedUrl += `?${combinedSearch}`;
+  }
+  return combinedUrl;
+}
+function getQueryParamValue(key, allowReserved, style, param) {
+  let separator;
+  if (style === "pipeDelimited") {
+    separator = "|";
+  } else if (style === "spaceDelimited") {
+    separator = "%20";
+  } else {
+    separator = ",";
+  }
+  let paramValues;
+  if (Array.isArray(param)) {
+    paramValues = param;
+  } else if (typeof param === "object" && param.toString === Object.prototype.toString) {
+    paramValues = Object.entries(param).flat();
+  } else {
+    paramValues = [param];
+  }
+  const value = paramValues.map((p) => {
+    if (p === null || p === void 0) {
+      return "";
+    }
+    if (!p.toString || typeof p.toString !== "function") {
+      throw new Error(`Query parameters must be able to be represented as string, ${key} can't`);
+    }
+    const rawValue = p.toISOString !== void 0 ? p.toISOString() : p.toString();
+    return allowReserved ? rawValue : encodeURIComponent(rawValue);
+  }).join(separator);
+  return `${allowReserved ? key : encodeURIComponent(key)}=${value}`;
+}
+function simpleParseQueryParams(queryString) {
+  const result = /* @__PURE__ */ new Map();
+  if (!queryString || queryString[0] !== "?") {
+    return result;
+  }
+  queryString = queryString.slice(1);
+  const pairs2 = queryString.split("&");
+  for (const pair of pairs2) {
+    const eqIndex = pair.indexOf("=");
+    const name = eqIndex === -1 ? pair : pair.substring(0, eqIndex);
+    const value = eqIndex === -1 ? "" : pair.substring(eqIndex + 1);
+    const existingValue = result.get(name);
+    if (existingValue !== void 0) {
+      if (Array.isArray(existingValue)) {
+        existingValue.push(value);
+      } else {
+        result.set(name, [existingValue, value]);
       }
+    } else {
+      result.set(name, value);
+    }
+  }
+  return result;
+}
+function appendQueryParams(url, options = {}) {
+  if (!options.queryParameters) {
+    return url;
+  }
+  const parsedUrl = new URL(url);
+  const queryParams = options.queryParameters;
+  const existingParams = simpleParseQueryParams(parsedUrl.search);
+  const newParamStrings = [];
+  for (const key of Object.keys(queryParams)) {
+    const param = queryParams[key];
+    if (param === void 0 || param === null) {
       continue;
     }
-    if (allowUnknown !== true) {
-      throw new AxiosError_default("Unknown option " + opt, AxiosError_default.ERR_BAD_OPTION);
+    const hasMetadata = isQueryParameterWithOptions(param);
+    const rawValue = hasMetadata ? param.value : param;
+    const explode = hasMetadata ? param.explode ?? false : false;
+    const style = hasMetadata && param.style ? param.style : "form";
+    if (explode) {
+      if (Array.isArray(rawValue)) {
+        for (const item of rawValue) {
+          newParamStrings.push(getQueryParamValue(key, options.skipUrlEncoding ?? false, style, item));
+        }
+      } else if (rawValue !== null && typeof rawValue === "object") {
+        for (const [actualKey, value] of Object.entries(rawValue)) {
+          newParamStrings.push(getQueryParamValue(actualKey, options.skipUrlEncoding ?? false, style, value));
+        }
+      } else {
+        throw new Error("explode can only be set to true for objects and arrays");
+      }
+    } else {
+      newParamStrings.push(getQueryParamValue(key, options.skipUrlEncoding ?? false, style, rawValue));
+    }
+  }
+  for (const paramString of newParamStrings) {
+    const eqIndex = paramString.indexOf("=");
+    const name = paramString.substring(0, eqIndex);
+    const value = paramString.substring(eqIndex + 1);
+    const existingValue = existingParams.get(name);
+    if (existingValue !== void 0) {
+      if (Array.isArray(existingValue)) {
+        if (!existingValue.includes(value)) {
+          existingValue.push(value);
+        }
+      } else if (existingValue !== value) {
+        existingParams.set(name, [existingValue, value]);
+      }
+    } else {
+      existingParams.set(name, value);
+    }
+  }
+  const searchPieces = [];
+  for (const [name, value] of existingParams) {
+    if (Array.isArray(value)) {
+      for (const subValue of value) {
+        searchPieces.push(`${name}=${subValue}`);
+      }
+    } else {
+      searchPieces.push(`${name}=${value}`);
+    }
+  }
+  parsedUrl.search = searchPieces.length ? `?${searchPieces.join("&")}` : "";
+  return parsedUrl.toString();
+}
+function buildBaseUrl(endpoint2, options) {
+  if (!options.pathParameters) {
+    return endpoint2;
+  }
+  const pathParams = options.pathParameters;
+  for (const [key, param] of Object.entries(pathParams)) {
+    if (param === void 0 || param === null) {
+      throw new Error(`Path parameters ${key} must not be undefined or null`);
+    }
+    if (!param.toString || typeof param.toString !== "function") {
+      throw new Error(`Path parameters must be able to be represented as string, ${key} can't`);
+    }
+    let value = param.toISOString !== void 0 ? param.toISOString() : String(param);
+    if (!options.skipUrlEncoding) {
+      value = encodeURIComponent(param);
+    }
+    endpoint2 = replaceAll(endpoint2, `{${key}}`, value) ?? "";
+  }
+  return endpoint2;
+}
+function buildRoutePath(routePath, pathParameters, options = {}) {
+  for (const pathParam of pathParameters) {
+    const allowReserved = typeof pathParam === "object" && (pathParam.allowReserved ?? false);
+    let value = typeof pathParam === "object" ? pathParam.value : pathParam;
+    if (!options.skipUrlEncoding && !allowReserved) {
+      value = encodeURIComponent(value);
+    }
+    routePath = routePath.replace(/\{[\w-]+\}/, String(value));
+  }
+  return routePath;
+}
+function replaceAll(value, searchValue, replaceValue) {
+  return !value || !searchValue ? value : value.split(searchValue).join(replaceValue || "");
+}
+
+// node_modules/@typespec/ts-http-runtime/dist/esm/client/getClient.js
+function getClient(endpoint2, clientOptions = {}) {
+  const pipeline = clientOptions.pipeline ?? createDefaultPipeline(clientOptions);
+  if (clientOptions.additionalPolicies?.length) {
+    for (const { policy, position } of clientOptions.additionalPolicies) {
+      const afterPhase = position === "perRetry" ? "Sign" : void 0;
+      pipeline.addPolicy(policy, {
+        afterPhase
+      });
+    }
+  }
+  const { allowInsecureConnection: allowInsecureConnection2, httpClient } = clientOptions;
+  const endpointUrl = clientOptions.endpoint ?? endpoint2;
+  const client = (path2, ...args) => {
+    const getUrl = (requestOptions) => buildRequestUrl(endpointUrl, path2, args, { allowInsecureConnection: allowInsecureConnection2, ...requestOptions });
+    return {
+      get: (requestOptions = {}) => {
+        return buildOperation("GET", getUrl(requestOptions), pipeline, requestOptions, allowInsecureConnection2, httpClient);
+      },
+      post: (requestOptions = {}) => {
+        return buildOperation("POST", getUrl(requestOptions), pipeline, requestOptions, allowInsecureConnection2, httpClient);
+      },
+      put: (requestOptions = {}) => {
+        return buildOperation("PUT", getUrl(requestOptions), pipeline, requestOptions, allowInsecureConnection2, httpClient);
+      },
+      patch: (requestOptions = {}) => {
+        return buildOperation("PATCH", getUrl(requestOptions), pipeline, requestOptions, allowInsecureConnection2, httpClient);
+      },
+      delete: (requestOptions = {}) => {
+        return buildOperation("DELETE", getUrl(requestOptions), pipeline, requestOptions, allowInsecureConnection2, httpClient);
+      },
+      head: (requestOptions = {}) => {
+        return buildOperation("HEAD", getUrl(requestOptions), pipeline, requestOptions, allowInsecureConnection2, httpClient);
+      },
+      options: (requestOptions = {}) => {
+        return buildOperation("OPTIONS", getUrl(requestOptions), pipeline, requestOptions, allowInsecureConnection2, httpClient);
+      },
+      trace: (requestOptions = {}) => {
+        return buildOperation("TRACE", getUrl(requestOptions), pipeline, requestOptions, allowInsecureConnection2, httpClient);
+      }
+    };
+  };
+  return {
+    path: client,
+    pathUnchecked: client,
+    pipeline
+  };
+}
+function buildOperation(method, url, pipeline, options, allowInsecureConnection2, httpClient) {
+  allowInsecureConnection2 = options.allowInsecureConnection ?? allowInsecureConnection2;
+  return {
+    then: function(onFulfilled, onrejected) {
+      return sendRequest(method, url, pipeline, { ...options, allowInsecureConnection: allowInsecureConnection2 }, httpClient).then(onFulfilled, onrejected);
+    },
+    async asBrowserStream() {
+      if (isNodeLike) {
+        throw new Error("`asBrowserStream` is supported only in the browser environment. Use `asNodeStream` instead to obtain the response body stream. If you require a Web stream of the response in Node, consider using `Readable.toWeb` on the result of `asNodeStream`.");
+      } else {
+        return sendRequest(method, url, pipeline, { ...options, allowInsecureConnection: allowInsecureConnection2, responseAsStream: true }, httpClient);
+      }
+    },
+    async asNodeStream() {
+      if (isNodeLike) {
+        return sendRequest(method, url, pipeline, { ...options, allowInsecureConnection: allowInsecureConnection2, responseAsStream: true }, httpClient);
+      } else {
+        throw new Error("`isNodeStream` is not supported in the browser environment. Use `asBrowserStream` to obtain the response body stream.");
+      }
+    }
+  };
+}
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/pipeline.js
+function createEmptyPipeline2() {
+  return createEmptyPipeline();
+}
+
+// node_modules/@azure/logger/dist/esm/index.js
+var context2 = createLoggerContext({
+  logLevelEnvVarName: "AZURE_LOG_LEVEL",
+  namespace: "azure"
+});
+var AzureLogger = context2.logger;
+function createClientLogger2(namespace) {
+  return context2.createClientLogger(namespace);
+}
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/log.js
+var logger2 = createClientLogger2("core-rest-pipeline");
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/policies/logPolicy.js
+function logPolicy2(options = {}) {
+  return logPolicy({
+    logger: logger2.info,
+    ...options
+  });
+}
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/policies/redirectPolicy.js
+function redirectPolicy2(options = {}) {
+  return redirectPolicy(options);
+}
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/util/userAgentPlatform.js
+var import_node_os3 = __toESM(require("node:os"), 1);
+var import_node_process3 = __toESM(require("node:process"), 1);
+function getHeaderName2() {
+  return "User-Agent";
+}
+async function setPlatformSpecificData2(map2) {
+  if (import_node_process3.default && import_node_process3.default.versions) {
+    const osInfo = `${import_node_os3.default.type()} ${import_node_os3.default.release()}; ${import_node_os3.default.arch()}`;
+    const versions = import_node_process3.default.versions;
+    if (versions.bun) {
+      map2.set("Bun", `${versions.bun} (${osInfo})`);
+    } else if (versions.deno) {
+      map2.set("Deno", `${versions.deno} (${osInfo})`);
+    } else if (versions.node) {
+      map2.set("Node", `${versions.node} (${osInfo})`);
     }
   }
 }
-var validator_default = {
-  assertOptions,
-  validators
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/constants.js
+var SDK_VERSION2 = "1.22.3";
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/util/userAgent.js
+function getUserAgentString2(telemetryInfo) {
+  const parts = [];
+  for (const [key, value] of telemetryInfo) {
+    const token = value ? `${key}/${value}` : key;
+    parts.push(token);
+  }
+  return parts.join(" ");
+}
+function getUserAgentHeaderName2() {
+  return getHeaderName2();
+}
+async function getUserAgentValue2(prefix) {
+  const runtimeInfo = /* @__PURE__ */ new Map();
+  runtimeInfo.set("core-rest-pipeline", SDK_VERSION2);
+  await setPlatformSpecificData2(runtimeInfo);
+  const defaultAgent = getUserAgentString2(runtimeInfo);
+  const userAgentValue = prefix ? `${prefix} ${defaultAgent}` : defaultAgent;
+  return userAgentValue;
+}
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/policies/userAgentPolicy.js
+var UserAgentHeaderName2 = getUserAgentHeaderName2();
+var userAgentPolicyName2 = "userAgentPolicy";
+function userAgentPolicy2(options = {}) {
+  const userAgentValue = getUserAgentValue2(options.userAgentPrefix);
+  return {
+    name: userAgentPolicyName2,
+    async sendRequest(request2, next) {
+      if (!request2.headers.has(UserAgentHeaderName2)) {
+        request2.headers.set(UserAgentHeaderName2, await userAgentValue);
+      }
+      return next(request2);
+    }
+  };
+}
+
+// node_modules/@azure/abort-controller/dist/esm/AbortError.js
+var AbortError2 = class extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "AbortError";
+  }
 };
 
-// node_modules/axios/lib/core/Axios.js
-var validators2 = validator_default.validators;
-var Axios = class {
-  constructor(instanceConfig) {
-    this.defaults = instanceConfig || {};
-    this.interceptors = {
-      request: new InterceptorManager_default(),
-      response: new InterceptorManager_default()
-    };
-  }
-  /**
-   * Dispatch a request
-   *
-   * @param {String|Object} configOrUrl The config specific for this request (merged with this.defaults)
-   * @param {?Object} config
-   *
-   * @returns {Promise} The Promise to be fulfilled
-   */
-  async request(configOrUrl, config) {
+// node_modules/@azure/core-util/dist/esm/createAbortablePromise.js
+function createAbortablePromise(buildPromise, options) {
+  const { cleanupBeforeAbort, abortSignal, abortErrorMsg } = options ?? {};
+  return new Promise((resolve4, reject) => {
+    function rejectOnAbort() {
+      reject(new AbortError2(abortErrorMsg ?? "The operation was aborted."));
+    }
+    function removeListeners() {
+      abortSignal?.removeEventListener("abort", onAbort);
+    }
+    function onAbort() {
+      cleanupBeforeAbort?.();
+      removeListeners();
+      rejectOnAbort();
+    }
+    if (abortSignal?.aborted) {
+      return rejectOnAbort();
+    }
     try {
-      return await this._request(configOrUrl, config);
+      buildPromise((x) => {
+        removeListeners();
+        resolve4(x);
+      }, (x) => {
+        removeListeners();
+        reject(x);
+      });
     } catch (err) {
-      if (err instanceof Error) {
-        let dummy = {};
-        Error.captureStackTrace ? Error.captureStackTrace(dummy) : dummy = new Error();
-        const stack = (() => {
-          if (!dummy.stack) {
-            return "";
+      reject(err);
+    }
+    abortSignal?.addEventListener("abort", onAbort);
+  });
+}
+
+// node_modules/@azure/core-util/dist/esm/delay.js
+var StandardAbortMessage2 = "The delay was aborted.";
+function delay2(timeInMs, options) {
+  let token;
+  const { abortSignal, abortErrorMsg } = options ?? {};
+  return createAbortablePromise((resolve4) => {
+    token = setTimeout(resolve4, timeInMs);
+  }, {
+    cleanupBeforeAbort: () => clearTimeout(token),
+    abortSignal,
+    abortErrorMsg: abortErrorMsg ?? StandardAbortMessage2
+  });
+}
+
+// node_modules/@azure/core-util/dist/esm/error.js
+function getErrorMessage(e) {
+  if (isError(e)) {
+    return e.message;
+  } else {
+    let stringified;
+    try {
+      if (typeof e === "object" && e) {
+        stringified = JSON.stringify(e);
+      } else {
+        stringified = String(e);
+      }
+    } catch (err) {
+      stringified = "[unable to stringify input]";
+    }
+    return `Unknown error ${stringified}`;
+  }
+}
+
+// node_modules/@azure/core-util/dist/esm/typeGuards.js
+function isDefined(thing) {
+  return typeof thing !== "undefined" && thing !== null;
+}
+function isObjectWithProperties(thing, properties) {
+  if (!isDefined(thing) || typeof thing !== "object") {
+    return false;
+  }
+  for (const property of properties) {
+    if (!objectHasProperty(thing, property)) {
+      return false;
+    }
+  }
+  return true;
+}
+function objectHasProperty(thing, property) {
+  return isDefined(thing) && typeof thing === "object" && property in thing;
+}
+
+// node_modules/@azure/core-util/dist/esm/index.js
+function isError2(e) {
+  return isError(e);
+}
+var isNodeLike2 = isNodeLike;
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/util/file.js
+var rawContent = /* @__PURE__ */ Symbol("rawContent");
+function hasRawContent(x) {
+  return typeof x[rawContent] === "function";
+}
+function getRawContent(blob) {
+  if (hasRawContent(blob)) {
+    return blob[rawContent]();
+  } else {
+    return blob;
+  }
+}
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/policies/multipartPolicy.js
+var multipartPolicyName2 = multipartPolicyName;
+function multipartPolicy2() {
+  const tspPolicy = multipartPolicy();
+  return {
+    name: multipartPolicyName2,
+    sendRequest: async (request2, next) => {
+      if (request2.multipartBody) {
+        for (const part of request2.multipartBody.parts) {
+          if (hasRawContent(part.body)) {
+            part.body = getRawContent(part.body);
           }
-          const firstNewlineIndex = dummy.stack.indexOf("\n");
-          return firstNewlineIndex === -1 ? "" : dummy.stack.slice(firstNewlineIndex + 1);
-        })();
-        try {
-          if (!err.stack) {
-            err.stack = stack;
-          } else if (stack) {
-            const firstNewlineIndex = stack.indexOf("\n");
-            const secondNewlineIndex = firstNewlineIndex === -1 ? -1 : stack.indexOf("\n", firstNewlineIndex + 1);
-            const stackWithoutTwoTopLines = secondNewlineIndex === -1 ? "" : stack.slice(secondNewlineIndex + 1);
-            if (!String(err.stack).endsWith(stackWithoutTwoTopLines)) {
-              err.stack += "\n" + stack;
-            }
-          }
-        } catch (e) {
         }
       }
+      return tspPolicy.sendRequest(request2, next);
+    }
+  };
+}
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/policies/decompressResponsePolicy.js
+function decompressResponsePolicy2() {
+  return decompressResponsePolicy();
+}
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/policies/defaultRetryPolicy.js
+function defaultRetryPolicy2(options = {}) {
+  return defaultRetryPolicy(options);
+}
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/policies/formDataPolicy.js
+function formDataPolicy2() {
+  return formDataPolicy();
+}
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/policies/proxyPolicy.js
+function proxyPolicy2(proxySettings, options) {
+  return proxyPolicy(proxySettings, options);
+}
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/policies/setClientRequestIdPolicy.js
+var setClientRequestIdPolicyName = "setClientRequestIdPolicy";
+function setClientRequestIdPolicy(requestIdHeaderName = "x-ms-client-request-id") {
+  return {
+    name: setClientRequestIdPolicyName,
+    async sendRequest(request2, next) {
+      if (!request2.headers.has(requestIdHeaderName)) {
+        request2.headers.set(requestIdHeaderName, request2.requestId);
+      }
+      return next(request2);
+    }
+  };
+}
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/policies/agentPolicy.js
+function agentPolicy2(agent) {
+  return agentPolicy(agent);
+}
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/policies/tlsPolicy.js
+function tlsPolicy2(tlsSettings) {
+  return tlsPolicy(tlsSettings);
+}
+
+// node_modules/@azure/core-tracing/dist/esm/tracingContext.js
+var knownContextKeys = {
+  span: /* @__PURE__ */ Symbol.for("@azure/core-tracing span"),
+  namespace: /* @__PURE__ */ Symbol.for("@azure/core-tracing namespace")
+};
+function createTracingContext(options = {}) {
+  let context4 = new TracingContextImpl(options.parentContext);
+  if (options.span) {
+    context4 = context4.setValue(knownContextKeys.span, options.span);
+  }
+  if (options.namespace) {
+    context4 = context4.setValue(knownContextKeys.namespace, options.namespace);
+  }
+  return context4;
+}
+var TracingContextImpl = class _TracingContextImpl {
+  _contextMap;
+  constructor(initialContext) {
+    this._contextMap = initialContext instanceof _TracingContextImpl ? new Map(initialContext._contextMap) : /* @__PURE__ */ new Map();
+  }
+  setValue(key, value) {
+    const newContext = new _TracingContextImpl(this);
+    newContext._contextMap.set(key, value);
+    return newContext;
+  }
+  getValue(key) {
+    return this._contextMap.get(key);
+  }
+  deleteValue(key) {
+    const newContext = new _TracingContextImpl(this);
+    newContext._contextMap.delete(key);
+    return newContext;
+  }
+};
+
+// node_modules/@azure/core-tracing/dist/esm/state.js
+var import_state = __toESM(require_state(), 1);
+var state = import_state.state;
+
+// node_modules/@azure/core-tracing/dist/esm/instrumenter.js
+function createDefaultTracingSpan() {
+  return {
+    end: () => {
+    },
+    isRecording: () => false,
+    recordException: () => {
+    },
+    setAttribute: () => {
+    },
+    setStatus: () => {
+    },
+    addEvent: () => {
+    }
+  };
+}
+function createDefaultInstrumenter() {
+  return {
+    createRequestHeaders: () => {
+      return {};
+    },
+    parseTraceparentHeader: () => {
+      return void 0;
+    },
+    startSpan: (_name, spanOptions) => {
+      return {
+        span: createDefaultTracingSpan(),
+        tracingContext: createTracingContext({ parentContext: spanOptions.tracingContext })
+      };
+    },
+    withContext(_context, callback, ...callbackArgs) {
+      return callback(...callbackArgs);
+    }
+  };
+}
+function getInstrumenter() {
+  if (!state.instrumenterImplementation) {
+    state.instrumenterImplementation = createDefaultInstrumenter();
+  }
+  return state.instrumenterImplementation;
+}
+
+// node_modules/@azure/core-tracing/dist/esm/tracingClient.js
+function createTracingClient(options) {
+  const { namespace, packageName, packageVersion } = options;
+  function startSpan(name, operationOptions, spanOptions) {
+    const startSpanResult = getInstrumenter().startSpan(name, {
+      ...spanOptions,
+      packageName,
+      packageVersion,
+      tracingContext: operationOptions?.tracingOptions?.tracingContext
+    });
+    let tracingContext = startSpanResult.tracingContext;
+    const span = startSpanResult.span;
+    if (!tracingContext.getValue(knownContextKeys.namespace)) {
+      tracingContext = tracingContext.setValue(knownContextKeys.namespace, namespace);
+    }
+    span.setAttribute("az.namespace", tracingContext.getValue(knownContextKeys.namespace));
+    const updatedOptions = Object.assign({}, operationOptions, {
+      tracingOptions: { ...operationOptions?.tracingOptions, tracingContext }
+    });
+    return {
+      span,
+      updatedOptions
+    };
+  }
+  async function withSpan(name, operationOptions, callback, spanOptions) {
+    const { span, updatedOptions } = startSpan(name, operationOptions, spanOptions);
+    try {
+      const result = await withContext(updatedOptions.tracingOptions.tracingContext, () => Promise.resolve(callback(updatedOptions, span)));
+      span.setStatus({ status: "success" });
+      return result;
+    } catch (err) {
+      span.setStatus({ status: "error", error: err });
       throw err;
+    } finally {
+      span.end();
     }
   }
-  _request(configOrUrl, config) {
-    if (typeof configOrUrl === "string") {
-      config = config || {};
-      config.url = configOrUrl;
-    } else {
-      config = configOrUrl || {};
-    }
-    config = mergeConfig(this.defaults, config);
-    const { transitional: transitional2, paramsSerializer, headers } = config;
-    if (transitional2 !== void 0) {
-      validator_default.assertOptions(
-        transitional2,
-        {
-          silentJSONParsing: validators2.transitional(validators2.boolean),
-          forcedJSONParsing: validators2.transitional(validators2.boolean),
-          clarifyTimeoutError: validators2.transitional(validators2.boolean),
-          legacyInterceptorReqResOrdering: validators2.transitional(validators2.boolean)
-        },
-        false
-      );
-    }
-    if (paramsSerializer != null) {
-      if (utils_default.isFunction(paramsSerializer)) {
-        config.paramsSerializer = {
-          serialize: paramsSerializer
-        };
-      } else {
-        validator_default.assertOptions(
-          paramsSerializer,
-          {
-            encode: validators2.function,
-            serialize: validators2.function
-          },
-          true
-        );
+  function withContext(context4, callback, ...callbackArgs) {
+    return getInstrumenter().withContext(context4, callback, ...callbackArgs);
+  }
+  function parseTraceparentHeader(traceparentHeader) {
+    return getInstrumenter().parseTraceparentHeader(traceparentHeader);
+  }
+  function createRequestHeaders(tracingContext) {
+    return getInstrumenter().createRequestHeaders(tracingContext);
+  }
+  return {
+    startSpan,
+    withSpan,
+    withContext,
+    parseTraceparentHeader,
+    createRequestHeaders
+  };
+}
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/restError.js
+function isRestError2(e) {
+  return isRestError(e);
+}
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/policies/tracingPolicy.js
+var tracingPolicyName = "tracingPolicy";
+function tracingPolicy(options = {}) {
+  const userAgentPromise = getUserAgentValue2(options.userAgentPrefix);
+  const sanitizer = new Sanitizer({
+    additionalAllowedQueryParameters: options.additionalAllowedQueryParameters
+  });
+  const tracingClient = tryCreateTracingClient();
+  return {
+    name: tracingPolicyName,
+    async sendRequest(request2, next) {
+      if (!tracingClient) {
+        return next(request2);
       }
-    }
-    if (config.allowAbsoluteUrls !== void 0) {
-    } else if (this.defaults.allowAbsoluteUrls !== void 0) {
-      config.allowAbsoluteUrls = this.defaults.allowAbsoluteUrls;
-    } else {
-      config.allowAbsoluteUrls = true;
-    }
-    validator_default.assertOptions(
-      config,
-      {
-        baseUrl: validators2.spelling("baseURL"),
-        withXsrfToken: validators2.spelling("withXSRFToken")
-      },
-      true
-    );
-    config.method = (config.method || this.defaults.method || "get").toLowerCase();
-    let contextHeaders = headers && utils_default.merge(headers.common, headers[config.method]);
-    headers && utils_default.forEach(["delete", "get", "head", "post", "put", "patch", "query", "common"], (method) => {
-      delete headers[method];
-    });
-    config.headers = AxiosHeaders_default.concat(contextHeaders, headers);
-    const requestInterceptorChain = [];
-    let synchronousRequestInterceptors = true;
-    this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
-      if (typeof interceptor.runWhen === "function" && interceptor.runWhen(config) === false) {
-        return;
+      const userAgent2 = await userAgentPromise;
+      const spanAttributes = {
+        "http.url": sanitizer.sanitizeUrl(request2.url),
+        "http.method": request2.method,
+        "http.user_agent": userAgent2,
+        requestId: request2.requestId
+      };
+      if (userAgent2) {
+        spanAttributes["http.user_agent"] = userAgent2;
       }
-      synchronousRequestInterceptors = synchronousRequestInterceptors && interceptor.synchronous;
-      const transitional3 = config.transitional || transitional_default;
-      const legacyInterceptorReqResOrdering = transitional3 && transitional3.legacyInterceptorReqResOrdering;
-      if (legacyInterceptorReqResOrdering) {
-        requestInterceptorChain.unshift(interceptor.fulfilled, interceptor.rejected);
-      } else {
-        requestInterceptorChain.push(interceptor.fulfilled, interceptor.rejected);
+      const { span, tracingContext } = tryCreateSpan(tracingClient, request2, spanAttributes) ?? {};
+      if (!span || !tracingContext) {
+        return next(request2);
       }
-    });
-    const responseInterceptorChain = [];
-    this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
-      responseInterceptorChain.push(interceptor.fulfilled, interceptor.rejected);
-    });
-    let promise;
-    let i = 0;
-    let len;
-    if (!synchronousRequestInterceptors) {
-      const chain = [dispatchRequest.bind(this), void 0];
-      chain.unshift(...requestInterceptorChain);
-      chain.push(...responseInterceptorChain);
-      len = chain.length;
-      promise = Promise.resolve(config);
-      while (i < len) {
-        promise = promise.then(chain[i++], chain[i++]);
-      }
-      return promise;
-    }
-    len = requestInterceptorChain.length;
-    let newConfig = config;
-    while (i < len) {
-      const onFulfilled = requestInterceptorChain[i++];
-      const onRejected = requestInterceptorChain[i++];
       try {
-        newConfig = onFulfilled(newConfig);
-      } catch (error) {
-        onRejected.call(this, error);
+        const response = await tracingClient.withContext(tracingContext, next, request2);
+        tryProcessResponse(span, response);
+        return response;
+      } catch (err) {
+        tryProcessError(span, err);
+        throw err;
+      }
+    }
+  };
+}
+function tryCreateTracingClient() {
+  try {
+    return createTracingClient({
+      namespace: "",
+      packageName: "@azure/core-rest-pipeline",
+      packageVersion: SDK_VERSION2
+    });
+  } catch (e) {
+    logger2.warning(`Error when creating the TracingClient: ${getErrorMessage(e)}`);
+    return void 0;
+  }
+}
+function tryCreateSpan(tracingClient, request2, spanAttributes) {
+  try {
+    const { span, updatedOptions } = tracingClient.startSpan(`HTTP ${request2.method}`, { tracingOptions: request2.tracingOptions }, {
+      spanKind: "client",
+      spanAttributes
+    });
+    if (!span.isRecording()) {
+      span.end();
+      return void 0;
+    }
+    const headers = tracingClient.createRequestHeaders(updatedOptions.tracingOptions.tracingContext);
+    for (const [key, value] of Object.entries(headers)) {
+      request2.headers.set(key, value);
+    }
+    return { span, tracingContext: updatedOptions.tracingOptions.tracingContext };
+  } catch (e) {
+    logger2.warning(`Skipping creating a tracing span due to an error: ${getErrorMessage(e)}`);
+    return void 0;
+  }
+}
+function tryProcessError(span, error) {
+  try {
+    span.setStatus({
+      status: "error",
+      error: isError2(error) ? error : void 0
+    });
+    if (isRestError2(error) && error.statusCode) {
+      span.setAttribute("http.status_code", error.statusCode);
+    }
+    span.end();
+  } catch (e) {
+    logger2.warning(`Skipping tracing span processing due to an error: ${getErrorMessage(e)}`);
+  }
+}
+function tryProcessResponse(span, response) {
+  try {
+    span.setAttribute("http.status_code", response.status);
+    const serviceRequestId = response.headers.get("x-ms-request-id");
+    if (serviceRequestId) {
+      span.setAttribute("serviceRequestId", serviceRequestId);
+    }
+    if (response.status >= 400) {
+      span.setStatus({
+        status: "error"
+      });
+    }
+    span.end();
+  } catch (e) {
+    logger2.warning(`Skipping tracing span processing due to an error: ${getErrorMessage(e)}`);
+  }
+}
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/util/wrapAbortSignal.js
+function wrapAbortSignalLike(abortSignalLike) {
+  if (abortSignalLike instanceof AbortSignal) {
+    return { abortSignal: abortSignalLike };
+  }
+  if (abortSignalLike.aborted) {
+    return { abortSignal: AbortSignal.abort(abortSignalLike.reason) };
+  }
+  const controller = new AbortController();
+  let needsCleanup = true;
+  function cleanup() {
+    if (needsCleanup) {
+      abortSignalLike.removeEventListener("abort", listener);
+      needsCleanup = false;
+    }
+  }
+  function listener() {
+    controller.abort(abortSignalLike.reason);
+    cleanup();
+  }
+  abortSignalLike.addEventListener("abort", listener);
+  return { abortSignal: controller.signal, cleanup };
+}
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/policies/wrapAbortSignalLikePolicy.js
+var wrapAbortSignalLikePolicyName = "wrapAbortSignalLikePolicy";
+function wrapAbortSignalLikePolicy() {
+  return {
+    name: wrapAbortSignalLikePolicyName,
+    sendRequest: async (request2, next) => {
+      if (!request2.abortSignal) {
+        return next(request2);
+      }
+      const { abortSignal, cleanup } = wrapAbortSignalLike(request2.abortSignal);
+      request2.abortSignal = abortSignal;
+      try {
+        return await next(request2);
+      } finally {
+        cleanup?.();
+      }
+    }
+  };
+}
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/createPipelineFromOptions.js
+function createPipelineFromOptions2(options) {
+  const pipeline = createEmptyPipeline2();
+  if (isNodeLike2) {
+    if (options.agent) {
+      pipeline.addPolicy(agentPolicy2(options.agent));
+    }
+    if (options.tlsOptions) {
+      pipeline.addPolicy(tlsPolicy2(options.tlsOptions));
+    }
+    pipeline.addPolicy(proxyPolicy2(options.proxyOptions));
+    pipeline.addPolicy(decompressResponsePolicy2());
+  }
+  pipeline.addPolicy(wrapAbortSignalLikePolicy());
+  pipeline.addPolicy(formDataPolicy2(), { beforePolicies: [multipartPolicyName2] });
+  pipeline.addPolicy(userAgentPolicy2(options.userAgentOptions));
+  pipeline.addPolicy(setClientRequestIdPolicy(options.telemetryOptions?.clientRequestIdHeaderName));
+  pipeline.addPolicy(multipartPolicy2(), { afterPhase: "Deserialize" });
+  pipeline.addPolicy(defaultRetryPolicy2(options.retryOptions), { phase: "Retry" });
+  pipeline.addPolicy(tracingPolicy({ ...options.userAgentOptions, ...options.loggingOptions }), {
+    afterPhase: "Retry"
+  });
+  if (isNodeLike2) {
+    pipeline.addPolicy(redirectPolicy2(options.redirectOptions), { afterPhase: "Retry" });
+  }
+  pipeline.addPolicy(logPolicy2(options.loggingOptions), { afterPhase: "Sign" });
+  return pipeline;
+}
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/policies/retryPolicy.js
+var retryPolicyLogger2 = createClientLogger2("core-rest-pipeline retryPolicy");
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/util/tokenCycler.js
+var DEFAULT_CYCLER_OPTIONS = {
+  forcedRefreshWindowInMs: 1e3,
+  // Force waiting for a refresh 1s before the token expires
+  retryIntervalInMs: 3e3,
+  // Allow refresh attempts every 3s
+  refreshWindowInMs: 1e3 * 60 * 2
+  // Start refreshing 2m before expiry
+};
+async function beginRefresh(getAccessToken, retryIntervalInMs, refreshTimeout) {
+  async function tryGetAccessToken() {
+    if (Date.now() < refreshTimeout) {
+      try {
+        return await getAccessToken();
+      } catch {
+        return null;
+      }
+    } else {
+      const finalToken = await getAccessToken();
+      if (finalToken === null) {
+        throw new Error("Failed to refresh access token.");
+      }
+      return finalToken;
+    }
+  }
+  let token = await tryGetAccessToken();
+  while (token === null) {
+    await delay2(retryIntervalInMs);
+    token = await tryGetAccessToken();
+  }
+  return token;
+}
+function createTokenCycler(credential, tokenCyclerOptions) {
+  let refreshWorker = null;
+  let token = null;
+  let tenantId;
+  const options = {
+    ...DEFAULT_CYCLER_OPTIONS,
+    ...tokenCyclerOptions
+  };
+  const cycler = {
+    /**
+     * Produces true if a refresh job is currently in progress.
+     */
+    get isRefreshing() {
+      return refreshWorker !== null;
+    },
+    /**
+     * Produces true if the cycler SHOULD refresh (we are within the refresh
+     * window and not already refreshing)
+     */
+    get shouldRefresh() {
+      if (cycler.isRefreshing) {
+        return false;
+      }
+      if (token?.refreshAfterTimestamp && token.refreshAfterTimestamp < Date.now()) {
+        return true;
+      }
+      return (token?.expiresOnTimestamp ?? 0) - options.refreshWindowInMs < Date.now();
+    },
+    /**
+     * Produces true if the cycler MUST refresh (null or nearly-expired
+     * token).
+     */
+    get mustRefresh() {
+      return token === null || token.expiresOnTimestamp - options.forcedRefreshWindowInMs < Date.now();
+    }
+  };
+  function refresh(scopes, getTokenOptions) {
+    if (!cycler.isRefreshing) {
+      const tryGetAccessToken = () => credential.getToken(scopes, getTokenOptions);
+      refreshWorker = beginRefresh(
+        tryGetAccessToken,
+        options.retryIntervalInMs,
+        // If we don't have a token, then we should timeout immediately
+        token?.expiresOnTimestamp ?? Date.now()
+      ).then((_token) => {
+        refreshWorker = null;
+        token = _token;
+        tenantId = getTokenOptions.tenantId;
+        return token;
+      }).catch((reason) => {
+        refreshWorker = null;
+        token = null;
+        tenantId = void 0;
+        throw reason;
+      });
+    }
+    return refreshWorker;
+  }
+  return async (scopes, tokenOptions) => {
+    const hasClaimChallenge = Boolean(tokenOptions.claims);
+    const tenantIdChanged = tenantId !== tokenOptions.tenantId;
+    if (hasClaimChallenge) {
+      token = null;
+    }
+    const mustRefresh = tenantIdChanged || hasClaimChallenge || cycler.mustRefresh;
+    if (mustRefresh) {
+      return refresh(scopes, tokenOptions);
+    }
+    if (cycler.shouldRefresh) {
+      refresh(scopes, tokenOptions);
+    }
+    return token;
+  };
+}
+
+// node_modules/@azure/core-rest-pipeline/dist/esm/policies/bearerTokenAuthenticationPolicy.js
+var bearerTokenAuthenticationPolicyName = "bearerTokenAuthenticationPolicy";
+async function trySendRequest(request2, next) {
+  try {
+    return [await next(request2), void 0];
+  } catch (e) {
+    if (isRestError2(e) && e.response) {
+      return [e.response, e];
+    } else {
+      throw e;
+    }
+  }
+}
+async function defaultAuthorizeRequest(options) {
+  const { scopes, getAccessToken, request: request2 } = options;
+  const getTokenOptions = {
+    abortSignal: request2.abortSignal,
+    tracingOptions: request2.tracingOptions,
+    enableCae: true
+  };
+  const accessToken = await getAccessToken(scopes, getTokenOptions);
+  if (accessToken) {
+    options.request.headers.set("Authorization", `Bearer ${accessToken.token}`);
+  }
+}
+function isChallengeResponse(response) {
+  return response.status === 401 && response.headers.has("WWW-Authenticate");
+}
+async function authorizeRequestOnCaeChallenge(onChallengeOptions, caeClaims) {
+  const { scopes } = onChallengeOptions;
+  const accessToken = await onChallengeOptions.getAccessToken(scopes, {
+    enableCae: true,
+    claims: caeClaims
+  });
+  if (!accessToken) {
+    return false;
+  }
+  onChallengeOptions.request.headers.set("Authorization", `${accessToken.tokenType ?? "Bearer"} ${accessToken.token}`);
+  return true;
+}
+function bearerTokenAuthenticationPolicy(options) {
+  const { credential, scopes, challengeCallbacks } = options;
+  const logger4 = options.logger || logger2;
+  const callbacks = {
+    authorizeRequest: challengeCallbacks?.authorizeRequest?.bind(challengeCallbacks) ?? defaultAuthorizeRequest,
+    authorizeRequestOnChallenge: challengeCallbacks?.authorizeRequestOnChallenge?.bind(challengeCallbacks)
+  };
+  const getAccessToken = credential ? createTokenCycler(
+    credential
+    /* , options */
+  ) : () => Promise.resolve(null);
+  return {
+    name: bearerTokenAuthenticationPolicyName,
+    /**
+     * If there's no challenge parameter:
+     * - It will try to retrieve the token using the cache, or the credential's getToken.
+     * - Then it will try the next policy with or without the retrieved token.
+     *
+     * It uses the challenge parameters to:
+     * - Skip a first attempt to get the token from the credential if there's no cached token,
+     *   since it expects the token to be retrievable only after the challenge.
+     * - Prepare the outgoing request if the `prepareRequest` method has been provided.
+     * - Send an initial request to receive the challenge if it fails.
+     * - Process a challenge if the response contains it.
+     * - Retrieve a token with the challenge information, then re-send the request.
+     */
+    async sendRequest(request2, next) {
+      if (!request2.url.toLowerCase().startsWith("https://")) {
+        throw new Error("Bearer token authentication is not permitted for non-TLS protected (non-https) URLs.");
+      }
+      await callbacks.authorizeRequest({
+        scopes: Array.isArray(scopes) ? scopes : [scopes],
+        request: request2,
+        getAccessToken,
+        logger: logger4
+      });
+      let response;
+      let error;
+      let shouldSendRequest;
+      [response, error] = await trySendRequest(request2, next);
+      if (isChallengeResponse(response)) {
+        let claims = getCaeChallengeClaims(response.headers.get("WWW-Authenticate"));
+        if (claims) {
+          let parsedClaim;
+          try {
+            parsedClaim = atob(claims);
+          } catch (e) {
+            logger4.warning(`The WWW-Authenticate header contains "claims" that cannot be parsed. Unable to perform the Continuous Access Evaluation authentication flow. Unparsable claims: ${claims}`);
+            return response;
+          }
+          shouldSendRequest = await authorizeRequestOnCaeChallenge({
+            scopes: Array.isArray(scopes) ? scopes : [scopes],
+            response,
+            request: request2,
+            getAccessToken,
+            logger: logger4
+          }, parsedClaim);
+          if (shouldSendRequest) {
+            [response, error] = await trySendRequest(request2, next);
+          }
+        } else if (callbacks.authorizeRequestOnChallenge) {
+          shouldSendRequest = await callbacks.authorizeRequestOnChallenge({
+            scopes: Array.isArray(scopes) ? scopes : [scopes],
+            request: request2,
+            response,
+            getAccessToken,
+            logger: logger4
+          });
+          if (shouldSendRequest) {
+            [response, error] = await trySendRequest(request2, next);
+          }
+          if (isChallengeResponse(response)) {
+            claims = getCaeChallengeClaims(response.headers.get("WWW-Authenticate"));
+            if (claims) {
+              let parsedClaim;
+              try {
+                parsedClaim = atob(claims);
+              } catch (e) {
+                logger4.warning(`The WWW-Authenticate header contains "claims" that cannot be parsed. Unable to perform the Continuous Access Evaluation authentication flow. Unparsable claims: ${claims}`);
+                return response;
+              }
+              shouldSendRequest = await authorizeRequestOnCaeChallenge({
+                scopes: Array.isArray(scopes) ? scopes : [scopes],
+                response,
+                request: request2,
+                getAccessToken,
+                logger: logger4
+              }, parsedClaim);
+              if (shouldSendRequest) {
+                [response, error] = await trySendRequest(request2, next);
+              }
+            }
+          }
+        }
+      }
+      if (error) {
+        throw error;
+      } else {
+        return response;
+      }
+    }
+  };
+}
+function parseChallenges(challenges) {
+  const challengeRegex = /(\w+)\s+((?:\w+=(?:"[^"]*"|[^,]*),?\s*)+)/g;
+  const paramRegex = /(\w+)="([^"]*)"/g;
+  const parsedChallenges = [];
+  let match2;
+  while ((match2 = challengeRegex.exec(challenges)) !== null) {
+    const scheme = match2[1];
+    const paramsString = match2[2];
+    const params = {};
+    let paramMatch;
+    while ((paramMatch = paramRegex.exec(paramsString)) !== null) {
+      params[paramMatch[1]] = paramMatch[2];
+    }
+    parsedChallenges.push({ scheme, params });
+  }
+  return parsedChallenges;
+}
+function getCaeChallengeClaims(challenges) {
+  if (!challenges) {
+    return;
+  }
+  const parsedChallenges = parseChallenges(challenges);
+  return parsedChallenges.find((x) => x.scheme === "Bearer" && x.params.claims && x.params.error === "insufficient_claims")?.params.claims;
+}
+
+// node_modules/@azure/core-auth/dist/esm/keyCredential.js
+function isKeyCredential(credential) {
+  return isObjectWithProperties(credential, ["key"]) && typeof credential.key === "string";
+}
+
+// node_modules/@azure/core-auth/dist/esm/tokenCredential.js
+function isTokenCredential(credential) {
+  const castCredential = credential;
+  return castCredential && typeof castCredential.getToken === "function" && (castCredential.signRequest === void 0 || castCredential.getToken.length > 0);
+}
+
+// node_modules/@azure-rest/core-client/dist/esm/apiVersionPolicy.js
+var apiVersionPolicyName2 = "ApiVersionPolicy";
+function apiVersionPolicy2(options) {
+  return {
+    name: apiVersionPolicyName2,
+    sendRequest: (req, next) => {
+      const url = new URL(req.url);
+      if (!url.searchParams.get("api-version") && options.apiVersion) {
+        req.url = `${req.url}${Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"}api-version=${options.apiVersion}`;
+      }
+      return next(req);
+    }
+  };
+}
+
+// node_modules/@azure-rest/core-client/dist/esm/keyCredentialAuthenticationPolicy.js
+var keyCredentialAuthenticationPolicyName = "keyCredentialAuthenticationPolicy";
+function keyCredentialAuthenticationPolicy(credential, apiKeyHeaderName) {
+  return {
+    name: keyCredentialAuthenticationPolicyName,
+    async sendRequest(request2, next) {
+      request2.headers.set(apiKeyHeaderName, credential.key);
+      return next(request2);
+    }
+  };
+}
+
+// node_modules/@azure-rest/core-client/dist/esm/clientHelpers.js
+function addCredentialPipelinePolicy(pipeline, endpoint2, options = {}) {
+  const { credential, clientOptions } = options;
+  if (!credential) {
+    return;
+  }
+  if (isTokenCredential(credential)) {
+    const tokenPolicy = bearerTokenAuthenticationPolicy({
+      credential,
+      scopes: clientOptions?.credentials?.scopes ?? `${endpoint2}/.default`
+    });
+    pipeline.addPolicy(tokenPolicy);
+  } else if (isKeyCredential2(credential)) {
+    if (!clientOptions?.credentials?.apiKeyHeaderName) {
+      throw new Error(`Missing API Key Header Name`);
+    }
+    const keyPolicy = keyCredentialAuthenticationPolicy(credential, clientOptions?.credentials?.apiKeyHeaderName);
+    pipeline.addPolicy(keyPolicy);
+  }
+}
+function createDefaultPipeline2(endpoint2, credential, options = {}) {
+  const pipeline = createPipelineFromOptions2(options);
+  pipeline.addPolicy(apiVersionPolicy2(options));
+  addCredentialPipelinePolicy(pipeline, endpoint2, { credential, clientOptions: options });
+  return pipeline;
+}
+function isKeyCredential2(credential) {
+  return credential.key !== void 0;
+}
+
+// node_modules/@azure-rest/core-client/dist/esm/getClient.js
+function wrapRequestParameters(parameters) {
+  if (parameters.onResponse) {
+    return {
+      ...parameters,
+      onResponse(rawResponse, error) {
+        parameters.onResponse?.(rawResponse, error, error);
+      }
+    };
+  }
+  return parameters;
+}
+function getClient2(endpoint2, credentialsOrPipelineOptions, clientOptions = {}) {
+  let credentials;
+  if (credentialsOrPipelineOptions) {
+    if (isCredential(credentialsOrPipelineOptions)) {
+      credentials = credentialsOrPipelineOptions;
+    } else {
+      clientOptions = credentialsOrPipelineOptions ?? {};
+    }
+  }
+  const pipeline = clientOptions.pipeline ?? createDefaultPipeline2(endpoint2, credentials, clientOptions);
+  const tspClient = getClient(endpoint2, {
+    ...clientOptions,
+    pipeline
+  });
+  const client = (path2, ...args) => {
+    return {
+      get: (requestOptions = {}) => {
+        return tspClient.path(path2, ...args).get(wrapRequestParameters(requestOptions));
+      },
+      post: (requestOptions = {}) => {
+        return tspClient.path(path2, ...args).post(wrapRequestParameters(requestOptions));
+      },
+      put: (requestOptions = {}) => {
+        return tspClient.path(path2, ...args).put(wrapRequestParameters(requestOptions));
+      },
+      patch: (requestOptions = {}) => {
+        return tspClient.path(path2, ...args).patch(wrapRequestParameters(requestOptions));
+      },
+      delete: (requestOptions = {}) => {
+        return tspClient.path(path2, ...args).delete(wrapRequestParameters(requestOptions));
+      },
+      head: (requestOptions = {}) => {
+        return tspClient.path(path2, ...args).head(wrapRequestParameters(requestOptions));
+      },
+      options: (requestOptions = {}) => {
+        return tspClient.path(path2, ...args).options(wrapRequestParameters(requestOptions));
+      },
+      trace: (requestOptions = {}) => {
+        return tspClient.path(path2, ...args).trace(wrapRequestParameters(requestOptions));
+      }
+    };
+  };
+  return {
+    path: client,
+    pathUnchecked: client,
+    pipeline: tspClient.pipeline
+  };
+}
+function isCredential(param) {
+  return isKeyCredential(param) || isTokenCredential(param);
+}
+
+// node_modules/@azure-rest/ai-translation-text/dist/esm/logger.js
+var logger3 = createClientLogger2("ai-translation-text");
+
+// node_modules/@azure-rest/ai-translation-text/dist/esm/authenticationCustomized.js
+var APIM_KEY_HEADER_NAME = "Ocp-Apim-Subscription-Key";
+var APIM_REGION_HEADER_NAME = "Ocp-Apim-Subscription-Region";
+var APIM_RESOURCE_ID = "Ocp-Apim-ResourceId";
+var DEFAULT_SCOPE = "https://cognitiveservices.azure.com/.default";
+var TranslatorAuthenticationPolicy = class {
+  constructor(credential) {
+    this.name = "TranslatorAuthenticationPolicy";
+    this.credential = credential;
+  }
+  sendRequest(request2, next) {
+    request2.headers.set(APIM_KEY_HEADER_NAME, this.credential.key);
+    request2.headers.set(APIM_REGION_HEADER_NAME, this.credential.region);
+    return next(request2);
+  }
+};
+var TranslatorAzureKeyAuthenticationPolicy = class {
+  constructor(credential) {
+    this.name = "TranslatorAzureKeyAuthenticationPolicy";
+    this.credential = credential;
+  }
+  sendRequest(request2, next) {
+    request2.headers.set(APIM_KEY_HEADER_NAME, this.credential.key);
+    return next(request2);
+  }
+};
+var TranslatorTokenCredentialAuthenticationPolicy = class {
+  constructor(credential) {
+    this.name = "TranslatorTokenCredentialAuthenticationPolicy";
+    this.credential = credential;
+  }
+  sendRequest(request2, next) {
+    request2.headers.set(APIM_REGION_HEADER_NAME, this.credential.region);
+    request2.headers.set(APIM_RESOURCE_ID, this.credential.azureResourceId);
+    return next(request2);
+  }
+};
+
+// node_modules/@azure-rest/ai-translation-text/dist/esm/customClient.js
+var DEFAULT_ENPOINT = "https://api.cognitive.microsofttranslator.com";
+var PLATFORM_HOST = "cognitiveservices";
+var PLATFORM_PATH = "/translator/text/v3.0";
+function isKeyCredential3(credential) {
+  return (credential === null || credential === void 0 ? void 0 : credential.key) !== void 0;
+}
+function isTranslatorKeyCredential(credential) {
+  return (credential === null || credential === void 0 ? void 0 : credential.key) !== void 0;
+}
+function isTokenCredential2(credential) {
+  return (credential === null || credential === void 0 ? void 0 : credential.getToken) !== void 0;
+}
+function isTranslatorTokenCredential(credential) {
+  return (credential === null || credential === void 0 ? void 0 : credential.tokenCredential) !== void 0 && (credential === null || credential === void 0 ? void 0 : credential.azureResourceId) !== void 0;
+}
+function isCredentials(credential) {
+  return isKeyCredential3(credential) || isTranslatorKeyCredential(credential) || isTokenCredential2(credential) || isTranslatorTokenCredential(credential);
+}
+function createClient(arg1, arg2, arg3) {
+  var _a2, _b, _c, _d, _e, _f, _g, _h;
+  let serviceEndpoint;
+  let endpoint2;
+  let options;
+  let credential;
+  if (typeof arg1 === "string") {
+    endpoint2 = arg1;
+  }
+  if (typeof arg1 !== "string" && isCredentials(arg1)) {
+    credential = arg1;
+    options = arg2;
+  } else if (isCredentials(arg2)) {
+    credential = arg2;
+    options = arg3;
+  }
+  if (!options) {
+    options = {};
+  }
+  options.apiVersion = (_a2 = options.apiVersion) !== null && _a2 !== void 0 ? _a2 : "3.0";
+  if (!endpoint2) {
+    serviceEndpoint = DEFAULT_ENPOINT;
+  } else if (endpoint2.toLowerCase().indexOf(PLATFORM_HOST) !== -1) {
+    serviceEndpoint = `${endpoint2}${PLATFORM_PATH}`;
+  } else {
+    serviceEndpoint = endpoint2;
+  }
+  const baseUrl = (_b = options.baseUrl) !== null && _b !== void 0 ? _b : `${serviceEndpoint}`;
+  const userAgentInfo = `azsdk-js-ai-translation-text-rest/1.0.1`;
+  const userAgentPrefix = options.userAgentOptions && options.userAgentOptions.userAgentPrefix ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}` : `${userAgentInfo}`;
+  options = Object.assign(Object.assign({}, options), { userAgentOptions: {
+    userAgentPrefix
+  }, loggingOptions: {
+    logger: (_d = (_c = options.loggingOptions) === null || _c === void 0 ? void 0 : _c.logger) !== null && _d !== void 0 ? _d : logger3.info
+  } });
+  const client = getClient2(baseUrl, options);
+  if (isTranslatorKeyCredential(credential)) {
+    const mtAuthneticationPolicy = new TranslatorAuthenticationPolicy(credential);
+    client.pipeline.addPolicy(mtAuthneticationPolicy);
+  } else if (isKeyCredential3(credential)) {
+    const mtKeyAuthenticationPolicy = new TranslatorAzureKeyAuthenticationPolicy(credential);
+    client.pipeline.addPolicy(mtKeyAuthenticationPolicy);
+  } else if (isTokenCredential2(credential)) {
+    client.pipeline.addPolicy(bearerTokenAuthenticationPolicy({
+      credential,
+      scopes: (_f = (_e = options === null || options === void 0 ? void 0 : options.credentials) === null || _e === void 0 ? void 0 : _e.scopes) !== null && _f !== void 0 ? _f : DEFAULT_SCOPE
+    }));
+  } else if (isTranslatorTokenCredential(credential)) {
+    client.pipeline.addPolicy(bearerTokenAuthenticationPolicy({
+      credential: credential.tokenCredential,
+      scopes: (_h = (_g = options === null || options === void 0 ? void 0 : options.credentials) === null || _g === void 0 ? void 0 : _g.scopes) !== null && _h !== void 0 ? _h : DEFAULT_SCOPE
+    }));
+    client.pipeline.addPolicy(new TranslatorTokenCredentialAuthenticationPolicy(credential));
+  }
+  return client;
+}
+
+// node_modules/@azure-rest/ai-translation-text/dist/esm/isUnexpected.js
+var responseMap = {
+  "GET /languages": ["200"],
+  "POST /translate": ["200"],
+  "POST /transliterate": ["200"],
+  "POST /breaksentence": ["200"],
+  "POST /dictionary/lookup": ["200"],
+  "POST /dictionary/examples": ["200"]
+};
+function isUnexpected(response) {
+  const lroOriginal = response.headers["x-ms-original-url"];
+  const url = new URL(lroOriginal !== null && lroOriginal !== void 0 ? lroOriginal : response.request.url);
+  const method = response.request.method;
+  let pathDetails = responseMap[`${method} ${url.pathname}`];
+  if (!pathDetails) {
+    pathDetails = getParametrizedPathSuccess(method, url.pathname);
+  }
+  return !pathDetails.includes(response.status);
+}
+function getParametrizedPathSuccess(method, path2) {
+  var _a2, _b, _c, _d;
+  const pathParts = path2.split("/");
+  let matchedLen = -1, matchedValue = [];
+  for (const [key, value] of Object.entries(responseMap)) {
+    if (!key.startsWith(method)) {
+      continue;
+    }
+    const candidatePath = getPathFromMapKey(key);
+    const candidateParts = candidatePath.split("/");
+    let found = true;
+    for (let i = candidateParts.length - 1, j = pathParts.length - 1; i >= 1 && j >= 1; i--, j--) {
+      if (((_a2 = candidateParts[i]) === null || _a2 === void 0 ? void 0 : _a2.startsWith("{")) && ((_b = candidateParts[i]) === null || _b === void 0 ? void 0 : _b.indexOf("}")) !== -1) {
+        const start2 = candidateParts[i].indexOf("}") + 1, end = (_c = candidateParts[i]) === null || _c === void 0 ? void 0 : _c.length;
+        const isMatched = new RegExp(`${(_d = candidateParts[i]) === null || _d === void 0 ? void 0 : _d.slice(start2, end)}`).test(pathParts[j] || "");
+        if (!isMatched) {
+          found = false;
+          break;
+        }
+        continue;
+      }
+      if (candidateParts[i] !== pathParts[j]) {
+        found = false;
         break;
       }
     }
-    try {
-      promise = dispatchRequest.call(this, newConfig);
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    i = 0;
-    len = responseInterceptorChain.length;
-    while (i < len) {
-      promise = promise.then(responseInterceptorChain[i++], responseInterceptorChain[i++]);
-    }
-    return promise;
-  }
-  getUri(config) {
-    config = mergeConfig(this.defaults, config);
-    const fullPath = buildFullPath(config.baseURL, config.url, config.allowAbsoluteUrls);
-    return buildURL(fullPath, config.params, config.paramsSerializer);
-  }
-};
-utils_default.forEach(["delete", "get", "head", "options"], function forEachMethodNoData(method) {
-  Axios.prototype[method] = function(url2, config) {
-    return this.request(
-      mergeConfig(config || {}, {
-        method,
-        url: url2,
-        data: (config || {}).data
-      })
-    );
-  };
-});
-utils_default.forEach(["post", "put", "patch", "query"], function forEachMethodWithData(method) {
-  function generateHTTPMethod(isForm) {
-    return function httpMethod(url2, data, config) {
-      return this.request(
-        mergeConfig(config || {}, {
-          method,
-          headers: isForm ? {
-            "Content-Type": "multipart/form-data"
-          } : {},
-          url: url2,
-          data
-        })
-      );
-    };
-  }
-  Axios.prototype[method] = generateHTTPMethod();
-  if (method !== "query") {
-    Axios.prototype[method + "Form"] = generateHTTPMethod(true);
-  }
-});
-var Axios_default = Axios;
-
-// node_modules/axios/lib/cancel/CancelToken.js
-var CancelToken = class _CancelToken {
-  constructor(executor) {
-    if (typeof executor !== "function") {
-      throw new TypeError("executor must be a function.");
-    }
-    let resolvePromise;
-    this.promise = new Promise(function promiseExecutor(resolve4) {
-      resolvePromise = resolve4;
-    });
-    const token = this;
-    this.promise.then((cancel) => {
-      if (!token._listeners) return;
-      let i = token._listeners.length;
-      while (i-- > 0) {
-        token._listeners[i](cancel);
-      }
-      token._listeners = null;
-    });
-    this.promise.then = (onfulfilled) => {
-      let _resolve;
-      const promise = new Promise((resolve4) => {
-        token.subscribe(resolve4);
-        _resolve = resolve4;
-      }).then(onfulfilled);
-      promise.cancel = function reject() {
-        token.unsubscribe(_resolve);
-      };
-      return promise;
-    };
-    executor(function cancel(message, config, request2) {
-      if (token.reason) {
-        return;
-      }
-      token.reason = new CanceledError_default(message, config, request2);
-      resolvePromise(token.reason);
-    });
-  }
-  /**
-   * Throws a `CanceledError` if cancellation has been requested.
-   */
-  throwIfRequested() {
-    if (this.reason) {
-      throw this.reason;
+    if (found && candidatePath.length > matchedLen) {
+      matchedLen = candidatePath.length;
+      matchedValue = value;
     }
   }
-  /**
-   * Subscribe to the cancel signal
-   */
-  subscribe(listener) {
-    if (this.reason) {
-      listener(this.reason);
-      return;
-    }
-    if (this._listeners) {
-      this._listeners.push(listener);
-    } else {
-      this._listeners = [listener];
-    }
-  }
-  /**
-   * Unsubscribe from the cancel signal
-   */
-  unsubscribe(listener) {
-    if (!this._listeners) {
-      return;
-    }
-    const index = this._listeners.indexOf(listener);
-    if (index !== -1) {
-      this._listeners.splice(index, 1);
-    }
-  }
-  toAbortSignal() {
-    const controller = new AbortController();
-    const abort = (err) => {
-      controller.abort(err);
-    };
-    this.subscribe(abort);
-    controller.signal.unsubscribe = () => this.unsubscribe(abort);
-    return controller.signal;
-  }
-  /**
-   * Returns an object that contains a new `CancelToken` and a function that, when called,
-   * cancels the `CancelToken`.
-   */
-  static source() {
-    let cancel;
-    const token = new _CancelToken(function executor(c) {
-      cancel = c;
-    });
-    return {
-      token,
-      cancel
-    };
-  }
-};
-var CancelToken_default = CancelToken;
-
-// node_modules/axios/lib/helpers/spread.js
-function spread(callback) {
-  return function wrap(arr) {
-    return callback.apply(null, arr);
-  };
+  return matchedValue;
+}
+function getPathFromMapKey(mapKey) {
+  const pathStart = mapKey.indexOf("/");
+  return mapKey.slice(pathStart);
 }
 
-// node_modules/axios/lib/helpers/isAxiosError.js
-function isAxiosError(payload) {
-  return utils_default.isObject(payload) && payload.isAxiosError === true;
-}
-
-// node_modules/axios/lib/helpers/HttpStatusCode.js
-var HttpStatusCode = {
-  Continue: 100,
-  SwitchingProtocols: 101,
-  Processing: 102,
-  EarlyHints: 103,
-  Ok: 200,
-  Created: 201,
-  Accepted: 202,
-  NonAuthoritativeInformation: 203,
-  NoContent: 204,
-  ResetContent: 205,
-  PartialContent: 206,
-  MultiStatus: 207,
-  AlreadyReported: 208,
-  ImUsed: 226,
-  MultipleChoices: 300,
-  MovedPermanently: 301,
-  Found: 302,
-  SeeOther: 303,
-  NotModified: 304,
-  UseProxy: 305,
-  Unused: 306,
-  TemporaryRedirect: 307,
-  PermanentRedirect: 308,
-  BadRequest: 400,
-  Unauthorized: 401,
-  PaymentRequired: 402,
-  Forbidden: 403,
-  NotFound: 404,
-  MethodNotAllowed: 405,
-  NotAcceptable: 406,
-  ProxyAuthenticationRequired: 407,
-  RequestTimeout: 408,
-  Conflict: 409,
-  Gone: 410,
-  LengthRequired: 411,
-  PreconditionFailed: 412,
-  PayloadTooLarge: 413,
-  UriTooLong: 414,
-  UnsupportedMediaType: 415,
-  RangeNotSatisfiable: 416,
-  ExpectationFailed: 417,
-  ImATeapot: 418,
-  MisdirectedRequest: 421,
-  UnprocessableEntity: 422,
-  Locked: 423,
-  FailedDependency: 424,
-  TooEarly: 425,
-  UpgradeRequired: 426,
-  PreconditionRequired: 428,
-  TooManyRequests: 429,
-  RequestHeaderFieldsTooLarge: 431,
-  UnavailableForLegalReasons: 451,
-  InternalServerError: 500,
-  NotImplemented: 501,
-  BadGateway: 502,
-  ServiceUnavailable: 503,
-  GatewayTimeout: 504,
-  HttpVersionNotSupported: 505,
-  VariantAlsoNegotiates: 506,
-  InsufficientStorage: 507,
-  LoopDetected: 508,
-  NotExtended: 510,
-  NetworkAuthenticationRequired: 511,
-  WebServerIsDown: 521,
-  ConnectionTimedOut: 522,
-  OriginIsUnreachable: 523,
-  TimeoutOccurred: 524,
-  SslHandshakeFailed: 525,
-  InvalidSslCertificate: 526
-};
-Object.entries(HttpStatusCode).forEach(([key, value]) => {
-  HttpStatusCode[value] = key;
-});
-var HttpStatusCode_default = HttpStatusCode;
-
-// node_modules/axios/lib/axios.js
-function createInstance(defaultConfig) {
-  const context2 = new Axios_default(defaultConfig);
-  const instance = bind(Axios_default.prototype.request, context2);
-  utils_default.extend(instance, Axios_default.prototype, context2, { allOwnKeys: true });
-  utils_default.extend(instance, context2, null, { allOwnKeys: true });
-  instance.create = function create3(instanceConfig) {
-    return createInstance(mergeConfig(defaultConfig, instanceConfig));
-  };
-  return instance;
-}
-var axios = createInstance(defaults_default);
-axios.Axios = Axios_default;
-axios.CanceledError = CanceledError_default;
-axios.CancelToken = CancelToken_default;
-axios.isCancel = isCancel;
-axios.VERSION = VERSION;
-axios.toFormData = toFormData_default;
-axios.AxiosError = AxiosError_default;
-axios.Cancel = axios.CanceledError;
-axios.all = function all(promises) {
-  return Promise.all(promises);
-};
-axios.spread = spread;
-axios.isAxiosError = isAxiosError;
-axios.mergeConfig = mergeConfig;
-axios.AxiosHeaders = AxiosHeaders_default;
-axios.formToJSON = (thing) => formDataToJSON_default(utils_default.isHTMLForm(thing) ? new FormData(thing) : thing);
-axios.getAdapter = adapters_default.getAdapter;
-axios.HttpStatusCode = HttpStatusCode_default;
-axios.default = axios;
-var axios_default = axios;
-
-// node_modules/axios/index.js
-var {
-  Axios: Axios2,
-  AxiosError: AxiosError2,
-  CanceledError: CanceledError2,
-  isCancel: isCancel2,
-  CancelToken: CancelToken2,
-  VERSION: VERSION2,
-  all: all2,
-  Cancel,
-  isAxiosError: isAxiosError2,
-  spread: spread2,
-  toFormData: toFormData2,
-  AxiosHeaders: AxiosHeaders2,
-  HttpStatusCode: HttpStatusCode2,
-  formToJSON,
-  getAdapter: getAdapter2,
-  mergeConfig: mergeConfig2,
-  create
-} = axios_default;
-
-// src/api/translation-api.ts
-var import_node_crypto = require("node:crypto");
+// node_modules/@azure-rest/ai-translation-text/dist/esm/index.js
+var esm_default = createClient;
 
 // src/helpers/utils.ts
-var import_path2 = require("path");
+var import_path = require("path");
 var getLocaleName = (existingPath, locale) => {
-  const fileName = (0, import_path2.basename)(existingPath);
+  const fileName = (0, import_path.basename)(existingPath);
   const segments = fileName.split(".");
   switch (segments.length) {
     case 4:
-      return (0, import_path2.join)(
-        (0, import_path2.dirname)(existingPath),
+      return (0, import_path.join)(
+        (0, import_path.dirname)(existingPath),
         `${segments[0]}.${segments[1]}.${locale}.${segments[3]}`
       );
     case 3:
-      return (0, import_path2.join)(
-        (0, import_path2.dirname)(existingPath),
+      return (0, import_path.join)(
+        (0, import_path.dirname)(existingPath),
         `${segments[0]}.${locale}.${segments[2]}`
       );
     case 2:
-      return (0, import_path2.join)((0, import_path2.dirname)(existingPath), `${locale}.${segments[1]}`);
+      return (0, import_path.join)((0, import_path.dirname)(existingPath), `${locale}.${segments[1]}`);
   }
   return null;
 };
@@ -52968,7 +42108,7 @@ function zip(first, second) {
     return [value, second[i]];
   });
 }
-var delay = (ms, result) => {
+var delay3 = (ms, result) => {
   return new Promise((resolve4) => setTimeout(() => resolve4(result), ms));
 };
 var findNext = (items, startIndex, firstPredicate, secondPredicate, actionOfNext) => {
@@ -53051,11 +42191,28 @@ var toRawTextArray = (translationResults, locale) => {
 };
 
 // src/api/translation-api.ts
+var PUBLIC_ENDPOINT = "https://api.cognitive.microsofttranslator.com";
+var buildClient = (endpoint2, apiVersion) => esm_default(endpoint2, { baseUrl: endpoint2, apiVersion });
+var buildAuthHeaders = (translatorResource) => {
+  const headers = {
+    "Ocp-Apim-Subscription-Key": translatorResource.subscriptionKey,
+    "X-ClientTraceId": (0, import_node_crypto.randomUUID)()
+  };
+  if (translatorResource.region) {
+    headers["Ocp-Apim-Subscription-Region"] = translatorResource.region;
+  }
+  return headers;
+};
 var getAvailableTranslations = async (apiVersion = "3.0") => {
-  const apiUrl = "https://api.cognitive.microsofttranslator.com/languages";
-  const query = `api-version=${encodeURIComponent(apiVersion)}&scope=translation`;
-  const response = await axios_default.get(`${apiUrl}?${query}`);
-  return response.data;
+  const client = buildClient(PUBLIC_ENDPOINT, apiVersion);
+  const response = await client.path("/languages").get({
+    queryParameters: { scope: "translation" }
+  });
+  if (isUnexpected(response)) {
+    const errorMessage = response.body?.error?.message ?? `HTTP ${response.status}`;
+    throw new Error(`Failed to fetch supported languages: ${errorMessage}`);
+  }
+  return response.body;
 };
 var translate = async (translatorResource, toLocales, translatableText, filePath) => {
   try {
@@ -53074,68 +42231,66 @@ var translate = async (translatorResource, toLocales, translatableText, filePath
       (0, import_core3.setFailed)(validationErrors.join("\r\n"));
       return void 0;
     }
-    const data = [...translatableText.values()].map((value) => {
-      return { text: value };
-    });
-    const headers = {
-      "Ocp-Apim-Subscription-Key": translatorResource.subscriptionKey,
-      "Content-type": "application/json",
-      "X-ClientTraceId": (0, import_node_crypto.randomUUID)()
-    };
-    if (translatorResource.region) {
-      headers["Ocp-Apim-Subscription-Region"] = translatorResource.region;
-    }
-    const options = {
-      method: "POST",
-      headers,
-      data,
-      responseType: "json"
-    };
-    const baseUrl = translatorResource.endpoint.endsWith("/") ? translatorResource.endpoint : `${translatorResource.endpoint}/`;
+    const data = [...translatableText.values()].map((value) => ({
+      text: value
+    }));
     const apiVersion = translatorResource.apiVersion ?? "3.0";
-    const extraParams = [];
-    const append2 = (k, v) => extraParams.push(`${k}=${encodeURIComponent(v)}`);
-    if (translatorResource.categoryId) {
-      append2("category", translatorResource.categoryId);
-    }
-    if (translatorResource.sourceLocale) {
-      append2("from", translatorResource.sourceLocale);
-    }
-    if (translatorResource.textType) {
-      append2("textType", translatorResource.textType);
-    }
-    if (translatorResource.profanityAction) {
-      append2("profanityAction", translatorResource.profanityAction);
-    }
-    if (translatorResource.profanityMarker && translatorResource.profanityAction === "Marked") {
-      append2("profanityMarker", translatorResource.profanityMarker);
-    }
-    if (translatorResource.allowFallback !== void 0) {
-      append2("allowFallback", String(translatorResource.allowFallback));
-    }
-    const extraSegment = extraParams.length ? `&${extraParams.join("&")}` : "";
+    const client = buildClient(translatorResource.endpoint, apiVersion);
+    const headers = buildAuthHeaders(translatorResource);
     const characters = JSON.stringify(data).length;
     const batchedData = characters > apiRateLimit || data.length > numberOfElementsLimit ? batch(data, numberOfElementsLimit, apiRateLimit) : [data];
     let results = [];
     for (let i = 0; i < batchedData.length; i++) {
-      const batch2 = batchedData[i];
-      const batchCharacters = JSON.stringify(batch2).length;
+      const dataBatch = batchedData[i];
+      const batchCharacters = JSON.stringify(dataBatch).length;
       const localeCount = toLocales.length;
       const localesBatchSize = Math.floor(apiRateLimit / batchCharacters);
       const batchedLocales = localesBatchSize < localeCount ? chunk(toLocales, localesBatchSize) : [toLocales];
       for (let j = 0; j < batchedLocales.length; j++) {
         const locales = batchedLocales[j];
-        const to = locales.map((to2) => `to=${to2}`).join("&");
-        (0, import_core3.debug)(`Data batch ${i + 1}, Locales batch ${j + 1}, locales: ${to}`);
-        const url2 = `${baseUrl}translate?api-version=${encodeURIComponent(
-          apiVersion
-        )}&${to}${extraSegment}`;
-        const response = await axios_default.post(
-          url2,
-          batch2,
-          options
+        (0, import_core3.debug)(
+          `Data batch ${i + 1}, Locales batch ${j + 1}, locales: ${locales.join(
+            ", "
+          )}`
         );
-        const responseData = response.data;
+        const queryParameters = {
+          to: locales.join(","),
+          ...translatorResource.sourceLocale && {
+            from: translatorResource.sourceLocale
+          },
+          ...translatorResource.categoryId && {
+            category: translatorResource.categoryId
+          },
+          ...translatorResource.textType && {
+            textType: translatorResource.textType
+          },
+          ...translatorResource.profanityAction && {
+            profanityAction: translatorResource.profanityAction
+          },
+          ...translatorResource.profanityMarker && translatorResource.profanityAction === "Marked" ? { profanityMarker: translatorResource.profanityMarker } : {},
+          ...translatorResource.allowFallback !== void 0 && {
+            allowFallback: translatorResource.allowFallback
+          }
+        };
+        const response = await client.path("/translate").post({
+          body: dataBatch,
+          headers,
+          queryParameters
+        });
+        if (isUnexpected(response)) {
+          const azureError = response.body?.error;
+          if (azureError && (azureError.code || azureError.message)) {
+            (0, import_core3.setFailed)(
+              `file: ${filePath}, error: { code: ${azureError.code}, message: '${azureError.message}' }`
+            );
+          } else {
+            (0, import_core3.setFailed)(
+              `Failed to translate input: file '${filePath}', HTTP ${response.status}`
+            );
+          }
+          return void 0;
+        }
+        const responseData = response.body;
         (0, import_core3.debug)(
           `Data batch ${i + 1}, Locales batch ${j + 1}, response: ${JSON.stringify(responseData)}`
         );
@@ -53144,10 +42299,10 @@ var translate = async (translatorResource, toLocales, translatableText, filePath
     }
     return toResultSet(results, toLocales, translatableText);
   } catch (ex) {
-    const errorResponse = ex?.response?.data?.error;
-    if (errorResponse && (errorResponse.code || errorResponse.message)) {
+    const legacyAzureError = ex?.response?.data?.error;
+    if (legacyAzureError && (legacyAzureError.code || legacyAzureError.message)) {
       (0, import_core3.setFailed)(
-        `file: ${filePath}, error: { code: ${errorResponse.code}, message: '${errorResponse.message}' }`
+        `file: ${filePath}, error: { code: ${legacyAzureError.code}, message: '${legacyAzureError.message}' }`
       );
     } else {
       const message = ex instanceof Error ? ex.message : String(ex);
@@ -53314,7 +42469,7 @@ var PortableObjectToken = class {
 var import_core5 = __toESM(require_core());
 var PortableObjectParser = class {
   async parseFrom(fileContent) {
-    await delay(0, null);
+    await delay3(0, null);
     const portableObjectFile = {
       tokens: []
     };
@@ -53452,7 +42607,7 @@ var PortableObjectParser = class {
 var whiteSpace = /\S/;
 var RestextParser = class {
   async parseFrom(fileContent) {
-    await delay(0, null);
+    await delay3(0, null);
     const map2 = /* @__PURE__ */ new Map();
     let restextFile = { map: /* @__PURE__ */ new Map() };
     if (fileContent) {
@@ -53772,9 +42927,9 @@ var summarize = (summary) => {
 // src/io/reader-writer.ts
 var import_core7 = __toESM(require_core());
 var import_fs = require("fs");
-var import_path3 = require("path");
+var import_path2 = require("path");
 function readFile(path2) {
-  const resolved = (0, import_path3.resolve)(path2);
+  const resolved = (0, import_path2.resolve)(path2);
   const file = (0, import_fs.readFileSync)(resolved, "utf-8");
   (0, import_core7.debug)(`Read file: ${file}`);
   return file;
@@ -53790,7 +42945,7 @@ var import_core8 = __toESM(require_core());
 var import_github = __toESM(require_github());
 var import_glob = __toESM(require_glob());
 var import_node_fs2 = require("node:fs");
-var import_path4 = require("path");
+var import_path3 = require("path");
 
 // node_modules/brace-expansion/node_modules/balanced-match/dist/esm/index.js
 var balanced = (a, b, str2) => {
@@ -53956,15 +43111,15 @@ function expand_(str2, max, isTop) {
       const y = numeric(n[1]);
       const width = Math.max(n[0].length, n[1].length);
       let incr = n.length === 3 && n[2] !== void 0 ? Math.max(Math.abs(numeric(n[2])), 1) : 1;
-      let test2 = lte;
+      let test = lte;
       const reverse = y < x;
       if (reverse) {
         incr *= -1;
-        test2 = gte;
+        test = gte;
       }
       const pad = n.some(isPadded);
       N = [];
-      for (let i = x; test2(i, y); i += incr) {
+      for (let i = x; test(i, y); i += incr) {
         let c;
         if (isAlphaSequence) {
           c = String.fromCharCode(i);
@@ -54856,10 +44011,10 @@ var qmark2 = "[^/]";
 var star2 = qmark2 + "*?";
 var twoStarDot = "(?:(?!(?:\\/|^)(?:\\.{1,2})($|\\/)).)*?";
 var twoStarNoDot = "(?:(?!(?:\\/|^)\\.).)*?";
-var filter2 = (pattern, options = {}) => (p) => minimatch(p, pattern, options);
-minimatch.filter = filter2;
+var filter = (pattern, options = {}) => (p) => minimatch(p, pattern, options);
+minimatch.filter = filter;
 var ext = (a, b = {}) => Object.assign({}, a, b);
-var defaults2 = (def) => {
+var defaults = (def) => {
   if (!def || typeof def !== "object" || !Object.keys(def).length) {
     return minimatch;
   }
@@ -54895,7 +44050,7 @@ var defaults2 = (def) => {
     GLOBSTAR
   });
 };
-minimatch.defaults = defaults2;
+minimatch.defaults = defaults;
 var braceExpand = (pattern, options = {}) => {
   assertValidPattern(pattern);
   if (options.nobrace || !/\{(?:(?!\{).)*\}/.test(pattern)) {
@@ -55636,7 +44791,7 @@ async function findAllTranslationFiles(sourceLocale, options = {}) {
   const filesToInclude = await getFilesToInclude();
   const includeFile = (filepath) => {
     if (filesToInclude && filesToInclude.length > 0) {
-      const filename = (0, import_path4.basename)(filepath);
+      const filename = (0, import_path3.basename)(filepath);
       const include2 = filesToInclude.some(
         (f) => f.toLowerCase() === filename.toLowerCase()
       );
@@ -55660,7 +44815,7 @@ async function findAllTranslationFiles(sourceLocale, options = {}) {
   const exclude = options.exclude ?? [];
   const promises = filesAndDirectories.map(async (path2) => {
     return {
-      path: (0, import_path4.normalize)(path2),
+      path: (0, import_path3.normalize)(path2),
       isDirectory: isDirectorySafe(path2),
       include: includeFile(path2)
     };
@@ -55694,8 +44849,8 @@ async function getFilesToInclude() {
         const files = [
           ...new Set(
             response.data.files.map((file) => {
-              const path2 = (0, import_path4.resolve)(__dirname, file.filename);
-              return (0, import_path4.basename)(path2);
+              const path2 = (0, import_path3.resolve)(__dirname, file.filename);
+              return (0, import_path3.basename)(path2);
             })
           )
         ];

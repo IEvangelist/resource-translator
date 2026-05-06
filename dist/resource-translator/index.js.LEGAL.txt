@@ -6,22 +6,6 @@ undici/lib/web/fetch/body.js:
 undici/lib/web/websocket/frame.js:
   /*! ws. MIT License. Einar Otto Stangvik <einaros@gmail.com> */
 
-mime-db/index.js:
-  /*!
-   * mime-db
-   * Copyright(c) 2014 Jonathan Ong
-   * Copyright(c) 2015-2022 Douglas Christopher Wilson
-   * MIT Licensed
-   */
-
-mime-types/index.js:
-  /*!
-   * mime-types
-   * Copyright(c) 2014 Jonathan Ong
-   * Copyright(c) 2015 Douglas Christopher Wilson
-   * MIT Licensed
-   */
-
 sax/lib/sax.js:
   /*! http://mths.be/fromcodepoint v0.1.0 by @mathias */
 
