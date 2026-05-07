@@ -31,7 +31,6 @@ import { Icon } from "astro-icon/components";
     };
 
     const SHOW_AFTER = 320;
-    const FOOTER_GAP = 80;
 
     const visibleClasses = [
       "opacity-100",
@@ -54,13 +53,10 @@ import { Icon } from "astro-icon/components";
 
     const update = () => {
       const y = window.scrollY || document.documentElement.scrollTop;
-      const viewportH = window.innerHeight;
-      const docH = Math.max(
-        document.documentElement.scrollHeight,
-        document.body?.scrollHeight ?? 0,
-      );
-      const nearBottom = y + viewportH >= docH - FOOTER_GAP;
-      setVisible(y > SHOW_AFTER && !nearBottom);
+      // Show as soon as the reader has scrolled past the threshold and keep
+      // the button visible all the way down to the footer — they may still
+      // want to jump back to the top from anywhere on the page.
+      setVisible(y > SHOW_AFTER);
     };
 
     if (w.__bound) {
