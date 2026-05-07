@@ -13,42 +13,52 @@
   --font-mono:
     "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
+  /* The palette below was originally authored in oklch() for perceptual
+     uniformity. We serialize the canonical sRGB equivalents (measured via
+     a 1×1 canvas in Chromium) as hex so getComputedStyle() returns
+     rgb()/hex strings at runtime. Some accessibility tools (notably the
+     axe-core build bundled in Accessibility Insights for Web 2.46 / axe
+     4.10.2) miscompute contrast against modern color() / oklch()
+     literals — the hex form sidesteps that entire class of bug. To tweak
+     a token, edit the oklch comment, re-run scripts/measure-tokens.mjs,
+     and replace the hex value. */
+
   /* Indigo (primary) */
-  --color-brand-50: oklch(97% 0.02 280);
-  --color-brand-100: oklch(94% 0.04 280);
-  --color-brand-200: oklch(87% 0.08 280);
-  --color-brand-300: oklch(78% 0.13 280);
-  --color-brand-400: oklch(68% 0.18 280);
-  --color-brand-500: oklch(60% 0.21 280);
-  --color-brand-600: oklch(52% 0.22 280);
-  --color-brand-700: oklch(44% 0.2 280);
-  --color-brand-800: oklch(36% 0.16 280);
-  --color-brand-900: oklch(28% 0.12 280);
+  --color-brand-50: #f2f4ff;   /* oklch(97% 0.02 280) */
+  --color-brand-100: #e5e9ff;  /* oklch(94% 0.04 280) */
+  --color-brand-200: #c9cfff;  /* oklch(87% 0.08 280) */
+  --color-brand-300: #a7adff;  /* oklch(78% 0.13 280) */
+  --color-brand-400: #8587ff;  /* oklch(68% 0.18 280) */
+  --color-brand-500: #6e67f8;  /* oklch(60% 0.21 280) */
+  --color-brand-600: #594ae2;  /* oklch(52% 0.22 280) */
+  --color-brand-700: #4635bc;  /* oklch(44% 0.20 280) */
+  --color-brand-800: #33278d;  /* oklch(36% 0.16 280) */
+  --color-brand-900: #211a61;  /* oklch(28% 0.12 280) */
 
   /* Fuchsia (accent) */
-  --color-accent-50: oklch(97% 0.03 330);
-  --color-accent-200: oklch(86% 0.13 330);
-  --color-accent-300: oklch(80% 0.18 330);
-  --color-accent-400: oklch(68% 0.24 330);
-  --color-accent-500: oklch(62% 0.27 330);
-  --color-accent-600: oklch(54% 0.27 330);
-  --color-accent-700: oklch(46% 0.24 330);
+  --color-accent-50: #ffeeff;  /* oklch(97% 0.03 330) */
+  --color-accent-200: #ffb1fa; /* oklch(86% 0.13 330) */
+  --color-accent-300: #fd8ff4; /* oklch(80% 0.18 330) */
+  --color-accent-400: #e44fdd; /* oklch(68% 0.24 330) */
+  --color-accent-500: #d71cd0; /* oklch(62% 0.27 330) */
+  --color-accent-600: #bb00b6; /* oklch(54% 0.27 330) */
+  --color-accent-700: #990095; /* oklch(46% 0.24 330) */
 
   /* Amber (highlight) */
-  --color-warm-300: oklch(82% 0.16 70);
-  --color-warm-500: oklch(72% 0.18 70);
-  --color-warm-600: oklch(63% 0.18 50);
-  --color-warm-700: oklch(54% 0.16 50);
+  --color-warm-300: #ffaf38;   /* oklch(82% 0.16 70) */
+  --color-warm-500: #ea8b00;   /* oklch(72% 0.18 70) */
+  --color-warm-600: #db5f00;   /* oklch(63% 0.18 50) */
+  --color-warm-700: #b44a00;   /* oklch(54% 0.16 50) */
 
   /* Cyan (cool counter-accent) */
-  --color-cool-300: oklch(82% 0.13 200);
-  --color-cool-500: oklch(70% 0.16 200);
+  --color-cool-300: #34dde5;   /* oklch(82% 0.13 200) */
+  --color-cool-500: #00bac5;   /* oklch(70% 0.16 200) */
 
-  --color-ink: oklch(20% 0.03 280);
-  --color-ink-muted: oklch(42% 0.03 280);
-  --color-paper: oklch(99% 0.005 280);
-  --color-paper-elevated: oklch(98% 0.012 280);
-  --color-line: oklch(91% 0.015 280);
+  --color-ink: #131423;             /* oklch(20% 0.03 280) */
+  --color-ink-muted: #494c5e;       /* oklch(42% 0.03 280) */
+  --color-paper: #fbfbff;           /* oklch(99% 0.005 280) */
+  --color-paper-elevated: #f6f8ff;  /* oklch(98% 0.012 280) */
+  --color-line: #dfe0eb;            /* oklch(91% 0.015 280) */
 }
 
 @layer base {
@@ -67,24 +77,24 @@
     --border: var(--color-line);
     --link: var(--color-brand-700);
     --link-hover: var(--color-accent-700);
-    --hero-grad-a: oklch(96% 0.06 280 / 0.85);
-    --hero-grad-b: oklch(94% 0.08 330 / 0.7);
-    --hero-grad-c: oklch(95% 0.1 70 / 0.6);
+    --hero-grad-a: rgba(233, 239, 255, 0.85); /* oklch(96% 0.06 280 / 0.85) */
+    --hero-grad-b: rgba(255, 218, 255, 0.70); /* oklch(94% 0.08 330 / 0.7)  */
+    --hero-grad-c: rgba(255, 227, 163, 0.60); /* oklch(95% 0.10 70  / 0.6)  */
     --focus-ring: var(--color-brand-600);
   }
 
   :root.dark {
     color-scheme: dark;
-    --bg: oklch(16% 0.03 280);
-    --bg-elevated: oklch(21% 0.04 280);
-    --fg: oklch(96% 0.01 280);
-    --fg-muted: oklch(78% 0.03 280);
-    --border: oklch(32% 0.04 280);
+    --bg: #0b0c1a;            /* oklch(16% 0.03 280) */
+    --bg-elevated: #15162a;   /* oklch(21% 0.04 280) */
+    --fg: #f0f1f9;            /* oklch(96% 0.01 280) */
+    --fg-muted: #b3b6cb;      /* oklch(78% 0.03 280) */
+    --border: #2f3147;        /* oklch(32% 0.04 280) */
     --link: var(--color-brand-300);
     --link-hover: var(--color-accent-300);
-    --hero-grad-a: oklch(28% 0.18 280 / 0.6);
-    --hero-grad-b: oklch(28% 0.22 330 / 0.5);
-    --hero-grad-c: oklch(28% 0.16 200 / 0.5);
+    --hero-grad-a: rgba(37, 0, 125, 0.60); /* oklch(28% 0.18 280 / 0.6) */
+    --hero-grad-b: rgba(90, 0, 90, 0.50);  /* oklch(28% 0.22 330 / 0.5) */
+    --hero-grad-c: rgba(0, 58, 72, 0.50);  /* oklch(28% 0.16 200 / 0.5) */
     --focus-ring: var(--color-accent-300);
   }
 

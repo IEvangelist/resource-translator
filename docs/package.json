@@ -10,7 +10,8 @@
     "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro",
-    "audit:a11y": "node scripts/a11y-audit.mjs"
+    "audit:a11y": "node scripts/a11y-audit.mjs",
+    "measure:tokens": "node scripts/measure-tokens.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
