@@ -15,7 +15,8 @@ const {
   title,
   lede,
   icon,
-  accent = "from-(--color-brand-600) via-(--color-accent-500) to-(--color-warm-500)",
+  // Solid AA-passing brand stop — see Step.astro for rationale.
+  accent = "bg-(--color-brand-700)",
 } = Astro.props;
 ---
 
@@ -34,7 +35,7 @@ const {
         <span
           aria-hidden="true"
           class:list={[
-            "inline-flex size-12 flex-none items-center justify-center rounded-2xl bg-linear-to-br text-white shadow-md shadow-(--color-brand-500)/30",
+            "inline-flex size-12 flex-none items-center justify-center rounded-2xl text-white shadow-md shadow-(--color-brand-500)/30",
             accent,
           ]}
         >

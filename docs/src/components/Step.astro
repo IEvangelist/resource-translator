@@ -9,7 +9,11 @@ interface Props {
 const {
   number,
   title,
-  accent = "from-(--color-brand-600) via-(--color-accent-500) to-(--color-warm-500)",
+  // Solid AA-passing brand stop — gradient backgrounds with white text were
+  // flagged "incomplete" by axe because the rule can't measure a gradient,
+  // and the warm-500 stop in the previous default failed AA on its own
+  // (white on warm-500 = 2.56:1). Solid brand-700 passes white at 8.41:1.
+  accent = "bg-(--color-brand-700)",
 } = Astro.props;
 ---
 
@@ -20,7 +24,7 @@ const {
     <span
       aria-hidden="true"
       class:list={[
-        "inline-flex size-12 flex-none items-center justify-center rounded-2xl bg-linear-to-br text-xl font-bold text-white shadow-md shadow-(--color-brand-500)/30",
+        "inline-flex size-12 flex-none items-center justify-center rounded-2xl text-xl font-bold text-white shadow-md shadow-(--color-brand-500)/30",
         accent,
       ]}
     >

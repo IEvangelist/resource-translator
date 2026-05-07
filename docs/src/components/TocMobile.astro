@@ -1,0 +1,30 @@
+---
+// Mobile / tablet "On this page" — collapsed <details> rendered above the
+// article body when the sticky rail in `Toc.astro` is hidden (<xl). The <ul>
+// below is populated by the same client script that builds the desktop list,
+// so this file is mostly markup; see Toc.astro for the populator.
+---
+
+<details
+  class="rt-toc-mobile mb-6 rounded-lg border border-(--border) bg-(--bg-elevated) px-4 py-2 xl:hidden"
+  data-toc-mobile-root
+>
+  <summary
+    class="flex cursor-pointer list-none items-center justify-between gap-3 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-(--fg-muted) transition-colors hover:text-(--fg) [&::-webkit-details-marker]:hidden"
+  >
+    <span>On this page</span>
+    <svg
+      aria-hidden="true"
+      class="rt-toc-mobile-chevron size-4 transition-transform"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </summary>
+  <ul id="toc-list-mobile" class="mt-2 border-t border-(--border) pt-2"></ul>
+</details>

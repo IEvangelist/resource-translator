@@ -44,18 +44,27 @@
   :where(.dark) .rt-toc-link[data-active="true"] {
     border-color: var(--color-brand-400);
   }
+  details.rt-toc-mobile[open] .rt-toc-mobile-chevron {
+    transform: rotate(180deg);
+  }
 </style>
 
 <script>
   function bindToc() {
     const list = document.getElementById("toc-list");
+    const listMobile = document.getElementById("toc-list-mobile");
     const root = document.querySelector<HTMLElement>("[data-toc-root]");
-    if (!list || !root) return;
+    const rootMobile = document.querySelector<HTMLElement>(
+      "[data-toc-mobile-root]",
+    );
+    if (!list && !listMobile) return;
 
     const article = document.querySelector<HTMLElement>("article.prose-rt");
     if (!article) {
-      list.innerHTML = "";
-      root.style.display = "none";
+      if (list) list.innerHTML = "";
+      if (listMobile) listMobile.innerHTML = "";
+      if (root) root.style.display = "none";
+      if (rootMobile) rootMobile.style.display = "none";
       return;
     }
 
@@ -72,13 +81,16 @@
     );
 
     if (headings.length === 0) {
-      list.innerHTML = "";
-      root.style.display = "none";
+      if (list) list.innerHTML = "";
+      if (listMobile) listMobile.innerHTML = "";
+      if (root) root.style.display = "none";
+      if (rootMobile) rootMobile.style.display = "none";
       return;
     }
-    root.style.display = "";
+    if (root) root.style.display = "";
+    if (rootMobile) rootMobile.style.display = "";
 
-    list.innerHTML = headings
+    const html = headings
       .map((h) => {
         if (!h.id)
           h.id =
@@ -98,18 +110,26 @@
       })
       .join("");
 
-    const links = new Map<string, HTMLAnchorElement>();
-    list.querySelectorAll<HTMLAnchorElement>("[data-toc-link]").forEach(
-      (a) => {
+    if (list) list.innerHTML = html;
+    if (listMobile) listMobile.innerHTML = html;
+
+    const links = new Map<string, HTMLAnchorElement[]>();
+    document
+      .querySelectorAll<HTMLAnchorElement>("[data-toc-link]")
+      .forEach((a) => {
         const id = a.dataset.tocLink;
-        if (id) links.set(id, a);
-      },
-    );
+        if (!id) return;
+        const arr = links.get(id) ?? [];
+        arr.push(a);
+        links.set(id, arr);
+      });
 
     const setActive = (id: string | null) => {
-      links.forEach((a, key) => {
-        if (key === id) a.dataset.active = "true";
-        else delete a.dataset.active;
+      links.forEach((arr, key) => {
+        for (const a of arr) {
+          if (key === id) a.dataset.active = "true";
+          else delete a.dataset.active;
+        }
       });
     };
 
@@ -139,8 +159,14 @@
       if (!id) return;
       setActive(id);
       lockManual();
+      // Collapse the mobile drawer once the user picks a heading so the
+      // scrolled-to target is actually visible.
+      if (rootMobile && rootMobile instanceof HTMLDetailsElement) {
+        rootMobile.open = false;
+      }
     };
-    list.addEventListener("click", onTocClick);
+    list?.addEventListener("click", onTocClick);
+    listMobile?.addEventListener("click", onTocClick);
 
     const onHashChange = () => {
       const id = decodeURIComponent((location.hash || "").replace(/^#/, ""));
@@ -208,7 +234,8 @@
 
     w.__tocCleanup = () => {
       observer.disconnect();
-      list.removeEventListener("click", onTocClick);
+      list?.removeEventListener("click", onTocClick);
+      listMobile?.removeEventListener("click", onTocClick);
       window.removeEventListener("hashchange", onHashChange);
       window.removeEventListener("wheel", onUserScroll);
       window.removeEventListener("touchmove", onUserScroll);

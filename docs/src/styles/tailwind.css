@@ -114,6 +114,23 @@
     min-height: 100vh;
   }
 
+  /* Long single-token identifiers (e.g. package names) used inline must wrap
+     instead of overflowing the viewport on mobile. Applied at the element
+     level so it covers the homepage hero <code>, badges, and anything else
+     outside of `.prose-rt`. */
+  code {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  /* Block code inside Expressive Code keeps its existing horizontal scroll
+     behaviour — wrapping arbitrary YAML/JSON tokens would be more confusing
+     than scrolling. */
+  pre code,
+  .expressive-code code {
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
   a {
     color: var(--link);
     text-underline-offset: 3px;
@@ -122,6 +139,21 @@
 
   a:hover {
     color: var(--link-hover);
+  }
+
+  /* WCAG 1.4.1: text links inside running prose must be distinguishable by
+     more than color alone. Underline every inline link inside prose-style
+     containers (paragraphs, list items, table cells, definition data, and
+     blockquote text). Header/nav/button/footer-icon links opt out via more
+     specific selectors so they keep their cleaner chrome treatment. */
+  :where(p, li, dd, td, blockquote) a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  :where(p, li, dd, td, blockquote) a:hover {
+    text-decoration-thickness: 2px;
   }
 
   code,
@@ -181,33 +213,26 @@
 }
 
 /*
- * Light-mode gradient text uses deeper stops (brand-700 → accent-600 →
- * warm-700) so the brightest stop still meets WCAG AA against `--bg`.
- * Dark mode uses light stops (brand-300 → accent-300 → warm-300) for the
- * same reason against the dark background.
+ * `.text-gradient` was originally a `background-clip: text` gradient on the
+ * accent word in headings. Pa11y/axe flag any element with
+ * `-webkit-text-fill-color: transparent` as `color-contrast` "incomplete"
+ * (axe can't measure a gradient, so it can't promise AA), and pa11y
+ * promotes those incompletes to errors.
+ *
+ * To pass WCAG 2 AA cleanly across automated audits — and to stay readable
+ * for users with custom stylesheets, forced colors, and high-contrast
+ * modes — we render the accent word as a solid color that already passes
+ * AA on the page background:
+ *   light: brand-700 (#4635bc) on paper → 8.15:1 ✓
+ *   dark : brand-300 on `--bg`         → ≥4.7:1 ✓
+ * The class name is preserved so existing markup keeps working.
  */
 @utility text-gradient {
-  background: linear-gradient(
-    100deg,
-    var(--color-brand-700) 0%,
-    var(--color-accent-600) 55%,
-    var(--color-warm-700) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--color-brand-700);
 }
 
 :root.dark .text-gradient {
-  background: linear-gradient(
-    100deg,
-    var(--color-brand-300) 0%,
-    var(--color-accent-300) 55%,
-    var(--color-warm-300) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--color-brand-300);
 }
 
 @utility hero-mesh {
@@ -262,6 +287,12 @@
     background-color: rgba(217, 163, 71, 0.13);
     border: 1px solid rgba(217, 163, 71, 0.3);
     color: var(--color-warm-700);
+    /* Without this, long single-token identifiers like
+       `@azure-rest/ai-translation-text` blow horizontally on mobile and
+       force the whole article to scroll. `anywhere` wraps inside the
+       chip without changing the chip's visual treatment. */
+    overflow-wrap: anywhere;
+    word-break: break-word;
     @apply rounded px-1.5 py-0.5 text-[0.9em] font-medium;
   }
   :root.dark .prose-rt code:not(pre code) {

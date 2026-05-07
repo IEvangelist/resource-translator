@@ -97,9 +97,15 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
     const prefersDark = window.matchMedia(
       "(prefers-color-scheme: dark)",
     ).matches;
-    document.documentElement.classList.toggle(
-      "dark",
-      stored === "dark" || (!stored && prefersDark),
+    const root = document.documentElement;
+    const isDark = stored === "dark" || (!stored && prefersDark);
+    root.classList.toggle("dark", isDark);
+    // Keep `data-theme` in sync so Expressive Code's per-theme CSS rules
+    // (keyed to [data-theme='catppuccin-mocha'|'catppuccin-latte'] via
+    // ec.config.mjs) light up the correct token + chrome colors.
+    root.setAttribute(
+      "data-theme",
+      isDark ? "catppuccin-mocha" : "catppuccin-latte",
     );
   };
   apply();
@@ -114,8 +120,13 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
     (btn as any).__bound = true;
     btn.addEventListener("click", () => {
       const root = document.documentElement;
-      const next = root.classList.toggle("dark") ? "dark" : "light";
+      const isDark = root.classList.toggle("dark");
+      const next = isDark ? "dark" : "light";
       localStorage.setItem("theme", next);
+      root.setAttribute(
+        "data-theme",
+        isDark ? "catppuccin-mocha" : "catppuccin-latte",
+      );
     });
   }
   bindToggle();

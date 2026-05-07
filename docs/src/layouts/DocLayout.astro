@@ -9,6 +9,7 @@ import Footer from "../components/Footer.astro";
 import DocPager from "../components/DocPager.astro";
 import BackToTop from "../components/BackToTop.astro";
 import Toc from "../components/Toc.astro";
+import TocMobile from "../components/TocMobile.astro";
 
 interface Props {
   title: string;
@@ -86,6 +87,7 @@ const faviconHref = `${baseHref}/favicon.svg`;
             </aside>
             <main id="main" class="min-w-0 flex-1">
               <slot name="hero" />
+              <TocMobile />
               <article class="prose-rt">
                 <slot />
               </article>

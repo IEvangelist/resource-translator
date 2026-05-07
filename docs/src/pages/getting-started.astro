@@ -51,7 +51,7 @@ jobs:
   <Step
     number={1}
     title="Provision an Azure AI Translator resource"
-    accent="from-(--color-brand-600) via-(--color-accent-500) to-(--color-warm-500)"
+    accent="bg-(--color-brand-700)"
   >
     <p>
       Create an Azure AI Translator resource in the Azure portal, then store
@@ -75,7 +75,7 @@ jobs:
   <Step
     number={2}
     title="Add the workflow"
-    accent="from-(--color-warm-500) to-(--color-brand-500)"
+    accent="bg-(--color-warm-700)"
   >
     <p>Create <code>.github/workflows/translate.yml</code>:</p>
     <Code code={workflow} lang="yaml" title=".github/workflows/translate.yml" />
@@ -84,7 +84,7 @@ jobs:
   <Step
     number={3}
     title="Commit a source resource file"
-    accent="from-(--color-cool-500) to-(--color-brand-500)"
+    accent="bg-(--color-accent-700)"
   >
     <p>
       Resource files use the <code>{`Name.<sourceLocale>.<ext>`}</code> convention.
@@ -97,7 +97,7 @@ jobs:
   <Step
     number={4}
     title="Inspect the output"
-    accent="from-(--color-accent-500) to-(--color-cool-500)"
+    accent="bg-(--color-brand-700)"
   >
     <p>
       Once the workflow finishes, the action exposes three outputs you can wire
