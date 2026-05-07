@@ -1,30 +1,276 @@
 ---
+import { Icon } from "astro-icon/components";
+import Logo from "./Logo.astro";
+
 const year = new Date().getFullYear();
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const internal = (p: string) => `${base}${p}`;
+
+const repoUrl = "https://github.com/IEvangelist/resource-translator";
+const marketplaceUrl =
+  "https://github.com/marketplace/actions/resource-translator";
+
+const docsLinks: { href: string; label: string }[] = [
+  { href: internal("/"), label: "Overview" },
+  { href: internal("/getting-started"), label: "Getting started" },
+  { href: internal("/configuration"), label: "Configuration" },
+  { href: internal("/inputs"), label: "Inputs & outputs" },
+  { href: internal("/formats"), label: "File formats" },
+  { href: internal("/faq"), label: "FAQ" },
+];
+
+const projectLinks: { href: string; label: string }[] = [
+  { href: internal("/recipes"), label: "Recipes" },
+  { href: internal("/translations"), label: "Translations" },
+  { href: internal("/contributing"), label: "Contributing" },
+  { href: internal("/changelog"), label: "Changelog" },
+];
+
+const communityLinks: { href: string; label: string }[] = [
+  {
+    href: `${repoUrl}/issues/new?template=bug_report.yml`,
+    label: "Report a bug",
+  },
+  {
+    href: `${repoUrl}/issues/new?template=feature_request.yml`,
+    label: "Request a feature",
+  },
+  { href: `${repoUrl}/discussions`, label: "Discussions" },
+  { href: `${repoUrl}/blob/main/SECURITY.md`, label: "Security policy" },
+  {
+    href: `${repoUrl}/blob/main/CODE_OF_CONDUCT.md`,
+    label: "Code of conduct",
+  },
+  { href: `${repoUrl}/blob/main/LICENSE`, label: "MIT License" },
+];
+
+const isExternal = (href: string) => /^https?:\/\//.test(href);
 ---
 
 <footer
-  class="mt-16 border-t border-(--border) bg-(--bg-elevated)/50 py-10 text-sm text-(--fg-muted)"
+  class="relative mt-16 border-t border-(--border) bg-(--bg-elevated)/50 text-sm text-(--fg-muted)"
 >
-  <div class="mx-auto flex max-w-7xl flex-col items-center gap-3 px-6 text-center">
-    <p>
-      Made by <a
-        href="https://davidpine.dev"
-        rel="noopener"
-        target="_blank"
-        class="font-medium"
-        >David Pine 🤓</a
-      > · <span>{year}</span>
-    </p>
-    <p class="text-xs">
-      <a
-        href="https://github.com/IEvangelist/resource-translator"
-        rel="noopener"
-        target="_blank">Source on GitHub</a
-      > · Built with <a href="https://astro.build" rel="noopener" target="_blank"
-        >Astro</a
-      > & <a href="https://tailwindcss.com" rel="noopener" target="_blank"
-        >Tailwind CSS</a
-      >
-    </p>
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-(--color-brand-500)/40 to-transparent"
+  >
+  </div>
+
+  <div class="mx-auto max-w-7xl px-6 py-12">
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-12">
+      <!-- Brand + tagline + socials -->
+      <div class="lg:col-span-4">
+        <a
+          href={internal("/")}
+          class="group inline-flex items-center gap-2.5 text-base font-semibold text-(--fg) no-underline"
+        >
+          <Logo
+            size={32}
+            class="rounded-lg shadow-sm transition-transform group-hover:rotate-[-6deg]"
+          />
+          <span>Resource Translator</span>
+        </a>
+        <p class="mt-4 max-w-sm leading-relaxed">
+          A GitHub Action that translates your resource files automatically,
+          built atop the official
+          <a
+            href="https://www.npmjs.com/package/@azure-rest/ai-translation-text"
+            rel="noopener"
+            target="_blank">@azure-rest/ai-translation-text</a
+          > SDK from <a
+            href="https://github.com/Azure/azure-sdk-for-js"
+            rel="noopener"
+            target="_blank">Azure SDK for JavaScript</a
+          >.
+        </p>
+
+        <ul class="mt-5 flex items-center gap-2" aria-label="Project links">
+          <li>
+            <a
+              href={repoUrl}
+              rel="noopener"
+              target="_blank"
+              aria-label="View source on GitHub"
+              title="GitHub repository"
+              class="rt-social"
+            >
+              <Icon name="simple-icons:github" class="size-4" />
+            </a>
+          </li>
+          <li>
+            <a
+              href={marketplaceUrl}
+              rel="noopener"
+              target="_blank"
+              aria-label="View on GitHub Marketplace"
+              title="GitHub Marketplace"
+              class="rt-social"
+            >
+              <Icon name="lucide:package" class="size-4" />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://davidpine.dev"
+              rel="noopener"
+              target="_blank"
+              aria-label="David Pine's website"
+              title="davidpine.dev"
+              class="rt-social"
+            >
+              <Icon name="lucide:globe" class="size-4" />
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Docs -->
+      <nav class="lg:col-span-2" aria-label="Documentation">
+        <h2
+          class="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-(--fg)"
+        >
+          Docs
+        </h2>
+        <ul class="space-y-2">
+          {
+            docsLinks.map((l) => (
+              <li>
+                <a class="rt-foot-link" href={l.href}>
+                  {l.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <!-- Project -->
+      <nav class="lg:col-span-2" aria-label="Project">
+        <h2
+          class="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-(--fg)"
+        >
+          Project
+        </h2>
+        <ul class="space-y-2">
+          {
+            projectLinks.map((l) => (
+              <li>
+                <a class="rt-foot-link" href={l.href}>
+                  {l.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <!-- Community -->
+      <nav class="lg:col-span-4" aria-label="Community and support">
+        <h2
+          class="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-(--fg)"
+        >
+          Community
+        </h2>
+        <ul class="grid gap-2 sm:grid-cols-2">
+          {
+            communityLinks.map((l) => (
+              <li>
+                <a
+                  class="rt-foot-link inline-flex items-center gap-1.5"
+                  href={l.href}
+                  rel={isExternal(l.href) ? "noopener" : undefined}
+                  target={isExternal(l.href) ? "_blank" : undefined}
+                >
+                  <span>{l.label}</span>
+                  {isExternal(l.href) && (
+                    <Icon
+                      name="lucide:external-link"
+                      class="size-3 opacity-50"
+                      aria-hidden="true"
+                    />
+                  )}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+
+    <div
+      class="mt-10 flex flex-col items-center justify-between gap-3 border-t border-(--border) pt-6 text-xs sm:flex-row"
+    >
+      <p>
+        © {year}
+        <a
+          href="https://davidpine.dev"
+          rel="noopener"
+          target="_blank"
+          class="font-medium">David Pine 🤓</a
+        >
+        · Released under the
+        <a
+          href={`${repoUrl}/blob/main/LICENSE`}
+          rel="noopener"
+          target="_blank">MIT License</a
+        >.
+      </p>
+      <p>
+        Built with
+        <a href="https://astro.build" rel="noopener" target="_blank">Astro</a>
+        &
+        <a href="https://tailwindcss.com" rel="noopener" target="_blank"
+          >Tailwind CSS</a
+        >.
+      </p>
+    </div>
   </div>
 </footer>
+
+<style>
+  .rt-foot-link {
+    color: var(--fg-muted);
+    text-decoration: none;
+    transition:
+      color 150ms ease,
+      transform 150ms ease;
+  }
+  .rt-foot-link:hover {
+    color: var(--link);
+    transform: translateX(2px);
+  }
+  .rt-foot-link:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .rt-social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border);
+    background: var(--bg-elevated);
+    color: var(--fg-muted);
+    text-decoration: none;
+    transition:
+      color 150ms ease,
+      border-color 150ms ease,
+      background 150ms ease,
+      transform 150ms ease;
+  }
+  .rt-social:hover {
+    color: var(--link);
+    border-color: var(--color-brand-500);
+    background: var(--bg);
+    transform: translateY(-1px);
+  }
+  .rt-social:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+</style>
+
