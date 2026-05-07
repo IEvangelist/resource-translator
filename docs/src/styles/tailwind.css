@@ -75,12 +75,18 @@
     --fg: var(--color-ink);
     --fg-muted: var(--color-ink-muted);
     --border: var(--color-line);
-    --link: var(--color-brand-700);
-    --link-hover: var(--color-accent-700);
+    /* Resolve `--link` / `--link-hover` to direct hex (mirroring brand-700
+       / accent-700) instead of `var(--color-brand-700)`. Multi-level
+       var() chains can trip older axe-core builds (we saw axe 4.10.2 in
+       Accessibility Insights mis-resolve the chain to a phantom
+       `#106ebe`). Direct hex eliminates the ambiguity. The trailing
+       comments record the canonical token name for future tweaks. */
+    --link: #4635bc;            /* --color-brand-700 */
+    --link-hover: #990095;      /* --color-accent-700 */
     --hero-grad-a: rgba(233, 239, 255, 0.85); /* oklch(96% 0.06 280 / 0.85) */
     --hero-grad-b: rgba(255, 218, 255, 0.70); /* oklch(94% 0.08 330 / 0.7)  */
     --hero-grad-c: rgba(255, 227, 163, 0.60); /* oklch(95% 0.10 70  / 0.6)  */
-    --focus-ring: var(--color-brand-600);
+    --focus-ring: #594ae2;      /* --color-brand-600 */
   }
 
   :root.dark {
@@ -90,12 +96,12 @@
     --fg: #f0f1f9;            /* oklch(96% 0.01 280) */
     --fg-muted: #b3b6cb;      /* oklch(78% 0.03 280) */
     --border: #2f3147;        /* oklch(32% 0.04 280) */
-    --link: var(--color-brand-300);
-    --link-hover: var(--color-accent-300);
+    --link: #a7adff;          /* --color-brand-300 */
+    --link-hover: #fd8ff4;    /* --color-accent-300 */
     --hero-grad-a: rgba(37, 0, 125, 0.60); /* oklch(28% 0.18 280 / 0.6) */
     --hero-grad-b: rgba(90, 0, 90, 0.50);  /* oklch(28% 0.22 330 / 0.5) */
     --hero-grad-c: rgba(0, 58, 72, 0.50);  /* oklch(28% 0.16 200 / 0.5) */
-    --focus-ring: var(--color-accent-300);
+    --focus-ring: #fd8ff4;    /* --color-accent-300 */
   }
 
   html {
