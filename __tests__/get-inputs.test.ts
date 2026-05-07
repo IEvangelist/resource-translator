@@ -139,4 +139,57 @@ describe("getInputs", () => {
     setInput("profanityMarker", "Tag");
     expect(() => getInputs()).toThrow(/profanityMarker/);
   });
+
+  it("reads noTranslatePatterns as a multiline list", () => {
+    setInput(
+      "noTranslatePatterns",
+      "errors.code.*\nbrands.*\n\n  whitespace-only-lines-skipped  ",
+    );
+    const inputs = getInputs();
+    expect(inputs.noTranslatePatterns).toEqual([
+      "errors.code.*",
+      "brands.*",
+      "whitespace-only-lines-skipped",
+    ]);
+  });
+
+  it("returns undefined for noTranslatePatterns when not provided", () => {
+    const inputs = getInputs();
+    expect(inputs.noTranslatePatterns).toBeUndefined();
+  });
+
+  it("reads protectPlaceholders as a tri-state boolean", () => {
+    setInput("protectPlaceholders", "false");
+    expect(getInputs().protectPlaceholders).toBe(false);
+    setInput("protectPlaceholders", "true");
+    expect(getInputs().protectPlaceholders).toBe(true);
+    delete inputValues["protectPlaceholders"];
+    expect(getInputs().protectPlaceholders).toBeUndefined();
+  });
+
+  it("reads customPlaceholderPatterns as a multiline list", () => {
+    setInput("customPlaceholderPatterns", "<<.+?>>\n\\$brand\\$");
+    expect(getInputs().customPlaceholderPatterns).toEqual([
+      "<<.+?>>",
+      "\\$brand\\$",
+    ]);
+  });
+
+  it("parses maxRetries and retryBackoffMs as non-negative integers", () => {
+    setInput("maxRetries", "8");
+    setInput("retryBackoffMs", "60000");
+    const inputs = getInputs();
+    expect(inputs.maxRetries).toBe(8);
+    expect(inputs.retryBackoffMs).toBe(60000);
+  });
+
+  it("rejects a non-numeric maxRetries", () => {
+    setInput("maxRetries", "lots");
+    expect(() => getInputs()).toThrow(/maxRetries/);
+  });
+
+  it("rejects a negative retryBackoffMs", () => {
+    setInput("retryBackoffMs", "-5");
+    expect(() => getInputs()).toThrow(/retryBackoffMs/);
+  });
 });

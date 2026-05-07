@@ -7,6 +7,7 @@ import {
   warning,
 } from "@actions/core";
 import { existsSync } from "fs";
+import { minimatch } from "minimatch";
 import { Summary } from "./abstractions/summary";
 import { TranslationFileKind } from "./abstractions/translation-file-kind";
 import { Inputs } from "./action/inputs";
@@ -22,6 +23,41 @@ import {
 } from "./helpers/utils";
 import { readFile, writeFile } from "./io/reader-writer";
 import { findAllTranslationFiles } from "./io/translation-file-finder";
+
+/**
+ * Returns a copy of the input text map with any keys matching `patterns`
+ * stripped. The patterns are matched against the keys returned by each
+ * parser's `toTranslatableTextMap`:
+ *   - resx:    `name` attribute
+ *   - po:      `msgid`
+ *   - xliff:   unit `id`
+ *   - json:    `[--]`-joined dotted path
+ *   - ini/restext: raw key
+ *
+ * Stripped keys are still present in the parsed file content, so they fall
+ * through unchanged when `applyTranslations` overlays the locale data.
+ */
+const filterNoTranslateKeys = (
+  text: Map<string, string>,
+  patterns: string[] | undefined,
+): { filtered: Map<string, string>; skipped: number } => {
+  if (!patterns || patterns.length === 0) {
+    return { filtered: text, skipped: 0 };
+  }
+  const filtered = new Map<string, string>();
+  let skipped = 0;
+  for (const [key, value] of text) {
+    const matchesAny = patterns.some((p) =>
+      minimatch(key, p, { dot: true, nocase: false }),
+    );
+    if (matchesAny) {
+      skipped++;
+      continue;
+    }
+    filtered.set(key, value);
+  }
+  return { filtered, skipped };
+};
 
 export async function start(inputs: Inputs) {
   const failOnError = inputs.failOnError ?? true;
@@ -127,11 +163,33 @@ export async function start(inputs: Inputs) {
             continue;
           }
 
+          const { filtered, skipped } = filterNoTranslateKeys(
+            translatableTextMap.text,
+            inputs.noTranslatePatterns,
+          );
+          if (skipped > 0) {
+            debug(
+              `Skipped ${skipped} key(s) in ${filePath} due to noTranslatePatterns.`,
+            );
+          }
+          if (filtered.size === 0) {
+            debug(
+              `All translatable keys in ${filePath} were excluded by noTranslatePatterns; skipping translate call.`,
+            );
+            continue;
+          }
+
           const resultSet = await translate(
             translatorResource,
             toLocales,
-            translatableTextMap.text,
+            filtered,
             filePath,
+            {
+              protectPlaceholders: inputs.protectPlaceholders,
+              customPlaceholderPatterns: inputs.customPlaceholderPatterns,
+              maxRetries: inputs.maxRetries,
+              retryBackoffMs: inputs.retryBackoffMs,
+            },
           );
 
           debug(`Translation result:\n ${JSON.stringify(resultSet)}`);
@@ -141,7 +199,7 @@ export async function start(inputs: Inputs) {
             continue;
           }
 
-          const length = translatableTextMap.text.size;
+          const length = filtered.size;
           debug(
             `Translation count: ${length}, toLocales size: ${toLocales.length}`,
           );

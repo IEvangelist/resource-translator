@@ -80,6 +80,14 @@ const normalizeRepoConfig = (raw: RepoConfig): RepoConfig => {
     return undefined;
   };
 
+  const nonNegativeInt = (value: unknown): number | undefined => {
+    if (value === undefined || value === null || value === "") return undefined;
+    const n =
+      typeof value === "number" ? value : Number.parseInt(String(value), 10);
+    if (!Number.isFinite(n) || n < 0) return undefined;
+    return n;
+  };
+
   return {
     sourceLocale:
       typeof raw.sourceLocale === "string" ? raw.sourceLocale : undefined,
@@ -102,6 +110,11 @@ const normalizeRepoConfig = (raw: RepoConfig): RepoConfig => {
       PROFANITY_MARKERS,
     ),
     allowFallback: booleanOrUndefined(raw.allowFallback),
+    noTranslatePatterns: stringList(raw.noTranslatePatterns),
+    protectPlaceholders: booleanOrUndefined(raw.protectPlaceholders),
+    customPlaceholderPatterns: stringList(raw.customPlaceholderPatterns),
+    maxRetries: nonNegativeInt(raw.maxRetries),
+    retryBackoffMs: nonNegativeInt(raw.retryBackoffMs),
   };
 };
 
@@ -126,6 +139,11 @@ export const mergeInputsAndConfig = <T extends RepoConfig>(
     "profanityAction",
     "profanityMarker",
     "allowFallback",
+    "noTranslatePatterns",
+    "protectPlaceholders",
+    "customPlaceholderPatterns",
+    "maxRetries",
+    "retryBackoffMs",
   ];
   for (const key of keys) {
     if (merged[key] === undefined || isEmpty(merged[key])) {

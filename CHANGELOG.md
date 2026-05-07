@@ -23,6 +23,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   `apiVersion`, `dryRun`, `failOnError`, plus advanced Translator request
   knobs `textType`, `profanityAction`, `profanityMarker`, and
   `allowFallback`.
+- **Resilience inputs:** `maxRetries` and `retryBackoffMs` control the
+  retry-on-transient-status loop. Honors Azure's `Retry-After` header
+  exactly when present; otherwise jittered exponential backoff capped
+  at `retryBackoffMs`. Closes #46.
+- **Placeholder protection:** `protectPlaceholders` (on by default) and
+  `customPlaceholderPatterns` shield i18next/Mustache `{{name}}`,
+  ES `${var}`, .NET `{0}`/`{0:N2}`, printf `%s`/`%1$s` and HTML
+  entities from translation. Tightens #16.
+- **Per-key opt-out:** `noTranslatePatterns` glob-matches parser-level
+  keys (JSON dotted path, RESX `name`, PO `msgid`, XLIFF unit `id`,
+  INI/restext key) and skips them in the Translator request, preserving
+  the source value verbatim. Closes #35.
 - Optional repository configuration via `.github/resource-translator.yml`
   (action inputs always win over repo config).
 - Source locale is now always forwarded to Translator as `from=<locale>`
