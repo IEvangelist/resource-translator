@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* Tailwind v4's default `dark:` variant follows the OS preference (prefers-
+   color-scheme). Our theme toggle flips `.dark` on the <html> element, so
+   redefine the variant to be class-based — that way utilities like
+   `dark:hidden`, `dark:bg-…`, etc. respond to the toggle, not just the OS. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans:
     "InterVariable", "Inter", ui-sans-serif, system-ui, -apple-system,
