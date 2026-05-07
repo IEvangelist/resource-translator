@@ -37,6 +37,31 @@ import PageHero from "../components/PageHero.astro";
         >from=&lt;locale&gt;</code
       > so short strings aren't autodetected.
     </li>
+    <li>
+      <strong>Resilience:</strong> automatic retry on transient HTTP responses
+      (408, 425, 429, 500, 502, 503, 504) honoring Azure's
+      <code>Retry-After</code> header — falls back to jittered exponential
+      backoff when absent. Tunable via <code>maxRetries</code> and
+      <code>retryBackoffMs</code>. <em>Closes #46.</em>
+    </li>
+    <li>
+      <strong>Placeholder protection:</strong> tokens like
+      <code>&#123;&#123;name&#125;&#125;</code>, <code>$&#123;var&#125;</code>,
+      <code>&#123;0&#125;</code>, <code>&#123;0:N2&#125;</code>, <code>%s</code>,
+      <code>%1$s</code> and HTML entities are wrapped in sentinels before
+      translation and restored afterward, so Translator stops mangling
+      i18next/Mustache/Handlebars/.NET/printf placeholders. Toggle via
+      <code>protectPlaceholders</code>; extend with
+      <code>customPlaceholderPatterns</code>. <em>Tightens #16.</em>
+    </li>
+    <li>
+      <strong>Per-key opt-out:</strong> new
+      <code>noTranslatePatterns</code> input drops matching keys from the
+      Translator request entirely (preserves source values for brand names,
+      error codes, etc.). Matches glob patterns against parser-level keys
+      (JSON dotted path, RESX <code>name</code>, PO <code>msgid</code>, XLIFF
+      unit <code>id</code>, INI/restext key). <em>Closes #35.</em>
+    </li>
     <li>Repo-level config via <code>.github/resource-translator.yml</code>.</li>
     <li>Glossary support, step summary via <code>core.summary</code>.</li>
     <li>esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.</li>

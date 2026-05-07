@@ -29,6 +29,25 @@ profanityMarker: Asterisk        # Asterisk | Tag (only when profanityAction == 
 allowFallback: true              # false fails when the categoryId has no deployment
 
 apiVersion: "3.0"
+
+# Resilience — Translator returns 429 under load. Defaults are usually
+# fine; tune only if your runs are large enough to hit them.
+maxRetries: 5
+retryBackoffMs: 30000             # cap on any single backoff sleep (ms)
+
+# Placeholder protection. ON by default — wraps tokens like {{name}},
+# {0}, %s, \${var} into sentinels before translation and restores them
+# on the way back. Set false only when source intentionally contains
+# placeholder-shaped literals.
+protectPlaceholders: true
+customPlaceholderPatterns:
+  - "<<.+?>>"                     # any extra token syntax you use
+
+# Per-key opt-out. Keys matching any glob are dropped from the request
+# and pass through with the source value preserved.
+noTranslatePatterns:
+  - "errors.code.*"
+  - "brands.*"
 `;
 ---
 
@@ -64,6 +83,11 @@ apiVersion: "3.0"
       <tr><td><code>profanityMarker</code></td><td><code>"Asterisk"</code> | <code>"Tag"</code></td><td>Only meaningful when <code>profanityAction</code> is <code>"Marked"</code>.</td></tr>
       <tr><td><code>allowFallback</code></td><td>boolean</td><td>Set to <code>false</code> to fail the translation when your <code>categoryId</code> has no deployment for a target locale instead of falling back to the general model.</td></tr>
       <tr><td><code>apiVersion</code></td><td>string</td><td>Translator REST API version. Defaults to <code>3.0</code>.</td></tr>
+      <tr><td><code>maxRetries</code></td><td>integer</td><td>Maximum retry attempts on transient HTTP responses (408, 425, 429, 500, 502, 503, 504). Defaults to <code>5</code>. Total HTTP calls per request is <code>1 + maxRetries</code>.</td></tr>
+      <tr><td><code>retryBackoffMs</code></td><td>integer</td><td>Cap (ms) on any single backoff sleep. Defaults to <code>30000</code>. Azure's <code>Retry-After</code> header is honored exactly when present; otherwise jittered exponential backoff is used, capped at this value.</td></tr>
+      <tr><td><code>protectPlaceholders</code></td><td>boolean</td><td>Defaults to <code>true</code>. When on, tokens like <code>&#123;&#123;name&#125;&#125;</code>, <code>$&#123;var&#125;</code>, <code>&#123;0&#125;</code>, <code>&#123;0:N2&#125;</code>, <code>%s</code>, <code>%1$s</code> and HTML entities are replaced with sentinel tokens before translation and restored afterward. Disable only when source intentionally contains placeholder-shaped literals.</td></tr>
+      <tr><td><code>customPlaceholderPatterns</code></td><td>string[]</td><td>Extra regex patterns (without delimiters) added to the default placeholder set, e.g. <code>&lt;&lt;.+?&gt;&gt;</code> for custom token syntax. Invalid regexes are ignored.</td></tr>
+      <tr><td><code>noTranslatePatterns</code></td><td>string[]</td><td>Glob patterns matched against parser-level keys (JSON dotted path, RESX <code>name</code>, PO <code>msgid</code>, XLIFF unit <code>id</code>, INI/restext key). Matching keys are dropped from the request and pass through with their source value preserved.</td></tr>
     </tbody>
   </table>
 

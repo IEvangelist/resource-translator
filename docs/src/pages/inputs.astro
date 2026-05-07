@@ -63,6 +63,25 @@ import PageHero from "../components/PageHero.astro";
     </tbody>
   </table>
 
+  <h2>Resilience &amp; placeholder protection</h2>
+  <p>
+    These inputs control how the action behaves when Translator throttles your
+    request and how it shields placeholder tokens like <code>&#123;&#123;name&#125;&#125;</code> or
+    <code>&#123;0&#125;</code> from being mangled during translation.
+  </p>
+  <table>
+    <thead>
+      <tr><th>Name</th><th>Default</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>maxRetries</code></td><td><code>5</code></td><td>Maximum retry attempts on transient HTTP responses (408, 425, 429, 500, 502, 503, 504). The total number of HTTP calls per request is <code>1 + maxRetries</code>.</td></tr>
+      <tr><td><code>retryBackoffMs</code></td><td><code>30000</code></td><td>Cap (in milliseconds) on any single backoff sleep. The action honors Azure's <code>Retry-After</code> response header exactly when present; otherwise it uses jittered exponential backoff capped at this value.</td></tr>
+      <tr><td><code>protectPlaceholders</code></td><td><code>true</code></td><td>When <code>true</code> (default), placeholders such as <code>&#123;&#123;name&#125;&#125;</code>, <code>$&#123;var&#125;</code>, <code>&#123;0&#125;</code>, <code>&#123;0:N2&#125;</code>, <code>%s</code>, <code>%1$s</code> and HTML entities are replaced with sentinel tokens before translation and restored afterward. Disable only when your source intentionally contains literal placeholder-shaped text that should be translated.</td></tr>
+      <tr><td><code>customPlaceholderPatterns</code></td><td><em>none</em></td><td>Newline-separated regexes (without delimiters) added to the default placeholder set, e.g. <code>&lt;&lt;.+?&gt;&gt;</code> for custom token syntax.</td></tr>
+      <tr><td><code>noTranslatePatterns</code></td><td><em>none</em></td><td>Newline-separated glob patterns matched against parser-level keys (JSON dotted path, RESX <code>name</code>, PO <code>msgid</code>, XLIFF unit <code>id</code>, INI/restext key). Matching keys are dropped from the Translator request and pass through with their source value preserved.</td></tr>
+    </tbody>
+  </table>
+
   <h2>Outputs</h2>
   <table>
     <thead>
