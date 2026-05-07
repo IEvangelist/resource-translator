@@ -80,14 +80,16 @@
 
     list.innerHTML = headings
       .map((h) => {
-        if (!h.id) h.id = slug(h.textContent || "") || `h-${Math.random().toString(36).slice(2, 8)}`;
+        if (!h.id)
+          h.id =
+            slug(h.textContent || "") ||
+            `h-${Math.random().toString(36).slice(2, 8)}`;
         const level = h.tagName === "H3" ? "3" : "2";
         // textContent strips the sr-only "Step N:" prefix already because we
         // intentionally use a child span; fall back to the visible text.
         const visibleText =
           (h.querySelector(":not(.sr-only)") as HTMLElement | null)
-            ?.innerText ??
-          (h.textContent ?? "").trim();
+            ?.innerText ?? (h.textContent ?? "").trim();
         const safe = visibleText
           .replace(/&/g, "&amp;")
           .replace(/</g, "&lt;")
@@ -111,23 +113,69 @@
       });
     };
 
-    // Disconnect a previous observer if a navigation re-binds the TOC.
-    const w = window as Window & { __tocObserver?: IntersectionObserver };
-    w.__tocObserver?.disconnect();
+    // A manual selection (TOC click, hash deep-link, hashchange) wins over the
+    // IntersectionObserver until either the user scrolls themselves or a short
+    // grace period passes — long enough to cover smooth-scroll animation.
+    let manualOverrideUntil = 0;
+    const lockManual = (ms = 1500) => {
+      manualOverrideUntil = Date.now() + ms;
+    };
+    const releaseManual = () => {
+      manualOverrideUntil = 0;
+    };
 
-    let activeId: string | null = headings[0].id;
-    setActive(activeId);
+    // Tear down any listeners/observer registered by a previous bind so that
+    // navigating between pages doesn't leak handlers onto window.
+    const w = window as Window & { __tocCleanup?: () => void };
+    w.__tocCleanup?.();
+
+    const onTocClick = (e: Event) => {
+      const target = e.target as HTMLElement | null;
+      const a = target?.closest("[data-toc-link]") as
+        | HTMLAnchorElement
+        | null;
+      if (!a) return;
+      const id = a.dataset.tocLink;
+      if (!id) return;
+      setActive(id);
+      lockManual();
+    };
+    list.addEventListener("click", onTocClick);
+
+    const onHashChange = () => {
+      const id = decodeURIComponent((location.hash || "").replace(/^#/, ""));
+      if (!id) return;
+      if (links.has(id)) {
+        setActive(id);
+        lockManual();
+      }
+    };
+    window.addEventListener("hashchange", onHashChange);
+
+    // Reset the manual override the moment the user actually scrolls, so the
+    // IntersectionObserver can take over once they've moved past the locked
+    // section.
+    const onUserScroll = () => releaseManual();
+    const onUserKey = (e: KeyboardEvent) => {
+      if (
+        e.key === "PageDown" ||
+        e.key === "PageUp" ||
+        e.key === "ArrowDown" ||
+        e.key === "ArrowUp" ||
+        e.key === "Home" ||
+        e.key === "End" ||
+        e.key === " "
+      ) {
+        releaseManual();
+      }
+    };
+    window.addEventListener("wheel", onUserScroll, { passive: true });
+    window.addEventListener("touchmove", onUserScroll, { passive: true });
+    window.addEventListener("keydown", onUserKey);
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        // Track which headings are currently in the active band (top of viewport).
-        for (const entry of entries) {
-          const id = (entry.target as HTMLElement).id;
-          if (entry.isIntersecting) {
-            activeId = id;
-          }
-        }
-        // Find the first heading whose top is at or above the active band.
+      () => {
+        if (Date.now() < manualOverrideUntil) return;
         const offset = 120;
         let candidate = headings[0].id;
         for (const h of headings) {
@@ -143,7 +191,29 @@
       },
     );
     headings.forEach((h) => observer.observe(h));
-    w.__tocObserver = observer;
+
+    // If the page was opened with a hash, treat that as a manual selection so
+    // the highlighted item matches the anchor the reader actually landed on.
+    if (location.hash) {
+      const id = decodeURIComponent(location.hash.replace(/^#/, ""));
+      if (links.has(id)) {
+        setActive(id);
+        lockManual();
+      } else {
+        setActive(headings[0].id);
+      }
+    } else {
+      setActive(headings[0].id);
+    }
+
+    w.__tocCleanup = () => {
+      observer.disconnect();
+      list.removeEventListener("click", onTocClick);
+      window.removeEventListener("hashchange", onHashChange);
+      window.removeEventListener("wheel", onUserScroll);
+      window.removeEventListener("touchmove", onUserScroll);
+      window.removeEventListener("keydown", onUserKey);
+    };
   }
 
   bindToc();

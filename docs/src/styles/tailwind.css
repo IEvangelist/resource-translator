@@ -90,6 +90,19 @@
     text-rendering: optimizeLegibility;
   }
 
+  /* In-page anchor navigation should leave the sticky header room above the
+     target so the heading lands aligned with the top of the sticky sidebar
+     (`top-24` / 6rem) rather than being hidden behind the header. */
+  @media not (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  .prose-rt :is(h1, h2, h3, h4, h5, h6),
+  .step-card h2 {
+    scroll-margin-top: 6rem;
+  }
+
   body {
     margin: 0;
     min-height: 100vh;
