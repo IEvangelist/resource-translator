@@ -1,0 +1,92 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<div
+  id="back-to-top-wrap"
+  transition:persist
+  class="pointer-events-none fixed inset-x-0 bottom-6 z-30 mx-auto flex max-w-7xl justify-end px-4 sm:px-6"
+>
+  <button
+    type="button"
+    id="back-to-top"
+    aria-label="Scroll to top"
+    aria-hidden="true"
+    class="pointer-events-none inline-flex size-9 translate-y-2 items-center justify-center rounded-md bg-linear-to-br from-(--color-brand-500) to-(--color-accent-500) text-white opacity-0 shadow-lg ring-1 ring-(--color-brand-500)/30 transition-[opacity,transform,box-shadow] duration-200 ease-out hover:scale-105 hover:shadow-xl focus:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-(--bg) focus:ring-(--color-brand-500)/60 motion-reduce:transition-none motion-reduce:hover:scale-100"
+  >
+    <Icon name="lucide:arrow-up" class="size-4" aria-hidden="true" />
+  </button>
+</div>
+
+<script>
+  function bindBackToTop() {
+    const btn = document.getElementById("back-to-top") as
+      | HTMLButtonElement
+      | null;
+    if (!btn) return;
+
+    const w = btn as HTMLButtonElement & {
+      __bound?: boolean;
+      __update?: () => void;
+    };
+
+    const SHOW_AFTER = 320;
+    const FOOTER_GAP = 80;
+
+    const visibleClasses = [
+      "opacity-100",
+      "translate-y-0",
+      "pointer-events-auto",
+    ];
+    const hiddenClasses = ["opacity-0", "translate-y-2", "pointer-events-none"];
+
+    const setVisible = (visible: boolean) => {
+      if (visible) {
+        btn.classList.remove(...hiddenClasses);
+        btn.classList.add(...visibleClasses);
+        btn.setAttribute("aria-hidden", "false");
+      } else {
+        btn.classList.remove(...visibleClasses);
+        btn.classList.add(...hiddenClasses);
+        btn.setAttribute("aria-hidden", "true");
+      }
+    };
+
+    const update = () => {
+      const y = window.scrollY || document.documentElement.scrollTop;
+      const viewportH = window.innerHeight;
+      const docH = Math.max(
+        document.documentElement.scrollHeight,
+        document.body?.scrollHeight ?? 0,
+      );
+      const nearBottom = y + viewportH >= docH - FOOTER_GAP;
+      setVisible(y > SHOW_AFTER && !nearBottom);
+    };
+
+    if (w.__bound) {
+      // Re-bound on view transition: recompute visibility for the new page.
+      w.__update = update;
+      update();
+      return;
+    }
+    w.__bound = true;
+    w.__update = update;
+
+    const prefersReducedMotion = () =>
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    btn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: prefersReducedMotion() ? "auto" : "smooth",
+      });
+    });
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update, { passive: true });
+
+    update();
+  }
+
+  bindBackToTop();
+  document.addEventListener("astro:page-load", bindBackToTop);
+</script>

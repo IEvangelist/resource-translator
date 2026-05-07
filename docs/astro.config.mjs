@@ -34,6 +34,7 @@ export default defineConfig({
           "sun",
           "arrow-right",
           "arrow-left",
+          "arrow-up",
           "check",
           "circle-dashed",
           "circle-help",
