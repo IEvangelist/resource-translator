@@ -1,0 +1,151 @@
+---
+---
+
+<aside
+  aria-label="On this page"
+  class="hidden flex-none xl:block xl:w-56"
+>
+  <div class="sticky top-24" data-toc-root>
+    <p
+      class="mb-3 px-3 text-xs font-semibold uppercase tracking-[0.14em] text-(--fg-muted)"
+    >
+      On this page
+    </p>
+    <ul id="toc-list" class="border-l border-(--border)"></ul>
+  </div>
+</aside>
+
+<style is:global>
+  .rt-toc-link {
+    display: block;
+    margin-left: -1px;
+    padding: 0.3rem 0.75rem;
+    border-left: 2px solid transparent;
+    color: var(--fg-muted);
+    font-size: 0.85rem;
+    line-height: 1.35;
+    transition:
+      color 150ms ease,
+      border-color 150ms ease;
+  }
+  .rt-toc-link:hover {
+    color: var(--fg);
+    border-color: var(--border);
+  }
+  .rt-toc-link[data-toc-level="3"] {
+    padding-left: 1.5rem;
+    font-size: 0.8rem;
+  }
+  .rt-toc-link[data-active="true"] {
+    color: var(--link);
+    border-color: var(--color-brand-500);
+    font-weight: 600;
+  }
+  :where(.dark) .rt-toc-link[data-active="true"] {
+    border-color: var(--color-brand-400);
+  }
+</style>
+
+<script>
+  function bindToc() {
+    const list = document.getElementById("toc-list");
+    const root = document.querySelector<HTMLElement>("[data-toc-root]");
+    if (!list || !root) return;
+
+    const article = document.querySelector<HTMLElement>("article.prose-rt");
+    if (!article) {
+      list.innerHTML = "";
+      root.style.display = "none";
+      return;
+    }
+
+    const slug = (s: string) =>
+      s
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9\s-]/g, "")
+        .replace(/\s+/g, "-")
+        .replace(/-+/g, "-");
+
+    const headings = Array.from(
+      article.querySelectorAll<HTMLElement>("h2, h3"),
+    );
+
+    if (headings.length === 0) {
+      list.innerHTML = "";
+      root.style.display = "none";
+      return;
+    }
+    root.style.display = "";
+
+    list.innerHTML = headings
+      .map((h) => {
+        if (!h.id) h.id = slug(h.textContent || "") || `h-${Math.random().toString(36).slice(2, 8)}`;
+        const level = h.tagName === "H3" ? "3" : "2";
+        // textContent strips the sr-only "Step N:" prefix already because we
+        // intentionally use a child span; fall back to the visible text.
+        const visibleText =
+          (h.querySelector(":not(.sr-only)") as HTMLElement | null)
+            ?.innerText ??
+          (h.textContent ?? "").trim();
+        const safe = visibleText
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+        return `<li><a href="#${h.id}" class="rt-toc-link" data-toc-link="${h.id}" data-toc-level="${level}">${safe}</a></li>`;
+      })
+      .join("");
+
+    const links = new Map<string, HTMLAnchorElement>();
+    list.querySelectorAll<HTMLAnchorElement>("[data-toc-link]").forEach(
+      (a) => {
+        const id = a.dataset.tocLink;
+        if (id) links.set(id, a);
+      },
+    );
+
+    const setActive = (id: string | null) => {
+      links.forEach((a, key) => {
+        if (key === id) a.dataset.active = "true";
+        else delete a.dataset.active;
+      });
+    };
+
+    // Disconnect a previous observer if a navigation re-binds the TOC.
+    const w = window as Window & { __tocObserver?: IntersectionObserver };
+    w.__tocObserver?.disconnect();
+
+    let activeId: string | null = headings[0].id;
+    setActive(activeId);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Track which headings are currently in the active band (top of viewport).
+        for (const entry of entries) {
+          const id = (entry.target as HTMLElement).id;
+          if (entry.isIntersecting) {
+            activeId = id;
+          }
+        }
+        // Find the first heading whose top is at or above the active band.
+        const offset = 120;
+        let candidate = headings[0].id;
+        for (const h of headings) {
+          const top = h.getBoundingClientRect().top;
+          if (top - offset <= 0) candidate = h.id;
+          else break;
+        }
+        setActive(candidate);
+      },
+      {
+        rootMargin: "-100px 0px -70% 0px",
+        threshold: [0, 1],
+      },
+    );
+    headings.forEach((h) => observer.observe(h));
+    w.__tocObserver = observer;
+  }
+
+  bindToc();
+  document.addEventListener("astro:page-load", bindToc);
+</script>
