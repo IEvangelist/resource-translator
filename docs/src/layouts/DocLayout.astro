@@ -6,6 +6,7 @@ import { Icon } from "astro-icon/components";
 import Header from "../components/Header.astro";
 import Sidebar from "../components/Sidebar.astro";
 import Footer from "../components/Footer.astro";
+import DocPager from "../components/DocPager.astro";
 
 interface Props {
   title: string;
@@ -86,6 +87,7 @@ const faviconHref = `${baseHref}/favicon.svg`;
               <article class="prose-rt">
                 <slot />
               </article>
+              <DocPager />
             </main>
           </div>
 

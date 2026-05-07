@@ -33,6 +33,7 @@ export default defineConfig({
           "moon",
           "sun",
           "arrow-right",
+          "arrow-left",
           "check",
           "circle-dashed",
           "circle-help",

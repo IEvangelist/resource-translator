@@ -1,0 +1,68 @@
+---
+import { Icon } from "astro-icon/components";
+import { flatNav } from "../data/docs-nav";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+const normalize = (href: string) => (base + href).replace(/\/$/, "") || "/";
+
+const index = flatNav.findIndex((item) => normalize(item.href) === pathname);
+const prev = index > 0 ? flatNav[index - 1] : null;
+const next = index >= 0 && index < flatNav.length - 1 ? flatNav[index + 1] : null;
+const hasPager = index >= 0 && (prev || next);
+---
+
+{
+  hasPager && (
+    <nav
+      aria-label="Article"
+      class="not-prose mt-16 grid gap-3 border-t border-(--border) pt-8 sm:grid-cols-2"
+    >
+      {prev ? (
+        <a
+          href={normalize(prev.href)}
+          rel="prev"
+          class="group flex flex-col gap-1 rounded-xl border border-(--border) bg-(--bg-elevated)/40 px-4 py-3 transition-colors hover:border-(--color-brand-400) hover:bg-(--bg-elevated) sm:col-start-1"
+        >
+          <span class="inline-flex items-center gap-1.5 text-xs font-medium tracking-wide text-(--fg-muted) uppercase">
+            <Icon name="lucide:arrow-left" class="size-3.5" />
+            Previous
+          </span>
+          <span class="inline-flex items-center gap-2 text-sm font-semibold text-(--fg) group-hover:text-(--link)">
+            {prev.icon ? (
+              <Icon
+                name={prev.icon}
+                class="size-4 flex-none text-(--color-accent-500)"
+              />
+            ) : null}
+            {prev.label}
+          </span>
+        </a>
+      ) : (
+        <span class="hidden sm:block" aria-hidden="true" />
+      )}
+
+      {next ? (
+        <a
+          href={normalize(next.href)}
+          rel="next"
+          class="group flex flex-col gap-1 rounded-xl border border-(--border) bg-(--bg-elevated)/40 px-4 py-3 text-right transition-colors hover:border-(--color-brand-400) hover:bg-(--bg-elevated) sm:col-start-2"
+        >
+          <span class="inline-flex items-center justify-end gap-1.5 text-xs font-medium tracking-wide text-(--fg-muted) uppercase">
+            Next
+            <Icon name="lucide:arrow-right" class="size-3.5" />
+          </span>
+          <span class="inline-flex items-center justify-end gap-2 text-sm font-semibold text-(--fg) group-hover:text-(--link)">
+            {next.label}
+            {next.icon ? (
+              <Icon
+                name={next.icon}
+                class="size-4 flex-none text-(--color-accent-500)"
+              />
+            ) : null}
+          </span>
+        </a>
+      ) : null}
+    </nav>
+  )
+}
