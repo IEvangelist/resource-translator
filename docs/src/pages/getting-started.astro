@@ -2,6 +2,7 @@
 import { Code } from "astro-expressive-code/components";
 import DocLayout from "../layouts/DocLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import Step from "../components/Step.astro";
 
 const workflow = `name: translate
 
@@ -46,33 +47,66 @@ jobs:
     icon="lucide:rocket"
     lede="Add a workflow file, point it at your Azure AI Translator credentials, and the action — built on Microsoft's official @azure-rest/ai-translation-text SDK — will scan the repo for source-language resource files and emit translated siblings."
   />
-  <h2>1. Provision an Azure AI Translator resource</h2>
-  <p>
-    Create an Azure AI Translator resource in the Azure portal, then copy the
-    subscription key, endpoint, and region. Store them as GitHub repository
-    secrets — for example <code>TRANSLATOR_KEY</code>, <code
-      >TRANSLATOR_ENDPOINT</code
-    >, and <code>TRANSLATOR_REGION</code>.
-  </p>
 
-  <h2>2. Add the workflow</h2>
-  <p>Create <code>.github/workflows/translate.yml</code>:</p>
-  <Code code={workflow} lang="yaml" title=".github/workflows/translate.yml" />
+  <Step
+    number={1}
+    title="Provision an Azure AI Translator resource"
+    accent="from-(--color-brand-600) via-(--color-accent-500) to-(--color-warm-500)"
+  >
+    <p>
+      Create an Azure AI Translator resource in the Azure portal, then store
+      the following as GitHub repository secrets so the workflow can read them:
+    </p>
+    <ul>
+      <li>
+        <code>TRANSLATOR_KEY</code> — the subscription key for the resource.
+      </li>
+      <li>
+        <code>TRANSLATOR_ENDPOINT</code> — the regional endpoint URL (for
+        example, <code>https://api.cognitive.microsofttranslator.com</code>).
+      </li>
+      <li>
+        <code>TRANSLATOR_REGION</code> — the resource's Azure region (for
+        example, <code>eastus</code>).
+      </li>
+    </ul>
+  </Step>
 
-  <h2>3. Commit a source resource file</h2>
-  <p>
-    Resource files use the <code>{`Name.<sourceLocale>.<ext>`}</code> convention.
-    For example <code>Greetings.en.resx</code> becomes <code>Greetings.fr.resx</code>,
-    <code>Greetings.de.resx</code>, and so on after a run.
-  </p>
+  <Step
+    number={2}
+    title="Add the workflow"
+    accent="from-(--color-warm-500) to-(--color-brand-500)"
+  >
+    <p>Create <code>.github/workflows/translate.yml</code>:</p>
+    <Code code={workflow} lang="yaml" title=".github/workflows/translate.yml" />
+  </Step>
 
-  <h2>4. Inspect the output</h2>
-  <p>
-    Once the workflow finishes, the action exposes three outputs you can wire
-    into a PR description: <code>summary-title</code>, <code>summary-details</code>,
-    and <code>has-new-translations</code>. It also writes a Markdown summary
-    into the job page via <code>core.summary</code>.
-  </p>
+  <Step
+    number={3}
+    title="Commit a source resource file"
+    accent="from-(--color-cool-500) to-(--color-brand-500)"
+  >
+    <p>
+      Resource files use the <code>{`Name.<sourceLocale>.<ext>`}</code> convention.
+      For example <code>Greetings.en.resx</code> becomes <code
+        >Greetings.fr.resx</code
+      >, <code>Greetings.de.resx</code>, and so on after a run.
+    </p>
+  </Step>
+
+  <Step
+    number={4}
+    title="Inspect the output"
+    accent="from-(--color-accent-500) to-(--color-cool-500)"
+  >
+    <p>
+      Once the workflow finishes, the action exposes three outputs you can wire
+      into a PR description: <code>summary-title</code>, <code
+        >summary-details</code
+      >, and <code>has-new-translations</code>. It also writes a Markdown
+      summary into the job page via <code>core.summary</code>.
+    </p>
+  </Step>
 
   <h2>Next steps</h2>
   <ul>

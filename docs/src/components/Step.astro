@@ -1,0 +1,52 @@
+---
+interface Props {
+  number: number;
+  title: string;
+  /** Tailwind gradient utilities for the numbered badge. */
+  accent?: string;
+}
+
+const {
+  number,
+  title,
+  accent = "from-(--color-brand-600) via-(--color-accent-500) to-(--color-warm-500)",
+} = Astro.props;
+---
+
+<section
+  class="step-card my-8 rounded-2xl border border-(--border) bg-(--bg-elevated)/40 p-6 transition-shadow hover:shadow-md"
+>
+  <div class="flex items-start gap-4">
+    <span
+      aria-hidden="true"
+      class:list={[
+        "inline-flex size-12 flex-none items-center justify-center rounded-2xl bg-linear-to-br text-xl font-bold text-white shadow-md shadow-(--color-brand-500)/30",
+        accent,
+      ]}
+    >
+      {number}
+    </span>
+    <div class="min-w-0 flex-1">
+      <h2
+        id={`step-${number}`}
+        class="!mt-0 !mb-3 text-2xl font-bold tracking-tight text-(--fg)"
+      >
+        <span class="sr-only">Step {number}: </span>
+        {title}
+      </h2>
+      <div class="step-body"><slot /></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* The slotted content participates in the article's prose-rt styling, but
+     trim outer block margins so the body sits flush under the title and
+     doesn't leave a gap at the bottom of the card. */
+  .step-body > :first-child {
+    margin-top: 0;
+  }
+  .step-body > :last-child {
+    margin-bottom: 0;
+  }
+</style>
