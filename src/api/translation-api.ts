@@ -10,7 +10,24 @@ import {
 } from "../abstractions/translation-results";
 import { TranslatorResource } from "../abstractions/translator-resource";
 import { toResultSet } from "../helpers/api-result-set-mapper";
+import { protect, restore } from "../helpers/placeholders";
+import { isTransientStatus, retryablePost } from "../helpers/retry";
 import { batch, chunk } from "../helpers/utils";
+
+/** Translate-time options that are NOT properties of the Translator
+ *  resource itself (auth, region, category) — these belong to the action's
+ *  per-call behavior (retries, placeholder protection, etc). Kept separate
+ *  so the resource abstraction stays a pure config-of-Azure value. */
+export interface TranslateOptions {
+  /** Wrap placeholders in sentinels before sending to Translator. */
+  protectPlaceholders?: boolean;
+  /** Extra regex patterns appended to the placeholder protector. */
+  customPlaceholderPatterns?: readonly string[];
+  /** Max retry attempts on transient Translator failures. */
+  maxRetries?: number;
+  /** Cap (ms) on any single backoff sleep. */
+  retryBackoffMs?: number;
+}
 
 // The Translator "languages" lookup is anonymous and lives on the global
 // Microsoft endpoint regardless of how the user has configured their
@@ -71,6 +88,7 @@ export const translate = async (
   toLocales: string[],
   translatableText: Map<string, string>,
   filePath: string,
+  options?: TranslateOptions,
 ): Promise<TranslationResultSet | undefined> => {
   try {
     // Current Azure Translator API rate limit
@@ -92,9 +110,28 @@ export const translate = async (
       return undefined;
     }
 
-    const data = [...translatableText.values()].map((value) => ({
-      text: value,
-    }));
+    // Default placeholder protection ON. Disable explicitly via input only
+    // when the source intentionally contains literal `{{name}}`-shaped text
+    // that should be translated as-is.
+    const protectEnabled = options?.protectPlaceholders !== false;
+
+    // Per-call sentinel maps. We protect each text individually so the
+    // sentinel counter cannot collide across keys, and we keep the order in
+    // lockstep with `translatableText.values()` (the input array order is
+    // the same order Translator preserves in its response).
+    const sentinelMaps: Array<Map<string, string>> = [];
+    const data = [...translatableText.values()].map((value) => {
+      if (!protectEnabled) {
+        sentinelMaps.push(new Map());
+        return { text: value };
+      }
+      const { protected: p, tokens } = protect(
+        value,
+        options?.customPlaceholderPatterns,
+      );
+      sentinelMaps.push(tokens);
+      return { text: p };
+    });
 
     const apiVersion = translatorResource.apiVersion ?? "3.0";
     const client = buildClient(translatorResource.endpoint, apiVersion);
@@ -107,6 +144,10 @@ export const translate = async (
         : [data];
 
     let results: TranslationResults = [];
+    // Track which sentinel map to use per response row. Translator preserves
+    // the order of inputs across the response, so the i-th batch row maps
+    // back to the i-th sentinel map across the entire input.
+    let nextSentinelOffset = 0;
     for (let i = 0; i < batchedData.length; i++) {
       const dataBatch = batchedData[i];
       const batchCharacters = JSON.stringify(dataBatch).length;
@@ -116,6 +157,16 @@ export const translate = async (
         localesBatchSize < localeCount
           ? chunk(toLocales, localesBatchSize)
           : [toLocales];
+
+      // Sentinel maps for THIS data batch (positional alignment with
+      // dataBatch). Same maps are reused across every locale-batch since
+      // Translator returns the per-locale translation rows in the same
+      // input order.
+      const sentinelsForBatch = sentinelMaps.slice(
+        nextSentinelOffset,
+        nextSentinelOffset + dataBatch.length,
+      );
+      nextSentinelOffset += dataBatch.length;
 
       for (let j = 0; j < batchedLocales.length; j++) {
         const locales = batchedLocales[j];
@@ -155,11 +206,19 @@ export const translate = async (
           }),
         };
 
-        const response = await client.path("/translate").post({
-          body: dataBatch,
-          headers,
-          queryParameters,
-        });
+        const response = await retryablePost(
+          () =>
+            client.path("/translate").post({
+              body: dataBatch,
+              headers,
+              queryParameters,
+            }),
+          (resp) => isUnexpected(resp) && isTransientStatus(resp.status),
+          {
+            maxRetries: options?.maxRetries,
+            retryBackoffMs: options?.retryBackoffMs,
+          },
+        );
 
         if (isUnexpected(response)) {
           const azureError = response.body?.error;
@@ -176,6 +235,22 @@ export const translate = async (
         }
 
         const responseData = response.body as unknown as TranslationResult[];
+
+        // Restore protected placeholders in every translation row. Each
+        // response row corresponds to one input row in the SAME position
+        // (Azure preserves input order), so the sentinel map at index k of
+        // sentinelsForBatch applies to responseData[k].
+        if (protectEnabled) {
+          responseData.forEach((row, k) => {
+            const tokens = sentinelsForBatch[k];
+            if (!tokens || tokens.size === 0) return;
+            row.translations = row.translations.map((t) => ({
+              ...t,
+              text: restore(t.text, tokens),
+            }));
+          });
+        }
+
         debug(
           `Data batch ${i + 1}, Locales batch ${
             j + 1

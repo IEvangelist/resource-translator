@@ -55,6 +55,49 @@ export interface RepoConfig {
    * default applies (allow fallback).
    */
   allowFallback?: boolean;
+
+  /**
+   * Newline-separated glob patterns matched against parser key paths
+   * (`name` for resx, `msgid` for po, unit `id` for xliff, `[--]`-joined
+   * paths for json, raw key for ini/restext). Matching keys are kept
+   * verbatim from the source and never sent to Translator. Useful for
+   * brand names, technical IDs, or any value where machine translation
+   * would corrupt meaning.
+   */
+  noTranslatePatterns?: string[];
+
+  /**
+   * When true (default), wrap common placeholder tokens (`{{name}}`, `{0}`,
+   * `%s`, `${var}`, ...) in stable sentinels before sending text to
+   * Translator and unwrap them afterwards. This prevents Azure from
+   * rearranging or translating placeholder names, which otherwise breaks
+   * runtime formatting in localized output. Disable only if your source
+   * text explicitly contains literal sequences that look like placeholders.
+   */
+  protectPlaceholders?: boolean;
+
+  /**
+   * Optional extra regex patterns (raw source strings, no surrounding
+   * slashes) added to the placeholder protector. Each pattern is compiled
+   * with the global flag if it is not already supplied. Invalid regex
+   * patterns are skipped silently.
+   */
+  customPlaceholderPatterns?: string[];
+
+  /**
+   * Maximum number of additional retry attempts on transient Translator
+   * failures (HTTP 408, 425, 429, 500, 502, 503, 504). The total number of
+   * HTTP calls per request is `1 + maxRetries`. Defaults to 5.
+   */
+  maxRetries?: number;
+
+  /**
+   * Cap (ms) on any single backoff sleep between retries. The Azure-
+   * supplied `Retry-After` header is honored exactly when present;
+   * otherwise an exponentially growing jittered sleep is used, capped at
+   * this value. Defaults to 30000ms (30s).
+   */
+  retryBackoffMs?: number;
 }
 
 /** Closed set of valid `textType` values for runtime validation. */

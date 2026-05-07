@@ -33,6 +33,11 @@ export const getInputs = (): Inputs => {
       PROFANITY_MARKERS,
     ),
     allowFallback: getOptionalBooleanOrUndefined("allowFallback"),
+    noTranslatePatterns: getMultilineList("noTranslatePatterns"),
+    protectPlaceholders: getOptionalBooleanOrUndefined("protectPlaceholders"),
+    customPlaceholderPatterns: getMultilineList("customPlaceholderPatterns"),
+    maxRetries: getOptionalInt("maxRetries"),
+    retryBackoffMs: getOptionalInt("retryBackoffMs"),
     dryRun: getOptionalBoolean("dryRun", false),
     failOnError: getOptionalBoolean("failOnError", true),
   };
@@ -140,6 +145,23 @@ const getMultilineList = (name: string): string[] | undefined => {
     .map((v) => v.trim())
     .filter(Boolean);
   return list.length ? list : undefined;
+};
+
+/**
+ * Reads a non-negative integer input. Returns `undefined` when the input is
+ * empty so the downstream consumer can apply its own default. Invalid
+ * non-empty values throw to fail fast on misconfiguration.
+ */
+const getOptionalInt = (name: string): number | undefined => {
+  const raw = getInput(name)?.trim();
+  if (!raw) return undefined;
+  const n = Number.parseInt(raw, 10);
+  if (!Number.isFinite(n) || n < 0) {
+    throw new Error(
+      `Input '${name}' must be a non-negative integer. Got: '${raw}'.`,
+    );
+  }
+  return n;
 };
 
 /**

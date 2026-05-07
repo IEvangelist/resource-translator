@@ -473,3 +473,139 @@ test("API: translate handles a typed Translator error response without code/mess
     expect.stringContaining("HTTP 418"),
   );
 });
+
+test("API: translate retries when the Translator returns 429 and eventually succeeds", async () => {
+  // A 429 is "unexpected" per `isUnexpected` AND transient — the wrapper
+  // should sleep and retry until a 200 comes back. Sleep is mocked out via
+  // jest fake timers so the test stays sub-second.
+  mockedIsUnexpected.mockImplementation((response: { status: string }) => {
+    return !String(response?.status ?? "200").startsWith("2");
+  });
+
+  mockPost
+    .mockResolvedValueOnce({
+      status: "429",
+      headers: { "retry-after": "0" },
+      body: { error: { code: 429001, message: "Too many requests" } },
+    })
+    .mockResolvedValueOnce({
+      status: "429",
+      headers: { "retry-after": "0" },
+      body: { error: { code: 429001, message: "Too many requests" } },
+    })
+    .mockResolvedValueOnce({
+      status: "200",
+      body: [{ translations: [{ to: "fr", text: "Salut" }] }],
+    });
+
+  const result = await translate(
+    {
+      endpoint: "https://api.cognitive.microsofttranslator.com/",
+      subscriptionKey: "k",
+    },
+    ["fr"],
+    new Map<string, string>([["Greeting", "Hello"]]),
+    "f.resx",
+    { maxRetries: 5, retryBackoffMs: 0 },
+  );
+
+  expect(result).toBeDefined();
+  expect(mockPost).toHaveBeenCalledTimes(3);
+  const setFailedMock = setFailed as jest.MockedFunction<typeof setFailed>;
+  expect(setFailedMock).not.toHaveBeenCalled();
+});
+
+test("API: translate gives up after maxRetries and surfaces the failure", async () => {
+  mockedIsUnexpected.mockImplementation((response: { status: string }) => {
+    return !String(response?.status ?? "200").startsWith("2");
+  });
+
+  const transient = {
+    status: "429",
+    headers: { "retry-after": "0" },
+    body: { error: { code: 429001, message: "Too many requests" } },
+  };
+  mockPost.mockResolvedValue(transient);
+
+  const result = await translate(
+    {
+      endpoint: "https://api.cognitive.microsofttranslator.com/",
+      subscriptionKey: "k",
+    },
+    ["fr"],
+    new Map<string, string>([["Greeting", "Hello"]]),
+    "f.resx",
+    { maxRetries: 2, retryBackoffMs: 0 },
+  );
+
+  expect(result).toBeUndefined();
+  // Initial call + 2 retries.
+  expect(mockPost).toHaveBeenCalledTimes(3);
+  const setFailedMock = setFailed as jest.MockedFunction<typeof setFailed>;
+  expect(setFailedMock).toHaveBeenCalledWith(
+    expect.stringContaining("Too many requests"),
+  );
+});
+
+test("API: translate protects placeholders before sending and restores them in the response", async () => {
+  // The Translator sees sentinel tokens, never the original `{{name}}`.
+  // The caller sees `{{name}}` round-trip through the translation.
+  mockPost.mockImplementation(({ body }: { body: Array<{ text: string }> }) => {
+    return Promise.resolve({
+      status: "200",
+      body: body.map((entry) => ({
+        translations: [
+          {
+            to: "fr",
+            // Simulate the translator wrapping the (sentinel-bearing) text in
+            // a French phrase. The sentinel is preserved verbatim.
+            text: `Bonjour ${entry.text.replace(/^Hello /, "")}`,
+          },
+        ],
+      })),
+    });
+  });
+
+  const result = await translate(
+    {
+      endpoint: "https://api.cognitive.microsofttranslator.com/",
+      subscriptionKey: "k",
+    },
+    ["fr"],
+    new Map<string, string>([["Greeting", "Hello {{name}}"]]),
+    "f.resx",
+  );
+
+  // The body actually sent to the SDK must NOT contain `{{name}}`.
+  const sentBody = mockPost.mock.calls[0][0].body as Array<{ text: string }>;
+  expect(sentBody[0].text).not.toContain("{{name}}");
+  expect(sentBody[0].text).toMatch(/RTKEEP\d{6}/);
+
+  // The result the caller sees must contain `{{name}}` again.
+  expect(result).toBeDefined();
+  const fr = result?.["fr"];
+  expect(fr).toBeDefined();
+  expect(fr?.["Greeting"]).toBe("Bonjour {{name}}");
+});
+
+test("API: translate skips placeholder protection when protectPlaceholders=false", async () => {
+  mockPost.mockResolvedValueOnce({
+    status: "200",
+    body: [{ translations: [{ to: "fr", text: "Bonjour {{name}}" }] }],
+  });
+
+  await translate(
+    {
+      endpoint: "https://api.cognitive.microsofttranslator.com/",
+      subscriptionKey: "k",
+    },
+    ["fr"],
+    new Map<string, string>([["Greeting", "Hello {{name}}"]]),
+    "f.resx",
+    { protectPlaceholders: false },
+  );
+
+  const sentBody = mockPost.mock.calls[0][0].body as Array<{ text: string }>;
+  expect(sentBody[0].text).toBe("Hello {{name}}");
+  expect(sentBody[0].text).not.toMatch(/RTKEEP\d{6}/);
+});
