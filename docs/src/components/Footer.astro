@@ -124,8 +124,9 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
         </ul>
       </div>
 
-      <!-- Docs -->
-      <nav class="lg:col-span-2" aria-label="Documentation">
+      <!-- Footer · Docs (sidebar already owns the primary "Documentation"
+           landmark; rename here to keep landmarks unique per axe). -->
+      <nav class="lg:col-span-2" aria-label="Footer · Docs">
         <h2
           class="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-(--fg)"
         >
@@ -145,7 +146,7 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
       </nav>
 
       <!-- Project -->
-      <nav class="lg:col-span-2" aria-label="Project">
+      <nav class="lg:col-span-2" aria-label="Footer · Project">
         <h2
           class="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-(--fg)"
         >
@@ -165,7 +166,7 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
       </nav>
 
       <!-- Community -->
-      <nav class="lg:col-span-4" aria-label="Community and support">
+      <nav class="lg:col-span-4" aria-label="Footer · Community and support">
         <h2
           class="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-(--fg)"
         >

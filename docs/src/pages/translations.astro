@@ -6,7 +6,10 @@ import locales from "../data/azure-locales.json";
 import enMessages from "../content/i18n/messages.en.json";
 
 type Messages = typeof enMessages;
-type Locale = (typeof locales)[number];
+// Widen with optional bcp47 so accessing card.locale.bcp47 typechecks
+// uniformly across all locales (only the few non-BCP-47 service codes
+// declare it in azure-locales.json).
+type Locale = (typeof locales)[number] & { bcp47?: string };
 
 // Build-time eager glob of every translated messages.<locale>.json. The
 // translate-docs workflow lands these via PR; once merged, the next docs
@@ -151,7 +154,7 @@ const sourceCard: Card = {
           data-locale-card
           data-translated={card.translated ? "true" : "false"}
           data-search-haystack={`${card.locale.code} ${card.locale.englishName} ${card.locale.nativeName}`}
-          lang={card.locale.code}
+          lang={card.locale.bcp47 ?? card.locale.code}
           dir={card.locale.rtl ? "rtl" : "ltr"}
         >
           <header class="mb-2 flex items-baseline justify-between gap-2">

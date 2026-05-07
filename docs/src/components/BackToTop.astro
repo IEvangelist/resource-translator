@@ -11,7 +11,7 @@ import { Icon } from "astro-icon/components";
     type="button"
     id="back-to-top"
     aria-label="Scroll to top"
-    aria-hidden="true"
+    inert
     class="pointer-events-none inline-flex size-9 translate-y-2 items-center justify-center rounded-md bg-linear-to-br from-(--color-brand-500) to-(--color-accent-500) text-white opacity-0 shadow-lg ring-1 ring-(--color-brand-500)/30 transition-[opacity,transform,box-shadow] duration-200 ease-out hover:scale-105 hover:shadow-xl focus:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-(--bg) focus:ring-(--color-brand-500)/60 motion-reduce:transition-none motion-reduce:hover:scale-100"
   >
     <Icon name="lucide:arrow-up" class="size-4" aria-hidden="true" />
@@ -43,11 +43,15 @@ import { Icon } from "astro-icon/components";
       if (visible) {
         btn.classList.remove(...hiddenClasses);
         btn.classList.add(...visibleClasses);
-        btn.setAttribute("aria-hidden", "false");
+        // `inert` removes the button from the a11y tree AND prevents focus
+        // when hidden. Toggle it instead of `aria-hidden`, which would leave
+        // the natively-focusable <button> tabbable and fail axe's
+        // aria-hidden-focus rule.
+        btn.removeAttribute("inert");
       } else {
         btn.classList.remove(...visibleClasses);
         btn.classList.add(...hiddenClasses);
-        btn.setAttribute("aria-hidden", "true");
+        btn.setAttribute("inert", "");
       }
     };
 

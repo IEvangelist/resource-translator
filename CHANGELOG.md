@@ -76,6 +76,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   headings, `cursor: pointer` on every interactive element, per-format
   spec links + examples, and Catppuccin Expressive Code themes that
   match the brand palette.
+- **Docs accessibility (WCAG 2.1 AA pass):** logo glyphs (`A` / `文`)
+  rendered as paths instead of inline `<text>` so they no longer fail
+  axe color-contrast against gradient stops; the floating Back to top
+  button uses `inert` while hidden (instead of a stale `aria-hidden`
+  toggle that left the natively-focusable button tabbable);
+  `formats.astro` section IDs renamed to `format-<id>` to avoid colliding
+  with auto-generated heading IDs; three locale cards now declare
+  BCP-47-valid `lang` attributes via a new optional `bcp47` field on
+  `azure-locales.json` (`nya→ny`, `lug→lg`, `run→rn`); duplicate
+  `Documentation` landmark labels disambiguated between the sidebar and
+  the footer; every data table on `inputs` and `configuration` now has a
+  screen-reader-only `<caption>`; and the homepage no longer renders the
+  sidebar drawer toggle (which would otherwise leak a labelled-but-hidden
+  form field). Verified end-to-end with a new `npm run audit:a11y`
+  pa11y harness (`docs/scripts/a11y-audit.mjs`, axe + htmlcs runners).
+- **Inline code styling:** docs prose `<code>` now wears the warm/amber
+  theme accent (warm-700 on a soft warm-tinted chip in light mode,
+  warm-300 in dark) — distinct from the brand→accent palette used for
+  links and headings, so inline code is visually punctuated without
+  competing with link affordances.
 
 ### Removed
 

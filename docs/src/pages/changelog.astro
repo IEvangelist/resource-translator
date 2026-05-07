@@ -67,6 +67,25 @@ import PageHero from "../components/PageHero.astro";
     <li>esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.</li>
     <li>npm audit clean (0 vulnerabilities).</li>
     <li>Astro + Tailwind v4 docs site with view transitions and Expressive Code.</li>
+    <li>
+      <strong>Docs accessibility:</strong> WCAG 2.1 AA pass. Logo glyphs
+      converted to paths so they no longer fail color-contrast against
+      gradient stops, the floating <code>Back to top</code> button uses
+      <code>inert</code> while hidden (instead of an <code>aria-hidden</code>
+      toggle that left it tabbable), <code>formats.astro</code> sections no
+      longer collide with their auto-generated heading IDs, three locale
+      cards now expose BCP-47-valid <code>lang</code> attributes
+      (<code>nya→ny</code>, <code>lug→lg</code>, <code>run→rn</code>),
+      duplicate <code>Documentation</code> landmark labels are disambiguated
+      between sidebar and footer, and every data table on
+      <code>inputs</code>/<code>configuration</code> ships with a
+      screen-reader caption.
+    </li>
+    <li>
+      <strong>Inline code styling:</strong> docs prose <code>&lt;code&gt;</code>
+      now wears the warm/amber theme accent — distinct from the brand→accent
+      palette used for links and headings.
+    </li>
     <li>Dependabot auto-merge, CodeQL scanning, CI matrix.</li>
   </ul>
 

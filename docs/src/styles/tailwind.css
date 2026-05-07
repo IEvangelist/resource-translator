@@ -253,9 +253,29 @@
     @apply list-decimal pl-6 my-4 space-y-1;
   }
   .prose-rt code:not(pre code) {
-    background-color: var(--bg-elevated);
-    border: 1px solid var(--border);
-    @apply rounded px-1.5 py-0.5 text-[0.9em];
+    /* Inline code wears the warm/amber theme accent — distinct from the
+       brand→accent palette used for links and headings, but still rooted
+       in the docs theme so it feels intentional rather than tacked on.
+       Using rgba so the tint composites identically on every surface
+       (including the elevated bg in cards) without depending on the
+       browser supporting `color-mix()`. */
+    background-color: rgba(217, 163, 71, 0.13);
+    border: 1px solid rgba(217, 163, 71, 0.3);
+    color: var(--color-warm-700);
+    @apply rounded px-1.5 py-0.5 text-[0.9em] font-medium;
+  }
+  :root.dark .prose-rt code:not(pre code) {
+    /* Lighter amber lifts the chip over the dark elevated surface; the
+       warm-300 foreground keeps WCAG AA against the composited bg. */
+    background-color: rgba(255, 197, 109, 0.1);
+    border-color: rgba(255, 197, 109, 0.25);
+    color: var(--color-warm-300);
+  }
+  /* When inline code sits inside a link, defer the foreground color to the
+     link so the underlined link color (brand → accent on hover) still wins;
+     the warm tint of the code chip stays as the visual cue. */
+  .prose-rt a code:not(pre code) {
+    color: inherit;
   }
   .prose-rt pre:not(.expressive-code pre) {
     background-color: var(--bg-elevated);
