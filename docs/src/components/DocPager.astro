@@ -22,7 +22,7 @@ const hasPager = index >= 0 && (prev || next);
         <a
           href={normalize(prev.href)}
           rel="prev"
-          class="group flex flex-col gap-1 rounded-xl border border-(--border) bg-(--bg-elevated)/40 px-4 py-3 transition-colors hover:border-(--color-brand-400) hover:bg-(--bg-elevated) sm:col-start-1"
+          class="group flex flex-col gap-1 rounded-xl border border-(--border) bg-(--bg-elevated) px-4 py-3 transition-colors hover:border-(--color-brand-400) hover:bg-(--bg) sm:col-start-1"
         >
           <span class="inline-flex items-center gap-1.5 text-xs font-medium tracking-wide text-(--fg-muted) uppercase">
             <Icon name="lucide:arrow-left" class="size-3.5" />
@@ -46,7 +46,7 @@ const hasPager = index >= 0 && (prev || next);
         <a
           href={normalize(next.href)}
           rel="next"
-          class="group flex flex-col gap-1 rounded-xl border border-(--border) bg-(--bg-elevated)/40 px-4 py-3 text-right transition-colors hover:border-(--color-brand-400) hover:bg-(--bg-elevated) sm:col-start-2"
+          class="group flex flex-col gap-1 rounded-xl border border-(--border) bg-(--bg-elevated) px-4 py-3 text-right transition-colors hover:border-(--color-brand-400) hover:bg-(--bg) sm:col-start-2"
         >
           <span class="inline-flex items-center justify-end gap-1.5 text-xs font-medium tracking-wide text-(--fg-muted) uppercase">
             Next

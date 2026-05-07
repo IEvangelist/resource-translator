@@ -59,7 +59,7 @@ const sourceCard: Card = {
   />
 
   <div
-    class="not-prose mb-8 flex flex-wrap items-center gap-3 rounded-xl border border-(--border) bg-(--bg-elevated)/60 p-4 text-sm"
+    class="not-prose mb-8 flex flex-wrap items-center gap-3 rounded-xl border border-(--border) bg-(--bg-elevated) p-4 text-sm"
   >
     <span
       class="inline-flex items-center gap-1.5 rounded-md bg-(--color-brand-600) px-2.5 py-1 font-semibold text-white"
@@ -146,7 +146,7 @@ const sourceCard: Card = {
       cards.map((card) => (
         <article
           class:list={[
-            "group rounded-xl border bg-(--bg-elevated)/40 p-4 transition-shadow hover:shadow-md",
+            "group rounded-xl border bg-(--bg-elevated) p-4 transition-shadow hover:shadow-md",
             card.translated
               ? "border-(--border)"
               : "border-dashed border-(--border) opacity-70",
@@ -204,7 +204,7 @@ const sourceCard: Card = {
   <p
     id="locale-empty"
     hidden
-    class="not-prose mt-6 rounded-lg border border-dashed border-(--border) bg-(--bg-elevated)/40 p-6 text-center text-sm text-(--fg-muted)"
+    class="not-prose mt-6 rounded-lg border border-dashed border-(--border) bg-(--bg-elevated) p-6 text-center text-sm text-(--fg-muted)"
   >
     No locales match that filter.
   </p>

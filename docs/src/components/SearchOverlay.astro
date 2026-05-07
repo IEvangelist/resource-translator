@@ -1,0 +1,517 @@
+---
+import { Icon } from "astro-icon/components";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const pagefindBase = base || "";
+const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
+---
+
+<div
+  id="search-overlay"
+  class="fixed inset-0 z-50 hidden items-start justify-center bg-black/70 px-4 py-6 sm:items-center sm:px-6 sm:py-12"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="search-overlay-title"
+  data-pagefind-ignore="all"
+  hidden
+>
+  <div
+    class="relative flex w-full max-w-2xl flex-col overflow-hidden rounded-xl border border-(--border) bg-(--bg-elevated) shadow-2xl ring-1 ring-(--color-brand-500)/20"
+    style="max-height: min(80vh, 720px);"
+    data-search-panel
+  >
+    <h2 id="search-overlay-title" class="sr-only">Search documentation</h2>
+
+    <!-- Search input row -->
+    <div
+      class="flex items-center gap-3 border-b border-(--border) bg-(--bg) px-4 py-3 sm:px-5"
+    >
+      <Icon
+        name="lucide:search"
+        class="size-5 flex-none text-(--fg-muted)"
+        aria-hidden="true"
+      />
+      <input
+        id="search-overlay-input"
+        type="text"
+        autocomplete="off"
+        spellcheck="false"
+        placeholder="Search articles, sections, recipes…"
+        aria-label="Search documentation"
+        aria-controls="search-overlay-results"
+        aria-autocomplete="list"
+        class="min-w-0 flex-1 bg-transparent py-1 text-base text-(--fg) placeholder-(--fg-muted) outline-none sm:text-lg"
+      />
+      <kbd
+        class="hidden flex-none rounded border border-(--border) bg-(--bg-elevated) px-1.5 py-0.5 font-mono text-[11px] font-medium text-(--fg-muted) sm:inline-block"
+        aria-hidden="true">Esc</kbd
+      >
+      <button
+        type="button"
+        data-search-close
+        class="inline-flex size-8 flex-none items-center justify-center rounded-md text-(--fg-muted) hover:bg-(--bg-elevated) hover:text-(--fg) sm:hidden"
+        aria-label="Close search"
+      >
+        <Icon name="lucide:x" class="size-4" />
+      </button>
+    </div>
+
+    <!-- Results -->
+    <div class="overflow-y-auto" data-search-scroll>
+      <div
+        id="search-overlay-results"
+        role="listbox"
+        aria-label="Search results"
+        class="px-2 py-3 sm:px-3"
+      >
+        <!-- empty-state -->
+        <div data-search-state="idle" class="px-3 py-6 text-sm text-(--fg-muted)">
+          <p class="font-medium text-(--fg)">Search the docs</p>
+          <p class="mt-1">
+            Find articles by topic, file format, configuration option, or
+            recipe. Use <kbd
+              class="rounded border border-(--border) bg-(--bg) px-1 py-0.5 font-mono text-[11px]"
+              >↑</kbd
+            >
+            <kbd
+              class="rounded border border-(--border) bg-(--bg) px-1 py-0.5 font-mono text-[11px]"
+              >↓</kbd
+            > to navigate, <kbd
+              class="rounded border border-(--border) bg-(--bg) px-1 py-0.5 font-mono text-[11px]"
+              >Enter</kbd
+            > to open.
+          </p>
+        </div>
+        <div
+          data-search-state="loading"
+          hidden
+          class="px-3 py-6 text-sm text-(--fg-muted)"
+        >
+          Searching…
+        </div>
+        <div
+          data-search-state="empty"
+          hidden
+          class="px-3 py-6 text-sm text-(--fg-muted)"
+        >
+          No results. Try a different keyword.
+        </div>
+        <div
+          data-search-state="error"
+          hidden
+          class="px-3 py-6 text-sm text-(--fg-muted)"
+        >
+          Search index isn't available in dev. Run a production build.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ pagefindScript, base }}>
+  (function () {
+    const SECTION_ICONS = [
+      { test: /\/getting-started/i, icon: "rocket" },
+      { test: /\/configuration/i, icon: "settings-2" },
+      { test: /\/inputs/i, icon: "list-checks" },
+      { test: /\/formats/i, icon: "file-code" },
+      { test: /\/faq/i, icon: "help-circle" },
+      { test: /\/recipes/i, icon: "book-open" },
+      { test: /\/translations/i, icon: "languages" },
+      { test: /\/contributing/i, icon: "git-pull-request" },
+      { test: /\/changelog/i, icon: "scroll" },
+    ];
+    function iconFor(url) {
+      const u = url || "";
+      for (const m of SECTION_ICONS) if (m.test.test(u)) return m.icon;
+      return "file-text";
+    }
+    function escapeHtml(s) {
+      return String(s).replace(
+        /[&<>"']/g,
+        (c) =>
+          ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;",
+          })[c],
+      );
+    }
+    // Lucide stroke icons inlined so the script doesn't need astro-icon at runtime.
+    const ICON_PATHS = {
+      rocket:
+        '<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>',
+      "settings-2":
+        '<path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/>',
+      "list-checks":
+        '<path d="M3 17 5 19l4-4"/><path d="M3 7l2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/>',
+      "file-code":
+        '<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5z"/><polyline points="14 2 14 8 20 8"/><path d="m9 18 3-3-3-3"/><path d="m5 12-3 3 3 3"/>',
+      "help-circle":
+        '<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>',
+      "book-open":
+        '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>',
+      languages:
+        '<path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/>',
+      "git-pull-request":
+        '<circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/>',
+      scroll:
+        '<path d="M8 21h12a2 2 0 0 0 2-2v-2H10v2a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v3h4"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/>',
+      "file-text":
+        '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/>',
+      hash:
+        '<line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/>',
+      "arrow-right":
+        '<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>',
+    };
+    function svg(name, cls) {
+      const d = ICON_PATHS[name] || ICON_PATHS["file-text"];
+      return `<svg class="${cls}" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+    }
+
+    let pagefind = null;
+    let loadAttempted = false;
+    let lastQuery = "";
+    let activeIndex = -1;
+    let items = []; // currently focusable result anchors
+    let debounceId;
+
+    async function loadPagefind() {
+      if (pagefind || loadAttempted) return pagefind;
+      loadAttempted = true;
+      try {
+        pagefind = await import(/* @vite-ignore */ pagefindScript);
+        await pagefind.options?.({ excerptLength: 24 });
+      } catch (err) {
+        console.warn("Pagefind not available.", err);
+        pagefind = null;
+      }
+      return pagefind;
+    }
+
+    function setState(name) {
+      const root = document.getElementById("search-overlay-results");
+      if (!root) return;
+      root
+        .querySelectorAll("[data-search-state]")
+        .forEach((el) => (el.hidden = el.getAttribute("data-search-state") !== name));
+    }
+
+    function clearGroups() {
+      const root = document.getElementById("search-overlay-results");
+      if (!root) return;
+      root
+        .querySelectorAll("[data-search-group]")
+        .forEach((el) => el.remove());
+    }
+
+    function applyHighlight() {
+      items.forEach((el, i) => {
+        if (i === activeIndex) {
+          el.setAttribute("data-active", "true");
+          el.setAttribute("aria-selected", "true");
+          el.scrollIntoView({ block: "nearest" });
+        } else {
+          el.removeAttribute("data-active");
+          el.setAttribute("aria-selected", "false");
+        }
+      });
+      const input = document.getElementById("search-overlay-input");
+      if (input && activeIndex >= 0 && items[activeIndex]?.id) {
+        input.setAttribute("aria-activedescendant", items[activeIndex].id);
+      } else {
+        input?.removeAttribute("aria-activedescendant");
+      }
+    }
+
+    function setItems(elements) {
+      items = elements;
+      activeIndex = items.length ? 0 : -1;
+      applyHighlight();
+    }
+
+    function moveActive(delta) {
+      if (!items.length) return;
+      activeIndex = (activeIndex + delta + items.length) % items.length;
+      applyHighlight();
+    }
+
+    function renderResults(top) {
+      const root = document.getElementById("search-overlay-results");
+      if (!root) return;
+      clearGroups();
+      const frag = document.createDocumentFragment();
+      const allItems = [];
+
+      top.forEach((d, gi) => {
+        const url = d.url || "#";
+        const icon = iconFor(url);
+        const titleHtml = d.meta?.title
+          ? escapeHtml(d.meta.title)
+          : escapeHtml(url);
+        const excerptHtml = d.excerpt || "";
+
+        const group = document.createElement("section");
+        group.setAttribute("data-search-group", "");
+        group.className = "mb-2 last:mb-0";
+
+        // Top-level article card
+        const top = document.createElement("a");
+        top.id = `sr-${gi}-0`;
+        top.role = "option";
+        top.href = url;
+        top.className =
+          "rt-search-result flex items-start gap-3 rounded-lg px-3 py-2.5 no-underline transition-colors";
+        top.innerHTML = `
+          <span class="rt-search-icon mt-0.5 inline-flex size-9 flex-none items-center justify-center rounded-lg bg-(--color-brand-700) text-white">${svg(icon, "size-4")}</span>
+          <span class="min-w-0 flex-1">
+            <span class="block text-sm font-semibold text-(--fg)">${titleHtml}</span>
+            ${excerptHtml ? `<span class="mt-0.5 block truncate text-xs text-(--fg-muted)">${excerptHtml}</span>` : ""}
+          </span>
+          <span class="rt-search-arrow flex-none text-(--fg-muted)">${svg("arrow-right", "size-4")}</span>`;
+        group.appendChild(top);
+        allItems.push(top);
+
+        // Nested sub_results for this article
+        const subs = Array.isArray(d.sub_results) ? d.sub_results : [];
+        if (subs.length) {
+          const ul = document.createElement("ul");
+          ul.className =
+            "ml-12 mt-1 mb-1 space-y-0.5 border-l border-(--border) pl-3";
+          subs.slice(0, 4).forEach((sub, si) => {
+            // Skip the duplicate "main" sub-result that pagefind sometimes
+            // returns identical to the top result.
+            if (sub.url === url) return;
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.id = `sr-${gi}-${si + 1}`;
+            a.role = "option";
+            a.href = sub.url || url;
+            a.className =
+              "rt-search-result rt-search-sub flex items-center gap-2 rounded-md px-2 py-1.5 text-sm no-underline";
+            a.innerHTML = `
+              <span class="text-(--fg-muted)">${svg("hash", "size-3.5")}</span>
+              <span class="min-w-0 flex-1 truncate text-(--fg-muted)">${escapeHtml(sub.title || "Section")}</span>`;
+            li.appendChild(a);
+            ul.appendChild(li);
+            allItems.push(a);
+          });
+          if (ul.children.length) group.appendChild(ul);
+        }
+
+        frag.appendChild(group);
+      });
+
+      root.appendChild(frag);
+      setState("results");
+      setItems(allItems);
+    }
+
+    async function runSearch(q) {
+      const pf = await loadPagefind();
+      if (!pf) {
+        clearGroups();
+        setState("error");
+        return;
+      }
+      setState("loading");
+      const result = await pf.search(q);
+      const list = result?.results || [];
+      if (!list.length) {
+        clearGroups();
+        setState("empty");
+        items = [];
+        activeIndex = -1;
+        return;
+      }
+      const top = await Promise.all(list.slice(0, 8).map((r) => r.data()));
+      renderResults(top);
+    }
+
+    function openOverlay(prefill) {
+      const root = document.getElementById("search-overlay");
+      if (!root) return;
+      root.hidden = false;
+      root.classList.remove("hidden");
+      root.classList.add("flex");
+      document.body.style.overflow = "hidden";
+      const input = document.getElementById("search-overlay-input");
+      if (input) {
+        if (typeof prefill === "string" && prefill) input.value = prefill;
+        // Defer to ensure dialog is rendered
+        setTimeout(() => {
+          input.focus();
+          input.select();
+          if (input.value.trim()) {
+            lastQuery = "";
+            runSearch(input.value.trim());
+          } else {
+            clearGroups();
+            setState("idle");
+          }
+        }, 10);
+      }
+      // Preload pagefind so first keystroke is snappy
+      loadPagefind();
+    }
+
+    function closeOverlay() {
+      const root = document.getElementById("search-overlay");
+      if (!root || root.hidden) return;
+      root.hidden = true;
+      root.classList.add("hidden");
+      root.classList.remove("flex");
+      document.body.style.overflow = "";
+      // Return focus to whatever opened it (header search input or button)
+      const trigger =
+        document.getElementById("docs-search") ||
+        document.getElementById("docs-search-mobile");
+      trigger?.focus();
+    }
+
+    function bind() {
+      const root = document.getElementById("search-overlay");
+      if (!root || root.dataset.bound === "1") return;
+      root.dataset.bound = "1";
+
+      const input = document.getElementById("search-overlay-input");
+      const closeBtn = root.querySelector("[data-search-close]");
+
+      input?.addEventListener("input", (e) => {
+        const q = e.target.value.trim();
+        clearTimeout(debounceId);
+        if (!q) {
+          clearGroups();
+          setState("idle");
+          items = [];
+          activeIndex = -1;
+          return;
+        }
+        if (q === lastQuery) return;
+        lastQuery = q;
+        debounceId = setTimeout(() => runSearch(q), 120);
+      });
+
+      input?.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          moveActive(1);
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          moveActive(-1);
+        } else if (e.key === "Enter") {
+          if (activeIndex >= 0 && items[activeIndex]) {
+            e.preventDefault();
+            items[activeIndex].click();
+          }
+        } else if (e.key === "Home") {
+          if (items.length) { e.preventDefault(); activeIndex = 0; applyHighlight(); }
+        } else if (e.key === "End") {
+          if (items.length) { e.preventDefault(); activeIndex = items.length - 1; applyHighlight(); }
+        }
+      });
+
+      // Click outside the panel closes
+      root.addEventListener("click", (e) => {
+        const panel = root.querySelector("[data-search-panel]");
+        if (panel && !panel.contains(e.target)) closeOverlay();
+      });
+
+      closeBtn?.addEventListener("click", closeOverlay);
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !root.hidden) {
+          e.preventDefault();
+          closeOverlay();
+        }
+        // ⌘K / Ctrl+K opens
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+          e.preventDefault();
+          openOverlay();
+        }
+        // "/" opens when not typing in another input
+        if (e.key === "/" && !e.metaKey && !e.ctrlKey && !e.altKey) {
+          const t = e.target;
+          const tag = t?.tagName;
+          if (tag === "INPUT" || tag === "TEXTAREA" || t?.isContentEditable)
+            return;
+          e.preventDefault();
+          openOverlay();
+        }
+      });
+
+      // Click results closes overlay before navigating
+      root.addEventListener("click", (e) => {
+        const a = e.target.closest("a.rt-search-result");
+        if (a) {
+          // Allow navigation (don't preventDefault). Just close so the
+          // overflow:hidden body style doesn't bleed across navigation.
+          closeOverlay();
+        }
+      });
+    }
+
+    function bindTriggers() {
+      const dock = document.getElementById("docs-search");
+      const mobile = document.getElementById("docs-search-mobile");
+      if (dock && dock.dataset.boundOverlay !== "1") {
+        dock.dataset.boundOverlay = "1";
+        dock.addEventListener("click", (e) => {
+          e.preventDefault();
+          openOverlay();
+        });
+      }
+      if (mobile && mobile.dataset.boundOverlay !== "1") {
+        mobile.dataset.boundOverlay = "1";
+        mobile.addEventListener("click", (e) => {
+          e.preventDefault();
+          openOverlay();
+        });
+      }
+    }
+
+    function init() {
+      bind();
+      bindTriggers();
+    }
+    init();
+    document.addEventListener("astro:page-load", init);
+    document.addEventListener("astro:before-preparation", () => {
+      const root = document.getElementById("search-overlay");
+      if (root && !root.hidden) {
+        root.hidden = true;
+        root.classList.add("hidden");
+        root.classList.remove("flex");
+        document.body.style.overflow = "";
+      }
+    });
+  })();
+</script>
+
+<style>
+  .rt-search-result {
+    border: 1px solid transparent;
+  }
+  .rt-search-result:hover,
+  .rt-search-result[data-active="true"] {
+    background: var(--bg);
+    border-color: var(--color-brand-500);
+  }
+  .rt-search-result[data-active="true"] .rt-search-arrow {
+    color: var(--link);
+  }
+  .rt-search-sub:hover,
+  .rt-search-sub[data-active="true"] {
+    background: var(--bg);
+    border-color: var(--color-brand-500);
+  }
+  .rt-search-sub[data-active="true"] span {
+    color: var(--fg);
+  }
+  .rt-search-result:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+</style>

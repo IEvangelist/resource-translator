@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import Logo from "./Logo.astro";
+import SearchOverlay from "./SearchOverlay.astro";
 
 interface Props {
   hasSidebar?: boolean;
@@ -10,13 +11,11 @@ const { hasSidebar = true } = Astro.props;
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const homeHref = base || "/";
-const pagefindBase = base || "";
-const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
 ---
 
 <header
   transition:persist
-  class="sticky top-0 z-30 border-b border-(--border) bg-(--bg)/85 backdrop-blur-xl supports-[backdrop-filter]:bg-(--bg)/65"
+  class="sticky top-0 z-30 border-b border-(--border) bg-(--bg)"
 >
   <div
     class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:gap-4 sm:px-6"
@@ -30,13 +29,13 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
           aria-label="Open navigation"
           aria-controls="sidebar-drawer"
           aria-expanded="false"
-          hidden
         >
           <Icon name="lucide:menu" class="size-4" />
         </button>
       )}
       <a
         href={homeHref}
+        aria-label="Resource Translator — home"
         class="group flex items-center gap-2.5 text-base font-semibold no-underline"
       >
         <Logo
@@ -48,27 +47,37 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
     </div>
 
     <div class="relative hidden flex-1 max-w-md md:block">
-      <label class="sr-only" for="docs-search">Search docs</label>
-      <div
-        class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-(--fg-muted)"
-      >
-        <Icon name="lucide:search" class="size-4" />
-      </div>
-      <input
+      <button
+        type="button"
         id="docs-search"
-        type="search"
-        placeholder="Search documentation…"
-        autocomplete="off"
-        class="w-full rounded-md border border-(--border) bg-(--bg-elevated) py-2 pl-9 pr-3 text-sm placeholder-(--fg-muted) focus:border-(--color-brand-500) focus:outline-none focus:ring-2 focus:ring-(--color-brand-500)/40"
-      />
-      <div
-        id="search-results"
-        class="absolute right-0 left-0 z-40 mt-1 hidden max-h-[60vh] overflow-y-auto rounded-md border border-(--border) bg-(--bg-elevated) p-2 text-sm shadow-lg"
+        aria-haspopup="dialog"
+        aria-label="Search documentation"
+        class="group relative flex w-full cursor-text items-center gap-2 rounded-md border border-(--border) bg-(--bg-elevated) py-2 pl-9 pr-12 text-left text-sm text-(--fg-muted) hover:border-(--color-brand-500)/40 hover:text-(--fg) focus:border-(--color-brand-500) focus:outline-none focus:ring-2 focus:ring-(--color-brand-500)/40"
       >
-      </div>
+        <span
+          class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-(--fg-muted)"
+          aria-hidden="true"
+        >
+          <Icon name="lucide:search" class="size-4" />
+        </span>
+        <span class="truncate">Search documentation…</span>
+        <kbd
+          class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 rounded border border-(--border) bg-(--bg) px-1.5 py-0.5 font-mono text-[11px] font-medium text-(--fg-muted)"
+          aria-hidden="true">/</kbd
+        >
+      </button>
     </div>
 
     <div class="flex items-center gap-1.5">
+      <button
+        type="button"
+        id="docs-search-mobile"
+        class="inline-flex size-9 items-center justify-center rounded-md border border-(--border) bg-(--bg-elevated) text-(--fg-muted) hover:text-(--fg) md:hidden"
+        aria-label="Search documentation"
+        aria-haspopup="dialog"
+      >
+        <Icon name="lucide:search" class="size-4" />
+      </button>
       <button
         type="button"
         id="theme-toggle"
@@ -90,6 +99,8 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
     </div>
   </div>
 </header>
+
+<SearchOverlay />
 
 <script is:inline>
   const apply = () => {
@@ -131,109 +142,6 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
   }
   bindToggle();
   document.addEventListener("astro:page-load", bindToggle);
-
-  // Hamburger button is rendered with `hidden` so server-rendered pages without
-  // JS won't show a non-functional button. Reveal it as soon as the page loads.
-  function showSidebarToggle() {
-    const btn = document.getElementById("sidebar-toggle");
-    if (btn && btn.hasAttribute("hidden") && document.getElementById("sidebar-drawer")) {
-      btn.removeAttribute("hidden");
-    }
-  }
-  showSidebarToggle();
-  document.addEventListener("astro:page-load", showSidebarToggle);
-</script>
-
-<script is:inline define:vars={{ pagefindScript }}>
-  function bindSearch() {
-    const input = document.getElementById("docs-search");
-    const resultsEl = document.getElementById("search-results");
-    if (!input || !resultsEl || input.dataset.bound === "1") return;
-    input.dataset.bound = "1";
-
-    let pagefind = null;
-    let loadAttempted = false;
-    let debounceId;
-
-    async function loadPagefind() {
-      if (pagefind || loadAttempted) return pagefind;
-      loadAttempted = true;
-      try {
-        pagefind = await import(/* @vite-ignore */ pagefindScript);
-        await pagefind.options?.({ excerptLength: 24 });
-      } catch (err) {
-        console.warn(
-          "Pagefind not available (run `npm run build` to generate it).",
-          err,
-        );
-        pagefind = null;
-      }
-      return pagefind;
-    }
-
-    function escapeHtml(s) {
-      return s.replace(
-        /[&<>"']/g,
-        (c) =>
-          ({
-            "&": "&amp;",
-            "<": "&lt;",
-            ">": "&gt;",
-            '"': "&quot;",
-            "'": "&#39;",
-          })[c],
-      );
-    }
-
-    async function runSearch(q) {
-      const pf = await loadPagefind();
-      if (!pf) {
-        resultsEl.innerHTML =
-          '<div class="px-3 py-2 text-(--fg-muted)">Search index not available in dev. Run a production build.</div>';
-        resultsEl.classList.remove("hidden");
-        return;
-      }
-      const search = await pf.search(q);
-      if (!search?.results?.length) {
-        resultsEl.innerHTML =
-          '<div class="px-3 py-2 text-(--fg-muted)">No results.</div>';
-        resultsEl.classList.remove("hidden");
-        return;
-      }
-      const top = await Promise.all(
-        search.results.slice(0, 8).map((r) => r.data()),
-      );
-      resultsEl.innerHTML = top
-        .map(
-          (d) =>
-            `<a href="${d.url}" class="block rounded-md px-3 py-2 hover:bg-(--bg) no-underline">
-              <div class="font-medium">${escapeHtml(d.meta?.title || d.url)}</div>
-              <div class="text-(--fg-muted) text-xs">${d.excerpt}</div>
-            </a>`,
-        )
-        .join("");
-      resultsEl.classList.remove("hidden");
-    }
-
-    input.addEventListener("input", (e) => {
-      const q = e.target.value.trim();
-      clearTimeout(debounceId);
-      if (!q) {
-        resultsEl.classList.add("hidden");
-        resultsEl.innerHTML = "";
-        return;
-      }
-      debounceId = setTimeout(() => runSearch(q), 120);
-    });
-
-    document.addEventListener("click", (e) => {
-      if (!resultsEl.contains(e.target) && e.target !== input) {
-        resultsEl.classList.add("hidden");
-      }
-    });
-  }
-  bindSearch();
-  document.addEventListener("astro:page-load", bindSearch);
 </script>
 
 

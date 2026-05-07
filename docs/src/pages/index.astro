@@ -111,7 +111,7 @@ const formats = [
       <div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
         <div>
           <div
-            class="mb-6 inline-flex items-center gap-2 rounded-full border border-(--border) bg-(--bg-elevated)/70 px-3 py-1 text-xs font-medium text-(--fg-muted) backdrop-blur"
+            class="mb-6 inline-flex items-center gap-2 rounded-full border border-(--border) bg-(--bg-elevated) px-3 py-1 text-xs font-medium text-(--fg-muted)"
           >
             <Icon
               name="lucide:sparkles"
@@ -156,7 +156,7 @@ const formats = [
               href="https://github.com/IEvangelist/resource-translator"
               rel="noopener"
               target="_blank"
-              class="inline-flex items-center gap-2 rounded-md border border-(--border) bg-(--bg-elevated)/80 px-5 py-2.5 text-sm font-semibold no-underline backdrop-blur hover:border-(--color-brand-500)/50"
+              class="inline-flex items-center gap-2 rounded-md border border-(--border) bg-(--bg-elevated) px-5 py-2.5 text-sm font-semibold no-underline hover:border-(--color-brand-500)/50"
             >
               <Icon name="simple-icons:github" class="size-4" />
               Star on GitHub
@@ -214,7 +214,7 @@ const formats = [
   </section>
 
   <!-- FORMAT BADGES -->
-  <section class="border-y border-(--border) bg-(--bg-elevated)/40">
+  <section class="border-y border-(--border) bg-(--bg-elevated)">
     <div
       class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-3 px-6 py-6 sm:gap-6"
     >
@@ -254,7 +254,7 @@ const formats = [
     <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {
         features.map((f) => (
-          <div class="group relative overflow-hidden rounded-2xl border border-(--border) bg-(--bg-elevated)/60 p-6 transition-all hover:-translate-y-1 hover:border-(--color-brand-500)/40 hover:shadow-xl hover:shadow-(--color-brand-500)/10">
+          <div class="group relative overflow-hidden rounded-2xl border border-(--border) bg-(--bg-elevated) p-6 transition-all hover:-translate-y-1 hover:border-(--color-brand-500)/40 hover:shadow-xl hover:shadow-(--color-brand-500)/10">
             <div
               aria-hidden="true"
               class:list={[
