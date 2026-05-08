@@ -343,18 +343,15 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
       const input = document.getElementById("search-overlay-input");
       if (input) {
         if (typeof prefill === "string" && prefill) input.value = prefill;
-        // Defer to ensure dialog is rendered
-        setTimeout(() => {
-          input.focus();
-          input.select();
-          if (input.value.trim()) {
-            lastQuery = "";
-            runSearch(input.value.trim());
-          } else {
-            clearGroups();
-            setState("idle");
-          }
-        }, 10);
+        input.focus({ preventScroll: true });
+        input.select();
+        if (input.value.trim()) {
+          lastQuery = "";
+          runSearch(input.value.trim());
+        } else {
+          clearGroups();
+          setState("idle");
+        }
       }
       // Preload pagefind so first keystroke is snappy
       loadPagefind();
@@ -576,26 +573,27 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
 </script>
 
 <style>
-  .rt-search-result {
+  :global(.rt-search-result) {
     border: 1px solid transparent;
   }
-  .rt-search-result:hover,
-  .rt-search-result[data-active="true"] {
-    background: var(--bg);
-    border-color: var(--color-brand-500);
+  :global(.rt-search-result:hover),
+  :global(.rt-search-result[data-active="true"]) {
+    background: color-mix(in srgb, var(--color-brand-500) 16%, var(--bg));
+    border-color: var(--focus-ring);
+    box-shadow: 0 0 0 1px var(--focus-ring);
   }
-  .rt-search-result[data-active="true"] .rt-search-arrow {
+  :global(.rt-search-result[data-active="true"] .rt-search-arrow) {
     color: var(--link);
   }
-  .rt-search-sub:hover,
-  .rt-search-sub[data-active="true"] {
-    background: var(--bg);
-    border-color: var(--color-brand-500);
+  :global(.rt-search-sub:hover),
+  :global(.rt-search-sub[data-active="true"]) {
+    background: color-mix(in srgb, var(--color-brand-500) 16%, var(--bg));
+    border-color: var(--focus-ring);
   }
-  .rt-search-sub[data-active="true"] span {
+  :global(.rt-search-sub[data-active="true"] span) {
     color: var(--fg);
   }
-  .rt-search-result:focus-visible {
+  :global(.rt-search-result:focus-visible) {
     outline: 2px solid var(--focus-ring);
     outline-offset: 2px;
   }
