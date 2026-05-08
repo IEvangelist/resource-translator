@@ -258,26 +258,28 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
         group.className = "mb-2 last:mb-0";
 
         // Top-level article card
-        const top = document.createElement("a");
-        top.id = `sr-${gi}-0`;
-        top.role = "option";
-        top.href = url;
-        top.className =
+        const card = document.createElement("a");
+        card.id = `sr-${gi}-0`;
+        card.setAttribute("role", "option");
+        card.setAttribute("tabindex", "-1");
+        card.href = url;
+        card.className =
           "rt-search-result flex items-start gap-3 rounded-lg px-3 py-2.5 no-underline transition-colors";
-        top.innerHTML = `
+        card.innerHTML = `
           <span class="rt-search-icon mt-0.5 inline-flex size-9 flex-none items-center justify-center rounded-lg bg-(--color-brand-700) text-white">${svg(icon, "size-4")}</span>
           <span class="min-w-0 flex-1">
             <span class="block text-sm font-semibold text-(--fg)">${titleHtml}</span>
             ${excerptHtml ? `<span class="mt-0.5 block truncate text-xs text-(--fg-muted)">${excerptHtml}</span>` : ""}
           </span>
           <span class="rt-search-arrow flex-none text-(--fg-muted)">${svg("arrow-right", "size-4")}</span>`;
-        group.appendChild(top);
-        allItems.push(top);
+        group.appendChild(card);
+        allItems.push(card);
 
         // Nested sub_results for this article
         const subs = Array.isArray(d.sub_results) ? d.sub_results : [];
         if (subs.length) {
           const ul = document.createElement("ul");
+          ul.setAttribute("role", "group");
           ul.className =
             "ml-12 mt-1 mb-1 space-y-0.5 border-l border-(--border) pl-3";
           subs.slice(0, 4).forEach((sub, si) => {
@@ -287,7 +289,8 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
             const li = document.createElement("li");
             const a = document.createElement("a");
             a.id = `sr-${gi}-${si + 1}`;
-            a.role = "option";
+            a.setAttribute("role", "option");
+            a.setAttribute("tabindex", "-1");
             a.href = sub.url || url;
             a.className =
               "rt-search-result rt-search-sub flex items-center gap-2 rounded-md px-2 py-1.5 text-sm no-underline";
@@ -394,22 +397,79 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
         debounceId = setTimeout(() => runSearch(q), 120);
       });
 
-      input?.addEventListener("keydown", (e) => {
+      // Keyboard navigation lives on the overlay root (capture-phase keydown
+      // anywhere inside the dialog) so that arrow keys, Enter, Home, End,
+      // and Tab focus-trap all work whether focus is on the input, on a
+      // result anchor, or on the close button. The previous implementation
+      // bound only to the input — once focus shifted to a result via Tab
+      // or click, every nav key stopped working.
+      function getFocusables() {
+        return Array.from(
+          root.querySelectorAll(
+            'input, button:not([disabled]), a[href]:not([disabled])',
+          ),
+        ).filter((el) => {
+          // Skip hidden / collapsed elements (e.g. the close button is
+          // `sm:hidden` on desktop) and anything intentionally removed from
+          // the tab order. Result anchors carry `tabindex="-1"` because
+          // we follow the `aria-activedescendant` listbox pattern: the
+          // input keeps DOM focus and arrow keys move the *active*
+          // descendant rather than focus itself.
+          if (el.hidden) return false;
+          if (el.getAttribute("tabindex") === "-1") return false;
+          if (el.offsetParent === null) return false;
+          return true;
+        });
+      }
+
+      root.addEventListener("keydown", (e) => {
+        if (root.hidden) return;
+
         if (e.key === "ArrowDown") {
           e.preventDefault();
+          if (!items.length) return;
           moveActive(1);
+          // Pull focus back to input so subsequent keystrokes keep working
+          // the same way regardless of where Tab may have wandered.
+          input?.focus();
         } else if (e.key === "ArrowUp") {
           e.preventDefault();
+          if (!items.length) return;
           moveActive(-1);
+          input?.focus();
         } else if (e.key === "Enter") {
           if (activeIndex >= 0 && items[activeIndex]) {
             e.preventDefault();
             items[activeIndex].click();
           }
         } else if (e.key === "Home") {
-          if (items.length) { e.preventDefault(); activeIndex = 0; applyHighlight(); }
+          if (items.length) {
+            e.preventDefault();
+            activeIndex = 0;
+            applyHighlight();
+            input?.focus();
+          }
         } else if (e.key === "End") {
-          if (items.length) { e.preventDefault(); activeIndex = items.length - 1; applyHighlight(); }
+          if (items.length) {
+            e.preventDefault();
+            activeIndex = items.length - 1;
+            applyHighlight();
+            input?.focus();
+          }
+        } else if (e.key === "Tab") {
+          // Focus trap: keep tabbing inside the dialog so AT users can't
+          // accidentally tab out into the page behind the modal overlay.
+          const focusables = getFocusables();
+          if (!focusables.length) return;
+          const first = focusables[0];
+          const last = focusables[focusables.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
         }
       });
 
