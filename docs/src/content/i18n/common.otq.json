@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Traductor recursos",
+		"defaultDescription": "Documentación pa ar nt'ot'e GitHub Resource Translator — traducción automática automatizada archivos recursos a través de Azure AI Translator.",
+		"homeLabel": "Traductor recursos — inicio"
+	},
+	"skipToContent": "Saltar ar contenido",
+	"drawer": {
+		"open": "Gi xoki ar navegación",
+		"close": "Cerrar navegación",
+		"title": "Navegación"
+	},
+	"header": {
+		"search": "Documentación nthoni",
+		"searchPlaceholder": "Honi documentación...",
+		"toggleTheme": "Alternar tema",
+		"githubRepository": "GitHub repository",
+		"language": "Ar hñä"
+	},
+	"search": {
+		"title": "Documentación nthoni",
+		"results": "Resultados nthoni",
+		"placeholder": "Honi xeni Nthuts'i, secciones, recetas...",
+		"close": "Cerrar nthoni",
+		"idleTitle": "Honi ya documentos",
+		"idleHelp": "Tingigi mbo xeni Nthuts'i ya mfeni, formato archivo, opción configuración wa ya recia. Utilice {up} {down} pa navegar, {enter} pa abrir.",
+		"loading": "Nthoni ...",
+		"empty": "'Ñotho ar resultados. Probar 'nar po̲ts'e clave diferente.",
+		"error": "Índice nthoni hingi 'bu̲i disponible jar dev. Ejecutar 'nar nju̲ts'i producción."
+	},
+	"toc": {
+		"title": "Jar nuna ar página"
+	},
+	"pager": {
+		"ariaLabel": "Ar Nthuts'i",
+		"previous": "'Be̲t'o",
+		"next": "Xtí"
+	},
+	"backToTop": {
+		"label": "Desplazar ar asta mañä"
+	},
+	"footer": {
+		"docs": "Ya documentos",
+		"project": "'Be̲fi",
+		"community": "Hnini",
+		"projectLinksAria": "Enlaces ar 'be̲fi",
+		"sourceAria": "Ga fuente jar GitHub",
+		"marketplaceAria": "Ga jar GitHub Marketplace",
+		"authorAria": "Sitio web ar David Pine",
+		"taglinePrefix": "'Nar nt'ot'e GitHub da traduce yá archivos recursos automáticamente, construido maxo̲ts'e ar xidi mfädi",
+		"taglineMiddle": "SDK ndezu̲",
+		"copyrightPrefix": "Liberado jár ar",
+		"builtWith": "Construido ko"
+	}
+}

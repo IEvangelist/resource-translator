@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Resource Translator",
+		"defaultDescription": "Documentatie voor de Resource Translator GitHub Action — geautomatiseerde machinevertaling van resourcebestanden via Azure AI Translator.",
+		"homeLabel": "Resource Translator — home"
+	},
+	"skipToContent": "Sla naar de inhoud",
+	"drawer": {
+		"open": "Open navigatie",
+		"close": "Navigatie sluiten",
+		"title": "Navigatie"
+	},
+	"header": {
+		"search": "Zoek documentatie",
+		"searchPlaceholder": "Zoek documentatie...",
+		"toggleTheme": "Thema's wisselen",
+		"githubRepository": "GitHub-repository",
+		"language": "Taal"
+	},
+	"search": {
+		"title": "Zoek documentatie",
+		"results": "Zoekresultaten",
+		"placeholder": "Zoek artikelen, secties, recepten...",
+		"close": "Zoek dichtbij",
+		"idleTitle": "Zoek in de documentatie",
+		"idleHelp": "Vind artikelen op onderwerp, bestandsformaat, configuratieoptie of recept. Gebruik {up} {down} om te navigeren, {enter} om te openen.",
+		"loading": "Zoeken...",
+		"empty": "Geen resultaat. Probeer een ander trefwoord.",
+		"error": "De zoekindex is niet beschikbaar in de ontwikkelaar. Voer een productiebuild uit."
+	},
+	"toc": {
+		"title": "Op deze pagina"
+	},
+	"pager": {
+		"ariaLabel": "Artikel",
+		"previous": "Eerder",
+		"next": "Volgende"
+	},
+	"backToTop": {
+		"label": "Scroll naar boven"
+	},
+	"footer": {
+		"docs": "Docs",
+		"project": "Project",
+		"community": "Gemeenschap",
+		"projectLinksAria": "Projectlinks",
+		"sourceAria": "Bekijk bron op GitHub",
+		"marketplaceAria": "Bekijk op GitHub Marketplace",
+		"authorAria": "Website van David Pine",
+		"taglinePrefix": "Een GitHub-actie die je resourcebestanden automatisch vertaalt, gebouwd bovenop de officiële",
+		"taglineMiddle": "SDK van",
+		"copyrightPrefix": "Uitgebracht onder de",
+		"builtWith": "Gebouwd met"
+	}
+}

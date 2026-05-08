@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Prevajalnik virov",
+		"description": "Odprite strojno prevedene pull requeste za datoteke virov v kateremkoli repozitoriju, v kateremkoli formatu.",
+		"badge": "v3.0 — Node 24, konfiguracija repozitorija, slovarček, suhi preizkus",
+		"headlinePrefix": "Lokalizirajte svoj repozitorij na",
+		"headlineAccent": "vsak commit.",
+		"lede": "Resource Translator odpira strojno prevedene pull requeste za vaše resource datoteke z uporabo Azure AI Translatorja preko uradnega SDK — brez dodatnih storitev, le delovni tok.",
+		"primaryCta": "Začnite",
+		"secondaryCta": "Zvezda na GitHubu",
+		"supports": "Podpore",
+		"builtForShipping": "Zgrajena za ladijski promet",
+		"workflowTitle": "Prevajanje kot delovni proces, ne kot opravilo.",
+		"workflowBody": "Akcijo vnesite v obstoječi CI, usmerite jo na Azure AI Translator in dovolite, da vaš repozitorij govori vse jezike, ki jih ciljate.",
+		"stats": {
+			"audit": "0 Težave z revizijo NPM",
+			"tests": "150 testov",
+			"node": "Vozlišče 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Šest formatov datotek",
+				"body": "Povratne poti .resx, .xliff, .po, .json, .ini in .restext z bajtno stabilnim oblikovanjem."
+			},
+			"config": {
+				"title": "Konfiguracija na ravni repozitorija",
+				"body": "Objavite .github/resource-translator.yml za vključitev globsov, slovarjev in kategorij Custom Translator."
+			},
+			"glossary": {
+				"title": "Glossary aware",
+				"body": "Zaklenite imena blagovnih znamk in izdelke s pametnim regexom za meje besed, ki obvladuje C++, .NET in prijatelje."
+			},
+			"dryRun": {
+				"title": "Preizkus + mehki neuspeh",
+				"body": "Predogled prevodov brez pisanja datotek ali pa prikaži vsako napako kot opozorilo med iteracijo."
+			},
+			"outputs": {
+				"title": "PR-prijazni izhodi",
+				"body": "Povzetek-naslov, povzetek-podrobnosti in ima-nove-prevode se neposredno prilegajo v ustvarjanje-povlečenje."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Zgrajeno na @azure-rest/ai-translation-text + @azure/core-rest-pipeline — samodejni ponovni poskusi na 408/429/5xx, brez ročno ustvarjenega HTTP. Esbuild-združeno, revizijsko čisto."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Začetek",
+		"eyebrow": "Postavitev",
+		"lede": "Dodajte datoteko z delovnim tokom, jo usmerite na vaše Azure AI Translator poverilnice in akcija — zgrajena na Microsoftovem uradnem SDK @azure-rest/ai-translation-text — bo pregledala repozitorij za datoteke virov v izvornem jeziku in poslala prevedene sorodne datoteke.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Ustvarite vir Azure AI Translator v Azure portalu, nato pa shranite naslednje kot skrivnosti GitHub repozitorija, da jih lahko delovni tok prebere:",
+				"key": "naročniški ključ za vir.",
+				"endpoint": "regionalni URL končne točke.",
+				"region": "azure regija vira."
+			},
+			"workflow": {
+				"title": "Dodajte delovni proces",
+				"body": "Ustvari .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Potrdite datoteko izvornega vira",
+				"body": "Datoteke z viri uporabljajo Ime. .<sourceLocale> <ext> konvencije. Na primer, Greetings.en.resx postane Greetings.fr.resx, Greetings.de.resx in tako naprej po teku."
+			},
+			"output": {
+				"title": "Preverite izhod",
+				"body": "Ko se delovni proces konča, akcija razkrije tri izhode, ki jih lahko povežete v PR opis: povzetek-naslov, povzetek-podrobnosti in ima-nove-prevode. Prav tako zapiše povzetek Markdowna na stran delovnega mesta preko core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Naslednji koraki",
+			"configuration": "Nastavite privzete nastavitve na ravni repozitorija z .github/resource-translator.yml.",
+			"recipes": "Oglejte si recepte za monorepo, prilagojene slovarje in kategorije Custom Translator."
+		}
+	},
+	"configuration": {
+		"title": "Konfiguracija",
+		"eyebrow": "YAML",
+		"heroTitle": "Konfiguracija repozitorija",
+		"lede": "Express privzeto nastavi enkrat v .github/resource-translator.yml in dovoli, da jih podeduje vsak delovni tok. Akcijski vnosi vedno zmagajo, če sta oba na voljo."
+	},
+	"inputs": {
+		"title": "Vhodi in izhodi",
+		"eyebrow": "Viri",
+		"lede": "Vsak vhod je sprejet tudi v opcijski konfiguracijski datoteki repozitorija. Ko sta oba nastavljena, zmaga vnos akcije."
+	},
+	"formats": {
+		"title": "Datotečni formati",
+		"eyebrow": "Viri",
+		"heroTitle": "Podprti datotečni formati",
+		"lede": "Šest formatov virov v obe smeri. Dejanje prebere vsako datoteko izvorne lokacije, prevede vrednosti in zapiše sorodno datoteko za vsako ciljno lokacijo."
+	},
+	"recipes": {
+		"title": "Recepti",
+		"eyebrow": "Kuharska knjiga",
+		"lede": "Pogosti vzorci za prevode pri pošiljanju: monorepo, slovarji, prilagojene kategorije, preizkusi in nadzor tona."
+	},
+	"faq": {
+		"title": "Pogosta vprašanja",
+		"eyebrow": "Pomoč",
+		"heroTitle": "Pogosta vprašanja",
+		"lede": "Hitri odgovori na vprašanja, ki se najpogosteje pojavijo pri sprejemanju tega dejanja."
+	},
+	"translations": {
+		"title": "Prevodi",
+		"eyebrow": "Predstavitev",
+		"heroTitle": "Pozdravljeni v vseh jezikih",
+		"locales": "Lokacije",
+		"currentlyRendered": "trenutno upodobljeno",
+		"complete": "Dokončano!",
+		"pendingPrefix": "čaka na naslednjo serijo Translate-Docs.",
+		"viewWorkflowRuns": "Ogled poteka poteka delovnega toka",
+		"filter": "Filter",
+		"filterPlaceholder": "Išči po jeziku, kodi ali domačem imenu...",
+		"source": "Vir",
+		"machineTranslations": "Strojni prevodi",
+		"translationPending": "Prevod v teku — odprite zagon prevajalskih dokumentov.",
+		"noLocales": "Nobena lokacija ne ustreza temu filtru.",
+		"howItWorks": "Kako to deluje"
+	},
+	"contributing": {
+		"title": "Prispevek",
+		"eyebrow": "Odprta koda",
+		"lede": "Dobrodošla so poročila o napakah, zahteve za funkcije in pull requesti. Akcija je dovolj majhna, da je prijazna do začetnikov."
+	},
+	"changelog": {
+		"title": "Dnevnik sprememb",
+		"eyebrow": "Zgodovina",
+		"lede": "Povzetek izpustitev na visoki ravni. Kanonični, avtoritativni dnevnik sprememb živi v CHANGELOG.md v repozitoriju."
+	}
+}

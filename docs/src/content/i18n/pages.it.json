@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Traduttore di risorse",
+		"description": "Apri pull request tradotte a macchina per file di risorsa in qualsiasi repository, in qualsiasi formato.",
+		"badge": "v3.0 — Nodo 24, configurazione del repository, glossario, esecuzione a secco",
+		"headlinePrefix": "Localizza il tuo repository su",
+		"headlineAccent": "ogni impegno.",
+		"lede": "Resource Translator apre pull request tradotte a macchina per i tuoi file di risorse usando Azure AI Translator tramite l'SDK ufficiale — nessun servizio extra, solo un flusso di lavoro.",
+		"primaryCta": "Inizia",
+		"secondaryCta": "Star su GitHub",
+		"supports": "Supporti",
+		"builtForShipping": "Costruita per la navigazione",
+		"workflowTitle": "La traduzione come flusso di lavoro, non come fatica.",
+		"workflowBody": "Inserisci l'azione nel tuo CI esistente, indirizzala verso Azure AI Translator e lascia che il tuo repository parli tutte le lingue che vuoi mirare.",
+		"stats": {
+			"audit": "0 problemi di audit npm",
+			"tests": "150 test",
+			"node": "Nodo 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Sei formati file",
+				"body": "Effettua i turni e ritorno .resx, .xliff, .po, .json, .ini e .restext con formattazione stabile nei byte."
+			},
+			"config": {
+				"title": "Configurazione a livello di repository",
+				"body": "Lascia un .github/resource-translator.yml per includere globi, glossari e categorie di Traduttore Personalizzato."
+			},
+			"glossary": {
+				"title": "Consapevole del glossario",
+				"body": "Blocca i nomi dei marchi e i termini di prodotto con regex smart a confine di parole che gestisce C++, .NET e simili."
+			},
+			"dryRun": {
+				"title": "Prova a secco + fallimento morbido",
+				"body": "Visualizza le traduzioni in anteprima senza scrivere file, oppure fai emergere ogni errore come avvertimento mentre iteri."
+			},
+			"outputs": {
+				"title": "Output PR",
+				"body": "Riassunto-titolo, sommario-dettagli e has-new-traduzioni si inseriscono direttamente in crea-pull-request."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Costruito su @azure-rest/ai-translation-text + @azure/core-rest-pipeline — tentativi automatici su 408/429/5xx, nessun HTTP rotolato a mano. Esbuild-bundle, revisione-pulita."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Inizio",
+		"eyebrow": "Configurazione",
+		"lede": "Aggiungi un file di workflow, puntalo alle tue credenziali Azure AI Translator e l'azione — costruita sull'SDK ufficiale @azure-rest/ai-translation-text SDK di Microsoft — scansionerà il repository alla ricerca di file di risorse in lingua madre ed emetterà i fratelli tradotti.",
+		"steps": {
+			"provision": {
+				"title": "Provisionare una risorsa Azure AI Translator",
+				"body": "Crea una risorsa Azure AI Translator nel portale Azure, poi memorizza i seguenti come segreti del repository GitHub così che il flusso di lavoro possa leggerli:",
+				"key": "La chiave di abbonamento per la risorsa.",
+				"endpoint": "l'URL regionale dell'endpoint.",
+				"region": "la regione Azure della risorsa."
+			},
+			"workflow": {
+				"title": "Aggiungi il flusso di lavoro",
+				"body": "Crea .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Commit di un file di risorsa sorgente",
+				"body": "I file di risorse usano il Nome. <sourceLocale>. <ext> Convenzione. Ad esempio, Greetings.en.resx diventa Greetings.fr.resx, Greetings.de.resx, e così via dopo una run."
+			},
+			"output": {
+				"title": "Ispezionare l'output",
+				"body": "Una volta terminato il flusso di lavoro, l'azione espone tre output che puoi collegare in una descrizione PR: summary-title, summary-details e has-new-translations. Scrive anche un riassunto Markdown nella pagina del lavoro tramite core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Passi successivi",
+			"configuration": "Configura i valori predefiniti a livello di repository con .github/resource-translator.yml.",
+			"recipes": "Consulta le ricette per monorepos, glossari personalizzati e categorie Traduttori personalizzati."
+		}
+	},
+	"configuration": {
+		"title": "Configurazione",
+		"eyebrow": "YAML",
+		"heroTitle": "Configurazione del repository",
+		"lede": "Express si prende di default una volta in .github/resource-translator.yml e lascia che ogni workflow li erediti. Gli input d'azione vincono sempre quando entrambi vengono forniti."
+	},
+	"inputs": {
+		"title": "Ingressi e uscite",
+		"eyebrow": "Riferimento",
+		"lede": "Ogni input è accettato anche nel file di configurazione opzionale del repository. Quando entrambi sono impostati, vince l'input dell'azione."
+	},
+	"formats": {
+		"title": "Formati file",
+		"eyebrow": "Riferimento",
+		"heroTitle": "Formati file supportati",
+		"lede": "Sei formati di risorse a viaggio diretto. L'azione legge ogni file source-locale, traduce i valori e scrive un fratello per ogni località di destinazione."
+	},
+	"recipes": {
+		"title": "Ricette",
+		"eyebrow": "Ricettario",
+		"lede": "Modelli comuni per le traduzioni di spedizione: monorepos, glossari, categorie personalizzate, prove a zero e controllo del tono."
+	},
+	"faq": {
+		"title": "Domande frequenti",
+		"eyebrow": "Aiuto",
+		"heroTitle": "Domande frequenti",
+		"lede": "Risposte rapide alle domande che emergono più spesso quando si adotta l'azione."
+	},
+	"translations": {
+		"title": "Traduzioni",
+		"eyebrow": "Vetrina",
+		"heroTitle": "Ciao in ogni lingua",
+		"locales": "Luoghi",
+		"currentlyRendered": "attualmente renderizzato",
+		"complete": "Completato!",
+		"pendingPrefix": "In attesa della prossima run di Translate-Docs.",
+		"viewWorkflowRuns": "Visualizza le esecuzioni del flusso di lavoro",
+		"filter": "Filtro",
+		"filterPlaceholder": "Cerca per lingua, codice o nome nativo...",
+		"source": "Fonte",
+		"machineTranslations": "Traduzioni automatiche",
+		"translationPending": "Traduzione in attesa — apri una run di traduzione e documentazione.",
+		"noLocales": "Nessuna località corrisponde a quel filtro.",
+		"howItWorks": "Come funziona"
+	},
+	"contributing": {
+		"title": "Contributi",
+		"eyebrow": "Open source",
+		"lede": "Segnalazioni di bug, richieste di funzionalità e pull request sono tutte benvenute. L'azione è abbastanza piccola da risultare amichevole con chi partecipa alla prima volta."
+	},
+	"changelog": {
+		"title": "Registro delle modifiche",
+		"eyebrow": "Storia",
+		"lede": "Riassunto generale delle pubblicazioni. Il changelog canonico e autorevole risiede in CHANGELOG.md nel repository."
+	}
+}

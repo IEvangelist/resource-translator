@@ -1,0 +1,28 @@
+{
+	"sections": {
+		"start": "Бул жерден башта",
+		"reference": "Библиография",
+		"showcase": "Көргөзмө",
+		"project": "Долбоор"
+	},
+	"items": {
+		"overview": "Кыскача маалымат",
+		"gettingStarted": "Баштап жатам",
+		"configuration": "Конфигурация",
+		"inputs": "Киргизүүлөр жана чыгыштар",
+		"formats": "Файл форматтары",
+		"recipes": "Рецепттер",
+		"faq": "КБС",
+		"translations": "Котормолор",
+		"contributing": "Салым кошуу",
+		"changelog": "Changelog"
+	},
+	"community": {
+		"reportBug": "Ката тууралуу кабар берүү",
+		"requestFeature": "Функция сураңыз",
+		"discussions": "Талкуулар",
+		"securityPolicy": "Коопсуздук саясаты",
+		"codeOfConduct": "Жүрүм-турум кодекси",
+		"license": "MIT лицензиясы"
+	}
+}

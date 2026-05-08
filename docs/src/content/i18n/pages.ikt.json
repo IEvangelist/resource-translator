@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Atuqtakhanik Numiktiriji",
+		"description": "Angmaqlugu qaritauyakkut-numiktiqhimayut pull requests ikayuutinun tutquumaviinun quyaginaq tutquumaviit, quyaginaq ihuaqhaidjutini.",
+		"badge": "v3.0 — Node 24, repo config, tukiliurutit, dry run",
+		"headlinePrefix": "Localislugu tutquumavikhat talvani",
+		"headlineAccent": "tamaita ihuinaaqtut.",
+		"lede": "Resource Translator angmaqhiyuq qaritauyakkut-numiktiqhimayunik pull requests ikayuutinun tutquumavingnun atuqhugu Azure AI Translator haffumuuna ilitariyauhimayukkut SDK — aallanik kivgaqtuutiqangituq, havauhighainnaq.",
+		"primaryCta": "Aulagutilutit",
+		"secondaryCta": "Star uvani GitHub",
+		"supports": "Ikayuutigiyauyuq",
+		"builtForShipping": "Hanayauhimayuq agyaqtauyaami",
+		"workflowTitle": "Numiktitiriniq havauhiq, havangnangituq.",
+		"workflowBody": "Ililugu qanuriliurutikhaq tadja CI-mut, tikkuarlugu Azure AI Translator-mut, imaalu repo uqaqtitlugu tamainnik uqauhirnik pinahuaqtarnik.",
+		"stats": {
+			"audit": "0 NPM-Ihivriungnikkut ayuqhautit",
+			"tests": "150 uuktuutit",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Siksit tutquumaviit ihuaqhaqhimayut",
+				"body": "Utimut .resx, .xliff, .po, .json, .ini, unalu .restext byte-stable formatting."
+			},
+			"config": {
+				"title": "Repo-level config",
+				"body": "Iliuraqlugu .github/resource-translator.yml ilaliutilugit globs, tukiliurutit, unalu Custom Translator katitirviit."
+			},
+			"glossary": {
+				"title": "Tukiliurutit-ilihimaniq",
+				"body": "Kiluuttarlugit qanurittut atiit hunavaluillu tainiit smart word-boundary regex munarivaktait C++, .NET, ilannallu."
+			},
+			"dryRun": {
+				"title": "Dry-run + soft-fail",
+				"body": "Naunaiyaqlugit numiktiqhimayut titiraqhimaitumik titiqanik, uvaluuniin nuitiqlugit tamaita ihuiguhuutit qayagidjutigilugit uuktuqtilutit."
+			},
+			"outputs": {
+				"title": "PR-friendly outputs",
+				"body": "summary-title, summary-details, unalu has-new-translations iliuraqhimayut talvunga create-pull-request."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Havaktauhimayuq uvani @azure-rest/ai-translation-text + @azure/core-rest-pipeline — inmigut uuktuffaarutit uvani 408/429/5xx, piqangituq algakkut aulayumik HTTP. esbuild-bundled, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Aullaqtiutikhanut",
+		"eyebrow": "Ihuarhaininnga",
+		"lede": "Ilaliutilugu workflow file, tikkuarlugu Azure AI Translator naunaitkutainut, qanuriliurutikhaq — piliuqtauhimajuq uumani Microsoft's ilitarijauhimajuq @azure-rest/ai-translation-text SDK — aadjiliurniaqtaa tutquumavik pivikhanik uqauhikkut atuqtakhanik tutquumaviinnik imaalu tujurlugit numiktitiqhimajut.",
+		"steps": {
+			"provision": {
+				"title": "Pivikhaqaqtittilutik Azure AI Numiktiriyimut ikayuutiqhamik",
+				"body": "Piliurlutit Azure AI Translator atuqtakhanik Azure portal-mi, ahiit tutqurlugit hapkuat imaatut GitHub repository aallanut uqaqtailiniit workflow taigurianginni:",
+				"key": "Tuyuqtaunikkut kiluutaq ikayuutinun.",
+				"endpoint": "avikturhimayumi kiklinga URL.",
+				"region": "ikayuutip Azure aviktungniani."
+			},
+			"workflow": {
+				"title": "Ilaliutilugu havauhikhaq",
+				"body": "Piliurlugu .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Commit a source resource file",
+				"body": "Ikayuutikkut tutquumaviit atuqhugit Atia. <sourceLocale>. <ext> katimaqyuagutit. Uuktuutigilugu Greetings.en.resx imaatut Greetings.fr.resx, Greetings.de.resx, taimaatullu aqpahuirumik."
+			},
+			"output": {
+				"title": "Ihivriuqlugu piliurninnga",
+				"body": "Havauhiq iniqqat, hulidjutit tautuktitiyut pingahunik outputnik iliugaqtaaqtatit PRmun naunaiyautainun: summary-title, summary-details, unalu has-new-translations. Titiraqpaktuqlu Markdown naittumik havaamut makpirvianut talvuuna core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Tukliit Havaktauniaqtun",
+			"configuration": "Configure repo-level defaults with .github/resource-translator.yml.",
+			"recipes": "Takulugit igadjutikhat monorepos-mut, custom glossaries, unalu Custom Translator katitirviit."
+		}
+	},
+	"configuration": {
+		"title": "Ihuaqhaininnga",
+		"eyebrow": "YAML",
+		"heroTitle": "Tutquumavingit ihuarhainiq",
+		"lede": "Express defaults atauhiinnarmik talvani .github/resource-translator.yml imaalu tamaita workflows tunijaupkarlugit. Hulidjutikkut ihumagiyauyut akimayut tamangnik tuniyaugaangamik."
+	},
+	"inputs": {
+		"title": "Iliuraiyut aniyullu",
+		"eyebrow": "Naunaitkutinga",
+		"lede": "Tamaita iliuraqtauhimayut piyauhimayut piyakhani repo config tutquumaviani. Tamarmik ihuaqhikpata, qanuriliurutikhaq iliuraidjutaa akimajuq."
+	},
+	"formats": {
+		"title": "Tutquumaviit Ihuaqhautait",
+		"eyebrow": "Naunaitkutinga",
+		"heroTitle": "Ikayuqtauyut tutquumaviit formats",
+		"lede": "Siksit utiffaaqtaaqtut ikayuutikkut atugahat. Hulidjutit taiguaqhugit attautit pidjutait-nayugait tutquumaviit, numiktiqhugit akiit, uvalu titiraqhugit nukaqhiit tugaaqhimayunun nayugainun."
+	},
+	"recipes": {
+		"title": "Igadjutikhat",
+		"eyebrow": "Igadjutikhanut Makpiraaq",
+		"lede": "Atuqtauluaqtut atugahat tuyungnikkut numiktiqhimayut: monorepos, tukihidjutit, ihuaqhaqhimayut qanuriniit, paniupayut, nipaitigut munaridjutit."
+	},
+	"faq": {
+		"title": "APIRHUUTAUQATAAQTUT",
+		"eyebrow": "Ikayurlutit",
+		"heroTitle": "Apirhuutauraanginnaqtun",
+		"lede": "Qilamik kiudjutit apirhuutinun tapkua atuqtauluaqtut atuligaangamigit hulidjutit."
+	},
+	"translations": {
+		"title": "Numiktigakhat",
+		"eyebrow": "Tautuktitiyut",
+		"heroTitle": "Haluqaffi tamainni uqauhini",
+		"locales": "Nayugaani",
+		"currentlyRendered": "hadja piliuqhimajuq",
+		"complete": "Iniqpiaqtuq!",
+		"pendingPrefix": "Utaqqiyut tuklianik translate-docs aullarvikhanik.",
+		"viewWorkflowRuns": "Takulugit havauhiit havaktauyut",
+		"filter": "Halumaqhidjut",
+		"filterPlaceholder": "Qinirhialutit uqauhikkut, naunaitkutaatigut, atiitigutluunniit...",
+		"source": "Pitaqvik",
+		"machineTranslations": "Qaritauyami numiktiriniq",
+		"translationPending": "Numiktitirniq utaqqijuq — angmarlugu numiktiqhimajuq-docs run.",
+		"noLocales": "Nayugait aadjikkiingitut taaffumunga filtremun.",
+		"howItWorks": "Qanuq una havauhia"
+	},
+	"contributing": {
+		"title": "Tunihimaaqtun",
+		"eyebrow": "Open source",
+		"lede": "Bug unniudjutit, feature requests, imaalu pull requests tamaita tunngahuktitaujut. Hulidjutit mikiyut ilaranaitut hivuliqmik ikayuqtunun."
+	},
+	"changelog": {
+		"title": "Aallannguqtirutit",
+		"eyebrow": "Ingilraaqnitait",
+		"lede": "Anginiqhakkut naittut tuhaqtidjutit. Tamna canonical, atanniqtuidjutiqaqtuq aallannguqtirutinga ittuq CHANGELOG.md tutquumavingani."
+	}
+}

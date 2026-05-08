@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Išteklių vertėjas",
+		"description": "Atidarykite mašininiu būdu išverstas išteklių failų ištraukimo užklausas bet kokiu formatu.",
+		"badge": "v3.0 – 24 mazgas, saugyklos konfigūracija, žodynėlis, sausas paleidimas",
+		"headlinePrefix": "Lokalizuokite savo atpirkimo sandorius",
+		"headlineAccent": "kiekvienas įsipareigojimas.",
+		"lede": "\"Resource Translator\" atidaro mašininiu būdu išverstas jūsų išteklių failų ištraukimo užklausas naudojant \"Azure AI Translator\" per oficialų SDK – jokių papildomų paslaugų, tik darbo eigą.",
+		"primaryCta": "Pradėti",
+		"secondaryCta": "Žvaigždė \"GitHub\"",
+		"supports": "Palaiko",
+		"builtForShipping": "Sukurta siuntimui",
+		"workflowTitle": "Vertimas kaip darbo eiga, o ne darbas.",
+		"workflowBody": "Perkelkite veiksmą į esamą CI, nukreipkite jį į \"Azure AI Translator\" ir leiskite saugyklai kalbėti visomis kalbomis, į kurias orientuojatės.",
+		"stats": {
+			"audit": "0 NPM audito klausimai",
+			"tests": "150 testų",
+			"node": "Mazgas 20 / 22 / 24",
+			"sdk": "Oficialus \"Azure\" SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Šeši failų formatai",
+				"body": "Pirmyn ir atgal .resx, .xliff, .po, .json, .ini ir .restext su baitų stabilumu formatavimu."
+			},
+			"config": {
+				"title": "Repo lygio konfigūracija",
+				"body": "Numeskite .github/resource-translator.yml įtraukti globs, žodynėlius ir pasirinktinio vertėjo kategorijas."
+			},
+			"glossary": {
+				"title": "Žodynėlis",
+				"body": "Užrakinkite prekių ženklų pavadinimus ir produktų terminus naudodami išmanųjį žodžių ribų reguliariąją išraišką, kuri apdoroja C++, .NET ir draugus."
+			},
+			"dryRun": {
+				"title": "Sausas važiavimas + minkštas gedimas",
+				"body": "Peržiūrėkite vertimus nerašydami failų arba pateikite kiekvieną klaidą kaip įspėjimą kartodami."
+			},
+			"outputs": {
+				"title": "PR draugiški rezultatai",
+				"body": "summary-title, summary-details, ir has-new-translations lizdas tiesiai į create-pull-request."
+			},
+			"sdk": {
+				"title": "Oficialus \"Azure\" SDK",
+				"body": "Sukurta @azure-rest/ai-translation-text + @azure/core-rest-pipeline – automatiniai pakartotiniai bandymai 408/429/5xx, be rankinio HTTP. esbuild-bundled, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Darbo pradžia",
+		"eyebrow": "Sąranka",
+		"lede": "Pridėkite darbo eigos failą, nukreipkite jį į savo \"Azure AI Translator\" kredencialus ir veiksmas, sukurtas remiantis oficialiu \"Microsoft\" @azure-rest/ai-translation-text SDK, nuskaitys saugyklą, ar nėra šaltinio kalbos išteklių failų, ir išleis išverstus brolius ir seseris.",
+		"steps": {
+			"provision": {
+				"title": "\"Azure AI Translator\" išteklių konfigūravimas",
+				"body": "Sukurkite \"Azure AI Translator\" išteklius \"Azure\" portale, tada išsaugokite šiuos duomenis kaip \"GitHub\" saugyklos paslaptis, kad darbo eiga galėtų jas perskaityti:",
+				"key": "Ištekliaus prenumeratos raktas.",
+				"endpoint": "regioninio galinio punkto URL.",
+				"region": "ištekliaus \"Azure\" regione."
+			},
+			"workflow": {
+				"title": "Darbo eigos įtraukimas",
+				"body": "Sukurkite .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Šaltinio išteklių failo patvirtinimas",
+				"body": "Išteklių failai naudoja pavadinimą. <sourceLocale>. <ext> konvenciją. Pavyzdžiui, Greetings.lt.resx po bėgimo tampa Greetings.fr.resx, Greetings.de.resx ir pan."
+			},
+			"output": {
+				"title": "Patikrinkite išvestį",
+				"body": "Kai darbo eiga baigiasi, veiksmas atskleidžia tris išvestis, kurias galite prijungti prie PR aprašymo: santraukos pavadinimas, santraukos detalės ir nauji vertimai. Jis taip pat įrašo \"Markdown\" santrauką į darbo puslapį per core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Tolesni veiksmai",
+			"configuration": "Konfigūruokite saugyklos lygio numatytuosius nustatymus naudodami .github/resource-translator.yml.",
+			"recipes": "Peržiūrėkite monorepos, pasirinktinių žodynėlių ir pasirinktinių vertėjų kategorijų receptus."
+		}
+	},
+	"configuration": {
+		"title": "Konfigūracija",
+		"eyebrow": "YAML",
+		"heroTitle": "Saugyklos konfigūracija",
+		"lede": "Vieną kartą išreikškite numatytuosius nustatymus .github/resource-translator.yml ir leiskite kiekvienai darbo eigai juos paveldėti. Veiksmo įvestis visada laimi, kai pateikiami abu."
+	},
+	"inputs": {
+		"title": "Įėjimai ir išėjimai",
+		"eyebrow": "Nuoroda",
+		"lede": "Kiekviena įvestis taip pat priimama pasirenkamame saugyklos konfigūracijos faile. Kai abu yra nustatyti, laimi veiksmo įvestis."
+	},
+	"formats": {
+		"title": "Failų formatai",
+		"eyebrow": "Nuoroda",
+		"heroTitle": "Palaikomi failų formatai",
+		"lede": "Šeši išteklių formatai. Veiksmas nuskaito kiekvieną šaltinio lokalės failą, išverčia reikšmes ir rašo kiekvienos paskirties lokalės brolį."
+	},
+	"recipes": {
+		"title": "Receptai",
+		"eyebrow": "Kulinarinė knyga",
+		"lede": "Įprasti vertimų siuntimo modeliai: monorepos, žodynėliai, pasirinktinės kategorijos, sausi tiražai ir tonų valdymas."
+	},
+	"faq": {
+		"title": "DUK",
+		"eyebrow": "Pagalba",
+		"heroTitle": "Dažnai užduodami klausimai",
+		"lede": "Greiti atsakymai į klausimus, kurie dažniausiai kyla priimant veiksmą."
+	},
+	"translations": {
+		"title": "Vertimai",
+		"eyebrow": "Vitrina",
+		"heroTitle": "Sveiki visomis kalbomis",
+		"locales": "Vietovės",
+		"currentlyRendered": "Šiuo metu atvaizduota",
+		"complete": "Baigta!",
+		"pendingPrefix": "Laukiama kito translate-docs paleidimo.",
+		"viewWorkflowRuns": "Darbo eigos vykdymo peržiūra",
+		"filter": "Filtras",
+		"filterPlaceholder": "Ieškoti pagal kalbą, kodą arba gimtąjį vardą...",
+		"source": "Šaltinis",
+		"machineTranslations": "Mašininis vertimas",
+		"translationPending": "Laukiama vertimo — atidarykite vertimo dokumentų vykdymą.",
+		"noLocales": "Nė viena lokalė neatitinka šio filtro.",
+		"howItWorks": "Kaip tai veikia"
+	},
+	"contributing": {
+		"title": "Prisideda",
+		"eyebrow": "Atvirasis kodas",
+		"lede": "Pranešimai apie klaidas, funkcijų užklausos ir ištraukimo užklausos yra laukiami. Veiksmas yra pakankamai mažas, kad būtų draugiškas pirmą kartą prisidedantiems dalyviams."
+	},
+	"changelog": {
+		"title": "Pakeitimų žurnalas",
+		"eyebrow": "Istorija",
+		"lede": "Aukšto lygio leidinių santrauka. Kanoninis, autoritetingas pakeitimų žurnalas gyvena saugykloje CHANGELOG.md."
+	}
+}

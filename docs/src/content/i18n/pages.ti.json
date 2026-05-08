@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "ምንጪ ተርጓሚ",
+		"description": "ብማሽን እተተርጐመ ናይ ምንጪ ፋይላት ኣብ ዝዀነ ይኹን ሪፖ ብዝዀነ ይኹን ቅርጺ ክፉት።",
+		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "ሪፖ ኣብ ከባቢኻ ግበር",
+		"headlineAccent": "ነፍሲ ወከፍ ቃል ኪዳን ።",
+		"lede": "Resource Translator ብወግዓዊ ኤስዲኬ ኣቢልካ Azure AI Translator ተጠቒሙ ብማሽን እተተርጐመ ናይ ምንጪ ፋይላትካ ዚስሕብ ሕቶ ይኸፍት — ተወሳኺ ኣገልግሎታት የለን እምበር ናይ ስራሕ መስርሕ ጥራይ እዩ።",
+		"primaryCta": "ጀምር",
+		"secondaryCta": "ኰዀብ ኣብ GitHub",
+		"supports": "ደገፍ",
+		"builtForShipping": "ንመራኽብ ተባሂሉ እተሃንጸ",
+		"workflowTitle": "ምትርጓም ከም ስራሕ እምበር ከም ስራሕ ኣይኰነን።",
+		"workflowBody": "ነቲ ተግባር ናብቲ ህሉው CI ደርብዮ ናብ Azure AI Translator ኣመልክት እሞ ሪፖኻ ንዅሉ እቲ እትደልዮ ቛንቋ ኸም ዚዛረብ ፍቐደሉ።",
+		"stats": {
+			"audit": "0 npm-audit ጕዳያት",
+			"tests": "150 ፈተናታት",
+			"node": "መስቀለኛ መንገድ 20 / 22 / 24",
+			"sdk": "ወግዓዊ Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "ሽዱሽተ ቅርጺ ፋይላት",
+				"body": ".resx, .xliff, .po, .json, .ini, and .restext ምስ ባይት-ቀዋሚ ቅርጺ ዘለዎ።"
+			},
+			"config": {
+				"title": "Repo-level config",
+				"body": ".github/resource-translator.yml ደርብዮ ግሎብስን መዝገበ-ቃላትን ብጁ ተርጓሚ ምድባትን የጠቓልል።"
+			},
+			"glossary": {
+				"title": "መዝገበ-ቃላት ኣፍልጦ ምሃብ",
+				"body": "ስማት ብራንድን ናይ ፍርያት ቃላትን በቲ C ++ .NET ከምኡውን ኣዕሩኽ ዚቈጻጸር ብልሂ ዶብ ቃላት ዘለዎ regex ዓጸዎ።"
+			},
+			"dryRun": {
+				"title": "ንቑጽ ሩጫ + ልስሉስ",
+				"body": "ፋይላት ከይጸሓፍካ ትርጕማት ኣቐዲምካ ርኣዮ ወይ ከኣ ክትደጋግም ከሎኻ ንነፍሲ ወከፍ ጌጋ ከም መጠንቀቕታ ጌርካ ግለጽ።"
+			},
+			"outputs": {
+				"title": "PR-ምቹእ ውፅኢት",
+				"body": "summary-title, summary-details, and has-new-translations ብቐጥታ ናብ create-pull-request።"
+			},
+			"sdk": {
+				"title": "ወግዓዊ Azure SDK",
+				"body": "ኣብ @azure-rest/ai-translation-text + @azure/core-rest-pipeline እተሃንጸ — ኣብ 408/429/5xx ብኡንብኡ ዳግመ-ፈተነ፣ ብኢድ እተጠቕለለ HTTP የልቦን። esbuild-bundled, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "ምጅማር",
+		"eyebrow": "ምድላው",
+		"lede": "ናይ ስራሕ ፋይል ወሲኽካ ናብ Azure AI Translator ምስክር ወረቓቕቲ ኣመልክት እቲ ኣብ ወግዓዊ ናይ ማይክሮሶፍት @azure-rest/ai-translation-text SDK እተሃንጸ ተግባር ድማ ነቲ ሪፖ ምንጪ ቛንቋ ምንጪ ፋይላት ስካን ይገብረሉ ነቶም እተተርጐሙ ኣሕዋትን ድማ የውጽእ።",
+		"steps": {
+			"provision": {
+				"title": "Azure AI Translator ምንጪ ምድላው",
+				"body": "ኣብ Azure ፖርታል Azure AI Translator ምንጪ ፍጠር፣ ድሕሪኡ እቲ መስርሕ ምእንቲ ኼንብቦ ነዚ ዚስዕብ ከም ምስጢራት GitHub መኽዘን ኣቐምጦ፦",
+				"key": "እቲ መፍትሕ ናይ መኽፈቲ መኽሰብ።",
+				"endpoint": "ዞባዊ ናይ መወዳእታ ነጥቢ URL።",
+				"region": "እቲ ምንጪ ዞባ ኣዙሬ።"
+			},
+			"workflow": {
+				"title": "ነቲ መስርሕ ምውሳኽ",
+				"body": "ፍጠር .github/workflows/translate.yml"
+			},
+			"resource": {
+				"title": "ምንጪ ምንጪ ፋይል ምፍጻም",
+				"body": "ናይ መራኸቢ ብዙሓን መራኸቢ ብዙሓን ነቲ ስም ይጥቀሙ። <sourceLocale>። <ext> ኣኼባ ኣውራጃ። ንኣብነት Greetings.en.resx Greetings.fr.resx Greetings.de.resx ከምኡ'ውን ድሕሪ ምጕያይ ይኸውን።"
+			},
+			"output": {
+				"title": "ነቲ ውጽኢት መርምሮ",
+				"body": "እቲ መስርሕ ምስ ተወድአ እቲ ተግባር ኣብ ናይ PR መግለጺ ከተእትዎ እትኽእል ሰለስተ ውፅኢታት የቃልዕ ጽማቝ ኣርእስቲ ጽማቝ ዝርዝራት ከምኡውን ሓደስቲ ትርጕማት ኣለዎ። ብተወሳኺውን ብcore.summary ኣቢሉ ኣብ ናይ ስራሕ ገጽ ናይ ማርክዳውን ጽማቝ ጽማቝ ጽሑፍ ይጽሕፍ።"
+			}
+		},
+		"nextSteps": {
+			"title": "ቀጺሉ ዘሎ ስጕምትታት",
+			"configuration": "ምስ .github/resource-translator.yml repo-level defaults ኣዋቅር።",
+			"recipes": "ንሞኖሬፖ፣ ብጁ መዝገበ-ቃላትን ብጁ ተርጓሚ ምድባትን ዚኸውን ኣሰራርሓ ርአ።"
+		}
+	},
+	"configuration": {
+		"title": "ኣሰራርሓ",
+		"eyebrow": "ያኤምኤል",
+		"heroTitle": "ኣሰራርሓ መኽዘን",
+		"lede": "ኤክስፕረስ ሓንሳእ ኣብ .github/resource-translator.yml ይሳቐ እሞ ነፍሲ ወከፍ መስርሕ ክወርሶ ፍቐደሉ። ክልቲኡ ምስ ተዋህበ ኵሉ ሳዕ ናይ ተግባር መእተዊ ይዕወት።"
+	},
+	"inputs": {
+		"title": "ውፅኢትን ውፅኢትን",
+		"eyebrow": "መወከሲ",
+		"lede": "ነፍሲ ወከፍ መእተዊ ኣብ ኣማራጺ ሪፖ ኮንቨር ፋይል እውን ተቐባልነት ኣለዎ። ክልቲኡ ምስ ተወድአ እቲ ተግባር ይዕወት።"
+	},
+	"formats": {
+		"title": "ቅርጺ ፋይላት",
+		"eyebrow": "መወከሲ",
+		"heroTitle": "እተደገፈ ቅርጺ ፋይላት",
+		"lede": "ሽዱሽተ ዙር ቅርጺ ምንጪ። እቲ ተግባር ንነፍሲ ወከፍ ምንጪ-locale ፋይል የንብቦ ነቲ ዋጋታት ይትርጕሞ ከምኡውን ኣብ ነፍሲ ወከፍ ዕላማ ዘለዎ ቦታ ሓው ይጽሕፍ።"
+	},
+	"recipes": {
+		"title": "ኣመጋግባ",
+		"eyebrow": "መጽሓፍ ምኽሻን",
+		"lede": "ንትርጕማት ምልኣኽ ልሙድ ንድፊ ሞኖሬፖ መዝገበ ቃላት ፍሉይ ምድባት ንቑጽ ጕያ ከምኡውን ቃና ምቍጽጻር"
+	},
+	"faq": {
+		"title": "ብዙሕ ግዜ ዝሕተት ሕቶ",
+		"eyebrow": "ሓገዝ",
+		"heroTitle": "ብተደጋጋሚ ዝሕተቱ ሕቶታት",
+		"lede": "ነቲ መብዛሕትኡ ግዜ ዚለዓል ሕቶታት ቅልጡፍ መልሲ ኽትህብ ከሎ።"
+	},
+	"translations": {
+		"title": "ትርጕማት",
+		"eyebrow": "መርኣዪ",
+		"heroTitle": "ሰላምታ ብዅሉ ቛንቋታት",
+		"locales": "ከባብያታት",
+		"currentlyRendered": "ኣብዚ እዋን እዚ ተተርጒሙ ኣሎ",
+		"complete": "ምሉእ!",
+		"pendingPrefix": "ኣብ ዝቕጽል ናይ ተርጓሚ ዶክተራት ዝካየድ ዘሎ ኣኼባ ይጽበ።",
+		"viewWorkflowRuns": "ናይ ስራሕ መስርሕ ተመልከት",
+		"filter": "ማጣሪያ",
+		"filterPlaceholder": "ብቛንቛ ኮድ ወይ ብስም ኣደ ድለ።",
+		"source": "ምንጪ",
+		"machineTranslations": "ናይ ማሽን ትርጕማት",
+		"translationPending": "ትርጉም ይጽበ ኣሎ — ናይ ትርጉም ሰነዳት ክፈት።",
+		"noLocales": "ምስዚ ማጣሪያ ዚሰማማዕ ቦታ የልቦን።",
+		"howItWorks": "እዚ ብኸመይ ከም ዚዓዪ"
+	},
+	"contributing": {
+		"title": "ኣበርክቶ ምግባር",
+		"eyebrow": "ክፉት ምንጪ",
+		"lede": "ጸብጻባት ጌጋታት ናይ ባህሪ ጠለባት ከምኡውን ናይ ስሕበት ጠለባት ኵሉ ሓንጐፋይ ኢሉ ኢዩ ዝቕበል። እዚ ተግባር እዚ ንመጀመርታ ግዜ ኣበርክቶ ዚገብሩ ሰባት ምቕሉል ንምዃን ንእሽቶ እዩ።"
+	},
+	"changelog": {
+		"title": "ናይ ለውጢ መዝገብ",
+		"eyebrow": "ታሪኽ",
+		"lede": "ላዕለዋይ ደረጃ ጽማቝ ጽማቝ ናጻ ሓርነት። ቀኖናውን ስልጣን ዘለዎን ለውጥታት ኣብ CHANGELOG.md ኣብ መኽዘን እዩ ዚነብር።"
+	}
+}

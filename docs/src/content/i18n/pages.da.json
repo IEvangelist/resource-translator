@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Ressourceoversætter",
+		"description": "Åbn maskinoversatte pull requests for ressourcefiler i ethvert repo, i ethvert format.",
+		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "Lokaliser dit repo på",
+		"headlineAccent": "hver forpligtelse.",
+		"lede": "Resource Translator åbner maskinoversatte pull requests for dine ressourcefiler ved hjælp af Azure AI Translator via det officielle SDK — ingen ekstra tjenester, kun en arbejdsgang.",
+		"primaryCta": "Kom i gang",
+		"secondaryCta": "Star på GitHub",
+		"supports": "Støtter",
+		"builtForShipping": "Bygget til skibsfart",
+		"workflowTitle": "Oversættelse som en arbejdsgang, ikke som en pligt.",
+		"workflowBody": "Læg handlingen ind i dit eksisterende CI, peg den mod Azure AI Translator, og lad dit repo tale alle de sprog, du målretter efter.",
+		"stats": {
+			"audit": "0 npm-revisionsproblemer",
+			"tests": "150 tests",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Seks filformater",
+				"body": "Roundtrips .resx, .xliff, .po, .json, .ini og .restext med byte-stabil formatering."
+			},
+			"config": {
+				"title": "Repo-level konfiguration",
+				"body": "Læg en .github/resource-translator.yml ind for inkludér globs, ordlister og Custom Translator-kategorier."
+			},
+			"glossary": {
+				"title": "Ordlistebevidst",
+				"body": "Lås mærkenavne og produkttermer med smart ordgrænse-regex, der håndterer C++, .NET og andre steder."
+			},
+			"dryRun": {
+				"title": "Tørkørsel + blød fejl",
+				"body": "Forhåndsvis oversættelser uden at skrive filer, eller marker hver fejl som en advarsel, mens du iterererer."
+			},
+			"outputs": {
+				"title": "PR-venlige output",
+				"body": "Resumé-titel, oversigt-detaljer og har-nye-oversættelser passer direkte ind i create-pull-request."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Bygget på @azure-rest/ai-translation-text + @azure/core-rest-pipeline — automatiske genforsøg på 408/429/5xx, ingen håndrullet HTTP. Esbuild-bundlet, audit-ren."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "At komme i gang",
+		"eyebrow": "Opsætning",
+		"lede": "Tilføj en workflow-fil, peg den mod dine Azure AI Translator-legitimationsoplysninger, og handlingen — bygget på Microsofts officielle @azure-rest/ai-translation-text SDK — vil scanne repoet for kildesprogs-ressourcefiler og sende oversatte søskende.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Opret en Azure AI Translator-ressource i Azure-portalen, og gem derefter følgende som GitHub-repository-hemmeligheder, så workflowet kan læse dem:",
+				"key": "abonnementsnøglen til ressourcen.",
+				"endpoint": "den regionale endpoint-URL.",
+				"region": "ressourcens Azure-region."
+			},
+			"workflow": {
+				"title": "Tilføj arbejdsgangen",
+				"body": "Opret .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Commit en kilderessourcefil",
+				"body": "Ressourcefiler bruger Navnet. <sourceLocale>. <ext> konvention. For eksempel bliver Greetings.en.resx til Greetings.fr.resx, Greetings.de.resx og så videre efter et run."
+			},
+			"output": {
+				"title": "Inspicer outputtet",
+				"body": "Når arbejdsgangen er færdig, eksponerer handlingen tre output, du kan koble ind i en PR-beskrivelse: resumé-titel, resumé-detaljer og har-ny-oversættelser. Den skriver også et Markdown-resumé ind på jobsiden via core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Næste skridt",
+			"configuration": "Konfigurer repo-niveau standardindstillinger med .github/resource-translator.yml.",
+			"recipes": "Se opskrifter for monorepos, brugerdefinerede ordlister og kategorier for brugerdefinerede oversættere."
+		}
+	},
+	"configuration": {
+		"title": "Konfiguration",
+		"eyebrow": "YAML",
+		"heroTitle": "Repository-konfiguration",
+		"lede": "Express defaults én gang i .github/resource-translator.yml og lader alle workflows arve dem. Handlingsinput vinder altid, når begge dele."
+	},
+	"inputs": {
+		"title": "Input & output",
+		"eyebrow": "Reference",
+		"lede": "Alle input accepteres også i den valgfrie repo config-fil. Når begge er sat, vinder handlingsinputtet."
+	},
+	"formats": {
+		"title": "Filformater",
+		"eyebrow": "Reference",
+		"heroTitle": "Understøttede filformater",
+		"lede": "Seks rundtrippbare ressourceformater. Handlingen læser hver kilde-lokationsfil, oversætter værdierne og skriver en søskende pr. mållokation."
+	},
+	"recipes": {
+		"title": "Opskrifter",
+		"eyebrow": "Kogebog",
+		"lede": "Almindelige mønstre til forsendelsesoversættelser: monorepos, ordlister, brugerdefinerede kategorier, prøvekørsler og tonekontrol."
+	},
+	"faq": {
+		"title": "FAQ",
+		"eyebrow": "Hjælp",
+		"heroTitle": "Ofte stillede spørgsmål",
+		"lede": "Hurtige svar på de spørgsmål, der oftest opstår, når man tager handlingen i brug."
+	},
+	"translations": {
+		"title": "Oversættelser",
+		"eyebrow": "Fremvisning",
+		"heroTitle": "Hej på alle sprog",
+		"locales": "Lokaliteter",
+		"currentlyRendered": "Nuværende gengivet",
+		"complete": "Færdig!",
+		"pendingPrefix": "Afventer næste Translate-Docs-kørsel.",
+		"viewWorkflowRuns": "Se arbejdsgange kørende",
+		"filter": "Filter",
+		"filterPlaceholder": "Søg efter sprog, kode eller modersmål...",
+		"source": "Kilde",
+		"machineTranslations": "Maskinoversættelser",
+		"translationPending": "Oversættelse afventer — åbn et translate-docs-run.",
+		"noLocales": "Ingen lokaliteter matcher det filter.",
+		"howItWorks": "Sådan fungerer det"
+	},
+	"contributing": {
+		"title": "Bidrag",
+		"eyebrow": "Open source",
+		"lede": "Fejlrapporter, funktionsanmodninger og pull requests er alle velkomne. Handlingen er lille nok til at være venlig over for førstegangsbidragydere."
+	},
+	"changelog": {
+		"title": "Skifteliste",
+		"eyebrow": "Historie",
+		"lede": "Overordnet resumé af udgivelser. Den kanoniske, autoritative ændringslog findes i CHANGELOG.md i arkivet."
+	}
+}

@@ -1,0 +1,28 @@
+{
+	"sections": {
+		"start": "从这里开始",
+		"reference": "参考文献",
+		"showcase": "展示",
+		"project": "项目"
+	},
+	"items": {
+		"overview": "概述",
+		"gettingStarted": "入门",
+		"configuration": "配置",
+		"inputs": "输入与输出",
+		"formats": "文件格式",
+		"recipes": "食谱",
+		"faq": "常见问题",
+		"translations": "译本",
+		"contributing": "贡献",
+		"changelog": "更新日志"
+	},
+	"community": {
+		"reportBug": "报告一个错误",
+		"requestFeature": "请求功能",
+		"discussions": "讨论",
+		"securityPolicy": "安全政策",
+		"codeOfConduct": "行为准则",
+		"license": "麻省理工学院许可"
+	}
+}

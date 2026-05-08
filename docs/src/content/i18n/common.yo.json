@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Onitumọ Orisun",
+		"defaultDescription": "Iwe-aṣẹ fun Onitumọ Orisun GitHub Action — itumọ ẹrọ adaṣe ti awọn faili orisun nipasẹ Azure AI Translator.",
+		"homeLabel": "Resource Translator — ile"
+	},
+	"skipToContent": "Fo si akoonu",
+	"drawer": {
+		"open": "Ṣí lilọ kiri",
+		"close": "Close lilọ kiri",
+		"title": "Lilọ kiri"
+	},
+	"header": {
+		"search": "Awọn iwe wiwa",
+		"searchPlaceholder": "Awọn iwe wiwa ...",
+		"toggleTheme": "Yí akorí padà",
+		"githubRepository": "GitHub ibi ipamọ",
+		"language": "Ede"
+	},
+	"search": {
+		"title": "Awọn iwe wiwa",
+		"results": "Awọn abajade wiwa",
+		"placeholder": "Awọn nkan wiwa, awọn apakan, awọn ilana...",
+		"close": "Wiwa sunmọ",
+		"idleTitle": "je recherche les docs",
+		"idleHelp": "Wa awọn nkan nipasẹ koko-ọrọ, ọna kika faili, aṣayan iṣeto, tabi ohunelo. Lo {up} {down} lati lilö kiri, {enter} lati ṣii.",
+		"loading": "Wiwa...",
+		"empty": "Ko si awọn abajade. Gbiyanju ọrọ ti o yatọ.",
+		"error": "Ko si ohun elo ti o wa ni isalẹ ti o wa ni isalẹ. Ṣiṣe iṣelọpọ iṣelọpọ kan."
+	},
+	"toc": {
+		"title": "Lori oju-iwe yii"
+	},
+	"pager": {
+		"ariaLabel": "Abala",
+		"previous": "Ti tẹlẹ",
+		"next": "Ti o tẹle"
+	},
+	"backToTop": {
+		"label": "Yi lọ si oke"
+	},
+	"footer": {
+		"docs": "Awọn iwe aṣẹ",
+		"project": "Ise agbese",
+		"community": "Agbegbe",
+		"projectLinksAria": "Awọn ọna asopọ ise agbese",
+		"sourceAria": "Wo orisun lori GitHub",
+		"marketplaceAria": "Wo lori GitHub Marketplace",
+		"authorAria": "Oju opo wẹẹbu David Pine",
+		"taglinePrefix": "GitHub Igbese kan ti o tumọ awọn faili orisun rẹ laifọwọyi, ti a kọ lori osise",
+		"taglineMiddle": "SDK lati",
+		"copyrightPrefix": "Ti tu silẹ labẹ",
+		"builtWith": "Itumọ ti pẹlu"
+	}
+}

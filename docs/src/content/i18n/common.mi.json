@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Kaiwhakamāori Rauemi",
+		"defaultDescription": "Documentation for the Resource Translator GitHub Action — automated machine translation of resource files via Azure AI Translator.",
+		"homeLabel": "Kaiwhakamāori Rauemi — kāinga"
+	},
+	"skipToContent": "Tīpoka ki te ihirangi",
+	"drawer": {
+		"open": "Whakatuwhera Whakaterenga",
+		"close": "Kati Whakaterenga",
+		"title": "Te Whakatere"
+	},
+	"header": {
+		"search": "Rapua ngā tuhinga",
+		"searchPlaceholder": "Rapua ngā tuhinga...",
+		"toggleTheme": "Takahuri tāhuhu",
+		"githubRepository": "Te whare putunga GitHub",
+		"language": "Reo"
+	},
+	"search": {
+		"title": "Rapua ngā tuhinga",
+		"results": "Ngā Huanga Rapu",
+		"placeholder": "Rapua ngā tuhinga, ngā wāhanga, ngā tohutohu...",
+		"close": "Katia te rapu",
+		"idleTitle": "Rapua ngā tuhinga",
+		"idleHelp": "Kimihia ngā tuhipānui mā te kaupapa, te hōputu kōnae, te kōwhiringa whirihoranga, te tohutao rānei. Whakamahia {up} {down} hei whakatere, {enter} whakatuwhera hoki.",
+		"loading": "Rapu ana...",
+		"empty": "Kāore he whakautu. Whakamātauria he kupumatua kē.",
+		"error": "Kāore te taupū rapu i te wātea i roto i te dev. Whakahaerehia tētahi hanga whakanao."
+	},
+	"toc": {
+		"title": "I tēnei whārangi"
+	},
+	"pager": {
+		"ariaLabel": "Tuhinga",
+		"previous": "Tōmua",
+		"next": "Panuku"
+	},
+	"backToTop": {
+		"label": "Panuku ki runga"
+	},
+	"footer": {
+		"docs": "Ngā Tuhinga",
+		"project": "Kaupapa",
+		"community": "Hapori",
+		"projectLinksAria": "Ngā hononga kaupapa",
+		"sourceAria": "Tirohia te pūtake i GitHub",
+		"marketplaceAria": "Tirohia i GitHub Marketplace",
+		"authorAria": "Te paetukutuku a David Pine",
+		"taglinePrefix": "He Hohenga GitHub e whakamāori aunoa ana i ō kōnae rauemi, i hangaia ki runga i te mana",
+		"taglineMiddle": "SDK mai i",
+		"copyrightPrefix": "I tukua i raro i te",
+		"builtWith": "I hangaia ki te"
+	}
+}

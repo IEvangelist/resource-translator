@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "سرچینې ژباړونکی",
+		"defaultDescription": "د سرچینې ژباړونکی GitHub Action لپاره اسناد — د سرچینې فایلونو اتومات ماشین ژباړه د Azure AI Translator له لارې.",
+		"homeLabel": "سرچینې ژباړونکی — کور"
+	},
+	"skipToContent": "منځپانګې ته لاړ شئ",
+	"drawer": {
+		"open": "خلاص نیویګیشن",
+		"close": "نږدې ناوبری",
+		"title": "نیویګیشن"
+	},
+	"header": {
+		"search": "د لټون اسناد",
+		"searchPlaceholder": "د لټون اسناد...",
+		"toggleTheme": "د موضوع ټوګل کړئ",
+		"githubRepository": "GitHub زیرمه",
+		"language": "ژبه"
+	},
+	"search": {
+		"title": "د لټون اسناد",
+		"results": "د لټون پایلې",
+		"placeholder": "مقالې، برخې، ترکیبونه ولټوئ...",
+		"close": "نږدې لټون",
+		"idleTitle": "اسناد ولټوئ",
+		"idleHelp": "مقالې د موضوع، فایل بڼه، د تنظیماتو اختیار، یا ترکیب له مخې پیدا کړئ. {up} {down} وکاروه چې لاره ومومی، {enter} خلاص شی.",
+		"loading": "لټون...",
+		"empty": "هیڅ نتیجه نشته. بله کلیدی کلمه وازمویه.",
+		"error": "د لټون شاخص په dev کې شتون نلری. یو تولیدی جوړښت وچلوه."
+	},
+	"toc": {
+		"title": "په دې پاڼه کې"
+	},
+	"pager": {
+		"ariaLabel": "مقاله",
+		"previous": "پخوانی",
+		"next": "بل"
+	},
+	"backToTop": {
+		"label": "پورته ته سکرول کړئ"
+	},
+	"footer": {
+		"docs": "اسناد",
+		"project": "پروژه",
+		"community": "ټولنه",
+		"projectLinksAria": "د پروژې لینکونه",
+		"sourceAria": "سرچینه په GitHub کې وګورئ",
+		"marketplaceAria": "په GitHub Marketplace کې لیدل",
+		"authorAria": "د ډیویډ پاین ویب پاڼه",
+		"taglinePrefix": "یو GitHub Action چې ستاسو سرچینې فایلونه په اوتومات ډول ژباړی، چې د رسمی فایلونو پر سر جوړ شوی",
+		"taglineMiddle": "SDK له",
+		"copyrightPrefix": "د لاندې خپور شوی",
+		"builtWith": "جوړ شوی"
+	}
+}

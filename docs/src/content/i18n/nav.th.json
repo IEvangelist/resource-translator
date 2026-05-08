@@ -1,0 +1,28 @@
+{
+	"sections": {
+		"start": "เริ่มที่นี่",
+		"reference": "อ้างอิง",
+		"showcase": "ตู้โชว์",
+		"project": "โครงการ"
+	},
+	"items": {
+		"overview": "ภาพรวม",
+		"gettingStarted": "เริ่มต้นใช้งาน",
+		"configuration": "องค์ประกอบ",
+		"inputs": "อินพุตและเอาต์พุต",
+		"formats": "รูปแบบไฟล์",
+		"recipes": "สูตรอาหาร",
+		"faq": "คําถามที่พบบ่อย",
+		"translations": "การแปล",
+		"contributing": "การมีส่วนร่วม",
+		"changelog": "บันทึกการเปลี่ยนแปลง"
+	},
+	"community": {
+		"reportBug": "รายงานข้อบกพร่อง",
+		"requestFeature": "ขอฟีเจอร์",
+		"discussions": "การสนทนา",
+		"securityPolicy": "นโยบายความปลอดภัย",
+		"codeOfConduct": "จรรยาบรรณ",
+		"license": "ใบอนุญาต MIT"
+	}
+}

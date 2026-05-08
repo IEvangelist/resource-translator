@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Traducător de resurse",
+		"defaultDescription": "Documentație pentru Resource Translator GitHub Action — traducere automată automată a fișierelor de resurse prin Azure AI Translator.",
+		"homeLabel": "Translator de resurse — acasă"
+	},
+	"skipToContent": "Sari la conținut",
+	"drawer": {
+		"open": "Navigație deschisă",
+		"close": "Navigație apropiată",
+		"title": "Navigație"
+	},
+	"header": {
+		"search": "Documentația căutării",
+		"searchPlaceholder": "Caută documentație...",
+		"toggleTheme": "Temă de comutare",
+		"githubRepository": "Depozitul GitHub",
+		"language": "Limbă"
+	},
+	"search": {
+		"title": "Documentația căutării",
+		"results": "Rezultatele căutării",
+		"placeholder": "Caută articole, secțiuni, rețete...",
+		"close": "Căutare apropiată",
+		"idleTitle": "Caută în documente",
+		"idleHelp": "Găsește articole după subiect, format de fișier, opțiune de configurare sau rețetă. Folosește {up} {down} pentru a naviga, {enter} pentru a deschide.",
+		"loading": "Căutând...",
+		"empty": "Niciun rezultat. Încearcă un alt cuvânt cheie.",
+		"error": "Indexul de căutare nu este disponibil în dezvoltator. Rulează o construcție de producție."
+	},
+	"toc": {
+		"title": "Pe această pagină"
+	},
+	"pager": {
+		"ariaLabel": "Articol",
+		"previous": "Anterior",
+		"next": "Următorul"
+	},
+	"backToTop": {
+		"label": "Derulează până sus"
+	},
+	"footer": {
+		"docs": "Documentare",
+		"project": "Proiect",
+		"community": "Comunitate",
+		"projectLinksAria": "Legături către proiecte",
+		"sourceAria": "Vezi sursa pe GitHub",
+		"marketplaceAria": "Vizualizare pe GitHub Marketplace",
+		"authorAria": "Site-ul lui David Pine",
+		"taglinePrefix": "O acțiune GitHub care traduce automat fișierele tale de resurse, construită peste fișierul oficial",
+		"taglineMiddle": "SDK de la",
+		"copyrightPrefix": "Lansat sub",
+		"builtWith": "Construit cu"
+	}
+}

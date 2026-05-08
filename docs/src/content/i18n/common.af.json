@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Hulpbronvertaler",
+		"defaultDescription": "Dokumentasie vir die Hulpbronvertaler GitHub-aksie — outomatiese masjienvertaling van hulpbronlêers via Azure AI Translator.",
+		"homeLabel": "Hulpbronvertaler — tuis"
+	},
+	"skipToContent": "Slaan oor na inhoud",
+	"drawer": {
+		"open": "Oop navigasie",
+		"close": "Naby navigasie",
+		"title": "Navigasie"
+	},
+	"header": {
+		"search": "Soek dokumentasie",
+		"searchPlaceholder": "Soek dokumentasie...",
+		"toggleTheme": "Skakel-tema",
+		"githubRepository": "GitHub-bewaarplek",
+		"language": "Taal"
+	},
+	"search": {
+		"title": "Soek dokumentasie",
+		"results": "Soekresultate",
+		"placeholder": "Soek artikels, afdelings, resepte...",
+		"close": "Sluit soektog",
+		"idleTitle": "Soek die dokumentasie",
+		"idleHelp": "Vind artikels volgens onderwerp, lêerformaat, konfigurasie-opsie, of resep. Gebruik {up} {down} om te navigeer, {enter} om oop te maak.",
+		"loading": "Soek...",
+		"empty": "Geen resultate nie. Probeer 'n ander sleutelwoord.",
+		"error": "Soekindeks is nie beskikbaar in ontwikkeling nie. Hardloop 'n produksiebou."
+	},
+	"toc": {
+		"title": "Op hierdie bladsy"
+	},
+	"pager": {
+		"ariaLabel": "Artikel",
+		"previous": "Vorige",
+		"next": "Volgende"
+	},
+	"backToTop": {
+		"label": "Rol na bo"
+	},
+	"footer": {
+		"docs": "Docs",
+		"project": "Projek",
+		"community": "Gemeenskap",
+		"projectLinksAria": "Projekskakels",
+		"sourceAria": "Sien bron op GitHub",
+		"marketplaceAria": "Kyk op GitHub Marketplace",
+		"authorAria": "David Pine se webwerf",
+		"taglinePrefix": "'n GitHub-aksie wat jou hulpbronlêers outomaties vertaal, gebou bo-op die amptelike",
+		"taglineMiddle": "SDK van",
+		"copyrightPrefix": "Vrygestel onder die",
+		"builtWith": "Gebou met"
+	}
+}

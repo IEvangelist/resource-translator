@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Umusemuzi w'Ibikoresho",
+		"defaultDescription": "Documentation for the Resource Translator GitHub Action — automated machine translation of resource files via Azure AI Translator.",
+		"homeLabel": "Resource Translator — home"
+	},
+	"skipToContent": "Skip to content",
+	"drawer": {
+		"open": "Open navigation",
+		"close": "Close navigation",
+		"title": "Navigation"
+	},
+	"header": {
+		"search": "Search documentation",
+		"searchPlaceholder": "Search documentation...",
+		"toggleTheme": "Toggle theme",
+		"githubRepository": "Ububiko bwa GitHub",
+		"language": "Ururimi"
+	},
+	"search": {
+		"title": "Search documentation",
+		"results": "Search results",
+		"placeholder": "Search articles, sections, recipes...",
+		"close": "Close search",
+		"idleTitle": "Search the docs",
+		"idleHelp": "Find articles by topic, file format, configuration option, or recipe. Use {up} {down} to navigate, {enter} to open.",
+		"loading": "Kurondera ...",
+		"empty": "Nta bivamwo. Nugerageze irindi jambo nyamukuru.",
+		"error": "Search index is not available in dev. Kora inyubakwa y'inyubakwa."
+	},
+	"toc": {
+		"title": "Ku rupapuro"
+	},
+	"pager": {
+		"ariaLabel": "Ingingo",
+		"previous": "Imbere",
+		"next": "Ikurikira"
+	},
+	"backToTop": {
+		"label": "Scroll to top"
+	},
+	"footer": {
+		"docs": "Docs",
+		"project": "Umushinga",
+		"community": "Umuryango",
+		"projectLinksAria": "Project links",
+		"sourceAria": "View source on GitHub",
+		"marketplaceAria": "View on GitHub Marketplace",
+		"authorAria": "Urubuga rwa David Pine",
+		"taglinePrefix": "Suzumiya Haruka Ayase",
+		"taglineMiddle": "SDK ya",
+		"copyrightPrefix": "Yarekuwe munsi y'ibwirizwa",
+		"builtWith": "Built with"
+	}
+}

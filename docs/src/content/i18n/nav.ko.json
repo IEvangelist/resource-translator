@@ -1,0 +1,28 @@
+{
+	"sections": {
+		"start": "여기서 시작해",
+		"reference": "참고문헌",
+		"showcase": "쇼케이스",
+		"project": "프로젝트"
+	},
+	"items": {
+		"overview": "개요",
+		"gettingStarted": "시작하기",
+		"configuration": "구성",
+		"inputs": "입력 및 출력",
+		"formats": "파일 형식",
+		"recipes": "레시피",
+		"faq": "자주 묻는 질문",
+		"translations": "번역",
+		"contributing": "기여",
+		"changelog": "변경 기록"
+	},
+	"community": {
+		"reportBug": "버그 신고",
+		"requestFeature": "기능 요청하기",
+		"discussions": "토론",
+		"securityPolicy": "보안 정책",
+		"codeOfConduct": "행동 강령",
+		"license": "MIT 라이선스"
+	}
+}

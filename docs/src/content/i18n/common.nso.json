@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Resource Translator",
+		"defaultDescription": "Documentation for the Resource Translator GitHub Action — automated machine translation of resource files via Azure AI Translator.",
+		"homeLabel": "Resource Translator — home"
+	},
+	"skipToContent": "Skip to content",
+	"drawer": {
+		"open": "Open navigation",
+		"close": "Close navigation",
+		"title": "Navigation"
+	},
+	"header": {
+		"search": "Search documentation",
+		"searchPlaceholder": "Search Documents...",
+		"toggleTheme": "Toggle theme",
+		"githubRepository": "GitHub repository",
+		"language": "Polelo"
+	},
+	"search": {
+		"title": "Search documentation",
+		"results": "Dipoelo tša go nyaka",
+		"placeholder": "Search articles, sections, recipes...",
+		"close": "Close search",
+		"idleTitle": "Go Go Gadget Docs",
+		"idleHelp": "Find articles by topic, file format, configuration option, or recipe. Use {up} {down} to navigate, {enter} to open.",
+		"loading": "Go nyaka...",
+		"empty": "Ga go na dipoelo. Leka lentšu le lengwe la sehlogo.",
+		"error": "Dil Pe Dil Ka Dil Na Dekho Go Go Gadget Production!"
+	},
+	"toc": {
+		"title": "Letlakala le"
+	},
+	"pager": {
+		"ariaLabel": "Article",
+		"previous": "Pele",
+		"next": "Se se latelago"
+	},
+	"backToTop": {
+		"label": "Scroll to top"
+	},
+	"footer": {
+		"docs": "Docs",
+		"project": "Projeke",
+		"community": "Setšhaba",
+		"projectLinksAria": "Project links",
+		"sourceAria": "View source on GitHub",
+		"marketplaceAria": "View on GitHub Marketplace",
+		"authorAria": "David Pine's Website",
+		"taglinePrefix": "A GitHub Action that translates your resource files automatically, built atop the official",
+		"taglineMiddle": "SDK go tšwa",
+		"copyrightPrefix": "E lokollotšwe ka tlase ga",
+		"builtWith": "E agilwe ka"
+	}
+}

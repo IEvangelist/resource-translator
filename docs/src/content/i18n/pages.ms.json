@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Penterjemah Sumber",
+		"description": "Buka permintaan tarik terjemahan mesin untuk fail sumber dalam mana-mana repo, dalam sebarang format.",
+		"badge": "v3.0 — Nod 24, konfigurasi repo, glosari, larian kering",
+		"headlinePrefix": "Setempatkan repo anda pada",
+		"headlineAccent": "setiap komitmen.",
+		"lede": "Penterjemah Sumber membuka permintaan tarik terjemahan mesin untuk fail sumber anda menggunakan Azure AI Translator melalui SDK rasmi — tiada perkhidmatan tambahan, hanya aliran kerja.",
+		"primaryCta": "Bermula",
+		"secondaryCta": "Bintang di GitHub",
+		"supports": "Menyokong",
+		"builtForShipping": "Dibina untuk penghantaran",
+		"workflowTitle": "Terjemahan sebagai aliran kerja, bukan tugas.",
+		"workflowBody": "Jatuhkan tindakan ke dalam CI sedia ada anda, halakannya ke Azure AI Translator dan biarkan repositori anda bercakap setiap bahasa yang anda sasarkan.",
+		"stats": {
+			"audit": "0 isu audit npm",
+			"tests": "150 ujian",
+			"node": "Nod 20 / 22 / 24",
+			"sdk": "Azure SDK Rasmi"
+		},
+		"features": {
+			"formats": {
+				"title": "Enam format fail",
+				"body": "Perjalanan pergi balik .resx, .xliff, .po, .json, .ini dan .restext dengan pemformatan bait-stabil."
+			},
+			"config": {
+				"title": "Konfigurasi peringkat repo",
+				"body": "Jatuhkan .github/resource-translator.yml untuk memasukkan globs, glosari, dan kategori Penterjemah Tersuai."
+			},
+			"glossary": {
+				"title": "Sedar glosari",
+				"body": "Kunci nama jenama dan istilah produk dengan regex sempadan perkataan pintar yang mengendalikan C++, .NET dan rakan-rakan."
+			},
+			"dryRun": {
+				"title": "Larian kering + gagal lembut",
+				"body": "Pratonton terjemahan tanpa menulis fail atau paparkan setiap ralat sebagai amaran semasa anda mengulang."
+			},
+			"outputs": {
+				"title": "Output mesra PR",
+				"body": "summary-title, summary-details, dan has-new-translations terus ke dalam create-pull-request."
+			},
+			"sdk": {
+				"title": "Azure SDK Rasmi",
+				"body": "Dibina pada @azure-rest/ai-translation-text + @azure/core-rest-pipeline — percubaan semula automatik pada 408/429/5xx, tiada HTTP yang digulung tangan. esbuild-bundled, audit-bersih."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Bermula",
+		"eyebrow": "Persediaan",
+		"lede": "Tambahkan fail aliran kerja, halakannya pada kelayakan Azure AI Translator anda dan tindakan — dibina pada SDK @azure-rest/ai-translation-text rasmi Microsoft — akan mengimbas repositori untuk fail sumber bahasa sumber dan memancarkan adik-beradik yang diterjemahkan.",
+		"steps": {
+			"provision": {
+				"title": "Memperuntukkan sumber Azure AI Translator",
+				"body": "Cipta sumber Azure AI Translator dalam portal Microsoft Azure, kemudian simpan yang berikut sebagai rahsia repositori GitHub supaya aliran kerja boleh membacanya:",
+				"key": "kunci langganan untuk sumber.",
+				"endpoint": "URL titik akhir serantau.",
+				"region": "rantau Azure sumber."
+			},
+			"workflow": {
+				"title": "Tambah aliran kerja",
+				"body": "Buat .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Commit fail sumber sumber",
+				"body": "Fail sumber menggunakan Nama. <sourceLocale>. <ext> konvensyen. Contohnya Greetings.en.resx menjadi Greetings.fr.resx, Greetings.de.resx, dan sebagainya selepas larian."
+			},
+			"output": {
+				"title": "Periksa output",
+				"body": "Setelah aliran kerja selesai, tindakan itu mendedahkan tiga output yang boleh anda sambungkan ke dalam perihalan PR: tajuk ringkasan, butiran ringkasan dan terjemahan baru. Ia juga menulis ringkasan Markdown ke dalam halaman kerja melalui core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Langkah seterusnya",
+			"configuration": "Konfigurasikan lalai peringkat repo dengan .github/resource-translator.yml.",
+			"recipes": "Lihat resipi untuk monorepos, glosari tersuai dan kategori Penterjemah Tersuai."
+		}
+	},
+	"configuration": {
+		"title": "Konfigurasi",
+		"eyebrow": "YAML",
+		"heroTitle": "Konfigurasi repositori",
+		"lede": "Express lalai sekali dalam .github/resource-translator.yml dan biarkan setiap aliran kerja mewarisinya. Input tindakan sentiasa menang apabila kedua-duanya disediakan."
+	},
+	"inputs": {
+		"title": "Input & output",
+		"eyebrow": "Rujukan",
+		"lede": "Setiap input juga diterima dalam fail konfigurasi repo pilihan. Apabila kedua-duanya ditetapkan, input tindakan menang."
+	},
+	"formats": {
+		"title": "Format fail",
+		"eyebrow": "Rujukan",
+		"heroTitle": "Format fail yang disokong",
+		"lede": "Enam format sumber boleh dipusingkan pusing. Tindakan membaca setiap fail sumber-tempatan, menterjemah nilai dan menulis adik-beradik bagi setiap sasaran sasaran."
+	},
+	"recipes": {
+		"title": "Resipi",
+		"eyebrow": "Buku masakan",
+		"lede": "Corak biasa untuk terjemahan penghantaran: monorepos, glosari, kategori tersuai, larian kering dan kawalan nada."
+	},
+	"faq": {
+		"title": "Soalan lazim",
+		"eyebrow": "Bantuan",
+		"heroTitle": "Soalan lazim",
+		"lede": "Jawapan pantas kepada soalan yang paling kerap timbul apabila menerima pakai tindakan."
+	},
+	"translations": {
+		"title": "Terjemahan",
+		"eyebrow": "Pameran",
+		"heroTitle": "Hello dalam setiap bahasa",
+		"locales": "Tempatan-tempat",
+		"currentlyRendered": "sedang dipaparkan",
+		"complete": "lengkap!",
+		"pendingPrefix": "Sementara menunggu terjemahan-dokumen seterusnya.",
+		"viewWorkflowRuns": "Lihat aliran kerja yang dijalankan",
+		"filter": "Penapis",
+		"filterPlaceholder": "Cari mengikut bahasa, kod atau nama asli...",
+		"source": "Sumber",
+		"machineTranslations": "Terjemahan mesin",
+		"translationPending": "Terjemahan belum selesai — buka larian terjemahan-dokumen.",
+		"noLocales": "Tiada tempat yang sepadan dengan penapis itu.",
+		"howItWorks": "Bagaimana ini berfungsi"
+	},
+	"contributing": {
+		"title": "Menyumbang",
+		"eyebrow": "Sumber terbuka",
+		"lede": "Laporan pepijat, permintaan ciri dan permintaan tarik semuanya dialu-alukan. Tindakan itu cukup kecil untuk menjadi mesra kepada penyumbang kali pertama."
+	},
+	"changelog": {
+		"title": "Log perubahan",
+		"eyebrow": "Sejarah",
+		"lede": "Ringkasan keluaran peringkat tinggi. Log perubahan kanonik dan berwibawa tinggal di CHANGELOG.md dalam repositori."
+	}
+}

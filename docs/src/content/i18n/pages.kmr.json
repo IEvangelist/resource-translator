@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Wergêra Çavkanî",
+		"description": "Ji bo pelên çavkaniyê di her repoyê, di her formatê de, daxwazên kişandina makîneyê vekin.",
+		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "Repo xwe li ser herêmî bikin",
+		"headlineAccent": "her peyman.",
+		"lede": "Wergêra Çavkaniyê ji bo pelên çavkaniya we bi karanîna Azure AI Translator bi rêya SDK-ya fermî daxwazên kişandinê yên makîneyê vedike - ne karûbarên zêde, tenê herikîna xebatê.",
+		"primaryCta": "Dest pê bikin",
+		"secondaryCta": "Stêrk li ser GitHub",
+		"supports": "Piştgirî",
+		"builtForShipping": "Ji bo barkêşiyê hatiye çêkirin",
+		"workflowTitle": "Wergerandin wekî herikîna xebatê, ne karek.",
+		"workflowBody": "Çalakiyê bavêjin CI-ya xweya heyî, wê li ser Azure AI Translator nîşan bidin, û bila repoya we her zimanê ku hûn armanc dikin biaxivin.",
+		"stats": {
+			"audit": "0 Pirsgirêkên NPM-kontrolê",
+			"tests": "150 ceribandin",
+			"node": "Girêk 20 / 22 / 24",
+			"sdk": "Fermî Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Şeş formatên pelan",
+				"body": "Rêwîtiyên .resx, .xliff, .po, .json, .ini û .restext bi formatkirina byte-stabîl."
+			},
+			"config": {
+				"title": "Mîhenga asta repo",
+				"body": "Ji bo kategoriyên globs, ferheng û Wergêra Xwerû .github/resource-translator.yml bavêjin."
+			},
+			"glossary": {
+				"title": "Ferheng-agahdar",
+				"body": "Navên marqeyan û termên hilberê bi regex-sînorê peyva zîrek a ku C ++, .NET û hevalên xwe digire kilîd bikin."
+			},
+			"dryRun": {
+				"title": "Ziwa + nerm-têkçûn",
+				"body": "Bêyî ku pelan binivîsin wergeran pêş-temaşe bikin, an jî dema ku hûn dubare dikin her xeletiyê wekî hişyariyek derdixin holê."
+			},
+			"outputs": {
+				"title": "Berhemên PR-heval",
+				"body": "kurte-sernav, kurte-hûrgulî û wergerên nû rasterast di create-pull-request de cih digirin."
+			},
+			"sdk": {
+				"title": "Fermî Azure SDK",
+				"body": "Li ser @azure-rest / ai-translation-text + @azure / core-rest-pipeline hatiye avakirin - li ser 408/429/5xx dubarekirina otomatîk e, HTTP bi destan nehatiye pêçandin. esbuild-bundled, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Destpêkirin",
+		"eyebrow": "Sazkirin",
+		"lede": "Pelê herikîna xebatê lê zêde bikin, wê li ser nasnameyên xwe yên Azure AI Translator nîşan bidin, û çalakî - li ser SDK-ya fermî ya Microsoft-ê @azure-rest / ai-translation-text hatî çêkirin - dê repo ji bo pelên çavkaniya çavkaniya zimanê çavkaniyê skan bike û xwişk û birayên wergerandî belav bike.",
+		"steps": {
+			"provision": {
+				"title": "Supply an Azure AI Translator resource",
+				"body": "Di portala Azure de çavkaniyek Azure AI Translator biafirînin, paşê jêrîn wekî razên depoya GitHub hilînin da ku herikîna kar bikaribe wan bixwîne:",
+				"key": "mifteya abonetiyê ji bo çavkaniyê.",
+				"endpoint": "URL-ya xala dawîn a herêmî.",
+				"region": "Herêma Azure ya çavkaniyê."
+			},
+			"workflow": {
+				"title": "Workflow lê zêde bikin",
+				"body": ".github/workflows/translate.yml biafirînin:"
+			},
+			"resource": {
+				"title": "Pelê çavkaniya çavkaniyê pêk bînin",
+				"body": "Pelên çavkaniyê Navê bikar tînin. <sourceLocale>. <ext> Peyman. Bo nimûne, Greetings.en.resx dibe Greetings.fr.resx, Greetings.de.resx, û hwd."
+			},
+			"output": {
+				"title": "Hilberînê kontrol bikin",
+				"body": "Dema ku herikîna kar bi dawî dibe, çalakî sê hilberên ku hûn dikarin di nav danasîna PR-ê de girêbidin derdixe holê: kurte-sernav, kurte-hûrgulî, û wergerên nû. Di heman demê de ew bi rêya core.summary kurteyek Markdown di rûpela kar de dinivîse."
+			}
+		},
+		"nextSteps": {
+			"title": "Gavên din",
+			"configuration": "Bi .github/resource-translator.yml re xwerûyên asta repo-yê vesaz bikin.",
+			"recipes": "Li reçeteyên ji bo monorepo, ferhengên xwerû û kategoriyên Wergêra Taybet binêrin."
+		}
+	},
+	"configuration": {
+		"title": "Vesazkirin",
+		"eyebrow": "YAML",
+		"heroTitle": "Mîhengkirina depoyê",
+		"lede": "Express carekê di .github/resource-translator.yml de xwerû ye û bila her herikîna kar wan mîras bigire. Dema ku her du jî têne peyda kirin, têketinên çalakiyê her gav qezenc dikin."
+	},
+	"inputs": {
+		"title": "Têketin û derketin",
+		"eyebrow": "Referans",
+		"lede": "Her têketin di pelê vesazkirina repoyê ya vebijarkî de jî tê pejirandin. Dema ku her du jî têne eyarkirin, têketina çalakiyê qezenc dike."
+	},
+	"formats": {
+		"title": "Formatên pelan",
+		"eyebrow": "Referans",
+		"heroTitle": "Formatên pelê yên piştgirî",
+		"lede": "Şeş formatên çavkaniya dorpêçkirî. Çalakî her pelê çavkanî-herêmî dixwîne, nirxan werdigerîne, û ji bo her herêmek armanc bira dinivîse."
+	},
+	"recipes": {
+		"title": "Recipes",
+		"eyebrow": "Pirtûka xwarinê",
+		"lede": "Şêwazên hevpar ên ji bo wergerên barkirinê: monorepos, ferheng, kategoriyên xwerû, rêwîtiyên hişk û kontrola tonê."
+	},
+	"faq": {
+		"title": "Pirsên gişpirsî",
+		"eyebrow": "Alîkarî",
+		"heroTitle": "Pirsên Pir Têne Pirsîn",
+		"lede": "Bersivên bilez ji bo pirsên ku herî zêde dema pejirandina çalakiyê derdikevin holê."
+	},
+	"translations": {
+		"title": "Werger",
+		"eyebrow": "Pêşangeh",
+		"heroTitle": "Silav bi her zimanî",
+		"locales": "herêm",
+		"currentlyRendered": "niha hatiye çêkirin",
+		"complete": "temam!",
+		"pendingPrefix": "Li benda wergera belgeyên din.",
+		"viewWorkflowRuns": "Xebata herikîna xebatê bibîne",
+		"filter": "Fîltre",
+		"filterPlaceholder": "Li gorî ziman, kod an navê zikmakî bigerin...",
+		"source": "Çavkanî",
+		"machineTranslations": "Wergerên makîneyê",
+		"translationPending": "Werger li bendê ye - wergera belgeyan veke.",
+		"noLocales": "Ti herêm bi vê fîltreyê re hevûdu nabe.",
+		"howItWorks": "Ev çawa dixebite?"
+	},
+	"contributing": {
+		"title": "Beşdarî",
+		"eyebrow": "Çavkaniya vekirî",
+		"lede": "Raporên bug, daxwazên taybetmendiyê û daxwazên kişandinê hemî bi xêr hatin. Çalakî têra xwe piçûk e ku ji bo beşdarên cara yekem heval be."
+	},
+	"changelog": {
+		"title": "Guhertina Guhertinê",
+		"eyebrow": "Dîrok",
+		"lede": "Kurteya asta bilind a guhertoyan. Guhertina kanonîk, otorîter di CHANGELOG.md de di depoyê de dijî."
+	}
+}

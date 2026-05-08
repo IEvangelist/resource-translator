@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "资源转换器",
+		"description": "在任何仓库、任何格式下，对资源文件进行机器翻译的拉取请求。",
+		"badge": "v3.0 — Node 24， repo config， glossary， dry run",
+		"headlinePrefix": "将你的仓库本地化",
+		"headlineAccent": "每一次提交。",
+		"lede": "Resource Translator通过官方SDK使用Azure AI Translator打开机器翻译的资源文件拉取请求——没有额外服务，只有一个工作流程。",
+		"primaryCta": "开始",
+		"secondaryCta": "GitHub 上的星级",
+		"supports": "辅助",
+		"builtForShipping": "为航运而建",
+		"workflowTitle": "翻译作为一种工作流程，而不是一项苦差事。",
+		"workflowBody": "把动作放进你现有的配置项，指向Azure AI Translator，让你的仓库能说你目标的所有语言。",
+		"stats": {
+			"audit": "0 NPM-审计问题",
+			"tests": "150场测试赛",
+			"node": "节点20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "六种文件格式",
+				"body": "支持来回传输.resx、.xliff、.po、.json、.ini和.restext，采用字节稳定格式。"
+			},
+			"config": {
+				"title": "仓库级配置",
+				"body": "提供 .github/resource-translator.yml 以获取 glob、术语表和自定义翻译器类别。"
+			},
+			"glossary": {
+				"title": "词汇表感知",
+				"body": "用智能字边界正则式锁定品牌名称和产品术语，以处理C++、.NET等。"
+			},
+			"dryRun": {
+				"title": "演练 + 软失败",
+				"body": "在不写文件的情况下预览翻译，或者在迭代时将每个错误作为警告显示出来。"
+			},
+			"outputs": {
+				"title": "PR友好输出",
+				"body": "summary-title、summary-details 和 has-new-translations 直接插入 create-pull-request。"
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "基于@azure-rest/ai-translation-text + @azure/core-rest-pipeline构建——408/429/5xx 上自动重试，没有手动滚动的 HTTP。esbuild捆绑，审计净化。"
+			}
+		}
+	},
+	"getting-started": {
+		"title": "入门",
+		"eyebrow": "设置",
+		"lede": "添加一个工作流文件，指向你的Azure AI Translator凭证，该操作——基于Microsoft官方@azure/ai-translation-text SDK——将扫描仓库中的源语言资源文件，并发送翻译后的兄弟文件。",
+		"steps": {
+			"provision": {
+				"title": "Provision a Azure AI Translator 资源",
+				"body": "在 Azure 门户创建一个 Azure AI 翻译器资源，然后将以下内容作为 GitHub 仓库秘密存储，以便工作流程读取：",
+				"key": "资源的订阅密钥。",
+				"endpoint": "区域端点URL。",
+				"region": "该资源的Azure区域。"
+			},
+			"workflow": {
+				"title": "添加工作流程",
+				"body": "创建 .github/workflows/translate.yml："
+			},
+			"resource": {
+				"title": "提交源资源文件",
+				"body": "资源文件使用名称。<sourceLocale>。<ext> 大会。例如，Greetings.en.resx 在运行后会变成 Greetings.fr.resx、Greetings.de.resx 等。"
+			},
+			"output": {
+				"title": "检查输出",
+				"body": "工作流程结束后，动作会暴露三个输出，你可以连接到PR描述中：summary-title、summary-details和has-new-translations。它还通过core.summary在职位页面写入Markdown摘要。"
+			}
+		},
+		"nextSteps": {
+			"title": "下一步",
+			"configuration": "用.github/resource-translator.yml配置仓库级默认设置。",
+			"recipes": "查看 monorepo 的配方、自定义词汇表和自定义翻译器类别。"
+		}
+	},
+	"configuration": {
+		"title": "配置",
+		"eyebrow": "YAML",
+		"heroTitle": "仓库配置",
+		"lede": "在 .github/resource-translator.yml 中表达一次默认，让每个工作流程继承它们。当动作输入同时提供时，动作输入总是获胜。"
+	},
+	"inputs": {
+		"title": "输入与输出",
+		"eyebrow": "参考文献",
+		"lede": "所有输入也都被接受在可选的仓库配置文件中。当两者都已设定时，动作输入获胜。"
+	},
+	"formats": {
+		"title": "文件格式",
+		"eyebrow": "参考文献",
+		"heroTitle": "支持的文件格式",
+		"lede": "六种可往返的资源格式。该动作读取每个源-本地文件，转换这些值，并为每个目标区域写入一个兄弟文件。"
+	},
+	"recipes": {
+		"title": "食谱",
+		"eyebrow": "食谱",
+		"lede": "发布翻译的常见模式包括：单语仓库、词汇表、自定义分类、预演和语调控制。"
+	},
+	"faq": {
+		"title": "常见问题",
+		"eyebrow": "帮助",
+		"heroTitle": "常见问题解答",
+		"lede": "快速回答在采用行动时最常出现的问题。"
+	},
+	"translations": {
+		"title": "译本",
+		"eyebrow": "展示",
+		"heroTitle": "所有语言的问候",
+		"locales": "地点",
+		"currentlyRendered": "当前渲染",
+		"complete": "完成！",
+		"pendingPrefix": "等待下一次翻译文档的运行。",
+		"viewWorkflowRuns": "查看工作流程运行",
+		"filter": "滤波器",
+		"filterPlaceholder": "按语言、代码或本地名字搜索......",
+		"source": "资料来源",
+		"machineTranslations": "机器翻译",
+		"translationPending": "翻译待处理——启动翻译文档运行。",
+		"noLocales": "没有哪个地点能匹配这个筛选条件。",
+		"howItWorks": "这是如何运作的"
+	},
+	"contributing": {
+		"title": "贡献",
+		"eyebrow": "开源",
+		"lede": "欢迎提交错误报告、功能请求和拉取请求。活动规模较小，适合首次投稿者。"
+	},
+	"changelog": {
+		"title": "更新日志",
+		"eyebrow": "历史",
+		"lede": "发布的高级总结。规范且权威的变更日志存放在仓库的 CHANGELOG.md 中。"
+	}
+}

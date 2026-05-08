@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Mofetoleli oa Resource",
+		"description": "Bula likopo tsa ho hula tse fetoletsoeng ka mochini bakeng sa lifaele tsa lisebelisoa ho repo efe kapa efe, ka sebopeho sefe kapa sefe.",
+		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "Localize your repo on",
+		"headlineAccent": "boitlamo bo bong le bo bong.",
+		"lede": "Mofetoleli oa Resource o bula likopo tsa ho hula tse fetoletsoeng ka mochini bakeng sa lifaele tsa hau tsa lisebelisoa o sebelisa Azure AI Translator ka SDK ea semmuso — ha ho na lits'ebeletso tse ling, ke ts'ebetso feela.",
+		"primaryCta": "Qala",
+		"secondaryCta": "Naleli ho GitHub",
+		"supports": "Tšehetso",
+		"builtForShipping": "E hahiloe bakeng sa ho tsamaisa thepa",
+		"workflowTitle": "Phetolelo e le ts'ebetso, eseng mosebetsi oa mosebetsi.",
+		"workflowBody": "Lahlela ketso ho CI ea hau e teng, e supe ho Azure AI Translator, 'me u lumelle repo ea hau hore e bue puo e ngoe le e ngoe eo u e shebileng.",
+		"stats": {
+			"audit": "0 NPM-audit issues",
+			"tests": "Liteko tse 150",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Lifomate tse tšeletseng tsa lifaele",
+				"body": "Maeto a ho potoloha .resx, .xliff, .po, .json, .ini, le .restext ka sebopeho se tsitsitseng sa byte."
+			},
+			"config": {
+				"title": "Repo-level config",
+				"body": "Lahla .github / resource-translator.yml bakeng sa kenyelletsa li-globs, li-glossaries le lihlopha tsa mofetoleli oa tloaelo."
+			},
+			"glossary": {
+				"title": "Glossary-Aware",
+				"body": "Notlela mabitso a mabitso le mantsoe a sehlahisoa ka regex e bohlale ea moeli oa mantsoe e sebetsanang le C ++, .NET le metsoalle."
+			},
+			"dryRun": {
+				"title": "Ho Ho Ho + Soft-Fail",
+				"body": "Hlahloba liphetolelo ntle le ho ngola lifaele, kapa u hlahise phoso e 'ngoe le e' ngoe e le tlhokomeliso ha u ntse u pheta-pheta."
+			},
+			"outputs": {
+				"title": "Lihlahisoa tsa PR",
+				"body": "summary-title, summary-details, and has-new-translations kena ka kotloloho ho create-pull-request."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "E hahiloe ka @azure-rest / ai-translation-text + @azure / core-rest-pipeline — liteko tse iketsang ho 408/429/5xx, ha ho na HTTP e phutholohileng ka letsoho. esbuild-bundled, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Ho qala",
+		"eyebrow": "Tlhophiso",
+		"lede": "Kenya faele ea ts'ebetso, e supe ho lifaele tsa hau tsa Azure AI Translator, 'me ketso — e hahiloeng ho SDK ea semmuso ea Microsoft ea @azure-rest / ai-translation-text — e tla skena repo bakeng sa lifaele tsa mohloli oa mohloli le ho ntša banab'eso ba fetolelitsoeng.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Theha mohloli oa Azure AI Translator ho portal ea Azure, ebe u boloka tse latelang e le liphiri tsa polokelo ea GitHub e le hore ts'ebetso e ka li bala:",
+				"key": "Senotlolo sa ho ngolisa bakeng sa sesebelisoa.",
+				"endpoint": "URL ea sebaka sa ho qetela",
+				"region": "Sebaka sa Azure sa Resource."
+			},
+			"workflow": {
+				"title": "Eketsa ts'ebetso ea ts'ebetso",
+				"body": "Theha .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Etsa file ea mohloli oa mohloli",
+				"body": "Lifaele tsa lisebelisoa li sebelisa lebitso. <sourceLocale>. <ext> Kopano. Ka mohlala, Greetings.en.resx e fetoha Greetings.fr.resx, Greetings.de.resx, joalo-joalo kamora ho matha."
+			},
+			"output": {
+				"title": "Hlahloba tlhahiso",
+				"body": "Hang ha ts'ebetso e felile, ketso e senola liphetho tse tharo tseo u ka li kopanyang ka tlhaloso ea PR: kakaretso-sehlooho, kakaretso-lintlha, le liphetolelo tse ncha. E boetse e ngola kakaretso ea Markdown leqepheng la mosebetsi ka core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Mehato e latelang",
+			"configuration": "Fetola li-default tsa repo ka .github/resource-translator.yml.",
+			"recipes": "Sheba lipe tsa li-monorepos, li-glossaries tsa moetlo, le lihlopha tsa mofetoleli oa tloaelo."
+		}
+	},
+	"configuration": {
+		"title": "Tlhophiso",
+		"eyebrow": "YAML",
+		"heroTitle": "Tlhophiso ea polokelo",
+		"lede": "Hlahisa liphoso hang ho .github/resource-translator.yml 'me u lumelle ts'ebetso e ngoe le e ngoe hore e e rue. Liketso li lula li hlōla ha li fanoa ka bobeli."
+	},
+	"inputs": {
+		"title": "Input & Outputs",
+		"eyebrow": "Litšupiso",
+		"lede": "Tlhahiso e 'ngoe le e' ngoe e boetse e amoheloa faeleng ea boikhethelo ea repo config. Ha bobeli bo behiloe, ts'ebetso ea ts'ebetso e hlola."
+	},
+	"formats": {
+		"title": "Lifomate tsa faele",
+		"eyebrow": "Litšupiso",
+		"heroTitle": "Lifomate tsa faele tse tšehelitsoeng",
+		"lede": "Lifomate tse tšeletseng tsa lisebelisoa tse potolohang. Ketso e bala faele e 'ngoe le e' ngoe ea mohloli-locale, e fetolela litekanyetso, 'me e ngola ngoan'abo rōna ka sebaka se shebiloeng."
+	},
+	"recipes": {
+		"title": "Lipe",
+		"eyebrow": "Buka ea ho pheha",
+		"lede": "Mekhoa e tloaelehileng ea liphetolelo tsa thomello: li-monorepos, li-glossaries, lihlopha tsa moetlo, ho matha ho ommeng le taolo ea molumo."
+	},
+	"faq": {
+		"title": "DBK",
+		"eyebrow": "Thuso",
+		"heroTitle": "Lipotso tse botsoang khafetsa",
+		"lede": "Likarabo tse potlakileng tsa lipotso tse hlahang khafetsa ha u nka khato."
+	},
+	"translations": {
+		"title": "Liphetolelo",
+		"eyebrow": "Pontšo",
+		"heroTitle": "Hello Hello",
+		"locales": "Libaka",
+		"currentlyRendered": "Hona joale e fanoe",
+		"complete": "E felletseng!",
+		"pendingPrefix": "Ho emetse phetolelo e latelang ea li-docs.",
+		"viewWorkflowRuns": "Sheba li-workflow tse mathang",
+		"filter": "Filter",
+		"filterPlaceholder": "Batla ka puo, khoutu kapa lebitso la matsoalloa ...",
+		"source": "Mohloli",
+		"machineTranslations": "Liphetolelo tsa mochini",
+		"translationPending": "Phetolelo e emetse — bula phetolelo-docs run.",
+		"noLocales": "Ha ho na libaka tse lumellanang le filthara eo.",
+		"howItWorks": "Kamoo see se sebetsang kateng"
+	},
+	"contributing": {
+		"title": "Ho kenya letsoho",
+		"eyebrow": "Mohloli o bulehileng",
+		"lede": "Litlaleho tsa bug, likopo tsa likarolo le likopo tsa ho hula kaofela lia amoheleha. Ts'ebetso e nyane ka ho lekana hore e ka ba botsoalle ho bafani ba lekhetlo la pele."
+	},
+	"changelog": {
+		"title": "Phetoho ea Phetoho",
+		"eyebrow": "Histori",
+		"lede": "Kakaretso e phahameng ea litokomane. Phetoho ea canonical, e nang le matla e lula CHANGELOG.md polokelong."
+	}
+}

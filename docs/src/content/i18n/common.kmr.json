@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Wergêra Çavkanî",
+		"defaultDescription": "Belgeyên ji bo Wergêra Çavkaniyê GitHub Action - wergera makîneyê ya otomatîkî ya pelên çavkaniyê bi rêya Azure AI Translator.",
+		"homeLabel": "Wergêra Çavkaniyê — malê"
+	},
+	"skipToContent": "Derbasî naverokê bibe",
+	"drawer": {
+		"open": "Navîgasyona vekirî",
+		"close": "Navîgasyona nêzîk",
+		"title": "Navîgasyon"
+	},
+	"header": {
+		"search": "Belgeyên lêgerînê",
+		"searchPlaceholder": "Belgeyên lêgerînê...",
+		"toggleTheme": "Mijara guherandinê",
+		"githubRepository": "Depoya GitHub",
+		"language": "Ziman"
+	},
+	"search": {
+		"title": "Belgeyên lêgerînê",
+		"results": "Encamên lêgerînê",
+		"placeholder": "Gotar, beş, reçete bigerin...",
+		"close": "Lêgerîna nêzîk",
+		"idleTitle": "Li belgeyan bigerin",
+		"idleHelp": "Gotaran li gorî mijarê, formata pelê, vebijarka vesazkirinê an reçete bibînin. Ji bo navîgasyonê {up} {down} bikar bînin, {enter} vekin.",
+		"loading": "Lêgerîn...",
+		"empty": "Encam tune ye. Peyveke sereke ya cuda biceribînin.",
+		"error": "Îndeksa lêgerînê di dev de tune ye. Avakirina hilberînê bimeşînin."
+	},
+	"toc": {
+		"title": "Li ser vê rûpelê"
+	},
+	"pager": {
+		"ariaLabel": "Gotar",
+		"previous": "Berê",
+		"next": "Piştre"
+	},
+	"backToTop": {
+		"label": "Ber bi jor ve bigerin"
+	},
+	"footer": {
+		"docs": "Belge",
+		"project": "Proje",
+		"community": "Civak",
+		"projectLinksAria": "Girêdanên projeyê",
+		"sourceAria": "Çavkaniyê li ser GitHub bibîne",
+		"marketplaceAria": "Li ser GitHub Marketplace bibînin",
+		"authorAria": "Malpera David Pine",
+		"taglinePrefix": "Çalakiyek GitHub ku pelên çavkaniya we bixweber werdigerîne, li ser fermî hatiye çêkirin",
+		"taglineMiddle": "SDK ji",
+		"copyrightPrefix": "Di bin",
+		"builtWith": "Bi Çêkirina"
+	}
+}

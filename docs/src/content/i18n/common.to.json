@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Maʻuʻanga Tokoni Liliu lea",
+		"defaultDescription": "Fakamatala ki he Resource Translator GitHub Action — liliu fakamisini ʻotometiki ʻo e ngaahi faile maʻuʻanga tokoni ʻo fakafou ʻi he Azure AI Translator.",
+		"homeLabel": "Maʻuʻanga Tokoni Fakatonulea — ʻapi"
+	},
+	"skipToContent": "Hiki ki he kaveinga",
+	"drawer": {
+		"open": "Fakaava ʻa e navigation",
+		"close": "Close navigation",
+		"title": "Navigation"
+	},
+	"header": {
+		"search": "Fekumi ʻi he ngaahi fakamatala fakapepa",
+		"searchPlaceholder": "Fekumi ki he ngaahi fakamatala fakapepa...",
+		"toggleTheme": "Toggle ʻa e kaveinga",
+		"githubRepository": "GitHub repository",
+		"language": "Lea fakafonua"
+	},
+	"search": {
+		"title": "Fekumi ʻi he ngaahi fakamatala fakapepa",
+		"results": "Ngaahi ola ʻo e fekumi",
+		"placeholder": "Fekumi ʻi he ngaahi fakamatala, konga, founga feimeʻatokoni...",
+		"close": "Tapuni ʻa e fekumi",
+		"idleTitle": "Fekumi ʻi he ngaahi fakamatala",
+		"idleHelp": "Kumi ʻa e ngaahi fakamatala ʻo fakatatau ki he kaveinga, fotunga ʻo e faile, fili ki hono fokotuʻutuʻu, pe founga feimeʻatokoni. Fakaʻaongaʻi ʻa e {up} {down} ke navigate, {enter} ke fakaava.",
+		"loading": "Fekumi...",
+		"empty": "ʻIkai ha ola. ʻAhiʻahiʻi ha foʻi lea mahuʻinga kehe.",
+		"error": "ʻOku ʻikai maʻu ʻa e Search Index ʻi he dev. Lele ha faʻu faʻufaʻu."
+	},
+	"toc": {
+		"title": "ʻI he peesi ko ʻeni"
+	},
+	"pager": {
+		"ariaLabel": "Fakamatala",
+		"previous": "Kimuʻa",
+		"next": "Hoko"
+	},
+	"backToTop": {
+		"label": "Scroll ki ʻolunga"
+	},
+	"footer": {
+		"docs": "Ngaahi Fakamatala",
+		"project": "Ngaue",
+		"community": "Komiuniti",
+		"projectLinksAria": "Ngaahi fehokotakiʻanga ʻo e ngaue",
+		"sourceAria": "Vakai ki he maʻuʻanga fakamatala ʻi he GitHub",
+		"marketplaceAria": "Vakai ki he GitHub Marketplace",
+		"authorAria": "Uepisaiti ʻa David Pine",
+		"taglinePrefix": "Ko ha GitHub Action ʻoku ne liliu hoʻo ngaahi faile maʻuʻanga tokoni he taimi pe ko ia, langa ʻi ʻolunga ʻi he ʻofisiale",
+		"taglineMiddle": "SDK mei he",
+		"copyrightPrefix": "Tukuange ʻi he malumalu ʻo e",
+		"builtWith": "Langa ʻaki ʻa e"
+	}
+}

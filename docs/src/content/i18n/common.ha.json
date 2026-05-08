@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Mai fassarar albarkatu",
+		"defaultDescription": "Documentation for the Resource Translator GitHub Action — automated machine translation of resource files via Azure AI Translator.",
+		"homeLabel": "Mai fassara Albarkatu - gida"
+	},
+	"skipToContent": "Tsallake zuwa abun ciki",
+	"drawer": {
+		"open": "Buɗe kewayawa",
+		"close": "Kusa da kewayawa",
+		"title": "Kewayawa"
+	},
+	"header": {
+		"search": "Takaddun bincike",
+		"searchPlaceholder": "Takaddun bincike ...",
+		"toggleTheme": "Toggle theme",
+		"githubRepository": "GitHub repository",
+		"language": "Harshe"
+	},
+	"search": {
+		"title": "Takaddun bincike",
+		"results": "Sakamakon bincike",
+		"placeholder": "Binciken labarai, sassa, girke-girke...",
+		"close": "Kusa da bincike",
+		"idleTitle": "Bincika Docs",
+		"idleHelp": "Nemo labaran ta batun, tsarin fayil, zaɓin saiti, ko girke-girke. Yi amfani da {up} {down} don kewayawa, {enter} don buɗewa.",
+		"loading": "Binciken ...",
+		"empty": "Babu sakamako. Gwada wani maɓallin keɓaɓɓen maɓallin",
+		"error": "Ba za a iya samun maɓallin keɓaɓɓu a cikin Dev ba. Gudanar da ginin samarwa."
+	},
+	"toc": {
+		"title": "A wannan shafi"
+	},
+	"pager": {
+		"ariaLabel": "Labarin",
+		"previous": "A baya",
+		"next": "Na gaba"
+	},
+	"backToTop": {
+		"label": "Gungura zuwa sama"
+	},
+	"footer": {
+		"docs": "Takaddun shaida",
+		"project": "Aikin",
+		"community": "Al'umma",
+		"projectLinksAria": "Hanyoyin haɗin aikin",
+		"sourceAria": "Duba tushe akan GitHub",
+		"marketplaceAria": "Duba akan GitHub Marketplace",
+		"authorAria": "Shafin yanar gizon David Pine",
+		"taglinePrefix": "GitHub Action wanda ke fassara fayilolin albarkatun ku ta atomatik, wanda aka gina a saman hukuma",
+		"taglineMiddle": "SDK daga",
+		"copyrightPrefix": "An saki a ƙarƙashin",
+		"builtWith": "Gina tare da"
+	}
+}

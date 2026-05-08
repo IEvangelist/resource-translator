@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "資源翻譯器",
+		"defaultDescription": "資源翻譯器 GitHub Action 的文件 — 透過 Azure AI 翻譯器自動機器翻譯資源檔案。",
+		"homeLabel": "資源翻譯器 — 首頁"
+	},
+	"skipToContent": "跳至內容",
+	"drawer": {
+		"open": "開放導航",
+		"close": "近距離導航",
+		"title": "導航"
+	},
+	"header": {
+		"search": "搜尋文件",
+		"searchPlaceholder": "搜尋文件......",
+		"toggleTheme": "切換主題",
+		"githubRepository": "GitHub 倉庫",
+		"language": "語言"
+	},
+	"search": {
+		"title": "搜尋文件",
+		"results": "搜尋結果",
+		"placeholder": "搜尋文章、版塊、食譜......",
+		"close": "近距離搜尋",
+		"idleTitle": "搜尋文件",
+		"idleHelp": "依主題、檔案格式、設定選項或食譜尋找文章。用{up} {down}導航，{enter}開啟。",
+		"loading": "搜尋中......",
+		"empty": "沒有結果。試試不同的關鍵字。",
+		"error": "開發版裡找不到搜尋索引。跑一個生產版本。"
+	},
+	"toc": {
+		"title": "本頁"
+	},
+	"pager": {
+		"ariaLabel": "文章",
+		"previous": "先前",
+		"next": "下一篇"
+	},
+	"backToTop": {
+		"label": "往上捲動"
+	},
+	"footer": {
+		"docs": "文件",
+		"project": "計畫",
+		"community": "社區",
+		"projectLinksAria": "專案連結",
+		"sourceAria": "在 GitHub 查看原始碼",
+		"marketplaceAria": "在 GitHub 市集查看",
+		"authorAria": "大衛·派恩的官方網站",
+		"taglinePrefix": "一個 GitHub 動作，能自動轉譯你的資源檔案，建立在官方之上",
+		"taglineMiddle": "SDK 來自",
+		"copyrightPrefix": "根據",
+		"builtWith": "建造"
+	}
+}

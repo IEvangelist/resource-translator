@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "फुंखा रावसोलायगिरि",
+		"defaultDescription": "फुंखा रावसोलायगिरि GitHub Action नि थाखाय दकुमेन्टेसन — Azure AI Translator नि गेजेरजों फुंखा फाइलफोरनि गावनोगाव मेसिन रावसोलायनाय।",
+		"homeLabel": "फुंखा रावसोलायगिरि — home"
+	},
+	"skipToContent": "कन्टेन्टआव बारहो",
+	"drawer": {
+		"open": "नेविगेसनखौ खेव",
+		"close": "नेभिगेसन बन्द खालाम",
+		"title": "नेभिगेसन (Navigation)"
+	},
+	"header": {
+		"search": "दकुमेन्टारि नागिर",
+		"searchPlaceholder": "दकुमेन्टफोरखौ नागिरो...",
+		"toggleTheme": "आयदाखौ टगल खालाम",
+		"githubRepository": "GitHub रिप'जिटरी",
+		"language": "राव"
+	},
+	"search": {
+		"title": "दकुमेन्टारि नागिर",
+		"results": "नागिरनायनि फिथाइ",
+		"placeholder": "लिरबिदां, खोन्दो, रेसिपिफोरखौ नागिर ...",
+		"close": "नागिरनायखौ बन्द खालाम",
+		"idleTitle": "Docs खौ नागिर",
+		"idleHelp": "आयदा, फाइल महर, कनफिगरेसन अपसन एबा रेसिपिखौ बिथा खालामनानै लिरबिदांफोरखौ नागिर। नेभिगेट खालामनो {up} {down} बाहाय, {enter} खुलिनो बाहाय।",
+		"loading": "नागिरगासिनो दं...",
+		"empty": "जेबो फिथाइ गैया। गुबुन keyword (किवर्ड) बाहायनो नाजा।",
+		"error": "search index आ dev. आव गैया। मोनसे प्रडाक्शन बिल्ड सालाय।"
+	},
+	"toc": {
+		"title": "बे बिलाइयाव"
+	},
+	"pager": {
+		"ariaLabel": "लिरबिदां",
+		"previous": "सिगांनि",
+		"next": "उननि"
+	},
+	"backToTop": {
+		"label": "गोजौसिम स्क्रोल खालाम"
+	},
+	"footer": {
+		"docs": "Docs",
+		"project": "मावथांखि",
+		"community": "सुबुं माहारि",
+		"projectLinksAria": "प्रजेक्टनि लिंकफोर",
+		"sourceAria": "GitHub आव फुंखाखौ नाय।",
+		"marketplaceAria": "GitHub Marketplace आव नुथाय",
+		"authorAria": "डेबिड पाइननि वेबसाइद",
+		"taglinePrefix": "मोनसे GitHub Action जाय नोंथांनि फुंखा फाइलफोरखौ गावनोगाव रावसोलायनाय खालामो, मावख'गिरिनि सायाव बानायनाय",
+		"taglineMiddle": "SDK निफ्राय",
+		"copyrightPrefix": "बेनि सिङाव हगारना होनाय जादों।",
+		"builtWith": "जों बानायनाय"
+	}
+}

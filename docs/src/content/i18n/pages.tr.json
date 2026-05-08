@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Kaynak Çevirici",
+		"description": "Herhangi bir repoda, herhangi bir formatta kaynak dosyaları için makine çevirisi pull request'leri açın.",
+		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "Depoyu yerelleştirin",
+		"headlineAccent": "Her taahhüt.",
+		"lede": "Resource Translator, resmi SDK üzerinden Azure AI Translator kullanarak kaynak dosyalarınız için makine çevirisi pull request'leri açar — ekstra hizmet yok, sadece bir iş akışı var.",
+		"primaryCta": "Başla",
+		"secondaryCta": "GitHub'da yıldız",
+		"supports": "Destekler",
+		"builtForShipping": "Nakliye için inşa edildi",
+		"workflowTitle": "Çeviri bir iş akışı olarak değil, bir yük olarak değil.",
+		"workflowBody": "Eylemi mevcut CI'nize bırakın, Azure AI Translator'a yönlendirin ve depo adresinizin hedeflediğiniz her dili konuşmasına izin verin.",
+		"stats": {
+			"audit": "0 NPM-denetim sorunları",
+			"tests": "150 test",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Altı dosya formatı",
+				"body": ".resx, .xliff, .po, .json, .ini ve .restext adreslerini bayt kararlı biçimlendirme ile gidiş-dönüş yapar."
+			},
+			"config": {
+				"title": "Repo seviyesinde yapılandırma",
+				"body": "Bir .github/resource-translator.yml ekleyin, içinde globs, sözlük ve Özel Çevirici kategorileri ekleyin."
+			},
+			"glossary": {
+				"title": "Sözlük bilgisi",
+				"body": "Marka adlarını ve ürün terimlerini, C++, .NET ve arkadaşlarını işleyen akıllı kelime sınırı regexi ile kilitleyin."
+			},
+			"dryRun": {
+				"title": "Deneme + yumuşak başarısızlık",
+				"body": "Dosya yazmadan çevirileri önizleme ya da her hatayı uyarı olarak ortaya çıkar."
+			},
+			"outputs": {
+				"title": "PR dostu çıktılar",
+				"body": "özet-başlık, özet-detaylar ve yeni çevirileri doğrudan create-pull-request içine yerleştirilir."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "@azure-rest/ai-translation-text + @azure/core-rest-pipeline üzerine inşa edilmiştir — 408/429/5xx üzerinde otomatik yeniden denemeler, el ile rulo HTTP yok. esbuild paketinde, denetim temizliğinde."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Başlamak",
+		"eyebrow": "Kurulum",
+		"lede": "Bir iş akışı dosyası ekleyin, Azure AI Translator kimlik bilgilerinize yönlendirin; Microsoft'un resmi @azure-rest/ai-translation-text SDK'sı üzerine kurulan eylem, depoda kaynak dil kaynak dosyalarını tarar ve çevrilmiş kardeşler gönderir.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Azure portalında bir Azure AI Translator kaynağı oluşturun, ardından aşağıdaki bilgileri GitHub depo sırları olarak depolayın ki iş akışı bunları okuyabilsin:",
+				"key": "Kaynağın abonelik anahtarı.",
+				"endpoint": "bölgesel uç nokta URL'si.",
+				"region": "kaynağın Azure bölgesi."
+			},
+			"workflow": {
+				"title": "İş akışını ekle",
+				"body": ".github/workflows/translate.yml oluşturun:"
+			},
+			"resource": {
+				"title": "Bir kaynak kaynak dosyası commit et",
+				"body": "Kaynak dosyaları ise Adı kullanır. <sourceLocale>. <ext> Kongre. Örneğin, Greetings.en.resx bir çalıştırmadan sonra Greetings.fr.resx, Greetings.de.resx ve benzeri olur."
+			},
+			"output": {
+				"title": "Çıkışı inceleyin",
+				"body": "İş akışı bittiğinde, eylem PR açıklamasına bağlayabileceğiniz üç çıktıyı ortaya çıkarır: özet-başlık, özet-detaylar ve yeni-çeviriler. Ayrıca core.summary üzerinden iş sayfasına bir Markdown özeti yazar."
+			}
+		},
+		"nextSteps": {
+			"title": "Sonraki adımlar",
+			"configuration": "Repo seviyesi varsayılan ayarları .github/resource-translator.yml ile yapılandırın.",
+			"recipes": "Monorepo, özel sözlükler ve Özel Çevirici kategorileri için tariflere bakınız."
+		}
+	},
+	"configuration": {
+		"title": "Yapılandırma",
+		"eyebrow": "YAML",
+		"heroTitle": "Depo yapılandırması",
+		"lede": "Express .github/resource-translator.yml'de bir kez varsayılan oluyor ve her iş akışının bunları devralmasına izin veriyor. Her ikisi de sağlandığında aksiyon girişleri her zaman kazanır."
+	},
+	"inputs": {
+		"title": "Girişler ve çıkışlar",
+		"eyebrow": "Referans",
+		"lede": "Her girdi, isteğe bağlı repo yapılandırma dosyasında da kabul edilir. İkisi de ayarlandığında, aksiyon girişi kazanır."
+	},
+	"formats": {
+		"title": "Dosya formatları",
+		"eyebrow": "Referans",
+		"heroTitle": "Desteklenen dosya formatları",
+		"lede": "Altı adet gidiş-dönüş kullanılabilir kaynak formatı. Eylem, her bir kaynak-yerel dosyasını okur, değerleri çevirir ve hedef yerel başına bir kardeş yazar."
+	},
+	"recipes": {
+		"title": "Tarifler",
+		"eyebrow": "Yemek Kitabı",
+		"lede": "Gönderim çevirileri için yaygın kalıplar: monorepolar, sözlükler, özel kategoriler, kuru denemeler ve ton kontrolü."
+	},
+	"faq": {
+		"title": "SSS",
+		"eyebrow": "Yardım edin",
+		"heroTitle": "Sıkça Sorulan Sorular",
+		"lede": "Eylemi benimserken en sık karşılaşan sorulara hızlı cevaplar."
+	},
+	"translations": {
+		"title": "Çeviriler",
+		"eyebrow": "Vitrin",
+		"heroTitle": "Her dilde merhaba",
+		"locales": "Yerleşimler",
+		"currentlyRendered": "Şu anda render ediliyor",
+		"complete": "Tamam!",
+		"pendingPrefix": "Bir sonraki Translate-Docs çalışması bekleniyor.",
+		"viewWorkflowRuns": "İş akışı çalıştırmalarını görüntüle",
+		"filter": "Filtre",
+		"filterPlaceholder": "Dil, kod veya yerel isimle ara...",
+		"source": "Kaynak",
+		"machineTranslations": "Makine çevirileri",
+		"translationPending": "Çeviri bekleme aşamasında — bir translate-docs çalıştırmasını açın.",
+		"noLocales": "Hiçbir yer o filtreyle eşleşmiyor.",
+		"howItWorks": "Bu nasıl çalışır"
+	},
+	"contributing": {
+		"title": "Katkı",
+		"eyebrow": "Açık kaynak",
+		"lede": "Hata raporları, özellik istekleri ve pull istekleri hepsi memnuniyetle karşılanır. Aksiyon, ilk kez katkıda bulunanlara dostane olacak kadar küçük."
+	},
+	"changelog": {
+		"title": "Değişiklik Günlüğü",
+		"eyebrow": "Tarihçe",
+		"lede": "Yayınların üst düzey özeti. Kanonik, otoriter değişim logu CHANGELOG.md depoda yaşar."
+	}
+}

@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "អ្នកបកប្រែធនធាន",
+		"defaultDescription": "ឯកសារសម្រាប់អ្នកបកប្រែធនធាន GitHub Action — ការបកប្រែម៉ាស៊ីនដោយស្វ័យប្រវត្តិនៃឯកសារធនធានតាមរយៈ Azure AI Translator ។",
+		"homeLabel": "អ្នកបកប្រែធនធាន - ទំព័រដើម"
+	},
+	"skipToContent": "រំលងទៅមាតិកា",
+	"drawer": {
+		"open": "បើកការរុករក",
+		"close": "បិទការរុករក",
+		"title": "ការរុករក"
+	},
+	"header": {
+		"search": "ស្វែងរកឯកសារ",
+		"searchPlaceholder": "ស្វែងរកឯកសារ...",
+		"toggleTheme": "បិទបើកប្រធានបទ",
+		"githubRepository": "ឃ្លាំង GitHub",
+		"language": "ភាសា"
+	},
+	"search": {
+		"title": "ស្វែងរកឯកសារ",
+		"results": "លទ្ធផលស្វែងរក",
+		"placeholder": "ស្វែងរកអត្ថបទ ផ្នែក រូបមន្ត...",
+		"close": "បិទការស្វែងរក",
+		"idleTitle": "ស្វែងរកឯកសារ",
+		"idleHelp": "ស្វែងរកអត្ថបទតាមប្រធានបទ ទ្រង់ទ្រាយឯកសារ ជម្រើសកំណត់រចនាសម្ព័ន្ធ ឬរូបមន្ត។ ប្រើ {up} {down} ដើម្បីរុករក {enter} ដើម្បីបើក។",
+		"loading": "កំពុងស្វែងរក...",
+		"empty": "គ្មានលទ្ធផល។ សាកល្បងពាក្យគន្លឹះផ្សេង។",
+		"error": "សន្ទស្សន៍ស្វែងរកមិនមាននៅក្នុង dev ទេ។ ដំណើរការការបង្កើតផលិតកម្ម។"
+	},
+	"toc": {
+		"title": "នៅលើទំព័រនេះ"
+	},
+	"pager": {
+		"ariaLabel": "អត្ថបទ",
+		"previous": "មុន",
+		"next": "បន្ទាប់"
+	},
+	"backToTop": {
+		"label": "រំកិលទៅកំពូល"
+	},
+	"footer": {
+		"docs": "ឯកសារ",
+		"project": "គម្រោង",
+		"community": "សហគមន៍",
+		"projectLinksAria": "តំណភ្ជាប់គម្រោង",
+		"sourceAria": "មើលប្រភពនៅលើ GitHub",
+		"marketplaceAria": "មើលនៅលើទីផ្សារ GitHub",
+		"authorAria": "គេហទំព័ររបស់ David Pine",
+		"taglinePrefix": "សកម្មភាព GitHub ដែលបកប្រែឯកសារធនធានរបស់អ្នកដោយស្វ័យប្រវត្តិ បង្កើតឡើងនៅលើផ្លូវការ",
+		"taglineMiddle": "SDK ពី",
+		"copyrightPrefix": "ចេញផ្សាយក្រោម",
+		"builtWith": "សាងសង់ជាមួយ"
+	}
+}

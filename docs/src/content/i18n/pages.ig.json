@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Onye ntụgharị akụrụngwa",
+		"description": "Mepee igwe sụgharịrị arịrịọ maka faịlụ akụ na repo ọ bụla, na usoro ọ bụla.",
+		"badge": "v3.0 — Node 24, repo config, glossary, akọrọ na-agba ọsọ",
+		"headlinePrefix": "Tinye repo gị na",
+		"headlineAccent": "Ntinye ọ bụla.",
+		"lede": "Resource Translator na-emepe arịrịọ ndị a sụgharịrị igwe maka faịlụ akụ gị site na iji Azure AI Translator site na SDK gọọmentị — enweghị ọrụ ndị ọzọ, naanị arụmọrụ.",
+		"primaryCta": "Bido",
+		"secondaryCta": "Kpakpando na GitHub",
+		"supports": "Nkwado",
+		"builtForShipping": "E wuru maka ụgbọ mmiri",
+		"workflowTitle": "Nsụgharị dị ka ọrụ, ọ bụghị ịrụ ọrụ.",
+		"workflowBody": "Dobe ihe ahụ n'ime CI gị dị ugbu a, tụọ ya na Azure AI Translator, ma kwe ka repo gị kwuo asụsụ ọ bụla ị lekwasịrị anya.",
+		"stats": {
+			"audit": "0 npm-audit mbipụta",
+			"tests": "150 ule",
+			"node": "Ebe E Si Agbanwe Agbanwe / 20 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Isii faịlụ formats",
+				"body": "Round-njem .resx, .xliff, .po, .json, .ini, na .restext na octe-stable formatting."
+			},
+			"config": {
+				"title": "Repo-larịị config",
+				"body": "Dobe .github / resource-translator.yml maka gụnyere globs, glossaries, na Custom Translator edemede."
+			},
+			"glossary": {
+				"title": "Glossary-maara",
+				"body": "Mechie aha aha na okwu ngwaahịa na smart okwu-ókè regex nke na-ejikwa C ++, .NET, na ndị enyi."
+			},
+			"dryRun": {
+				"title": "Akọrọ-na-agba ọsọ + soft-ọdịda",
+				"body": "Nyochaa nsụgharị na-enweghị ide faịlụ, ma ọ bụ gosipụta njehie ọ bụla dị ka ịdọ aka ná ntị mgbe ị na-emegharị."
+			},
+			"outputs": {
+				"title": "PR-enyi na enyi mmepụta",
+				"body": "summary-title, summary-details, and has-new-translations slot directly into create-pull-request."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Wuru na @azure-rest / ai-translation-text + @azure / core-rest-pipeline — akpaka retries na 408/429/5xx, ọ dịghị aka-akpọrepu HTTP. esbuild-bundled, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Ịmalite",
+		"eyebrow": "Ntọala",
+		"lede": "Tinye faịlụ arụmọrụ, tụọ ya na nzere Azure AI Translator gị, na ihe ahụ — nke e wuru na SDK gọọmentị Microsoft @azure-rest / ai-translation-text — ga-enyocha repo maka faịlụ akụ asụsụ isi mmalite ma wepụta ụmụnne ndị a sụgharịrị sụgharịrị.",
+		"steps": {
+			"provision": {
+				"title": "Inye ihe Azure AI Translator resource",
+				"body": "Mepụta ihe ntụgharị ntụgharị Azure AI na ọnụ ụzọ Azure, wee chekwaa ihe ndị a dị ka ihe nzuzo nchekwa GitHub ka ọrụ ahụ wee nwee ike ịgụ ha:",
+				"key": "Pịa igodo ndebanye aha maka ihe onwunwe ahụ.",
+				"endpoint": "Mpaghara Endpoint URL",
+				"region": "Mpaghara Azure."
+			},
+			"workflow": {
+				"title": "Tinye workflow",
+				"body": "Mepụta .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Tinye faịlụ isi iyi",
+				"body": "Ngwaọrụ ndị a na-eji aha ahụ eme ihe. <sourceLocale>. <ext> mgbakọ. Dịka ọmụmaatụ Greetings.en.resx na-aghọ Greetings.fr.resx, Greetings.de.resx, na ihe ndị ọzọ mgbe ọ na-agba ọsọ."
+			},
+			"output": {
+				"title": "Nyochaa mmepụta",
+				"body": "Ozugbo arụmọrụ ahụ gwụchara, ihe ahụ na-ekpughe nsonaazụ atọ ị nwere ike ịbanye na nkọwa PR: nchịkọta-aha, nchịkọta-nkọwa, na nsụgharị ọhụrụ. Ọ na-edekwa nchịkọta Markdown n'ime ibe ọrụ site na core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Nzọụkwụ ndị ọzọ",
+			"configuration": "Hazie ndabara ọkwa repo na .github/resource-translator.yml.",
+			"recipes": "Lee ntụziaka maka monorepos, omenala glossaries, na Omenala Translator edemede."
+		}
+	},
+	"configuration": {
+		"title": "Nhazi",
+		"eyebrow": "YAML",
+		"heroTitle": "Nhazi ebe nchekwa",
+		"lede": "Gosipụta ndabara otu ugboro na .github/resource-translator.yml ma kwe ka ọrụ ọ bụla keta ha. Action inputs mgbe niile na-emeri mgbe ha abụọ."
+	},
+	"inputs": {
+		"title": "Ntinye na mmepụta",
+		"eyebrow": "Ntụaka",
+		"lede": "A na-anabatakwa ntinye ọ bụla na faịlụ repo config. Mgbe a na-edozi ha abụọ, ntinye ihe na-emeri."
+	},
+	"formats": {
+		"title": "Ụdị faịlụ",
+		"eyebrow": "Ntụaka",
+		"heroTitle": "Ụdị faịlụ akwadoro",
+		"lede": "Isii gburugburu-trippable akụ formats. Ihe omume ahụ na-agụ faịlụ isi mmalite ọ bụla, sụgharịa ụkpụrụ, ma dee nwanne nwoke kwa mpaghara ezubere iche."
+	},
+	"recipes": {
+		"title": "Ntụziaka",
+		"eyebrow": "Akwụkwọ nri",
+		"lede": "Common nakawa etu esi maka mbupu nsụgharị: monorepos, glossaries, omenala edemede, akọrọ na-agba ọsọ, na ụda akara."
+	},
+	"faq": {
+		"title": "Ajụjụ ana ajukari",
+		"eyebrow": "Enyemaka",
+		"heroTitle": "Ajụjụ Ndị A Na-ajụkarị",
+		"lede": "Azịza ngwa ngwa maka ajụjụ ndị na-abịakarị mgbe ị na-eme ihe omume ahụ."
+	},
+	"translations": {
+		"title": "Nsụgharị",
+		"eyebrow": "Ihe ngosi",
+		"heroTitle": "Hello n'asụsụ ọ bụla.",
+		"locales": "Ebe",
+		"currentlyRendered": "A na-enye ya ugbu a",
+		"complete": "zuru ezu!",
+		"pendingPrefix": "Na-esote ntụgharị-docs na-agba ọsọ.",
+		"viewWorkflowRuns": "Gosi lance eso ụzọ",
+		"filter": "Nyochaa",
+		"filterPlaceholder": "Chọọ site na asụsụ, koodu, ma ọ bụ aha ala.",
+		"source": "Isi mmalite",
+		"machineTranslations": "Nsụgharị igwe",
+		"translationPending": "Translation pending — open a translate-docs run.",
+		"noLocales": "Enweghị mpaghara dabara na nzacha ahụ.",
+		"howItWorks": "Olee otú nke a si arụ ọrụ"
+	},
+	"contributing": {
+		"title": "Inye aka",
+		"eyebrow": "Mepee isi iyi",
+		"lede": "A na-anabata akụkọ bug, arịrịọ atụmatụ, na arịrịọ eserese. Ihe omume ahụ dị ntakịrị iji bụrụ enyi na enyi nye ndị na-enye aka oge mbụ."
+	},
+	"changelog": {
+		"title": "Ndekọ mgbanwe",
+		"eyebrow": "Akụkọ ihe mere eme",
+		"lede": "Nchịkọta dị elu nke ntọhapụ. Canonical, ikike changelog na-ebi n'CHANGELOG.md na ebe nchekwa."
+	}
+}

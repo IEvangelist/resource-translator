@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Tagasalin ng Mapagkukunan",
+		"description": "Buksan ang mga kahilingan sa pull na isinalin ng makina para sa mga file ng mapagkukunan sa anumang repo, sa anumang format.",
+		"badge": "v3.0 - Node 24, repo config, talasalitaan, dry run",
+		"headlinePrefix": "I-localize ang iyong repo sa",
+		"headlineAccent": "bawat commit.",
+		"lede": "Binubuksan ng Resource Translator ang mga kahilingan sa pull na isinalin ng makina para sa iyong mga file ng mapagkukunan gamit ang Azure AI Translator sa pamamagitan ng opisyal na SDK - walang dagdag na serbisyo, isang daloy ng trabaho lamang.",
+		"primaryCta": "Email Address *",
+		"secondaryCta": "Bituin sa GitHub",
+		"supports": "Mga Suporta",
+		"builtForShipping": "Itinayo para sa pagpapadala",
+		"workflowTitle": "Ang pagsasalin ay isang daloy ng trabaho, hindi isang gawain.",
+		"workflowBody": "I-drop ang aksyon sa iyong umiiral na CI, ituro ito sa Azure AI Translator, at hayaan ang iyong repo na magsalita ng bawat wika na iyong target.",
+		"stats": {
+			"audit": "0 mga isyu sa pag-audit ng npm",
+			"tests": "150 mga pagsubok",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "Opisyal na Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Anim na format ng file",
+				"body": "Round-trip .resx, .xliff, .po, .json, .ini, at .restext na may byte-stable na pag-format."
+			},
+			"config": {
+				"title": "Config ng antas ng repo",
+				"body": "Mag-drop ng .github/resource-translator.yml para isama ang mga globs, talasalitaan, at mga kategorya ng Pasadyang Tagasalin."
+			},
+			"glossary": {
+				"title": "Talasalitaan-kamalayan",
+				"body": "I-lock ang mga pangalan ng tatak at mga tuntunin ng produkto gamit ang matalinong regex ng hangganan ng salita na humahawak sa C ++, .NET, at mga kaibigan."
+			},
+			"dryRun": {
+				"title": "Dry-run + soft-fail",
+				"body": "I-preview ang mga pagsasalin nang hindi nagsusulat ng mga file, o ilabas ang bawat error bilang babala habang inuulit mo."
+			},
+			"outputs": {
+				"title": "Mga output na magiliw sa PR",
+				"body": "buod-title, buod-detalye, at has-new-translations slot nang direkta sa create-pull-request."
+			},
+			"sdk": {
+				"title": "Opisyal na Azure SDK",
+				"body": "Binuo sa @azure-rest / ai-translation-text + @azure / core-rest-pipeline - awtomatikong muling sinusubukan sa 408/429/5xx, walang hand-rolled HTTP. esbuild-bundled, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Pagsisimula",
+		"eyebrow": "Pag-setup",
+		"lede": "Magdagdag ng isang file ng daloy ng trabaho, ituro ito sa iyong mga kredensyal ng Azure AI Translator, at ang pagkilos - na binuo sa opisyal na @azure-rest / ai-translation-text SDK ng Microsoft - ay i-scan ang repo para sa mga file ng mapagkukunan ng pinagmulan ng wika at maglabas ng mga isinalin na kapatid.",
+		"steps": {
+			"provision": {
+				"title": "Paglalaan ng mapagkukunan ng Azure AI Translator",
+				"body": "Lumikha ng isang mapagkukunan ng Azure AI Translator sa Azure portal, pagkatapos ay mag-imbak ng mga sumusunod bilang mga lihim ng repositoryo ng GitHub upang mabasa ng daloy ng trabaho ang mga ito:",
+				"key": "Ang susi ng subscription para sa mapagkukunan.",
+				"endpoint": "Ang URL ng Endpoint ng Rehiyon.",
+				"region": "Ang rehiyon ng Azure ng mapagkukunan."
+			},
+			"workflow": {
+				"title": "Idagdag ang daloy ng trabaho",
+				"body": "Lumikha ng .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Mag-commit ng source resource file",
+				"body": "Ginagamit ng mga file ng mapagkukunan ang Pangalan. <sourceLocale>. <ext> kombensyon. Halimbawa ang Greetings.en.resx ay nagiging Greetings.fr.resx, Greetings.de.resx, at iba pa pagkatapos ng isang run."
+			},
+			"output": {
+				"title": "Inspeksyunin ang output",
+				"body": "Kapag natapos na ang daloy ng trabaho, inilalantad ng aksyon ang tatlong output na maaari mong i-wire sa isang paglalarawan ng PR: buod-pamagat, buod-detalye, at may-bagong-pagsasalin. Nagsusulat din ito ng buod ng Markdown sa pahina ng trabaho sa pamamagitan ng core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Mga susunod na hakbang",
+			"configuration": "I-configure ang mga default na antas ng repo gamit ang .github / resource-translator.yml.",
+			"recipes": "Tingnan ang mga recipe para sa mga monorepos, pasadyang talasalitaan, at mga kategorya ng Pasadyang Tagasalin."
+		}
+	},
+	"configuration": {
+		"title": "Pagsasaayos",
+		"eyebrow": "YAML",
+		"heroTitle": "Pagsasaayos ng repositoryo",
+		"lede": "Ipahayag ang mga default nang isang beses sa .github / resource-translator.yml at hayaan ang bawat daloy ng trabaho na magmana ng mga ito. Ang mga input ng aksyon ay laging nanalo kapag parehong ibinigay."
+	},
+	"inputs": {
+		"title": "Mga Input at Output",
+		"eyebrow": "Sanggunian",
+		"lede": "Ang bawat input ay tinatanggap din sa opsyonal na repo config file. Kapag pareho silang naka-set, ang input ng aksyon ang nanalo."
+	},
+	"formats": {
+		"title": "Mga Format ng File",
+		"eyebrow": "Sanggunian",
+		"heroTitle": "Mga suportadong format ng file",
+		"lede": "Anim na round-trippable na mga format ng mapagkukunan. Binabasa ng pagkilos ang bawat file ng source-locale, isinasalin ang mga halaga, at nagsusulat ng isang kapatid sa bawat target na lokal."
+	},
+	"recipes": {
+		"title": "Mga Recipe",
+		"eyebrow": "Cookbook",
+		"lede": "Mga karaniwang pattern para sa mga pagsasalin ng pagpapadala: monorepos, talasalitaan, pasadyang kategorya, dry run, at kontrol ng tono."
+	},
+	"faq": {
+		"title": "FAQ",
+		"eyebrow": "Tulong",
+		"heroTitle": "Mga Madalas Itanong",
+		"lede": "Mabilis na sagot sa mga katanungan na madalas na lumilitaw kapag pinagtibay ang pagkilos."
+	},
+	"translations": {
+		"title": "Mga Pagsasalin",
+		"eyebrow": "Ipakita",
+		"heroTitle": "Kamusta sa lahat ng wika",
+		"locales": "Mga Lugar",
+		"currentlyRendered": "kasalukuyang nai-render",
+		"complete": "kumpleto!",
+		"pendingPrefix": "Habang hinihintay ang susunod na pagtakbo ng Translate-Docs.",
+		"viewWorkflowRuns": "Tingnan ang mga pagpapatakbo ng daloy ng trabaho",
+		"filter": "I-filter",
+		"filterPlaceholder": "Hanapin ayon sa wika, code, o katutubong pangalan ...",
+		"source": "Pinagmulan",
+		"machineTranslations": "Mga pagsasalin ng makina",
+		"translationPending": "Nakabinbin ang pagsasalin — buksan ang isang translate-docs run.",
+		"noLocales": "Walang mga lokal na tumutugma sa filter na iyon.",
+		"howItWorks": "Paano ito gumagana"
+	},
+	"contributing": {
+		"title": "Nag-aambag",
+		"eyebrow": "Bukas na mapagkukunan",
+		"lede": "Ang mga ulat ng bug, mga kahilingan sa tampok, at mga kahilingan sa pull ay malugod na tinatanggap. Ang aksyon ay sapat na maliit upang maging palakaibigan sa mga unang beses na nag-ambag."
+	},
+	"changelog": {
+		"title": "Changelog",
+		"eyebrow": "Kasaysayan",
+		"lede": "Mataas na antas ng buod ng mga release. Ang kanonikal, makapangyarihang changelog ay nakatira sa CHANGELOG.md sa repositoryo."
+	}
+}

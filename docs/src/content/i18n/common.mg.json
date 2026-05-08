@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Mpandika teny loharano",
+		"defaultDescription": "Antontan-taratasy ho an'ny Resource Translator GitHub Action - fandikan-teny milina mandeha ho azy amin'ny rakitra loharano amin'ny alàlan'ny Azure AI Translator.",
+		"homeLabel": "Resource Translator — home"
+	},
+	"skipToContent": "Mandehana any amin'ny votoaty",
+	"drawer": {
+		"open": "Misokatra ny fitetezana",
+		"close": "Akaiky ny fitetezana",
+		"title": "Ny fitetezana"
+	},
+	"header": {
+		"search": "Fikarohana antontan-taratasy",
+		"searchPlaceholder": "Fikarohana antontan-taratasy...",
+		"toggleTheme": "Toggle lohahevitra",
+		"githubRepository": "Repository GitHub",
+		"language": "Fiteny"
+	},
+	"search": {
+		"title": "Fikarohana antontan-taratasy",
+		"results": "Valin'ny fikarohana",
+		"placeholder": "Fikarohana lahatsoratra, fizarana, fomba fahandro ...",
+		"close": "Fikarohana akaiky",
+		"idleTitle": "Tadiavo ny antontan-taratasy",
+		"idleHelp": "Mitadiava lahatsoratra amin'ny lohahevitra, endrika rakitra, safidy fanamboarana, na fomba fanamboarana. Ampiasao {up} {down} hivezivezy, {enter} hanokafana.",
+		"loading": "Ny fikarohana...",
+		"empty": "Tsy misy vokatra. Andramo ny teny fanalahidy hafa.",
+		"error": "Ny index fikarohana dia tsy hita ao amin'ny dev. Manaova fananganana famokarana."
+	},
+	"toc": {
+		"title": "Ao amin'ity pejy ity"
+	},
+	"pager": {
+		"ariaLabel": "Lahatsoratra",
+		"previous": "Teo aloha",
+		"next": "Manaraka"
+	},
+	"backToTop": {
+		"label": "Horonan-taratasy mankany ambony"
+	},
+	"footer": {
+		"docs": "Docs",
+		"project": "Tetikasa",
+		"community": "Vondrom-piarahamonina",
+		"projectLinksAria": "Rohy amin'ny tetikasa",
+		"sourceAria": "Jereo ny loharano ao amin'ny GitHub",
+		"marketplaceAria": "Jereo ao amin'ny GitHub Marketplace",
+		"authorAria": "Tranonkalan'i David Pine",
+		"taglinePrefix": "Hetsika GitHub izay mandika ny rakitra loharanon-karena ho azy, natsangana teo an-tampon'ny ofisialy",
+		"taglineMiddle": "SDK avy amin'ny",
+		"copyrightPrefix": "Navotsotra teo ambanin'ny",
+		"builtWith": "Namboarina tamin'ny"
+	}
+}

@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Resurs terjimeçisi",
+		"defaultDescription": "Resource Translator GitHub Action üçin dokumentler — Azure AI Translator arkaly resurs faýllarynyň awtomatlaşdyrylan makina terjimesi.",
+		"homeLabel": "Resource Translator — öý"
+	},
+	"skipToContent": "Mazmuna geç",
+	"drawer": {
+		"open": "Aç navigasiýa",
+		"close": "Navigasiýany ýap",
+		"title": "Navigasiýa"
+	},
+	"header": {
+		"search": "Agtarma dokumentleri",
+		"searchPlaceholder": "Agtarma dokumentleri...",
+		"toggleTheme": "Toggle tema",
+		"githubRepository": "GitHub deposy",
+		"language": "Dil"
+	},
+	"search": {
+		"title": "Agtarma dokumentleri",
+		"results": "Gözleg netijeleri",
+		"placeholder": "Makalalary, bölümleri, taýýarlanyş usullaryny gözle...",
+		"close": "Ýap gözle",
+		"idleTitle": "Dokumentleri gözle",
+		"idleHelp": "Makalalary tema, faýl formaty, konfigurasiýa usuly ýa-da taýýarlanyş usuly boýunça tapyň. Navigasiýa {up} {down} açmak üçin {enter} ulanyň.",
+		"loading": "Gözleg...",
+		"empty": "Hiç hili netije ýok. Başga bir açar sözi ulanyp görüň.",
+		"error": "Search index dev-de ýok. Prodýuserlik gurluşyny çalıştıryň."
+	},
+	"toc": {
+		"title": "Bu sahypada"
+	},
+	"pager": {
+		"ariaLabel": "Makala",
+		"previous": "Öňki",
+		"next": "Indiki"
+	},
+	"backToTop": {
+		"label": "Başa geç"
+	},
+	"footer": {
+		"docs": "Dokumentler",
+		"project": "Proýekt",
+		"community": "Jemgyýet",
+		"projectLinksAria": "Proýekt baglaýyşlary",
+		"sourceAria": "GitHub-da çeşmäni gör",
+		"marketplaceAria": "GitHub Marketplace-de görüň",
+		"authorAria": "Deýwid Piniň web-saýty",
+		"taglinePrefix": "Resminiň üstünde gurlan resurs faýllaryňyzy otomatik terjime edýän GitHub hereketi",
+		"taglineMiddle": "SDK from",
+		"copyrightPrefix": "Boşadyldy",
+		"builtWith": "Gurluşyk"
+	}
+}

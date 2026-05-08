@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Resource Translator",
+		"description": "Vhura muchina-wakashandurwa kudhonza zvikumbiro zvemafaera ezviwanikwa mune chero repo, mune chero fomati.",
+		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "Localize your repo on",
+		"headlineAccent": "Kuzvipira kwega kwega.",
+		"lede": "Resource Translator inovhura muchina-wakashandurwa kudhonza zvikumbiro zvemafaera ako ekushandisa Azure AI Muturikiri kuburikidza neyepamutemo SDK — hapana mamwe masevhisi, ingori kufamba kwebasa.",
+		"primaryCta": "Tanga",
+		"secondaryCta": "Nyeredzi paGitHub",
+		"supports": "Rutsigiro",
+		"builtForShipping": "Yakagadzirirwa kutakura",
+		"workflowTitle": "Shanduro sebasa rebasa, kwete kuchema.",
+		"workflowBody": "Donhedza chiito muCI yako iripo, inongedzera kuAzure AI Muturikiri, uye rega repo yako itaure mutauro wega wega waunotarisa.",
+		"stats": {
+			"audit": "0 npm-audit nyaya",
+			"tests": "150 bvunzo",
+			"node": "Zvaungaita Kuti Zvive Nyore Kuti Uite Izvozvo / 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Mafomati matanhatu emafaira",
+				"body": "Kutenderera-nzendo .resx, .xliff, .po, .json, .ini, uye .restext ine byte-yakagadzikana fomati."
+			},
+			"config": {
+				"title": "Repo-level config",
+				"body": "Drop a .github/resource-translator.yml for include globs, glossaries, and Custom Translator categories."
+			},
+			"glossary": {
+				"title": "Glossary-kuziva",
+				"body": "Vhara mazita emhando uye mazwi echigadzirwa ne smart word-boundary regex iyo inobata C ++, .NET, uye shamwari."
+			},
+			"dryRun": {
+				"title": "Dry-run + yakapfava-kukundikana",
+				"body": "Ongorora shanduro pasina kunyora mafaera, kana kuvhura chikanganiso chega chega seyambiro paunenge uchidzokorora."
+			},
+			"outputs": {
+				"title": "PR-inoshamwaridzika miburitso",
+				"body": "Summary-title, summary-details, and has-new-translations slot directly into create-pull-request."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Yakavakirwa pa @azure-zororo / ai-shanduro-chinyorwa + @azure / core-rest-pipeline - otomatiki kudzokorora pa408/429/5xx, hapana ruoko-rwakungurutswa HTTP. esbuild-bundled, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Kutanga",
+		"eyebrow": "Setup",
+		"lede": "Wedzera faira rekushanda, nongedzera kune yako Azure AI Muturikiri zvitupa, uye chiito — chakavakirwa paMicrosoft's yepamutemo @azure-zororo / ai-shanduro-chinyorwa SDK — ichaongorora iyo repo yeanobva-mutauro zviwanikwa mafaera uye kuburitsa hama dzakashandurwa.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Gadzira Azure AI Muturikiri sosi muAzure portal, wobva wachengeta zvinotevera seGitHub repository zvakavanzika kuitira kuti kufamba kwebasa kugone kuzviverenga:",
+				"key": "Kiyi yekunyoresa yekushandisa chishandiso.",
+				"endpoint": "Mhedzisiro yenharaunda URL",
+				"region": "Nzvimbo yeAzure yeAzure."
+			},
+			"workflow": {
+				"title": "Wedzera Workflow",
+				"body": "Gadzira .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Ita Source Resource File",
+				"body": "Mazita anozivikanwa uye asinganzwisisi ane zita rezita. <sourceLocale>. <ext> gungano. Semuenzaniso Greetings.en.resx inova Greetings.fr.resx, Greetings.de.resx, zvichingodaro mushure mekumhanya."
+			},
+			"output": {
+				"title": "Ongorora zvakabuda",
+				"body": "Kana iyo workflow yapera, chiito chinofumura zvinhu zvitatu zvaunogona kubatanidza mune PR tsananguro: pfupiso-musoro, pfupiso-tsananguro, uye ine-nyowani-shanduro. Inonyorawo pfupiso yeMarkdown mune peji rebasa kuburikidza necore.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Matanho anotevera",
+			"configuration": "Gadzirisa repo-level defaults ne .github/resource-translator.yml.",
+			"recipes": "Ona mabikirwo emonorepos, tsika glossaries, uye Custom Translator zvikamu."
+		}
+	},
+	"configuration": {
+		"title": "Configuration",
+		"eyebrow": "YAML",
+		"heroTitle": "Repository configuration",
+		"lede": "Ratidza kutadza kamwe chete mu .github/resource-translator.yml uye rega yega yebasa ienderere nhaka. Zviito zvinogara zvichikunda kana zvese zviri zviviri zvakapihwa."
+	},
+	"inputs": {
+		"title": "Inputs & Outputs",
+		"eyebrow": "Reference",
+		"lede": "Zvese zvinopihwa zvinogamuchirwa mune yakasarudzika repo config faira. Kana ese ari maviri akaiswa, chiito chinokunda."
+	},
+	"formats": {
+		"title": "Mafomati efaira",
+		"eyebrow": "Reference",
+		"heroTitle": "Yakatsigirwa mafaera mafomati",
+		"lede": "Six round-trippable resource formats. Chiito chinoverenga yega yega sosi-locale faira, inoshandura kukosha, uye inonyora hama pane yakanangwa nzvimbo."
+	},
+	"recipes": {
+		"title": "Recipes",
+		"eyebrow": "Bhuku rekubika",
+		"lede": "Maitiro akajairika ekushandura kwekutakura: monorepos, glossaries, tsika dzetsika, kumhanya kwakaoma, uye kutonga kwetoni."
+	},
+	"faq": {
+		"title": "Mibvunzo Inonyanya Kubvunzwa",
+		"eyebrow": "Rubatsiro",
+		"heroTitle": "Mibvunzo inowanzo bvunzwa",
+		"lede": "Mhinduro dzinokurumidza kumibvunzo inowanzo kuuya kana uchitora chiito."
+	},
+	"translations": {
+		"title": "Shanduro",
+		"eyebrow": "Kuratidzira",
+		"heroTitle": "Mhoro mumitauro yega yega",
+		"locales": "Nzvimbo",
+		"currentlyRendered": "Parizvino yakapihwa",
+		"complete": "Zvakakwana!",
+		"pendingPrefix": "Mirira inotevera shanduro-docs inomhanya.",
+		"viewWorkflowRuns": "Ona workflow inomhanya",
+		"filter": "Filter",
+		"filterPlaceholder": "Tsvaga nemutauro, kodhi kana zita rekuzvarwa ...",
+		"source": "Kunobva",
+		"machineTranslations": "Shanduro dzemuchina",
+		"translationPending": "Translation pending — open a translate-docs run.",
+		"noLocales": "Hapana nzvimbo dzinoenderana neiyo firita.",
+		"howItWorks": "Izvi zvinoshanda sei"
+	},
+	"contributing": {
+		"title": "Kupa",
+		"eyebrow": "Yakavhurika sosi",
+		"lede": "Bug mishumo, zvikumbiro zvemaficha, uye zvikumbiro zvekudhonza zvese zvinogamuchirwa. Chiito chidiki zvakakwana kuti chive nehushamwari kune vekutanga-nguva vanopa."
+	},
+	"changelog": {
+		"title": "Shanduko",
+		"eyebrow": "Nhoroondo",
+		"lede": "Pfupiso yemhando yepamusoro yekuburitswa. Iyo canonical, ine chiremera changelog inogara CHANGELOG.md mune yekuchengetera."
+	}
+}

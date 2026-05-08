@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Перекладач ресурсів",
+		"defaultDescription": "Документація для Resource Translator GitHub Action — автоматизований машинний переклад файлів ресурсів через Azure AI Translator.",
+		"homeLabel": "Перекладач ресурсів — головна"
+	},
+	"skipToContent": "Перейти до змісту",
+	"drawer": {
+		"open": "Відкрита навігація",
+		"close": "Закриття навігації",
+		"title": "Навігація"
+	},
+	"header": {
+		"search": "Пошукова документація",
+		"searchPlaceholder": "Пошукова документація...",
+		"toggleTheme": "Тема перемикання",
+		"githubRepository": "Репозиторій GitHub",
+		"language": "Мова"
+	},
+	"search": {
+		"title": "Пошукова документація",
+		"results": "Результати пошуку",
+		"placeholder": "Пошук статей, розділів, рецептів...",
+		"close": "Закрити пошук",
+		"idleTitle": "Пошукайте документи",
+		"idleHelp": "Знайдіть статті за темою, форматом файлу, опцією налаштування або рецептом. Використовуйте {up} {down} для навігації, {enter} для відкриття.",
+		"loading": "Пошук...",
+		"empty": "Жодних результатів. Спробуйте інше ключове слово.",
+		"error": "Search index недоступний у розробці. Запусти продакшн-білд."
+	},
+	"toc": {
+		"title": "На цій сторінці"
+	},
+	"pager": {
+		"ariaLabel": "Стаття",
+		"previous": "Раніше",
+		"next": "Далі"
+	},
+	"backToTop": {
+		"label": "Прокрутіть до початку"
+	},
+	"footer": {
+		"docs": "Документи",
+		"project": "Проєкт",
+		"community": "Спільнота",
+		"projectLinksAria": "Посилання на проєкт",
+		"sourceAria": "Переглянути джерело на GitHub",
+		"marketplaceAria": "Перегляд на GitHub Marketplace",
+		"authorAria": "Вебсайт Девіда Пайна",
+		"taglinePrefix": "Дія GitHub, яка автоматично перекладає ваші файли ресурсів, побудована поверх офіційного",
+		"taglineMiddle": "SDK з",
+		"copyrightPrefix": "Випущено за",
+		"builtWith": "Побудовано з"
+	}
+}

@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "资源翻译",
+		"defaultDescription": "Documentation for the Resource Translator GitHub Action — 通過 Azure AI Translator 自動機器翻譯資源文件。",
+		"homeLabel": "资源翻译器 — 首页"
+	},
+	"skipToContent": "跳到内容",
+	"drawer": {
+		"open": "打开导航",
+		"close": "近导航",
+		"title": "导航"
+	},
+	"header": {
+		"search": "搜索文档",
+		"searchPlaceholder": "搜索文档...",
+		"toggleTheme": "切换主题",
+		"githubRepository": "GitHub 存储库",
+		"language": "语言"
+	},
+	"search": {
+		"title": "搜索文档",
+		"results": "搜索结果",
+		"placeholder": "搜索文章、章节、食谱......",
+		"close": "近搜",
+		"idleTitle": "搜索文档",
+		"idleHelp": "按主题、文件格式、配置选项或食谱查找文章。 用{up} {down}导航,{enter}打开。",
+		"loading": "搜索......",
+		"empty": "没有结果。 尝试不同的关键字。",
+		"error": "搜索索引在 dev 中不可用。 运行生产构建。"
+	},
+	"toc": {
+		"title": "本页内容"
+	},
+	"pager": {
+		"ariaLabel": "文章",
+		"previous": "上一篇",
+		"next": "下一页"
+	},
+	"backToTop": {
+		"label": "滚动到顶部"
+	},
+	"footer": {
+		"docs": "文档",
+		"project": "项目",
+		"community": "社区",
+		"projectLinksAria": "项目链接",
+		"sourceAria": "在 GitHub 上查看源代码",
+		"marketplaceAria": "在 GitHub Marketplace 上查看",
+		"authorAria": "大卫·派恩的网站",
+		"taglinePrefix": "一个 GitHub Action,可以自动翻译您的资源文件,建立在官方",
+		"taglineMiddle": "SDK 来自",
+		"copyrightPrefix": "根据",
+		"builtWith": "内置"
+	}
+}

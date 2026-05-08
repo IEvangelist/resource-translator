@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Traducător de resurse",
+		"description": "Deschide pull requests traduse automat pentru fișiere resurse în orice repo, în orice format.",
+		"badge": "v3.0 — Node 24, configurarea repo-ului, glosarul, execuția la uscat",
+		"headlinePrefix": "Localizează-ți depozitul pe",
+		"headlineAccent": "Fiecare angajament.",
+		"lede": "Resource Translator deschide pull request-uri traduse automat pentru fișierele tale de resurse folosind Azure AI Translator prin SDK-ul oficial — fără servicii suplimentare, doar un flux de lucru.",
+		"primaryCta": "Începe",
+		"secondaryCta": "Star pe GitHub",
+		"supports": "Suporturi",
+		"builtForShipping": "Construit pentru transport",
+		"workflowTitle": "Traducerea ca un flux de lucru, nu o corvoadă.",
+		"workflowBody": "Introdu acțiunea în CI-ul tău existent, îndreaptă spre Azure AI Translator și lasă repository-ul să vorbească toate limbile pe care le vizezi.",
+		"stats": {
+			"audit": "0 probleme de audit NPM",
+			"tests": "150 de teste",
+			"node": "Nodul 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Șase formate de fișier",
+				"body": "Variante dus-întors .resx, .xliff, .po, .json, .ini și .restext cu formatare stabilă la octeți."
+			},
+			"config": {
+				"title": "Configurare la nivel de repositoriu",
+				"body": "Lasă un .github/resource-translator.yml pentru a include globuri, glosare și categorii Custom Translator."
+			},
+			"glossary": {
+				"title": "Conștient de glosar",
+				"body": "Blochează numele de mărci și termenii de produs cu regex inteligent la granița de cuvinte care să gestioneze C++, .NET și prieteni."
+			},
+			"dryRun": {
+				"title": "Testare la uscat + eșec blând",
+				"body": "Previzualizează traducerile fără să scrii fișiere sau afișează fiecare eroare ca avertisment în timp ce iterezi."
+			},
+			"outputs": {
+				"title": "Ieșiri prietenoase cu PR-ul",
+				"body": "summary-title, summary-details și has-new-translations se încadrează direct în create-pull-request."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Construit pe @azure-rest/ai-translation-text + @azure/core-rest-pipeline — încercări automate pe 408/429/5xx, fără HTTP rulat manual. Esbuild-bundle, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Începerea",
+		"eyebrow": "Structură",
+		"lede": "Adaugă un fișier de workflow, îndreaptă-l către acreditările tale Azure AI Translator, iar acțiunea — construită pe SDK-ul oficial @azure-rest/ai-translation-text al Microsoft — va scana depozitul pentru fișiere de resurse în limba sursă și va emite frații traduși.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Creează o resursă Azure AI Translator în portalul Azure, apoi stochează următoarele ca secrete ale depozitului GitHub, astfel încât fluxul de lucru să le poată citi:",
+				"key": "Cheia de abonament pentru resursă.",
+				"endpoint": "URL-ul endpoint-ului regional.",
+				"region": "regiunea Azure a resursei."
+			},
+			"workflow": {
+				"title": "Adaugă fluxul de lucru",
+				"body": "Creează .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Confirmă un fișier sursă de resurse",
+				"body": "Fișierele de resurse folosesc numele. <sourceLocale>. <ext> convenție. De exemplu, Greetings.en.resx devine Greetings.fr.resx, Greetings.de.resx și așa mai departe după o rundă."
+			},
+			"output": {
+				"title": "Inspectează ieșirea",
+				"body": "Odată ce fluxul de lucru se termină, acțiunea expune trei ieșiri pe care le poți conecta într-o descriere PR: rezumat-titlu, rezumat-detalii și are-noi-traduceri. De asemenea, scrie un rezumat Markdown pe pagina jobului prin core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Pașii următori",
+			"configuration": "Configurează setările implicite la nivel de depozit cu .github/resource-translator.yml.",
+			"recipes": "Vezi rețete pentru monorepos, glosare personalizate și categorii de traducători personalizate."
+		}
+	},
+	"configuration": {
+		"title": "Configurație",
+		"eyebrow": "YAML",
+		"heroTitle": "Configurația depozitelor",
+		"lede": "Express folosește implicit o dată în .github/resource-translator.yml și lasă fiecare flux de lucru să le moștenească. Inputurile de acțiune câștigă întotdeauna când ambele sunt oferite."
+	},
+	"inputs": {
+		"title": "Intrări și ieșiri",
+		"eyebrow": "Referință",
+		"lede": "Fiecare intrare este acceptată și în fișierul opțional de configurare al depozitului. Când ambele sunt setate, intrarea acțiunii câștigă."
+	},
+	"formats": {
+		"title": "Formate de fișiere",
+		"eyebrow": "Referință",
+		"heroTitle": "Formate de fișiere suportate",
+		"lede": "Șase formate de resurse care pot fi folosite dus-întors. Acțiunea citește fiecare fișier sursă-localitate, traduce valorile și scrie un frate pentru fiecare localitate țintă."
+	},
+	"recipes": {
+		"title": "Rețete",
+		"eyebrow": "Carte de bucate",
+		"lede": "Modele comune pentru traduceri de livrare: monorepos, glosarele, categoriile personalizate, simulările și controlul tonului."
+	},
+	"faq": {
+		"title": "Întrebări frecvente",
+		"eyebrow": "Ajutor",
+		"heroTitle": "Întrebări frecvente",
+		"lede": "Răspunsuri rapide la întrebările care apar cel mai des când adopti această acțiune."
+	},
+	"translations": {
+		"title": "Traduceri",
+		"eyebrow": "Prezentare",
+		"heroTitle": "Salut în orice limbă",
+		"locales": "Locații",
+		"currentlyRendered": "Prezent",
+		"complete": "complet!",
+		"pendingPrefix": "În așteptarea următoarei rulări Translate-Docs.",
+		"viewWorkflowRuns": "Vizualizează rulările fluxului de lucru",
+		"filter": "Filtru",
+		"filterPlaceholder": "Caută după limbă, cod sau nume nativ...",
+		"source": "Sursă",
+		"machineTranslations": "Traduceri automate",
+		"translationPending": "Traducere în așteptare — deschide o rulare translate-docs.",
+		"noLocales": "Niciun loc nu se potrivește cu acel filtru.",
+		"howItWorks": "Cum funcționează"
+	},
+	"contributing": {
+		"title": "Contribuții",
+		"eyebrow": "Open source",
+		"lede": "Rapoartele de bug-uri, cererile de funcționalitate și pull request-urile sunt binevenite. Acțiunea este suficient de mică încât să fie prietenoasă cu cei care contribuie pentru prima dată."
+	},
+	"changelog": {
+		"title": "Jurnalul modificărilor",
+		"eyebrow": "Istoric",
+		"lede": "Rezumat la nivel înalt al lansărilor. Jurnalul de modificări canonic și autoritar se află în CHANGELOG.md în depozit."
+	}
+}

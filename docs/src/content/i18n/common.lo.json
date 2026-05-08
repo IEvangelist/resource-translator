@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "ຜູ້ແປຊັບພະຍາກອນ",
+		"defaultDescription": "ເອກະສານສໍາລັບ Resource Translator GitHub Action — ການແປແຟ້ມຊັບພະຍາກອນໂດຍອັດຕະໂນມັດຜ່ານ Azure AI Translator.",
+		"homeLabel": "ຜູ້ແປຊັບພະຍາກອນ - home"
+	},
+	"skipToContent": "Skip to content",
+	"drawer": {
+		"open": "ເປີດການນໍາທາງ",
+		"close": "ປິດການນໍາທາງ",
+		"title": "ການນໍາເຮືອ"
+	},
+	"header": {
+		"search": "ຄົ້ນຄວ້າເອກະສານ",
+		"searchPlaceholder": "ຄົ້ນຫາເອກະສານ...",
+		"toggleTheme": "ປິດຫົວເລື່ອງ",
+		"githubRepository": "ເກັບຂໍ້ມູນ GitHub",
+		"language": "ພາສາ"
+	},
+	"search": {
+		"title": "ຄົ້ນຄວ້າເອກະສານ",
+		"results": "ຜົນການຄົ້ນຄວ້າ",
+		"placeholder": "ຄົ້ນຫາບົດຄວາມ, ພາກ, recipes...",
+		"close": "ການ ຄົ້ນ ຄວ້າ ຢ່າງ ໃກ້ ຊິດ",
+		"idleTitle": "ຄົ້ນຫາເອກະສານ",
+		"idleHelp": "ຊອກຫາບົດຄວາມຕາມຫົວຂໍ້, ຮູບແບບແຟ້ມ, ທາງເລືອກການຕັ້ງຄ່າ ຫຼື recipe. ໃຊ້ {up} {down} ເພື່ອ ຊອກ ຫາ, {enter} ເພື່ອ ເປີດ.",
+		"loading": "ກໍາລັງຄົ້ນຫາ...",
+		"empty": "ບໍ່ ມີ ຜົນ. ລອງໃຊ້ຄໍາສັບອື່ນ.",
+		"error": "ດັດຊະນີການຄົ້ນຄວ້າບໍ່ສາມາດໃຊ້ໄດ້ໃນ dev. ດໍາເນີນການສ້າງຜະລິດຕະພັນ."
+	},
+	"toc": {
+		"title": "ໃນຫນ້ານີ້"
+	},
+	"pager": {
+		"ariaLabel": "ບົດຄວາມ",
+		"previous": "ກ່ອນ",
+		"next": "ຕໍ່ໄປ"
+	},
+	"backToTop": {
+		"label": "ມຸ້ງໄປຂ້າງເທິງ"
+	},
+	"footer": {
+		"docs": "ເອກະສານ",
+		"project": "ໂຄງການ",
+		"community": "ຊຸມຊົນ",
+		"projectLinksAria": "ໂຄງການເຊື່ອມຕໍ່ໂຄງການ",
+		"sourceAria": "ເບິ່ງແຫຼ່ງຂໍ້ມູນໃນ GitHub",
+		"marketplaceAria": "ເບິ່ງຢູ່ GitHub Marketplace",
+		"authorAria": "ເວບ ໄຊ້ ຂອງ David Pine",
+		"taglinePrefix": "GitHub Action ທີ່ແປແຟ້ມຊັບພະຍາກອນຂອງທ່ານໂດຍອັດຕະໂນມັດ, ສ້າງຂຶ້ນເທິງທາງການ",
+		"taglineMiddle": "SDK ຈາກ",
+		"copyrightPrefix": "ຖືກ ປົດ ປ່ອຍ ພາຍ ໃຕ້",
+		"builtWith": "ສ້າງດ້ວຍ"
+	}
+}

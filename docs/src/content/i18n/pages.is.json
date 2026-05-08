@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Resource Translator",
+		"description": "Opnaðu vélrænt þýddar pull requests fyrir auðlindaskrár í hvaða geymslu sem er, í hvaða sniði sem er.",
+		"badge": "v3.0 — Node 24, repo config, orðalisti, dry run",
+		"headlinePrefix": "Staðfærðu geymsluna þína á",
+		"headlineAccent": "Hver skuldbinding.",
+		"lede": "Resource Translator opnar vélrænt þýddar pull requests fyrir auðlindaskrár þínar með Azure AI Translator í gegnum opinbera SDK-ið — engar auka þjónustur, bara vinnuflæði.",
+		"primaryCta": "Byrjaðu",
+		"secondaryCta": "Star á GitHub",
+		"supports": "Stuðningur",
+		"builtForShipping": "Smíðað fyrir skipaflutninga",
+		"workflowTitle": "Þýðing sem vinnuflæði, ekki kvöð.",
+		"workflowBody": "Settu aðgerðina inn í núverandi CI, bentu henni á Azure AI Translator og leyfðu geymslunni þinni að tala öll tungumál sem þú miðar á.",
+		"stats": {
+			"audit": "0 npm-endurskoðunarvandamál",
+			"tests": "150 próf",
+			"node": "Hnútur 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Sex skráarsnið",
+				"body": "Hringferðir .resx, .xliff, .po, .json, .ini og .restext með bætastöðugri sniðun."
+			},
+			"config": {
+				"title": "Repo-level stillingar",
+				"body": "Settu inn .github/resource-translator.yml til að innihalda klöppur, orðalista og flokka fyrir sérsniðna þýðendur."
+			},
+			"glossary": {
+				"title": "Orðalistameðvitaður",
+				"body": "Læstu vörumerkjanöfnum og vöruskilmálum með snjöllum orðamörkum sem sjá um C++, .NET og aðra vini."
+			},
+			"dryRun": {
+				"title": "Þurrleikur + mjúkur misheppnaður",
+				"body": "Forskoðaðu þýðingar án þess að skrifa skrár, eða sýndu allar villur sem viðvörun á meðan þú endurtekur."
+			},
+			"outputs": {
+				"title": "Almannatengt úttak",
+				"body": "samantekt-titill, samantekt-upplýsingar og hefur-nýjar-þýðingar fara beint inn í create-pull-request."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Byggt á @azure-rest/ai-translation-text + @azure/core-rest-pipeline — sjálfvirkar endurraunir á 408/429/5xx, engin handrúlluð HTTP. Esbuild-bundið, hreint og úttektarlaust."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Að byrja",
+		"eyebrow": "Uppsetning",
+		"lede": "Bættu við vinnuflæðisskrá, beina henni á Azure AI þýðingarupplýsingarnar þínar, og aðgerðin — byggð á opinberu @azure-rest/ai-translation-text SDK Microsoft — mun skanna geymsluna eftir heimildarskrám og senda út þýddar systur.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Búðu til Azure AI þýðanda auðlind í Azure portalinu og geymdu svo eftirfarandi sem leyndarmál í GitHub geymslu svo vinnuflæðið geti lesið þau:",
+				"key": "áskriftarlykillinn fyrir auðlindina.",
+				"endpoint": "svæðisbundna endapunktsslóðin.",
+				"region": "auðlindin er Azure-svæðið."
+			},
+			"workflow": {
+				"title": "Bættu við vinnuflæðinu",
+				"body": "Búðu til .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Setja inn upprunalega auðlindaskrá",
+				"body": "Auðlindaskrár nota Nafnið. <sourceLocale>. <ext> ráðstefnu. Til dæmis verður Greetings.en.resx að Greetings.fr.resx, Greetings.de.resx og svo framvegis eftir keyrslu."
+			},
+			"output": {
+				"title": "Skoðaðu úttakið",
+				"body": "Þegar vinnuflæðinu lýkur birtir aðgerðin þrjár útkomur sem þú getur tengt inn í PR-lýsingu: samantekt-titil, samantekt-smáatriði og nýjar-þýðingar. Það skrifar einnig Markdown-samantekt á starfssíðuna í gegnum core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Næstu skref",
+			"configuration": "Stilltu sjálfgefnar geymslustig með .github/resource-translator.yml.",
+			"recipes": "Sjá uppskriftir fyrir monorepos, sérsniðna orðalista og flokka sérsniðinna þýðenda."
+		}
+	},
+	"configuration": {
+		"title": "Uppsetning",
+		"eyebrow": "YAML",
+		"heroTitle": "Uppsetning geymslu",
+		"lede": "Express sjálfgefnar einu sinni í .github/resource-translator.yml og leyfir öllum vinnuflæði að erfa þau. Aðgerðainntak vinnur alltaf þegar bæði eru veitt."
+	},
+	"inputs": {
+		"title": "Inntak og úttak",
+		"eyebrow": "Heimild",
+		"lede": "Öll inntök eru einnig samþykkt í valfrjálsu geymslustillingarskránni. Þegar bæði eru stillt vinnur aðgerðarinntakið."
+	},
+	"formats": {
+		"title": "Skráarsnið",
+		"eyebrow": "Heimild",
+		"heroTitle": "Stuðningsskráarsnið",
+		"lede": "Sex auðlindasnið sem hægt er að dreifa umferðum. Aðgerðin les hverja upprunastaðsetningarskrá, þýðir gildin og skrifar systkini fyrir hvert marksvæði."
+	},
+	"recipes": {
+		"title": "Uppskriftir",
+		"eyebrow": "Matreiðslubók",
+		"lede": "Algeng mynstur fyrir sendingarþýðingar: monorepos, orðalistar, sérsniðnir flokkar, prufukeyrslur og tónstýring."
+	},
+	"faq": {
+		"title": "Algengar spurningar",
+		"eyebrow": "Hjálp",
+		"heroTitle": "Algengar spurningar",
+		"lede": "Fljótleg svör við þeim spurningum sem koma oftast upp þegar aðgerðin er tekin upp."
+	},
+	"translations": {
+		"title": "Þýðingar",
+		"eyebrow": "Sýning",
+		"heroTitle": "Halló á öllum tungumálum",
+		"locales": "Staðsetningar",
+		"currentlyRendered": "nú renderað",
+		"complete": "Lokið!",
+		"pendingPrefix": "Í bið næstu þýðingar-skjala keyrslu.",
+		"viewWorkflowRuns": "Skoðaðu vinnuflæði keyrsla",
+		"filter": "Sía",
+		"filterPlaceholder": "Leitaðu eftir tungumáli, kóða eða innfæddum nafni...",
+		"source": "Heimild",
+		"machineTranslations": "Vélþýðingar",
+		"translationPending": "Þýðing biður — opnaðu þýðingar-skjöl keyrslu.",
+		"noLocales": "Engar staðsetningar passa við þá síu.",
+		"howItWorks": "Hvernig þetta virkar"
+	},
+	"contributing": {
+		"title": "Framlag",
+		"eyebrow": "Opinn hugbúnaður",
+		"lede": "Villuskýrslur, óskir um eiginleika og beiðnir um pull eru allar velkomnar. Atburðurinn er nógu lítill til að vera vingjarnlegur við þá sem leggja sitt af mörkum í fyrsta sinn."
+	},
+	"changelog": {
+		"title": "Breytingaskrá",
+		"eyebrow": "Saga",
+		"lede": "Yfirlit yfir útgáfur á háu stigi. Hin kanóníska, áreiðanlega breytingaskrá lifir í CHANGELOG.md í geymslunni."
+	}
+}

@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Pśełožowaŕ resursow",
+		"defaultDescription": "Dokumentacija za Resource Translator GitHub Action - awtomatizěrowane mašinelne pśełožowanje resursowych datajow pśez Azure AI Translator.",
+		"homeLabel": "Pśełožowaŕ resursow — doma"
+	},
+	"skipToContent": "Pśeskocyś na wopśimjeśe",
+	"drawer": {
+		"open": "Wócyń nawigaciju",
+		"close": "Zamknij nawigaciju",
+		"title": "Nawigacija"
+	},
+	"header": {
+		"search": "Pytańska dokumentacija",
+		"searchPlaceholder": "Pytajśo dokumentaciju ...",
+		"toggleTheme": "Toggle theme",
+		"githubRepository": "GitHub repository",
+		"language": "Rěc"
+	},
+	"search": {
+		"title": "Pytańska dokumentacija",
+		"results": "Wuslědki pytanja",
+		"placeholder": "Pytajśo artikle, wótrězki, recepty ...",
+		"close": "Zacyniś pytanje",
+		"idleTitle": "Pytajśo w dokumentach",
+		"idleHelp": "Namakajśo nastawki pó temje, datajonem formaśe, konfigurěrowańskem wobsajźenju abo recepśe. Wužywaj {up} {down} k nawigaciji, {enter} k wótwórjenju.",
+		"loading": "Pytaś ...",
+		"empty": "Žedne wuslědki. Wopytajśo druge gronidło.",
+		"error": "Pytański indeks njejo w wuwijanju k dispoziciji. Wugóń produkciski natwaŕ."
+	},
+	"toc": {
+		"title": "Na toś tom boce"
+	},
+	"pager": {
+		"ariaLabel": "Artikel",
+		"previous": "Pjerwjejšne",
+		"next": "Pśiduce"
+	},
+	"backToTop": {
+		"label": "Kulowaś na góru"
+	},
+	"footer": {
+		"docs": "Docs",
+		"project": "Projekt",
+		"community": "Zgromadnosć",
+		"projectLinksAria": "Projektowe wótkaze",
+		"sourceAria": "View source on GitHub",
+		"marketplaceAria": "View on GitHub Marketplace",
+		"authorAria": "Webbok Davida Pinea",
+		"taglinePrefix": "GitHub-akcija, kótaraž waše resursowe dataje awtomatiski pśełožujo, kótaraž jo na oficielnem městnje natwarjena",
+		"taglineMiddle": "SDK z",
+		"copyrightPrefix": "Wózjawjone pód",
+		"builtWith": "Natwarjone z"
+	}
+}

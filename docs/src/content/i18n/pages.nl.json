@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Resource Translator",
+		"description": "Open machine-vertaalde pull requests voor resourcebestanden in elk repositorium, in elk formaat.",
+		"badge": "v3.0 — Node 24, repo config, glossarium, dry run",
+		"headlinePrefix": "Lokaliseer je repo op",
+		"headlineAccent": "elke committ.",
+		"lede": "Resource Translator opent machine-vertaalde pull requests voor je resourcebestanden met Azure AI Translator via de officiële SDK — geen extra diensten, alleen een workflow.",
+		"primaryCta": "Begin maar",
+		"secondaryCta": "Star op GitHub",
+		"supports": "Supports",
+		"builtForShipping": "Gebouwd voor de scheepvaart",
+		"workflowTitle": "Vertaling als werkwijze, geen klus.",
+		"workflowBody": "Plaats de actie in je bestaande CI, richt hem op Azure AI Translator en laat je repo elke taal spreken die je target.",
+		"stats": {
+			"audit": "0 npm-auditproblemen",
+			"tests": "150 tests",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Zes bestandsformaten",
+				"body": "Roundtrips .resx, .xliff, .po, .json, .ini en .restext met byte-stabiele opmaak."
+			},
+			"config": {
+				"title": "Repo-level config",
+				"body": "Plaats een .github/resource-translator.yml voor inclusief globs, glossaria en Custom Translator-categorieën."
+			},
+			"glossary": {
+				"title": "Woordenlijst bewust",
+				"body": "Vergrendel merknamen en producttermen met slimme woordgrensregex die C++, .NET en andere zaken afhandelt."
+			},
+			"dryRun": {
+				"title": "Droogloop + zachte mislukking",
+				"body": "Bekijk vertalingen zonder bestanden te schrijven, of laat elke fout als waarschuwing zien terwijl je iteratieert."
+			},
+			"outputs": {
+				"title": "PR-vriendelijke uitkomsten",
+				"body": "Samenvatting-titel, samenvatting-details en heeft-nieuwe-vertalingen worden direct in create-pull-request geplaatst."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Gebouwd op @azure-rest/ai-translation-text + @azure/core-rest-pipeline — automatische herpogingen op 408/429/5xx, geen handgerolde HTTP. Esbuild-gebundeld, audit-schoon."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Beginnen",
+		"eyebrow": "Opstelling",
+		"lede": "Voeg een workflowbestand toe, wijs het naar je Azure AI Translator-credentials, en de actie — gebouwd op Microsofts officiële @azure-rest/ai-translation-text SDK — scant het repo op brontaalbronbestanden en genereert vertaalde broers en zussen uit.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Maak een Azure AI Translator-resource aan in het Azure-portaal en sla vervolgens de volgende op als GitHub-repositorygeheimen zodat de workflow ze kan lezen:",
+				"key": "De abonnementssleutel voor de bron.",
+				"endpoint": "de regionale eindpunt-URL.",
+				"region": "de Azure-regio van de bron."
+			},
+			"workflow": {
+				"title": "Voeg de workflow toe",
+				"body": "Maak .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Commit een bronbronbestand",
+				"body": "Resourcebestanden gebruiken de Naam. <sourceLocale>. <ext> conventie. Bijvoorbeeld, Greetings.en.resx wordt na een run Greetings.fr.resx, Greetings.de.resx, enzovoort."
+			},
+			"output": {
+				"title": "Inspecteer de output",
+				"body": "Zodra de workflow is afgerond, maakt de actie drie outputs beschikbaar die je kunt koppelen in een PR-beschrijving: samenvatting-titel, samenvatting-details en heeft-nieuwe-vertalingen. Het schrijft ook een Markdown-samenvatting in de functiepagina via core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Volgende stappen",
+			"configuration": "Configureer repositoriaal-standaardinstellingen met .github/resource-translator.yml.",
+			"recipes": "Zie recepten voor monorepos, aangepaste glossaria en Custom Translator-categorieën."
+		}
+	},
+	"configuration": {
+		"title": "Configuratie",
+		"eyebrow": "YAML",
+		"heroTitle": "Configuratie van de repository",
+		"lede": "Express defaults één keer in .github/resource-translator.yml en laat elke workflow ze erven. Actie-inputs winnen altijd wanneer beide worden gegeven."
+	},
+	"inputs": {
+		"title": "Ingangen en uitvoeren",
+		"eyebrow": "Referentie",
+		"lede": "Elke invoer wordt ook geaccepteerd in het optionele repository-configuratiebestand. Wanneer beide zijn ingesteld, wint de actie-invoer."
+	},
+	"formats": {
+		"title": "Bestandsformaten",
+		"eyebrow": "Referentie",
+		"heroTitle": "Ondersteunde bestandsformaten",
+		"lede": "Zes ronde-trippbare bronformaten. De actie leest elk bron-locatiebestand, vertaalt de waarden en schrijft per doellocatie een zus."
+	},
+	"recipes": {
+		"title": "Recepten",
+		"eyebrow": "Kookboek",
+		"lede": "Veelgebruikte patronen voor verzendvertalingen: monorepos, glossaria, aangepaste categorieën, droge runs en toonregeling."
+	},
+	"faq": {
+		"title": "FAQ",
+		"eyebrow": "Help",
+		"heroTitle": "Veelgestelde vragen",
+		"lede": "Snelle antwoorden op de vragen die het vaakst opkomen bij het uitvoeren van de actie."
+	},
+	"translations": {
+		"title": "Vertalingen",
+		"eyebrow": "Showcase",
+		"heroTitle": "Hallo in elke taal",
+		"locales": "Locaties",
+		"currentlyRendered": "momenteel weergegeven",
+		"complete": "Compleet!",
+		"pendingPrefix": "Wacht op de volgende vertaaldocumentatie-run.",
+		"viewWorkflowRuns": "Bekijk workflow-uitvoeringen",
+		"filter": "Filter",
+		"filterPlaceholder": "Zoek op taal, code of inheemse naam...",
+		"source": "Bron",
+		"machineTranslations": "Machinevertalingen",
+		"translationPending": "Vertaling in behandeling — open een translate-docs-run.",
+		"noLocales": "Geen enkele locatie komt overeen met dat filter.",
+		"howItWorks": "Hoe dit werkt"
+	},
+	"contributing": {
+		"title": "Bijdragen",
+		"eyebrow": "Open source",
+		"lede": "Bugrapporten, feature-verzoeken en pull requests zijn allemaal welkom. De actie is klein genoeg om vriendelijk te zijn voor beginnende bijdragers."
+	},
+	"changelog": {
+		"title": "Wissellijst",
+		"eyebrow": "Geschiedenis",
+		"lede": "Samenvatting op hoog niveau van de releases. De canonieke, gezaghebbende changelog bevindt zich in CHANGELOG.md in de repository."
+	}
+}

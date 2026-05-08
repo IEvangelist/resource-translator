@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Ressursoversetter",
+		"defaultDescription": "Dokumentasjon for Resource Translator GitHub Action — automatisert maskinoversettelse av ressursfiler via Azure AI Translator.",
+		"homeLabel": "Ressursoversetter — hjem"
+	},
+	"skipToContent": "Hopp til innhold",
+	"drawer": {
+		"open": "Åpen navigasjon",
+		"close": "Nærnavigasjon",
+		"title": "Navigasjon"
+	},
+	"header": {
+		"search": "Søkedokumentasjon",
+		"searchPlaceholder": "Søk i dokumentasjonen...",
+		"toggleTheme": "Toggle tema",
+		"githubRepository": "GitHub-repositoriet",
+		"language": "Språk"
+	},
+	"search": {
+		"title": "Søkedokumentasjon",
+		"results": "Søkeresultater",
+		"placeholder": "Søk etter artikler, seksjoner, oppskrifter...",
+		"close": "Nært søk",
+		"idleTitle": "Søk i dokumentasjonen",
+		"idleHelp": "Finn artikler etter tema, filformat, konfigurasjonsvalg eller oppskrift. Bruk {up} {down} til å navigere, {enter} til å åpne.",
+		"loading": "Leter...",
+		"empty": "Ingen resultater. Prøv et annet nøkkelord.",
+		"error": "Søkeindeksen er ikke tilgjengelig i utviklingen. Kjør en produksjonsversjon."
+	},
+	"toc": {
+		"title": "På denne siden"
+	},
+	"pager": {
+		"ariaLabel": "Artikkel",
+		"previous": "Tidligere",
+		"next": "Neste"
+	},
+	"backToTop": {
+		"label": "Rull til toppen"
+	},
+	"footer": {
+		"docs": "Docs",
+		"project": "Prosjekt",
+		"community": "Fellesskap",
+		"projectLinksAria": "Prosjektlenker",
+		"sourceAria": "Se kilde på GitHub",
+		"marketplaceAria": "Utsikt på GitHub Marketplace",
+		"authorAria": "David Pines nettside",
+		"taglinePrefix": "En GitHub-handling som automatisk oversetter ressursfilene dine, bygget oppå den offisielle",
+		"taglineMiddle": "SDK fra",
+		"copyrightPrefix": "Utgitt under",
+		"builtWith": "Bygget med"
+	}
+}

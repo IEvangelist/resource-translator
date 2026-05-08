@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "ikajuutinut tukiliuriji",
+		"defaultDescription": "Documentation for the Resource Translator GitHub Action — irngiinnaq tukiliuriniq atuqtaujunnaqtunut tuqquqtausimajunut ukutiguunaq, Azure AI Translator.",
+		"homeLabel": "atuqtaujunnaqtunut tukiliuriji — angirrami"
+	},
+	"skipToContent": "ilulinginnuarlutit",
+	"drawer": {
+		"open": "makpirlugu namunngauvallianiq",
+		"close": "qanittumi navigation",
+		"title": "namunngauvallianiq"
+	},
+	"header": {
+		"search": "qinirnirmut titiraqsimajunit",
+		"searchPlaceholder": "qinirnirmut titiraqsimajut...",
+		"toggleTheme": "asijjirlugu pijjutaujuq",
+		"githubRepository": "GitHub iliuqqaivvik",
+		"language": "uqausiq"
+	},
+	"search": {
+		"title": "qinirnirmut titiraqsimajunit",
+		"results": "qiniqtaujut saqqittut",
+		"placeholder": "qinirlugit titiraqsimajut, agguqsimaningit, niqiliugaksat...",
+		"close": "qanittumi qinirniq",
+		"idleTitle": "qinirlugit titiqqat",
+		"idleHelp": "nanisilutit titiraqsimajunit pijjutingitigut, aaqqitsimaningit, aaqqitsimaningit, niqiliurutiilluunniit. aturlugit {up} {down} namunngauvallianiarlutit, {enter} matuirlugu.",
+		"loading": "qinirniq...",
+		"empty": "qaujijaujuqalaunngittuq. asianik uqausirmik uukturlutit.",
+		"error": "Search index is not available in dev. ingirratittilutit sanajauvalliajumik."
+	},
+	"toc": {
+		"title": "tavvani makpigarmi"
+	},
+	"pager": {
+		"ariaLabel": "titiraqsimanilik",
+		"previous": "kinguningaattinni",
+		"next": "kingulliq"
+	},
+	"backToTop": {
+		"label": "qulaanuarlutit"
+	},
+	"footer": {
+		"docs": "Docs",
+		"project": "piliriangujuq",
+		"community": "nunalik:",
+		"projectLinksAria": "piliriaksamut attatarviujunnaqtut",
+		"sourceAria": "takulugit nakinngaarningit GitHub",
+		"marketplaceAria": "takulugit GitHub Marketplace",
+		"authorAria": "taivit piin ikiaqqivinga",
+		"taglinePrefix": "GitHub Action tukiliurisuuq ikajuutiksanut tuqquqtausimajunik irngiinnaq, sanajausimalluni ilisarijausimajuup qaangagut",
+		"taglineMiddle": "SDK uvanngat",
+		"copyrightPrefix": "saqqitaujut ukutiguunaq",
+		"builtWith": "sanajaujuq"
+	}
+}

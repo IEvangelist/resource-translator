@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Aistritheoir Acmhainne",
+		"defaultDescription": "Doiciméadú don Aistritheoir Acmhainne GitHub Action - aistriúchán meaisín uathoibrithe ar chomhaid acmhainne trí Azure AI Translator.",
+		"homeLabel": "Aistritheoir Acmhainne — baile"
+	},
+	"skipToContent": "Scipeáil chuig an ábhar",
+	"drawer": {
+		"open": "Oscail nascleanúint",
+		"close": "Dún an nascleanúint",
+		"title": "Loingseoireacht"
+	},
+	"header": {
+		"search": "Cáipéisíocht chuardaigh",
+		"searchPlaceholder": "Cuardaigh cáipéisí...",
+		"toggleTheme": "Scoránaigh téama",
+		"githubRepository": "Stór GitHub",
+		"language": "Teanga"
+	},
+	"search": {
+		"title": "Cáipéisíocht chuardaigh",
+		"results": "Torthaí cuardaigh",
+		"placeholder": "Cuardaigh ailt, rannóga, oidis...",
+		"close": "Dún an chuardach",
+		"idleTitle": "Cuardaigh na doiciméid",
+		"idleHelp": "Aimsigh ailt de réir topaic, formáid comhaid, rogha cumraíochta, nó oideas. Bain úsáid as {up} {down} chun nascleanúint a dhéanamh, {enter} a oscailt.",
+		"loading": "Á Chuardach...",
+		"empty": "Gan aon torthaí. Bain triail as eochairfhocal difriúil.",
+		"error": "Níl an t-innéacs cuardaigh ar fáil i dev. Reáchtáil tógáil táirgeachta."
+	},
+	"toc": {
+		"title": "Ar an leathanach seo"
+	},
+	"pager": {
+		"ariaLabel": "Airteagal",
+		"previous": "Roimhe Seo",
+		"next": "Ar Aghaidh"
+	},
+	"backToTop": {
+		"label": "Scrollaigh go barr"
+	},
+	"footer": {
+		"docs": "Doiciméid",
+		"project": "Tionscadal",
+		"community": "Pobal",
+		"projectLinksAria": "Naisc tionscadail",
+		"sourceAria": "Féach ar an bhfoinse ar GitHub",
+		"marketplaceAria": "Féach ar Mhargadh GitHub",
+		"authorAria": "Suíomh Gréasáin David Pine",
+		"taglinePrefix": "Gníomh GitHub a aistríonn do chuid comhad acmhainne go huathoibríoch, tógtha ar bharr an oifigiúil",
+		"taglineMiddle": "SDK ó",
+		"copyrightPrefix": "Scaoileadh faoin",
+		"builtWith": "Tógtha le"
+	}
+}

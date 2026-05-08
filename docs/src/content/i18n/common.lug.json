@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Resource Translator",
+		"defaultDescription": "Documentation for the Resource Translator GitHub Action — automated machine translation of resource files through Azure AI Translator.",
+		"homeLabel": "Resource Translator — home"
+	},
+	"skipToContent": "Skip to content",
+	"drawer": {
+		"open": "Open navigation",
+		"close": "Close navigation",
+		"title": "Navigation"
+	},
+	"header": {
+		"search": "Search documentation",
+		"searchPlaceholder": "Ebiwandiiko by'okunoonya ...",
+		"toggleTheme": "Toggle theme",
+		"githubRepository": "GitHub repository",
+		"language": "Olulimi"
+	},
+	"search": {
+		"title": "Search documentation",
+		"results": "Search results",
+		"placeholder": "Search articles, sections, recipes...",
+		"close": "Okunoonyereza okumpi",
+		"idleTitle": "Search the Docs",
+		"idleHelp": "Find articles by topic, file format, configuration option, or recipe. Use {up} {down} to navigate, {enter} to open.",
+		"loading": "Okunoonya...",
+		"empty": "Tewali bivaamu. Gezaako ekigambo ekirala ekikulu.",
+		"error": "Akakiiko k'ebyokulonda tekafunye buyambi mu Kampala. Kola ekizimbe ekizimba."
+	},
+	"toc": {
+		"title": "Ku lupapula luno"
+	},
+	"pager": {
+		"ariaLabel": "Ekitundu",
+		"previous": "Previous",
+		"next": "Ekyaddako"
+	},
+	"backToTop": {
+		"label": "Scroll to top"
+	},
+	"footer": {
+		"docs": "Docs",
+		"project": "Pulojekiti",
+		"community": "Ebibiina",
+		"projectLinksAria": "Project links",
+		"sourceAria": "View source on GitHub",
+		"marketplaceAria": "View on GitHub Marketplace",
+		"authorAria": "bye bye david pine's website",
+		"taglinePrefix": "GitHub Action that translates your resource files automatically, built atop the official",
+		"taglineMiddle": "SDK okuva",
+		"copyrightPrefix": "Released under the",
+		"builtWith": "Built with"
+	}
+}

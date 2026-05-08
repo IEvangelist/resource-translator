@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Umhumushi Wezinsizakusebenza",
+		"defaultDescription": "Imibhalo ye-Resource Translator GitHub Action - ukuhumusha komshini okuzenzakalelayo kwamafayela emithombo nge-Azure AI Translator.",
+		"homeLabel": "Umhumushi Wezinsizakusebenza - ikhaya"
+	},
+	"skipToContent": "Yeqa kokuqukethwe",
+	"drawer": {
+		"open": "Vula ukuzulazula",
+		"close": "Vala ukuzulazula",
+		"title": "Ukuzulazula"
+	},
+	"header": {
+		"search": "Imibhalo yokusesha",
+		"searchPlaceholder": "Imibhalo yokusesha...",
+		"toggleTheme": "Shintsha indikimba",
+		"githubRepository": "Indawo yokugcina i-GitHub",
+		"language": "Ulimi"
+	},
+	"search": {
+		"title": "Imibhalo yokusesha",
+		"results": "Imiphumela yokusesha",
+		"placeholder": "Izihloko zokusesha, izigaba, izindlela zokupheka...",
+		"close": "Vala ukucinga",
+		"idleTitle": "Sesha amadokhumenti",
+		"idleHelp": "Thola izindatshana ngesihloko, ifomethi yefayela, inketho yokucushwa, noma iresiphi. Sebenzisa {up} {down} ukuzulazula, {enter} ukuvula.",
+		"loading": "Ukusesha...",
+		"empty": "Ayikho imiphumela. Zama igama elingukhiye elihlukile.",
+		"error": "Inkomba yokusesha ayitholakali ku-dev. Yenza ukwakha ukukhiqizwa."
+	},
+	"toc": {
+		"title": "Kuleli khasi"
+	},
+	"pager": {
+		"ariaLabel": "Isihloko",
+		"previous": "Ngaphambilini",
+		"next": "Okulandelayo"
+	},
+	"backToTop": {
+		"label": "Skrolela phezulu"
+	},
+	"footer": {
+		"docs": "Amadokhumenti",
+		"project": "Iphrojekthi",
+		"community": "Umphakathi",
+		"projectLinksAria": "Izixhumanisi zephrojekthi",
+		"sourceAria": "Buka umthombo kuGitHub",
+		"marketplaceAria": "Buka kuGitHub Marketplace",
+		"authorAria": "Iwebhusayithi kaDavid Pine",
+		"taglinePrefix": "Isenzo seGitHub esihumusha amafayela akho emithombo ngokuzenzakalelayo, eyakhelwe phezulu kwe-official",
+		"taglineMiddle": "I-SDK kusuka",
+		"copyrightPrefix": "Ikhishwe ngaphansi kwe-",
+		"builtWith": "Yakhiwe nge"
+	}
+}

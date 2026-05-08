@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Resource Translator",
+		"defaultDescription": "Skjölun fyrir Resource Translator GitHub Action — sjálfvirk vélþýðing auðlindaskráa með Azure AI Translator.",
+		"homeLabel": "Resource Translator — heimili"
+	},
+	"skipToContent": "Fara beint í efnið",
+	"drawer": {
+		"open": "Opin sigling",
+		"close": "Lokað leiðsögn",
+		"title": "Siglingar"
+	},
+	"header": {
+		"search": "Leitarskjöl",
+		"searchPlaceholder": "Leitaðu að skjölum...",
+		"toggleTheme": "Slökkva á þema",
+		"githubRepository": "GitHub geymsla",
+		"language": "Tungumál"
+	},
+	"search": {
+		"title": "Leitarskjöl",
+		"results": "Leitarniðurstöður",
+		"placeholder": "Leitaðu að greinum, köflum, uppskriftum...",
+		"close": "Lokaðu leit",
+		"idleTitle": "Leitaðu í skjölunum",
+		"idleHelp": "Finndu greinar eftir efni, skráarsniði, stillingarmöguleikum eða uppskrift. Notaðu {up} {down} til að rata, {enter} til að opna.",
+		"loading": "Leita...",
+		"empty": "Engar niðurstöður. Prófaðu annað lykilorð.",
+		"error": "Leitarvísitala er ekki aðgengileg í þróun. Keyrðu framleiðsluuppsetningu."
+	},
+	"toc": {
+		"title": "Á þessari síðu"
+	},
+	"pager": {
+		"ariaLabel": "Grein",
+		"previous": "Fyrri",
+		"next": "Næst"
+	},
+	"backToTop": {
+		"label": "Skrunaðu upp á topp"
+	},
+	"footer": {
+		"docs": "Skjöl",
+		"project": "Verkefnið",
+		"community": "Samfélag",
+		"projectLinksAria": "Verkefnatenglar",
+		"sourceAria": "Skoðaðu heimild á GitHub",
+		"marketplaceAria": "Útsýni á GitHub Marketplace",
+		"authorAria": "Vefsíða David Pine",
+		"taglinePrefix": "GitHub-aðgerð sem þýðir auðlindaskrárnar þínar sjálfkrafa, byggð ofan á opinberu skrána",
+		"taglineMiddle": "SDK frá",
+		"copyrightPrefix": "Gefið út samkvæmt",
+		"builtWith": "Byggt með"
+	}
+}

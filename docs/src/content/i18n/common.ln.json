@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Mobongoli ya ressource",
+		"defaultDescription": "Documentation for the Resource Translator GitHub Action — traduction automatique ya ba fichiers ya ressource na nzela ya Azure AI Translator.",
+		"homeLabel": "Resource Translator — home"
+	},
+	"skipToContent": "Skip to content",
+	"drawer": {
+		"open": "Navigation ouverte",
+		"close": "Navigation ya penepene",
+		"title": "Navigation"
+	},
+	"header": {
+		"search": "Mikanda ya koluka",
+		"searchPlaceholder": "makasih ya mbak...",
+		"toggleTheme": "Toggle theme",
+		"githubRepository": "Ebombamelo ya GitHub",
+		"language": "Monoko"
+	},
+	"search": {
+		"title": "Mikanda ya koluka",
+		"results": "Résultats de recherche",
+		"placeholder": "Recherche des articles, sections, recettes...",
+		"close": "Bolukiluki ya penepene",
+		"idleTitle": "ya pas de doc",
+		"idleHelp": "Luka masolo na motó ya likambo, format ya fichier, option ya configuration, to recette. Salelá {up} {down} mpo na kotambola, {enter} mpo na kofungwama.",
+		"loading": "Koluka...",
+		"empty": "Résultat te. Meká kosalela liloba mosusu.",
+		"error": "Index ya recherche ezali te na dev. Kotonga Ndako ya Bokonzi."
+	},
+	"toc": {
+		"title": "Na lokasa oyo"
+	},
+	"pager": {
+		"ariaLabel": "Lisolo",
+		"previous": "Précédent",
+		"next": "Oyo elandi"
+	},
+	"backToTop": {
+		"label": "Scroll to top"
+	},
+	"footer": {
+		"docs": "Docteur",
+		"project": "Projet",
+		"community": "Communauté",
+		"projectLinksAria": "Liens ya projet",
+		"sourceAria": "View source on GitHub",
+		"marketplaceAria": "View on GitHub Marketplace",
+		"authorAria": "Site Internet ya David Pine",
+		"taglinePrefix": "Action ya GitHub oyo ebongolaka ba fichiers ya ressource na yo automatiquement, etongami likolo ya officiel",
+		"taglineMiddle": "SDK ya",
+		"copyrightPrefix": "Ebimisami na nse ya",
+		"builtWith": "Etongami na"
+	}
+}

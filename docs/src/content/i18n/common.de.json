@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Ressourcenübersetzer",
+		"defaultDescription": "Dokumentation für die Resource Translator GitHub Action – automatisierte maschinelle Übersetzung von Ressourcendateien über Azure AI Translator.",
+		"homeLabel": "Ressourcen-Übersetzer — Startseite"
+	},
+	"skipToContent": "Zum Inhalt springen",
+	"drawer": {
+		"open": "Offene Navigation",
+		"close": "Geschlossene Navigation",
+		"title": "Navigation"
+	},
+	"header": {
+		"search": "Suchdokumentation",
+		"searchPlaceholder": "Durchsuchungsdokumentation...",
+		"toggleTheme": "Thema umschalten",
+		"githubRepository": "GitHub-Repository",
+		"language": "Sprache"
+	},
+	"search": {
+		"title": "Suchdokumentation",
+		"results": "Suchergebnisse",
+		"placeholder": "Durchsuche Artikel, Abschnitte, Rezepte...",
+		"close": "Enge Suche",
+		"idleTitle": "Durchsuchen Sie die Dokumente",
+		"idleHelp": "Finden Sie Artikel nach Thema, Dateiformat, Konfigurationsoption oder Rezept. Benutze {up} {down} zum Navigieren, {enter} zum Öffnen.",
+		"loading": "Suchen...",
+		"empty": "Keine Ergebnisse. Versuche ein anderes Schlüsselwort.",
+		"error": "Der Suchindex ist in der Entwicklung nicht verfügbar. Führe einen Produktions-Build aus."
+	},
+	"toc": {
+		"title": "Auf dieser Seite"
+	},
+	"pager": {
+		"ariaLabel": "Artikel",
+		"previous": "Früher",
+		"next": "Als Nächstes"
+	},
+	"backToTop": {
+		"label": "Scroll nach oben"
+	},
+	"footer": {
+		"docs": "Docs",
+		"project": "Projekt",
+		"community": "Gemeinschaft",
+		"projectLinksAria": "Projektlinks",
+		"sourceAria": "Quelltext auf GitHub anzeigen",
+		"marketplaceAria": "Ansicht auf dem GitHub Marketplace",
+		"authorAria": "David Pines Webseite",
+		"taglinePrefix": "Eine GitHub-Aktion, die deine Ressourcendateien automatisch übersetzt und auf dem offiziellen basiert",
+		"taglineMiddle": "SDK von",
+		"copyrightPrefix": "Veröffentlicht unter der",
+		"builtWith": "Gebaut mit"
+	}
+}

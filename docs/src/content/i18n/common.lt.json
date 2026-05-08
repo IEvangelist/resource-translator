@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Išteklių vertėjas",
+		"defaultDescription": "Išteklių vertėjo GitHub veiksmo dokumentacija – automatinis mašininis išteklių failų vertimas naudojant Azure AI Translator.",
+		"homeLabel": "Išteklių vertėjas — pradžia"
+	},
+	"skipToContent": "Pereiti prie turinio",
+	"drawer": {
+		"open": "Atidaryti navigaciją",
+		"close": "Uždaryti navigaciją",
+		"title": "Navigacija"
+	},
+	"header": {
+		"search": "Ieškoti dokumentacijos",
+		"searchPlaceholder": "Ieškoti dokumentacijos...",
+		"toggleTheme": "Perjungti temą",
+		"githubRepository": "\"GitHub\" saugykla",
+		"language": "Kalba"
+	},
+	"search": {
+		"title": "Ieškoti dokumentacijos",
+		"results": "Paieškos rezultatai",
+		"placeholder": "Ieškoti straipsnių, skyrių, receptų...",
+		"close": "Uždaryti paiešką",
+		"idleTitle": "Paieška dokumentuose",
+		"idleHelp": "Raskite straipsnius pagal temą, failo formatą, konfigūracijos parinktį arba receptą. Naudokite {up} {down} naršyti, {enter} atidaryti.",
+		"loading": "Ieškoma...",
+		"empty": "Rezultatų nėra. Išbandykite kitą raktinį žodį.",
+		"error": "Ieškos indeksas nepasiekiamas kūrėjuje. Paleiskite gamybinę komponavimo versiją."
+	},
+	"toc": {
+		"title": "Šiame puslapyje"
+	},
+	"pager": {
+		"ariaLabel": "Straipsnis",
+		"previous": "Ankstesnis",
+		"next": "Kitas"
+	},
+	"backToTop": {
+		"label": "Slinkti į viršų"
+	},
+	"footer": {
+		"docs": "Dokumentai",
+		"project": "Projektas",
+		"community": "Bendruomenė",
+		"projectLinksAria": "Projekto nuorodos",
+		"sourceAria": "Peržiūrėti šaltinį \"GitHub\"",
+		"marketplaceAria": "Peržiūrėti \"GitHub Marketplace\"",
+		"authorAria": "Davido Pine'o svetainė",
+		"taglinePrefix": "\"GitHub\" veiksmas, kuris automatiškai išverčia jūsų išteklių failus, pastatytas ant oficialaus",
+		"taglineMiddle": "SDK iš",
+		"copyrightPrefix": "Išleista pagal",
+		"builtWith": "Sukurta su"
+	}
+}

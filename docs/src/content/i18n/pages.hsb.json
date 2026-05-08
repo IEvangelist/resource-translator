@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Přełožowar resursow",
+		"description": "Wočińće mašinelnje přełožene sćehnjenske žadanja za resursowe dataje w kóždym repozytoriku, w kóždym formaće.",
+		"badge": "v3.0 — Node 24, repo config, glosar, suchy běh",
+		"headlinePrefix": "Lokalizuj swój repozytorium na",
+		"headlineAccent": "Kóždemu zawjazkej.",
+		"lede": "Resource Translator wotewri mašinelnje přełožene sćehnjenske naprašowanja za waše resursowe dataje z pomocu Azure AI Translator přez oficialny SDK - žane přidatne słužby, jenož dźěłowy wotběh.",
+		"primaryCta": "Započinajće",
+		"secondaryCta": "Star na GitHub",
+		"supports": "podpěra",
+		"builtForShipping": "Twarjene za łódźnistwo",
+		"workflowTitle": "Přełožk jako dźěłowy wotběh, žadyn dźěło.",
+		"workflowBody": "Wotpołožće jednanje do swojeje eksistowaceje CI, posměrće ju na Azure AI Translator a dajće swojemu repozytoriku kóždu rěč, na kotruž so měriće, rěčeć.",
+		"stats": {
+			"audit": "0 npm-audit issues",
+			"tests": "150 testow",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Šěsć datajowych formatow",
+				"body": "Kołojězby .resx, .xliff, .po, .json, .ini a .restext z byte-stabilnym formatowanjom."
+			},
+			"config": {
+				"title": "Repo-level config",
+				"body": "Wotpołožće .github/resource-translator.yml za include globs, glosary a kategorije Custom Translator."
+			},
+			"glossary": {
+				"title": "Glosar-aware",
+				"body": "Zawrějće mjena markow a produktowe zapřijeća z inteligentnym słowo-mjezowym regularnym ekseksom, kotryž C ++, .NET a přećelow wobdźěła."
+			},
+			"dryRun": {
+				"title": "Dry-run + soft-fail",
+				"body": "Přehladujće přełožki bjez pisanja datajow abo pokazujće kóždy zmylk jako warnowanje, mjeztym zo iterěrujće."
+			},
+			"outputs": {
+				"title": "PR-přichilene outputy",
+				"body": "summary-title, summary-details a has-new-translations zasadźa so direktnje do create-pull-request."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Natwarjene na @azure-rest/ai-translation-text + @azure/core-rest-pipeline — awtomatiske wospjetowanje na 408/429/5xx, žadyn z ruku wjerćeny HTTP. esbuild-bundled, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Započeć",
+		"eyebrow": "Zarjadowanje",
+		"lede": "Přidaj dataju dźěłoweho wotběha, posměr ju na swoje přiznamjenja za Azure AI Translator a akcija – natwarjena na oficialnej @azure-rest/ai-translation-text SDK firmy Microsoft – přeskanuje repozytorik za resursowymi datajemi za žórłowej rěču a wušaltuje přełoženych bratrow a sotry.",
+		"steps": {
+			"provision": {
+				"title": "Provisioning an Azure AI Translator resource",
+				"body": "Wutworće resursu Azure AI Translator w Azure portalu, składujće potom sćěhowace jako potajnstwa składa GitHub, zo móže je dźěłowy wotběh čitać:",
+				"key": "Abonentski kluč za resursu.",
+				"endpoint": "URL regionalneho kónčneho dypka.",
+				"region": "Resursowy region Azure."
+			},
+			"workflow": {
+				"title": "Dźěłowy wotběh přidaće",
+				"body": "Wutworće .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Spušćenje resursoweje dataje žórła",
+				"body": "Resursowe dataje wužiwaja Name. .<sourceLocale> <ext> konwencija. Tak stanje so na př. z Greetings.en.resx po běhu z Greetings.fr.resx, Greetings.de.resx atd."
+			},
+			"output": {
+				"title": "Přehladaj wudaće",
+				"body": "Hdyž je dźěłowy wotběh wotzamknjeny, wunjese akcija tři outputy, kotrež móžeš k PR-wopisowanju přidać: summary-title, summary-details a has-new-translations. Wón pisa tež Markdown-zjeće do dźěłoweje strony přez core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Dalše kroki",
+			"configuration": "Konfigurujće predvolene hódnoty na nivou repo-level z .github/resource-translator.yml.",
+			"recipes": "Wobhladaj sej recepty za monorepo, swójske glosary a kategorije swójskeho přełožowarja."
+		}
+	},
+	"configuration": {
+		"title": "Konfiguracija",
+		"eyebrow": "YAML",
+		"heroTitle": "Konfiguracija repozitorija",
+		"lede": "Zwurazniće standardy jónu w .github/resource-translator.yml a dajće kóždemu dźěłowemu wotběhej je zdźědźić. Akciske inputy dobudu přeco potom, hdyž stej woboje podanej."
+	},
+	"inputs": {
+		"title": "Inputs & outputs",
+		"eyebrow": "Złožk",
+		"lede": "Kóždy zapodaće so tež w ofentiwnej konfigurowanskej dataji repozytorium akceptuje. Hdyž stej wobě nastajenej, dobudźe akciski input."
+	},
+	"formats": {
+		"title": "Formaty plików",
+		"eyebrow": "Złožk",
+		"heroTitle": "Podpěrane formaty plików",
+		"lede": "Šěsć kołojězbnych formatow resursow. Akcija čita kóždu dataju source-locale, přełoži hódnoty a zapisa na cilowu lokalizaciju jednoho bratra a sotru."
+	},
+	"recipes": {
+		"title": "Recepty",
+		"eyebrow": "Warjenska kniha",
+		"lede": "Zwučene mustry za rozpósłanje přełožkow: monorepos, glosary, swójske kategorije, suche přeběhi a tonowa kontrola."
+	},
+	"faq": {
+		"title": "FAQ",
+		"eyebrow": "Pomoc",
+		"heroTitle": "Husto stajene prašenja",
+		"lede": "Spěšne wotmołwy na prašenja, kotrež so při přiwzaću jednanja najhusćišo jewja."
+	},
+	"translations": {
+		"title": "Přełožki",
+		"eyebrow": "Wustajenje",
+		"heroTitle": "Halo w kóždej rěči",
+		"locales": "Lokacije",
+		"currentlyRendered": "Tučasnje přerysowane",
+		"complete": "Dospołnje!",
+		"pendingPrefix": "Hač k přichodnemu wuběženju přełožowanskich dokumentow.",
+		"viewWorkflowRuns": "Wobhladaj sej běhi dźěłoweho wotběha",
+		"filter": "Filtr",
+		"filterPlaceholder": "Pytajće po rěči, kode abo maćernorěčnym mjenje ...",
+		"source": "Žórło",
+		"machineTranslations": "Mašinelne přełožki",
+		"translationPending": "Translation pending - Wočiń přeběh přełožowanskich dokumentow.",
+		"noLocales": "K tutomu filtrej so žane lokale njehodźa.",
+		"howItWorks": "Kak to funguje"
+	},
+	"contributing": {
+		"title": "Přinošować",
+		"eyebrow": "Wotewrjeny source",
+		"lede": "Přizjewjenja zmylkow, naprašowanja funkcijow a sćehnjenja su witane. Akcija je mała dosć, zo by prěni króć sobuskutkowacym přećelna była."
+	},
+	"changelog": {
+		"title": "Protokol změnow",
+		"eyebrow": "Stawizny",
+		"lede": "Wysokorjadne zjimanje wozjewjenjow. Kanoniski, awtoritatiwny changelog bydli w CHANGELOG.md w składźe."
+	}
+}

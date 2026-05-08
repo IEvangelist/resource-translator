@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Baliabideen itzultzailea",
+		"defaultDescription": "Resource Translator GitHub Action-en dokumentazioa - baliabide-fitxategien itzulpen automatikoa Azure AI Translator-en bidez.",
+		"homeLabel": "Baliabideen itzultzailea - Hasiera"
+	},
+	"skipToContent": "Saltatu edukira",
+	"drawer": {
+		"open": "Ireki nabigazioa",
+		"close": "Itxi nabigazioa",
+		"title": "Nabigazioa"
+	},
+	"header": {
+		"search": "Bilaketaren dokumentazioa",
+		"searchPlaceholder": "Bilaketaren dokumentazioa...",
+		"toggleTheme": "Txandakatu gaia",
+		"githubRepository": "GitHub-eko biltegia",
+		"language": "Hizkuntza"
+	},
+	"search": {
+		"title": "Bilaketaren dokumentazioa",
+		"results": "Bilaketaren emaitzak",
+		"placeholder": "Bilatu artikuluak, atalak, errezetak...",
+		"close": "Itxi bilaketa",
+		"idleTitle": "Bilatu dokumentuak",
+		"idleHelp": "Bilatu artikuluak gaiaren, fitxategi-formatuaren, konfigurazio-aukeraren edo errezeta arabera. Erabili {up} {down} nabigatzeko {enter} irekitzeko.",
+		"loading": "Bilatzen...",
+		"empty": "Emaitzarik ez. Saiatu beste hitz gako bat.",
+		"error": "Bilaketa-indizea ez erabilgarri garapen-en. Ekoizpen bat exekutatu."
+	},
+	"toc": {
+		"title": "Orrialde honetan"
+	},
+	"pager": {
+		"ariaLabel": "Artikulua",
+		"previous": "Aurrekoa",
+		"next": "Hurrengoa"
+	},
+	"backToTop": {
+		"label": "Korritu gorantz"
+	},
+	"footer": {
+		"docs": "Dokumentuak",
+		"project": "Proiektua",
+		"community": "Komunitatea",
+		"projectLinksAria": "Proiektuaren estekak",
+		"sourceAria": "Ikusi iturburua GitHub-en",
+		"marketplaceAria": "Ikusi GitHub Marketplace-en",
+		"authorAria": "David Pine-ren webgunea",
+		"taglinePrefix": "Zure baliabide-fitxategiak automatikoki itzultzen dituen GitHub ekintza, ofizialaren gainean eraikia",
+		"taglineMiddle": "SDK hemendik",
+		"copyrightPrefix": "Askatasunaren azpian",
+		"builtWith": "Honekin eraikia"
+	}
+}

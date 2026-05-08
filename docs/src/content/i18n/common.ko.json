@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "리소스 번역기",
+		"defaultDescription": "리소스 번역기 GitHub Action 문서화 — Azure AI 번역기를 통한 리소스 파일의 자동 기계 번역.",
+		"homeLabel": "리소스 번역기 — 홈"
+	},
+	"skipToContent": "내용으로 건너뛰기",
+	"drawer": {
+		"open": "오픈 내비게이션",
+		"close": "근접 내비게이션",
+		"title": "항해"
+	},
+	"header": {
+		"search": "검색 문서",
+		"searchPlaceholder": "문서 검색 중...",
+		"toggleTheme": "토글 테마",
+		"githubRepository": "GitHub 저장소",
+		"language": "언어"
+	},
+	"search": {
+		"title": "검색 문서",
+		"results": "검색 결과",
+		"placeholder": "기사, 섹션, 레시피를 검색하세요...",
+		"close": "정밀 탐색",
+		"idleTitle": "문서를 검색해 보세요",
+		"idleHelp": "주제, 파일 형식, 설정 옵션, 레시피별로 기사를 찾으세요. {up} {down}로 내비게이션하고, {enter} 열어보세요.",
+		"loading": "수색 중...",
+		"empty": "결과가 없었습니다. 다른 키워드를 시도해 보세요.",
+		"error": "개발 버전에서는 검색 인덱스를 사용할 수 없습니다. 프로덕션 빌드를 실행하세요."
+	},
+	"toc": {
+		"title": "이 페이지에서"
+	},
+	"pager": {
+		"ariaLabel": "기사",
+		"previous": "이전",
+		"next": "다음"
+	},
+	"backToTop": {
+		"label": "맨 위로 스크롤"
+	},
+	"footer": {
+		"docs": "문서",
+		"project": "프로젝트",
+		"community": "커뮤니티",
+		"projectLinksAria": "프로젝트 링크",
+		"sourceAria": "GitHub에서 소스 보기",
+		"marketplaceAria": "GitHub 마켓플레이스에서 보기",
+		"authorAria": "데이비드 파인의 웹사이트",
+		"taglinePrefix": "공식 위에 구축된 리소스 파일을 자동으로 변환해주는 GitHub Action입니다",
+		"taglineMiddle": "SDK 제공",
+		"copyrightPrefix": "하에 공개됨",
+		"builtWith": "건조"
+	}
+}

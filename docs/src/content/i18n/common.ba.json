@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Ресурс тәржемәсеһе",
+		"defaultDescription": "Resource Translator GitHub Action өсөн документация — Azure AI Translator аша ресурс файлдарын автоматлаштырылған машина тәржемәһе.",
+		"homeLabel": "Ресурс тәржемәсеһе — төп адрес"
+	},
+	"skipToContent": "Эстәлеккә күсеү",
+	"drawer": {
+		"open": "Асыҡ навигация",
+		"close": "Яҡын навигация",
+		"title": "Навигация"
+	},
+	"header": {
+		"search": "Эҙләү документацияһы",
+		"searchPlaceholder": "Эҙләү документацияһы...",
+		"toggleTheme": "Тумбл темаһы",
+		"githubRepository": "GitHub репозиторияһы",
+		"language": "Тел"
+	},
+	"search": {
+		"title": "Эҙләү документацияһы",
+		"results": "Эҙләү һөҙөмтәләре",
+		"placeholder": "Мәҡәләләр, бүлектәр, рецепттар эҙләгеҙ...",
+		"close": "Эҙләүҙе тамамлау",
+		"idleTitle": "Документтарҙы эҙлә",
+		"idleHelp": "Мәҡәләләрҙе тема, файл форматы, конфигурация йәки рецепт буйынса табығыҙ. Навигация өсөн {up} {down} ҡуллан, асыу өсөн {enter} ҡуллан.",
+		"loading": "Эҙләйем...",
+		"empty": "Һөҙөмтә юҡ. Башҡа асҡыс һүҙҙе һынап ҡарағыҙ.",
+		"error": "Эҙләү индексы dev-та юҡ. Production билд эшләтегеҙ."
+	},
+	"toc": {
+		"title": "Был биттә"
+	},
+	"pager": {
+		"ariaLabel": "Мәҡәлә",
+		"previous": "Элекке",
+		"next": "Киләһе"
+	},
+	"backToTop": {
+		"label": "Өҫкә күсергә"
+	},
+	"footer": {
+		"docs": "Документтар",
+		"project": "Проект",
+		"community": "Йәмәғәт",
+		"projectLinksAria": "Проектҡа һылтанмалар",
+		"sourceAria": "GitHub-та сығанаҡты ҡарау",
+		"marketplaceAria": "GitHub Marketplace-та ҡарау",
+		"authorAria": "Дэвид Пайндың сайты",
+		"taglinePrefix": "Ресурс файлдарығыҙҙы автоматик рәүештә тәржемә итеүсе GitHub ғәмәле, рәсми файлдар өҫтөндә төҙөлгән",
+		"taglineMiddle": "SDK-нан",
+		"copyrightPrefix": "Сығарылған",
+		"builtWith": "Төҙөлгән"
+	}
+}

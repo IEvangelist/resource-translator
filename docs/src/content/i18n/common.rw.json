@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Umusemuzi w'ibikoresho",
+		"defaultDescription": "Documentation for the Resource Translator GitHub Action — automated machine translation of resource files via Azure AI Translator.",
+		"homeLabel": "Resource Translator — home"
+	},
+	"skipToContent": "Skip to content",
+	"drawer": {
+		"open": "Open navigation",
+		"close": "Close navigation",
+		"title": "Navigation"
+	},
+	"header": {
+		"search": "Search documentation",
+		"searchPlaceholder": "Search documentation...",
+		"toggleTheme": "Toggle theme",
+		"githubRepository": "Ububiko bwa GitHub",
+		"language": "Ururimi"
+	},
+	"search": {
+		"title": "Search documentation",
+		"results": "Search results",
+		"placeholder": "Search articles, sections, recipes...",
+		"close": "Close search",
+		"idleTitle": "Search the docs",
+		"idleHelp": "Find articles by topic, file format, configuration option, or recipe. Use {up} {down} to navigate, {enter} to open.",
+		"loading": "Gushakisha...",
+		"empty": "Nta musaruro. Gerageza indi nteruro y'ingenzi.",
+		"error": "Igishushanyo mbonera cy'umujyi wa Kigali ntikiboneka mu Mujyi wa Kigali. Kora inyubako y'ubucuruzi."
+	},
+	"toc": {
+		"title": "Kuri uru rupapuro"
+	},
+	"pager": {
+		"ariaLabel": "Article",
+		"previous": "Mbere",
+		"next": "Icyakurikiyeho"
+	},
+	"backToTop": {
+		"label": "Scroll to top"
+	},
+	"footer": {
+		"docs": "Docs",
+		"project": "Umushinga",
+		"community": "Umuryango",
+		"projectLinksAria": "Project links",
+		"sourceAria": "View source on GitHub",
+		"marketplaceAria": "View on GitHub Marketplace",
+		"authorAria": "Urubuga rwa David Pine",
+		"taglinePrefix": "GitHub Action ihindura inyandiko zawe bwite mu buryo bwikora, yubatswe hejuru y'urwego rw'ubutegetsi",
+		"taglineMiddle": "SDK from",
+		"copyrightPrefix": "Released under the",
+		"builtWith": "Built with"
+	}
+}

@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Resource Translator",
+		"defaultDescription": "Documentation for the Resource Translator GitHub Action — automated machine translation of resource files via Azure AI Translator.",
+		"homeLabel": "Resource Translator — home"
+	},
+	"skipToContent": "Skip to content",
+	"drawer": {
+		"open": "Vhura navigation",
+		"close": "Close navigation",
+		"title": "Navigation"
+	},
+	"header": {
+		"search": "Zvinyorwa zvekutsvaga",
+		"searchPlaceholder": "Zvinyorwa zvekutsvaga ...",
+		"toggleTheme": "Toggle theme",
+		"githubRepository": "GitHub repository",
+		"language": "Mutauro"
+	},
+	"search": {
+		"title": "Zvinyorwa zvekutsvaga",
+		"results": "Mhedzisiro yekutsvaga",
+		"placeholder": "Tsvaga zvinyorwa, zvikamu, mabikirwo ...",
+		"close": "Pedyo nekutsvaga",
+		"idleTitle": "Tsvaga Docs",
+		"idleHelp": "Tsvaga zvinyorwa nemusoro wenyaya, fomati yefaira, sarudzo yekugadzirisa, kana recipe. Shandisa {up} {down} kuti uvhure, {enter} kuvhura.",
+		"loading": "Kutsvaga...",
+		"empty": "Hapana mhedzisiro. Edza imwe keyword.",
+		"error": "Kutsvaga kwekutsvaga hakuwanikwe muDebian. Gadzira chivakwa chekugadzira."
+	},
+	"toc": {
+		"title": "Pane ino peji"
+	},
+	"pager": {
+		"ariaLabel": "Chinyorwa",
+		"previous": "Kare",
+		"next": "Inotevera"
+	},
+	"backToTop": {
+		"label": "Scroll to top"
+	},
+	"footer": {
+		"docs": "Docs",
+		"project": "Chirongwa",
+		"community": "Nharaunda",
+		"projectLinksAria": "Project links",
+		"sourceAria": "Ona sosi paGitHub",
+		"marketplaceAria": "Ona paGitHub Marketplace",
+		"authorAria": "David Pine's webhusaiti",
+		"taglinePrefix": "GitHub Chiito chinoshandura mafaera ako ezviwanikwa otomatiki, akavakirwa pamusoro peiyo yepamutemo",
+		"taglineMiddle": "SDK kubva",
+		"copyrightPrefix": "Yakasunungurwa pasi peiyo",
+		"builtWith": "Yakavakwa ne"
+	}
+}

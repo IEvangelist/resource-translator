@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Mofetoleli oa Resource",
+		"defaultDescription": "Litokomane tsa mofetoleli oa Resource GitHub Action — phetolelo ea mochini o ikemetseng oa lifaele tsa lisebelisoa ka Azure AI Translator.",
+		"homeLabel": "Mofetoleli oa Resource — lehae"
+	},
+	"skipToContent": "Skip to content",
+	"drawer": {
+		"open": "Ho tsamaea ka mokhoa o bulehileng",
+		"close": "Close navigation",
+		"title": "Ho tsamaea"
+	},
+	"header": {
+		"search": "Litokomane tsa ho batla",
+		"searchPlaceholder": "Litokomane tsa ho batla ...",
+		"toggleTheme": "Toggle theme",
+		"githubRepository": "Polokelo ea GitHub",
+		"language": "Puo"
+	},
+	"search": {
+		"title": "Litokomane tsa ho batla",
+		"results": "Liphetho tsa lipatlisiso",
+		"placeholder": "Lihlooho tsa batla, likarolo, diresepe ...",
+		"close": "Patlo e haufi",
+		"idleTitle": "Batla li-docs",
+		"idleHelp": "Fumana lingoloa ka sehlooho, sebopeho sa faele, khetho ea tlhophiso, kapa risepe. Sebelisa {up} {down} ho tsamaea, {enter} ho bula.",
+		"loading": "Ho batla...",
+		"empty": "Ha ho na liphetho. Leka lentsoe le leng la bohlokoa.",
+		"error": "Index ea ho batla ha e fumanehe ho dev. Tsamaisa kaho ea tlhahiso."
+	},
+	"toc": {
+		"title": "Leqepheng lena"
+	},
+	"pager": {
+		"ariaLabel": "Sehlooho",
+		"previous": "Pele",
+		"next": "E latelang"
+	},
+	"backToTop": {
+		"label": "Scroll ho ea holimo"
+	},
+	"footer": {
+		"docs": "Litokomane",
+		"project": "Morero",
+		"community": "Sechaba",
+		"projectLinksAria": "Lihokela tsa projeke",
+		"sourceAria": "Sheba mohloli ho GitHub",
+		"marketplaceAria": "View on GitHub Marketplace",
+		"authorAria": "Webosaete ea David Pine",
+		"taglinePrefix": "GitHub Action e fetolelang lifaele tsa hau tsa lisebelisoa ka boiketsetso, e hahiloeng holim'a semmuso",
+		"taglineMiddle": "SDK ho tloha",
+		"copyrightPrefix": "E lokollotsoe tlas'a",
+		"builtWith": "E hahiloe ka"
+	}
+}

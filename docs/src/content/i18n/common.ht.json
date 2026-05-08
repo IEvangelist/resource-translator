@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Tradiktè Resous",
+		"defaultDescription": "Dokimantasyon pou Aksyon GitHub Tradiktè Resous — tradiksyon otomatik fichye resous atravè tradiktè Azure AI",
+		"homeLabel": "Tradiktè Resous — home"
+	},
+	"skipToContent": "Sote nan kontni",
+	"drawer": {
+		"open": "Louvri navigasyon",
+		"close": "Fèmen navigasyon",
+		"title": "Navigasyon"
+	},
+	"header": {
+		"search": "Rechèch dokimantasyon",
+		"searchPlaceholder": "Rechèch dokiman...",
+		"toggleTheme": "Toggle tèm",
+		"githubRepository": "Depo GitHub",
+		"language": "Lang"
+	},
+	"search": {
+		"title": "Rechèch dokimantasyon",
+		"results": "Rezilta rechèch",
+		"placeholder": "Rechèch atik, seksyon, resèt ...",
+		"close": "Fèmen rechèch",
+		"idleTitle": "Rechèch nan dokiman yo",
+		"idleHelp": "Jwenn atik pa sijè, fòma dosye, opsyon konfigirasyon oswa resèt Sèvi ak {up} {down} navige, {enter} pou louvri.",
+		"loading": "Kap chèche ...",
+		"empty": "Pa gen rezilta. Eseye yon mo kle diferan",
+		"error": "Search index pa disponib nan dev. Kouri yon pwodiksyon bati."
+	},
+	"toc": {
+		"title": "Nan paj sa a"
+	},
+	"pager": {
+		"ariaLabel": "Atik",
+		"previous": "Previousin",
+		"next": "Next"
+	},
+	"backToTop": {
+		"label": "Scroll nan tèt"
+	},
+	"footer": {
+		"docs": "Dokiman yo",
+		"project": "Pwojè",
+		"community": "Kominote",
+		"projectLinksAria": "Lyen pwojè yo",
+		"sourceAria": "View sous sou GitHub",
+		"marketplaceAria": "View sou GitHub Marketplace",
+		"authorAria": "Sit entènèt David Pine a",
+		"taglinePrefix": "Yon Aksyon GitHub ki tradwi dosye resous ou otomatikman, bati sou tèt ofisyèl la",
+		"taglineMiddle": "SDK soti nan",
+		"copyrightPrefix": "Lage anba la",
+		"builtWith": "Bati ak"
+	}
+}

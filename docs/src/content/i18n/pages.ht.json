@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Tradiktè Resous",
+		"description": "Louvri demann rale machin tradui pou dosye resous nan nenpòt repo, nan nenpòt fòma.",
+		"badge": "v3.0 — Node 24, repo config, glossary, sèk kouri",
+		"headlinePrefix": "Lokalize repo ou sou",
+		"headlineAccent": "chak komèt",
+		"lede": "Tradiktè Resous louvri demann rale tradui machin pou dosye resous ou lè l sèvi avèk Azure AI tradiktè via SDK ofisyèl la - pa gen okenn sèvis siplemantè, jis yon workflow.",
+		"primaryCta": "Jwenn te kòmanse",
+		"secondaryCta": "Star sou GitHub",
+		"supports": "Sipò yo",
+		"builtForShipping": "Bati pou anbake",
+		"workflowTitle": "Tradiksyon kòm yon workflow, pa yon travay.",
+		"workflowBody": "Drop aksyon an nan CI ki deja egziste ou, lonje dwèt li nan Azure AI Translator, epi kite repo ou pale chak lang ou sib.",
+		"stats": {
+			"audit": "0 npm-kontwòl kontab pwoblèm",
+			"tests": "150 tès",
+			"node": "Nœud 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Sis fòma dosye",
+				"body": "Roundtrips .resx, .xliff, .po, .json, .ini ak .restext ak byte-ki estab fòma."
+			},
+			"config": {
+				"title": "Repo-nivo konfigirasyon",
+				"body": "Drop yon .github/resource-translator.yml pou enkli globs, glosè ak kategori tradiktè Custom."
+			},
+			"glossary": {
+				"title": "Glosè okouran",
+				"body": "Fèmen non mak ak tèm pwodwi ak regex entelijan mo-fwontyè ki okipe C ++, .NET ak zanmi yo."
+			},
+			"dryRun": {
+				"title": "Sèk kouri + mou echwe",
+				"body": "Preview tradiksyon san yo pa ekri dosye, oswa sifas chak erè kòm yon avètisman pandan w ap repete."
+			},
+			"outputs": {
+				"title": "PR-zanmitay pwodiksyon",
+				"body": "rezime-, rezime-detay ak gen-nouvo-tradiksyon plas dirèkteman nan kreye-rale-demann."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Bati sou @azure-rès / ai-tradiksyon tèks + @azure / nwayo-rès-tiyo — otomatikman retries sou 408 / 429 / 5xx, pa gen men woule HTTP. esbuild-pake, odit pwòp"
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Pou kòmanse",
+		"eyebrow": "Konfigirasyon",
+		"lede": "Ajoute yon dosye workflow, lonje dwèt sou kalifikasyon tradiktè Azure AI ou ak aksyon an - bati sou SDK ofisyèl Microsoft @azure-rest / ai-translation-text - ap eskane repo a pou dosye resous sous-lang epi emèt frè-sè tradui.",
+		"steps": {
+			"provision": {
+				"title": "Pwovizyon yon resous Azure AI Translator",
+				"body": "Kreye yon resous Azure AI tradiktè nan Azure Portal, Lè sa a, estoke sa ki annapre yo kòm sekrè depo GitHub pou workflow la ka li yo:",
+				"key": "kle abònman nan resous la.",
+				"endpoint": "URL ekstremite rejyonal la.",
+				"region": "Resous la rejyon Azure."
+			},
+			"workflow": {
+				"title": "Ajoute workflow la",
+				"body": "Kreye .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Komèt yon dosye resous sous",
+				"body": "Dosye resous yo itilize non an. <sourceLocale>. <ext> Konvansyon Pou egzanp Greetings.en.resx vin Greetings.fr.resx, Greetings.de.resx, ak sou sa apre yon kouri."
+			},
+			"output": {
+				"title": "Enspekte pwodiksyon an",
+				"body": "Yon fwa workflow la fini, aksyon an ekspoze twa rezilta ke ou ka fil nan yon deskripsyon PR: rezime-, rezime-detay, ak gen-nouvo-tradiksyon. Li ekri tou yon rezime Markdown nan paj travay la atravè core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Pwochen etap yo",
+			"configuration": "Konfigirasyon defo-nivo repo ak .github/resource-translator.yml.",
+			"recipes": "Gade resèt pou monorepos, glosè koutim, ak kategori tradiktè Custom"
+		}
+	},
+	"configuration": {
+		"title": "Konfigirasyon an",
+		"eyebrow": "YAML",
+		"heroTitle": "Konfigirasyon depo",
+		"lede": "Express default yon fwa nan .github / resource-translator.yml epi kite chak workflow eritye yo. Aksyon opinyon toujou genyen lè tou de yo bay."
+	},
+	"inputs": {
+		"title": "Entrain & Sòti",
+		"eyebrow": "Referans",
+		"lede": "Chak opinyon tou aksepte nan dosye a opsyonèl repo config. Lè tou de yo mete, opinyon nan aksyon ranport."
+	},
+	"formats": {
+		"title": "Fòma dosye",
+		"eyebrow": "Referans",
+		"heroTitle": "Te sipòte fòma dosye",
+		"lede": "Sis fòma resous wonn-trippable Aksyon an li chak dosye sous-lokal, tradui valè yo, epi ekri yon frè pou chak lokal sib."
+	},
+	"recipes": {
+		"title": "Resèt yo",
+		"eyebrow": "Liv pou kwit manje",
+		"lede": "Modèl komen pou tradiksyon anbake: monorepos, glosèr, kategori koutim, sèk kouri, ak kontwòl ton."
+	},
+	"faq": {
+		"title": "FAQ",
+		"eyebrow": "Anmwe",
+		"heroTitle": "Kesyon yo poze souvan",
+		"lede": "Repons rapid nan kesyon yo ki vini pi souvan lè adopte aksyon an."
+	},
+	"translations": {
+		"title": "Tradiksyon yo",
+		"eyebrow": "Vitrin",
+		"heroTitle": "Bonjou nan tout lang",
+		"locales": "lokal yo",
+		"currentlyRendered": "Kounye a rann",
+		"complete": "Ranpli !",
+		"pendingPrefix": "annatant pwochen tradwi-doks kouri",
+		"viewWorkflowRuns": "Gade workflow kouri",
+		"filter": "Filtre",
+		"filterPlaceholder": "Search pa lang, kòd oswa non natif natal ...",
+		"source": "Sous",
+		"machineTranslations": "Tradiksyon machin",
+		"translationPending": "Tradiksyon annatant — louvri yon tradwi-docs kouri.",
+		"noLocales": "Pa gen lokal matche ak filtre sa a.",
+		"howItWorks": "Ki jan sa a fonksyone"
+	},
+	"contributing": {
+		"title": "Kontribye",
+		"eyebrow": "Louvri sous",
+		"lede": "Rapò ensèk, demann karakteristik, ak demann rale yo tout akeyi. Aksyon an se ti ase yo dwe zanmitay pou premye fwa kontribitè."
+	},
+	"changelog": {
+		"title": "Chanjman boutèy demi lit",
+		"eyebrow": "Istwa",
+		"lede": "Segondè rezime nivo degaje Changelog kanonik, autorité ap viv nan CHANGELOG.md nan depo a."
+	}
+}

@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Umhumushi Wezinsizakusebenza",
+		"description": "Vula izicelo zokudonsa ezihunyushwe ngomshini zamafayela emithombo kunoma iyiphi i-repo, kunoma iyiphi ifomethi.",
+		"badge": "v3.0 - Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "Beka indawo yakho ye-repo ku",
+		"headlineAccent": "Ukuzibophezela ngakunye.",
+		"lede": "I-Resource Translator ivula izicelo zokudonsa ezihunyushwe ngomshini zamafayela akho emithombo usebenzisa i-Azure AI Translator nge-SDK esemthethweni - azikho izinsizakalo ezengeziwe, nje ukuhamba komsebenzi.",
+		"primaryCta": "Qala",
+		"secondaryCta": "Inkanyezi kuGitHub",
+		"supports": "Ukusekela",
+		"builtForShipping": "Yakhelwe ukuthunyelwa",
+		"workflowTitle": "Ukuhumusha njengomsebenzi wokusebenza, hhayi umsebenzi womsebenzi.",
+		"workflowBody": "Phonsa isenzo ku-CI yakho ekhona, uyikhombe ku-Azure AI Translator, futhi uvumele i-repo yakho ikhulume zonke izilimi ozihlosile.",
+		"stats": {
+			"audit": "0 npm-audit issues",
+			"tests": "Izivivinyo ezingu-150",
+			"node": "I-Node 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Amafomethi wefayela ayisithupha",
+				"body": "Uhambo olujikelezayo .resx, .xliff, .po, .json, .ini, kanye ne-.restext ngokufometha okuzinzile kwe-byte."
+			},
+			"config": {
+				"title": "Ukumiselwa kwezinga le-Repo",
+				"body": "Phonsa i-.github/resource-translator.yml kufaka phakathi ama-globs, ama-glossaries, kanye nezigaba ze-Custom Translator."
+			},
+			"glossary": {
+				"title": "I-Glossary-aware",
+				"body": "Khiya amagama womkhiqizo nemigomo yomkhiqizo nge-regex ehlakaniphile ephatha i-C ++, .NET, nabangani."
+			},
+			"dryRun": {
+				"title": "I-Dry-run + soft-fail",
+				"body": "Buka kuqala izinguqulo ngaphandle kokubhala amafayela, noma uveze wonke amaphutha njengesixwayiso ngenkathi uphinda."
+			},
+			"outputs": {
+				"title": "Imiphumela ye-PR-friendly",
+				"body": "isifinyezo-isihloko, isifinyezo-imininingwane, futhi has-new-translations slot ngqo ku-create-pull-request."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Yakhelwe ku-@azure-rest / ai-translation-text + @azure / core-rest-pipeline - ukuzama kabusha okuzenzakalelayo ku-408 / 429 / 5xx, ayikho i-HTTP esongwe ngesandla. esbuild-bundled, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Ukuqala",
+		"eyebrow": "Ukusetha",
+		"lede": "Engeza ifayela lokuhamba komsebenzi, likhombe eziqinisekisweni zakho ze-Azure AI Translator, futhi isenzo - esakhiwe ku-SDK esemthethweni ye-Microsoft ye-@azure-rest / ai-translation-text - sizoskena i-repo yamafayela emithombo yolimi lomthombo futhi sikhiphe izingane zakubo ezihunyushiwe.",
+		"steps": {
+			"provision": {
+				"title": "Ukuhlinzeka umthombo we-Azure AI Translator",
+				"body": "Yakha umthombo we-Azure AI Translator ku-portal ye-Azure, bese ugcine okulandelayo njengezimfihlo zokugcina i-GitHub ukuze ukuhamba komsebenzi kukwazi ukuzifunda:",
+				"key": "Isihluthulelo sokubhalisa somthombo.",
+				"endpoint": "I-URL yokuphela kwesifunda.",
+				"region": "Isifunda se-Azure Resource."
+			},
+			"workflow": {
+				"title": "Engeza ukuhamba komsebenzi",
+				"body": "Dala .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Yenza ifayela lomthombo",
+				"body": "Amafayela emithombo asebenzisa igama. <sourceLocale>. <ext> Umhlabano. Isibonelo i-Greetings.en.resx iba yi-Greetings.fr.resx, i-Greetings.de.resx, njll ngemuva kokugijima."
+			},
+			"output": {
+				"title": "Hlola okukhiphayo",
+				"body": "Lapho ukuhamba komsebenzi sekuphelile, isenzo siveza imiphumela emithathu ongayifaka encazelweni ye-PR: isifinyezo-isihloko, isifinyezo-imininingwane, kanye nezinguqulo ezintsha. Ibuye ibhale isifinyezo se-Markdown ekhasini lomsebenzi nge-core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Izinyathelo ezilandelayo",
+			"configuration": "Misa okumisiwe kwezinga le-repo nge-.github/resource-translator.yml.",
+			"recipes": "Bheka izindlela zokupheka zama-monorepos, ama-glossaries angokwezifiso, nezigaba ze-Custom Translator."
+		}
+	},
+	"configuration": {
+		"title": "Ukumiswa",
+		"eyebrow": "I-YAML",
+		"heroTitle": "Ukumiswa kwenqolobane",
+		"lede": "Veza okuzenzakalelayo kanye ku-.github/resource-translator.yml bese uvumela wonke umsebenzi ukuthi awuzuze ifa. Ukufakwa kwesenzo kuhlale kunqoba lapho kokubili kunikezwa."
+	},
+	"inputs": {
+		"title": "Okokufaka nokukhiphayo",
+		"eyebrow": "Inkomba",
+		"lede": "Konke okufakiwe kwamukelwa kufayela lokuzikhethela le-repo config. Lapho zombili lezi ziqephu zisetshenzisiwe, inkinobho yesenzo iyanqoba."
+	},
+	"formats": {
+		"title": "Amafomethi wefayela",
+		"eyebrow": "Inkomba",
+		"heroTitle": "Amafomethi wefayela axhasiwe",
+		"lede": "Amafomethi ayisithupha wezinsizakusebenza ezijikelezayo. Isenzo sifunda ifayela ngalinye lomthombo-wendawo, ihumusha amanani, futhi ibhale umfowabo ngendawo ngayinye ehlosiwe."
+	},
+	"recipes": {
+		"title": "Izindlela zokupheka",
+		"eyebrow": "Incwadi yokupheka",
+		"lede": "Amaphethini ajwayelekile wokuhumusha kokuthumela: ama-monorepos, ama-glossaries, izigaba zangokwezifiso, ukugijima okomile, nokulawulwa kwethoni."
+	},
+	"faq": {
+		"title": "Imibuzo",
+		"eyebrow": "Usizo",
+		"heroTitle": "Imibuzo ebuzwa njalo",
+		"lede": "Izimpendulo ezisheshayo zemibuzo evelayo kaningi lapho uthatha isenzo."
+	},
+	"translations": {
+		"title": "Ukuhumusha",
+		"eyebrow": "Umbukiso",
+		"heroTitle": "Sawubona kuzo zonke izilimi",
+		"locales": "Izindawo",
+		"currentlyRendered": "Kuhunyushwe njengamanje",
+		"complete": "Qedela!",
+		"pendingPrefix": "Ulinde ukuhumusha okulandelayo kwe-docs.",
+		"viewWorkflowRuns": "Buka ukusebenza komsebenzi",
+		"filter": "Hlunga",
+		"filterPlaceholder": "Sesha ngolimi, ikhodi noma igama lendabuko.",
+		"source": "Umthombo",
+		"machineTranslations": "Ukuhumusha komshini",
+		"translationPending": "Ukuhumusha kulindile — vula ukuhumusha-amadokhumenti ukugijima.",
+		"noLocales": "Azikho izindawo ezihambisana naleso sihlungi.",
+		"howItWorks": "Isebenza kanjani lokhu"
+	},
+	"contributing": {
+		"title": "Ukunikela",
+		"eyebrow": "Umthombo ovulekile",
+		"lede": "Imibiko ye-bug, izicelo zesici, nezicelo zokudonsa konke kwamukelekile. Isenzo sincane ngokwanele ukuba sibe nobungane kubanikeli besikhathi sokuqala."
+	},
+	"changelog": {
+		"title": "I-Changelog",
+		"eyebrow": "Umlando",
+		"lede": "Isifinyezo esiphezulu sokukhishwa. I-canonical, i-changelog enegunya ihlala CHANGELOG.md endaweni yokugcina."
+	}
+}

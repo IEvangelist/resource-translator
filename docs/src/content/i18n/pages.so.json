@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Turjubaan Kheyraad",
+		"description": "Fur codsiyada pull ee mashiinka lagu turjumay ee faylasha kheyraadka ee repo kasta, qaab kasta ha ahaadee.",
+		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "Ku bogso repo-gaaga",
+		"headlineAccent": "go'aan kasta.",
+		"lede": "Resource Translator wuxuu furaa codsiyada pull requests ee mashiinka lagu turjumay ee faylashaada kheyraadka iyadoo la adeegsanayo Azure AI Translator iyada oo loo marayo SDK-ga rasmiga ah — ma jiraan adeegyo dheeraad ah, kaliya hab socod ah.",
+		"primaryCta": "Bilow",
+		"secondaryCta": "Star on GitHub",
+		"supports": "Taageero",
+		"builtForShipping": "Waxaa loo dhisay maraakiibta",
+		"workflowTitle": "Turjumaaddu waa shaqo shaqo ah, ma aha hawl culus.",
+		"workflowBody": "Ficilka ku tuur CI-gaaga hore, u jeedi Azure AI Translator, oo u daa repo-gaaga inuu hadlo luqad kasta oo aad bartilmaameedsato.",
+		"stats": {
+			"audit": "0 Dhibaatooyinka kormeerka NPM-ka",
+			"tests": "150 tijaabo",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "Azure SDK Rasmiga ah"
+		},
+		"features": {
+			"formats": {
+				"title": "Lix qaab fayl",
+				"body": "Wareegyo .resx, .xliff, .po, .json, .ini, iyo .restext oo leh qaabeyn byte-stable ah."
+			},
+			"config": {
+				"title": "Repo-level config",
+				"body": "Soo saar .github/resource-translator.yml si aad ugu darto globs, glossaries, iyo qaybaha Custom Translator."
+			},
+			"glossary": {
+				"title": "Qaamuus-yaqaan",
+				"body": "Ku xidh magacyada sumadaha iyo erayada alaabta adigoo adeegsanaya xeerarka xariiqda erayada caqliga leh ee maamula C++, .NET, iyo asxaabta."
+			},
+			"dryRun": {
+				"title": "Dry-run + guuldarro fudud",
+				"body": "Turjumaadaha horudhaca adigoon faylal qorin, ama khaladaad kasta oo digniin ah muujinaya inta aad ku celinayso."
+			},
+			"outputs": {
+				"title": "Wax soo saarka saaxiibtinimada PR-ka",
+				"body": "summary-title, summary-details, iyo has-new-translations waxay si toos ah ugu jiraan create-pull-request."
+			},
+			"sdk": {
+				"title": "Azure SDK Rasmiga ah",
+				"body": "Waxaa lagu dhisay @azure-rest/ai-translation-text + @azure/core-rest-pipeline — isku dayo toos ah 408/429/5xx, HTTP gacanta lagu duubo ma jiro. Esbuild-ku xiran, nadiif kormeer."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Bilowga",
+		"eyebrow": "Dejinta",
+		"lede": "Ku dar faylka workflow, u jeedi aqoonsigaaga Azure AI Translator, falka — oo ku dhisan SDK-ga rasmiga ah ee Microsoft @azure-rest/ai-translation-text — wuxuu baari doonaa repo-ga faylasha kheyraadka luqadda ilaha wuxuuna sii deyn doonaa walaalo turjumaad ah.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Abuur resource Azure AI Translator ah portal-ka Azure, kadibna kaydi kuwa soo socda sida siraha kaydka GitHub si workflow-ku u akhriyo:",
+				"key": "furaha rukhsadda ee kheyraadka.",
+				"endpoint": "URL-ka dhamaadka gobolka.",
+				"region": "aagga Azure-ka ee kheyraadka."
+			},
+			"workflow": {
+				"title": "Ku dar habka shaqada",
+				"body": "Create .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Commit faylka kheyraadka ilaha",
+				"body": "Faylasha kheyraadka waxay isticmaalaan Magaca. <sourceLocale>. <ext> Shir. Tusaale ahaan, Greetings.en.resx wuxuu isu beddelaa Greetings.fr.resx, Greetings.de.resx, iyo wixii la mid ah kadib socod."
+			},
+			"output": {
+				"title": "Eeg wax soo saarka",
+				"body": "Marka hawsha shaqada la dhammeeyo, falku wuxuu soo bandhigayaa saddex natiijo oo aad ku xiri karto sharaxaadda PR: summary-title, summary-details, iyo has-new-translations. Sidoo kale waxay ku qoraa dulmar Markdown bogga shaqada iyada oo loo marayo core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Tallaabooyinka xiga",
+			"configuration": "Qaabee repo-level default adigoo adeegsanaya .github/resource-translator.yml.",
+			"recipes": "Eeg cuntooyinka monorepos, lumaha gaarka ah, iyo qaybaha Turjumaadda Gaarka ah."
+		}
+	},
+	"configuration": {
+		"title": "Qaabeynta",
+		"eyebrow": "YAML",
+		"heroTitle": "Qaabeynta kaydka",
+		"lede": "Express waa mid default ah hal mar .github/resource-translator.yml waxayna u ogolaataa dhammaan workflow-yada inay dhaxlaan. Input action had iyo jeer way guuleystaan marka labadaba la bixiyo."
+	},
+	"inputs": {
+		"title": "Gelinta iyo wax soo saarka",
+		"eyebrow": "Tixraac",
+		"lede": "Gelin kasta sidoo kale waa la aqbalaa faylka repo-ga ikhtiyaariga ah. Marka labadaba la dejiyo, gelinta ficilka ayaa guuleysta."
+	},
+	"formats": {
+		"title": "Qaababka faylasha",
+		"eyebrow": "Tixraac",
+		"heroTitle": "Qaababka faylasha la taageero",
+		"lede": "Lix qaab oo kheyraad wareeg ah oo la wareegi karo. Ficilku wuxuu akhriyaa fayl kasta oo source-locale ah, wuxuu turjumaa qiimayaasha, wuxuuna qoraa walaal kasta oo bartilmaameed ah."
+	},
+	"recipes": {
+		"title": "Cunto karinta",
+		"eyebrow": "Buugga Cuntada",
+		"lede": "Qaababka caadiga ah ee turjumaadaha maraakiibta: monorepos, glossaries, qaybaha gaarka ah, dry runs, iyo kontoroolka codka."
+	},
+	"faq": {
+		"title": "Ereyo la soo gaabiayay oo loo sameyay su'aalahu loogu weydiinta badan yahay",
+		"eyebrow": "Caawi",
+		"heroTitle": "Su'aalaha Inta Badan La Isweydiiyo",
+		"lede": "Jawaabo degdeg ah oo ku saabsan su'aalaha inta badan soo baxa marka tallaabada la qaadanayo."
+	},
+	"translations": {
+		"title": "Turjumaado",
+		"eyebrow": "Bandhig",
+		"heroTitle": "Salaan luqad kasta",
+		"locales": "Goobaha",
+		"currentlyRendered": "Hadda la sawiro",
+		"complete": "dhameystiran!",
+		"pendingPrefix": "Ilaa la sugayo socodka xiga ee Translate-Docs.",
+		"viewWorkflowRuns": "Eeg socodka workflow-ka",
+		"filter": "Shaandhe",
+		"filterPlaceholder": "Raadi luqad, koodh, ama magac hooyo...",
+		"source": "Ilo",
+		"machineTranslations": "Turjumaadda mashiinka",
+		"translationPending": "Turjumaad sugaysa — fur orodka translate-docs.",
+		"noLocales": "Ma jiraan goobo la mid ah filter-kaas.",
+		"howItWorks": "Sida ay tani u shaqeyso"
+	},
+	"contributing": {
+		"title": "Ka qayb qaadashada",
+		"eyebrow": "Il furan",
+		"lede": "Warbixinnada khaladaadka, codsiyada astaamaha, iyo codsiyada pull waa la soo dhaweynayaa. Falka waa yar yahay si uu u noqdo mid saaxiib u ah kuwa markii ugu horreysay ka qayb qaatay."
+	},
+	"changelog": {
+		"title": "Diiwaanka Isbeddelka",
+		"eyebrow": "Taariikhda",
+		"lede": "Soo koobid heer sare ah oo ku saabsan sii deynta. Changelog-ka rasmiga ah ee awoodda leh wuxuu ku nool yahay CHANGELOG.md ku jira kaydka."
+	}
+}

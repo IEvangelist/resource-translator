@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Resurs tarjimon",
+		"defaultDescription": "Resource Translator GitHub Action uchun hujjatlar — Azure AI Translator orqali resurs fayllarining avtomatlashtirilgan mashina tarjimasi.",
+		"homeLabel": "Resurs tarjimon — bosh sahifa"
+	},
+	"skipToContent": "Mazmunga o'tish",
+	"drawer": {
+		"open": "Ochiq navigatsiya",
+		"close": "Yaqin navigatsiya",
+		"title": "Navigatsiya"
+	},
+	"header": {
+		"search": "Qidiruv hujjatlari",
+		"searchPlaceholder": "Qidiruv hujjatlari...",
+		"toggleTheme": "Mavzuni almashtirish",
+		"githubRepository": "GitHub repozitoriyasi",
+		"language": "Til"
+	},
+	"search": {
+		"title": "Qidiruv hujjatlari",
+		"results": "Qidiruv natijalari",
+		"placeholder": "Maqolalar, bo'limlar, retseptlarni qidiring...",
+		"close": "Yaqin qidiruv",
+		"idleTitle": "Hujjatlarni qidiring",
+		"idleHelp": "Maqolalarni mavzu, fayl formati, sozlash varianti yoki retsept bo'yicha toping. Navigatsiya {up} {down}, ochish uchun {enter} ishlat.",
+		"loading": "Qidirilmoqda...",
+		"empty": "Natija yo'q. Boshqa kalit so'zni sinab ko'ring.",
+		"error": "Search index dasturda mavjud emas. Ishlab chiqarish qurilmasini ishga tushiring."
+	},
+	"toc": {
+		"title": "Ushbu sahifada"
+	},
+	"pager": {
+		"ariaLabel": "Maqola",
+		"previous": "Oldingi",
+		"next": "Keyingi"
+	},
+	"backToTop": {
+		"label": "Yuqoriga aylantir"
+	},
+	"footer": {
+		"docs": "Hujjatlar",
+		"project": "Loyiha",
+		"community": "Jamiyat",
+		"projectLinksAria": "Loyiha havolalari",
+		"sourceAria": "Manbani GitHub'da ko'rish",
+		"marketplaceAria": "View on GitHub Marketplace",
+		"authorAria": "David Pine'ning veb-sayti",
+		"taglinePrefix": "GitHub Action bo'lib, resurs fayllaringizni avtomatik tarjima qiladi, rasmiy fayllar ustida qurilgan",
+		"taglineMiddle": "SDK dan",
+		"copyrightPrefix": "Chiqarilgan",
+		"builtWith": "Qurilish"
+	}
+}

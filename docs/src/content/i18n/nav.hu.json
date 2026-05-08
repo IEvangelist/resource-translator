@@ -1,0 +1,28 @@
+{
+	"sections": {
+		"start": "Kezdd itt",
+		"reference": "Hivatkozás",
+		"showcase": "Bemutató",
+		"project": "Projekt"
+	},
+	"items": {
+		"overview": "Áttekintés",
+		"gettingStarted": "Kezdés",
+		"configuration": "Konfiguráció",
+		"inputs": "Bemenetek és kimenetek",
+		"formats": "Fájlformátumok",
+		"recipes": "Receptek",
+		"faq": "GYIK",
+		"translations": "Fordítások",
+		"contributing": "Hozzájárulás",
+		"changelog": "Változásnapló"
+	},
+	"community": {
+		"reportBug": "Jelentés hibáról",
+		"requestFeature": "Funkció kérése",
+		"discussions": "Beszélgetések",
+		"securityPolicy": "Biztonsági politika",
+		"codeOfConduct": "Magatartási kódex",
+		"license": "MIT engedély"
+	}
+}

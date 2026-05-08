@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Traductor nu'ukulo'ob",
+		"defaultDescription": "Ju'uno'ob utia'al u Resource Translator GitHub Action — traducción automática automatizada u archivos nu'ukulo'ob yóol Azure AI Translator.",
+		"homeLabel": "Traductor nu'ukulo'ob — wotoch"
+	},
+	"skipToContent": "Máan le contenido",
+	"drawer": {
+		"open": "Je'e navegación",
+		"close": "Muts'ik ti' le navegación",
+		"title": "Navegación"
+	},
+	"header": {
+		"search": "Buscar ju'uno'ob",
+		"searchPlaceholder": "A kaxtik ju'uno'ob...",
+		"toggleTheme": "Alternar chun tuukulo'",
+		"githubRepository": "GitHub repository",
+		"language": "Le t'aano'"
+	},
+	"search": {
+		"title": "Buscar ju'uno'ob",
+		"results": "Ya'ala'al máaxo'ob máano'ob",
+		"placeholder": "Kaxant artículos, secciones, recetas...",
+		"close": "Muts'ik ti' le xookilo'",
+		"idleTitle": "Kaxtik le documentos",
+		"idleHelp": "Kaxant artículos tumen chun tuukulo', formato archivo, opción configuración wa recia. Meyaj {up} {down} utia'al navegar {enter} Je'e.",
+		"loading": "Kaxtik ...",
+		"empty": "Mina'an ya'ala'al máaxo'ob máano' Pruebe jump'éel t'aano' clave yaanal.",
+		"error": "Índice xookilo' ma' táan disponible te' dev. Ejecutar jump'éel construcción producción."
+	},
+	"toc": {
+		"title": "Ti' le linki abas kaambal"
+	},
+	"pager": {
+		"ariaLabel": "Artículo",
+		"previous": "ka'achij",
+		"next": "Uláak'"
+	},
+	"backToTop": {
+		"label": "Desplazar u tak ka'anal"
+	},
+	"footer": {
+		"docs": "Ku ts'áabal",
+		"project": "Úuchik",
+		"community": "Kaaj",
+		"projectLinksAria": "K'aanan tsol",
+		"sourceAria": "Wil fuente ti' GitHub",
+		"marketplaceAria": "Wil ti' GitHub Marketplace",
+		"authorAria": "Ts'ono'oto' web u David Pine",
+		"taglinePrefix": "Juntúul asab GitHub ku traduce u archivos nu'ukulo'ob automáticamente, construido yóok'ol le way sijnáaleche'",
+		"taglineMiddle": "SDK u",
+		"copyrightPrefix": "Liberado yáanal le",
+		"builtWith": "Construido yéetel"
+	}
+}

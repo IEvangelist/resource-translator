@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Mpandika teny loharano",
+		"description": "Sokafy ny fangatahana misintona nadika tamin'ny milina ho an'ny rakitra loharano amin'ny repo rehetra, amin'ny endrika rehetra.",
+		"badge": "v3.0 - Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "Ampidiro ao amin'ny repo anao",
+		"headlineAccent": "Ny fanoloran-tena rehetra.",
+		"lede": "Resource Translator dia manokatra fangatahana misintona amin'ny milina ho an'ny rakitra loharanon-karena amin'ny alàlan'ny Azure AI Translator amin'ny alàlan'ny SDK ofisialy - tsy misy serivisy fanampiny, fizotran'ny asa fotsiny.",
+		"primaryCta": "Atombohy",
+		"secondaryCta": "Kintana ao amin'ny GitHub",
+		"supports": "Manohana",
+		"builtForShipping": "Namboarina ho an'ny fandefasana",
+		"workflowTitle": "Ny fandikan-teny ho toy ny fizotran'ny asa, fa tsy asa.",
+		"workflowBody": "Apetraho ao amin'ny CI misy anao ny hetsika, manondro azy ao amin'ny Azure AI Translator, ary avelao ny repo hiteny ny fiteny rehetra kendrenao.",
+		"stats": {
+			"audit": "0 npm-audit olana",
+			"tests": "Fitsapana 150",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "Ofisialy Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Endrika rakitra enina",
+				"body": "Fiverenana .resx, .xliff, .po, .json, .ini, ary .restext miaraka amin'ny endrika byte-stable."
+			},
+			"config": {
+				"title": "Config amin'ny ambaratonga repo",
+				"body": "Alefaso ny .github / resource-translator.yml ho an'ny sokajy globs, glossaries, ary Custom Translator."
+			},
+			"glossary": {
+				"title": "Rakibolana",
+				"body": "Manidy ny anaran'ny marika sy ny teny momba ny vokatra miaraka amin'ny regex manan-tsaina izay mitantana C ++, .NET, ary namana."
+			},
+			"dryRun": {
+				"title": "Maina + malefaka",
+				"body": "Topimaso ny fandikan-teny tsy manoratra rakitra, na miseho ny fahadisoana rehetra ho fampitandremana rehefa miverimberina ianao."
+			},
+			"outputs": {
+				"title": "Vokatra azo avy amin'ny PR",
+				"body": "summary-title, summary-details, ary has-new-translations slot mivantana ao amin'ny create-pull-request."
+			},
+			"sdk": {
+				"title": "Ofisialy Azure SDK",
+				"body": "Miorina amin'ny @azure-rest/ai-translation-text + @azure/core-rest-pipeline - fanandramana mandeha ho azy amin'ny 408/429/5xx, tsy misy HTTP mihodina tanana. esbuild-bundled, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Manomboka",
+		"eyebrow": "Fanamboarana",
+		"lede": "Manampia rakitra workflow, manondro azy amin'ny fahazoan-dàlana Azure AI Translator, ary ny hetsika - miorina amin'ny SDK ofisialin'ny Microsoft @azure-rest / ai-translation-text - dia hizaha ny repo ho an'ny rakitra loharano amin'ny fiteny loharano ary hamoaka mpiray tampo voadika.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Mamorona loharanon-karena Azure AI Translator ao amin'ny vavahadin-tserasera Azure, avy eo tehirizo ireto manaraka ireto ho tsiambaratelon'ny tahiry GitHub mba hahafahan'ny fizotran'ny asa mamaky azy ireo:",
+				"key": "Ny famandrihana fanalahidy ho an'ny loharano.",
+				"endpoint": "ny URL farany isam-paritra.",
+				"region": "ny faritra Azure an'ny loharanon-karena."
+			},
+			"workflow": {
+				"title": "Ampidiro ny fizotran'ny asa",
+				"body": "Mamorona .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Manaova rakitra loharano loharano",
+				"body": "Mampiasa ny anarana ny rakitra loharanon-karena. <sourceLocale>. <ext> fivoriambe. Ohatra, ny Greetings.en.resx dia lasa Greetings.fr.resx, Greetings.de.resx, sy ny sisa aorian'ny hazakazaka."
+			},
+			"output": {
+				"title": "Jereo ny vokatra",
+				"body": "Raha vantany vao vita ny fizotran'ny asa, ny hetsika dia mampiseho vokatra telo azonao atao amin'ny famaritana PR: lohateny famintinana, famintinana ny antsipiriany, ary fandikan-teny vaovao. Izy io koa dia manoratra famintinana Markdown ao amin'ny pejin'ny asa amin'ny alàlan'ny core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Dingana manaraka",
+			"configuration": "Ampifanaraho amin'ny .github/resource-translator.yml ny defaults amin'ny ambaratonga repo.",
+			"recipes": "Jereo ny fomba fahandro ho an'ny monorepos, rakibolana mahazatra, ary sokajy Custom Translator."
+		}
+	},
+	"configuration": {
+		"title": "Fanamboarana",
+		"eyebrow": "YAML",
+		"heroTitle": "Fanahafana ny repository",
+		"lede": "Asehoy ny default indray mandeha ao amin'ny .github / resource-translator.yml ary avelao ny workflow rehetra handova azy ireo. Mandresy foana ny fandraisana anjara amin'ny hetsika rehefa omena izy roa."
+	},
+	"inputs": {
+		"title": "Inputs sy outputs",
+		"eyebrow": "Andinin-tsoratra masina",
+		"lede": "Ny fampidirana rehetra dia ekena ihany koa ao amin'ny rakitra config repo tsy voatery. Rehefa samy napetraka izy roa ireo dia mandresy ny fampidirana ny hetsika."
+	},
+	"formats": {
+		"title": "Endrika rakitra",
+		"eyebrow": "Andinin-tsoratra masina",
+		"heroTitle": "Endrika rakitra tohanan'ny",
+		"lede": "Endrika loharano enina mihodina. Ny hetsika dia mamaky ny rakitra loharano-locale tsirairay, mandika ny soatoavina, ary manoratra mpiray tampo isaky ny toerana kendrena."
+	},
+	"recipes": {
+		"title": "Fomba fahandro",
+		"eyebrow": "Boky fandrahoan-tsakafo",
+		"lede": "Lamina mahazatra amin'ny fandikan-teny fandefasana: monorepos, glossaries, sokajy mahazatra, fihazakazahana maina, ary fanaraha-maso ny feo."
+	},
+	"faq": {
+		"title": "FAQ",
+		"eyebrow": "Fanampiana",
+		"heroTitle": "Fanontaniana napetraka matetika",
+		"lede": "Valiny haingana ho an'ireo fanontaniana izay miseho matetika rehefa mandray ny hetsika."
+	},
+	"translations": {
+		"title": "Fandikan-teny",
+		"eyebrow": "Fampisehoana",
+		"heroTitle": "Miarahaba amin'ny fiteny rehetra",
+		"locales": "toerana",
+		"currentlyRendered": "Amin'izao fotoana izao",
+		"complete": "feno!",
+		"pendingPrefix": "Miandry ny fandikan-teny manaraka.",
+		"viewWorkflowRuns": "Jereo ny fizotran'ny asa",
+		"filter": "Sivana",
+		"filterPlaceholder": "Fikarohana amin'ny fiteny, kaody, na anarana teratany.",
+		"source": "Loharano",
+		"machineTranslations": "Fandikan-teny amin'ny milina",
+		"translationPending": "Fandikan-teny miandry - manokatra ny fandikan-teny fandikan-doko.",
+		"noLocales": "Tsy misy toerana mifanaraka amin'io sivana io.",
+		"howItWorks": "Ahoana no fiasan'izany"
+	},
+	"contributing": {
+		"title": "Fandraisana anjara",
+		"eyebrow": "Loharano misokatra",
+		"lede": "Ny tatitra momba ny bibikely, ny fangatahana endri-javatra, ary ny fangatahana misintona dia raisina an-tanana. Kely ny hetsika mba ho sariaka amin'ireo mpandray anjara voalohany."
+	},
+	"changelog": {
+		"title": "Changelog",
+		"eyebrow": "Tantara",
+		"lede": "Famintinana avo lenta momba ny famotsorana Ny changelog kanonika sy manam-pahefana dia miaina ao amin'ny CHANGELOG.md ao amin'ny repository."
+	}
+}

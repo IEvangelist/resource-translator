@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Punaoa Fa'aliliu",
+		"defaultDescription": "Fa'amaumauga mo le Resource Translator GitHub Action — otometi masini fa'aliliuga o punaoa faila e ala i le Azure AI Translator.",
+		"homeLabel": "Punaoa Faaliliu — aiga"
+	},
+	"skipToContent": "Skip to content",
+	"drawer": {
+		"open": "Tatala le faatautaiga",
+		"close": "Tapunia le faatautaiga",
+		"title": "Fa'atautaia"
+	},
+	"header": {
+		"search": "Saili pepa o faamatalaga",
+		"searchPlaceholder": "Su'esu'e fa'amaumauga ...",
+		"toggleTheme": "Toggle autu",
+		"githubRepository": "GitHub repository",
+		"language": "Gagana"
+	},
+	"search": {
+		"title": "Saili pepa o faamatalaga",
+		"results": "Taunuuga o le sailiga",
+		"placeholder": "Su'esu'e tusiga, vaega, fua ...",
+		"close": "Tapuni sailiga",
+		"idleTitle": "Su'e le docs",
+		"idleHelp": "Su'e tusiga e ala i autu, fa'atulagaga o faila, filifiliga fa'atulagaina, po'o le fua. Fa'aaoga {up} {down} e fa'atautaia ai, {enter} tatalaina.",
+		"loading": "Su'esu'ega...",
+		"empty": "Leai ni taunuuga. Taumafai se isi upu autu.",
+		"error": "E le mafai ona maua le search index i le dev. Fa'atautaia se gaosiga fausiaina."
+	},
+	"toc": {
+		"title": "I luga o lenei itulau"
+	},
+	"pager": {
+		"ariaLabel": "Mataupu",
+		"previous": "Muamua",
+		"next": "Sosoo ai"
+	},
+	"backToTop": {
+		"label": "Tusi i le pito i luga"
+	},
+	"footer": {
+		"docs": "Docs",
+		"project": "Galuega faatino",
+		"community": "Nuu",
+		"projectLinksAria": "Feso'ota'iga o poloketi",
+		"sourceAria": "Va'ai punaoa i luga o GitHub",
+		"marketplaceAria": "Va'ai i luga o le GitHub Marketplace",
+		"authorAria": "Upega tafa'ilagi a David Pine",
+		"taglinePrefix": "O se GitHub Action e fa'aliliuina ai au faila punaoa otometi, fausia i luga o le aloaia",
+		"taglineMiddle": "SDK mai",
+		"copyrightPrefix": "Fa'asa'olotoina i lalo o le",
+		"builtWith": "Fausia ma"
+	}
+}

@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Ресурслар тәрҗемәчесе",
+		"defaultDescription": "Resource Translator GitHub Action өчен документация — Azure AI Translator аша ресурс файлларын автоматлаштырылган машина тәрҗемәсе.",
+		"homeLabel": "Ресурс тәрҗемәчесе — өй"
+	},
+	"skipToContent": "Эчтәлеккә күчү",
+	"drawer": {
+		"open": "Ачык навигация",
+		"close": "Навигацияне якын",
+		"title": "Навигация"
+	},
+	"header": {
+		"search": "Эзләү документациясе",
+		"searchPlaceholder": "Эзләү документациясе...",
+		"toggleTheme": "Тумблер темасы",
+		"githubRepository": "GitHub репозиторийы",
+		"language": "Тел"
+	},
+	"search": {
+		"title": "Эзләү документациясе",
+		"results": "Эзләү нәтиҗәләре",
+		"placeholder": "Эзләү мәкаләләре, бүлекләр, рецептлар...",
+		"close": "Эзләү",
+		"idleTitle": "Документларны эзләгез",
+		"idleHelp": "Мәкаләләрне тема, файл форматы, конфигурация варианты яки рецепт буенча табыгыз. Навигация {up} {down} кулланыгыз, {enter} ачыгыз.",
+		"loading": "Эзләү...",
+		"empty": "Нәтиҗәләр юк. Башка төп сүзне кулланыгыз.",
+		"error": "Эзләү индексы dev программасында юк. Җитештерү билгесен эшләтегез."
+	},
+	"toc": {
+		"title": "Бу биттә"
+	},
+	"pager": {
+		"ariaLabel": "Мәкалә",
+		"previous": "Элеккеге",
+		"next": "Киләсе"
+	},
+	"backToTop": {
+		"label": "Өскә күчерегез"
+	},
+	"footer": {
+		"docs": "Документлар",
+		"project": "Проект",
+		"community": "Җәмгыять",
+		"projectLinksAria": "Проектка сылтамалар",
+		"sourceAria": "GitHub чыганагын карау",
+		"marketplaceAria": "GitHub Marketplace сайтында карау",
+		"authorAria": "Дэвид Пайн сайты",
+		"taglinePrefix": "Ресурс файлларыгызны автомат рәвештә тәрҗемә итә торган GitHub Action",
+		"taglineMiddle": "SDK from",
+		"copyrightPrefix": "Азат ителгән",
+		"builtWith": "Төзелгән"
+	}
+}

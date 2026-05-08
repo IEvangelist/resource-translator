@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "iVurevure ni Vakadewa",
+		"defaultDescription": "iTukutuku me baleta na Resource Translator GitHub Action — vakadewataki vakamisini ni faili ni ivurevure ena Azure AI Translator.",
+		"homeLabel": "iVurevure ni Dauvakadewa — itikotiko"
+	},
+	"skipToContent": "Skip to content",
+	"drawer": {
+		"open": "Dolava na navigation",
+		"close": "Close navigation",
+		"title": "Navigation"
+	},
+	"header": {
+		"search": "Vakasaqaqara ena itukutuku vakaivola",
+		"searchPlaceholder": "Vakasaqara na ivolatukutuku...",
+		"toggleTheme": "Toggle na itoko",
+		"githubRepository": "Repository ni GitHub",
+		"language": "Vosa"
+	},
+	"search": {
+		"title": "Vakasaqaqara ena itukutuku vakaivola",
+		"results": "Macala ni vakasaqaqara",
+		"placeholder": "Vakasaqara na itukutuku, iwasewase, icakacaka ni kakana...",
+		"close": "Sogota na vakasaqaqara",
+		"idleTitle": "Vakasaqara na ivola",
+		"idleHelp": "Raica na itukutuku ena ulutaga, ivakarau ni faile, digidigi ni configuration, se recipe. Vakayagataka na {up} {down} mo vaqaqaco, {enter} me dolavi.",
+		"loading": "Vakasaqaqara...",
+		"empty": "Sega ni dua na kena macala. Tovolea e dua tale na vosa keyword.",
+		"error": "E sega ni tiko na idusidusi ni vakasaqaqara ena dev. Cicivaka e dua na tarai cake ni cakacaka."
+	},
+	"toc": {
+		"title": "Ena tabana oqo"
+	},
+	"pager": {
+		"ariaLabel": "iTukutuku",
+		"previous": "Taumada",
+		"next": "Tarava"
+	},
+	"backToTop": {
+		"label": "Scroll to top"
+	},
+	"footer": {
+		"docs": "Docs",
+		"project": "Cakacaka",
+		"community": "iTikotiko",
+		"projectLinksAria": "Isema ni cakacaka",
+		"sourceAria": "Raica na ivurevure ena GitHub",
+		"marketplaceAria": "Raica ena GitHub Marketplace",
+		"authorAria": "Mataveilawa nei David Pine",
+		"taglinePrefix": "E dua na cakacaka ni GitHub ka vakadewataka na nomu faili ni ivurevure vakaikoya, tarai cake ena dela ni vakailesilesi",
+		"taglineMiddle": "SDK mai na",
+		"copyrightPrefix": "Sereki ena ruku ni",
+		"builtWith": "Tara vata kei na"
+	}
+}

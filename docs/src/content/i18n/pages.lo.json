@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "ຜູ້ແປຊັບພະຍາກອນ",
+		"description": "ເປີດຄໍາຮ້ອງຂໍດຶງທີ່ແປໂດຍເຄື່ອງຈັກສໍາລັບແຟ້ມຊັບພະຍາກອນໃນຮູບແບບໃດໆກໍຕາມ.",
+		"badge": "v3.0 — Node 24, repoconfig, glossary, dry run",
+		"headlinePrefix": "Localize repo ຂອງທ່ານໃນ",
+		"headlineAccent": "ທຸກໆ commit.",
+		"lede": "Resource Translator ເປີດຄໍາຮ້ອງຂໍດຶງທີ່ແປໂດຍເຄື່ອງຈັກສໍາລັບແຟ້ມຊັບພະຍາກອນຂອງທ່ານໂດຍໃຊ້ Azure AI Translator ຜ່ານ SDK ທາງການ - ບໍ່ມີການບໍລິການເພີ່ມເຕີມ, ພຽງແຕ່ຂະບວນການເຮັດວຽກເທົ່ານັ້ນ.",
+		"primaryCta": "ເລີ່ມຕົ້ນ",
+		"secondaryCta": "ດວງດາວໃນ GitHub",
+		"supports": "ສະຫນັບສະຫນູນ",
+		"builtForShipping": "ສ້າງຂຶ້ນສໍາລັບການຂົນສົ່ງ",
+		"workflowTitle": "ການ ແປ ເປັນ ວຽກ ງານ, ບໍ່ ແມ່ນ ວຽກ ງານ.",
+		"workflowBody": "ໃຫ້ ວາງ ການ ກະ ທໍາ ລົງ ໃນ CI ທີ່ ມີ ຢູ່ ຂອງ ທ່ານ, ຊີ້ ໄປ ຫາ Azure AI Translator ແລະ ປ່ອຍ ໃຫ້ repo ຂອງ ທ່ານ ເວົ້າ ທຸກ ພາ ສາ ທີ່ ທ່ານ ເປົ້າ ຫມາຍ.",
+		"stats": {
+			"audit": "0 ບັນຫາການກວດສອບ NPM",
+			"tests": "150 ການ ທົດ ສອບ",
+			"node": "ໂນດ 20 / 22 / 24",
+			"sdk": "Azure SDK ທາງການ"
+		},
+		"features": {
+			"formats": {
+				"title": "ຫົກຮູບແບບແຟ້ມ",
+				"body": "ການເດີນທາງໄປມາ .resx, .xliff, .po, .json, .ini ແລະ .restext ດ້ວຍການຈັດຮູບແບບທີ່ຫມັ້ນຄົງຂອງ byte."
+			},
+			"config": {
+				"title": "ຄ່າຕັ້ງລະດັບ repo",
+				"body": "ວາງ .github / resource-translator.yml ສໍາ ລັບ ລວມ ທັງ globs, glossaries ແລະ Custom Translator categories."
+			},
+			"glossary": {
+				"title": "ຄໍາສັບທີ່ຮູ້ຈັກ",
+				"body": "ລ໊ອກຊື່ແບຣນແລະຄໍາສັບຂອງຜະລິດຕະພັນດ້ວຍ regex ຂອບເຂດຄໍາສັບທີ່ສະຫລາດທີ່ຈັດການກັບ C ++, .NET ແລະຫມູ່ເພື່ອນ."
+			},
+			"dryRun": {
+				"title": "Dry-run + soft-fail",
+				"body": "ເບິ່ງ ການ ແປ ໂດຍ ບໍ່ ຕ້ອງ ຂຽນ ແຟ້ມ, ຫລື ສະ ແດງ ຄວາມ ຜິດ ພາດ ທຸກ ຢ່າງ ເປັນ ຄໍາ ເຕືອນ ໃນ ຂະນະ ທີ່ ທ່ານ ເຮັດ ຊ້ໍາ ອີກ."
+			},
+			"outputs": {
+				"title": "ຜົນງານທີ່ເປັນມິດກັບ PR",
+				"body": "summary-title, summary-details, ແລະ has-new-translations slot ໂດຍກົງໃນ create-pull-request."
+			},
+			"sdk": {
+				"title": "Azure SDK ທາງການ",
+				"body": "ສ້າງຂຶ້ນ ເທິງ @azure-rest/ai-translation-text + @azure/core-rest-pipeline - ການລອງຄືນໃຫມ່ໂດຍອັດຕະໂນມັດໃນ 408/429/5xx, ບໍ່ມີ HTTP ທີ່ໃຊ້ມື. esbuild-bundled, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "ການ ເລີ່ມຕົ້ນ",
+		"eyebrow": "ການຈັດຕັ້ງ",
+		"lede": "ເພີ່ມແຟ້ມ workflow, ຊີ້ໄປຫາຂໍ້ມູນ Azure AI Translator ຂອງເຈົ້າ ແລະການກະທໍາ - ທີ່ສ້າງຂຶ້ນ SDK @azure-rest/ai-translation-text ທາງການຂອງ Microsoft - ຈະກວດສອບ repo ສໍາລັບແຟ້ມຊັບພະຍາກອນທີ່ເປັນພາສາແຫຼ່ງ ແລະ ສົ່ງອ້າຍເອື້ອຍນ້ອງທີ່ແປ.",
+		"steps": {
+			"provision": {
+				"title": "ຈັດຕຽມຊັບພະຍາກອນ Azure AI Translator",
+				"body": "ສ້າງຊັບພະຍາກອນ Azure AI Translator ໃນເວັບໄຊ Azure, ຈາກນັ້ນເກັບຂໍ້ມູນຕໍ່ໄປນີ້ເປັນຄວາມລັບຂອງທີ່ເກັບຂໍ້ມູນ GitHub ເພື່ອໃຫ້ຂະບວນການສາມາດອ່ານໄດ້:",
+				"key": "ຂໍ ກະ ແຈ ການ ຈົດ ຈໍາ ສໍາ ລັບ ແຫລ່ງ ຊ່ວຍ ເຫລືອ.",
+				"endpoint": "URL endpoint ພາກພື້ນ.",
+				"region": "ພາກພື້ນ Azure ຂອງຊັບພະຍາກອນ."
+			},
+			"workflow": {
+				"title": "ເພີ່ມຂະບວນການເຮັດວຽກ",
+				"body": "ສ້າງ .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "ມອບແຟ້ມຊັບພະຍາກອນແຫຼ່ງ",
+				"body": "ແຟ້ມຊັບພະຍາກອນໃຊ້ຊື່. .<sourceLocale> <ext> ການປະຊຸມພາກ. ຕົວຢ່າງເຊັ່ນ Greetings.en.resx ຈະກາຍເປັນ Greetings.fr.resx, Greetings.de.resx ແລະອື່ນໆຫຼັງຈາກການແລ່ນ."
+			},
+			"output": {
+				"title": "ກວດເບິ່ງຜົນຜະລິດ",
+				"body": "ເມື່ອຂັ້ນຕອນການເຮັດວຽກສິ້ນສຸດລົງ, ການກະທໍາຈະເປີດເຜີຍຜົນອອກສາມຢ່າງທີ່ເຈົ້າສາມາດເຊື່ອມຕໍ່ໃນຄໍາອະທິບາຍຂອງ PR: summary-title, summary-details ແລະ has-new-translations. ນອກຈາກນັ້ນ ມັນຍັງຂຽນບົດສະຫຼຸບ Markdown ໃນຫນ້າວຽກຜ່ານ core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "ຂັ້ນຕອນຕໍ່ໄປ",
+			"configuration": "ຕັ້ງຄ່າມາດຕະຖານລະດັບ repo ດ້ວຍ .github/resource-translator.yml.",
+			"recipes": "ເບິ່ງ recipes for monorepos, custom glossaries ແລະ Custom Translator categories."
+		}
+	},
+	"configuration": {
+		"title": "ການຕັ້ງຄ່າ",
+		"eyebrow": "ຢາມ",
+		"heroTitle": "ຕັ້ງຄ່າບ່ອນເກັບຂໍ້ມູນ",
+		"lede": "ສະແດງມາດຕະຖານຄັ້ງຫນຶ່ງໃນ .github/resource-translator.yml ແລະປ່ອຍໃຫ້ທຸກຂະບວນການສືບທອດມັນ. ການ ກະ ທໍາ ຈະ ຊະ ນະ ສະ ເຫມີ ເມື່ອ ມີ ທັງ ສອງ ຢ່າງ."
+	},
+	"inputs": {
+		"title": "Inputs & outputs",
+		"eyebrow": "ຂໍ້ ອ້າງ ອີງ",
+		"lede": "ທຸກໆຂໍ້ມູນຍັງໄດ້ຮັບການຍອມຮັບໃນແຟ້ມຄ່າຕັ້ງ repo ທາງເລືອກ. ເມື່ອທັງສອງຖືກກໍານົດໄວ້, ການກະທໍາຈະຊະນະ."
+	},
+	"formats": {
+		"title": "ຮູບແບບແຟ້ມ",
+		"eyebrow": "ຂໍ້ ອ້າງ ອີງ",
+		"heroTitle": "ຮູບແບບແຟ້ມທີ່ສະຫນັບສະຫນູນ",
+		"lede": "ຫົກ ຮູບ ແບບ ແຫລ່ງ ຊ່ວຍ ເຫລືອ ທີ່ ສາ ມາດ ເດີນ ທາງ ໄດ້. ການກະທໍາຈະອ່ານແຕ່ລະແຟ້ມແຫຼ່ງຂໍ້ມູນ, ແປຄ່າແລະຂຽນອ້າຍເອື້ອຍນ້ອງຕໍ່ພາສາເປົ້າຫມາຍ."
+	},
+	"recipes": {
+		"title": "Recipes",
+		"eyebrow": "ປຶ້ມ ເຮັດ ອາຫານ",
+		"lede": "ແບບແຜນທົ່ວໄປສໍາລັບການແປ: monorepos, glossaries, custom categories, dry runs ແລະ tone control."
+	},
+	"faq": {
+		"title": "ຄຳຖາມທີ່ຖືກຖາມເລື້ອຍໆ",
+		"eyebrow": "ຊ່ວຍເຫຼືອ",
+		"heroTitle": "ຄໍາຖາມທີ່ຖາມເລື້ອຍໆ",
+		"lede": "ຄໍາຕອບໄວໆສໍາລັບຄໍາຖາມທີ່ເກີດຂຶ້ນເລື້ອຍໆເມື່ອນໍາໃຊ້ການກະທໍາ."
+	},
+	"translations": {
+		"title": "ການ ແປ",
+		"eyebrow": "ສະ ແດງ",
+		"heroTitle": "ສະບາຍດີໃນທຸກພາສາ",
+		"locales": "ທ້ອງຖິ່ນ",
+		"currentlyRendered": "ສະແດງໃນປັດຈຸບັນ",
+		"complete": "ສໍາ ເລັດ!",
+		"pendingPrefix": "ລໍຖ້າ ການ ແປ ເອກະສານ ຕໍ່ ໄປ.",
+		"viewWorkflowRuns": "ເບິ່ງການແລ່ນຂອງຂະບວນການ",
+		"filter": "ເຄື່ອງຕອງ",
+		"filterPlaceholder": "ຄົ້ນຫາຕາມພາສາ, ລະຫັດ ຫຼື ຊື່ແມ່...",
+		"source": "ແຫລ່ງ",
+		"machineTranslations": "ການແປເຄື່ອງຈັກ",
+		"translationPending": "ລໍຖ້າການແປ - ເປີດການແປເອກະສານ.",
+		"noLocales": "ບໍ່ ມີ ທ້ອງ ຖິ່ນ ໃດ ທີ່ ເຫມາະ ສົມ ກັບ ເຄື່ອງ ຕອງ ນັ້ນ.",
+		"howItWorks": "ວິທີເຮັດວຽກ"
+	},
+	"contributing": {
+		"title": "ການ ບໍລິຈາກ",
+		"eyebrow": "ແຫລ່ງ ເປີດ",
+		"lede": "ລາຍງານຂໍ້ບົກພ່ອງ, ຄໍາຮ້ອງຂໍລັກສະນະ ແລະ ຄໍາຮ້ອງຂໍດຶງແມ່ນຍິນດີຕ້ອນຮັບ. ການ ກະທໍາ ແມ່ນ ເລັກ ນ້ອຍ ພໍ ທີ່ ຈະ ເປັນ ມິດ ກັບ ຜູ້ ບໍລິຈາກ ເທື່ອ ທໍາ ອິດ."
+	},
+	"changelog": {
+		"title": "ບັນທຶກການປ່ຽນແປງ",
+		"eyebrow": "ປະຫວັດສາດ",
+		"lede": "ການສະຫລຸບລະດັບສູງຂອງການປົດປ່ອຍ. changelog ທີ່ ມີ ສິດ ອໍາ ນາດ ແລະ ມີ ສິດ ອໍາ ນາດ ມີ ຢູ່ ໃນ CHANGELOG.md ໃນ repository."
+	}
+}

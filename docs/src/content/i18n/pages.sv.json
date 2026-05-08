@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Resursöversättare",
+		"description": "Öppna maskinöversatta pull requests för resursfiler i vilket repo som helst, i vilket format som helst.",
+		"badge": "v3.0 — Node 24, repo-konfiguration, ordlista, provkörning",
+		"headlinePrefix": "Lokalisera ditt repo på",
+		"headlineAccent": "varje comit.",
+		"lede": "Resource Translator öppnar maskinöversatta pull requests för dina resursfiler med Azure AI Translator via det officiella SDK:t — inga extra tjänster, bara ett arbetsflöde.",
+		"primaryCta": "Sätt igång",
+		"secondaryCta": "Star på GitHub",
+		"supports": "Stöd",
+		"builtForShipping": "Byggd för sjöfart",
+		"workflowTitle": "Översättning som ett arbetsflöde, inte som en syssla.",
+		"workflowBody": "Lägg in åtgärden i din befintliga CI, rikta den mot Azure AI Translator och låt ditt repo tala alla språk du siktar på.",
+		"stats": {
+			"audit": "0 npm-revisionsproblem",
+			"tests": "150 tester",
+			"node": "Nod 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Sex filformat",
+				"body": "Rundtur .resx, .xliff, .po, .json, .ini och .restext med bytestabil formatering."
+			},
+			"config": {
+				"title": "Repo-nivåkonfiguration",
+				"body": "Lägg in en .github/resource-translator.yml för att inkludera globs, ordlistor och Custom Translator-kategorier."
+			},
+			"glossary": {
+				"title": "Ordlistamedveten",
+				"body": "Lås varumärken och produkttermer med smart ordgränsregex som hanterar C++, .NET och vänner."
+			},
+			"dryRun": {
+				"title": "Torrkörning + mjukt underkänt",
+				"body": "Förhandsgranska översättningar utan att skriva filer, eller lyft fram varje fel som en varning medan du itererar."
+			},
+			"outputs": {
+				"title": "PR-vänliga utdata",
+				"body": "Sammanfattning-titel, sammanfattning-detaljer och har-ny-översättningar går direkt in i skapa-pull-request."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Byggt på @azure-rest/ai-translation-text + @azure/core-rest-pipeline — automatiska återförsök på 408/429/5xx, ingen handrullad HTTP. Esbuild-paketerat, revisions-rent."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Att komma igång",
+		"eyebrow": "Upplägg",
+		"lede": "Lägg till en arbetsflödesfil, rikta den mot dina Azure AI Translator-uppgifter, och åtgärden — byggd på Microsofts officiella SDK @azure-rest/ai-translation-text — kommer att skanna repoet efter källspråksresursfiler och generera översatta syskon.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Skapa en Azure AI Translator-resurs i Azure-portalen och lagra sedan följande som GitHub-repositoryns hemligheter så att arbetsflödet kan läsa dem:",
+				"key": "prenumerationsnyckeln för resursen.",
+				"endpoint": "den regionala slutpunktens URL.",
+				"region": "resursens Azure-region."
+			},
+			"workflow": {
+				"title": "Lägg till arbetsflödet",
+				"body": "Skapa .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Committa en källresursfil",
+				"body": "Resursfiler använder Namnet. <sourceLocale>. <ext> konvention. Till exempel blir Greetings.en.resx Greetings.fr.resx, Greetings.de.resx och så vidare efter en körning."
+			},
+			"output": {
+				"title": "Inspektera utgången",
+				"body": "När arbetsflödet är klart exponerar åtgärden tre utdata som du kan koppla in i en PR-beskrivning: sammanfattning-titel, sammanfattning-detaljer och har-nya-översättningar. Den skriver också en Markdown-sammanfattning på jobbsidan via core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Nästa steg",
+			"configuration": "Konfigurera repo-nivå standardinställningar med .github/resource-translator.yml.",
+			"recipes": "Se recept för monorepos, anpassade ordlistor och kategorier för anpassade översättare."
+		}
+	},
+	"configuration": {
+		"title": "Konfiguration",
+		"eyebrow": "YAML",
+		"heroTitle": "Repository-konfiguration",
+		"lede": "Express defaults en gång i .github/resource-translator.yml och låter varje arbetsflöde ärva dem. Handlingsinsatser vinner alltid när båda ges."
+	},
+	"inputs": {
+		"title": "In- och utgångar",
+		"eyebrow": "Referens",
+		"lede": "Varje inmatning accepteras också i den valfria repo-konfigurationsfilen. När båda är inställda vinner handlingsinmatningen."
+	},
+	"formats": {
+		"title": "Filformat",
+		"eyebrow": "Referens",
+		"heroTitle": "Stödda filformat",
+		"lede": "Sex rundningsbara resursformat. Åtgärden läser varje källplatsfil, översätter värdena och skriver ett syskon per mållokal."
+	},
+	"recipes": {
+		"title": "Recept",
+		"eyebrow": "Kokbok",
+		"lede": "Vanliga mönster för leveransöversättningar: monorepos, ordlistor, anpassade kategorier, provkörningar och tonkontroll."
+	},
+	"faq": {
+		"title": "FAQ",
+		"eyebrow": "Hjälp",
+		"heroTitle": "Vanliga frågor",
+		"lede": "Snabba svar på de frågor som oftast dyker upp när man använder åtgärden."
+	},
+	"translations": {
+		"title": "Översättningar",
+		"eyebrow": "Showcase",
+		"heroTitle": "Hej på alla språk",
+		"locales": "Platser",
+		"currentlyRendered": "För närvarande renderad",
+		"complete": "Färdigt!",
+		"pendingPrefix": "Väntar på nästa översättar-dokumentar-körning.",
+		"viewWorkflowRuns": "Visa arbetsflödeskörningar",
+		"filter": "Filter",
+		"filterPlaceholder": "Sök efter språk, kod eller ursprungsnamn...",
+		"source": "Källa",
+		"machineTranslations": "Maskinöversättningar",
+		"translationPending": "Översättning väntar — öppna en translate-docs-körning.",
+		"noLocales": "Inga platser matchar det filtret.",
+		"howItWorks": "Hur detta fungerar"
+	},
+	"contributing": {
+		"title": "Bidrag",
+		"eyebrow": "Öppen källkod",
+		"lede": "Buggrapporter, funktionsförfrågningar och pull requests är alla välkomna. Handlingen är tillräckligt liten för att vara vänlig mot förstagångsbidragande."
+	},
+	"changelog": {
+		"title": "Byteslogg",
+		"eyebrow": "Historia",
+		"lede": "Sammanfattning av utgåvor på hög nivå. Den kanoniska, auktoritativa ändringsloggen finns i CHANGELOG.md i arkivet."
+	}
+}

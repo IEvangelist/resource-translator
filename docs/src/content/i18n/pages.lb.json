@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Ressource-Übersetzer",
+		"description": "Maacht maschinn-iwwersaten Pull Requests fir Ressourcedateien an all Repository, an all Format op.",
+		"badge": "v3.0 — Node 24, Repo Config, Glossaire, Dry Run",
+		"headlinePrefix": "Lokaliséier däi Repo op",
+		"headlineAccent": "All Engagement.",
+		"lede": "Resource Translator mécht maschinell iwwersat Pull Requests fir Är Ressourcedateien mat Azure AI Translator iwwer den offiziellen SDK op — keng zousätzlech Servicer, just e Workflow.",
+		"primaryCta": "Fänkt un",
+		"secondaryCta": "Star op GitHub",
+		"supports": "Ënnerstëtzung",
+		"builtForShipping": "Gebaut fir d'Schëfffaart",
+		"workflowTitle": "Iwwersetzung als Workflow, net als Aarbecht.",
+		"workflowBody": "Setzt d'Aktioun an Äre bestehende CI, weist se op Azure AI Translator, a loosst Äre Repo all Sprooch schwätzen, déi Dir zielt.",
+		"stats": {
+			"audit": "0 npm-Audit-Problemer",
+			"tests": "150 Tester",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Sechs Dateiformater",
+				"body": "Roundtrips .resx, .xliff, .po, .json, .ini an .restext mat byte-stabiler Formatéierung."
+			},
+			"config": {
+				"title": "Repo-level config",
+				"body": "Setzt eng .github/resource-translator.yml fir Globs, Glossairen an Custom Translator Kategorien ze enthalen."
+			},
+			"glossary": {
+				"title": "Glossarbewosst",
+				"body": "Sperrt Markennimm a Produktbegrëffer mat engem intelligente Wuertgrenz-Regex, deen C++, .NET an Friends behandelt."
+			},
+			"dryRun": {
+				"title": "Dréchenlaf + mëllen Duerchfall",
+				"body": "Virschau Iwwersetzungen ouni Dateien ze schreiwen, oder weist all Feeler als Warnung op, während s du iteréiers."
+			},
+			"outputs": {
+				"title": "PR-frëndlech Resultater",
+				"body": "Zesummefaassung-Titel, Zesummefaassung-Detailer an huet-nei-Iwwersetzungen ginn direkt an d'Erstellen-Pull-Ufro integréiert."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Gebaut op @azure-rest/ai-translation-text + @azure/core-rest-pipeline — automatesch Neiversich op 408/429/5xx, kee manuell HTTP. Esbuild-bundled, audit-propper."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Ufänken",
+		"eyebrow": "Opbau",
+		"lede": "Füügt eng Workflow-Datei derbäi, weist se op Är Azure AI Translator-Credentials, an d'Aktioun — baséiert op Microsofts offizieller @azure-rest/ai-translation-text SDK — scannt de Repo no Quellsprooch-Ressourcedateien a schéckt iwwersate Geschwëster aus.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Erstellt eng Azure AI Translator Ressource am Azure Portal, da späichert déi folgend als GitHub-Repository-Geheimnisser, sou datt de Workflow se liese kann:",
+				"key": "de Abonnementschlëssel fir d'Ressource.",
+				"endpoint": "d'regional Endpunkt-URL.",
+				"region": "d'Ressource ass d'Azure-Regioun."
+			},
+			"workflow": {
+				"title": "Füügt de Workflow derbäi",
+				"body": "Erstellt .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Commit eng Quellressourcedatei",
+				"body": "Ressourcedateien benotzen den Numm. <sourceLocale>. <ext> Konventioun. Zum Beispill gëtt Greetings.en.resx no engem Laf zu Greetings.fr.resx, Greetings.de.resx, an esou weider."
+			},
+			"output": {
+				"title": "Iwwerpréift den Ausgang",
+				"body": "Wann de Workflow fäerdeg ass, weist d'Aktioun dräi Outputen, déi s de an eng PR-Beschreiwung integréiere kanns: Zesummefaassung-Titel, Zesummefaassung-Detailer an Iwwersetzungen-Has-New-Translations. Et schreift och eng Markdown-Zesummefaassung op d'Job-Säit iwwer core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Nächst Schrëtt",
+			"configuration": "Konfiguréiert Repo-Level Standarden mat .github/resource-translator.yml.",
+			"recipes": "Kuckt Rezepter fir Monorepos, personaliséiert Glossairen an Custom Translator Kategorien."
+		}
+	},
+	"configuration": {
+		"title": "Konfiguratioun",
+		"eyebrow": "YAML",
+		"heroTitle": "Repository-Konfiguratioun",
+		"lede": "Express defaultt eemol an .github/resource-translator.yml a léisst all Workflow se ierwen. Aktiounsinputen gewannen ëmmer, wann béid geliwwert ginn."
+	},
+	"inputs": {
+		"title": "Inputs & Outputs",
+		"eyebrow": "Referenz",
+		"lede": "All Input gëtt och an der optionaler Repo-Konfiguratiounsdatei akzeptéiert. Wann béid gesat sinn, gewënnt d'Aktiounsinput."
+	},
+	"formats": {
+		"title": "Dateiformater",
+		"eyebrow": "Referenz",
+		"heroTitle": "Ënnerstëtzt Dateiformater",
+		"lede": "Sechs ronnrippbar Ressourceformater. D'Aktioun liest all Quell-Lokal-Datei, iwwersetzt d'Wäerter a schreift e Geschwëster pro Zilplaz."
+	},
+	"recipes": {
+		"title": "Rezepter",
+		"eyebrow": "Kachbuch",
+		"lede": "Gewéinlech Mustere fir d'Verschécken vun Iwwersetzungen: Monorepos, Glossairen, personaliséiert Kategorien, Trockenläufe an Tounkontroll."
+	},
+	"faq": {
+		"title": "FAQ",
+		"eyebrow": "Hëllef",
+		"heroTitle": "Heefeg gestallte Froen",
+		"lede": "Séier Äntwerten op déi Froen, déi am heefegsten opkommen, wann een d'Aktioun ugeholl huet."
+	},
+	"translations": {
+		"title": "Iwwersetzungen",
+		"eyebrow": "Showcase",
+		"heroTitle": "Hallo an all Sprooch",
+		"locales": "Plazen",
+		"currentlyRendered": "aktuell gerendert",
+		"complete": "Fäerdeg!",
+		"pendingPrefix": "Bis op déi nächst Translate-Docs-Laaf.",
+		"viewWorkflowRuns": "Workflow-Lafen ukucken",
+		"filter": "Filter",
+		"filterPlaceholder": "Sich no Sprooch, Code oder natierlechem Numm...",
+		"source": "Quell",
+		"machineTranslations": "Maschinn Iwwersetzungen",
+		"translationPending": "Iwwersetzung nach amgaangen — maacht eng Translate-Docs Laf op.",
+		"noLocales": "Keng Plazen entspriechen deem Filter.",
+		"howItWorks": "Wéi dat funktionéiert"
+	},
+	"contributing": {
+		"title": "Bäiträg",
+		"eyebrow": "Open Source",
+		"lede": "Feelerberichter, Feature-Ufroen an Pull Requests si wëllkomm. D'Aktioun ass kleng genuch, fir fir d'éischt Kéier Bäiträg frëndlech ze sinn."
+	},
+	"changelog": {
+		"title": "Ännerungslëscht",
+		"eyebrow": "Geschicht",
+		"lede": "Héich Niveau Zesummefaassung vun de Verëffentlechungen. De kanonesche, autoritativen Changelog liewt an CHANGELOG.md am Repository."
+	}
+}

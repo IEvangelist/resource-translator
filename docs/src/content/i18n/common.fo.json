@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Keldutýðari",
+		"defaultDescription": "Dokumentatión fyri Resource Translator GitHub Action — sjálvvirkandi maskinumseting av tilfeingisfílum við Azure AI Translator.",
+		"homeLabel": "Resource Translator — heim"
+	},
+	"skipToContent": "Far til innihaldið",
+	"drawer": {
+		"open": "Opin navigatión",
+		"close": "Nærmast navigatión",
+		"title": "Navigatión"
+	},
+	"header": {
+		"search": "Leitardokumentatión",
+		"searchPlaceholder": "Leita í dokumentatión...",
+		"toggleTheme": "Skift tema",
+		"githubRepository": "GitHub goymsla",
+		"language": "Mál"
+	},
+	"search": {
+		"title": "Leitardokumentatión",
+		"results": "Leitiúrslit",
+		"placeholder": "Leita eftir greinum, pørtum, uppskriftum...",
+		"close": "Nærkast leiting",
+		"idleTitle": "Leita í skjølunum",
+		"idleHelp": "Finn greinar eftir evni, fíluformati, stillingarvali ella uppskrift. Brúka {up} {down} til at navigera, {enter} til at lata upp.",
+		"loading": "Leita...",
+		"empty": "Einki úrslit. Rokna við einum øðrum lykilorði.",
+		"error": "Leitarindeks er ikki tøkt í menning. Koyr eina framleiðslubygging."
+	},
+	"toc": {
+		"title": "Á hesi síðuni"
+	},
+	"pager": {
+		"ariaLabel": "Grein",
+		"previous": "Fyrri",
+		"next": "Næsti"
+	},
+	"backToTop": {
+		"label": "Rulla til toppin"
+	},
+	"footer": {
+		"docs": "Docs",
+		"project": "Verkætlanin",
+		"community": "Samfelag",
+		"projectLinksAria": "Verkætlanarleinkjur",
+		"sourceAria": "Sí keldu á GitHub",
+		"marketplaceAria": "Sí á GitHub Marketplace",
+		"authorAria": "Heimasíðan hjá David Pine",
+		"taglinePrefix": "Ein GitHub Action, sum umsetur tínar resursfílur sjálvvirkandi, bygd omaná tann offisella",
+		"taglineMiddle": "SDK frá",
+		"copyrightPrefix": "Útgivin undir",
+		"builtWith": "Bygt við"
+	}
+}

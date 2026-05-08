@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Prevodilac resursa",
+		"defaultDescription": "Dokumentacija za Resource Translator GitHub Action — automatizirani mašinski prevod datoteka resursa putem Azure AI Translatora.",
+		"homeLabel": "Prevodilac resursa — početna stranica"
+	},
+	"skipToContent": "Preskoči na sadržaj",
+	"drawer": {
+		"open": "Otvorena navigacija",
+		"close": "Bliska navigacija",
+		"title": "Navigacija"
+	},
+	"header": {
+		"search": "Pretražite dokumentaciju",
+		"searchPlaceholder": "Pretraži dokumentaciju...",
+		"toggleTheme": "Toggle tema",
+		"githubRepository": "GitHub repozitorij",
+		"language": "Jezik"
+	},
+	"search": {
+		"title": "Pretražite dokumentaciju",
+		"results": "Rezultati pretrage",
+		"placeholder": "Pretraži članke, odjeljke, recepte...",
+		"close": "Detaljna pretraga",
+		"idleTitle": "Pretraži dokumentaciju",
+		"idleHelp": "Pronađite članke po temi, formatu datoteke, opciji konfiguracije ili receptu. Koristite {up} {down} za navigaciju, {enter} za otvaranje.",
+		"loading": "Tražim...",
+		"empty": "Nema rezultata. Probaj neku drugu ključnu riječ.",
+		"error": "Indeks pretrage nije dostupan u razvoju. Pokreni produkcijski build."
+	},
+	"toc": {
+		"title": "Na ovoj stranici"
+	},
+	"pager": {
+		"ariaLabel": "Članak",
+		"previous": "Prethodno",
+		"next": "Sljedeći"
+	},
+	"backToTop": {
+		"label": "Skroluj na vrh"
+	},
+	"footer": {
+		"docs": "Dokumenti",
+		"project": "Projekat",
+		"community": "Zajednica",
+		"projectLinksAria": "Linkovi projekata",
+		"sourceAria": "Pogledajte izvor na GitHubu",
+		"marketplaceAria": "Pogledajte na GitHub Marketplace",
+		"authorAria": "Web stranica Davida Pinea",
+		"taglinePrefix": "GitHub akcija koja automatski prevodi vaše datoteke resursa, izgrađena na zvaničnim",
+		"taglineMiddle": "SDK od",
+		"copyrightPrefix": "Objavljeno pod",
+		"builtWith": "Izgrađeno sa"
+	}
+}

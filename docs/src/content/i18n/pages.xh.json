@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Umguquli Wezixhobo",
+		"description": "Vula izicelo zokutsala eziguqulelwe ngomatshini zeefayile zezixhobo nakweyiphi na i-repo, nakweyiphi na ifomathi.",
+		"badge": "v3.0 - Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "Beka indawo kwi-repo yakho kwi",
+		"headlineAccent": "Ukuzibophelela ngakunye.",
+		"lede": "Umguquleli wezixhobo uvula izicelo zokutsala eziguqulelwe ngomatshini kwiifayile zakho zezixhobo usebenzisa i-Azure AI Translator nge-SDK esemthethweni - akukho nkonzo zongezelelweyo, nje ukuhamba komsebenzi.",
+		"primaryCta": "Qalisa",
+		"secondaryCta": "Inkwenkwezi kwiGitHub",
+		"supports": "Inkxaso",
+		"builtForShipping": "Yakhelwe ukuhambisa ngenqanawa",
+		"workflowTitle": "Ukuguqulelwa njengomsebenzi womsebenzi, hayi umsebenzi womsebenzi.",
+		"workflowBody": "Lahla isenzo kwi-CI yakho esele ikho, uyikhombe kwi-Azure AI Translator, kwaye uvumele i-repo yakho ithethe zonke iilwimi ozijolise kuzo.",
+		"stats": {
+			"audit": "0 imiba yophicotho-zincwadi",
+			"tests": "Iimvavanyo ezili-150",
+			"node": "Iintshumbisi ZeBhayibhile ZeBhayibhile / 20 / 24",
+			"sdk": "I-SDK esemthethweni ye-Azure"
+		},
+		"features": {
+			"formats": {
+				"title": "Iifomathi zefayile ezintandathu",
+				"body": "Uhambo olujikelezayo .resx, .xliff, .po, .json, .ini, kunye ne .restext kunye nokufomatha okuzinzileyo kwe-byte."
+			},
+			"config": {
+				"title": "Ukumiselwa kwenkqubo yenqanaba le-Repo",
+				"body": "Lahla .github/resource-translator.yml ukuze uquke i-globs, i-glossaries, kunye neendidi zabaguquleli abaqhelekileyo."
+			},
+			"glossary": {
+				"title": "I-Glossary-aware",
+				"body": "Tshixa amagama e-brand kunye nemigaqo yemveliso nge-regex yegama elihlakaniphile eliphatha i-C ++, .NET, kunye nabahlobo."
+			},
+			"dryRun": {
+				"title": "I-Dry-run + i-soft-fail",
+				"body": "Jonga iinguqulelo ngaphandle kokubhala iifayile, okanye ubonise yonke impazamo njengesilumkiso ngelixa uphinda."
+			},
+			"outputs": {
+				"title": "Iziphumo ze-PR-friendly",
+				"body": "Isishwankathelo-isihloko, isishwankathelo-iinkcukacha, kunye ne-has-new-translations zifaka ngqo kwi-create-pull-request."
+			},
+			"sdk": {
+				"title": "I-SDK esemthethweni ye-Azure",
+				"body": "Yakhelwe kwi-@azure-rest / ai-translation-text + @azure / core-rest-pipeline - ukuzama ngokuzenzekelayo kwi-408/429/5xx, akukho HTTP eqengqelekayo ngesandla. esbuild-bundled, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Ukuqala",
+		"eyebrow": "Ukuseta",
+		"lede": "Yongeza ifayile yokuhamba komsebenzi, ikhombe kwiziqinisekiso zakho ze-Azure AI Translator, kwaye isenzo - esakhiwe kwi-SDK esemthethweni yeMicrosoft ye-@azure-rest / ai-translation-text - iya kuskena i-repo yeefayile zezixhobo zolwimi lomthombo kwaye ikhuphe abantakwabo abaguqulelweyo.",
+		"steps": {
+			"provision": {
+				"title": "Ukubonelela ngesibonelelo se-Azure AI Translator",
+				"body": "Yenza umthombo we-Azure AI Translator kwi-portal ye-Azure, uze ugcine oku kulandelayo njengeemfihlo zokugcina i-GitHub ukuze ukuhamba komsebenzi kukwazi ukuzifunda:",
+				"key": "Isitshixo sobhaliso sezixhobo.",
+				"endpoint": "I-URL yesiphelo sommandla.",
+				"region": "Ummandla we-Azure we-Azure."
+			},
+			"workflow": {
+				"title": "Yongeza umkhondo womsebenzi",
+				"body": "Yenza .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Yenza ifayili yovimba omthombo",
+				"body": "Iifayile zemithombo zisebenzisa igama. <sourceLocale>. <ext> Ingqungquthela. Umzekelo Greetings.en.resx uba Greetings.fr.resx, Greetings.de.resx, njalo njalo emva kokubaleka."
+			},
+			"output": {
+				"title": "Hlola isiphumo",
+				"body": "Nje ukuba ukuhamba komsebenzi kugqityiwe, isenzo siveza iziphumo ezintathu onokuzifaka kwinkcazo ye-PR: isishwankathelo-isihloko, isishwankathelo-iinkcukacha, kunye neenguqulelo ezintsha. Ikwabhala isishwankathelo seMarkdown kwiphepha lomsebenzi nge-core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Amanyathelo alandelayo",
+			"configuration": "Misela imiselo yomgangatho we-repo nge .github/resource-translator.yml.",
+			"recipes": "Jonga iiresiphi ze-monorepos, ii-glossaries zesiko, kunye neendidi zoMguquleli wesiko."
+		}
+	},
+	"configuration": {
+		"title": "Ukuqwalaselwa kwenkqubo",
+		"eyebrow": "I-YAML",
+		"heroTitle": "Ukumiselwa kwendawo yokugcina izinto",
+		"lede": "Bonisa ukungagqibeki kube kanye kwi .github/resource-translator.yml kwaye uvumele yonke imisebenzi ifumane ilifa. Igalelo lezenzo lihlala liphumelela xa zombini zinikezelwa."
+	},
+	"inputs": {
+		"title": "Igalelo kunye neziphumo",
+		"eyebrow": "Isalathiso",
+		"lede": "Igalelo ngalinye lamkelwe kwifayile yokuzikhethela ye-repo config. Xa zombini zibekiwe, igalelo lesenzo liphumelele."
+	},
+	"formats": {
+		"title": "Iifomathi zefayile",
+		"eyebrow": "Isalathiso",
+		"heroTitle": "Iifomati zefayile ezixhaswayo",
+		"lede": "Iifomathi ezintandathu zezixhobo ezijikelezayo. Isenzo sifunda ifayile nganye yomthombo-wendawo, siguqulela amaxabiso, kwaye sibhala umntakwabo kwindawo ekujoliswe kuyo."
+	},
+	"recipes": {
+		"title": "Iindlela zokupheka",
+		"eyebrow": "Incwadi yokupheka",
+		"lede": "Iipateni eziqhelekileyo zokuguqulela ngenqanawa: ii-monorepos, ii-glossaries, iindidi zesiko, ukubaleka okomileyo, kunye nolawulo lwethoni."
+	},
+	"faq": {
+		"title": "Imibuzo Yarhoqo",
+		"eyebrow": "Uncedo",
+		"heroTitle": "Imibuzo ebuzwa rhoqo",
+		"lede": "Iimpendulo ezikhawulezayo kwimibuzo ephakama rhoqo xa uthatha isenzo."
+	},
+	"translations": {
+		"title": "Iinguqulelo",
+		"eyebrow": "Umboniso",
+		"heroTitle": "Molo kuzo zonke iilwimi",
+		"locales": "Iindawo",
+		"currentlyRendered": "Ngoku inikezelwe",
+		"complete": "Gqityiwe!",
+		"pendingPrefix": "Ulinde i-translate-docs elandelayo iqhubeke.",
+		"viewWorkflowRuns": "Bonisa ukuqhutywa komsebenzi",
+		"filter": "Icebo lokucoca ulwelo",
+		"filterPlaceholder": "Khangela ngolwimi, ikhowudi okanye igama lomthonyama ...",
+		"source": "Umthombo",
+		"machineTranslations": "Iinguqulelo zomatshini",
+		"translationPending": "Inguqulelo ilindelwe — vula i-translate-docs run.",
+		"noLocales": "Akukho ndawo inxulumana neso sihluzo.",
+		"howItWorks": "Isebenza njani le nto"
+	},
+	"contributing": {
+		"title": "Igalelo",
+		"eyebrow": "Umthombo ovulekileyo",
+		"lede": "Iingxelo zebug, izicelo zeempawu, kunye nezicelo zokutsala zonke zamkelekile. Isenzo sincinci ngokwaneleyo ukuba sibe nobubele kubanikeli bexesha lokuqala."
+	},
+	"changelog": {
+		"title": "Utshintsho lwelog",
+		"eyebrow": "Imbali",
+		"lede": "Isishwankathelo esiphezulu sokukhutshwa. Utshintsho lwe-canonical, olunegunya luhlala CHANGELOG.md kwindawo yokugcina."
+	}
+}

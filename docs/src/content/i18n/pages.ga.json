@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Aistritheoir Acmhainne",
+		"description": "Oscail iarratais tarraingthe meaisín-aistrithe ar chomhaid acmhainne in aon repo, in aon fhormáid.",
+		"badge": "v3.0 - Nód 24, cumraíocht repo, gluais, rith tirim",
+		"headlinePrefix": "Logánaigh d'ionadaí ar",
+		"headlineAccent": "gach tiomantas.",
+		"lede": "Osclaíonn Resource Translator iarratais tarraingthe meaisín-aistrithe do do chomhaid acmhainní ag baint úsáide as Azure AI Translator tríd an SDK oifigiúil - gan aon seirbhísí breise, ach sreabhadh oibre.",
+		"primaryCta": "Tosaigh",
+		"secondaryCta": "Réalta ar GitHub",
+		"supports": "Tacaíochtaí",
+		"builtForShipping": "Tógtha le haghaidh loingseoireachta",
+		"workflowTitle": "Aistriúchán mar shreabhadh oibre, ní mar chúram.",
+		"workflowBody": "Buail an gníomh isteach i do CI atá ann cheana, dírigh é ar Azure AI Translator, agus lig do do repo gach teanga a dhíríonn tú orthu a labhairt.",
+		"stats": {
+			"audit": "0 npm-saincheisteanna iniúchóireachta",
+			"tests": "150 tástáil",
+			"node": "Nód 20 / 22 / 24",
+			"sdk": "Oifigiúil Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Sé fhormáid comhaid",
+				"body": "Turais bhabhta .resx, .xliff, .po, .json, .ini, agus .restext le formáidiú beart-chobhsaí."
+			},
+			"config": {
+				"title": "Cumraíocht leibhéal reatha",
+				"body": "Buail .github/resource-translator.yml le haghaidh catagóirí globs, gluaiseanna, agus Aistritheoir Saincheaptha san áireamh."
+			},
+			"glossary": {
+				"title": "Gluais",
+				"body": "Cuir ainmneacha branda agus téarmaí táirge faoi ghlas le regex teorainn focal cliste a láimhseálann C ++, .NET, agus cairde."
+			},
+			"dryRun": {
+				"title": "Rith tirim + bog-teip",
+				"body": "Réamhamharc ar aistriúcháin gan comhaid a scríobh, nó gach earráid a dhromchla mar rabhadh agus tú ag athrá."
+			},
+			"outputs": {
+				"title": "Aschuir PR-chairdiúla",
+				"body": "achoimre-teideal, achoimre-sonraí, agus has-new-translations sliotán díreach isteach create-pull-request."
+			},
+			"sdk": {
+				"title": "Oifigiúil Azure SDK",
+				"body": "Tógtha ar @azure-rest/ai-translation-text + @azure/core-rest-pipeline - athiarrachtaí uathoibríocha ar 408/429/5xx, gan aon HTTP láimhe. esbuild-bundled, iniúchadh-glan."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Ag tosú",
+		"eyebrow": "Socrú",
+		"lede": "Cuir comhad sreabhadh oibre leis, dírigh é ar do dhintiúir Azure AI Translator, agus déanfaidh an gníomh - tógtha ar SDK oifigiúil @azure-rest / ai-translation-text Microsoft - an repo a scanadh le haghaidh comhaid acmhainne foinse agus astóidh siblíní aistrithe.",
+		"steps": {
+			"provision": {
+				"title": "Acmhainn Azure AI Translator a sholáthar",
+				"body": "Cruthaigh acmhainn Azure AI Translator sa tairseach Azure, ansin stóráil na rudaí seo a leanas mar rúin stórtha GitHub ionas gur féidir leis an sreabhadh oibre iad a léamh:",
+				"key": "an eochair síntiúis don acmhainn.",
+				"endpoint": "an URL críochphointe réigiúnach.",
+				"region": "réigiún Azure na hacmhainne."
+			},
+			"workflow": {
+				"title": "Cuir an sreabhadh oibre leis",
+				"body": "Cruthaigh .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Comhad acmhainne foinseacha a thiomnú",
+				"body": "Úsáideann comhaid acmhainne an t-ainm. .<sourceLocale> <ext> coinbhinsiún. Mar shampla, éiríonn Greetings.en.resx Greetings.fr.resx, Greetings.de.resx, agus mar sin de tar éis rith."
+			},
+			"output": {
+				"title": "Déan iniúchadh ar an aschur",
+				"body": "Nuair a chríochnaíonn an sreabhadh oibre, nochtann an gníomh trí aschur is féidir leat a shreangú isteach i gcur síos PR: teideal achoimre, sonraí achoimre, agus aistriúcháin nua. Scríobhann sé achoimre Markdown isteach sa leathanach poist freisin trí core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Na chéad chéimeanna eile",
+			"configuration": "Cumraigh réamhshocruithe leibhéal repo le .github/resource-translator.yml.",
+			"recipes": "Féach oidis do monorepos, gluaiseanna saincheaptha, agus catagóirí Aistritheoir Saincheaptha."
+		}
+	},
+	"configuration": {
+		"title": "Cumraíocht",
+		"eyebrow": "YAML",
+		"heroTitle": "Cumraíocht an stórtha",
+		"lede": "Réamhshocraíonn Express uair amháin i .github/resource-translator.yml agus lig do gach sreabhadh oibre iad a oidhreacht. Bhuaigh ionchuir gníomhaíochta i gcónaí nuair a chuirtear an dá cheann ar fáil."
+	},
+	"inputs": {
+		"title": "Ionchuir & aschuir",
+		"eyebrow": "Tagairt",
+		"lede": "Glactar le gach ionchur sa chomhad cumraíochta repo roghnach freisin. Nuair a bhíonn an dá cheann socraithe, bhuaigh an t-ionchur gníomhaíochta."
+	},
+	"formats": {
+		"title": "Formáidí comhaid",
+		"eyebrow": "Tagairt",
+		"heroTitle": "Formáidí comhaid tacaithe",
+		"lede": "Sé fhormáid acmhainne bhabhta-trippable. Léann an gníomh gach comhad foinse-local, aistríonn sé na luachanna, agus scríobhann sé siblín in aghaidh an sprioc-locale."
+	},
+	"recipes": {
+		"title": "Oidis",
+		"eyebrow": "Leabhar Cócaireachta",
+		"lede": "Patrúin choitianta le haghaidh aistriúcháin loingseoireachta: monorepos, gluaiseanna, catagóirí saincheaptha, ritheann tirim, agus rialú ton."
+	},
+	"faq": {
+		"title": "Ceisteanna Coitianta",
+		"eyebrow": "Cabhair",
+		"heroTitle": "Ceisteanna coitianta",
+		"lede": "Freagraí tapa ar na ceisteanna is minice a thagann chun cinn nuair a ghlacann tú leis an ngníomh."
+	},
+	"translations": {
+		"title": "Aistriúcháin",
+		"eyebrow": "Taispeántas",
+		"heroTitle": "Dia duit i ngach teanga",
+		"locales": "Logántais",
+		"currentlyRendered": "Rindreáilte faoi láthair",
+		"complete": "críochnaithe!",
+		"pendingPrefix": "Ag feitheamh ar an gcéad rith eile translate-docs.",
+		"viewWorkflowRuns": "Féach ar ritheann sreabhadh oibre",
+		"filter": "Scagaire",
+		"filterPlaceholder": "Cuardaigh de réir teanga, cód, nó ainm dúchais...",
+		"source": "Foinse",
+		"machineTranslations": "Aistriúcháin mheaisíne",
+		"translationPending": "Aistriúchán ar feitheamh - oscail rith aistrithe-docs.",
+		"noLocales": "Níl aon logántais ag teacht leis an scagaire sin.",
+		"howItWorks": "Conas a oibríonn sé seo"
+	},
+	"contributing": {
+		"title": "Ag rannchuidiú",
+		"eyebrow": "Foinse oscailte",
+		"lede": "Tá fáilte roimh thuairiscí fabhtanna, iarratais gné, agus iarratais tarraingthe. Tá an gníomh beag go leor chun a bheith cairdiúil do rannpháirtithe céaduaire."
+	},
+	"changelog": {
+		"title": "Loga athruithe",
+		"eyebrow": "Stair",
+		"lede": "Achoimre ardleibhéil ar eisiúintí. Tá an changelog canónach, údarásach ina chónaí i CHANGELOG.md sa stór."
+	}
+}

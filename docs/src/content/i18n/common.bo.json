@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "ཐོན་ཁུངས་ལོ་ཙཱ་བ་",
+		"defaultDescription": "Resource Translator GitHub Action for the Documentation — Azure AI Translator བརྒྱུད་ནས་ཐོན་ཁུངས་ཡིག་ཆའི་རང་འགུལ་འཕྲུལ་ཆས་ལོ་ཙཱ།",
+		"homeLabel": "ཐོན་ཁུངས་ལོ་ཙཱ་བ་ — home"
+	},
+	"skipToContent": "ནང་དོན་ལ་མཆོང་།",
+	"drawer": {
+		"open": "སྒོ་འབྱེད་ཕྱོགས་སྟོན་",
+		"close": "ཉེ་འགྲམ་གྱི་ཕྱོགས་སྟོན་",
+		"title": "ཕྱོགས་སྟོན་"
+	},
+	"header": {
+		"search": "ཡིག་ཆ་འཚོལ་ཞིབ།",
+		"searchPlaceholder": "ཡིག་ཆ་འཚོལ་ཞིབ།",
+		"toggleTheme": "བརྗོད་གཞི་བརྗེ་སྤོར་",
+		"githubRepository": "GitHub མཛོད་ཁང་",
+		"language": "སྐད་ཡིག"
+	},
+	"search": {
+		"title": "ཡིག་ཆ་འཚོལ་ཞིབ།",
+		"results": "འཚོལ་བཤེར་བྱས་འབྲས་",
+		"placeholder": "རྩོམ་ཡིག་དང་། ས་བཅད་དང་ཟས་ཐོ་འཚོལ་ཞིབ།",
+		"close": "འཚོལ་བཤེར་ཁ་བསྡམས་",
+		"idleTitle": "ཡིག་ཆ་འཚོལ་ཞིབ།",
+		"idleHelp": "བརྗོད་གཞི་དང་། ཡིག་ཆའི་རྣམ་གཞག སྒྲིག་སྦྱོར་གདམ་གསེས་སམ་ཡང་ན་ཟས་ཐོ་ལྟར་རྩོམ་ཡིག་འཚོལ་དགོས། {up} {down} བཀོལ་ནས་ཕྱོགས་སྟོན་དང་{enter} ཁ་ཕྱེ་དགོས།",
+		"loading": "འཚོལ་ཞིབ...",
+		"empty": "འབྲས་བུ་མེད། ཐ་སྙད་གཞན་ཞིག་ཚོད་ལྟ་ཞིག་བྱོས་ཤིག",
+		"error": "འཚོལ་བཤེར་གྱི་སྟོན་གྲངས་དེ་dev ནང་སྤྱོད་མི་ཐུབ། ཐོན་སྐྱེད་ཀྱི་འཛུགས་སྐྲུན་ཞིག་གཉེར་དགོས།"
+	},
+	"toc": {
+		"title": "ཤོག་ངོས་འདིའི་སྟེང་།"
+	},
+	"pager": {
+		"ariaLabel": "རྩོམ་ཡིག",
+		"previous": "སྔོན་མ",
+		"next": "རྗེས་མ"
+	},
+	"backToTop": {
+		"label": "གོང་དུ་བཤུར།"
+	},
+	"footer": {
+		"docs": "ཡིག་ཆ།",
+		"project": "ལས་གཞི།",
+		"community": "སྡེ་ཁུལ།",
+		"projectLinksAria": "ལས་གཞིའི་འབྲེལ་མཐུད།",
+		"sourceAria": "GitHub སྟེང་གི་ཡོང་ཁུངས་ལ་ལྟ་བ།",
+		"marketplaceAria": "GitHub Marketplace སྟེང་ལྟ་བ།",
+		"authorAria": "David Pine's དྲ་ཚིགས་",
+		"taglinePrefix": "ཁྱོད་ཀྱི་ཐོན་ཁུངས་ཡིག་ཆ་རང་འགུལ་གྱིས་ལོ་ཙཱ་བྱེད་པའི་GitHub བྱ་སྤྱོད།",
+		"taglineMiddle": "SDK from",
+		"copyrightPrefix": "《 》",
+		"builtWith": "བཟོ་སྐྲུན་བྱས་པ་དང་"
+	}
+}

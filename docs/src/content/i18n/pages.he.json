@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "מתרגם משאבים",
+		"description": "בקשות משיכה מתורגמות מכונה פתוחות לקבצי משאבים בכל מאגר, בכל פורמט.",
+		"badge": "גרסה 3.0 — צומת 24, קונפיגורציית מאגר, מילון מונחים, ריצה יבשה",
+		"headlinePrefix": "לוקליז את המאגר שלך",
+		"headlineAccent": "כל התחייבות.",
+		"lede": "Resource Translator פותח בקשות משיכה מתורגמות מכונה עבור קבצי המשאבים שלך באמצעות Azure AI Translator דרך ערכת הפיתוח הרשמית — בלי שירותים נוספים, רק תהליך עבודה.",
+		"primaryCta": "תתחילו",
+		"secondaryCta": "Star ב-GitHub",
+		"supports": "תומכים",
+		"builtForShipping": "נבנה לשיט",
+		"workflowTitle": "תרגום כתהליך עבודה, לא מטלה.",
+		"workflowBody": "הכניס את הפעולה ל-CI הקיים שלך, כוון אותה ל-Azure AI Translator, ותן למאגר שלך לדבר כל שפה שאתה מכוון אליה.",
+		"stats": {
+			"audit": "0 בעיות ביקורת NPM",
+			"tests": "150 מבחנים",
+			"node": "צומת 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "שישה פורמטים של קבצים",
+				"body": "נסיעות הלוך ושוב .resx, .xliff, .po, .json, .ini ו-.restext עם עיצוב יציב בתים."
+			},
+			"config": {
+				"title": "קונפיגורציה ברמת רפו",
+				"body": "השאירו קובץ .github/resource-translator.yml כדי לכלול גלובים, מילונים וקטגוריות מתרגמים מותאמים אישית."
+			},
+			"glossary": {
+				"title": "מודע למילון",
+				"body": "נעול שמות מותגים ומונחי מוצר עם רגקס חכם עם גבול מילים שמטפל ב-C++, .NET וחברים."
+			},
+			"dryRun": {
+				"title": "ריצה יבשה + כישלון רך",
+				"body": "הצג תרגומים מראש בלי לכתוב קבצים, או הצג כל שגיאה כאזהרה בזמן האיטרציה."
+			},
+			"outputs": {
+				"title": "פלטים ידידותיים ליחסי ציבור",
+				"body": "כותרת סיכום, סיכום פרטים, ו-have-new-translates משתלבים ישירות ב-create-pull-request."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "מבוסס על @azure-rest/ai-translation-text + @azure/core-rest-pipeline — ניסיונות אוטומטיים ב-408/429/5xx, ללא HTTP ידני. עם ESBUILD-Bundle, נקי לביקורת."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "התחלה",
+		"eyebrow": "הכנה",
+		"lede": "הוסף קובץ זרימת עבודה, כוון אותו לפרטי ה-Azure AI Translator שלך, והפעולה — שנבנתה על SDK הרשמי של מיקרוסופט @azure-rest/ai-translation-text — תסרוק את המאגר אחר קבצי משאבים בשפת המקור ותשלח אחים מתורגמים.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "צור משאב Azure AI Translator בפורטל Azure, ואז שמור את הדברים הבאים כסודות מאגר GitHub כדי שזרימת העבודה תוכל לקרוא אותם:",
+				"key": "מפתח המנוי למשאב.",
+				"endpoint": "כתובת ה-URL של נקודת קצה אזורית.",
+				"region": "אזור Azure של המשאב."
+			},
+			"workflow": {
+				"title": "הוסף את זרימת העבודה",
+				"body": "צור .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "commit קובץ משאב מקור",
+				"body": "קבצי משאבים משתמשים בשם. <sourceLocale>. <ext> מוסד. לדוגמה, Greetings.en.resx הופך ל-Greetings.fr.resx, Greetings.de.resx, וכן הלאה לאחר ריצה."
+			},
+			"output": {
+				"title": "בדוק את הפלט",
+				"body": "לאחר סיום תהליך העבודה, הפעולה חושפת שלושה פלטים שניתן לשלב לתיאור יחסי ציבור: כותרת סיכום, סיכום פרטים ויש תרגומים חדשים. הוא גם כותב סיכום של Markdown בדף המשרות דרך core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "הצעדים הבאים",
+			"configuration": "הגדר ברירת מחדל ברמת ריפו עם .github/resource-translator.yml.",
+			"recipes": "ראו מתכונים למונורפואים, מילונים מותאמים אישית וקטגוריות מתרגמים מותאמים אישית."
+		}
+	},
+	"configuration": {
+		"title": "תצורה",
+		"eyebrow": "YAML",
+		"heroTitle": "תצורת מאגר",
+		"lede": "Express עושה ברירת מחדל פעם אחת ב-.github/resource-translator.yml ומאפשר לכל זרימת עבודה לרשת אותם. קלטי פעולה תמיד מנצחים כאשר שניהם ניתנים."
+	},
+	"inputs": {
+		"title": "קלטים ויציאות",
+		"eyebrow": "מקור",
+		"lede": "כל קלט מתקבל גם בקובץ הקונפיגורציה של המאגר האופציונלי. כאשר שניהם מוגדרים, קלט הפעולה מנצח."
+	},
+	"formats": {
+		"title": "פורמטים של קבצים",
+		"eyebrow": "מקור",
+		"heroTitle": "פורמטים נתמכים",
+		"lede": "שישה פורמטים של משאבים שניתנים לסיבוב. הפעולה קוראת כל קובץ מקור-לוקאל, מתרגמת את הערכים, וכותבת אחי לכל לוקאל יעד."
+	},
+	"recipes": {
+		"title": "מתכונים",
+		"eyebrow": "ספר בישול",
+		"lede": "דפוסים נפוצים לתרגומי משלוחים: מונורפואים, מילונים, קטגוריות מותאמות אישית, בדיקות יבשות ובקרת טון."
+	},
+	"faq": {
+		"title": "שאלות נפוצות",
+		"eyebrow": "עזרה",
+		"heroTitle": "שאלות נפוצות",
+		"lede": "תשובות מהירות לשאלות שעולות הכי הרבה כשמאמצים את הפעולה."
+	},
+	"translations": {
+		"title": "תרגומים",
+		"eyebrow": "תצוגה",
+		"heroTitle": "שלום בכל שפה",
+		"locales": "מיקומים",
+		"currentlyRendered": "כיום מוצג",
+		"complete": "הושלם!",
+		"pendingPrefix": "להמתין לריצה הבאה של תיעוד התרגום.",
+		"viewWorkflowRuns": "הצג רצות זרימת עבודה",
+		"filter": "פילטר",
+		"filterPlaceholder": "חפש לפי שפה, קוד או שם מקומי...",
+		"source": "מקור",
+		"machineTranslations": "תרגומים מכניים",
+		"translationPending": "תרגום ממתין — פתח ריצת תרגום-דוקומנטרי.",
+		"noLocales": "אין מיקומים שתואמים את המסנן הזה.",
+		"howItWorks": "איך זה עובד"
+	},
+	"contributing": {
+		"title": "תרומה",
+		"eyebrow": "קוד פתוח",
+		"lede": "דוחות באגים, בקשות לפיצ'רים ובקשות משיכה כולם מתקבלים בברכה. הפעילות קטנה מספיק כדי להיות ידידותית לתורמים בפעם הראשונה."
+	},
+	"changelog": {
+		"title": "יומן שינויים",
+		"eyebrow": "היסטוריה",
+		"lede": "סיכום כללי של השחרורים. יומן השינויים הקנוני והסמכותי חי CHANGELOG.md במאגר."
+	}
+}

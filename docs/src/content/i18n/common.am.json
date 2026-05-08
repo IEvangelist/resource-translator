@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "የመርጃ ተርጓሚ",
+		"defaultDescription": "ዶክመንቶች ለሀብት ተርጓሚ GitHub Action - በ Azure AI ተርጓሚ በኩል የመርጃ ፋይሎችን በራስ-ሰር የማሽን ትርጉም።",
+		"homeLabel": "የመረጃ ተርጓሚ - ቤት"
+	},
+	"skipToContent": "ወደ ይዘት ዘልለው ይሂዱ",
+	"drawer": {
+		"open": "ክፈት ዳሰሳ",
+		"close": "ዳሰሳ ይዝጉ",
+		"title": "አሰሳ"
+	},
+	"header": {
+		"search": "ሰነዶችን ይፈልጉ",
+		"searchPlaceholder": "ሰነዶችን ይፈልጉ...",
+		"toggleTheme": "ገጽታ ቀያይር",
+		"githubRepository": "የ GitHub ማከማቻ",
+		"language": "የጣቢያ ካርታ"
+	},
+	"search": {
+		"title": "ሰነዶችን ይፈልጉ",
+		"results": "የፍለጋ ውጤቶች",
+		"placeholder": "ጽሑፎችን፣ ክፍሎችን፣ የምግብ አዘገጃጀቶችን ይፈልጉ...",
+		"close": "ፍለጋን ይዝጉ",
+		"idleTitle": "ሰነዶቹን ይፈልጉ",
+		"idleHelp": "ጽሑፎችን በርዕስ፣ በፋይል ቅርጸት፣ በማዋቀር አማራጭ ወይም በምግብ አዘገጃጀት ያግኙ። ለማሰስ {up} {down} ይጠቀሙ፣ {enter} ለመክፈት።",
+		"loading": "በመፈለግ ላይ ...",
+		"empty": "ምንም ውጤት የለም. የተለየ ቁልፍ ቃል ይሞክሩ።",
+		"error": "የፍለጋ መረጃ ጠቋሚ በዴቭ ውስጥ አይገኝም። የምርት ግንባታን ያሂዱ።"
+	},
+	"toc": {
+		"title": "በዚህ ገጽ ላይ"
+	},
+	"pager": {
+		"ariaLabel": "አንቀጽ",
+		"previous": "መልስ ይስጡ",
+		"next": "1 ሥዕል 2"
+	},
+	"backToTop": {
+		"label": "ወደ ላይ ተመለስ\""
+	},
+	"footer": {
+		"docs": "ሰነዶች",
+		"project": "ፕሮጀክት",
+		"community": "ማህበረሰብ",
+		"projectLinksAria": "የፕሮጀክት አገናኞች",
+		"sourceAria": "ምንጩን በ GitHub ላይ ይመልከቱ",
+		"marketplaceAria": "በ GitHub Marketplace ላይ ይመልከቱ",
+		"authorAria": "የዴቪድ ፓይን ድር ጣቢያ",
+		"taglinePrefix": "የመርጃ ፋይሎችዎን በራስ-ሰር የሚተረጉም የ GitHub እርምጃ፣ በኦፊሴላዊው ላይ የተገነባው",
+		"taglineMiddle": "ኤስዲኬ ከ",
+		"copyrightPrefix": "በ ስር የተለቀቀው",
+		"builtWith": "የተገነባ በ"
+	}
+}

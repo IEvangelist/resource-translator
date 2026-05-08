@@ -1,0 +1,28 @@
+{
+	"sections": {
+		"start": "Эндээс эхэл",
+		"reference": "Эшлэл",
+		"showcase": "Үзүүлбэр",
+		"project": "Төсөл"
+	},
+	"items": {
+		"overview": "Тойм",
+		"gettingStarted": "Эхлэл",
+		"configuration": "Зохион байгуулалт",
+		"inputs": "Оролт ба гаралт",
+		"formats": "Файлын форматууд",
+		"recipes": "Жорууд",
+		"faq": "Түгээмэл асуулт хариулт",
+		"translations": "Орчуулгууд",
+		"contributing": "Хувь нэмэр оруулагчид",
+		"changelog": "Changelog"
+	},
+	"community": {
+		"reportBug": "Алдаа илрүүлэх",
+		"requestFeature": "Онцлог хүсэх",
+		"discussions": "Хэлэлцүүлэг",
+		"securityPolicy": "Аюулгүй байдлын бодлого",
+		"codeOfConduct": "Ёс зүйн дүрэм",
+		"license": "MIT лиценз"
+	}
+}

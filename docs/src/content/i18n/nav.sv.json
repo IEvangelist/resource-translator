@@ -1,0 +1,28 @@
+{
+	"sections": {
+		"start": "Börja här",
+		"reference": "Referens",
+		"showcase": "Showcase",
+		"project": "Projekt"
+	},
+	"items": {
+		"overview": "Översikt",
+		"gettingStarted": "Att komma igång",
+		"configuration": "Konfiguration",
+		"inputs": "In- och utgångar",
+		"formats": "Filformat",
+		"recipes": "Recept",
+		"faq": "FAQ",
+		"translations": "Översättningar",
+		"contributing": "Bidrag",
+		"changelog": "Byteslogg"
+	},
+	"community": {
+		"reportBug": "Rapportera en bugg",
+		"requestFeature": "Begär en funktion",
+		"discussions": "Diskussioner",
+		"securityPolicy": "Säkerhetspolitik",
+		"codeOfConduct": "Uppförandekod",
+		"license": "MIT-licens"
+	}
+}

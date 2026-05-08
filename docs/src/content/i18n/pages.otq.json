@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Traductor recursos",
+		"description": "Abrir solicitudes pull traducidos máquina pa archivos recursos jar 'na repositorio, jar 'na formato.",
+		"badge": "v3.0 — Nodo 24, repo config, glosario, funcionamiento jar seco",
+		"headlinePrefix": "Localizar ár repositorio jar",
+		"headlineAccent": "kadu̲ 'nar 'yo̲t'e",
+		"lede": "Resource Translator gi xoki solicitudes pull traducidos máquina pa yá archivos recursos usando Azure AI Translator a través de ar SDK xidi mfädi — otho 'befi extra, ho̲ntho 'nar flujo ar 'be̲fi.",
+		"primaryCta": "'Bu̲i",
+		"secondaryCta": "Estrella jar GitHub",
+		"supports": "Apoya",
+		"builtForShipping": "Construido pa ar envío",
+		"workflowTitle": "Traducción komongu 'nar flujo ar 'be̲fi, hingi 'nar t'enda.",
+		"workflowBody": "Suelte ar nt'ot'e ár CI existente, Gi 'yot'e nä'ä jar Azure AI Translator ne dejar da ár repo ñä kadu̲ 'nar hñä da diriges.",
+		"stats": {
+			"audit": "0 npm — hñäki auditoría",
+			"tests": "150 pruebas",
+			"node": "Nodo 20 yá 22 yá 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "'Rato formatos archivo",
+				"body": "Viajes ida y vuelta.resx,.xliff,.po, .json, .ini ne .restext ko formato hingi mpa̲ti jar bytes."
+			},
+			"config": {
+				"title": "Configuración a nivel de repositorio",
+				"body": "Suelte 'nar.github yá resource-translator.yml pa incluir globos, glosarios ne nt'ot'e Custom Translator."
+			},
+			"glossary": {
+				"title": "Consciente ar glosario",
+				"body": "Bloquear marcas ne ngäts'i ar producto ko regex ar nt'ot'e po̲ts'e inteligente da maneja C++, .NET ne mpädi."
+			},
+			"dryRun": {
+				"title": "Funcionamiento seco + soft — fail",
+				"body": "Thandi previa ya traducciones hinda 'yot'i archivos, wa afloran ya error komongu 'nar advertencia Mente iteres."
+			},
+			"outputs": {
+				"title": "Salidas amigables ar PR",
+				"body": "Resumen-hontho, resumen-detalles, ne Has — 'ra'yo — traducciones ranura Hmunts'i jar da t'ot'e-pull — zohni 'nehe."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Construido jar @azure descanso yá ai — traducción — texto + @azure yá core — resto — tubería — reintentos automáticos jar 408 yá 429 yá 5xx, hinda HTTP enrollado tso̲kwa mano. Esbuild-bundled, auditoría — limpio."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "'Bu̲i",
+		"eyebrow": "Configuración",
+		"lede": "Añadir 'nar archivo flujo ar 'be̲fi, apunte bí ja yá credenciales Azure AI Translator ne ar nt'ot'e — construida jar SDK xidi mfädi @azure-rest yá ai-translation-text — explorará repositorio pa archivos recursos lenguaje fuente ne emitir ida̲ traducidos.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Da t'ot'e 'nar hño Azure AI Translator jar portal Azure, xu̲ki almacenar nä'ä da ku̲hu̲ komongu secretos repositorio GitHub pa ndi flujo ar 'be̲fi tsa lei ya:",
+				"key": "Ar clave suscripción pa ár recurso.",
+				"endpoint": "ar URL ar punto final ja ya 'mui.",
+				"region": "hnini Azure ar hño"
+			},
+			"workflow": {
+				"title": "Añadir ar flujo ar 'be̲fi",
+				"body": "Da t'ot'e .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Confirmar 'nar archivo recursos 'rini",
+				"body": "Archivos recursos utilizan thuuhu. <sourceLocale>. <ext> 'nar nkohi. 'Nar nt'udi Greetings.en.resx ar bi pa̲ti jar Greetings.fr.resx, Greetings.de.resx, ne bí sucesivamente 'mefa xta 'nar carrera."
+			},
+			"output": {
+				"title": "Inspeccionar ar salida",
+				"body": "'Nar pa finalizado ar flujo ar 'be̲fi, ar nt'ot'e expone hñu ya salidas nä'ä to cablear ja 'nar descripción PR: resumen-hontho, resumen-detalles, ne pe̲ts'i — 'ra'yo — traducciones. 'Nehe gi 'yot'i 'nar resumen Markdown jar página ar 'be̲fi a través de core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Nuya ya pasos",
+			"configuration": "Configurar valores predeterminados ar za̲ ár nthe̲ repositorio ko .github yá resource-translator.yml.",
+			"recipes": "Ga recetas pa monorepos, glosarios personalizados ne ya nt'ot'e Custom Translator."
+		}
+	},
+	"configuration": {
+		"title": "Configuración",
+		"eyebrow": "YAML",
+		"heroTitle": "Configuración ar repositorio",
+		"lede": "Expresar valores predeterminados 'nar pa jar .github yá resource-translator.yml ne dejar kadu̲ 'nar flujo ar 'be̲fi heredar ya. Entradas ya nt'ot'e nzäm'bu̲ ganan nu'bu̲ ambos ar proporcionan."
+	},
+	"inputs": {
+		"title": "Entradas & salidas",
+		"eyebrow": "Referencia",
+		"lede": "Nu'bu̲ entrada 'nehe ar acepta jar archivo configuración repositorio opcional. Nu'bu̲ ambos ar establecen, gana entrada ya nt'ot'e."
+	},
+	"formats": {
+		"title": "Formatos archivo",
+		"eyebrow": "Referencia",
+		"heroTitle": "Formatos archivo ja ya xeni",
+		"lede": "'Rato formatos recursos viajables ida y vuelta. Ar nt'ot'e gi lei kadu̲ 'nar archivo 'rini-ja ja 'na, traduce ya valores ne gi 'yot'i 'nar ida̲ ya hnini 'mu̲i."
+	},
+	"recipes": {
+		"title": "Ya receta",
+		"eyebrow": "Ar he̲'mi hñuni",
+		"lede": "Patrones pa ngatho pa ar envío traducciones: monorepos, glosarios, nt'ot'e personalizadas, tiradas seco ne control nzu̲nt'i thuhu ar ñhöñhö."
+	},
+	"faq": {
+		"title": "FAQ",
+		"eyebrow": "mfats'i",
+		"heroTitle": "Ya nt'a̲ni frecuentes",
+		"lede": "Nthädi rápidas ja ya nt'a̲ni da surgen mäs xi frecuencia ja ar xaha ar nt'ot'e."
+	},
+	"translations": {
+		"title": "Traducciones",
+		"eyebrow": "Escaparate",
+		"heroTitle": "Hadi ga̲tho ya hñä",
+		"locales": "Ja ya hnini",
+		"currentlyRendered": "'bu̲'bya xi nt'uni",
+		"complete": "¡Completo!",
+		"pendingPrefix": "T'o̲t'e t'o̲t'e Xtí — Docs.",
+		"viewWorkflowRuns": "Ga flujo ar 'be̲fi bí ejecuta",
+		"filter": "Filtro",
+		"filterPlaceholder": "Honi ya hñä, código wa thuuhu nativo...",
+		"source": "Fuente",
+		"machineTranslations": "Traducciones automáticas",
+		"translationPending": "Traducción pendiente — abrir 'nar nt'u̲t'u̲hñä — docs ejecuta.",
+		"noLocales": "Ni 'na jar hnini coincide ko Nunu̲ filtro.",
+		"howItWorks": "Tema funciona 'me̲hna"
+	},
+	"contributing": {
+		"title": "Contribuir",
+		"eyebrow": "Código abierto",
+		"lede": "Mfädi errores, solicitudes características ne solicitudes extracción ya ga̲tho bienvenidos. Ar nt'ot'e ar nä'ä suficientemente t'olo pa da amigable ko ya colaboradores ya bes."
+	},
+	"changelog": {
+		"title": "Registro cambios",
+		"eyebrow": "Ar 'bede mahä'mu̲",
+		"lede": "Resumen mar hñets'i za̲ ár nthe̲ ya lanzamientos. Ar canónico, codelog autorizado 'bu̲i jar CHANGELOG.md ja ar repositorio."
+	}
+}

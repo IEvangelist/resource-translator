@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Resurs terjimeçisi",
+		"description": "Islendik repoda, islendik formatda resurs faýllary üçin makina terjime edilen pull requestleri aç.",
+		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "Repoňyzy ýerleşdiriň",
+		"headlineAccent": "her bir commit.",
+		"lede": "Resource Translator resmi SDK arkaly Azure AI Translator arkaly resurs faýllaryňyz üçin makina terjime edilen pull haýyşlaryny açýar - goşmaça hyzmatlar ýok, diňe iş akışy.",
+		"primaryCta": "Başlaň",
+		"secondaryCta": "GitHub-da ýyldyz",
+		"supports": "Goldawlar",
+		"builtForShipping": "Gämi üçin guruldy",
+		"workflowTitle": "Terjime iş däl-de, iş prosesi.",
+		"workflowBody": "Bu hereketi bar bolan CI-ňize goýuň, Azure AI Translator-a görkeziň we repoňyza nyşana alnan her dilde geplemäge rugsat beriň.",
+		"stats": {
+			"audit": "0 NPM-audit meseleleri",
+			"tests": "150 synag",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "Resmi Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Alty faýl formaty",
+				"body": ".resx, .xliff, .po, .json, .ini we .restext byte-durnukly formatlama bilen round-tripler."
+			},
+			"config": {
+				"title": "Repo derejeli konfigurasiýa",
+				"body": "Globlar, sözlükler we Custom Translator kategoriýalaryny goşmak üçin .github/resource-translator.yml goýuň."
+			},
+			"glossary": {
+				"title": "Sözlük bilen tanyş",
+				"body": "Marka atlaryny we önümleriň terminlerini C++, .NET we dostlaryny işleýän akylly söz çäkli regex bilen gulplaň."
+			},
+			"dryRun": {
+				"title": "Dry-run + soft-fail",
+				"body": "Faýl ýazman terjimeleri öňünden görüň ýa-da her bir ýalňyşlygy duýduryş hökmünde ýüze çykaryň."
+			},
+			"outputs": {
+				"title": "PR-dostlukly çykyşlar",
+				"body": "summary-title, summary-details we has-new-translations göni create-pull-request içine girýär."
+			},
+			"sdk": {
+				"title": "Resmi Azure SDK",
+				"body": "@azure-rest/ai-translation-text + @azure/core-rest-pipeline esasynda guruldy — 408/429/5xx-de otomatik gaýtalamalar, el bilen rulonlanan HTTP ýok. esbuild-bundled, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Başlangyç",
+		"eyebrow": "Düzüm",
+		"lede": "Workflow faýly goşup, ony Azure AI Translator kimlik maglumatyňyza görkeziň we Microsoft-yň resmi @azure-rest/ai-translation-text SDK-nyň esasynda gurlan hereket repoda çeşme dilindäki resurs faýllaryny skan eder we terjime edilen dogan-uýalary emele getirer.",
+		"steps": {
+			"provision": {
+				"title": "Azure AI Translator resursyny üpjün et",
+				"body": "Azure portalynda Azure AI Translator resursyny dörediň, soňra aşakdakylary GitHub deposynyň syrlary hökmünde saklaň, şonda iş akışy olary okap biler:",
+				"key": "resurs üçin abonent açary.",
+				"endpoint": "regional endpoint URL.",
+				"region": "resursyň Azure regiony."
+			},
+			"workflow": {
+				"title": "Iş akışyny goşuň",
+				"body": ".github/workflows/translate.yml dörediň:"
+			},
+			"resource": {
+				"title": "Çeşme resurs faýly commit et",
+				"body": "Resurs faýllary Ady ulanýar. <sourceLocale>. <ext> konwensiýa. Mysal üçin, Greetings.en.resx bir ylgawdan soň Greetings.fr.resx, Greetings.de.resx we ş.m. bolýar."
+			},
+			"output": {
+				"title": "Çykyşy barlaň",
+				"body": "Iş prosesi tamamlanandan soň, bu hereket PR düşündirişine birikdirip biljek üç sany çykyşy görkezýär: summary-title, summary-details we has-new-translations. Şeýle-de core.summary arkaly iş sahypasyna Markdown gysgaça ýazýar."
+			}
+		},
+		"nextSteps": {
+			"title": "Indiki ädimler",
+			"configuration": ".github/resource-translator.yml bilen repo-level defaultlary konfigurasiýa et.",
+			"recipes": "Monorepolaryň, ýörite sözlükleriň we Custom Translator kategoriýalarynyň taýýarlanyş usullaryna serediň."
+		}
+	},
+	"configuration": {
+		"title": "Konfigurasiýa",
+		"eyebrow": "YAML",
+		"heroTitle": "Deponyň konfigurasiýasy",
+		"lede": "Express .github/resource-translator.yml içinde bir gezek öň bellenilýär we her iş akışyna olary miras almaga rugsat berýär. Olaryň ikisi-de berilse, hereketler hemişe ýeňiş gazanýar."
+	},
+	"inputs": {
+		"title": "Girişler we çykyşlar",
+		"eyebrow": "Maglumat",
+		"lede": "Her bir giriş goşmaça repo config faýlynda hem kabul edilýär. Olaryň ikisi hem düzülende, hereketiň girişi ýeňýär."
+	},
+	"formats": {
+		"title": "Faýl formatlary",
+		"eyebrow": "Maglumat",
+		"heroTitle": "Goldanylýan faýl formatlary",
+		"lede": "Alty sany round-trippable resurs formaty. Bu hereket her bir source-locale faýly okaýar, gymmatlyklary terjime edýär we her maksat ýeri üçin dogany ýazýar."
+	},
+	"recipes": {
+		"title": "Taýýarlanyş usullary",
+		"eyebrow": "Aşpezlik kitaby",
+		"lede": "Ugratma terjimeleriniň giňden ýaýran nusgalary: monorepolar, sözlükler, ýörite kategoriýalar, gury ylgawlar we äheňe gözegçilik."
+	},
+	"faq": {
+		"title": "Ýygy-ýygydan soralýan soraglar",
+		"eyebrow": "Kömek etmek",
+		"heroTitle": "Ýygy-ýygydan berilýän soraglar",
+		"lede": "Hereketi kabul edeniňizde köplenç ýüze çykýan soraglara çalt jogap bermek."
+	},
+	"translations": {
+		"title": "Terjimeler",
+		"eyebrow": "Sergi",
+		"heroTitle": "Her dilde salam",
+		"locales": "Ýaşaýan ýerleri",
+		"currentlyRendered": "şu wagt render edilýär",
+		"complete": "Tamamlandy!",
+		"pendingPrefix": "Indiki Translate-Docs ylgamagyna garaşýar.",
+		"viewWorkflowRuns": "Workflow işleýşini gör",
+		"filter": "Filtr",
+		"filterPlaceholder": "Dil, kod ýa-da ýerli at boýunça gözle...",
+		"source": "Çeşme",
+		"machineTranslations": "Makina terjimeleri",
+		"translationPending": "Terjime garaşýar — translate-docs run açyň.",
+		"noLocales": "Hiç bir ýer şol filtre gabat gelmeýär.",
+		"howItWorks": "Bu nädip işleýär?"
+	},
+	"contributing": {
+		"title": "Goşant goşmak",
+		"eyebrow": "Açyk çeşme",
+		"lede": "Hata hasabatlary, aýratynlyk haýyşlary we pull haýyşlary kabul edilýär. Bu hereket ilkinji gezek goşant goşýanlar üçin ýeterlik derejede kiçi."
+	},
+	"changelog": {
+		"title": "Üýtgetme logy",
+		"eyebrow": "Taryhy",
+		"lede": "Çykarylyşlaryň ýokary derejeli gysgaça maglumaty. Kanonik, ygtybarly changelog CHANGELOG.md saklanylýan ýerde ýaşaýar."
+	}
+}

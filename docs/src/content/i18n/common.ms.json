@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Penterjemah Sumber",
+		"defaultDescription": "Dokumentasi untuk Tindakan GitHub Penterjemah Sumber — terjemahan mesin automatik fail sumber melalui Penterjemah AI Azure.",
+		"homeLabel": "Penterjemah Sumber — laman utama"
+	},
+	"skipToContent": "Langkau ke kandungan",
+	"drawer": {
+		"open": "Buka navigasi",
+		"close": "Tutup navigasi",
+		"title": "Navigasi"
+	},
+	"header": {
+		"search": "Cari dokumentasi",
+		"searchPlaceholder": "Cari dokumentasi...",
+		"toggleTheme": "Togol tema",
+		"githubRepository": "Repositori GitHub",
+		"language": "Bahasa"
+	},
+	"search": {
+		"title": "Cari dokumentasi",
+		"results": "Hasil carian",
+		"placeholder": "Cari artikel, bahagian, resipi...",
+		"close": "Tutup carian",
+		"idleTitle": "Cari dokumen",
+		"idleHelp": "Cari artikel mengikut topik, format fail, pilihan konfigurasi atau resipi. Gunakan {up} {down} untuk menavigasi, {enter} untuk membuka.",
+		"loading": "Mencari...",
+		"empty": "Tiada keputusan. Cuba kata kunci yang berbeza.",
+		"error": "Indeks carian tidak tersedia dalam pembangunan. Jalankan binaan pengeluaran."
+	},
+	"toc": {
+		"title": "Pada halaman ini"
+	},
+	"pager": {
+		"ariaLabel": "Artikel",
+		"previous": "Sebelumnya",
+		"next": "Seterusnya"
+	},
+	"backToTop": {
+		"label": "Tatal ke atas"
+	},
+	"footer": {
+		"docs": "Dokumen",
+		"project": "Projek",
+		"community": "Komuniti",
+		"projectLinksAria": "Pautan projek",
+		"sourceAria": "Lihat sumber di GitHub",
+		"marketplaceAria": "Lihat di GitHub Marketplace",
+		"authorAria": "Laman web David Pine",
+		"taglinePrefix": "Tindakan GitHub yang menterjemahkan fail sumber anda secara automatik, dibina di atas rasmi",
+		"taglineMiddle": "SDK daripada",
+		"copyrightPrefix": "Dikeluarkan di bawah",
+		"builtWith": "Dibina dengan"
+	}
+}

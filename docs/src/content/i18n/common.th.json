@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "นักแปลทรัพยากร",
+		"defaultDescription": "เอกสารประกอบสําหรับ Resource Translator GitHub Action — การแปลไฟล์ทรัพยากรด้วยเครื่องอัตโนมัติผ่าน Azure AI Translator",
+		"homeLabel": "นักแปลทรัพยากร — หน้าแรก"
+	},
+	"skipToContent": "ข้ามไปที่เนื้อหา",
+	"drawer": {
+		"open": "เปิดการนําทาง",
+		"close": "ปิดการนําทาง",
+		"title": "การเดินเรือ"
+	},
+	"header": {
+		"search": "ค้นหาเอกสาร",
+		"searchPlaceholder": "ค้นหาเอกสาร...",
+		"toggleTheme": "สลับธีม",
+		"githubRepository": "ที่เก็บ GitHub",
+		"language": "ภาษา"
+	},
+	"search": {
+		"title": "ค้นหาเอกสาร",
+		"results": "ผลการค้นหา",
+		"placeholder": "ค้นหาบทความ ส่วน สูตรอาหาร...",
+		"close": "ปิดการค้นหา",
+		"idleTitle": "ค้นหาเอกสาร",
+		"idleHelp": "ค้นหาบทความตามหัวข้อ รูปแบบไฟล์ ตัวเลือกการกําหนดค่า หรือสูตรอาหาร ใช้ {up} {down} เพื่อนําทาง {enter} เพื่อเปิด",
+		"loading": "กําลังค้นหา...",
+		"empty": "ไม่มีผลลัพธ์ ลองใช้คีย์เวิร์ดอื่น",
+		"error": "ดัชนีการค้นหาไม่พร้อมใช้งานในนักพัฒนาซอฟต์แวร์ เรียกใช้บิลด์ที่ใช้งานจริง"
+	},
+	"toc": {
+		"title": "ในหน้านี้"
+	},
+	"pager": {
+		"ariaLabel": "บทความ",
+		"previous": "ก่อนหน้า",
+		"next": "ต่อไป"
+	},
+	"backToTop": {
+		"label": "เลื่อนไปด้านบน"
+	},
+	"footer": {
+		"docs": "เอกสาร",
+		"project": "โครงการ",
+		"community": "ชุมชน",
+		"projectLinksAria": "ลิงค์โครงการ",
+		"sourceAria": "ดูแหล่งที่มาบน GitHub",
+		"marketplaceAria": "ดูบน GitHub Marketplace",
+		"authorAria": "เว็บไซต์ของ David Pine",
+		"taglinePrefix": "GitHub Action ที่แปลไฟล์ทรัพยากรของคุณโดยอัตโนมัติ ซึ่งสร้างขึ้นจากทางการ",
+		"taglineMiddle": "SDK จาก",
+		"copyrightPrefix": "วางจําหน่ายภายใต้",
+		"builtWith": "สร้างด้วย"
+	}
+}

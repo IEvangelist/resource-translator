@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "iVurevure ni Vakadewa",
+		"description": "Dolava na kerekere ni pull vakadewataki vakamisini me baleta na faile ni ivurevure ena dua ga na repo, ena dua ga na ituvatuva.",
+		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "Localize nomu repo ena",
+		"headlineAccent": "na veidinadinati yadua.",
+		"lede": "Na Resource Translator e dolava na kerekere ni pull vakadewataki vakamisini me baleta na nomu faile ni ivurevure ena kena vakayagataki na Azure AI Translator ena SDK vakadonui — sega ni dua na ikuri ni veiqaravi, e dua ga na cakacaka.",
+		"primaryCta": "Tekivu",
+		"secondaryCta": "Kalokalo ena GitHub",
+		"supports": "Veitokoni",
+		"builtForShipping": "Tara me baleta na veikauyaki",
+		"workflowTitle": "Na vakadewa me dua na cakacaka, sega ni cakacaka.",
+		"workflowBody": "Biuta na cakacaka ki na nomu CI sa tu rawa, dusia ki na Azure AI Translator, ka laiva na nomu repo me vosataka na vosa kece o takete.",
+		"stats": {
+			"audit": "0 npm-leqa ni dikevi fika",
+			"tests": "150 na vakatovotovo",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "Vakadonui Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Ono na ivakarau ni faile",
+				"body": "Round-trips .resx, .xliff, .po, .json, .ini, kei na .restext vata kei na byte-tudei formatting."
+			},
+			"config": {
+				"title": "Config ni ivakatagedegede ni repo",
+				"body": "Biuta e dua na .github/resource-translator.yml me okati kina na globs, glossaries, kei na iwasewase ni Custom Translator."
+			},
+			"glossary": {
+				"title": "Kilai ni Glossary",
+				"body": "Lokataka na yaca ni brand kei na vosa ni ivoli vata kei na regex ni iyalayala ni vosa vuku ka qarava na C++, .NET, kei na itokani."
+			},
+			"dryRun": {
+				"title": "Dry-run + soft-fail",
+				"body": "Raica na vakadewa ka sega ni volai na faile, se vakaraitaka na cala kece me ivakasala ni o iterate."
+			},
+			"outputs": {
+				"title": "Output ni PR-friendly",
+				"body": "summary-title, summary-details, and has-new-translations slot directly into create-pull-request."
+			},
+			"sdk": {
+				"title": "Vakadonui Azure SDK",
+				"body": "Tarai cake ena @azure-rest/ai-translation-text + @azure/core-rest-pipeline — automatic retries on 408/429/5xx, no hand-rolled HTTP. esbuild-bundled, dikevi fika-savasava."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Tekivu",
+		"eyebrow": "Vakaduri",
+		"lede": "Vakuria e dua na faile ni cakacaka, dusia ki na nomu ivakatakilakila ni Azure AI Translator, kei na cakacaka — tarai cake ena SDK vakadonui ni Microsoft @azure-rest/ai-translation-text — ena scan na repo me baleta na faile ni ivurevure ni ivurevure ni ivurevure ka solia na veitacini vakadewataki.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Tauyavutaka e dua na ivurevure ni Azure AI Translator ena Azure portal, qai maroroya na veika oqo me vaka na veika vuni ni repository ni GitHub me rawa ni wilika na cakacaka:",
+				"key": "na idola ni sausaumi me baleta na ivurevure.",
+				"endpoint": "na URL ni icavacava ni iwasewase.",
+				"region": "na iwasewase ni Azure ni ivurevure."
+			},
+			"workflow": {
+				"title": "Kuria na cakacaka ni cakacaka",
+				"body": "Tauyavutaka na .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Vakadeitaka e dua na faile ni ivurevure ni ivurevure",
+				"body": "Na faili ni ivurevure e vakayagataka na Yaca. <sourceLocale>. <ext> Convention. Me kena ivakaraitaki na Greetings.en.resx sa yaco me Greetings.fr.resx, Greetings.de.resx, kei na so tale ni oti e dua na cici."
+			},
+			"output": {
+				"title": "Dikeva na output",
+				"body": "Ni sa oti na cakacaka, na cakacaka e vakaraitaka e tolu na outputs e rawa ni o vakauqeta ki na dua na ivakamacala ni PR: ivakalekaleka-ulutaga, ivakalekaleka-matailalai, kei na has-new-translations. E vola talega e dua na ivakaleka ni Markdown ki na tabana ni cakacaka ena core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Na ikalawa e tarava",
+			"configuration": "Configure repo-level defaults with .github/resource-translator.yml.",
+			"recipes": "Raica na icakacaka ni monorepos, custom glossaries, kei na iwasewase ni Custom Translator."
+		}
+	},
+	"configuration": {
+		"title": "Tuvatuva",
+		"eyebrow": "YAML",
+		"heroTitle": "Ituvatuva ni repository",
+		"lede": "Express defaults once in .github/resource-translator.yml and let every workflow inherit them. Na input ni cakacaka e dau qaqa ni sa vakarautaki ruarua."
+	},
+	"inputs": {
+		"title": "Inputs & outputs",
+		"eyebrow": "iDusidusi",
+		"lede": "Sa ciqomi talega na vakacurumi kece ena faile ni config ni repo digitaki. Ni rau sa tuvanaki ruarua, sa na qaqa na input ni cakacaka."
+	},
+	"formats": {
+		"title": "Ivakarau ni faile",
+		"eyebrow": "iDusidusi",
+		"heroTitle": "Veitokoni ni ituvatuva ni faile",
+		"lede": "Ono na ituvatuva ni ivurevure e rawa ni veisautaki. Na cakacaka e wilika na faile yadua ni ivurevure-vanua, vakadewataka na yavunilewa, ka vola e dua na tacina ena dua na vanua takete."
+	},
+	"recipes": {
+		"title": "iCakacaka ni kakana",
+		"eyebrow": "iVola ni vakasaqa",
+		"lede": "Na iwalewale kilai levu me baleta na vakadewa ni vakauya: monorepos, glossaries, iwasewase ni ivakarau ni cakacaka, cici mamaca, kei na lewa ni rorogo."
+	},
+	"faq": {
+		"title": "FAQ",
+		"eyebrow": "Veivuke",
+		"heroTitle": "Taro e dau tarogi wasoma",
+		"lede": "Saumi totolo ki na taro e dau basika vakawasoma ena gauna e vakayacori kina na cakacaka."
+	},
+	"translations": {
+		"title": "Vakadewa",
+		"eyebrow": "Vakaraitaki",
+		"heroTitle": "Bula ena veivosa kecega",
+		"locales": "vanua",
+		"currentlyRendered": "Sa vakaraitaki tiko ena gauna oqo",
+		"complete": "taucoko!",
+		"pendingPrefix": "Ni waraka tiko na cici ni vakadewa-docs ka tarava.",
+		"viewWorkflowRuns": "Raica na cici ni cakacaka",
+		"filter": "Itatarovi",
+		"filterPlaceholder": "Vakasaqaqara ena vosa, nabavuni, se yaca ni vanua...",
+		"source": "iVurevure",
+		"machineTranslations": "Vakadewa vakamisini",
+		"translationPending": "Vakadewa vakawawa — dolava e dua na cicivaki ni vakadewa.",
+		"noLocales": "E sega ni dua na vanua e tautauvata kei na filter oya.",
+		"howItWorks": "Na sala e cakacaka kina oqo"
+	},
+	"contributing": {
+		"title": "Veivuke",
+		"eyebrow": "Dolavi na ivurevure",
+		"lede": "E marautaki kece na ripote ni bug, kerekere ni gacagaca, kei na kerekere ni pull. Na cakacaka e lailai sara me veiyaloni vei ira era cau ena imatai ni gauna."
+	},
+	"changelog": {
+		"title": "iVolatukutuku ni veisau",
+		"eyebrow": "iTukutuku Makawa",
+		"lede": "iVakaleka cecere ni veivagalalataki. Na canonical, authoritative changelog e bula tiko ena CHANGELOG.md ena repository."
+	}
+}

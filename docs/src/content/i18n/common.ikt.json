@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Atuqtakhanik Numiktiriji",
+		"defaultDescription": "Documentation for the Resource Translator GitHub Action — automatic machine translation of resource files via Azure AI Translator.",
+		"homeLabel": "Atuqtakhanik Numiktiriji — aimavianni"
+	},
+	"skipToContent": "Apluqlutit iluaniitunun",
+	"drawer": {
+		"open": "Angmarlugu qiniqhiavikhaq",
+		"close": "Qanitukkut qiniqhiadjutit",
+		"title": "Naunaiyainiq"
+	},
+	"header": {
+		"search": "Qiniqhialugit titiqat",
+		"searchPlaceholder": "Qinirhianiq titiqqanik...",
+		"toggleTheme": "Nuutiqlugu pidjutaa",
+		"githubRepository": "GitHub repository",
+		"language": "Uqauhikkut"
+	},
+	"search": {
+		"title": "Qiniqhialugit titiqat",
+		"results": "Qinirhianikkut pidjutit",
+		"placeholder": "Qiniqhialugit titiraqhimayut, titiraqhimayut, igadjutikhat...",
+		"close": "Qanitukkut qiniqhianiq",
+		"idleTitle": "Qinirhialugit titiqqat",
+		"idleHelp": "Nalvaaqhilutit titiraqhimayunik uqautauyutigut, tutquumavikkut ihuaqhaidjutikkut, ihuaqhainikkut piyakhanik, uvaluuniin igadjutikhanik. Aturlugu {up} {down} humungauyaangani, {enter} angmariami.",
+		"loading": "Qiniqhianiq...",
+		"empty": "Piqangituq. Uuktuqlutit aalamik taijuhiqmik.",
+		"error": "Qinirhianiq naunaitkutinga pilimaittuq dev-mi. Aulatitilutin havaktauyukharnik hanadjutikharnik."
+	},
+	"toc": {
+		"title": "Uvani makpirniani"
+	},
+	"pager": {
+		"ariaLabel": "Nakataa",
+		"previous": "Kinguani",
+		"next": "Tuklia"
+	},
+	"backToTop": {
+		"label": "Talvunggaqlutin qulaanut"
+	},
+	"footer": {
+		"docs": "Docs",
+		"project": "Havaakhaq",
+		"community": "Nunallaaq",
+		"projectLinksAria": "Havaakhamut turrarvikhat",
+		"sourceAria": "Takulugit ikayuutit uvani GitHub",
+		"marketplaceAria": "Takulugit uvani GitHub Marketplace",
+		"authorAria": "David Pine qaritauyakkuurutaa",
+		"taglinePrefix": "Una GitHub Qanuriliurutikhaq numiktitiqtaa ikayuutitit tutquumaviit inmikkut, piliuqhimayuq qaangani ilitariyauyumi",
+		"taglineMiddle": "SDK hamanga",
+		"copyrightPrefix": "Nuipkaqtitauyuq ataani",
+		"builtWith": "Hanayauhimayuq"
+	}
+}

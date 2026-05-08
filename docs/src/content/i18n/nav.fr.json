@@ -1,0 +1,28 @@
+{
+	"sections": {
+		"start": "Commencez ici",
+		"reference": "Référence",
+		"showcase": "Présentation",
+		"project": "Projet"
+	},
+	"items": {
+		"overview": "Aperçu",
+		"gettingStarted": "Début",
+		"configuration": "Configuration",
+		"inputs": "Entrées et sorties",
+		"formats": "Formats de fichiers",
+		"recipes": "Recettes",
+		"faq": "FAQ",
+		"translations": "Traductions",
+		"contributing": "Contributions",
+		"changelog": "Journal des modifications"
+	},
+	"community": {
+		"reportBug": "Signaler un bug",
+		"requestFeature": "Demander une fonctionnalité",
+		"discussions": "Discussions",
+		"securityPolicy": "Politique de sécurité",
+		"codeOfConduct": "Code de conduite",
+		"license": "Licence MIT"
+	}
+}

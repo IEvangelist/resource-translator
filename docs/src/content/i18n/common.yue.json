@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "資源譯者",
+		"defaultDescription": "資源翻譯器文件 GitHub Action — 透過 Azure AI Translator 自動機器翻譯資源檔案。",
+		"homeLabel": "資源翻譯器 — 首頁"
+	},
+	"skipToContent": "跳至內容",
+	"drawer": {
+		"open": "開航",
+		"close": "近航",
+		"title": "導航"
+	},
+	"header": {
+		"search": "搜尋文件",
+		"searchPlaceholder": "搜尋文件...",
+		"toggleTheme": "切換主題",
+		"githubRepository": "GitHub 儲存庫",
+		"language": "語言"
+	},
+	"search": {
+		"title": "搜尋文件",
+		"results": "搜尋結果",
+		"placeholder": "搜尋文章、章節、食譜...",
+		"close": "貼尋",
+		"idleTitle": "搜尋文件",
+		"idleHelp": "按主題、檔案格式、配置選項或食譜尋找文章。 用{up} {down}導航，{enter}打開。",
+		"loading": "搜尋...",
+		"empty": "冇結果 嘗試一個唔同嘅關鍵字。",
+		"error": "搜尋索引喺dev中冇用。 運行一個生產版本。"
+	},
+	"toc": {
+		"title": "本頁內容"
+	},
+	"pager": {
+		"ariaLabel": "條文",
+		"previous": "上一頁",
+		"next": "接住落嚟"
+	},
+	"backToTop": {
+		"label": "捲頁首"
+	},
+	"footer": {
+		"docs": "文件",
+		"project": "項目",
+		"community": "社區",
+		"projectLinksAria": "項目連結",
+		"sourceAria": "喺GitHub上查看源碼",
+		"marketplaceAria": "在 GitHub Marketplace 上查看",
+		"authorAria": "David Pine嘅網站",
+		"taglinePrefix": "一個GitHub Action，可以自動翻譯你嘅資源檔案，建立喺官方嘅",
+		"taglineMiddle": "SDK 來自",
+		"copyrightPrefix": "根據",
+		"builtWith": "以"
+	}
+}

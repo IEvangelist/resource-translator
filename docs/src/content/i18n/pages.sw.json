@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Mtafsiri wa Rasilimali",
+		"description": "Fungua maombi ya kuvuta yaliyotafsiriwa kwa mashine kwa faili za rasilimali katika repo yoyote, katika umbizo lolote.",
+		"badge": "v3.0 - Nodi 24, usanidi wa repo, faharasa, kukimbia kavu",
+		"headlinePrefix": "Weka repo yako kwenye",
+		"headlineAccent": "kila kujitolea.",
+		"lede": "Mtafsiri wa Rasilimali hufungua maombi ya kuvuta yaliyotafsiriwa kwa mashine kwa faili zako za rasilimali kwa kutumia Azure AI Translator kupitia SDK rasmi - hakuna huduma za ziada, mtiririko wa kazi tu.",
+		"primaryCta": "Anza",
+		"secondaryCta": "Nyota kwenye GitHub",
+		"supports": "Inasaidia",
+		"builtForShipping": "Imejengwa kwa usafirishaji",
+		"workflowTitle": "Tafsiri kama mtiririko wa kazi, sio kazi.",
+		"workflowBody": "Dondosha kitendo kwenye CI yako iliyopo, ielekeze kwa Mtafsiri wa Azure AI, na uruhusu repo yako izungumze kila lugha unayolenga.",
+		"stats": {
+			"audit": "Masuala 0 ya ukaguzi wa npm",
+			"tests": "Vipimo 150",
+			"node": "Nodi 20 / 22 / 24",
+			"sdk": "SDK rasmi ya Azure"
+		},
+		"features": {
+			"formats": {
+				"title": "Fomati sita za faili",
+				"body": "Safari za kwenda na kurudi .resx, .xliff, .po, .json, .ini, na .restext na umbizo thabiti la baiti."
+			},
+			"config": {
+				"title": "Usanidi wa kiwango cha Repo",
+				"body": "Acha .github/resource-translator.yml kwa ni pamoja na globs, faharasa, na kategoria za Mtafsiri Maalum."
+			},
+			"glossary": {
+				"title": "Kufahamu faharasa",
+				"body": "Funga majina ya chapa na maneno ya bidhaa ukitumia regex mahiri ya mipaka ya maneno ambayo hushughulikia C++, .NET, na marafiki."
+			},
+			"dryRun": {
+				"title": "Kavu-kukimbia + laini-kushindwa",
+				"body": "Hakiki tafsiri bila kuandika faili, au uonyeshe kila hitilafu kama onyo unaporudia."
+			},
+			"outputs": {
+				"title": "Matokeo ya kirafiki ya PR",
+				"body": "muhtasari-kichwa, maelezo ya muhtasari, na ana-tafsiri mpya huingia moja kwa moja kwenye create-pull-request."
+			},
+			"sdk": {
+				"title": "SDK rasmi ya Azure",
+				"body": "Imejengwa juu ya @azure-rest/ai-translation-text + @azure/core-rest-pipeline - majaribio ya kiotomatiki kwenye 408/429/5xx, hakuna HTTP iliyovingirishwa kwa mkono. esbuild-bundled, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Kuanza",
+		"eyebrow": "Usanidi",
+		"lede": "Ongeza faili ya mtiririko wa kazi, ielekeze kwenye kitambulisho chako cha Azure AI Translator, na kitendo - kilichojengwa kwenye SDK rasmi ya maandishi ya Microsoft ya @azure-rest/ai-tafsiri-maandishi - itachanganua repo kwa faili za rasilimali za lugha ya chanzo na kutoa ndugu waliotafsiriwa.",
+		"steps": {
+			"provision": {
+				"title": "Kutoa rasilimali ya Mtafsiri wa Azure AI",
+				"body": "Unda rasilimali ya Mtafsiri wa Azure AI kwenye lango la Azure, kisha uhifadhi yafuatayo kama siri za hazina ya GitHub ili mtiririko wa kazi uweze kuzisoma:",
+				"key": "ufunguo wa usajili wa rasilimali.",
+				"endpoint": "URL ya mwisho ya mkoa.",
+				"region": "mkoa wa Azure wa rasilimali."
+			},
+			"workflow": {
+				"title": "Ongeza mtiririko wa kazi",
+				"body": "Unda .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Fanya faili ya rasilimali ya chanzo",
+				"body": "Faili za rasilimali hutumia Jina. <sourceLocale>. <ext> mkusanyiko. Kwa mfano Greetings.en.resx inakuwa Greetings.fr.resx, Greetings.de.resx, na kadhalika baada ya kukimbia."
+			},
+			"output": {
+				"title": "Kagua pato",
+				"body": "Mara tu mtiririko wa kazi unapomalizika, kitendo kinafichua matokeo matatu unayoweza kuunganisha kwenye maelezo ya PR: kichwa cha muhtasari, maelezo ya muhtasari, na tafsiri mpya. Pia inaandika muhtasari wa Markdown kwenye ukurasa wa kazi kupitia core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Hatua zifuatazo",
+			"configuration": "Sanidi chaguo-msingi za kiwango cha repo na .github/resource-translator.yml.",
+			"recipes": "Tazama mapishi ya monorepos, faharasa maalum, na kategoria za Mtafsiri Maalum."
+		}
+	},
+	"configuration": {
+		"title": "Usanidi",
+		"eyebrow": "YAML",
+		"heroTitle": "Usanidi wa hazina",
+		"lede": "Express chaguo-msingi mara moja katika .github/resource-translator.yml na uruhusu kila mtiririko wa kazi urithi. Pembejeo za hatua hushinda kila wakati zote mbili zinatolewa."
+	},
+	"inputs": {
+		"title": "Pembejeo na matokeo",
+		"eyebrow": "Rejea",
+		"lede": "Kila pembejeo pia inakubaliwa katika faili ya hiari ya usanidi wa repo. Wakati zote mbili zimewekwa, pembejeo ya hatua hushinda."
+	},
+	"formats": {
+		"title": "Fomati za faili",
+		"eyebrow": "Rejea",
+		"heroTitle": "Fomati za faili zinazotumika",
+		"lede": "Fomati sita za rasilimali zinazoweza kuzunguka. Kitendo kinasoma kila faili ya chanzo-locale, hutafsiri maadili, na kuandika ndugu kwa kila eneo lengwa."
+	},
+	"recipes": {
+		"title": "Maelekezo",
+		"eyebrow": "Kitabu cha kupikia",
+		"lede": "Mifumo ya kawaida ya tafsiri za usafirishaji: monorepos, faharasa, kategoria maalum, kukimbia kavu, na udhibiti wa sauti."
+	},
+	"faq": {
+		"title": "Maswali",
+		"eyebrow": "Msaada",
+		"heroTitle": "Maswali yanayoulizwa mara kwa mara",
+		"lede": "Majibu ya haraka kwa maswali ambayo huja mara nyingi wakati wa kupitisha hatua."
+	},
+	"translations": {
+		"title": "Tafsiri",
+		"eyebrow": "Kuonyesha",
+		"heroTitle": "Halo katika kila lugha",
+		"locales": "maeneo",
+		"currentlyRendered": "Imetolewa kwa sasa",
+		"complete": "kamili!",
+		"pendingPrefix": "inasubiri kukimbia kwa hati zinazofuata za tafsiri.",
+		"viewWorkflowRuns": "Tazama uendeshaji wa mtiririko wa kazi",
+		"filter": "Kichujio",
+		"filterPlaceholder": "Tafuta kwa lugha, msimbo, au jina la asili...",
+		"source": "Chanzo",
+		"machineTranslations": "Tafsiri za mashine",
+		"translationPending": "Tafsiri inasubiri - fungua kukimbia kwa hati za kutafsiri.",
+		"noLocales": "Hakuna maeneo yanayolingana na kichujio hicho.",
+		"howItWorks": "Jinsi hii inavyofanya kazi"
+	},
+	"contributing": {
+		"title": "Kuchangia",
+		"eyebrow": "Chanzo wazi",
+		"lede": "Ripoti za hitilafu, maombi ya vipengele, na maombi ya kuvuta yote yanakaribishwa. Kitendo hicho ni kidogo vya kutosha kuwa rafiki kwa wachangiaji wa mara ya kwanza."
+	},
+	"changelog": {
+		"title": "Logi ya mabadiliko",
+		"eyebrow": "Hadithi",
+		"lede": "Muhtasari wa kiwango cha juu wa matoleo. Mabadiliko ya kisheria, yenye mamlaka huishi CHANGELOG.md kwenye hazina."
+	}
+}

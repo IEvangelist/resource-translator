@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Maʻuʻanga Tokoni Liliu lea",
+		"description": "Fakaava ʻa e ngaahi kole pull kuo liliu ʻe he misini ki he ngaahi faile maʻuʻanga tokoni ʻi ha faʻahinga repo pe, ʻi ha faʻahinga founga pe.",
+		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "Fakafeituʻu hoʻo repo ʻi he",
+		"headlineAccent": "tukupa kotoa pe.",
+		"lede": "ʻOku fakaava ʻe he Resource Translator ʻa e ngaahi kole ke toʻo hoʻo ngaahi faile maʻuʻanga tokoni ʻo fakaʻaongaʻi ʻa e Azure AI Translator ʻo fakafou ʻi he SDK fakaʻofisiale — ʻikai ha toe ngaahi ngaue kehe, ko ha founga ngaue pe.",
+		"primaryCta": "Kamata",
+		"secondaryCta": "Fetuʻu ʻi he GitHub",
+		"supports": "Ngaahi Poupou",
+		"builtForShipping": "Langa ki he uta",
+		"workflowTitle": "Ko e liliu lea ko ha founga ngaue, kae ʻikai ko ha ngaue.",
+		"workflowBody": "Tuku ʻa e ngaue ki hoʻo CI lolotonga, tuhu ki he Azure AI Translator, pea tuku ke lea ʻaki ʻe hoʻo repo ʻa e lea fakafonua kotoa pe ʻoku ke fakataumuʻa ki ai.",
+		"stats": {
+			"audit": "0 Ngaahi palopalema ʻo e ʻaotita npm",
+			"tests": "Ngaahi sivi ʻe 150",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "Azure SDK fakaʻofisiale"
+		},
+		"features": {
+			"formats": {
+				"title": "Ngaahi fotunga faile ʻe ono",
+				"body": "Toe fokifoki ʻa e .resx, .xliff, .po, .json, .ini, mo e .restext mo e fotunga ʻo e byte-stable."
+			},
+			"config": {
+				"title": "Repo-level config",
+				"body": "Tuku ha .github/resource-translator.yml ki he ngaahi kulupu ʻo e kau globs, glossaries, mo e Custom Translator."
+			},
+			"glossary": {
+				"title": "ʻIloʻi ʻa e Glossary",
+				"body": "Lokaʻi ʻa e ngaahi hingoa ʻo e brand mo e ngaahi tuʻunga ʻo e koloa ʻaki ʻa e regex fakangatangata ʻo e lea poto ʻoku ne tokangaʻi ʻa e C++, .NET, mo e ngaahi kaungameʻa."
+			},
+			"dryRun": {
+				"title": "Lele momoa + vaivai",
+				"body": "Tomuʻa vakaiʻi ʻa e ngaahi liliu ʻo ʻikai tohi ha ngaahi faile, pe ʻasi ʻa e fehalaaki kotoa pe ko ha fakatokanga lolotonga hoʻo toutou tohiʻi."
+			},
+			"outputs": {
+				"title": "Ngaahi meʻa ʻoku maʻu mei he PR",
+				"body": "summary-title, summary-details, mo has-new-translations fakahangatonu ki he create-pull-request."
+			},
+			"sdk": {
+				"title": "Azure SDK fakaʻofisiale",
+				"body": "Langa ʻi he @azure-rest/ai-translation-text + @azure/core-rest-pipeline — automatic retries ʻi he 408/429/5xx, ʻikai ha HTTP ʻoku takai nima. esbuild-bundled, ʻaotita-maʻa."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Kamata",
+		"eyebrow": "Fokotuʻutuʻu",
+		"lede": "Tanaki atu ha faile ʻo e founga ngaue, tuhu ki hoʻo Azure AI Translator credentials, pea ko e ngaue — langa ʻi he SDK fakaʻofisiale ʻa e Microsoft @azure-rest/ai-translation-text — te ne scan ʻa e repo ki he ngaahi faile maʻuʻanga tokoni ʻi he lea fakafonua pea ʻoatu ʻa e ngaahi tokoua kuo liliu.",
+		"steps": {
+			"provision": {
+				"title": "Fokotuʻu ha maʻuʻanga tokoni Azure AI Translator",
+				"body": "Faʻu ha maʻuʻanga tokoni Azure AI Translator ʻi he Azure portal, pea tauhi ʻa e ngaahi meʻa ko ʻeni ko e ngaahi fakapulipuli ʻo e GitHub kae lava ke lau kinautolu ʻe he founga ngaue:",
+				"key": "ʻa e ki ʻo e totongi ki he maʻuʻanga tokoni.",
+				"endpoint": "ko e URL fakavahefonua ʻo e ngataʻanga.",
+				"region": "ʻa e feituʻu Azure ʻo e maʻuʻanga tokoni."
+			},
+			"workflow": {
+				"title": "Tanaki atu ʻa e founga ngaue",
+				"body": "Faʻu ʻa e .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Fakatukupaaʻi ha faile maʻuʻanga tokoni",
+				"body": "ʻOku fakaʻaongaʻi ʻe he ngaahi faile maʻuʻanga tokoni ʻa e Hingoa. <sourceLocale>. <ext> konivesio. Hange ko ʻeni, ʻoku hoko ʻa e Greetings.en.resx ko e Greetings.fr.resx, Greetings.de.resx, mo e ala meʻa pehee hili ha lele."
+			},
+			"output": {
+				"title": "Vakaiʻi ʻa e meʻa ʻoku maʻu",
+				"body": "ʻI he ʻosi pe ʻa e founga ngaue, ʻoku fakaʻaliʻali ʻe he ngaue ʻa e output ʻe tolu te ke lava ʻo fakaʻaongaʻi ki ha fakamatala PR: summary-title, summary-details, and has-new-translations. ʻOku ne toe hiki foki ha fakamatala fakanounou ʻo e Markdown ki he peesi ngaue ʻo fakafou ʻi he core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Sitepu hoko",
+			"configuration": "Configure ʻa e ngaahi default ʻi he tuʻunga ʻo e repo ʻaki ʻa e .github/resource-translator.yml.",
+			"recipes": "Vakai ki he ngaahi founga feimeʻatokoni ki he monorepos, custom glossaries, mo e Custom Translator categories."
+		}
+	},
+	"configuration": {
+		"title": "Fokotuʻutuʻu",
+		"eyebrow": "YAML",
+		"heroTitle": "Fokotuʻutuʻu ʻo e tauhiʻanga koloa",
+		"lede": "Fakahaaʻi tuʻo taha ʻa e defaults ʻi he .github/resource-translator.yml pea tuku ke maʻu ia ʻe he founga ngaue kotoa pe. ʻOku ikuna maʻu pe ʻa e ngaue ʻi he taimi ʻoku fakatou ʻoatu ai."
+	},
+	"inputs": {
+		"title": "Inputs & outputs",
+		"eyebrow": "Maʻuʻanga Fakamatala",
+		"lede": "ʻOku tali foki ʻa e input kotoa pe ʻi he faile config repo filifili. ʻI he taimi ʻoku fakatou fokotuʻu kinaua, ʻoku ikuna leva ʻa e ngaue ʻoku fakahu mai."
+	},
+	"formats": {
+		"title": "Ngaahi fotunga ʻo e faile",
+		"eyebrow": "Maʻuʻanga Fakamatala",
+		"heroTitle": "Ngaahi fotunga ʻo e faile ʻoku poupouʻi",
+		"lede": "Ngaahi founga maʻuʻanga tokoni ʻe ono ʻoku lava ke fefonongaʻaki. ʻOku lau ʻe he ngaue ʻa e faile takitaha ʻo e feituʻu ʻoku fakataumuʻa ki ai, liliu ʻa e ngaahi tuʻunga ʻulungaanga mahuʻinga, pea hiki ha tuongaʻane ʻi he feituʻu ʻoku fakataumuʻa ki ai."
+	},
+	"recipes": {
+		"title": "Ngaahi founga feimeʻatokoni",
+		"eyebrow": "Tohi feimeʻatokoni",
+		"lede": "Ngaahi sipinga angamaheni ki hono fakafolau ʻo e ngaahi liliu: monorepos, glossaries, custom categories, dry runs, mo e tone control."
+	},
+	"faq": {
+		"title": "FAQ",
+		"eyebrow": "Tokoni",
+		"heroTitle": "Ngaahi fehuʻi ʻoku faʻa fai",
+		"lede": "Tali vave ki he ngaahi fehuʻi ʻoku faʻa ʻasi lahi taha ʻi he taimi ʻoku fakahoko ai ʻa e ngaue."
+	},
+	"translations": {
+		"title": "Ngaahi liliu",
+		"eyebrow": "Fakaʻaliʻali",
+		"heroTitle": "Malo e lelei ʻi he lea fakafonua kotoa pe",
+		"locales": "ngaahi feituʻu",
+		"currentlyRendered": "lolotonga render",
+		"complete": "kakato!",
+		"pendingPrefix": "fakatatali ki he lele hono hoko ʻo e translate-docs.",
+		"viewWorkflowRuns": "Vakai ki he ngaahi lele ʻo e founga ngaue",
+		"filter": "Sivi",
+		"filterPlaceholder": "Fekumi ʻaki ʻa e lea fakafonua, kouti pe hingoa tuʻufonua...",
+		"source": "Maʻuʻanga Fakamatala",
+		"machineTranslations": "Ngaahi liliu fakamisini",
+		"translationPending": "Translation pending — open a translate-docs run.",
+		"noLocales": "ʻOku ʻikai ha feituʻu ʻe tatau mo e meʻa sivi ko ia.",
+		"howItWorks": "Founga ʻoku ngaue ai ʻeni"
+	},
+	"contributing": {
+		"title": "Tokoni",
+		"eyebrow": "Maʻuʻanga fakamatala fakaava",
+		"lede": "ʻOku talitali lelei kotoa pe ʻa e ngaahi lipooti ʻo e palopalema, ngaahi kole ki he fotunga, mo e ngaahi kole toho. ʻOku siʻisiʻi feʻunga ʻa e ngaue ke anga fakakaumeʻa ki he kau fuofua tokoni."
+	},
+	"changelog": {
+		"title": "Fakamatala ki he Liliu",
+		"eyebrow": "Hisitolia",
+		"lede": "Fakamatala fakanounou maʻolunga ʻo e ngaahi tukuange. ʻOku nofo ʻa e changelog ʻi he CHANGELOG.md ʻi he tauhiʻanga koloa."
+	}
+}

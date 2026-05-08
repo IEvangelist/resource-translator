@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Traductor de recursos",
+		"defaultDescription": "Documentació per a l'acció GitHub de Resource Translator — traducció automàtica automatitzada de fitxers de recursos mitjançant Azure AI Translator.",
+		"homeLabel": "Traductor de recursos — inici"
+	},
+	"skipToContent": "Saltar al contingut",
+	"drawer": {
+		"open": "Navegació oberta",
+		"close": "Navegació propera",
+		"title": "Navegació"
+	},
+	"header": {
+		"search": "Cerca documentació",
+		"searchPlaceholder": "Cerca documentació...",
+		"toggleTheme": "Canvia el tema",
+		"githubRepository": "Repositori de GitHub",
+		"language": "Llengua"
+	},
+	"search": {
+		"title": "Cerca documentació",
+		"results": "Resultats de la cerca",
+		"placeholder": "Cerca articles, seccions, receptes...",
+		"close": "Cerca propera",
+		"idleTitle": "Cerca a la documentació",
+		"idleHelp": "Troba articles per tema, format de fitxer, opció de configuració o recepta. Utilitza {up} {down} per navegar {enter} per obrir.",
+		"loading": "Buscant...",
+		"empty": "Cap resultat. Prova una paraula clau diferent.",
+		"error": "L'índex de cerca no està disponible a desenvolupadors. Fes una versió de producció."
+	},
+	"toc": {
+		"title": "En aquesta pàgina"
+	},
+	"pager": {
+		"ariaLabel": "Article",
+		"previous": "Anteriors",
+		"next": "Següent"
+	},
+	"backToTop": {
+		"label": "Desplaça't fins a dalt"
+	},
+	"footer": {
+		"docs": "Docs",
+		"project": "Projecte",
+		"community": "Comunitat",
+		"projectLinksAria": "Enllaços al projecte",
+		"sourceAria": "Veure el codi font a GitHub",
+		"marketplaceAria": "Consulta al GitHub Marketplace",
+		"authorAria": "Lloc web de David Pine",
+		"taglinePrefix": "Una acció de GitHub que tradueix automàticament els teus fitxers de recursos, construïda sobre l'oficial",
+		"taglineMiddle": "SDK de",
+		"copyrightPrefix": "Llançat sota el",
+		"builtWith": "Construït amb"
+	}
+}

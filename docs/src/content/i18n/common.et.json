@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Ressursitõlkija",
+		"defaultDescription": "Dokumentatsioon Resource Translator GitHub Action jaoks — automatiseeritud masintõlge ressursifailidest Azure AI Translatori kaudu.",
+		"homeLabel": "Ressursitõlkija — kodu"
+	},
+	"skipToContent": "Liigu sisu juurde",
+	"drawer": {
+		"open": "Avatud navigeerimine",
+		"close": "Lähedane navigeerimine",
+		"title": "Navigeerimine"
+	},
+	"header": {
+		"search": "Otsingudokumentatsioon",
+		"searchPlaceholder": "Otsingudokumentatsioon...",
+		"toggleTheme": "Lülitusteema",
+		"githubRepository": "GitHub repository",
+		"language": "Keel"
+	},
+	"search": {
+		"title": "Otsingudokumentatsioon",
+		"results": "Otsingutulemused",
+		"placeholder": "Otsi artikleid, sektsioone, retsepte...",
+		"close": "Lähedane otsing",
+		"idleTitle": "Otsi dokumentidest",
+		"idleHelp": "Leia artikleid teema, failivormingu, seadistusvaliku või retsepti järgi. Kasuta {up} {down} navigeerimiseks, {enter} avamiseks.",
+		"loading": "Otsin...",
+		"empty": "Tulemusi pole. Proovi mõnda teist märksõna.",
+		"error": "Otsinguindeks ei ole arenduses saadaval. Käivita tootmisversioon."
+	},
+	"toc": {
+		"title": "Sellel lehel"
+	},
+	"pager": {
+		"ariaLabel": "Artikkel",
+		"previous": "Eelmine",
+		"next": "Järgmine"
+	},
+	"backToTop": {
+		"label": "Keri üles"
+	},
+	"footer": {
+		"docs": "Dokumendid",
+		"project": "Projekt",
+		"community": "Kogukond",
+		"projectLinksAria": "Projekti lingid",
+		"sourceAria": "Vaata allikat GitHubis",
+		"marketplaceAria": "Vaata GitHub Marketplace'is",
+		"authorAria": "David Pine'i veebileht",
+		"taglinePrefix": "GitHubi tegevus, mis tõlgib sinu ressursifailid automaatselt, ehitatud ametlikule",
+		"taglineMiddle": "SDK allikast",
+		"copyrightPrefix": "Välja antud",
+		"builtWith": "Ehitatud"
+	}
+}

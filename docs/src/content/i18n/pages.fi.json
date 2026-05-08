@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Resurssikääntäjä",
+		"description": "Avaa konekäännökset resurssitiedostoille missä tahansa reposito, missä tahansa muodossa.",
+		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "Lokalisoi varastosi",
+		"headlineAccent": "jokaisen sitoutumisen.",
+		"lede": "Resource Translator avaa konekäännetyt pullrequestit resurssitiedostoillesi Azure AI Translatorilla virallisen SDK:n kautta — ei lisäpalveluita, pelkkä työnkulku.",
+		"primaryCta": "Aloita",
+		"secondaryCta": "Star GitHubissa",
+		"supports": "Tukiryhmät",
+		"builtForShipping": "Rakennettu laivaliikenteeseen",
+		"workflowTitle": "Kääntäminen työnkuluna, ei velvollisuutena.",
+		"workflowBody": "Laita toiminto olemassa olevaan CI:hen, osoita se Azure AI Translatoriin ja anna repositasi puhua kaikki kohteesi kielet.",
+		"stats": {
+			"audit": "0 NPM-auditointiongelmat",
+			"tests": "150 testiä",
+			"node": "Solmu 20 / 22 / 24",
+			"sdk": "Virallinen Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Kuusi tiedostomuotoa",
+				"body": "Kierros .resx, .xliff, .po, .json, .ini ja .restext tavustabiidilla muotoilulla."
+			},
+			"config": {
+				"title": "Repo-tason konfiguraatio",
+				"body": "Laita .github/resource-translator.yml mukaan globit, sanastot ja Custom Translator -kategoriat."
+			},
+			"glossary": {
+				"title": "Sanaston tietoinen",
+				"body": "Lukitse brändinimet ja tuotetermit älykkäällä sanarajaregexillä, joka käsittelee C++:n, .NET:n ja ystävät."
+			},
+			"dryRun": {
+				"title": "Harjoitus + pehmeä epäonnistuminen",
+				"body": "Esikatselu käännöksiä ilman tiedostojen kirjoittamista tai nosta jokainen virhe esiin varoituksena iteroinnin aikana."
+			},
+			"outputs": {
+				"title": "PR-ystävälliset tulokset",
+				"body": "summary-title, summary-details ja has-new-translations sijoittuvat suoraan create-pull-requestiin."
+			},
+			"sdk": {
+				"title": "Virallinen Azure SDK",
+				"body": "Rakennettu @azure-rest/ai-translation-text + @azure/core-rest-pipeline — automaattiset uudelleenyritykset 408/429/5xx:llä, ei käsin rullattua HTTP:tä. Esbuild-paketissa, auditointi-puhtaana."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Aloitus",
+		"eyebrow": "Asetelma",
+		"lede": "Lisää työnkulkutiedosto, osoita se Azure AI Translator -tunnuksiisi, ja toiminto — joka perustuu Microsoftin viralliseen @azure-rest/ai-translation-text SDK:hon — skannaa reposita lähdekielen resurssitiedostojen varalta ja lähettää käännetyt sisarukset.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Luo Azure AI Translator -resurssi Azure-portaalissa ja tallenna seuraavat GitHub-repositorion salaisuuksina, jotta työnkulku voi lukea ne:",
+				"key": "Resurssin tilausavain.",
+				"endpoint": "alueellisen päätepisteen URL-osoitteen.",
+				"region": "resurssin Azure-alue."
+			},
+			"workflow": {
+				"title": "Lisää työnkulku",
+				"body": "Luo .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Commit lähderesurssitiedosto",
+				"body": "Resurssitiedostot käyttävät nimeä. <sourceLocale>. <ext> kokouksessa. Esimerkiksi Greetings.en.resx muuttuu Greetings.fr.resxiksi, Greetings.de.resxiksi ja niin edelleen ajon jälkeen."
+			},
+			"output": {
+				"title": "Tarkista lähtö",
+				"body": "Kun työnkulku on valmis, toiminto paljastaa kolme tulosta, jotka voit yhdistää PR-kuvaukseen: yhteenveto-otsikko, yhteenveto-yksityiskohdat ja uusi-käännökset. Se kirjoittaa myös Markdown-yhteenvedon työpaikkasivulle core.summaryn kautta."
+			}
+		},
+		"nextSteps": {
+			"title": "Seuraavat askeleet",
+			"configuration": "Määritä repo-tason oletukset .github/resource-translator.yml:lla.",
+			"recipes": "Katso reseptejä monorepoille, mukautetuille sanastoksille ja Custom Translator -kategorioille."
+		}
+	},
+	"configuration": {
+		"title": "Kokoonpano",
+		"eyebrow": "YAML",
+		"heroTitle": "Arkiston konfiguraatio",
+		"lede": "Express oletuksena on kerran .github/resource-translator.yml:ssa ja antaa jokaisen työnkulun periä ne. Toimintosyötteet voittavat aina, kun molemmat ovat saatavilla."
+	},
+	"inputs": {
+		"title": "Tulot ja lähtöt",
+		"eyebrow": "Viite",
+		"lede": "Jokainen syöte hyväksytään myös valinnaisessa repon konfiguraatiotiedostossa. Kun molemmat on asetettu, toimintosyöte voittaa."
+	},
+	"formats": {
+		"title": "Tiedostomuodot",
+		"eyebrow": "Viite",
+		"heroTitle": "Tuetut tiedostomuodot",
+		"lede": "Kuusi edestakaista resurssimuotoa. Toiminto lukee jokaisen lähde-paikallistiedoston, kääntää arvot ja kirjoittaa sisaruksen per kohdepaikka."
+	},
+	"recipes": {
+		"title": "Reseptit",
+		"eyebrow": "Keittokirja",
+		"lede": "Yleisiä kaavoja lähetyskäännöksissä: monorepot, sanastot, räätälöidyt kategoriat, harjoituskokeet ja sävynsäätö."
+	},
+	"faq": {
+		"title": "UKK",
+		"eyebrow": "Apua",
+		"heroTitle": "Usein kysytyt kysymykset",
+		"lede": "Nopeat vastaukset niihin kysymyksiin, jotka nousevat esiin toiminnan omaksumisen yhteydessä."
+	},
+	"translations": {
+		"title": "Käännökset",
+		"eyebrow": "Näyttely",
+		"heroTitle": "Hei kaikilla kielillä",
+		"locales": "Paikat",
+		"currentlyRendered": "Tällä hetkellä renderöity",
+		"complete": "Valmis!",
+		"pendingPrefix": "Odottaa seuraavaa Translate-Docs-kierrosta.",
+		"viewWorkflowRuns": "Katso työnkulkujen suoritukset",
+		"filter": "Suodatin",
+		"filterPlaceholder": "Etsi kielellä, koodilla tai alkuperäisnimellä...",
+		"source": "Lähde",
+		"machineTranslations": "Konekäännökset",
+		"translationPending": "Käännös odottaa — avaa käännösdokumentaatio.",
+		"noLocales": "Mikään paikka ei vastaa tuota suodatinta.",
+		"howItWorks": "Miten tämä toimii"
+	},
+	"contributing": {
+		"title": "Osallistuminen",
+		"eyebrow": "Avoin lähdekoodi",
+		"lede": "Bugiraportit, ominaisuuspyynnöt ja pull-pyynnöt ovat kaikki tervetulleita. Toiminta on tarpeeksi pientä ollakseen ystävällinen ensikertalaisille osallistujille."
+	},
+	"changelog": {
+		"title": "Muutosloki",
+		"eyebrow": "Historia",
+		"lede": "Julkaisujen yleiskatsaus. Kanoninen, auktoritatiivinen muutosloki elää CHANGELOG.md arkistossa."
+	}
+}

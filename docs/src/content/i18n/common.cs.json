@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Překladač zdrojů",
+		"defaultDescription": "Dokumentace k Resource Translator GitHub Action — automatizovaný strojový překlad souborů zdrojů pomocí Azure AI Translator.",
+		"homeLabel": "Překladač zdrojů — domovská stránka"
+	},
+	"skipToContent": "Přeskočit na obsah",
+	"drawer": {
+		"open": "Otevřená navigace",
+		"close": "Blízká navigace",
+		"title": "Navigace"
+	},
+	"header": {
+		"search": "Vyhledávat dokumentaci",
+		"searchPlaceholder": "Vyhledejte dokumentaci...",
+		"toggleTheme": "Přepínací téma",
+		"githubRepository": "GitHub repozitář",
+		"language": "Jazyk"
+	},
+	"search": {
+		"title": "Vyhledávat dokumentaci",
+		"results": "Výsledky vyhledávání",
+		"placeholder": "Hledejte články, sekce, recepty...",
+		"close": "Blízké vyhledávání",
+		"idleTitle": "Prohledejte dokumentaci",
+		"idleHelp": "Najděte články podle tématu, formátu souboru, možnosti konfigurace nebo receptu. Používejte {up} {down} k navigaci, {enter} k otevírání.",
+		"loading": "Hledám...",
+		"empty": "Žádné výsledky. Zkuste jiné klíčové slovo.",
+		"error": "Index vyhledávání není ve vývoji dostupný. Spusť produkční build."
+	},
+	"toc": {
+		"title": "Na této stránce"
+	},
+	"pager": {
+		"ariaLabel": "Článek",
+		"previous": "Předchozí",
+		"next": "Další"
+	},
+	"backToTop": {
+		"label": "Přejděte nahoru"
+	},
+	"footer": {
+		"docs": "Dokumentaci",
+		"project": "Projekt",
+		"community": "Komunita",
+		"projectLinksAria": "Odkazy na projekty",
+		"sourceAria": "Zobrazit zdroj na GitHubu",
+		"marketplaceAria": "Zobrazit na GitHub Marketplace",
+		"authorAria": "Webové stránky Davida Pinea",
+		"taglinePrefix": "GitHub Action, která automaticky překládá vaše soubory zdrojů, postavená na oficiálních",
+		"taglineMiddle": "SDK z",
+		"copyrightPrefix": "Vydáno pod",
+		"builtWith": "Postaveno s"
+	}
+}

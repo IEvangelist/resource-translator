@@ -1,0 +1,28 @@
+{
+	"sections": {
+		"start": "Начните здесь",
+		"reference": "Ссылка",
+		"showcase": "Шоукейс",
+		"project": "Проект"
+	},
+	"items": {
+		"overview": "Обзор",
+		"gettingStarted": "Начало",
+		"configuration": "Конфигурация",
+		"inputs": "Входы и выходы",
+		"formats": "Форматы файлов",
+		"recipes": "Рецепты",
+		"faq": "FAQ",
+		"translations": "Переводы",
+		"contributing": "Вклад",
+		"changelog": "Журнал изменений"
+	},
+	"community": {
+		"reportBug": "Сообщить об ошибке",
+		"requestFeature": "Запросить функцию",
+		"discussions": "Обсуждения",
+		"securityPolicy": "Политика безопасности",
+		"codeOfConduct": "Кодекс поведения",
+		"license": "Лицензия MIT"
+	}
+}

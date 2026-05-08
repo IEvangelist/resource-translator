@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Kaynak Çevirici",
+		"defaultDescription": "Resource Translator için dokümantasyon GitHub Action — Azure AI Translator aracılığıyla kaynak dosyalarının otomatik makine çevirisi.",
+		"homeLabel": "Kaynak Çevirici — ana sayfa"
+	},
+	"skipToContent": "İçeriğe geç",
+	"drawer": {
+		"open": "Açık navigasyon",
+		"close": "Yakın navigasyon",
+		"title": "Navigasyon"
+	},
+	"header": {
+		"search": "Arama dokümantasyonu",
+		"searchPlaceholder": "Arama belgeleri...",
+		"toggleTheme": "Tema değiştirme",
+		"githubRepository": "GitHub repository",
+		"language": "Dil"
+	},
+	"search": {
+		"title": "Arama dokümantasyonu",
+		"results": "Arama sonuçları",
+		"placeholder": "Makaleleri, bölümleri, tarifleri ara...",
+		"close": "Yakın arama",
+		"idleTitle": "Belgeleri arayın",
+		"idleHelp": "Makaleleri konu, dosya formatı, yapılandırma seçeneği veya tarif olarak bulun. Gezinmek için {up} {down} kullanın, açmak için {enter} kullanın.",
+		"loading": "Arıyorum...",
+		"empty": "Sonuç yok. Farklı bir anahtar kelime dene.",
+		"error": "Arama dizini dev modunda mevcut değil. Bir üretim yapımı yap."
+	},
+	"toc": {
+		"title": "Bu sayfada"
+	},
+	"pager": {
+		"ariaLabel": "Makale",
+		"previous": "Önceki",
+		"next": "Sıradaki"
+	},
+	"backToTop": {
+		"label": "Yukarıya kaydırın"
+	},
+	"footer": {
+		"docs": "Belgeler",
+		"project": "Proje",
+		"community": "Topluluk",
+		"projectLinksAria": "Proje bağlantıları",
+		"sourceAria": "GitHub'da kaynağı görüntüle",
+		"marketplaceAria": "GitHub Marketplace'te görüntüleyin",
+		"authorAria": "David Pine'ın web sitesi",
+		"taglinePrefix": "Kaynak dosyalarınızı otomatik olarak çeviren bir GitHub Eylemi, resmi",
+		"taglineMiddle": "SDK from",
+		"copyrightPrefix": "Yayınlanan",
+		"builtWith": "Yapım"
+	}
+}

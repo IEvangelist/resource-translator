@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Cyfieithydd Adnoddau",
+		"description": "Agor ceisiadau tynnu wedi'u cyfieithu gan beiriant ar gyfer ffeiliau adnoddau mewn unrhyw repo, mewn unrhyw fformat.",
+		"badge": "v3.0 - Nod 24, ffurfweddu repo, geirfa, rhedeg sych",
+		"headlinePrefix": "Lleoleiddio eich depo ar",
+		"headlineAccent": "pob ymrwymiad.",
+		"lede": "Mae Resource Translator yn agor ceisiadau tynnu wedi'u cyfieithu gan beiriant ar gyfer eich ffeiliau adnoddau gan ddefnyddio Azure AI Translator trwy'r SDK swyddogol - dim gwasanaethau ychwanegol, dim ond llif gwaith.",
+		"primaryCta": "Dechrau arni",
+		"secondaryCta": "Seren ar GitHub",
+		"supports": "Cefnogi",
+		"builtForShipping": "Wedi'i adeiladu ar gyfer llongau",
+		"workflowTitle": "Cyfieithu fel llif gwaith, nid gore.",
+		"workflowBody": "Gollyngwch y weithred i'ch CI presennol, pwyntiwch ef at Azure AI Translator, a gadewch i'ch repo siarad pob iaith rydych chi'n ei dargedu.",
+		"stats": {
+			"audit": "0 Materion archwilio NPM",
+			"tests": "150 o brofion",
+			"node": "Nod 20 / 22 / 24",
+			"sdk": "Azure SDK swyddogol"
+		},
+		"features": {
+			"formats": {
+				"title": "Chwe fformat ffeil",
+				"body": "Teithiau crwn .resx, .xliff, .po, .json, .ini, a .restext gyda fformatio beit-sefydlog."
+			},
+			"config": {
+				"title": "Cyfluniad lefel repo",
+				"body": "Gollwng .github/resource-translator.yml ar gyfer cynnwys globs, geirfa, a chategorïau Custom Translator."
+			},
+			"glossary": {
+				"title": "Ymwybodol o eirfa",
+				"body": "Cloi enwau brand a thelerau cynnyrch gyda regex ffin geiriau craff sy'n trin C++, .NET, a ffrindiau."
+			},
+			"dryRun": {
+				"title": "Rhedeg yn sych + methu meddal",
+				"body": "Rhagolwg cyfieithiadau heb ysgrifennu ffeiliau, neu wynebu pob gwall fel rhybudd wrth i chi ailadrodd."
+			},
+			"outputs": {
+				"title": "Allbynnau cysylltiadau cyhoeddus",
+				"body": "summary-title, summary-details, and has-new-translations slot directly into create-pull-request."
+			},
+			"sdk": {
+				"title": "Azure SDK swyddogol",
+				"body": "Wedi'i adeiladu ar @azure-rest/ai-translation-text + @azure/core-rest-pipeline - ail-geisiadau awtomatig ar 408/429/5xx, dim HTTP wedi'i rolio â llaw. esbuild-bundled, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Dechrau arni",
+		"eyebrow": "Gosod",
+		"lede": "Ychwanegwch ffeil llif gwaith, pwyntiwch at eich cymwysterau Azure AI Translator, a bydd y weithred - wedi'i adeiladu ar SDK @azure-rest / ai-translation-text swyddogol Microsoft - yn sganio'r repo am ffeiliau adnoddau iaith ffynhonnell ac yn allyrru brodyr a chwiorydd wedi'u cyfieithu.",
+		"steps": {
+			"provision": {
+				"title": "Darparu adnodd Azure AI Translator",
+				"body": "Creu adnodd Azure AI Translator yn y porth Azure, yna storio'r canlynol fel cyfrinachau ystorfa GitHub fel y gall y llif gwaith eu darllen:",
+				"key": "Allwedd tanysgrifio yr adnodd.",
+				"endpoint": "y URL terfynbwynt rhanbarthol.",
+				"region": "rhanbarth Azure yr adnodd."
+			},
+			"workflow": {
+				"title": "Ychwanegu'r llif gwaith",
+				"body": "Creu .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Cyflawni ffeil adnoddau ffynhonnell",
+				"body": "Mae ffeiliau adnoddau yn defnyddio'r Enw. .<sourceLocale> <ext> confensiwn. Er enghraifft, mae Greetings.en.resx yn dod yn Greetings.fr.resx, Greetings.de.resx, ac yn y blaen ar ôl rhedeg."
+			},
+			"output": {
+				"title": "Archwilio'r allbwn",
+				"body": "Unwaith y bydd y llif gwaith yn gorffen, mae'r weithred yn datgelu tri allbwn y gallwch chi weirio i mewn i ddisgrifiad cysylltiadau cyhoeddus: crynodeb-teitl, crynodeb-manylion, a has-newydd-cyfieithiadau. Mae hefyd yn ysgrifennu crynodeb Markdown i'r dudalen swydd trwy core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Camau nesaf",
+			"configuration": "Ffurfweddu rhagosodiadau lefel repo gyda .github/resource-translator.yml.",
+			"recipes": "Gweler ryseitiau ar gyfer monorepos, geirfa arferol, a chategorïau Custom Translator."
+		}
+	},
+	"configuration": {
+		"title": "Cyfluniad",
+		"eyebrow": "Cartref",
+		"heroTitle": "Cyfluniad ystorfa",
+		"lede": "Mae Express yn rhagosodiad unwaith yn .github/resource-translator.yml a gadael i bob llif gwaith eu hetifeddu. Mae mewnbynnau gweithredu bob amser yn ennill pan ddarperir y ddau."
+	},
+	"inputs": {
+		"title": "Mewnbynnau ac allbynnau",
+		"eyebrow": "Cyfeirnod",
+		"lede": "Mae pob mewnbwn hefyd yn cael ei dderbyn yn y ffeil ffurfweddu repo dewisol. Pan fydd y ddau wedi'u gosod, mae'r mewnbwn gweithredu yn ennill."
+	},
+	"formats": {
+		"title": "Fformatau ffeiliau",
+		"eyebrow": "Cyfeirnod",
+		"heroTitle": "Fformatau ffeiliau a gynhelir",
+		"lede": "Chwe fformat adnoddau rownd-trippable. Mae'r weithred yn darllen pob ffeil ffynhonnell-local, yn cyfieithu'r gwerthoedd, ac yn ysgrifennu brawd neu chwaer fesul locale targed."
+	},
+	"recipes": {
+		"title": "Ryseitiau",
+		"eyebrow": "Llyfr Coginio",
+		"lede": "Patrymau cyffredin ar gyfer cyfieithiadau llongau: monorepos, geirfa, categorïau arfer, rhediadau sych, a rheoli tôn."
+	},
+	"faq": {
+		"title": "CAOYA",
+		"eyebrow": "Cymorth",
+		"heroTitle": "Cwestiynau a ofynnir yn aml",
+		"lede": "Atebion cyflym i'r cwestiynau sy'n codi amlaf wrth fabwysiadu'r weithred."
+	},
+	"translations": {
+		"title": "Cyfieithiadau",
+		"eyebrow": "Arddangos",
+		"heroTitle": "Helo ym mhob iaith",
+		"locales": "Locales",
+		"currentlyRendered": "wedi'i lunio ar hyn o bryd",
+		"complete": "Cyflawn!",
+		"pendingPrefix": "yn aros am y rhediad cyfieithu-docs nesaf.",
+		"viewWorkflowRuns": "Gweld rhediadau llif gwaith",
+		"filter": "Hidlydd",
+		"filterPlaceholder": "Chwilio yn ôl iaith, cod, neu enw brodorol...",
+		"source": "Ffynhonnell",
+		"machineTranslations": "Cyfieithiadau peirianyddol",
+		"translationPending": "Cyfieithiad yn yr arfaeth - agor rhediad cyfieithu-dogfennau.",
+		"noLocales": "Dim locale sy'n cydweddu â'r hidlydd hwnnw.",
+		"howItWorks": "Sut mae hyn yn gweithio"
+	},
+	"contributing": {
+		"title": "Cyfrannu",
+		"eyebrow": "Ffynhonnell agored",
+		"lede": "Mae croeso i adroddiadau nam, ceisiadau nodweddion, a cheisiadau tynnu i gyd. Mae'r weithred yn ddigon bach i fod yn gyfeillgar i gyfranwyr tro cyntaf."
+	},
+	"changelog": {
+		"title": "Cofnod newidiadau",
+		"eyebrow": "Hanes",
+		"lede": "Crynodeb lefel uchel o ddatganiadau. Mae'r changelog canonaidd, awdurdodol yn byw yn CHANGELOG.md yn yr ystorfa."
+	}
+}

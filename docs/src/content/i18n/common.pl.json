@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Translator zasobów",
+		"defaultDescription": "Dokumentacja dla Resource Translator GitHub Action — zautomatyzowane tłumaczenie maszynowe plików zasobów za pomocą Azure AI Translator.",
+		"homeLabel": "Tłumacz zasobów — strona główna"
+	},
+	"skipToContent": "Przejdź do treści",
+	"drawer": {
+		"open": "Otwarta żegluga",
+		"close": "Bliska żegluga",
+		"title": "Nawigacja"
+	},
+	"header": {
+		"search": "Dokumentacja wyszukiwania",
+		"searchPlaceholder": "Wyszukaj dokumentację...",
+		"toggleTheme": "Motyw przełączania",
+		"githubRepository": "Repozytorium GitHub",
+		"language": "Język"
+	},
+	"search": {
+		"title": "Dokumentacja wyszukiwania",
+		"results": "Wyniki wyszukiwania",
+		"placeholder": "Wyszukaj artykuły, sekcje, przepisy...",
+		"close": "Poszukiwania z bliska",
+		"idleTitle": "Przeszukaj dokumentację",
+		"idleHelp": "Znajdź artykuły według tematu, formatu pliku, opcji konfiguracji lub przepisu. Używaj {up} {down} do nawigacji, {enter} do otwierania.",
+		"loading": "Szukając...",
+		"empty": "Brak rezultatów. Spróbuj innego słowa kluczowego.",
+		"error": "Wyszukiwanie indeksu nie jest dostępne w programie. Uruchom build produkcyjny."
+	},
+	"toc": {
+		"title": "Na tej stronie"
+	},
+	"pager": {
+		"ariaLabel": "Artykuł",
+		"previous": "Poprzednie",
+		"next": "Następny"
+	},
+	"backToTop": {
+		"label": "Przewiń na górę"
+	},
+	"footer": {
+		"docs": "Dokumentacja",
+		"project": "Projekt",
+		"community": "Społeczność",
+		"projectLinksAria": "Linki do projektów",
+		"sourceAria": "Zobacz źródło na GitHub",
+		"marketplaceAria": "Zobacz na GitHub Marketplace",
+		"authorAria": "Strona internetowa Davida Pine'a",
+		"taglinePrefix": "Akcja GitHub, która automatycznie tłumaczy twoje pliki zasobów, zbudowana na oficjalnym",
+		"taglineMiddle": "SDK z",
+		"copyrightPrefix": "Wydane na podstawie",
+		"builtWith": "Zbudowany z"
+	}
+}

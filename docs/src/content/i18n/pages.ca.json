@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Traductor de recursos",
+		"description": "Obre les pull requests traduïdes per màquina per a fitxers de recursos en qualsevol repositori, en qualsevol format.",
+		"badge": "v3.0 — Node 24, configuració del repositori, glossari, prova en sec",
+		"headlinePrefix": "Localitza el teu repositori",
+		"headlineAccent": "Cada compromís.",
+		"lede": "Resource Translator obre les pull requests traduïdes per màquina per als teus fitxers de recursos utilitzant Azure AI Translator a través de l'SDK oficial — sense serveis addicionals, només un flux de treball.",
+		"primaryCta": "Comença",
+		"secondaryCta": "Estrella a GitHub",
+		"supports": "Suports",
+		"builtForShipping": "Construït per a la navegació",
+		"workflowTitle": "La traducció és un flux de treball, no una tasca feixuga.",
+		"workflowBody": "Introdueix l'acció al teu CI existent, apunta-la a Azure AI Translator i deixa que el teu repositori parli tots els idiomes que vulguis.",
+		"stats": {
+			"audit": "Problemes d'auditoria de 0 npm",
+			"tests": "150 proves",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Sis formats de fitxer",
+				"body": "Viatges d'anada i tornada .resx, .xliff, .po, .json, .ini i .restext amb format estable en bytes."
+			},
+			"config": {
+				"title": "Configuració a nivell de repositori",
+				"body": "Deixa un .github/resource-translator.yml per incloure globs, glossaris i categories de Traductor Personalitzat."
+			},
+			"glossary": {
+				"title": "Coneixent del glossari",
+				"body": "Bloqueja noms de marques i termes de producte amb regex intel·ligent a la frontera de paraules que gestioni C++, .NET i similars."
+			},
+			"dryRun": {
+				"title": "Prova en sec + fallada suau",
+				"body": "Previsualitza les traduccions sense escriure fitxers, o mostra cada error com un avís mentre iteres."
+			},
+			"outputs": {
+				"title": "Sortides amigables amb les relacions públiques",
+				"body": "summary-title, summary-details i has-new-translations encaixen directament a crear-pull-request."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Construït sobre @azure-rest/ai-translation-text + @azure/core-rest-pipeline — intents automàtics a 408/429/5xx, sense HTTP manual. Esbuild empaquetat, neteja d'auditoria."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Començant",
+		"eyebrow": "Configuració",
+		"lede": "Afegeix un fitxer de flux de treball, apunta'l cap a les teves credencials d'Azure AI Translator, i l'acció — basada en l'SDK oficial de @azure-rest/ai-translation-text de Microsoft — escanejarà el repositori per buscar fitxers de recursos en llengua original i emetrà germans traduïts.",
+		"steps": {
+			"provision": {
+				"title": "Provisiona un recurs Azure AI Translator",
+				"body": "Crea un recurs Azure AI Translator al portal Azure, i després emmagatzema els següents secrets del repositori de GitHub perquè el flux de treball els pugui llegir:",
+				"key": "La clau de subscripció del recurs.",
+				"endpoint": "l'URL regional de l'endpoint.",
+				"region": "la regió Azure del recurs."
+			},
+			"workflow": {
+				"title": "Afegeix el flux de treball",
+				"body": "Crea .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Commit d'un fitxer de recurs font",
+				"body": "Els fitxers de recursos utilitzen el Nom. <sourceLocale>. <ext> convenció. Per exemple, Greetings.en.resx esdevé Greetings.fr.resx, Greetings.de.resx, i així successivament després d'una partida."
+			},
+			"output": {
+				"title": "Inspecciona la sortida",
+				"body": "Un cop acaba el flux de treball, l'acció exposa tres sortides que pots connectar en una descripció de PR: resum-títol, resum-detalls i té-noves-traduccions. També escriu un resum de Markdown a la pàgina de feina a través de core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Següents passos",
+			"configuration": "Configura els valors per defecte a nivell de repositori amb .github/resource-translator.yml.",
+			"recipes": "Consulteu receptes per a monorepos, glossaris personalitzats i categories de Traductor Personalitzat."
+		}
+	},
+	"configuration": {
+		"title": "Configuració",
+		"eyebrow": "YAML",
+		"heroTitle": "Configuració del repositori",
+		"lede": "Express es posa per defecte una vegada a .github/resource-translator.yml i deixa que cada flux de treball els hereti. Les entrades d'acció sempre guanyen quan es proporcionen ambdues."
+	},
+	"inputs": {
+		"title": "Entrades i sortides",
+		"eyebrow": "Referència",
+		"lede": "Totes les entrades també són acceptades en el fitxer de configuració del repositori opcional. Quan ambdós estan configurats, guanya l'entrada d'acció."
+	},
+	"formats": {
+		"title": "Formats d'arxiu",
+		"eyebrow": "Referència",
+		"heroTitle": "Formats de fitxer compatibles",
+		"lede": "Sis formats de recursos repartibles. L'acció llegeix cada fitxer de localització font, tradueix els valors i escriu un germà per ubicació objectiu."
+	},
+	"recipes": {
+		"title": "Receptes",
+		"eyebrow": "Llibre de cuina",
+		"lede": "Patrons habituals per a traduccions de llançament: monorepos, glossaris, categories personalitzades, ensagrats i control de to."
+	},
+	"faq": {
+		"title": "Preguntes freqüents",
+		"eyebrow": "Ajuda",
+		"heroTitle": "Preguntes freqüents",
+		"lede": "Respostes ràpides a les preguntes que sorgeixen més sovint quan s'adopta l'acció."
+	},
+	"translations": {
+		"title": "Traduccions",
+		"eyebrow": "Exhibició",
+		"heroTitle": "Hola en totes les llengües",
+		"locales": "Localitzacions",
+		"currentlyRendered": "actualment renderitzat",
+		"complete": "Complet!",
+		"pendingPrefix": "Pendent de la propera tirada de Translate-Docs.",
+		"viewWorkflowRuns": "Veure execucions de flux de treball",
+		"filter": "Filtre",
+		"filterPlaceholder": "Cerca per idioma, codi o nom nadiu...",
+		"source": "Font",
+		"machineTranslations": "Traduccions automàtiques",
+		"translationPending": "Traducció pendent — obre una execució de traducció-documentació.",
+		"noLocales": "Cap lloc web coincideix amb aquest filtre.",
+		"howItWorks": "Com funciona això"
+	},
+	"contributing": {
+		"title": "Contribució",
+		"eyebrow": "Codi obert",
+		"lede": "Són benvinguts informes d'errors, sol·licituds de funcionalitat i pull requests. L'acció és prou petita per ser amigable amb els col·laboradors novells."
+	},
+	"changelog": {
+		"title": "Registre de canvis",
+		"eyebrow": "Història",
+		"lede": "Resum d'alt nivell dels llançaments. El registre de canvis canònic i autoritari viu en CHANGELOG.md al repositori."
+	}
+}

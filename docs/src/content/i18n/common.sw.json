@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Mtafsiri wa Rasilimali",
+		"defaultDescription": "Nyaraka za Mtafsiri wa Rasilimali GitHub Action - tafsiri ya kiotomatiki ya faili za rasilimali kupitia Azure AI Translator.",
+		"homeLabel": "Mtafsiri wa Rasilimali - nyumbani"
+	},
+	"skipToContent": "Ruka kwa yaliyomo",
+	"drawer": {
+		"open": "Urambazaji wazi",
+		"close": "Urambazaji wa karibu",
+		"title": "Urambazaji"
+	},
+	"header": {
+		"search": "Nyaraka za utafutaji",
+		"searchPlaceholder": "Nyaraka za utafutaji...",
+		"toggleTheme": "Geuza mandhari",
+		"githubRepository": "Hazina ya GitHub",
+		"language": "Lugha"
+	},
+	"search": {
+		"title": "Nyaraka za utafutaji",
+		"results": "Matokeo ya utafutaji",
+		"placeholder": "Tafuta makala, sehemu, mapishi...",
+		"close": "Tafuta karibu",
+		"idleTitle": "Tafuta hati",
+		"idleHelp": "Pata nakala kwa mada, muundo wa faili, chaguo la usanidi, au mapishi. Tumia {up} {down} kusogeza, {enter} kufungua.",
+		"loading": "Kutafuta...",
+		"empty": "Hakuna matokeo. Jaribu neno kuu tofauti.",
+		"error": "Faharasa ya utafutaji haipatikani katika dev. Endesha ujenzi wa uzalishaji."
+	},
+	"toc": {
+		"title": "Kwenye ukurasa huu"
+	},
+	"pager": {
+		"ariaLabel": "Kifungu",
+		"previous": "Hapo awali",
+		"next": "Inayofuata"
+	},
+	"backToTop": {
+		"label": "Tembeza hadi juu"
+	},
+	"footer": {
+		"docs": "Hati",
+		"project": "Mradi",
+		"community": "Jumuiya",
+		"projectLinksAria": "Viungo vya mradi",
+		"sourceAria": "Tazama chanzo kwenye GitHub",
+		"marketplaceAria": "Tazama kwenye Soko la GitHub",
+		"authorAria": "Tovuti ya David Pine",
+		"taglinePrefix": "Kitendo cha GitHub ambacho hutafsiri faili zako za rasilimali kiotomatiki, kilichojengwa juu ya rasmi",
+		"taglineMiddle": "SDK kutoka",
+		"copyrightPrefix": "Imetolewa chini ya",
+		"builtWith": "Imejengwa na"
+	}
+}

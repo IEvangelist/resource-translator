@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Punaoa Fa'aliliu",
+		"description": "Tatala masini-faaliliuina talosaga toso mo punaoa faila i so o se repo, i so o se faatulagaga.",
+		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "Fa'apipi'i lau repo i luga",
+		"headlineAccent": "tautinoga uma.",
+		"lede": "E tatalaina e le Resource Translator talosaga fa'aliliuina masini mo au faila punaoa e fa'aaoga ai le Azure AI Translator e ala i le SDK aloaia — leai se auaunaga fa'aopoopo, na'o se fa'agaioiga.",
+		"primaryCta": "Amata",
+		"secondaryCta": "Fetu i luga o GitHub",
+		"supports": "Lagolago",
+		"builtForShipping": "Fausia mo le va'a",
+		"workflowTitle": "O le faaliliuga o se galuega, ae le o se galuega.",
+		"workflowBody": "Tu'u le gaioiga i lau CI o lo'o i ai, fa'asino i le Azure AI Translator, ma fa'atagaina lau repo e tautala i gagana uma e te taula'i i ai.",
+		"stats": {
+			"audit": "0 npm-suegatusi mataupu",
+			"tests": "150 su'ega",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "Aloaia Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Ono mamanu faila",
+				"body": "Round-trips .resx, .xliff, .po, .json, .ini, ma .restext ma byte-stable formatting."
+			},
+			"config": {
+				"title": "Repo-level config",
+				"body": "Tu'u se .github / resource-translator.yml mo aofia ai globs, glossaries, ma vaega o le Custom Translator."
+			},
+			"glossary": {
+				"title": "Glossary-iloa",
+				"body": "Loka igoa igoa ma oloa tuutuuga ma atamai upu-tuaoi regex e fa'atautaia C ++, .NET, ma uo."
+			},
+			"dryRun": {
+				"title": "Fa'amamago-tamo'e + vaivai-toilalo",
+				"body": "Muai vaai faaliliuga e aunoa ma le tusiaina o faila, po o le faaalia o mea sese uma o se lapataiga ao e iterate."
+			},
+			"outputs": {
+				"title": "PR-faauo galuega faatino",
+				"body": "aotelega-ulutala, aotelega-auiliiliga, ma has-fou-faaliliuga slot tuusao i le create-pull-request."
+			},
+			"sdk": {
+				"title": "Aloaia Azure SDK",
+				"body": "Fausia i luga o le @azure-rest/ai-translation-text + @azure/core-rest-pipeline — otometi toe taumafai i le 408/429/5xx, leai se HTTP. esbuild-bundled, suegatusi-mama."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Amata",
+		"eyebrow": "Fa'atulagaina",
+		"lede": "Fa'aopopo se faila fa'asologa, fa'asino i lau Azure AI Translator credentials, ma le gaioiga - fausia i luga o le Microsoft aloaia @azure-rest / ai-translation-text SDK - o le a fa'ata'ita'ia le repo mo punaoa punaoa ma fa'asalalau fa'aliliuina tei.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Fausia se Azure AI Translator punaoa i le Azure portal, ona teu lea o mea nei e pei o GitHub repository secrets ina ia mafai ai e le workflow ona faitau i latou:",
+				"key": "O le ki o le saofaga mo le punaoa.",
+				"endpoint": "O le URL o le i'uga fa'aitulagi.",
+				"region": "O le itulagi Azure o le punaoa."
+			},
+			"workflow": {
+				"title": "Fa'aopopo le fa'agaioiga",
+				"body": "Fausia .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Faia se faila punaoa punaoa",
+				"body": "E faaaoga e faila punaoa le igoa. <sourceLocale>. <ext> tauaofiaga. Mo se fa'ata'ita'iga, Greetings.en.resx avea ma Greetings.fr.resx, Greetings.de.resx, ma isi pe a mae'a se tamo'e."
+			},
+			"output": {
+				"title": "Siaki le galuega faatino",
+				"body": "O le taimi lava e mae'a ai le galuega, o le gaioiga e fa'aalia ai galuega faatino e tolu e mafai ona e fa'afeso'ota'i i totonu o se fa'amatalaga PR: aotelega-ulutala, aotelega-auiliiliga, ma has-fou-fa'aliliuga. E tusia ai foi se aotelega o le Markdown i le itulau o galuega e ala i le core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Laasaga e sosoo ai",
+			"configuration": "Fa'atulaga le fa'aletonu o le repo-level ma le .github / resource-translator.yml.",
+			"recipes": "Tagai fua mo monorepos, glossaries masani, ma vaega o Custom Translator."
+		}
+	},
+	"configuration": {
+		"title": "Fa'atulagaina",
+		"eyebrow": "YAML",
+		"heroTitle": "Fa'atulagaina o le fale teu oloa",
+		"lede": "Fa'ailoa le fa'aletonu tasi i le .github / resource-translator.yml ma fa'atagaina galuega uma e mautofi i latou. E manumalo i taimi uma le faatinoga pe a tuuina atu uma e lua."
+	},
+	"inputs": {
+		"title": "Fa'amatalaga ma galuega faatino",
+		"eyebrow": "Fa'amatalaga",
+		"lede": "O fa'amatalaga uma e taliaina foi i totonu o le faila config repo filifiliga. A mae'a ona fa'atulagaina uma e lua, o le a manumalo le sao o le gaioiga."
+	},
+	"formats": {
+		"title": "Fa'atulagaga o faila",
+		"eyebrow": "Fa'amatalaga",
+		"heroTitle": "Mamanu faila lagolagoina",
+		"lede": "Ono fa'ata'amilomiloina fa'ata'amilomiloina punaoa fa'ata'amilomilo. O le gaioiga e faitau ai faila punaoa ta'itasi, fa'aliliuina tulaga faatauaina, ma tusi se uso i le nofoaga fa'atatau."
+	},
+	"recipes": {
+		"title": "Fua",
+		"eyebrow": "Tusi Kuka",
+		"lede": "Fa'ata'ita'iga masani mo le lafoina o fa'aliliuga: monorepos, glossaries, vaega fa'apitoa, mago tamo'e, ma le fa'atonutonuina o leo."
+	},
+	"faq": {
+		"title": "Fesili ma tali",
+		"eyebrow": "Fesoasoani",
+		"heroTitle": "Fesili e masani ona fesiligia",
+		"lede": "Tali vave i fesili e masani ona tula'i mai pe a fa'aaogaina le gaioiga."
+	},
+	"translations": {
+		"title": "Faaliliuga",
+		"eyebrow": "Fa'aaliga",
+		"heroTitle": "Talofa i gagana uma",
+		"locales": "nofoaga",
+		"currentlyRendered": "O lo'o tu'uina atu nei",
+		"complete": "Mae'a!",
+		"pendingPrefix": "Fa'atali le isi fa'aliliuga-docs tamo'e.",
+		"viewWorkflowRuns": "Va'ai i le fa'agaioiga o fa'a",
+		"filter": "Faamama",
+		"filterPlaceholder": "Saili e ala i le gagana, code, po'o le igoa moni ...",
+		"source": "Punavai",
+		"machineTranslations": "Faaliliuga masini",
+		"translationPending": "Translation pending — open a translate-docs run.",
+		"noLocales": "E leai ni nofoaga e tutusa ma lena faamama.",
+		"howItWorks": "Fa'afefea ona galue lenei mea"
+	},
+	"contributing": {
+		"title": "Saofaga",
+		"eyebrow": "Punaoa tatala",
+		"lede": "Bug lipoti, foliga talosaga, ma toso talosaga e talia uma. O le gaioiga e la'ititi lava e fa'auo ai i tagata fai saofaga muamua."
+	},
+	"changelog": {
+		"title": "Suiga",
+		"eyebrow": "Talafaasolopito",
+		"lede": "Aotelega maualuga o fa'asa'olotoga. O le canonical, fa'amaoni changelog o lo'o ola i CHANGELOG.md i totonu o le faleteuoloa."
+	}
+}

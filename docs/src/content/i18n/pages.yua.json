@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Traductor nu'ukulo'ob",
+		"description": "Je'e le solicitudes pull traducidas máquina utia'al u archivos recursos ti' je'el repositorio, ti' je'el formato.",
+		"badge": "v3.0 — Nodo 24, repo config, glosario, tikin funcionamiento",
+		"headlinePrefix": "Localizar u repositorio ti'",
+		"headlineAccent": "Amal omoj.",
+		"lede": "Traductor nu'ukulo'ob Jaap solicitudes pull traducidas máquina utia'al u archivos nu'ukulo'ob usando Azure AI Translator yóol le SDK way sijnáaleche' — Ma' áantajo'ob adicionales, chéen jump'éel flujo meyaj.",
+		"primaryCta": "Káajsik",
+		"secondaryCta": "Estrella ti' GitHub",
+		"supports": "Apoyos",
+		"builtForShipping": "Beta'an utia'al u envío",
+		"workflowTitle": "Traducción bey flujo meyaj ma' jump'éel meyaj meyaj beetik.",
+		"workflowBody": "Suelte le molayil ti' u CI existente, Puntejar ti' Azure AI Translator, ka Cha' u repositorio t'aan Amal t'aano' ku ts'áabal.",
+		"stats": {
+			"audit": "0 npm-auditoría toop",
+			"tests": "150 pruebas",
+			"node": "Nodo 20 leti' 22 leti' 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Seis formatos archivo",
+				"body": "Ida u volta.resx, .xliff, .po, .json, .ini yéetel .restext yéetel formato estable ti' bytes."
+			},
+			"config": {
+				"title": "Configuración nivel repositorio",
+				"body": "Suelte jump'éel .github leti' resource-translator.yml utia'al incluir globos, glosarios yéetel categorías Custom Translator."
+			},
+			"glossary": {
+				"title": "Consciente ti' le glosario",
+				"body": "Bloquear marcas yéetel términos producto yéetel regex na'atja'an t'aano'-límite ku maneja C ++, .NET yéetel etailo'ob."
+			},
+			"dryRun": {
+				"title": "Funcionamiento ti' tikin + O'olkij-fail",
+				"body": "Sáasil previa traducciones xma' ts'íib archivos, wa u surgir Amal ba'alo' bey juntúul advertencia ka' jo'op' u iteran."
+			},
+			"outputs": {
+				"title": "salidas amigables yéetel le PR",
+				"body": "Resumen-título, Resumen-Detalles, yéetel Jáan-New-Translations ranura Jun ti' crear-Ch'uj-solicitud."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Construido ti' @azure-rest leti'e' ai-translation-text + @azure leti' core-rest-pipeline — reintentos automáticos ti' 408 leti' 429 leti' 5xx, ma' k'ab HTTP. Esbuild-bundled, auditoría-limpio."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Chúunul",
+		"eyebrow": "Configuración",
+		"lede": "Añadir jump'éel archivo flujo meyaj, puntejar ti' u credenciales Azure AI Translator, yéetel le asab — construido yóok'ol le SDK way sijnáaleche' @azure-rest leti'-ai-translation-text ti' Microsoft — escaneará le repositorio utia'al archivos recursos t'aano' k'aaba' yéetel emitir láak'o'ob traducidos.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Crear jump'éel nu'ukulo'ob Azure AI Translator ti' le portal Azure, ts'o'okole' almacenar le je'ela' bey secretos repositorio GitHub utia'al u flujo meyaj je'el u páajtal u xook:",
+				"key": "le clave suscripción utia'al u recurso.",
+				"endpoint": "le URL u extremo regional.",
+				"region": "le petenil Azure ti' le recurso."
+			},
+			"workflow": {
+				"title": "Añadir le flujo meyaj",
+				"body": "Crear .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Comprometer jump'éel archivo recurso k'aaba'",
+				"body": "Archivos recursos utilizan u k'aaba'. <sourceLocale>. <ext> Convención. Je'ebix, Greetings.en.resx ku p'áatal ti' Greetings.fr.resx, Greetings.de.resx, ka bey sucesivamente ka' jump'éel run."
+			},
+			"output": {
+				"title": "Inspeccionar tíip'ik",
+				"body": "Una pakteche' kin ts'o'oks le flujo meyaj le molayil ye'esajil óoxp'éel salidas ku páajtal cablear ti' jump'éel tsoolil PR: resumen-título, resumen-detalles, yéetel yan-nueva-traducciones. Xan ts'íibtik jump'éel resumen Markdown ti' u linki abas kaambal ti' le meyaj yóol core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Próximos wook",
+			"configuration": "Configurar valores predeterminados a nivel repositorio yéetel .github leti' resource-translator.yml.",
+			"recipes": "Wil recetas utia'al u monorepos, glosarios personalizados yéetel categorías Custom Translator."
+		}
+	},
+	"configuration": {
+		"title": "Configuración",
+		"eyebrow": "YAML",
+		"heroTitle": "Configuración le repositorio",
+		"lede": "Expresar valores predeterminados juntéene' ti' .github leti'e' resource-translator.yml ka p'atik Amal flujo meyaj le hereden. Entradas asab Mantats' náajaltik ken xan u proporcionan."
+	},
+	"inputs": {
+		"title": "Entradas & salidas",
+		"eyebrow": "K'a'ana'an",
+		"lede": "Amal yaan xan jach aceptada ti' le archivo configuración repositorio opcional. Le ken xan u ajustan, le yaan asab náajal."
+	},
+	"formats": {
+		"title": "Formatos archivo",
+		"eyebrow": "K'a'ana'an",
+		"heroTitle": "Formatos u archivo compatibles",
+		"lede": "Seis formatos u nu'ukulo'ob u vuelta u viajables. Le molayil xok Amal archivo k'aaba'-lokalización, traduce le uts' k'ajóolilo'obo' yéetel ts'íibtik jump'éel láak'o'ob tumen localización destino."
+	},
+	"recipes": {
+		"title": "Recetas",
+		"eyebrow": "Áanalte' k'óoben",
+		"lede": "Patrones náats'al utia'al u envío traducciones: monorepos, glosarios, categorías personalizadas, tiradas tikin yéetel kanik tonal."
+	},
+	"faq": {
+		"title": "Preguntas frecuentes",
+		"eyebrow": "Áantaj",
+		"heroTitle": "K'áat chi'oba' frecuentes",
+		"lede": "Respuestas rápidas ti' le k'áat chi'oba' ku surgen yéetel asab frecuencia ti' le máatik le asab."
+	},
+	"translations": {
+		"title": "Traducciones",
+		"eyebrow": "Escaparate",
+		"heroTitle": "Hola tumen tuláakal t'aan",
+		"locales": "Le lu'umo'obo'",
+		"currentlyRendered": "Bejla'e' renderizado",
+		"complete": "Chukaj jayp'éelili'!",
+		"pendingPrefix": "Pendiente u láak' Translate-Docs meyaj.",
+		"viewWorkflowRuns": "Wil meyajta'ale' flujo meyaj",
+		"filter": "Filtro",
+		"filterPlaceholder": "Kaxtik tumen t'aano', código wa k'aaba' nativo...",
+		"source": "Fuente",
+		"machineTranslations": "Traducciones automáticas",
+		"translationPending": "Ka'anal traducción — Je'e jump'éel ejecutar translate-docs.",
+		"noLocales": "Ba'axe' locales coincide yéetel le filtro.",
+		"howItWorks": "Bix u meyaj le je'ela'"
+	},
+	"contributing": {
+		"title": "Contribución",
+		"eyebrow": "Código abierto",
+		"lede": "Informes errores ti', solicitudes función yéetel solicitudes ch'úubul ku tuláakal bienvenidos. Le asab le píibo' chan bey utia'al amigable yéetel le máaxo'ob colaboradores yáax ka'atéen."
+	},
+	"changelog": {
+		"title": "Registro k'eexpajal",
+		"eyebrow": "K'ajláayo'",
+		"lede": "Resumen ka'anal nivel liberaciones. Le canónico, registro cambios autorizado ku yaantal ti' CHANGELOG.md ti' le repositorio."
+	}
+}

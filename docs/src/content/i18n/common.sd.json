@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "وسيلا مترجم",
+		"defaultDescription": "ريسورس مترجم GitHub ايڪشن لاءِ دستاويز — Azure AI Translator ذريعي وسيلن جي فائلن جو خودڪار مشين ترجمو.",
+		"homeLabel": "ريسورس مترجم — گهر"
+	},
+	"skipToContent": "مواد ڏانهن وڃو",
+	"drawer": {
+		"open": "نيويگيشن کوليو",
+		"close": "نيويگيشن بند ڪريو",
+		"title": "نيويگيشن"
+	},
+	"header": {
+		"search": "ڳوليو دستاويز",
+		"searchPlaceholder": "دستاويز ڳوليو...",
+		"toggleTheme": "موضوع بدليو",
+		"githubRepository": "GitHub مخزن",
+		"language": "ٻولي"
+	},
+	"search": {
+		"title": "ڳوليو دستاويز",
+		"results": "ڳولا جا نتيجا",
+		"placeholder": "آرٽيڪل ، حصا ، ترڪيبون ڳوليو ...",
+		"close": "ڳولا بند ڪريو",
+		"idleTitle": "دستاويز ڳوليو",
+		"idleHelp": "موضوع ، فائل فارميٽ ، ترتيب اختيار يا ترڪيب طرفان آرٽيڪل ڳوليو. نيويگيٽ ڪرڻ لاءِ {up} {down} استعمال ڪريو ، {enter} کولڻ لاءِ.",
+		"loading": "ڳوليندي آهي...",
+		"empty": "ڪوبه نتيجو ناهي. هڪ مختلف لفظي لفظ جي ڪوشش ڪريو.",
+		"error": "سرچ انڊيڪس dev ۾ موجود نه آهي. پيداوار جي تعمير کي هلايو."
+	},
+	"toc": {
+		"title": "هن صفحي تي"
+	},
+	"pager": {
+		"ariaLabel": "مضمون",
+		"previous": "اڳوڻو",
+		"next": "اڳيون"
+	},
+	"backToTop": {
+		"label": "مٿي ڏانهن اسڪرول ڪريو"
+	},
+	"footer": {
+		"docs": "دستاويز",
+		"project": "پروجيڪٽ",
+		"community": "ڪميونٽي",
+		"projectLinksAria": "پروجيڪٽ لنڪس",
+		"sourceAria": "GitHub تي ذريعو ڏسو",
+		"marketplaceAria": "GitHub Marketplace تي ڏسو",
+		"authorAria": "ڊيوڊ پائن جي ويب سائيٽ",
+		"taglinePrefix": "هڪ GitHub ايڪشن جيڪو توهان جي وسيلن جي فائلن کي خودڪار طريقي سان ترجمو ڪري ٿو ، سرڪاري جي مٿان تعمير ڪيو ويو آهي",
+		"taglineMiddle": "SDK کان",
+		"copyrightPrefix": "تحت جاري ڪيو ويو",
+		"builtWith": "سان ٺهيل"
+	}
+}

@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Tauturu no te iriti parau",
+		"description": "A iriti i te mau aniraa iritihia e te matini no te mau pu'e parau i roto i te mau huru repo, noa'tu te huru o te faanahoraa.",
+		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "A tuu i ta outou repo i ni'a i te",
+		"headlineAccent": "te mau fafauraa atoa.",
+		"lede": "E iriti te Resource Translator i te mau aniraa iritihia na roto i te matini no ta outou mau pu'e rave'a na roto i te faaohiparaa i te Azure AI Translator na roto i te SDK mana — aita e ohipa hau, te hoê noa tereraa ohipa.",
+		"primaryCta": "A haamata",
+		"secondaryCta": "Feti'a i ni'a i te GitHub",
+		"supports": "Te mau patururaa",
+		"builtForShipping": "Hamanihia no te haponoraa",
+		"workflowTitle": "Te iritiraa mai te hoê tereraa ohipa, e ere i te hoê ohipa.",
+		"workflowBody": "A tuu i te ohipa i roto i ta outou CI e vai ra, a faatoro atu i ni'a i te Azure AI Translator, e a vaiiho i ta outou repo ia paraparau i te mau reo atoa ta outou e opua.",
+		"stats": {
+			"audit": "0 npm-audit issues",
+			"tests": "150 hi'opo'araa",
+			"node": "' E nehenehe anei oe e rave i te mau mea atoa i roto i te ao nei, ' 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "E ono hoho'a putu'ite",
+				"body": "Te mau tere ho'i .resx, .xliff, .po, .json, .ini, e .restext e te faanahoraa papû i te byte."
+			},
+			"config": {
+				"title": "Repo-level config",
+				"body": "Tuu i te hoê .github/resource-translator.yml no te include globs, glossaries, e Custom Translator."
+			},
+			"glossary": {
+				"title": "Glossary-aware",
+				"body": "A ponao i te mau i'oa e te mau parau no te mau tao'a na roto i te regex maramarama no te mau oti'a o te mau ta'o o te faatere i te C++, .NET, e te mau hoa."
+			},
+			"dryRun": {
+				"title": "Dry-run + soft-fail",
+				"body": "A hi'opo'a i te mau iritiraa ma te ore e papa'i i te mau putu'ite, e aore râ, a faaite i te mau hape atoa ei faaararaa a tamau noa ai outou."
+			},
+			"outputs": {
+				"title": "Te mau rave'a maitai no te PR",
+				"body": "summary-title, summary-details, e has-new-translations i roto i te create-pull-request."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Built on @azure-rest/ai-translation-text + @azure/core-rest-pipeline — automatic retries on 408/429/5xx, no hand-rolled HTTP. esbuild-bundled, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Te haamataraa",
+		"eyebrow": "Faanahoraa,",
+		"lede": "A tuu i te hoê putu'ite ohipa, a faatoro i te reira i ni'a i ta outou Azure AI Translator, e na te ohipa — tei hamanihia i ni'a i te SDK mana @azure-rest/ai-translation-text a Microsoft — e hi'opo'a i te repo no te imi i te mau pu'e parau no te mau rave'a no te reo tumu e e horo'a mai i te mau taea'e e te mau taea'e e tuahine i iritihia ra.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "A hamani i te hoê rave'a Azure AI Translator i roto i te Azure Portal, i muri iho a haaputu i te mau mea i muri nei ei mau parau huna no te haaputuraa GitHub ia nehenehe i te tereraa ohipa ia tai'o i te reira :",
+				"key": "te taviri tapa'oraa no te rave'a.",
+				"endpoint": "te URL hopea o te retioni.",
+				"region": "te tuhaa fenua Azure o te rave'a."
+			},
+			"workflow": {
+				"title": "A tuu i te tereraa ohipa",
+				"body": "Hamani .github/workflows/translate.yml :"
+			},
+			"resource": {
+				"title": "Commit a source resource file",
+				"body": "E faaohipa te mau putu'ite tauturu i te i'oa. <sourceLocale>. <ext> tairururaa. Ei hi'oraa, e riro mai te Greetings.en.resx ei Greetings.fr.resx, Greetings.de.resx, e na reira noa i muri a'e i te hoê hororaa."
+			},
+			"output": {
+				"title": "A hi'opo'a i te ohipa i hamanihia",
+				"body": "Ia oti ana'e te tereraa ohipa, e faaite mai te ohipa e toru ohipa ta outou e nehenehe e tuati i roto i te hoê faataaraa PR : summary-title, summary-details, e has-new-translations. E papa'i atoa te reira i te hoê haapotoraa Markdown i roto i te api ohipa na roto i te core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Te mau taahiraa i muri iho",
+			"configuration": "Configure repo-level defaults with .github/resource-translator.yml.",
+			"recipes": "A hi'o i te mau faanahoraa no te monorepos, te mau faahororaa parau taa ê, e te mau tuhaa no te iriti parau."
+		}
+	},
+	"configuration": {
+		"title": "Faanahoraa",
+		"eyebrow": "YAML",
+		"heroTitle": "Faanahoraa no te haaputuraa",
+		"lede": "A faaite i te mau ohipa i te hoê taime i roto i te .github/resource-translator.yml e a vaiiho i te mau ohipa atoa ia fatu i te reira. E upooti'a noa te mau mana'o no te ohipa ia horo'ahia mai na mea e piti."
+	},
+	"inputs": {
+		"title": "Te mau mea e faaô mai",
+		"eyebrow": "Faahororaa",
+		"lede": "E farii-atoa-hia te mau parau atoa i roto i te repo config file. Ia faanahohia na mea e piti, e upooti'a te ohipa i roto i te ohipa."
+	},
+	"formats": {
+		"title": "Te mau hoho'a o te mau pu'",
+		"eyebrow": "Faahororaa",
+		"heroTitle": "Te mau hoho'a putu'ite paturuhia",
+		"lede": "E ono faanahoraa no te mau rave'a e nehenehe e ho'i. E tai'o te ohipa i te putu'ite tumu tata'itahi, e iriti i te mau faufaa, e e papa'i i te hoê taea'e e te tuahine no te vahi tata'itahi."
+	},
+	"recipes": {
+		"title": "Te mau maa",
+		"eyebrow": "Buka tunu maa",
+		"lede": "Te mau hoho'a matauhia no te haponoraa i te mau iritiraa : monorepos, glossaries, custom categories, dry runs, and sound control."
+	},
+	"faq": {
+		"title": "FAQ",
+		"eyebrow": "Tauturu",
+		"heroTitle": "Te mau uiraa pinepine",
+		"lede": "Te mau pahonoraa vitiviti i te mau uiraa e hiti pinepine mai ia rave ana'e outou i te ohipa."
+	},
+	"translations": {
+		"title": "Te mau iritiraa",
+		"eyebrow": "Faaiteiteraa",
+		"heroTitle": "Iaora na roto i te mau reo atoa",
+		"locales": "te mau vahi",
+		"currentlyRendered": "i teie nei",
+		"complete": "Hope roa !",
+		"pendingPrefix": "A tia'i noa ai i te iritiraa i muri iho.",
+		"viewWorkflowRuns": "A hi'o i te tereraa o te tereraa ohipa",
+		"filter": "Titi'a",
+		"filterPlaceholder": "A imi na roto i te reo, te reo, aore ra te i'oa tumu...",
+		"source": "No roto mai",
+		"machineTranslations": "Te mau iritiraa matini",
+		"translationPending": "Translation pending — open a translate-docs run.",
+		"noLocales": "Aita e vahi e tu'ati i taua titi'a ra.",
+		"howItWorks": "Nahea te reira e ohipa ai"
+	},
+	"contributing": {
+		"title": "Tauturu",
+		"eyebrow": "Open source",
+		"lede": "E farii-poupou-hia te mau parau faaite no ni'a i te mau pepe, te mau aniraa e te mau aniraa no te hutiraa. E mea na'ina'i roa te ohipa no te faahoa i te feia tei horo'a matamua."
+	},
+	"changelog": {
+		"title": "Te mau tauiraa",
+		"eyebrow": "Aamu",
+		"lede": "Haapotoraa teitei o te mau haamataraa. Te vai ra te changelog canonique e te mana i roto i te CHANGELOG.md i roto i te haaputuraa."
+	}
+}

@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Resursu tulkotājs",
+		"defaultDescription": "Resursu tulkotāja GitHub darbības dokumentācija — resursu failu automatizēta mašīntulkošana, izmantojot Azure AI Translator.",
+		"homeLabel": "Resursu tulkotājs — sākums"
+	},
+	"skipToContent": "Pāriet uz saturu",
+	"drawer": {
+		"open": "Atvērt navigāciju",
+		"close": "Aizvērt navigāciju",
+		"title": "Navigācija"
+	},
+	"header": {
+		"search": "Meklēt dokumentāciju",
+		"searchPlaceholder": "Meklēt dokumentāciju...",
+		"toggleTheme": "Pārslēgt dizainu",
+		"githubRepository": "GitHub repozitorijs",
+		"language": "Valoda"
+	},
+	"search": {
+		"title": "Meklēt dokumentāciju",
+		"results": "Meklēšanas rezultāti",
+		"placeholder": "Meklēt rakstus, sadaļas, receptes...",
+		"close": "Aizvērt meklēšanu",
+		"idleTitle": "Meklēt dokumentos",
+		"idleHelp": "Atrodiet rakstus pēc tēmas, faila formāta, konfigurācijas opcijas vai receptes. Izmantojiet {up} {down}, lai navigētu, {enter}, lai atvērtu.",
+		"loading": "Meklē...",
+		"empty": "Rezultātu nav. Izmēģiniet citu atslēgvārdu.",
+		"error": "Meklēšanas indekss nav pieejams izstrādātājā. Palaidiet ražošanas būvējumu."
+	},
+	"toc": {
+		"title": "Šajā lapā"
+	},
+	"pager": {
+		"ariaLabel": "Raksts",
+		"previous": "Iepriekšējais",
+		"next": "Nākamais"
+	},
+	"backToTop": {
+		"label": "Ritināt uz augšu"
+	},
+	"footer": {
+		"docs": "Dokumenti",
+		"project": "Projekts",
+		"community": "Kopiena",
+		"projectLinksAria": "Projekta saites",
+		"sourceAria": "Skatīt avotu vietnē GitHub",
+		"marketplaceAria": "Skatīt GitHub Marketplace",
+		"authorAria": "Deivida Priedes mājas lapa",
+		"taglinePrefix": "GitHub darbība, kas automātiski tulko jūsu resursu failus, kas izveidoti uz oficiālā",
+		"taglineMiddle": "SDK no",
+		"copyrightPrefix": "Izlaists saskaņā ar",
+		"builtWith": "Būvēts ar"
+	}
+}

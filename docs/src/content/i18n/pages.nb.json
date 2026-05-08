@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Ressursoversetter",
+		"description": "Åpne maskinoversatte pull requests for ressursfiler i hvilket som helst repo, i hvilket som helst format.",
+		"badge": "v3.0 — Node 24, repo-konfigurasjon, ordliste, testkjøring",
+		"headlinePrefix": "Lokaliser repoet ditt på",
+		"headlineAccent": "hver forpliktelse.",
+		"lede": "Resource Translator åpner maskinoversatte pull requests for ressursfilene dine ved hjelp av Azure AI Translator via det offisielle SDK-et — ingen ekstra tjenester, bare en arbeidsflyt.",
+		"primaryCta": "Kom i gang",
+		"secondaryCta": "Star på GitHub",
+		"supports": "Støtter",
+		"builtForShipping": "Bygget for skipsfart",
+		"workflowTitle": "Oversettelse som en arbeidsflyt, ikke som en plikt.",
+		"workflowBody": "Legg handlingen inn i din eksisterende CI, pek den mot Azure AI Translator, og la repoet ditt snakke alle språkene du sikter mot.",
+		"stats": {
+			"audit": "0 npm-revisjonsproblemer",
+			"tests": "150 tester",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Seks filformater",
+				"body": "Rundturer .resx, .xliff, .po, .json, .ini og .restext med byte-stabil formatering."
+			},
+			"config": {
+				"title": "Repo-nivå konfigurasjon",
+				"body": "Legg inn en .github/resource-translator.yml for inkluder globs, ordlister og Custom Translator-kategorier."
+			},
+			"glossary": {
+				"title": "Ordlistebevisst",
+				"body": "Lås merkenavn og produkttermer med smart ordgrenseregex som håndterer C++, .NET og lignende navn."
+			},
+			"dryRun": {
+				"title": "Tørrkjøring + myk stryk",
+				"body": "Forhåndsvis oversettelser uten å skrive filer, eller fremhev hver feil som en advarsel mens du iterererer."
+			},
+			"outputs": {
+				"title": "PR-vennlige resultater",
+				"body": "oppsummering-tittel, oppsummering-detaljer og har-ny-oversettelser går direkte inn i create-pull-request."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Bygget på @azure-rest/ai-translation-text + @azure/core-rest-pipeline — automatiske forsøk på 408/429/5xx, ingen håndrullet HTTP. Esbuild-pakket, ren revisjon."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Å komme i gang",
+		"eyebrow": "Oppsett",
+		"lede": "Legg til en arbeidsflytfil, pek den mot Azure AI Translator-opplysningene dine, og handlingen — bygget på Microsofts offisielle @azure-rest/ai-translation-text SDK — vil skanne repoet etter kildespråksressursfiler og sende ut oversatte søsken.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Opprett en Azure AI Translator-ressurs i Azure-portalen, og lagre deretter følgende som GitHub-repositorier-hemmeligheter slik at arbeidsflyten kan lese dem:",
+				"key": "abonnementnøkkelen for ressursen.",
+				"endpoint": "den regionale endepunkts-URL-en.",
+				"region": "ressursens Azure-region."
+			},
+			"workflow": {
+				"title": "Legg til arbeidsflyten",
+				"body": "Opprett .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Committer en kilderessursfil",
+				"body": "Ressursfiler bruker Navnet. <sourceLocale>. <ext> konvensjon. For eksempel blir Greetings.en.resx til Greetings.fr.resx, Greetings.de.resx, og så videre etter en kjøring."
+			},
+			"output": {
+				"title": "Inspiser utgangen",
+				"body": "Når arbeidsflyten er ferdig, eksponerer handlingen tre utdata du kan koble inn i en PR-beskrivelse: sammendrag-tittel, oppsummering-detaljer og har-ny-oversettelser. Den skriver også et Markdown-sammendrag inn på jobbsiden via core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Neste steg",
+			"configuration": "Konfigurer repo-nivå standardinnstillinger med .github/resource-translator.yml.",
+			"recipes": "Se oppskrifter for monorepos, egendefinerte ordlister og Custom Translator-kategorier."
+		}
+	},
+	"configuration": {
+		"title": "Konfigurasjon",
+		"eyebrow": "YAML",
+		"heroTitle": "Repository-konfigurasjon",
+		"lede": "Express defaults én gang i .github/resource-translator.yml og lar hver arbeidsflyt arve dem. Handlingsinput vinner alltid når begge er tilgjengelige."
+	},
+	"inputs": {
+		"title": "Innganger og utganger",
+		"eyebrow": "Referanse",
+		"lede": "Hver input aksepteres også i den valgfrie repo-konfigurasjonsfilen. Når begge er satt, vinner handlingsinput."
+	},
+	"formats": {
+		"title": "Filformater",
+		"eyebrow": "Referanse",
+		"heroTitle": "Støttede filformater",
+		"lede": "Seks ressursformater som kan rundes. Handlingen leser hver kilde-lokalfil, oversetter verdiene, og skriver en søsken per mållokale."
+	},
+	"recipes": {
+		"title": "Oppskrifter",
+		"eyebrow": "Kokebok",
+		"lede": "Vanlige mønstre for å sende oversettelser: monorepos, ordlister, tilpassede kategorier, prøvekjøringer og tonekontroll."
+	},
+	"faq": {
+		"title": "FAQ",
+		"eyebrow": "Hjelp",
+		"heroTitle": "Ofte stilte spørsmål",
+		"lede": "Raske svar på spørsmålene som oftest dukker opp når man tar i bruk handlingen."
+	},
+	"translations": {
+		"title": "Oversettelser",
+		"eyebrow": "Utstilling",
+		"heroTitle": "Hei på alle språk",
+		"locales": "Steder",
+		"currentlyRendered": "For øyeblikket gjengitt",
+		"complete": "Fullført!",
+		"pendingPrefix": "Venter på neste oversett-dokumentasjonsrunde.",
+		"viewWorkflowRuns": "Vis arbeidsflytkjøringer",
+		"filter": "Filter",
+		"filterPlaceholder": "Søk etter språk, kode eller innfødt navn...",
+		"source": "Kilde",
+		"machineTranslations": "Maskinoversettelser",
+		"translationPending": "Oversettelse venter — åpne en translate-docs-kjøring.",
+		"noLocales": "Ingen lokaliteter matcher det filteret.",
+		"howItWorks": "Slik fungerer dette"
+	},
+	"contributing": {
+		"title": "Bidragsytere",
+		"eyebrow": "Åpen kildekode",
+		"lede": "Feilrapporter, funksjonsforespørsler og pull requests er alle velkomne. Handlingen er liten nok til å være vennlig mot førstegangsbidragsytere."
+	},
+	"changelog": {
+		"title": "Endringslogg",
+		"eyebrow": "Historie",
+		"lede": "Overordnet sammendrag av utgivelser. Den kanoniske, autoritative endringsloggen lever i CHANGELOG.md i arkivet."
+	}
+}

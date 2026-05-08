@@ -1,0 +1,28 @@
+{
+	"sections": {
+		"start": "Begin hier",
+		"reference": "Referentie",
+		"showcase": "Showcase",
+		"project": "Project"
+	},
+	"items": {
+		"overview": "Overzicht",
+		"gettingStarted": "Beginnen",
+		"configuration": "Configuratie",
+		"inputs": "Ingangen en uitvoeren",
+		"formats": "Bestandsformaten",
+		"recipes": "Recepten",
+		"faq": "FAQ",
+		"translations": "Vertalingen",
+		"contributing": "Bijdragen",
+		"changelog": "Wissellijst"
+	},
+	"community": {
+		"reportBug": "Meld een bug",
+		"requestFeature": "Vraag een functie aan",
+		"discussions": "Discussies",
+		"securityPolicy": "Beveiligingsbeleid",
+		"codeOfConduct": "Gedragscode",
+		"license": "MIT-licentie"
+	}
+}

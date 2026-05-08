@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Tus Neeg Txhais Lus Resource",
+		"defaultDescription": "Cov ntaub ntawv rau Resource Translator GitHub Action — tsis siv neeg tshuab txhais ntawm cov ntaub ntawv peev txheej los ntawm Azure AI Translator.",
+		"homeLabel": "Resource Translator — tsev"
+	},
+	"skipToContent": "Hla mus rau cov ntsiab lus",
+	"drawer": {
+		"open": "Qhib navigation",
+		"close": "Kaw navigation",
+		"title": "Kev taw qhia"
+	},
+	"header": {
+		"search": "Tshawb cov ntaub ntawv",
+		"searchPlaceholder": "Tshawb cov ntaub ntawv...",
+		"toggleTheme": "Toggle ntsiab",
+		"githubRepository": "GitHub chaw cia khoom",
+		"language": "Hom Lus"
+	},
+	"search": {
+		"title": "Tshawb cov ntaub ntawv",
+		"results": "Tshawb nrhiav cov txiaj ntsig",
+		"placeholder": "Tshawb cov ntawv sau, ntu, zaub mov txawv...",
+		"close": "Kaw kev tshawb nrhiav",
+		"idleTitle": "Tshawb cov docs",
+		"idleHelp": "Nrhiav cov ntawv sau los ntawm cov ncauj lus, hom ntaub ntawv, kev xaiv teeb tsa lossis daim ntawv qhia. Siv {up} {down} mus navigate, {enter} qhib.",
+		"loading": "Tshawb nrhiav...",
+		"empty": "Tsis muaj txiaj ntsig. Sim ib lo lus tseem ceeb sib txawv.",
+		"error": "Tshawb nrhiav index tsis muaj nyob rau hauv dev. Khiav ib qho kev tsim khoom."
+	},
+	"toc": {
+		"title": "Ntawm nplooj ntawv no"
+	},
+	"pager": {
+		"ariaLabel": "Tsab xov xwm",
+		"previous": "Yav dhau los",
+		"next": "Tom ntej no"
+	},
+	"backToTop": {
+		"label": "Scroll mus rau sab saum"
+	},
+	"footer": {
+		"docs": "Cov ntaub ntawv",
+		"project": "Qhov project",
+		"community": "Zej Zog",
+		"projectLinksAria": "Qhov project txuas",
+		"sourceAria": "Saib qhov chaw ntawm GitHub",
+		"marketplaceAria": "Saib ntawm GitHub Marketplace",
+		"authorAria": "David Pine lub vev xaib",
+		"taglinePrefix": "Ib qho GitHub Action uas txhais koj cov ntaub ntawv peev txheej tsis siv neeg, ua rau saum tus nom",
+		"taglineMiddle": "SDK los ntawm",
+		"copyrightPrefix": "Tso tawm nyob rau hauv lub",
+		"builtWith": "Ua nrog"
+	}
+}

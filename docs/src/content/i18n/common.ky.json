@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Ресурс которгуч",
+		"defaultDescription": "Resource Translator GitHub Action үчүн документация — Azure AI Translator аркылуу ресурс файлдарын автоматташтырылган машиналык котормо.",
+		"homeLabel": "Ресурс котормочу — үй"
+	},
+	"skipToContent": "Мазмунга өтүү",
+	"drawer": {
+		"open": "Ачык навигация",
+		"close": "Жакынкы навигация",
+		"title": "Навигация"
+	},
+	"header": {
+		"search": "Издөө документациясы",
+		"searchPlaceholder": "Издөө документтери...",
+		"toggleTheme": "Тоггл темасы",
+		"githubRepository": "GitHub репозиторийи",
+		"language": "Тил"
+	},
+	"search": {
+		"title": "Издөө документациясы",
+		"results": "Издөө жыйынтыктары",
+		"placeholder": "Макалаларды, бөлүмдөрдү, рецепттерди издеңиз...",
+		"close": "Издөөнү жабуу",
+		"idleTitle": "Документтерди издеңиз",
+		"idleHelp": "Макалаларды тема, файл форматы, конфигурация параметри же рецепт боюнча табыңыз. Навигация {up} {down} колдонуңуз, {enter} ачыңыз.",
+		"loading": "Издеп жатам...",
+		"empty": "Жыйынтык жок. Башка ачкыч сөздү колдонуп көр.",
+		"error": "Search index devде жеткиликтүү эмес. Өндүрүштүк билд жүргүз."
+	},
+	"toc": {
+		"title": "Бул баракта"
+	},
+	"pager": {
+		"ariaLabel": "Макала",
+		"previous": "Мурунку",
+		"next": "Кийинки"
+	},
+	"backToTop": {
+		"label": "Жогоруга жылдырыңыз"
+	},
+	"footer": {
+		"docs": "Документтер",
+		"project": "Долбоор",
+		"community": "Жамаат",
+		"projectLinksAria": "Долбоорго шилтемелер",
+		"sourceAria": "GitHub сайтындагы булакты көрүү",
+		"marketplaceAria": "GitHub Marketplace'те көрүү",
+		"authorAria": "Дэвид Пайндын веб-сайты",
+		"taglinePrefix": "GitHub аракети, ресурс файлдарыңызды автоматтык түрдө которот, расмий файлдын үстүндө курулган",
+		"taglineMiddle": "SDK from",
+		"copyrightPrefix": "Чыгарылган",
+		"builtWith": "Курулган"
+	}
+}

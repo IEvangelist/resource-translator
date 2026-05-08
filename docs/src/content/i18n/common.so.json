@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Turjubaan Kheyraad",
+		"defaultDescription": "Dukumentiyada Resource Translator GitHub Action — turjumaad machine oo otomaatig ah oo faylasha kheyraadka ah iyada oo loo marayo Azure AI Translator.",
+		"homeLabel": "Turjubaan Kheyraad — guriga"
+	},
+	"skipToContent": "U gudub waxyaabaha ku jira",
+	"drawer": {
+		"open": "Fur hagista",
+		"close": "Ku dhow hagista",
+		"title": "Navigation-ka"
+	},
+	"header": {
+		"search": "Dukumentiyada raadinta",
+		"searchPlaceholder": "Dukumentiyada raadinta...",
+		"toggleTheme": "Mawduuca beddelka",
+		"githubRepository": "GitHub repository",
+		"language": "Luqadda"
+	},
+	"search": {
+		"title": "Dukumentiyada raadinta",
+		"results": "Natiijooyinka raadinta",
+		"placeholder": "Raadi maqaalada, qaybaha, cuntooyinka...",
+		"close": "Raadinta dhow",
+		"idleTitle": "Raadi dukumentiyada",
+		"idleHelp": "Ka hel maqaallada iyadoo la adeegsanayo mowduuc, qaabka faylka, ikhtiyaarka habeynta, ama cunto karinta. Isticmaal {up} {down} si aad u hagto, {enter} furto.",
+		"loading": "Raadin...",
+		"empty": "Natiijo ma jirto. Isku day eray kale oo muhiim ah.",
+		"error": "Search index laguma heli karo horumarinta. Dhis wax soo saar."
+	},
+	"toc": {
+		"title": "Boggan"
+	},
+	"pager": {
+		"ariaLabel": "Maqaal",
+		"previous": "Hore",
+		"next": "Xiga"
+	},
+	"backToTop": {
+		"label": "U rog sare"
+	},
+	"footer": {
+		"docs": "Dukumentiyada",
+		"project": "Mashruuc",
+		"community": "Bulshada",
+		"projectLinksAria": "Xiriiriyeyaasha mashruuca",
+		"sourceAria": "Eeg ilaha GitHub",
+		"marketplaceAria": "Daawo GitHub Marketplace",
+		"authorAria": "Bogga David Pine",
+		"taglinePrefix": "GitHub Action si toos ah u turjumaya faylasha kheyraadkaaga, oo lagu dhisay dusha rasmiga ah",
+		"taglineMiddle": "SDK laga bilaabo",
+		"copyrightPrefix": "Waxaa lagu sii daayay hoos yimaada",
+		"builtWith": "Waxaa lagu dhisay"
+	}
+}

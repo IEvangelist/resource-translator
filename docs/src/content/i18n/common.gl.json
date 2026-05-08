@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Tradutor de recursos",
+		"defaultDescription": "Documentación para o Resource Translator GitHub Action — tradución automática automática de ficheiros de recursos a través de Azure AI Translator.",
+		"homeLabel": "Tradutor de recursos — inicio"
+	},
+	"skipToContent": "Saltar ao contido",
+	"drawer": {
+		"open": "Navegación aberta",
+		"close": "Navegación próxima",
+		"title": "Navegación"
+	},
+	"header": {
+		"search": "Buscar documentación",
+		"searchPlaceholder": "Busca na documentación...",
+		"toggleTheme": "Alternar tema",
+		"githubRepository": "Repositorio de GitHub",
+		"language": "Lingua"
+	},
+	"search": {
+		"title": "Buscar documentación",
+		"results": "Resultados da busca",
+		"placeholder": "Busca artigos, seccións, receitas...",
+		"close": "Busca detallada",
+		"idleTitle": "Busca na documentación",
+		"idleHelp": "Atopa artigos por tema, formato de ficheiro, opción de configuración ou receita. Usa {up} {down} para navegar, {enter} para abrir.",
+		"loading": "Buscando...",
+		"empty": "Sen resultados. Proba cunha palabra clave diferente.",
+		"error": "O índice de busca non está dispoñible en dev. Executa unha versión de produción."
+	},
+	"toc": {
+		"title": "Nesta páxina"
+	},
+	"pager": {
+		"ariaLabel": "Artigo",
+		"previous": "Antecedentes",
+		"next": "Seguinte"
+	},
+	"backToTop": {
+		"label": "Desprázase ata arriba"
+	},
+	"footer": {
+		"docs": "Docs",
+		"project": "Proxecto",
+		"community": "Comunidade",
+		"projectLinksAria": "Ligazóns ao proxecto",
+		"sourceAria": "Ver o código en GitHub",
+		"marketplaceAria": "Ver en GitHub Marketplace",
+		"authorAria": "Sitio web de David Pine",
+		"taglinePrefix": "Unha acción de GitHub que traduce automaticamente os teus ficheiros de recursos, construída sobre o oficial",
+		"taglineMiddle": "SDK de",
+		"copyrightPrefix": "Lanzado baixo a",
+		"builtWith": "Construído con"
+	}
+}

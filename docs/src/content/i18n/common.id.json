@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Penerjemah Sumber Daya",
+		"defaultDescription": "Dokumentasi untuk Tindakan GitHub Penerjemah Sumber Daya — terjemahan mesin otomatis file sumber daya melalui Azure AI Translator.",
+		"homeLabel": "Penerjemah Sumber Daya — beranda"
+	},
+	"skipToContent": "Lewati ke konten",
+	"drawer": {
+		"open": "Buka navigasi",
+		"close": "Tutup navigasi",
+		"title": "Navigasi"
+	},
+	"header": {
+		"search": "Dokumentasi pencarian",
+		"searchPlaceholder": "Cari dokumentasi...",
+		"toggleTheme": "Beralih tema",
+		"githubRepository": "Repositori GitHub",
+		"language": "Bahasa"
+	},
+	"search": {
+		"title": "Dokumentasi pencarian",
+		"results": "Hasil pencarian",
+		"placeholder": "Cari artikel, bagian, resep...",
+		"close": "Tutup pencarian",
+		"idleTitle": "Cari dokumen",
+		"idleHelp": "Temukan artikel berdasarkan topik, format file, opsi konfigurasi, atau resep. Gunakan {up} {down} untuk menavigasi, {enter} untuk membuka.",
+		"loading": "Mencari...",
+		"empty": "Tidak ada hasil. Coba kata kunci yang berbeda.",
+		"error": "Indeks pencarian tidak tersedia di dev. Jalankan build produksi."
+	},
+	"toc": {
+		"title": "Di halaman ini"
+	},
+	"pager": {
+		"ariaLabel": "Artikel",
+		"previous": "sebelumnya",
+		"next": "Selanjutnya"
+	},
+	"backToTop": {
+		"label": "Gulir ke atas"
+	},
+	"footer": {
+		"docs": "Dokumen",
+		"project": "Proyek",
+		"community": "Komunitas",
+		"projectLinksAria": "Tautan proyek",
+		"sourceAria": "Lihat sumber di GitHub",
+		"marketplaceAria": "Lihat di GitHub Marketplace",
+		"authorAria": "Situs web David Pine",
+		"taglinePrefix": "Tindakan GitHub yang menerjemahkan file sumber daya Anda secara otomatis, dibangun di atas file resmi",
+		"taglineMiddle": "SDK dari",
+		"copyrightPrefix": "Dirilis di bawah",
+		"builtWith": "Dibangun dengan"
+	}
+}

@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Traduttur tar-Riżorsi",
+		"defaultDescription": "Dokumentazzjoni għall-Resource Translator GitHub Action — traduzzjoni awtomatika bil-magna ta' fajls ta' riżorsi permezz ta' Azure AI Translator.",
+		"homeLabel": "Resource Translator — dar"
+	},
+	"skipToContent": "Aqleb għall-kontenut",
+	"drawer": {
+		"open": "Navigazzjoni miftuħa",
+		"close": "Navigazzjoni qrib",
+		"title": "Navigazzjoni"
+	},
+	"header": {
+		"search": "Tiftix dokumentazzjoni",
+		"searchPlaceholder": "Fittex id-dokumentazzjoni...",
+		"toggleTheme": "Tema toggle",
+		"githubRepository": "Repożitorju GitHub",
+		"language": "Lingwa"
+	},
+	"search": {
+		"title": "Tiftix dokumentazzjoni",
+		"results": "Riżultati tat-tfittxija",
+		"placeholder": "Fittex artikli, sezzjonijiet, riċetti...",
+		"close": "Tfittxija mill-qrib",
+		"idleTitle": "Fittex id-dokumentarji",
+		"idleHelp": "Sib artikli skont is-suġġett, format tal-fajl, għażla ta' konfigurazzjoni, jew riċetta. Uża {up} {down} biex tinnaviga, {enter} tiftaħ.",
+		"loading": "Qed ifittex...",
+		"empty": "L-ebda riżultat. Ipprova kelma ewlenija differenti.",
+		"error": "L-indiċi tat-tfittxija mhix disponibbli fl-iżvilupp. Imexxi build ta' produzzjoni."
+	},
+	"toc": {
+		"title": "F'din il-paġna"
+	},
+	"pager": {
+		"ariaLabel": "Artiklu",
+		"previous": "Preċedenti",
+		"next": "Li jmiss"
+	},
+	"backToTop": {
+		"label": "Scrollja sa fuq nett"
+	},
+	"footer": {
+		"docs": "Dokumentarji",
+		"project": "Proġett",
+		"community": "Komunità",
+		"projectLinksAria": "Links tal-proġett",
+		"sourceAria": "Ara s-sors fuq GitHub",
+		"marketplaceAria": "Veduta fuq GitHub Marketplace",
+		"authorAria": "Is-sit elettroniku ta' David Pine",
+		"taglinePrefix": "Azzjoni ta' GitHub li tittraduċi l-fajls tar-riżorsi tiegħek awtomatikament, mibnija fuq l-uffiċjali",
+		"taglineMiddle": "SDK minn",
+		"copyrightPrefix": "Rilaxxat taħt il-",
+		"builtWith": "Mibnija b'"
+	}
+}

@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Umusemuzi w'ibikoresho",
+		"description": "Open machine-translated pull requests for resource files in any repo, in any format.",
+		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "Localize your repo on",
+		"headlineAccent": "buri kwiyemeza.",
+		"lede": "Resource Translator opens machine-translated pull requests for your resource files using Azure AI Translator via the official SDK — no extra services, just a workflow.",
+		"primaryCta": "Tangira",
+		"secondaryCta": "Inyenyeri kuri GitHub",
+		"supports": "Supports",
+		"builtForShipping": "Built for shipping",
+		"workflowTitle": "Guhindura akazi ni akazi kabo, ntabwo ari akazi k'ubucuruzi.",
+		"workflowBody": "Drop the action into your existing CI, point it at Azure AI Translator, and let your repo speak every language you target.",
+		"stats": {
+			"audit": "0 npm-audit issues",
+			"tests": "150 tests",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Six file formats",
+				"body": "Round-trips .resx, .xliff, .po, .json, .ini, and .restext with byte-stable formatting."
+			},
+			"config": {
+				"title": "Repo-level config",
+				"body": "Drop a .github/resource-translator.yml for include globs, glossaries, and Custom Translator categories."
+			},
+			"glossary": {
+				"title": "Glossary-aware",
+				"body": "Funga amazina y'ibicuruzwa n'amagambo y'ibicuruzwa ukoresheje regex y'amagambo meza ikora C ++, .NET, n'inshuti."
+			},
+			"dryRun": {
+				"title": "Dry-run + soft-fail",
+				"body": "Preview translations without writing files, or surface every error as a warning while you iterate."
+			},
+			"outputs": {
+				"title": "PR-friendly outputs",
+				"body": "summary-title, summary-details, and has-new-translations slot directly into create-pull-request."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Built on @azure-rest/ai-translation-text + @azure/core-rest-pipeline — automatic retries on 408/429/5xx, no hand-rolled HTTP. esbuild-bundled, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Gutangira",
+		"eyebrow": "Gushiraho",
+		"lede": "Ongeraho dosiye y'akazi, uyiyerekeze ku byemezo byawe bya Azure AI Translator, kandi igikorwa - cyubatswe kuri SDK yemewe ya Microsoft ya @azure-rest / ai-translation-text - kizasuzumisha repo ya dosiye y'ibikoresho by'ururimi rw'inkomoko kandi isohore abavandimwe bahinduwe.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Create an Azure AI Translator resource in the Azure portal, then store the following as GitHub repository secrets so the workflow can read them:",
+				"key": "Urufunguzo rw'ibicuruzwa by'ibicuruzwa.",
+				"endpoint": "the regional endpoint URL.",
+				"region": "Akarere ka Nyamasheke kagizwe n'Akarere ka Nyamasheke."
+			},
+			"workflow": {
+				"title": "Add the workflow",
+				"body": "Create .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Commit a source resource file",
+				"body": "Ibicuruzwa bikoresha izina ry'ibicuruzwa. <sourceLocale>. <ext> Convention. For example Greetings.en.resx becomes Greetings.fr.resx, Greetings.de.resx, and so on after a run."
+			},
+			"output": {
+				"title": "Genzura umusaruro",
+				"body": "Once the workflow finishes, the action exposes three outputs you can wire into a PR description: summary-title, summary-details, and has-new-translations. It also writes a Markdown summary into the job page via core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Intambwe zikurikira",
+			"configuration": "Configure repo-level defaults with .github/resource-translator.yml.",
+			"recipes": "See recipes for monorepos, custom glossaries, and Custom Translator categories."
+		}
+	},
+	"configuration": {
+		"title": "Configuration",
+		"eyebrow": "YAML",
+		"heroTitle": "Imiterere y'ububiko",
+		"lede": "Express defaults once in .github/resource-translator.yml and let every workflow inherit them. Action inputs always win when both are provided"
+	},
+	"inputs": {
+		"title": "Inputs & outputs",
+		"eyebrow": "Reference",
+		"lede": "Ibicuruzwa byose kandi byemewe muri dosiye ya repo config. Iyo byombi bimaze gushyirwa mu bikorwa, ibikorwa by'indashyikirwa biratsinda."
+	},
+	"formats": {
+		"title": "Imiterere ya dosiye",
+		"eyebrow": "Reference",
+		"heroTitle": "Imiterere ya dosiye ishyigikiwe",
+		"lede": "Six round-trippable resource formats. The action reads each source-locale file, translates the values, and writes a sibling per target locale."
+	},
+	"recipes": {
+		"title": "Recipes",
+		"eyebrow": "Igitabo cyo guteka",
+		"lede": "Uburyo busanzwe bwo gusemura kohereza: monorepos, glossaries, ibyiciro by'umwihariko, dry runs, no kugenzura amajwi."
+	},
+	"faq": {
+		"title": "FAQ",
+		"eyebrow": "Gufasha",
+		"heroTitle": "Ibibazo bikunze kubazwa",
+		"lede": "Ibisubizo byihuse by'ibibazo bikunze kwibazwa cyane mu gihe cy'imibonano mpuzabitsina."
+	},
+	"translations": {
+		"title": "Ubuhinduzi",
+		"eyebrow": "Kwerekana",
+		"heroTitle": "Bye Bye Birdie in All Languages",
+		"locales": "Locales",
+		"currentlyRendered": "currently rendered",
+		"complete": "Complete!",
+		"pendingPrefix": "Pending the next translate-docs run.",
+		"viewWorkflowRuns": "View workflow runs",
+		"filter": "Filtre",
+		"filterPlaceholder": "Shaka ukoresheje ururimi, kode cyangwa izina kavukire...",
+		"source": "Inkomoko",
+		"machineTranslations": "Ubuhinduzi bw'imashini",
+		"translationPending": "Translation pending — open a translate-docs run.",
+		"noLocales": "No locales match that filter.",
+		"howItWorks": "Uko ibi bikorwa"
+	},
+	"contributing": {
+		"title": "Gutanga umusanzu",
+		"eyebrow": "Open source",
+		"lede": "Bug reports, feature requests, and pull requests are all welcome. Iki gikorwa ni gito bihagije ku buryo umuntu atanga umusanzu we ku nshuro ya mbere."
+	},
+	"changelog": {
+		"title": "Changelog",
+		"eyebrow": "Amateka",
+		"lede": "High-level summary of releases. The canonical, authoritative changelog lives in CHANGELOG.md in the repository."
+	}
+}

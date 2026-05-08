@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Kaiwhakamāori Rauemi",
+		"description": "Whakatuwheratia ngā tono kume kua whakamāoritia e te mihini mō ngā kōnae rauemi ki tētahi repo, ahakoa te hōputu.",
+		"badge": "v3.0 — Kōpuku 24, whirihoranga repo, kupukupu, whakahaere maroke",
+		"headlinePrefix": "Whakawāteatia tō repo ki",
+		"headlineAccent": "ia mahi.",
+		"lede": "Ka whakatuwhera te Kaiwhakamāori Rauemi i ngā tono kume whakamāori-mīhini mō ō kōnae rauemi mā te whakamahi i te Azure AI Translator mā te SDK whaimana — kāore he ratonga tāpiri, he rerengamahi noa iho.",
+		"primaryCta": "Tīmata",
+		"secondaryCta": "Whetū i GitHub",
+		"supports": "Ngā Tautoko",
+		"builtForShipping": "I hangaia mō te kaipuke",
+		"workflowTitle": "Ko te whakawhitinga hei rerengamahi, ehara i te mahi.",
+		"workflowBody": "Whakataka te hohenga ki tō CI tīariari, tohua ki Azure AI Translator, ka tuku i tō repo ki te kōrero i ngā reo katoa e ūnga ana koe.",
+		"stats": {
+			"audit": "0 ngā take arotaupū-npm",
+			"tests": "150 ngā whakamātautau",
+			"node": "Kōpuku 20 / 22 / 24",
+			"sdk": "SDK Azure Whaimana"
+		},
+		"features": {
+			"formats": {
+				"title": "E ono ngā hōputu kōnae",
+				"body": "Ngā haerenga huri noa i te .resx, .xliff, .po, .json, .ini, me te .restext me te hōputu paita-pūmau."
+			},
+			"config": {
+				"title": "Whirihoranga taumata-repo",
+				"body": "Whakataka he .github/resource-translator.yml mō ngā kāwai whakauru, ngā kupukupu, me ngā kāwai Kaiwhakamāori Ritenga."
+			},
+			"glossary": {
+				"title": "Kupukupu-mōhio",
+				"body": "Maukatia ngā ingoa waitohu me ngā whakaritenga hua ki te regex rohe-kupu atamai e whakahaere ana i te C++, .NET, me ngā hoa."
+			},
+			"dryRun": {
+				"title": "Whakahaere-maroke + hinganga ngohengohe",
+				"body": "Arokitea ngā whakawhitinga me te kore tuhi kōnae, whakakitea rānei ia hapa hei whakatūpato i a koe e auau ana."
+			},
+			"outputs": {
+				"title": "Ngā huaputa ratarata PR",
+				"body": "Summary-title, summary-details, and has-new-translations slot directly into create-pull-request."
+			},
+			"sdk": {
+				"title": "SDK Azure Whaimana",
+				"body": "I hangaia ki runga i te @azure-okiokinga/ai-translation-text + @azure/core-rest-pipeline — ka ngana anō aunoa i te 408/429/5xx, kāore he HTTP ā-ringa. esbuild-paiherea, arotaupū-horoi."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Kei te tīmata",
+		"eyebrow": "Tatūnga",
+		"lede": "Tāpirihia tētahi kōnae rerengamahi, tohua ki ō taipitopito tuakiri Azure AI Translator, ā, mā te hohenga — i hangaia ki runga i te SDK @azure-rest/ai-translation-text mana a Microsoft — ka karapa i te repo mō ngā kōnae rauemi reo-pūtake, ā, ka whakaputa i ngā teina kua whakamāoritia.",
+		"steps": {
+			"provision": {
+				"title": "Whakarato rauemi Azure AI Translator",
+				"body": "Waihangatia tētahi rauemi Azure AI Translator ki te tomokanga Azure, kātahi ka penapena i ēnei e whai ake nei hei muna putunga GitHub kia taea ai e te rerengamahi te pānui:",
+				"key": "te kī ohaurunga mō te rauemi.",
+				"endpoint": "te URL tōpito ā-rohe.",
+				"region": "te rohe Azure o te rauemi."
+			},
+			"workflow": {
+				"title": "Tāpirihia te rerengamahi",
+				"body": "Waihangatia .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Tukua he kōnae rauemi pūtake",
+				"body": "Ka whakamahia te Ingoa e ngā kōnae rauemi. <sourceLocale>. <ext> hui. Hei tauira, ka noho a Greetings.en.resx hei Greetings.fr.resx, Greetings.de.resx, me ērā atu mea i muri i te whakahaere."
+			},
+			"output": {
+				"title": "Tirohia te huaputa",
+				"body": "Ka mutu te rerengamahi, ka whakaaturia e te hohenga e toru ngā huaputa ka taea e koe te waea ki tētahi whakaahuatanga PR: taitara-whakarāpopoto, taipitopito-whakarāpopoto, me ngā whakamāoritanga-hōu. Ka tuhi hoki i tētahi whakarāpopototanga Markdown ki te whārangi mahi mā te core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Ngā tūmahi panuku",
+			"configuration": "Whirihoratia ngā taunoa taumata-repo ki te .github/resource-translator.yml.",
+			"recipes": "Tirohia ngā tohutohu mō ngā monorepos, ngā papakupu ritenga, me ngā kāwai Kaiwhakamāori Ritenga."
+		}
+	},
+	"configuration": {
+		"title": "Whirihoranga",
+		"eyebrow": "YAML",
+		"heroTitle": "Whirihoranga putunga",
+		"lede": "Whakapuakina ngā taunoa kotahi i roto i te .github/resource-translator.yml ka tuku i ia rerengamahi kia riro i a rātou. Ka toa ngā tāurunga hohenga i ngā wā katoa ina tukua ngā mea e rua."
+	},
+	"inputs": {
+		"title": "Ngā tāuru me ngā tāputa",
+		"eyebrow": "Tohutoro",
+		"lede": "Ka whakaaetia hoki ia tāurunga i roto i te kōnae whirihoranga repo kōwhiringa. Ina tautuhia ngā mea e rua, ka toa te tāuru hohenga."
+	},
+	"formats": {
+		"title": "Ngā hōputu kōnae",
+		"eyebrow": "Tohutoro",
+		"heroTitle": "Ngā hōputu kōnae e tautokona ana",
+		"lede": "E ono ngā hōputu rauemi ka taea te haere. Ka pānui te hohenga i ia kōnae pūtake-rohe, ka whakamāori i ngā uara, ka tuhi hoki i tētahi teina mō ia wāhi ūnga."
+	},
+	"recipes": {
+		"title": "Ngā Tohutao",
+		"eyebrow": "pukapuka tunu kai",
+		"lede": "Ngā tauira noa mō ngā whakawhitinga tuku: monorepos, glossaries, kāwai ritenga, whakahaere maroke, me te mana oro."
+	},
+	"faq": {
+		"title": "Nga pātai e uiuitia ai",
+		"eyebrow": "Āwhina",
+		"heroTitle": "Ngā pātai auau",
+		"lede": "Ngā whakautu tere ki ngā pātai e puta ake ana i te nuinga o te wā e whāngai ana i te mahi."
+	},
+	"translations": {
+		"title": "Ngā Whakawhitinga",
+		"eyebrow": "Whakaaturanga",
+		"heroTitle": "Kia ora i roto i ia reo",
+		"locales": "rohe",
+		"currentlyRendered": "Kua tāhuahuatia ināianei",
+		"complete": "Kua oti!",
+		"pendingPrefix": "e tārewa ana i te whakahaerenga o ngā tuhinga-whakamāori panuku.",
+		"viewWorkflowRuns": "Tirohia ngā whakahaere rerengamahi",
+		"filter": "Tātari",
+		"filterPlaceholder": "Rapua mā te reo, waehere, ingoa taketake rānei...",
+		"source": "Pūtake",
+		"machineTranslations": "Ngā whakawhitinga mihini",
+		"translationPending": "E tārewa ana te whakawhitinga — whakatuwheratia he whakahaere tuhinga whakamāori.",
+		"noLocales": "Kāore he rohe e ōrite ana ki taua tātari.",
+		"howItWorks": "He pēhea tēnei mahi"
+	},
+	"contributing": {
+		"title": "Te Hāpai Ana",
+		"eyebrow": "Pūtake tuwhera",
+		"lede": "E manakohia ana ngā pūrongo iro, ngā tono āhuahira, me ngā tono kume. He iti rawa te mahi kia rata ki ngā kaitāpae tuatahi."
+	},
+	"changelog": {
+		"title": "Rangitaki Huringa",
+		"eyebrow": "Hītori",
+		"lede": "Whakarāpopototanga taumata tiketike o ngā pānuitanga. E noho ana te changelog canonical, whai mana i roto i te CHANGELOG.md i roto i te whare putunga."
+	}
+}

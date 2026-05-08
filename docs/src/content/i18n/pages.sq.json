@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Përkthyes i burimeve",
+		"description": "Hapni kërkesat tërheqëse të përkthyera nga makina për skedarët e burimeve në çdo depo, në çdo format.",
+		"badge": "v3.0 — Nyja 24, konfigurimi i depove, fjalor, ekzekutimi i thatë",
+		"headlinePrefix": "Lokalizoni depon tuaj në",
+		"headlineAccent": "çdo angazhim.",
+		"lede": "Resource Translator hap kërkesa tërheqjeje të përkthyera nga makina për skedarët tuaj të burimeve duke përdorur Azure AI Translator përmes SDK-së zyrtare - pa shërbime shtesë, vetëm një rrjedhë pune.",
+		"primaryCta": "Fillo",
+		"secondaryCta": "Yll në GitHub",
+		"supports": "Mbështet",
+		"builtForShipping": "Ndërtuar për transport",
+		"workflowTitle": "Përkthimi si një rrjedhë pune, jo një punë e përditshme.",
+		"workflowBody": "Hidhni veprimin në CI-në tuaj ekzistuese, drejtojeni atë te Azure AI Translator dhe lëreni depon tuaj të flasë çdo gjuhë që synoni.",
+		"stats": {
+			"audit": "0 çështje të auditimit të npm",
+			"tests": "150 teste",
+			"node": "Nyja 20 / 22 / 24",
+			"sdk": "Azure SDK zyrtar"
+		},
+		"features": {
+			"formats": {
+				"title": "Gjashtë formate skedarësh",
+				"body": "Vajtje-ardhje .resx, .xliff, .po, .json, .ini dhe .restext me formatim të qëndrueshëm bajt."
+			},
+			"config": {
+				"title": "Konfigurimi i nivelit të depos",
+				"body": "Hidhni një .github/resource-translator.yml për kategoritë e përfshirjes së globeve, fjalorëve dhe përkthyesve të personalizuar."
+			},
+			"glossary": {
+				"title": "I vetëdijshëm për fjalorin",
+				"body": "Kyçni emrat e markave dhe termat e produkteve me regex të zgjuar të kufirit të fjalëve që trajton C++, .NET dhe miqtë."
+			},
+			"dryRun": {
+				"title": "Funksionim i thatë + dështim i butë",
+				"body": "Shikoni paraprakisht përkthimet pa shkruar skedarë ose shfaqni çdo gabim si paralajmërim gjatë përsëritjes."
+			},
+			"outputs": {
+				"title": "Rezultate miqësore me PR",
+				"body": "titulli i përmbledhjes, detajet e përmbledhjes dhe përkthimet e reja futen direkt në krijim-tërheqje-kërkesë."
+			},
+			"sdk": {
+				"title": "Azure SDK zyrtar",
+				"body": "Ndërtuar në @azure-rest/ai-translation-text + @azure/core-rest-pipeline — përsëritje automatike në 408/429/5xx, pa HTTP të mbështjellë me dorë. esbuild-bundled, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Fillimi",
+		"eyebrow": "Konfigurimi",
+		"lede": "Shtoni një skedar të rrjedhës së punës, drejtojeni atë në kredencialet tuaja të Azure AI Translator dhe veprimi - i ndërtuar në SDK-në zyrtare @azure-rest/ai-translation-text të Microsoft - do të skanojë depon për skedarët e burimeve në gjuhën burimore dhe do të lëshojë vëllezërit e motrat e përkthyer.",
+		"steps": {
+			"provision": {
+				"title": "Siguroni një burim Azure AI Translator",
+				"body": "Krijoni një burim Azure AI Translator në portalin Azure, më pas ruani sa vijon si sekretet e depove GitHub në mënyrë që rrjedha e punës t'i lexojë ato:",
+				"key": "çelësi i abonimit për burimin.",
+				"endpoint": "URL-ja e pikës përfundimtare rajonale.",
+				"region": "rajoni Azure i burimit."
+			},
+			"workflow": {
+				"title": "Shtoni rrjedhën e punës",
+				"body": "Krijoni .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Kryeni një skedar burimi burimor",
+				"body": "Skedarët e burimeve përdorin emrin. .<sourceLocale> <ext> konventa. Për shembull Greetings.en.resx bëhet Greetings.fr.resx, Greetings.de.resx, etj."
+			},
+			"output": {
+				"title": "Inspektoni daljen",
+				"body": "Pasi të përfundojë rrjedha e punës, veprimi ekspozon tre dalje që mund t'i lidhni në një përshkrim PR: titulli i përmbledhjes, detajet e përmbledhjes dhe përkthimet e reja. Ai gjithashtu shkruan një përmbledhje Markdown në faqen e punës përmes core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Hapat e ardhshëm",
+			"configuration": "Konfiguroni parazgjedhjet e nivelit të depove me .github/resource-translator.yml.",
+			"recipes": "Shihni recetat për monorepos, fjalorët e personalizuar dhe kategoritë e përkthyesve të personalizuar."
+		}
+	},
+	"configuration": {
+		"title": "Konfigurimi",
+		"eyebrow": "YAML",
+		"heroTitle": "Konfigurimi i depove",
+		"lede": "Express parazgjedh një herë në .github/resource-translator.yml dhe lëreni çdo rrjedhë pune t'i trashëgojë ato. Inputet e veprimit fitojnë gjithmonë kur ofrohen të dyja."
+	},
+	"inputs": {
+		"title": "Hyrjet dhe daljet",
+		"eyebrow": "Referencë",
+		"lede": "Çdo hyrje pranohet gjithashtu në skedarin opsional të konfigurimit të depove. Kur të dyja janë vendosur, hyrja e veprimit fiton."
+	},
+	"formats": {
+		"title": "Formatet e skedarëve",
+		"eyebrow": "Referencë",
+		"heroTitle": "Formatet e mbështetura të skedarëve",
+		"lede": "Gjashtë formate burimesh vajtje-ardhje-ardhje. Veprimi lexon çdo skedar burimor, përkthen vlerat dhe shkruan një vëlla për lokalizimin e synuar."
+	},
+	"recipes": {
+		"title": "Receta",
+		"eyebrow": "Libër gatimi",
+		"lede": "Modelet e zakonshme për përkthimet e transportit: monorepos, fjalorë, kategori të personalizuara, ekzekutime të thata dhe kontroll toni."
+	},
+	"faq": {
+		"title": "Pyetjet më të shpeshta",
+		"eyebrow": "Ndihmoni",
+		"heroTitle": "Pyetjet e bëra më shpesh",
+		"lede": "Përgjigje të shpejta për pyetjet që dalin më shpesh kur miratoni veprimin."
+	},
+	"translations": {
+		"title": "Përkthimet",
+		"eyebrow": "Vitrina",
+		"heroTitle": "Përshëndetje në çdo gjuhë",
+		"locales": "Vendndodhjet",
+		"currentlyRendered": "aktualisht i paraqitur",
+		"complete": "E plotë!",
+		"pendingPrefix": "në pritje të ekzekutimit të ardhshëm të dokumenteve të përkthimit.",
+		"viewWorkflowRuns": "Shikoni ekzekutimet e rrjedhës së punës",
+		"filter": "Filtri",
+		"filterPlaceholder": "Kërkoni sipas gjuhës, kodit ose emrit amtare...",
+		"source": "Burimi",
+		"machineTranslations": "Përkthime makinerive",
+		"translationPending": "Përkthimi në pritje — hapni një ekzekutim të dokumenteve të përkthimit.",
+		"noLocales": "Asnjë lokal nuk përputhet me atë filtër.",
+		"howItWorks": "Si funksionon kjo"
+	},
+	"contributing": {
+		"title": "Kontributi",
+		"eyebrow": "Burim i hapur",
+		"lede": "Raportet e gabimeve, kërkesat për veçori dhe kërkesat për tërheqje janë të gjitha të mirëseardhura. Veprimi është mjaft i vogël për të qenë miqësor me kontribuesit për herë të parë."
+	},
+	"changelog": {
+		"title": "Regjistri i ndryshimeve",
+		"eyebrow": "Histori",
+		"lede": "Përmbledhje e nivelit të lartë të lëshimeve. Ndryshimi kanonik, autoritar jeton në CHANGELOG.md në depo."
+	}
+}

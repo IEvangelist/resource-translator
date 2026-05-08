@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Trình dịch tài nguyên",
+		"defaultDescription": "Tài liệu cho Hành động GitHub của Trình dịch tài nguyên — dịch máy tự động các tệp tài nguyên thông qua Azure AI Translator.",
+		"homeLabel": "Trình dịch tài nguyên — trang chủ"
+	},
+	"skipToContent": "Chuyển đến nội dung",
+	"drawer": {
+		"open": "Mở điều hướng",
+		"close": "Đóng điều hướng",
+		"title": "Điều hướng"
+	},
+	"header": {
+		"search": "Tìm kiếm tài liệu",
+		"searchPlaceholder": "Tìm kiếm tài liệu...",
+		"toggleTheme": "Chuyển đổi chủ đề",
+		"githubRepository": "Kho lưu trữ GitHub",
+		"language": "Ngôn ngữ"
+	},
+	"search": {
+		"title": "Tìm kiếm tài liệu",
+		"results": "Kết quả tìm kiếm",
+		"placeholder": "Tìm kiếm các bài viết, mục, công thức nấu ăn...",
+		"close": "Đóng tìm kiếm",
+		"idleTitle": "Tìm kiếm tài liệu",
+		"idleHelp": "Tìm bài viết theo chủ đề, định dạng tệp, tùy chọn cấu hình hoặc công thức. Sử dụng {up} {down} để điều hướng, {enter} để mở.",
+		"loading": "Đang tìm kiếm...",
+		"empty": "Không có kết quả. Hãy thử một từ khóa khác.",
+		"error": "Chỉ mục tìm kiếm không có sẵn trong dev. Chạy bản dựng sản xuất."
+	},
+	"toc": {
+		"title": "Trên trang này"
+	},
+	"pager": {
+		"ariaLabel": "Bài viết",
+		"previous": "Trước",
+		"next": "Kế tiếp"
+	},
+	"backToTop": {
+		"label": "Di chuyển lên đầu trang"
+	},
+	"footer": {
+		"docs": "Tài liệu",
+		"project": "Dự án",
+		"community": "Cộng đồng",
+		"projectLinksAria": "Liên kết dự án",
+		"sourceAria": "Xem nguồn trên GitHub",
+		"marketplaceAria": "Xem trên GitHub Marketplace",
+		"authorAria": "Trang web của David Pine",
+		"taglinePrefix": "Hành động GitHub tự động dịch các tệp tài nguyên của bạn, được xây dựng trên nền tảng chính thức",
+		"taglineMiddle": "SDK từ",
+		"copyrightPrefix": "Phát hành theo",
+		"builtWith": "Được xây dựng với"
+	}
+}

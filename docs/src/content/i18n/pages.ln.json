@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Mobongoli ya ressource",
+		"description": "Open machine-translated pull requests for resource files in any repo, in any format.",
+		"badge": "v3.0 — Node 24, repo config, glossaire, dry run",
+		"headlinePrefix": "Localize your repo on",
+		"headlineAccent": "Komipesa nyonso.",
+		"lede": "Resource Translator opens machine-translated pull requests for your resource files using Azure AI Translator via the official SDK — no extra services, just a workflow.",
+		"primaryCta": "Bandá",
+		"secondaryCta": "Star on GitHub",
+		"supports": "Lisalisi",
+		"builtForShipping": "Etongami mpo na masuwa",
+		"workflowTitle": "Kobongola ezali mosala ya mosala, kasi ya kolela te.",
+		"workflowBody": "Bwaka action na CI na yo ya sika, lakisa yango na Azure AI Translator, mpe tika repo na yo eloba minoko nyonso oyo ozali koluka.",
+		"stats": {
+			"audit": "0 NPM-Audit Questions",
+			"tests": "150 tests",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "SDK officiel Azure"
+		},
+		"features": {
+			"formats": {
+				"title": "Lolenge motoba ya fichier",
+				"body": "Round-trips .resx, .xliff, .po, .json, .ini, and .restext with byte-stable formatting."
+			},
+			"config": {
+				"title": "Config ya niveau ya repo",
+				"body": "Drop a .github/resource-translator.yml for include globs, glossaries, and Custom Translator categories."
+			},
+			"glossary": {
+				"title": "Glossaire",
+				"body": "Kanga bankombo ya bilembo mpe maloba ya produit na regex ya maloba ya smart oyo esimbaka C++, .NET, mpe baninga."
+			},
+			"dryRun": {
+				"title": "Dry-run + soft-fail",
+				"body": "Preview translations without writing files, or surface every error as a warning while you iterate."
+			},
+			"outputs": {
+				"title": "Ba résultats ya PR",
+				"body": "Summary-title, summary-details, and has-new-translations slot directly into create-pull-request."
+			},
+			"sdk": {
+				"title": "SDK officiel Azure",
+				"body": "Etongami na @azure-rest/ai-translation-text + @azure/core-rest-pipeline — ba essais automatiques na 408/429/5xx, HTTP ya maboko te. esbuild-bundled, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Ebandeli",
+		"eyebrow": "Kobongisa",
+		"lede": "Kobakisa file ya workflow, lakisa yango na ba identifiants na yo ya mobongoli ya Azure AI, mpe action — etongami na SDK ya Microsoft ya @azure-rest/ai-translation-text — escanner repo mpo na ba fichier ya ressource ya lokota ya source mpe ekobimisa bandeko oyo babongoli.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Bosala ressource ya mobongoli ya Azure AI na portail Azure, na nsima bomba makambo oyo elandi lokola basekele ya kobomba ya GitHub mpo ete workflow ekoka kotanga yango:",
+				"key": "Fungola ya lisungi mpo na lisungi ya",
+				"endpoint": "ya pas d'url de l'url.",
+				"region": "ya pas d'azur dans la région."
+			},
+			"workflow": {
+				"title": "Bakisá mosala na yo",
+				"body": "Créer .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Commit a source resource file",
+				"body": "Batu oyo bazali na posa ya kotanga kombo na bango. <sourceLocale>. <ext> Liyangani. Na ndakisa, Greetings.en.resx ekomaka Greetings.fr.resx, Greetings.de.resx, mpe bongo na bongo."
+			},
+			"output": {
+				"title": "Tala ndenge biloko ebimi",
+				"body": "Tango mosala esili, action ekolakisa makambo misato oyo okoki kotia na description ya PR: résumé-titre, résumé, mpe babongoli ya sika. Ekomaka mpe résumé ya Markdown na lokasa ya mosala na nzela ya core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Makambo oyo elandi",
+			"configuration": "Configurer ba défauts ya niveau repo na .github/resource-translator.yml.",
+			"recipes": "Tala ba recettes mpo na monorepos, glossaires personnalisées, mpe catégories ya traducteur personnalisé."
+		}
+	},
+	"configuration": {
+		"title": "Configuration",
+		"eyebrow": "YAML",
+		"heroTitle": "Configuration ya dépôt",
+		"lede": "Express defaults once in .github/resource-translator.yml and let every workflow inherit them. Action inputs elongaka ntango nyonso mibale epesami."
+	},
+	"inputs": {
+		"title": "Entrées et résultats",
+		"eyebrow": "Référence",
+		"lede": "Input nyonso endimami mpe na fichier ya repo config. Soki nyonso mibale esalemi, action ekolonga."
+	},
+	"formats": {
+		"title": "Format ya fichier",
+		"eyebrow": "Référence",
+		"heroTitle": "Ba formats ya fichier supporté",
+		"lede": "Six round-trippable resource formats. Action etangaka fichier moko na moko ya source-locale, ebongolaka ba valeurs, mpe ekomaka ndeko na esika moko na esika cible."
+	},
+	"recipes": {
+		"title": "Recettes",
+		"eyebrow": "Buku ya cuisine",
+		"lede": "Mitindo oyo eyebani mingi mpo na babongoli ya masuwa: monorepos, glossaires, catégories personnalisées, dry runs, mpe contrôle ya toni."
+	},
+	"faq": {
+		"title": "Mituna misusu",
+		"eyebrow": "Lisalisi",
+		"heroTitle": "Mituna oyo bato batunaka mingi",
+		"lede": "Biyano ya lombango na mituna oyo etunamaka mbala mingi ntango ozali kosala likambo."
+	},
+	"translations": {
+		"title": "Traduction",
+		"eyebrow": "Vitrine",
+		"heroTitle": "Hello dans toutes les langues",
+		"locales": "Bisika",
+		"currentlyRendered": "Lelo oyo esalemi",
+		"complete": "Esili!",
+		"pendingPrefix": "Na kozelaka libongoli ya sika ya Linɔ́ngi ya Mosɛnzɛli.",
+		"viewWorkflowRuns": "View workflow runs",
+		"filter": "Filtre",
+		"filterPlaceholder": "Koluka na monoko, na monoko to na monoko ya mboka...",
+		"source": "Liziba",
+		"machineTranslations": "Traduction automatique",
+		"translationPending": "Traduction en attente — open a translate-docs run.",
+		"noLocales": "Esika moko te ekokani na filtre wana.",
+		"howItWorks": "Ndenge oyo yango esalaka"
+	},
+	"contributing": {
+		"title": "Kopesa mabɔkɔ",
+		"eyebrow": "Source ouverte",
+		"lede": "Ba rapports ya bug, bosengi ya fonctionnalité, mpe bosengi ya pull nyonso eyambami. Mosala yango ezali moke mpenza mpo na kozala na boboto epai ya bato oyo bazali kopesa mabɔkɔ mpo na mbala ya liboso."
+	},
+	"changelog": {
+		"title": "Changelog",
+		"eyebrow": "Lisolo",
+		"lede": "Résumé ya ba publications ya likolo. Changelog canonique, autorité efandaka na CHANGELOG.md na ebombelo."
+	}
+}

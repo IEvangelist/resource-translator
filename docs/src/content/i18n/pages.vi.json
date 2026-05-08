@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Trình dịch tài nguyên",
+		"description": "Mở các yêu cầu kéo được dịch bằng máy cho các tệp tài nguyên ở bất kỳ kho lưu trữ nào, ở bất kỳ định dạng nào.",
+		"badge": "v3.0 — Nút 24, cấu hình repo, bảng thuật ngữ, chạy thử",
+		"headlinePrefix": "Bản địa hóa kho lưu trữ của bạn trên",
+		"headlineAccent": "mọi commit.",
+		"lede": "Resource Translator mở các yêu cầu kéo được dịch bằng máy cho các tệp tài nguyên của bạn bằng Azure AI Translator thông qua SDK chính thức — không có dịch vụ bổ sung, chỉ là quy trình làm việc.",
+		"primaryCta": "Bắt đầu",
+		"secondaryCta": "Ngôi sao trên GitHub",
+		"supports": "Hỗ trợ",
+		"builtForShipping": "Được xây dựng để vận chuyển",
+		"workflowTitle": "Dịch thuật như một quy trình làm việc, không phải là một việc vặt.",
+		"workflowBody": "Thả hành động vào CI hiện có của bạn, trỏ hành động đó vào Azure AI Translator và để kho lưu trữ của bạn nói mọi ngôn ngữ bạn nhắm mục tiêu.",
+		"stats": {
+			"audit": "0 vấn đề về NPM-Audit",
+			"tests": "150 bài kiểm tra",
+			"node": "Nút 20 / 22 / 24",
+			"sdk": "Azure SDK chính thức"
+		},
+		"features": {
+			"formats": {
+				"title": "Sáu định dạng tệp",
+				"body": "Các chuyến đi khứ hồi .resx, .xliff, .po, .json, .ini và .restext với định dạng ổn định byte."
+			},
+			"config": {
+				"title": "Cấu hình cấp repo",
+				"body": "Thả .github/resource-translator.yml để bao gồm các danh mục globs, bảng thuật ngữ và Trình dịch tùy chỉnh."
+			},
+			"glossary": {
+				"title": "Nhận biết thuật ngữ",
+				"body": "Khóa tên thương hiệu và điều khoản sản phẩm bằng biểu thức chính quy ranh giới từ thông minh xử lý C++, .NET và bạn bè."
+			},
+			"dryRun": {
+				"title": "Chạy khô + thất bại mềm",
+				"body": "Xem trước bản dịch mà không cần viết tệp hoặc hiển thị mọi lỗi dưới dạng cảnh báo trong khi bạn lặp lại."
+			},
+			"outputs": {
+				"title": "Đầu ra thân thiện với PR",
+				"body": "summary-title, summary-details và has-new-translations trực tiếp vào create-pull-request."
+			},
+			"sdk": {
+				"title": "Azure SDK chính thức",
+				"body": "Được xây dựng trên @azure-rest/ai-translation-text + @azure/core-rest-pipeline — tự động thử lại trên 408/429/5xx, không có HTTP cuộn tay. Esbuild-đi kèm, kiểm tra-sạch."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Bắt đầu",
+		"eyebrow": "Thành lập",
+		"lede": "Thêm tệp quy trình làm việc, trỏ tệp đó vào thông tin đăng nhập Azure AI Translator của bạn và hành động — được xây dựng trên SDK @azure-rest/ai-translation-text chính thức của Microsoft — sẽ quét kho lưu trữ để tìm các tệp tài nguyên ngôn ngữ nguồn và phát ra các anh chị em đã dịch.",
+		"steps": {
+			"provision": {
+				"title": "Cung cấp tài nguyên Azure AI Translator",
+				"body": "Tạo tài nguyên Azure AI Translator trong cổng thông tin Azure, sau đó lưu trữ những thông tin sau dưới dạng bí mật kho lưu trữ GitHub để quy trình làm việc có thể đọc chúng:",
+				"key": "khóa đăng ký cho tài nguyên.",
+				"endpoint": "URL điểm cuối khu vực.",
+				"region": "khu vực Azure của tài nguyên."
+			},
+			"workflow": {
+				"title": "Thêm quy trình làm việc",
+				"body": "Tạo .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Cam kết tệp tài nguyên nguồn",
+				"body": "Các tệp tài nguyên sử dụng Tên. .<sourceLocale> <ext> quy ước. Ví dụ: Greetings.vi.resx trở thành Greetings.fr.resx, Greetings.de.resx, v.v. sau khi chạy."
+			},
+			"output": {
+				"title": "Kiểm tra đầu ra",
+				"body": "Sau khi quy trình làm việc kết thúc, hành động sẽ hiển thị ba kết quả đầu ra mà bạn có thể kết nối thành mô tả PR: tóm tắt-tiêu đề, tóm tắt-chi tiết và has-new-translations. Nó cũng viết một bản tóm tắt Markdown vào trang công việc thông qua core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Các bước tiếp theo",
+			"configuration": "Định cấu hình mặc định cấp repo với .github/resource-translator.yml.",
+			"recipes": "Xem công thức nấu ăn cho monorepos, bảng thuật ngữ tùy chỉnh và danh mục Trình dịch tùy chỉnh."
+		}
+	},
+	"configuration": {
+		"title": "Cấu hình",
+		"eyebrow": "YAML",
+		"heroTitle": "Cấu hình kho lưu trữ",
+		"lede": "Thể hiện các giá trị mặc định một lần trong .github/resource-translator.yml và để mọi quy trình làm việc kế thừa chúng. Đầu vào hành động luôn chiến thắng khi cả hai đều được cung cấp."
+	},
+	"inputs": {
+		"title": "Đầu vào và đầu ra",
+		"eyebrow": "Tài liệu tham khảo",
+		"lede": "Mọi đầu vào cũng được chấp nhận trong tệp cấu hình repo tùy chọn. Khi cả hai được đặt, đầu vào hành động sẽ thắng."
+	},
+	"formats": {
+		"title": "Định dạng tệp",
+		"eyebrow": "Tài liệu tham khảo",
+		"heroTitle": "Các định dạng tệp được hỗ trợ",
+		"lede": "Sáu định dạng tài nguyên khứ hồi. Hành động đọc từng tệp ngôn ngữ nguồn, dịch các giá trị và ghi một anh chị em trên mỗi ngôn ngữ đích."
+	},
+	"recipes": {
+		"title": "Công thức nấu ăn",
+		"eyebrow": "Sách dạy nấu ăn",
+		"lede": "Các mẫu phổ biến để vận chuyển bản dịch: monorepos, bảng thuật ngữ, danh mục tùy chỉnh, chạy khô và kiểm soát giọng điệu."
+	},
+	"faq": {
+		"title": "Câu hỏi thường gặp",
+		"eyebrow": "Trợ giúp",
+		"heroTitle": "Câu hỏi thường gặp",
+		"lede": "Câu trả lời nhanh cho các câu hỏi xuất hiện thường xuyên nhất khi áp dụng hành động."
+	},
+	"translations": {
+		"title": "Bản dịch",
+		"eyebrow": "Trưng bày",
+		"heroTitle": "Xin chào bằng mọi ngôn ngữ",
+		"locales": "Ngôn ngữ",
+		"currentlyRendered": "hiện đang được hiển thị",
+		"complete": "hoàn thành!",
+		"pendingPrefix": "đang chờ chạy tài liệu dịch tiếp theo.",
+		"viewWorkflowRuns": "Xem các lần chạy quy trình làm việc",
+		"filter": "Bộ lọc",
+		"filterPlaceholder": "Tìm kiếm theo ngôn ngữ, mã hoặc tên bản địa...",
+		"source": "Nguồn",
+		"machineTranslations": "Bản dịch máy",
+		"translationPending": "Đang chờ dịch — mở một lần chạy dịch tài liệu.",
+		"noLocales": "Không có ngôn ngữ nào khớp với bộ lọc đó.",
+		"howItWorks": "Cách hoạt động"
+	},
+	"contributing": {
+		"title": "Đóng góp",
+		"eyebrow": "Mã nguồn mở",
+		"lede": "Báo cáo lỗi, yêu cầu tính năng và yêu cầu kéo đều được hoan nghênh. Hành động đủ nhỏ để thân thiện với những người đóng góp lần đầu."
+	},
+	"changelog": {
+		"title": "Nhật ký thay đổi",
+		"eyebrow": "Lịch sử",
+		"lede": "Tóm tắt cấp cao về các bản phát hành. Nhật ký thay đổi chính tắc, có thẩm quyền nằm trong CHANGELOG.md trong kho lưu trữ."
+	}
+}

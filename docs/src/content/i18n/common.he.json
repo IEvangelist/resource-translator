@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "מתרגם משאבים",
+		"defaultDescription": "תיעוד עבור פעולת GitHub של Resource Translator — תרגום אוטומטי של קבצי משאבים באמצעות Azure AI Translator.",
+		"homeLabel": "מתרגם משאבים — בית"
+	},
+	"skipToContent": "דלג לתוכן",
+	"drawer": {
+		"open": "ניווט פתוח",
+		"close": "ניווט סגור",
+		"title": "ניווט"
+	},
+	"header": {
+		"search": "תיעוד חיפוש",
+		"searchPlaceholder": "חיפוש בתיעוד...",
+		"toggleTheme": "נושא החלפה",
+		"githubRepository": "מאגר GitHub",
+		"language": "שפה"
+	},
+	"search": {
+		"title": "תיעוד חיפוש",
+		"results": "תוצאות חיפוש",
+		"placeholder": "חפש מאמרים, חלקים, מתכונים...",
+		"close": "חיפוש צמוד",
+		"idleTitle": "חפש במסמכים",
+		"idleHelp": "מצא מאמרים לפי נושא, פורמט קובץ, אפשרות קונפיגורציה או מתכון. השתמש {up} {down} לניווט, {enter} לפתיחה.",
+		"loading": "מחפש...",
+		"empty": "אין תוצאות. נסה מילת מפתח אחרת.",
+		"error": "אינדקס החיפוש לא זמין במפתחים. הרץ בניית ייצור."
+	},
+	"toc": {
+		"title": "בעמוד זה"
+	},
+	"pager": {
+		"ariaLabel": "מאמר",
+		"previous": "קודם",
+		"next": "הבא"
+	},
+	"backToTop": {
+		"label": "גלול למעלה"
+	},
+	"footer": {
+		"docs": "מסמכים",
+		"project": "פרויקט",
+		"community": "קהילה",
+		"projectLinksAria": "קישורים לפרויקט",
+		"sourceAria": "הצג מקור ב-GitHub",
+		"marketplaceAria": "הצג ב-GitHub Marketplace",
+		"authorAria": "האתר של דיוויד פיין",
+		"taglinePrefix": "פעולה ב-GitHub שמתרגמת אוטומטית את קבצי המשאבים שלך, בנויה מעל הרשמי",
+		"taglineMiddle": "SDK מתוך",
+		"copyrightPrefix": "שוחרר תחת",
+		"builtWith": "נבנה עם"
+	}
+}

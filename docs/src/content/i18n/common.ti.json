@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "ምንጪ ተርጓሚ",
+		"defaultDescription": "ሰነዳት ንተርጓሚ ምንጪ GitHub Action — ብAzure AI Translator ኣቢልካ ናይ ምንጪ ፋይላት ብማሽን ምትርጓም።",
+		"homeLabel": "ምንጪ ተርጓሚ — ቤት"
+	},
+	"skipToContent": "ናብ ትሕዝቶ ዝለል",
+	"drawer": {
+		"open": "ክፉት ዳህሳስ",
+		"close": "ዳህሳስ ምዕጻው",
+		"title": "ዳህሳስ"
+	},
+	"header": {
+		"search": "ሰነዳት ድለዩ",
+		"searchPlaceholder": "ናይ ድለ ሰነዳት...",
+		"toggleTheme": "ፍረ ነገር ምቕያር",
+		"githubRepository": "መኽዘን GitHub",
+		"language": "ቋንቋ"
+	},
+	"search": {
+		"title": "ሰነዳት ድለዩ",
+		"results": "ውጽኢት ምንዳይ",
+		"placeholder": "ዓንቀጻት ክፋላት ኣሰራርሓ ድለ...",
+		"close": "ምድላይ ምዕጻው",
+		"idleTitle": "ሰነዳት ድለዩ",
+		"idleHelp": "ዓንቀጻት ብርእሰ ነገር ቅርጺ ፋይል ኣማራጺ ኣሰራርሓ ወይ ኣሰራርሓ ርኸብ። ንምጕዓዝ {enter} ንምኽፋት {up} {down} ተጠቐም።",
+		"loading": "ምድላይ...",
+		"empty": "ዋላ ሓንቲ ፍረ የብሉን። ካልእ ቁልፍ ቃል ፈትን።",
+		"error": "ናይ ምንዳይ መሐበሪ ኣብ ዴቪ ኣይርከብን እዩ። ናይ ምህርቲ ህንጸት ኣካይዱ።"
+	},
+	"toc": {
+		"title": "ኣብዚ ገጽ"
+	},
+	"pager": {
+		"ariaLabel": "ዓንቀጽ",
+		"previous": "ቀዳሚ",
+		"next": "ቀጺሉ"
+	},
+	"backToTop": {
+		"label": "ናብ ላዕሊ ሸብልል"
+	},
+	"footer": {
+		"docs": "ሰነዳት",
+		"project": "ፕሮጀክት",
+		"community": "ማሕበረሰብ",
+		"projectLinksAria": "ሊንክ ፕሮጀክት",
+		"sourceAria": "ምንጪ ኣብ GitHub ርአ",
+		"marketplaceAria": "ኣብ GitHub Marketplace ርአ",
+		"authorAria": "ናይ ዴቪድ ፓይን ወብ ሳይት",
+		"taglinePrefix": "ኣብ ልዕሊ እቲ ወግዓዊ ሓበሬታ እተሃንጸ ናይ ምንጪ ፋይላትካ ብኡንብኡ ዚትርጕም GitHub ተግባር",
+		"taglineMiddle": "ኤስዲኬ ካብ",
+		"copyrightPrefix": "ኣብ ትሕቲ ሕጊ ተፈቲሑ",
+		"builtWith": "ብተሃኒጹ"
+	}
+}

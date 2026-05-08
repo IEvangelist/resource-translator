@@ -1,0 +1,28 @@
+{
+	"sections": {
+		"start": "Počni ovdje",
+		"reference": "Reference",
+		"showcase": "Showcase",
+		"project": "Projekat"
+	},
+	"items": {
+		"overview": "Pregled",
+		"gettingStarted": "Početak",
+		"configuration": "Konfiguracija",
+		"inputs": "Ulazi i izlazi",
+		"formats": "Formati datoteka",
+		"recipes": "Recepti",
+		"faq": "Najčešće postavljena pitanja",
+		"translations": "Prijevodi",
+		"contributing": "Doprinos",
+		"changelog": "Changelog"
+	},
+	"community": {
+		"reportBug": "Prijavite grešku",
+		"requestFeature": "Zatražite funkciju",
+		"discussions": "Diskusije",
+		"securityPolicy": "Sigurnosna politika",
+		"codeOfConduct": "Kodeks ponašanja",
+		"license": "MIT licenca"
+	}
+}

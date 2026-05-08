@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Přełožowar resursow",
+		"defaultDescription": "Dokumentacija za Resource Translator GitHub Action — awtomatizowane mašinelne přełožowanje resursowych datajow přez Azure AI-přełožowar.",
+		"homeLabel": "Přełožowar resursow — doma"
+	},
+	"skipToContent": "Přeskočić na wobsah",
+	"drawer": {
+		"open": "Wočiń nawigaciju",
+		"close": "Bliska nawigacija",
+		"title": "Nawigacija"
+	},
+	"header": {
+		"search": "Pytanska dokumentacija",
+		"searchPlaceholder": "Pytanska dokumentacija ...",
+		"toggleTheme": "Toggle theme",
+		"githubRepository": "GitHub repository",
+		"language": "Rěč"
+	},
+	"search": {
+		"title": "Pytanska dokumentacija",
+		"results": "Wuslědki pytanja",
+		"placeholder": "Pytajće artikle, wotrězki, recepty …",
+		"close": "Zawrěj pytać",
+		"idleTitle": "Pytajće w dokumentach",
+		"idleHelp": "Namakajće artikle po temje, datajowym formje, konfigurowanskej móžnosći abo recepće. Wužiwaj {up} {down} za nawigaciju, {enter} za wočinjenje.",
+		"loading": "Pytać …",
+		"empty": "Žane wuslědki. Spytaj druhe hesło.",
+		"error": "Search index njeje w dev. Wučiń produkciski twar."
+	},
+	"toc": {
+		"title": "Na tutej stronje"
+	},
+	"pager": {
+		"ariaLabel": "Nastawk",
+		"previous": "Prjedawši",
+		"next": "Přichodne"
+	},
+	"backToTop": {
+		"label": "Suwaj so na horje"
+	},
+	"footer": {
+		"docs": "Doktorojo",
+		"project": "Projekt",
+		"community": "Zhromadnosć",
+		"projectLinksAria": "Projektowe linki",
+		"sourceAria": "View source on GitHub",
+		"marketplaceAria": "View on GitHub Marketplace",
+		"authorAria": "Internetna strona Davida Pinea",
+		"taglinePrefix": "GitHub-akcija, kotraž waše resursowe dataje awtomatisce přełožuje, natwarjena na oficialnym",
+		"taglineMiddle": "SDK z",
+		"copyrightPrefix": "Wozjewjene pod",
+		"builtWith": "Natwarjene z"
+	}
+}

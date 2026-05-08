@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Hulpbronvertaler",
+		"description": "Maak masjien-vertaalde pull requests oop vir hulpbronlêers in enige repo, in enige formaat.",
+		"badge": "v3.0 — Node 24, repo-konfigurasie, woordelys, droë loop",
+		"headlinePrefix": "Lokaliseer jou repo op",
+		"headlineAccent": "elke toewyding.",
+		"lede": "Resource Translator maak masjien-vertaalde pull requests vir jou hulpbronlêers oop met Azure AI Translator via die amptelike SDK — geen ekstra dienste nie, net 'n werkvloei.",
+		"primaryCta": "Begin",
+		"secondaryCta": "Star op GitHub",
+		"supports": "Ondersteunings",
+		"builtForShipping": "Gebou vir skeepsvaart",
+		"workflowTitle": "Vertaling as 'n werkvloei, nie 'n las nie.",
+		"workflowBody": "Plaas die aksie in jou bestaande CI, wys dit na Azure AI Translator, en laat jou repo elke taal praat wat jy teiken.",
+		"stats": {
+			"audit": "0 npm-ouditkwessies",
+			"tests": "150 toetse",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Ses lêerformate",
+				"body": "Rondreise .resx, .xliff, .po, .json, .ini, en .restext met byte-stabiele formatering."
+			},
+			"config": {
+				"title": "Repo-vlak konfigurasie",
+				"body": "Sit 'n .github/resource-translator.yml in om globs, woordelyste en Custom Translator-kategorieë in te sluit."
+			},
+			"glossary": {
+				"title": "Woordelys-bewus",
+				"body": "Sluit handelsname en produkterme met slim woordgrens-regex wat C++, .NET en ander hanteer."
+			},
+			"dryRun": {
+				"title": "Droë lopie + sagte mislukking",
+				"body": "Kyk na vertalings sonder om lêers te skryf, of wys elke fout as 'n waarskuwing terwyl jy itereer."
+			},
+			"outputs": {
+				"title": "PR-vriendelike uitsette",
+				"body": "Opsomming-titel, opsomming-besonderhede, en het-nuwe-vertalings pas direk in skep-trek-versoek."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Gebou op @azure-rest/ai-translation-text + @azure/core-rest-pipeline — outomatiese herpogings op 408/429/5xx, geen handgerolde HTTP nie. Esbuild-gebundel, oudit-skoon."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Begin",
+		"eyebrow": "Opstelling",
+		"lede": "Voeg 'n werkvloeilêer by, wys dit na jou Azure AI Vertaler-geloofsbriewe, en die aksie — gebou op Microsoft se amptelike @azure-rest/ai-translation-text SDK — sal die repo skandeer vir brontaal-hulpbronlêers en vertaalde broers en susters uitstuur.",
+		"steps": {
+			"provision": {
+				"title": "Voorsiening van 'n Azure AI Translator-hulpbron",
+				"body": "Skep 'n Azure KI-vertalerhulpbron in die Azure-portaal, en stoor dan die volgende as GitHub-bewaarplekgeheime sodat die werkvloei dit kan lees:",
+				"key": "Die intekensleutel vir die hulpbron.",
+				"endpoint": "die streek-eindpunt URL.",
+				"region": "die hulpbron se Azure-streek."
+			},
+			"workflow": {
+				"title": "Voeg die werkvloei by",
+				"body": "Skep .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Commit 'n bronbronlêer",
+				"body": "Hulpbronlêers gebruik die Naam. .<sourceLocale> <ext> konvensie. Byvoorbeeld, Greetings.en.resx word Greetings.fr.resx, Greetings.de.resx, ensovoorts na 'n loop."
+			},
+			"output": {
+				"title": "Inspekteer die uitset",
+				"body": "Sodra die werkvloei voltooi is, stel die aksie drie uitsette bloot wat jy in 'n PR-beskrywing kan bedraad: opsomming-titel, opsomming-besonderhede, en het-nuwe-vertalings. Dit skryf ook 'n Markdown-opsomming in die werkbladsy via core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Volgende stappe",
+			"configuration": "Konfigureer repo-vlak verstekinstellings met .github/resource-translator.yml.",
+			"recipes": "Sien resepte vir monorepos, pasgemaakte woordelys, en Pasgemaakte Vertaler-kategorieë."
+		}
+	},
+	"configuration": {
+		"title": "Konfigurasie",
+		"eyebrow": "YAML",
+		"heroTitle": "Bewaarplekkonfigurasie",
+		"lede": "Express verstek een keer in .github/resource-translator.yml en laat elke werkvloei dit erf. Aksie-insette wen altyd wanneer albei voorsien word."
+	},
+	"inputs": {
+		"title": "Insette en uitsette",
+		"eyebrow": "Verwysing",
+		"lede": "Elke inset word ook in die opsionele repo konfigurasielêer aanvaar. Wanneer albei gestel is, wen die aksie-invoer."
+	},
+	"formats": {
+		"title": "Lêerformate",
+		"eyebrow": "Verwysing",
+		"heroTitle": "Ondersteunde lêerformate",
+		"lede": "Ses ronde-trippbare hulpbronformate. Die aksie lees elke bron-lokasielêer, vertaal die waardes, en skryf 'n broer per teikenlokasie."
+	},
+	"recipes": {
+		"title": "Resepte",
+		"eyebrow": "Kookboek",
+		"lede": "Algemene patrone vir versending van vertalings: monorepos, woordelys, pasgemaakte kategorieë, droë lopies, en toonbeheer."
+	},
+	"faq": {
+		"title": "VGV",
+		"eyebrow": "Help",
+		"heroTitle": "Gereelde vrae",
+		"lede": "Vinnige antwoorde op die vrae wat die meeste opduik wanneer jy die aksie aanneem."
+	},
+	"translations": {
+		"title": "Vertalings",
+		"eyebrow": "Uitstalling",
+		"heroTitle": "Hallo in elke taal",
+		"locales": "Plekke",
+		"currentlyRendered": "tans gerender",
+		"complete": "Voltooi!",
+		"pendingPrefix": "Hangende die volgende vertaal-dokumentasie-lopie.",
+		"viewWorkflowRuns": "Kyk na werkvloei-uitvoerings",
+		"filter": "Filter",
+		"filterPlaceholder": "Soek volgens taal, kode of inheemse naam...",
+		"source": "Bron",
+		"machineTranslations": "Masjienvertalings",
+		"translationPending": "Vertaling hangende — open 'n vertaal-dokumente-loop.",
+		"noLocales": "Geen plekke pas by daardie filter nie.",
+		"howItWorks": "Hoe dit werk"
+	},
+	"contributing": {
+		"title": "Bydraers",
+		"eyebrow": "Oopbron",
+		"lede": "Foutverslae, funksieversoeke en pull requests is almal welkom. Die aksie is klein genoeg om vriendelik te wees vir eerstekeer-bydraers."
+	},
+	"changelog": {
+		"title": "Wisselregister",
+		"eyebrow": "Geskiedenis",
+		"lede": "Hoëvlak-opsomming van vrystellings. Die kanonieke, gesaghebbende veranderingslogboek leef in CHANGELOG.md in die bewaarplek."
+	}
+}

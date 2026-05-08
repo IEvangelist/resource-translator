@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Ressource-Übersetzer",
+		"defaultDescription": "Dokumentatioun fir de Resource Translator GitHub Action — automatiséiert maschinell Iwwersetzung vu Ressourcedateien iwwer Azure AI Translator.",
+		"homeLabel": "Ressource-Übersetzer — Heem"
+	},
+	"skipToContent": "Spréng op de Contenu",
+	"drawer": {
+		"open": "Oppe Navigatioun",
+		"close": "Zousätzlech Navigatioun",
+		"title": "Navigatioun"
+	},
+	"header": {
+		"search": "Sich Dokumentatioun",
+		"searchPlaceholder": "Sich Dokumentatioun...",
+		"toggleTheme": "Thema ëmschalten",
+		"githubRepository": "GitHub Repository",
+		"language": "Sprooch"
+	},
+	"search": {
+		"title": "Sich Dokumentatioun",
+		"results": "Sichresultater",
+		"placeholder": "Sich Artikelen, Sektiounen, Rezepter...",
+		"close": "Sich no",
+		"idleTitle": "Sich an den Dokumenter",
+		"idleHelp": "Fannt Artikelen no Thema, Dateiformat, Konfiguratiounsoptioun oder Rezept. Benotz {up} {down} fir ze navigéieren, {enter} fir opzemaachen.",
+		"loading": "Sichen...",
+		"empty": "Keng Resultater. Probéier e anert Schlësselwuert.",
+		"error": "Den Sichindex ass net am Dev verfügbar. Laf eng Produktiouns-Build."
+	},
+	"toc": {
+		"title": "Op dëser Säit"
+	},
+	"pager": {
+		"ariaLabel": "Artikel",
+		"previous": "Virdrun",
+		"next": "Nächst"
+	},
+	"backToTop": {
+		"label": "Scroll no uewen"
+	},
+	"footer": {
+		"docs": "Docs",
+		"project": "Projet",
+		"community": "Gemeinschaft",
+		"projectLinksAria": "Projet-Linken",
+		"sourceAria": "Quell op GitHub kucken",
+		"marketplaceAria": "Usiicht op GitHub Marketplace",
+		"authorAria": "David Pine seng Websäit",
+		"taglinePrefix": "Eng GitHub-Aktioun, déi Är Ressourcedateien automatesch iwwersetzt, op der offizieller Basis gebaut",
+		"taglineMiddle": "SDK vun",
+		"copyrightPrefix": "Fräigelooss ënner dem",
+		"builtWith": "Gebaut mat"
+	}
+}

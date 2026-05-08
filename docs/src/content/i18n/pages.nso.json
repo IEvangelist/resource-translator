@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Resource Translator",
+		"description": "Open machine-translated pull requests for resource files in any repo, in any format.",
+		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "Localize your repo on",
+		"headlineAccent": "Boitlamo bjo bongwe le bjo bongwe.",
+		"lede": "Resource Translator opens machine-translated pull requests for your resource files using Azure AI Translator via the official SDK — no extra services, just a workflow.",
+		"primaryCta": "Thoma",
+		"secondaryCta": "Naledi go GitHub",
+		"supports": "Thekgo",
+		"builtForShipping": "E agilwe bakeng sa dikepe",
+		"workflowTitle": "Phetolelo bjalo ka mošomo wa mošomo, e sego modumo.",
+		"workflowBody": "Drop the action into your existing CI, point it at Azure AI Translator, and let your repo speak every language you target.",
+		"stats": {
+			"audit": "0 npm-audit issues",
+			"tests": "Diteko tše 150",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Difomete tše tshela tša faele",
+				"body": "Round-trips .resx, .xliff, .po, .json, .ini, and .restext with byte-stable formatting."
+			},
+			"config": {
+				"title": "Repo-level config",
+				"body": "Drop a .github/resource-translator.yml for include globs, glossaries, and Custom Translator categories."
+			},
+			"glossary": {
+				"title": "Glossary-aware",
+				"body": "Tswalela maina a ditšweletšwa le mantšu a setšweletšwa ka regex ya bohlale yeo e šomago ka C++, .NET, le bagwera."
+			},
+			"dryRun": {
+				"title": "Go Go Gadget + Soft-Fail",
+				"body": "Preview translations without writing files, or surface every error as a warning while you iterate."
+			},
+			"outputs": {
+				"title": "Dipoelo tša PR",
+				"body": "summary-title, summary-details, and has-new-translations slot directly into create-pull-request."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Built on @azure-rest/ai-translation-text + @azure/core-rest-pipeline — automatic retries on 408/429/5xx, no hand-rolled HTTP. esbuild-bundled, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Go thoma",
+		"eyebrow": "Tlhomo",
+		"lede": "Oketša faele ya tshepedišo, e šupe go Azure AI Translator ya gago, gomme tiro — yeo e agilwego godimo ga SDK ya semmušo ya Microsoft ya @azure-rest/ai-translation-text — e tla sekaseka repo ya difaele tša methopo ya polelo ya mothopo gomme ya ntšha bana babo rena bao ba fetoletšwego.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Create an Azure AI Translator resource in the Azure portal, then store the following as GitHub repository secrets so the workflow can read them:",
+				"key": "Senotlelo sa sengwalwa sa sengwalwa.",
+				"endpoint": "Lego Ninjago Endpoint URL",
+				"region": "Selete sa Azure."
+			},
+			"workflow": {
+				"title": "Add the workflow",
+				"body": "Create .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Commit a source resource file",
+				"body": "Ditaodišosengwalo tša Sepedi di diriša leina. <sourceLocale>. <ext> kopano. Go fa mohlala, Greetings.en.resx e ba Greetings.fr.resx, Greetings.de.resx, bjalobjalo."
+			},
+			"output": {
+				"title": "Hlahloba setšweletšwa",
+				"body": "Ge mošomo o fedile, tiro e utolla ditšweletšwa tše tharo tšeo o ka di tsenelago ka tlhalošong ya PR: summary-title, summary-details, and has-new-translations. It also writes a Markdown summary into the job page via core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Dikgato tše di latelago",
+			"configuration": "Rulaganya diphošo tša maemo a repo ka .github/resource-translator.yml.",
+			"recipes": "See recipes for monorepos, custom glossaries, and Custom Translator categories."
+		}
+	},
+	"configuration": {
+		"title": "Sebopego",
+		"eyebrow": "YAML",
+		"heroTitle": "Sebopego sa polokelo",
+		"lede": "Express defaults once in .github/resource-translator.yml and let every workflow inherit them. Action inputs always win when both are given."
+	},
+	"inputs": {
+		"title": "Inputs & outputs",
+		"eyebrow": "Tšhupetšo",
+		"lede": "Every input is also accepted in the optional repo config file. Ge bobedi bja tšona di phethilwe, go na le dithulaganyo tše pedi tšeo di tšweleditšwego."
+	},
+	"formats": {
+		"title": "Difomete tša faele",
+		"eyebrow": "Tšhupetšo",
+		"heroTitle": "Difomete tša faele tše di thekgwago",
+		"lede": "Difomete tše tshela tša methopo ya go dikologa. The action reads each source-locale file, translates the values, and writes a sibling per target locale."
+	},
+	"recipes": {
+		"title": "Recipes",
+		"eyebrow": "Puku ya go apea",
+		"lede": "Common patterns for shipping translations: monorepos, glossaries, custom categories, dry runs, and tone control."
+	},
+	"faq": {
+		"title": "Dipotšišo tša go botšišwa gantši",
+		"eyebrow": "Thušo",
+		"heroTitle": "Dipotšišo tšeo di botšišwago kgafetšakgafetša",
+		"lede": "Araba dipotšišo tše di botšišwago gantšintši ge o thoma go dira bjalo."
+	},
+	"translations": {
+		"title": "Diphetolelo",
+		"eyebrow": "Pontšho",
+		"heroTitle": "Goodbye Moka",
+		"locales": "Mafelo",
+		"currentlyRendered": "Bjale e fetotšwe",
+		"complete": "E feletše!",
+		"pendingPrefix": "Pending the next translate-docs run.",
+		"viewWorkflowRuns": "View workflow runs",
+		"filter": "Filter",
+		"filterPlaceholder": "Ngwala ka polelo, leina la setšo goba leina la setšo.",
+		"source": "Mothopo",
+		"machineTranslations": "Diphetolelo tša metšhene",
+		"translationPending": "Translation pending — open a translate-docs run.",
+		"noLocales": "No locales match that filter.",
+		"howItWorks": "Ka moo se se šomago ka gona"
+	},
+	"contributing": {
+		"title": "Go tsenya letsogo",
+		"eyebrow": "Mothopo wo o bulegilego",
+		"lede": "Dipego tša diphošo, dikgopelo tša dikarolwana le dikgopelo tša go goga ka moka di a amogelwa. Tiragalo ye ke ye nnyane go lekana go ba le segwera go bao ba kgathago tema la mathomo."
+	},
+	"changelog": {
+		"title": "Changelog",
+		"eyebrow": "Histori",
+		"lede": "Kakaretšo ya ditaodišosengwalo tša Sepedi. The canonical, authoritative changelog lives in CHANGELOG.md in the repository."
+	}
+}

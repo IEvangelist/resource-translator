@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Forrásfordító",
+		"defaultDescription": "Dokumentáció a Resource Translator GitHub Action számára — automatizált gépi fordítás az erőforrás-fájlok Azure AI Translator segítségével.",
+		"homeLabel": "Forrásfordító — kezdőlap"
+	},
+	"skipToContent": "Ugrás a tartalomra",
+	"drawer": {
+		"open": "Megnyitott navigáció",
+		"close": "Közeli navigáció",
+		"title": "Navigáció"
+	},
+	"header": {
+		"search": "Keresési dokumentáció",
+		"searchPlaceholder": "Keresési dokumentáció...",
+		"toggleTheme": "Kapcsoló téma",
+		"githubRepository": "GitHub repository",
+		"language": "Nyelv"
+	},
+	"search": {
+		"title": "Keresési dokumentáció",
+		"results": "Keresési eredmények",
+		"placeholder": "Keress cikkeket, szekciókat, recepteket...",
+		"close": "Szoros keresés",
+		"idleTitle": "Keress a dokumentumokban",
+		"idleHelp": "Keress cikkeket témá, fájlformátum, beállítási opció vagy recept szerint. Használj {up} {down} a navigáláshoz, {enter} a megnyitáshoz.",
+		"loading": "Keresek...",
+		"empty": "Nincs eredmény. Próbálj ki más kulcsszót.",
+		"error": "A keresési index fejlesztésben nem érhető el. Indíts egy produkciós buildet."
+	},
+	"toc": {
+		"title": "Ezen az oldalon"
+	},
+	"pager": {
+		"ariaLabel": "Cikk",
+		"previous": "Korábbi",
+		"next": "Következő"
+	},
+	"backToTop": {
+		"label": "Görgess a tetejére"
+	},
+	"footer": {
+		"docs": "Dokumentumok",
+		"project": "Projekt",
+		"community": "Közösség",
+		"projectLinksAria": "Projekt linkek",
+		"sourceAria": "Forrás megtekintése a GitHubon",
+		"marketplaceAria": "View on GitHub Marketplace",
+		"authorAria": "David Pine honlapja",
+		"taglinePrefix": "Egy GitHub Akció, amely automatikusan lefordítja az erőforrás fájljaidat, a hivatalos rendszer tetejére építve",
+		"taglineMiddle": "SDK",
+		"copyrightPrefix": "Kiadás a",
+		"builtWith": "Építés"
+	}
+}

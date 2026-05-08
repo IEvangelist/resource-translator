@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Tauturu no te iriti parau",
+		"defaultDescription": "Documentation for the Resource Translator GitHub Action — automated machine translation of resource files via Azure AI Translator.",
+		"homeLabel": "Tauturu no te iriti parau — home"
+	},
+	"skipToContent": "Skip to content",
+	"drawer": {
+		"open": "Open navigation",
+		"close": "Close navigation",
+		"title": "Navigation"
+	},
+	"header": {
+		"search": "Imi i te mau parau",
+		"searchPlaceholder": "A imi i te mau parau...",
+		"toggleTheme": "Taui i te tumu parau",
+		"githubRepository": "Haaputuraa GitHub",
+		"language": "Reo"
+	},
+	"search": {
+		"title": "Imi i te mau parau",
+		"results": "Te mau hopearaa o te ma'imiraa",
+		"placeholder": "A imi i te mau papa'iraa, te mau tuhaa, te mau maa...",
+		"close": "A tapiri i te ma'imiraa",
+		"idleTitle": "A imi i te mau parau",
+		"idleHelp": "A imi i te mau papa'iraa na roto i te tumu parau, te faanahoraa o te putu'ite, te faanahoraa e aore râ te rave'a. A faaohipa i te {up} {down} no te faatere, {enter} no te iriti i te reira.",
+		"loading": "Te ma'imiraa...",
+		"empty": "Aita e hopearaa. A tamata i te tahi atu ta'o.",
+		"error": "Aita te faahororaa ma'imiraa e vai ra i roto i te dev. A faatere i te hoê hamaniraa."
+	},
+	"toc": {
+		"title": "I ni'a i teie api"
+	},
+	"pager": {
+		"ariaLabel": "Papa'iraa",
+		"previous": "Na mua a'e",
+		"next": "I muri iho"
+	},
+	"backToTop": {
+		"label": "Haere i ni'a"
+	},
+	"footer": {
+		"docs": "Te mau parau apî",
+		"project": "Opuaraa",
+		"community": "Te huiraatira",
+		"projectLinksAria": "Te mau tu'atiraa no te opuaraa",
+		"sourceAria": "A hi'o i te rave'a i ni'a i te GitHub",
+		"marketplaceAria": "A hi'o i ni'a i te GitHub Marketplace",
+		"authorAria": "Te tahua itenati a David Pine",
+		"taglinePrefix": "Te hoê ohipa GitHub o te iriti i ta outou mau putu'ite rave'a, tei hamanihia i ni'a i te",
+		"taglineMiddle": "SDK no roto mai i te",
+		"copyrightPrefix": "Haamauruuruhia i raro a'e i te",
+		"builtWith": "Hamanihia e"
+	}
+}

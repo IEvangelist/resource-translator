@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "مترجم الموارد",
+		"defaultDescription": "توثيق إجراء مترجم الموارد في GitHub — الترجمة الآلية الآلية لملفات الموارد عبر Azure AI Translator.",
+		"homeLabel": "مترجم الموارد — الصفحة الرئيسية"
+	},
+	"skipToContent": "تخطي إلى المحتوى",
+	"drawer": {
+		"open": "التنقل المفتوح",
+		"close": "إغلاق التنقل",
+		"title": "الملاحة"
+	},
+	"header": {
+		"search": "توثيق البحث",
+		"searchPlaceholder": "وثائق البحث...",
+		"toggleTheme": "تبديل الموضوع",
+		"githubRepository": "مستودع GitHub",
+		"language": "اللغة"
+	},
+	"search": {
+		"title": "توثيق البحث",
+		"results": "نتائج البحث",
+		"placeholder": "ابحث عن المقالات، الأقسام، الوصفات...",
+		"close": "بحث دقيق",
+		"idleTitle": "ابحث في الوثائق",
+		"idleHelp": "ابحث عن المقالات حسب الموضوع، أو تنسيق الملف، أو خيار التكوين، أو الوصفة. استخدم {up} {down} للتنقل، {enter} لفتحه.",
+		"loading": "بحث...",
+		"empty": "لا توجد نتائج. جرب كلمة مفتاحية مختلفة.",
+		"error": "فهرس البحث غير متوفر في التطوير. شغل بناء إنتاجي."
+	},
+	"toc": {
+		"title": "في هذه الصفحة"
+	},
+	"pager": {
+		"ariaLabel": "المقال",
+		"previous": "السابق",
+		"next": "التالي"
+	},
+	"backToTop": {
+		"label": "التمرير إلى الأعلى"
+	},
+	"footer": {
+		"docs": "وثائق",
+		"project": "المشروع",
+		"community": "المجتمع",
+		"projectLinksAria": "روابط المشاريع",
+		"sourceAria": "عرض المصدر على GitHub",
+		"marketplaceAria": "عرض على سوق GitHub",
+		"authorAria": "موقع ديفيد باين",
+		"taglinePrefix": "إجراء على GitHub يترجم ملفات الموارد تلقائيا، مبنيا فوق الملف الرسمي",
+		"taglineMiddle": "SDK من",
+		"copyrightPrefix": "تم إصداره تحت",
+		"builtWith": "تم بناؤه مع"
+	}
+}

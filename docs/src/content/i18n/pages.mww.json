@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Tus Neeg Txhais Lus Resource",
+		"description": "Qhib tshuab-txhais rub thov rau cov ntaub ntawv peev txheej hauv txhua qhov repo, hauv txhua hom ntawv.",
+		"badge": "v3.0 — Node 24, repo config, glossary, qhuav khiav",
+		"headlinePrefix": "Localize koj repo rau",
+		"headlineAccent": "txhua yam cog lus.",
+		"lede": "Resource Translator qhib lub tshuab-txhais rub thov rau koj cov ntaub ntawv peev txheej siv Azure AI Translator los ntawm SDK raug cai — tsis muaj kev pabcuam ntxiv, tsuas yog kev ua haujlwm.",
+		"primaryCta": "Pib",
+		"secondaryCta": "Lub hnub qub ntawm GitHub",
+		"supports": "Kev txhawb nqa",
+		"builtForShipping": "Ua rau kev xa khoom",
+		"workflowTitle": "Kev txhais lus raws li kev ua haujlwm, tsis yog kev ua haujlwm.",
+		"workflowBody": "Tso qhov kev txiav txim rau hauv koj CI uas twb muaj lawm, taw tes rau Azure AI Tus Neeg Txhais Lus, thiab cia koj lub repo hais txhua hom lus koj lub hom phiaj.",
+		"stats": {
+			"audit": "0 npm-audit teeb meem",
+			"tests": "150 kev xeem",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Rau cov ntaub ntawv tawm tswv yim",
+				"body": "Round-trips .resx, .xliff, .po, .json, .ini thiab .restext nrog byte-ruaj khov formatting."
+			},
+			"config": {
+				"title": "Repo-qib config",
+				"body": "Poob ib qho .github / resource-translator.yml rau suav nrog globs, glossaries, thiab Custom Translator pawg."
+			},
+			"glossary": {
+				"title": "Glossary-paub txog",
+				"body": "Xauv cov npe lag luam thiab cov ntsiab lus khoom lag luam nrog cov lus ntse-ciam teb regex uas tuav C ++, .NET thiab phooj ywg."
+			},
+			"dryRun": {
+				"title": "Qhuav-khiav + mos-tsis ua hauj lwm",
+				"body": "Saib ua ntej translations tsis sau cov ntaub ntawv, los yog nto txhua qhov yuam kev raws li ib tug ceeb toom thaum koj iterate."
+			},
+			"outputs": {
+				"title": "PR-phooj ywg tso zis",
+				"body": "ntsiab lus-title, ntsiab lus-cov ntsiab lus, thiab muaj-tshiab-txhais lus qhov ncaj qha rau hauv tsim-rub-thov."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Ua rau @azure-so / ai-translation-text + @azure / core-so-pipeline — tsis siv neeg rov sim ntawm 408/429/5xx, tsis muaj tes-dov HTTP. esbuild-bundled, audit-huv."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Pib",
+		"eyebrow": "Kev teeb tsa",
+		"lede": "Ntxiv ib tug workflow ntaub ntawv, taw tes rau koj Azure AI txhais lus cov ntawv pov thawj, thiab qhov kev txiav txim — ua nyob rau hauv Microsoft tus nom @azure-so / ai-translation-text SDK — yuav luam theej duab lub repo rau qhov chaw-lus resource ntaub ntawv thiab emit txhais cov kwv tij.",
+		"steps": {
+			"provision": {
+				"title": "Muab Azure AI Translator resource",
+				"body": "Tsim Azure AI Tus Neeg Txhais Lus cov peev txheej hauv Azure portal, tom qab ntawd khaws cov hauv qab no raws li GitHub repository secrets kom lub workflow tuaj yeem nyeem lawv:",
+				"key": "tus yuam sij subscription rau cov peev txheej.",
+				"endpoint": "lub cheeb tsam endpoint URL.",
+				"region": "cov peev txheej Azure cheeb tsam."
+			},
+			"workflow": {
+				"title": "Ntxiv cov workflow",
+				"body": "Tsim .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Cog lus ib qho ntaub ntawv peev txheej",
+				"body": "Cov ntaub ntawv resource siv lub Npe. <sourceLocale>. <ext> rooj sib tham. Piv txwv li, Greetings.en.resx dhau los ua Greetings.fr.resx, Greetings.de.resx, thiab lwm yam tom qab khiav."
+			},
+			"output": {
+				"title": "Xyuas cov zis",
+				"body": "Thaum lub workflow tiav, qhov kev txiav txim exposes peb outputs koj yuav xaim rau hauv ib tug PR piav qhia: ntsiab lus-title, ntsiab lus-ntsiab lus thiab muaj-tshiab-txhais lus. Nws kuj sau ib tug Markdown ntsiab lus rau hauv txoj hauj lwm nplooj ntawv los ntawm core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Cov kauj ruam tom ntej",
+			"configuration": "Configure repo-theem defaults nrog .github/resource-translator.yml.",
+			"recipes": "Saib cov zaub mov txawv rau monorepos, kev cai glossaries thiab Custom Translator pawg."
+		}
+	},
+	"configuration": {
+		"title": "Kev teeb tsa",
+		"eyebrow": "YAML",
+		"heroTitle": "Repository configuration",
+		"lede": "Qhia defaults ib zaug hauv .github/resource-translator.yml thiab cia txhua qhov kev ua haujlwm tau txais lawv. Kev nqis tes ua inputs yeej yeej thaum ob qho tib si muab."
+	},
+	"inputs": {
+		"title": "Cov tswv yim & tso zis",
+		"eyebrow": "Reference",
+		"lede": "Txhua cov tswv yim kuj tau txais nyob rau hauv cov ntaub ntawv xaiv repo config. Thaum ob qho tib si tau teeb tsa, qhov kev txiav txim siab yeej yeej."
+	},
+	"formats": {
+		"title": "Cov ntaub ntawv tawm tswv yim",
+		"eyebrow": "Reference",
+		"heroTitle": "Txaus siab ua ntaub ntawv tawm tswv yim",
+		"lede": "Rau round-trippable peev txheej hom ntawv. Qhov kev nqis tes ua nyeem txhua qhov chaw-locale cov ntaub ntawv, txhais cov nqis, thiab sau ib tug kwv tij rau ib lub hom phiaj hauv zos."
+	},
+	"recipes": {
+		"title": "Cov zaub mov txawv",
+		"eyebrow": "Phau ntawv ua noj",
+		"lede": "Cov qauv feem ntau rau kev xa khoom txhais lus: monorepos, glossaries, kev cai pawg, khiav qhuav thiab tone tswj."
+	},
+	"faq": {
+		"title": "FAQ",
+		"eyebrow": "Pab",
+		"heroTitle": "Cov lus nug nquag nug",
+		"lede": "Cov lus teb ceev rau cov lus nug uas tuaj txog feem ntau thaum txais yuav qhov kev ua."
+	},
+	"translations": {
+		"title": "Kev txhais lus",
+		"eyebrow": "Nthuav tawm",
+		"heroTitle": "Nyob zoo hauv txhua hom lus",
+		"locales": "thaj chaw",
+		"currentlyRendered": "tam sim no rendered",
+		"complete": "tag nrho!",
+		"pendingPrefix": "tos tom ntej txhais lus-docs khiav.",
+		"viewWorkflowRuns": "Saib workflow khiav",
+		"filter": "lim",
+		"filterPlaceholder": "Tshawb nrhiav los ntawm hom lus, code, lossis haiv neeg lub npe...",
+		"source": "Tau qhov twg los",
+		"machineTranslations": "Tshuab txhais lus",
+		"translationPending": "Txhais lus tos — qhib ib tug txhais lus-docs khiav.",
+		"noLocales": "Tsis muaj locales phim ntawd lim.",
+		"howItWorks": "Qhov no ua haujlwm li cas"
+	},
+	"contributing": {
+		"title": "Pab Txhawb",
+		"eyebrow": "Qhib qhov chaw",
+		"lede": "Cov ntawv ceeb toom kab laum, kev thov tshwj xeeb, thiab rub thov yog txhua tus txais tos. Qhov kev txiav txim yog me me txaus los ua phooj ywg rau thawj lub sij hawm contributors."
+	},
+	"changelog": {
+		"title": "Kev hloov pauv",
+		"eyebrow": "Keeb Kwm",
+		"lede": "Cov ntsiab lus qib siab ntawm kev tso tawm. Lub canonical, authoritative changelog nyob rau hauv CHANGELOG.md nyob rau hauv lub repository."
+	}
+}

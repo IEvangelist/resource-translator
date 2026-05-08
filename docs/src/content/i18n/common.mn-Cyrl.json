@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Нөөцийн орчуулагч",
+		"defaultDescription": "Resource Translator GitHub Action-ийн баримт бичиг — Azure AI Translator-ээр ашиглан нөөцийн файлуудыг автоматжуулсан машин орчуулга.",
+		"homeLabel": "Нөөц орчуулагч — нүүр хуудас"
+	},
+	"skipToContent": "Агуулга руу шилжих",
+	"drawer": {
+		"open": "Нээлттэй навигаци",
+		"close": "Ойрхон навигаци",
+		"title": "Навигаци"
+	},
+	"header": {
+		"search": "Хайлтын баримт бичиг",
+		"searchPlaceholder": "Хайлтын баримт бичиг...",
+		"toggleTheme": "Toggle сэдэв",
+		"githubRepository": "GitHub репозитори",
+		"language": "Хэл"
+	},
+	"search": {
+		"title": "Хайлтын баримт бичиг",
+		"results": "Хайлтын үр дүн",
+		"placeholder": "Нийтлэл, хэсэг, жор хайх...",
+		"close": "Хайлт дуусах",
+		"idleTitle": "Баримт бичгийг хайх",
+		"idleHelp": "Сэдэв, файлын формат, тохиргооны сонголт эсвэл жороор нийтлэлүүдийг олж болно. Навигацид {up} {down}, {enter} нээхэд ашигла.",
+		"loading": "Хайж байна...",
+		"empty": "Үр дүн гараагүй. Өөр түлхүүр үгийг туршиж үз.",
+		"error": "Хайлтын индекс хөгжүүлэлтэд байхгүй. Үйлдвэрлэлийн барилга ажиллуул."
+	},
+	"toc": {
+		"title": "Энэ хуудсан дээр"
+	},
+	"pager": {
+		"ariaLabel": "Нийтлэл",
+		"previous": "Өмнөх",
+		"next": "Дараагийн"
+	},
+	"backToTop": {
+		"label": "Дээш гүйлгэх"
+	},
+	"footer": {
+		"docs": "Баримтат кинонууд",
+		"project": "Төсөл",
+		"community": "Нийгэмлэг",
+		"projectLinksAria": "Төслийн холбоосууд",
+		"sourceAria": "GitHub дээрх эх сурвалжийг үзэх",
+		"marketplaceAria": "GitHub Marketplace дээрх үзэмж",
+		"authorAria": "Дэвид Пайны вэбсайт",
+		"taglinePrefix": "Таны нөөцийн файлуудыг автоматаар орчуулдаг GitHub үйлдэл бөгөөд албан ёсны файлын дээр суурилсан",
+		"taglineMiddle": "SDK нь",
+		"copyrightPrefix": "Гарсан:",
+		"builtWith": "Баригдсан"
+	}
+}

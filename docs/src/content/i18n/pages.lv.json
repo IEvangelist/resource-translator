@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Resursu tulkotājs",
+		"description": "Atveriet mašīntulkotus resursu failu izvilkšanas pieprasījumus jebkurā repo, jebkurā formātā.",
+		"badge": "v3.0 - 24. mezgls, repo konfigurācija, glosārijs, sausā darbība",
+		"headlinePrefix": "Lokalizējiet savu repo",
+		"headlineAccent": "katru apņemšanos.",
+		"lede": "Resursu tulkotājs atver mašīntulkotus izvilkšanas pieprasījumus jūsu resursu failiem, izmantojot Azure AI Translator, izmantojot oficiālo SDK — bez papildu pakalpojumiem, tikai darbplūsmu.",
+		"primaryCta": "Darba sākšana",
+		"secondaryCta": "Zvaigzne vietnē GitHub",
+		"supports": "Atbalsta",
+		"builtForShipping": "Izstrādāts pārvadāšanai",
+		"workflowTitle": "Tulkošana kā darbplūsma, nevis darbs.",
+		"workflowBody": "Nometiet darbību savā esošajā CI, norādiet to uz Azure AI Translator un ļaujiet repo pēc pēc valodas runāt visās jūsu mērķauditorijas valodās.",
+		"stats": {
+			"audit": "0 NPM revīzijas jautājumi",
+			"tests": "150 testi",
+			"node": "Mezgls 20 / 22 / 24",
+			"sdk": "Oficiālais Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Seši failu formāti",
+				"body": "Turp un atpakaļ .resx, .xliff, .po, .json, .ini un .restext ar baitu stabilu formatējumu."
+			},
+			"config": {
+				"title": "Repo līmeņa konfigurācija",
+				"body": "Nometiet .github/resource-translator.yml, lai iekļautu globus, glosārijus un pielāgoto tulkotāju kategorijas."
+			},
+			"glossary": {
+				"title": "Glosārijs",
+				"body": "Bloķējiet zīmolu nosaukumus un produktu terminus, izmantojot viedo vārdu robežu regulāro izteiksmi, kas apstrādā C++, .NET un draugus."
+			},
+			"dryRun": {
+				"title": "Sausā darbība + mīksta neveiksme",
+				"body": "Priekšskatiet tulkojumus, nerakstot failus, vai parādiet katru kļūdu kā brīdinājumu atkārtošanas laikā."
+			},
+			"outputs": {
+				"title": "PR draudzīgi rezultāti",
+				"body": "summary-title, summary-details un has-new-translations slotu tieši create-pull-request."
+			},
+			"sdk": {
+				"title": "Oficiālais Azure SDK",
+				"body": "Veidots uz @azure-rest/ai-translation-text + @azure/core-rest-pipeline - automātiski atkārtoti mēģinājumi 408/429/5xx, bez ar roku velmēta HTTP. esbuild-komplekts, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Darba sākšana",
+		"eyebrow": "Iestatīšana",
+		"lede": "Pievienojiet darbplūsmas failu, norādiet to uz saviem Azure AI Translator akreditācijas datiem, un darbība, kas veidota uz Microsoft oficiālā @azure-rest/ai-translation-text SDK, skenēs repo avota valodas resursu failus un izstaros tulkotos brāļus un māsas.",
+		"steps": {
+			"provision": {
+				"title": "Azure AI tulkotāja resursa nodrošināšana",
+				"body": "Azure portālā izveidojiet Azure AI tulkotāja resursu, pēc tam saglabājiet tālāk norādītos datus kā GitHub repozitorija noslēpumus, lai darbplūsma tos varētu nolasīt.",
+				"key": "Resursa abonēšanas atslēga.",
+				"endpoint": "reģionālā galapunkta URL.",
+				"region": "resursa Azure reģions."
+			},
+			"workflow": {
+				"title": "Darbplūsmas pievienošana",
+				"body": "Izveidojiet .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Avota resursu faila apstiprināšana",
+				"body": "Resursu faili izmanto nosaukumu. <sourceLocale>. <ext> konvenciju. Piemēram, Greetings.lv.resx pēc skrējiena kļūst par Greetings.fr.resx, Greetings.de.resx utt."
+			},
+			"output": {
+				"title": "Pārbaudiet izeju",
+				"body": "Kad darbplūsma ir pabeigta, darbība atklāj trīs izejas, kuras varat savienot ar PR aprakstu: kopsavilkuma nosaukums, kopsavilkuma detaļas un jauni tulkojumi. Tas arī raksta Markdown kopsavilkumu darba lapā, izmantojot core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Turpmākie pasākumi",
+			"configuration": "Konfigurējiet repo līmeņa noklusējuma iestatījumus, izmantojot .github/resource-translator.yml.",
+			"recipes": "Skatiet monorepo, pielāgoto glosāriju un pielāgoto tulkotāju kategoriju receptes."
+		}
+	},
+	"configuration": {
+		"title": "Konfigurācija",
+		"eyebrow": "JAMLS",
+		"heroTitle": "Repozitorija konfigurācija",
+		"lede": "Vienreiz izsakiet noklusējuma iestatījumus .github/resource-translator.yml un ļaujiet katrai darbplūsmai tos mantot. Darbības ieguldījumi vienmēr uzvar, ja tiek nodrošināti abi."
+	},
+	"inputs": {
+		"title": "Ieejas un izejas",
+		"eyebrow": "Atsauce",
+		"lede": "Katra ievade tiek pieņemta arī izvēles repo konfigurācijas failā. Kad abi ir iestatīti, uzvar darbības ievade."
+	},
+	"formats": {
+		"title": "Failu formāti",
+		"eyebrow": "Atsauce",
+		"heroTitle": "Atbalstītie failu formāti",
+		"lede": "Seši resursu formāti ar turp un atpakaļ. Darbība nolasa katru avota lokalizācijas failu, tulko vērtības un raksta brāli katrai mērķa lokalizācijai."
+	},
+	"recipes": {
+		"title": "Receptes",
+		"eyebrow": "Pavārgrāmata",
+		"lede": "Izplatītākie tulkojumu piegādes modeļi: monorepos, glosāriji, pielāgotas kategorijas, sausie tirāžas un toņu kontrole."
+	},
+	"faq": {
+		"title": "Biežāk uzdotie jautājumi",
+		"eyebrow": "Palīdzība",
+		"heroTitle": "Biežāk uzdotie jautājumi",
+		"lede": "Ātras atbildes uz jautājumiem, kas visbiežāk rodas, pieņemot darbību."
+	},
+	"translations": {
+		"title": "Tulkojumi",
+		"eyebrow": "Vitrīna",
+		"heroTitle": "Sveiki visās valodās",
+		"locales": "Lokalizācijas",
+		"currentlyRendered": "Pašlaik atveidots",
+		"complete": "Pabeigts!",
+		"pendingPrefix": "gaidot nākamo tulkošanas dokumentu izpildi.",
+		"viewWorkflowRuns": "Darbplūsmas izpildes skatīšana",
+		"filter": "Filtrs",
+		"filterPlaceholder": "Meklēt pēc valodas, koda vai dzimtā vārda...",
+		"source": "Avots",
+		"machineTranslations": "Mašīntulkojumi",
+		"translationPending": "Tulkošana gaida — atveriet tulkošanas dokumentu izpildi.",
+		"noLocales": "Neviena lokalizācija neatbilst šim filtram.",
+		"howItWorks": "Kā tas darbojas"
+	},
+	"contributing": {
+		"title": "Ieguldījums",
+		"eyebrow": "Atvērtais kods",
+		"lede": "Ziņojumi par kļūdām, funkciju pieprasījumi un vilkšanas pieprasījumi ir laipni gaidīti. Darbība ir pietiekami maza, lai būtu draudzīga pirmreizējiem līdzstrādniekiem."
+	},
+	"changelog": {
+		"title": "Izmaiņu žurnāls",
+		"eyebrow": "Vēsture",
+		"lede": "Augsta līmeņa laidienu kopsavilkums. Kanoniskais, autoritatīvais izmaiņu žurnāls dzīvo CHANGELOG.md repozitorijā."
+	}
+}

@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Překladač zdrojů",
+		"description": "Otevřete strojově přeložené pull requesty pro resource soubory v jakémkoli repozitáři, v jakémkoli formátu.",
+		"badge": "v3.0 — Node 24, konfigurace repozitáře, slovníček, suchý běh",
+		"headlinePrefix": "Lokalizujte svůj repozitář na",
+		"headlineAccent": "Každý závazek.",
+		"lede": "Resource Translator otevírá strojově přeložené pull requesty pro vaše resource soubory pomocí Azure AI Translator prostřednictvím oficiálního SDK — žádné další služby, jen workflow.",
+		"primaryCta": "Začněte",
+		"secondaryCta": "Hvězda na GitHubu",
+		"supports": "Podpory",
+		"builtForShipping": "Postavena pro lodní dopravu",
+		"workflowTitle": "Překlad jako pracovní postup, ne jako povinnost.",
+		"workflowBody": "Vložte akci do svého stávajícího CI, nasměrujte ji na Azure AI Translator a nechte repozitář mluvit všemi jazyky, které cílíte.",
+		"stats": {
+			"audit": "0 Problémy s auditem NPM",
+			"tests": "150 testů",
+			"node": "Uzel 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Šest formátů souborů",
+				"body": "Opáteční formáty .resx, .xliff, .po, .json, .ini a .restext s formátováním stabilním na bajty."
+			},
+			"config": {
+				"title": "Konfigurace na úrovni repozitáře",
+				"body": "Vložte .github/resource-translator.yml pro zahrnování globů, slovníků a kategorií Custom Translator."
+			},
+			"glossary": {
+				"title": "S vědomím slovníku",
+				"body": "Uzamkněte názvy značek a produktové termíny chytrým regexem pro hranice slov, který zvládá C++, .NET a přátele."
+			},
+			"dryRun": {
+				"title": "Zkušební zkouška + měkké neúspěchy",
+				"body": "Předehledujte překlady bez psaní souborů, nebo zobrazte každou chybu jako varování při iteraci."
+			},
+			"outputs": {
+				"title": "PR-friendly výstupy",
+				"body": "Summary-Title, summary-details a has-new-translations se přímo zasouvají do create-pull-request."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Postaveno na @azure-rest/ai-translation-text + @azure/core-rest-pipeline — automatické pokusy na 408/429/5xx, bez ručně vytvářeného HTTP. esbuild-bundle, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Začínáme",
+		"eyebrow": "Nastavení",
+		"lede": "Přidejte workflow soubor, zaměřte ho na své přihlašovací údaje Azure AI Translator a akce — postavená na oficiálním SDK Microsoft @azure-rest/ai-translation-text — prohledá repozitář na zdrojové soubory a vygeneruje překlady sourozenců.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Vytvořte v Azure portálu zdroj Azure AI Translator a poté uložte následující jako GitHub repozitářská tajemství, aby je workflow mohl přečíst:",
+				"key": "Předplatitelský klíč pro zdroj.",
+				"endpoint": "regionální URL endpointu.",
+				"region": "oblast Azure zdroje."
+			},
+			"workflow": {
+				"title": "Přidejte workflow",
+				"body": "Vytvořte .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Commit souboru zdrojového zdroje",
+				"body": "Soubory zdrojů používají název (Name). .<sourceLocale> <ext> konvenci. Například Greetings.en.resx se po běhu změní na Greetings.fr.resx, Greetings.de.resx a tak dále."
+			},
+			"output": {
+				"title": "Zkontrolujte výstup",
+				"body": "Jakmile workflow skončí, akce odhalí tři výstupy, které můžete zapojit do PR popisu: summary-title, summary-details a has-new-translations. Také zapisuje shrnutí Markdownu na stránku práce přes core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Další kroky",
+			"configuration": "Nastavte výchozí nastavení na úrovni repozitáře pomocí .github/resource-translator.yml.",
+			"recipes": "Podívejte se na recepty na monorepo, vlastní slovníčky a kategorie vlastních překladačů."
+		}
+	},
+	"configuration": {
+		"title": "Konfigurace",
+		"eyebrow": "YAML",
+		"heroTitle": "Konfigurace repozitáře",
+		"lede": "Express jednou nastaví výchozí nastavení v .github/resource-translator.yml a nechá všechny workflow je zdědit. Akční vstupy vždy vyhrají, když jsou k dispozici obojí."
+	},
+	"inputs": {
+		"title": "Vstupy a výstupy",
+		"eyebrow": "Reference",
+		"lede": "Každý vstup je také přijat v volitelném konfiguračním souboru repozitáře. Když jsou oba nastaveny, vyhrává akční vstup."
+	},
+	"formats": {
+		"title": "Formáty souborů",
+		"eyebrow": "Reference",
+		"heroTitle": "Podporované formáty souborů",
+		"lede": "Šest formátů zdrojů s možností okolní cesty. Akce přečte každý soubor zdrojového místa, přeloží hodnoty a zapíše sourozenec pro každou cílovou lokalitu."
+	},
+	"recipes": {
+		"title": "Recepty",
+		"eyebrow": "Kuchařka",
+		"lede": "Běžné vzory překladů při přepravě: monorepo, glosáře, vlastní kategorie, zkušební zkoušky a kontrola tónu."
+	},
+	"faq": {
+		"title": "FAQ",
+		"eyebrow": "Pomoc",
+		"heroTitle": "Často kladené otázky",
+		"lede": "Rychlé odpovědi na otázky, které se nejčastěji objevují při přijímání akce."
+	},
+	"translations": {
+		"title": "Překlady",
+		"eyebrow": "Ukázka",
+		"heroTitle": "Ahoj ve všech jazycích",
+		"locales": "Místa",
+		"currentlyRendered": "aktuálně vykreslený",
+		"complete": "Dokončeno!",
+		"pendingPrefix": "Čeká na další stíhání překladů dokumentů.",
+		"viewWorkflowRuns": "Zobrazit běhy workflow",
+		"filter": "Filtr",
+		"filterPlaceholder": "Hledejte podle jazyka, kódu nebo rodilého jména...",
+		"source": "Zdroj",
+		"machineTranslations": "Strojové překlady",
+		"translationPending": "Překlad čeká — otevřete běh překladačů.",
+		"noLocales": "Žádné lokace tomuto filtru neodpovídají.",
+		"howItWorks": "Jak to funguje"
+	},
+	"contributing": {
+		"title": "Přispění",
+		"eyebrow": "Open source",
+		"lede": "Hlášení chyb, požadavky na funkce a pull requesty jsou vítány. Akce je dostatečně malá na to, aby byla přátelská i pro začínající přispěvatele."
+	},
+	"changelog": {
+		"title": "Changelog",
+		"eyebrow": "Historie",
+		"lede": "Shrnutí vydání na vysoké úrovni. Kanonický, autoritativní changelog se nachází v CHANGELOG.md v repozitáři."
+	}
+}

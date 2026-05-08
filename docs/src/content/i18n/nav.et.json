@@ -1,0 +1,28 @@
+{
+	"sections": {
+		"start": "Alusta siit",
+		"reference": "Viide",
+		"showcase": "Showcase",
+		"project": "Projekt"
+	},
+	"items": {
+		"overview": "Ülevaade",
+		"gettingStarted": "Alustamine",
+		"configuration": "Konfiguratsioon",
+		"inputs": "Sisendid ja väljundid",
+		"formats": "Failivormingud",
+		"recipes": "Retseptid",
+		"faq": "KKK",
+		"translations": "Tõlked",
+		"contributing": "Panustamine",
+		"changelog": "Muudatuste logi"
+	},
+	"community": {
+		"reportBug": "Teata veast",
+		"requestFeature": "Taotle funktsiooni",
+		"discussions": "Arutelud",
+		"securityPolicy": "Julgeolekupoliitika",
+		"codeOfConduct": "Käitumiskoodeks",
+		"license": "MIT litsents"
+	}
+}

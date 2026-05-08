@@ -1,0 +1,28 @@
+{
+	"sections": {
+		"start": "Aloita tästä",
+		"reference": "Viite",
+		"showcase": "Näyttely",
+		"project": "Projekti"
+	},
+	"items": {
+		"overview": "Yleiskatsaus",
+		"gettingStarted": "Aloitus",
+		"configuration": "Kokoonpano",
+		"inputs": "Tulot ja lähtöt",
+		"formats": "Tiedostomuodot",
+		"recipes": "Reseptit",
+		"faq": "UKK",
+		"translations": "Käännökset",
+		"contributing": "Osallistuminen",
+		"changelog": "Muutosloki"
+	},
+	"community": {
+		"reportBug": "Ilmoita bugi",
+		"requestFeature": "Pyydä ominaisuus",
+		"discussions": "Keskustelut",
+		"securityPolicy": "Turvallisuuspolitiikka",
+		"codeOfConduct": "Käytössäännöt",
+		"license": "MIT-lisenssi"
+	}
+}

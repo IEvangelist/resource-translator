@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Resurssikääntäjä",
+		"defaultDescription": "Dokumentaatio Resource Translator GitHub Actionille — automatisoitu konekäännös resurssitiedostoista Azure AI Translatorin kautta.",
+		"homeLabel": "Resurssikääntäjä — koti"
+	},
+	"skipToContent": "Siirry sisältöön",
+	"drawer": {
+		"open": "Avoin navigointi",
+		"close": "Läheinen navigointi",
+		"title": "Navigointi"
+	},
+	"header": {
+		"search": "Hakudokumentaatio",
+		"searchPlaceholder": "Hakudokumentaatio...",
+		"toggleTheme": "Kytkentäteema",
+		"githubRepository": "GitHub-repository",
+		"language": "Kieli"
+	},
+	"search": {
+		"title": "Hakudokumentaatio",
+		"results": "Hakutulokset",
+		"placeholder": "Etsi artikkeleita, osioita, reseptejä...",
+		"close": "Tarkka haku",
+		"idleTitle": "Etsi asiakirjoista",
+		"idleHelp": "Etsi artikkeleita aiheen, tiedostomuodon, asetusvaihtoehdon tai reseptin mukaan. Käytä {up} {down} navigointiin, {enter} avaamiseen.",
+		"loading": "Etsin...",
+		"empty": "Ei tuloksia. Kokeile toista avainsanaa.",
+		"error": "Hakuindeksiä ei ole saatavilla kehityksessä. Suorita tuotantoversio."
+	},
+	"toc": {
+		"title": "Tällä sivulla"
+	},
+	"pager": {
+		"ariaLabel": "Artikkeli",
+		"previous": "Edellinen",
+		"next": "Seuraavaksi"
+	},
+	"backToTop": {
+		"label": "Selaa ylös"
+	},
+	"footer": {
+		"docs": "Dokumentit",
+		"project": "Projekti",
+		"community": "Yhteisö",
+		"projectLinksAria": "Projektilinkit",
+		"sourceAria": "Katso lähdekoodi GitHubissa",
+		"marketplaceAria": "Katso GitHub Marketplacessa",
+		"authorAria": "David Pinen verkkosivusto",
+		"taglinePrefix": "GitHub-toiminto, joka kääntää resurssitiedostosi automaattisesti, rakennettu virallisen tiedoston päälle",
+		"taglineMiddle": "SDK lähteestä",
+		"copyrightPrefix": "Julkaistu nimellä",
+		"builtWith": "Rakennettu"
+	}
+}

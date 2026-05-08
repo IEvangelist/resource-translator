@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Womasulira Resource",
+		"defaultDescription": "Zolemba za Resource Translator GitHub Action - makina omasulira makina a mafayilo a chuma kudzera pa Azure AI Translator.",
+		"homeLabel": "Womasulira Resource - kunyumba"
+	},
+	"skipToContent": "Skip to content",
+	"drawer": {
+		"open": "Kuyenda kotseguka",
+		"close": "Pafupi navigation",
+		"title": "Kuyenda"
+	},
+	"header": {
+		"search": "Zolemba zakusani",
+		"searchPlaceholder": "Zolemba zofufuzira...",
+		"toggleTheme": "Sinthani mutu",
+		"githubRepository": "Malo osungira GitHub",
+		"language": "Chilankhulo"
+	},
+	"search": {
+		"title": "Zolemba zakusani",
+		"results": "Zotsatira zakusaka",
+		"placeholder": "Fufuzani nkhani, zigawo, maphikidwe...",
+		"close": "Kufufuza kwapafupi",
+		"idleTitle": "Fufuzani ma docs",
+		"idleHelp": "Pezani nkhani ndi mutu, mtundu wa fayilo, njira yosinthika, kapena maphikidwe. Gwiritsani ntchito {up} {down} kuti muyende, {enter} kuti mutsegule.",
+		"loading": "Kufufuza...",
+		"empty": "Palibe zotsatira. Yesani mawu osiyana kwambiri.",
+		"error": "Index yofufuzira sikupezeka mu dev. Yendetsani kumanga kupanga."
+	},
+	"toc": {
+		"title": "Pa tsamba lino"
+	},
+	"pager": {
+		"ariaLabel": "Nkhani",
+		"previous": "Kale",
+		"next": "Chotsatira"
+	},
+	"backToTop": {
+		"label": "Perekani pamwamba"
+	},
+	"footer": {
+		"docs": "Zolemba",
+		"project": "Ntchito",
+		"community": "Dera",
+		"projectLinksAria": "Maulalo a polojekiti",
+		"sourceAria": "Onani gwero pa GitHub",
+		"marketplaceAria": "Onani pa GitHub Marketplace",
+		"authorAria": "Webusayiti ya David Pine",
+		"taglinePrefix": "A GitHub Action kuti kumasulira mafayilo anu chuma basi, anamanga pamwamba pa boma",
+		"taglineMiddle": "SDK kuchokera",
+		"copyrightPrefix": "Kutulutsidwa pansi pa",
+		"builtWith": "Yomangidwa ndi"
+	}
+}

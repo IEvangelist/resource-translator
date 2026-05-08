@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Ressursitõlkija",
+		"description": "Ava masintõlgitud pull-päringud ressursifailide jaoks igas repos, igas formaadis.",
+		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "Lokaliseeri oma repositsioon",
+		"headlineAccent": "Iga kohustus.",
+		"lede": "Resource Translator avab masintõlkitud pull request'id sinu ressursifailide jaoks Azure AI Translatori kaudu ametliku SDK kaudu — lisateenuseid pole, lihtsalt töövoog.",
+		"primaryCta": "Alusta",
+		"secondaryCta": "Star GitHubis",
+		"supports": "Toetused",
+		"builtForShipping": "Ehitatud laevanduseks",
+		"workflowTitle": "Tõlkimine on töövoog, mitte kohustus.",
+		"workflowBody": "Pane tegevus oma olemasolevasse CI-sse, suuna see Azure AI Translatorile ja lase oma repositoodil rääkida kõiki sihtkeeli.",
+		"stats": {
+			"audit": "0 NPM-auditi probleeme",
+			"tests": "150 testi",
+			"node": "Sõlm 20 / 22 / 24",
+			"sdk": "Ametlik Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Kuus failivormingut",
+				"body": "Ringreisid .resx, .xliff, .po, .json, .ini ja .restext bait-stabiilse vormindusega."
+			},
+			"config": {
+				"title": "Repo-taseme konfiguratsioon",
+				"body": "Pane .github/resource-translator.yml, et lisada globid, sõnastikud ja kohandatud tõlkijate kategooriad."
+			},
+			"glossary": {
+				"title": "Sõnastikust teadlik",
+				"body": "Lukusta kaubamärgid ja tooteterminid nutika sõnapiiriga regexiga, mis haldab C++, .NET ja sõbrad."
+			},
+			"dryRun": {
+				"title": "Proovisõit + pehme läbikukkumine",
+				"body": "Eelvaade tõlkeid ilma faile kirjutamata või näita iga viga hoiatusena, kui iteratsioon toimub."
+			},
+			"outputs": {
+				"title": "PR-sõbralikud väljundid",
+				"body": "summary-title, summary-details ja has-new-translations sobivad otse create-pull-request'i."
+			},
+			"sdk": {
+				"title": "Ametlik Azure SDK",
+				"body": "Ehitatud @azure-rest/ai-translation-text + @azure/core-rest-pipeline peale — automaatsed kordused 408/429/5xx peal, ilma käsitsi rullitud HTTP-ta. esbuild-komplekt, audit-puhas."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Alustamine",
+		"eyebrow": "Seadistus",
+		"lede": "Lisa töövoo fail, suuna see oma Azure AI Translatori mandaadiandmetele ja tegevus — mis põhineb Microsofti ametlikul @azure-rest/ai-translation-text SDK-l — skaneerib repositooriumist lähtekoodi ressursifaile ja saadab tõlgitud õdesid-vennasid.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator ressurss",
+				"body": "Loo Azure AI Translatori ressurss Azure portaalis ja salvesta järgmised GitHubi hoidla saladustena, et töövoog saaks neid lugeda:",
+				"key": "Tellimusvõti ressursile.",
+				"endpoint": "piirkondliku lõpp-punkti URL.",
+				"region": "ressursi Azure piirkond."
+			},
+			"workflow": {
+				"title": "Lisa töövoog",
+				"body": "Loo .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Commit lähteressursifail",
+				"body": "Ressursifailid kasutavad nime. <sourceLocale>. <ext> konventsioon. Näiteks Greetings.en.resx muutub pärast jooksu Greetings.fr.resx, Greetings.de.resx ja nii edasi."
+			},
+			"output": {
+				"title": "Kontrolli väljundit",
+				"body": "Kui töövoog on lõppenud, avab tegevus kolm väljundit, mida saab PR-kirjeldusse ühendada: summary-title, summary-details ja has-new-translations. Samuti kirjutab see Markdowni kokkuvõtte töölehele core.summary kaudu."
+			}
+		},
+		"nextSteps": {
+			"title": "Järgmised sammud",
+			"configuration": "Seadista repo taseme vaikeseaded .github/resource-translator.yml-ga.",
+			"recipes": "Vaata retsepte monorepode, kohandatud sõnastuse ja kohandatud tõlkijate kategooriate jaoks."
+		}
+	},
+	"configuration": {
+		"title": "Konfiguratsioon",
+		"eyebrow": "YAML",
+		"heroTitle": "Hoidla konfiguratsioon",
+		"lede": "Express vaikimisi on üks fail .github/resource-translator.yml-s ja laseb igal töövool need pärida. Tegevussisendid võidavad alati, kui mõlemad on olemas."
+	},
+	"inputs": {
+		"title": "Sisendid ja väljundid",
+		"eyebrow": "Viide",
+		"lede": "Iga sisend on aktsepteeritud ka valikulises repo konfiguratsioonifailis. Kui mõlemad on seatud, võidab tegevuse sisend."
+	},
+	"formats": {
+		"title": "Failivormingud",
+		"eyebrow": "Viide",
+		"heroTitle": "Toetatud failivormingud",
+		"lede": "Kuus ringreisi ressursiformaati. Tegevus loeb iga allika-koha faili, tõlgib väärtused ja kirjutab iga sihtkoha jaoks venna."
+	},
+	"recipes": {
+		"title": "Retseptid",
+		"eyebrow": "Kokaraamat",
+		"lede": "Levinud mustrid tõlgete saatmiseks: monorepod, sõnastikud, kohandatud kategooriad, kuivad proovid ja toonikontroll."
+	},
+	"faq": {
+		"title": "KKK",
+		"eyebrow": "Abi",
+		"heroTitle": "Korduma kippuvad küsimused",
+		"lede": "Kiired vastused kõige sagedamini tekkivatele küsimustele, kui tegevust rakendada."
+	},
+	"translations": {
+		"title": "Tõlked",
+		"eyebrow": "Showcase",
+		"heroTitle": "Tere igas keeles",
+		"locales": "Paigad",
+		"currentlyRendered": "Praegu renderdatakse",
+		"complete": "Täielik!",
+		"pendingPrefix": "Järgmise Translate-Docs jooksu ootel.",
+		"viewWorkflowRuns": "Vaata töövoo käikeid",
+		"filter": "Filter",
+		"filterPlaceholder": "Otsi keele, koodi või emanime järgi...",
+		"source": "Allikas",
+		"machineTranslations": "Masintõlked",
+		"translationPending": "Tõlkimine ootel — ava translate-docs jooks.",
+		"noLocales": "Ükski asukoht ei vasta sellele filtrile.",
+		"howItWorks": "Kuidas see toimib"
+	},
+	"contributing": {
+		"title": "Panustamine",
+		"eyebrow": "Avatud lähtekoodiga",
+		"lede": "Veateated, funktsioonipäringud ja tõmbetaotlused on kõik teretulnud. Tegevus on piisavalt väike, et olla sõbralik esmakordsetele panustajatele."
+	},
+	"changelog": {
+		"title": "Muudatuste logi",
+		"eyebrow": "Ajalugu",
+		"lede": "Kõrgetasemeline kokkuvõte väljaannetest. Kanoniline, autoriteetne muutuste logi elab CHANGELOG.md repositooriumis."
+	}
+}

@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Umguquli Wezixhobo",
+		"defaultDescription": "Amaxwebhu e-Resource Translator GitHub Action - uguqulelo lomatshini oluzenzekelayo lweefayile zezixhobo nge-Azure AI Translator.",
+		"homeLabel": "Umguquleli Wezicebo - ikhaya"
+	},
+	"skipToContent": "Tsibela kwisiqulatho",
+	"drawer": {
+		"open": "Vula ukuhamba",
+		"close": "Vala ukuhamba",
+		"title": "Ukuhamba"
+	},
+	"header": {
+		"search": "Amaxwebhu okukhangela",
+		"searchPlaceholder": "Khangela amaxwebhu",
+		"toggleTheme": "Qhoboshela umxholo",
+		"githubRepository": "Indawo yokugcina iGitHub",
+		"language": "Ulwimi"
+	},
+	"search": {
+		"title": "Amaxwebhu okukhangela",
+		"results": "Iziphumo zokukhangela",
+		"placeholder": "Amanqaku okukhangela, amacandelo, iiresiphi ...",
+		"close": "Vala ukukhangela",
+		"idleTitle": "Khangela amaxwebhu",
+		"idleHelp": "Fumana amanqaku ngesihloko, ifomathi yefayile, ukhetho loqwalaselo, okanye iresiphi. Sebenzisa {up} {down} ukuhamba, {enter} ukuvula.",
+		"loading": "Ukukhangela ...",
+		"empty": "Akukho ziphumo. Zama elinye igama elingundoqo.",
+		"error": "Isalathiso sokukhangela asifumaneki kwi-dev. Yenza ulwakhiwo lwemveliso."
+	},
+	"toc": {
+		"title": "Kweli phepha"
+	},
+	"pager": {
+		"ariaLabel": "Inqaku",
+		"previous": "Engaphambili",
+		"next": "Okulandelayo"
+	},
+	"backToTop": {
+		"label": "Skrolela uye phezulu"
+	},
+	"footer": {
+		"docs": "Amaxwebhu",
+		"project": "Iprojekthi",
+		"community": "Uluntu",
+		"projectLinksAria": "Amakhonkco eprojekthi",
+		"sourceAria": "Jonga umthombo kwiGitHub",
+		"marketplaceAria": "Jonga kwi-GitHub Marketplace",
+		"authorAria": "UDavid Pine's website",
+		"taglinePrefix": "Isenzo seGitHub esiguqulela iifayile zakho zezixhobo ngokuzenzekelayo, eyakhelwe ngaphezulu kwesemthethweni.",
+		"taglineMiddle": "I-SDK evela",
+		"copyrightPrefix": "Ikhutshwe phantsi kwe-",
+		"builtWith": "Yakhiwe nge"
+	}
+}

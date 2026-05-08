@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Mai fassarar albarkatu",
+		"description": "Buɗe buƙatun jawo na'ura don fayilolin albarkatu a kowane repo, a kowane tsari.",
+		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "Localize your repo a kan",
+		"headlineAccent": "kowane sadaukarwa.",
+		"lede": "Mai fassarar albarkatu yana buɗe buƙatun jawo na'ura don fayilolin albarkatun ku ta amfani da Azure AI Translator ta hanyar SDK na hukuma - babu ƙarin ayyuka, kawai aikin aiki.",
+		"primaryCta": "Fara farawa",
+		"secondaryCta": "Tauraro akan GitHub",
+		"supports": "Tallafi",
+		"builtForShipping": "An gina shi don jigilar kaya",
+		"workflowTitle": "Fassarar a matsayin aikin aiki, ba aikin aiki ba.",
+		"workflowBody": "Sauke aikin a cikin CI ɗinku na yanzu, nuna shi a Azure AI Translator, kuma bari repo ɗinku yayi magana da kowane yare da kuka yi niyya.",
+		"stats": {
+			"audit": "0 npm-audit al'amurran da suka shafi",
+			"tests": "Gwaje-gwaje 150",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Tsarin fayil shida",
+				"body": "Zagaye-tafiye-tafiye .resx, .xliff, .po, .json, .ini, da .restext tare da tsarin byte-stable."
+			},
+			"config": {
+				"title": "Repo-level config",
+				"body": "Sauke .github/resource-translator.yml don haɗawa da globs, glossaries, da kuma Custom Translator Categories."
+			},
+			"glossary": {
+				"title": "Glossary-aware",
+				"body": "Kulle sunayen alama da sharuɗɗan samfura tare da regex mai kaifin baki wanda ke kula da C ++, .NET, da abokai."
+			},
+			"dryRun": {
+				"title": "Dry Run + Soft-Fail",
+				"body": "Preview fassarar ba tare da rubuta fayiloli ba, ko nuna kowane kuskure a matsayin gargadi yayin da kake maimaitawa."
+			},
+			"outputs": {
+				"title": "PR-friendly outputs",
+				"body": "summary-title, summary-details, da kuma has-sababbin fassarori kai tsaye a cikin create-pull-request."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "An gina shi a kan @azure-rest / ai-translation-text + @azure / core-rest-pipeline - sake gwadawa ta atomatik akan 408/429/5xx, babu HTTP da aka birgima da hannu. esbuild-bundled, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Farawa",
+		"eyebrow": "Saitin",
+		"lede": "Ƙara fayil ɗin aiki, nuna shi zuwa takaddun shaidar mai fassarar Azure AI, kuma aikin - wanda aka gina akan SDK na Microsoft na @azure-rest / ai-translation-text - zai bincika repo don fayilolin albarkatun harshe kuma ya fitar da 'yan uwan da aka fassara.",
+		"steps": {
+			"provision": {
+				"title": "Samar da kayan aikin Azure AI Translator",
+				"body": "Ƙirƙirar albarkatun mai fassara na Azure AI a cikin tashar Azure, sannan adana waɗannan azaman asirin ajiyar GitHub don aikin zai iya karanta su:",
+				"key": "Maɓallin Biyan kuɗi don Kayan T",
+				"endpoint": "Ƙarshen Ƙarshen Yankin Ƙarshen Yankin",
+				"region": "Yankin Azure na Resource."
+			},
+			"workflow": {
+				"title": "Ƙara aikin aiki",
+				"body": "Ƙirƙirar .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Shigar da fayil ɗin tushen tushen",
+				"body": "Fayilolin albarkatu suna amfani da suna. <sourceLocale>. <ext> taro. Alal misali Gaisuwa.en.resx ya zama gaisuwa.fr.resx, gaisuwa.de.resx, da sauransu bayan gudu."
+			},
+			"output": {
+				"title": "Duba fitarwa",
+				"body": "Da zarar aikin ya gama, aikin ya fallasa fitarwa guda uku da zaku iya waya a cikin bayanin PR: taƙaitawa-take, taƙaitaccen bayani, da kuma sabbin fassarar. Har ila yau, yana rubuta taƙaitaccen bayani a cikin shafin aiki ta hanyar core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Matakai na gaba",
+			"configuration": "Yi amfani da maɓallin keɓaɓɓu tare da .github/resource-translator.yml.",
+			"recipes": "Duba girke-girke don monorepos, ƙamus na al'ada, da nau'ikan masu fassara na al'ada."
+		}
+	},
+	"configuration": {
+		"title": "Daidaitawa",
+		"eyebrow": "YAML",
+		"heroTitle": "Tsarin ma'ajiyar ma'ajiya",
+		"lede": "Bayyana tsoho sau ɗaya a cikin .github/resource-translator.yml kuma bari kowane aiki ya gaji su. Abubuwan da aka yi amfani da su koyaushe suna cin nasara lokacin da aka samar da duka biyun."
+	},
+	"inputs": {
+		"title": "Abubuwan shigarwa da fitarwa",
+		"eyebrow": "Reference",
+		"lede": "Hakanan ana karɓar kowane shigarwa a cikin fayil ɗin repo na zaɓi. Lokacin da aka saita duka biyun, shigar da aikin ya ci nasara."
+	},
+	"formats": {
+		"title": "Tsarin fayil",
+		"eyebrow": "Reference",
+		"heroTitle": "Tsarin fayil ɗin da aka goyi bayan",
+		"lede": "Tsarin albarkatun zagaye guda shida. Aikin yana karanta kowane fayil ɗin tushe, yana fassara dabi'u, kuma yana rubuta ɗan'uwa a kowane yanki da aka yi niyya."
+	},
+	"recipes": {
+		"title": "Girke-girke",
+		"eyebrow": "Littafin girke-girke",
+		"lede": "Alamu na yau da kullun don fassarar jigilar kaya: monorepos, ƙamus ɗin, nau'ikan al'ada, bushewar gudu, da sarrafa sauti."
+	},
+	"faq": {
+		"title": "Tambayoyin da aka fi yawan yi",
+		"eyebrow": "Taimako",
+		"heroTitle": "Tambayoyi akai-akai",
+		"lede": "Amsoshi masu sauri ga tambayoyin da suka fi tasowa yayin ɗaukar matakin."
+	},
+	"translations": {
+		"title": "Fassarar",
+		"eyebrow": "Nunin",
+		"heroTitle": "Hello A Kowane Harshe",
+		"locales": "Wurare",
+		"currentlyRendered": "An yi amfani da shi a halin yanzu",
+		"complete": "Cikakke!",
+		"pendingPrefix": "A jiran fassarar Docs na gaba.",
+		"viewWorkflowRuns": "Duba aikin aiki yana gudana",
+		"filter": "Filter",
+		"filterPlaceholder": "Bincika ta hanyar harshe, lambar ko sunan asali.",
+		"source": "Source",
+		"machineTranslations": "Fassarar na'ura",
+		"translationPending": "Translation pending — open a translate-docs run.",
+		"noLocales": "Babu wurare da suka dace da wannan tace.",
+		"howItWorks": "Ta yaya wannan yake aiki"
+	},
+	"contributing": {
+		"title": "Bayar da gudummawa",
+		"eyebrow": "Bude tushen",
+		"lede": "Rahotannin kwaro, buƙatun fasali, da buƙatun jawo duk ana maraba da su. Aikin yana da ƙaramin isa ya zama abokantaka ga masu ba da gudummawa na farko."
+	},
+	"changelog": {
+		"title": "Canje-canje",
+		"eyebrow": "Tarihi",
+		"lede": "Babban taƙaitaccen taƙaitaccen bayani game da fitarwa. Canonical, canji mai iko yana rayuwa a cikin CHANGELOG.md a cikin ma'ajiyar."
+	}
+}

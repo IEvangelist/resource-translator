@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "리소스 번역기",
+		"description": "어떤 저장소에서든, 어떤 형식이든 자원 파일에 대한 기계 변환 풀 요청을 열어보세요.",
+		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "저장소를 현지화하세요",
+		"headlineAccent": "모든 커밋.",
+		"lede": "Resource Translator는 공식 SDK를 통해 Azure AI Translator를 사용해 리소스 파일에 대한 기계 번역 풀 요청을 엽니다 — 추가 서비스 없이 단순한 워크플로우입니다.",
+		"primaryCta": "시작하기",
+		"secondaryCta": "GitHub의 별자리",
+		"supports": "지원",
+		"builtForShipping": "선박용으로 건조됨",
+		"workflowTitle": "번역은 귀찮은 일이 아니라 작업 흐름으로서 하는 거죠.",
+		"workflowBody": "기존 CI에 액션을 넣고 Azure AI Translator에 연결한 뒤, 저장소가 당신이 타겟팅하는 모든 언어를 말하게 하세요.",
+		"stats": {
+			"audit": "NPM-감사 문제 0건",
+			"tests": "150경기 테스트",
+			"node": "노드 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "여섯 가지 파일 형식",
+				"body": ".resx, .xliff, .po, .json, .ini, .restext 등 바이트 안정 서식을 가진 왕복 전송."
+			},
+			"config": {
+				"title": "저장소 수준 설정",
+				"body": ".github/resource-translator.yml 파일을 만들어 글롭, 용어집, 커스텀 번역기 카테고리를 포함하세요."
+			},
+			"glossary": {
+				"title": "용어집 인식",
+				"body": "브랜드명과 제품 용어를 C++, .NET 및 기타 언어를 처리하는 스마트 워드 경계 정규식으로 잠가세요."
+			},
+			"dryRun": {
+				"title": "리허리 연행 + 소프트 실패",
+				"body": "파일을 작성하지 않고 번역을 미리 보거나, 반복 작업 중에 모든 오류를 경고로 표시하세요."
+			},
+			"outputs": {
+				"title": "PR 친화적인 출력",
+				"body": "summary-title, summary-details, has-new-translations 모두 create-pull-request 바로 슬롯에 들어갑니다."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "@azure-rest/ai-translation-text + @azure/core-rest-pipeline 위에 구축됨 — 408/429/5xx에서 자동 재시도, 수작업 HTTP는 없습니다. esbuild에 번들로 제공되고, 감사 클린 상태입니다."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "시작하기",
+		"eyebrow": "설정",
+		"lede": "워크플로우 파일을 추가하고 Azure AI 번역기 자격 증명을 가리키면, 마이크로소프트 공식 @azure-rest/ai-translation-text SDK를 기반으로 한 이 동작이 저장소에서 소스 언어 리소스 파일을 스캔하고 번역된 형제파일을 생성합니다.",
+		"steps": {
+			"provision": {
+				"title": "Provision a Azure AI Translator 리소스",
+				"body": "Azure 포털에서 Azure AI 번역기 리소스를 생성하고, 다음 자료들을 GitHub 저장소 비밀로 저장하여 워크플로우가 읽을 수 있게 하세요:",
+				"key": "리소스 구독 키입니다.",
+				"endpoint": "지역 엔드포인트 URL입니다.",
+				"region": "리소스의 Azure 영역입니다."
+			},
+			"workflow": {
+				"title": "워크플로우 추가하세요",
+				"body": ".github/workflows/translate.yml 만들기:"
+			},
+			"resource": {
+				"title": "소스 리소스 파일 커밋",
+				"body": "리소스 파일은 이름을 사용합니다. <sourceLocale>. <ext> 컨벤션. 예를 들어, Greetings.en.resx가 진행 후 Greetings.fr.resx, Greetings.de.resx 등으로 변환됩니다."
+			},
+			"output": {
+				"title": "출력물을 점검하세요",
+				"body": "워크플로우가 끝나면, 이 동작은 PR 설명에 연결할 수 있는 세 가지 출력을 노출합니다: summary-title, summary-details, 그리고 has-new-translations. 또한 core.summary를 통해 채용 페이지에 Markdown 요약을 작성합니다."
+			}
+		},
+		"nextSteps": {
+			"title": "다음 단계",
+			"configuration": ".github/resource-translator.yml로 저장소 수준의 기본값을 설정하세요.",
+			"recipes": "모노레포, 맞춤 용어집, 맞춤형 번역기 카테고리 레시피를 참고하세요."
+		}
+	},
+	"configuration": {
+		"title": "구성",
+		"eyebrow": "야심",
+		"heroTitle": "저장소 구성",
+		"lede": ".github/resource-translator.yml에서 한 번 기본값을 표현하고 모든 워크플로우가 이를 상속하도록 하세요. 행동 입력이 항상 이기는 것은 두 가지 모두가 제공될 때입니다."
+	},
+	"inputs": {
+		"title": "입력 및 출력",
+		"eyebrow": "참고문헌",
+		"lede": "모든 입력은 선택적 저장소 설정 파일에서도 받아들여집니다. 둘 다 설정되면 액션 입력이 승리합니다."
+	},
+	"formats": {
+		"title": "파일 형식",
+		"eyebrow": "참고문헌",
+		"heroTitle": "지원되는 파일 형식",
+		"lede": "여섯 가지 순환 가능한 자료 형식. 이 동작은 각 소스-로컬 파일을 읽고, 값을 변환하며, 대상 로컬마다 형제를 작성합니다."
+	},
+	"recipes": {
+		"title": "레시피",
+		"eyebrow": "요리책",
+		"lede": "번역 출시의 일반적인 패턴: 모노레포, 용어집, 맞춤 카테고리, 시행, 톤 조절."
+	},
+	"faq": {
+		"title": "자주 묻는 질문",
+		"eyebrow": "도와주세요",
+		"heroTitle": "자주 묻는 질문",
+		"lede": "액션을 채택할 때 가장 자주 제기되는 질문에 대한 빠른 답변입니다."
+	},
+	"translations": {
+		"title": "번역",
+		"eyebrow": "쇼케이스",
+		"heroTitle": "모든 언어로 인사하세요",
+		"locales": "지역",
+		"currentlyRendered": "현재 렌더링 중입니다",
+		"complete": "완성!",
+		"pendingPrefix": "다음 번역 문서 작업이 진행될 때까지 기다립니다.",
+		"viewWorkflowRuns": "워크플로우 실행 보기",
+		"filter": "필터",
+		"filterPlaceholder": "언어, 코드, 또는 원주민 이름으로 검색하세요...",
+		"source": "출처",
+		"machineTranslations": "기계 번역",
+		"translationPending": "번역 대기 중 — 번역 문서 작업을 열어보세요.",
+		"noLocales": "그 필터에 맞는 지역은 없습니다.",
+		"howItWorks": "작동 원리"
+	},
+	"contributing": {
+		"title": "기여",
+		"eyebrow": "오픈 소스",
+		"lede": "버그 리포트, 기능 요청, 풀 리퀘스트 모두 환영합니다. 활동은 처음 참여하는 이들에게도 충분히 소박하게 진행됩니다."
+	},
+	"changelog": {
+		"title": "변경 기록",
+		"eyebrow": "역사",
+		"lede": "출시 요약. 정통적이고 권위 있는 변경 로그는 저장소 CHANGELOG.md 에 저장되어 있습니다."
+	}
+}

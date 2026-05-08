@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Forrásfordító",
+		"description": "Nyisson gépi fordítású pull requesteket erőforrás fájlokra bármely repóban, bármilyen formátumban.",
+		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "Lokalizáld a repo-dat",
+		"headlineAccent": "minden elköteleződést.",
+		"lede": "A Resource Translator Azure AI Translator segítségével nyitja meg a gépi fordítású pull requesteket az erőforrás fájljaidhoz az hivatalos SDK-n keresztül — nincs plusz szolgáltatás, csak egy munkafolyamat.",
+		"primaryCta": "Kezdj el",
+		"secondaryCta": "Star a GitHubon",
+		"supports": "Támogatások",
+		"builtForShipping": "Hajózásra építették",
+		"workflowTitle": "A fordítás munkafolyamat, nem teher.",
+		"workflowBody": "Dobd be az akciót a meglévő CI-dbe, irányítsd az Azure AI Translatorre, és hagyd, hogy a repód minden célzott nyelvet beszéljen.",
+		"stats": {
+			"audit": "0 NPM-audit problémák",
+			"tests": "150 teszt",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "Hivatalos Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Hat fájlformátum",
+				"body": "A .resx, .xliff, .po, .json, .ini és .restext formátumokat körbe-vissza bájtstabil formázással."
+			},
+			"config": {
+				"title": "Repo szintű konfiguráció",
+				"body": "Dobj egy .github/resource-translator.yml-t a Include Globs, Gloszaries és Custom Translator kategóriákhoz."
+			},
+			"glossary": {
+				"title": "Szószedethez kapcsolódó",
+				"body": "Zárold le a márkaneveket és termékkifejezéseket okos szókeretű regexszel, amely kezeli a C++, .NET és társakat."
+			},
+			"dryRun": {
+				"title": "Száraz futás + puha meghibásodás",
+				"body": "Előnézett a fordítások írása nélkül, vagy minden hibát előhívj figyelmeztetésként, miközben iterálsz."
+			},
+			"outputs": {
+				"title": "PR-barát kimenetek",
+				"body": "summary-title, summary-details és has-new-translation közvetlenül a create-pull-request beosztásába helyezkednek el."
+			},
+			"sdk": {
+				"title": "Hivatalos Azure SDK",
+				"body": "@azure-rest/ai-translation-text + @azure/core-rest-pipeline alapú — automatikus újrapróbálkozások 408/429/5xx-en, kézzel tekert HTTP nélkül. Esbuild csomagolva, audit-tiszta."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Kezdés",
+		"eyebrow": "Beállítás",
+		"lede": "Adj hozzá egy munkafolyamat-fájlt, irányítsd az Azure AI Translator hitelesítő adataidra, és a cselekvés — amely a Microsoft hivatalos @azure-rest/ai-translation-text SDK-jára épül — beolvassa a repót forrásnyelvi erőforrás-fájlok után, és lefordított testvéreket bocsát ki.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Hozz létre egy Azure AI Fordító erőforrást az Azure portálban, majd tárold a következőket GitHub repository titkokként, hogy a munkafolyamat olvashassa őket:",
+				"key": "az előfizetési kulcs az erőforráshoz.",
+				"endpoint": "a regionális végpont URL-je.",
+				"region": "az erőforrás Azure régiója."
+			},
+			"workflow": {
+				"title": "Add hozzá a munkafolyamatot",
+				"body": "Készítsd .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Commit egy forráserőforrás fájl",
+				"body": "Az erőforrás fájlok a Név használatát használják. <sourceLocale>. <ext> A konferencia. Például a Greetings.en.resx egy futás után Greetings.fr.resx, Greetings.de.resx és így tovább."
+			},
+			"output": {
+				"title": "Ellenőrizd a kimenetet",
+				"body": "Miután a munkafolyamat befejeződik, az akció három kimenetet mutat be, amit egy PR leírásba lehet bekötni: összefoglaló-cím, összefoglaló-részletek és új fordítások. Emellett a core.summary-en keresztül ír egy Markdown összefoglalót a munkalapra."
+			}
+		},
+		"nextSteps": {
+			"title": "Következő lépések",
+			"configuration": "Állítsd be a repo szintű alapértelmezetteket a .github/resource-translator.yml-vel.",
+			"recipes": "Lásd a monorepók, egyedi szószótárok és egyedi fordító kategóriák receptjeit."
+		}
+	},
+	"configuration": {
+		"title": "Konfiguráció",
+		"eyebrow": "YAML",
+		"heroTitle": "Repository konfiguráció",
+		"lede": "Az Express egyszer alapértelmezett a .github/resource-translator.yml-ben, és hagyja, hogy minden munkafolyamat örökölje őket. Az akcióbemenetek mindig nyernek, ha mindkettő elérhető."
+	},
+	"inputs": {
+		"title": "Bemenetek és kimenetek",
+		"eyebrow": "Hivatkozás",
+		"lede": "Minden bemenetet elfogadnak az opcionális repo konfigurációs fájlban is. Ha mindkettő be van állítva, az akció bemenete nyer."
+	},
+	"formats": {
+		"title": "Fájlformátumok",
+		"eyebrow": "Hivatkozás",
+		"heroTitle": "Támogatott fájlformátumok",
+		"lede": "Hat körbe-vissza használható erőforrás formátum. Az akció minden forrás-helyi fájlt olvas, lefordítja az értékeket, és minden célhelyenként testvért ír."
+	},
+	"recipes": {
+		"title": "Receptek",
+		"eyebrow": "Szakácskönyv",
+		"lede": "Gyakori minták a szállítási fordításokhoz: monorepók, szószótárok, egyedi kategóriák, próbafutások és hangzásszabályozás."
+	},
+	"faq": {
+		"title": "GYIK",
+		"eyebrow": "Segítség",
+		"heroTitle": "Gyakran ismételt kérdések",
+		"lede": "Gyors válaszok azokra a kérdésekre, amelyek leggyakrabban felmerülnek a cselekvés során."
+	},
+	"translations": {
+		"title": "Fordítások",
+		"eyebrow": "Bemutató",
+		"heroTitle": "Üdvözlöm minden nyelven",
+		"locales": "Helyszínek",
+		"currentlyRendered": "Jelenleg megjelenítve",
+		"complete": "Teljes!",
+		"pendingPrefix": "A következő fordítás-dokumentumok futamig várható.",
+		"viewWorkflowRuns": "Munkafolyamat-futtatások megtekintése",
+		"filter": "Szűrő",
+		"filterPlaceholder": "Keresés nyelv, kód vagy anyanyelvi név szerint...",
+		"source": "Forrás",
+		"machineTranslations": "Gépi fordítások",
+		"translationPending": "Fordítás függőben — nyiss meg egy fordító-docs futást.",
+		"noLocales": "Nincs olyan helyszín, ami illik ehhez a szűrőhöz.",
+		"howItWorks": "Hogyan működik ez"
+	},
+	"contributing": {
+		"title": "Hozzájárulás",
+		"eyebrow": "Nyílt forráskódú",
+		"lede": "Hibajelentések, funkciókérések és pull requests mind szívesen látottak. Az akció elég kicsi ahhoz, hogy barátságos legyen az első alkalommal közreműködőknek."
+	},
+	"changelog": {
+		"title": "Változásnapló",
+		"eyebrow": "Történelem",
+		"lede": "Magas szintű összefoglaló a kiadásokról. A kanonikus, tekintélyt meghatározó változásnapló CHANGELOG.md a reponóriumban él."
+	}
+}

@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Përkthyes i burimeve",
+		"defaultDescription": "Dokumentacioni për përkthyesin e burimeve GitHub Action — përkthim automatik i skedarëve të burimeve përmes Azure AI Translator.",
+		"homeLabel": "Përkthyesi i burimeve — shtëpi"
+	},
+	"skipToContent": "Kalo tek përmbajtja",
+	"drawer": {
+		"open": "Hap navigimin",
+		"close": "Mbyll navigimin",
+		"title": "Navigimi"
+	},
+	"header": {
+		"search": "Kërko dokumentacionin",
+		"searchPlaceholder": "Kërko dokumentacionin...",
+		"toggleTheme": "Ndërroni temën",
+		"githubRepository": "Depoja e GitHub",
+		"language": "Gjuha"
+	},
+	"search": {
+		"title": "Kërko dokumentacionin",
+		"results": "Rezultatet e kërkimit",
+		"placeholder": "Kërkoni artikuj, seksione, receta...",
+		"close": "Mbyll kërkimin",
+		"idleTitle": "Kërkoni dokumentet",
+		"idleHelp": "Gjeni artikuj sipas temës, formatit të skedarit, opsionit të konfigurimit ose recetës. Përdorni {up} {down} për të lundruar, {enter} për të hapur.",
+		"loading": "Duke kërkuar...",
+		"empty": "Nuk ka rezultate. Provoni një fjalë kyçe tjetër.",
+		"error": "Indeksi i kërkimit nuk është i disponueshëm në dev. Drejtoni një ndërtim prodhimi."
+	},
+	"toc": {
+		"title": "Në këtë faqe"
+	},
+	"pager": {
+		"ariaLabel": "Artikull",
+		"previous": "E mëparshme",
+		"next": "Tjetër"
+	},
+	"backToTop": {
+		"label": "Lëvizni në krye"
+	},
+	"footer": {
+		"docs": "Dokumentet",
+		"project": "Projekti",
+		"community": "Komuniteti",
+		"projectLinksAria": "Lidhjet e projektit",
+		"sourceAria": "Shiko burimin në GitHub",
+		"marketplaceAria": "Shiko në GitHub Marketplace",
+		"authorAria": "Faqja e internetit e David Pine",
+		"taglinePrefix": "Një veprim GitHub që përkthen skedarët tuaj të burimeve automatikisht, të ndërtuar në krye të zyrtarit",
+		"taglineMiddle": "SDK nga",
+		"copyrightPrefix": "Lëshuar nën",
+		"builtWith": "Ndërtuar me"
+	}
+}

@@ -1,0 +1,28 @@
+{
+	"sections": {
+		"start": "Започнете оттук",
+		"reference": "Референция",
+		"showcase": "Витрина",
+		"project": "Проект"
+	},
+	"items": {
+		"overview": "Обща информация",
+		"gettingStarted": "Започване",
+		"configuration": "Конфигурация",
+		"inputs": "Входове и изходи",
+		"formats": "Файлови формати",
+		"recipes": "Рецепти",
+		"faq": "Често задавани въпроси",
+		"translations": "Преводи",
+		"contributing": "Принос",
+		"changelog": "Changelog"
+	},
+	"community": {
+		"reportBug": "Докладвайте бъг",
+		"requestFeature": "Заявка за функция",
+		"discussions": "Дискусии",
+		"securityPolicy": "Политика за сигурност",
+		"codeOfConduct": "Кодекс на поведение",
+		"license": "Лиценз на MIT"
+	}
+}

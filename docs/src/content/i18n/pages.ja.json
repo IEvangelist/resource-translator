@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "リソーストランスレーター",
+		"description": "任意のリポジトリ、任意のフォーマットでリソースファイルの機械翻訳プルリクエストを開いてください。",
+		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "リポジトリをローカライズして",
+		"headlineAccent": "すべてのコミットです。",
+		"lede": "Resource Translatorは、公式SDKを通じてAzure AI Translatorを使ってリソースファイルの機械翻訳プルリクエストを開きます。追加のサービスはなく、単なるワークフローです。",
+		"primaryCta": "始めましょう",
+		"secondaryCta": "GitHubのスター",
+		"supports": "サポート",
+		"builtForShipping": "船舶用に建造",
+		"workflowTitle": "翻訳は作業ではなくワークフローとして。",
+		"workflowBody": "既存のCIにアクションを入れ、Azure AI Translatorに向け、リポジトリでターゲットとなるすべての言語を話せるようにしましょう。",
+		"stats": {
+			"audit": "NPM監査問題0件",
+			"tests": "150試合のテスト",
+			"node": "ノード20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "6つのファイルフォーマット",
+				"body": ".resx、.xliff、.po、.json、.ini、.restext の往復処理でバイト安定フォーマットが可能です。"
+			},
+			"config": {
+				"title": "リポジトリレベルの設定",
+				"body": ".github/resource-translator.ymlを出して、globs、glossaries、Custom Translatorのカテゴリを追加してください。"
+			},
+			"glossary": {
+				"title": "用語集対応",
+				"body": "ブランド名や製品用語を、C++、.NETなどを扱うスマートワード境界正則表現でロックします。"
+			},
+			"dryRun": {
+				"title": "ドライラン+ソフトフェイル",
+				"body": "ファイルを書き込まずに翻訳をプレビューしたり、反復中にエラーを警告として表示したりしましょう。"
+			},
+			"outputs": {
+				"title": "PRに優しい出力",
+				"body": "summary-title、summary-details、has-new-translationsは直接create-pull-requestにスロットします。"
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "@azure-rest/ai-translation-text + @azure/core-rest-pipeline上で構築されており、408/429/5xxで自動リトライ、手作業のHTTPはありません。Esbuildにバンドルされ、監査クリーンです。"
+			}
+		}
+	},
+	"getting-started": {
+		"title": "始める",
+		"eyebrow": "セットアップ",
+		"lede": "ワークフローファイルを追加し、Azure AI Translatorの認証情報に向けると、Microsoftの公式 @azure-rest/ai-translation-text SDK 上で構築されたこのアクションがリポジトリ内のソース言語リソースファイルをスキャンし、翻訳された兄弟ファイルを出力します。",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator リソース",
+				"body": "AzureポータルにAzure AIトランスレーターリソースを作成し、以下の情報をGitHubリポジトリの秘密として保存してワークフローが読み取れるようにしてください:",
+				"key": "リソースのサブスクリプションキーです。",
+				"endpoint": "地域エンドポイントURLです。",
+				"region": "リソースのAzureリージョンです。"
+			},
+			"workflow": {
+				"title": "ワークフローを追加してください",
+				"body": ".github/workflows/translate.ymlを作成:"
+			},
+			"resource": {
+				"title": "ソースリソースファイルをコミットする",
+				"body": "リソースファイルは名前を使用します。<sourceLocale>。<ext> コンベンション。例えば、Greetings.en.resxは実行後にGreetings.fr.resxやGreetings.de.resxなどに変わります。"
+			},
+			"output": {
+				"title": "出力を点検してください",
+				"body": "ワークフローが終わると、アクションはPR説明に割り当てられる3つの出力を公開します:summary-title、summary-details、has-new-translationsです。また、core.summaryを通じて求人ページにMarkdownの要約も書き込んでいます。"
+			}
+		},
+		"nextSteps": {
+			"title": "今後のステップ",
+			"configuration": "リポジトリレベルのデフォルト設定は.github/resource-translator.ymlで設定してください。",
+			"recipes": "モノリポジトリ、カスタム用語集、カスタム翻訳者カテゴリのレシピをご覧ください。"
+		}
+	},
+	"configuration": {
+		"title": "構成",
+		"eyebrow": "ヤムル",
+		"heroTitle": "リポジトリ構成",
+		"lede": ".github/resource-translator.ymlで一度デフォルトを表現し、すべてのワークフローがそれを継承できるようにします。アクション入力が両方提供されていると常に勝ちます。"
+	},
+	"inputs": {
+		"title": "入力と出力",
+		"eyebrow": "参考文献",
+		"lede": "すべての入力はオプションのリポジトリ設定ファイルでも受け入れられます。両方が設定されると、アクション入力が勝ちます。"
+	},
+	"formats": {
+		"title": "ファイル形式",
+		"eyebrow": "参考文献",
+		"heroTitle": "対応ファイル形式",
+		"lede": "6つの往復可能なリソース形式。このアクションは各ソースロケールファイルを読み取り、値を翻訳し、ターゲットのローカごとに兄弟ファイルを書き込みます。"
+	},
+	"recipes": {
+		"title": "レシピ",
+		"eyebrow": "料理本",
+		"lede": "翻訳の出荷に関する一般的なパターン:モノレポ、用語集、カスタムカテゴリ、リハーサル、トーンコントロール。"
+	},
+	"faq": {
+		"title": "FAQ",
+		"eyebrow": "助けて",
+		"heroTitle": "よくある質問",
+		"lede": "アクションを採用する際に最もよく浮かぶ質問への迅速な回答。"
+	},
+	"translations": {
+		"title": "翻訳",
+		"eyebrow": "ショーケース",
+		"heroTitle": "すべての言語でこんにちは",
+		"locales": "ロケ地",
+		"currentlyRendered": "現在のレンダリング",
+		"complete": "完結!",
+		"pendingPrefix": "次の翻訳ドキュメントのラン待ちです。",
+		"viewWorkflowRuns": "ワークフローの実行を見る",
+		"filter": "フィルター",
+		"filterPlaceholder": "言語、コード、または母国名で検索します...",
+		"source": "出典",
+		"machineTranslations": "機械翻訳",
+		"translationPending": "翻訳保留中 — 翻訳ドキュメントの実行を開始してください。",
+		"noLocales": "そのフィルターに合う場所はありません。",
+		"howItWorks": "仕組み"
+	},
+	"contributing": {
+		"title": "貢献",
+		"eyebrow": "オープンソース",
+		"lede": "バグ報告、機能リクエスト、プルリクエストなど、すべて歓迎します。活動は小規模で、初めての寄稿者にも親しみやすいです。"
+	},
+	"changelog": {
+		"title": "変更ログ",
+		"eyebrow": "歴史",
+		"lede": "リリースの概要。正統で権威ある変更ログはリポジトリの CHANGELOG.md に存在します。"
+	}
+}

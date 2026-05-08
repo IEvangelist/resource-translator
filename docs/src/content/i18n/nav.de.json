@@ -1,0 +1,28 @@
+{
+	"sections": {
+		"start": "Fang hier an",
+		"reference": "Referenz",
+		"showcase": "Präsentation",
+		"project": "Projekt"
+	},
+	"items": {
+		"overview": "Überblick",
+		"gettingStarted": "Anfang",
+		"configuration": "Konfiguration",
+		"inputs": "Ein- und Ausgänge",
+		"formats": "Dateiformate",
+		"recipes": "Rezepte",
+		"faq": "FAQ",
+		"translations": "Übersetzungen",
+		"contributing": "Beitrag",
+		"changelog": "Wechselbuch"
+	},
+	"community": {
+		"reportBug": "Melde einen Fehler",
+		"requestFeature": "Eine Funktion anfordern",
+		"discussions": "Diskussionen",
+		"securityPolicy": "Sicherheitspolitik",
+		"codeOfConduct": "Verhaltenskodex",
+		"license": "MIT-Lizenz"
+	}
+}

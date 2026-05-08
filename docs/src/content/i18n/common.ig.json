@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Onye ntụgharị akụrụngwa",
+		"defaultDescription": "Documentation for the Resource Translator GitHub Action — automatic machine translation of resource files via Azure AI Translator.",
+		"homeLabel": "Onye ntụgharị ihe onwunwe — n'ụlọ"
+	},
+	"skipToContent": "Skip to content",
+	"drawer": {
+		"open": "Mepee igodo",
+		"close": "Mechie igodo",
+		"title": "Igodo"
+	},
+	"header": {
+		"search": "Akwụkwọ ọchụchọ",
+		"searchPlaceholder": "Akwụkwọ ọchụchọ ...",
+		"toggleTheme": "Budata isiokwu",
+		"githubRepository": "GitHub repository",
+		"language": "Asụsụ"
+	},
+	"search": {
+		"title": "Akwụkwọ ọchụchọ",
+		"results": "Nsonaazụ ọchụchọ",
+		"placeholder": "Chọọ isiokwu, ngalaba, ntụziaka...",
+		"close": "Mechie nchọgharị",
+		"idleTitle": "Chọọ na Docs",
+		"idleHelp": "Chọta isiokwu site na isiokwu, usoro faịlụ, nhọrọ nhazi, ma ọ bụ uzommeputa. Jiri {up} {down} iji nyagharịa, {enter} imeghe.",
+		"loading": "Chọọ...",
+		"empty": "Enweghị nsonaazụ. Gbalịa otu isi okwu dị iche.",
+		"error": "N'ihi ya, a naghị achọta ihe nchọgharị weebụ na Debian. Na-agba ọsọ mmepụta ihe owuwu."
+	},
+	"toc": {
+		"title": "Na peeji a"
+	},
+	"pager": {
+		"ariaLabel": "Isiokwu",
+		"previous": "Gara aga",
+		"next": "Na-esote"
+	},
+	"backToTop": {
+		"label": "Pịgharịa gaa n'elu"
+	},
+	"footer": {
+		"docs": "Akwụkwọ",
+		"project": "Ọrụ",
+		"community": "Obodo",
+		"projectLinksAria": "Njikọ oru ngo",
+		"sourceAria": "Lelee isi mmalite na GitHub",
+		"marketplaceAria": "Lelee na GitHub Marketplace",
+		"authorAria": "David Pine's Site",
+		"taglinePrefix": "GitHub Action nke na-asụgharị faịlụ akụ gị na-akpaghị aka, wuru n'elu ukara",
+		"taglineMiddle": "SDK site na",
+		"copyrightPrefix": "A tọhapụrụ ya n'okpuru",
+		"builtWith": "E wuru ya na"
+	}
+}

@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Cyfieithydd Adnoddau",
+		"defaultDescription": "Dogfennaeth ar gyfer y Cyfieithydd Adnoddau GitHub Action - cyfieithu peirianyddol awtomataidd o ffeiliau adnoddau trwy Azure AI Translator.",
+		"homeLabel": "Cyfieithydd Adnoddau — cartref"
+	},
+	"skipToContent": "Skip i'r cynnwys",
+	"drawer": {
+		"open": "Agor llywio",
+		"close": "Cysylltu â ni",
+		"title": "Llywio"
+	},
+	"header": {
+		"search": "Dogfennaeth chwilio",
+		"searchPlaceholder": "Dogfennaeth chwilio...",
+		"toggleTheme": "Toglu thema",
+		"githubRepository": "Storfa GitHub",
+		"language": "Iaith"
+	},
+	"search": {
+		"title": "Dogfennaeth chwilio",
+		"results": "Canlyniadau chwilio",
+		"placeholder": "Chwilio erthyglau, adrannau, ryseitiau...",
+		"close": "Cau chwiliad",
+		"idleTitle": "Chwilio'r dogfennau",
+		"idleHelp": "Dewch o hyd i erthyglau yn ôl pwnc, fformat ffeil, opsiwn cyfluniad, neu rysáit. Defnyddiwch {up} {down} i lywio, {enter} i agor.",
+		"loading": "Wrthi'n Chwilio...",
+		"empty": "Dim canlyniadau. Rhowch gynnig ar allweddair gwahanol.",
+		"error": "Nid yw'r mynegai chwilio ar gael yn dev. Rhedeg adeiladu cynhyrchu."
+	},
+	"toc": {
+		"title": "Ar y dudalen hon"
+	},
+	"pager": {
+		"ariaLabel": "Erthygl",
+		"previous": "Blaenorol",
+		"next": "Nesaf"
+	},
+	"backToTop": {
+		"label": "Sgroliwch i'r brig"
+	},
+	"footer": {
+		"docs": "Dogfennau",
+		"project": "Prosiect",
+		"community": "Cymuned",
+		"projectLinksAria": "Dolenni prosiect",
+		"sourceAria": "Gweld y ffynhonnell ar GitHub",
+		"marketplaceAria": "Gweld ar GitHub Marketplace",
+		"authorAria": "Gwefan David Pine",
+		"taglinePrefix": "Gweithred GitHub sy'n cyfieithu eich ffeiliau adnoddau yn awtomatig, wedi'i adeiladu ar ben y swyddogol",
+		"taglineMiddle": "SDK o",
+		"copyrightPrefix": "Wedi'i ryddhau o dan y",
+		"builtWith": "Wedi'i adeiladu gyda"
+	}
+}

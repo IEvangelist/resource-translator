@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Baliabideen itzultzailea",
+		"description": "Ireki automatikoki itzulitako pull eskaerak edozein repositoriotan, edozein formatutan.",
+		"badge": "v3.0 — 24. nodoa, biltegiaren konfigurazioa, glosarioa, exekuzio lehorra",
+		"headlinePrefix": "Lokalizatu zure biltegia",
+		"headlineAccent": "Konpromiso bakoitza.",
+		"lede": "Baliabideen itzultzaileak zure baliabide fitxategietarako automatikoki itzulitako pull eskaerak irekitzen ditu Azure AI Translator SDK ofizialaren bidez - zerbitzu gehigarririk gabe, lan-fluxu bat besterik ez.",
+		"primaryCta": "Hasi",
+		"secondaryCta": "Izarra GitHub-en",
+		"supports": "Euskarriak",
+		"builtForShipping": "Itsasontzietarako eraikia",
+		"workflowTitle": "Itzulpena lan-fluxu gisa, ez lan gisa.",
+		"workflowBody": "Jarri ekintza lehendik dagoen CIra, seinalatu Azure AI Translator-era eta utzi zure repositorioari zuzentzen zaren hizkuntza guztietan hitz egiten.",
+		"stats": {
+			"audit": "0 npm-auditoria arazoak",
+			"tests": "150 proba",
+			"node": "20 / 22 / 24 nodoa",
+			"sdk": "Azure SDK ofiziala"
+		},
+		"features": {
+			"formats": {
+				"title": "Sei fitxategi-formatu",
+				"body": ".resx, .xliff, .po, .json, .ini eta .restext joan-etorriko bidaiak byte-formatu egonkorrarekin."
+			},
+			"config": {
+				"title": "Biltegiratze mailako konfigurazioa",
+				"body": "Jaregin .github/resource-translator.yml globoak, glosarioak eta Itzultzaile pertsonalizatuaren kategoriak sartzeko."
+			},
+			"glossary": {
+				"title": "Glosarioa ezagutzen duena",
+				"body": "Blokeatu marka izenak eta produktuen terminoak C ++, .NET eta lagunak kudeatzen dituen hitz-muga adimendunarekin."
+			},
+			"dryRun": {
+				"title": "Lehorreko exekuzioa + hutsegite leuna",
+				"body": "Aurreikusi itzulpenak fitxategiak idatzi gabe, edo agerian utzi errore bakoitza abisu gisa iteratzen duzun bitartean."
+			},
+			"outputs": {
+				"title": "PR-friendly irteerak",
+				"body": "summary-title, summary-details eta has-new-translations zuzenean sartzen dira create-pull-request-en."
+			},
+			"sdk": {
+				"title": "Azure SDK ofiziala",
+				"body": "@azure-rest / ai-translation-text + @azure / core-rest-pipeline - saiakera automatikoak 408 / 429 / 5xx-n, eskuz jaurtitako HTTP gabe. esbuild-bundled, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Erabiltzen hastea",
+		"eyebrow": "Konfigurazioa",
+		"lede": "Gehitu lan-fluxuaren fitxategi bat, seinalatu zure Azure AI Translator kredentzialetara eta ekintzak - Microsoft-en @azure-rest / ai-translation-text SDK ofizialean oinarritutako ekintzak - biltegia eskaneatuko du iturburuko hizkuntzako baliabideen fitxategiak bilatzeko eta itzulitako anai-arrebak igortzen ditu.",
+		"steps": {
+			"provision": {
+				"title": "Hornitu Azure AI Translator baliabide bat",
+				"body": "Sortu Azure AI Translator baliabide bat Azure atarian, eta gorde ondorengo hauek GitHub biltegiko sekretu gisa, lan-fluxuak irakurri ahal izateko:",
+				"key": "Baliabidearen harpidetza-gakoa.",
+				"endpoint": "Eskualdeko amaierako URLa.",
+				"region": "baliabidearen Azure eskualdea."
+			},
+			"workflow": {
+				"title": "Gehitu lan-fluxua",
+				"body": "Sortu .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Egikaritu iturburuko baliabide-fitxategia",
+				"body": "Baliabide-fitxategiek izena erabiltzen dute. .<sourceLocale> <ext> konbentzioa. Adibidez, Greetings.en.resx Greetings.fr.resx, Greetings.de.resx eta abar bihurtzen da exekuzio baten ondoren."
+			},
+			"output": {
+				"title": "Begiratu irteera",
+				"body": "Lan-fluxua amaitutakoan, ekintzak PR deskribapen batean kableatu ditzakezun hiru irteera agerian uzten ditu: summary-title, summary-details, eta has-new-translations. Markdown laburpena ere idazten du lanaren orrialdean core.summary bidez."
+			}
+		},
+		"nextSteps": {
+			"title": "Hurrengo urratsak",
+			"configuration": "Konfiguratu repositorio mailako lehenetsiak .github/resource-translator.yml-rekin.",
+			"recipes": "Ikusi monorepos, glosario pertsonalizatuen eta itzultzaile pertsonalizatuen kategorien errezetak."
+		}
+	},
+	"configuration": {
+		"title": "Konfigurazioa",
+		"eyebrow": "YAML",
+		"heroTitle": "Biltegiaren konfigurazioa",
+		"lede": "Adierazi lehenetsiak behin .github/resource-translator.yml eta utzi lan-fluxu bakoitzak heredatzen dituela. Ekintza-sarrerak beti irabazten dira biak ematen direnean."
+	},
+	"inputs": {
+		"title": "Sarrerak eta irteerak",
+		"eyebrow": "Erreferentzia",
+		"lede": "Sarrera guztiak aukerako biltegiaren konfigurazio-fitxategian ere onartzen dira. Biak ezartzen direnean, ekintzaren sarrerak irabazten du."
+	},
+	"formats": {
+		"title": "Fitxategi-formatuak",
+		"eyebrow": "Erreferentzia",
+		"heroTitle": "Onartutako fitxategi-formatuak",
+		"lede": "Sei joan-etorriko baliabide formatu. Ekintzak iturburu-lokalen fitxategi bakoitza irakurtzen du, balioak itzultzen ditu eta helburuko lokal bakoitzeko anaia bat idazten du."
+	},
+	"recipes": {
+		"title": "Errezetak",
+		"eyebrow": "Sukaldaritza liburua",
+		"lede": "Itzulpenak bidaltzeko ohiko ereduak: monorepos, glosarioak, kategoria pertsonalizatuak, lehorrak eta tonu-kontrola."
+	},
+	"faq": {
+		"title": "FAQ",
+		"eyebrow": "Laguntza",
+		"heroTitle": "Maiz egiten diren galderak",
+		"lede": "Ekintza onartzerakoan gehien sortzen diren galderei erantzun azkarrak."
+	},
+	"translations": {
+		"title": "Itzulpenak",
+		"eyebrow": "Erakusleihoa",
+		"heroTitle": "Kaixo hizkuntza guztietan",
+		"locales": "Ezarpenak",
+		"currentlyRendered": "Une honetan errendatuta",
+		"complete": "Osatuta!",
+		"pendingPrefix": "Hurrengo translate-docs-en exekuzioaren zain.",
+		"viewWorkflowRuns": "Ikusi lan-fluxuaren exekuzioak",
+		"filter": "Iragazkia",
+		"filterPlaceholder": "Bilatu hizkuntzaren, kodearen edo jatorrizko izenaren arabera...",
+		"source": "Iturburua",
+		"machineTranslations": "Itzulpen automatikoak",
+		"translationPending": "Itzulpenaren zain: translate-docs-en exekuzioa ireki du.",
+		"noLocales": "Ez lokalak iragazki horrekin bat datorrela.",
+		"howItWorks": "Nola funtzionatzen du honek"
+	},
+	"contributing": {
+		"title": "Ekarpenak",
+		"eyebrow": "Kode irekia",
+		"lede": "Akatsen txostenak, ezaugarrien eskaerak eta pull eskaerak ongi etorriak dira. Ekintza nahikoa txikia da lehen aldiz kolaboratzaileekin atsegina izateko."
+	},
+	"changelog": {
+		"title": "Aldaketa-egunkaria",
+		"eyebrow": "Historia",
+		"lede": "Argitalpenen laburpena. Changelog kanonikoa eta autoritarioa biltegian CHANGELOG.md bizi da."
+	}
+}

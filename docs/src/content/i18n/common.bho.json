@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "संसाधन अनुवादक",
+		"defaultDescription": "संसाधन अनुवादक GitHub Action खातिर प्रलेखन — Azure AI Translator के माध्यम से संसाधन फाइल सब के स्वचालित मशीन अनुवाद.",
+		"homeLabel": "संसाधन अनुवादक — home"
+	},
+	"skipToContent": "सामग्री पर छोड़ दीं",
+	"drawer": {
+		"open": "ओपन नेविगेशन",
+		"close": "नेविगेशन बंद करीं",
+		"title": "नेविगेशन"
+	},
+	"header": {
+		"search": "खोज दस्तावेज",
+		"searchPlaceholder": "दस्तावेज खोजीं...",
+		"toggleTheme": "टॉगल थीम",
+		"githubRepository": "GitHub रिपॉजिटरी",
+		"language": "भाषा"
+	},
+	"search": {
+		"title": "खोज दस्तावेज",
+		"results": "खोज परिणाम",
+		"placeholder": "लेख खोजीं, खंड, व्यंजन विधि...",
+		"close": "खोज बंद करीं",
+		"idleTitle": "डॉक्स के खोज करीं",
+		"idleHelp": "विषय, फाइल प्रारूप, कॉन्फ़िगरेशन विकल्प भा रेसिपी के अनुसार लेख खोजीं। नेविगेट करे खातिर {up} {down} के इस्तेमाल करीं, {enter} खोले खातिर.",
+		"loading": "खोजत बानी...",
+		"empty": "कवनो परिणाम ना. एगो अलग कीवर्ड के कोशिश करीं.",
+		"error": "खोज अनुक्रमणिका देव में उपलब्ध नइखे. प्रोडक्शन बिल्ड चलाईं."
+	},
+	"toc": {
+		"title": "एह पन्ना पर"
+	},
+	"pager": {
+		"ariaLabel": "लेख",
+		"previous": "पिछला",
+		"next": "Next"
+	},
+	"backToTop": {
+		"label": "ऊपर तक स्क्रोल करीं"
+	},
+	"footer": {
+		"docs": "डॉक्स",
+		"project": "परियोजना",
+		"community": "समुदाय",
+		"projectLinksAria": "परियोजना लिंक",
+		"sourceAria": "GitHub पर स्रोत देखीं",
+		"marketplaceAria": "GitHub मार्केटप्लेस पs देखीं",
+		"authorAria": "डेविड पाइन के वेबसाइट",
+		"taglinePrefix": "एगो GitHub एक्शन जवन आपके संसाधन फाइल के स्वचालित रूप से अनुवाद करेला, जवन कि अधिकारी के ऊपर बनावल गइल बा",
+		"taglineMiddle": "SDK से",
+		"copyrightPrefix": "के तहत जारी कइल गइल",
+		"builtWith": "के साथ निर्मित"
+	}
+}

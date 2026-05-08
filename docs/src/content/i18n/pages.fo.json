@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Keldutýðari",
+		"description": "Opna maskinumsettar pull requests fyri resursufílur í hvørjum repo, í hvørjum formati.",
+		"badge": "v3.0 — Node 24, repo config, orðalisti, turrkoyring",
+		"headlinePrefix": "Lokalisera títt repo á",
+		"headlineAccent": "Hvørja einastu áseting.",
+		"lede": "Resource Translator letur upp maskinumsettar pull requests fyri tínar resursfílur við Azure AI Translator gjøgnum offisella SDK — eingin eyka tænastur, bara ein arbeiðsgongd.",
+		"primaryCta": "Kom í gongd",
+		"secondaryCta": "Star á GitHub",
+		"supports": "Stuðlar",
+		"builtForShipping": "Bygd til skipaflutning",
+		"workflowTitle": "Týðing sum arbeiðsgongd, ikki sum ein byrða.",
+		"workflowBody": "Legg handlingina í títt verandi CI, peika á Azure AI Translator, og lat repo'ið tosa øll málini, tú siktar eftir.",
+		"stats": {
+			"audit": "0 npm-eftirlitstrupulleikar",
+			"tests": "150 royndir",
+			"node": "Knútur 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Seks fílusnið",
+				"body": "Roundtrips .resx, .xliff, .po, .json, .ini og .restext við byte-stabilari formatering."
+			},
+			"config": {
+				"title": "Repo-level config",
+				"body": "Legg inn eina .github/resource-translator.yml fyri at innihalda globs, orðalistar og Custom Translator bólkar."
+			},
+			"glossary": {
+				"title": "Orðalista-vitandi",
+				"body": "Læs vørunøvn og vørutreytir við snildum orðamarkaregex, sum handfer C++, .NET og vinir."
+			},
+			"dryRun": {
+				"title": "Turrroynd + mjúk miseydnað roynd",
+				"body": "Forskoða týðingar uttan at skriva fílur, ella vísa hvørja villu sum eina ávaring meðan tú endurteknar."
+			},
+			"outputs": {
+				"title": "PR-vinarlig úrslit",
+				"body": "Samandráttur-heiti, samandráttur-upplýsingar og hevur-nýggjar-týðingar verða settar beinleiðis í create-pull-request."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Bygt á @azure-rest/ai-translation-text + @azure/core-rest-pipeline — sjálvvirkandi royndir á 408/429/5xx, eingin handrullað HTTP. Esbuild-bundið, reint í grannskoðan."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "At byrja",
+		"eyebrow": "Uppseting",
+		"lede": "Legg eina arbeiðsgongdarfílu afturat, peika á tínar Azure AI Translator innritanir, og gerðin — bygd á Microsofts offisella @azure-rest/ai-translation-text SDK — fer at skanna repo fyri keldu-máls resursufílur og senda týddar systkin.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Ger eina Azure AI Translator keldu í Azure portalinum, og goym síðani hesar sum GitHub repository loyndarmál, so arbeiðsgongdin kann lesa tær:",
+				"key": "Limaskapslykilin til tilfeingið.",
+				"endpoint": "tann regionala endapunkts-URL.",
+				"region": "tilfeingið er Azure-økið."
+			},
+			"workflow": {
+				"title": "Legg arbeiðsgongdina afturat",
+				"body": "Ger .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Commita eina keldufílu",
+				"body": "Resursufílur brúka Navnið. <sourceLocale>. <ext> ráðstevnu. Til dømis verður Greetings.en.resx til Greetings.fr.resx, Greetings.de.resx, og so framvegis eftir eina run."
+			},
+			"output": {
+				"title": "Kanna úrtøkuna",
+				"body": "Tá arbeiðsgongdin er liðug, gevur henda gerðin tríggjar úttøkur, sum tú kanst leggja inn í eina PR-lýsing: samandráttur-heiti, samandráttur-smálutir og havi-nýggjar-týðingar. Hon skrivar eisini eina Markdown-samandrátt inn á starvssíðuna gjøgnum core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Næstu stig",
+			"configuration": "Stilla repositorisku standardarnar við .github/resource-translator.yml.",
+			"recipes": "Sí uppskriftir til monorepos, serstakar orðalistar og Custom Translator bólkar."
+		}
+	},
+	"configuration": {
+		"title": "Uppseting",
+		"eyebrow": "YAML",
+		"heroTitle": "Repository-uppseting",
+		"lede": "Express defaultar eina ferð í .github/resource-translator.yml og lat hvørja arbeiðsgongd arva tær. Handlingsinntøkur vinna altíð, tá báðar verða givnar."
+	},
+	"inputs": {
+		"title": "Inntøkur og úttøkur",
+		"eyebrow": "Keldur",
+		"lede": "Øll inntøka verða eisini góðtikin í valfríu repo config-fíluni. Tá bæði eru sett, vinnur handlingsinntakið."
+	},
+	"formats": {
+		"title": "Fílusnið",
+		"eyebrow": "Keldur",
+		"heroTitle": "Stuðlaðar fílusnið",
+		"lede": "Seks umgangandi tilfeingisformat. Gerðin lesur hvørja keldu-staðsetingarfílu, umsetur virðini og skrivar eina systkin fyri hvørt málstað."
+	},
+	"recipes": {
+		"title": "Uppskriftir",
+		"eyebrow": "Matreiðslubók",
+		"lede": "Vanligar uppskriftir til at senda týðingar: monorepos, orðalistar, serligar bólkar, royndarroyndir og tónastýring."
+	},
+	"faq": {
+		"title": "OSS",
+		"eyebrow": "Hjálp",
+		"heroTitle": "Vanligar spurningar",
+		"lede": "Skjót svar upp á spurningarnar, sum oftast koma upp, tá tú velur hesa gerð."
+	},
+	"translations": {
+		"title": "Týðingar",
+		"eyebrow": "Framsýning",
+		"heroTitle": "Halló á øllum málum",
+		"locales": "Staðir",
+		"currentlyRendered": "Núverandi rendering",
+		"complete": "Fullfíggjað!",
+		"pendingPrefix": "Bíða eftir næstu Translate-Docs koyring.",
+		"viewWorkflowRuns": "Sí arbeiðsgongdir",
+		"filter": "Filter",
+		"filterPlaceholder": "Leita eftir máli, kóða ella upprunaligum navni...",
+		"source": "Kelda",
+		"machineTranslations": "Maskinutýðingar",
+		"translationPending": "Týðing bíðar — lat upp eina translate-docs run.",
+		"noLocales": "Einki staðsetingar samsvara við tað filter.",
+		"howItWorks": "Hvussu hetta virkar"
+	},
+	"contributing": {
+		"title": "At leggja til",
+		"eyebrow": "Open source",
+		"lede": "Villufrágreiðingar, funktiónsynski og pull requests eru øll vælkomin. Hendingarnar eru so smáar, at tær eru vinarligar fyri fyrstu ferð."
+	},
+	"changelog": {
+		"title": "Broytingarskrá",
+		"eyebrow": "Søga",
+		"lede": "Yvirlit yvir útgávur á hægsta stigi. Tann kanoniska, álítandi broytingarloggurin livir í CHANGELOG.md í goymsluni."
+	}
+}

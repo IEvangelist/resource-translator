@@ -1,0 +1,28 @@
+{
+	"sections": {
+		"start": "ここから始めましょう",
+		"reference": "参考文献",
+		"showcase": "ショーケース",
+		"project": "プロジェクト"
+	},
+	"items": {
+		"overview": "概要",
+		"gettingStarted": "始める",
+		"configuration": "構成",
+		"inputs": "入力と出力",
+		"formats": "ファイル形式",
+		"recipes": "レシピ",
+		"faq": "FAQ",
+		"translations": "翻訳",
+		"contributing": "貢献",
+		"changelog": "変更ログ"
+	},
+	"community": {
+		"reportBug": "バグを報告してください",
+		"requestFeature": "機能のリクエスト",
+		"discussions": "議論",
+		"securityPolicy": "セキュリティポリシー",
+		"codeOfConduct": "行動規範",
+		"license": "MITライセンス"
+	}
+}

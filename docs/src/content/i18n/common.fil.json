@@ -1,0 +1,55 @@
+{
+	"site": {
+		"name": "Tagasalin ng Mapagkukunan",
+		"defaultDescription": "Dokumentasyon para sa Resource Translator GitHub Action - awtomatikong pagsasalin ng makina ng mga file ng mapagkukunan sa pamamagitan ng Azure AI Translator.",
+		"homeLabel": "Tagasalin ng Sanggunian — tahanan"
+	},
+	"skipToContent": "Email Address *",
+	"drawer": {
+		"open": "Buksan ang nabigasyon",
+		"close": "Isara ang nabigasyon",
+		"title": "Nabigasyon"
+	},
+	"header": {
+		"search": "Email Address *",
+		"searchPlaceholder": "Paghahanap ng dokumentasyon ...",
+		"toggleTheme": "Email Address *",
+		"githubRepository": "Imbakan ng GitHub",
+		"language": "Wika"
+	},
+	"search": {
+		"title": "Email Address *",
+		"results": "Mga Resulta ng Paghahanap",
+		"placeholder": "Maghanap ng mga artikulo, seksyon, recipe ...",
+		"close": "Email Address *",
+		"idleTitle": "Hanapin ang Docs",
+		"idleHelp": "Maghanap ng mga artikulo ayon sa paksa, format ng file, pagpipilian sa pagsasaayos, o recipe. Gamitin ang {up} {down} upang mag-navigate, {enter} buksan.",
+		"loading": "Paghahanap...",
+		"empty": "Walang mga resulta. Subukan ang ibang keyword.",
+		"error": "Hindi available ang search index sa dev. Patakbuhin ang isang build ng produksyon."
+	},
+	"toc": {
+		"title": "Sa pahinang ito"
+	},
+	"pager": {
+		"ariaLabel": "Artikulo",
+		"previous": "Nakaraan",
+		"next": "Susunod"
+	},
+	"backToTop": {
+		"label": "Mag-scroll sa itaas"
+	},
+	"footer": {
+		"docs": "Mga Dokumento",
+		"project": "Proyekto",
+		"community": "Komunidad",
+		"projectLinksAria": "Mga link sa proyekto",
+		"sourceAria": "Tingnan ang pinagmulan sa GitHub",
+		"marketplaceAria": "Tingnan sa GitHub Marketplace",
+		"authorAria": "Website ni David Pine",
+		"taglinePrefix": "Isang GitHub Action na awtomatikong isinasalin ang iyong mga file ng mapagkukunan, na binuo sa tuktok ng opisyal na",
+		"taglineMiddle": "SDK mula sa",
+		"copyrightPrefix": "Inilabas sa ilalim ng",
+		"builtWith": "Itinayo na may"
+	}
+}

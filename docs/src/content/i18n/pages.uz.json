@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Resurs tarjimon",
+		"description": "Har qanday repoda, istalgan formatda resurs fayllari uchun mashina tarjimasi orqali pull so'rovlarni oching.",
+		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "Reponi lokalizatsiya qiling",
+		"headlineAccent": "Har bir commit.",
+		"lede": "Resource Translator rasmiy SDK orqali Azure AI Translator yordamida resurs fayllaringiz uchun mashina tarjimasi qilingan pull requestlarni ochadi — qo'shimcha xizmatlar yo'q, faqat ish jarayoni.",
+		"primaryCta": "Boshlang",
+		"secondaryCta": "GitHub'da yulduz",
+		"supports": "Qo'llab-quvvatlashlar",
+		"builtForShipping": "Yuk tashish uchun qurilgan",
+		"workflowTitle": "Tarjima ish jarayoni sifatida, vazifa emas.",
+		"workflowBody": "Harakatni mavjud CIga tashlang, Azure AI Translator ga yo'naltiring va repongizga nishonga olgan har bir tilni gapirishga ruxsat bering.",
+		"stats": {
+			"audit": "0 NPM-audit muammolari",
+			"tests": "150 ta test",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Oltita fayl formati",
+				"body": ".resx, .xliff, .po, .json, .ini va .restext fayllarini bayt-barqaror formatlash bilan aylantiradi."
+			},
+			"config": {
+				"title": "Repo darajasidagi konfiguratsiya",
+				"body": ".github/resource-translator.yml faylini qo'shing, unda globlar, lug'atlar va Custom Translator kategoriyalarini qo'shing."
+			},
+			"glossary": {
+				"title": "Lug'atga ega",
+				"body": "Brend nomlari va mahsulot atamalarini C++, .NET va do'stlarini boshqaradigan aqlli so'z chegarali regex bilan qulflang."
+			},
+			"dryRun": {
+				"title": "Sinov + yumshoq muvaffaqiyatsizlik",
+				"body": "Tarjimalarni fayl yozmasdan oldindan ko'rib chiqing yoki har bir xatoni ogohlantirish sifatida ko'rsating."
+			},
+			"outputs": {
+				"title": "PR uchun qulay chiqishlar",
+				"body": "summary-title, summary-details va has-new-translations to'g'ridan-to'g'ri create-pull-request ga joylashtiriladi."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "@azure-rest/ai-translation-text + @azure/core-rest-pipeline asosida qurilgan — 408/429/5xx da avtomatik qayta urinishlar, qo'lda aylantirilgan HTTP yo'q. Esbuild to'plami, audit toza."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Boshlanish",
+		"eyebrow": "Sozlama",
+		"lede": "Ish jarayoni faylini qo'shing, uni Azure AI Translator ma'lumotlaringizga yo'naltiring, va bu harakat — Microsoft'ning rasmiy @azure-rest/ai-translation-text SDK ga asoslangan — repoda manba tilidagi resurs fayllarini skanerlaydi va tarjima qilingan aka-ukalar chiqaradi.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Azure portalida Azure AI Translator resursini yarating, so'ng quyidagilarni GitHub ombori sirlari sifatida saqlang, shunda ish jarayoni ularni o'qiy oladi:",
+				"key": "resurs uchun obuna kaliti.",
+				"endpoint": "mintaqaviy endpoint URL.",
+				"region": "resursning Azure mintaqasi."
+			},
+			"workflow": {
+				"title": "Ish jarayonini qo'shing",
+				"body": ".github/workflows/translate.yml yarating:"
+			},
+			"resource": {
+				"title": "Manba resurs faylini commit qilish",
+				"body": "Resurs fayllari Ism nomidan foydalanadi. <sourceLocale>. <ext> konventsiya. Masalan, Greetings.en.resx ishga tushirilgandan so'ng Greetings.fr.resx, Greetings.de.resx va hokazo ga aylanadi."
+			},
+			"output": {
+				"title": "Chiqishni tekshiring",
+				"body": "Ish jarayoni tugagach, harakat uchta chiqishni PR tavsifiga ulash imkonini beradi: summary-title, summary-details va has-new-translations. Shuningdek, u core.summary orqali ish sahifasiga Markdown qisqacha mazmunini yozadi."
+			}
+		},
+		"nextSteps": {
+			"title": "Keyingi qadamlar",
+			"configuration": "Repo darajasidagi defaultlarni .github/resource-translator.yml bilan sozlang.",
+			"recipes": "Monorepolar, maxsus lug'atlar va Maxsus Tarjimon kategoriyalari uchun retseptlarni ko'ring."
+		}
+	},
+	"configuration": {
+		"title": "Konfiguratsiya",
+		"eyebrow": "YAML",
+		"heroTitle": "Ombor konfiguratsiyasi",
+		"lede": "Express .github/resource-translator.yml da bir marta standart bo'ladi va har bir ish jarayoni ularni meros qilib oladi. Harakat kirishlari har doim g'alaba qozonadi, agar ikkalasi ham mavjud bo'lsa."
+	},
+	"inputs": {
+		"title": "Kirishlar va chiqishlar",
+		"eyebrow": "Manba",
+		"lede": "Har bir kirish ixtiyoriy repo konfiguratsiya faylida ham qabul qilinadi. Ikkalasi ham sozlanganda, harakat kirishi g'alaba qiladi."
+	},
+	"formats": {
+		"title": "Fayl formatlari",
+		"eyebrow": "Manba",
+		"heroTitle": "Qo'llab-quvvatlanadigan fayl formatlari",
+		"lede": "Oltita aylanma resurs formati. Harakat har bir manba-lokal faylni o'qiydi, qiymatlarni tarjima qiladi va har bir maqsadli lokalka uchun aka-uka yozadi."
+	},
+	"recipes": {
+		"title": "Retseptlar",
+		"eyebrow": "Oshxona kitobi",
+		"lede": "Tarjimalarni jo'natishda keng tarqalgan naqshlar: monorepolar, lug'atlar, maxsus kategoriyalar, quruq yurishlar va ton nazorati."
+	},
+	"faq": {
+		"title": "Ko'p so'raladigan savollar",
+		"eyebrow": "Yordam bering",
+		"heroTitle": "Tez-tez so'raladigan savollar",
+		"lede": "Harakatni qabul qilishda eng ko'p yuzaga keladigan savollarga tezkor javoblar."
+	},
+	"translations": {
+		"title": "Tarjimalar",
+		"eyebrow": "Ko'rgazma",
+		"heroTitle": "Har bir tilda salom",
+		"locales": "Joylashuvlar",
+		"currentlyRendered": "Hozirda tasvirlanmoqda",
+		"complete": "To'liq!",
+		"pendingPrefix": "Keyingi Translate-Docs ishga tayyorlanmoqda.",
+		"viewWorkflowRuns": "Ish jarayonini ko'rish",
+		"filter": "Filtr",
+		"filterPlaceholder": "Til, kod yoki mahalliy ism bo'yicha qidiring...",
+		"source": "Manba",
+		"machineTranslations": "Mashina tarjimalari",
+		"translationPending": "Tarjima jarayoni kutilmoqda — translate-docs dasturini oching.",
+		"noLocales": "Hech qanday joylar shu filtrga mos keladi.",
+		"howItWorks": "Bu qanday ishlaydi"
+	},
+	"contributing": {
+		"title": "Hissa qo'shish",
+		"eyebrow": "Ochiq manba",
+		"lede": "Xatoliklar haqida xabarlar, funksiya so'rovlari va pull so'rovlari qabul qilinadi. Harakatlar yetarlicha kichik bo'lib, birinchi marta ishtirok etayotganlar uchun qulay bo'ladi."
+	},
+	"changelog": {
+		"title": "O'zgarishlar ro'yxati",
+		"eyebrow": "Tarix",
+		"lede": "Relizatsiyalarning yuqori darajadagi qisqacha mazmuni. Kanonik, vakolatli changelog CHANGELOG.md omborda yashaydi."
+	}
+}

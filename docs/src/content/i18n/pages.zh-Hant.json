@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "資源翻譯器",
+		"description": "在任何儲存庫、任何格式中開啟機器翻譯的資源檔案拉取請求。",
+		"badge": "v3.0 — Node 24， repo config， glossary， dry run",
+		"headlinePrefix": "將你的倉庫在",
+		"headlineAccent": "每一次提交。",
+		"lede": "Resource Translator 透過官方 SDK 使用 Azure AI Translator 開啟機器翻譯的資源檔案拉取請求——沒有額外服務，只有工作流程。",
+		"primaryCta": "開始吧",
+		"secondaryCta": "GitHub 上的星號",
+		"supports": "支援",
+		"builtForShipping": "為航運而建",
+		"workflowTitle": "翻譯是一個工作流程，而不是苦差事。",
+		"workflowBody": "把動作放進你現有的 CI，指向 Azure AI 翻譯器，讓你的倉庫能說你目標的所有語言。",
+		"stats": {
+			"audit": "0 NPM-稽核問題",
+			"tests": "150場測試賽",
+			"node": "節點20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "六種檔案格式",
+				"body": "來回傳輸 .resx、.xliff、.po、.json、.ini 和 .restext，格式為位元組穩定。"
+			},
+			"config": {
+				"title": "倉庫層級設定",
+				"body": "放置 .github/resource-translator.yml 以包含 globs、詞彙表和自訂翻譯器分類。"
+			},
+			"glossary": {
+				"title": "詞彙表感知",
+				"body": "用智慧字邊界正則表達式鎖定品牌名稱和產品名稱，這些正則表達式可處理 C++、.NET 及其他語言。"
+			},
+			"dryRun": {
+				"title": "試跑 + 軟失敗",
+				"body": "預覽翻譯時不寫檔案，或在反覆迭代時將每個錯誤都標示為警告。"
+			},
+			"outputs": {
+				"title": "PR友善的輸出",
+				"body": "summary-title、summary-details 和 has-new-translations 直接插入 create-pull-request。"
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "建立在 @azure-rest/ai-translation-text + @azure/core-rest-pipeline — 自動重試 408/429/5xx，無手動 HTTP。esbuild-bundled，審計乾淨。"
+			}
+		}
+	},
+	"getting-started": {
+		"title": "開始",
+		"eyebrow": "設定",
+		"lede": "新增一個工作流程檔案，指向你的 Azure AI Translator 憑證，這個動作——基於 Microsoft 官方的 @azure-rest/ai-translation-text SDK ——會掃描倉庫中的原始語言資源檔案，並發出翻譯過的兄弟檔。",
+		"steps": {
+			"provision": {
+				"title": "Provision a Azure AI Translator 資源",
+				"body": "在 Azure 入口網站建立一個 Azure AI 翻譯器資源，然後將以下資料存為 GitHub 倉庫的秘密，讓工作流程能讀取：",
+				"key": "資源的訂閱金鑰。",
+				"endpoint": "區域端點網址。",
+				"region": "該資源位於 Azure 區域。"
+			},
+			"workflow": {
+				"title": "新增工作流程",
+				"body": "建立 .github/workflows/translate.yml："
+			},
+			"resource": {
+				"title": "提交原始資源檔案",
+				"body": "資源檔案使用 Name。<sourceLocale>。<ext> 大會。例如 Greetings.en.resx 在執行後會變成 Greetings.fr.resx、Greetings.de.resx 等。"
+			},
+			"output": {
+				"title": "檢查輸出",
+				"body": "工作流程結束後，動作會顯示三個輸出，你可以接入 PR 描述：summary-title、summary-details，以及 has-new-translations。它也會透過 core.summary 在職缺頁面寫入 Markdown 摘要。"
+			}
+		},
+		"nextSteps": {
+			"title": "下一步",
+			"configuration": "用 .github/resource-translator.yml 設定倉庫層級的預設值。",
+			"recipes": "請參閱 monorepo 的配方、自訂詞彙表和自訂翻譯器分類。"
+		}
+	},
+	"configuration": {
+		"title": "配置",
+		"eyebrow": "YAML",
+		"heroTitle": "儲存庫配置",
+		"lede": "在 .github/resource-translator.yml 中表達一次預設，讓每個工作流程繼承它們。只要動作輸入同時提供，行動輸入總是會勝出。"
+	},
+	"inputs": {
+		"title": "輸入與輸出",
+		"eyebrow": "參考資料",
+		"lede": "每個輸入也會被接受在可選的 repo 設定檔中。當兩者都已設定時，行動輸入會獲勝。"
+	},
+	"formats": {
+		"title": "檔案格式",
+		"eyebrow": "參考資料",
+		"heroTitle": "支援的檔案格式",
+		"lede": "六種可往返的資源格式。該動作會讀取每個來源-區域檔案，轉換值，並為每個目標區域寫入一個兄弟檔案。"
+	},
+	"recipes": {
+		"title": "食譜",
+		"eyebrow": "食譜",
+		"lede": "常見的翻譯發行模式包括：單彙集、詞彙表、自訂分類、試演和語調控制。"
+	},
+	"faq": {
+		"title": "常見問題",
+		"eyebrow": "救命",
+		"heroTitle": "常見問題",
+		"lede": "快速回答採用行動時最常被問到的問題。"
+	},
+	"translations": {
+		"title": "譯本",
+		"eyebrow": "展示",
+		"heroTitle": "各種語言的哈囉",
+		"locales": "地點",
+		"currentlyRendered": "目前呈現",
+		"complete": "完整！",
+		"pendingPrefix": "等待下一次翻譯文件的運行。",
+		"viewWorkflowRuns": "檢視工作流程執行",
+		"filter": "濾波器",
+		"filterPlaceholder": "依語言、代碼或原住民名稱搜尋......",
+		"source": "資料來源",
+		"machineTranslations": "機器翻譯",
+		"translationPending": "翻譯待處理 — 開啟翻譯文件。",
+		"noLocales": "沒有任何地點符合這個篩選條件。",
+		"howItWorks": "運作方式"
+	},
+	"contributing": {
+		"title": "貢獻",
+		"eyebrow": "開源",
+		"lede": "歡迎回報錯誤、功能請求和拉取請求。活動規模小，對首次投稿者來說相當友善。"
+	},
+	"changelog": {
+		"title": "更新日誌",
+		"eyebrow": "歷史",
+		"lede": "發布的高層次摘要。正統且權威的變更日誌存放在倉庫的 CHANGELOG.md 中。"
+	}
+}
