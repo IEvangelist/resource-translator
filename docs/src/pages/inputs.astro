@@ -1,15 +1,20 @@
 ---
 import DocLayout from "../layouts/DocLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { defaultLocale } from "../i18n/locales";
+import { getPageMessages } from "../i18n/messages";
+
+const { locale = defaultLocale } = Astro.props;
+const copy = getPageMessages(locale, "inputs");
 ---
 
-<DocLayout title="Inputs & outputs">
+<DocLayout title={copy.title} locale={locale} slug="inputs">
   <PageHero
     slot="hero"
-    eyebrow="Reference"
-    title="Inputs & outputs"
+    eyebrow={copy.eyebrow}
+    title={copy.title}
     icon="lucide:file-text"
-    lede="Every input is also accepted in the optional repo config file. When both are set, the action input wins."
+    lede={copy.lede}
   />
   <p>
     See <a href="./configuration">Configuration</a> for the YAML schema and
@@ -99,4 +104,3 @@ import PageHero from "../components/PageHero.astro";
     </tbody>
   </table>
 </DocLayout>
-

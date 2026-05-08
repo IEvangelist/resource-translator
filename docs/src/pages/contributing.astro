@@ -2,6 +2,11 @@
 import { Code } from "astro-expressive-code/components";
 import DocLayout from "../layouts/DocLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { defaultLocale } from "../i18n/locales";
+import { getPageMessages } from "../i18n/messages";
+
+const { locale = defaultLocale } = Astro.props;
+const copy = getPageMessages(locale, "contributing");
 
 const cmd = `git clone https://github.com/IEvangelist/resource-translator
 cd resource-translator
@@ -10,13 +15,13 @@ npm run verify   # lint + format:check + test + build
 `;
 ---
 
-<DocLayout title="Contributing">
+<DocLayout title={copy.title} locale={locale} slug="contributing">
   <PageHero
     slot="hero"
-    eyebrow="Open source"
-    title="Contributing"
+    eyebrow={copy.eyebrow}
+    title={copy.title}
     icon="lucide:hand-heart"
-    lede="Bug reports, feature requests, and pull requests are all welcome. The action is small enough to be friendly to first-time contributors."
+    lede={copy.lede}
   />
 
   <h2>Local development</h2>
@@ -54,4 +59,3 @@ npm run verify   # lint + format:check + test + build
     Pages on every merge.
   </p>
 </DocLayout>
-

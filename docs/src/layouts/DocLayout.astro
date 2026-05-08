@@ -10,12 +10,22 @@ import DocPager from "../components/DocPager.astro";
 import BackToTop from "../components/BackToTop.astro";
 import Toc from "../components/Toc.astro";
 import TocMobile from "../components/TocMobile.astro";
+import { getCommonMessages, getNavMessages } from "../i18n/messages";
+import {
+  allLocales,
+  defaultLocale,
+  toHtmlLang,
+  toTextDirection,
+} from "../i18n/locales";
+import { localizedHref, slugFromPath, type PageSlug } from "../i18n/routes";
 
 interface Props {
   title: string;
   description?: string;
   hideSidebar?: boolean;
   wide?: boolean;
+  locale?: string;
+  slug?: PageSlug;
 }
 
 const {
@@ -23,18 +33,30 @@ const {
   description,
   hideSidebar = false,
   wide = false,
+  locale = defaultLocale,
+  slug = slugFromPath(Astro.url.pathname),
 } = Astro.props;
-const siteName = "Resource Translator";
+const common = getCommonMessages(locale);
+const nav = getNavMessages(locale);
+const siteName = common.site.name;
 const fullTitle = title === siteName ? title : `${title} · ${siteName}`;
 const desc =
   description ??
-  "Documentation for the Resource Translator GitHub Action — automated machine translation of resource files via Azure AI Translator.";
+  common.site.defaultDescription;
 const baseHref = import.meta.env.BASE_URL.replace(/\/$/, "");
 const faviconHref = `${baseHref}/favicon.svg`;
+const htmlLang = toHtmlLang(locale);
+const dir = toTextDirection(locale);
+const siteUrl = Astro.site ?? new URL(Astro.url.origin);
+const canonicalUrl = new URL(localizedHref(locale, slug), siteUrl).toString();
+const alternates = allLocales.map((item) => ({
+  lang: toHtmlLang(item.code),
+  href: new URL(localizedHref(item.code, slug), siteUrl).toString(),
+}));
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={htmlLang} dir={dir}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -52,6 +74,21 @@ const faviconHref = `${baseHref}/favicon.svg`;
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={desc} />
     <meta property="og:type" content="website" />
+    <link rel="canonical" href={canonicalUrl} />
+    {
+      alternates.map((alternate) => (
+        <link
+          rel="alternate"
+          hreflang={alternate.lang}
+          href={alternate.href}
+        />
+      ))
+    }
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL(localizedHref(defaultLocale, slug), siteUrl).toString()}
+    />
     <link rel="icon" type="image/svg+xml" href={faviconHref} />
     <title>{fullTitle}</title>
     <ClientRouter />
@@ -61,9 +98,14 @@ const faviconHref = `${baseHref}/favicon.svg`;
     <a
       href="#main"
       class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded focus:bg-(--bg-elevated) focus:px-3 focus:py-1.5 focus:text-sm focus:font-semibold focus:shadow-lg"
-      >Skip to content</a
+      >{common.skipToContent}</a
     >
-    <Header hasSidebar={!hideSidebar} />
+    <Header
+      hasSidebar={!hideSidebar}
+      locale={locale}
+      common={common}
+      currentSlug={slug}
+    />
     {
       hideSidebar ? (
         <main id="main" class="min-w-0">
@@ -82,25 +124,30 @@ const faviconHref = `${baseHref}/favicon.svg`;
               aria-label="Documentation navigation"
             >
               <div class="sticky top-24">
-                <Sidebar />
+                <Sidebar locale={locale} nav={nav} currentSlug={slug} />
               </div>
             </aside>
             <main id="main" class="min-w-0 flex-1">
               <slot name="hero" />
-              <TocMobile />
+              <TocMobile title={common.toc.title} />
               <article class="prose-rt">
                 <slot />
               </article>
-              <DocPager />
+              <DocPager
+                locale={locale}
+                nav={nav}
+                pager={common.pager}
+                currentSlug={slug}
+              />
             </main>
-            <Toc />
+            <Toc title={common.toc.title} />
           </div>
 
           <div
             id="sidebar-drawer"
             role="dialog"
             aria-modal="true"
-            aria-label="Documentation navigation"
+            aria-label={common.drawer.title}
             class="fixed inset-0 z-40 lg:hidden"
             hidden
           >
@@ -112,26 +159,26 @@ const faviconHref = `${baseHref}/favicon.svg`;
               class="absolute inset-y-0 left-0 flex w-full flex-col overflow-y-auto border-r border-(--border) bg-(--bg) shadow-2xl sm:w-80 sm:max-w-[85vw]"
             >
               <div class="flex items-center justify-between border-b border-(--border) px-4 py-3">
-                <span class="text-sm font-semibold">Navigation</span>
+                  <span class="text-sm font-semibold">{common.drawer.title}</span>
                 <button
                   type="button"
                   data-drawer-close
                   class="inline-flex size-9 items-center justify-center rounded-md border border-(--border) bg-(--bg-elevated) text-(--fg-muted) hover:text-(--fg)"
-                  aria-label="Close navigation"
+                  aria-label={common.drawer.close}
                 >
                   <Icon name="lucide:x" class="size-4" />
                 </button>
               </div>
               <div class="flex-1 px-3 py-4">
-                <Sidebar />
+                <Sidebar locale={locale} nav={nav} currentSlug={slug} />
               </div>
             </div>
           </div>
         </Fragment>
       )
     }
-    <BackToTop />
-    <Footer />
+    <BackToTop label={common.backToTop.label} />
+    <Footer locale={locale} common={common} nav={nav} />
 
     <script>
       // Mobile sidebar drawer: open/close, focus management, ESC handling.
@@ -190,5 +237,4 @@ const faviconHref = `${baseHref}/favicon.svg`;
     </script>
   </body>
 </html>
-
 

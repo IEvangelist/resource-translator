@@ -1,0 +1,134 @@
+{
+	"index": {
+		"title": "Resource Translator",
+		"description": "Open machine-translated pull requests for resource files in any repo, in any format.",
+		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"headlinePrefix": "Localize your repo on",
+		"headlineAccent": "every commit.",
+		"lede": "Resource Translator opens machine-translated pull requests for your resource files using Azure AI Translator via the official SDK — no extra services, just a workflow.",
+		"primaryCta": "Get started",
+		"secondaryCta": "Star on GitHub",
+		"supports": "Supports",
+		"builtForShipping": "Built for shipping",
+		"workflowTitle": "Translation as a workflow, not a chore.",
+		"workflowBody": "Drop the action into your existing CI, point it at Azure AI Translator, and let your repo speak every language you target.",
+		"stats": {
+			"audit": "0 npm-audit issues",
+			"tests": "150 tests",
+			"node": "Node 20 / 22 / 24",
+			"sdk": "Official Azure SDK"
+		},
+		"features": {
+			"formats": {
+				"title": "Six file formats",
+				"body": "Round-trips .resx, .xliff, .po, .json, .ini, and .restext with byte-stable formatting."
+			},
+			"config": {
+				"title": "Repo-level config",
+				"body": "Drop a .github/resource-translator.yml for include globs, glossaries, and Custom Translator categories."
+			},
+			"glossary": {
+				"title": "Glossary-aware",
+				"body": "Lock brand names and product terms with smart word-boundary regex that handles C++, .NET, and friends."
+			},
+			"dryRun": {
+				"title": "Dry-run + soft-fail",
+				"body": "Preview translations without writing files, or surface every error as a warning while you iterate."
+			},
+			"outputs": {
+				"title": "PR-friendly outputs",
+				"body": "summary-title, summary-details, and has-new-translations slot directly into create-pull-request."
+			},
+			"sdk": {
+				"title": "Official Azure SDK",
+				"body": "Built on @azure-rest/ai-translation-text + @azure/core-rest-pipeline — automatic retries on 408/429/5xx, no hand-rolled HTTP. esbuild-bundled, audit-clean."
+			}
+		}
+	},
+	"getting-started": {
+		"title": "Getting started",
+		"eyebrow": "Setup",
+		"lede": "Add a workflow file, point it at your Azure AI Translator credentials, and the action — built on Microsoft's official @azure-rest/ai-translation-text SDK — will scan the repo for source-language resource files and emit translated siblings.",
+		"steps": {
+			"provision": {
+				"title": "Provision an Azure AI Translator resource",
+				"body": "Create an Azure AI Translator resource in the Azure portal, then store the following as GitHub repository secrets so the workflow can read them:",
+				"key": "the subscription key for the resource.",
+				"endpoint": "the regional endpoint URL.",
+				"region": "the resource's Azure region."
+			},
+			"workflow": {
+				"title": "Add the workflow",
+				"body": "Create .github/workflows/translate.yml:"
+			},
+			"resource": {
+				"title": "Commit a source resource file",
+				"body": "Resource files use the Name.<sourceLocale>.<ext> convention. For example Greetings.en.resx becomes Greetings.fr.resx, Greetings.de.resx, and so on after a run."
+			},
+			"output": {
+				"title": "Inspect the output",
+				"body": "Once the workflow finishes, the action exposes three outputs you can wire into a PR description: summary-title, summary-details, and has-new-translations. It also writes a Markdown summary into the job page via core.summary."
+			}
+		},
+		"nextSteps": {
+			"title": "Next steps",
+			"configuration": "Configure repo-level defaults with .github/resource-translator.yml.",
+			"recipes": "See recipes for monorepos, custom glossaries, and Custom Translator categories."
+		}
+	},
+	"configuration": {
+		"title": "Configuration",
+		"eyebrow": "YAML",
+		"heroTitle": "Repository configuration",
+		"lede": "Express defaults once in .github/resource-translator.yml and let every workflow inherit them. Action inputs always win when both are provided."
+	},
+	"inputs": {
+		"title": "Inputs & outputs",
+		"eyebrow": "Reference",
+		"lede": "Every input is also accepted in the optional repo config file. When both are set, the action input wins."
+	},
+	"formats": {
+		"title": "File formats",
+		"eyebrow": "Reference",
+		"heroTitle": "Supported file formats",
+		"lede": "Six round-trippable resource formats. The action reads each source-locale file, translates the values, and writes a sibling per target locale."
+	},
+	"recipes": {
+		"title": "Recipes",
+		"eyebrow": "Cookbook",
+		"lede": "Common patterns for shipping translations: monorepos, glossaries, custom categories, dry runs, and tone control."
+	},
+	"faq": {
+		"title": "FAQ",
+		"eyebrow": "Help",
+		"heroTitle": "Frequently asked questions",
+		"lede": "Quick answers to the questions that come up most often when adopting the action."
+	},
+	"translations": {
+		"title": "Translations",
+		"eyebrow": "Showcase",
+		"heroTitle": "Hello in every language",
+		"locales": "locales",
+		"currentlyRendered": "currently rendered",
+		"complete": "complete!",
+		"pendingPrefix": "pending the next translate-docs run.",
+		"viewWorkflowRuns": "View workflow runs",
+		"filter": "Filter",
+		"filterPlaceholder": "Search by language, code, or native name…",
+		"source": "Source",
+		"machineTranslations": "Machine translations",
+		"translationPending": "Translation pending — open a translate-docs run.",
+		"noLocales": "No locales match that filter.",
+		"howItWorks": "How this works"
+	},
+	"contributing": {
+		"title": "Contributing",
+		"eyebrow": "Open source",
+		"lede": "Bug reports, feature requests, and pull requests are all welcome. The action is small enough to be friendly to first-time contributors."
+	},
+	"changelog": {
+		"title": "Changelog",
+		"eyebrow": "History",
+		"lede": "High-level summary of releases. The canonical, authoritative changelog lives in CHANGELOG.md in the repository."
+	}
+}

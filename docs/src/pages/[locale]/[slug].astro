@@ -1,0 +1,40 @@
+---
+import ChangelogPage from "../changelog.astro";
+import ConfigurationPage from "../configuration.astro";
+import ContributingPage from "../contributing.astro";
+import FaqPage from "../faq.astro";
+import FormatsPage from "../formats.astro";
+import GettingStartedPage from "../getting-started.astro";
+import InputsPage from "../inputs.astro";
+import RecipesPage from "../recipes.astro";
+import TranslationsPage from "../translations.astro";
+import { targetLocales } from "../../i18n/locales";
+import { pageSlugs, type PageSlug } from "../../i18n/routes";
+
+const pages = {
+  "getting-started": GettingStartedPage,
+  configuration: ConfigurationPage,
+  inputs: InputsPage,
+  formats: FormatsPage,
+  recipes: RecipesPage,
+  faq: FaqPage,
+  translations: TranslationsPage,
+  contributing: ContributingPage,
+  changelog: ChangelogPage,
+} satisfies Partial<Record<PageSlug, unknown>>;
+
+export function getStaticPaths() {
+  const slugs = pageSlugs.filter((slug) => slug !== "index");
+  return targetLocales.flatMap((locale) =>
+    slugs.map((slug) => ({
+      params: { locale: locale.code, slug },
+      props: { locale: locale.code, slug },
+    })),
+  );
+}
+
+const { locale, slug } = Astro.props as { locale: string; slug: PageSlug };
+const Page = pages[slug];
+---
+
+{Page ? <Page locale={locale} /> : null}

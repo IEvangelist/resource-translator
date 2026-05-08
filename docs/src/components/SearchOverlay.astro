@@ -1,9 +1,25 @@
 ---
 import { Icon } from "astro-icon/components";
+import type { CommonMessages } from "../i18n/messages";
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const pagefindBase = base || "";
 const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
+
+interface Props {
+  search?: CommonMessages["search"];
+}
+
+const { search } = Astro.props;
+const idleHelpTokens = (
+  search?.idleHelp ??
+  "Find articles by topic, file format, configuration option, or recipe. Use {up} {down} to navigate, {enter} to open."
+).split(/(\{up\}|\{down\}|\{enter\})/g);
+const keyLabels: Record<string, string> = {
+  "{up}": "↑",
+  "{down}": "↓",
+  "{enter}": "Enter",
+};
 ---
 
 <div
@@ -20,7 +36,9 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
     style="max-height: min(80vh, 720px);"
     data-search-panel
   >
-    <h2 id="search-overlay-title" class="sr-only">Search documentation</h2>
+    <h2 id="search-overlay-title" class="sr-only">
+      {search?.title ?? "Search documentation"}
+    </h2>
 
     <!-- Search input row -->
     <div
@@ -36,8 +54,8 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
         type="text"
         autocomplete="off"
         spellcheck="false"
-        placeholder="Search articles, sections, recipes…"
-        aria-label="Search documentation"
+        placeholder={search?.placeholder ?? "Search articles, sections, recipes…"}
+        aria-label={search?.title ?? "Search documentation"}
         aria-controls="search-overlay-results"
         aria-autocomplete="list"
         class="min-w-0 flex-1 bg-transparent py-1 text-base text-(--fg) placeholder-(--fg-muted) outline-none sm:text-lg"
@@ -50,7 +68,7 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
         type="button"
         data-search-close
         class="inline-flex size-8 flex-none items-center justify-center rounded-md text-(--fg-muted) hover:bg-(--bg-elevated) hover:text-(--fg) sm:hidden"
-        aria-label="Close search"
+        aria-label={search?.close ?? "Close search"}
       >
         <Icon name="lucide:x" class="size-4" />
       </button>
@@ -61,25 +79,26 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
       <div
         id="search-overlay-results"
         role="listbox"
-        aria-label="Search results"
+        aria-label={search?.results ?? "Search results"}
         class="px-2 py-3 sm:px-3"
       >
         <!-- empty-state -->
         <div data-search-state="idle" class="px-3 py-6 text-sm text-(--fg-muted)">
-          <p class="font-medium text-(--fg)">Search the docs</p>
+          <p class="font-medium text-(--fg)">
+            {search?.idleTitle ?? "Search the docs"}
+          </p>
           <p class="mt-1">
-            Find articles by topic, file format, configuration option, or
-            recipe. Use <kbd
-              class="rounded border border-(--border) bg-(--bg) px-1 py-0.5 font-mono text-[11px]"
-              >↑</kbd
-            >
-            <kbd
-              class="rounded border border-(--border) bg-(--bg) px-1 py-0.5 font-mono text-[11px]"
-              >↓</kbd
-            > to navigate, <kbd
-              class="rounded border border-(--border) bg-(--bg) px-1 py-0.5 font-mono text-[11px]"
-              >Enter</kbd
-            > to open.
+            {
+              idleHelpTokens.map((token) =>
+                token in keyLabels ? (
+                  <kbd class="rounded border border-(--border) bg-(--bg) px-1 py-0.5 font-mono text-[11px]">
+                    {keyLabels[token]}
+                  </kbd>
+                ) : (
+                  token
+                ),
+              )
+            }
           </p>
         </div>
         <div
@@ -87,21 +106,21 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
           hidden
           class="px-3 py-6 text-sm text-(--fg-muted)"
         >
-          Searching…
+          {search?.loading ?? "Searching…"}
         </div>
         <div
           data-search-state="empty"
           hidden
           class="px-3 py-6 text-sm text-(--fg-muted)"
         >
-          No results. Try a different keyword.
+          {search?.empty ?? "No results. Try a different keyword."}
         </div>
         <div
           data-search-state="error"
           hidden
           class="px-3 py-6 text-sm text-(--fg-muted)"
         >
-          Search index isn't available in dev. Run a production build.
+          {search?.error ?? "Search index isn't available in dev. Run a production build."}
         </div>
       </div>
     </div>

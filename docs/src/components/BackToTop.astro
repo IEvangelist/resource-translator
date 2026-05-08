@@ -1,5 +1,11 @@
 ---
 import { Icon } from "astro-icon/components";
+
+interface Props {
+  label?: string;
+}
+
+const { label = "Scroll to top" } = Astro.props;
 ---
 
 <div
@@ -10,7 +16,7 @@ import { Icon } from "astro-icon/components";
   <button
     type="button"
     id="back-to-top"
-    aria-label="Scroll to top"
+    aria-label={label}
     inert
     class="pointer-events-none inline-flex size-9 translate-y-2 items-center justify-center rounded-md bg-linear-to-br from-(--color-brand-500) to-(--color-accent-500) text-white opacity-0 shadow-lg ring-1 ring-(--color-brand-500)/30 transition-[opacity,transform,box-shadow] duration-200 ease-out hover:scale-105 hover:shadow-xl focus:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-(--bg) focus:ring-(--color-brand-500)/60 motion-reduce:transition-none motion-reduce:hover:scale-100"
   >

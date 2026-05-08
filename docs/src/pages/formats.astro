@@ -3,6 +3,11 @@ import { Code } from "astro-expressive-code/components";
 import { Icon } from "astro-icon/components";
 import DocLayout from "../layouts/DocLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { defaultLocale } from "../i18n/locales";
+import { getPageMessages } from "../i18n/messages";
+
+const { locale = defaultLocale } = Astro.props;
+const copy = getPageMessages(locale, "formats");
 
 const resx = `<?xml version="1.0" encoding="utf-8"?>
 <root>
@@ -155,13 +160,13 @@ const formats = [
 ];
 ---
 
-<DocLayout title="File formats">
+<DocLayout title={copy.title} locale={locale} slug="formats">
   <PageHero
     slot="hero"
-    eyebrow="Reference"
-    title="Supported file formats"
+    eyebrow={copy.eyebrow}
+    title={copy.heroTitle}
     icon="lucide:package"
-    lede="Six round-trippable resource formats. The action reads each source-locale file, translates the values, and writes a sibling per target locale (e.g. Greetings.fr.resx)."
+    lede={copy.lede}
   />
 
   <p class="not-prose mb-6 inline-flex items-center gap-2 rounded-md border border-(--border) bg-(--bg-elevated) px-3 py-2 text-sm text-(--fg-muted)">

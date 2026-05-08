@@ -3,6 +3,11 @@ import { Code } from "astro-expressive-code/components";
 import DocLayout from "../layouts/DocLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import Step from "../components/Step.astro";
+import { defaultLocale } from "../i18n/locales";
+import { getPageMessages } from "../i18n/messages";
+
+const { locale = defaultLocale } = Astro.props;
+const copy = getPageMessages(locale, "getting-started");
 
 const workflow = `name: translate
 
@@ -39,85 +44,72 @@ jobs:
 `;
 ---
 
-<DocLayout title="Getting started">
+<DocLayout title={copy.title} locale={locale} slug="getting-started">
   <PageHero
     slot="hero"
-    eyebrow="Setup"
-    title="Getting started"
+    eyebrow={copy.eyebrow}
+    title={copy.title}
     icon="lucide:rocket"
-    lede="Add a workflow file, point it at your Azure AI Translator credentials, and the action — built on Microsoft's official @azure-rest/ai-translation-text SDK — will scan the repo for source-language resource files and emit translated siblings."
+    lede={copy.lede}
   />
 
   <Step
     number={1}
-    title="Provision an Azure AI Translator resource"
+    title={copy.steps.provision.title}
     accent="bg-(--color-brand-700)"
   >
     <p>
-      Create an Azure AI Translator resource in the Azure portal, then store
-      the following as GitHub repository secrets so the workflow can read them:
+      {copy.steps.provision.body}
     </p>
     <ul>
       <li>
-        <code>TRANSLATOR_KEY</code> — the subscription key for the resource.
+        <code>TRANSLATOR_KEY</code> — {copy.steps.provision.key}
       </li>
       <li>
-        <code>TRANSLATOR_ENDPOINT</code> — the regional endpoint URL (for
-        example, <code>https://api.cognitive.microsofttranslator.com</code>).
+        <code>TRANSLATOR_ENDPOINT</code> — {copy.steps.provision.endpoint}
       </li>
       <li>
-        <code>TRANSLATOR_REGION</code> — the resource's Azure region (for
-        example, <code>eastus</code>).
+        <code>TRANSLATOR_REGION</code> — {copy.steps.provision.region}
       </li>
     </ul>
   </Step>
 
   <Step
     number={2}
-    title="Add the workflow"
+    title={copy.steps.workflow.title}
     accent="bg-(--color-warm-700)"
   >
-    <p>Create <code>.github/workflows/translate.yml</code>:</p>
+    <p>{copy.steps.workflow.body}</p>
     <Code code={workflow} lang="yaml" title=".github/workflows/translate.yml" />
   </Step>
 
   <Step
     number={3}
-    title="Commit a source resource file"
+    title={copy.steps.resource.title}
     accent="bg-(--color-accent-700)"
   >
     <p>
-      Resource files use the <code>{`Name.<sourceLocale>.<ext>`}</code> convention.
-      For example <code>Greetings.en.resx</code> becomes <code
-        >Greetings.fr.resx</code
-      >, <code>Greetings.de.resx</code>, and so on after a run.
+      {copy.steps.resource.body}
     </p>
   </Step>
 
   <Step
     number={4}
-    title="Inspect the output"
+    title={copy.steps.output.title}
     accent="bg-(--color-brand-700)"
   >
     <p>
-      Once the workflow finishes, the action exposes three outputs you can wire
-      into a PR description: <code>summary-title</code>, <code
-        >summary-details</code
-      >, and <code>has-new-translations</code>. It also writes a Markdown
-      summary into the job page via <code>core.summary</code>.
+      {copy.steps.output.body}
     </p>
   </Step>
 
-  <h2>Next steps</h2>
+  <h2>{copy.nextSteps.title}</h2>
   <ul>
     <li>
-      <a href="./configuration">Configure repo-level defaults</a> with
-      <code>.github/resource-translator.yml</code>.
+      <a href="./configuration">{copy.nextSteps.configuration}</a>
     </li>
     <li>
-      <a href="./recipes">See recipes</a> for monorepos, custom glossaries, and
-      Custom Translator categories.
+      <a href="./recipes">{copy.nextSteps.recipes}</a>
     </li>
   </ul>
 </DocLayout>
-

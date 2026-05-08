@@ -2,15 +2,33 @@
 import { Icon } from "astro-icon/components";
 import Logo from "./Logo.astro";
 import SearchOverlay from "./SearchOverlay.astro";
+import type { CommonMessages } from "../i18n/messages";
+import { allLocales, defaultLocale } from "../i18n/locales";
+import { localizedHref, type PageSlug } from "../i18n/routes";
 
 interface Props {
   hasSidebar?: boolean;
+  locale?: string;
+  common?: CommonMessages;
+  currentSlug?: PageSlug;
 }
 
-const { hasSidebar = true } = Astro.props;
+const {
+  hasSidebar = true,
+  locale = defaultLocale,
+  common,
+  currentSlug = "index",
+} = Astro.props;
 
-const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-const homeHref = base || "/";
+const homeHref = localizedHref(locale, "index");
+const site = common?.site;
+const header = common?.header;
+const drawer = common?.drawer;
+const localeOptions = allLocales.map((item) => ({
+  code: item.code,
+  label: `${item.nativeName} (${item.code})`,
+  href: localizedHref(item.code, currentSlug),
+}));
 ---
 
 <header
@@ -25,7 +43,7 @@ const homeHref = base || "/";
           type="button"
           id="sidebar-toggle"
           class="inline-flex size-9 items-center justify-center rounded-md border border-(--border) bg-(--bg-elevated) text-(--fg-muted) hover:text-(--fg) lg:hidden"
-          aria-label="Open navigation"
+          aria-label={drawer?.open ?? "Open navigation"}
           aria-controls="sidebar-drawer"
           aria-expanded="false"
         >
@@ -34,14 +52,14 @@ const homeHref = base || "/";
       )}
       <a
         href={homeHref}
-        aria-label="Resource Translator — home"
+        aria-label={site?.homeLabel ?? "Resource Translator — home"}
         class="group flex items-center gap-2.5 text-base font-semibold text-(--fg) no-underline"
       >
         <Logo
           size={32}
           class="rounded-lg shadow-sm transition-transform group-hover:rotate-[-6deg]"
         />
-        <span class="hidden sm:inline">Resource Translator</span>
+        <span class="hidden sm:inline">{site?.name ?? "Resource Translator"}</span>
       </a>
     </div>
 
@@ -50,7 +68,7 @@ const homeHref = base || "/";
         type="button"
         id="docs-search"
         aria-haspopup="dialog"
-        aria-label="Search documentation"
+        aria-label={header?.search ?? "Search documentation"}
         class="group relative flex w-full cursor-text items-center gap-2 rounded-md border border-(--border) bg-(--bg-elevated) py-2 pl-9 pr-12 text-left text-sm text-(--fg-muted) hover:border-(--color-brand-500)/40 hover:text-(--fg) focus:border-(--color-brand-500) focus:outline-none focus:ring-2 focus:ring-(--color-brand-500)/40"
       >
         <span
@@ -59,7 +77,7 @@ const homeHref = base || "/";
         >
           <Icon name="lucide:search" class="size-4" />
         </span>
-        <span class="truncate">Search documentation…</span>
+        <span class="truncate">{header?.searchPlaceholder ?? "Search documentation…"}</span>
         <kbd
           class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 rounded border border-(--border) bg-(--bg) px-1.5 py-0.5 font-mono text-[11px] font-medium text-(--fg-muted)"
           aria-hidden="true">/</kbd
@@ -72,7 +90,7 @@ const homeHref = base || "/";
         type="button"
         id="docs-search-mobile"
         class="inline-flex size-9 items-center justify-center rounded-md border border-(--border) bg-(--bg-elevated) text-(--fg-muted) hover:text-(--fg) md:hidden"
-        aria-label="Search documentation"
+        aria-label={header?.search ?? "Search documentation"}
         aria-haspopup="dialog"
       >
         <Icon name="lucide:search" class="size-4" />
@@ -81,17 +99,33 @@ const homeHref = base || "/";
         type="button"
         id="theme-toggle"
         class="inline-flex size-9 items-center justify-center rounded-md border border-(--border) bg-(--bg-elevated) text-(--fg-muted) hover:text-(--fg)"
-        aria-label="Toggle theme"
+        aria-label={header?.toggleTheme ?? "Toggle theme"}
       >
         <Icon name="lucide:sun" class="size-4 dark:hidden" />
         <Icon name="lucide:moon" class="size-4 hidden dark:block" />
       </button>
+      <label class="sr-only" for="locale-select">
+        {header?.language ?? "Language"}
+      </label>
+      <select
+        id="locale-select"
+        class="hidden h-9 max-w-28 rounded-md border border-(--border) bg-(--bg-elevated) px-2 text-xs font-medium text-(--fg-muted) hover:text-(--fg) sm:block"
+        aria-label={header?.language ?? "Language"}
+      >
+        {
+          localeOptions.map((option) => (
+            <option value={option.href} selected={option.code === locale}>
+              {option.label}
+            </option>
+          ))
+        }
+      </select>
       <a
         href="https://github.com/IEvangelist/resource-translator"
         class="inline-flex size-9 items-center justify-center rounded-md border border-(--border) bg-(--bg-elevated) text-(--fg-muted) no-underline hover:text-(--fg)"
         rel="noopener"
         target="_blank"
-        aria-label="GitHub repository"
+        aria-label={header?.githubRepository ?? "GitHub repository"}
       >
         <Icon name="simple-icons:github" class="size-4" />
       </a>
@@ -99,7 +133,7 @@ const homeHref = base || "/";
   </div>
 </header>
 
-<SearchOverlay />
+<SearchOverlay search={common?.search} />
 
 <script is:inline>
   const apply = () => {
@@ -143,4 +177,18 @@ const homeHref = base || "/";
   document.addEventListener("astro:page-load", bindToggle);
 </script>
 
+<script>
+  function bindLocaleSelect() {
+    const select = document.getElementById("locale-select") as
+      | HTMLSelectElement
+      | null;
+    if (!select || (select as any).__bound) return;
+    (select as any).__bound = true;
+    select.addEventListener("change", () => {
+      if (select.value) window.location.href = select.value;
+    });
+  }
+  bindLocaleSelect();
+  document.addEventListener("astro:page-load", bindLocaleSelect);
+</script>
 

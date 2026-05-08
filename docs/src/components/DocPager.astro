@@ -1,32 +1,50 @@
 ---
 import { Icon } from "astro-icon/components";
-import { flatNav } from "../data/docs-nav";
+import type { CommonMessages, NavMessages } from "../i18n/messages";
+import { defaultLocale } from "../i18n/locales";
+import {
+  flatNavItems,
+  localizedHref,
+  slugFromPath,
+  type PageSlug,
+} from "../i18n/routes";
 
-const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
-const normalize = (href: string) => (base + href).replace(/\/$/, "") || "/";
+interface Props {
+  locale?: string;
+  nav?: NavMessages;
+  pager?: CommonMessages["pager"];
+  currentSlug?: PageSlug;
+}
 
-const index = flatNav.findIndex((item) => normalize(item.href) === pathname);
-const prev = index > 0 ? flatNav[index - 1] : null;
-const next = index >= 0 && index < flatNav.length - 1 ? flatNav[index + 1] : null;
+const {
+  locale = defaultLocale,
+  nav,
+  pager,
+  currentSlug = slugFromPath(Astro.url.pathname),
+} = Astro.props;
+
+const index = flatNavItems.findIndex((item) => item.slug === currentSlug);
+const prev = index > 0 ? flatNavItems[index - 1] : null;
+const next =
+  index >= 0 && index < flatNavItems.length - 1 ? flatNavItems[index + 1] : null;
 const hasPager = index >= 0 && (prev || next);
 ---
 
 {
   hasPager && (
-    <nav
-      aria-label="Article"
+      <nav
+      aria-label={pager?.ariaLabel ?? "Article"}
       class="not-prose mt-16 grid max-w-3xl gap-3 border-t border-(--border) pt-8 sm:grid-cols-2"
     >
       {prev ? (
         <a
-          href={normalize(prev.href)}
+          href={localizedHref(locale, prev.slug)}
           rel="prev"
           class="group flex flex-col gap-1 rounded-xl border border-(--border) bg-(--bg-elevated) px-4 py-3 transition-colors hover:border-(--color-brand-400) hover:bg-(--bg) sm:col-start-1"
         >
           <span class="inline-flex items-center gap-1.5 text-xs font-medium tracking-wide text-(--fg-muted) uppercase">
             <Icon name="lucide:arrow-left" class="size-3.5" />
-            Previous
+            {pager?.previous ?? "Previous"}
           </span>
           <span class="inline-flex items-center gap-2 text-sm font-semibold text-(--fg) group-hover:text-(--link)">
             {prev.icon ? (
@@ -35,7 +53,7 @@ const hasPager = index >= 0 && (prev || next);
                 class="size-4 flex-none text-(--color-accent-500)"
               />
             ) : null}
-            {prev.label}
+            {nav?.items[prev.key] ?? prev.key}
           </span>
         </a>
       ) : (
@@ -44,16 +62,16 @@ const hasPager = index >= 0 && (prev || next);
 
       {next ? (
         <a
-          href={normalize(next.href)}
+          href={localizedHref(locale, next.slug)}
           rel="next"
           class="group flex flex-col gap-1 rounded-xl border border-(--border) bg-(--bg-elevated) px-4 py-3 text-right transition-colors hover:border-(--color-brand-400) hover:bg-(--bg) sm:col-start-2"
         >
           <span class="inline-flex items-center justify-end gap-1.5 text-xs font-medium tracking-wide text-(--fg-muted) uppercase">
-            Next
+            {pager?.next ?? "Next"}
             <Icon name="lucide:arrow-right" class="size-3.5" />
           </span>
           <span class="inline-flex items-center justify-end gap-2 text-sm font-semibold text-(--fg) group-hover:text-(--link)">
-            {next.label}
+            {nav?.items[next.key] ?? next.key}
             {next.icon ? (
               <Icon
                 name={next.icon}

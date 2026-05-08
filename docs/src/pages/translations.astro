@@ -4,6 +4,11 @@ import DocLayout from "../layouts/DocLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import locales from "../data/azure-locales.json";
 import enMessages from "../content/i18n/messages.en.json";
+import { defaultLocale } from "../i18n/locales";
+import { getPageMessages } from "../i18n/messages";
+
+const { locale = defaultLocale } = Astro.props;
+const copy = getPageMessages(locale, "translations");
 
 type Messages = typeof enMessages;
 // Widen with optional bcp47 so accessing card.locale.bcp47 typechecks
@@ -49,11 +54,11 @@ const sourceCard: Card = {
 };
 ---
 
-<DocLayout title="Translations">
+<DocLayout title={copy.title} locale={locale} slug="translations">
   <PageHero
     slot="hero"
-    eyebrow="Showcase"
-    title="Hello in every language"
+    eyebrow={copy.eyebrow}
+    title={copy.heroTitle}
     icon="lucide:languages"
     lede={enMessages.hero.lede}
   />
@@ -65,13 +70,13 @@ const sourceCard: Card = {
       class="inline-flex items-center gap-1.5 rounded-md bg-(--color-brand-600) px-2.5 py-1 font-semibold text-white"
     >
       <Icon name="lucide:globe" class="size-3.5" />
-      {totalCount} locales
+      {totalCount} {copy.locales}
     </span>
     <span class="text-(--fg-muted)">
-      <strong class="text-(--fg)">{translatedCount}</strong> currently rendered
+      <strong class="text-(--fg)">{translatedCount}</strong> {copy.currentlyRendered}
       {translatedCount === totalCount
-        ? "— complete!"
-        : `— ${totalCount - translatedCount} pending the next translate-docs run.`}
+        ? `— ${copy.complete}`
+        : `— ${totalCount - translatedCount} ${copy.pendingPrefix}`}
     </span>
     <a
       class="ml-auto inline-flex items-center gap-1 text-sm font-medium"
@@ -80,18 +85,18 @@ const sourceCard: Card = {
       target="_blank"
     >
       <Icon name="lucide:external-link" class="size-3.5" />
-      View workflow runs
+      {copy.viewWorkflowRuns}
     </a>
   </div>
 
   <div class="not-prose mb-6">
     <label class="block text-sm font-semibold text-(--fg)" for="locale-search">
-      Filter
+      {copy.filter}
     </label>
     <input
       id="locale-search"
       type="search"
-      placeholder="Search by language, code, or native name…"
+      placeholder={copy.filterPlaceholder}
       autocomplete="off"
       class="mt-1 w-full rounded-lg border border-(--border) bg-(--bg) px-3 py-2 text-sm shadow-sm focus-visible:border-(--color-brand-500)"
     />
@@ -102,7 +107,7 @@ const sourceCard: Card = {
       name="lucide:flag"
       class="mr-1 inline size-5 align-text-bottom text-(--color-warm-600)"
     />
-    Source
+    {copy.source}
   </h2>
 
   <article
@@ -135,7 +140,7 @@ const sourceCard: Card = {
       name="lucide:globe"
       class="mr-1 inline size-5 align-text-bottom text-(--color-accent-600)"
     />
-    Machine translations
+    {copy.machineTranslations}
   </h2>
 
   <div
@@ -193,7 +198,7 @@ const sourceCard: Card = {
               dir="ltr"
             >
               <Icon name="lucide:hourglass" class="size-3.5 flex-none" />
-              Translation pending — open a translate-docs run.
+               {copy.translationPending}
             </p>
           )}
         </article>
@@ -206,10 +211,10 @@ const sourceCard: Card = {
     hidden
     class="not-prose mt-6 rounded-lg border border-dashed border-(--border) bg-(--bg-elevated) p-6 text-center text-sm text-(--fg-muted)"
   >
-    No locales match that filter.
+    {copy.noLocales}
   </p>
 
-  <h2 class="mt-16">How this works</h2>
+  <h2 class="mt-16">{copy.howItWorks}</h2>
   <ol>
     <li>
       The English source file lives at

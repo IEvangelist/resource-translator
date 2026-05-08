@@ -2,6 +2,11 @@
 import { Code } from "astro-expressive-code/components";
 import DocLayout from "../layouts/DocLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { defaultLocale } from "../i18n/locales";
+import { getPageMessages } from "../i18n/messages";
+
+const { locale = defaultLocale } = Astro.props;
+const copy = getPageMessages(locale, "recipes");
 
 const pr = `- id: translate
   uses: IEvangelist/resource-translator@v3
@@ -62,13 +67,13 @@ const dryRun = `with:
 `;
 ---
 
-<DocLayout title="Recipes">
+<DocLayout title={copy.title} locale={locale} slug="recipes">
   <PageHero
     slot="hero"
-    eyebrow="Cookbook"
-    title="Recipes"
+    eyebrow={copy.eyebrow}
+    title={copy.title}
     icon="lucide:wand-sparkles"
-    lede="Common patterns for shipping translations: monorepos, glossaries, custom categories, dry runs, and tone control."
+    lede={copy.lede}
   />
 
   <h2>Open a pull request after each run</h2>
@@ -118,4 +123,3 @@ const dryRun = `with:
     issue as a warning while you iterate.
   </p>
 </DocLayout>
-

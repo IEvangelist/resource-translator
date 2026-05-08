@@ -3,6 +3,12 @@
 // article body when the sticky rail in `Toc.astro` is hidden (<xl). The <ul>
 // below is populated by the same client script that builds the desktop list,
 // so this file is mostly markup; see Toc.astro for the populator.
+
+interface Props {
+  title?: string;
+}
+
+const { title = "On this page" } = Astro.props;
 ---
 
 <details
@@ -12,7 +18,7 @@
   <summary
     class="flex cursor-pointer list-none items-center justify-between gap-3 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-(--fg-muted) transition-colors hover:text-(--fg) [&::-webkit-details-marker]:hidden"
   >
-    <span>On this page</span>
+    <span>{title}</span>
     <svg
       aria-hidden="true"
       class="rt-toc-mobile-chevron size-4 transition-transform"

@@ -1,15 +1,20 @@
 ---
+interface Props {
+  title?: string;
+}
+
+const { title = "On this page" } = Astro.props;
 ---
 
 <aside
-  aria-label="On this page"
+  aria-label={title}
   class="hidden flex-none xl:block xl:w-56"
 >
   <div class="sticky top-24" data-toc-root>
     <p
       class="mb-3 px-3 text-xs font-semibold uppercase tracking-[0.14em] text-(--fg-muted)"
     >
-      On this page
+      {title}
     </p>
     <ul id="toc-list" class="border-l border-(--border)"></ul>
   </div>

@@ -2,6 +2,11 @@
 import { Code } from "astro-expressive-code/components";
 import DocLayout from "../layouts/DocLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { defaultLocale } from "../i18n/locales";
+import { getPageMessages } from "../i18n/messages";
+
+const { locale = defaultLocale } = Astro.props;
+const copy = getPageMessages(locale, "configuration");
 
 const yaml = `# .github/resource-translator.yml
 sourceLocale: en
@@ -51,13 +56,13 @@ noTranslatePatterns:
 `;
 ---
 
-<DocLayout title="Configuration">
+<DocLayout title={copy.title} locale={locale} slug="configuration">
   <PageHero
     slot="hero"
-    eyebrow="YAML"
-    title="Repository configuration"
+    eyebrow={copy.eyebrow}
+    title={copy.heroTitle}
     icon="lucide:settings-2"
-    lede="Express defaults once in .github/resource-translator.yml and let every workflow inherit them. Action inputs always win when both are provided."
+    lede={copy.lede}
   />
   <p>
     Override the path with the <code>configPath</code> input if you need a
@@ -125,4 +130,3 @@ noTranslatePatterns:
     </li>
   </ul>
 </DocLayout>
-

@@ -1,50 +1,76 @@
 ---
 import { Icon } from "astro-icon/components";
 import Logo from "./Logo.astro";
+import type { CommonMessages, NavMessages } from "../i18n/messages";
+import { defaultLocale } from "../i18n/locales";
+import { localizedHref } from "../i18n/routes";
 
 const year = new Date().getFullYear();
-const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-const internal = (p: string) => `${base}${p}`;
+
+interface Props {
+  locale?: string;
+  common?: CommonMessages;
+  nav?: NavMessages;
+}
+
+const { locale = defaultLocale, common, nav } = Astro.props;
 
 const repoUrl = "https://github.com/IEvangelist/resource-translator";
 const marketplaceUrl =
   "https://github.com/marketplace/actions/resource-translator";
 
 const docsLinks: { href: string; label: string }[] = [
-  { href: internal("/"), label: "Overview" },
-  { href: internal("/getting-started"), label: "Getting started" },
-  { href: internal("/configuration"), label: "Configuration" },
-  { href: internal("/inputs"), label: "Inputs & outputs" },
-  { href: internal("/formats"), label: "File formats" },
-  { href: internal("/faq"), label: "FAQ" },
+  { href: localizedHref(locale, "index"), label: nav?.items.overview ?? "Overview" },
+  {
+    href: localizedHref(locale, "getting-started"),
+    label: nav?.items.gettingStarted ?? "Getting started",
+  },
+  {
+    href: localizedHref(locale, "configuration"),
+    label: nav?.items.configuration ?? "Configuration",
+  },
+  { href: localizedHref(locale, "inputs"), label: nav?.items.inputs ?? "Inputs & outputs" },
+  { href: localizedHref(locale, "formats"), label: nav?.items.formats ?? "File formats" },
+  { href: localizedHref(locale, "faq"), label: nav?.items.faq ?? "FAQ" },
 ];
 
 const projectLinks: { href: string; label: string }[] = [
-  { href: internal("/recipes"), label: "Recipes" },
-  { href: internal("/translations"), label: "Translations" },
-  { href: internal("/contributing"), label: "Contributing" },
-  { href: internal("/changelog"), label: "Changelog" },
+  { href: localizedHref(locale, "recipes"), label: nav?.items.recipes ?? "Recipes" },
+  {
+    href: localizedHref(locale, "translations"),
+    label: nav?.items.translations ?? "Translations",
+  },
+  {
+    href: localizedHref(locale, "contributing"),
+    label: nav?.items.contributing ?? "Contributing",
+  },
+  { href: localizedHref(locale, "changelog"), label: nav?.items.changelog ?? "Changelog" },
 ];
 
 const communityLinks: { href: string; label: string }[] = [
   {
     href: `${repoUrl}/issues/new?template=bug_report.yml`,
-    label: "Report a bug",
+    label: nav?.community.reportBug ?? "Report a bug",
   },
   {
     href: `${repoUrl}/issues/new?template=feature_request.yml`,
-    label: "Request a feature",
+    label: nav?.community.requestFeature ?? "Request a feature",
   },
-  { href: `${repoUrl}/discussions`, label: "Discussions" },
-  { href: `${repoUrl}/blob/main/SECURITY.md`, label: "Security policy" },
+  { href: `${repoUrl}/discussions`, label: nav?.community.discussions ?? "Discussions" },
+  {
+    href: `${repoUrl}/blob/main/SECURITY.md`,
+    label: nav?.community.securityPolicy ?? "Security policy",
+  },
   {
     href: `${repoUrl}/blob/main/CODE_OF_CONDUCT.md`,
-    label: "Code of conduct",
+    label: nav?.community.codeOfConduct ?? "Code of conduct",
   },
-  { href: `${repoUrl}/blob/main/LICENSE`, label: "MIT License" },
+  { href: `${repoUrl}/blob/main/LICENSE`, label: nav?.community.license ?? "MIT License" },
 ];
 
 const isExternal = (href: string) => /^https?:\/\//.test(href);
+const footer = common?.footer;
+const site = common?.site;
 ---
 
 <footer
@@ -61,24 +87,24 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
       <!-- Brand + tagline + socials -->
       <div class="lg:col-span-4">
         <a
-          href={internal("/")}
+          href={localizedHref(locale, "index")}
           class="group inline-flex items-center gap-2.5 text-base font-semibold text-(--fg) no-underline"
         >
           <Logo
             size={32}
             class="rounded-lg shadow-sm transition-transform group-hover:rotate-[-6deg]"
           />
-          <span>Resource Translator</span>
+          <span>{site?.name ?? "Resource Translator"}</span>
         </a>
         <p class="mt-4 max-w-sm leading-relaxed">
-          A GitHub Action that translates your resource files automatically,
-          built atop the official
+          {footer?.taglinePrefix ??
+            "A GitHub Action that translates your resource files automatically, built atop the official"}
           <a
             href="https://www.npmjs.com/package/@azure-rest/ai-translation-text"
             rel="noopener"
             target="_blank"
             class="rt-foot-prose-link">@azure-rest/ai-translation-text</a
-          > SDK from <a
+          > {footer?.taglineMiddle ?? "SDK from"} <a
             href="https://github.com/Azure/azure-sdk-for-js"
             rel="noopener"
             target="_blank"
@@ -86,13 +112,13 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
           >.
         </p>
 
-        <ul class="mt-5 flex items-center gap-2" aria-label="Project links">
+        <ul class="mt-5 flex items-center gap-2" aria-label={footer?.projectLinksAria ?? "Project links"}>
           <li>
             <a
               href={repoUrl}
               rel="noopener"
               target="_blank"
-              aria-label="View source on GitHub"
+              aria-label={footer?.sourceAria ?? "View source on GitHub"}
               title="GitHub repository"
               class="rt-social"
             >
@@ -104,7 +130,7 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
               href={marketplaceUrl}
               rel="noopener"
               target="_blank"
-              aria-label="View on GitHub Marketplace"
+              aria-label={footer?.marketplaceAria ?? "View on GitHub Marketplace"}
               title="GitHub Marketplace"
               class="rt-social"
             >
@@ -116,7 +142,7 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
               href="https://davidpine.dev"
               rel="noopener"
               target="_blank"
-              aria-label="David Pine's website"
+              aria-label={footer?.authorAria ?? "David Pine's website"}
               title="davidpine.dev"
               class="rt-social"
             >
@@ -132,7 +158,7 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
         <h2
           class="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-(--fg)"
         >
-          Docs
+          {footer?.docs ?? "Docs"}
         </h2>
         <ul class="space-y-2">
           {
@@ -152,7 +178,7 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
         <h2
           class="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-(--fg)"
         >
-          Project
+          {footer?.project ?? "Project"}
         </h2>
         <ul class="space-y-2">
           {
@@ -172,7 +198,7 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
         <h2
           class="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-(--fg)"
         >
-          Community
+          {footer?.community ?? "Community"}
         </h2>
         <ul class="grid gap-2 sm:grid-cols-2">
           {
@@ -211,7 +237,7 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
           target="_blank"
           class="rt-foot-prose-link font-medium">David Pine 🤓</a
         >
-        · Released under the
+        · {footer?.copyrightPrefix ?? "Released under the"}
         <a
           href={`${repoUrl}/blob/main/LICENSE`}
           rel="noopener"
@@ -220,7 +246,7 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
         >.
       </p>
       <p>
-        Built with
+        {footer?.builtWith ?? "Built with"}
         <a href="https://astro.build" rel="noopener" target="_blank" class="rt-foot-prose-link">Astro</a>
         &
         <a href="https://tailwindcss.com" rel="noopener" target="_blank" class="rt-foot-prose-link"
@@ -296,4 +322,3 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
     outline-offset: 2px;
   }
 </style>
-

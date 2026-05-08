@@ -5,11 +5,11 @@
 
 sourceLocale: en
 
-# Limit translation to the docs i18n source. Adding new files to this
-# repo (e.g. demo .resx fixtures) won't be picked up unless you extend
-# the include list.
+# Limit translation to the docs i18n sources. Adding new files to this
+# repo (e.g. demo .resx fixtures) won't be picked up unless they live
+# under the docs i18n source tree.
 include:
-  - docs/src/content/i18n/messages.en.json
+  - docs/src/content/i18n/**/*.en.json
 
 # Generated locales — every language Azure AI Translator currently
 # supports as a translation target. Keep in sync with

@@ -1,15 +1,20 @@
 ---
 import DocLayout from "../layouts/DocLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { defaultLocale } from "../i18n/locales";
+import { getPageMessages } from "../i18n/messages";
+
+const { locale = defaultLocale } = Astro.props;
+const copy = getPageMessages(locale, "faq");
 ---
 
-<DocLayout title="FAQ">
+<DocLayout title={copy.title} locale={locale} slug="faq">
   <PageHero
     slot="hero"
-    eyebrow="Help"
-    title="Frequently asked questions"
+    eyebrow={copy.eyebrow}
+    title={copy.heroTitle}
     icon="lucide:circle-help"
-    lede="Quick answers to the questions that come up most often when adopting the action."
+    lede={copy.lede}
   />
 
   <h2>How does the action talk to Azure?</h2>
@@ -79,4 +84,3 @@ import PageHero from "../components/PageHero.astro";
     → format) and contributions are welcome.
   </p>
 </DocLayout>
-
