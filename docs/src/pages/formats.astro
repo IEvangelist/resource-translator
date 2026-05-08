@@ -2,9 +2,11 @@
 import { Code } from "astro-expressive-code/components";
 import { Icon } from "astro-icon/components";
 import DocLayout from "../layouts/DocLayout.astro";
+import LocalizedText from "../components/LocalizedText.astro";
 import PageHero from "../components/PageHero.astro";
 import { defaultLocale } from "../i18n/locales";
 import { getPageMessages } from "../i18n/messages";
+import { code, link, type LocalizedReplacements } from "../i18n/rich-text";
 
 const { locale = defaultLocale } = Astro.props;
 const copy = getPageMessages(locale, "formats");
@@ -72,16 +74,31 @@ Goodbye=See you later
 NotFound=The resource you requested was not found.
 `;
 
-const formats = [
+type FormatCard = {
+  id: string;
+  name: string;
+  icon: string;
+  accent: string;
+  blurb: string;
+  blurbValues?: LocalizedReplacements;
+  spec: {
+    label: string;
+    href: string;
+  };
+  code: string;
+  lang: string;
+};
+
+const formats: FormatCard[] = [
   {
     id: "resx",
     name: ".resx",
     icon: "lucide:file-code-2",
     accent: "from-(--color-brand-600) to-(--color-accent-500)",
-    blurb:
-      "XML-based .NET resource files. Translates the inner text of each <data><value> node, preserving comments and metadata.",
+    blurb: copy.items.resx.blurb,
+    blurbValues: { dataValue: code("<data><value>") },
     spec: {
-      label: "Microsoft Learn — Resources in .resx files",
+      label: copy.items.resx.specLabel,
       href: "https://learn.microsoft.com/dotnet/framework/resources/working-with-resx-files-programmatically",
     },
     code: resx,
@@ -92,10 +109,14 @@ const formats = [
     name: ".xliff",
     icon: "lucide:file-code-2",
     accent: "from-(--color-accent-500) to-(--color-warm-500)",
-    blurb:
-      "OASIS XLIFF 2.0 documents. Translates each <source> and writes the result into the corresponding <target>, setting trgLang for the locale.",
+    blurb: copy.items.xliff.blurb,
+    blurbValues: {
+      source: code("<source>"),
+      target: code("<target>"),
+      trgLang: code("trgLang"),
+    },
     spec: {
-      label: "OASIS XLIFF 2.0 specification",
+      label: copy.items.xliff.specLabel,
       href: "https://docs.oasis-open.org/xliff/xliff-core/v2.0/xliff-core-v2.0.html",
     },
     code: xliff,
@@ -106,10 +127,15 @@ const formats = [
     name: ".po",
     icon: "lucide:file-code-2",
     accent: "from-(--color-warm-500) to-(--color-brand-500)",
-    blurb:
-      "GNU gettext Portable Object files. Translates each msgid / msgid_plural into msgstr / msgstr[n] forms.",
+    blurb: copy.items.po.blurb,
+    blurbValues: {
+      msgid: code("msgid"),
+      msgidPlural: code("msgid_plural"),
+      msgstr: code("msgstr"),
+      msgstrPlural: code("msgstr[n]"),
+    },
     spec: {
-      label: "GNU gettext — PO file format",
+      label: copy.items.po.specLabel,
       href: "https://www.gnu.org/software/gettext/manual/html_node/PO-Files.html",
     },
     code: po,
@@ -120,10 +146,13 @@ const formats = [
     name: ".json",
     icon: "lucide:file-code-2",
     accent: "from-(--color-cool-500) to-(--color-brand-500)",
-    blurb:
-      "Arbitrary JSON files. Nested objects are flattened with the [--] delimiter for translation, then re-nested on output. Dotted keys (\"unit.dotted.key\") are preserved verbatim.",
+    blurb: copy.items.json.blurb,
+    blurbValues: {
+      delimiter: code("[--]"),
+      dottedKey: code('"unit.dotted.key"'),
+    },
     spec: {
-      label: "JSON specification (RFC 8259)",
+      label: copy.items.json.specLabel,
       href: "https://datatracker.ietf.org/doc/html/rfc8259",
     },
     code: json,
@@ -134,10 +163,10 @@ const formats = [
     name: ".ini",
     icon: "lucide:file-code-2",
     accent: "from-(--color-brand-500) to-(--color-cool-500)",
-    blurb:
-      "Simple key=value files (Win32-style INI or any flat config). Section headers and comments are preserved.",
+    blurb: copy.items.ini.blurb,
+    blurbValues: { keyValue: code("key=value") },
     spec: {
-      label: "INI file format on Wikipedia",
+      label: copy.items.ini.specLabel,
       href: "https://en.wikipedia.org/wiki/INI_file",
     },
     code: ini,
@@ -148,10 +177,10 @@ const formats = [
     name: ".restext",
     icon: "lucide:file-code-2",
     accent: "from-(--color-accent-500) to-(--color-cool-500)",
-    blurb:
-      "Microsoft MUI text resources — flat key=value pairs used as a textual companion to .resx.",
+    blurb: copy.items.restext.blurb,
+    blurbValues: { keyValue: code("key=value"), resx: code(".resx") },
     spec: {
-      label: "Microsoft MUI overview",
+      label: copy.items.restext.specLabel,
       href: "https://learn.microsoft.com/windows/win32/intl/mui-overview",
     },
     code: restext,
@@ -171,9 +200,10 @@ const formats = [
 
   <p class="not-prose mb-6 inline-flex items-center gap-2 rounded-md border border-(--border) bg-(--bg-elevated) px-3 py-2 text-sm text-(--fg-muted)">
     <Icon name="lucide:info" class="size-4 text-(--color-brand-600) dark:text-(--color-brand-200)" />
-    All files use the
-    <code class="mx-1">{`Name.<sourceLocale>.<ext>`}</code>
-    naming convention.
+    <LocalizedText
+      text={copy.namingConvention}
+      values={{ namingConvention: code("Name.<sourceLocale>.<ext>") }}
+    />
   </p>
 
   {
@@ -197,24 +227,28 @@ const formats = [
             target="_blank"
           >
             <Icon name="lucide:external-link" class="size-3.5" />
-            Learn more
+            {copy.learnMore}
           </a>
         </header>
-        <p class="mt-0 mb-4 text-(--fg-muted)">{f.blurb}</p>
+        <p class="mt-0 mb-4 text-(--fg-muted)">
+          <LocalizedText text={f.blurb} values={f.blurbValues} />
+        </p>
         <Code code={f.code} lang={f.lang} title={`example${f.name}`} />
       </section>
     ))
   }
 
-  <h2>Round-trip guarantees</h2>
+  <h2>{copy.roundTrip.heading}</h2>
   <p>
-    The test suite verifies byte-for-byte round-tripping for representative
-    fixtures of every format. If a format quirk breaks round-tripping in
-    your codebase, please <a
-      href="https://github.com/IEvangelist/resource-translator/issues/new/choose"
-      rel="noopener"
-      target="_blank">open an issue</a
-    > with a minimal sample.
+    <LocalizedText
+      text={copy.roundTrip.body}
+      values={{
+        issueLink: link(
+          copy.roundTrip.issueLinkLabel,
+          "https://github.com/IEvangelist/resource-translator/issues/new/choose",
+          { external: true },
+        ),
+      }}
+    />
   </p>
 </DocLayout>
-

@@ -1,9 +1,11 @@
 ---
 import { Code } from "astro-expressive-code/components";
 import DocLayout from "../layouts/DocLayout.astro";
+import LocalizedText from "../components/LocalizedText.astro";
 import PageHero from "../components/PageHero.astro";
 import { defaultLocale } from "../i18n/locales";
 import { getPageMessages } from "../i18n/messages";
+import { code } from "../i18n/rich-text";
 
 const { locale = defaultLocale } = Astro.props;
 const copy = getPageMessages(locale, "contributing");
@@ -13,6 +15,19 @@ cd resource-translator
 npm install
 npm run verify   # lint + format:check + test + build
 `;
+
+const parserStepOrder = ["fixture", "implement", "register", "extension", "tests"] as const;
+const parserStepValues = {
+  testDataDir: code("__tests__/data/"),
+  parserInterface: code("TranslationFileParser"),
+  parse: code("parse"),
+  format: code("format"),
+  applyTranslations: code("applyTranslations"),
+  toTranslatableTextMap: code("toTranslatableTextMap"),
+  factoryFile: code("translation-file-parser-factory.ts"),
+  translationFileSchemes: code("translationFileSchemes"),
+  finderFile: code("translation-file-finder.ts"),
+};
 ---
 
 <DocLayout title={copy.title} locale={locale} slug="contributing">
@@ -24,38 +39,36 @@ npm run verify   # lint + format:check + test + build
     lede={copy.lede}
   />
 
-  <h2>Local development</h2>
+  <h2>{copy.localDevelopment.heading}</h2>
   <Code code={cmd} lang="bash" />
 
-  <h2>Adding a parser</h2>
+  <h2>{copy.addingParser.heading}</h2>
   <ol>
-    <li>Add a fixture under <code>__tests__/data/</code>.</li>
-    <li>
-      Implement <code>TranslationFileParser</code> (parse, format,
-      applyTranslations, toTranslatableTextMap).
-    </li>
-    <li>Register it in <code>translation-file-parser-factory.ts</code>.</li>
-    <li>
-      Add the file extension to <code>translationFileSchemes</code> in
-      <code>translation-file-finder.ts</code>.
-    </li>
-    <li>
-      Write round-trip tests for parse → format and applyTranslations.
-    </li>
+    {
+      parserStepOrder.map((step) => (
+        <li>
+          <LocalizedText
+            text={copy.addingParser.steps[step]}
+            values={parserStepValues}
+          />
+        </li>
+      ))
+    }
   </ol>
 
-  <h2>Coverage thresholds</h2>
-  <p>
-    The Jest config enforces minimum coverage. New code must keep the
-    statements + lines threshold above 78% and functions above 90%. Add
-    fixtures and tests alongside your change.
-  </p>
+  <h2>{copy.coverage.heading}</h2>
+  <p>{copy.coverage.body}</p>
 
-  <h2>Documentation site</h2>
+  <h2>{copy.docsSite.heading}</h2>
   <p>
-    The <code>docs/</code> folder is an Astro 6 + Tailwind v4 project. Run
-    <code>npm install</code> there once, then <code>npm run dev</code> for
-    local preview. The <code>pages.yml</code> workflow ships docs to GitHub
-    Pages on every merge.
+    <LocalizedText
+      text={copy.docsSite.body}
+      values={{
+        docsDir: code("docs/"),
+        npmInstall: code("npm install"),
+        npmRunDev: code("npm run dev"),
+        pagesWorkflow: code("pages.yml"),
+      }}
+    />
   </p>
 </DocLayout>

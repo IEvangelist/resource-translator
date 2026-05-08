@@ -21,7 +21,7 @@ const pages = {
   translations: TranslationsPage,
   contributing: ContributingPage,
   changelog: ChangelogPage,
-} satisfies Partial<Record<PageSlug, unknown>>;
+};
 
 export function getStaticPaths() {
   const slugs = pageSlugs.filter((slug) => slug !== "index");
@@ -34,7 +34,7 @@ export function getStaticPaths() {
 }
 
 const { locale, slug } = Astro.props as { locale: string; slug: PageSlug };
-const Page = pages[slug];
+const Page = slug === "index" ? undefined : pages[slug];
 ---
 
 {Page ? <Page locale={locale} /> : null}

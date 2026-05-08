@@ -2,10 +2,12 @@
 import { Icon } from "astro-icon/components";
 import { Code } from "astro-expressive-code/components";
 import DocLayout from "../layouts/DocLayout.astro";
+import LocalizedText from "../components/LocalizedText.astro";
 import Logo from "../components/Logo.astro";
 import { defaultLocale } from "../i18n/locales";
 import { getPageMessages } from "../i18n/messages";
 import { localizedHref } from "../i18n/routes";
+import { code, type LocalizedReplacements } from "../i18n/rich-text";
 
 const { locale = defaultLocale } = Astro.props;
 const copy = getPageMessages(locale, "index");
@@ -44,23 +46,69 @@ jobs:
           labels: localization
 `;
 
-const features = [
+type Feature = {
+  icon: string;
+  title: string;
+  body: string;
+  values?: LocalizedReplacements;
+  accent: string;
+};
+
+type FormatBadge = {
+  ext: string;
+  note: string;
+  values?: LocalizedReplacements;
+};
+
+const featureValues = {
+  formats: {
+    resx: code(".resx"),
+    xliff: code(".xliff"),
+    po: code(".po"),
+    json: code(".json"),
+    ini: code(".ini"),
+    restext: code(".restext"),
+  },
+  config: {
+    configPath: code(".github/resource-translator.yml"),
+  },
+  glossary: {
+    cpp: code("C++"),
+    dotnet: code(".NET"),
+  },
+  outputs: {
+    summaryTitle: code("summary-title"),
+    summaryDetails: code("summary-details"),
+    hasNewTranslations: code("has-new-translations"),
+  },
+  sdk: {
+    azureSdk: code("@azure-rest/ai-translation-text"),
+    corePipeline: code("@azure/core-rest-pipeline"),
+    statusCodes: code("408/429/5xx"),
+    esbuild: code("esbuild"),
+  },
+} satisfies Record<string, LocalizedReplacements>;
+
+const features: Feature[] = [
   {
     icon: "lucide:languages",
     title: copy.features.formats.title,
     body: copy.features.formats.body,
+    values: featureValues.formats,
     accent: "from-(--color-brand-500) to-(--color-accent-500)",
   },
   {
     icon: "lucide:settings-2",
     title: copy.features.config.title,
     body: copy.features.config.body,
+    values: featureValues.config,
     accent: "from-(--color-accent-500) to-(--color-warm-500)",
   },
   {
     icon: "lucide:wand-sparkles",
     title: copy.features.glossary.title,
     body: copy.features.glossary.body,
+    values: featureValues.glossary,
     accent: "from-(--color-warm-500) to-(--color-brand-500)",
   },
   {
@@ -73,23 +121,25 @@ const features = [
     icon: "lucide:git-pull-request",
     title: copy.features.outputs.title,
     body: copy.features.outputs.body,
+    values: featureValues.outputs,
     accent: "from-(--color-brand-500) to-(--color-cool-500)",
   },
   {
     icon: "lucide:zap",
     title: copy.features.sdk.title,
     body: copy.features.sdk.body,
+    values: featureValues.sdk,
     accent: "from-(--color-accent-500) to-(--color-cool-500)",
   },
 ];
 
-const formats = [
-  { ext: ".resx", note: ".NET XML" },
-  { ext: ".xliff", note: "XLIFF 2.0" },
-  { ext: ".po", note: "gettext" },
-  { ext: ".json", note: "nested or flat" },
-  { ext: ".ini", note: "key=value" },
-  { ext: ".restext", note: "MUI text" },
+const formats: FormatBadge[] = [
+  { ext: ".resx", note: copy.formatNotes.resx, values: { dotnet: code(".NET") } },
+  { ext: ".xliff", note: copy.formatNotes.xliff },
+  { ext: ".po", note: copy.formatNotes.po },
+  { ext: ".json", note: copy.formatNotes.json },
+  { ext: ".ini", note: copy.formatNotes.ini, values: { keyValue: code("key=value") } },
+  { ext: ".restext", note: copy.formatNotes.restext },
 ];
 ---
 
@@ -226,7 +276,9 @@ const formats = [
           <span class="group inline-flex items-center gap-1.5 rounded-full border border-(--border) bg-(--bg) px-3 py-1 text-xs font-mono transition-colors hover:border-(--color-brand-500)/50 hover:text-(--color-brand-700) dark:hover:text-(--color-brand-200)">
             <Icon name="lucide:file-text" class="size-3 opacity-60" />
             <span class="font-semibold">{f.ext}</span>
-            <span class="text-(--fg-muted)">{f.note}</span>
+            <span class="text-(--fg-muted)">
+              <LocalizedText text={f.note} values={f.values} />
+            </span>
           </span>
         ))
       }
@@ -270,7 +322,7 @@ const formats = [
             </div>
             <h3 class="relative mt-5 text-lg font-semibold">{f.title}</h3>
             <p class="relative mt-2 text-sm leading-relaxed text-(--fg-muted)">
-              {f.body}
+              <LocalizedText text={f.body} values={f.values} />
             </p>
           </div>
         ))
@@ -284,14 +336,14 @@ const formats = [
       <p
         class="text-sm font-semibold uppercase tracking-wider text-(--color-warm-700) dark:text-(--color-warm-300)"
       >
-        Drop-in workflow
+        {copy.workflowPreview.eyebrow}
       </p>
       <h2 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
-        Copy. Paste.
-        <span class="text-gradient">Translate.</span>
+        {copy.workflowPreview.titlePrefix}
+        <span class="text-gradient">{copy.workflowPreview.titleAccent}</span>
       </h2>
       <p class="mt-4 text-(--fg-muted)">
-        Three secrets, four lines, and your repo is multilingual on the next push.
+        {copy.workflowPreview.body}
       </p>
     </div>
 
@@ -304,7 +356,7 @@ const formats = [
         href={link("/getting-started")}
         class="group inline-flex items-center gap-2 text-sm font-semibold text-(--color-brand-700) dark:text-(--color-brand-200)"
       >
-        Walk through the full setup
+        {copy.workflowPreview.setupLink}
         <Icon
           name="lucide:arrow-right"
           class="size-4 transition-transform group-hover:translate-x-1"
@@ -321,11 +373,10 @@ const formats = [
       <div class="grid gap-8 sm:grid-cols-[1fr_auto] sm:items-center">
         <div>
           <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">
-            Ready to localize on autopilot?
+            {copy.cta.title}
           </h2>
           <p class="mt-3 max-w-xl text-white">
-            One Azure AI Translator key, one workflow file. Resource Translator
-            handles the rest.
+            {copy.cta.body}
           </p>
         </div>
         <a
@@ -333,7 +384,7 @@ const formats = [
           class="group inline-flex items-center justify-center gap-2 rounded-md bg-white px-6 py-3 text-sm font-bold text-(--color-brand-700) no-underline shadow-lg hover:bg-white/95"
         >
           <Icon name="lucide:rocket" class="size-4" />
-          Get started
+          {copy.cta.button}
           <Icon
             name="lucide:arrow-right"
             class="size-4 transition-transform group-hover:translate-x-0.5"

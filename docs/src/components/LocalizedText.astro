@@ -1,0 +1,16 @@
+---
+import {
+  renderLocalizedText,
+  type LocalizedReplacements,
+} from "../i18n/rich-text";
+
+interface Props {
+  text: string;
+  values?: LocalizedReplacements;
+}
+
+const { text, values } = Astro.props;
+const html = renderLocalizedText(text, values);
+---
+
+<Fragment set:html={html} />

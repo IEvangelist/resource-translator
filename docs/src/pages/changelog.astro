@@ -1,11 +1,124 @@
 ---
 import DocLayout from "../layouts/DocLayout.astro";
+import LocalizedText from "../components/LocalizedText.astro";
 import PageHero from "../components/PageHero.astro";
 import { defaultLocale } from "../i18n/locales";
 import { getPageMessages } from "../i18n/messages";
+import { code, em, link, strong, type LocalizedReplacements } from "../i18n/rich-text";
 
 const { locale = defaultLocale } = Astro.props;
 const copy = getPageMessages(locale, "changelog");
+
+type ChangelogItem = {
+  text: string;
+  values?: LocalizedReplacements;
+};
+
+const changelogUrl =
+  "https://github.com/IEvangelist/resource-translator/blob/main/CHANGELOG.md";
+
+const commonValues = {
+  include: code("include"),
+  exclude: code("exclude"),
+  configPath: code("configPath"),
+  categoryId: code("categoryId"),
+  apiVersion: code("apiVersion"),
+  dryRun: code("dryRun"),
+  failOnError: code("failOnError"),
+  textType: code("textType"),
+  profanityAction: code("profanityAction"),
+  profanityMarker: code("profanityMarker"),
+  allowFallback: code("allowFallback"),
+  maxRetries: code("maxRetries"),
+  retryBackoffMs: code("retryBackoffMs"),
+  retryAfter: code("Retry-After"),
+  mustache: code("{{name}}"),
+  jsVar: code("${var}"),
+  indexZero: code("{0}"),
+  numberFormat: code("{0:N2}"),
+  printf: code("%s"),
+  positionalPrintf: code("%1$s"),
+  protectPlaceholders: code("protectPlaceholders"),
+  customPlaceholderPatterns: code("customPlaceholderPatterns"),
+  noTranslatePatterns: code("noTranslatePatterns"),
+  resxName: code("name"),
+  poMsgid: code("msgid"),
+  xliffId: code("id"),
+  coreSummary: code("core.summary"),
+};
+
+const v3Items: ChangelogItem[] = [
+  {
+    text: copy.v3.items.runtime,
+    values: {
+      nodeRuntime: code("node24"),
+      breaking: strong(copy.v3.labels.breaking),
+    },
+  },
+  { text: copy.v3.items.newInputs, values: commonValues },
+  {
+    text: copy.v3.items.sourceLocale,
+    values: { fromLocale: code("from=<locale>") },
+  },
+  {
+    text: copy.v3.items.resilience,
+    values: {
+      ...commonValues,
+      label: strong(copy.v3.labels.resilience),
+      statusCodes: code("408, 425, 429, 500, 502, 503, 504"),
+      issue: em(copy.v3.issueLabels.closes46),
+    },
+  },
+  {
+    text: copy.v3.items.placeholderProtection,
+    values: {
+      ...commonValues,
+      label: strong(copy.v3.labels.placeholderProtection),
+      issue: em(copy.v3.issueLabels.tightens16),
+    },
+  },
+  {
+    text: copy.v3.items.perKeyOptOut,
+    values: {
+      ...commonValues,
+      label: strong(copy.v3.labels.perKeyOptOut),
+      issue: em(copy.v3.issueLabels.closes35),
+    },
+  },
+  {
+    text: copy.v3.items.repoConfig,
+    values: { configPath: code(".github/resource-translator.yml") },
+  },
+  { text: copy.v3.items.glossary, values: commonValues },
+  { text: copy.v3.items.tooling },
+  { text: copy.v3.items.audit },
+  { text: copy.v3.items.docsSite },
+  {
+    text: copy.v3.items.docsAccessibility,
+    values: {
+      label: strong(copy.v3.labels.docsAccessibility),
+      backToTop: code("Back to top"),
+      inert: code("inert"),
+      ariaHidden: code("aria-hidden"),
+      formatsAstro: code("formats.astro"),
+      lang: code("lang"),
+      nya: code("nya→ny"),
+      lug: code("lug→lg"),
+      run: code("run→rn"),
+      documentation: code("Documentation"),
+      inputs: code("inputs"),
+      configuration: code("configuration"),
+    },
+  },
+  {
+    text: copy.v3.items.inlineCode,
+    values: {
+      label: strong(copy.v3.labels.inlineCodeStyling),
+      codeElement: code("<code>"),
+    },
+  },
+  { text: copy.v3.items.automation },
+];
 ---
 
 <DocLayout title={copy.title} locale={locale} slug="changelog">
@@ -17,85 +130,29 @@ const copy = getPageMessages(locale, "changelog");
     lede={copy.lede}
   />
   <p>
-    See <a
-      href="https://github.com/IEvangelist/resource-translator/blob/main/CHANGELOG.md"
-      rel="noopener"
-      target="_blank">CHANGELOG.md</a
-    > for the full record.
+    <LocalizedText
+      text={copy.fullRecord}
+      values={{
+        changelogLink: link(copy.fullRecordLinkLabel, changelogUrl, {
+          external: true,
+        }),
+      }}
+    />
   </p>
 
-  <h2>v3 (in development)</h2>
+  <h2>{copy.v3.heading}</h2>
   <ul>
-    <li>Bumped to <code>node24</code> runtime (BREAKING).</li>
-    <li>
-      New inputs: <code>include</code>, <code>exclude</code>, <code
-        >configPath</code
-      >, <code>categoryId</code>, <code>apiVersion</code>, <code>dryRun</code>,
-      <code>failOnError</code>, plus advanced Translator knobs <code
-        >textType</code
-      >, <code>profanityAction</code>, <code>profanityMarker</code>, and <code
-        >allowFallback</code
-      >.
-    </li>
-    <li>
-      Source locale is now also forwarded to Translator as <code
-        >from=&lt;locale&gt;</code
-      > so short strings aren't autodetected.
-    </li>
-    <li>
-      <strong>Resilience:</strong> automatic retry on transient HTTP responses
-      (408, 425, 429, 500, 502, 503, 504) honoring Azure's
-      <code>Retry-After</code> header — falls back to jittered exponential
-      backoff when absent. Tunable via <code>maxRetries</code> and
-      <code>retryBackoffMs</code>. <em>Closes #46.</em>
-    </li>
-    <li>
-      <strong>Placeholder protection:</strong> tokens like
-      <code>&#123;&#123;name&#125;&#125;</code>, <code>$&#123;var&#125;</code>,
-      <code>&#123;0&#125;</code>, <code>&#123;0:N2&#125;</code>, <code>%s</code>,
-      <code>%1$s</code> and HTML entities are wrapped in sentinels before
-      translation and restored afterward, so Translator stops mangling
-      i18next/Mustache/Handlebars/.NET/printf placeholders. Toggle via
-      <code>protectPlaceholders</code>; extend with
-      <code>customPlaceholderPatterns</code>. <em>Tightens #16.</em>
-    </li>
-    <li>
-      <strong>Per-key opt-out:</strong> new
-      <code>noTranslatePatterns</code> input drops matching keys from the
-      Translator request entirely (preserves source values for brand names,
-      error codes, etc.). Matches glob patterns against parser-level keys
-      (JSON dotted path, RESX <code>name</code>, PO <code>msgid</code>, XLIFF
-      unit <code>id</code>, INI/restext key). <em>Closes #35.</em>
-    </li>
-    <li>Repo-level config via <code>.github/resource-translator.yml</code>.</li>
-    <li>Glossary support, step summary via <code>core.summary</code>.</li>
-    <li>esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.</li>
-    <li>npm audit clean (0 vulnerabilities).</li>
-    <li>Astro + Tailwind v4 docs site with view transitions and Expressive Code.</li>
-    <li>
-      <strong>Docs accessibility:</strong> WCAG 2.1 AA pass. Logo glyphs
-      converted to paths so they no longer fail color-contrast against
-      gradient stops, the floating <code>Back to top</code> button uses
-      <code>inert</code> while hidden (instead of an <code>aria-hidden</code>
-      toggle that left it tabbable), <code>formats.astro</code> sections no
-      longer collide with their auto-generated heading IDs, three locale
-      cards now expose BCP-47-valid <code>lang</code> attributes
-      (<code>nya→ny</code>, <code>lug→lg</code>, <code>run→rn</code>),
-      duplicate <code>Documentation</code> landmark labels are disambiguated
-      between sidebar and footer, and every data table on
-      <code>inputs</code>/<code>configuration</code> ships with a
-      screen-reader caption.
-    </li>
-    <li>
-      <strong>Inline code styling:</strong> docs prose <code>&lt;code&gt;</code>
-      now wears the warm/amber theme accent — distinct from the brand→accent
-      palette used for links and headings.
-    </li>
-    <li>Dependabot auto-merge, CodeQL scanning, CI matrix.</li>
+    {
+      v3Items.map((item) => (
+        <li>
+          <LocalizedText text={item.text} values={item.values} />
+        </li>
+      ))
+    }
   </ul>
 
-  <h2>v2.x</h2>
+  <h2>{copy.v2.heading}</h2>
   <ul>
-    <li>See git history.</li>
+    <li>{copy.v2.gitHistory}</li>
   </ul>
 </DocLayout>

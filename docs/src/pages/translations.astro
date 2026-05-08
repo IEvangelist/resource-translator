@@ -1,11 +1,13 @@
 ---
 import { Icon } from "astro-icon/components";
 import DocLayout from "../layouts/DocLayout.astro";
+import LocalizedText from "../components/LocalizedText.astro";
 import PageHero from "../components/PageHero.astro";
 import locales from "../data/azure-locales.json";
 import enMessages from "../content/i18n/messages.en.json";
 import { defaultLocale } from "../i18n/locales";
 import { getPageMessages } from "../i18n/messages";
+import { code, link, strong } from "../i18n/rich-text";
 
 const { locale = defaultLocale } = Astro.props;
 const copy = getPageMessages(locale, "translations");
@@ -52,6 +54,18 @@ const sourceCard: Card = {
   messages: enMessages,
   translated: true,
 };
+
+const workflowName = "translate-docs";
+const workflowUrl =
+  "https://github.com/IEvangelist/resource-translator/blob/main/.github/workflows/translate-docs.yml";
+const statusText =
+  translatedCount === totalCount ? copy.statusComplete : copy.statusPending;
+const statusValues = {
+  translatedCount: strong(translatedCount.toLocaleString("en-US")),
+  pendingCount: (totalCount - translatedCount).toLocaleString("en-US"),
+  workflowName: code(workflowName),
+};
+const howItWorksStepOrder = ["source", "workflow", "fanOut", "pullRequest"] as const;
 ---
 
 <DocLayout title={copy.title} locale={locale} slug="translations">
@@ -60,7 +74,7 @@ const sourceCard: Card = {
     eyebrow={copy.eyebrow}
     title={copy.heroTitle}
     icon="lucide:languages"
-    lede={enMessages.hero.lede}
+    lede={copy.lede}
   />
 
   <div
@@ -70,13 +84,13 @@ const sourceCard: Card = {
       class="inline-flex items-center gap-1.5 rounded-md bg-(--color-brand-600) px-2.5 py-1 font-semibold text-white"
     >
       <Icon name="lucide:globe" class="size-3.5" />
-      {totalCount} {copy.locales}
+      <LocalizedText
+        text={copy.localeCountLabel}
+        values={{ count: totalCount.toLocaleString("en-US") }}
+      />
     </span>
     <span class="text-(--fg-muted)">
-      <strong class="text-(--fg)">{translatedCount}</strong> {copy.currentlyRendered}
-      {translatedCount === totalCount
-        ? `— ${copy.complete}`
-        : `— ${totalCount - translatedCount} ${copy.pendingPrefix}`}
+      <LocalizedText text={statusText} values={statusValues} />
     </span>
     <a
       class="ml-auto inline-flex items-center gap-1 text-sm font-medium"
@@ -198,7 +212,10 @@ const sourceCard: Card = {
               dir="ltr"
             >
               <Icon name="lucide:hourglass" class="size-3.5 flex-none" />
-               {copy.translationPending}
+              <LocalizedText
+                text={copy.translationPending}
+                values={{ workflowName: code(workflowName) }}
+              />
             </p>
           )}
         </article>
@@ -214,34 +231,30 @@ const sourceCard: Card = {
     {copy.noLocales}
   </p>
 
-  <h2 class="mt-16">{copy.howItWorks}</h2>
+  <h2 class="mt-16">{copy.howItWorks.heading}</h2>
   <ol>
-    <li>
-      The English source file lives at
-      <code>docs/src/content/i18n/messages.en.json</code>.
-    </li>
-    <li>
-      Pushes that touch it kick off
-      <a
-        href="https://github.com/IEvangelist/resource-translator/blob/main/.github/workflows/translate-docs.yml"
-        rel="noopener"
-        target="_blank">.github/workflows/translate-docs.yml</a
-      >, which runs <strong>this very action</strong> against itself.
-    </li>
-    <li>
-      The action fans out to every Azure AI Translator-supported locale
-      (configured in <code>.github/resource-translator.yml</code>) and
-      writes a sibling <code>messages.&lt;locale&gt;.json</code> per
-      target.
-    </li>
-    <li>
-      A pull request is opened with the new translations. Merging it
-      republishes this page with the cards filled in.
-    </li>
+    {
+      howItWorksStepOrder.map((step) => (
+        <li>
+          <LocalizedText
+            text={copy.howItWorks.steps[step]}
+            values={{
+              messagesPath: code("docs/src/content/i18n/messages.en.json"),
+              workflowLink: link(".github/workflows/translate-docs.yml", workflowUrl, {
+                external: true,
+              }),
+              thisAction: strong(copy.howItWorks.thisActionLabel),
+              configPath: code(".github/resource-translator.yml"),
+              messagesLocaleJson: code("messages.<locale>.json"),
+            }}
+          />
+        </li>
+      ))
+    }
   </ol>
 
   <p class="mt-8 text-sm text-(--fg-muted)">
-    {enMessages.footer.powered_by}
+    {copy.poweredBy}
   </p>
 </DocLayout>
 

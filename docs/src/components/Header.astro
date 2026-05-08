@@ -26,9 +26,23 @@ const header = common?.header;
 const drawer = common?.drawer;
 const localeOptions = allLocales.map((item) => ({
   code: item.code,
-  label: `${item.nativeName} (${item.code})`,
+  englishName: item.englishName,
+  nativeName: item.nativeName,
+  htmlLang: item.bcp47 ?? item.code,
+  dir: item.rtl ? "rtl" : "ltr",
   href: localizedHref(item.code, currentSlug),
 }));
+const currentLocale = localeOptions.find((item) => item.code === locale);
+const languageLabel = header?.language ?? "Language";
+const languageTitle = header?.languageTitle ?? "Choose your language";
+const languageDescription =
+  header?.languageDescription ??
+  "Switch to the same page in another language.";
+const languageSearch = header?.languageSearch ?? "Filter languages";
+const languageSearchPlaceholder =
+  header?.languageSearchPlaceholder ?? "Search languages or locale codes...";
+const languageNoResults = header?.languageNoResults ?? "No languages match that filter.";
+const closeLanguage = header?.closeLanguage ?? "Close language picker";
 ---
 
 <header
@@ -104,22 +118,20 @@ const localeOptions = allLocales.map((item) => ({
         <Icon name="lucide:sun" class="size-4 dark:hidden" />
         <Icon name="lucide:moon" class="size-4 hidden dark:block" />
       </button>
-      <label class="sr-only" for="locale-select">
-        {header?.language ?? "Language"}
-      </label>
-      <select
-        id="locale-select"
-        class="hidden h-9 max-w-28 rounded-md border border-(--border) bg-(--bg-elevated) px-2 text-xs font-medium text-(--fg-muted) hover:text-(--fg) sm:block"
-        aria-label={header?.language ?? "Language"}
+      <button
+        type="button"
+        id="language-toggle"
+        class="inline-flex h-9 items-center gap-2 rounded-md border border-(--border) bg-(--bg-elevated) px-2.5 text-xs font-semibold text-(--fg-muted) hover:text-(--fg)"
+        aria-label={languageLabel}
+        aria-haspopup="dialog"
+        aria-controls="language-dialog"
       >
-        {
-          localeOptions.map((option) => (
-            <option value={option.href} selected={option.code === locale}>
-              {option.label}
-            </option>
-          ))
-        }
-      </select>
+        <Icon name="lucide:languages" class="size-4" />
+        <span class="hidden max-w-28 truncate lg:inline">
+          {currentLocale?.nativeName ?? locale}
+        </span>
+        <span class="font-mono uppercase" dir="ltr">{locale}</span>
+      </button>
       <a
         href="https://github.com/IEvangelist/resource-translator"
         class="inline-flex size-9 items-center justify-center rounded-md border border-(--border) bg-(--bg-elevated) text-(--fg-muted) no-underline hover:text-(--fg)"
@@ -133,7 +145,137 @@ const localeOptions = allLocales.map((item) => ({
   </div>
 </header>
 
+<dialog
+  id="language-dialog"
+  class="rt-language-dialog w-[min(calc(100vw-2rem),44rem)] max-h-[min(44rem,calc(100vh-2rem))] overflow-hidden rounded-2xl border border-(--border) bg-(--bg) p-0 text-(--fg) shadow-2xl"
+  aria-labelledby="language-dialog-title"
+  aria-describedby="language-dialog-description"
+>
+  <div class="flex max-h-[inherit] flex-col">
+    <header class="border-b border-(--border) bg-(--bg-elevated) px-5 py-4">
+      <div class="flex items-start justify-between gap-4">
+        <div class="min-w-0">
+          <p class="mb-1 text-xs font-semibold uppercase tracking-[0.14em] text-(--color-warm-700) dark:text-(--color-warm-300)">
+            {languageLabel}
+          </p>
+          <h2 id="language-dialog-title" class="text-xl font-bold tracking-tight">
+            {languageTitle}
+          </h2>
+          <p
+            id="language-dialog-description"
+            class="mt-1 text-sm text-(--fg-muted)"
+          >
+            {languageDescription}
+          </p>
+        </div>
+        <button
+          type="button"
+          id="language-close"
+          class="inline-flex size-9 flex-none items-center justify-center rounded-md border border-(--border) bg-(--bg) text-(--fg-muted) hover:text-(--fg)"
+          aria-label={closeLanguage}
+        >
+          <Icon name="lucide:x" class="size-4" />
+        </button>
+      </div>
+      <label class="sr-only" for="language-filter">{languageSearch}</label>
+      <div class="relative mt-4">
+        <span
+          class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-(--fg-muted)"
+          aria-hidden="true"
+        >
+          <Icon name="lucide:search" class="size-4" />
+        </span>
+        <input
+          id="language-filter"
+          type="search"
+          autocomplete="off"
+          placeholder={languageSearchPlaceholder}
+          class="w-full rounded-lg border border-(--border) bg-(--bg) py-2 pl-9 pr-3 text-sm shadow-sm focus-visible:border-(--color-brand-500)"
+        />
+      </div>
+    </header>
+    <div class="overflow-y-auto px-4 py-4 sm:px-5" data-language-list>
+      <div class="grid gap-2 sm:grid-cols-2">
+        {
+          localeOptions.map((option) => {
+            const current = option.code === locale;
+            return (
+              <a
+                href={option.href}
+                lang={option.htmlLang}
+                dir={option.dir}
+                aria-current={current ? "true" : undefined}
+                data-language-option
+                data-language-haystack={`${option.code} ${option.englishName} ${option.nativeName}`}
+                class:list={[
+                  "group flex items-center gap-3 rounded-xl border border-(--border) bg-(--bg-elevated) px-3 py-2.5 text-(--fg) no-underline transition-colors hover:border-(--color-brand-500)/50 hover:bg-(--bg)",
+                  current &&
+                    "border-(--color-brand-500)/60 bg-(--color-brand-50) dark:bg-(--color-brand-900)/40",
+                ]}
+              >
+                <span
+                  class:list={[
+                    "inline-flex size-9 flex-none items-center justify-center rounded-lg border border-(--border) bg-(--bg) text-(--fg-muted)",
+                    current && "text-(--color-brand-700) dark:text-(--color-brand-200)",
+                  ]}
+                  aria-hidden="true"
+                >
+                  <Icon
+                    name={current ? "lucide:check" : "lucide:globe-2"}
+                    class="size-4"
+                  />
+                </span>
+                <span class="min-w-0 flex-1">
+                  <span class="block truncate text-sm font-semibold">
+                    {option.nativeName}
+                  </span>
+                  <span class="block truncate text-xs text-(--fg-muted)" dir="ltr">
+                    {option.englishName}
+                  </span>
+                </span>
+                <code class="rounded-md bg-(--bg) px-1.5 py-0.5 text-[11px] font-semibold text-(--fg-muted)" dir="ltr">
+                  {option.code}
+                </code>
+              </a>
+            );
+          })
+        }
+      </div>
+      <p
+        hidden
+        data-language-empty
+        class="mt-4 rounded-lg border border-dashed border-(--border) bg-(--bg-elevated) p-5 text-center text-sm text-(--fg-muted)"
+      >
+        {languageNoResults}
+      </p>
+    </div>
+  </div>
+</dialog>
+
 <SearchOverlay search={common?.search} />
+
+<style is:global>
+  .rt-language-dialog::backdrop {
+    background: rgba(11, 12, 26, 0.76);
+    backdrop-filter: blur(6px);
+  }
+  .rt-language-dialog[open] {
+    animation: rt-language-pop 140ms ease-out;
+  }
+  [data-language-option][hidden] {
+    display: none;
+  }
+  @keyframes rt-language-pop {
+    from {
+      opacity: 0;
+      transform: translateY(0.5rem) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+</style>
 
 <script is:inline>
   const apply = () => {
@@ -160,8 +302,8 @@ const localeOptions = allLocales.map((item) => ({
   // Theme toggle (re-binds across view transitions)
   function bindToggle() {
     const btn = document.getElementById("theme-toggle");
-    if (!btn || (btn as any).__bound) return;
-    (btn as any).__bound = true;
+    if (!btn || btn.dataset.bound === "1") return;
+    btn.dataset.bound = "1";
     btn.addEventListener("click", () => {
       const root = document.documentElement;
       const isDark = root.classList.toggle("dark");
@@ -178,17 +320,61 @@ const localeOptions = allLocales.map((item) => ({
 </script>
 
 <script>
-  function bindLocaleSelect() {
-    const select = document.getElementById("locale-select") as
-      | HTMLSelectElement
+  function bindLanguageDialog() {
+    const trigger = document.getElementById("language-toggle") as
+      | HTMLButtonElement
       | null;
-    if (!select || (select as any).__bound) return;
-    (select as any).__bound = true;
-    select.addEventListener("change", () => {
-      if (select.value) window.location.href = select.value;
+    const dialog = document.getElementById("language-dialog") as
+      | HTMLDialogElement
+      | null;
+    if (!trigger || !dialog || trigger.dataset.bound === "1") return;
+    trigger.dataset.bound = "1";
+
+    const closeButton = document.getElementById("language-close");
+    const filter = document.getElementById("language-filter") as
+      | HTMLInputElement
+      | null;
+    const options = Array.from(
+      dialog.querySelectorAll<HTMLElement>("[data-language-option]"),
+    );
+    const empty = dialog.querySelector<HTMLElement>("[data-language-empty]");
+    const current = options.find(
+      (option) => option.getAttribute("aria-current") === "true",
+    );
+
+    const filterOptions = () => {
+      const query = filter?.value.trim().toLowerCase() ?? "";
+      let visible = 0;
+      for (const option of options) {
+        const haystack = option.dataset.languageHaystack?.toLowerCase() ?? "";
+        const matched = query === "" || haystack.includes(query);
+        option.hidden = !matched;
+        if (matched) visible++;
+      }
+      if (empty) empty.hidden = visible !== 0;
+    };
+
+    const close = (restoreFocus = true) => {
+      if (dialog.open) dialog.close();
+      if (restoreFocus) trigger.focus();
+    };
+
+    trigger.addEventListener("click", () => {
+      filterOptions();
+      dialog.showModal();
+      window.requestAnimationFrame(() => {
+        filter?.focus();
+        current?.scrollIntoView({ block: "nearest" });
+      });
     });
+    closeButton?.addEventListener("click", () => close());
+    filter?.addEventListener("input", filterOptions);
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) close();
+    });
+    dialog.addEventListener("cancel", () => close(false));
   }
-  bindLocaleSelect();
-  document.addEventListener("astro:page-load", bindLocaleSelect);
+  bindLanguageDialog();
+  document.addEventListener("astro:page-load", bindLanguageDialog);
 </script>
 

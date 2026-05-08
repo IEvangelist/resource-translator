@@ -1,11 +1,258 @@
 ---
 import DocLayout from "../layouts/DocLayout.astro";
+import LocalizedText from "../components/LocalizedText.astro";
 import PageHero from "../components/PageHero.astro";
 import { defaultLocale } from "../i18n/locales";
 import { getPageMessages } from "../i18n/messages";
+import { code, em, link, type LocalizedReplacements } from "../i18n/rich-text";
 
 const { locale = defaultLocale } = Astro.props;
 const copy = getPageMessages(locale, "inputs");
+
+type LocalizedCell = {
+  text: string;
+  values?: LocalizedReplacements;
+};
+
+type InputRow = {
+  name: string;
+  default?: LocalizedCell;
+  description: LocalizedCell;
+};
+
+const customTranslatorUrl =
+  "https://learn.microsoft.com/azure/ai-services/translator/custom-translator/overview";
+
+const noneDefault = { text: "{value}", values: { value: em(copy.defaults.none) } };
+
+const requiredRows: InputRow[] = [
+  {
+    name: "sourceLocale",
+    description: {
+      text: copy.requiredInputs.items.sourceLocale,
+      values: {
+        en: code("en"),
+        sourceGlob: code("**/*.en.resx"),
+        fromLocale: code("from=<locale>"),
+      },
+    },
+  },
+  {
+    name: "subscriptionKey",
+    description: {
+      text: copy.requiredInputs.items.subscriptionKey,
+      values: { secrets: code("secrets") },
+    },
+  },
+  {
+    name: "endpoint",
+    description: {
+      text: copy.requiredInputs.items.endpoint,
+      values: { endpointUrl: code("https://api.cognitive.microsofttranslator.com/") },
+    },
+  },
+];
+
+const optionalRows: InputRow[] = [
+  {
+    name: "region",
+    default: noneDefault,
+    description: { text: copy.optionalInputs.items.region },
+  },
+  {
+    name: "toLocales",
+    default: {
+      text: "{value}",
+      values: { value: em(copy.defaults.allSupported) },
+    },
+    description: {
+      text: copy.optionalInputs.items.toLocales,
+      values: { jsonArray: code('["fr","de"]') },
+    },
+  },
+  {
+    name: "include",
+    default: noneDefault,
+    description: { text: copy.optionalInputs.items.include },
+  },
+  {
+    name: "exclude",
+    default: noneDefault,
+    description: { text: copy.optionalInputs.items.exclude },
+  },
+  {
+    name: "configPath",
+    default: {
+      text: "{value}",
+      values: { value: code(".github/resource-translator.yml") },
+    },
+    description: { text: copy.optionalInputs.items.configPath },
+  },
+  {
+    name: "dryRun",
+    default: { text: "{value}", values: { value: code("false") } },
+    description: {
+      text: copy.optionalInputs.items.dryRun,
+      values: { true: code("true") },
+    },
+  },
+  {
+    name: "failOnError",
+    default: { text: "{value}", values: { value: code("true") } },
+    description: {
+      text: copy.optionalInputs.items.failOnError,
+      values: { true: code("true"), false: code("false") },
+    },
+  },
+];
+
+const translatorRows: InputRow[] = [
+  {
+    name: "categoryId",
+    default: { text: "{value}", values: { value: em("general") } },
+    description: {
+      text: copy.translatorInputs.items.categoryId,
+      values: {
+        customTranslatorLink: link("Custom Translator", customTranslatorUrl, {
+          external: true,
+        }),
+        categoryQuery: code("?category=..."),
+      },
+    },
+  },
+  {
+    name: "textType",
+    default: { text: "{value}", values: { value: code("plain") } },
+    description: {
+      text: copy.translatorInputs.items.textType,
+      values: { plain: code("plain"), html: code("html") },
+    },
+  },
+  {
+    name: "profanityAction",
+    default: { text: "{value}", values: { value: code("NoAction") } },
+    description: {
+      text: copy.translatorInputs.items.profanityAction,
+      values: {
+        noAction: code("NoAction"),
+        marked: code("Marked"),
+        deleted: code("Deleted"),
+      },
+    },
+  },
+  {
+    name: "profanityMarker",
+    default: { text: "{value}", values: { value: code("Asterisk") } },
+    description: {
+      text: copy.translatorInputs.items.profanityMarker,
+      values: {
+        asterisk: code("Asterisk"),
+        tag: code("Tag"),
+        profanityAction: code("profanityAction"),
+        marked: code("Marked"),
+      },
+    },
+  },
+  {
+    name: "allowFallback",
+    default: {
+      text: "{value}",
+      values: { value: em(copy.defaults.translatorDefaultTrue) },
+    },
+    description: {
+      text: copy.translatorInputs.items.allowFallback,
+      values: { false: code("false"), categoryId: code("categoryId") },
+    },
+  },
+  {
+    name: "apiVersion",
+    default: { text: "{value}", values: { value: code("3.0") } },
+    description: { text: copy.translatorInputs.items.apiVersion },
+  },
+];
+
+const resilienceRows: InputRow[] = [
+  {
+    name: "maxRetries",
+    default: { text: "{value}", values: { value: code("5") } },
+    description: {
+      text: copy.resilienceInputs.items.maxRetries,
+      values: {
+        statusCodes: code("408, 425, 429, 500, 502, 503, 504"),
+        totalCalls: code("1 + maxRetries"),
+      },
+    },
+  },
+  {
+    name: "retryBackoffMs",
+    default: { text: "{value}", values: { value: code("30000") } },
+    description: {
+      text: copy.resilienceInputs.items.retryBackoffMs,
+      values: { retryAfter: code("Retry-After") },
+    },
+  },
+  {
+    name: "protectPlaceholders",
+    default: { text: "{value}", values: { value: code("true") } },
+    description: {
+      text: copy.resilienceInputs.items.protectPlaceholders,
+      values: {
+        true: code("true"),
+        mustache: code("{{name}}"),
+        jsVar: code("${var}"),
+        indexZero: code("{0}"),
+        numberFormat: code("{0:N2}"),
+        printf: code("%s"),
+        positionalPrintf: code("%1$s"),
+      },
+    },
+  },
+  {
+    name: "customPlaceholderPatterns",
+    default: noneDefault,
+    description: {
+      text: copy.resilienceInputs.items.customPlaceholderPatterns,
+      values: { angleToken: code("<<.+?>>") },
+    },
+  },
+  {
+    name: "noTranslatePatterns",
+    default: noneDefault,
+    description: {
+      text: copy.resilienceInputs.items.noTranslatePatterns,
+      values: {
+        resxName: code("name"),
+        poMsgid: code("msgid"),
+        xliffId: code("id"),
+      },
+    },
+  },
+];
+
+const outputRows: InputRow[] = [
+  {
+    name: "summary-title",
+    description: {
+      text: copy.outputs.items.summaryTitle,
+      values: {
+        summaryExample: em(
+          "Machine-translated 320 files, a total of 5,418 translations",
+        ),
+      },
+    },
+  },
+  {
+    name: "summary-details",
+    description: { text: copy.outputs.items.summaryDetails },
+  },
+  {
+    name: "has-new-translations",
+    description: {
+      text: copy.outputs.items.hasNewTranslations,
+      values: { trueString: code("'true'") },
+    },
+  },
+];
 ---
 
 <DocLayout title={copy.title} locale={locale} slug="inputs">
@@ -17,90 +264,158 @@ const copy = getPageMessages(locale, "inputs");
     lede={copy.lede}
   />
   <p>
-    See <a href="./configuration">Configuration</a> for the YAML schema and
-    loading order.
+    <LocalizedText
+      text={copy.configurationIntro}
+      values={{ configurationLink: link(copy.configurationLinkLabel, "./configuration") }}
+    />
   </p>
 
-  <h2>Required inputs</h2>
+  <h2>{copy.requiredInputs.heading}</h2>
   <table>
-    <caption class="sr-only">Required inputs</caption>
+    <caption class="sr-only">{copy.requiredInputs.caption}</caption>
     <thead>
-      <tr><th>Name</th><th>Description</th></tr>
+      <tr><th>{copy.columns.name}</th><th>{copy.columns.description}</th></tr>
     </thead>
     <tbody>
-      <tr><td><code>sourceLocale</code></td><td>Source locale (e.g. <code>en</code>) used to find resource files such as <code>**/*.en.resx</code>. Also forwarded to Translator as <code>from=&lt;locale&gt;</code>.</td></tr>
-      <tr><td><code>subscriptionKey</code></td><td>Azure AI Translator subscription key. Pass via <code>secrets</code>.</td></tr>
-      <tr><td><code>endpoint</code></td><td>Translator endpoint URL, e.g. <code>https://api.cognitive.microsofttranslator.com/</code>.</td></tr>
+      {
+        requiredRows.map((row) => (
+          <tr>
+            <td><code>{row.name}</code></td>
+            <td>
+              <LocalizedText
+                text={row.description.text}
+                values={row.description.values}
+              />
+            </td>
+          </tr>
+        ))
+      }
     </tbody>
   </table>
 
-  <h2>Common optional inputs</h2>
+  <h2>{copy.optionalInputs.heading}</h2>
   <table>
-    <caption class="sr-only">Common optional inputs</caption>
+    <caption class="sr-only">{copy.optionalInputs.caption}</caption>
     <thead>
-      <tr><th>Name</th><th>Default</th><th>Description</th></tr>
+      <tr>
+        <th>{copy.columns.name}</th>
+        <th>{copy.columns.default}</th>
+        <th>{copy.columns.description}</th>
+      </tr>
     </thead>
     <tbody>
-      <tr><td><code>region</code></td><td><em>none</em></td><td>Translator resource region (omit for global resources).</td></tr>
-      <tr><td><code>toLocales</code></td><td><em>all supported</em></td><td>Locales to translate to. Accepts a JSON array (<code>["fr","de"]</code>) or comma-separated values.</td></tr>
-      <tr><td><code>include</code></td><td><em>none</em></td><td>Newline-separated glob patterns; only matching files are translated.</td></tr>
-      <tr><td><code>exclude</code></td><td><em>none</em></td><td>Newline-separated glob patterns; matching files are skipped (applied after include).</td></tr>
-      <tr><td><code>configPath</code></td><td><code>.github/resource-translator.yml</code></td><td>Path to the YAML config file (relative to the workspace root).</td></tr>
-      <tr><td><code>dryRun</code></td><td><code>false</code></td><td>When <code>true</code>, run translations and emit summaries but do not write files.</td></tr>
-      <tr><td><code>failOnError</code></td><td><code>true</code></td><td>When <code>true</code>, unexpected errors fail the action; when <code>false</code>, errors are warnings.</td></tr>
+      {
+        optionalRows.map((row) => (
+          <tr>
+            <td><code>{row.name}</code></td>
+            <td>
+              {row.default && (
+                <LocalizedText text={row.default.text} values={row.default.values} />
+              )}
+            </td>
+            <td>
+              <LocalizedText
+                text={row.description.text}
+                values={row.description.values}
+              />
+            </td>
+          </tr>
+        ))
+      }
     </tbody>
   </table>
 
-  <h2>Translator request inputs</h2>
+  <h2>{copy.translatorInputs.heading}</h2>
+  <p>{copy.translatorInputs.intro}</p>
+  <table>
+    <caption class="sr-only">{copy.translatorInputs.caption}</caption>
+    <thead>
+      <tr>
+        <th>{copy.columns.name}</th>
+        <th>{copy.columns.default}</th>
+        <th>{copy.columns.description}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        translatorRows.map((row) => (
+          <tr>
+            <td><code>{row.name}</code></td>
+            <td>
+              {row.default && (
+                <LocalizedText text={row.default.text} values={row.default.values} />
+              )}
+            </td>
+            <td>
+              <LocalizedText
+                text={row.description.text}
+                values={row.description.values}
+              />
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+
+  <h2>{copy.resilienceInputs.heading}</h2>
   <p>
-    These map directly onto Azure AI Translator v3 query parameters. Every one
-    is optional; the Translator defaults apply when unset.
+    <LocalizedText
+      text={copy.resilienceInputs.intro}
+      values={{ mustache: code("{{name}}"), indexZero: code("{0}") }}
+    />
   </p>
   <table>
-    <caption class="sr-only">Translator request inputs</caption>
+    <caption class="sr-only">{copy.resilienceInputs.caption}</caption>
     <thead>
-      <tr><th>Name</th><th>Default</th><th>Description</th></tr>
+      <tr>
+        <th>{copy.columns.name}</th>
+        <th>{copy.columns.default}</th>
+        <th>{copy.columns.description}</th>
+      </tr>
     </thead>
     <tbody>
-      <tr><td><code>categoryId</code></td><td><em>general</em></td><td>Azure <a href="https://learn.microsoft.com/azure/ai-services/translator/custom-translator/overview" rel="noopener" target="_blank">Custom Translator</a> category — the industry/domain/tone knob. Forwarded as <code>?category=...</code>.</td></tr>
-      <tr><td><code>textType</code></td><td><code>plain</code></td><td><code>plain</code> or <code>html</code>. Use <code>html</code> only when your resource values are real HTML fragments.</td></tr>
-      <tr><td><code>profanityAction</code></td><td><code>NoAction</code></td><td><code>NoAction</code>, <code>Marked</code>, or <code>Deleted</code>. Controls how profane terms are emitted in translations.</td></tr>
-      <tr><td><code>profanityMarker</code></td><td><code>Asterisk</code></td><td><code>Asterisk</code> or <code>Tag</code>. Only meaningful when <code>profanityAction</code> is <code>Marked</code>.</td></tr>
-      <tr><td><code>allowFallback</code></td><td><em>true (Translator default)</em></td><td>When <code>false</code>, Translator returns an error instead of falling back to the general system if your <code>categoryId</code> has no deployment for a target locale.</td></tr>
-      <tr><td><code>apiVersion</code></td><td><code>3.0</code></td><td>Translator REST API version.</td></tr>
+      {
+        resilienceRows.map((row) => (
+          <tr>
+            <td><code>{row.name}</code></td>
+            <td>
+              {row.default && (
+                <LocalizedText text={row.default.text} values={row.default.values} />
+              )}
+            </td>
+            <td>
+              <LocalizedText
+                text={row.description.text}
+                values={row.description.values}
+              />
+            </td>
+          </tr>
+        ))
+      }
     </tbody>
   </table>
 
-  <h2>Resilience &amp; placeholder protection</h2>
-  <p>
-    These inputs control how the action behaves when Translator throttles your
-    request and how it shields placeholder tokens like <code>&#123;&#123;name&#125;&#125;</code> or
-    <code>&#123;0&#125;</code> from being mangled during translation.
-  </p>
+  <h2>{copy.outputs.heading}</h2>
   <table>
-    <caption class="sr-only">Resilience and placeholder protection inputs</caption>
+    <caption class="sr-only">{copy.outputs.caption}</caption>
     <thead>
-      <tr><th>Name</th><th>Default</th><th>Description</th></tr>
+      <tr><th>{copy.columns.name}</th><th>{copy.columns.description}</th></tr>
     </thead>
     <tbody>
-      <tr><td><code>maxRetries</code></td><td><code>5</code></td><td>Maximum retry attempts on transient HTTP responses (408, 425, 429, 500, 502, 503, 504). The total number of HTTP calls per request is <code>1 + maxRetries</code>.</td></tr>
-      <tr><td><code>retryBackoffMs</code></td><td><code>30000</code></td><td>Cap (in milliseconds) on any single backoff sleep. The action honors Azure's <code>Retry-After</code> response header exactly when present; otherwise it uses jittered exponential backoff capped at this value.</td></tr>
-      <tr><td><code>protectPlaceholders</code></td><td><code>true</code></td><td>When <code>true</code> (default), placeholders such as <code>&#123;&#123;name&#125;&#125;</code>, <code>$&#123;var&#125;</code>, <code>&#123;0&#125;</code>, <code>&#123;0:N2&#125;</code>, <code>%s</code>, <code>%1$s</code> and HTML entities are replaced with sentinel tokens before translation and restored afterward. Disable only when your source intentionally contains literal placeholder-shaped text that should be translated.</td></tr>
-      <tr><td><code>customPlaceholderPatterns</code></td><td><em>none</em></td><td>Newline-separated regexes (without delimiters) added to the default placeholder set, e.g. <code>&lt;&lt;.+?&gt;&gt;</code> for custom token syntax.</td></tr>
-      <tr><td><code>noTranslatePatterns</code></td><td><em>none</em></td><td>Newline-separated glob patterns matched against parser-level keys (JSON dotted path, RESX <code>name</code>, PO <code>msgid</code>, XLIFF unit <code>id</code>, INI/restext key). Matching keys are dropped from the Translator request and pass through with their source value preserved.</td></tr>
-    </tbody>
-  </table>
-
-  <h2>Outputs</h2>
-  <table>
-    <caption class="sr-only">Outputs</caption>
-    <thead>
-      <tr><th>Name</th><th>Description</th></tr>
-    </thead>
-    <tbody>
-      <tr><td><code>summary-title</code></td><td>Short PR-title-friendly summary, e.g. <em>"Machine-translated 320 files, a total of 5,418 translations"</em>.</td></tr>
-      <tr><td><code>summary-details</code></td><td>Markdown summary suitable for a PR body or job summary.</td></tr>
-      <tr><td><code>has-new-translations</code></td><td><code>'true'</code> when one or more new translations were generated.</td></tr>
+      {
+        outputRows.map((row) => (
+          <tr>
+            <td><code>{row.name}</code></td>
+            <td>
+              <LocalizedText
+                text={row.description.text}
+                values={row.description.values}
+              />
+            </td>
+          </tr>
+        ))
+      }
     </tbody>
   </table>
 </DocLayout>

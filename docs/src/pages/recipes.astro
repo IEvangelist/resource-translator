@@ -1,9 +1,11 @@
 ---
 import { Code } from "astro-expressive-code/components";
 import DocLayout from "../layouts/DocLayout.astro";
+import LocalizedText from "../components/LocalizedText.astro";
 import PageHero from "../components/PageHero.astro";
 import { defaultLocale } from "../i18n/locales";
 import { getPageMessages } from "../i18n/messages";
+import { code, em, link } from "../i18n/rich-text";
 
 const { locale = defaultLocale } = Astro.props;
 const copy = getPageMessages(locale, "recipes");
@@ -65,6 +67,9 @@ const dryRun = `with:
   dryRun: true
   failOnError: false
 `;
+
+const customTranslatorUrl =
+  "https://learn.microsoft.com/azure/ai-services/translator/custom-translator/overview";
 ---
 
 <DocLayout title={copy.title} locale={locale} slug="recipes">
@@ -76,50 +81,60 @@ const dryRun = `with:
     lede={copy.lede}
   />
 
-  <h2>Open a pull request after each run</h2>
+  <h2>{copy.sections.pullRequest.heading}</h2>
   <Code code={pr} lang="yaml" title="translate.yml (excerpt)" />
 
-  <h2>Monorepos: scope translation per package</h2>
+  <h2>{copy.sections.monorepo.heading}</h2>
   <Code code={monorepo} lang="yaml" />
 
-  <h2>Glossary for brand names and product terms</h2>
-  <p>Drop a <code>.github/resource-translator.yml</code> into the repo:</p>
+  <h2>{copy.sections.glossary.heading}</h2>
+  <p>
+    <LocalizedText
+      text={copy.sections.glossary.intro}
+      values={{ configPath: code(".github/resource-translator.yml") }}
+    />
+  </p>
   <Code code={glossary} lang="yaml" title=".github/resource-translator.yml" />
   <p>
-    Glossary terms are applied <em>after</em> translation, so the
-    machine-translated output keeps your preferred branding even when the model
-    swapped it for a synonym.
+    <LocalizedText
+      text={copy.sections.glossary.body}
+      values={{ after: em(copy.sections.glossary.afterLabel) }}
+    />
   </p>
 
-  <h2>Custom Translator category (industry / domain)</h2>
+  <h2>{copy.sections.customCategory.heading}</h2>
   <Code code={customCat} lang="yaml" />
   <p>
-    Train an Azure
-    <a
-      href="https://learn.microsoft.com/azure/ai-services/translator/custom-translator/overview"
-      rel="noopener"
-      target="_blank">Custom Translator</a
-    > category on a corpus that captures your industry vocabulary and tone (legal,
-    medical, marketing, internal-engineering, etc.) and pass its ID via <code
-      >categoryId</code
-    >. This is the strongest tone lever Azure offers.
+    <LocalizedText
+      text={copy.sections.customCategory.body}
+      values={{
+        customTranslatorLink: link("Custom Translator", customTranslatorUrl, {
+          external: true,
+        }),
+        categoryId: code("categoryId"),
+      }}
+    />
   </p>
 
-  <h2>Tone control + strict fallback</h2>
+  <h2>{copy.sections.tone.heading}</h2>
   <Code code={tone} lang="yaml" title=".github/resource-translator.yml" />
   <p>
-    Combine a Custom Translator <code>categoryId</code> with <code
-      >profanityAction</code
-    > and <code>allowFallback: false</code> to enforce a consistent voice and
-    fail the workflow if the chosen category does not have a deployment for one
-    of your target locales.
+    <LocalizedText
+      text={copy.sections.tone.body}
+      values={{
+        categoryId: code("categoryId"),
+        profanityAction: code("profanityAction"),
+        allowFallbackFalse: code("allowFallback: false"),
+      }}
+    />
   </p>
 
-  <h2>Dry run before turning the workflow on</h2>
+  <h2>{copy.sections.dryRun.heading}</h2>
   <Code code={dryRun} lang="yaml" />
   <p>
-    The action still emits summary outputs and a step summary, but no files
-    are written. Combine with <code>failOnError: false</code> to surface every
-    issue as a warning while you iterate.
+    <LocalizedText
+      text={copy.sections.dryRun.body}
+      values={{ failOnErrorFalse: code("failOnError: false") }}
+    />
   </p>
 </DocLayout>

@@ -1,9 +1,11 @@
 ---
 import { Code } from "astro-expressive-code/components";
 import DocLayout from "../layouts/DocLayout.astro";
+import LocalizedText from "../components/LocalizedText.astro";
 import PageHero from "../components/PageHero.astro";
 import { defaultLocale } from "../i18n/locales";
 import { getPageMessages } from "../i18n/messages";
+import { code, link, type LocalizedReplacements } from "../i18n/rich-text";
 
 const { locale = defaultLocale } = Astro.props;
 const copy = getPageMessages(locale, "configuration");
@@ -54,6 +56,196 @@ noTranslatePatterns:
   - "errors.code.*"
   - "brands.*"
 `;
+
+type LocalizedCell = {
+  text: string;
+  values?: LocalizedReplacements;
+};
+
+type FieldRow = {
+  field: LocalizedCell;
+  type: LocalizedCell;
+  notes: LocalizedCell;
+};
+
+const customTranslatorOverviewUrl =
+  "https://learn.microsoft.com/azure/ai-services/translator/custom-translator/overview";
+const customTranslatorConceptsUrl =
+  "https://learn.microsoft.com/azure/ai-services/translator/custom-translator/concepts/customization";
+
+const fieldRows: FieldRow[] = [
+  {
+    field: { text: "{sourceLocale}", values: { sourceLocale: code("sourceLocale") } },
+    type: { text: "string" },
+    notes: {
+      text: copy.fieldReference.fields.sourceLocale,
+      values: {
+        sourceLocale: code("sourceLocale"),
+        fromLocale: code("from=<locale>"),
+      },
+    },
+  },
+  {
+    field: { text: "{toLocales}", values: { toLocales: code("toLocales") } },
+    type: { text: "string[]" },
+    notes: { text: copy.fieldReference.fields.toLocales },
+  },
+  {
+    field: {
+      text: "{include} / {exclude}",
+      values: { include: code("include"), exclude: code("exclude") },
+    },
+    type: { text: "string[]" },
+    notes: { text: copy.fieldReference.fields.includeExclude },
+  },
+  {
+    field: { text: "{glossary}", values: { glossary: code("glossary") } },
+    type: { text: "map<string,string>" },
+    notes: {
+      text: copy.fieldReference.fields.glossary,
+      values: { cpp: code("C++"), dotnet: code(".NET") },
+    },
+  },
+  {
+    field: { text: "{categoryId}", values: { categoryId: code("categoryId") } },
+    type: { text: "string" },
+    notes: {
+      text: copy.fieldReference.fields.categoryId,
+      values: {
+        customTranslatorLink: link("Custom Translator", customTranslatorConceptsUrl, {
+          external: true,
+        }),
+        categoryQuery: code("?category=..."),
+      },
+    },
+  },
+  {
+    field: { text: "{textType}", values: { textType: code("textType") } },
+    type: {
+      text: "{plain} | {html}",
+      values: { plain: code('"plain"'), html: code('"html"') },
+    },
+    notes: {
+      text: copy.fieldReference.fields.textType,
+      values: { plain: code("plain"), html: code("html") },
+    },
+  },
+  {
+    field: {
+      text: "{profanityAction}",
+      values: { profanityAction: code("profanityAction") },
+    },
+    type: {
+      text: "{noAction} | {marked} | {deleted}",
+      values: {
+        noAction: code('"NoAction"'),
+        marked: code('"Marked"'),
+        deleted: code('"Deleted"'),
+      },
+    },
+    notes: { text: copy.fieldReference.fields.profanityAction },
+  },
+  {
+    field: {
+      text: "{profanityMarker}",
+      values: { profanityMarker: code("profanityMarker") },
+    },
+    type: {
+      text: "{asterisk} | {tag}",
+      values: { asterisk: code('"Asterisk"'), tag: code('"Tag"') },
+    },
+    notes: {
+      text: copy.fieldReference.fields.profanityMarker,
+      values: { profanityAction: code("profanityAction"), marked: code('"Marked"') },
+    },
+  },
+  {
+    field: { text: "{allowFallback}", values: { allowFallback: code("allowFallback") } },
+    type: { text: "boolean" },
+    notes: {
+      text: copy.fieldReference.fields.allowFallback,
+      values: { false: code("false"), categoryId: code("categoryId") },
+    },
+  },
+  {
+    field: { text: "{apiVersion}", values: { apiVersion: code("apiVersion") } },
+    type: { text: "string" },
+    notes: {
+      text: copy.fieldReference.fields.apiVersion,
+      values: { version: code("3.0") },
+    },
+  },
+  {
+    field: { text: "{maxRetries}", values: { maxRetries: code("maxRetries") } },
+    type: { text: "integer" },
+    notes: {
+      text: copy.fieldReference.fields.maxRetries,
+      values: {
+        statusCodes: code("408, 425, 429, 500, 502, 503, 504"),
+        defaultRetries: code("5"),
+        totalCalls: code("1 + maxRetries"),
+      },
+    },
+  },
+  {
+    field: {
+      text: "{retryBackoffMs}",
+      values: { retryBackoffMs: code("retryBackoffMs") },
+    },
+    type: { text: "integer" },
+    notes: {
+      text: copy.fieldReference.fields.retryBackoffMs,
+      values: { defaultBackoff: code("30000"), retryAfter: code("Retry-After") },
+    },
+  },
+  {
+    field: {
+      text: "{protectPlaceholders}",
+      values: { protectPlaceholders: code("protectPlaceholders") },
+    },
+    type: { text: "boolean" },
+    notes: {
+      text: copy.fieldReference.fields.protectPlaceholders,
+      values: {
+        true: code("true"),
+        mustache: code("{{name}}"),
+        jsVar: code("${var}"),
+        indexZero: code("{0}"),
+        numberFormat: code("{0:N2}"),
+        printf: code("%s"),
+        positionalPrintf: code("%1$s"),
+      },
+    },
+  },
+  {
+    field: {
+      text: "{customPlaceholderPatterns}",
+      values: { customPlaceholderPatterns: code("customPlaceholderPatterns") },
+    },
+    type: { text: "string[]" },
+    notes: {
+      text: copy.fieldReference.fields.customPlaceholderPatterns,
+      values: { angleToken: code("<<.+?>>") },
+    },
+  },
+  {
+    field: {
+      text: "{noTranslatePatterns}",
+      values: { noTranslatePatterns: code("noTranslatePatterns") },
+    },
+    type: { text: "string[]" },
+    notes: {
+      text: copy.fieldReference.fields.noTranslatePatterns,
+      values: {
+        resxName: code("name"),
+        poMsgid: code("msgid"),
+        xliffId: code("id"),
+      },
+    },
+  },
+];
+
+const loadingStepOrder = ["actionInputs", "config", "precedence", "validation"] as const;
 ---
 
 <DocLayout title={copy.title} locale={locale} slug="configuration">
@@ -65,68 +257,85 @@ noTranslatePatterns:
     lede={copy.lede}
   />
   <p>
-    Override the path with the <code>configPath</code> input if you need a
-    non-default location.
+    <LocalizedText
+      text={copy.intro}
+      values={{ configPath: code("configPath") }}
+    />
   </p>
 
-  <h2>Schema</h2>
+  <h2>{copy.schemaHeading}</h2>
   <Code code={yaml} lang="yaml" title=".github/resource-translator.yml" />
 
-  <h2>Field reference</h2>
+  <h2 id="field-reference">{copy.fieldReference.heading}</h2>
   <table>
-    <caption class="sr-only">Configuration field reference</caption>
+    <caption class="sr-only">{copy.fieldReference.caption}</caption>
     <thead>
-      <tr><th>Field</th><th>Type</th><th>Notes</th></tr>
+      <tr>
+        <th>{copy.fieldReference.columns.field}</th>
+        <th>{copy.fieldReference.columns.type}</th>
+        <th>{copy.fieldReference.columns.notes}</th>
+      </tr>
     </thead>
     <tbody>
-      <tr><td><code>sourceLocale</code></td><td>string</td><td>Falls back to the <code>sourceLocale</code> input if not set. Also forwarded to Translator as <code>from=&lt;locale&gt;</code> so short strings aren't autodetected.</td></tr>
-      <tr><td><code>toLocales</code></td><td>string[]</td><td>Either an array or a comma-separated string.</td></tr>
-      <tr><td><code>include</code> / <code>exclude</code></td><td>string[]</td><td>Glob patterns evaluated against absolute and workspace-relative paths.</td></tr>
-      <tr><td><code>glossary</code></td><td>map&lt;string,string&gt;</td><td>Post-translation term overrides. Word-boundary aware (handles <code>C++</code>, <code>.NET</code>).</td></tr>
-      <tr><td><code>categoryId</code></td><td>string</td><td>Azure <a href="https://learn.microsoft.com/azure/ai-services/translator/custom-translator/concepts/customization" rel="noopener" target="_blank">Custom Translator</a> category — your industry/domain knob (legal, medical, marketing tone, etc.). Sent as <code>?category=...</code>.</td></tr>
-      <tr><td><code>textType</code></td><td><code>"plain"</code> | <code>"html"</code></td><td>Defaults to <code>plain</code>. Use <code>html</code> only if your resource values contain real HTML fragments.</td></tr>
-      <tr><td><code>profanityAction</code></td><td><code>"NoAction"</code> | <code>"Marked"</code> | <code>"Deleted"</code></td><td>How to treat profane terms in translated output.</td></tr>
-      <tr><td><code>profanityMarker</code></td><td><code>"Asterisk"</code> | <code>"Tag"</code></td><td>Only meaningful when <code>profanityAction</code> is <code>"Marked"</code>.</td></tr>
-      <tr><td><code>allowFallback</code></td><td>boolean</td><td>Set to <code>false</code> to fail the translation when your <code>categoryId</code> has no deployment for a target locale instead of falling back to the general model.</td></tr>
-      <tr><td><code>apiVersion</code></td><td>string</td><td>Translator REST API version. Defaults to <code>3.0</code>.</td></tr>
-      <tr><td><code>maxRetries</code></td><td>integer</td><td>Maximum retry attempts on transient HTTP responses (408, 425, 429, 500, 502, 503, 504). Defaults to <code>5</code>. Total HTTP calls per request is <code>1 + maxRetries</code>.</td></tr>
-      <tr><td><code>retryBackoffMs</code></td><td>integer</td><td>Cap (ms) on any single backoff sleep. Defaults to <code>30000</code>. Azure's <code>Retry-After</code> header is honored exactly when present; otherwise jittered exponential backoff is used, capped at this value.</td></tr>
-      <tr><td><code>protectPlaceholders</code></td><td>boolean</td><td>Defaults to <code>true</code>. When on, tokens like <code>&#123;&#123;name&#125;&#125;</code>, <code>$&#123;var&#125;</code>, <code>&#123;0&#125;</code>, <code>&#123;0:N2&#125;</code>, <code>%s</code>, <code>%1$s</code> and HTML entities are replaced with sentinel tokens before translation and restored afterward. Disable only when source intentionally contains placeholder-shaped literals.</td></tr>
-      <tr><td><code>customPlaceholderPatterns</code></td><td>string[]</td><td>Extra regex patterns (without delimiters) added to the default placeholder set, e.g. <code>&lt;&lt;.+?&gt;&gt;</code> for custom token syntax. Invalid regexes are ignored.</td></tr>
-      <tr><td><code>noTranslatePatterns</code></td><td>string[]</td><td>Glob patterns matched against parser-level keys (JSON dotted path, RESX <code>name</code>, PO <code>msgid</code>, XLIFF unit <code>id</code>, INI/restext key). Matching keys are dropped from the request and pass through with their source value preserved.</td></tr>
+      {
+        fieldRows.map((row) => (
+          <tr>
+            <td>
+              <LocalizedText text={row.field.text} values={row.field.values} />
+            </td>
+            <td>
+              <LocalizedText text={row.type.text} values={row.type.values} />
+            </td>
+            <td>
+              <LocalizedText text={row.notes.text} values={row.notes.values} />
+            </td>
+          </tr>
+        ))
+      }
     </tbody>
   </table>
 
-  <h2>Loading order</h2>
+  <h2>{copy.loadingOrder.heading}</h2>
   <ol>
-    <li>The action reads explicit inputs from the workflow.</li>
-    <li>It loads the YAML config from <code>configPath</code>.</li>
-    <li>For every shared field, the input wins; otherwise the YAML value is used.</li>
-    <li>The merged values are validated. Invalid enums (e.g. <code>profanityAction: Mask</code>) cause the action to fail fast with a clear message.</li>
+    {
+      loadingStepOrder.map((key) => (
+        <li>
+          <LocalizedText
+            text={copy.loadingOrder.steps[key]}
+            values={{
+              configPath: code("configPath"),
+              invalidEnum: code("profanityAction: Mask"),
+            }}
+          />
+        </li>
+      ))
+    }
   </ol>
 
-  <h2>Tone and industry, in plain terms</h2>
-  <p>
-    The Azure AI Translator v3 API does not have a single &ldquo;tone&rdquo;
-    knob. Two settings combine to give you most of the same control:
-  </p>
+  <h2>{copy.tone.heading}</h2>
+  <p>{copy.tone.body}</p>
   <ul>
     <li>
-      <strong>Industry / domain:</strong> use <code>categoryId</code> to point
-      at an Azure
-      <a
-        href="https://learn.microsoft.com/azure/ai-services/translator/custom-translator/overview"
-        rel="noopener"
-        target="_blank">Custom Translator</a
-      > category trained on your own corpus — legal, technical, medical, marketing,
-      or anything else. This is the strongest lever for tone, brand voice, and vocabulary.
+      <strong>{copy.tone.industryLabel}</strong>{" "}
+      <LocalizedText
+        text={copy.tone.industryBody}
+        values={{
+          categoryId: code("categoryId"),
+          customTranslatorLink: link("Custom Translator", customTranslatorOverviewUrl, {
+            external: true,
+          }),
+        }}
+      />
     </li>
     <li>
-      <strong>Surface text:</strong> use the <a href="#field-reference"
-        >glossary</a
-      > to lock brand names and product terms verbatim, and use
-      <code>profanityAction</code> to scrub profane terms when targeting localization
-      for younger audiences.
+      <strong>{copy.tone.surfaceLabel}</strong>{" "}
+      <LocalizedText
+        text={copy.tone.surfaceBody}
+        values={{
+          glossaryLink: link(copy.tone.glossaryLinkLabel, "#field-reference"),
+          profanityAction: code("profanityAction"),
+        }}
+      />
     </li>
   </ul>
 </DocLayout>

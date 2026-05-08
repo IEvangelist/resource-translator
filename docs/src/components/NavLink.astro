@@ -12,7 +12,7 @@ const { href, label, icon, current } = Astro.props as {
 <a
   href={href}
   class:list={[
-    "group relative flex items-center gap-2 rounded-md px-3 py-1.5 text-sm transition-colors",
+    "group relative flex items-center gap-2 rounded-md px-3 py-1.5 text-sm no-underline transition-colors",
     "before:pointer-events-none before:absolute before:inset-y-1 before:left-0 before:w-[3px] before:rounded-r-full before:transition-colors",
     current
       ? "bg-(--color-brand-50) font-semibold text-(--color-brand-700) before:bg-(--color-brand-500) dark:bg-(--color-brand-900)/40 dark:text-(--color-brand-200) dark:before:bg-(--color-brand-400)"
@@ -33,4 +33,3 @@ const { href, label, icon, current } = Astro.props as {
   }
   <span>{label}</span>
 </a>
-

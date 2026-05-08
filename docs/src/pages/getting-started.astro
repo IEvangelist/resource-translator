@@ -1,10 +1,12 @@
 ---
 import { Code } from "astro-expressive-code/components";
 import DocLayout from "../layouts/DocLayout.astro";
+import LocalizedText from "../components/LocalizedText.astro";
 import PageHero from "../components/PageHero.astro";
 import Step from "../components/Step.astro";
 import { defaultLocale } from "../i18n/locales";
 import { getPageMessages } from "../i18n/messages";
+import { code } from "../i18n/rich-text";
 
 const { locale = defaultLocale } = Astro.props;
 const copy = getPageMessages(locale, "getting-started");
@@ -42,6 +44,22 @@ jobs:
           body: \${{ steps.translate.outputs.summary-details }}
           branch: machine-translation
 `;
+
+const workflowBodyValues = {
+  workflowPath: code(".github/workflows/translate.yml"),
+};
+const resourceBodyValues = {
+  namingConvention: code("Name.<sourceLocale>.<ext>"),
+  sourceFile: code("Greetings.en.resx"),
+  frFile: code("Greetings.fr.resx"),
+  deFile: code("Greetings.de.resx"),
+};
+const outputBodyValues = {
+  summaryTitle: code("summary-title"),
+  summaryDetails: code("summary-details"),
+  hasNewTranslations: code("has-new-translations"),
+  coreSummary: code("core.summary"),
+};
 ---
 
 <DocLayout title={copy.title} locale={locale} slug="getting-started">
@@ -79,7 +97,9 @@ jobs:
     title={copy.steps.workflow.title}
     accent="bg-(--color-warm-700)"
   >
-    <p>{copy.steps.workflow.body}</p>
+    <p>
+      <LocalizedText text={copy.steps.workflow.body} values={workflowBodyValues} />
+    </p>
     <Code code={workflow} lang="yaml" title=".github/workflows/translate.yml" />
   </Step>
 
@@ -89,7 +109,7 @@ jobs:
     accent="bg-(--color-accent-700)"
   >
     <p>
-      {copy.steps.resource.body}
+      <LocalizedText text={copy.steps.resource.body} values={resourceBodyValues} />
     </p>
   </Step>
 
@@ -99,14 +119,19 @@ jobs:
     accent="bg-(--color-brand-700)"
   >
     <p>
-      {copy.steps.output.body}
+      <LocalizedText text={copy.steps.output.body} values={outputBodyValues} />
     </p>
   </Step>
 
   <h2>{copy.nextSteps.title}</h2>
   <ul>
     <li>
-      <a href="./configuration">{copy.nextSteps.configuration}</a>
+      <a href="./configuration">
+        <LocalizedText
+          text={copy.nextSteps.configuration}
+          values={{ configPath: code(".github/resource-translator.yml") }}
+        />
+      </a>
     </li>
     <li>
       <a href="./recipes">{copy.nextSteps.recipes}</a>

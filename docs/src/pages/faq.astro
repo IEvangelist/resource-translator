@@ -1,11 +1,100 @@
 ---
 import DocLayout from "../layouts/DocLayout.astro";
+import LocalizedText from "../components/LocalizedText.astro";
 import PageHero from "../components/PageHero.astro";
 import { defaultLocale } from "../i18n/locales";
 import { getPageMessages } from "../i18n/messages";
+import { code, link, type LocalizedReplacements } from "../i18n/rich-text";
 
 const { locale = defaultLocale } = Astro.props;
 const copy = getPageMessages(locale, "faq");
+
+const azureSdkUrl = "https://www.npmjs.com/package/@azure-rest/ai-translation-text";
+const corePipelineUrl = "https://www.npmjs.com/package/@azure/core-rest-pipeline";
+const issueUrl =
+  "https://github.com/IEvangelist/resource-translator/issues/new/choose";
+
+type FaqItem = {
+  heading: string;
+  body: string;
+  values?: LocalizedReplacements;
+};
+
+const questions: FaqItem[] = [
+  {
+    heading: copy.questions.azure.heading,
+    body: copy.questions.azure.body,
+    values: {
+      azureSdkLink: link(code("@azure-rest/ai-translation-text"), azureSdkUrl, {
+        external: true,
+      }),
+      corePipelineLink: link(code("@azure/core-rest-pipeline"), corePipelineUrl, {
+        external: true,
+      }),
+      statusCodes: code("408/429/5xx"),
+      axios: code("axios"),
+    },
+  },
+  {
+    heading: copy.questions.tone.heading,
+    body: copy.questions.tone.body,
+    values: {
+      glossaryLink: link(
+        copy.questions.tone.glossaryLinkLabel,
+        "./configuration#field-reference",
+      ),
+      customTranslatorLink: link(
+        copy.questions.tone.customTranslatorLinkLabel,
+        "./configuration#field-reference",
+      ),
+      profanityAction: code("profanityAction"),
+    },
+  },
+  {
+    heading: copy.questions.duplicateFiles.heading,
+    body: copy.questions.duplicateFiles.body,
+    values: {
+      paths: code("paths"),
+      sourceGlob: code("**/*.en.resx"),
+      githubToken: code("GITHUB_TOKEN"),
+    },
+  },
+  {
+    heading: copy.questions.offline.heading,
+    body: copy.questions.offline.body,
+    values: { dryRunTrue: code("dryRun: true") },
+  },
+  {
+    heading: copy.questions.node.heading,
+    body: copy.questions.node.body,
+    values: { nodeRuntime: code("node24") },
+  },
+  {
+    heading: copy.questions.dist.heading,
+    body: copy.questions.dist.body,
+    values: {
+      distDir: code("dist/"),
+      distBuild: code("dist-build"),
+      mainBranch: code("main"),
+      distCheck: code("dist-check"),
+    },
+  },
+  {
+    heading: copy.questions.formats.heading,
+    body: copy.questions.formats.body,
+    values: {
+      resx: code(".resx"),
+      xliff: code(".xliff"),
+      po: code(".po"),
+      json: code(".json"),
+      ini: code(".ini"),
+      restext: code(".restext"),
+      issueLink: link(copy.questions.formats.issueLinkLabel, issueUrl, {
+        external: true,
+      }),
+    },
+  },
+];
 ---
 
 <DocLayout title={copy.title} locale={locale} slug="faq">
@@ -17,70 +106,16 @@ const copy = getPageMessages(locale, "faq");
     lede={copy.lede}
   />
 
-  <h2>How does the action talk to Azure?</h2>
-  <p>
-    Through Microsoft's official
-    <a
-      href="https://www.npmjs.com/package/@azure-rest/ai-translation-text"
-      rel="noopener"
-      target="_blank"><code>@azure-rest/ai-translation-text</code></a
-    > SDK, layered on
-    <a
-      href="https://www.npmjs.com/package/@azure/core-rest-pipeline"
-      rel="noopener"
-      target="_blank"><code>@azure/core-rest-pipeline</code></a
-    >. That gets you automatic retries on 408/429/5xx, typed request and
-    response models, and authentication header handling for free —
-    everything that used to be a hand-rolled <code>axios</code> call. The
-    public action surface (inputs, outputs, file outputs) is unchanged.
-  </p>
-
-  <h2>Why are translations sometimes off-brand or off-tone?</h2>
-  <p>
-    Machine translation defaults to a general-purpose model. Three knobs help:
-    a <a href="./configuration#field-reference">glossary</a> for hard term
-    overrides, a <a href="./configuration#field-reference">Custom Translator
-    category</a> for fine-tuned models trained on your tone and vocabulary,
-    and <code>profanityAction</code> to scrub or flag profane terms.
-  </p>
-
-  <h2>How do I avoid translating the same file twice?</h2>
-  <p>
-    Trigger the workflow on <code>paths</code> that match your source-locale files only,
-    e.g. <code>**/*.en.resx</code>. The action also includes its own per-trigger
-    file filter when <code>GITHUB_TOKEN</code> is set, narrowing work to files
-    in the latest commit.
-  </p>
-
-  <h2>Can I run the action offline?</h2>
-  <p>
-    Not exactly — Azure AI Translator is the runtime brain. But you can run
-    with <code>dryRun: true</code> to validate parsing and config without making
-    any HTTP requests for translation.
-  </p>
-
-  <h2>What Node version does the action run on?</h2>
-  <p>
-    v3 runs on the GitHub Actions <code>node24</code> runtime. The bundled
-    JavaScript is compatible with Node 20, 22, and 24, which is what CI tests.
-  </p>
-
-  <h2>Where does the bundled <code>dist/</code> come from?</h2>
-  <p>
-    GitHub JS actions ship their compiled JS in the repository. The
-    <code>dist-build</code> workflow rebuilds it after every merge to
-    <code>main</code> if it would drift, and <code>dist-check</code> blocks
-    PRs that would land out-of-date output.
-  </p>
-
-  <h2>What about other resource formats?</h2>
-  <p>
-    Today: <code>.resx</code>, <code>.xliff</code>, <code>.po</code>,
-    <code>.json</code>, <code>.ini</code>, <code>.restext</code>. <a
-      href="https://github.com/IEvangelist/resource-translator/issues/new/choose"
-      rel="noopener"
-      target="_blank">Open an issue</a
-    > if you need another — the parser interface is small (parse → map → apply translations
-    → format) and contributions are welcome.
-  </p>
+  {
+    questions.map((question) => (
+      <>
+        <h2>
+          <LocalizedText text={question.heading} values={question.values} />
+        </h2>
+        <p>
+          <LocalizedText text={question.body} values={question.values} />
+        </p>
+      </>
+    ))
+  }
 </DocLayout>
