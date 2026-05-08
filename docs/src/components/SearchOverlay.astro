@@ -397,12 +397,6 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
         debounceId = setTimeout(() => runSearch(q), 120);
       });
 
-      // Keyboard navigation lives on the overlay root (capture-phase keydown
-      // anywhere inside the dialog) so that arrow keys, Enter, Home, End,
-      // and Tab focus-trap all work whether focus is on the input, on a
-      // result anchor, or on the close button. The previous implementation
-      // bound only to the input — once focus shifted to a result via Tab
-      // or click, every nav key stopped working.
       function getFocusables() {
         return Array.from(
           root.querySelectorAll(
@@ -422,29 +416,74 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
         });
       }
 
-      root.addEventListener("keydown", (e) => {
+      // ALL keydown handling for the overlay lives on `document` at the
+      // capture phase. This is the most defensive surface available:
+      //   • capture-phase listeners fire BEFORE any bubble-phase listener,
+      //     so an extension or page script that bubbles back to document
+      //     and calls stopPropagation cannot kill our nav keys.
+      //   • binding to `document` (rather than the overlay root or the
+      //     input) means it works regardless of where focus has wandered
+      //     inside the dialog — input, result anchor, or close button.
+      // Bound exactly once per page load (dataset.bound guard above).
+      function onKeydown(e) {
+        // Always handle Esc / ⌘K / "/" — those open or close the overlay.
+        if (e.key === "Escape" && !root.hidden) {
+          e.preventDefault();
+          e.stopPropagation();
+          closeOverlay();
+          return;
+        }
+        if (
+          (e.metaKey || e.ctrlKey) &&
+          !e.altKey &&
+          e.key.toLowerCase() === "k"
+        ) {
+          e.preventDefault();
+          e.stopPropagation();
+          openOverlay();
+          return;
+        }
+        if (e.key === "/" && !e.metaKey && !e.ctrlKey && !e.altKey) {
+          const t = e.target;
+          const tag = t?.tagName;
+          if (tag === "INPUT" || tag === "TEXTAREA" || t?.isContentEditable)
+            return;
+          e.preventDefault();
+          openOverlay();
+          return;
+        }
+
+        // Below here are nav-inside-overlay keys. Bail unless the overlay
+        // is open — we don't want to swallow arrow keys for the page when
+        // the dialog is closed.
         if (root.hidden) return;
+        // IME composition: never preventDefault while the user is mid-
+        // composition (CJK, etc.) — they need ArrowDown/Up/Enter to
+        // pick from the IME candidate list.
+        if (e.isComposing || e.keyCode === 229) return;
 
         if (e.key === "ArrowDown") {
           e.preventDefault();
+          e.stopPropagation();
           if (!items.length) return;
           moveActive(1);
-          // Pull focus back to input so subsequent keystrokes keep working
-          // the same way regardless of where Tab may have wandered.
           input?.focus();
         } else if (e.key === "ArrowUp") {
           e.preventDefault();
+          e.stopPropagation();
           if (!items.length) return;
           moveActive(-1);
           input?.focus();
         } else if (e.key === "Enter") {
           if (activeIndex >= 0 && items[activeIndex]) {
             e.preventDefault();
+            e.stopPropagation();
             items[activeIndex].click();
           }
         } else if (e.key === "Home") {
           if (items.length) {
             e.preventDefault();
+            e.stopPropagation();
             activeIndex = 0;
             applyHighlight();
             input?.focus();
@@ -452,25 +491,32 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
         } else if (e.key === "End") {
           if (items.length) {
             e.preventDefault();
+            e.stopPropagation();
             activeIndex = items.length - 1;
             applyHighlight();
             input?.focus();
           }
         } else if (e.key === "Tab") {
-          // Focus trap: keep tabbing inside the dialog so AT users can't
-          // accidentally tab out into the page behind the modal overlay.
           const focusables = getFocusables();
           if (!focusables.length) return;
           const first = focusables[0];
           const last = focusables[focusables.length - 1];
           if (e.shiftKey && document.activeElement === first) {
             e.preventDefault();
+            e.stopPropagation();
             last.focus();
           } else if (!e.shiftKey && document.activeElement === last) {
             e.preventDefault();
+            e.stopPropagation();
             first.focus();
           }
         }
+      }
+      // Capture phase + non-passive: gives us the highest-priority shot at
+      // every keystroke and lets us preventDefault on Enter/Arrow keys.
+      document.addEventListener("keydown", onKeydown, {
+        capture: true,
+        passive: false,
       });
 
       // Click outside the panel closes
@@ -480,27 +526,6 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
       });
 
       closeBtn?.addEventListener("click", closeOverlay);
-
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && !root.hidden) {
-          e.preventDefault();
-          closeOverlay();
-        }
-        // ⌘K / Ctrl+K opens
-        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
-          e.preventDefault();
-          openOverlay();
-        }
-        // "/" opens when not typing in another input
-        if (e.key === "/" && !e.metaKey && !e.ctrlKey && !e.altKey) {
-          const t = e.target;
-          const tag = t?.tagName;
-          if (tag === "INPUT" || tag === "TEXTAREA" || t?.isContentEditable)
-            return;
-          e.preventDefault();
-          openOverlay();
-        }
-      });
 
       // Click results closes overlay before navigating
       root.addEventListener("click", (e) => {
