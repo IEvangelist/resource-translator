@@ -151,6 +151,8 @@ toLocales:
 apiVersion: "3.0"
 allowFallback: true
 failOnError: false
+maxRetries: 12
+retryBackoffMs: 120000
 
 # Brand and product terms that machine translation should leave alone
 # (or replace verbatim). Applied as a post-translation pass on every
