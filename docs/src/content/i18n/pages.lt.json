@@ -18,18 +18,26 @@
 			"node": "Mazgas 20 / 22 / 24",
 			"sdk": "Oficialus \"Azure\" SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "Gauti tekstą",
+			"json": "įdėtas arba plokščias",
+			"ini": "{keyValue}",
+			"restext": "MUI tekstas"
+		},
 		"features": {
 			"formats": {
 				"title": "Šeši failų formatai",
-				"body": "Pirmyn ir atgal .resx, .xliff, .po, .json, .ini ir .restext su baitų stabilumu formatavimu."
+				"body": "Pirmyn ir atgal {resx}, {xliff}, {po}, {json}, {ini} ir {restext} su baitų stabiliu formatavimu."
 			},
 			"config": {
 				"title": "Repo lygio konfigūracija",
-				"body": "Numeskite .github/resource-translator.yml įtraukti globs, žodynėlius ir pasirinktinio vertėjo kategorijas."
+				"body": "Numeskite {configPath} failą, kad įtrauktumėte globs, žodynėlius ir pasirinktinio vertėjo kategorijas."
 			},
 			"glossary": {
 				"title": "Žodynėlis",
-				"body": "Užrakinkite prekių ženklų pavadinimus ir produktų terminus naudodami išmanųjį žodžių ribų reguliariąją išraišką, kuri apdoroja C++, .NET ir draugus."
+				"body": "Užrakinkite prekių ženklų pavadinimus ir produktų terminus naudodami išmanųjį žodžių ribų reguliariąją išraišką, kuri tvarko {cpp}, {dotnet} ir draugus."
 			},
 			"dryRun": {
 				"title": "Sausas važiavimas + minkštas gedimas",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR draugiški rezultatai",
-				"body": "summary-title, summary-details, ir has-new-translations lizdas tiesiai į create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails} ir {hasNewTranslations} vieta tiesiai į create-pull-request."
 			},
 			"sdk": {
 				"title": "Oficialus \"Azure\" SDK",
-				"body": "Sukurta @azure-rest/ai-translation-text + @azure/core-rest-pipeline – automatiniai pakartotiniai bandymai 408/429/5xx, be rankinio HTTP. esbuild-bundled, audit-clean."
+				"body": "Sukurta remiantis {azureSdk} + {corePipeline} - automatiniai pakartotiniai bandymai {statusCodes}, be rankinio HTTP. {esbuild} susietas, švarus auditas."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Išskleidžiamoji darbo eiga",
+			"titlePrefix": "Kopijuoti. Įklijuoti.",
+			"titleAccent": "Išversti.",
+			"body": "Trys paslaptys, keturios eilutės, ir jūsų atpirkimo yra daugiakalbė dėl kito stumti.",
+			"setupLink": "Peržiūrėkite visą sąranką"
+		},
+		"cta": {
+			"title": "Pasiruošę lokalizuoti autopilotu?",
+			"body": "Vienas \"Azure AI Translator\" raktas, vienas darbo eigos failas. Išteklių vertėjas tvarko likusią dalį.",
+			"button": "Pradėti"
 		}
 	},
 	"getting-started": {
 		"title": "Darbo pradžia",
 		"eyebrow": "Sąranka",
-		"lede": "Pridėkite darbo eigos failą, nukreipkite jį į savo \"Azure AI Translator\" kredencialus ir veiksmas, sukurtas remiantis oficialiu \"Microsoft\" @azure-rest/ai-translation-text SDK, nuskaitys saugyklą, ar nėra šaltinio kalbos išteklių failų, ir išleis išverstus brolius ir seseris.",
+		"lede": "Įtraukite darbo eigos failą, nukreipkite jį į savo \"Azure AI Translator\" kredencialus ir veiksmas nuskaitys saugyklą, ar nėra šaltinio kalbos išteklių failų, ir išleis išverstus brolius ir seseris.",
 		"steps": {
 			"provision": {
 				"title": "\"Azure AI Translator\" išteklių konfigūravimas",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Darbo eigos įtraukimas",
-				"body": "Sukurkite .github/workflows/translate.yml:"
+				"body": "Kurti {workflowPath}:"
 			},
 			"resource": {
 				"title": "Šaltinio išteklių failo patvirtinimas",
-				"body": "Išteklių failai naudoja pavadinimą. <sourceLocale>. <ext> konvenciją. Pavyzdžiui, Greetings.lt.resx po bėgimo tampa Greetings.fr.resx, Greetings.de.resx ir pan."
+				"body": "Išteklių failuose naudojama {namingConvention} konvencija. Pavyzdžiui, {sourceFile} po bėgimo tampa {frFile}, {deFile} ir pan."
 			},
 			"output": {
 				"title": "Patikrinkite išvestį",
-				"body": "Kai darbo eiga baigiasi, veiksmas atskleidžia tris išvestis, kurias galite prijungti prie PR aprašymo: santraukos pavadinimas, santraukos detalės ir nauji vertimai. Jis taip pat įrašo \"Markdown\" santrauką į darbo puslapį per core.summary."
+				"body": "Kai darbo eiga baigiasi, veiksmas atskleidžia tris išvestis, kurias galite prijungti prie PR aprašymo: {summaryTitle}, {summaryDetails} ir {hasNewTranslations}. Jis taip pat įrašo \"Markdown\" santrauką į darbo puslapį per {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Tolesni veiksmai",
-			"configuration": "Konfigūruokite saugyklos lygio numatytuosius nustatymus naudodami .github/resource-translator.yml.",
+			"configuration": "Konfigūruokite numatytuosius saugyklos lygio nustatymus naudodami {configPath}.",
 			"recipes": "Peržiūrėkite monorepos, pasirinktinių žodynėlių ir pasirinktinių vertėjų kategorijų receptus."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Konfigūracija",
 		"eyebrow": "YAML",
 		"heroTitle": "Saugyklos konfigūracija",
-		"lede": "Vieną kartą išreikškite numatytuosius nustatymus .github/resource-translator.yml ir leiskite kiekvienai darbo eigai juos paveldėti. Veiksmo įvestis visada laimi, kai pateikiami abu."
+		"lede": "Vieną kartą išreikškite numatytuosius nustatymus saugyklos konfigūracijos faile ir leiskite kiekvienai darbo eigai juos paveldėti. Veiksmo įvestis visada laimi, kai pateikiami abu.",
+		"intro": "Perrašykite kelią naudodami {configPath} įvestį, jei jums reikia nenumatytosios vietos.",
+		"schemaHeading": "Schema",
+		"fieldReference": {
+			"heading": "Lauko nuoroda",
+			"caption": "Konfigūracijos lauko nuoroda",
+			"columns": {
+				"field": "Laukas",
+				"type": "Tipas",
+				"notes": "Pastabos"
+			},
+			"fields": {
+				"sourceLocale": "Jei nenustatyta, grįžta prie {sourceLocale} įvesties. Taip pat persiųsta į vertėją kaip {fromLocale} todėl trumpos eilutės nėra automatiškai aptiktos.",
+				"toLocales": "Masyvas arba kableliais atskirta eilutė.",
+				"includeExclude": "Glob modeliai, įvertinti pagal absoliučius ir darbo srities santykinius kelius.",
+				"glossary": "Terminų perrašymas po vertimo. Žodžio ribos žino (rankenos {cpp}, {dotnet}).",
+				"categoryId": "\"Azure\" {customTranslatorLink} kategorija – jūsų pramonės / domeno rankenėlė (teisinė, medicininė, rinkodaros tonas ir kt.). Išsiųsta kaip {categoryQuery}.",
+				"textType": "Numatytoji reikšmė yra {plain}. Naudokite {html} tik tuo atveju, jei jūsų išteklių reikšmėse yra tikrų HTML fragmentų.",
+				"profanityAction": "Kaip elgtis su nešvankiais terminais išverstoje produkcijoje.",
+				"profanityMarker": "Prasminga tik tada, kai {profanityAction} yra {marked}.",
+				"allowFallback": "Nustatykite {false}, kad vertimo nepavyktų, kai jūsų {categoryId} nėra paskirties lokalės diegimo, o ne grįžti prie bendrojo modelio.",
+				"apiVersion": "Vertėjo REST API versija. Numatytoji reikšmė yra {version}.",
+				"maxRetries": "Maksimalus bandymų pakartoti skaičių su trumpalaikiais HTTP atsakymais ({statusCodes}). Numatytoji reikšmė yra {defaultRetries}. Bendras HTTP iškvietimų skaičius vienoje užklausoje yra {totalCalls}.",
+				"retryBackoffMs": "Viršutinė riba (ms) bet kuriam atskiram atgaliniam miego režimui. Numatytoji reikšmė yra {defaultBackoff}. \"Azure\" {retryAfter} antraštė yra pagerbta tiksliai, kai yra; kitu atveju naudojamas drebantis eksponentinis atgalinis atsitraukimas, apribojamas šia verte.",
+				"protectPlaceholders": "Numatytoji reikšmė yra {true}. Kai įjungta, žetonai, tokie kaip {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ir HTML objektai, prieš vertimą pakeičiami kontroliniais žetonais, o vėliau atkuriami. Išjungti tik tada, kai šaltinyje tyčia yra vietos rezervavimo ženklo formos literalų.",
+				"customPlaceholderPatterns": "Papildomi reguliariosios išraiškos šablonai (be skyriklių), įtraukti į numatytąjį vietos rezervavimo ženklų rinkinį, pvz., {angleToken} pasirinktinės atpažinimo ženklų sintaksės. Neleistinų reguliariųjų reakcijų nepaisoma.",
+				"noTranslatePatterns": "Glob modeliai suderinti su analizatoriaus lygio raktais (JSON punktyrinis kelias, RESX {resxName}, PO {poMsgid}, XLIFF vieneto {xliffId}, INI/restext klavišas). Atitinkantys raktai pašalinami iš užklausos ir perduodami išsaugojus jų šaltinio reikšmę."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Pakrovimo tvarka",
+			"steps": {
+				"actionInputs": "Veiksmas nuskaito aiškias darbo eigos įvestis.",
+				"config": "Jis įkelia YAML konfigūraciją iš {configPath}.",
+				"precedence": "Kiekviename bendrai naudojamame lauke laimi įvestis; kitu atveju naudojama YAML reikšmė.",
+				"validation": "Sulietos reikšmės patvirtinamos. Neleistini išvardijimai (pvz., {invalidEnum}) sukelia greitą veiksmą ir aiškų pranešimą."
+			}
+		},
+		"tone": {
+			"heading": "Tonas ir pramonė, paprastai tariant",
+			"body": "\"Azure AI Translator v3\" API neturi vienos tono rankenėlės. Du nustatymai sujungiami, kad galėtumėte valdyti tą patį:",
+			"industryLabel": "Pramonė / sritis:",
+			"industryBody": "naudokite {categoryId}, kad nurodytumėte \"Azure\" {customTranslatorLink} kategoriją, apmokytą pagal jūsų tekstyną – teisinį, techninį, medicininį, rinkodaros ar bet ką kitą. Tai stipriausias tono, prekės ženklo balso ir žodyno svertas.",
+			"surfaceLabel": "Paviršiaus tekstas:",
+			"surfaceBody": "Naudokite {glossaryLink}, kad užrakintumėte prekės ženklų pavadinimus ir produktų terminus pažodžiui, o {profanityAction} naudokite nešvankius terminus, kai taikysite lokalizaciją jaunesnei auditorijai.",
+			"glossaryLinkLabel": "žodynėlis"
+		}
 	},
 	"inputs": {
 		"title": "Įėjimai ir išėjimai",
 		"eyebrow": "Nuoroda",
-		"lede": "Kiekviena įvestis taip pat priimama pasirenkamame saugyklos konfigūracijos faile. Kai abu yra nustatyti, laimi veiksmo įvestis."
+		"lede": "Kiekviena įvestis taip pat priimama pasirenkamame saugyklos konfigūracijos faile. Kai abu yra nustatyti, laimi veiksmo įvestis.",
+		"configurationIntro": "Žr. {configurationLink} YAML schemą ir įkėlimo tvarką.",
+		"configurationLinkLabel": "Konfigūracija",
+		"columns": {
+			"name": "Vardas, pavadinimas",
+			"default": "Numatytasis",
+			"description": "apibūdinimas"
+		},
+		"defaults": {
+			"none": "nė vienas",
+			"allSupported": "Visi palaikomi",
+			"translatorDefaultTrue": "true (numatytasis vertėjas)"
+		},
+		"requiredInputs": {
+			"heading": "Reikalingi įvesties duomenys",
+			"caption": "Reikalingi įvesties duomenys",
+			"items": {
+				"sourceLocale": "Šaltinio lokalė (pvz., {en}), naudojama išteklių failams, pvz., {sourceGlob}, rasti. Taip pat persiųsta vertėjui kaip {fromLocale}.",
+				"subscriptionKey": "\"Azure AI Translator\" prenumeratos raktas. Praeikite per {secrets}.",
+				"endpoint": "Vertėjo galinio punkto URL, pvz., {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Bendrieji neprivalomi įvesties duomenys",
+			"caption": "Bendrieji neprivalomi įvesties duomenys",
+			"items": {
+				"region": "Vertėjo išteklių regionas (praleiskite visuotinius išteklius).",
+				"toLocales": "Lokalės, į kurias reikia versti. Priima JSON masyvą ({jsonArray}) arba kableliais atskirtas reikšmes.",
+				"include": "Naujos linijos atskirti rutulio raštai; Verčiami tik atitinkantys failai.",
+				"exclude": "Naujos linijos atskirti rutulio raštai; Atitinkantys failai praleidžiami (taikomi po įtraukimo).",
+				"configPath": "Kelias į YAML konfigūracijos failą (atsižvelgiant į darbo srities šaknį).",
+				"dryRun": "Kai {true}, paleiskite vertimus ir išleiskite santraukas, bet nerašykite failų.",
+				"failOnError": "Kai {true}, netikėtos klaidos nepavyksta atlikti veiksmo; Kai {false}, klaidos yra įspėjimai."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Vertėjo užklausos įvestis",
+			"intro": "Jie susiejami tiesiai su \"Azure AI Translator v3\" užklausos parametrais. Kiekvienas iš jų yra neprivalomas; Numatytieji vertėjo nustatymai taikomi, kai nenustatyta.",
+			"caption": "Vertėjo užklausos įvestis",
+			"items": {
+				"categoryId": "\"Azure {customTranslatorLink}\" kategorija – pramonės/domeno/tono rankenėlė. Persiųsta kaip {categoryQuery}.",
+				"textType": "{plain} ar {html}. Naudokite {html} tik tada, kai jūsų išteklių reikšmės yra tikri HTML fragmentai.",
+				"profanityAction": "{noAction}, {marked} arba {deleted}. Kontroliuoja, kaip nešvankūs terminai skleidžiami vertimuose.",
+				"profanityMarker": "{asterisk} ar {tag}. Prasminga tik tada, kai {profanityAction} yra {marked}.",
+				"allowFallback": "Kai {false}, vertėjas pateikia klaidą, o ne grįžta į bendrąją sistemą, jei jūsų {categoryId} nėra paskirties lokalės diegimo.",
+				"apiVersion": "Vertėjo REST API versija."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Atsparumas ir vietos rezervavimo ženklų apsauga",
+			"intro": "Šios įvestys kontroliuoja, kaip veiksmas veikia, kai vertėjas riboja jūsų užklausą, ir kaip jis apsaugo vietos rezervavimo ženklo žetonus, pvz., {mustache} ar {indexZero}, nuo sugadinimo vertimo metu.",
+			"caption": "Atsparumas ir vietos rezervavimo ženklų apsaugos įvestis",
+			"items": {
+				"maxRetries": "Maksimalus bandymų pakartoti skaičių su trumpalaikiais HTTP atsakymais ({statusCodes}). Bendras HTTP skambučių skaičius vienoje užklausoje yra {totalCalls}.",
+				"retryBackoffMs": "Viršutinė riba (milisekundėmis) dėl bet kokio atgalinio miego režimo. Veiksmas gerbia \"Azure\" {retryAfter} atsakymo antraštę tiksliai tada, kai yra; priešingu atveju jis naudoja drebantį eksponentinį atgalinį atsitraukimą, apribotą šia reikšme.",
+				"protectPlaceholders": "Kai {true} (numatytasis), vietos rezervavimo ženklai, pvz., {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ir HTML objektai, prieš verčiant pakeičiami kontroliniais atpažinimo ženklais, o vėliau atkuriami. Išjungti tik tada, kai šaltinyje sąmoningai yra pažodinio vietos rezervavimo ženklo formos teksto, kurį reikia išversti.",
+				"customPlaceholderPatterns": "Naujomis eilutėmis atskirti reguliarieji reiškiniai (be skyriklių), įtraukti į numatytąjį vietos rezervavimo ženklų rinkinį, pvz., {angleToken} pasirinktinės atpažinimo ženklų sintaksės.",
+				"noTranslatePatterns": "Naujos eilutės atskirti rutulio modeliai, suderinti su analizatoriaus lygio raktais (JSON punktyrinis kelias, RESX {resxName}, PO {poMsgid}, XLIFF vienetas {xliffId}, INI/restext raktas). Atitinkantys raktai pašalinami iš vertėjo užklausos ir perduodami išsaugojus jų šaltinio reikšmę."
+			}
+		},
+		"outputs": {
+			"heading": "Rezultatai",
+			"caption": "Rezultatai",
+			"items": {
+				"summaryTitle": "Trumpa PR pavadinimo santrauka, pvz., {summaryExample}.",
+				"summaryDetails": "Markdown santrauka tinka ryšių su visuomene įstaigai arba darbo santraukai.",
+				"hasNewTranslations": "{trueString}, kai buvo sukurtas vienas ar keli nauji vertimai."
+			}
+		}
 	},
 	"formats": {
 		"title": "Failų formatai",
 		"eyebrow": "Nuoroda",
 		"heroTitle": "Palaikomi failų formatai",
-		"lede": "Šeši išteklių formatai. Veiksmas nuskaito kiekvieną šaltinio lokalės failą, išverčia reikšmes ir rašo kiekvienos paskirties lokalės brolį."
+		"lede": "Šeši išteklių formatai. Veiksmas nuskaito kiekvieną šaltinio lokalės failą, išverčia reikšmes ir rašo kiekvienos paskirties lokalės brolį.",
+		"namingConvention": "Visi failai naudoja {namingConvention} pavadinimų konvenciją.",
+		"learnMore": "Sužinoti daugiau, sužinok daugiau",
+		"items": {
+			"resx": {
+				"blurb": "XML pagrįsti .NET išteklių failai. Verčia kiekvieno {dataValue} mazgo vidinį tekstą, išsaugodamas komentarus ir metaduomenis.",
+				"specLabel": "\"Microsoft Learn\" – ištekliai .resx failuose"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 dokumentai. Išverčia kiekvieną {source} ir įrašo rezultatą į atitinkamą {target}, nustatydamas lokalės {trgLang}.",
+				"specLabel": "OASIS XLIFF 2.0 specifikacija"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object failai. Kiekvieną {msgid} / {msgidPlural} verčia į {msgstr} / {msgstrPlural} formas.",
+				"specLabel": "GNU gettext — PO failo formatas"
+			},
+			"json": {
+				"blurb": "Savavališki JSON failai. Įdėtieji objektai išlyginami naudojant {delimiter} skyriklį vertimui, tada iš naujo įdedami išvestyje. Punktyriniai klavišai ({dottedKey}) išsaugomi pažodžiui.",
+				"specLabel": "JSON specifikacija (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Paprasti {keyValue} failai (Win32 stiliaus INI arba bet kokia plokščia konfigūracija). Sekcijų antraštės ir komentarai išsaugomi.",
+				"specLabel": "INI failo formatas Vikipedijoje"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI teksto ištekliai – plokščios {keyValue} poros, naudojamos kaip teksto pagalbininkas {resx}.",
+				"specLabel": "Microsoft MUI apžvalga"
+			}
+		},
+		"roundTrip": {
+			"heading": "Garantijos pirmyn ir atgal",
+			"body": "Testų rinkinys tikrina kiekvieno formato reprezentatyvių rungtynių pirmyn ir atgal baitą po baito. Jei formato keistenybė nutrūksta jūsų kodų bazėje, {issueLink} su minimaliu pavyzdžiu.",
+			"issueLinkLabel": "Klausimo atidarymas"
+		}
 	},
 	"recipes": {
 		"title": "Receptai",
 		"eyebrow": "Kulinarinė knyga",
-		"lede": "Įprasti vertimų siuntimo modeliai: monorepos, žodynėliai, pasirinktinės kategorijos, sausi tiražai ir tonų valdymas."
+		"lede": "Įprasti vertimų siuntimo modeliai: monorepos, žodynėliai, pasirinktinės kategorijos, sausi tiražai ir tonų valdymas.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Po kiekvieno paleidimo atidarykite ištraukimo užklausą"
+			},
+			"monorepo": {
+				"heading": "Monorepos: apimties vertimas pagal paketą"
+			},
+			"glossary": {
+				"heading": "Prekių pavadinimų ir produktų terminų žodynėlis",
+				"intro": "Įmeskite {configPath} į saugyklą:",
+				"afterLabel": "po",
+				"body": "Žodynėlio terminai taikomi {after} vertimui, todėl mašininiu būdu išversta išvestis išlaiko pageidaujamą prekės ženklą net tada, kai modelis jį pakeitė sinonimu."
+			},
+			"customCategory": {
+				"heading": "Custom Translator kategorija (pramonės šaka / domenas)",
+				"body": "Apmokykite \"Azure {customTranslatorLink}\" kategoriją pagal tekstyną, kuris užfiksuoja jūsų pramonės šakos žodyną ir toną (teisinį, medicininį, rinkodaros, vidaus inžinerijos ir kt.), ir perduokite jos ID per {categoryId}. Tai stipriausias \"Azure\" siūlomas tono svertas."
+			},
+			"tone": {
+				"heading": "Tono valdymas + griežtas atsarginis",
+				"body": "Derinkite pasirinktinį vertėjo {categoryId} su {profanityAction} ir {allowFallbackFalse}, kad užtikrintumėte nuoseklų balsą ir nepavyktų darbo eigos, jei pasirinkta kategorija neturi vienos iš jūsų tikslinių lokalės diegimo."
+			},
+			"dryRun": {
+				"heading": "Sausas paleidimas prieš įjungiant darbo eigą",
+				"body": "Veiksmas vis tiek pateikia suvestinės išvestis ir veiksmo suvestinę, bet failai neįrašomi. Derinkite su {failOnErrorFalse}, kad išryškintumėte kiekvieną problemą kaip įspėjimą, kol kartojate."
+			}
+		}
 	},
 	"faq": {
 		"title": "DUK",
 		"eyebrow": "Pagalba",
 		"heroTitle": "Dažnai užduodami klausimai",
-		"lede": "Greiti atsakymai į klausimus, kurie dažniausiai kyla priimant veiksmą."
+		"lede": "Greiti atsakymai į klausimus, kurie dažniausiai kyla priimant veiksmą.",
+		"questions": {
+			"azure": {
+				"heading": "Kaip veiksmas kalba su \"Azure\"?",
+				"body": "Per oficialų \"Microsoft\" {azureSdkLink} SDK, sluoksniuotą ant {corePipelineLink}. Tai suteikia jums automatinius pakartotinius bandymus {statusCodes}, įvestus užklausų ir atsakymų modelius bei autentifikavimo antraštės tvarkymą nemokamai - viskas, kas anksčiau buvo ranka susuktas {axios} skambutis. Viešųjų veiksmų paviršius (įvestis, išvestis, failų išvestis) nesikeičia."
+			},
+			"tone": {
+				"heading": "Kodėl vertimai kartais neatitinka prekės ženklo ar atspalvio?",
+				"body": "Mašininis vertimas pagal numatytuosius nustatymus yra bendrosios paskirties modelis. Trys rankenėlės padeda: {glossaryLink} sunkiems terminų nepaisymams, {customTranslatorLink} tiksliai suderintiems modeliams, apmokytiems jūsų toną ir žodyną, ir {profanityAction} šveisti ar pažymėti nešvankius terminus.",
+				"glossaryLinkLabel": "žodynėlis",
+				"customTranslatorLinkLabel": "Pasirinktinio vertėjo kategorija"
+			},
+			"duplicateFiles": {
+				"heading": "Kaip išvengti to paties failo vertimo du kartus?",
+				"body": "Suaktyvinkite darbo eigą tik {paths}, kurie atitinka jūsų šaltinio lokalės failus, pvz., {sourceGlob}. Veiksmas taip pat apima savo kiekvieno paleidiklio failo filtrą, kai {githubToken} nustatytas, susiaurinant darbą iki naujausio įsipareigojimo failų."
+			},
+			"offline": {
+				"heading": "Ar galiu vykdyti veiksmą neprisijungęs?",
+				"body": "Ne visai – \"Azure AI Translator\" yra vykdymo laiko smegenys. Tačiau galite paleisti su {dryRunTrue}, kad patvirtintumėte analizę ir konfigūraciją nepateikdami jokių HTTP vertimo užklausų."
+			},
+			"node": {
+				"heading": "Kokioje mazgo versijoje vykdomas veiksmas?",
+				"body": "v3 veikia \"GitHub\" veiksmų {nodeRuntime} vykdymo metu. Susietas JavaScript yra suderinamas su 20, 22 ir 24 mazgais, kuriuos testuoja CI."
+			},
+			"dist": {
+				"heading": "Iš kur gaunama supakuota {distDir}?",
+				"body": "\"GitHub JS\" veiksmai siunčia savo sukompiliuotą JS į saugyklą. {distBuild} darbo eiga atkuria ją po kiekvieno sujungimo, kad {mainBranch}, jei ji dreifuoja, ir {distCheck} blokuoja PR, kurie gautų pasenusius rezultatus."
+			},
+			"formats": {
+				"heading": "O kaip su kitais išteklių formatais?",
+				"body": "Šiandien: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink}, jei reikia kito - analizatoriaus sąsaja yra maža (analizuoti → žemėlapį → taikyti vertimus → formatu) ir indėlis yra laukiamas.",
+				"issueLinkLabel": "Atidaryti numerį"
+			}
+		}
 	},
 	"translations": {
 		"title": "Vertimai",
 		"eyebrow": "Vitrina",
 		"heroTitle": "Sveiki visomis kalbomis",
-		"locales": "Vietovės",
-		"currentlyRendered": "Šiuo metu atvaizduota",
-		"complete": "Baigta!",
-		"pendingPrefix": "Laukiama kito translate-docs paleidimo.",
+		"lede": "Šį puslapį išverčia pats išteklių vertėjas, kiekvieną kartą paspaudus į pagrindinę, į visas kalbas, kurias palaiko \"Azure AI Translator\".",
+		"localeCountLabel": "{count} vietovių",
+		"statusComplete": "{translatedCount} šiuo metu pateiktas - baigtas!",
+		"statusPending": "{translatedCount} šiuo metu atvaizduota – {pendingCount} laukiama kito {workflowName} vykdymo.",
 		"viewWorkflowRuns": "Darbo eigos vykdymo peržiūra",
 		"filter": "Filtras",
 		"filterPlaceholder": "Ieškoti pagal kalbą, kodą arba gimtąjį vardą...",
 		"source": "Šaltinis",
 		"machineTranslations": "Mašininis vertimas",
-		"translationPending": "Laukiama vertimo — atidarykite vertimo dokumentų vykdymą.",
+		"translationPending": "Laukiama vertimo — atidarykite {workflowName} vykdymą.",
 		"noLocales": "Nė viena lokalė neatitinka šio filtro.",
-		"howItWorks": "Kaip tai veikia"
+		"howItWorks": {
+			"heading": "Kaip tai veikia",
+			"thisActionLabel": "Būtent šis veiksmas",
+			"steps": {
+				"source": "Angliškas šaltinio failas yra {messagesPath}.",
+				"workflow": "Stumia, kad prisilietimas jis pradeda {workflowLink}, kuris veikia {thisAction} prieš save.",
+				"fanOut": "Veiksmas nukreipiamas į kiekvieną \"Azure AI Translator\" palaikomą lokalę (sukonfigūruotą {configPath}) ir kiekvienam tikslui rašo {messagesLocaleJson}.",
+				"pullRequest": "Atidaroma ištraukimo užklausa su naujais vertimais. Sujungus jį pakartotinai publikuojamas šis puslapis su užpildytomis kortelėmis."
+			}
+		},
+		"poweredBy": "Parengta naudojant \"Resource Translator\" ir \"Azure AI Translator\"."
 	},
 	"contributing": {
 		"title": "Prisideda",
 		"eyebrow": "Atvirasis kodas",
-		"lede": "Pranešimai apie klaidas, funkcijų užklausos ir ištraukimo užklausos yra laukiami. Veiksmas yra pakankamai mažas, kad būtų draugiškas pirmą kartą prisidedantiems dalyviams."
+		"lede": "Pranešimai apie klaidas, funkcijų užklausos ir ištraukimo užklausos yra laukiami. Veiksmas yra pakankamai mažas, kad būtų draugiškas pirmą kartą prisidedantiems dalyviams.",
+		"localDevelopment": {
+			"heading": "Vietos plėtra"
+		},
+		"addingParser": {
+			"heading": "Analizatoriaus pridėjimas",
+			"steps": {
+				"fixture": "Pridėkite šviestuvą po {testDataDir}.",
+				"implement": "Įgyvendinkite {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Užregistruokite jį {factoryFile}.",
+				"extension": "Įtraukite failo plėtinį į {translationFileSchemes} {finderFile}.",
+				"tests": "Parašykite testus pirmyn ir atgal, kad išanalizuotumėte → formatą ir taikytumėteVertimai."
+			}
+		},
+		"coverage": {
+			"heading": "Aprėpties ribos",
+			"body": "Jest konfigūracija užtikrina minimalią aprėptį. Naujas kodas turi išlaikyti išrašų + eilučių slenkstį virš 78%, o funkcijos viršija 90%. Pridėkite armatūrą ir testus kartu su pakeitimais."
+		},
+		"docsSite": {
+			"heading": "Dokumentacijos svetainė",
+			"body": "{docsDir} aplankas yra Astro 6 + Tailwind v4 projektas. Paleiskite {npmInstall} ten vieną kartą, tada {npmRunDev} vietinei peržiūrai. {pagesWorkflow} darbo eiga siunčia dokumentus į \"GitHub\" puslapius kiekvieno suliejimo metu."
+		}
 	},
 	"changelog": {
 		"title": "Pakeitimų žurnalas",
 		"eyebrow": "Istorija",
-		"lede": "Aukšto lygio leidinių santrauka. Kanoninis, autoritetingas pakeitimų žurnalas gyvena saugykloje CHANGELOG.md."
+		"lede": "Aukšto lygio leidinių santrauka. Kanoninis, autoritetingas pakeitimų žurnalas gyvena saugykloje CHANGELOG.md.",
+		"fullRecord": "Visą įrašą rasite {changelogLink}.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (kuriamas)",
+			"labels": {
+				"breaking": "LAUŽYMAS",
+				"resilience": "Atsparumas:",
+				"placeholderProtection": "Vietos rezervavimo ženklo apsauga:",
+				"perKeyOptOut": "Atsisakymas pagal raktą:",
+				"docsAccessibility": "Dokumentų prieinamumas:",
+				"inlineCodeStyling": "Įdėtojo kodo stilius:"
+			},
+			"issueLabels": {
+				"closes46": "Uždaroma #46.",
+				"tightens16": "Priveržia #16.",
+				"closes35": "Uždaroma #35."
+			},
+			"items": {
+				"runtime": "Iškilo į {nodeRuntime} veikimo laiką ({breaking}).",
+				"newInputs": "Naujos įvestys: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, taip pat išplėstinės vertėjo rankenėlės {textType}, {profanityAction}, {profanityMarker} ir {allowFallback}.",
+				"sourceLocale": "Šaltinio lokalė dabar taip pat persiunčiama į vertėją {fromLocale} todėl trumpos eilutės nėra automatiškai aptinkamos.",
+				"resilience": "{label} automatinis pakartotinis bandymas trumpalaikiams HTTP atsakymams ({statusCodes}), gerbiant \"Azure\" {retryAfter} antraštę, grįžta prie drebančio eksponentinio atgalinio išjungimo, kai jo nėra. Derinamas {maxRetries} ir {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} žetonai, tokie kaip {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ir HTML objektai, prieš vertimą suvyniojami į sargybinius ir po to atkuriami, todėl vertėjas nustoja sugadinti i18next/Mustache/Handlebars/.NET/printf vietos rezervavimo ženklus. Perjungti per {protectPlaceholders}; pratęsti {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} nauja {noTranslatePatterns} įvestis visiškai pašalina atitinkančius raktus iš vertėjo užklausos (išsaugo prekės ženklų pavadinimų, klaidų kodų ir kt. šaltinio reikšmes). Atitinka glob modelius su analizatoriaus lygio raktais (JSON punktyrinis kelias, RESX {resxName}, PO {poMsgid}, XLIFF vienetas {xliffId}, INI/restext raktas). {issue}",
+				"repoConfig": "Repo-lygio konfigūracija per {configPath}.",
+				"glossary": "Žodynėlio palaikymas, žingsnių santrauka per {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM auditas švarus (0 pažeidžiamumų).",
+				"docsSite": "Astro + Tailwind v4 dokumentų svetainė su peržiūros perėjimais ir išraiškingu kodu.",
+				"docsAccessibility": "{label} WCAG 2.1 AA perduoti. Logotipo glifai konvertuojami į kelius, kad jie nebeatitiktų spalvų kontrasto su gradiento sustojimais, slankusis {backToTop} mygtukas naudoja {inert}, o paslėptas (vietoj {ariaHidden} perjungiklio, kuris paliko jį tabable), {formatsAstro} sekcijos nebesusiduria su automatiškai sugeneruotais antraščių ID, trys lokalės kortelės dabar atskleidžia BCP-47 galiojančius {lang} atributus ({nya}, {lug}, {run}), pasikartojančios {documentation} orientyrų etiketės yra nedviprasmiškos tarp šoninės juostos ir poraštės,  ir kiekviena {inputs}/{configuration} duomenų lentelė pristatoma su ekrano skaitytuvo antrašte.",
+				"inlineCode": "{label} docs prozos {codeElement} dabar dėvi šiltą / gintaro tema akcentas - skirtingai nuo prekės ženklo → akcentas paletės naudojamas nuorodos ir antraštės.",
+				"automation": "Priklausomas automatinis sujungimas, CodeQL nuskaitymas, CI matrica."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Žr. git istoriją."
+		}
 	}
 }

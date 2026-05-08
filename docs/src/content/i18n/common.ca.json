@@ -15,7 +15,13 @@
 		"searchPlaceholder": "Cerca documentació...",
 		"toggleTheme": "Canvia el tema",
 		"githubRepository": "Repositori de GitHub",
-		"language": "Llengua"
+		"language": "Llengua",
+		"languageTitle": "Tria la teva llengua",
+		"languageDescription": "Canvia a la mateixa pàgina en un altre idioma.",
+		"languageSearch": "Llenguatges de filtres",
+		"languageSearchPlaceholder": "Cerca idiomes o codis locals...",
+		"languageNoResults": "Cap idioma s'ajusta a aquest filtre.",
+		"closeLanguage": "Selector de llenguatge proper"
 	},
 	"search": {
 		"title": "Cerca documentació",

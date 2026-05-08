@@ -18,18 +18,26 @@
 			"node": "节点 20 / 22 / 24",
 			"sdk": "官方 Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "嵌套或扁平",
+			"ini": "{keyValue}",
+			"restext": "MUI 文本"
+		},
 		"features": {
 			"formats": {
 				"title": "六种文件格式",
-				"body": "往返 .resx、.xliff、.po、.json、.ini 和 .restext,格式为字节稳定。"
+				"body": "往返 {resx}、{xliff}、{po}、{json}、{ini} 和 {restext},采用字节稳定格式。"
 			},
 			"config": {
 				"title": "Repo-level config",
-				"body": "删除一个 .github/resource-translator.yml,用于包含 globs、glossaries 和 Custom Translator 类别。"
+				"body": "删除一个{configPath}文件,以包括 globs、glossaries 和 Custom Translator 类别。"
 			},
 			"glossary": {
 				"title": "词汇表意识",
-				"body": "使用处理 C++、.NET 和朋友的智能词界正则表达式锁定品牌名称和产品术语。"
+				"body": "使用智能词界正则表达式锁定品牌名称和产品术语,以处理{cpp}、{dotnet}和朋友。"
 			},
 			"dryRun": {
 				"title": "试运行 + 软失败",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "公关友好的输出",
-				"body": "summary-title、summary-details 和 has-new-translations 插槽直接放入 create-pull-request 中。"
+				"body": "{summaryTitle}、{summaryDetails} 和 {hasNewTranslations} 直接插入 create-pull-request 中。"
 			},
 			"sdk": {
 				"title": "官方 Azure SDK",
-				"body": "建立在 @azure-rest/ai-translation-text + @azure/core-rest-pipeline 上 — 在 408/429/5xx 上自动重试,没有手卷 HTTP。 esbuild-bundled,audit-clean。"
+				"body": "基于 {azureSdk} + {corePipeline} 构建 — 在 {statusCodes} 上自动重试,无需手动滚动 HTTP。 {esbuild}捆绑,审计干净。"
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Drop-in 工作流程",
+			"titlePrefix": "复制,粘贴。",
+			"titleAccent": "翻译。",
+			"body": "三个秘密,四行,你的存储库在下一次推送时是多语言的。",
+			"setupLink": "浏览完整设置"
+		},
+		"cta": {
+			"title": "准备好自动本地化了吗?",
+			"body": "一个 Azure AI Translator 密钥,一个工作流文件。 Resource Translator 处理其余部分。",
+			"button": "开始"
 		}
 	},
 	"getting-started": {
 		"title": "入门",
 		"eyebrow": "设置",
-		"lede": "添加一个工作流文件,将其指向您的 Azure AI Translator 凭据,该操作基于 Microsoft 的官方 @azure-rest/ai-translation-text SDK 构建,将扫描存储库中的源语言资源文件并发出翻译的兄弟姐妹。",
+		"lede": "添加工作流文件,指向您的 Azure AI Translator 憑據,該操作將掃描存儲庫中的源語言資源文件,並發出翻譯的兄弟姐妹。",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "添加工作流程",
-				"body": "创建 .github/workflows/translate.yml:"
+				"body": "创建{workflowPath}:"
 			},
 			"resource": {
 				"title": "提交源资源文件",
-				"body": "资源文件使用 Name。 <sourceLocale>。 <ext> 约定。 例如,Greetings.en.resx 运行后变为 Greetings.fr.resx、Greetings.de.resx 等。"
+				"body": "资源文件使用{namingConvention}约定。 例如,{sourceFile}在运行后变成{frFile}、{deFile}等。"
 			},
 			"output": {
 				"title": "检查输出",
-				"body": "工作流程完成后,该操作会公开三个输出,您可以连接到 PR 描述中:summary-title、summary-details 和 has-new-translations。 它还通过 core.summary 将 Markdown 摘要写入工作页面。"
+				"body": "工作流程完成后,该操作会显示三个输出,您可以连接到 PR 描述中:{summaryTitle}、{summaryDetails} 和 {hasNewTranslations}。 它还通过 {coreSummary} 将 Markdown 摘要写入招聘页面。"
 			}
 		},
 		"nextSteps": {
 			"title": "下一步",
-			"configuration": "使用 .github/resource-translator.yml 配置 repo-level defaults。",
+			"configuration": "使用 {configPath} 配置 repo-level defaults。",
 			"recipes": "请参阅 monorepos、自定义词汇表和自定义翻译器类别的配方。"
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "配置",
 		"eyebrow": "YAML",
 		"heroTitle": "存储库配置",
-		"lede": "在 .github/resource-translator.yml 中表达一次默认值,让每个工作流程继承它们。 当两者兼备时,动作输入总是胜出。"
+		"lede": "在存储库配置文件中表达一次默认值,并让每个工作流程继承它们。 当两者兼备时,动作输入总是胜出。",
+		"intro": "如果需要非默认位置,则使用 {configPath} 输入覆盖路径。",
+		"schemaHeading": "图式",
+		"fieldReference": {
+			"heading": "现场参考",
+			"caption": "配置字段参考",
+			"columns": {
+				"field": "场",
+				"type": "类型",
+				"notes": "笔记"
+			},
+			"fields": {
+				"sourceLocale": "如果未设置,则回退到{sourceLocale}输入。 也作为{fromLocale}转发给 Translator,这样短字符串就不会自动检测到。",
+				"toLocales": "数组或逗号分隔的字符串。",
+				"includeExclude": "根据绝对路径和工作空间相对路径评估的 Glob 模式。",
+				"glossary": "译后术语覆盖。 词界意识(处理{cpp}、{dotnet})。",
+				"categoryId": "Azure {customTranslatorLink} 类别 — 您的行业/领域旋钮(法律、医疗、营销语气等)。 送为{categoryQuery}。",
+				"textType": "默认为 {plain}。 只有当资源值包含真实的 HTML 片段时,才使用 {html}。",
+				"profanityAction": "如何处理翻译输出中的亵渎术语。",
+				"profanityMarker": "只有当{profanityAction} {marked}时才有意义。",
+				"allowFallback": "设置为 {false},当您的{categoryId}没有针对目标语言环境的部署时,翻译失败,而不是回退到通用模型。",
+				"apiVersion": "Translator REST API 版本。 默认为 {version}。",
+				"maxRetries": "瞬态 HTTP 响应的最大重试次数 ({statusCodes})。 默认为 {defaultRetries}。 每个请求的 HTTP 调用总数为 {totalCalls}。",
+				"retryBackoffMs": "任何一次退避睡眠的上限 (ms)。 默认为 {defaultBackoff}。 Azure 的 {retryAfter} 标头在存在时完全受到尊重; 否则使用抖动指数退避,以此值为上限。",
+				"protectPlaceholders": "默认为 {true}。 启用时,{mustache}、{jsVar}、{indexZero}、{numberFormat}、{printf}、{positionalPrintf} 和 HTML 实体等令牌在翻译前被 sentinel 令牌替换,然后恢复。 只有当源故意包含占位符形状的文字时,才禁用。",
+				"customPlaceholderPatterns": "额外的正则表达式模式(无分隔符)添加到默认占位符集中,例如自定义标记语法的{angleToken}。 无效的正则表达式将被忽略。",
+				"noTranslatePatterns": "Glob 模式与解析器级键(JSON 虚线路径、RESX {resxName}、PO {poMsgid}、XLIFF 单位 {xliffId}、INI/restext 键)匹配。 匹配的键从请求中删除并传递,并保留其源值。"
+			}
+		},
+		"loadingOrder": {
+			"heading": "装车顺序",
+			"steps": {
+				"actionInputs": "该操作从工作流中读取显式输入。",
+				"config": "它从 {configPath} 加载 YAML 配置。",
+				"precedence": "对于每个共享字段,输入获胜; 否则使用 YAML 值。",
+				"validation": "合并的值是验证的。 无效的枚举(例如{invalidEnum})会导致操作快速失败,并显示清晰的消息。"
+			}
+		},
+		"tone": {
+			"heading": "语气和工业,简单来说",
+			"body": "Azure AI Translator v3 API 没有一个音调旋钮。 两种设置相结合,可以为您提供大部分相同的控制:",
+			"industryLabel": "行业/领域:",
+			"industryBody": "使用 {categoryId} 指向在您自己的语料库上训练的 Azure {customTranslatorLink}类别——法律、技术、医疗、营销或其他任何内容。 这是语气、品牌声音和词汇的最强杠杆。",
+			"surfaceLabel": "表面文本:",
+			"surfaceBody": "使用{glossaryLink}逐字锁定品牌名称和产品术语,在针对年轻受众进行本地化时,使用{profanityAction}擦去亵渎术语。",
+			"glossaryLinkLabel": "词汇表"
+		}
 	},
 	"inputs": {
 		"title": "输入与输出",
 		"eyebrow": "参考资料",
-		"lede": "每个输入也在可选的存储库配置文件中被接受。 当两者都设置时,动作输入获胜。"
+		"lede": "每个输入也在可选的存储库配置文件中被接受。 当两者都设置时,动作输入获胜。",
+		"configurationIntro": "有关 YAML 模式和加载顺序,请参阅 {configurationLink}。",
+		"configurationLinkLabel": "配置",
+		"columns": {
+			"name": "姓名",
+			"default": "默认",
+			"description": "描述"
+		},
+		"defaults": {
+			"none": "无",
+			"allSupported": "全部支持",
+			"translatorDefaultTrue": "true (译者默认)"
+		},
+		"requiredInputs": {
+			"heading": "所需输入",
+			"caption": "所需输入",
+			"items": {
+				"sourceLocale": "源语言环境(例如 {en})用于查找资源文件,例如 {sourceGlob}。 也转发给译者作为{fromLocale}。",
+				"subscriptionKey": "Azure AI Translator 訂閱金鑰。 过{secrets}。",
+				"endpoint": "翻译端点 URL,例如 {endpointUrl}。"
+			}
+		},
+		"optionalInputs": {
+			"heading": "常见可选输入",
+			"caption": "常见可选输入",
+			"items": {
+				"region": "译者资源区域(全局资源省略)。",
+				"toLocales": "要翻译的地区。 接受 JSON 数组 ({jsonArray}) 或逗号分隔值。",
+				"include": "换行分离的球状图案; 只翻译匹配的文件。",
+				"exclude": "换行分离的球状图案; 匹配的文件被跳过(在include之后应用)。",
+				"configPath": "YAML 配置文件的路径(相对于工作区根)。",
+				"dryRun": "{true}时,运行翻译并发出摘要,但不写文件。",
+				"failOnError": "当{true}时,意外错误使行动失败; 当{false}时,错误就是警告。"
+			}
+		},
+		"translatorInputs": {
+			"heading": "译者请求输入",
+			"intro": "這些直接映射到 Azure AI Translator v3 查詢參數。 每一个都是可选的; 翻译器默认值在未设置时适用。",
+			"caption": "译者请求输入",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} 类别 — 行业/领域/音调旋钮。 转发为{categoryQuery}。",
+				"textType": "{plain}或{html}。 只有当资源值是真实的 HTML 片段时,才使用 {html}。",
+				"profanityAction": "{noAction}、{marked}或{deleted}。 控制翻译中亵渎术语的发出方式。",
+				"profanityMarker": "{asterisk}或{tag}。 只有当{profanityAction} {marked}时才有意义。",
+				"allowFallback": "{false}时,如果您的{categoryId}没有目标区域设置的部署,则 Translator 返回错误,而不是回退到通用系统。",
+				"apiVersion": "Translator REST API 版本。"
+			}
+		},
+		"resilienceInputs": {
+			"heading": "弹性和占位符保护",
+			"intro": "这些输入控制 Translator 限制您的请求时操作的行为方式,以及它如何保护 {mustache} 或 {indexZero} 等占位符令牌在翻译过程中不被破坏。",
+			"caption": "弹性和占位符保护输入",
+			"items": {
+				"maxRetries": "瞬态 HTTP 响应的最大重试次数 ({statusCodes})。 每个请求的 HTTP 调用总数为 {totalCalls}。",
+				"retryBackoffMs": "任何一次退避睡眠的上限(以毫秒为单位)。 该操作在 Azure 的 {retryAfter} 响应标头存在时完全遵循它; 否则,它使用以此值为上限的抖动指数退避。",
+				"protectPlaceholders": "{true}(默认)时,{mustache}、{jsVar}、{indexZero}、{numberFormat}、{printf}、{positionalPrintf} 和 HTML 实体等占位符在翻译之前被替换为哨兵令牌,然后恢复。 只有当您的来源故意包含应翻译的文字占位符形状的文本时,才禁用。",
+				"customPlaceholderPatterns": "将换行符分隔的正则表达式(无分隔符)添加到默认占位符集中,例如自定义标记语法的{angleToken}。",
+				"noTranslatePatterns": "换行符分隔的 glob 模式与解析器级键(JSON 虚线路径、RESX {resxName}、PO {poMsgid}、XLIFF 单位 {xliffId}、INI/restext 键)匹配。 匹配的键从 Translator 请求中删除,并保留其源值。"
+			}
+		},
+		"outputs": {
+			"heading": "输出",
+			"caption": "输出",
+			"items": {
+				"summaryTitle": "简短的公关标题友好摘要,例如{summaryExample}。",
+				"summaryDetails": "Markdown 摘要,适用于公关机构或工作摘要。",
+				"hasNewTranslations": "{trueString}当产生一个或多个新译本时。"
+			}
+		}
 	},
 	"formats": {
 		"title": "文件格式",
 		"eyebrow": "参考资料",
 		"heroTitle": "支持的文件格式",
-		"lede": "六种可往返的资源格式。 该操作读取每个源语言环境文件,翻译值,并为每个目标语言环境写入一个兄弟姐妹。"
+		"lede": "六种可往返的资源格式。 该操作读取每个源语言环境文件,翻译值,并为每个目标语言环境写入一个兄弟姐妹。",
+		"namingConvention": "所有文件都使用{namingConvention}命名约定。",
+		"learnMore": "了解更多",
+		"items": {
+			"resx": {
+				"blurb": "基于 XML 的 .NET 资源文件。 翻译每个{dataValue}节点的内部文本,保留注释和元数据。",
+				"specLabel": "Microsoft Learn — .resx 文件中的資源"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 文件。 翻译每个{source},并将结果写入相应的{target},为区域设置{trgLang}。",
+				"specLabel": "OASIS XLIFF 2.0 规范"
+			},
+			"po": {
+				"blurb": "GNU gettext 可移植对象文件。 将每个{msgid}/{msgidPlural}翻译成{msgstr}/{msgstrPlural}形式。",
+				"specLabel": "GNU gettext — PO 文件格式"
+			},
+			"json": {
+				"blurb": "任意 JSON 文件。 嵌套对象用{delimiter}分隔符平整以进行翻译,然后在输出时重新嵌套。 虚线键 ({dottedKey}) 逐字保留。",
+				"specLabel": "JSON 规范 (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "简单的{keyValue}文件(Win32 样式 INI 或任何平面配置)。 章节标题和注释被保留。",
+				"specLabel": "维基百科上的 INI 文件格式"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI 文本资源 — 扁平{keyValue}对,用作 {resx} 的文本伴侣。",
+				"specLabel": "Microsoft MUI 概述"
+			}
+		},
+		"roundTrip": {
+			"heading": "往返保证",
+			"body": "测试套件验证每种格式的代表性夹具的逐字节往返。 如果格式怪癖破坏了代码库中的往返,请用最少的样本{issueLink}。",
+			"issueLinkLabel": "开一期"
+		}
 	},
 	"recipes": {
 		"title": "食谱",
 		"eyebrow": "食谱",
-		"lede": "运送翻译的常见模式:monorepos、词汇表、自定义类别、试运行和语气控制。"
+		"lede": "运送翻译的常见模式:monorepos、词汇表、自定义类别、试运行和语气控制。",
+		"sections": {
+			"pullRequest": {
+				"heading": "每次运行后打开一个拉取请求"
+			},
+			"monorepo": {
+				"heading": "Monorepos:每个包的范围转换"
+			},
+			"glossary": {
+				"heading": "品牌名称和产品术语表",
+				"intro": "将{configPath}放入存储库中:",
+				"afterLabel": "之后",
+				"body": "词汇术语{after}翻译中应用,因此即使模型将其换成同义词,机器翻译的输出仍能保留您喜欢的品牌。"
+			},
+			"customCategory": {
+				"heading": "自定义翻译器类别(行业/领域)",
+				"body": "在捕获行业词汇和语气(法律、医疗、营销、内部工程等)的语料库上训练 Azure {customTranslatorLink} 类别,并通过 {categoryId} 传递其 ID。 这是 Azure 提供的最强音杆。"
+			},
+			"tone": {
+				"heading": "音调控制 + 严格的后备",
+				"body": "将自定义翻译器{categoryId}与{profanityAction}和{allowFallbackFalse}相结合,以强制执行一致的语音,如果所选类别没有针对目标区域之一的部署,则工作流失败。"
+			},
+			"dryRun": {
+				"heading": "在打开工作流程之前进行试运行",
+				"body": "该操作仍发出摘要输出和步骤摘要,但不写入任何文件。 结合{failOnErrorFalse},在迭代时将每个问题都显示出来作为警告。"
+			}
+		}
 	},
 	"faq": {
 		"title": "常见问题",
 		"eyebrow": "帮助",
 		"heroTitle": "常见问题",
-		"lede": "快速回答采取行动时最常出现的问题。"
+		"lede": "快速回答采取行动时最常出现的问题。",
+		"questions": {
+			"azure": {
+				"heading": "操作如何与 Azure 通信?",
+				"body": "通过微软官方的 {azureSdkLink} SDK,分层在{corePipelineLink}上。 这样您就可以免费自动重试{statusCodes}、键入的请求和响应模型以及身份验证标头处理——所有这些都是以前手动滚动的{axios}调用。 公共行动面(输入、输出、文件输出)不变。"
+			},
+			"tone": {
+				"heading": "为什么翻译有时不合时宜?",
+				"body": "机器翻译默认为通用模型。 三个旋钮有帮助:一个用于硬术语覆盖的{glossaryLink},一个用于根据你的语气和词汇训练的微调模型的{customTranslatorLink},以及擦洗或标记亵渎术语的{profanityAction}。",
+				"glossaryLinkLabel": "词汇表",
+				"customTranslatorLinkLabel": "自定义翻译器类别"
+			},
+			"duplicateFiles": {
+				"heading": "如何避免同一文件重复翻译?",
+				"body": "在仅与源语言环境文件匹配的{paths}上触发工作流程,例如 {sourceGlob}。 当设置{githubToken}时,该操作还包括自己的每个触发器文件过滤器,将工作范围缩小到最新提交中的文件。"
+			},
+			"offline": {
+				"heading": "我可以离线运行动作吗?",
+				"body": "不完全是 — Azure AI Translator 是运行时大脑。 但你可以用{dryRunTrue}运行来验证解析和配置,而不发出任何 HTTP 翻译请求。"
+			},
+			"node": {
+				"heading": "操作在哪个节点版本上运行?",
+				"body": "v3 在 GitHub Actions {nodeRuntime}运行时运行。 捆绑的 JavaScript 与 Node 20、22 和 24 兼容,这是 CI 测试的。"
+			},
+			"dist": {
+				"heading": "捆绑{distDir}从何而来?",
+				"body": "GitHub JS 操作将其编译的 JS 发送到存储库中。 {distBuild} 工作流程在每次合并后重建它,以{mainBranch}它是否漂移,并{distCheck}阻止过时输出的 PR。"
+			},
+			"formats": {
+				"heading": "其他资源格式呢?",
+				"body": "今天:{resx}、{xliff}、{po}、{json}、{ini}、{restext}。 {issueLink}如果你需要另一个——解析器接口很小(解析→映射→应用翻译→格式),欢迎贡献。",
+				"issueLinkLabel": "打开一个问题"
+			}
+		}
 	},
 	"translations": {
 		"title": "译文",
 		"eyebrow": "展示",
 		"heroTitle": "每种语言的你好",
-		"locales": "地点",
-		"currentlyRendered": "目前渲染",
-		"complete": "完!",
-		"pendingPrefix": "等待下一次翻译文档运行。",
+		"lede": "此頁面由 Resource Translator 本身翻譯成 Azure AI Translator 支持的每種語言。",
+		"localeCountLabel": "{count}地点",
+		"statusComplete": "{translatedCount}目前渲染完毕!",
+		"statusPending": "{translatedCount}目前已渲染,{pendingCount}等待下一次{workflowName}运行。",
 		"viewWorkflowRuns": "查看工作流运行",
 		"filter": "过滤器",
 		"filterPlaceholder": "按语言、代码或母语名称搜索......",
 		"source": "来源",
 		"machineTranslations": "机器翻译",
-		"translationPending": "Translation pending — 打开 translate-docs 运行。",
+		"translationPending": "待翻译 — 开{workflowName}运行。",
 		"noLocales": "没有与该过滤器匹配的区域设置。",
-		"howItWorks": "这是如何工作的"
+		"howItWorks": {
+			"heading": "这是如何工作的",
+			"thisActionLabel": "正是这一行动",
+			"steps": {
+				"source": "英文源文件在{messagesPath}。",
+				"workflow": "推触之,则{workflowLink}起,{thisAction}自撞。",
+				"fanOut": "该操作扇出到每个 Azure AI Translator 支持的区域设置(在 {configPath} 中配置),并为每个目标写入一个兄弟{messagesLocaleJson}。",
+				"pullRequest": "用新译打开一个拉取请求。 合并它会重新发布此页面,并填写卡片。"
+			}
+		},
+		"poweredBy": "由 Resource Translator 和 Azure AI Translator 提供支持。"
 	},
 	"contributing": {
 		"title": "贡献",
 		"eyebrow": "开源",
-		"lede": "错误报告、功能请求和拉取请求都受到欢迎。 动作小到足以对初次贡献者友好。"
+		"lede": "错误报告、功能请求和拉取请求都受到欢迎。 动作小到足以对初次贡献者友好。",
+		"localDevelopment": {
+			"heading": "地方发展"
+		},
+		"addingParser": {
+			"heading": "添加解析器",
+			"steps": {
+				"fixture": "在{testDataDir}下加一个固定装置。",
+				"implement": "实施{parserInterface}({parse}、{format}、{applyTranslations}、{toTranslatableTextMap})。",
+				"register": "在{factoryFile}注册它。",
+				"extension": "在 {finderFile} 中添加文件扩展名到 {translationFileSchemes}。",
+				"tests": "为解析→格式编写往返测试并应用翻译。"
+			}
+		},
+		"coverage": {
+			"heading": "覆盖阈值",
+			"body": "Jest 配置强制执行最小覆盖率。 新代码必须保持语句 + 行阈值在 78% 以上,函数在 90% 以上。 在更改的同时添加固定装置和测试。"
+		},
+		"docsSite": {
+			"heading": "文档网站",
+			"body": "{docsDir}文件夹是 Astro 6 + Tailwind v4 项目。 在那里运行一次{npmInstall},然后{npmRunDev}进行本地预览。 {pagesWorkflow} 工作流程在每次合并时都会将文档发送到 GitHub Pages。"
+		}
 	},
 	"changelog": {
 		"title": "更新日志",
 		"eyebrow": "历史",
-		"lede": "发布的高级摘要。 正典权威的变更日志在存储库中 CHANGELOG.md。"
+		"lede": "发布的高级摘要。 正典权威的变更日志在存储库中 CHANGELOG.md。",
+		"fullRecord": "详见{changelogLink}。",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (开发中)",
+			"labels": {
+				"breaking": "霹雳",
+				"resilience": "韧性:",
+				"placeholderProtection": "占位符保护:",
+				"perKeyOptOut": "按键选择退出:",
+				"docsAccessibility": "文档可访问性:",
+				"inlineCodeStyling": "内联代码样式:"
+			},
+			"issueLabels": {
+				"closes46": "关闭 #46。",
+				"tightens16": "收紧 #16。",
+				"closes35": "关闭 #35。"
+			},
+			"items": {
+				"runtime": "撞到{nodeRuntime}运行时间 ({breaking})。",
+				"newInputs": "新输入:{include}、{exclude}、{configPath}、{categoryId}、{apiVersion}、{dryRun}、{failOnError},以及高级翻译器旋钮 {textType}、{profanityAction}、{profanityMarker} 和 {allowFallback}。",
+				"sourceLocale": "源语言环境现在也被转发到 Translator 作为{fromLocale}因此不会自动检测短字符串。",
+				"resilience": "{label} 在遵循 Azure 的 {retryAfter} 标头的瞬态 HTTP 响应 ({statusCodes}) 上自动重试 — 当不存在时,回退到抖动的指数退避。 可通过{maxRetries}和{retryBackoffMs}调谐。 {issue}",
+				"placeholderProtection": "{label}令牌,如 {mustache}、{jsVar}、{indexZero}、{numberFormat}、{printf}、{positionalPrintf} 和 HTML 实体,在翻译前包装在哨兵中,然后恢复,因此 Translator 停止修改 i18next/Mustache/Handlebars/.NET/printf 占位符。 通过{protectPlaceholders}切换; 与{customPlaceholderPatterns}一起延伸。 {issue}",
+				"perKeyOptOut": "{label}新的{noTranslatePatterns}输入会完全删除 Translator 请求中的匹配键(保留品牌名称、错误代码等的源值)。 将 glob 模式与解析器级键(JSON 虚线路径、RESX {resxName}、PO {poMsgid}、XLIFF 单位 {xliffId}、INI/restext 键)进行匹配。 {issue}",
+				"repoConfig": "Repo-level config via {configPath}.",
+				"glossary": "词汇表支持,步骤摘要通过{coreSummary}。",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "npm audit clean (0 漏洞)。",
+				"docsSite": "Astro + Tailwind v4 文档站点,带有视图转换和 Expressive Code。",
+				"docsAccessibility": "{label} WCAG 2.1 AA 通行证。 徽标字形转换为路径,因此不再与渐变停止进行颜色对比,浮动{backToTop}按钮在隐藏时使用 {inert}(而不是{ariaHidden}切换使其可选项卡),{formatsAstro}部分不再与其自动生成的标题 ID 相冲突,三个区域设置卡现在公开 BCP-47 有效的 {lang} 属性({nya}、{lug}、{run}),重复{documentation}地标标签在侧边栏和页脚之间消除歧义,  {inputs}/{configuration} 上的每个数据表都附带屏幕阅读器标题。",
+				"inlineCode": "{label} docs 散文{codeElement}现在采用暖/琥珀主题,与用于链接和标题的品牌→口音不同。",
+				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "见 git 历史。"
+		}
 	}
 }

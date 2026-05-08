@@ -18,18 +18,26 @@
 			"node": "Node 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "nidificat o pla",
+			"ini": "{keyValue}",
+			"restext": "Text MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Sis formats de fitxer",
-				"body": "Viatges d'anada i tornada .resx, .xliff, .po, .json, .ini i .restext amb format estable en bytes."
+				"body": "Viatges d'anada i tornada {resx}, {xliff}, {po}, {json}, {ini} i {restext} amb format estable en bytes."
 			},
 			"config": {
 				"title": "Configuració a nivell de repositori",
-				"body": "Deixa un .github/resource-translator.yml per incloure globs, glossaris i categories de Traductor Personalitzat."
+				"body": "Deixa un fitxer de {configPath} per incloure globs, glossaris i categories de Traductor Personalitzat."
 			},
 			"glossary": {
 				"title": "Coneixent del glossari",
-				"body": "Bloqueja noms de marques i termes de producte amb regex intel·ligent a la frontera de paraules que gestioni C++, .NET i similars."
+				"body": "Bloqueja els noms de les marques i els termes dels productes amb regex intel·ligent amb límits de paraules que gestionin {cpp}, {dotnet} i amics."
 			},
 			"dryRun": {
 				"title": "Prova en sec + fallada suau",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Sortides amigables amb les relacions públiques",
-				"body": "summary-title, summary-details i has-new-translations encaixen directament a crear-pull-request."
+				"body": "{summaryTitle}, {summaryDetails} i {hasNewTranslations} encaixen directament a crear-pull-request."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "Construït sobre @azure-rest/ai-translation-text + @azure/core-rest-pipeline — intents automàtics a 408/429/5xx, sense HTTP manual. Esbuild empaquetat, neteja d'auditoria."
+				"body": "Construït sobre {azureSdk} + {corePipeline} — intents automàtics de {statusCodes}, sense HTTP manual. {esbuild} empaquetat, net com l'auditoria."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Flux de treball sense cita",
+			"titlePrefix": "Copia. Enganxa.",
+			"titleAccent": "Tradueix.",
+			"body": "Tres secrets, quatre línies, i el teu repositori serà multilingüe a la següent jugada.",
+			"setupLink": "Repassa tot el conjunt"
+		},
+		"cta": {
+			"title": "Preparat per localitzar en pilot automàtic?",
+			"body": "Una clau d'Azure AI Translator, un fitxer de flux de treball. Resource Translator s'encarrega de la resta.",
+			"button": "Comença"
 		}
 	},
 	"getting-started": {
 		"title": "Començant",
 		"eyebrow": "Configuració",
-		"lede": "Afegeix un fitxer de flux de treball, apunta'l cap a les teves credencials d'Azure AI Translator, i l'acció — basada en l'SDK oficial de @azure-rest/ai-translation-text de Microsoft — escanejarà el repositori per buscar fitxers de recursos en llengua original i emetrà germans traduïts.",
+		"lede": "Afegeix un fitxer de flux de treball, apunta'l cap a les teves credencials d'Azure AI Translator, i l'acció escanejarà el repositori per buscar fitxers de recursos en llengua font i emetrà els germans traduïts.",
 		"steps": {
 			"provision": {
 				"title": "Provisiona un recurs Azure AI Translator",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Afegeix el flux de treball",
-				"body": "Crea .github/workflows/translate.yml:"
+				"body": "Crea {workflowPath}:"
 			},
 			"resource": {
 				"title": "Commit d'un fitxer de recurs font",
-				"body": "Els fitxers de recursos utilitzen el Nom. <sourceLocale>. <ext> convenció. Per exemple, Greetings.en.resx esdevé Greetings.fr.resx, Greetings.de.resx, i així successivament després d'una partida."
+				"body": "Els fitxers de recursos utilitzen la convenció {namingConvention}. Per exemple, {sourceFile} esdevé {frFile}, {deFile}, i així successivament després d'una partida."
 			},
 			"output": {
 				"title": "Inspecciona la sortida",
-				"body": "Un cop acaba el flux de treball, l'acció exposa tres sortides que pots connectar en una descripció de PR: resum-títol, resum-detalls i té-noves-traduccions. També escriu un resum de Markdown a la pàgina de feina a través de core.summary."
+				"body": "Un cop acabat el flux de treball, l'acció exposa tres sortides que pots connectar en una descripció de PR: {summaryTitle}, {summaryDetails} i {hasNewTranslations}. També escriu un resum de Markdown a la pàgina de feina a través de {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Següents passos",
-			"configuration": "Configura els valors per defecte a nivell de repositori amb .github/resource-translator.yml.",
+			"configuration": "Configura les configuracions per defecte a nivell de repositori amb {configPath}.",
 			"recipes": "Consulteu receptes per a monorepos, glossaris personalitzats i categories de Traductor Personalitzat."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Configuració",
 		"eyebrow": "YAML",
 		"heroTitle": "Configuració del repositori",
-		"lede": "Express es posa per defecte una vegada a .github/resource-translator.yml i deixa que cada flux de treball els hereti. Les entrades d'acció sempre guanyen quan es proporcionen ambdues."
+		"lede": "Express es posa per defecte un cop al fitxer de configuració del repositori i deixa que cada flux de treball els hereti. Les entrades d'acció sempre guanyen quan es proporcionen ambdues.",
+		"intro": "Sobreescriu el camí amb l'entrada {configPath} si necessiteu una ubicació no per defecte.",
+		"schemaHeading": "Esquema",
+		"fieldReference": {
+			"heading": "Referència de camp",
+			"caption": "Referència de camp de configuració",
+			"columns": {
+				"field": "Camp",
+				"type": "Tipus",
+				"notes": "Notes"
+			},
+			"fields": {
+				"sourceLocale": "Torna a l'entrada {sourceLocale} si no està configurat. També es redirigeix a Translator com a {fromLocale} perquè les cadenes curtes no es detectin automàticament.",
+				"toLocales": "O bé una matriu o una cadena separada per comes.",
+				"includeExclude": "Patrons glob avaluats contra camins absoluts i relatius a l'espai de treball.",
+				"glossary": "Sobreescriptures de termes post-traducció. Conscient de la frontera de paraules (gestiona {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} categoria — la teva perilla d'indústria/domini (legal, mèdic, to de màrqueting, etc.). Enviat com a {categoryQuery}.",
+				"textType": "Per defecte és {plain}. Utilitza {html} només si els valors dels teus recursos contenen fragments HTML reals.",
+				"profanityAction": "Com tractar termes profans en una sortida traduïda.",
+				"profanityMarker": "Només té sentit quan {profanityAction} és {marked}.",
+				"allowFallback": "Configura't a {false} que falli la traducció quan el teu {categoryId} no tingui desplegament per a una ubicació objectiu en comptes de tornar al model general.",
+				"apiVersion": "Versió de l'API REST del traductor. Per defecte és {version}.",
+				"maxRetries": "Intents màxims de reintents en respostes HTTP transitories ({statusCodes}). Per defecte és {defaultRetries}. El total de trucades HTTP per sol·licitud és {totalCalls}.",
+				"retryBackoffMs": "Límit (ms) en qualsevol son de reculada individual. Per defecte és {defaultBackoff}. La capçalera {retryAfter} d'Azure s'honora exactament quan hi és; en cas contrari, s'utilitza retrocés exponencial amb jitter, limitat a aquest valor.",
+				"protectPlaceholders": "Per defecte és {true}. Quan estan activats, tokens com {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} i HTML es substitueixen per tokens sentinel abans de la traducció i es restauren després. Desactiva només quan la font contingui intencionadament literals en forma de marcador de posició.",
+				"customPlaceholderPatterns": "Patrons regex addicionals (sense delimitadors) afegits al conjunt de marcadors per defecte, per exemple, {angleToken} per a la sintaxi personalitzada dels tokens. Els regex invàlids s'ignoren.",
+				"noTranslatePatterns": "Els patrons glob coincidien amb claus a nivell d'analitzador (JSON doted path, RESX {resxName}, PO {poMsgid}, unitat XLIFF {xliffId}, clau INI/restext). Les claus coincidents es retiren de la sol·licitud i passen amb el seu valor d'origen preservat."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Ordre de càrrega",
+			"steps": {
+				"actionInputs": "L'acció llegeix entrades explícites del flux de treball.",
+				"config": "Carrega la configuració YAML des de {configPath}.",
+				"precedence": "Per a cada camp compartit, guanya l'entrada; en cas contrari, s'utilitza el valor YAML.",
+				"validation": "Els valors fusionats es validen. Els enums invàlids (per exemple, {invalidEnum}) fan que l'acció falli ràpidament amb un missatge clar."
+			}
+		},
+		"tone": {
+			"heading": "To i indústria, en termes senzills",
+			"body": "L'API Azure AI Translator v3 no té cap botó de to. Dues configuracions combinades et donen gairebé el mateix control:",
+			"industryLabel": "Indústria / domini:",
+			"industryBody": "utilitza {categoryId} per assenyalar una categoria d'Azure {customTranslatorLink} entrenada amb el teu propi corpus — legal, tècnic, mèdic, de màrqueting o qualsevol altra cosa. Aquesta és la palanca més potent per al to, la veu de marca i el vocabulari.",
+			"surfaceLabel": "Text superficial:",
+			"surfaceBody": "Utilitza el {glossaryLink} per bloquejar noms de marques i termes de producte literalment, i utilitza {profanityAction} per eliminar termes profanes quan es dirigeix a la localització per a públics més joves.",
+			"glossaryLinkLabel": "Glossari"
+		}
 	},
 	"inputs": {
 		"title": "Entrades i sortides",
 		"eyebrow": "Referència",
-		"lede": "Totes les entrades també són acceptades en el fitxer de configuració del repositori opcional. Quan ambdós estan configurats, guanya l'entrada d'acció."
+		"lede": "Totes les entrades també són acceptades en el fitxer de configuració del repositori opcional. Quan ambdós estan configurats, guanya l'entrada d'acció.",
+		"configurationIntro": "Vegeu {configurationLink} per a l'esquema YAML i l'ordre de càrrega.",
+		"configurationLinkLabel": "Configuració",
+		"columns": {
+			"name": "Nom",
+			"default": "Valor per defecte",
+			"description": "Descripció"
+		},
+		"defaults": {
+			"none": "Cap",
+			"allSupported": "tots suportats",
+			"translatorDefaultTrue": "true (Traductor per defecte)"
+		},
+		"requiredInputs": {
+			"heading": "Entrades necessàries",
+			"caption": "Entrades necessàries",
+			"items": {
+				"sourceLocale": "La localització d'origen (per exemple, {en}) s'utilitza per trobar fitxers de recursos com {sourceGlob}. També reenviat al Traductor com a {fromLocale}.",
+				"subscriptionKey": "Clau de subscripció Azure AI Translator. Passa per {secrets}.",
+				"endpoint": "URL del traductor, per exemple, {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Entrades opcionals comunes",
+			"caption": "Entrades opcionals comunes",
+			"items": {
+				"region": "Regió de recursos traductors (ometre recursos globals).",
+				"toLocales": "Llocs on traduir. Accepta un array JSON ({jsonArray}) o valors separats per comes.",
+				"include": "Patrons de globus separats per línia nova; només es tradueixen els fitxers que coincideixen.",
+				"exclude": "Patrons de globus separats per línia nova; Els fitxers coincidents s'omet (s'apliquen després d'Include).",
+				"configPath": "Camí cap al fitxer de configuració YAML (respecte a l'arrel de l'espai de treball).",
+				"dryRun": "Quan {true}, executa traduccions i emet resums però no escriguis fitxers.",
+				"failOnError": "Quan {true}, errors inesperats fallen en l'acció; Quan {false}, els errors són advertències."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Entrades de sol·licitud del traductor",
+			"intro": "Aquests s'assignen directament als paràmetres de consulta d'Azure AI Translator v3. Tots són opcionals; els valors per defecte del traductor s'apliquen quan no es configuren.",
+			"caption": "Entrades de sol·licitud del traductor",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} category — el botó industry/domain/tone knob. Reenviat com {categoryQuery}.",
+				"textType": "{plain} o {html}. Utilitza {html} només quan els teus valors de recursos siguin fragments HTML reals.",
+				"profanityAction": "{noAction}, {marked} o {deleted}. Controla com s'emeten els termes profans en les traduccions.",
+				"profanityMarker": "{asterisk} o {tag}. Només té sentit quan {profanityAction} és {marked}.",
+				"allowFallback": "Quan {false}, el traductor retorna un error en lloc de tornar al sistema general si el teu {categoryId} no té desplegament per a una ubicació objectiu.",
+				"apiVersion": "Versió de l'API REST del traductor."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Resiliència i protecció provisional",
+			"intro": "Aquestes entrades controlen com es comporta l'acció quan Translator limita la teva petició i com protegeix tokens provisionals com {mustache} o {indexZero} de ser malmesos durant la traducció.",
+			"caption": "Aportacions de resiliència i protecció provisional",
+			"items": {
+				"maxRetries": "Intents màxims de reintents en respostes HTTP transitories ({statusCodes}). El nombre total de trucades HTTP per petició és {totalCalls}.",
+				"retryBackoffMs": "Limita (en mil·lisegons) qualsevol son de retrocés. L'acció honra la capçalera de resposta {retryAfter} d'Azure exactament quan hi és; en cas contrari, utilitza un retrocés exponencial amb tremblacions limitat a aquest valor.",
+				"protectPlaceholders": "Quan {true} (per defecte), els marcadors de posició com {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} i HTML es substitueixen per tokens sentinella abans de la traducció i es restauren després. Desactiva només quan la teva font contingui intencionadament text literal en forma de marcador que s'hauria de traduir.",
+				"customPlaceholderPatterns": "Regexes separats per nova línia (sense delimitadors) afegits al conjunt de marcadors per defecte, per exemple, {angleToken} per a la sintaxi personalitzada dels tokens.",
+				"noTranslatePatterns": "Els patrons de globs separats per nova línia coincidien amb claus a nivell d'analitzador (camí puntejat JSON, {resxName} RESX, {poMsgid} PO, unitat XLIFF {xliffId}, clau INI/restext). Les claus corresponents es retiren de la petició del Traductor i es passen mantenint el seu valor d'origen."
+			}
+		},
+		"outputs": {
+			"heading": "Sortides",
+			"caption": "Sortides",
+			"items": {
+				"summaryTitle": "Resum curt per a títols de relacions públiques, per exemple, {summaryExample}.",
+				"summaryDetails": "Resum de rebaixes adequat per a un organisme de relacions públiques o un resum de feina.",
+				"hasNewTranslations": "{trueString} quan es generaven una o més noves traduccions."
+			}
+		}
 	},
 	"formats": {
 		"title": "Formats d'arxiu",
 		"eyebrow": "Referència",
 		"heroTitle": "Formats de fitxer compatibles",
-		"lede": "Sis formats de recursos repartibles. L'acció llegeix cada fitxer de localització font, tradueix els valors i escriu un germà per ubicació objectiu."
+		"lede": "Sis formats de recursos repartibles. L'acció llegeix cada fitxer de localització font, tradueix els valors i escriu un germà per ubicació objectiu.",
+		"namingConvention": "Tots els fitxers utilitzen la convenció de nomenclatura {namingConvention}.",
+		"learnMore": "Més informació",
+		"items": {
+			"resx": {
+				"blurb": "fitxers de recursos .NET basats en XML. Tradueix el text interior de cada {dataValue} node, preservant els comentaris i les metadades.",
+				"specLabel": "Microsoft Learn — Recursos en fitxers .resx"
+			},
+			"xliff": {
+				"blurb": "Documents OASIS XLIFF 2.0. Tradueix cada {source} i escriu el resultat a la {target} corresponent, establint {trgLang} per a la localització.",
+				"specLabel": "Especificació OASIS XLIFF 2.0"
+			},
+			"po": {
+				"blurb": "Fitxers GNU gettext Portable Object. Tradueix cada {msgid} / {msgidPlural} a {msgstr} / {msgstrPlural} formes.",
+				"specLabel": "GNU gettext — Format de fitxer PO"
+			},
+			"json": {
+				"blurb": "Fitxers JSON arbitraris. Els objectes anidats s'aplanen amb el delimitador de {delimiter} per a la translació, i després es tornen a anidar a la sortida. Les tecles amb punts ({dottedKey}) es conserven literalment.",
+				"specLabel": "Especificació JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Fitxers {keyValue} senzills (INI tipus Win32 o qualsevol configuració plana). Els encapçalaments de secció i els comentaris es conserven.",
+				"specLabel": "Format de fitxer INI a la Viquipèdia"
+			},
+			"restext": {
+				"blurb": "Recursos de text Microsoft MUI — parells de {keyValue} plans utilitzats com a complement textual de {resx}.",
+				"specLabel": "Visió general de Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Garanties d'anada i tornada",
+			"body": "El conjunt de proves verifica el recorregut de byte per byte per a elements representatius de tots els formats. Si una peculiaritat de format es trenca en el viatge d'anada i tornada a la teva base de codi, si us plau, {issueLink} amb una mostra mínima.",
+			"issueLinkLabel": "Obre una qüestió"
+		}
 	},
 	"recipes": {
 		"title": "Receptes",
 		"eyebrow": "Llibre de cuina",
-		"lede": "Patrons habituals per a traduccions de llançament: monorepos, glossaris, categories personalitzades, ensagrats i control de to."
+		"lede": "Patrons habituals per a traduccions de llançament: monorepos, glossaris, categories personalitzades, ensagrats i control de to.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Obre una sol·licitud de tirada després de cada partida"
+			},
+			"monorepo": {
+				"heading": "Monorepos: traducció d'àmbit per paquet"
+			},
+			"glossary": {
+				"heading": "Glossari de noms de marca i termes de producte",
+				"intro": "Deixa un {configPath} al repositori:",
+				"afterLabel": "després",
+				"body": "Els termes del glossari s'apliquen {after} traducció, de manera que la traducció automàtica manté la teva marca preferida fins i tot quan el model l'ha canviat per un sinònim."
+			},
+			"customCategory": {
+				"heading": "Categoria de traductor personalitzat (indústria / domini)",
+				"body": "Entrena una categoria de {customTranslatorLink} d'Azure en un corpus que reculli el vocabulari i el to de la teva indústria (legal, mèdic, màrqueting, enginyeria interna, etc.) i aprova el seu ID per {categoryId}. Aquesta és la palanca de to més potent que ofereix Azure."
+			},
+			"tone": {
+				"heading": "Control de to + alternativa estricta",
+				"body": "Combina un {categoryId} de traductor personalitzat amb {profanityAction} i {allowFallbackFalse} per fer complir una veu consistent i falla el flux de treball si la categoria escollida no té un desplegament per a una de les teves localitzacions objectiu."
+			},
+			"dryRun": {
+				"heading": "Prova en sec abans d'activar el flux de treball",
+				"body": "L'acció encara emet resultats resumits i un resum de passos, però no s'escriu cap fitxer. Combina amb {failOnErrorFalse} per posar en evidència cada problema com a advertència mentre iteres."
+			}
+		}
 	},
 	"faq": {
 		"title": "Preguntes freqüents",
 		"eyebrow": "Ajuda",
 		"heroTitle": "Preguntes freqüents",
-		"lede": "Respostes ràpides a les preguntes que sorgeixen més sovint quan s'adopta l'acció."
+		"lede": "Respostes ràpides a les preguntes que sorgeixen més sovint quan s'adopta l'acció.",
+		"questions": {
+			"azure": {
+				"heading": "Com comunica l'acció amb Azure?",
+				"body": "A través de l'SDK oficial de {azureSdkLink} de Microsoft, afegit a {corePipelineLink}. Això et permet intentar automàticament {statusCodes}, models de sol·licitud i resposta escrits, i la gestió d'encapçalaments d'autenticació gratuïta — tot allò que abans era una crida de {axios} rodada manualment. La superfície d'acció pública (entrades, sortides, sortides de fitxer) no ha canviat."
+			},
+			"tone": {
+				"heading": "Per què les traduccions de vegades són fora de marca o de to equivocat?",
+				"body": "La traducció automàtica utilitza per defecte un model d'ús general. Tres botons ajuden: un {glossaryLink} per a sobreescriptures de termes estrictes, un {customTranslatorLink} per a models ajustats entrenats amb el teu to i vocabulari, i {profanityAction} per esborrar o marcar termes profans.",
+				"glossaryLinkLabel": "Glossari",
+				"customTranslatorLinkLabel": "Categoria de traductor personalitzat"
+			},
+			"duplicateFiles": {
+				"heading": "Com puc evitar traduir el mateix fitxer dues vegades?",
+				"body": "Activa el flux de treball en {paths} que coincideixin només amb els fitxers de la teva ubicació d'origen, per exemple, {sourceGlob}. L'acció també inclou el seu propi filtre per fitxer per disparador quan {githubToken} està configurat, restringint la feina als fitxers de l'últim commit."
+			},
+			"offline": {
+				"heading": "Puc executar l'acció fora de línia?",
+				"body": "No exactament — Azure AI Translator és el cervell d'execució. Però pots executar amb {dryRunTrue} per validar l'anàlisi i la configuració sense fer cap petició HTTP de traducció."
+			},
+			"node": {
+				"heading": "En quina versió de Node s'executa l'acció?",
+				"body": "La v3 s'executa en el temps d'execució d'{nodeRuntime} d'accions de GitHub. El JavaScript inclòs és compatible amb Node 20, 22 i 24, que és el que prova CI."
+			},
+			"dist": {
+				"heading": "D'on surten els {distDir} agrupats?",
+				"body": "Les accions JS de GitHub envien el seu JS compilat al repositori. El flux de treball de {distBuild} el reconstrueix després de cada fusió per {mainBranch} si derivarà, i {distCheck} bloqueja PRs que generarien sortides obsoletes."
+			},
+			"formats": {
+				"heading": "I què passa amb altres formats de recursos?",
+				"body": "Avui: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} si en necessites una altra — la interfície del parser és petita (analitzar → mapar → aplicar traduccions → format) i les contribucions són benvingudes.",
+				"issueLinkLabel": "Obre una qüestió"
+			}
+		}
 	},
 	"translations": {
 		"title": "Traduccions",
 		"eyebrow": "Exhibició",
 		"heroTitle": "Hola en totes les llengües",
-		"locales": "Localitzacions",
-		"currentlyRendered": "actualment renderitzat",
-		"complete": "Complet!",
-		"pendingPrefix": "Pendent de la propera tirada de Translate-Docs.",
+		"lede": "Aquesta pàgina està traduïda pel mateix Resource Translator, en cada impuls a main, a tots els idiomes que suporta Azure AI Translator.",
+		"localeCountLabel": "{count} localitzacions",
+		"statusComplete": "{translatedCount} actualment renderitzat — complet!",
+		"statusPending": "{translatedCount} actualment renderitzat — {pendingCount} pendent de la propera {workflowName} emissió.",
 		"viewWorkflowRuns": "Veure execucions de flux de treball",
 		"filter": "Filtre",
 		"filterPlaceholder": "Cerca per idioma, codi o nom nadiu...",
 		"source": "Font",
 		"machineTranslations": "Traduccions automàtiques",
-		"translationPending": "Traducció pendent — obre una execució de traducció-documentació.",
+		"translationPending": "Traducció pendent — obre una {workflowName} run.",
 		"noLocales": "Cap lloc web coincideix amb aquest filtre.",
-		"howItWorks": "Com funciona això"
+		"howItWorks": {
+			"heading": "Com funciona això",
+			"thisActionLabel": "aquesta mateixa acció",
+			"steps": {
+				"source": "El fitxer font en anglès es conserva a {messagesPath}.",
+				"workflow": "Empeny aquest toc el fa sortir {workflowLink}, que corre {thisAction} contra si mateix.",
+				"fanOut": "L'acció s'estén a cada ubicació compatible amb Azure AI Translator (configurada a {configPath}) i escriu un {messagesLocaleJson} germà per objectiu.",
+				"pullRequest": "S'obre una sol·licitud de tirada amb les noves traduccions. Si la fusiones, es torna a publicar aquesta pàgina amb les targetes completades."
+			}
+		},
+		"poweredBy": "Impulsat per Resource Translator i Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Contribució",
 		"eyebrow": "Codi obert",
-		"lede": "Són benvinguts informes d'errors, sol·licituds de funcionalitat i pull requests. L'acció és prou petita per ser amigable amb els col·laboradors novells."
+		"lede": "Són benvinguts informes d'errors, sol·licituds de funcionalitat i pull requests. L'acció és prou petita per ser amigable amb els col·laboradors novells.",
+		"localDevelopment": {
+			"heading": "Desenvolupament local"
+		},
+		"addingParser": {
+			"heading": "Afegint un analitzador",
+			"steps": {
+				"fixture": "Afegeix un aparell sota {testDataDir}.",
+				"implement": "Implementa {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Registra'l a {factoryFile}.",
+				"extension": "Afegeix l'extensió del fitxer a {translationFileSchemes} en {finderFile}.",
+				"tests": "Escriu proves d'anada i tornada per al format de parse → i applyTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "Llindars de cobertura",
+			"body": "La configuració Jest imposa una cobertura mínima. El nou codi ha de mantenir les sentències + línies per sobre del 78% i les funcions per sobre del 90%. Afegeix accessoris i proves juntament amb el canvi."
+		},
+		"docsSite": {
+			"heading": "Lloc de documentació",
+			"body": "La carpeta {docsDir} és un projecte Astro 6 + Tailwind v4. Passa {npmInstall} hi una vegada i després {npmRunDev} per a una previsualització local. El flux de treball {pagesWorkflow} envia la documentació a GitHub Pages en cada fusió."
+		}
 	},
 	"changelog": {
 		"title": "Registre de canvis",
 		"eyebrow": "Història",
-		"lede": "Resum d'alt nivell dels llançaments. El registre de canvis canònic i autoritari viu en CHANGELOG.md al repositori."
+		"lede": "Resum d'alt nivell dels llançaments. El registre de canvis canònic i autoritari viu en CHANGELOG.md al repositori.",
+		"fullRecord": "Vegeu {changelogLink} per a l'expedient complet.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (en desenvolupament)",
+			"labels": {
+				"breaking": "TRENCAMENT",
+				"resilience": "Resiliència:",
+				"placeholderProtection": "Protecció provisional:",
+				"perKeyOptOut": "Exclusió per clau:",
+				"docsAccessibility": "Accessibilitat a la documentació:",
+				"inlineCodeStyling": "Estil de codi en línia:"
+			},
+			"issueLabels": {
+				"closes46": "Tanca el #46.",
+				"tightens16": "Tensa el #16.",
+				"closes35": "Tanca el #35."
+			},
+			"items": {
+				"runtime": "Ha passat a {nodeRuntime} durada ({breaking}).",
+				"newInputs": "Entrades noves: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, a més de botons avançats del traductor {textType}, {profanityAction}, {profanityMarker} i {allowFallback}.",
+				"sourceLocale": "La localització d'origen ara també es reenvia al traductor com a {fromLocale} de manera que les cadenes curtes no es detectin automàticament.",
+				"resilience": "{label} reintent automàtic en respostes HTTP transitories ({statusCodes}) que respecta la capçalera {retryAfter} d'Azure — torna a un retrocés exponencial amb jittered quan no existeix. Ajustable via {maxRetries} i {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} tokens com {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} i HTML s'embolcallen en sentinelles abans de la traducció i es restauren després, de manera que el traductor deixa de malmetre els marcadors i18next/Mustache/Handlebars/.NET/printf. Canvia via {protectPlaceholders}; Amplia amb {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} nova entrada de {noTranslatePatterns} elimina completament les claus coincidents de la petició del Traductor (preserva els valors font dels noms de marques, codis d'error, etc.). Fa coincidir patrons glob amb claus a nivell d'analitzador (JSON doted path, RESX {resxName}, PO {poMsgid}, unitat XLIFF {xliffId}, clau INI/restext). {issue}",
+				"repoConfig": "Configuració a nivell de repositori via {configPath}.",
+				"glossary": "Suport al glossari, resum dels passos via {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Pretier, EditorConfig.",
+				"audit": "Auditoria NPM neta (0 vulnerabilitats).",
+				"docsSite": "Lloc de documentació d'Astro + Tailwind v4 amb transicions de visualització i Expressive Code.",
+				"docsAccessibility": "{label} aprovat WCAG 2.1 AA. Els glifs del logotip es converteixen en camins perquè ja no fallin el contrast de color contra els tops de degradat, el botó de {backToTop} flotant utilitza {inert} mentre està ocult (en lloc d'un interruptor de {ariaHidden} que el deixava tabable), {formatsAstro} seccions ja no xoquen amb els seus IDs d'encapçalaments generats automàticament, tres targetes locals ara exposen atributs de {lang} vàlids BCP-47 ({nya}, {lug}, {run}), les etiquetes duplicades {documentation} de punts de referència es desambiguen entre la barra lateral i el peu de pàgina,  i totes les taules de dades de {inputs}/{configuration} s'envien amb un peu de foto per a lector de pantalla.",
+				"inlineCode": "{label} prosa documental {codeElement} ara porta l'accent càlid/ambre — diferent de la paleta d'accents → marca utilitzada per enllaços i encapçalaments.",
+				"automation": "Auto-fusió de dependents, escaneig CodeQL, matriu CI."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Consulta git history."
+		}
 	}
 }

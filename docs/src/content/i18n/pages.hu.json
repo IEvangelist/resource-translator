@@ -18,18 +18,26 @@
 			"node": "Node 20 / 22 / 24",
 			"sdk": "Hivatalos Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "beágyazott vagy lapos",
+			"ini": "{keyValue}",
+			"restext": "MUI szöveg"
+		},
 		"features": {
 			"formats": {
 				"title": "Hat fájlformátum",
-				"body": "A .resx, .xliff, .po, .json, .ini és .restext formátumokat körbe-vissza bájtstabil formázással."
+				"body": "A vissza-vissza {resx}, {xliff}, {po}, {json}, {ini} és {restext} bájtstabil formázással."
 			},
 			"config": {
 				"title": "Repo szintű konfiguráció",
-				"body": "Dobj egy .github/resource-translator.yml-t a Include Globs, Gloszaries és Custom Translator kategóriákhoz."
+				"body": "Dobj ki egy {configPath} fájlt a Include Globs, Szószótáriak és Egyedi Fordító kategóriák használatához."
 			},
 			"glossary": {
 				"title": "Szószedethez kapcsolódó",
-				"body": "Zárold le a márkaneveket és termékkifejezéseket okos szókeretű regexszel, amely kezeli a C++, .NET és társakat."
+				"body": "Zárold le a márkaneveket és termékkifejezéseket okos szóhatáros regexszel, amely kezeli a {cpp}, {dotnet} és barátokat."
 			},
 			"dryRun": {
 				"title": "Száraz futás + puha meghibásodás",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR-barát kimenetek",
-				"body": "summary-title, summary-details és has-new-translation közvetlenül a create-pull-request beosztásába helyezkednek el."
+				"body": "{summaryTitle}, {summaryDetails} és {hasNewTranslations} közvetlenül a create-pull-request mappába helyezkednek el."
 			},
 			"sdk": {
 				"title": "Hivatalos Azure SDK",
-				"body": "@azure-rest/ai-translation-text + @azure/core-rest-pipeline alapú — automatikus újrapróbálkozások 408/429/5xx-en, kézzel tekert HTTP nélkül. Esbuild csomagolva, audit-tiszta."
+				"body": "{azureSdk} + {corePipeline} alapú — automatikus újrapróbálkozás {statusCodes}-en, nincs kézzel dobott HTTP. {esbuild} csomagolva, audit-tisztaságban."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Drop-in munkafolyamat",
+			"titlePrefix": "Másolj. Beillesztés.",
+			"titleAccent": "Fordítsd le.",
+			"body": "Három titok, négy sor, és a visszavételed többnyelvű a következő lökésnél.",
+			"setupLink": "Nézd végig a teljes beállítást"
+		},
+		"cta": {
+			"title": "Készen állsz az autopilóta lokalizálásra?",
+			"body": "Egy Azure AI fordító kulcs, egy munkafolyamat-fájl. A többit a Resource Translator kezeli.",
+			"button": "Kezdj el"
 		}
 	},
 	"getting-started": {
 		"title": "Kezdés",
 		"eyebrow": "Beállítás",
-		"lede": "Adj hozzá egy munkafolyamat-fájlt, irányítsd az Azure AI Translator hitelesítő adataidra, és a cselekvés — amely a Microsoft hivatalos @azure-rest/ai-translation-text SDK-jára épül — beolvassa a repót forrásnyelvi erőforrás-fájlok után, és lefordított testvéreket bocsát ki.",
+		"lede": "Adj hozzá egy munkafolyamat-fájlt, irányítsd az Azure AI Fordító adataidra, és a művelet beszkenneli a repót forrásnyelvi erőforrás-fájlokra, és lefordított testvéreket bocsát ki.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Add hozzá a munkafolyamatot",
-				"body": "Készítsd .github/workflows/translate.yml:"
+				"body": "Készíts {workflowPath}:"
 			},
 			"resource": {
 				"title": "Commit egy forráserőforrás fájl",
-				"body": "Az erőforrás fájlok a Név használatát használják. <sourceLocale>. <ext> A konferencia. Például a Greetings.en.resx egy futás után Greetings.fr.resx, Greetings.de.resx és így tovább."
+				"body": "Az erőforrás fájlok a {namingConvention} konvenciót használják. Például {sourceFile} egy futás után {frFile}, {deFile} és így tovább."
 			},
 			"output": {
 				"title": "Ellenőrizd a kimenetet",
-				"body": "Miután a munkafolyamat befejeződik, az akció három kimenetet mutat be, amit egy PR leírásba lehet bekötni: összefoglaló-cím, összefoglaló-részletek és új fordítások. Emellett a core.summary-en keresztül ír egy Markdown összefoglalót a munkalapra."
+				"body": "Miután a munkafolyamat véget ér, az akció három kimenetet mutat be, amit PR leírásba lehet bevezetni: {summaryTitle}, {summaryDetails} és {hasNewTranslations}. Emellett Markdown összefoglalót ír a munkakör oldalára {coreSummary}-n keresztül."
 			}
 		},
 		"nextSteps": {
 			"title": "Következő lépések",
-			"configuration": "Állítsd be a repo szintű alapértelmezetteket a .github/resource-translator.yml-vel.",
+			"configuration": "Állítsd be a repo szintű alapértelmezetteket {configPath}-vel.",
 			"recipes": "Lásd a monorepók, egyedi szószótárok és egyedi fordító kategóriák receptjeit."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Konfiguráció",
 		"eyebrow": "YAML",
 		"heroTitle": "Repository konfiguráció",
-		"lede": "Az Express egyszer alapértelmezett a .github/resource-translator.yml-ben, és hagyja, hogy minden munkafolyamat örökölje őket. Az akcióbemenetek mindig nyernek, ha mindkettő elérhető."
+		"lede": "Az Express egyszer alapértelmezett a tároló konfigurációs fájljában, és hagyja, hogy minden munkafolyamat örökölje őket. Az akcióbemenetek mindig nyernek, ha mindkettő elérhető.",
+		"intro": "Ha nem alapértelmezett helyre van szükséged, felülírd az útvonalat a {configPath} bemenettel.",
+		"schemaHeading": "Séma",
+		"fieldReference": {
+			"heading": "Terepi referencia",
+			"caption": "Konfigurációs mezőreferenciák",
+			"columns": {
+				"field": "Mező",
+				"type": "Típus",
+				"notes": "Jegyzetek"
+			},
+			"fields": {
+				"sourceLocale": "Ha nincs beállítva, visszaesik a {sourceLocale} bemenetre. Továbbítva a Fordítóba is, {fromLocale} így a rövid láncsorok nem észlelnek automatikusan.",
+				"toLocales": "Vagy egy tömb, vagy egy vesszővel elválasztott sor.",
+				"includeExclude": "Glob mintázatokat értékelve abszolút és munkaterület-relatív útvonalakkal.",
+				"glossary": "Fordítás utáni kifejezések felülírása. Szóhatártudatos ({cpp}, {dotnet} címe).",
+				"categoryId": "Azure {customTranslatorLink} kategória — az iparág/domain gomb (jogi, orvosi, marketing hangnem, stb.). Küldve {categoryQuery}.",
+				"textType": "Alapértelmezett {plain}. Használd {html} csak akkor, ha az erőforrás-értékeid valódi HTML töredékeket tartalmaznak.",
+				"profanityAction": "Hogyan kezeljük a káromkozó kifejezéseket a fordított kiadásban.",
+				"profanityMarker": "Csak akkor jelent jelentősége, ha {profanityAction} {marked}.",
+				"allowFallback": "Állítsd be {false}-re, hogy a fordítás megbukjon, amikor a {categoryId}-nek nincs telepítése egy cél helyszínre, ahelyett, hogy visszatérnél az általános modellhez.",
+				"apiVersion": "Fordító REST API verzió. Alapértelmezett {version}.",
+				"maxRetries": "Maximális újrapróbálkozási kísérletek átmeneti HTTP válaszokra ({statusCodes}). Alapértelmezett {defaultRetries}. A HTTP hívások összesített száma kérésenként {totalCalls}.",
+				"retryBackoffMs": "Korlát (ms) bármely egyes visszaállásos alvásnál. Alapértelmezett {defaultBackoff}. Az Azure {retryAfter} fejlécét pontosan tiszteli, amikor jelen van; egyébként remegett exponenciális visszavonulást alkalmazunk, amely ezzel az értékkel van lezárva.",
+				"protectPlaceholders": "Alapértelmezett {true}. Kapcsolva a tokenek, mint az {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} és HTML entitások cserébe kerülnek sentinel tokenekre fordítás előtt, majd utána visszaállítják őket. Csak akkor kapcsold ki, ha a forrás szándékosan helykitöltő alakú literálisokat tartalmaz.",
+				"customPlaceholderPatterns": "További regex minták (határmeghatározók nélkül) adtak hozzá az alapértelmezett helymeghatározó halmazhoz, például {angleToken} egyedi token szintaxishoz. Az érvénytelen regexeket figyelmen kívül hagyjuk.",
+				"noTranslatePatterns": "A glob minták párosítva a parser-szintű kulcsokhoz (JSON pontozott út, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext kulcs). A megfelelő kulcsokat a kérésből eltávolítják, és forrásértékük megőrzve kerülnek tovább."
+			}
+		},
+		"loadingOrder": {
+			"heading": "A betöltési sorrend",
+			"steps": {
+				"actionInputs": "Az akció a munkafolyamatból származó explicit bemeneteket olvasza.",
+				"config": "A YAML konfigurációt tölti be {configPath}-ről.",
+				"precedence": "Minden megosztott mező esetén a bemenet nyer; különben a YAML értéket használják.",
+				"validation": "Az összevont értékek validálva vannak. Érvénytelen enumok (pl. {invalidEnum}) gyors sikertelenséget okoznak az akció egyértelmű üzenet esetén."
+			}
+		},
+		"tone": {
+			"heading": "Hangvétel és ipar, egyszerűen fogalmazva",
+			"body": "Az Azure AI Translator v3 API-nak nincs egyetlen hanggombja. Két beállítás kombinációban szinte ugyanazt az irányítást adja:",
+			"industryLabel": "Iparág / terület:",
+			"industryBody": "használd {categoryId} arra, hogy egy Azure {customTranslatorLink} kategóriára mutass, amit a saját korpusodat képeztek — jogi, technikai, orvosi, marketinges vagy bármi más. Ez a legerősebb hangzás, márkahang és szókincs eszköze.",
+			"surfaceLabel": "Felszíni szöveg:",
+			"surfaceBody": "Használd a {glossaryLink} a márkaneveket és termékkifejezéseket szó szerint rögzíteni, és {profanityAction} segítségével eltávolítsd a káromkodású kifejezéseket, amikor fiatalabb közönségnek célozod a lokalizációt.",
+			"glossaryLinkLabel": "Szószedet"
+		}
 	},
 	"inputs": {
 		"title": "Bemenetek és kimenetek",
 		"eyebrow": "Hivatkozás",
-		"lede": "Minden bemenetet elfogadnak az opcionális repo konfigurációs fájlban is. Ha mindkettő be van állítva, az akció bemenete nyer."
+		"lede": "Minden bemenetet elfogadnak az opcionális repo konfigurációs fájlban is. Ha mindkettő be van állítva, az akció bemenete nyer.",
+		"configurationIntro": "Lásd {configurationLink} a YAML sémát és a betöltési sorrendet.",
+		"configurationLinkLabel": "Konfiguráció",
+		"columns": {
+			"name": "Név",
+			"default": "Alapértelmezés",
+			"description": "Leírás"
+		},
+		"defaults": {
+			"none": "Nincs",
+			"allSupported": "mind támogatták",
+			"translatorDefaultTrue": "true (fordító alapértelmezett értelmezés)"
+		},
+		"requiredInputs": {
+			"heading": "Szükséges bemenetek",
+			"caption": "Szükséges bemenetek",
+			"items": {
+				"sourceLocale": "Forráshely (pl. {en}), amelyet erőforrás fájlok, például {sourceGlob} megtalálására használnak. Továbbítva a Translatorhoz is {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator subscription key. Átmenj {secrets}-n.",
+				"endpoint": "Fordító végpont URL, pl. {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Gyakori opcionális bemenetek",
+			"caption": "Gyakori opcionális bemenetek",
+			"items": {
+				"region": "Fordító erőforrás régió (globális erőforrások hiánya).",
+				"toLocales": "Helyszínek, ahová fordítani kell. Elfogad JSON tömböt ({jsonArray}) vagy vesszővel elválasztott értékeket.",
+				"include": "Új vonalból elválasztott gömbminták; csak a megfelelő fájlokat fordítják le.",
+				"exclude": "Új vonalból elválasztott gömbminták; A megfelelő fájlokat kihagyják (a hozzáadás után alkalmazzák).",
+				"configPath": "Az út a YAML konfigurációs fájlhoz (a munkaterület gyökere viszonyítására).",
+				"dryRun": "Ha {true}, futtass fordításokat és adj összefoglalókat, de ne írj fájlokat.",
+				"failOnError": "Amikor {true}, váratlan hibák megbuknak a műveletben; Amikor {false}, a hibák figyelmeztetésként jelentenek."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Fordító kérés bemenetei",
+			"intro": "Ezek közvetlenül az Azure AI Translator v3 lekérdezési paraméterekre kerülnek. Mindegyik opcionális; a Fordító alapértelmezett beállításai akkor érvényesek, ha nem állítják be.",
+			"caption": "Fordító kérés bemenetei",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. Továbbítva {categoryQuery}-ként.",
+				"textType": "{plain} vagy {html}. Csak akkor használd {html}, ha az erőforrás-értékeid valódi HTML töredékek.",
+				"profanityAction": "{noAction}, {marked} vagy {deleted}. Szabályozza, hogyan jelennek meg trágár kifejezések a fordításokban.",
+				"profanityMarker": "{asterisk} vagy {tag}. Csak akkor érdemes, ha {profanityAction} {marked}.",
+				"allowFallback": "Amikor {false}, a Fordító hibát ad vissza, ahelyett, hogy visszatérne az általános rendszerhez, ha a {categoryId} nincs telepítése egy cél helyre.",
+				"apiVersion": "Fordító REST API verzió."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Ellenállás és helykitűző védelem",
+			"intro": "Ezek a bemenetek szabályozzák, hogyan viselkedik az akció, amikor a Fordító lehúzza a kérésedet, és hogyan védi meg a helykitöltő tokeneket, mint {mustache} vagy {indexZero}, attól, hogy fordítás közben megsérüljenek.",
+			"caption": "Rezisztenscia és helykitöltő védelem bemenetei",
+			"items": {
+				"maxRetries": "Maximális újrapróbálkozási kísérletek átmeneti HTTP válaszokra ({statusCodes}). A HTTP hívások összesített száma egy kérésenként {totalCalls}.",
+				"retryBackoffMs": "Korlát (milliszekundumokban) bármely egyes visszaállás alvásnál. Az akció pontosan tiszteletben tartja az Azure {retryAfter} válaszfejlécét, amikor jelen van; egyébként remegő exponenciális visszahúzódást használ, amelyet ezen az értéken korlátoznak.",
+				"protectPlaceholders": "Amikor {true} (alapértelmezett) a helykitöltők, mint a {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} és HTML entitások a fordítás előtt sentinel tokenekre cserélődnek, majd később visszaállítják őket. Csak akkor kapcsold ki, ha a forrásod szándékosan szó szerinti helykitöltő alakú szöveget tartalmaz, amit le kell fordítani.",
+				"customPlaceholderPatterns": "Az új vonalban elkülönített regexek (elválasztók nélkül) hozzáadva az alapértelmezett helykitöltő halmazhoz, például {angleToken} egyedi token szintaxishoz.",
+				"noTranslatePatterns": "Az új vonalban szétválasztott glob mintázatok illeszkedtek parser szintű kulcsokhoz (JSON pontozott út, RESX {resxName}, PO {poMsgid}, XLIFF egység {xliffId}, INI/restext kulcs). A megfelelő kulcsokat a Fordító kérésből dobják ki, és a forrásértékük megőrzésével továbbítják őket."
+			}
+		},
+		"outputs": {
+			"heading": "Kimenetek",
+			"caption": "Kimenetek",
+			"items": {
+				"summaryTitle": "Rövid, PR-barát összefoglaló, például {summaryExample}.",
+				"summaryDetails": "Markdown összefoglaló, amely PR testülethez vagy munkakörhöz alkalmas.",
+				"hasNewTranslations": "{trueString} amikor egy vagy több új fordítás készült."
+			}
+		}
 	},
 	"formats": {
 		"title": "Fájlformátumok",
 		"eyebrow": "Hivatkozás",
 		"heroTitle": "Támogatott fájlformátumok",
-		"lede": "Hat körbe-vissza használható erőforrás formátum. Az akció minden forrás-helyi fájlt olvas, lefordítja az értékeket, és minden célhelyenként testvért ír."
+		"lede": "Hat körbe-vissza használható erőforrás formátum. Az akció minden forrás-helyi fájlt olvas, lefordítja az értékeket, és minden célhelyenként testvért ír.",
+		"namingConvention": "Minden fájl a {namingConvention} névadási konvenciót használja.",
+		"learnMore": "Tudjon meg többet",
+		"items": {
+			"resx": {
+				"blurb": "XML-alapú .NET erőforrásfájlok. Lefordítja minden {dataValue} csomópont belső szövegét, megőrzi a hozzászólásokat és a metaadatokat.",
+				"specLabel": "Microsoft Learn — Erőforrások .resx fájlokban"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 dokumentumok. Lefordítja az egyes {source}, és az eredményt a megfelelő {target}-be írja be, beállítva a {trgLang} a helyszínre.",
+				"specLabel": "OASIS XLIFF 2.0 specifikáció"
+			},
+			"po": {
+				"blurb": "GNU gettext Hordozható objektum fájlok. Minden {msgid} / {msgidPlural} {msgstr} / {msgstrPlural} formába fordítja.",
+				"specLabel": "GNU gettext — PO fájlformátum"
+			},
+			"json": {
+				"blurb": "Tetszőleges JSON fájlok. A beágyazott objektumokat a {delimiter} elosztóval lapítják a transzlációhoz, majd újra beágyazzák a kimeneten. A pontozott billentyűk ({dottedKey}) szó szerint megmaradtak.",
+				"specLabel": "JSON specifikáció (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Egyszerű {keyValue} fájlok (Win32-stílusú INI vagy bármilyen sík konfiguráció). A szekciófejlécek és hozzászólások megőrizték.",
+				"specLabel": "INI fájlformátum a Wikipédián"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI szöveges források — lapos {keyValue} párok, amelyeket szöveges kísérőként használnak {resx}.",
+				"specLabel": "Microsoft MUI áttekintése"
+			}
+		},
+		"roundTrip": {
+			"heading": "Oda-vissza garancia",
+			"body": "A tesztcsomag minden formátum reprezentáló fixtúráinak a bájtról bájtra történő körbe-vissza ellenőrzését vizsgálja. Ha egy formátumi furcsaság megtöri a kódbázisodat, kérlek, {issueLink} minimális mintával.",
+			"issueLinkLabel": "Nyisson ügyet"
+		}
 	},
 	"recipes": {
 		"title": "Receptek",
 		"eyebrow": "Szakácskönyv",
-		"lede": "Gyakori minták a szállítási fordításokhoz: monorepók, szószótárok, egyedi kategóriák, próbafutások és hangzásszabályozás."
+		"lede": "Gyakori minták a szállítási fordításokhoz: monorepók, szószótárok, egyedi kategóriák, próbafutások és hangzásszabályozás.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Minden futás után nyiss pull requestet"
+			},
+			"monorepo": {
+				"heading": "Monorepos: scope-fordítás csomagonként"
+			},
+			"glossary": {
+				"heading": "Márkanevek és termékkifejezések szószedet",
+				"intro": "Dobj egy {configPath} a repóba:",
+				"afterLabel": "utána",
+				"body": "Szószedet kifejezéseket {after} fordítást alkalmaznak, így a gépi fordítás megtartja a kedvenc márkádat, még akkor is, ha a modell szinonimára cserélte."
+			},
+			"customCategory": {
+				"heading": "Egyedi fordító kategória (iparág / domain)",
+				"body": "Képezz egy Azure {customTranslatorLink} kategóriát egy olyan korpuszon, amely rögzíti az iparági szókincsed és hangzásod (jogi, orvosi, marketing, belső mérnöki stb.), és add át az ID-jét {categoryId}-n keresztül. Ez az Azure legerősebb hangkarja."
+			},
+			"tone": {
+				"heading": "Hangzás irányítása + szigorú tartalék",
+				"body": "Kombinálj egy egyedi fordító {categoryId}-t {profanityAction}-vel és {allowFallbackFalse}-vel, hogy következetes hangot kényszerítsd ki, és ha a kiválasztott kategória nem rendelkezik telepítéssel az egyik célterületedhez."
+			},
+			"dryRun": {
+				"heading": "Próbáld a munkafolyamatot, mielőtt bekapcsolnád a munkafolyamatot",
+				"body": "Az akció továbbra is összefoglaló kimeneteket és lépési összefoglalót bocsát ki, de fájlokat nem írnak. Kombináld {failOnErrorFalse}-t, hogy minden problémát előhívj figyelmeztetésként, miközben iterálsz."
+			}
+		}
 	},
 	"faq": {
 		"title": "GYIK",
 		"eyebrow": "Segítség",
 		"heroTitle": "Gyakran ismételt kérdések",
-		"lede": "Gyors válaszok azokra a kérdésekre, amelyek leggyakrabban felmerülnek a cselekvés során."
+		"lede": "Gyors válaszok azokra a kérdésekre, amelyek leggyakrabban felmerülnek a cselekvés során.",
+		"questions": {
+			"azure": {
+				"heading": "Hogyan kommunikál az akció az Azure-szal?",
+				"body": "A Microsoft hivatalos {azureSdkLink} SDK-ján keresztül, amely {corePipelineLink} rétegezve. Ez automatikus újrapróbálkozást ad {statusCodes}, gépelt kérés- és válaszmodelleket, valamint ingyenes hitelesítési fejléckezelést — mindent, ami korábban kézzel dobott {axios} hívás volt. A nyilvános műveleti felület (bemenetek, kimenetek, fájlkimenetek) változatlan."
+			},
+			"tone": {
+				"heading": "Miért vannak néha a fordítások nem márkásak vagy hangulattalanok?",
+				"body": "A gépi fordítás alapértelmezetten általános célú modellt használ. Három gomb segít: egy {glossaryLink} a kemény kifejezések felülbírálásához, egy {customTranslatorLink} a hangszeredre és szókincsedre kialakított finomhangolt modellekhez, valamint {profanityAction} a káromkodás kifejezések törlésére vagy jelölésére.",
+				"glossaryLinkLabel": "Szószedet",
+				"customTranslatorLinkLabel": "Egyedi Fordító kategória"
+			},
+			"duplicateFiles": {
+				"heading": "Hogyan kerülhetem el, hogy ugyanazt a fájlt kétszer fordítsam?",
+				"body": "Indítsd el a munkafolyamatot {paths}, amelyek csak a forrás-helyi fájljaidhoz illeszkednek, például {sourceGlob}. Az akció saját triggerenkénti fájlszűrőt is tartalmaz, amikor {githubToken} be van állítva, így a munkát a legfrissebb commit fájljaira szűkíti."
+			},
+			"offline": {
+				"heading": "Futtathatom az akciót offline?",
+				"body": "Nem egészen — az Azure AI Translator a runtime agy. De futtathatsz {dryRunTrue}-t az elemzés és konfiguráció validálására anélkül, hogy HTTP fordítási kérést kellene végezni."
+			},
+			"node": {
+				"heading": "Melyik Node verzión fut az akció?",
+				"body": "a v3 futás a GitHub Actions {nodeRuntime} runtime-on fut. A csomagban lévő JavaScript kompatibilis a Node 20, 22 és 24-gyel, amelyeket a CI tesztel."
+			},
+			"dist": {
+				"heading": "Honnan jönnek a csomagolt {distDir}?",
+				"body": "A GitHub JS akciók a lefordított JS-t a tárolóban szállítják. A {distBuild} munkafolyamat minden egyesülés után újraépíti, hogy {mainBranch} elsodorja-e, és {distCheck} blokkolja azokat a PR-eket, amelyek elavult kimenetet érnek el."
+			},
+			"formats": {
+				"heading": "Mi a helyzet más erőforrás formátumokkal?",
+				"body": "Ma: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} ha szükséged van másra — a parser felület kicsi (parse → map → fordításokat → formátumot alkalmaz), és a hozzájárulásokat szívesen látjuk.",
+				"issueLinkLabel": "Nyiss ki egy ügyet"
+			}
+		}
 	},
 	"translations": {
 		"title": "Fordítások",
 		"eyebrow": "Bemutató",
 		"heroTitle": "Üdvözlöm minden nyelven",
-		"locales": "Helyszínek",
-		"currentlyRendered": "Jelenleg megjelenítve",
-		"complete": "Teljes!",
-		"pendingPrefix": "A következő fordítás-dokumentumok futamig várható.",
+		"lede": "Ezt az oldalt maga a Resource Translator fordítja le, minden fő irányba történő indításkor, minden Azure AI Fordító által támogatott nyelvre.",
+		"localeCountLabel": "{count} helyszínek",
+		"statusComplete": "{translatedCount} jelenleg megjelenítve — kész!",
+		"statusPending": "{translatedCount} jelenleg megjelenítve — {pendingCount} a következő {workflowName} futásig vár.",
 		"viewWorkflowRuns": "Munkafolyamat-futtatások megtekintése",
 		"filter": "Szűrő",
 		"filterPlaceholder": "Keresés nyelv, kód vagy anyanyelvi név szerint...",
 		"source": "Forrás",
 		"machineTranslations": "Gépi fordítások",
-		"translationPending": "Fordítás függőben — nyiss meg egy fordító-docs futást.",
+		"translationPending": "Fordítás folyamatban — nyiss meg egy {workflowName} futást.",
 		"noLocales": "Nincs olyan helyszín, ami illik ehhez a szűrőhöz.",
-		"howItWorks": "Hogyan működik ez"
+		"howItWorks": {
+			"heading": "Hogyan működik ez",
+			"thisActionLabel": "Ez a cselekedet",
+			"steps": {
+				"source": "Az angol forrásfájl a {messagesPath}-nél található.",
+				"workflow": "Azt az érintést elnyomja {workflowLink}, ami {thisAction} önmagához fut.",
+				"fanOut": "Az akció minden Azure AI Translator által támogatott helyre terjed ({configPath}-ben konfigurálva), és minden célpontra egy testvér {messagesLocaleJson} ír.",
+				"pullRequest": "Az új fordításokkal megnyílik a pull request. Az összevonás újra megjelenik, és a kártyák kitöltve újra megjelennek."
+			}
+		},
+		"poweredBy": "Resource Translator és Azure AI Translator által működtetve."
 	},
 	"contributing": {
 		"title": "Hozzájárulás",
 		"eyebrow": "Nyílt forráskódú",
-		"lede": "Hibajelentések, funkciókérések és pull requests mind szívesen látottak. Az akció elég kicsi ahhoz, hogy barátságos legyen az első alkalommal közreműködőknek."
+		"lede": "Hibajelentések, funkciókérések és pull requests mind szívesen látottak. Az akció elég kicsi ahhoz, hogy barátságos legyen az első alkalommal közreműködőknek.",
+		"localDevelopment": {
+			"heading": "Helyi fejlesztés"
+		},
+		"addingParser": {
+			"heading": "Parser hozzáadása",
+			"steps": {
+				"fixture": "Tegyél egy lámpa {testDataDir} alá.",
+				"implement": "Valósítsd meg {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Regisztráld {factoryFile}.",
+				"extension": "Add hozzá a fájlkiterjesztést {translationFileSchemes}-hez {finderFile}-ben.",
+				"tests": "Írj oda-vissza teszteket a parse → formátumhoz és applyTranslations-hoz."
+			}
+		},
+		"coverage": {
+			"heading": "Lefedettségi küszöbértékek",
+			"body": "A Jest konfiguráció minimális lefedettséget biztosít. Az új kódnak a mondatok + sorok küszöbértékét 78% felett kell tartania, és a funkciókat 90% felett kell tartania. Tedd fel a változtatásod mellett felszereléseket és teszteket."
+		},
+		"docsSite": {
+			"heading": "Dokumentációs oldal",
+			"body": "A {docsDir} mappa egy Astro 6 + Tailwind v4 projekt. Egyszer {npmInstall} oda, majd {npmRunDev} helyi előnézethez. A {pagesWorkflow} munkafolyamat minden egyesüléskor a dokumentumokat a GitHub Pages-re küldi."
+		}
 	},
 	"changelog": {
 		"title": "Változásnapló",
 		"eyebrow": "Történelem",
-		"lede": "Magas szintű összefoglaló a kiadásokról. A kanonikus, tekintélyt meghatározó változásnapló CHANGELOG.md a reponóriumban él."
+		"lede": "Magas szintű összefoglaló a kiadásokról. A kanonikus, tekintélyt meghatározó változásnapló CHANGELOG.md a reponóriumban él.",
+		"fullRecord": "A teljes jegyzőkönyvért lásd {changelogLink}.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "V3 (fejlesztés folyamatban)",
+			"labels": {
+				"breaking": "TÖRÉS",
+				"resilience": "Ellenállóképesség:",
+				"placeholderProtection": "Helyettesítő védelem:",
+				"perKeyOptOut": "Billentyűnkénti kilépés:",
+				"docsAccessibility": "Dokumentumok elérhetősége:",
+				"inlineCodeStyling": "Inline kód stílus:"
+			},
+			"issueLabels": {
+				"closes46": "Zárja a #46-ot.",
+				"tightens16": "Szorosítja a #16-ot.",
+				"closes35": "Zárja a #35-öt."
+			},
+			"items": {
+				"runtime": "Átemeltem {nodeRuntime} futásidőre ({breaking}).",
+				"newInputs": "Új bemenetek: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, valamint fejlett fordító gombok, {textType}, {profanityAction}, {profanityMarker} és {allowFallback}.",
+				"sourceLocale": "A forrás helyet most már továbbítják a Translator {fromLocale} című, így a rövid stringek nem észlelhetők automatikusan.",
+				"resilience": "{label} automatikus újrapróbálkozás átmeneti HTTP válaszokon ({statusCodes}), amely tiszteletben tartja az Azure {retryAfter} fejlécét — hiány esetén visszaesik a fisztikus exponenciális visszalépéshez. Hangolható {maxRetries} és {retryBackoffMs} segítségével. {issue}",
+				"placeholderProtection": "{label} tokenek, mint az {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} és HTML entitások a fordítás előtt sentinel-be csomagolódnak, majd utána visszaállítják, így a Fordító nem rontja el az i18next/Mustache/Handlebars/.NET/printf helykitöltőit. Kapcsolás {protectPlaceholders} segítségével; Hosszabbítsd {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} új {noTranslatePatterns} bemenet teljesen eltávolítja a megfelelő kulcsokat a Fordító kérésből (megőrzi a márkanevek, hibakódok stb. forrásértékeit). Összeilleszti a glob mintákat a parser szintű kulcsokkal (JSON pontozott út, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext kulcs). {issue}",
+				"repoConfig": "Repo szintű konfiguráció {configPath}-n keresztül.",
+				"glossary": "Szószedet támogatás, lépésösszefoglaló {coreSummary}-nél.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM audit tiszta (0 sebezhetőség).",
+				"docsSite": "Astro + Tailwind v4 docs oldal nézetátmenetekkel és Expressive Code-szal.",
+				"docsAccessibility": "{label} WCAG 2.1 AA passz. A logós glifákat útvonalakká alakították, így többé nem hibáznak a színkontrasztban a gradiens megállókkal szemben, a lebegő {backToTop} gomb {inert} használ rejtve (nem pedig egy {ariaHidden} kapcsolóval, ami tabulatura hagyta), {formatsAstro} szakaszok már nem ütköznek az automatikusan generált címazonosítókkal, három helykártya már felfedi a BCP-47-re érvényes {lang} attribútumokat ({nya}, {lug}, {run}), a duplikált {documentation} földrajzi címkék az oldalsáv és az alaplap között vannak megkülönböztetve,  és minden adattábla a {inputs}/{configuration}-on képernyőolvasó felirattal érkezik.",
+				"inlineCode": "{label} Docs próza {codeElement} most meleg/borostyánszínű témájú akcentust visel — ami eltér a márka→akcentus palettájától, amelyet a linkekhez és címekhez használnak.",
+				"automation": "Dependabot automatikus összevonás, CodeQL szkennelés, CI mátrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Lásd a git történetét."
+		}
 	}
 }

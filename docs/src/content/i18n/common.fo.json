@@ -15,7 +15,13 @@
 		"searchPlaceholder": "Leita í dokumentatión...",
 		"toggleTheme": "Skift tema",
 		"githubRepository": "GitHub goymsla",
-		"language": "Mál"
+		"language": "Mál",
+		"languageTitle": "Vel títt mál",
+		"languageDescription": "Skift til somu síðu á øðrum máli.",
+		"languageSearch": "Filtreringsmál",
+		"languageSearchPlaceholder": "Leitarmál ella lokalkodur...",
+		"languageNoResults": "Einki mál samsvarar við tað filterið.",
+		"closeLanguage": "Close language picker"
 	},
 	"search": {
 		"title": "Leitardokumentatión",

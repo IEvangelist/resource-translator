@@ -15,7 +15,13 @@
 		"searchPlaceholder": "Vyhľadajte dokumentáciu...",
 		"toggleTheme": "Prepínacia téma",
 		"githubRepository": "GitHub repozitár",
-		"language": "Jazyk"
+		"language": "Jazyk",
+		"languageTitle": "Vyberte si jazyk",
+		"languageDescription": "Prepnite na tú istú stránku v inom jazyku.",
+		"languageSearch": "Filtračné jazyky",
+		"languageSearchPlaceholder": "Vyhľadávajte jazyky alebo kódy lokalít...",
+		"languageNoResults": "Žiadny jazyk sa tomuto filtru nevyrovná.",
+		"closeLanguage": "Blízky jazykový výber"
 	},
 	"search": {
 		"title": "Vyhľadajte dokumentáciu",

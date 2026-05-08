@@ -18,18 +18,26 @@
 			"node": "نوډ ۲۰ / ۲۲ / ۲۴",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "په ځای کې یا فلیټ",
+			"ini": "{keyValue}",
+			"restext": "MUI متن"
+		},
 		"features": {
 			"formats": {
 				"title": "شپږ فایل فارمیټونه",
-				"body": ".resx، .xliff، .po، .json، .ini، او .restext د بایټ-ثابت فورمټ سره راګرځی."
+				"body": "د بایټ-ثابت فورمټ سره {resx}، {xliff}، {po}، {json}، {ini}، او {restext} تګ راتګ سفرونه."
 			},
 			"config": {
 				"title": "د ریپو-کچې تنظیمات",
-				"body": ".github/resource-translator.yml وغورځوئ ترڅو ګلوبز، لغتونه او د Custom Translator کټګورۍ شاملې شی."
+				"body": "د ګلوبونو، لغتونو، او د کسټم ټرانسلیټر کټګورۍ لپاره {configPath} فایل وغورځوئ."
 			},
 			"glossary": {
 				"title": "د لغت پاڼې خبر",
-				"body": "د برانډ نومونه او د محصول اصطلاحات د هوښیار کلمو-حد ریجیکس سره قفل کړئ چې C++، .NET، او ملګری اداره کوی."
+				"body": "د برانډ نومونه او د محصول اصطلاحات د هوښیار کلمو-حد regex سره قفل کړئ چې {cpp}، {dotnet}، او ملګری اداره کوی."
 			},
 			"dryRun": {
 				"title": "ډرای رن + سافټ-فیل",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "د PR لپاره مناسب تولیدات",
-				"body": "لنډیز-سرلیک، لنډیز-تفصیلات، او هز-نوی-ژباړې مستقیم د create-pull-request برخه کې ځای پر ځای کېږی."
+				"body": "{summaryTitle}، {summaryDetails}، او {hasNewTranslations} مستقیم د create-pull-request کې ځای پر ځای کېږی."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "د @azure-rest/ai-translation-text + @azure/core-rest-pipeline پر بنسټ جوړ شوی — په 408/429/5xx کې اتومات بیا هڅه کول، هیڅ لاس رول شوی HTTP نشته. د ESBUILD-بنډل، تفتیش پاک."
+				"body": "په {azureSdk} + {corePipeline} باندې جوړ شوی — په {statusCodes} کې اتومات بیا هڅه کول، هیڅ لاس رول شوی HTTP نشته. {esbuild} پاک، تفتیش پاک."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "د ډراپ ان workflow",
+			"titlePrefix": "کاپی. پیسټ.",
+			"titleAccent": "ژباړه وکړه.",
+			"body": "درې رازونه، څلور کرښې، او ستا ریپو به په بل ځل څو ژبنۍ وی.",
+			"setupLink": "د بشپړ ترتیب له لارې وګورئ"
+		},
+		"cta": {
+			"title": "چمتو یې چې په اتومات ډول ځای پر ځای کړې؟",
+			"body": "One Azure AI Translator key, one workflow file. د سرچینو ژباړونکی پاتې کارونه سمبالوی.",
+			"button": "پیل وکړه"
 		}
 	},
 	"getting-started": {
 		"title": "پیل کول",
 		"eyebrow": "ترتیب",
-		"lede": "یو کاری بهیر فایل اضافه کړئ، دا د Azure AI ژباړونکی اسناد ته اشاره وکړئ، او دا عمل — چې د Microsoft رسمی @azure-rest/ai-translation-text SDK باندې جوړ شوی — به د سرچینې ژبې سرچینې فایلونو لپاره ریپو سکین کړی او ژباړل شوی وروڼه به خپاره کړی.",
+		"lede": "یو workflow فایل اضافه کړئ، خپل Azure AI Translator اسناد ته یې اشاره کړئ، او عمل به ریپو د سرچینې ژبې سرچینې فایلونو لپاره سکین کړی او ژباړل شوی وروڼه به خپاره کړی.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "د workflow اضافه کول",
-				"body": "Create .github/workflows/translate.yml:"
+				"body": "Create {workflowPath}:"
 			},
 			"resource": {
 				"title": "د سرچینې سرچینې فایل ژمنه کړئ",
-				"body": "سرچینې فایلونه نوم کاروی. <sourceLocale>. <ext> کنوانسیون. د بېلګې په توګه، Greetings.en.resx د یوې منډې وروسته Greetings.fr.resx، Greetings.de.resx، او داسې نور بدلیږی."
+				"body": "سرچینې فایلونه د {namingConvention} کنوانسیون کاروی. مثلاً {sourceFile} له منډې وروسته {frFile}، {deFile}، او داسې نور."
 			},
 			"output": {
 				"title": "د محصول معاینه وکړئ",
-				"body": "کله چې کاری بهیر پای ته ورسېږی، عمل درې آوټپټ ښکاره کوی چې تاسو یې د PR تشریح ته وصل کولی شئ: لنډیز-سرلیک، لنډیز-تفصیلات، او has-new-translations. همدارنګه د Markdown لنډیز د دندې پاڼې ته د core.summary له لارې لیکی."
+				"body": "کله چې کاری بهیر پای ته ورسېږی، عمل درې آوټپټونه ښکاره کوی چې تاسو یې د PR تشریح ته وصل کړئ: {summaryTitle}، {summaryDetails}، او {hasNewTranslations}. همداراز د Markdown لنډیز د دندې پاڼې ته د {coreSummary} له لارې لیکی."
 			}
 		},
 		"nextSteps": {
 			"title": "راتلونکی ګامونه",
-			"configuration": "د repo-level defaults د .github/resource-translator.yml سره تنظیم کړئ.",
+			"configuration": "د ریپو کچې ډیفالټونه د {configPath} سره تنظیم کړئ.",
 			"recipes": "د مونوریپو، دودیز لغتونو، او د دودیز ژباړونکی کټګوریو ترکیبونه وګورئ."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "جوړښت",
 		"eyebrow": "YAML",
 		"heroTitle": "د زیرمې ترتیب",
-		"lede": "Express یو ځل په .github/resource-translator.yml کې ډیفالټ کېږی او هر workflow ته اجازه ورکوی چې دا وراثت کړی. د عمل داخلونه تل بریالی کېږی کله چې دواړه برابر شی."
+		"lede": "Express یو ځل په ریپوزیتوری کنفیګ فایل کې ډیفالټونه کوی او هر کاری بهیر ته اجازه ورکوی چې دا وراثت کړی. د عمل داخلونه تل بریالی کېږی کله چې دواړه برابر شی.",
+		"intro": "که غیر اصلی ځای ته اړتیا لرې، د {configPath} ورودی سره لاره اووررایډ کړه.",
+		"schemaHeading": "سکیمه",
+		"fieldReference": {
+			"heading": "د ساحې حواله",
+			"caption": "د تنظیم ساحې حواله",
+			"columns": {
+				"field": "میدان",
+				"type": "ډول",
+				"notes": "یادښتونه"
+			},
+			"fields": {
+				"sourceLocale": "که تنظیم نه وی، نو بیرته د {sourceLocale} ورودی ته راګرځی. همداراز Translator ته د دې لپاره {fromLocale} چې لنډې تارونه اتومات کشف نه شی.",
+				"toLocales": "یا یوه آرایه یا د کامه جلا شوې تار.",
+				"includeExclude": "د ګلوب نمونې د مطلق او د کاری ځای اړوند لارو پر وړاندې ارزول کېږی.",
+				"glossary": "د ژباړې وروسته اصطلاح اووررایدونه. د کلمو سرحد ته خبر ({cpp}، {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} کټګوری — ستاسو صنعت/ډومېن نوب (قانونی، طبی، بازارموندنې لحن، او نور). د {categoryQuery} په توګه واستول شو.",
+				"textType": "ډیفالټ ته {plain}. {html} یوازې هغه وخت وکاروئ چې ستاسو سرچینې ارزښتونه ریښتینی HTML ټوټې لری.",
+				"profanityAction": "څنګه په ژباړل شویو موادو کې سپکاوی کوونکی اصطلاحات وکارول شی.",
+				"profanityMarker": "یوازې هغه وخت معنا لری چې {profanityAction} {marked}.",
+				"allowFallback": "داسې تنظیم {false} چې ژباړه ناکامه شی کله چې ستاسو {categoryId} د هدف ځای لپاره ځای پر ځای د عمومی ماډل ته نه راګرځی.",
+				"apiVersion": "د REST API ژباړونکی نسخه. ډیفالټ ته {version}.",
+				"maxRetries": "په لنډمهاله HTTP ځوابونو کې اعظمی بیا هڅه ({statusCodes}). په ډیفالټ ډول {defaultRetries}. ټول HTTP زنګونه د هر غوښتنې لپاره {totalCalls}.",
+				"retryBackoffMs": "کپ (ms) د هر واحد شاتګ خوب لپاره. ډیفالټ ته {defaultBackoff}. د Azure {retryAfter} سر دقیقاً هغه وخت درناوی کیږی کله چې شتون ولری؛ که نه، د ګډوډ شوی نمایی شاتګ کارول کیږی، چې په دې ارزښت کې محدود شوی دی.",
+				"protectPlaceholders": "ډیفالټ ته {true}. کله چې فعال وی، لکه {mustache}، {jsVar}، {indexZero}، {numberFormat}، {printf}، {positionalPrintf} او HTML موجودیتونه د ژباړې مخکې د Sentinel توکنونو سره بدلیږی او وروسته بیرته راګرځول کیږی. یوازې هغه وخت غیر فعال کوی چې سرچینه قصداً د ځای پر ځای شکل لرونکی لفظی تورنونه ولری.",
+				"customPlaceholderPatterns": "اضافی regex نمونې (بې له ډیلیمټرونو) د ډیفالټ placeholder سیټ ته اضافه شوې، لکه {angleToken} د custom token syntax لپاره. نامعتبر ریجیکسونه له پامه غورځول کیږی.",
+				"noTranslatePatterns": "د ګلوب نمونې د پارسر کچې کیلی (JSON نقطه لرونکی لاره، RESX {resxName}، PO {poMsgid}، XLIFF واحد {xliffId}، INI/restext کیلی) سره برابرې شوې. د مطابقت کیلی له غوښتنې څخه لرې کیږی او د سرچینې ارزښت سره انتقالیږی."
+			}
+		},
+		"loadingOrder": {
+			"heading": "د بارولو ترتیب",
+			"steps": {
+				"actionInputs": "عمل د workflow څخه څرګند داخلونه لولی.",
+				"config": "دا د YAML تنظیمات له {configPath} څخه پورته کوی.",
+				"precedence": "د هر شریک ساحې لپاره، ورودی ګټی؛ که نه نو د YAML ارزښت کارول کیږی.",
+				"validation": "یوځای شوی ارزښتونه تایید کیږی. ناسم enums (لکه {invalidEnum}) د واضح پیغام سره عمل ژر ناکاموی."
+			}
+		},
+		"tone": {
+			"heading": "لحن او صنعت، په ساده ژبه",
+			"body": "د Azure AI Translator v3 API یو واحد ټون نوب نه لری. دوه تنظیمات سره یو ځای کیږی چې تقریباً یو ډول کنټرول درکړی:",
+			"industryLabel": "صنعت / ساحه:",
+			"industryBody": "{categoryId} وکاروئ چې Azure {customTranslatorLink} کټګورۍ ته اشاره وکړئ چې ستاسو په خپل کورپس کې روزل شوی — قانونی، تخنیکی، طبی، بازارموندنه، یا هر بل څه. دا د ټون، برانډ غږ، او لغتونو لپاره تر ټولو قوی لیور دی.",
+			"surfaceLabel": "سطحی متن:",
+			"surfaceBody": "د دې {glossaryLink} وکاروئ ترڅو د برانډ نومونه او محصول اصطلاحات لفظ په لفظ قفل کړئ، او {profanityAction} د ځوانانو لپاره د ځایی کولو لپاره د ناوړه اصطلاحاتو د پاکولو لپاره وکاروئ.",
+			"glossaryLinkLabel": "لغتنامه"
+		}
 	},
 	"inputs": {
 		"title": "داخلونه او وتنې",
 		"eyebrow": "مرجع",
-		"lede": "هر انپټ هم د اختیاری ریپو کنفیګ فایل کې منل کېږی. کله چې دواړه تنظیم شی، د عمل ورودی ګټی."
+		"lede": "هر انپټ هم د اختیاری ریپو کنفیګ فایل کې منل کېږی. کله چې دواړه تنظیم شی، د عمل ورودی ګټی.",
+		"configurationIntro": "د YAML سکیمې او بارولو ترتیب {configurationLink} وګورئ.",
+		"configurationLinkLabel": "جوړښت",
+		"columns": {
+			"name": "نوم",
+			"default": "ډیفالټ",
+			"description": "توضیحات"
+		},
+		"defaults": {
+			"none": "هیڅ نشته",
+			"allSupported": "ټول ملاتړ شوی",
+			"translatorDefaultTrue": "true (د ژباړونکی ډیفالټ)"
+		},
+		"requiredInputs": {
+			"heading": "اړین داخلونه",
+			"caption": "اړین داخلونه",
+			"items": {
+				"sourceLocale": "د سرچینې ځای (لکه {en}) چې د سرچینې فایلونو موندلو لپاره کارول کیږی لکه {sourceGlob}. همداراز ژباړونکی ته د {fromLocale} په توګه واستول شو.",
+				"subscriptionKey": "Azure AI Translator subscription key. د تېرېدو له لارې {secrets}.",
+				"endpoint": "د ټرانسلیټر پای ټکی URL، لکه {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "عام اختیاری داخلونه",
+			"caption": "عام اختیاری داخلونه",
+			"items": {
+				"region": "د ژباړونکی سرچینې سیمه (د نړیوالو سرچینو لپاره یې حذف کړه).",
+				"toLocales": "د ژباړې ځایونه. د JSON آرایه ({jsonArray}) یا کاما-جلا شوی ارزښتونو قبولوی.",
+				"include": "د نوی کرښې جلا شوی ګلوب نمونې؛ یوازې ورته فایلونه ژباړل کېږی.",
+				"exclude": "د نوی کرښې جلا شوی ګلوب نمونې؛ د مطابقت فایلونه پریښودل کیږی (د شمول وروسته تطبیق کیږی).",
+				"configPath": "د YAML کنفیګ فایل ته لاره (د ورک اسپیس ریښې په نسبت).",
+				"dryRun": "کله چې {true}، ژباړې وچلوه او لنډیزونه خپروی، خو فایلونه مه لیکه.",
+				"failOnError": "کله چې {true}، ناڅاپی تېروتنې عمل ناکاموی؛ کله چې {false}، تېروتنې خبرداری دی."
+			}
+		},
+		"translatorInputs": {
+			"heading": "د ټرانسلیټر غوښتنې داخلونه",
+			"intro": "دا مستقیماً د Azure AI Translator v3 پوښتنې پارامیټرونو ته نقشه کیږی. هر یو اختیاری دی؛ د ژباړونکی اصلی اصول هغه وخت تطبیقېږی چې تنظیم نه شی.",
+			"caption": "د ټرانسلیټر غوښتنې داخلونه",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} کټګوری — صنعت/ډومېن/تون knob. د {categoryQuery} په توګه لیږل شوی.",
+				"textType": "{plain} یا {html}. {html} یوازې هغه وخت وکاروئ کله چې ستاسو سرچینې ارزښتونه ریښتینی HTML ټوټې وی.",
+				"profanityAction": "{noAction}، {marked}، یا {deleted}. دا کنټرولوی چې په ژباړو کې ناپاک اصطلاحات څنګه خپاره شی.",
+				"profanityMarker": "{asterisk} یا {tag}. یوازې هغه وخت معنا لری چې {profanityAction} {marked}.",
+				"allowFallback": "کله چې {false}، ټرانسلیټر تېروتنه بېرته راولی، پر ځای د دې چې عمومی سیسټم ته لاړ شی که ستاسو {categoryId} د هدف ځای لپاره ځای پر ځای نه وی.",
+				"apiVersion": "د REST API ژباړونکی نسخه."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "مقاومت او د ځای پر ځای ساتنه",
+			"intro": "دا داخلونه کنټرولوی چې کله Translator ستاسو غوښتنه محدوده کوی، عمل څنګه چلند کوی او څنګه د لنډمهاله توکنونو لکه {mustache} یا {indexZero} د ژباړې پر مهال له خرابېدو څخه ساتی.",
+			"caption": "مقاومت او د ځای پر ځای ساتنې داخلونه",
+			"items": {
+				"maxRetries": "په لنډمهاله HTTP ځوابونو کې اعظمی بیا هڅه ({statusCodes}). د هر غوښتنې لپاره د HTTP زنګونو ټول شمېر {totalCalls}.",
+				"retryBackoffMs": "په هره یوه شېبه کې (په میلی ثانیو کې) کپ (په میلی ثانیو کې) په هر ډول شاتګ خوب کې. دا عمل د Azure د {retryAfter} ځواب سرلیک ته درناوی کوی کله چې موجود وی؛ که نه، دا د دې ارزښت سره د خوځنده exponential backoff کاروی.",
+				"protectPlaceholders": "کله چې {true} (ډیفالټ)، لکه {mustache}، {jsVar}، {indexZero}، {numberFormat}، {printf}، {positionalPrintf} او HTML موجودیتونه د ژباړې مخکې د Sentinel ټوکنونو سره بدلیږی او وروسته بیرته راګرځول کیږی. یوازې هغه وخت غیر فعال کړئ چې ستاسو سرچینه قصداً د موقتی شکل لرونکی متن ولری چې باید وژباړل شی.",
+				"customPlaceholderPatterns": "د نوی کرښې جلا شوی regexes (بې له محدودوونکو څخه) د ډیفالټ placeholder سیټ ته اضافه شوی، لکه د دودیز توکن نحو لپاره {angleToken}.",
+				"noTranslatePatterns": "د نوی کرښه جلا شوی ګلوب نمونې د پارسر کچې کیلی (JSON نقطه لرونکی لاره، RESX {resxName}، PO {poMsgid}، XLIFF واحد {xliffId}، INI/restext کیلی) سره برابرې شوې. د تطبیق کیلی ګانې د ټرانسلیټر غوښتنې څخه غورځول کېږی او د خپل سرچینې ارزښت ساتل کېږی."
+			}
+		},
+		"outputs": {
+			"heading": "تولیدونه",
+			"caption": "تولیدونه",
+			"items": {
+				"summaryTitle": "لنډ د عامه اړیکو لپاره مناسب لنډیز، لکه {summaryExample}.",
+				"summaryDetails": "د مارک ډاون لنډیز چې د PR ادارې یا دندې لنډیز لپاره مناسب دی.",
+				"hasNewTranslations": "{trueString} کله چې یو یا څو نوې ژباړې تولید شوې."
+			}
+		}
 	},
 	"formats": {
 		"title": "د فایل فارمیټونه",
 		"eyebrow": "مرجع",
 		"heroTitle": "ملاتړ شوی فایل فارمیټونه",
-		"lede": "شپږ تاوېدونکی سرچینې بڼې. عمل هر سرچینه-محلی فایل لولی، ارزښتونه ژباړی، او د هدف لپاره یو ورور لیکی."
+		"lede": "شپږ تاوېدونکی سرچینې بڼې. عمل هر سرچینه-محلی فایل لولی، ارزښتونه ژباړی، او د هدف لپاره یو ورور لیکی.",
+		"namingConvention": "ټول فایلونه د {namingConvention} نوم ورکولو دود کاروی.",
+		"learnMore": "نور زده کړئ",
+		"items": {
+			"resx": {
+				"blurb": "د XML پر بنسټ .NET سرچینې فایلونه. د هر نوډ داخلی متن {dataValue}، تبصرې او میټاډاټا ساتی.",
+				"specLabel": "مایکروسافټ لرېنډ — سرچینې په .resx فایلونو کې"
+			},
+			"xliff": {
+				"blurb": "د OASIS XLIFF 2.0 اسناد. هر {source} ژباړه کوی او پایله په اړوند {target} کې لیکی، د {trgLang} ځای لپاره تنظیموی.",
+				"specLabel": "د OASIS XLIFF 2.0 مشخصات"
+			},
+			"po": {
+				"blurb": "GNU gettext د پورټیبل شیو فایلونه. هر {msgid} / {msgidPlural} {msgstr} / {msgstrPlural} بڼو ته ژباړی.",
+				"specLabel": "GNU gettext — PO فایل فورمټ"
+			},
+			"json": {
+				"blurb": "بې ځایه JSON فایلونه. Nested شیان د ژباړې لپاره د {delimiter} delimiter سره فلیټ کېږی، بیا په آوټپټ کې بیا ځای پر ځای کېږی. نقطې شوې کیلی ({dottedKey}) لفظی ساتل کېږی.",
+				"specLabel": "د JSON مشخصات (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "ساده {keyValue} فایلونه (د Win32 سټایل INI یا هر فلیټ تنظیم). د برخې سرلیکونه او تبصرې ساتل شوی دی.",
+				"specLabel": "په ویکیپېډیا کې د INI فایل بڼه"
+			},
+			"restext": {
+				"blurb": "مایکروسافټ MUI متنی سرچینې — فلیټ {keyValue} جوړه چې د متنی ملګری په توګه {resx}.",
+				"specLabel": "د مایکروسافټ MUI عمومی کتنه"
+			}
+		},
+		"roundTrip": {
+			"heading": "د تګ او راتګ تضمینونه",
+			"body": "د ازموینې مجموعه د هر فارمیټ استازی فکسچرونو لپاره بایټ په بایټ شاوخوا تګ راتګ تاییدوی. که د فارمیټ کومه ځانګړتیا ستاسو د کوډبیس په ګرداب کې ګډوډی رامنځته کړی، مهربانی وکړئ {issueLink} لږ نمونه وکاروئ.",
+			"issueLinkLabel": "یوه ګڼه خلاصه کړه"
+		}
 	},
 	"recipes": {
 		"title": "ترکیبونه",
 		"eyebrow": "د پخلی کتاب",
-		"lede": "د لیږد ژباړې لپاره عام نمونه: مونوریپو، لغتونه، ځانګړی کټګورۍ، ډرای رنونه، او د ټون کنټرول."
+		"lede": "د لیږد ژباړې لپاره عام نمونه: مونوریپو، لغتونه، ځانګړی کټګورۍ، ډرای رنونه، او د ټون کنټرول.",
+		"sections": {
+			"pullRequest": {
+				"heading": "د هر ځل وروسته د کش غوښتنه خلاصه کړئ"
+			},
+			"monorepo": {
+				"heading": "Monorepos: د هر بسته لپاره د scope ژباړه"
+			},
+			"glossary": {
+				"heading": "د برانډ نومونو او محصولاتو اصطلاحاتو لغتنامه",
+				"intro": "یو {configPath} ریپو ته واچوئ:",
+				"afterLabel": "وروسته",
+				"body": "د لغت اصطلاحات د ژباړې {after} کې کارول کېږی، نو د ماشین ژباړل شوی محصول ستاسو خوښ شوی برانډ ساتی حتی که ماډل یې د مترادف سره بدل کړی وی."
+			},
+			"customCategory": {
+				"heading": "د دودیز ټرانسلیټر کټګوری (صنعت / ډومین)",
+				"body": "د Azure {customTranslatorLink} کټګوری په داسې کارپس کې روزئ چې ستاسو د صنعت لغتونه او لحن (قانونی، طبی، بازارموندنه، داخلی انجینری، او نور) پکې شامل وی او د دې ID د {categoryId} له لارې پاس کړئ. دا تر ټولو قوی ټون لیور دی چې Azure وړاندې کوی."
+			},
+			"tone": {
+				"heading": "د ټون کنټرول + سخت بیک اپ",
+				"body": "د Custom Translator {categoryId} د {profanityAction} او {allowFallbackFalse} سره یوځای کړئ ترڅو یو ثابت غږ یقینی شی او که ټاکل شوې کټګوری ستاسو د هدف ځایونو لپاره ځای پر ځای نه وی، نو د workflow ناکامه شئ."
+			},
+			"dryRun": {
+				"heading": "د workflow له فعالولو مخکې تمرین وکړئ",
+				"body": "عمل لا هم لنډیز او د ګام لنډیز خپروی، خو هیڅ فایلونه نه دی لیکل شوی. د {failOnErrorFalse} سره یوځای کړئ ترڅو هره ستونزه د خبرداری په توګه راښکاره کړئ کله چې تاسو تکرار کوئ."
+			}
+		}
 	},
 	"faq": {
 		"title": "زیاتې ترسره کېدونکې پوښتنې",
 		"eyebrow": "مرسته",
 		"heroTitle": "ډېرې پوښتل شوې پوښتنې",
-		"lede": "هغو پوښتنو ته چټک ځوابونه چې اکثره د عمل د منلو پر مهال راځی."
+		"lede": "هغو پوښتنو ته چټک ځوابونه چې اکثره د عمل د منلو پر مهال راځی.",
+		"questions": {
+			"azure": {
+				"heading": "عمل څنګه له Azure سره خبرې کوی؟",
+				"body": "د مایکروسافټ رسمی {azureSdkLink} SDK له لارې، چې په {corePipelineLink}. دا تاسو ته په {statusCodes} کې اتومات بیا هڅه درکوی، ټایپ شوی غوښتنه او ځواب ماډلونه، او د تصدیق هیډر اداره وړیا ترلاسه کوی — هر څه چې مخکې د لاس {axios} زنګ وهلو. د عامه عمل سطحه (ورودی، وتنه، د فایل آوټپټونه) نه ده بدله شوې."
+			},
+			"tone": {
+				"heading": "ولې ژباړې کله ناکله غیر معمولی یا بې ځایه وی؟",
+				"body": "د ماشین ژباړه په ډیفالټ ډول عمومی موډل ته ځی. درې نوبونه مرسته کوی: د سختو اصطلاحاتو {glossaryLink} لپاره، یو {customTranslatorLink} د هغو ماډلونو لپاره چې ستا په ټون او لغتونو روزل شوی وی، او {profanityAction} د سپکاوی اصطلاحاتو پاکولو یا نښه کولو لپاره.",
+				"glossaryLinkLabel": "لغتنامه",
+				"customTranslatorLinkLabel": "د دودیز ټرانسلیټر کټګوری"
+			},
+			"duplicateFiles": {
+				"heading": "څنګه کولی شم چې یوه فایل دوه ځله وژباړم؟",
+				"body": "په هغو {paths} کې چې یوازې ستاسو د سرچینې ځایی فایلونو سره سمون لری، لکه {sourceGlob}. عمل همداراز خپل د هر ټریګر فایل فلټر لری کله چې {githubToken} تنظیم شی، چې کار د وروستی کمېټ فایلونو ته محدودوی."
+			},
+			"offline": {
+				"heading": "ایا زه کولی شم عمل آفلاین پرمخ یوسم؟",
+				"body": "دقیقاً نه — Azure AI Translator د رنټایم دماغ دی. خو تاسو کولی شئ د {dryRunTrue} سره وچلوئ ترڅو parsing او config تایید کړئ، پرته له دې چې د ژباړې لپاره کوم HTTP غوښتنه وکړئ."
+			},
+			"node": {
+				"heading": "دا عمل په کومه Node نسخه کې چلیږی؟",
+				"body": "v3 د GitHub Actions {nodeRuntime} runtime کې چلېږی. یوځای شوی جاواسکریپټ د Node 20، 22، او 24 سره سازګار دی، چې CI یې ازمویی."
+			},
+			"dist": {
+				"heading": "دا بسته {distDir} له کومه راځی؟",
+				"body": "د GitHub JS کړنې خپل کمپایل شوی JS په ریپوزیتوری کې لیږی. د {distBuild} کاری بهیر دا هر ادغام وروسته بیا جوړوی، تر څو معلومه کړی {mainBranch} چې آیا دا به drift شی، او {distCheck} PRs بندوی چې زاړه تولید ترلاسه کوی."
+			},
+			"formats": {
+				"heading": "د نورو سرچینو فارمیټونو په اړه څه؟",
+				"body": "نن: {resx}، {xliff}، {po}، {json}، {ini}، {restext}. {issueLink} که بل ته اړتیا لرې — د پارسر انترفیس کوچنی دی (نقشه → تجزیه → ژباړه → فارمیټ کې تطبیق کړی) او مرستې ته ښه راغلاست دی.",
+				"issueLinkLabel": "یوه ګڼه خلاصه کړه"
+			}
+		}
 	},
 	"translations": {
 		"title": "ژباړې",
 		"eyebrow": "شوکیس",
 		"heroTitle": "په هره ژبه سلام",
-		"locales": "ځایونه",
-		"currentlyRendered": "اوس مهال رینډر شوی",
-		"complete": "بشپړ!",
-		"pendingPrefix": "د راتلونکی ژباړې اسناد د چاپ لاندې.",
+		"lede": "دا پاڼه د Resource Translator له خوا خپله ژباړل کېږی، هر ځل چې اصلی ته فشار ورکړی، هرې ژبې ته چې Azure AI Translator ملاتړ کوی.",
+		"localeCountLabel": "{count} ځایونه",
+		"statusComplete": "{translatedCount} مهال رینډر شوی — بشپړ!",
+		"statusPending": "{translatedCount} اوس مهال رینډر شوی — {pendingCount} د راتلونکی ځل لپاره {workflowName} دی.",
 		"viewWorkflowRuns": "د workflow چلونه وګورئ",
 		"filter": "فلټر",
 		"filterPlaceholder": "د ژبې، کوډ، یا اصلی نوم له مخې ولټوئ...",
 		"source": "سرچینه",
 		"machineTranslations": "ماشینی ژباړې",
-		"translationPending": "ژباړه په انتظار کې ده — د ژباړې اسناد چلول پرانیزه.",
+		"translationPending": "ژباړه په تمه ده — د {workflowName} لړۍ خلاصه کړه.",
 		"noLocales": "هیڅ ځای د دې فلټر سره سمون نه خوری.",
-		"howItWorks": "دا څنګه کار کوی"
+		"howItWorks": {
+			"heading": "دا څنګه کار کوی",
+			"thisActionLabel": "همدا عمل",
+			"steps": {
+				"source": "د انګلیسی سرچینې فایل په {messagesPath} کې دی.",
+				"workflow": "دا لمس {workflowLink}، چې {thisAction} پر ځان تېرېږی.",
+				"fanOut": "عمل هر Azure AI Translator ملاتړ شوی ځای ته غځېږی (چې په {configPath} کې تنظیم شوی) او هر هدف ته یو ورور {messagesLocaleJson} لیکی.",
+				"pullRequest": "د نوو ژباړو سره د کش غوښتنه پرانستل شوه. یوځای کول دا پاڼه بیا خپروی چې کارتونه پکې ډک شوی وی."
+			}
+		},
+		"poweredBy": "د سرچینې ژباړونکی او Azure AI ټرانسلیټر لخوا ځواکمن شوی."
 	},
 	"contributing": {
 		"title": "ونډه",
 		"eyebrow": "خلاص سرچینه",
-		"lede": "د بګ راپورونه، د ځانګړتیاوو غوښتنې، او د کش غوښتنې ټول هرکلی دی. د لوبې برخه دومره کوچنۍ ده چې د لومړی ځل ګډونوالو لپاره دوستانه وی."
+		"lede": "د بګ راپورونه، د ځانګړتیاوو غوښتنې، او د کش غوښتنې ټول هرکلی دی. د لوبې برخه دومره کوچنۍ ده چې د لومړی ځل ګډونوالو لپاره دوستانه وی.",
+		"localDevelopment": {
+			"heading": "محلی پرمختګ"
+		},
+		"addingParser": {
+			"heading": "یو پارسر زیاتول",
+			"steps": {
+				"fixture": "لاندې یو فکسچر اضافه {testDataDir}.",
+				"implement": "د {parserInterface} ({parse}، {format}، {applyTranslations}، {toTranslatableTextMap}).",
+				"register": "ثبت یې {factoryFile}.",
+				"extension": "په {translationFileSchemes} کې فایل پسوند اضافه {finderFile}.",
+				"tests": "د پارس → فورمټ او applyTranslations لپاره د round-trip ازموینې ولیکه."
+			}
+		},
+		"coverage": {
+			"heading": "د پوښښ حدونه",
+			"body": "د Jest تنظیمات لږ تر لږه پوښښ تطبیقوی. نوی کوډ باید د بیاناتو + کرښو حد له ۷۸٪ څخه پورته وساتی او فعالیتونه له ۹۰٪ پورته وساتی. د بدلون سره یو ځای فکسچرونه او ټیسټونه اضافه کړئ."
+		},
+		"docsSite": {
+			"heading": "د اسنادو ځای",
+			"body": "د {docsDir} فولډر د Astro 6 + Tailwind v4 پروژه ده. هلته یو ځل {npmInstall} یوسه، بیا {npmRunDev} محلی مخکتنې ته لاړ شه. د {pagesWorkflow} کاری بهیر هر ادغام کې اسناد GitHub Pages ته لیږی."
+		}
 	},
 	"changelog": {
 		"title": "چینج لاګ",
 		"eyebrow": "تاریخچه",
-		"lede": "د خپرونو لوړ پوړی لنډیز. دا رسمی، معتبر چینلاګ په CHANGELOG.md کې په ریپوزیتوری کې ژوند کوی."
+		"lede": "د خپرونو لوړ پوړی لنډیز. دا رسمی، معتبر چینلاګ په CHANGELOG.md کې په ریپوزیتوری کې ژوند کوی.",
+		"fullRecord": "د بشپړ ریکارډ {changelogLink} وګورئ.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (په پرمختګ کې)",
+			"labels": {
+				"breaking": "بریکینګ",
+				"resilience": "مقاومت:",
+				"placeholderProtection": "د موقتی ساتنه:",
+				"perKeyOptOut": "د هر کلیدی انتخاب اخیستل:",
+				"docsAccessibility": "د اسنادو لاسرسی:",
+				"inlineCodeStyling": "د انلاین کوډ سټایلنګ:"
+			},
+			"issueLabels": {
+				"closes46": "بندېږی #46.",
+				"tightens16": "Tight #16.",
+				"closes35": "بندېږی #۳۵."
+			},
+			"items": {
+				"runtime": "د {nodeRuntime} وخت ته انتقال شو ({breaking}).",
+				"newInputs": "نوې داخلونه: {include}، {exclude}، {configPath}، {categoryId}، {apiVersion}، {dryRun}، {failOnError}، سربېره پر دې پرمختللی ټرانسلیټر نوبونه {textType}، {profanityAction}، {profanityMarker}، او {allowFallback}.",
+				"sourceLocale": "د سرچینې ځای اوس ژباړونکی ته هم لیږدول کیږی ځکه {fromLocale} لنډ تارونه اتومات نه کشف کیږی.",
+				"resilience": "{label} اتوماتیک بیا هڅه په لنډمهاله HTTP ځوابونو ({statusCodes}) کې چې د Azure {retryAfter} هیډر ته درناوی کوی — کله چې نه وی، بیا د ګډوډ exponential backoff حالت ته راګرځی. د {maxRetries} او {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} توکنونه لکه {mustache}، {jsVar}، {indexZero}، {numberFormat}، {printf}، {positionalPrintf} او HTML موجودیتونه د سنتینلونو په واسطه د ژباړې مخکې تاوېږی او وروسته بېرته راګرځول کېږی، نو ژباړونکی د i18next/Mustache/Handlebars/.NET/printf ځای پر ځای ځایونو ګډوډول بندوی. د {protectPlaceholders} له لارې ټوګل کړئ؛ له {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} نوی {noTranslatePatterns} ان پټ د ټرانسلیټر غوښتنې څخه سمون لرونکی کیلی په بشپړه توګه پرېږدی (د برانډ نومونو، تېروتنې کوډونو او نورو لپاره سرچینه ارزښتونه ساتی). د ګلوب نمونې د پارسر کچې کیلی (JSON نقطه لرونکی لاره، RESX {resxName}، PO {poMsgid}، XLIFF واحد {xliffId}، INI/restext کیلی) سره سمون لری. {issue}",
+				"repoConfig": "د ریپو کچې تنظیمات د {configPath} له لارې.",
+				"glossary": "د لغتنامه ملاتړ، د ګامونو لنډیز د {coreSummary}.",
+				"tooling": "esbuild bundler، ESLint 9 flat config، Prettier، EditorConfig.",
+				"audit": "NPM Audit پاکه (۰ زیان منونکی).",
+				"docsSite": "د Astro + Tailwind v4 مستند سایټ د لید انتقالونو او Expressive Code سره.",
+				"docsAccessibility": "{label} د WCAG 2.1 AA پاس. لوګو ګلیفونه چې لارې ته بدلیږی ترڅو نور د ګریډینټ سټاپ پر وړاندې د رنګ تضاد کې ناکام نه شی، د فلوټینګ {backToTop} تڼۍ {inert} پټوی کاروی (د {ariaHidden} ټوګل پر ځای چې ټب یې پرېښود)، {formatsAstro} برخې نور د دوی اتومات تولید شوی سرلیک ID سره ټکر نه کوی، درې محلی کارتونه اوس د BCP-47-معتبر {lang} ځانګړتیاوې ښکاره کوی ({nya}، {lug}، {run})، نقل {documentation} نښه لیبلونه د سایډبار او فوټر ترمنځ جلا شوی،  او د {inputs}/{configuration} هر ډیټا جدول د سکرین ریډر سرلیک لری.",
+				"inlineCode": "{label} Docs Prose {codeElement} اوس د تودوخ/عنبری موضوع ټینګار لری — چې د لینکونو او سرلیکونو لپاره د برانډ→لهجې پالیټ څخه توپیر لری.",
+				"automation": "Dependabot اتومات یوځای کول، CodeQL سکینګ، CI میټریکس."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "د git history وګوره."
+		}
 	}
 }

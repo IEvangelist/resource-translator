@@ -18,18 +18,26 @@
 			"node": "العقدة 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "متداخلة أو مسطحة",
+			"ini": "{keyValue}",
+			"restext": "نص MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "ستة صيغ ملفات",
-				"body": "الرحلات ذهابا وإيابا ب .resx، .xliff، .po، .json، .ini، و .restext مع تنسيق مستقر للبايت."
+				"body": "الرحلات ذهابا وإيابا {resx}، {xliff}، {po}، {json}، {ini}، و {restext} مع تنسيق مستقر للبايتات."
 			},
 			"config": {
 				"title": "إعدادات المستوى المستوحى",
-				"body": "ضع ملف .github/resource-translator.yml لتضمين globs، القواميس، وفئات المترجم المخصص."
+				"body": "ضع ملف {configPath} ليشمل الكلوب، القواميس، وفئات المترجم المخصص."
 			},
 			"glossary": {
 				"title": "واع بالمعجم",
-				"body": "اقفل أسماء العلامات التجارية ومصطلحات المنتجات باستخدام قاعدة الحدود الذكية للكلمات التي تتعامل مع C++ و.NET وأصدقائها."
+				"body": "اقفل أسماء العلامات التجارية ومصطلحات المنتجات بنظام قواعد ذكي يتعامل مع {cpp} و {dotnet} والأصدقاء."
 			},
 			"dryRun": {
 				"title": "التجربة الجافة + الفشل الناعم",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "مخرجات صديقة للعلاقات العامة",
-				"body": "الملخص العنوان، الملخص، وترجمات جديدة توضع مباشرة في إنشاء وسحب طلب."
+				"body": "{summaryTitle} و {summaryDetails} و {hasNewTranslations} توضع مباشرة في إنشاء وسحب طلب."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "مبني على @azure-rest/ai-translation-text + @azure/core-rest-pipeline — إعادة المحاولات التلقائية على 408/429/5xx، بدون ملف HTTP يدوي. مجمع ESBUILD، نظيف التدقيق."
+				"body": "مبني على {azureSdk} + {corePipeline} — إعادة المحاولات التلقائية على {statusCodes}، بدون ملف HTTP يدوي. {esbuild} مغلف، نظيف تماما في التدقيق."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "سير العمل الفوري",
+			"titlePrefix": "تم الاستلام. معجون.",
+			"titleAccent": "ترجم.",
+			"body": "ثلاثة أسرار، أربعة أسطر، ومستودعك متعدد اللغات في الدفعة القادمة.",
+			"setupLink": "استعرض الإعداد الكامل"
+		},
+		"cta": {
+			"title": "هل أنت مستعد للتوطين التلقائي؟",
+			"body": "مفتاح Azure AI Translator واحد، ملف workflow واحد. يتولى مترجم الموارد الباقي.",
+			"button": "ابدأ"
 		}
 	},
 	"getting-started": {
 		"title": "البدء",
 		"eyebrow": "الإعداد",
-		"lede": "أضف ملف سير عمل، وجهه إلى بيانات اعتماد Azure AI Translator الخاصة بك، والإجراء — المبني على SDK النص الرسمي @azure من مايكروسوفت — سيفحص المستودع بحثا عن ملفات موارد لغة المصدر ويرسل ملفات مترجمة.",
+		"lede": "أضف ملف سير العمل، وجهه إلى بيانات اعتماد Azure AI Translator، وسيقوم الإجراء بمسح المخزن بحثا عن ملفات موارد لغة المصدر وإرسال ملفات مترجمة.",
 		"steps": {
 			"provision": {
 				"title": "توفير مورد Azure AI Translator",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "أضف سير العمل",
-				"body": "إنشاء .github/workflows/translate.yml:"
+				"body": "أنشئ {workflowPath}:"
 			},
 			"resource": {
 				"title": "التزام ملف مورد المصدر",
-				"body": "تستخدم ملفات الموارد الاسم. <sourceLocale>. <ext> المؤتمر. على سبيل المثال، Greetings.en.resx يتحول إلى Greetings.fr.resx، ثم Greetings.de.resx، وهكذا بعد التشغيل."
+				"body": "تستخدم ملفات الموارد اتفاقية {namingConvention}. على سبيل المثال، {sourceFile} يصبح {frFile} و {deFile} وهكذا بعد الجري."
 			},
 			"output": {
 				"title": "فحص المخرجات",
-				"body": "بمجرد انتهاء سير العمل، يعرض الإجراء ثلاثة مخرجات يمكنك تحويلها إلى وصف علاقات عامة: عنوان الملخص، الملخص التفاصيل، والترجمات الجديدة (has-new-translates). كما يكتب ملخص ماركداون في صفحة الوظيفة عبر core.summary."
+				"body": "بمجرد انتهاء سير العمل، يكشف الإجراء عن ثلاثة مخرجات يمكنك دمجها في وصف العلاقات العامة: {summaryTitle}، {summaryDetails}، و {hasNewTranslations}. كما يكتب ملخص ماركداون في صفحة الوظيفة عبر {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "الخطوات التالية",
-			"configuration": "قم بتكوين الإعدادات الافتراضية على مستوى المستودع باستخدام .github/resource-translator.yml.",
+			"configuration": "قم بتكوين الإعدادات الافتراضية على مستوى المستودع باستخدام {configPath}.",
 			"recipes": "راجع وصفات المونوريبوس، والقواميس المخصصة، وفئات المترجمين المخصصين."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "التكوين",
 		"eyebrow": "YAML",
 		"heroTitle": "تكوين المستودع",
-		"lede": "Express يوضع الافتراضية مرة واحدة في .github/resource-translator.yml ويسمح لكل سير عمل بوراثتها. دائما ما تكون مدخلات الفعل تفوز عندما يتم توفير كلاهما."
+		"lede": "يقوم Express بالإعدادات الافتراضية مرة واحدة في ملف إعدادات المستودع ويسمح لكل سير عمل بوراثتها. دائما ما تكون مدخلات الفعل تفوز عندما يتم توفير كلاهما.",
+		"intro": "تجاوز المسار باستخدام مدخل {configPath} إذا كنت بحاجة إلى موقع غير افتراضي.",
+		"schemaHeading": "المخطط",
+		"fieldReference": {
+			"heading": "مرجع الحقل",
+			"caption": "مرجع حقل التكوين",
+			"columns": {
+				"field": "الميدان",
+				"type": "النوع",
+				"notes": "ملاحظات"
+			},
+			"fields": {
+				"sourceLocale": "يعود إلى مدخل {sourceLocale} إذا لم يكن مضبوطا. وأيضا تم تحويلها إلى المترجم {fromLocale} حتى لا يتم اكتشاف السلاسل القصيرة تلقائيا.",
+				"toLocales": "إما مصفوفة أو سلسلة مفصولة بفاصل.",
+				"includeExclude": "يتم تقييم أنماط الكروب مقابل المسارات المطلقة والمسارات النسبية لمساحة العمل.",
+				"glossary": "تجاوز المصطلحات بعد الترجمة. واعية بحدود الكلمة (تتعامل مع {cpp}، {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} فئة — مقبض الصناعة/المجال (القانوني، الطبي، التسويق، إلخ). تم إرسالها {categoryQuery}.",
+				"textType": "الافتراضي على {plain}. استخدم {html} فقط إذا كانت قيم الموارد تحتوي على شظايا HTML حقيقية.",
+				"profanityAction": "كيفية التعامل مع المصطلحات البذيئة في المخرجات المترجمة.",
+				"profanityMarker": "لا معنى له إلا عندما يكون {profanityAction} {marked}.",
+				"allowFallback": "قم بتعيين {false} لفشل الترجمة عندما لا يكون لدى {categoryId} نشر لموقع هدف بدلا من العودة إلى النموذج العام.",
+				"apiVersion": "نسخة API المترجمة REST. الافتراضي على {version}.",
+				"maxRetries": "أقصى محاولات إعادة المحاولة على ردود HTTP المؤقتة ({statusCodes}). الافتراضية {defaultRetries}. إجمالي استدعاءات HTTP لكل طلب هو {totalCalls}.",
+				"retryBackoffMs": "الحد الأقصى (ms) في أي نوم ارتكاف واحد. الافتراضي على {defaultBackoff}. رأس {retryAfter} لأزور يحترم بالضبط عند وجوده؛ وإلا يستخدم ارتداد أسي متقطع، مع حد أقصى لهذه القيمة.",
+				"protectPlaceholders": "الافتراضي على {true}. عند تشغيلها، يتم استبدال رموز مثل {mustache} و {jsVar} و {indexZero} و {numberFormat} و {printf} و {positionalPrintf} وHTML برموز سنتينل قبل الترجمة وتستعاد بعد ذلك. قم بتعطيله فقط عندما يحتوي المصدر عمدا على حروف مؤقتة.",
+				"customPlaceholderPatterns": "تمت إضافة أنماط regex إضافية (بدون فاصلات) إلى مجموعة الرموز المؤقتة الافتراضية، مثل {angleToken} لصياغة الرموز المخصصة. يتم تجاهل القواعد غير الصالحة.",
+				"noTranslatePatterns": "أنماط الغلوب تطابق مع مفاتيح على مستوى المحلل (مسار JSON المنقط، {resxName} RESX، {poMsgid} PO، وحدة XLIFF {xliffId}، مفتاح INI/restext). يتم حذف المفاتيح المطابقة من الطلب وتمريرها مع الحفاظ على قيمة المصدر."
+			}
+		},
+		"loadingOrder": {
+			"heading": "ترتيب التحميل",
+			"steps": {
+				"actionInputs": "يقرأ الإجراء مدخلات صريحة من سير العمل.",
+				"config": "يقوم بتحميل إعدادات YAML من {configPath}.",
+				"precedence": "لكل حقل مشترك، يفوز المدخل؛ وإلا يتم استخدام قيمة YAML.",
+				"validation": "يتم التحقق من صحة القيم المدمجة. العدد غير الصحيح (مثل {invalidEnum}) يسبب فشل الفعل بسرعة مع وجود رسالة واضحة."
+			}
+		},
+		"tone": {
+			"heading": "النبرة والصناعة، بعبارات بسيطة",
+			"body": "واجهة برمجة تطبيقات Azure AI Translator v3 لا تحتوي على مقبض نغمة واحد. يجمع إعدادان ليمنحوك معظم عناصر التحكم نفسها:",
+			"industryLabel": "الصناعة / المجال:",
+			"industryBody": "استخدم {categoryId} للإشارة إلى فئة Azure {customTranslatorLink} المدربة على مجموعتك الخاصة — سواء القانونية أو التقنية أو الطبية أو التسويق أو أي شيء آخر. هذه هي أقوى رافعة للنبرة، وصوت العلامة التجارية، والمفردات.",
+			"surfaceLabel": "نص سطحي:",
+			"surfaceBody": "استخدم {glossaryLink} لتحديد أسماء العلامات التجارية ومصطلحات المنتجات حرفيا، واستخدم {profanityAction} لإزالة المصطلحات النابية عند استهداف التوطين للجمهور الأصغر سنا.",
+			"glossaryLinkLabel": "القاموس"
+		}
 	},
 	"inputs": {
 		"title": "المدخلات والمخرجات",
 		"eyebrow": "المرجع",
-		"lede": "يتم قبول كل إدخال أيضا في ملف إعدادات المستودع الاختياري. عندما يتم تعيين كلاهما، يفوز إدخال الفعل."
+		"lede": "يتم قبول كل إدخال أيضا في ملف إعدادات المستودع الاختياري. عندما يتم تعيين كلاهما، يفوز إدخال الفعل.",
+		"configurationIntro": "انظر {configurationLink} لمخطط YAML وترتيب التحميل.",
+		"configurationLinkLabel": "التكوين",
+		"columns": {
+			"name": "الاسم",
+			"default": "الافتراضي",
+			"description": "الوصف"
+		},
+		"defaults": {
+			"none": "لا شيء",
+			"allSupported": "جميعها مدعومة",
+			"translatorDefaultTrue": "true (النسخة الافتراضية من المترجم)"
+		},
+		"requiredInputs": {
+			"heading": "المدخلات المطلوبة",
+			"caption": "المدخلات المطلوبة",
+			"items": {
+				"sourceLocale": "الموقع المصدر (مثل {en}) المستخدم للعثور على ملفات الموارد مثل {sourceGlob}. كما تم تحويلها إلى المترجم بعنوان {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator subscription key. المرور عبر {secrets}.",
+				"endpoint": "رابط نقطة نهاية المترجم، مثل {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "المدخلات الاختيارية الشائعة",
+			"caption": "المدخلات الاختيارية الشائعة",
+			"items": {
+				"region": "منطقة موارد المترجم (حذف الموارد العالمية).",
+				"toLocales": "أماكن للترجمة إليها. يقبل مصفوفة JSON ({jsonArray}) أو قيم مفصولة بالفاصلة.",
+				"include": "أنماط الكرات المفصولة بخطوط جديدة؛ فقط الملفات المطابقة تترجم.",
+				"exclude": "أنماط الكرات المفصولة بخطوط جديدة؛ يتم تخطي ملفات المطابقة (يتم تطبيقها بعد التضمين).",
+				"configPath": "المسار إلى ملف إعدادات YAML (بالنسبة لجذر مساحة العمل).",
+				"dryRun": "عند {true}، قم بتشغيل الترجمات وإرسال الملخصات ولكن لا تكتب ملفات.",
+				"failOnError": "عند {true}، تفشل الأخطاء غير المتوقعة في تنفيذ الإجراء؛ عندما {false}، الأخطاء هي تحذيرات."
+			}
+		},
+		"translatorInputs": {
+			"heading": "مدخلات طلبات المترجم",
+			"intro": "هذه الروابط تتوافق مباشرة مع معلمات استعلام Azure AI Translator v3. كل واحدة اختيارية؛ تطبق إعدادات المترجم الافتراضية عند عدم التعيين.",
+			"caption": "مدخلات طلبات المترجم",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} فئة — مقبض الصناعة/المجال/النغمة. تم تحويلها إلى {categoryQuery}.",
+				"textType": "{plain} أو {html}. استخدم {html} فقط عندما تكون قيم الموارد عبارة عن شظايا HTML حقيقية.",
+				"profanityAction": "{noAction}، {marked}، أو {deleted}. يتحكم في كيفية إصدار المصطلحات النابية في الترجمات.",
+				"profanityMarker": "{asterisk} أو {tag}. لا معنى إلا عندما يكون {profanityAction} {marked}.",
+				"allowFallback": "عند {false}، يعيد المترجم خطأ بدلا من العودة إلى النظام العام إذا لم يكن لدى {categoryId} نشر لموقع مستهدف.",
+				"apiVersion": "نسخة API المترجمة REST."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "المرونة وحماية العارض",
+			"intro": "هذه المدخلات تتحكم في كيفية تصرف الإجراء عندما يقوم المترجم بإبطاء طلبك وكيف يحمي الرموز المؤقتة مثل {mustache} أو {indexZero} من التشويه أثناء الترجمة.",
+			"caption": "مدخلات الحماية المؤقتة للمرونة والحماية المؤقتة",
+			"items": {
+				"maxRetries": "أقصى محاولات إعادة المحاولة على ردود HTTP المؤقتة ({statusCodes}). إجمالي عدد مكالمات HTTP لكل طلب هو {totalCalls}.",
+				"retryBackoffMs": "الحد الأقصى (بالمللي ثانية) في أي سكون ارتكاز واحد. تتماشى الحركة مع رأس الرد {retryAfter} لأزور عند وجوده بالضبط؛ وإلا فهو يستخدم ارتداد أسي متقطعا بأقصى لهذه القيمة.",
+				"protectPlaceholders": "عند {true} (افتراضي)، يتم استبدال كيانات البدلاء مثل {mustache}، {jsVar}، {indexZero}، {numberFormat}، {printf}، {positionalPrintf} وHTML برموز الحراس قبل الترجمة وتستعاد بعد ذلك. قم بتعطيله فقط عندما يحتوي المصدر عمدا على نص حرفي على شكل مكان مؤقت يجب ترجمته.",
+				"customPlaceholderPatterns": "تمت إضافة regexes منفصلة بخطوط جديدة (بدون محددات) إلى مجموعة الرموز المؤقتة الافتراضية، مثل {angleToken} لبناء جملة الرموز المخصصة.",
+				"noTranslatePatterns": "أنماط الكرات المفصولة بخطوط جديدة كانت تتطابق مع مفاتيح مستوى المحلل (JSON منقط المسار (JSON، {resxName} RESX، PO {poMsgid}، وحدة XLIFF {xliffId}، مفتاح INI/restext). يتم حذف مفاتيح المطابقة من طلب المترجم وتمريرها مع الحفاظ على قيمة المصدر."
+			}
+		},
+		"outputs": {
+			"heading": "المخرجات",
+			"caption": "المخرجات",
+			"items": {
+				"summaryTitle": "ملخص قصير مناسب لعناوين العلاقات العامة، مثل {summaryExample}.",
+				"summaryDetails": "ملخص ماركداون مناسب لجهة العلاقات العامة أو ملخص الوظيفة.",
+				"hasNewTranslations": "{trueString} عندما يتم توليد ترجمة أو أكثر جديدة."
+			}
+		}
 	},
 	"formats": {
 		"title": "تنسيقات الملفات",
 		"eyebrow": "المرجع",
 		"heroTitle": "تنسيقات الملفات المدعومة",
-		"lede": "ستة صيغ موارد قابلة للذهاب. يقرأ الإجراء كل ملف مصدر-محل، ويترجم القيم، ويكتب شقيقا لكل موقع مستهدف."
+		"lede": "ستة صيغ موارد قابلة للذهاب. يقرأ الإجراء كل ملف مصدر-محل، ويترجم القيم، ويكتب شقيقا لكل موقع مستهدف.",
+		"namingConvention": "جميع الملفات تستخدم نظام تسمية {namingConvention}.",
+		"learnMore": "تعرف على المزيد",
+		"items": {
+			"resx": {
+				"blurb": "ملفات موارد .NET المبنية على XML. يترجم النص الداخلي لكل عقدة {dataValue}، مع الحفاظ على التعليقات والبيانات الوصفية.",
+				"specLabel": "Microsoft Learn — الموارد في ملفات .resx"
+			},
+			"xliff": {
+				"blurb": "وثائق OASIS XLIFF 2.0. يترجم كل {source} ويكتب النتيجة في {target} المقابل، مع تعيين {trgLang} للموقع.",
+				"specLabel": "مواصفة OASIS XLIFF 2.0"
+			},
+			"po": {
+				"blurb": "ملفات GNU gettext Portable Object. يترجم كل {msgid} / {msgidPlural} إلى أشكال {msgstr} / {msgstrPlural}.",
+				"specLabel": "GNU gettext — صيغة ملف PO"
+			},
+			"json": {
+				"blurb": "ملفات JSON عشوائية. يتم تسطيح الكائنات المتداخلة باستخدام محدد {delimiter} للترجمة، ثم تعاد تداخلها عند الإخراج. المفاتيح المنقطة ({dottedKey}) محفوظة حرفيا.",
+				"specLabel": "مواصفة JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "ملفات {keyValue} بسيطة (مثل ويندوز 32 INI أو أي إعداد مسطح). رؤوس الأقسام والتعليقات محفوظة.",
+				"specLabel": "تنسيق ملف INI على ويكيبيديا"
+			},
+			"restext": {
+				"blurb": "موارد نص Microsoft MUI — أزواج {keyValue} مسطحة تستخدم كرفيق نصي {resx}.",
+				"specLabel": "نظرة عامة على مايكروسوفت MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "ضمانات الرحلات ذهابا وإيابا",
+			"body": "تتحقق مجموعة الاختبار من الانتقال ذهابا وإيابا بين البايت للتركيبات التمثيلية لكل صيغ. إذا كانت هناك مشكلة في التنسيق تعطلت الدوران في قاعدة الكود الخاصة بك، يرجى {issueLink} بعينة بسيطة.",
+			"issueLinkLabel": "افتح عددا"
+		}
 	},
 	"recipes": {
 		"title": "الوصفات",
 		"eyebrow": "كتاب الطبخ",
-		"lede": "أنماط شائعة لترجمات الشحن: مونوربو، القواميس، الفئات المخصصة، التجارب الجافة، والتحكم في النغمة."
+		"lede": "أنماط شائعة لترجمات الشحن: مونوربو، القواميس، الفئات المخصصة، التجارب الجافة، والتحكم في النغمة.",
+		"sections": {
+			"pullRequest": {
+				"heading": "افتح طلب سحب بعد كل محاولة"
+			},
+			"monorepo": {
+				"heading": "Monorepos: ترجمة النطاق لكل حزمة"
+			},
+			"glossary": {
+				"heading": "مسرد لأسماء العلامات التجارية ومصطلحات المنتجات",
+				"intro": "ضع {configPath} في المستودع:",
+				"afterLabel": "بعد ذلك",
+				"body": "تستخدم مصطلحات المعجم {after} الترجمة، لذا يحافظ الناتج المترجم آليا على علامتك التجارية المفضلة حتى عندما استبدلها النموذج بمرادف."
+			},
+			"customCategory": {
+				"heading": "فئة المترجم المخصص (الصناعة / المجال)",
+				"body": "درب فئة Azure {customTranslatorLink} على مجموعة تعكس مفرداتك ونبرتك في الصناعة (القانونية، الطبية، التسويقية، الهندسة الداخلية، إلخ) واجتاز معرفها عبر {categoryId}. هذه أقوى رافعة نغمة تقدمها Azure."
+			},
+			"tone": {
+				"heading": "التحكم في النغمة + خطة بدائية صارمة",
+				"body": "اجمع بين {categoryId} المترجم المخصص مع {profanityAction} و {allowFallbackFalse} لفرض صوت متسق وتفشل سير العمل إذا لم يكن لدى الفئة المختارة نشر لأحد المواقع المستهدفة."
+			},
+			"dryRun": {
+				"heading": "قم بتجربة تجريبية قبل تفعيل سير العمل",
+				"body": "لا تزال الفعل تصدر ملخصات وملخص خطوات، لكن لا يتم كتابة أي ملفات. اجمع بين {failOnErrorFalse} لإظهار كل مشكلة كتحذير أثناء التكرار."
+			}
+		}
 	},
 	"faq": {
 		"title": "الأسئلة الشائعة",
 		"eyebrow": "المساعدة",
 		"heroTitle": "الأسئلة الشائعة",
-		"lede": "إجابات سريعة على الأسئلة التي تظهر غالبا عند تبني هذا الفعل."
+		"lede": "إجابات سريعة على الأسئلة التي تظهر غالبا عند تبني هذا الفعل.",
+		"questions": {
+			"azure": {
+				"heading": "كيف تتحدث الأحداث مع أزور؟",
+				"body": "من خلال حزمة تطوير البرمجيات الرسمية لمايكروسوفت {azureSdkLink}، المضيفة على {corePipelineLink}. هذا يمنحك إعادة محاولات تلقائية على {statusCodes}، ونماذج الطلبات والرد المكتوبة، والتعامل مع رؤوس المصادقة مجانا — كل ما كان في السابق مكالمة {axios} يدويا. سطح الفعل العام (المدخلات، المخرجات، مخرجات الملفات) لم يتغير."
+			},
+			"tone": {
+				"heading": "لماذا تكون الترجمات أحيانا غير معتادة أو غير متناسقة؟",
+				"body": "الترجمة الآلية تميل بشكل افتراضي إلى نموذج عام. ثلاثة أزرار تساعد: {glossaryLink} لتجاوز الكلمات الصارمة، {customTranslatorLink} للنماذج المعدلة الدقيقة المدربة على نبرتك ومفرداتك، و {profanityAction} لمسح أو الإشارة إلى المصطلحات النابية.",
+				"glossaryLinkLabel": "القاموس",
+				"customTranslatorLinkLabel": "فئة المترجم المخصص"
+			},
+			"duplicateFiles": {
+				"heading": "كيف أتجنب ترجمة نفس الملف مرتين؟",
+				"body": "شغل سير العمل على {paths} التي تطابق فقط ملفات المصدر المحلي الخاصة بك، مثل {sourceGlob}. يتضمن الإجراء أيضا فلتر ملف لكل محفز خاص به عند تعيين {githubToken}، مما يضيق العمل إلى الملفات في أحدث التزام."
+			},
+			"offline": {
+				"heading": "هل يمكنني تشغيل الأكشن دون اتصال؟",
+				"body": "ليس بالضبط — Azure AI Translator هو الدماغ الأساسي. لكن يمكنك تشغيل {dryRunTrue} للتحقق من التحليل والتكوين دون الحاجة إلى طلب HTTP للترجمة."
+			},
+			"node": {
+				"heading": "على أي نسخة من العقدة يتم تشغيل الفعل؟",
+				"body": "يعمل v3 على GitHub Actions {nodeRuntime} وقت التشغيل. جافا سكريبت المرفق متوافق مع العقدة 20 و22 و24، وهي ما تختبره CI."
+			},
+			"dist": {
+				"heading": "من أين تأتي {distDir} المجمعة؟",
+				"body": "إجراءات GitHub في جافاسكريپت ترسل النسخة المجمعة الخاصة بها في المستودع. يعيد سير العمل {distBuild} بنائها بعد كل دمج لتحديد {mainBranch} إذا كان سينجرف، {distCheck} يمنع العلاقات العامة التي قد تصل إلى مخرجات قديمة."
+			},
+			"formats": {
+				"heading": "ماذا عن صيغ الموارد الأخرى؟",
+				"body": "اليوم: {resx}، {xliff}، {po}، {json}، {ini}، {restext}. {issueLink} إذا كنت بحاجة إلى آخر — واجهة المحلل صغيرة (تحليل → الخريطة → تطبيق الترجمات → التنسيق) والمساهمات مرحب بها.",
+				"issueLinkLabel": "افتح عددا"
+			}
+		}
 	},
 	"translations": {
 		"title": "الترجمات",
 		"eyebrow": "العرض",
 		"heroTitle": "مرحبا بكل اللغات",
-		"locales": "المواقع",
-		"currentlyRendered": "يتم العرض حاليا",
-		"complete": "أكمل!",
-		"pendingPrefix": "بانتظار النسخة القادمة من وثائق الترجمة.",
+		"lede": "تمت ترجمة هذه الصفحة بواسطة مترجم الموارد نفسه، في كل محاولة للاستخدام الرئيسي، إلى كل لغة يدعمها Azure AI Translator.",
+		"localeCountLabel": "{count} المواقع",
+		"statusComplete": "{translatedCount} حاليا — مكتمل!",
+		"statusPending": "{translatedCount} حاليا — {pendingCount} بانتظار {workflowName} المرة القادمة.",
 		"viewWorkflowRuns": "عرض تشغيل سير العمل",
 		"filter": "الفلتر",
 		"filterPlaceholder": "ابحث حسب اللغة، الرمز، أو الاسم الأصلي...",
 		"source": "المصدر",
 		"machineTranslations": "الترجمات الآلية",
-		"translationPending": "الترجمة معلقة — افتح تشغيل مستندات الترجمة.",
+		"translationPending": "الترجمة معلقة — افتح {workflowName} التشغيل.",
 		"noLocales": "لا توجد مواقع تطابق هذا الفلتر.",
-		"howItWorks": "كيف يعمل هذا"
+		"howItWorks": {
+			"heading": "كيف يعمل هذا",
+			"thisActionLabel": "هذا الفعل بالذات",
+			"steps": {
+				"source": "ملف المصدر الإنجليزي موجود في {messagesPath}.",
+				"workflow": "يدفع تلك اللمسة ويطلق {workflowLink}، الذي يركض {thisAction} على نفسه.",
+				"fanOut": "تمتد الحركة إلى كل موقع مدعوم من Azure AI Translator (مهيأة في {configPath}) وتكتب {messagesLocaleJson} شقيقة لكل هدف.",
+				"pullRequest": "يتم فتح طلب سحب مع الترجمات الجديدة. دمجها يعيد نشر هذه الصفحة مع تعبئة البطاقات."
+			}
+		},
+		"poweredBy": "مدعوم من Resource Translator وAzure AI Translator."
 	},
 	"contributing": {
 		"title": "المساهمات",
 		"eyebrow": "المصدر المفتوح",
-		"lede": "تقارير الأخطاء، وطلبات الميزات، وطلبات السحب كلها مرحب بها. الحدث صغير بما يكفي ليكون ودودا للمساهمين لأول مرة."
+		"lede": "تقارير الأخطاء، وطلبات الميزات، وطلبات السحب كلها مرحب بها. الحدث صغير بما يكفي ليكون ودودا للمساهمين لأول مرة.",
+		"localDevelopment": {
+			"heading": "التنمية المحلية"
+		},
+		"addingParser": {
+			"heading": "إضافة محلل",
+			"steps": {
+				"fixture": "أضف تركيبة تحت {testDataDir}.",
+				"implement": "نفذ {parserInterface} ({parse}، {format}، {applyTranslations}، {toTranslatableTextMap}).",
+				"register": "سجله في {factoryFile}.",
+				"extension": "أضف امتداد الملف إلى {translationFileSchemes} في {finderFile}.",
+				"tests": "اكتب اختبارات ذهابا وإيابا لتنسيق تحليل → وتطبيق الترجمات."
+			}
+		},
+		"coverage": {
+			"heading": "حدود التغطية",
+			"body": "إعدادات Jest تفرض الحد الأدنى من التغطية. يجب أن يحافظ الكود الجديد على عتبة العبارات + الأسطر فوق 78٪ والوظائف فوق 90٪. أضف التركيبات والاختبارات مع الباقي الخاص بك."
+		},
+		"docsSite": {
+			"heading": "موقع التوثيق",
+			"body": "المجلد {docsDir} هو مشروع Astro 6 + Tailwind v4. شغل {npmInstall} هناك مرة واحدة، ثم {npmRunDev} للمعاينة المحلية. سير العمل {pagesWorkflow} يرسل المستندات إلى صفحات GitHub في كل عملية دمج."
+		}
 	},
 	"changelog": {
 		"title": "سجل التغييرات",
 		"eyebrow": "التاريخ",
-		"lede": "ملخص عالي المستوى للإصدارات. سجل التغيير الرسمي والموثوق يعيش في CHANGELOG.md في المستودع."
+		"lede": "ملخص عالي المستوى للإصدارات. سجل التغيير الرسمي والموثوق يعيش في CHANGELOG.md في المستودع.",
+		"fullRecord": "انظر {changelogLink} للسجل الكامل.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "V3 (قيد التطوير)",
+			"labels": {
+				"breaking": "التوقف",
+				"resilience": "المرونة:",
+				"placeholderProtection": "حماية مؤقتة:",
+				"perKeyOptOut": "خيار الخروج لكل مفتاح:",
+				"docsAccessibility": "سهولة الوصول إلى الوثائق:",
+				"inlineCodeStyling": "تنسيق الشيفرة الداخلية:"
+			},
+			"issueLabels": {
+				"closes46": "إغلاق #46.",
+				"tightens16": "الشدد #16.",
+				"closes35": "إغلاق الرقم #35."
+			},
+			"items": {
+				"runtime": "تم ترقيتها إلى مدة {nodeRuntime} ({breaking}).",
+				"newInputs": "المدخلات الجديدة: {include}، {exclude}، {configPath}، {categoryId}، {apiVersion}، {dryRun}، {failOnError}، بالإضافة إلى مقابض المترجم المتقدمة {textType}، {profanityAction}، {profanityMarker}، و {allowFallback}.",
+				"sourceLocale": "الموقع المصدر الآن يرسل أيضا إلى المترجم {fromLocale} بحيث لا يتم اكتشاف السلاسل القصيرة تلقائيا.",
+				"resilience": "{label} إعادة المحاولة التلقائية على ردود HTTP المؤقتة ({statusCodes}) التي تحترم رأس Azure {retryAfter} — تعود إلى ارتداد أسي متقطع عند الغياب. يمكن الاعتماد عليها عبر {maxRetries} {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} رموز مثل {mustache}، {jsVar}، {indexZero}، {numberFormat}، {printf}، {positionalPrintf} وHTML تلف في حراس قبل الترجمة ويتم استعادتها لاحقا، لذا يتوقف المترجم عن تشويه عناصر i18next/Mustache/Handlebars/.NET/printf. التبديل عبر {protectPlaceholders}؛ تمد مع {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} إدخال {noTranslatePatterns} الجديد يسقط مفاتيح مطابقة من طلب المترجم بالكامل (يحافظ على قيم المصدر لأسماء العلامات التجارية ورموز الأخطاء وغيرها). تطابق أنماط ال glob مع مفاتيح مستوى المحلل (مسار JSON المنقط، RESX {resxName}، PO {poMsgid}، وحدة XLIFF {xliffId}، مفتاح INI/restext). {issue}",
+				"repoConfig": "إعداد مستوى المستودع عبر {configPath}.",
+				"glossary": "دعم القامود، ملخص الخطوات عبر {coreSummary}.",
+				"tooling": "esbuild bundler، ESLint 9 flat config، Prettier، EditorConfig.",
+				"audit": "تدقيق NPM نظيف (0 ثغرات).",
+				"docsSite": "موقع وثائق Astro + Tailwind v4 مع انتقالات العرض وكود تعبيري.",
+				"docsAccessibility": "{label} WCAG 2.1 AA. تم تحويل رموز الشعار إلى مسارات بحيث لا تعود تفشل في تباين الألوان مع نقاط التدرج، وزر {backToTop} العائم يستخدم {inert} أثناء الاختفاء (بدلا من تبديل {ariaHidden} الذي يجعلها قابلة للتبويب)، {formatsAstro} الأقسام لم تعد تتصادم مع معرفات العناوين المولدة تلقائيا، وثلاث بطاقات محلية تكشف الآن عن سمات {lang} صالحة ل BCP-47 ({nya}، {lug}، {run})، وتم تمييز تسميات المكررة {documentation} المعالم بين الشريط الجانبي والتذييل،  وكل جدول بيانات على {inputs}/{configuration} يأتي مع تعليق قارئ الشاشة.",
+				"inlineCode": "{label} النثر الوثائقي {codeElement} الآن يحمل طابع الدافئة والكهرمانية — مميزة عن لوحة العلامة التجارية→لكنة المستخدمة في الروابط والعناوين.",
+				"automation": "دمج Dependabot تلقائيا، مسح CodeQL، مصفوفة CI."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "راجع تاريخ git."
+		}
 	}
 }

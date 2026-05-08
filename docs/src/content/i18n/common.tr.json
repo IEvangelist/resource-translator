@@ -15,7 +15,13 @@
 		"searchPlaceholder": "Arama belgeleri...",
 		"toggleTheme": "Tema değiştirme",
 		"githubRepository": "GitHub repository",
-		"language": "Dil"
+		"language": "Dil",
+		"languageTitle": "Dilinizi seçin",
+		"languageDescription": "Aynı sayfaya başka bir dilde geçin.",
+		"languageSearch": "Filtre dilleri",
+		"languageSearchPlaceholder": "Arama dilleri veya yerel kodlar...",
+		"languageNoResults": "Hiçbir dil bu filtreyle eşleşmez.",
+		"closeLanguage": "Dil seçici kapatıcı"
 	},
 	"search": {
 		"title": "Arama dokümantasyonu",

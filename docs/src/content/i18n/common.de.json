@@ -15,7 +15,13 @@
 		"searchPlaceholder": "Durchsuchungsdokumentation...",
 		"toggleTheme": "Thema umschalten",
 		"githubRepository": "GitHub-Repository",
-		"language": "Sprache"
+		"language": "Sprache",
+		"languageTitle": "Wähle deine Sprache",
+		"languageDescription": "Wechsle auf dieselbe Seite in einer anderen Sprache.",
+		"languageSearch": "Filtersprachen",
+		"languageSearchPlaceholder": "Suchsprachen oder Standortcodes...",
+		"languageNoResults": "Keine Sprache passt zu diesem Filter.",
+		"closeLanguage": "Close Language Picker"
 	},
 	"search": {
 		"title": "Suchdokumentation",

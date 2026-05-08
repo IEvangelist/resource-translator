@@ -18,18 +18,26 @@
 			"node": "Ebe E Si Agbanwe Agbanwe / 20 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "Nweta Ederede",
+			"json": "Ewepụghị ma ọ bụ dị larịị",
+			"ini": "{keyValue}",
+			"restext": "Ederede MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Isii faịlụ formats",
-				"body": "Round-njem .resx, .xliff, .po, .json, .ini, na .restext na octe-stable formatting."
+				"body": "Round-njem {resx}, {xliff}, {po}, {json}, {ini}, na {restext} na byte-stable formatting."
 			},
 			"config": {
 				"title": "Repo-larịị config",
-				"body": "Dobe .github / resource-translator.yml maka gụnyere globs, glossaries, na Custom Translator edemede."
+				"body": "Dobe faịlụ {configPath} maka gụnyere globs, glossaries, na Custom Translator edemede."
 			},
 			"glossary": {
 				"title": "Glossary-maara",
-				"body": "Mechie aha aha na okwu ngwaahịa na smart okwu-ókè regex nke na-ejikwa C ++, .NET, na ndị enyi."
+				"body": "Mechie aha aha na okwu ngwaahịa na smart okwu-ókè regex nke na-ejikwa {cpp}, {dotnet}, na ndị enyi."
 			},
 			"dryRun": {
 				"title": "Akọrọ-na-agba ọsọ + soft-ọdịda",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR-enyi na enyi mmepụta",
-				"body": "summary-title, summary-details, and has-new-translations slot directly into create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails}, na {hasNewTranslations} oghere ozugbo n'ime create-pull-arịrịọ."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "Wuru na @azure-rest / ai-translation-text + @azure / core-rest-pipeline — akpaka retries na 408/429/5xx, ọ dịghị aka-akpọrepu HTTP. esbuild-bundled, audit-clean."
+				"body": "Wuru na {azureSdk} + {corePipeline} — akpaka retries na {statusCodes}, ọ dịghị aka-akpọrepu HTTP. {esbuild}-bundled, audit-clean."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Drop-in workflow",
+			"titlePrefix": "Detuo. Mado ya.",
+			"titleAccent": "Tụgharịa.",
+			"body": "Ihe nzuzo atọ, ahịrị anọ, na repo gị na-asụ ọtụtụ asụsụ na nkwalite na-esote.",
+			"setupLink": "Na-agafe usoro zuru ezu nke usoro ihe omume ahụ."
+		},
+		"cta": {
+			"title": "Njikere ịbanye na autopilot?",
+			"body": "Otu igodo Azure AI Translator, otu faịlụ arụmọrụ. Onye ntụgharị ihe na-eme ka ndị ọzọ na-eme ihe ndị ọzọ.",
+			"button": "Bido"
 		}
 	},
 	"getting-started": {
 		"title": "Ịmalite",
 		"eyebrow": "Ntọala",
-		"lede": "Tinye faịlụ arụmọrụ, tụọ ya na nzere Azure AI Translator gị, na ihe ahụ — nke e wuru na SDK gọọmentị Microsoft @azure-rest / ai-translation-text — ga-enyocha repo maka faịlụ akụ asụsụ isi mmalite ma wepụta ụmụnne ndị a sụgharịrị sụgharịrị.",
+		"lede": "Tinye faịlụ arụmọrụ, tụọ ya na nzere Azure AI Translator gị, ihe ahụ ga-enyocha repo maka faịlụ akụ asụsụ isi mmalite ma wepụta ụmụnne ndị a sụgharịrị sụgharịrị.",
 		"steps": {
 			"provision": {
 				"title": "Inye ihe Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Tinye workflow",
-				"body": "Mepụta .github/workflows/translate.yml:"
+				"body": "Mepụta {workflowPath}:"
 			},
 			"resource": {
 				"title": "Tinye faịlụ isi iyi",
-				"body": "Ngwaọrụ ndị a na-eji aha ahụ eme ihe. <sourceLocale>. <ext> mgbakọ. Dịka ọmụmaatụ Greetings.en.resx na-aghọ Greetings.fr.resx, Greetings.de.resx, na ihe ndị ọzọ mgbe ọ na-agba ọsọ."
+				"body": "Ndị na-ede blọgụ na-eji nkwekọrịta {namingConvention}. Dịka ọmụmaatụ, {sourceFile} na-aghọ {frFile}, {deFile}, na ihe ndị ọzọ mgbe ị na-agba ọsọ."
 			},
 			"output": {
 				"title": "Nyochaa mmepụta",
-				"body": "Ozugbo arụmọrụ ahụ gwụchara, ihe ahụ na-ekpughe nsonaazụ atọ ị nwere ike ịbanye na nkọwa PR: nchịkọta-aha, nchịkọta-nkọwa, na nsụgharị ọhụrụ. Ọ na-edekwa nchịkọta Markdown n'ime ibe ọrụ site na core.summary."
+				"body": "Ozugbo arụmọrụ ahụ gwụchara, ihe ahụ na-ekpughe ihe atọ ị nwere ike ịbanye na nkọwa PR: {summaryTitle}, {summaryDetails}, na {hasNewTranslations}. Ọ na-edekwa nchịkọta Markdown n'ime peeji nke ọrụ site na {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Nzọụkwụ ndị ọzọ",
-			"configuration": "Hazie ndabara ọkwa repo na .github/resource-translator.yml.",
+			"configuration": "Rụnyụọ ọdịda repo-level ya na {configPath}.",
 			"recipes": "Lee ntụziaka maka monorepos, omenala glossaries, na Omenala Translator edemede."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Nhazi",
 		"eyebrow": "YAML",
 		"heroTitle": "Nhazi ebe nchekwa",
-		"lede": "Gosipụta ndabara otu ugboro na .github/resource-translator.yml ma kwe ka ọrụ ọ bụla keta ha. Action inputs mgbe niile na-emeri mgbe ha abụọ."
+		"lede": "Gosipụta ndabara otu ugboro na faịlụ nhazi ebe nchekwa ma kwe ka ọrụ ọ bụla keta ha. Action inputs mgbe niile na-emeri mgbe ha abụọ.",
+		"intro": "Gbanyụọ ụzọ ahụ site na ntinye {configPath} ma ọ bụrụ na ịchọrọ ebe na-abụghị ndabara.",
+		"schemaHeading": "Schema",
+		"fieldReference": {
+			"heading": "Ntụaka ubi",
+			"caption": "Nhazi ubi na-ezo aka",
+			"columns": {
+				"field": "Ubi",
+				"type": "Ụdị",
+				"notes": "Ihe edeturu"
+			},
+			"fields": {
+				"sourceLocale": "Ọ ga-alaghachi na ntinye {sourceLocale} ma ọ bụrụ na edozibeghị. A na-eziga ya na onye ntụgharị {fromLocale} ka eriri dị mkpirikpi anaghị akpaghị aka.",
+				"toLocales": "Ma ọ bụ otu n'ime ihe ndị a na-eme ka ọ bụrụ na ị",
+				"includeExclude": "Usoro Glob na-enyocha megide ụzọ zuru oke na ebe ọrụ.",
+				"glossary": "Post-translation okwu overrides. Okwu-ókè maara (njikwa {cpp}, {dotnet}).",
+				"categoryId": "Ụdị {customTranslatorLink} Azure — ụlọ ọrụ gị / ngalaba gị (iwu, ọgwụ, ụda ahịa, wdg). Zitere ya dị ka {categoryQuery}.",
+				"textType": "Ọdịda na {plain}. Jiri {html} naanị ma ọ bụrụ na ụkpụrụ akụ gị nwere ezigbo iberibe HTML.",
+				"profanityAction": "Olee otú iji tọghata MOV ka iTunes ndabere faịlụ?",
+				"profanityMarker": "Naanị ihe bara uru ma ọ bụrụ na {profanityAction} {marked}.",
+				"allowFallback": "Setịpụrụ ka {false} ka ọ daa nsụgharị ahụ mgbe {categoryId} gị enweghị ntinye maka mpaghara ezubere iche kama ịlaghachi na ihe nlereanya izugbe.",
+				"apiVersion": "Translator REST API version. Ọdịda na {version}.",
+				"maxRetries": "Kacha nnwale nnwale na nzaghachi HTTP na-adịgide adịgide ({statusCodes}). Ada ada ada {defaultRetries} Ngụkọta nke oku HTTP kwa arịrịọ bụ {totalCalls}.",
+				"retryBackoffMs": "A na-ehi ụra n'elu ikpo okwu ọ bụla na-ehi ụra. Ọdịda na {defaultBackoff}. A na-asọpụrụ nkụnye eji isi mee {retryAfter} Azure kpọmkwem mgbe ọ nọ; ma ọ bụghị ya, a na-eji jittered exponential backoff, capped na uru a.",
+				"protectPlaceholders": "Ọdịda na {true}. Mgbe a na-arụ ọrụ, tokens dị ka {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} na HTML entities na-eji akara ngosi sentinel dochie tupu nsụgharị ma weghachite mgbe e mesịrị. Gbanyụọ naanị mgbe isi mmalite nwere ihe ndị dị n'ụdị placeholder.",
+				"customPlaceholderPatterns": "Usoro regex ndị ọzọ (na-enweghị delimiters) agbakwunyere na setịpụrụ ntọala ndabara, dịka ọmụmaatụ {angleToken} maka syntax akara ngosi omenala. A na-eleghara regexes na-ezighi ezi anya.",
+				"noTranslatePatterns": "Usoro Glob kwekọrọ na igodo ọkwa parser (ụzọ ntụpọ JSON, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext igodo). A na-ewepụ igodo ndị kwekọrọ na arịrịọ ahụ ma gafere na isi mmalite ha echekwara."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Loading iwu",
+			"steps": {
+				"actionInputs": "Ihe omume ahụ na-agụ ntinye doro anya site na arụmọrụ.",
+				"config": "Ọ na-ebu YAML config site na {configPath}.",
+				"precedence": "Maka ubi ọ bụla na-ekerịta, ntinye na-emeri; ma ọ bụghị ya, a na-eji uru YAML.",
+				"validation": "A na-akwado ụkpụrụ ndị a jikọtara. Enums na-ezighi ezi (dịka {invalidEnum}) na-eme ka ihe ahụ daa ngwa ngwa na ozi doro anya."
+			}
+		},
+		"tone": {
+			"heading": "Ụda na ụlọ ọrụ, n'ụzọ doro anya",
+			"body": "Azure AI Translator v3 API enweghị otu ụda ụda Ntọala abụọ na-ejikọta iji nye gị ọtụtụ n'ime otu njikwa ahụ.",
+			"industryLabel": "Ụlọ ọrụ / ngalaba:",
+			"industryBody": "Jiri {categoryId} iji rụtụ aka na ụdị Azure {customTranslatorLink} zụrụ azụ na corpus nke gị — iwu, teknụzụ, ọgwụ, ahịa, ma ọ bụ ihe ọ bụla ọzọ. Nke a bụ ihe kachasị ike maka ụda, olu akara, na okwu.",
+			"surfaceLabel": "Ederede elu:",
+			"surfaceBody": "Jiri {glossaryLink} iji mechie aha aha na okwu ngwaahịa n'okwu okwu, ma jiri {profanityAction} iji kpochapụ okwu rụrụ arụ mgbe ị na-elekwasị anya na mpaghara maka ndị na-eto eto.",
+			"glossaryLinkLabel": "Glossary"
+		}
 	},
 	"inputs": {
 		"title": "Ntinye na mmepụta",
 		"eyebrow": "Ntụaka",
-		"lede": "A na-anabatakwa ntinye ọ bụla na faịlụ repo config. Mgbe a na-edozi ha abụọ, ntinye ihe na-emeri."
+		"lede": "A na-anabatakwa ntinye ọ bụla na faịlụ repo config. Mgbe a na-edozi ha abụọ, ntinye ihe na-emeri.",
+		"configurationIntro": "Lelee {configurationLink} maka usoro YAML na usoro ibudata.",
+		"configurationLinkLabel": "Nhazi",
+		"columns": {
+			"name": "Aha",
+			"default": "Ndabara",
+			"description": "Nkọwa"
+		},
+		"defaults": {
+			"none": "Ọ dịghị onye",
+			"allSupported": "niile na-akwado",
+			"translatorDefaultTrue": "Eziokwu (nsụgharị ndabara)"
+		},
+		"requiredInputs": {
+			"heading": "Ntinye achọrọ",
+			"caption": "Ntinye achọrọ",
+			"items": {
+				"sourceLocale": "Isi mmalite locale (dịka {en}) iji chọta faịlụ akụ dị ka {sourceGlob}. A na-ezigakwa ya na onye ntụgharị dị ka {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator ndenye aha igodo. Gafere site na {secrets}.",
+				"endpoint": "Translator endpoint URL, e.g. {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Common nhọrọ inputs",
+			"caption": "Common nhọrọ inputs",
+			"items": {
+				"region": "Translation resource region (omit for global resources).",
+				"toLocales": "Ebe ndị a ga-asụgharị. Na-anabata usoro JSON ({jsonArray}) ma ọ bụ ụkpụrụ ndị dị iche iche.",
+				"include": "Newline-kewapụrụ glob ụkpụrụ; A na-asụgharị naanị faịlụ ndị kwekọrọ ekwekọ.",
+				"exclude": "Newline-kewapụrụ glob ụkpụrụ; A na-ewepụ faịlụ ndị kwekọrọ na ya (etinyere mgbe etinyechara ya).",
+				"configPath": "Pathzọ zuru ezu na edemede: Gam akporosis \" Ngwa gam akporo \" Ngwa ngwa",
+				"dryRun": "Mgbe {true}, na-agba ọsọ nsụgharị ma wepụta nchịkọta ma ghara ide faịlụ.",
+				"failOnError": "Mgbe {true}, njehie ndị a na-atụghị anya ya na-ada eme; Mgbe {false}, njehie bụ ịdọ aka ná ntị."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Ntinye arịrịọ ntụgharị",
+			"intro": "Ndị a na-ese foto ozugbo na Azure AI Translator v3 ajụjụ parameters. Onye ọ bụla n'ime ha bụ nhọrọ; Ntughari nsụgharị na-emetụta mgbe a na-edozighị ya.",
+			"caption": "Ntinye arịrịọ ntụgharị",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} Atiya — ụlọ ọrụ / ngalaba / ụda knob. Zigara ya dị ka {categoryQuery}.",
+				"textType": "{plain} ma ọ bụ {html}. Jiri {html} naanị mgbe ụkpụrụ akụ gị bụ ezigbo iberibe HTML.",
+				"profanityAction": "{noAction}, {marked} ma ọ bụ {deleted}. Ọ na-achịkwa otú e si ewepụta okwu rụrụ arụ na nsụgharị.",
+				"profanityMarker": "{asterisk} ma ọ bụ {tag}. Naanị ihe bara uru ma ọ bụrụ na {profanityAction} {marked}.",
+				"allowFallback": "Mgbe {false}, Onye ntụgharị na-eweghachi njehie kama ịlaghachi na usoro izugbe ma ọ bụrụ na {categoryId} gị enweghị ntinye maka mpaghara ezubere iche.",
+				"apiVersion": "Translator REST API version."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Resilience & placeholder nchedo",
+			"intro": "Ntinye ndị a na-achịkwa etu ihe ahụ si akpa àgwà mgbe onye ntụgharị okwu na-egbochi arịrịọ gị na otu o si echebe akara ngosi dị ka {mustache} ma ọ bụ {indexZero} ka ọ ghara ịdị na-emebi emebi n'oge ntụgharị.",
+			"caption": "Resilience na placeholder nchedo inputs",
+			"items": {
+				"maxRetries": "Kacha nnwale nnwale na nzaghachi HTTP na-adịgide adịgide ({statusCodes}). Ọnụ ọgụgụ zuru ezu nke oku HTTP kwa arịrịọ bụ {totalCalls}.",
+				"retryBackoffMs": "Cap (na milliseconds) na ihe ọ bụla backoff ụra. Ihe omume ahụ na-asọpụrụ nkụnye eji isi mee nzaghachi {retryAfter} nke Azure kpọmkwem mgbe ọ dị; ma ọ bụghị ya, ọ na-eji jittered exponential backoff capped na uru a.",
+				"protectPlaceholders": "Mgbe {true} (ndabara), ndị na-ejide ebe dị ka {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} na HTML na-eji akara ngosi sentinel tupu nsụgharị ma weghachite ya mgbe e mesịrị. Gbanyụọ naanị mgbe isi mmalite gị kpachaara anya nwere ederede ederede nke a ga-asụgharị.",
+				"customPlaceholderPatterns": "Newline-kewapụrụ regexes (na-enweghị delimiters) kwukwara na ndabara placeholder set, e.g. {angleToken} maka omenala token syntax.",
+				"noTranslatePatterns": "Newline-kewapụrụ glob ụkpụrụ kwekọrọ na parser-larịị igodo (JSON dotted ụzọ, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext igodo). A na-ahapụ igodo ndị kwekọrọ na arịrịọ Ntụgharị ma gafere na uru isi mmalite ha echekwara."
+			}
+		},
+		"outputs": {
+			"heading": "Mmepụta",
+			"caption": "Mmepụta",
+			"items": {
+				"summaryTitle": "Nchịkọta dị mkpirikpi nke PR-aha-enyi na enyi, dịka ọmụmaatụ {summaryExample}.",
+				"summaryDetails": "Markdown summary kwesịrị ekwesị maka ahụ PR ma ọ bụ nchịkọta ọrụ.",
+				"hasNewTranslations": "{trueString} mgbe e mepụtara otu nsụgharị ọhụrụ ma ọ bụ karịa."
+			}
+		}
 	},
 	"formats": {
 		"title": "Ụdị faịlụ",
 		"eyebrow": "Ntụaka",
 		"heroTitle": "Ụdị faịlụ akwadoro",
-		"lede": "Isii gburugburu-trippable akụ formats. Ihe omume ahụ na-agụ faịlụ isi mmalite ọ bụla, sụgharịa ụkpụrụ, ma dee nwanne nwoke kwa mpaghara ezubere iche."
+		"lede": "Isii gburugburu-trippable akụ formats. Ihe omume ahụ na-agụ faịlụ isi mmalite ọ bụla, sụgharịa ụkpụrụ, ma dee nwanne nwoke kwa mpaghara ezubere iche.",
+		"namingConvention": "Faịlụ niile na-eji nkwekọrịta {namingConvention} aha.",
+		"learnMore": "Mụtakwuo",
+		"items": {
+			"resx": {
+				"blurb": "XML dabeere na .NET akụ faịlụ. Sụgharịa ederede dị n'ime nke {dataValue} ọ bụla, na-echekwa okwu na metadata.",
+				"specLabel": "Microsoft Mụta — Akụrụngwa na faịlụ .resx"
+			},
+			"xliff": {
+				"blurb": "Akwụkwọ OASIS XLIFF 2.0. Sụgharịa {source} ọ bụla ma dee nsonaazụ ahụ n'ime {target} kwekọrọ, na-edozi {trgLang} maka mpaghara.",
+				"specLabel": "Nkọwapụta OASIS XLIFF 2.0"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object files. Sụgharịa {msgid} ọ bụla / {msgidPlural} n'ụdị {msgstr} / {msgstrPlural}.",
+				"specLabel": "GNU gettext — PO file format"
+			},
+			"json": {
+				"blurb": "Faịlụ JSON na-enweghị isi. Nested ihe na-ewepụghị na {delimiter} delimiter maka ntụgharị, mgbe ahụ re-nested na mmepụta. A na-echekwa igodo dotted ({dottedKey}) verbatim.",
+				"specLabel": "Nkọwapụta JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Mfe {keyValue} faịlụ (Win32-style INI ma ọ bụ ihe ọ bụla ewepụghị config). A na-echekwa nkụnye eji isi okwu na nkụnye eji eme ihe.",
+				"specLabel": "Usoro faịlụ INI na Wikipedia"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI ederede akụrụngwa — ewepụghị {keyValue} ụzọ abụọ eji dị ka a textual enyi na {resx}.",
+				"specLabel": "Nchịkọta Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Round-njem nkwa",
+			"body": "The ule suite na-enyocha byte-for-byte gburugburu-tripping maka nnọchiteanya fixtures nke ọ bụla format. Ọ bụrụ na a format quirk agbaji gburugburu-tripping na gị codebase, biko {issueLink} na a obere sample.",
+			"issueLinkLabel": "Meghee otu ajụjụ"
+		}
 	},
 	"recipes": {
 		"title": "Ntụziaka",
 		"eyebrow": "Akwụkwọ nri",
-		"lede": "Common nakawa etu esi maka mbupu nsụgharị: monorepos, glossaries, omenala edemede, akọrọ na-agba ọsọ, na ụda akara."
+		"lede": "Common nakawa etu esi maka mbupu nsụgharị: monorepos, glossaries, omenala edemede, akọrọ na-agba ọsọ, na ụda akara.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Meghee arịrịọ na-adọta mgbe ọ bụla na-agba ọsọ"
+			},
+			"monorepo": {
+				"heading": "Monorepos: oke translation kwa ngwugwu"
+			},
+			"glossary": {
+				"heading": "Glossary maka aha njirimara na okwu ngwaahịa",
+				"intro": "Tinye otu {configPath} n'ime repo:",
+				"afterLabel": "Mgbe",
+				"body": "A na-etinye okwu glossary {after} ntụgharị, yabụ mmepụta igwe a sụgharịrị na-eme ka akara kachasị amasị gị ọbụlagodi mgbe ihe nlereanya ahụ gbanwere ya maka nkwekọrịta."
+			},
+			"customCategory": {
+				"heading": "Omenala Nsụgharị Atiya (ụlọ ọrụ / ngalaba)",
+				"body": "Zụọ ụdị Azure {customTranslatorLink} na corpus nke na-ejide okwu ụlọ ọrụ gị na ụda (iwu, ahụike, ahịa, injinịa dị n'ime, wdg) ma gafere ID ya site na {categoryId}. Nke a bụ ihe kachasị ike nke Azure na-enye."
+			},
+			"tone": {
+				"heading": "Ụda akara + siri ike fallback",
+				"body": "Jikọta {categoryId} ntụgharị omenala na {profanityAction} na {allowFallbackFalse} iji mezuo olu na-agbanwe agbanwe ma daa arụmọrụ ma ọ bụrụ na ụdị ahọpụtara enweghị ntinye maka otu n'ime mpaghara gị."
+			},
+			"dryRun": {
+				"heading": "Gbanyụọ ọrụ ahụ tupu ịmalite ịrụ ọrụ ahụ.",
+				"body": "Ihe omume ahụ ka na-ewepụta nchịkọta nchịkọta na nchịkọta nzọụkwụ, ma ọ dịghị faịlụ ederede. Jikọtara ya na {failOnErrorFalse} iji gosipụta okwu ọ bụla dị ka ịdọ aka ná ntị mgbe ị na-emegharị."
+			}
+		}
 	},
 	"faq": {
 		"title": "Ajụjụ ana ajukari",
 		"eyebrow": "Enyemaka",
 		"heroTitle": "Ajụjụ Ndị A Na-ajụkarị",
-		"lede": "Azịza ngwa ngwa maka ajụjụ ndị na-abịakarị mgbe ị na-eme ihe omume ahụ."
+		"lede": "Azịza ngwa ngwa maka ajụjụ ndị na-abịakarị mgbe ị na-eme ihe omume ahụ.",
+		"questions": {
+			"azure": {
+				"heading": "Kedu ka ihe omume ahụ si agwa Azure?",
+				"body": "Site na {azureSdkLink} SDK nke Microsoft, nke a na-etinye na {corePipelineLink}. Nke ahụ na-eme ka ị na-emegharị akpaka na {statusCodes}, ụdị arịrịọ na nzaghachi, na njikwa nkụnye eji isi mee n'efu — ihe niile na-abụbu oku {axios} aka. Ọnọdụ ọha na eze (ntinye, mmepụta, mmepụta faịlụ) agbanwebeghị."
+			},
+			"tone": {
+				"heading": "Gịnị mere mgbe ụfọdụ ndị na-ede blọgụ ji apụ ma ọ bụ na-apụ apụ?",
+				"body": "Nsụgharị igwe na-ada ada na ihe nlereanya izugbe. Atọ knobs na-enyere aka: a {glossaryLink} maka ike okwu overrides, a {customTranslatorLink} maka ọma-edozi ụdị zụrụ azụ na gị ụda na okwu, na {profanityAction} ihichapụ ma ọ bụ ọkọlọtọ okwu rụrụ arụ.",
+				"glossaryLinkLabel": "Glossary",
+				"customTranslatorLinkLabel": "Ụdị omenala"
+			},
+			"duplicateFiles": {
+				"heading": "Kedu ka m ga-esi zere ịsụgharị otu faịlụ ahụ ugboro abụọ?",
+				"body": "Mee ka arụmọrụ ahụ dị na {paths} nke dabara na faịlụ isi iyi gị naanị, dịka {sourceGlob}. Ihe omume ahụ na-agụnyekwa nzacha faịlụ nke ya mgbe edobere {githubToken}, na-ebelata ọrụ na faịlụ na ntinye ọhụrụ."
+			},
+			"offline": {
+				"heading": "Enwere m ike ịme ihe omume ahụ na-anọghị n'ịntanetị?",
+				"body": "Ọ bụghị kpọmkwem — Azure AI Translator bụ ụbụrụ na-agba ọsọ. Ma ị nwere ike ịgba ọsọ na {dryRunTrue} iji kwado parsing na config na-enweghị ịme arịrịọ HTTP ọ bụla maka nsụgharị."
+			},
+			"node": {
+				"heading": "Kedu ụdị Node ka ihe omume ahụ na-agba ọsọ?",
+				"body": "V3 na-agba ọsọ na GitHub Actions {nodeRuntime} na-agba ọsọ. Javascript jikọtara ya na Node 20, 22, na 24, nke bụ ihe CI na-anwale."
+			},
+			"dist": {
+				"heading": "Ebee ka {distDir} ndị na-agba ịnyịnya ígwè si abịa?",
+				"body": "GitHub JS omume na-ebuga JS ha achịkọtara na ebe nchekwa. Ọrụ {distBuild} na-ewughachi ya mgbe njikọta ọ bụla ga-{mainBranch} ma ọ bụrụ na ọ ga-agagharị, ma {distCheck} na-egbochi PR nke ga-ada mmepụta oge ochie."
+			},
+			"formats": {
+				"heading": "Ma gịnị banyere ndị ọzọ resource formats?",
+				"body": "Taa: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} ma ọ bụrụ na ịchọrọ ọzọ — interface parser dị obere (parse → map → itinye nsụgharị → usoro) na onyinye na-anabata.",
+				"issueLinkLabel": "Mepee okwu"
+			}
+		}
 	},
 	"translations": {
 		"title": "Nsụgharị",
 		"eyebrow": "Ihe ngosi",
 		"heroTitle": "Hello n'asụsụ ọ bụla.",
-		"locales": "Ebe",
-		"currentlyRendered": "A na-enye ya ugbu a",
-		"complete": "zuru ezu!",
-		"pendingPrefix": "Na-esote ntụgharị-docs na-agba ọsọ.",
+		"lede": "A na-asụgharị ibe a site na Resource Translator n'onwe ya, na nkwalite ọ bụla na isi, n'asụsụ ọ bụla Azure AI Translator na-akwado.",
+		"localeCountLabel": "{count} ebe",
+		"statusComplete": "{translatedCount} sụgharịrị ugbu a — zuru ezu!",
+		"statusPending": "{translatedCount} ugbu a sụgharịrị — {pendingCount} na-echere {workflowName} na-esote na-agba ọsọ.",
 		"viewWorkflowRuns": "Gosi lance eso ụzọ",
 		"filter": "Nyochaa",
 		"filterPlaceholder": "Chọọ site na asụsụ, koodu, ma ọ bụ aha ala.",
 		"source": "Isi mmalite",
 		"machineTranslations": "Nsụgharị igwe",
-		"translationPending": "Translation pending — open a translate-docs run.",
+		"translationPending": "Nsụgharị na-echere — mepee {workflowName} na-agba ọsọ.",
 		"noLocales": "Enweghị mpaghara dabara na nzacha ahụ.",
-		"howItWorks": "Olee otú nke a si arụ ọrụ"
+		"howItWorks": {
+			"heading": "Olee otú nke a si arụ ọrụ",
+			"thisActionLabel": "Omume a",
+			"steps": {
+				"source": "Isi mmalite nke Bekee na-ebi na {messagesPath}.",
+				"workflow": "Pushes na mmetụ ọ kick si {workflowLink}, nke na-agba ọsọ {thisAction} megide onwe ya.",
+				"fanOut": "Ihe omume ahụ na-aga na mpaghara ọ bụla na-akwado Azure AI Translator (ahaziri na {configPath}) ma dee nwanne {messagesLocaleJson} kwa ebumnuche.",
+				"pullRequest": "A na-emeghe arịrịọ ndọpụ na nsụgharị ọhụrụ. Ijikọta ya na-ebipụta peeji a na kaadị ndị jupụtara."
+			}
+		},
+		"poweredBy": "Kwadoro site na Resource Translator na Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Inye aka",
 		"eyebrow": "Mepee isi iyi",
-		"lede": "A na-anabata akụkọ bug, arịrịọ atụmatụ, na arịrịọ eserese. Ihe omume ahụ dị ntakịrị iji bụrụ enyi na enyi nye ndị na-enye aka oge mbụ."
+		"lede": "A na-anabata akụkọ bug, arịrịọ atụmatụ, na arịrịọ eserese. Ihe omume ahụ dị ntakịrị iji bụrụ enyi na enyi nye ndị na-enye aka oge mbụ.",
+		"localDevelopment": {
+			"heading": "Mmepe mpaghara"
+		},
+		"addingParser": {
+			"heading": "Na-agbakwunye parser",
+			"steps": {
+				"fixture": "Tinye otu n'ime ihe ndị dị n'okpuru {testDataDir}.",
+				"implement": "Mejuputa {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Debanye aha ya na {factoryFile}.",
+				"extension": "Tinye ndọtị faịlụ ahụ na {translationFileSchemes} na {finderFile}.",
+				"tests": "Dee ule njem gburugburu maka parse → format na applyTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "Mkpuchi mkpuchi",
+			"body": "The Jest config na-amanye kacha nta mkpuchi. Koodu ọhụrụ ga-edebe nkwupụta + akara n'elu 78% ma rụọ ọrụ karịa 90%. Tinye ihe ndozi na ule n'akụkụ mgbanwe gị."
+		},
+		"docsSite": {
+			"heading": "Ebe nrụọrụ weebụ",
+			"body": "Nchekwa {docsDir} bụ ọrụ Astro 6 + Tailwind v4. Na-agba ọsọ {npmInstall} ebe ahụ otu ugboro, wee {npmRunDev} maka nlele mpaghara. Ọrụ {pagesWorkflow} na-ebuga docs na GitHub Pages na njikọta ọ bụla."
+		}
 	},
 	"changelog": {
 		"title": "Ndekọ mgbanwe",
 		"eyebrow": "Akụkọ ihe mere eme",
-		"lede": "Nchịkọta dị elu nke ntọhapụ. Canonical, ikike changelog na-ebi n'CHANGELOG.md na ebe nchekwa."
+		"lede": "Nchịkọta dị elu nke ntọhapụ. Canonical, ikike changelog na-ebi n'CHANGELOG.md na ebe nchekwa.",
+		"fullRecord": "Lee {changelogLink} maka ndekọ zuru ezu.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "V3 (na mmepe)",
+			"labels": {
+				"breaking": "IMEBI",
+				"resilience": "Resilience:",
+				"placeholderProtection": "Nchedo Placeholder:",
+				"perKeyOptOut": "Per-key opt-out:",
+				"docsAccessibility": "Docs nnweta:",
+				"inlineCodeStyling": "Inline koodu styling:"
+			},
+			"issueLabels": {
+				"closes46": "Mechie # 46.",
+				"tightens16": "Tightens # 16.",
+				"closes35": "Emechi # 35."
+			},
+			"items": {
+				"runtime": "Pịa bọtịnụ {nodeRuntime} ({breaking}).",
+				"newInputs": "Ntinye ọhụrụ: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, gbakwunyere bọtịnụ ntụgharị ntụgharị dị elu {textType}, {profanityAction}, {profanityMarker}, na {allowFallback}.",
+				"sourceLocale": "A na-ezigakwa ebe isi mmalite ugbu a na Translator dị ka {fromLocale} ya mere a naghị achọpụta ụdọ dị mkpirikpi.",
+				"resilience": "{label} na-akpaghị aka na nzaghachi HTTP na-adịgide adịgide ({statusCodes}) na-asọpụrụ nkụnye eji isi mee nke Azure {retryAfter} — na-alaghachi azụ na jittered exponential backoff mgbe ọ na-anọghị. Tunable site na {maxRetries} na {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} tokens dị ka {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} na HTML entities na-kechie na sentinels tupu nsụgharị na weghachite mgbe e mesịrị, otú Translator na-akwụsị mangling i18next / Mustache / Handlebars / .NET / printf placeholders. Toggle site na {protectPlaceholders}; Gbasaa na {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} ọhụrụ {noTranslatePatterns} input dobe kenha igodo si Translator arịrịọ kpamkpam (na-echekwa isi mmalite ụkpụrụ maka ika aha, njehie codes, wdg). Kwekọrọ glob nakawa etu esi megide parser-larịị igodo (JSON dotted ụzọ, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext igodo). {issue}",
+				"repoConfig": "Repo-larịị config site na {configPath}.",
+				"glossary": "Glossary nkwado, nzọụkwụ nchịkọta site na {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 ewepụghị config, Prettier, EditorConfig.",
+				"audit": "NPM Audit Clean (0 vulnerabilities).",
+				"docsSite": "Astro + Tailwind v4 docs saịtị na echiche mgbanwe na Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA ngafe. Logo glyphs gbanwere n'ụzọ ka ha wee ghara ịdaba na agba megide nkwụsị gradient, bọtịnụ {backToTop} na-ese n'elu mmiri na-eji {inert} mgbe zoro ezo (kama {ariaHidden} toggle nke hapụrụ ya tabbable), {formatsAstro} ngalaba anaghịzi adaba na ID isi ha na-akpaghị aka, kaadị mpaghara atọ ugbu a na-ekpughe njirimara {lang} BCP-47 ({nya}, {lug}, {run}), oyiri akara ngosi {documentation} akara ngosi na-disambiguated n'etiti sidebar na footer,  na tebụl data ọ bụla na {inputs} / {configuration} ụgbọ mmiri nwere nkọwa ihuenyo.",
+				"inlineCode": "{label} docs prose {codeElement} ugbu a na-eyi isiokwu na-ekpo ọkụ / amber — dị iche na palette →accent eji maka njikọ na isiokwu.",
+				"automation": "Dependabot auto-merge, CodeQL scanning, CI matriks."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Lee akụkọ ihe mere eme."
+		}
 	}
 }

@@ -15,7 +15,13 @@
 		"searchPlaceholder": "Zoek documentatie...",
 		"toggleTheme": "Thema's wisselen",
 		"githubRepository": "GitHub-repository",
-		"language": "Taal"
+		"language": "Taal",
+		"languageTitle": "Kies je taal",
+		"languageDescription": "Schakel over naar dezelfde pagina in een andere taal.",
+		"languageSearch": "Filtertalen",
+		"languageSearchPlaceholder": "Zoektalen of locatiecodes...",
+		"languageNoResults": "Geen enkele taal past bij dat filter.",
+		"closeLanguage": "Sluit taalkieser"
 	},
 	"search": {
 		"title": "Zoek documentatie",

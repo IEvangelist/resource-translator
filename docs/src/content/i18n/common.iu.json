@@ -15,7 +15,13 @@
 		"searchPlaceholder": "Search documentation…",
 		"toggleTheme": "Toggle theme",
 		"githubRepository": "GitHub repository",
-		"language": "Language"
+		"language": "Language",
+		"languageTitle": "Choose your language",
+		"languageDescription": "Switch to the same page in another language.",
+		"languageSearch": "Filter languages",
+		"languageSearchPlaceholder": "Search languages or locale codes...",
+		"languageNoResults": "No languages match that filter.",
+		"closeLanguage": "Close language picker"
 	},
 	"search": {
 		"title": "Search documentation",

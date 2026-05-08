@@ -18,18 +18,26 @@
 			"node": "' E nehenehe anei oe e rave i te mau mea atoa i roto i te ao nei, ' 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "Gettext",
+			"json": "ofaaraa e aore râ, parahurahu",
+			"ini": "{keyValue}",
+			"restext": "Papa'iraa MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "E ono hoho'a putu'ite",
-				"body": "Te mau tere ho'i .resx, .xliff, .po, .json, .ini, e .restext e te faanahoraa papû i te byte."
+				"body": "Te mau tere ho'i {resx}, {xliff}, {po}, {json}, {ini}, e {restext} e te faanahoraa byte-stable."
 			},
 			"config": {
 				"title": "Repo-level config",
-				"body": "Tuu i te hoê .github/resource-translator.yml no te include globs, glossaries, e Custom Translator."
+				"body": "A tuu i te hoê pu'e parau no {configPath} no te mau pŭpŭ no te mau hoho'a no te faahororaa i te mau parau apî."
 			},
 			"glossary": {
 				"title": "Glossary-aware",
-				"body": "A ponao i te mau i'oa e te mau parau no te mau tao'a na roto i te regex maramarama no te mau oti'a o te mau ta'o o te faatere i te C++, .NET, e te mau hoa."
+				"body": "A ponao i te mau i'oa e te mau parau no te mau tao'a na roto i te mau ta'o maramarama o te haapa'o i te mau {cpp}, te mau {dotnet} e te mau hoa."
 			},
 			"dryRun": {
 				"title": "Dry-run + soft-fail",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Te mau rave'a maitai no te PR",
-				"body": "summary-title, summary-details, e has-new-translations i roto i te create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails} e {hasNewTranslations} e tuuhia te reira i roto i te create-pull-request."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "Built on @azure-rest/ai-translation-text + @azure/core-rest-pipeline — automatic retries on 408/429/5xx, no hand-rolled HTTP. esbuild-bundled, audit-clean."
+				"body": "Patuhia i ni'a i te {azureSdk} + {corePipeline} — te mau tamataraa i ni'a i te {statusCodes}, aita e HTTP taviri-rima-hia. {esbuild}-puohuhia, hi'opo'araa mâ."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Te tereraa ohipa",
+			"titlePrefix": "Nene'i. Tapiri.",
+			"titleAccent": "A iriti i te parau.",
+			"body": "E toru parau huna, e maha reni, e e rave rahi reo ta outou repo i te tura'iraa i muri iho.",
+			"setupLink": "A hi'opo'a i te taatoaraa o te faanahoraa"
+		},
+		"cta": {
+			"title": "Ua ineine anei outou no te hi'opo'a i te vahi i ni'a i te autopilot ?",
+			"body": "Hoê taviri Azure AI Translator, hoê putu'ite ohipa. Na te Resource Translator e haapa'o i te toe'a.",
+			"button": "A haamata"
 		}
 	},
 	"getting-started": {
 		"title": "Te haamataraa",
 		"eyebrow": "Faanahoraa,",
-		"lede": "A tuu i te hoê putu'ite ohipa, a faatoro i te reira i ni'a i ta outou Azure AI Translator, e na te ohipa — tei hamanihia i ni'a i te SDK mana @azure-rest/ai-translation-text a Microsoft — e hi'opo'a i te repo no te imi i te mau pu'e parau no te mau rave'a no te reo tumu e e horo'a mai i te mau taea'e e te mau taea'e e tuahine i iritihia ra.",
+		"lede": "A tuu i te hoê putu'ite ohipa, a faatoro i te reira i ni'a i ta outou Azure AI Translator credentials, e na te ohipa e hi'opo'a i te repo no te mau pu'e parau no te mau rave'a no te reo tumu e e horo'a mai i te mau taea'e e te mau taea'e e te mau taea'e i hurihia.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "A tuu i te tereraa ohipa",
-				"body": "Hamani .github/workflows/translate.yml :"
+				"body": "A hamani i te {workflowPath} :"
 			},
 			"resource": {
 				"title": "Commit a source resource file",
-				"body": "E faaohipa te mau putu'ite tauturu i te i'oa. <sourceLocale>. <ext> tairururaa. Ei hi'oraa, e riro mai te Greetings.en.resx ei Greetings.fr.resx, Greetings.de.resx, e na reira noa i muri a'e i te hoê hororaa."
+				"body": "E faaohipa te mau pu'e parau i te {namingConvention} convention. Ei hi'oraa, {sourceFile} riro mai ei {frFile}, ei {deFile}, e te vai atu â i muri a'e i te hororaa."
 			},
 			"output": {
 				"title": "A hi'opo'a i te ohipa i hamanihia",
-				"body": "Ia oti ana'e te tereraa ohipa, e faaite mai te ohipa e toru ohipa ta outou e nehenehe e tuati i roto i te hoê faataaraa PR : summary-title, summary-details, e has-new-translations. E papa'i atoa te reira i te hoê haapotoraa Markdown i roto i te api ohipa na roto i te core.summary."
+				"body": "Ia oti ana'e te tereraa ohipa, e faaite mai te ohipa e toru ohipa ta outou e nehenehe e tu'ati i roto i te hoê faataaraa PR : {summaryTitle}, {summaryDetails}, e {hasNewTranslations}. E papa'i atoa te reira i te hoê haapotoraa no te Markdown i ni'a i te api ohipa na roto i te {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Te mau taahiraa i muri iho",
-			"configuration": "Configure repo-level defaults with .github/resource-translator.yml.",
+			"configuration": "Configure repo-level defaults with {configPath}.",
 			"recipes": "A hi'o i te mau faanahoraa no te monorepos, te mau faahororaa parau taa ê, e te mau tuhaa no te iriti parau."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Faanahoraa",
 		"eyebrow": "YAML",
 		"heroTitle": "Faanahoraa no te haaputuraa",
-		"lede": "A faaite i te mau ohipa i te hoê taime i roto i te .github/resource-translator.yml e a vaiiho i te mau ohipa atoa ia fatu i te reira. E upooti'a noa te mau mana'o no te ohipa ia horo'ahia mai na mea e piti."
+		"lede": "A faaite i te mau parau faati'a i te hoê taime i roto i te putu'ite config file e a vaiiho i te mau ohipa atoa ia fatu i te reira. E upooti'a noa te mau mana'o no te ohipa ia horo'ahia mai na mea e piti.",
+		"intro": "A mono i te e'a e te {configPath} mai te mea e hinaaro outou i te hoê vahi e ere i te mea matauhia.",
+		"schemaHeading": "Hoho'a",
+		"fieldReference": {
+			"heading": "Faahororaa no te tuhaa fenua",
+			"caption": "Faahororaa no te faanahoraa",
+			"columns": {
+				"field": "Tuhaa fenua",
+				"type": "Huru",
+				"notes": "Te mau nota"
+			},
+			"fields": {
+				"sourceLocale": "E ho'i mai i ni'a i te {sourceLocale} mai te mea e, aita i haamauhia. E hapono-atoa-hia i te Translator ei {fromLocale} ia ore te mau taura poto e ite-noa-hia.",
+				"toLocales": "Te hoê anairaa anei e aore râ, te hoê taura tei faataa-ê-hia e te vira.",
+				"includeExclude": "Te mau hoho'a o te glob tei hi'opo'ahia ia au i te mau e'a papû e te vahi ohiparaa.",
+				"glossary": "Te mau ta'o i muri a'e i te iritiraa. Haapa'o i te oti'a o te ta'o (e haapa'o i te {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} category — ta outou tuhaa ohipa (ture, rapaauraa, tapihooraa, e te tahi atu â). Haponohia mai te {categoryQuery}.",
+				"textType": "E tano i te {plain}. A faaohipa i te {html} mai te mea te vai ra te mau hu'ahu'a HTML mau i roto i ta outou mau faufaa.",
+				"profanityAction": "Nahea ia faaohipa i te mau parau faufau i roto i te iritiraa.",
+				"profanityMarker": "E mea faufaa noa ia {profanityAction} i te {marked}.",
+				"allowFallback": "A faanaho i ni'a i te {false} ia ore e manuïa i te iritiraa mai te mea e, aita ta outou {categoryId} e faaohipahia no te hoê vahi opuaraa, eiaha râ e ho'i faahou i ni'a i te hoho'a rahi.",
+				"apiVersion": "Translator REST API version. E tano i te {version}.",
+				"maxRetries": "Rahiraa tamataraa no te tamata faahou i ni'a i te mau pahonoraa HTTP poto ({statusCodes}). E tano i te {defaultRetries}. Te taatoaraa o te mau niuniu HTTP i te aniraa tata'itahi, e {totalCalls} ïa.",
+				"retryBackoffMs": "A tapo'i (ms) i ni'a i te hoê noa taotoraa. E tano i te {defaultBackoff}. E faahanahanahia te upoo parau {retryAfter} Azure i te taime ti'a ; aita ana'e, e faaohipahia te backoff exponential jittered, taoti'ahia i teie faufaa.",
+				"protectPlaceholders": "E tano i te {true}. Mai te mea e, e monohia te mau token mai te {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} e HTML e te mau token sentinel hou te iritiraa e e faaho'ihia mai i muri iho. A tupohe noa mai te mea e, te vai ra te mau parau mau i roto i te tumu parau.",
+				"customPlaceholderPatterns": "Te tahi atu mau hoho'a regex (aita e taoti'araa) tei tuuhia i ni'a i te faanahoraa placeholder, ei hi'oraa, {angleToken} no te syntax o te token. Aita te mau regex tano ore e tau'a-ore-hia.",
+				"noTranslatePatterns": "Te mau hoho'a glob e tu'ati i ni'a i te mau taviri parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). E faaru'ehia te mau taviri tu'ati mai roto mai i te aniraa e e faahereherehia te faufaa tumu."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Faanahoraa no te faautaraa",
+			"steps": {
+				"actionInputs": "E tai'o te ohipa i te mau mana'o papû no roto mai i te tereraa ohipa.",
+				"config": "E faauta te reira i te faanahoraa YAML mai te {configPath}.",
+				"precedence": "No te mau tuhaa tata'itahi, e upooti'a te mana'o ; aita ana'e, e faaohipahia te faufaa YAML.",
+				"validation": "E haamanahia te mau faufaa amuihia. E faatupu te mau enum hape (ei hi'oraa, {invalidEnum}) i te manuïa vitiviti o te ohipa na roto i te hoê poro'i maramarama."
+			}
+		},
+		"tone": {
+			"heading": "Te ta'iraa e te ohipa, i roto i te mau parau ohie",
+			"body": "Aita e pitopito ta'iraa i roto i te Azure AI Translator v3 API. E piti faanahoraa e amuihia no te horo'a ia outou i te hoê â hi'opo'araa :",
+			"industryLabel": "Ohipa / tuhaa :",
+			"industryBody": "a faaohipa i te {categoryId} no te faatoro i te hoê tuhaa Azure {customTranslatorLink} tei haapiipiihia i ni'a i ta outou iho faanahoraa — i te pae no te ture, i te pae aravihi, i te pae rapaauraa, i te tapihooraa, e aore râ, i te tahi atu mea. Teie te rave'a puai roa a'e no te ta'iraa, te reo e te ta'o.",
+			"surfaceLabel": "Papa'iraa i ni'a i te papa'iraa :",
+			"surfaceBody": "A faaohipa i te {glossaryLink} no te ponao i te mau i'oa o te mau tao'a e te mau parau no te mau tauihaa, e a faaohipa i te {profanityAction} no te tatara i te mau parau faufau no te faanaho i te vahi no te feia apî.",
+			"glossaryLinkLabel": "Glossary"
+		}
 	},
 	"inputs": {
 		"title": "Te mau mea e faaô mai",
 		"eyebrow": "Faahororaa",
-		"lede": "E farii-atoa-hia te mau parau atoa i roto i te repo config file. Ia faanahohia na mea e piti, e upooti'a te ohipa i roto i te ohipa."
+		"lede": "E farii-atoa-hia te mau parau atoa i roto i te repo config file. Ia faanahohia na mea e piti, e upooti'a te ohipa i roto i te ohipa.",
+		"configurationIntro": "A hi'o {configurationLink} no te faanahoraa YAML e te ana'iraa faautaraa.",
+		"configurationLinkLabel": "Faanahoraa",
+		"columns": {
+			"name": "I'oa",
+			"default": "Hape",
+			"description": "Faataaraa"
+		},
+		"defaults": {
+			"none": "Aita hoê",
+			"allSupported": "paturuhia te taatoaraa",
+			"translatorDefaultTrue": "true (Translator default)"
+		},
+		"requiredInputs": {
+			"heading": "Te mau mana'o e titauhia",
+			"caption": "Te mau mana'o e titauhia",
+			"items": {
+				"sourceLocale": "Source locale (ei hi'oraa, {en}) faaohipahia no te imi i te mau pu'e parau mai te {sourceGlob}. Ua hapono-atoa-hia i te Translator ei {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator subscription key. A haere na roto i te {secrets}.",
+				"endpoint": "URL hopea o te iritiraa, ei hi'oraa, {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Te mau faaôraa ma'itihia",
+			"caption": "Te mau faaôraa ma'itihia",
+			"items": {
+				"region": "Tuhaa fenua no te mau rave'a no te feia iriti parau (eiaha no te mau rave'a na te ao atoa nei).",
+				"toLocales": "Te mau vahi no te iritiraa. E farii i te hoê faanahoraa JSON ({jsonArray}) e aore râ, te mau faito tei faataa-ê-hia e te vira.",
+				"include": "Te mau hoho'a o te reni apî ; o te mau putu'ite tu'ati ana'e te iritihia ra.",
+				"exclude": "Te mau hoho'a o te reni apî ; E haapaehia te mau putu'ite tu'ati (faaohipahia i muri a'e i te tuuraa).",
+				"configPath": "Te e'a no te putu'ite config YAML (no ni'a i te aa o te vahi ohiparaa).",
+				"dryRun": "Ia {true} ana'e, a horo'a i te mau iritiraa e a horo'a i te mau haapotoraa, eiaha râ e papa'i i te mau putu'ite.",
+				"failOnError": "Ia {true} ana'e, eita te mau hape mana'o-ore-hia e manuïa ; Ia {false} ana'e, e faaararaa te mau hape."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Te aniraa a te taata iriti i te mau mana'o",
+			"intro": "E faanaho ti'a te reira i ni'a i te Azure AI Translator v3 query parameters. E ma'itiraa te mau mea atoa ; e tano te Translator default mai te mea e, aita e faanahoraa.",
+			"caption": "Te aniraa a te taata iriti i te mau mana'o",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone button. Haponohia mai te {categoryQuery}.",
+				"textType": "{plain} e aore râ {html}. A faaohipa i te {html} mai te mea e, e mau hu'ahu'a HTML mau ta outou mau rave'a.",
+				"profanityAction": "{noAction}, {marked}, e aore râ, {deleted}. E hi'opo'a i te huru o te mau parau faufau i roto i te mau iritiraa.",
+				"profanityMarker": "{asterisk} e aore râ {tag}. E mea faufaa noa ia {profanityAction} {marked}.",
+				"allowFallback": "Ia {false} ana'e, e faaho'i mai te Translator i te hoê hape eiaha râ e ho'i i ni'a i te faanahoraa rahi mai te mea e, aita ta outou {categoryId} e faanahoraa no te hoê vahi i tapa'ohia.",
+				"apiVersion": "Translator REST API version."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Te faaoroma'iraa e te parururaa i te vahi",
+			"intro": "Na teie mau faaararaa e hi'opo'a i te huru o te ohipa ia faaiti ana'e te Translator i ta outou aniraa e nahea te reira i te paruru i te mau tapa'o mai te {mustache} e aore râ te {indexZero} ia ore te reira ia ino i roto i te iritiraa.",
+			"caption": "Te mau rave'a no te faaoroma'i e te parururaa i te mau vahi",
+			"items": {
+				"maxRetries": "Rahiraa tamataraa no te tamata faahou i ni'a i te mau pahonoraa HTTP poto ({statusCodes}). Te rahiraa o te mau piiraa HTTP i te aniraa tata'itahi, e {totalCalls} ïa.",
+				"retryBackoffMs": "A tapo'i (i roto i te milliseconds) i ni'a i te hoê noa taotoraa. E faatura te ohipa i te upoo parau o te pahonoraa {retryAfter} Azure i te taime ti'a ; aita ana'e, e faaohipa oia i te ho'iraa exponential jittered tei taoti'ahia i teie faufaa.",
+				"protectPlaceholders": "Mai te mea e, {true} (default), e monohia te mau placeholder mai te {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} e HTML e te mau token sentinel hou te iritiraa e e faaho'ihia mai i muri iho. A tupohe noa mai te mea e, te vai ra i roto i ta outou tumu parau te mau papa'iraa e ti'a ia iritihia i roto i ta outou rave'a.",
+				"customPlaceholderPatterns": "Newline-separated regexes (without delimiters) added to the default placeholder set, e.g. {angleToken} for custom token syntax.",
+				"noTranslatePatterns": "Te mau hoho'a o te reni apî tei faataa-ê-hia i ni'a i te mau taviri parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). E faaorehia te mau taviri tu'ati mai roto mai i te aniraa a te Translator e e faahereherehia te faufaa no te tumu parau."
+			}
+		},
+		"outputs": {
+			"heading": "Te mau ohipa e noaa mai",
+			"caption": "Te mau ohipa e noaa mai",
+			"items": {
+				"summaryTitle": "Haapotoraa poto no ni'a i te upoo parau PR, ei hi'oraa, {summaryExample}.",
+				"summaryDetails": "Haapotoraa no te tapa'o e tano no te hoê tino haaparareraa parau e aore râ no te hoê haapotoraa ohipa.",
+				"hasNewTranslations": "{trueString} ia hamanihia te hoê aore ra hau atu mau huriraa apî."
+			}
+		}
 	},
 	"formats": {
 		"title": "Te mau hoho'a o te mau pu'",
 		"eyebrow": "Faahororaa",
 		"heroTitle": "Te mau hoho'a putu'ite paturuhia",
-		"lede": "E ono faanahoraa no te mau rave'a e nehenehe e ho'i. E tai'o te ohipa i te putu'ite tumu tata'itahi, e iriti i te mau faufaa, e e papa'i i te hoê taea'e e te tuahine no te vahi tata'itahi."
+		"lede": "E ono faanahoraa no te mau rave'a e nehenehe e ho'i. E tai'o te ohipa i te putu'ite tumu tata'itahi, e iriti i te mau faufaa, e e papa'i i te hoê taea'e e te tuahine no te vahi tata'itahi.",
+		"namingConvention": "Te faaohipa nei te mau pu'e parau atoa i te i'oa o te {namingConvention}.",
+		"learnMore": "A haapii atu â",
+		"items": {
+			"resx": {
+				"blurb": "Te mau putu'ite no te mau rave'a .NET niuhia i ni'a i te XML. E iriti i te papa'iraa i roto i te mau {dataValue} tata'itahi, ma te faaherehere i te mau mana'o e te mau metadata.",
+				"specLabel": "Microsoft Learn — Te mau rave'a tauturu i roto i te mau putu'ite .resx"
+			},
+			"xliff": {
+				"blurb": "Te mau parau OASIS XLIFF 2.0. E iriti i te {source} tata'itahi e e papa'i i te hopearaa i roto i te {target} e tu'ati i te reira, ma te tuu i te {trgLang} no te fenua.",
+				"specLabel": "OASIS XLIFF 2.0 faataaraa"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object files. E iriti i te mau {msgid} / {msgidPlural} tata'itahi na roto i te mau {msgstr} / {msgstrPlural} huru.",
+				"specLabel": "GNU gettext — PO file format"
+			},
+			"json": {
+				"blurb": "Te mau putu'ite JSON tano ore. E faaafaro te mau tao'a i ni'a i te {delimiter} no te iritiraa, e i muri iho e tuuhia i ni'a i te hoho'a. E faahereherehia te mau taviri taratara ({dottedKey}) i roto i te mau parau atoa.",
+				"specLabel": "Faataaraa JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Te mau pu'e parau ohie no te {keyValue} (Win32-style INI e aore râ, te tahi atu faanahoraa flat). Ua faahereherehia te mau upoo parau e te mau mana'o.",
+				"specLabel": "INI file format on Wikipedia"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI text resources — flat {keyValue} pairs used as a textual companion to {resx}.",
+				"specLabel": "Haapotoraa Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Te mau haapapûraa no te ho'i mai",
+			"body": "E hi'opo'a te faanahoraa tamataraa i te mau ha'utiraa no te mau faanahoraa atoa. Mai te mea e, te vai ra te hoê huru taa ê i roto i ta outou codebase, a hi'{issueLink} i te hoê hi'oraa iti.",
+			"issueLinkLabel": "A iriti i te hoê ve'a"
+		}
 	},
 	"recipes": {
 		"title": "Te mau maa",
 		"eyebrow": "Buka tunu maa",
-		"lede": "Te mau hoho'a matauhia no te haponoraa i te mau iritiraa : monorepos, glossaries, custom categories, dry runs, and sound control."
+		"lede": "Te mau hoho'a matauhia no te haponoraa i te mau iritiraa : monorepos, glossaries, custom categories, dry runs, and sound control.",
+		"sections": {
+			"pullRequest": {
+				"heading": "A iriti i te hoê aniraa i muri a'e i te hororaa tata'itahi"
+			},
+			"monorepo": {
+				"heading": "Monorepos : iritiraa no te puohu"
+			},
+			"glossary": {
+				"heading": "Glossary no te mau i'oa e te mau parau no te mau tao'a",
+				"intro": "A tuu i te hoê {configPath} i roto i te repo :",
+				"afterLabel": "i muri a'e i te",
+				"body": "E {after} faaohipahia te mau ta'o no te iritiraa, no reira, e tape'a noa te iritiraa matini i te tapa'o ta outou e au a'e noa'tu e, ua taui te hoho'a i te reira no te hoê â i'oa."
+			},
+			"customCategory": {
+				"heading": "Tuhaa no te taata iriti parau (ohipa / tuhaa fenua)",
+				"body": "A haapiipii i te hoê pŭpŭ Azure {customTranslatorLink} i ni'a i te hoê pŭpŭ o te haru mai i te mau ta'o e te ta'iraa o ta outou ohipa (ture, rapaauraa, tapihooraa, ohipa aravihi i roto i te ohipa, e te tahi atu â) e a horo'a i ta'na ID na roto i te {categoryId}. Teie te rave'a ta'iraa puai roa a'e ta Azure e horo'a nei."
+			},
+			"tone": {
+				"heading": "Te hi'opo'araa i te ta'iraa + te faaheporaa etaeta",
+				"body": "A amui i te hoê {categoryId} Custom Translator e te {profanityAction} e te {allowFallbackFalse} no te haapapû i te hoê reo tamau e eita e manuïa i te tereraa ohipa mai te mea e, aita e faanahoraa no te hoê o te mau vahi ta outou i opua."
+			},
+			"dryRun": {
+				"heading": "Dry run hou a tu'ama ai i te tereraa ohipa",
+				"body": "E horo'a noa mai te ohipa i te mau haapotoraa e te hoê haapotoraa taahiraa, aita râ e putu'ite i papa'ihia. A amui atu i te {failOnErrorFalse} no te faaite i te mau fifi atoa ei faaararaa a faahiti noa ai outou."
+			}
+		}
 	},
 	"faq": {
 		"title": "FAQ",
 		"eyebrow": "Tauturu",
 		"heroTitle": "Te mau uiraa pinepine",
-		"lede": "Te mau pahonoraa vitiviti i te mau uiraa e hiti pinepine mai ia rave ana'e outou i te ohipa."
+		"lede": "Te mau pahonoraa vitiviti i te mau uiraa e hiti pinepine mai ia rave ana'e outou i te ohipa.",
+		"questions": {
+			"azure": {
+				"heading": "Nahea te ohipa e paraparau ai ia Azure ?",
+				"body": "Na roto i te SDK {azureSdkLink} a Microsoft, tei tuuhia i ni'a i te {corePipelineLink}. Na te reira e horo'a ia outou i te mau tamataraa i ni'a i te {statusCodes}, te mau hoho'a aniraa e pahonoraa tei patapatahia, e te raveraa i te upoo parau haapapûraa ma te tamoni ore — te mau mea atoa tei riro na ei niuniu {axios} te rima. Aita te hoho'a ohipa a te huiraatira (te mau faaôraa, te mau rave'a, te mau rave'a i ravehia) i taui."
+			},
+			"tone": {
+				"heading": "No te aha te mau iritiraa i te tahi taime e ere ai i te mea tano e aore râ, e ere i te mea tano ?",
+				"body": "E riro te iritiraa matini i te hoê hoho'a no te opuaraa rahi. E toru pitopito e tauturu : te hoê {glossaryLink} no te mau ta'iraa fifi roa, te hoê {customTranslatorLink} no te mau hoho'a tei haapiipiihia i ni'a i to outou ta'iraa e ta outou mau parau, e te {profanityAction} no te horo'a e aore râ no te tapa'o i te mau parau faufau.",
+				"glossaryLinkLabel": "Glossary",
+				"customTranslatorLinkLabel": "Tuhaa no te taata iriti parau"
+			},
+			"duplicateFiles": {
+				"heading": "Nahea vau ia ape i te iriti i te hoê â putu'ite e piti taime ?",
+				"body": "A faanaho i te tereraa ohipa i ni'a i te mau {paths} e tu'ati noa i ta outou mau pu'e parau, ei hi'oraa, {sourceGlob}. Te vai atoa ra i roto i teie ohipa ta'na iho titi'a no ni'a i te mau pu'e parau ia faaineinehia te {githubToken}, ma te faaiti i te ohipa i roto i te mau pu'e parau i roto i te commit hopea."
+			},
+			"offline": {
+				"heading": "E nehenehe anei ta'u e faatere i te ohipa i ni'a i te itenati ?",
+				"body": "E ere roa — o te Azure AI Translator te roro o te taime faatereraa. Tera râ, e nehenehe ta outou e faaohipa i te {dryRunTrue} no te haapapû i te parsing e te config ma te ore e ani i te iritiraa HTTP."
+			},
+			"node": {
+				"heading": "Eaha te faanahoraa Node e tere ai te ohipa ?",
+				"body": "v3 i ni'a i te GitHub Actions {nodeRuntime} runtime. E tu'ati te JavaScript i te Node 20, 22, e 24, o ta te CI ïa e tamata."
+			},
+			"dist": {
+				"heading": "No hea mai te {distDir} i puohu ?",
+				"body": "E hapono te mau ohipa GitHub JS i ta ratou JS i roto i te haaputuraa. E hamani faahou te faanahoraa {distBuild} i te reira i muri a'e i te mau tahoêraa atoa no te hi'o {mainBranch} e, e painu anei te reira, e e tape'a {distCheck} te reira i te mau PR o te horo'a mai i te mau ohipa tahito."
+			},
+			"formats": {
+				"heading": "Eaha te parau no te tahi atu mau rave'a ?",
+				"body": "I teie mahana : {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} mai te mea e, e hinaaro outou i te tahi atu — e mea na'ina'i te faanahoraa parser (parse → map → application translations → format) e e farii-poupou-hia te mau horo'araa.",
+				"issueLinkLabel": "A iriti i te hoê ve'a"
+			}
+		}
 	},
 	"translations": {
 		"title": "Te mau iritiraa",
 		"eyebrow": "Faaiteiteraa",
 		"heroTitle": "Iaora na roto i te mau reo atoa",
-		"locales": "te mau vahi",
-		"currentlyRendered": "i teie nei",
-		"complete": "Hope roa !",
-		"pendingPrefix": "A tia'i noa ai i te iritiraa i muri iho.",
+		"lede": "Ua iritihia teie api e te Resource Translator iho, i roto i te mau reo atoa ta te Azure AI Translator e paturu nei.",
+		"localeCountLabel": "{count} mau vahi",
+		"statusComplete": "{translatedCount} i teie nei — ua oti roa!",
+		"statusPending": "{translatedCount} teie nei — {pendingCount} tia'i noa i te {workflowName} i muri iho.",
 		"viewWorkflowRuns": "A hi'o i te tereraa o te tereraa ohipa",
 		"filter": "Titi'a",
 		"filterPlaceholder": "A imi na roto i te reo, te reo, aore ra te i'oa tumu...",
 		"source": "No roto mai",
 		"machineTranslations": "Te mau iritiraa matini",
-		"translationPending": "Translation pending — open a translate-docs run.",
+		"translationPending": "Te tia'i nei te iritiraa — a iriti i te hoê {workflowName} no te faaiteraa.",
 		"noLocales": "Aita e vahi e tu'ati i taua titi'a ra.",
-		"howItWorks": "Nahea te reira e ohipa ai"
+		"howItWorks": {
+			"heading": "Nahea te reira e ohipa ai",
+			"thisActionLabel": "teie iho ohipa",
+			"steps": {
+				"source": "Te vai ra te pu'e parau no te reo peretane i te {messagesPath}.",
+				"workflow": "E tura'i oia i taua tape'araa ra e haamata i te {workflowLink}, o te {thisAction} i ni'a ia'na iho.",
+				"fanOut": "E parare te ohipa i ni'a i te mau vahi atoa e paturuhia e te Azure AI Translator (tei faanahohia i roto i te {configPath}) e e papa'i i te hoê {messagesLocaleJson} no te taea'e e te tuahine no te taata tata'itahi.",
+				"pullRequest": "E iritihia te hoê aniraa hutiraa e te mau iritiraa apî. Ia amuihia te reira, e nene'i-faahou-hia teie api e te mau tareta tei faaîhia."
+			}
+		},
+		"poweredBy": "Arata'ihia e Resource Translator e Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Tauturu",
 		"eyebrow": "Open source",
-		"lede": "E farii-poupou-hia te mau parau faaite no ni'a i te mau pepe, te mau aniraa e te mau aniraa no te hutiraa. E mea na'ina'i roa te ohipa no te faahoa i te feia tei horo'a matamua."
+		"lede": "E farii-poupou-hia te mau parau faaite no ni'a i te mau pepe, te mau aniraa e te mau aniraa no te hutiraa. E mea na'ina'i roa te ohipa no te faahoa i te feia tei horo'a matamua.",
+		"localDevelopment": {
+			"heading": "Te haereraa i mua o te fenua"
+		},
+		"addingParser": {
+			"heading": "Te tuuraa i te hoê parser",
+			"steps": {
+				"fixture": "A tuu i te hoê tauihaa i raro a'e i te {testDataDir}.",
+				"implement": "A faaohipa i te {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "A tapa'o i te reira i roto i te {factoryFile}.",
+				"extension": "A tuu i te faananearaa o te putu'ite i ni'a i te {translationFileSchemes} i roto i te {finderFile}.",
+				"tests": "A papa'i i te mau hi'opo'araa no te parse → te faanahoraa e te applyTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "Te mau oti'a no te parururaa",
+			"body": "E faahepo te Jest config i te faito iti roa. E mea ti'a i te faanahoraa apî ia tape'a i te mau faahitiraa + reni i ni'a a'e i te 78% e te mau ohipa i ni'a a'e i te 90%. A tuu i te mau tauihaa e te mau hi'opo'araa i piha'i iho i ta outou tauiraa."
+		},
+		"docsSite": {
+			"heading": "Tahua no te mau parau",
+			"body": "Te pu'e parau no {docsDir} o te hoê ïa opuaraa Astro 6 + Tailwind v4. A haere {npmInstall} reira hoê taime, i muri iho a {npmRunDev} no te hi'opo'araa i te vahi iho. E hapono te {pagesWorkflow} workflow i te mau parau i ni'a i te GitHub Pages i te mau tahoêraa atoa."
+		}
 	},
 	"changelog": {
 		"title": "Te mau tauiraa",
 		"eyebrow": "Aamu",
-		"lede": "Haapotoraa teitei o te mau haamataraa. Te vai ra te changelog canonique e te mana i roto i te CHANGELOG.md i roto i te haaputuraa."
+		"lede": "Haapotoraa teitei o te mau haamataraa. Te vai ra te changelog canonique e te mana i roto i te CHANGELOG.md i roto i te haaputuraa.",
+		"fullRecord": "A hi'o {changelogLink} no te taatoaraa o te faaiteraa.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (i roto i te faaineineraa)",
+			"labels": {
+				"breaking": "TE OFATIRAA",
+				"resilience": "Te faaoroma'i :",
+				"placeholderProtection": "Parururaa i te vahi nohoraa :",
+				"perKeyOptOut": "Opt-out no te taviri tata'itahi :",
+				"docsAccessibility": "Te mau parau apî :",
+				"inlineCodeStyling": "Papa'iraa i roto i te reni :"
+			},
+			"issueLabels": {
+				"closes46": "Opani #46.",
+				"tightens16": "Tightens #16.",
+				"closes35": "Opani #35."
+			},
+			"items": {
+				"runtime": "Ua tuuhia i ni'a i te {nodeRuntime} taime ({breaking}).",
+				"newInputs": "Te mau parau apî : {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, e tae noa'tu i te mau pitopito apî o te Translator {textType}, {profanityAction}, {profanityMarker}, e {allowFallback}.",
+				"sourceLocale": "I teie nei, e hapono-atoa-hia te vahi tumu i te Translator no te mea {fromLocale} ia ore te mau taura poto e ite-noa-hia.",
+				"resilience": "{label} tamata faahou i ni'a i te mau pahonoraa HTTP poto noa ({statusCodes}) no te faatura i te upoo parau {retryAfter} a Azure — e ho'i mai ïa i ni'a i te ho'iraa rahi mai te mea e, aita ana'e. E nehenehe e faata'i na roto i te {maxRetries} e te {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} te mau token mai te {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} e HTML e puohuhia ïa i roto i te mau sentinels hou te iritiraa e faaho'i-faahou-hia mai i muri iho, no reira, e faaea te Translator i te faaino i te mau placeholder i18next/Mustache/Handlebars/.NET/printf. Toggle via {protectPlaceholders} ; faaaano i te {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} e tuu te {noTranslatePatterns} apî i te mau taviri tu'ati mai roto mai i te aniraa a te Translator (e tape'a i te mau faufaa no te mau i'oa o te mau tapa'o, te mau numera hape, e te tahi atu â). E faatu'ati i te mau hoho'a glob i ni'a i te mau taviri parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). {issue}",
+				"repoConfig": "Repo-level config na roto i te {configPath}.",
+				"glossary": "Tauturu no te faahororaa, haapotoraa no te taahiraa na roto i te {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "npm audit clean (0 paruparu).",
+				"docsSite": "Astro + Tailwind v4 docs site with view transitions and Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. E tauihia te mau tapa'o ei mau e'a ia ore te reira e manuïa faahou i te taa-ê-raa i ni'a i te mau tape'araa gradient, e faaohipa te pitopito {backToTop} painu i te {inert} a huna ai (eiaha râ te hoê taviri {ariaHidden} e nehenehe e taviri {formatsAstro} hia), aita te mau tuhaa e û faahou ra i ni'a i ta ratou mau ID upoo parau tei hamanihia e te taata, e toru tareta fenua e faaite nei i teie nei i te mau huru {lang} BCP-47 ({nya}, {lug}, {run}), e tapiti {documentation} te mau tapa'o tapa'o e tatara i te mau tapa'o i rotopu i te pae e te api i raro i te api,  e te mau tabula haamaramaramaraa atoa i ni'a i te {inputs}/{configuration} e te hoê papa'iraa no te tai'o i te paruai.",
+				"inlineCode": "{label} {codeElement} i teie nei, te vai ra te ta'iraa parau mahanahana e te amber — taa ê atu →i te mau ta'iraa parau e faaohipahia no te mau hono e te mau upoo parau.",
+				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "A hi'o i te aamu o te git."
+		}
 	}
 }

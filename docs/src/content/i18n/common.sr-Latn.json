@@ -15,7 +15,13 @@
 		"searchPlaceholder": "Pretraga dokumentacije...",
 		"toggleTheme": "Srpskohrvatski / srpskohrvatski",
 		"githubRepository": "GitHub spremište",
-		"language": "Jezik"
+		"language": "Jezik",
+		"languageTitle": "Izaberite jezik",
+		"languageDescription": "Prebacite se na istu stranicu na drugom jeziku.",
+		"languageSearch": "Filtriraj jezike",
+		"languageSearchPlaceholder": "Pretraga jezika ili lokalnih kodova...",
+		"languageNoResults": "Nijedan jezik ne odgovara tom filteru.",
+		"closeLanguage": "Zatvori birač jezika"
 	},
 	"search": {
 		"title": "Pretraga dokumentacije",

@@ -18,18 +18,26 @@
 			"node": "Node 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "Zahnězdźene abo płone",
+			"ini": "{keyValue}",
+			"restext": "Tekst MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Šěsć datajowych formatow",
-				"body": "Kołojězby .resx, .xliff, .po, .json, .ini a .restext z byte-stabilnym formatowanjom."
+				"body": "Kołojězby {resx}, {xliff}, {po}, {json}, {ini} a {restext} z bajtostabilnym formatowanjom."
 			},
 			"config": {
 				"title": "Repo-level config",
-				"body": "Wotpołožće .github/resource-translator.yml za include globs, glosary a kategorije Custom Translator."
+				"body": "Wotpołožće {configPath} dataju za zahrnute globy, glosary a kategorije swójskeho přełožowarja."
 			},
 			"glossary": {
 				"title": "Glosar-aware",
-				"body": "Zawrějće mjena markow a produktowe zapřijeća z inteligentnym słowo-mjezowym regularnym ekseksom, kotryž C ++, .NET a přećelow wobdźěła."
+				"body": "Zawrějće markowe mjena a produktowe zapřijeća z mudrym słowno-mjeznym regexom, kotryž {cpp}, {dotnet} a přećelow wobdźěła."
 			},
 			"dryRun": {
 				"title": "Dry-run + soft-fail",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR-přichilene outputy",
-				"body": "summary-title, summary-details a has-new-translations zasadźa so direktnje do create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails} a {hasNewTranslations} hraja direktnje do create-pull-request."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "Natwarjene na @azure-rest/ai-translation-text + @azure/core-rest-pipeline — awtomatiske wospjetowanje na 408/429/5xx, žadyn z ruku wjerćeny HTTP. esbuild-bundled, audit-clean."
+				"body": "Natwarjene na {azureSdk} + {corePipeline} - awtomatiske wospjetowanje na {statusCodes}, žadyn z ruku wobroćeny HTTP {esbuild}-zwalčene, audit-čiste."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Drop-in workflow",
+			"titlePrefix": "Kopować. Zlěpić.",
+			"titleAccent": "Přełožować.",
+			"body": "Tři potajnstwa, štyri linki a waš repozitorik je při přichodnym pushu wjacerěčny.",
+			"setupLink": "Přeńdź sej cyłe wuhotowanje"
+		},
+		"cta": {
+			"title": "Zwólniwy k lokalizaciji na awtopilotźe?",
+			"body": "One Azure AI Translator key, one workflow file. Resource Translator přewozmje zbytk.",
+			"button": "Započinajće"
 		}
 	},
 	"getting-started": {
 		"title": "Započeć",
 		"eyebrow": "Zarjadowanje",
-		"lede": "Přidaj dataju dźěłoweho wotběha, posměr ju na swoje přiznamjenja za Azure AI Translator a akcija – natwarjena na oficialnej @azure-rest/ai-translation-text SDK firmy Microsoft – přeskanuje repozytorik za resursowymi datajemi za žórłowej rěču a wušaltuje přełoženych bratrow a sotry.",
+		"lede": "Přidaj dataju dźěłoweho wotběha, pokazaj ju na swoje přiznačenja za Azure AI-Translator a akcija přepytuje repozytorik za resursowymi datajemi za žórłowej rěču a wušaltuje přełoženych bratrow a sotry.",
 		"steps": {
 			"provision": {
 				"title": "Provisioning an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Dźěłowy wotběh přidaće",
-				"body": "Wutworće .github/workflows/translate.yml:"
+				"body": "Wuhotuj {workflowPath}:"
 			},
 			"resource": {
 				"title": "Spušćenje resursoweje dataje žórła",
-				"body": "Resursowe dataje wužiwaja Name. .<sourceLocale> <ext> konwencija. Tak stanje so na př. z Greetings.en.resx po běhu z Greetings.fr.resx, Greetings.de.resx atd."
+				"body": "Resursowe dataje wužiwaja {namingConvention} konwenciju. Na přikład stanje so {sourceFile} po běhu {frFile}, {deFile} a tak dale."
 			},
 			"output": {
 				"title": "Přehladaj wudaće",
-				"body": "Hdyž je dźěłowy wotběh wotzamknjeny, wunjese akcija tři outputy, kotrež móžeš k PR-wopisowanju přidać: summary-title, summary-details a has-new-translations. Wón pisa tež Markdown-zjeće do dźěłoweje strony přez core.summary."
+				"body": "Hdyž je dźěłowy wotběh zakónčeny, pokaza akcija tři outputy, kotrež móžeće k PR-wopisowanju přišaltować: {summaryTitle}, {summaryDetails} a {hasNewTranslations}. Wón zapisa tež Markdown-zjeće na dźěłowu stronu přez {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Dalše kroki",
-			"configuration": "Konfigurujće predvolene hódnoty na nivou repo-level z .github/resource-translator.yml.",
+			"configuration": "Konfigurujće predvolene hódnoty na poziomie repo-level z {configPath}.",
 			"recipes": "Wobhladaj sej recepty za monorepo, swójske glosary a kategorije swójskeho přełožowarja."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Konfiguracija",
 		"eyebrow": "YAML",
 		"heroTitle": "Konfiguracija repozitorija",
-		"lede": "Zwurazniće standardy jónu w .github/resource-translator.yml a dajće kóždemu dźěłowemu wotběhej je zdźědźić. Akciske inputy dobudu přeco potom, hdyž stej woboje podanej."
+		"lede": "Zwurazniće standardy jónu w konfigurowanskej dataji składa a dajće kóždemu dźěłowemu wotběhej je zdźědźić. Akciske inputy dobudu přeco potom, hdyž stej woboje podanej.",
+		"intro": "Přehłosuj puć ze zapodaćom {configPath}, hdyž trjebaš njestandardne stejnišćo.",
+		"schemaHeading": "Šema",
+		"fieldReference": {
+			"heading": "Pokazka na polu",
+			"caption": "Referenca pola Configuration",
+			"columns": {
+				"field": "Polo",
+				"type": "Typ",
+				"notes": "Přispomnjenja"
+			},
+			"fields": {
+				"sourceLocale": "Padnje wróćo na {sourceLocale} input, hdyž njeje nastajeny. Tež dale na přełožowarja kaž {fromLocale} tak so krótke truny awtomatisce njedetektuja.",
+				"toLocales": "Pak rjad pak wot komy wotrjadowany šnór.",
+				"includeExclude": "Globowe mustry hódnoćachu so na absolutnych a na dźěłowy rum relatiwnych pućach.",
+				"glossary": "Terminus po přełožowanju so přehłosuje. Słowne hranicy wědome (přijimuje {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} kategorija — waš branšowy/domenowy button (prawniski, medicinski, marketingowy zwuk atd.). Pósłane jako {categoryQuery}.",
+				"textType": "Zapłać so na {plain}. Wužiwajće {html} jenož potom, hdyž waše resursowe hódnoty woprawdźite HTML-fragmenty wobsahuja.",
+				"profanityAction": "Kak so z profanymi zapřijećemi w přełoženym outputźe wobchadźa.",
+				"profanityMarker": "Zmysłapołne jenož, hdyž je {profanityAction} {marked}.",
+				"allowFallback": "Nastaj na {false}, zo by přełožk zwrěšćił, hdyž waš {categoryId} žane zasadźenje za cilowu městnosć nima, město so zaso k powšitkownemu modelej wróćo přisydlił.",
+				"apiVersion": "Translator REST API version. Zapłać so na {version}.",
+				"maxRetries": "Maksimalne wopyty wospjetowanja při přechodnych HTTP wotmołwach ({statusCodes}). Zwaži so na {defaultRetries}. Cyłkowne HTTP wołanja na naprašowanje su {totalCalls}.",
+				"retryBackoffMs": "Čapku (ms) při kóždym jeničkim sparanju. Zapłać so na {defaultBackoff}. Azurowa {retryAfter} hłójčkowa hłójčka so dokładnje hódnoći, hdyž je přitomna; Hewak wužiwa so rozterkany eksponencialny backoff, wobmjezowany na tutu hódnotu.",
+				"protectPlaceholders": "Zapłać so na {true}. Při zapnjenju so tokeny kaž {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} a HTML-entity do přełožka přez sentinelowe tokeny narunaja a po tym zaso restawruja. Znjemóžniće jenož potom, hdyž žórło z wotpohladom městna stejace literale wobsahuje.",
+				"customPlaceholderPatterns": "Ekstra regularne ekseksowe mustry (bjez wotmjezowakow) dodachu so k zakładnej sadźe za symbole, na př. {angleToken} za swójsku tokenowu syntaksu. Njepłaćiwe regularne ekseksy so ignoruja.",
+				"noTranslatePatterns": "Glob-patterny přirunane přećiwo tastinam na parserowej runinje (JSON spiknjena čara, RESX {resxName}, PO {poMsgid}, XLIFF-jednotka {xliffId}, INI/restext key). Přirunowace kluče so z naprašowanja wupadnu a přeńdu ze zdźeržanej hódnotu žórła."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Nakładowanski slěd",
+			"steps": {
+				"actionInputs": "Akcija čita eksplicitne zapodaća z dźěłoweho wotběha.",
+				"config": "Wón začita YAML-konfiguraciju wot {configPath}.",
+				"precedence": "Za kóžde zhromadne polo dobudźe zapodaće; Hewak wužiwa so YAML-hódnota.",
+				"validation": "Zjednoćene hódnoty so waliduja. Njepłaćiwe enumy (na př. {invalidEnum}) wuskutkuja, zo akcija z jasnej powěsću spěšnje zwrěšći."
+			}
+		},
+		"tone": {
+			"heading": "Zynk a industrija, w jednorym prajenju",
+			"body": "API Azure AI Translator v3 nima žadyn jenički zwukowy button. Dwě sadźbje so zjednoćitej, zo dóstanješ najwjetši dźěl samsneje kontrole:",
+			"industryLabel": "Industrija / wobłuk:",
+			"industryBody": "Pokazajće z {categoryId} na jednu kategoriju Azure {customTranslatorLink} na swójskim korpusu – prawniski, techniski, medicinski, marketingowy abo druhi. To je najsylniša přiručka za zwuk, markowy hłós a słowoskład.",
+			"surfaceLabel": "Tekstowy tekst:",
+			"surfaceBody": "Wužiwajće {glossaryLink}, zo byšće mjena markow a produktowe zapřijeća posłownje posłownje zawrěli, wužiwajće {profanityAction} k wutčenju profanych zapřijećow, hdyž so na lokalizowanje na młódši publikum měriš.",
+			"glossaryLinkLabel": "Słowničk"
+		}
 	},
 	"inputs": {
 		"title": "Inputs & outputs",
 		"eyebrow": "Złožk",
-		"lede": "Kóždy zapodaće so tež w ofentiwnej konfigurowanskej dataji repozytorium akceptuje. Hdyž stej wobě nastajenej, dobudźe akciski input."
+		"lede": "Kóždy zapodaće so tež w ofentiwnej konfigurowanskej dataji repozytorium akceptuje. Hdyž stej wobě nastajenej, dobudźe akciski input.",
+		"configurationIntro": "Widźiće {configurationLink} za YAML-šemu a začitanski slěd.",
+		"configurationLinkLabel": "Konfiguracija",
+		"columns": {
+			"name": "Mjeno",
+			"default": "Zapłać",
+			"description": "Wopisowanje"
+		},
+		"defaults": {
+			"none": "Žane",
+			"allSupported": "Wšitcy podpěraja",
+			"translatorDefaultTrue": "true (přełožowarski default)"
+		},
+		"requiredInputs": {
+			"heading": "Trěbne inputy",
+			"caption": "Trěbne inputy",
+			"items": {
+				"sourceLocale": "Bazowa lokalizacija (na př. {en}) wužiwa so za namakanje resursowych datajow kaž {sourceGlob}. Tež jako {fromLocale} přełožowarjej dale pósłane.",
+				"subscriptionKey": "Azure AI Translator subscription key. Přeńdź přez {secrets}.",
+				"endpoint": "URL kónčneho dypka přełožowarja, na př. {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Zhromadne opcionalne inputy",
+			"caption": "Zhromadne opcionalne inputy",
+			"items": {
+				"region": "Resursowy region přełožowarjow (wuwostaj za globalne resursy).",
+				"toLocales": "Městna k přełožowanju. Akceptuje rjad JSON ({jsonArray}) abo wot komy dźělene hódnoty.",
+				"include": "wot nowolinijow dźělene kulowe mustry; Přełoža so jenož so k tomu přikazowace dataje.",
+				"exclude": "wot nowolinijow dźělene kulowe mustry; Wotpowědowace dataje so přeskočija (po připołoženju so nałožuja).",
+				"configPath": "Puć ke konfigurowanskej dataji YAML (relatiwnje ke korjenju dźěłoweho ruma).",
+				"dryRun": "Při {true} zaběžće přełožki a wusćełajće zjimanja, njepisajće pak žane dataje.",
+				"failOnError": "Při {true} njewočakowane zmylki při jednanju zwrěšća; Hdyž {false}, su zmylki warnowanje."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Próstwy přełožowarjow",
+			"intro": "Tute přiměrjeja so direktnje na parametry naprašowanja Azure AI Translator v3. Kóždy je fakultatiwny; Při njenastajenju płaća standardy přełožowarja.",
+			"caption": "Próstwy přełožowarjow",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. Dale kaž {categoryQuery}.",
+				"textType": "{plain} abo {html}. Wužiwajće {html} jenož potom, hdyž su waše resursowe hódnoty woprawdźite HTML-fragmenty.",
+				"profanityAction": "{noAction}, {marked} abo {deleted}. Kontrolěrujće, kak so profane zapřijeća w přełožkach wusyłaja.",
+				"profanityMarker": "{asterisk} abo {tag}. Zmysłapołne jenož, hdyž je {profanityAction} {marked}.",
+				"allowFallback": "Při {false} wróći přełožowar zmylk, město toho zo wróćo do powšitkowneho systema padnje, hdyž waš {categoryId} žane zasadźenje za cilowu lokalizaciju nima.",
+				"apiVersion": "Translator REST API version."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Resilience & placeholder-škit",
+			"intro": "Tute zapodaća rjaduja, kak so akcija zadźerži, hdyž přełožowar twoje naprašowanje potłóči a kak škita městnate tokeny kaž {mustache} abo {indexZero} před skomolenjom při přełožowanju.",
+			"caption": "Poćežomne a městnostne škitne inputy",
+			"items": {
+				"maxRetries": "Maksimalne wopyty wospjetowanja při přechodnych HTTP wotmołwach ({statusCodes}). Cyłkowna ličba HTTP-wołanjow na naprašowanje je {totalCalls}.",
+				"retryBackoffMs": "Čapku (w milisekundach) při kóždym jednotliwym wróćowym sparje. Akcija hódnoći {retryAfter} wotmołwowu hłowičku Azure dokładnje, hdyž tu je; Hewak wužiwa při tutej hódnoće wobmjezowany eksponencialny backoff.",
+				"protectPlaceholders": "Při {true} (standard) so městne symbole kaž {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} a HTML-entity do přełožka přez sentinelowe tokeny narunaja a po tym zaso restawruja. Znjemóžniće jenož potom, hdyž je we wašim žórle wotpohladnje posłowny tekst, kiž ma so přełožić.",
+				"customPlaceholderPatterns": "Přez nowu linku dźělene regularne ekseksy (bjez wotmjezowakow) dodachu so do standardneje sadźby symbolow, na př. {angleToken} za swójsku syntaksu tokena.",
+				"noTranslatePatterns": "Přez nowu liniju dźělene globowe mustry přirjadowane přećiwo tastinam na parserowej runinje (JSON spiktowana čara, RESX {resxName}, PO {poMsgid}, XLIFF-jednotka {xliffId}, INI/restext key). Přirunowace kluče so z naprašowanja přełožowarjow wupadnu a přeńdu při tym ze zdźeržanej hódnotu žórła."
+			}
+		},
+		"outputs": {
+			"heading": "Outputy",
+			"caption": "Outputy",
+			"items": {
+				"summaryTitle": "Krótke PR-title-friendly zjimanje, na př. {summaryExample}.",
+				"summaryDetails": "Markdown-zjeće so hodźi za PR-gremij abo zjeće dźěłoweho městna.",
+				"hasNewTranslations": "{trueString}, hdyž so jedyn abo wjacore nowe přełožki wugenerowachu."
+			}
+		}
 	},
 	"formats": {
 		"title": "Formaty plików",
 		"eyebrow": "Złožk",
 		"heroTitle": "Podpěrane formaty plików",
-		"lede": "Šěsć kołojězbnych formatow resursow. Akcija čita kóždu dataju source-locale, přełoži hódnoty a zapisa na cilowu lokalizaciju jednoho bratra a sotru."
+		"lede": "Šěsć kołojězbnych formatow resursow. Akcija čita kóždu dataju source-locale, přełoži hódnoty a zapisa na cilowu lokalizaciju jednoho bratra a sotru.",
+		"namingConvention": "Wšitke dataje wužiwaja {namingConvention} pomjenowansku konwenciju.",
+		"learnMore": "Zhonić wjace",
+		"items": {
+			"resx": {
+				"blurb": "Resursowe dataje .NET bazowace na XML. Přełožće nutřkowny tekst kóždeho {dataValue} suka, při čimž so komentary a metadaty wobchowaja.",
+				"specLabel": "Microsoft Learn — resursy w .resx datajach"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 dokumenty. Přełožće kóždu {source} a zapisajće wuslědk do wotpowědneje {target}, při čimž postajeće {trgLang} za lokal.",
+				"specLabel": "OASIS XLIFF 2.0 specification"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object files. Přełožće kóždu {msgid} / {msgidPlural} do {msgstr} / {msgstrPlural} formow.",
+				"specLabel": "GNU gettext — PO file format"
+			},
+			"json": {
+				"blurb": "Lubowólne JSON-dataje. Zahnězdźene objekty so z {delimiter} wotmjezowakom za přełožowanje spłonja, potom na wuchodźe znowa zahnězdźa. Dypkowane tasty ({dottedKey}) so dosłownje wobchowaja.",
+				"specLabel": "JSON specification (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Jednore {keyValue} dataje (INI w stilu Win32 abo někajka flat-config). Nadpisma wotrězkow a komentary so wobchowaja.",
+				"specLabel": "INI datajowy format na Wikipediji"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI-tekstowe resursy — płone poriki {keyValue} jako tekstowy přewodnik k {resx} wužiwane.",
+				"specLabel": "Microsoft MUI overview"
+			}
+		},
+		"roundTrip": {
+			"heading": "Garantije za tam a sem",
+			"body": "Testowa pakta přepruwuje bajtowe koło-tripowanje za reprezentatiwne wuhotowanja kóždeho formata. Hdyž formatowa wašnička w twojej kodowej bazy koło-tripowanje łama, {issueLink} prošu z minimalnej probu.",
+			"issueLinkLabel": "Wočińće wudaće"
+		}
 	},
 	"recipes": {
 		"title": "Recepty",
 		"eyebrow": "Warjenska kniha",
-		"lede": "Zwučene mustry za rozpósłanje přełožkow: monorepos, glosary, swójske kategorije, suche přeběhi a tonowa kontrola."
+		"lede": "Zwučene mustry za rozpósłanje přełožkow: monorepos, glosary, swójske kategorije, suche přeběhi a tonowa kontrola.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Wočiń po kóždym běhu naprašowanje za ćahom"
+			},
+			"monorepo": {
+				"heading": "Monorepos: scope translation per package"
+			},
+			"glossary": {
+				"heading": "Słowničk k markowym mjenam a produktowym zapřijećam",
+				"intro": "Daj {configPath} do repozytorika:",
+				"afterLabel": "Po",
+				"body": "Słownički zapřijeća so {after} přełožk nałožuja, tak zo mašinelnje přełoženy wućišć waše preferowane markěrowanje tež wobchowa, hdyž je model jón na synonym zaměnił."
+			},
+			"customCategory": {
+				"heading": "Kategorija swójskich přełožowarjow (industrija / domena)",
+				"body": "Zwučujće na korpusu Azure {customTranslatorLink} kategoriju, kotraž Waš branšowy słowoskład a zynk (prawnistwo, medicina, marketing, nutřkowna technika atd.) zapopadnje a přez {categoryId} jeje wupokaz sposrědkuje. To je najsylniša zynkowa přiručka, kotruž Azure poskića."
+			},
+			"tone": {
+				"heading": "Tone control + striktny fallback",
+				"body": "Kombinujće swójski přełožowarski {categoryId} z {profanityAction} a {allowFallbackFalse}, zo byšće jednotny hłós přesadźili a dźěłowy wotběh zwrěšćili, hdyž nima wuzwolena kategorija zasadźenje za jedne z wašich cilowych lokalow."
+			},
+			"dryRun": {
+				"heading": "Suchi běh, prjedy hač dźěłowy wotběh zapinje",
+				"body": "Akcija wusyła hišće zjimace wuslědki a kročelowe zjimanje, ale žane dataje so njespisuja. Kombinujće z {failOnErrorFalse}, zo byšće kóždu temu jako warnowanje na swětło pokazali, mjeztym zo iterujeće."
+			}
+		}
 	},
 	"faq": {
 		"title": "FAQ",
 		"eyebrow": "Pomoc",
 		"heroTitle": "Husto stajene prašenja",
-		"lede": "Spěšne wotmołwy na prašenja, kotrež so při přiwzaću jednanja najhusćišo jewja."
+		"lede": "Spěšne wotmołwy na prašenja, kotrež so při přiwzaću jednanja najhusćišo jewja.",
+		"questions": {
+			"azure": {
+				"heading": "Kak rěči akcija z Azure?",
+				"body": "Přez oficialny {azureSdkLink} SDK wot Microsofta, na {corePipelineLink} naworštowany. Tak dóstanješ awtomatiske wospjetowanja na {statusCodes}, typěrowane žadanske a wotmołwowe modele a wobchad z awtentifikaciskej słóčku darmotnje - wšitko, štož bě prjedy z ruku kuleny {axios} wołanje. Zjawna akciska płonina (inputy, outputy, datajowe outputy) wostanje njezměnjena."
+			},
+			"tone": {
+				"heading": "Čehodla su přełožki druhdy off-brand abo off-tone?",
+				"body": "Mašinelny přełožk stanje so po standardźe na powšitkowny zaměrowy model. Pomhaja tři knefle: {glossaryLink} za twjerde přehłosowanja zapřijećow, {customTranslatorLink} za na twój ton a słowoskład zwučene modele, a {profanityAction} šudrowanje abo chorowanje wokřiwych zapřijećow.",
+				"glossaryLinkLabel": "Słowničk",
+				"customTranslatorLinkLabel": "Kategorija swójskich přełožowarjow"
+			},
+			"duplicateFiles": {
+				"heading": "Kak móžu wobeńć, samsnu dataju dwójce přełožić?",
+				"body": "Wuwołajće dźěłowy wotběh na {paths}, kotrež so jenož k wašim source-locale-datajam hodźa, na př. {sourceGlob}. Akcija wobsahuje tež swójski datajowy filter za wuzběhowanje, hdyž je {githubToken} nastajeny, z kotrymž so dźěło na dataje w najnowšim commiće zwyši."
+			},
+			"offline": {
+				"heading": "Móžu akciju offline přewjesć?",
+				"body": "Nic runjewon — Azure AI-přełožowar je runtime-mozy. Ale móžeš z {dryRunTrue} běžeć, zo by parsing a config walifikował, bjeztoho zo by HTTP-naprašowanja za přełožk přewjedł."
+			},
+			"node": {
+				"heading": "Na kotrej node-wersiji běži akcija?",
+				"body": "V3 běži na GitHub Actions {nodeRuntime} runtime. Zwjazkowy JavaScript je z Node 20, 22 a 24 kompatibelny, štož CI testuje."
+			},
+			"dist": {
+				"heading": "Zwotkel přińdu zawalene {distDir}?",
+				"body": "GitHub JS-akcije roznošuja swój zestajeny JS do składźišća. Dźěłowy wotběh {distBuild} natwari jón po kóždym zjednoćenju znowa, zo {mainBranch}, hač by so wón wotbočił, a blokuje {distCheck} PR, kotrež bychu přestarjeny output."
+			},
+			"formats": {
+				"heading": "Kak wupada z druhimi formatami resursow?",
+				"body": "Dźensa: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} trjebaš-li dalšu – rěčny poćah je mały (analyzuj → kartu → přełožki → formaće nałožować) a přinoški su witane.",
+				"issueLinkLabel": "Wočiń wudaće"
+			}
+		}
 	},
 	"translations": {
 		"title": "Přełožki",
 		"eyebrow": "Wustajenje",
 		"heroTitle": "Halo w kóždej rěči",
-		"locales": "Lokacije",
-		"currentlyRendered": "Tučasnje přerysowane",
-		"complete": "Dospołnje!",
-		"pendingPrefix": "Hač k přichodnemu wuběženju přełožowanskich dokumentow.",
+		"lede": "Tuta strona so wot Resource Translator samoho přełožuje, při kóždym storkowanju do hłowy, do kóždeje rěče, kotruž Azure AI Translator podpěruje.",
+		"localeCountLabel": "{count} Městna",
+		"statusComplete": "{translatedCount} aktualnje přerysowane – dospołne!",
+		"statusPending": "{translatedCount} aktualnje zwobraznjeny – {pendingCount} hač k přichodnemu {workflowName} běhej.",
 		"viewWorkflowRuns": "Wobhladaj sej běhi dźěłoweho wotběha",
 		"filter": "Filtr",
 		"filterPlaceholder": "Pytajće po rěči, kode abo maćernorěčnym mjenje ...",
 		"source": "Žórło",
 		"machineTranslations": "Mašinelne přełožki",
-		"translationPending": "Translation pending - Wočiń přeběh přełožowanskich dokumentow.",
+		"translationPending": "Přełožk čaka - započń {workflowName} běh.",
 		"noLocales": "K tutomu filtrej so žane lokale njehodźa.",
-		"howItWorks": "Kak to funguje"
+		"howItWorks": {
+			"heading": "Kak to funguje",
+			"thisActionLabel": "Runje tuta akcija",
+			"steps": {
+				"source": "Jendźelska žórłowa dataja bydli na {messagesPath}.",
+				"workflow": "Storki, kotrež so jeho dótknu, wotstartuja {workflowLink}, kiž {thisAction} přećiwo sebi běži.",
+				"fanOut": "Akcija wusměrja so na kóždu wot Azure AI přełožowarja podpěrowanu regionalnu kónčinu (konfigurowanu w {configPath}) a pisa na cil jedyn bratšowski {messagesLocaleJson}.",
+				"pullRequest": "Z nowymi přełožkami so požadanje na ćahanje wočini. Hromadu wozjewja tuta strona z wupjelnjenymi kartami znowa."
+			}
+		},
+		"poweredBy": "Ćěrjeny wot Resource Translator a Azure AI-přełožowar."
 	},
 	"contributing": {
 		"title": "Přinošować",
 		"eyebrow": "Wotewrjeny source",
-		"lede": "Přizjewjenja zmylkow, naprašowanja funkcijow a sćehnjenja su witane. Akcija je mała dosć, zo by prěni króć sobuskutkowacym přećelna była."
+		"lede": "Přizjewjenja zmylkow, naprašowanja funkcijow a sćehnjenja su witane. Akcija je mała dosć, zo by prěni króć sobuskutkowacym přećelna była.",
+		"localDevelopment": {
+			"heading": "Lokalne wuwiće"
+		},
+		"addingParser": {
+			"heading": "Přidaće parsera",
+			"steps": {
+				"fixture": "Přidaj pod {testDataDir} připrawu.",
+				"implement": "Přesadź {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Přizjew to w {factoryFile}.",
+				"extension": "Přidaj {translationFileSchemes} do {finderFile} datajowu ekstenziju.",
+				"tests": "Napisajće tam a sem testy za parsěrowanje → format a appTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "Wěstotne hódnoty",
+			"body": "Konfiguracija Jesta minimalne pokryće wunuzuje. Nowy kod dyrbi wuprajenje + linkowy proh nad 78 % a funkcije nad 90 % dźeržeć. Přidaj k swojej změnje připrawy a testy."
+		},
+		"docsSite": {
+			"heading": "Dokumentaciska městnosć",
+			"body": "{docsDir} mapa je projekt Astro 6 + Tailwind v4. Běž tam {npmInstall} raz, potom {npmRunDev} za lokalny předhlad. Dźěłowy wotběh {pagesWorkflow} dodawa při kóždym hromadźenju dokumenty na strony GitHub."
+		}
 	},
 	"changelog": {
 		"title": "Protokol změnow",
 		"eyebrow": "Stawizny",
-		"lede": "Wysokorjadne zjimanje wozjewjenjow. Kanoniski, awtoritatiwny changelog bydli w CHANGELOG.md w składźe."
+		"lede": "Wysokorjadne zjimanje wozjewjenjow. Kanoniski, awtoritatiwny changelog bydli w CHANGELOG.md w składźe.",
+		"fullRecord": "Hlej {changelogLink} za dospołny zapis.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (we wuwiću)",
+			"labels": {
+				"breaking": "ŁAMANJE",
+				"resilience": "Resilienca:",
+				"placeholderProtection": "Škita za město:",
+				"perKeyOptOut": "Per-key opt-out:",
+				"docsAccessibility": "Docs bjezbarjernosć:",
+				"inlineCodeStyling": "Inline code styling:"
+			},
+			"issueLabels": {
+				"closes46": "Zakónči #46.",
+				"tightens16": "Přiwótřenje #16.",
+				"closes35": "Zakónči #35."
+			},
+			"items": {
+				"runtime": "Storčiće na {nodeRuntime} runtime ({breaking}).",
+				"newInputs": "Nowe inputy: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError} a dale wuwite přełožowarske knefle {textType}, {profanityAction}, {profanityMarker} a {allowFallback}.",
+				"sourceLocale": "Rěčna baza so nětko tež na Translator dale da, {fromLocale} tak so krótke truny awtomatisce njedetektuja.",
+				"resilience": "{label} awtomatiske wospjetowanje při přechodnych HTTP wotmołwach ({statusCodes}), kotrež respektuje {retryAfter} hłowu Azure — padnje, hdyž njepřitomny, wróćo k třěsatemu eksponencialnemu cofnjenju. Naměr přez {maxRetries} a {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} tokeny kaž {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} a HTML-entitety so do přełožka do sentinelow zapakuja a po tym zaso restawruja, tak zo přełožowar přestanje i18next/Mustache/Handlebars/.NET/printf placeholdery komoleć. Přepławić přez {protectPlaceholders}; Podlěš z {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} nowy {noTranslatePatterns} input wotpadnje cyle přirunowace kluče naprašowanja přełožowarja (wobchowa žórła hódnoty za markowe mjena, zmylkowe kody atd.). Přirjaduje glob-patterny k tastinam na runinje parsera (spiknjena čara JSON, RESX {resxName}, PO {poMsgid}, jednotka XLIFF {xliffId}, INI/restext key). {issue}",
+				"repoConfig": "Repo-level config via {configPath}.",
+				"glossary": "Słowničk podpěra, kročelowe zjimanje přez {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "npm audit clean (0 vulnerabilities).",
+				"docsSite": "Astro + Tailwind v4-docs strona z nahladnymi přechodami a ekspresiwnym kodom.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. Logowe glyfy přetworjene na puće, zo njebychu hižo barbny kontrast přećiwo gradientowym stopam zwrěšćili, znošowacy {backToTop} button wužiwa {inert} while schowany (město {ariaHidden} přepławka, kotryž je zastawkujomny wostaji), {formatsAstro} wotrězki njekoliděruja hižo ze swojimi awtomatisce generowanymi nadpismowymi IDjemi, tři wizelne karty wustajeja nětko BCP-47-płaćiwe atributy {lang} ({nya}, {lug}, {run}), dwójne {documentation} popiski orientaciskich dypkow su mjez nabóčnej pruhu a stopu rozdźělne,  A kóžda datowa tabulka na {inputs}/{configuration} přiwozmje so z wobrazowkowym podpismom.",
+				"inlineCode": "{label} docs proza {codeElement} nosy mjeztym ćopły/jantarowy akcent – rozeznawacy so wot marko→akcentoweje palety, kotraž so za wójmiznama a nadpisma wužiwa.",
+				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Hlej stawizny gita."
+		}
 	}
 }

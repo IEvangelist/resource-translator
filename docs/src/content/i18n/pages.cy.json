@@ -18,18 +18,26 @@
 			"node": "Nod 20 / 22 / 24",
 			"sdk": "Azure SDK swyddogol"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "Mewngofnodi",
+			"json": "nythu neu wastad",
+			"ini": "{keyValue}",
+			"restext": "Testun MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Chwe fformat ffeil",
-				"body": "Teithiau crwn .resx, .xliff, .po, .json, .ini, a .restext gyda fformatio beit-sefydlog."
+				"body": "Mae teithiau crwn {resx}, {xliff}, {po}, {json}, {ini}, a {restext} gyda fformatio beit-sefydlog."
 			},
 			"config": {
 				"title": "Cyfluniad lefel repo",
-				"body": "Gollwng .github/resource-translator.yml ar gyfer cynnwys globs, geirfa, a chategorïau Custom Translator."
+				"body": "Gollwng ffeil {configPath} ar gyfer cynnwys globs, geirfa, a chategorïau Custom Translator."
 			},
 			"glossary": {
 				"title": "Ymwybodol o eirfa",
-				"body": "Cloi enwau brand a thelerau cynnyrch gyda regex ffin geiriau craff sy'n trin C++, .NET, a ffrindiau."
+				"body": "Cloi enwau brand a thelerau cynnyrch gyda regex ffin geiriau craff sy'n trin {cpp}, {dotnet}, a ffrindiau."
 			},
 			"dryRun": {
 				"title": "Rhedeg yn sych + methu meddal",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Allbynnau cysylltiadau cyhoeddus",
-				"body": "summary-title, summary-details, and has-new-translations slot directly into create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails}, a {hasNewTranslations} slot yn uniongyrchol i mewn i create-pull-request."
 			},
 			"sdk": {
 				"title": "Azure SDK swyddogol",
-				"body": "Wedi'i adeiladu ar @azure-rest/ai-translation-text + @azure/core-rest-pipeline - ail-geisiadau awtomatig ar 408/429/5xx, dim HTTP wedi'i rolio â llaw. esbuild-bundled, audit-clean."
+				"body": "Wedi'i adeiladu ar {azureSdk} + {corePipeline} - ail-geisiadau awtomatig ar {statusCodes}, dim HTTP wedi'i rolio â llaw. {esbuild}-bwndelu, archwilio-glân."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Llif gwaith galw heibio",
+			"titlePrefix": "Copïo. Gludo.",
+			"titleAccent": "Cyfieithu.",
+			"body": "Tair cyfrinach, pedair llinell, ac mae'ch repo yn amlieithog ar y gwthio nesaf.",
+			"setupLink": "Cerdded drwy'r gosodiad llawn"
+		},
+		"cta": {
+			"title": "Ydych chi'n barod i leologio ar awtobeilot?",
+			"body": "Un allwedd Azure AI Translator, un ffeil llif gwaith. Resource Translator sy'n trin y gweddill.",
+			"button": "Dechrau arni"
 		}
 	},
 	"getting-started": {
 		"title": "Dechrau arni",
 		"eyebrow": "Gosod",
-		"lede": "Ychwanegwch ffeil llif gwaith, pwyntiwch at eich cymwysterau Azure AI Translator, a bydd y weithred - wedi'i adeiladu ar SDK @azure-rest / ai-translation-text swyddogol Microsoft - yn sganio'r repo am ffeiliau adnoddau iaith ffynhonnell ac yn allyrru brodyr a chwiorydd wedi'u cyfieithu.",
+		"lede": "Ychwanegwch ffeil llif gwaith, pwyntiwch at eich tystysgrifau Azure AI Translator, a bydd y weithred yn sganio'r repo am ffeiliau adnoddau iaith ffynhonnell ac yn allyrru brodyr a chwiorydd wedi'u cyfieithu.",
 		"steps": {
 			"provision": {
 				"title": "Darparu adnodd Azure AI Translator",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Ychwanegu'r llif gwaith",
-				"body": "Creu .github/workflows/translate.yml:"
+				"body": "Creu {workflowPath}:"
 			},
 			"resource": {
 				"title": "Cyflawni ffeil adnoddau ffynhonnell",
-				"body": "Mae ffeiliau adnoddau yn defnyddio'r Enw. .<sourceLocale> <ext> confensiwn. Er enghraifft, mae Greetings.en.resx yn dod yn Greetings.fr.resx, Greetings.de.resx, ac yn y blaen ar ôl rhedeg."
+				"body": "Mae ffeiliau adnoddau yn defnyddio'r confensiwn {namingConvention}. Er enghraifft, {sourceFile} yn dod yn {frFile}, {deFile}, ac yn y blaen ar ôl rhedeg."
 			},
 			"output": {
 				"title": "Archwilio'r allbwn",
-				"body": "Unwaith y bydd y llif gwaith yn gorffen, mae'r weithred yn datgelu tri allbwn y gallwch chi weirio i mewn i ddisgrifiad cysylltiadau cyhoeddus: crynodeb-teitl, crynodeb-manylion, a has-newydd-cyfieithiadau. Mae hefyd yn ysgrifennu crynodeb Markdown i'r dudalen swydd trwy core.summary."
+				"body": "Unwaith y bydd y llif gwaith yn gorffen, mae'r weithred yn datgelu tri allbwn y gallwch chi weirio i mewn i ddisgrifiad cysylltiadau cyhoeddus: {summaryTitle}, {summaryDetails}, a {hasNewTranslations}. Mae hefyd yn ysgrifennu crynodeb Markdown i'r dudalen swydd trwy {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Camau nesaf",
-			"configuration": "Ffurfweddu rhagosodiadau lefel repo gyda .github/resource-translator.yml.",
+			"configuration": "Ffurfweddu rhagosodiadau lefel repo gyda {configPath}.",
 			"recipes": "Gweler ryseitiau ar gyfer monorepos, geirfa arferol, a chategorïau Custom Translator."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Cyfluniad",
 		"eyebrow": "Cartref",
 		"heroTitle": "Cyfluniad ystorfa",
-		"lede": "Mae Express yn rhagosodiad unwaith yn .github/resource-translator.yml a gadael i bob llif gwaith eu hetifeddu. Mae mewnbynnau gweithredu bob amser yn ennill pan ddarperir y ddau."
+		"lede": "Mae Express yn rhagosodiadau unwaith yn y ffeil ffurfweddu ystorfa a gadael i bob llif gwaith eu hetifeddu. Mae mewnbynnau gweithredu bob amser yn ennill pan ddarperir y ddau.",
+		"intro": "Gwrthwneud y llwybr gyda'r mewnbwn {configPath} os oes angen lleoliad rhagosodedig arnoch.",
+		"schemaHeading": "Sgema",
+		"fieldReference": {
+			"heading": "Cyfeirnod maes",
+			"caption": "Cyfeirnod y maes cyfluniad",
+			"columns": {
+				"field": "Maes",
+				"type": "Math",
+				"notes": "Nodiadau"
+			},
+			"fields": {
+				"sourceLocale": "Disgyn yn ôl i'r mewnbwn {sourceLocale} os na osodwyd. Hefyd yn cael ei anfon ymlaen at Cyfieithydd fel {fromLocale} felly nid yw llinynnau byr yn cael eu canfod yn awtomatig.",
+				"toLocales": "Naill ai arae neu linyn wedi'i wahanu gan goma.",
+				"includeExclude": "Patrymau Glob wedi'u gwerthuso yn erbyn llwybrau absoliwt a gweithle-berthynol.",
+				"glossary": "Tymor ôl-gyfieithu yn diystyru. Ymwybodol o ffiniau geiriau (yn ymylu {cpp}, {dotnet}).",
+				"categoryId": "Categori Azure {customTranslatorLink} - eich knob diwydiant / parth (cyfreithiol, meddygol, tôn marchnata, ac ati). Anfonwyd fel {categoryQuery}.",
+				"textType": "Gosod {plain} yn y rhagosodiad. Defnyddiwch {html} dim ond os yw eich gwerthoedd adnoddau yn cynnwys darnau HTML go iawn.",
+				"profanityAction": "Sut i drin termau profane mewn allbwn cyfieithu.",
+				"profanityMarker": "Dim ond ystyrlon pan fydd {profanityAction} yn {marked}.",
+				"allowFallback": "Gosod i {false} i fethu'r cyfieithiad pan nad oes gan eich {categoryId} ddefnydd ar gyfer locale targed yn hytrach na syrthio yn ôl i'r model cyffredinol.",
+				"apiVersion": "Fersiwn API REST y cyfieithydd. Gosod {version} yn y rhagosodiad.",
+				"maxRetries": "Uchafswm o ymdrechion ail-geisio ar ymatebion HTTP dros dro ({statusCodes}). Gosod y rhagosodiad {defaultRetries}. Cyfanswm y galwadau HTTP fesul cais yw {totalCalls}.",
+				"retryBackoffMs": "Cap (ms) ar unrhyw gwsg cefn sengl. Gosod {defaultBackoff} yn y rhagosodiad. Mae pennawd {retryAfter} Azure yn cael ei anrhydeddu'n union pan fo'n bresennol; fel arall defnyddir backoff esbonyddol jittered, wedi'i gapio ar y gwerth hwn.",
+				"protectPlaceholders": "Gosod {true} yn y rhagosodiad. Pan fyddant ymlaen, mae tocynnau fel {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ac endidau HTML yn cael eu disodli gan docynnau sentinel cyn eu cyfieithu a'u hadfer ar ôl hynny. Analluogi dim ond pan fo'r ffynhonnell yn fwriadol yn cynnwys llythrennau siâp deiliad lle.",
+				"customPlaceholderPatterns": "Patrymau regex ychwanegol (heb amffinwyr) wedi'u hychwanegu at y set deiliad lle diofyn, e.e. {angleToken} ar gyfer cystrawen tocyn arferol. Mae exexau rheolaidd annilys yn cael eu hanwybyddu.",
+				"noTranslatePatterns": "Patrymau Glob yn cyfateb yn erbyn allweddi lefel gramadegydd (llwybr dotiog JSON, RESX {resxName}, PO {poMsgid}, {xliffId} uned XLIFF, allwedd INI/restext). Mae allweddi cyfatebol yn cael eu gollwng o'r cais ac yn pasio drwodd gyda'u gwerth ffynhonnell wedi'i gadw."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Trefn llwytho",
+			"steps": {
+				"actionInputs": "Mae'r weithred yn darllen mewnbynnau penodol o'r llif gwaith.",
+				"config": "Mae'n llwytho'r ffurfweddiad YAML o {configPath}.",
+				"precedence": "Ar gyfer pob maes a rennir, mae'r mewnbwn yn ennill; fel arall, defnyddir y gwerth YAML.",
+				"validation": "Mae'r gwerthoedd cyfunedig yn cael eu dilysu. Mae efesuriadau annilys (e.e. {invalidEnum}) yn achosi i'r weithred fethu'n gyflym gyda neges glir."
+			}
+		},
+		"tone": {
+			"heading": "Tôn a diwydiant, mewn termau plaen",
+			"body": "Nid oes gan API Azure AI Translator v3 knob un tôn. Mae dau osodiad yn cyfuno i roi'r rhan fwyaf o'r un rheolaeth i chi:",
+			"industryLabel": "Diwydiant / parth:",
+			"industryBody": "defnyddiwch {categoryId} i bwyntio at gategori Azure {customTranslatorLink} wedi'i hyfforddi ar eich corpws eich hun - cyfreithiol, technegol, meddygol, marchnata, neu unrhyw beth arall. Dyma'r lifer cryfaf ar gyfer tôn, llais brand, a geirfa.",
+			"surfaceLabel": "Testun arwyneb:",
+			"surfaceBody": "Defnyddiwch y {glossaryLink} i gloi enwau brand a thelerau cynnyrch ar lafar, a defnyddiwch {profanityAction} i sgwrio termau profane wrth dargedu lleoleiddio ar gyfer cynulleidfaoedd iau.",
+			"glossaryLinkLabel": "Geirfa"
+		}
 	},
 	"inputs": {
 		"title": "Mewnbynnau ac allbynnau",
 		"eyebrow": "Cyfeirnod",
-		"lede": "Mae pob mewnbwn hefyd yn cael ei dderbyn yn y ffeil ffurfweddu repo dewisol. Pan fydd y ddau wedi'u gosod, mae'r mewnbwn gweithredu yn ennill."
+		"lede": "Mae pob mewnbwn hefyd yn cael ei dderbyn yn y ffeil ffurfweddu repo dewisol. Pan fydd y ddau wedi'u gosod, mae'r mewnbwn gweithredu yn ennill.",
+		"configurationIntro": "Gweler {configurationLink} am y sgema YAML a'r drefn lwytho.",
+		"configurationLinkLabel": "Cyfluniad",
+		"columns": {
+			"name": "Enw",
+			"default": "Rhagosodiad",
+			"description": "Disgrifiad"
+		},
+		"defaults": {
+			"none": "dim",
+			"allSupported": "Cynhelir pob un",
+			"translatorDefaultTrue": "true (Cyfieithydd rhagosodedig)"
+		},
+		"requiredInputs": {
+			"heading": "Mewnbynnau angenrheidiol",
+			"caption": "Mewnbynnau angenrheidiol",
+			"items": {
+				"sourceLocale": "Locale ffynhonnell (e.e. {en}) a ddefnyddir i ddod o hyd i ffeiliau adnoddau fel {sourceGlob}. Hefyd wedi'i anfon ymlaen at Cyfieithydd fel {fromLocale}.",
+				"subscriptionKey": "Allwedd tanysgrifio Azure AI Translator. Pasiwch trwy {secrets}.",
+				"endpoint": "URL terfyn cyfieithydd, e.e. {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Mewnbynnau dewisol cyffredin",
+			"caption": "Mewnbynnau dewisol cyffredin",
+			"items": {
+				"region": "Rhanbarth adnoddau cyfieithydd (hepgorer ar gyfer adnoddau byd-eang).",
+				"toLocales": "Locales i gyfieithu atynt. Derbyn arae JSON ({jsonArray}) neu werthoedd sydd wedi'u gwahanu gan goma.",
+				"include": "Patrymau glob wedi'u gwahanu gan linell newydd; dim ond ffeiliau sy'n cyfateb sy'n cael eu cyfieithu.",
+				"exclude": "Patrymau glob wedi'u gwahanu gan linell newydd; Mae ffeiliau cyfatebol yn cael eu hepgor (wedi'u cymhwyso ar ôl cynnwys).",
+				"configPath": "Llwybr i'r ffeil ffurfweddu YAML (mewn perthynas â gwraidd y weithfan).",
+				"dryRun": "Pan fyddwch yn {true}, rhedwch gyfieithiadau ac allyrrwch grynodebau ond peidiwch ag ysgrifennu ffeiliau.",
+				"failOnError": "Pan {true}, mae gwallau annisgwyl yn methu'r weithred; Pan {false}, mae gwallau yn rhybuddion."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Mewnbynnau cais cyfieithydd",
+			"intro": "Mae'r rhain yn mapio'n uniongyrchol ar baramedrau ymholiad Azure AI Translator v3. Mae pob un yn ddewisol; mae'r rhagosodiadau Cyfieithydd yn berthnasol pan gaiff ei ddad-osod.",
+			"caption": "Mewnbynnau cais cyfieithydd",
+			"items": {
+				"categoryId": "Categori Azure {customTranslatorLink} - y diwydiant / parth / knob tôn. Wedi'i anfon ymlaen fel {categoryQuery}.",
+				"textType": "{plain} neu {html}. Defnyddiwch {html} dim ond pan fydd eich gwerthoedd adnoddau yn ddarnau HTML go iawn.",
+				"profanityAction": "{noAction}, {marked}, neu {deleted}. Rheoli sut mae termau profane yn cael eu allyrru mewn cyfieithiadau.",
+				"profanityMarker": "{asterisk} neu {tag}. Ystyrlon dim ond pan fydd {profanityAction} yn {marked}.",
+				"allowFallback": "Pan {false}, mae Cyfieithydd yn dychwelyd gwall yn hytrach na disgyn yn ôl i'r system gyffredinol os nad oes gan eich {categoryId} ddefnydd ar gyfer locale targed.",
+				"apiVersion": "Fersiwn API REST y cyfieithydd."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Gwytnwch a diogelu deiliad lle",
+			"intro": "Mae'r mewnbynnau hyn yn rheoli sut mae'r weithred yn ymddwyn pan fydd Cyfieithydd yn throttles eich cais a sut mae'n amddiffyn tocynnau deiliad lle fel {mustache} neu {indexZero} rhag cael eu torri yn ystod cyfieithu.",
+			"caption": "Mewnbynnau gwytnwch a diogelu deiliad lle",
+			"items": {
+				"maxRetries": "Uchafswm o ymdrechion ail-geisio ar ymatebion HTTP dros dro ({statusCodes}). Cyfanswm nifer y galwadau HTTP ym mhob cais yw {totalCalls}.",
+				"retryBackoffMs": "Cap (mewn milieiliadau) ar unrhyw gwsg cefn sengl. Mae'r weithred yn anrhydeddu pennawd ymateb {retryAfter} Azure yn union pan fo'n bresennol; fel arall mae'n defnyddio backoff esbonyddol jittered wedi'i gapio ar y gwerth hwn.",
+				"protectPlaceholders": "Pan {true} (diofyn), mae deiliaid lleoedd fel {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ac endidau HTML yn cael eu disodli gan docynnau sentinel cyn eu cyfieithu a'u hadfer ar ôl hynny. Analluogi dim ond pan fydd eich ffynhonnell yn fwriadol yn cynnwys testun llythrennol siâp deiliad lle y dylid ei gyfieithu.",
+				"customPlaceholderPatterns": "Ychwanegwyd regexes wedi'u gwahanu gan linellau newydd (heb ffinyddion) at y set deiliad lle diofyn, e.e. {angleToken} ar gyfer cystrawen tocyn arferol.",
+				"noTranslatePatterns": "Patrymau glob wedi'u gwahanu gan linell newydd yn cyfateb yn erbyn allweddi lefel gramadegydd (llwybr dotiog JSON, RESX {resxName}, PO {poMsgid}, {xliffId} uned XLIFF, allwedd INI/restext). Mae allweddi cyfatebol yn cael eu gollwng o'r cais Cyfieithydd ac yn pasio drwodd gyda'u gwerth ffynhonnell wedi'i gadw."
+			}
+		},
+		"outputs": {
+			"heading": "Allbynnau",
+			"caption": "Allbynnau",
+			"items": {
+				"summaryTitle": "Crynodeb byr sy'n gyfeillgar i deitl cysylltiadau cyhoeddus, e.e. {summaryExample}.",
+				"summaryDetails": "Crynodeb Markdown sy'n addas ar gyfer corff cysylltiadau cyhoeddus neu grynodeb swydd.",
+				"hasNewTranslations": "{trueString} pryd y cynhyrchwyd un neu fwy o gyfieithiadau newydd."
+			}
+		}
 	},
 	"formats": {
 		"title": "Fformatau ffeiliau",
 		"eyebrow": "Cyfeirnod",
 		"heroTitle": "Fformatau ffeiliau a gynhelir",
-		"lede": "Chwe fformat adnoddau rownd-trippable. Mae'r weithred yn darllen pob ffeil ffynhonnell-local, yn cyfieithu'r gwerthoedd, ac yn ysgrifennu brawd neu chwaer fesul locale targed."
+		"lede": "Chwe fformat adnoddau rownd-trippable. Mae'r weithred yn darllen pob ffeil ffynhonnell-local, yn cyfieithu'r gwerthoedd, ac yn ysgrifennu brawd neu chwaer fesul locale targed.",
+		"namingConvention": "Mae pob ffeil yn defnyddio'r confensiwn enwi {namingConvention}.",
+		"learnMore": "Dysgu mwy",
+		"items": {
+			"resx": {
+				"blurb": "Ffeiliau adnoddau .NET wedi'u seilio ar XML. Cyfieithu testun mewnol pob nod {dataValue}, gan gadw sylwadau a metadata.",
+				"specLabel": "Microsoft Learn - Adnoddau mewn ffeiliau .resx"
+			},
+			"xliff": {
+				"blurb": "Dogfennau OASIS XLIFF 2.0. Cyfieithu pob {source} ac ysgrifennu'r canlyniad i'r {target} cyfatebol, gan osod {trgLang} ar gyfer y locale.",
+				"specLabel": "Manyleb OASIS XLIFF 2.0"
+			},
+			"po": {
+				"blurb": "GNU gettext Ffeiliau Gwrthrychau Cludadwy. Cyfieithu pob {msgid} / {msgidPlural} i ffurfiau {msgstr} / {msgstrPlural}.",
+				"specLabel": "GNU gettext — Ffurf ffeil PO"
+			},
+			"json": {
+				"blurb": "Ffeiliau JSON mympwyol. Mae gwrthrychau nythu yn cael eu gwastad gyda'r amffinydd {delimiter} ar gyfer cyfieithu, yna eu hail-nythu ar yr allbwn. Mae allweddi dotiog ({dottedKey}) yn cael eu cadw ar lafar.",
+				"specLabel": "Manyleb JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Ffeiliau {keyValue} syml (INI arddull Win32 neu unrhyw ffurfweddiad gwastad). Mae penawdau a sylwadau adran yn cael eu cadw.",
+				"specLabel": "Fformat ffeil INI ar Wicipedia"
+			},
+			"restext": {
+				"blurb": "Adnoddau testun Microsoft MUI - parau {keyValue} gwastad a ddefnyddir fel cydymaith testun i {resx}.",
+				"specLabel": "Trosolwg Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Gwarantau taith gron",
+			"body": "Mae'r gyfres brawf yn gwirio rownd-trip beit-am-beit ar gyfer gosodiadau cynrychioliadol o bob fformat. Os yw quirk fformat yn torri rownd-tripping yn eich codebase, {issueLink} gyda sampl lleiaf.",
+			"issueLinkLabel": "Agor mater"
+		}
 	},
 	"recipes": {
 		"title": "Ryseitiau",
 		"eyebrow": "Llyfr Coginio",
-		"lede": "Patrymau cyffredin ar gyfer cyfieithiadau llongau: monorepos, geirfa, categorïau arfer, rhediadau sych, a rheoli tôn."
+		"lede": "Patrymau cyffredin ar gyfer cyfieithiadau llongau: monorepos, geirfa, categorïau arfer, rhediadau sych, a rheoli tôn.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Agor cais tynnu ar ôl pob rhediad"
+			},
+			"monorepo": {
+				"heading": "Monorepos: cyfieithiad cwmpas fesul pecyn"
+			},
+			"glossary": {
+				"heading": "Geirfa ar gyfer enwau brand a thelerau cynnyrch",
+				"intro": "Gollyngwch {configPath} i'r depo:",
+				"afterLabel": "ar ôl",
+				"body": "Mae termau geirfa yn cael eu cymhwyso {after} cyfieithu, felly mae'r allbwn wedi'i gyfieithu gan beirianyddol yn cadw'ch brand dewisol hyd yn oed pan fydd y model yn ei gyfnewid am gyfystyr."
+			},
+			"customCategory": {
+				"heading": "Categori Cyfieithydd Custom (diwydiant / parth)",
+				"body": "Hyfforddi categori Azure {customTranslatorLink} ar gorpws sy'n dal geirfa a thôn eich diwydiant (cyfreithiol, meddygol, marchnata, peirianneg fewnol, ac ati) a phasio ei ID trwy {categoryId}. Dyma'r lifer tôn cryfaf y mae Azure yn ei gynnig."
+			},
+			"tone": {
+				"heading": "Rheoli tôn + wrth gefn llym",
+				"body": "Cyfunwch {categoryId} Cyfieithydd Custom gyda {profanityAction} a {allowFallbackFalse} i orfodi llais cyson a methu'r llif gwaith os nad oes gan y categori a ddewiswyd ddefnydd ar gyfer un o'ch lleoliadau targed."
+			},
+			"dryRun": {
+				"heading": "Rhedeg yn sych cyn troi'r llif gwaith ymlaen",
+				"body": "Mae'r weithred yn dal i allyrru allbynnau cryno a chrynodeb cam, ond nid oes unrhyw ffeiliau wedi'u hysgrifennu. Cyfunwch â {failOnErrorFalse} i wynebu pob mater fel rhybudd wrth i chi ailadrodd."
+			}
+		}
 	},
 	"faq": {
 		"title": "CAOYA",
 		"eyebrow": "Cymorth",
 		"heroTitle": "Cwestiynau a ofynnir yn aml",
-		"lede": "Atebion cyflym i'r cwestiynau sy'n codi amlaf wrth fabwysiadu'r weithred."
+		"lede": "Atebion cyflym i'r cwestiynau sy'n codi amlaf wrth fabwysiadu'r weithred.",
+		"questions": {
+			"azure": {
+				"heading": "Sut mae'r weithred yn siarad ag Azure?",
+				"body": "Trwy SDK {azureSdkLink} swyddogol Microsoft, wedi'i haenu ar {corePipelineLink}. Mae hynny'n cael eich ail-geisio awtomatig ar {statusCodes}, modelau cais ac ymateb wedi'u teipio, a thrin pennawd dilysu am ddim - popeth a arferai fod yn alwad {axios} wedi'i rolio â llaw. Nid yw'r arwyneb gweithredu cyhoeddus (mewnbynnau allbynnau ffeiliau) wedi newid."
+			},
+			"tone": {
+				"heading": "Pam mae cyfieithiadau weithiau oddi ar y brand neu'n oddi ar y tôn?",
+				"body": "Mae cyfieithu peirianyddol yn rhagosodedig i fodel pwrpas cyffredinol. Mae tri knobs yn helpu: {glossaryLink} ar gyfer diystyru tymor caled, {customTranslatorLink} ar gyfer modelau wedi'u tiwnio wedi'u hyfforddi ar eich tôn a'ch geirfa, a {profanityAction} i sgwrio neu fflagio termau profane.",
+				"glossaryLinkLabel": "Geirfa",
+				"customTranslatorLinkLabel": "Categori Cyfieithydd Addasedig"
+			},
+			"duplicateFiles": {
+				"heading": "Sut mae osgoi cyfieithu'r un ffeil ddwywaith?",
+				"body": "Sbarduno'r llif gwaith ar {paths} sy'n cyfateb i'ch ffeiliau ffynhonnell-locale yn unig, e.e. {sourceGlob}. Mae'r weithred hefyd yn cynnwys ei hidlydd ffeil fesul sbardun ei hun pan fydd {githubToken} wedi'i osod, gan gyfyngu gwaith i ffeiliau yn yr ymrwymiad diweddaraf."
+			},
+			"offline": {
+				"heading": "A allaf redeg y weithred all-lein?",
+				"body": "Nid yn union - Azure AI Translator yw'r ymennydd runtime. Ond gallwch redeg gyda {dryRunTrue} i ddilysu dadansoddiad a ffurfweddu heb wneud unrhyw geisiadau HTTP am gyfieithu."
+			},
+			"node": {
+				"heading": "Pa fersiwn Node mae'r weithred yn rhedeg arno?",
+				"body": "Mae v3 yn rhedeg ar y GitHub Actions {nodeRuntime} amser rhedeg. Mae'r JavaScript wedi'i bwndelu yn gydnaws â Nod 20, 22, a 24, a dyna'r hyn y mae CI yn ei brofi."
+			},
+			"dist": {
+				"heading": "O ble mae'r {distDir} bwndelu yn dod?",
+				"body": "Mae gweithredoedd GitHub JS yn llongio eu JS wedi'i grynhoi yn yr ystorfa. Mae'r llif gwaith {distBuild} yn ei ailadeiladu ar ôl pob uno i {mainBranch} a fyddai'n drifftio, ac {distCheck} blocio PRs a fyddai'n glanio allbwn sydd wedi dyddio."
+			},
+			"formats": {
+				"heading": "Beth am fformatau adnoddau eraill?",
+				"body": "Heddiw: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} os oes angen un arall arnoch - mae'r rhyngwyneb gramadegydd yn fach (dadansoddi map → → gymhwyso cyfieithiadau → fformat) ac mae croeso i gyfraniadau.",
+				"issueLinkLabel": "Agor problem"
+			}
+		}
 	},
 	"translations": {
 		"title": "Cyfieithiadau",
 		"eyebrow": "Arddangos",
 		"heroTitle": "Helo ym mhob iaith",
-		"locales": "Locales",
-		"currentlyRendered": "wedi'i lunio ar hyn o bryd",
-		"complete": "Cyflawn!",
-		"pendingPrefix": "yn aros am y rhediad cyfieithu-docs nesaf.",
+		"lede": "Mae'r dudalen hon yn cael ei chyfieithu gan Resource Translator ei hun, ar bob gwthio i'r prif, i bob iaith y mae Azure AI Translator yn ei chefnogi.",
+		"localeCountLabel": "{count} locales",
+		"statusComplete": "{translatedCount} wedi'i rendro ar hyn o bryd - cyflawn!",
+		"statusPending": "{translatedCount} wedi'i rendro ar hyn o bryd - {pendingCount} aros am y {workflowName} nesaf.",
 		"viewWorkflowRuns": "Gweld rhediadau llif gwaith",
 		"filter": "Hidlydd",
 		"filterPlaceholder": "Chwilio yn ôl iaith, cod, neu enw brodorol...",
 		"source": "Ffynhonnell",
 		"machineTranslations": "Cyfieithiadau peirianyddol",
-		"translationPending": "Cyfieithiad yn yr arfaeth - agor rhediad cyfieithu-dogfennau.",
+		"translationPending": "Cyfieithiad yn yr arfaeth — agor rhediad {workflowName}.",
 		"noLocales": "Dim locale sy'n cydweddu â'r hidlydd hwnnw.",
-		"howItWorks": "Sut mae hyn yn gweithio"
+		"howItWorks": {
+			"heading": "Sut mae hyn yn gweithio",
+			"thisActionLabel": "yr union weithred hon",
+			"steps": {
+				"source": "Mae'r ffeil ffynhonnell Saesneg yn byw yn {messagesPath}.",
+				"workflow": "Pushes that touch it kick off {workflowLink}, which runs {thisAction} against itself.",
+				"fanOut": "Mae'r weithred yn cefnogi pob locale a gefnogir gan Azure AI Translator (wedi'i ffurfweddu yn {configPath}) ac yn ysgrifennu brawd neu chwaer {messagesLocaleJson} fesul targed.",
+				"pullRequest": "Agorir cais tynnu gyda'r cyfieithiadau newydd. Mae ei chyfuno yn ailgyhoeddi'r dudalen hon gyda'r cardiau wedi'u llenwi."
+			}
+		},
+		"poweredBy": "Wedi'i bweru gan Resource Translator ac Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Cyfrannu",
 		"eyebrow": "Ffynhonnell agored",
-		"lede": "Mae croeso i adroddiadau nam, ceisiadau nodweddion, a cheisiadau tynnu i gyd. Mae'r weithred yn ddigon bach i fod yn gyfeillgar i gyfranwyr tro cyntaf."
+		"lede": "Mae croeso i adroddiadau nam, ceisiadau nodweddion, a cheisiadau tynnu i gyd. Mae'r weithred yn ddigon bach i fod yn gyfeillgar i gyfranwyr tro cyntaf.",
+		"localDevelopment": {
+			"heading": "Datblygu lleol"
+		},
+		"addingParser": {
+			"heading": "Ychwanegu gramadegydd",
+			"steps": {
+				"fixture": "Ychwanegwch gêm o dan {testDataDir}.",
+				"implement": "Gweithredu {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Cofrestrwch ef yn {factoryFile}.",
+				"extension": "Ychwanegwch yr estyniad ffeil at {translationFileSchemes} yn {finderFile}.",
+				"tests": "Ysgrifennwch brofion rownd ar gyfer dadansoddi → fformat a applicationTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "Trothwyon cwmpas",
+			"body": "Mae'r ffurfweddiad Jest yn gorfodi isafswm sylw. Rhaid i'r cod newydd gadw'r trothwy datganiadau + llinellau uwchlaw 78% a swyddogaethau uwchlaw 90%. Ychwanegwch gemau a phrofion ochr yn ochr â'ch newid."
+		},
+		"docsSite": {
+			"heading": "Safle dogfennaeth",
+			"body": "Mae'r ffolder {docsDir} yn brosiect Astro 6 + Tailwind v4. Rhedeg {npmInstall} yno unwaith, yna {npmRunDev} ar gyfer rhagolwg lleol. Mae'r llif gwaith {pagesWorkflow} yn llongau dogfennau i GitHub Pages ar bob uno."
+		}
 	},
 	"changelog": {
 		"title": "Cofnod newidiadau",
 		"eyebrow": "Hanes",
-		"lede": "Crynodeb lefel uchel o ddatganiadau. Mae'r changelog canonaidd, awdurdodol yn byw yn CHANGELOG.md yn yr ystorfa."
+		"lede": "Crynodeb lefel uchel o ddatganiadau. Mae'r changelog canonaidd, awdurdodol yn byw yn CHANGELOG.md yn yr ystorfa.",
+		"fullRecord": "Gweler {changelogLink} am y cofnod llawn.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (yn cael ei ddatblygu)",
+			"labels": {
+				"breaking": "TORRI",
+				"resilience": "Gwytnwch:",
+				"placeholderProtection": "Amddiffyniad y deiliad lle:",
+				"perKeyOptOut": "Allan fesul bysell:",
+				"docsAccessibility": "Hygyrchedd dogfennau:",
+				"inlineCodeStyling": "Steilio cod mewnlin:"
+			},
+			"issueLabels": {
+				"closes46": "Yn cau #46.",
+				"tightens16": "Tynhau # 16.",
+				"closes35": "Yn cau #35."
+			},
+			"items": {
+				"runtime": "Bumped i {nodeRuntime} runtime ({breaking}).",
+				"newInputs": "Mewnbynnau newydd: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, ynghyd â knobs Cyfieithydd uwch {textType}, {profanityAction}, {profanityMarker}, a {allowFallback}.",
+				"sourceLocale": "Mae locale ffynhonnell bellach hefyd yn cael ei anfon ymlaen at Translator fel {fromLocale} fel nad yw llinynnau byr yn cael eu canfod yn awtomatig.",
+				"resilience": "{label} ail-geisio awtomatig ar ymatebion HTTP dros dro ({statusCodes}) sy'n anrhydeddu pennawd {retryAfter} Azure - yn disgyn yn ôl i backoff esbonyddol jittered pan fydd yn absennol. Tunable via {maxRetries} and {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} tocynnau fel {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ac endidau HTML yn cael eu lapio mewn sentinels cyn eu cyfieithu a'u hadfer ar ôl hynny, felly mae Cyfieithydd yn stopio mangling deiliaid lle i18next / Mustache / Handlebars / .NET / printf. Toglo trwy {protectPlaceholders}; ymestyn gyda {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} mewnbwn {noTranslatePatterns} newydd yn gollwng allweddi cyfatebol o'r cais Cyfieithydd yn gyfan gwbl (cadw gwerthoedd ffynhonnell ar gyfer enwau brand, codau gwall, ac ati). Cydweddu patrymau glob yn erbyn allweddi lefel gramadegydd (llwybr dotio JSON, RESX {resxName}, PO {poMsgid}, {xliffId} uned XLIFF, allwedd INI/restext). {issue}",
+				"repoConfig": "Cyfluniad lefel repo drwy {configPath}.",
+				"glossary": "Cymorth geirfa, crynodeb cam trwy {coreSummary}.",
+				"tooling": "bwndelwr esbuild, ffurfweddiad fflat ESLint 9, Prettier, EditorConfig.",
+				"audit": "NPM archwilio glân (0 gwendidau).",
+				"docsSite": "Safle dogfennau Astro + Tailwind v4 gyda thrawsnewidiadau golwg a Chod Mynegiannol.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pasio. Mae glyffau logo wedi'u trosi'n lwybrau fel nad ydynt bellach yn methu cyferbyniad lliw yn erbyn arosfannau graddiant, mae'r botwm {backToTop} arnofio yn defnyddio {inert} tra'n guddio (yn hytrach na togl {ariaHidden} a'i adael yn dabladwy), {formatsAstro} adrannau bellach yn gwrthdaro â'u IDs pennawd a gynhyrchir yn awtomatig, mae tri cherdyn locale bellach yn datgelu priodoleddau {lang} BCP-47-ddilys ({nya}, {lug}, {run}), labeli dyblyg {documentation} tirnod yn cael eu disambiguated rhwng bar ochr a throedyn,  a phob tabl data ar {inputs}/{configuration} llongau gyda phennawd darllenydd sgrin.",
+				"inlineCode": "{label} docs rhyddiaith {codeElement} bellach yn gwisgo'r acen thema cynnes / ambr - yn wahanol i'r palet brand→acen a ddefnyddir ar gyfer dolenni a phenawdau.",
+				"automation": "Awto-uno Dependabot, sganio CodeQL, matrics CI."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Gweler hanes git."
+		}
 	}
 }

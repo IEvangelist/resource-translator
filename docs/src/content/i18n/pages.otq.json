@@ -18,18 +18,26 @@
 			"node": "Nodo 20 yá 22 yá 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "GetText",
+			"json": "anidado wa plano",
+			"ini": "{keyValue}",
+			"restext": "MUI texto"
+		},
 		"features": {
 			"formats": {
 				"title": "'Rato formatos archivo",
-				"body": "Viajes ida y vuelta.resx,.xliff,.po, .json, .ini ne .restext ko formato hingi mpa̲ti jar bytes."
+				"body": "Viajes ida e vuelta {resx}, {xliff}, {po}, {json}, {ini} ne {restext} ko formato hingi mpa̲ti jar bytes."
 			},
 			"config": {
 				"title": "Configuración a nivel de repositorio",
-				"body": "Suelte 'nar.github yá resource-translator.yml pa incluir globos, glosarios ne nt'ot'e Custom Translator."
+				"body": "Soltar 'nar archivo {configPath} pa incluir globos, glosarios ne ya nt'ot'e Custom Translator."
 			},
 			"glossary": {
 				"title": "Consciente ar glosario",
-				"body": "Bloquear marcas ne ngäts'i ar producto ko regex ar nt'ot'e po̲ts'e inteligente da maneja C++, .NET ne mpädi."
+				"body": "Bloquear marcas ne ngäts'i productos ko ya smart word-boundary regex da maneja {cpp}, {dotnet} ne mpädi."
 			},
 			"dryRun": {
 				"title": "Funcionamiento seco + soft — fail",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Salidas amigables ar PR",
-				"body": "Resumen-hontho, resumen-detalles, ne Has — 'ra'yo — traducciones ranura Hmunts'i jar da t'ot'e-pull — zohni 'nehe."
+				"body": "{summaryTitle}, {summaryDetails} ne {hasNewTranslations} ranura Hmunts'i jar da t'ot'e-pull — zohni 'nehe."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "Construido jar @azure descanso yá ai — traducción — texto + @azure yá core — resto — tubería — reintentos automáticos jar 408 yá 429 yá 5xx, hinda HTTP enrollado tso̲kwa mano. Esbuild-bundled, auditoría — limpio."
+				"body": "Construido jar {azureSdk} + {corePipeline} — reintentos automáticos jar {statusCodes}, otho ar HTTP enrollado tso̲kwa mano. {esbuild} — bundled, auditoría — limpio."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Flujo ar 'be̲fi drop-in",
+			"titlePrefix": "Copiar. Pegar.",
+			"titleAccent": "'rats'u̲hñä",
+			"body": "Hñu secretos, goho líneas ne ár repo ar multilingüe ja ar Xtí empujón.",
+			"setupLink": "Camine a través de ar configuración nxo̲ge"
+		},
+		"cta": {
+			"title": "¿Hñoki pa localizar jar piloto automático?",
+			"body": "One Azure AI Translator key, one workflow file. Traductor recursos maneja ar resto.",
+			"button": "'Bu̲i"
 		}
 	},
 	"getting-started": {
 		"title": "'Bu̲i",
 		"eyebrow": "Configuración",
-		"lede": "Añadir 'nar archivo flujo ar 'be̲fi, apunte bí ja yá credenciales Azure AI Translator ne ar nt'ot'e — construida jar SDK xidi mfädi @azure-rest yá ai-translation-text — explorará repositorio pa archivos recursos lenguaje fuente ne emitir ida̲ traducidos.",
+		"lede": "Añadir 'nar archivo flujo ar 'be̲fi, apunte ja yá credenciales Azure AI Translator ne ar nt'ot'e escaneará repositorio pa archivos recursos ar hñä 'rini ne emitir ir ku traducidos.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Añadir ar flujo ar 'be̲fi",
-				"body": "Da t'ot'e .github/workflows/translate.yml:"
+				"body": "Da t'ot'e {workflowPath}:"
 			},
 			"resource": {
 				"title": "Confirmar 'nar archivo recursos 'rini",
-				"body": "Archivos recursos utilizan thuuhu. <sourceLocale>. <ext> 'nar nkohi. 'Nar nt'udi Greetings.en.resx ar bi pa̲ti jar Greetings.fr.resx, Greetings.de.resx, ne bí sucesivamente 'mefa xta 'nar carrera."
+				"body": "Archivos recursos utilizan ar {namingConvention} nkohi. 'Nar nt'udi ar bi pa̲ti jar {sourceFile} {frFile}, {deFile} ne bí nja'bu̲ bí sucesivamente 'me̲fa 'nar nthogi."
 			},
 			"output": {
 				"title": "Inspeccionar ar salida",
-				"body": "'Nar pa finalizado ar flujo ar 'be̲fi, ar nt'ot'e expone hñu ya salidas nä'ä to cablear ja 'nar descripción PR: resumen-hontho, resumen-detalles, ne pe̲ts'i — 'ra'yo — traducciones. 'Nehe gi 'yot'i 'nar resumen Markdown jar página ar 'be̲fi a través de core.summary."
+				"body": "'Nar pa finalizado ar flujo ar 'be̲fi, ar nt'ot'e expone hñu ya salidas nä'ä to cablear ja 'nar descripción PR: {summaryTitle}, ar {summaryDetails} ne ar {hasNewTranslations}. 'Nehe gi 'yot'i 'nar resumen Markdown jar página ar 'be̲fi vía {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Nuya ya pasos",
-			"configuration": "Configurar valores predeterminados ar za̲ ár nthe̲ repositorio ko .github yá resource-translator.yml.",
+			"configuration": "Configurar valores predeterminados ar za̲ ár nthe̲ repositorio ko {configPath}.",
 			"recipes": "Ga recetas pa monorepos, glosarios personalizados ne ya nt'ot'e Custom Translator."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Configuración",
 		"eyebrow": "YAML",
 		"heroTitle": "Configuración ar repositorio",
-		"lede": "Expresar valores predeterminados 'nar pa jar .github yá resource-translator.yml ne dejar kadu̲ 'nar flujo ar 'be̲fi heredar ya. Entradas ya nt'ot'e nzäm'bu̲ ganan nu'bu̲ ambos ar proporcionan."
+		"lede": "Expresar valores predeterminados 'nar pa jar archivo configuración ar repositorio ne dejar da kadu̲ 'nar flujo ar 'be̲fi herede ya. Entradas ya nt'ot'e nzäm'bu̲ ganan nu'bu̲ ambos ar proporcionan.",
+		"intro": "Anular ruta ko ar entrada {configPath} nu'bu̲ t'ot'e 'nar ja yá 'mui hingi predeterminada.",
+		"schemaHeading": "Esquema",
+		"fieldReference": {
+			"heading": "Referencia hwähi",
+			"caption": "Referencia hwähi configuración",
+			"columns": {
+				"field": "Hwähi",
+				"type": "Ar klase",
+				"notes": "Notas"
+			},
+			"fields": {
+				"sourceLocale": "Ho̲e ar 'ñäñho ar {sourceLocale} entrada nu'bu̲ hingi da t'ot'e. 'Nehe reenviado ma Translator komongu {fromLocale} ngut'ä hingi bí detectan automáticamente ya cadenas cortas.",
+				"toLocales": "Ya da 'nar matriz wa 'nar cadena separada ya comas.",
+				"includeExclude": "Patrones globo evaluados dige ya rutas absolutas ne ir nge ar espacio ar 'be̲fi.",
+				"glossary": "Anulación ar ngäts'i post-traducción. Mfädi jar límite po̲ts'e (maneja {cpp}, {dotnet}).",
+				"categoryId": "Categoría {customTranslatorLink} Azure — ár industria yá dominio perilla (legal, médico, wa ar ñhöñhö marketing, etc.). Pe̲hni komongu ar {categoryQuery}.",
+				"textType": "Ar defecto ar {plain}. Utilice {html} ho̲ntho nu'bu̲ yá valores recursos contienen fragmentos HTML reales.",
+				"profanityAction": "Tema japi ngäts'i profanos jar salida traeda.",
+				"profanityMarker": "Ho̲ntho ne ar {profanityAction} nu'bu̲ {marked}",
+				"allowFallback": "Da t'ot'e jar {false} pa fallar ar traducción nu'bu̲ ár {categoryId} hingi pe̲ts'i ningún despliegue pa 'nar ja 'mu̲i en lugar de caer ar nuevo jar modelo Nxoge.",
+				"apiVersion": "Traductor versión API REST. Ar defecto ar {version}.",
+				"maxRetries": "Intentos reintentos máximos jar nthädi HTTP transitorias ({statusCodes}). Ar defecto ar {defaultRetries}. Nxoge llamadas HTTP ya petición ar {totalCalls}.",
+				"retryBackoffMs": "Cap (ms) jar 'na Honto ar ähä retroceso. Ar defecto ar {defaultBackoff}. Ar cabecera {retryAfter} Azure ar honra exactamente nu'bu̲ 'bui; Ar nä'ä contrario ar gi japu̲'be̲fi retroceso exponencial tremolo, limitado jar nuna hmädi.",
+				"protectPlaceholders": "Ar defecto ar {true}. Nu'bu̲ activado, fichas komongu ar {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ne HTML entidades ar reemplazan ko fichas centinela nu'bu ar traducción ne ar restauran 'me̲fa. Deshabilitar ho̲ntho nu'bu̲ fuente contiene intencionalmente literales dets'e marcador ar posición.",
+				"customPlaceholderPatterns": "Patrones regex extra (hinda delimitadores) agregados jar conjunto marcador ya posición predeterminado, nt'udi, {angleToken} pa ar sintaxis ar ficha personalizada. Ya regex hindi válidos ar ignoran.",
+				"noTranslatePatterns": "Patrones globo coincidieron ko ya claves za̲ ár nthe̲ analizador (JSON trazado puntos, RESX {resxName}, PO {poMsgid}, XLIFF ar xe̲ni {xliffId}, INI yá restext clave). Claves coincidentes ar caen ar zohni 'nehe ne thogi ko ár hmädi fuente preservado."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Ya carga",
+			"steps": {
+				"actionInputs": "Ar nt'ot'e gi lei entradas explícitas ar flujo ar 'be̲fi.",
+				"config": "Carga ar configuración YAML ar {configPath}.",
+				"precedence": "Pa kadu̲ 'nar hwähi compartido, ar entrada gana; Ar nä'ä contrario ar gi japu̲'be̲fi ár hmädi YAML.",
+				"validation": "Ya valores fusionados ar validan. Enumeraciones hindi válidas (nt'udi, {invalidEnum}) provocan ke ar nt'ot'e falle ngutha ko 'nar 'me̲hni neki."
+			}
+		},
+		"tone": {
+			"heading": "Wa ar ñhöñhö ne ar industria, jar ngäts'i sencillos",
+			"body": "Ar API Azure AI Translator v3 hingi pe̲ts'i 'nar sola nunä wa ar ñhöñhö. Yoho ya ajustes combinan pa uni mäs ndunthe xkagentho ar control:",
+			"industryLabel": "Industria yá dominio:",
+			"industryBody": "Utilice {categoryId} pa señalar 'nar categoría {customTranslatorLink} Azure entrenada jar propio ár corpus — legal, técnico, médico, marketing wa 'na gi xka. Nuna gehna ar palanca xí nze̲di pa ar wa ar ñhöñhö, ar hñä ar marca ne ar nthuts'i ya texto.",
+			"surfaceLabel": "Texto superficie:",
+			"surfaceBody": "Utilice ar {glossaryLink} pa bloquear thuhuu marcas ne ngäts'i productos literalmente, ne utilizar {profanityAction} pa fregar ngäts'i profanos ja ar dirigir ar localización pa audiencias mäs bätsitho.",
+			"glossaryLinkLabel": "Glosario"
+		}
 	},
 	"inputs": {
 		"title": "Entradas & salidas",
 		"eyebrow": "Referencia",
-		"lede": "Nu'bu̲ entrada 'nehe ar acepta jar archivo configuración repositorio opcional. Nu'bu̲ ambos ar establecen, gana entrada ya nt'ot'e."
+		"lede": "Nu'bu̲ entrada 'nehe ar acepta jar archivo configuración repositorio opcional. Nu'bu̲ ambos ar establecen, gana entrada ya nt'ot'e.",
+		"configurationIntro": "Ga {configurationLink} pa ar esquema YAML ne ya carga.",
+		"configurationLinkLabel": "Configuración",
+		"columns": {
+			"name": "Thuuhu",
+			"default": "Defecto",
+			"description": "Descripción"
+		},
+		"defaults": {
+			"none": "Ninguno",
+			"allSupported": "ga̲tho apoyados",
+			"translatorDefaultTrue": "true (Translator defecto)"
+		},
+		"requiredInputs": {
+			"heading": "Entradas requeridas",
+			"caption": "Entradas requeridas",
+			"items": {
+				"sourceLocale": "'Mui 'rini (nt'udi, {en}) utilizado pa tingigi mbo archivos recursos komongu ar {sourceGlob}. 'Nehe reenviado da Translator komongu ar {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator subscription key. Thogi ir nge {secrets}",
+				"endpoint": "URL ar ngäts'i ar traductor, nt'udi, {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Entradas opcionales pa ngatho",
+			"caption": "Entradas opcionales pa ngatho",
+			"items": {
+				"region": "Traductor hnini recursos (omitir pa recursos globales).",
+				"toLocales": "Ja ya hnini pa gi 'rats'u̲hñä Zits'uwi 'nar matriz JSON ({jsonArray}) wa valores separados ya comas.",
+				"include": "Patrones globo separados 'ra'yo 'ñu; Ho̲ntho bí traducen ya archivos coincidentes.",
+				"exclude": "Patrones globo separados 'ra'yo 'ñu; Archivos coincidentes ar omiten (aplicados 'mefa xta inclui).",
+				"configPath": "Ruta ar archivo configuración YAML (yá Ts'ut'ubi dige yá raíz ar espacio ar 'be̲fi).",
+				"dryRun": "Nu'bu̲ {true}, ejecutar traducciones ne emitir resúmenes pe hingi 'yot'i archivos.",
+				"failOnError": "Nu'bu̲ {true}, errores inesperados fallan ar nt'ot'e; Nu'bu̲ {false}, ya errores ya advertencias."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Entradas petición traductor",
+			"intro": "Nuya 'me̲ni Hmunts'i jar Azure AI Translator v3 parámetros consulta. Ga̲tho ya jä'i ar opcional; ya valores predeterminados ar Translator aplican nu'bu̲ hingi ar establecer.",
+			"caption": "Entradas petición traductor",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. Pe̲hni komongu ar {categoryQuery}.",
+				"textType": "{plain} wa {html} Utilice {html} ho̲ntho nu'bu̲ yá valores recursos ya fragmentos HTML reales.",
+				"profanityAction": "{noAction}, {marked} wa {deleted} Controla Temu̲ ar emiten ngäts'i profanos jar traducciones.",
+				"profanityMarker": "{asterisk} wa {tag} Ho̲ntho di ne ar {profanityAction} nu'bu̲ {marked}",
+				"allowFallback": "Nu'bu̲ {false}, Translator devuelve 'nar error en lugar de volver ko ya Nxoge nu'bu̲ ár {categoryId} hingi pe̲ts'i ningún despliegue pa 'nar ja 'mu̲i 'mu̲i.",
+				"apiVersion": "Traductor versión API REST."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Resiliencia & 'ba̲ts'i marcador ar posición",
+			"intro": "Gi entradas controlan Temu̲ ar nt'ot'e ar comporta nu'bu̲ Translator limita ár zohni 'nehe ne honja protege fichas marcador posición komongu {mustache} wa {indexZero} da destrozado Nxoge ar traducción.",
+			"caption": "Entradas 'ba̲ts'i ar resiliencia ne ar marcador colocado",
+			"items": {
+				"maxRetries": "Intentos reintentos máximos jar nthädi HTTP transitorias ({statusCodes}). Ar 'bede Nxoge ya llamadas HTTP ya zohni 'nehe ar {totalCalls}.",
+				"retryBackoffMs": "Tapón (jar milisegundos) jar 'na Honto ar 'ye̲ retroceso. Ar nt'ot'e honra cabecera respuesta {retryAfter} Azure exactamente nu'bu̲ 'mui; Ar nä'ä contrario gi japu̲'be̲fi retroceso exponencial tremeado limitado jar nuna hmädi.",
+				"protectPlaceholders": "Nu'bu̲ {true} (predeterminado), marcadores ya posición komongu ar {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ne ya entidades HTML ar reemplazan ko fichas centinela nu'bu ar traducción ne ar restauran 'me̲fa. Desactivar ho̲ntho nu'bu̲ ár fuente contiene intencionalmente texto dets'e marcador ar posición literal nä'ä da 'ra'yo ar.",
+				"customPlaceholderPatterns": "Regex separados 'nar 'ra'yo líneas (hinda delimitadores) añadidos jar conjunto marcador posición predeterminado, nt'udi, {angleToken} pa ar sintaxis ar ficha personalizada.",
+				"noTranslatePatterns": "Patrones globo separados 'ra'yo 'ñu coinciden ko ya claves za̲ ár nthe̲ analizador (JSON 'ñu punteado, RESX {resxName}, PO {poMsgid}, XLIFF ar xe̲ni {xliffId}, INI yá restext key). Claves coincidentes ar caen ar zohni 'nehe Translator ne thogi ko ár hmädi fuente preservado."
+			}
+		},
+		"outputs": {
+			"heading": "Salidas",
+			"caption": "Salidas",
+			"items": {
+				"summaryTitle": "Resumen xi maa PR — hontho amigable, nt'udi, {summaryExample}.",
+				"summaryDetails": "Resumen Markdown mfädi pa 'nar komongu PR wa resumen ar 'be̲fi.",
+				"hasNewTranslations": "{trueString} nu'bu̲ bí generaron 'nar wa mäs 'ra'yo traducciones."
+			}
+		}
 	},
 	"formats": {
 		"title": "Formatos archivo",
 		"eyebrow": "Referencia",
 		"heroTitle": "Formatos archivo ja ya xeni",
-		"lede": "'Rato formatos recursos viajables ida y vuelta. Ar nt'ot'e gi lei kadu̲ 'nar archivo 'rini-ja ja 'na, traduce ya valores ne gi 'yot'i 'nar ida̲ ya hnini 'mu̲i."
+		"lede": "'Rato formatos recursos viajables ida y vuelta. Ar nt'ot'e gi lei kadu̲ 'nar archivo 'rini-ja ja 'na, traduce ya valores ne gi 'yot'i 'nar ida̲ ya hnini 'mu̲i.",
+		"namingConvention": "Ga̲tho ya archivos utilizan ar {namingConvention} nkohi ar nomenclatura.",
+		"learnMore": "Mäs ungumfädi",
+		"items": {
+			"resx": {
+				"blurb": "Archivos recursos .NET basado XML. Traduce texto mbo kadu 'nar nodo {dataValue}, preservando ya comentarios ne ar metadatos.",
+				"specLabel": "Microsoft Learn — Recursos jar archivos.resx"
+			},
+			"xliff": {
+				"blurb": "Documentos OASIS XLIFF 2.0. Traduce ya {source} ne gi 'yot'i ar nt'uni jar {target} 'bui, estableciendo {trgLang} pa ar ja xi 'mui.",
+				"specLabel": "Especificación OASIS XLIFF 2.0"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object archivos. Gi traduce ya {msgid} yá {msgidPlural} jar {msgstr} yá {msgstrPlural} formas.",
+				"specLabel": "GNU gettext — PO file format"
+			},
+			"json": {
+				"blurb": "Archivos JSON arbitrarios. Ya objetos anidados ar aplanan ko ar delimitador {delimiter} pa ar traducción, gem'bu̲ volver anidar jar salida. Ya teclas ko puntos ({dottedKey}) conservan ya hmä.",
+				"specLabel": "Especificación JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Simple {keyValue} archivos (INI estilo Win32 wa 'na configuración plana). Bí conservan ya encabezados ar sección ne ar comentarios.",
+				"specLabel": "Formato archivo INI jar Wikipedia"
+			},
+			"restext": {
+				"blurb": "Recursos texto Microsoft MUI — pares {keyValue} planos utilizados komongu 'nar 'ñowi textual {resx}.",
+				"specLabel": "Descripción general Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Garantías ar vuelta",
+			"body": "Suite ntsa̲ verifica byte ya byte — byte — viaje ida — pa accesorios representativos ya formato. Nu'bu̲ 'nar peculiaridad formato rompe ir 'nar viaje ida y vuelta jar ár codebase, Jaki {issueLink} ko 'nar muestra mínima.",
+			"issueLinkLabel": "Abrir 'nar hñäki"
+		}
 	},
 	"recipes": {
 		"title": "Ya receta",
 		"eyebrow": "Ar he̲'mi hñuni",
-		"lede": "Patrones pa ngatho pa ar envío traducciones: monorepos, glosarios, nt'ot'e personalizadas, tiradas seco ne control nzu̲nt'i thuhu ar ñhöñhö."
+		"lede": "Patrones pa ngatho pa ar envío traducciones: monorepos, glosarios, nt'ot'e personalizadas, tiradas seco ne control nzu̲nt'i thuhu ar ñhöñhö.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Abrir 'nar petición pull 'me̲fa kadu̲ 'nar ejecución"
+			},
+			"monorepo": {
+				"heading": "Monorepos: traducción ámbito ngatho ya paquete"
+			},
+			"glossary": {
+				"heading": "Glosario pa marcas ne ngäts'i ar producto",
+				"intro": "Suelte 'nar {configPath} ja ar repositorio:",
+				"afterLabel": "'me̲fa",
+				"body": "Ya ngäts'i ar glosario ar aplican {after} traducción, nä'ä salida traducida ar máquina mantiene ár marca preferida 'nehe nu'bu̲ ar modelo bí cambió 'bu̲ 'nar sinónimo."
+			},
+			"customCategory": {
+				"heading": "Categoría Custom Translator (industria yá dominio)",
+				"body": "Entrene 'nar categoría {customTranslatorLink} Azure ja 'nar corpus captura ár he̲'mi ya 'mu̲hñä ne ar wa ar ñhöñhö ar industria (legal, médico, marketing, ingeniería ja yá 'muise mbo, etc.) ne thoka ár ID vía {categoryId}. Nuna gehna ar palanca wa ar ñhöñhö mäs xí nze̲di ofrece Azure."
+			},
+			"tone": {
+				"heading": "Control wa ar ñhöñhö + respaldo estricto",
+				"body": "Combinar 'nar {categoryId} traductor personalizado ko {profanityAction} ne {allowFallbackFalse} pa da uni 'nar hñä consistente ne fallar flujo ar 'be̲fi nu'bu̲ ar categoría elegida hingi pe̲ts'i 'nar implementación pa 'na ja yá locales 'mu̲i."
+			},
+			"dryRun": {
+				"heading": "Funcionamiento seco nu'bu activar ar flujo ar 'be̲fi",
+				"body": "Ar nt'ot'e Tobe emite salidas resumen ne 'nar resumen bi thogi, pe hingi bí escritos ningún archivo. Combinar ko {failOnErrorFalse} pa surgir ya hñäki komongu 'nar advertencia Mente itere."
+			}
+		}
 	},
 	"faq": {
 		"title": "FAQ",
 		"eyebrow": "mfats'i",
 		"heroTitle": "Ya nt'a̲ni frecuentes",
-		"lede": "Nthädi rápidas ja ya nt'a̲ni da surgen mäs xi frecuencia ja ar xaha ar nt'ot'e."
+		"lede": "Nthädi rápidas ja ya nt'a̲ni da surgen mäs xi frecuencia ja ar xaha ar nt'ot'e.",
+		"questions": {
+			"azure": {
+				"heading": "¿Temu̲ ar nt'ot'e ñä ko ar Azure?",
+				"body": "A través de ar SDK {azureSdkLink} xidi mfädi Microsoft, capa jar {corePipelineLink}. Nä'ä bí consigue reintentos automáticos jar {statusCodes}, modelos 'nehe ne respuesta escritos ne manejo encabezado autenticación gratis — ga̲tho nä'ä solía to 'nar llamada {axios} enrollada tso̲kwa mano. Superficie nt'ot'e pública (entradas, salidas, salidas archivo) hingi cambia."
+			},
+			"tone": {
+				"heading": "¿Yogo'ä ya traducciones ya 'nandi fuera de marca wa fuera de toda̲?",
+				"body": "Traducción automática predeterminada 'nar modelo 'mu̲i Nxoge. Hñu ya perillas ayudan: 'nar {glossaryLink} pa anulaciones ngäts'i duro, 'nar {customTranslatorLink} pa modelos ajustados xi hño entrenados ár wa ar ñhöñhö ne ar nthuts'i ya hñä ne {profanityAction} fregar wa señalar ngäts'i profanos.",
+				"glossaryLinkLabel": "Glosario",
+				"customTranslatorLinkLabel": "Categoría Traductor personalizado"
+			},
+			"duplicateFiles": {
+				"heading": "¿Tema nu'bu gi 'rats'u̲hñä xkagentho ar archivo yoho ya 'nandi?",
+				"body": "Activar flujo ar 'be̲fi jar {paths} coinciden ko yá archivos fuente ja 'mui ho̲ntho, nt'udi, {sourceGlob}. Ar nt'ot'e 'nehe mfa̲ts'i 'bu̲i ár propio filtro archivo ya disparador nu'bu̲ bí establece {githubToken}, estrechando 'be̲fi ma archivos jar ngäts'i ar confirmación."
+			},
+			"offline": {
+				"heading": "¿Ar tsa̲ ejecutar ar nt'ot'e hinda conexión?",
+				"body": "Hingi exactamente — Azure AI Translator ge ar cerebro nt'ot'i. Pe tsa̲ da ejecutar ko {dryRunTrue} pa validar ar análisis ne ar configuración hinda 'yo̲t'e ni 'na jar petición HTTP pa ar traducción."
+			},
+			"node": {
+				"heading": "¿Temu̲ ar versión Node bí ejecuta ar nt'ot'e?",
+				"body": "v3 ar ejecuta jar GitHub Actions {nodeRuntime} pa nt'eni. Ar JavaScript incluido ar compatible ko ya Nodo 20, ar 22 ne ar 24, nä'ä CI pruebas."
+			},
+			"dist": {
+				"heading": "¿Hogem'bu̲ ehe ar {distDir} ya pa?",
+				"body": "GitHub JS acciones envían ár JS compilado ja ar repositorio. Flujo ar {distBuild} ar reconstruye nä'ä 'me̲fa kadu̲ 'nar fusión {mainBranch} nu'bu̲ derivaría, ne bloquea {distCheck} PR da aterrizaría salida desactualizada."
+			},
+			"formats": {
+				"heading": "¿Temu̲ thogi ko ma 'ra formatos recursos?",
+				"body": "Nu'bya: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} nu'bu̲ gí t'ot'e ma'na — interfaz analizador ar t'olo (analizar → 'me̲ni → da t'uni traducciones → formato) ne ya contribuciones ya bienvenidas.",
+				"issueLinkLabel": "Abrir 'nar hñäki"
+			}
+		}
 	},
 	"translations": {
 		"title": "Traducciones",
 		"eyebrow": "Escaparate",
 		"heroTitle": "Hadi ga̲tho ya hñä",
-		"locales": "Ja ya hnini",
-		"currentlyRendered": "'bu̲'bya xi nt'uni",
-		"complete": "¡Completo!",
-		"pendingPrefix": "T'o̲t'e t'o̲t'e Xtí — Docs.",
+		"lede": "Nuna ar página ar traducido ya Traductor recursos hä xkagentho, ja ya empuje ar principal, ja ya hñä admite Azure AI Translator.",
+		"localeCountLabel": "{count} ja ya xeni",
+		"statusComplete": "{translatedCount} 'bu̲'bya renderizado — nxo̲ge!",
+		"statusPending": "{translatedCount} 'bu̲'bya renderizada — {pendingCount} pendiente ar Xtí {workflowName} ejecutar.",
 		"viewWorkflowRuns": "Ga flujo ar 'be̲fi bí ejecuta",
 		"filter": "Filtro",
 		"filterPlaceholder": "Honi ya hñä, código wa thuuhu nativo...",
 		"source": "Fuente",
 		"machineTranslations": "Traducciones automáticas",
-		"translationPending": "Traducción pendiente — abrir 'nar nt'u̲t'u̲hñä — docs ejecuta.",
+		"translationPending": "Traducción pendiente — abrir 'nar {workflowName} ejecutar.",
 		"noLocales": "Ni 'na jar hnini coincide ko Nunu̲ filtro.",
-		"howItWorks": "Tema funciona 'me̲hna"
+		"howItWorks": {
+			"heading": "Tema funciona 'me̲hna",
+			"thisActionLabel": "Nuna ar nt'ot'e",
+			"steps": {
+				"source": "Archivo fuente ingles 'bu̲i jar {messagesPath}.",
+				"workflow": "Empuja Nunu̲ toque empu̲ti {workflowLink}, da 'yo̲t'e {thisAction} kontra hä xkagentho.",
+				"fanOut": "Ar nt'ot'e da 'yot'e nu'bu̲ Azure AI Translator apoyado jar 'mui (configurada jar {configPath}) ne gi 'yot'i 'nar {messagesLocaleJson} ir nge ar 'mu̲i.",
+				"pullRequest": "'Nar zohni 'nehe pull ar gi xoki ko ya 'ra'yo traducciones. Bí fusionar vuelva publicar nuna ar página ko ya tarheta rellenadas."
+			}
+		},
+		"poweredBy": "Desarrollado ya Resource Translator ne Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Contribuir",
 		"eyebrow": "Código abierto",
-		"lede": "Mfädi errores, solicitudes características ne solicitudes extracción ya ga̲tho bienvenidos. Ar nt'ot'e ar nä'ä suficientemente t'olo pa da amigable ko ya colaboradores ya bes."
+		"lede": "Mfädi errores, solicitudes características ne solicitudes extracción ya ga̲tho bienvenidos. Ar nt'ot'e ar nä'ä suficientemente t'olo pa da amigable ko ya colaboradores ya bes.",
+		"localDevelopment": {
+			"heading": "Nte ja"
+		},
+		"addingParser": {
+			"heading": "Añadir 'nar analizador",
+			"steps": {
+				"fixture": "Añadir 'nar accesorio debajo {testDataDir}",
+				"implement": "Implementar {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Registrar nä'ä {factoryFile}",
+				"extension": "Añadir ar extensión archivo jar {translationFileSchemes} jar {finderFile}.",
+				"tests": "'Yot'i pruebas ida y vuelta pa analizar → formato ne applyTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "Umbrales ar cobertura",
+			"body": "Configuración Jest da impone ar cobertura mínima. 'Ra'yo código da zeti ya declaraciones + líneas umbral por encima del 78% ne ya 'befi por encima del 90%. Añadir accesorios ne pruebas a lo largo de ár cambio."
+		},
+		"docsSite": {
+			"heading": "Sitio ar documentación",
+			"body": "Carpeta {docsDir} ge 'nar 'be̲fi Astro 6 + Tailwind v4. Nixtri {npmInstall} 'nar pa, gem'bu̲ {npmRunDev} pa ar thandi previa ja. Ar flujo ar {pagesWorkflow} envía documentos ma GitHub Pages ja ya fusión."
+		}
 	},
 	"changelog": {
 		"title": "Registro cambios",
 		"eyebrow": "Ar 'bede mahä'mu̲",
-		"lede": "Resumen mar hñets'i za̲ ár nthe̲ ya lanzamientos. Ar canónico, codelog autorizado 'bu̲i jar CHANGELOG.md ja ar repositorio."
+		"lede": "Resumen mar hñets'i za̲ ár nthe̲ ya lanzamientos. Ar canónico, codelog autorizado 'bu̲i jar CHANGELOG.md ja ar repositorio.",
+		"fullRecord": "Ga {changelogLink} pa ar registro completo.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (jar nte)",
+			"labels": {
+				"breaking": "ROGI",
+				"resilience": "Resiliencia:",
+				"placeholderProtection": "'Ba̲ts'i marcador ar posición:",
+				"perKeyOptOut": "Ya clausa opt — out:",
+				"docsAccessibility": "Accesibilidad ya do̲ni:",
+				"inlineCodeStyling": "Código jar 'ñu estilo:"
+			},
+			"issueLabels": {
+				"closes46": "Cierre #46.",
+				"tightens16": "Apriete #16.",
+				"closes35": "Njot'i #35."
+			},
+			"items": {
+				"runtime": "Bumped jar {nodeRuntime} pa nt'eni ({breaking}).",
+				"newInputs": "'Ra'yo entradas: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, 'nehe avanzado Translator perillas {textType}, {profanityAction}, {profanityMarker} ne {allowFallback}.",
+				"sourceLocale": "'Mui 'rini nu'bya 'nehe ar reenvía ma Translator nu'u̲ {fromLocale} hingi bí detectan automáticamente ya cadenas cortas.",
+				"resilience": "{label} retry automático jar nthädi HTTP transitorias ({statusCodes}) honrando ar {retryAfter} encabezado Azure — cae ar nuevo jar jittered exponencial backoff nu'bu̲ ausente. Ajustable ir nge ya {maxRetries} ne {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} fichas komongu ar {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ne ya entidades HTML gi 'bu̲hu̲ envueltas jar centinelas nu'bu ar traducción ne restauradas 'me̲fa, nä'ä Translator he̲gi ar destrozar marcadores ar posición i18next/Mustache/Handlebars/.NET/printf. Alternar vía {protectPlaceholders}; Ntu̲ngi ko {customPlaceholderPatterns} {issue}",
+				"perKeyOptOut": "{label} 'ra'yo entrada {noTranslatePatterns} gota claves coincidentes zohni 'nehe ar Translator enteramente (conserva valores fuente pa thuhuu marca, códigos error, etc.). Coincide ko patrones globo kontra teclas za̲ ár nthe̲ analizador (JSON ruta punteada, RESX {resxName}, PO {poMsgid}, XLIFF ar xe̲ni {xliffId}, INI yá restext clave). {issue}",
+				"repoConfig": "Configuración a nivel de repositorio vía {configPath}.",
+				"glossary": "Soporte glosario, resumen bi thogi vía {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "Auditoría npm limpio (0 vulnerabilidades).",
+				"docsSite": "Astro + Tailwind v4 docs sitio ko transiciones thandi ne Código expresivo.",
+				"docsAccessibility": "{label} WCAG 2.1 AA thogi. Glifos ar logotipo convertidos jar rutas ir nge nä'ä ya hingi fallan contraste njät'i kontra ya paradas degradado, botón flotante {backToTop} gi japu̲'be̲fi {inert} Mente oculto (en lugar de 'nar {ariaHidden} conmutador nä'ä bí dejó tabbable), {formatsAstro} ya secciones ya hingi chocan ko yá identificaciones hontho generadas automáticamente, hñu ya tarheta locales nu'bya exponen BCP — 47 — válido {lang} atributos ({nya}, {lug}, {run}), duplicar {documentation} etiquetas puntos referencia ar desambiguan entre ar barra xí lateral ne ar pies ar página,  Ne ya tabla datos jar {inputs} yá {configuration} nave ko 'nar leyenda lector pantalla.",
+				"inlineCode": "{label} docs prosa {codeElement} nu'bya lleva ar acento tema cálido yá ámbar — distinto ar paleta marca→acento utilizado pa enlaces ne encabezados.",
+				"automation": "Dependabot auto — merge, análisis CodeQL, matriz CI."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Ga 'bede mahä'mu̲ git"
+		}
 	}
 }

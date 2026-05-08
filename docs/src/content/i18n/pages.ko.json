@@ -18,18 +18,26 @@
 			"node": "노드 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "텍스트 받아요",
+			"json": "중첩 또는 평면",
+			"ini": "{keyValue}",
+			"restext": "MUI 텍스트"
+		},
 		"features": {
 			"formats": {
 				"title": "여섯 가지 파일 형식",
-				"body": ".resx, .xliff, .po, .json, .ini, .restext 등 바이트 안정 서식을 가진 왕복 전송."
+				"body": "왕복 {resx}, {xliff}, {po}, {json}, {ini}, {restext} 바이트 안정 포맷을 제공합니다."
 			},
 			"config": {
 				"title": "저장소 수준 설정",
-				"body": ".github/resource-translator.yml 파일을 만들어 글롭, 용어집, 커스텀 번역기 카테고리를 포함하세요."
+				"body": "글롭, 용어집, 맞춤형 번역기 카테고리를 포함하는 {configPath} 파일을 제출하세요."
 			},
 			"glossary": {
 				"title": "용어집 인식",
-				"body": "브랜드명과 제품 용어를 C++, .NET 및 기타 언어를 처리하는 스마트 워드 경계 정규식으로 잠가세요."
+				"body": "브랜드명과 제품 용어를 스마트 워드 경계 정기식으로 잠가, {cpp}, {dotnet}, 친구들을 처리하세요."
 			},
 			"dryRun": {
 				"title": "리허리 연행 + 소프트 실패",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR 친화적인 출력",
-				"body": "summary-title, summary-details, has-new-translations 모두 create-pull-request 바로 슬롯에 들어갑니다."
+				"body": "{summaryTitle}, {summaryDetails}, {hasNewTranslations} create-pull-request 바로 슬롯에 넣습니다."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "@azure-rest/ai-translation-text + @azure/core-rest-pipeline 위에 구축됨 — 408/429/5xx에서 자동 재시도, 수작업 HTTP는 없습니다. esbuild에 번들로 제공되고, 감사 클린 상태입니다."
+				"body": "{azureSdk} + {corePipeline} 기반 — {statusCodes}에서 자동 재시도, 수동 HTTP 생성 없음. {esbuild}번들, 감사 청정."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "드롭인 워크플로우",
+			"titlePrefix": "복사. 붙여넣었어.",
+			"titleAccent": "번역해.",
+			"body": "세 개의 비밀, 네 줄, 그리고 다음 푸시에서 저장소가 다국어 지원이 됩니다.",
+			"setupLink": "전체 설치 과정을 하나씩 살펴보세요"
+		},
+		"cta": {
+			"title": "자동 조종 상태로 현지화할 준비가 되셨나요?",
+			"body": "Azure AI 번역기 키 하나, 워크플로우 파일 하나. 나머지 작업은 리소스 트랜스트레이터가 처리합니다.",
+			"button": "시작하기"
 		}
 	},
 	"getting-started": {
 		"title": "시작하기",
 		"eyebrow": "설정",
-		"lede": "워크플로우 파일을 추가하고 Azure AI 번역기 자격 증명을 가리키면, 마이크로소프트 공식 @azure-rest/ai-translation-text SDK를 기반으로 한 이 동작이 저장소에서 소스 언어 리소스 파일을 스캔하고 번역된 형제파일을 생성합니다.",
+		"lede": "워크플로우 파일을 추가하고 Azure AI Translator 자격 증명을 가리키면, 이 동작이 저장소에서 소스 언어 리소스 파일을 검색하고 번역된 형제파일을 생성합니다.",
 		"steps": {
 			"provision": {
 				"title": "Provision a Azure AI Translator 리소스",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "워크플로우 추가하세요",
-				"body": ".github/workflows/translate.yml 만들기:"
+				"body": "{workflowPath} 만들기:"
 			},
 			"resource": {
 				"title": "소스 리소스 파일 커밋",
-				"body": "리소스 파일은 이름을 사용합니다. <sourceLocale>. <ext> 컨벤션. 예를 들어, Greetings.en.resx가 진행 후 Greetings.fr.resx, Greetings.de.resx 등으로 변환됩니다."
+				"body": "리소스 파일은 {namingConvention} 규칙을 사용합니다. 예를 들어, {sourceFile} 플레이 후에는 {frFile}, {deFile} 등이 됩니다."
 			},
 			"output": {
 				"title": "출력물을 점검하세요",
-				"body": "워크플로우가 끝나면, 이 동작은 PR 설명에 연결할 수 있는 세 가지 출력을 노출합니다: summary-title, summary-details, 그리고 has-new-translations. 또한 core.summary를 통해 채용 페이지에 Markdown 요약을 작성합니다."
+				"body": "워크플로우가 끝나면, 이 액션은 PR 설명에 연결할 수 있는 세 가지 출력을 노출합니다: {summaryTitle}, {summaryDetails}, 그리고 {hasNewTranslations}. 또한 {coreSummary}를 통해 채용 페이지에 Markdown 요약을 작성합니다."
 			}
 		},
 		"nextSteps": {
 			"title": "다음 단계",
-			"configuration": ".github/resource-translator.yml로 저장소 수준의 기본값을 설정하세요.",
+			"configuration": "저장소 수준의 기본값을 {configPath}로 설정하세요.",
 			"recipes": "모노레포, 맞춤 용어집, 맞춤형 번역기 카테고리 레시피를 참고하세요."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "구성",
 		"eyebrow": "야심",
 		"heroTitle": "저장소 구성",
-		"lede": ".github/resource-translator.yml에서 한 번 기본값을 표현하고 모든 워크플로우가 이를 상속하도록 하세요. 행동 입력이 항상 이기는 것은 두 가지 모두가 제공될 때입니다."
+		"lede": "저장소 설정 파일에서 한 번 기본값을 표현하고 모든 워크플로우가 이를 상속하도록 하세요. 행동 입력이 항상 이기는 것은 두 가지 모두가 제공될 때입니다.",
+		"intro": "기본 위치가 아닌 위치가 필요하면 {configPath} 입력으로 경로를 덮어쓰세요.",
+		"schemaHeading": "스키마",
+		"fieldReference": {
+			"heading": "현장 참조",
+			"caption": "구성 필드 참조",
+			"columns": {
+				"field": "필드",
+				"type": "유형",
+				"notes": "주석"
+			},
+			"fields": {
+				"sourceLocale": "설정하지 않으면 {sourceLocale} 입력으로 다시 돌아가요. 또한 짧은 문자열이 자동 감지되지 않도록 Translator로 {fromLocale} 전달했습니다.",
+				"toLocales": "배열이나 쉼표로 구분된 문자열 중 하나일 수 있습니다.",
+				"includeExclude": "글롭 패턴은 절대 경로와 작업 공간 상대 경로에 대해 평가되었습니다.",
+				"glossary": "번역 후 용어가 무효화됩니다. 단어 경계 인식({cpp}, {dotnet} 처리).",
+				"categoryId": "Azure {customTranslatorLink} 카테고리 — 산업/도메인 노브(법률, 의료, 마케팅 톤 등)입니다. {categoryQuery}로 보냈습니다.",
+				"textType": "기본값은 {plain}입니다. 리소스 값에 실제 HTML 조각이 포함되어 있을 때만 {html} 사용하세요.",
+				"profanityAction": "번역된 결과물에서 욕설을 어떻게 다룰 것인가.",
+				"profanityMarker": "{marked} {profanityAction} 때만 의미가 있습니다.",
+				"allowFallback": "{false} 설정해 {categoryId}가 대상 로케이지에 배포되지 않을 때 변환 실패로 설정하세요. 일반 모델로 되돌아가는 대신에요.",
+				"apiVersion": "번역기 REST API 버전. 기본값은 {version}입니다.",
+				"maxRetries": "일시적인 HTTP 응답에 대한 최대 재시도 횟수({statusCodes}). 기본값은 {defaultRetries}. 요청당 총 HTTP 호출은 {totalCalls}입니다.",
+				"retryBackoffMs": "어떤 단일 백오프 수면에도 캡(ms)을 설정하세요. 기본값은 {defaultBackoff}입니다. Azure의 {retryAfter} 머리는 존재할 때 정확히 존중됩니다; 그렇지 않으면 지터된 지수 백오프가 사용되며, 이 값으로 제한됩니다.",
+				"protectPlaceholders": "기본값은 {true}입니다. 활성화되면 {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf}, HTML 엔티티와 같은 토큰이 변환 전에 센티넬 토큰으로 대체되고 변환 후에는 복원됩니다. 소스가 의도적으로 자리 표시자 모양의 리터럴을 포함할 때만 비활성화하세요.",
+				"customPlaceholderPatterns": "기본 자리 표시자 집합에 추가된 추가 정규 표현 패턴(예: {angleToken} 사용자 지정 토큰 구문을 위한 것). 유효하지 않은 정식은 무시합니다.",
+				"noTranslatePatterns": "글롭 패턴은 파서 레벨 키(JSON 점선 경로, RESX {resxName}, PO {poMsgid}, XLIFF 단위 {xliffId}, INI/restext 키)와 일치합니다. 일치하는 키는 요청에서 제외되고 소스 값이 보존된 상태로 통과됩니다."
+			}
+		},
+		"loadingOrder": {
+			"heading": "적재 순서",
+			"steps": {
+				"actionInputs": "이 액션은 워크플로우에서 명시적인 입력을 읽습니다.",
+				"config": "{configPath}에서 YAML 설정을 불러와요.",
+				"precedence": "모든 필드가 공유될 때마다, 입력이 승리합니다; 그렇지 않으면 YAML 값을 사용합니다.",
+				"validation": "병합된 값들이 검증됩니다. 유효하지 않은 열거(예: {invalidEnum})는 행동이 빠르게 실패하고 메시지가 명확하게 전달됩니다."
+			}
+		},
+		"tone": {
+			"heading": "간단히 말해, 톤과 인내심을 말해줍니다",
+			"body": "Azure AI Translator v3 API에는 단일 톤 노브가 없습니다. 두 가지 설정을 결합하면 대부분의 제어가 가능합니다:",
+			"industryLabel": "산업 / 분야:",
+			"industryBody": "{categoryId} 사용해 자신의 말뭉치로 학습된 Azure {customTranslatorLink} 카테고리를 가리키세요 — 법률, 기술, 의료, 마케팅 등 어떤 분야든 말입니다. 이것이 톤, 브랜드 목소리, 어휘를 결정하는 가장 강력한 지렛대입니다.",
+			"surfaceLabel": "표면 텍스트:",
+			"surfaceBody": "{glossaryLink}를 사용해 브랜드명과 제품 용어를 그대로 잠가고, 젊은 층을 위한 현지화 타겟팅 시 {profanityAction} 욕설을 삭제하세요.",
+			"glossaryLinkLabel": "용어집"
+		}
 	},
 	"inputs": {
 		"title": "입력 및 출력",
 		"eyebrow": "참고문헌",
-		"lede": "모든 입력은 선택적 저장소 설정 파일에서도 받아들여집니다. 둘 다 설정되면 액션 입력이 승리합니다."
+		"lede": "모든 입력은 선택적 저장소 설정 파일에서도 받아들여집니다. 둘 다 설정되면 액션 입력이 승리합니다.",
+		"configurationIntro": "YAML 스키마와 로딩 순서에 대해서는 {configurationLink}을 참조하세요.",
+		"configurationLinkLabel": "구성",
+		"columns": {
+			"name": "이름",
+			"default": "기본 설정",
+			"description": "설명"
+		},
+		"defaults": {
+			"none": "전혀 없습니다",
+			"allSupported": "모두 지원",
+			"translatorDefaultTrue": "true(번역기 기본값)"
+		},
+		"requiredInputs": {
+			"heading": "필수 입력",
+			"caption": "필수 입력",
+			"items": {
+				"sourceLocale": "소스 로{en}(예: )는 {sourceGlob}와 같은 리소스 파일을 찾는 데 사용됩니다. 또한 Translator로 전달{fromLocale}.",
+				"subscriptionKey": "Azure AI Translator 구독 키. {secrets}로 지나가세요.",
+				"endpoint": "번역기 엔드포인트 URL, 예를 들어 {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "일반적인 선택 입력",
+			"caption": "일반적인 선택 입력",
+			"items": {
+				"region": "번역기 리소스 영역(글로벌 리소스는 생략).",
+				"toLocales": "번역할 수 있는 지역들. JSON 배열({jsonArray}) 또는 쉼표로 구분된 값을 허용합니다.",
+				"include": "뉴라인 분리 구슬 패턴; 일치하는 파일만 번역됩니다.",
+				"exclude": "뉴라인 분리 구슬 패턴; 일치하는 파일은 건너뛰며(include 후에 적용됨).",
+				"configPath": "YAML 설정 파일로 가는 경로(작업 공간 루트 기준).",
+				"dryRun": "{true} 시 번역을 실행하고 요약을 출력하되 파일을 작성하지 마세요.",
+				"failOnError": "{true} 시 예상치 못한 오류가 동작에 실패하며; {false} 때는 오류가 경고입니다."
+			}
+		},
+		"translatorInputs": {
+			"heading": "번역기 요청 입력",
+			"intro": "이 매개변수들은 Azure AI Translator v3의 쿼리 매개변수에 직접 매핑됩니다. 모든 것은 선택 사항이며; 설정이 해제된 상태에서는 번역기 기본값이 적용됩니다.",
+			"caption": "번역기 요청 입력",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} category — industry/domain/tone knob. {categoryQuery} 전달됨.",
+				"textType": "{plain} or {html}. 리소스 값이 실제 HTML 조각일 때만 {html} 사용하세요.",
+				"profanityAction": "{noAction}, {marked}, 혹은 {deleted}. 번역 시 욕설이 어떻게 나오는지 통제합니다.",
+				"profanityMarker": "{asterisk} or {tag}. {profanityAction}가 {marked} 있을 때만 의미가 있어.",
+				"allowFallback": "{false} 할 때, {categoryId}가 대상 로지에 배포하지 않은 경우 일반 시스템으로 돌아가는 대신 오류를 반환합니다.",
+				"apiVersion": "번역기 REST API 버전."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "복원력 및 임시 보호",
+			"intro": "이 입력들은 번역기가 요청을 제한할 때 동작이 어떻게 동작하는지, {mustache}나 {indexZero} 같은 플레이스홀더 토큰이 번역 과정에서 손상되지 않도록 어떻게 보호하는지 제어합니다.",
+			"caption": "복원력 및 자리 보호 입력",
+			"items": {
+				"maxRetries": "일시적인 HTTP 응답에 대한 최대 재시도 횟수({statusCodes}). 요청당 HTTP 호출 횟수는 {totalCalls}입니다.",
+				"retryBackoffMs": "한 번의 백오프 슬립을 밀리초 단위로 제한하세요. 이 액션은 Azure의 {retryAfter} 응답 헤더가 있을 때 정확히 그대로 존중합니다; 그렇지 않으면 이 값으로 제한된 지터 지수 백오프를 사용합니다.",
+				"protectPlaceholders": "{true}(기본값)일 때, {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf}, HTML 엔티티와 같은 자리 표시자는 번역 전에 센티넬 토큰으로 대체되고 변환 후에는 복원됩니다. 원본이 의도적으로 번역되어야 할 자리 표시자 모양의 텍스트를 포함할 때만 비활성화하세요.",
+				"customPlaceholderPatterns": "구분자 없는 새 줄 구분 정기법이 기본 자리 표시자 집합에 추가되었는데, 예를 들어 사용자 지정 토큰 문법을 위한 {angleToken}.",
+				"noTranslatePatterns": "파서 레벨 키(JSON 점선 경로, RESX {resxName}, PO {poMsgid}, XLIFF 단위 {xliffId}, INI/restext 키)와 매칭되는 새 행 분리 글롭 패턴. 일치하는 키는 Translator 요청에서 제거되어 소스 값을 보존한 상태로 통과됩니다."
+			}
+		},
+		"outputs": {
+			"heading": "출력",
+			"caption": "출력",
+			"items": {
+				"summaryTitle": "PR 타이틀에 적합한 짧은 요약, 예를 들어 {summaryExample}.",
+				"summaryDetails": "마크다운 요약은 PR 기관이나 직무 요약에 적합합니다.",
+				"hasNewTranslations": "{trueString} 하나 이상의 새로운 번역이 생성될 때입니다."
+			}
+		}
 	},
 	"formats": {
 		"title": "파일 형식",
 		"eyebrow": "참고문헌",
 		"heroTitle": "지원되는 파일 형식",
-		"lede": "여섯 가지 순환 가능한 자료 형식. 이 동작은 각 소스-로컬 파일을 읽고, 값을 변환하며, 대상 로컬마다 형제를 작성합니다."
+		"lede": "여섯 가지 순환 가능한 자료 형식. 이 동작은 각 소스-로컬 파일을 읽고, 값을 변환하며, 대상 로컬마다 형제를 작성합니다.",
+		"namingConvention": "모든 파일은 {namingConvention} 명명 규칙을 사용합니다.",
+		"learnMore": "더 알아보기",
+		"items": {
+			"resx": {
+				"blurb": "XML 기반 .NET 리소스 파일. 각 {dataValue} 노드의 내부 텍스트를 번역하여 주석과 메타데이터를 보존합니다.",
+				"specLabel": "Microsoft Learn — .resx 파일 내 리소스"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 문서. 각 {source}을 번역하고 해당 {target}에 기록하며, 로케이션에 대해 {trgLang}을 설정합니다.",
+				"specLabel": "OASIS XLIFF 2.0 사양"
+			},
+			"po": {
+				"blurb": "GNU gettext 포터블 오브젝트 파일. 각 {msgid} / {msgidPlural}를 {msgstr} / {msgstrPlural} 형태로 번역합니다.",
+				"specLabel": "GNU gettext — PO 파일 형식"
+			},
+			"json": {
+				"blurb": "임의의 JSON 파일들. 중첩된 객체는 번역을 위해 {delimiter} 구분자로 평평하게 만든 후 출력에서 다시 중첩됩니다. 점이 있는 키({dottedKey})는 그대로 보존됩니다.",
+				"specLabel": "JSON 명세 (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "간단한 {keyValue} 파일(Win32 스타일의 INI 또는 평면 설정 등). 섹션 헤더와 주석은 보존됩니다.",
+				"specLabel": "위키피디아의 INI 파일 형식"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI 텍스트 리소스 — {resx}의 텍스트 동반자로 사용되는 평면 {keyValue} 쌍.",
+				"specLabel": "마이크로소프트 MUI 개요"
+			}
+		},
+		"roundTrip": {
+			"heading": "왕복 보장",
+			"body": "테스트 스위트는 모든 포맷의 대표적인 임시에 대해 바이트 단위 라운드트립을 검증합니다. 만약 코드베이스에서 형식 이상이 반복되어 깨지면, 최소한의 샘플로 {issueLink}해 주세요.",
+			"issueLinkLabel": "이슈를 열어"
+		}
 	},
 	"recipes": {
 		"title": "레시피",
 		"eyebrow": "요리책",
-		"lede": "번역 출시의 일반적인 패턴: 모노레포, 용어집, 맞춤 카테고리, 시행, 톤 조절."
+		"lede": "번역 출시의 일반적인 패턴: 모노레포, 용어집, 맞춤 카테고리, 시행, 톤 조절.",
+		"sections": {
+			"pullRequest": {
+				"heading": "각 실행 후에 풀 리퀘스트를 열어"
+			},
+			"monorepo": {
+				"heading": "Monorepos: 패키지별 스코프 변환"
+			},
+			"glossary": {
+				"heading": "브랜드명 및 제품 용어 용어집",
+				"intro": "저장소에 {configPath}을 넣어보세요:",
+				"afterLabel": "이후",
+				"body": "용어집 용어는 번역{after} 적용되므로, 기계가 번역한 결과물은 모델이 동의어로 바꿔도 선호하는 브랜드를 유지합니다."
+			},
+			"customCategory": {
+				"heading": "커스텀 번역기 카테고리 (산업 / 도메인)",
+				"body": "업계 용어와 분위기(법률, 의료, 마케팅, 내부 엔지니어링 등)를 담은 말뭉치로 Azure {customTranslatorLink} 카테고리를 훈련시키고, {categoryId}를 통해 ID를 통과하세요. 이것이 Azure가 제공하는 가장 강력한 톤 레버입니다."
+			},
+			"tone": {
+				"heading": "톤 컨트롤 + 엄격한 폴백",
+				"body": "커스텀 번역기 {categoryId}과 {profanityAction} 및 {allowFallbackFalse}를 결합해 일관된 음성을 강제하고, 선택한 카테고리에 대상 지역 중 하나에 배포가 없으면 워크플로우가 실패할 수 있습니다."
+			},
+			"dryRun": {
+				"heading": "워크플로우를 켜기 전에 리허설",
+				"body": "이 동작은 여전히 요약 출력과 단계 요약을 출력하지만, 파일은 작성되지 않습니다. {failOnErrorFalse}와 결합해 반복 과정에서 모든 문제를 경고로 드러내세요."
+			}
+		}
 	},
 	"faq": {
 		"title": "자주 묻는 질문",
 		"eyebrow": "도와주세요",
 		"heroTitle": "자주 묻는 질문",
-		"lede": "액션을 채택할 때 가장 자주 제기되는 질문에 대한 빠른 답변입니다."
+		"lede": "액션을 채택할 때 가장 자주 제기되는 질문에 대한 빠른 답변입니다.",
+		"questions": {
+			"azure": {
+				"heading": "액션이 Azure와 어떻게 소통하나요?",
+				"body": "마이크로소프트의 공식 {azureSdkLink} SDK를 통해 {corePipelineLink} 위에 레이어드되었습니다. 이 기능은 {statusCodes} 자동 재시도, 타이핑된 요청 및 응답 모델, 인증 헤더 처리 등 이전에는 수동으로 {axios} 호출로 처리되던 모든 기능을 무료로 제공합니다. 공개 액션 표면(입력, 출력, 파일 출력)은 변함이 없습니다."
+			},
+			"tone": {
+				"heading": "왜 번역이 때때로 브랜드에 맞지 않거나 어조가 맞지 않는 걸까요?",
+				"body": "기계 번역은 기본적으로 범용 모델을 사용합니다. 세 가지 노브가 도움이 됩니다: 어려운 용어 덮어를 위한 {glossaryLink}, 당신의 어조와 어휘로 훈련된 미세 조정 모델을 위한 {customTranslatorLink}, 그리고 욕설을 지우거나 표시하는 {profanityAction}.",
+				"glossaryLinkLabel": "용어집",
+				"customTranslatorLinkLabel": "커스텀 번역기 카테고리"
+			},
+			"duplicateFiles": {
+				"heading": "같은 파일을 두 번 번역하지 않으려면 어떻게 해야 하나요?",
+				"body": "소스 로컬 파일에만 맞는 {paths}에서 워크플로우를 트리거하세요, 예를 들어 {sourceGlob}. 이 액션은 {githubToken}가 설정되었을 때 트리거별로 별도의 파일 필터를 포함하여, 작업을 최신 커밋된 파일로 좁힙니다."
+			},
+			"offline": {
+				"heading": "오프라인으로 진행할 수 있나요?",
+				"body": "꼭 그렇진 않아요 — Azure AI Translator는 런타임 두뇌입니다. 하지만 HTTP 변환 요청을 하지 않고도 파싱과 설정을 검증하기 위해 {dryRunTrue} 실행할 수 있습니다."
+			},
+			"node": {
+				"heading": "이 액션은 어떤 노드 버전에서 실행되나요?",
+				"body": "v3는 GitHub Actions {nodeRuntime} 런타임에서 실행됩니다. 번들로 제공되는 자바스크립트는 노드 20, 22, 24와 호환되며, 이 부분이 CI가 테스트하는 대상입니다."
+			},
+			"dist": {
+				"heading": "번들된 {distDir}은 어디서 나오나요?",
+				"body": "GitHub JS 액션은 컴파일된 JS를 저장소에 제공합니다. {distBuild} 워크플로우는 매번 병합 후 데이터를 재구성하여 드리프트가 발생하는지 {mainBranch}하고, {distCheck} 오래된 출력물이 떨어지는 PR을 차단합니다."
+			},
+			"formats": {
+				"heading": "다른 자료 형식은 어떤가요?",
+				"body": "오늘: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} 다른 방법이 필요하다면, 파서 인터페이스가 작아서(파→ 맵 파싱 → 변환 적용 → 형식) 그리고 기여도 환영합니다.",
+				"issueLinkLabel": "이슈를 열어"
+			}
+		}
 	},
 	"translations": {
 		"title": "번역",
 		"eyebrow": "쇼케이스",
 		"heroTitle": "모든 언어로 인사하세요",
-		"locales": "지역",
-		"currentlyRendered": "현재 렌더링 중입니다",
-		"complete": "완성!",
-		"pendingPrefix": "다음 번역 문서 작업이 진행될 때까지 기다립니다.",
+		"lede": "이 페이지는 Resource Translator 자체에 의해 메인 배포 시 Azure AI Translator가 지원하는 모든 언어로 번역됩니다.",
+		"localeCountLabel": "{count} 지역",
+		"statusComplete": "{translatedCount} 현재 완성된 상태입니다!",
+		"statusPending": "{translatedCount} 현재 렌더링 중이며, 다음 {workflowName} 연재 {pendingCount} 예정이다.",
 		"viewWorkflowRuns": "워크플로우 실행 보기",
 		"filter": "필터",
 		"filterPlaceholder": "언어, 코드, 또는 원주민 이름으로 검색하세요...",
 		"source": "출처",
 		"machineTranslations": "기계 번역",
-		"translationPending": "번역 대기 중 — 번역 문서 작업을 열어보세요.",
+		"translationPending": "번역 대기 중 — {workflowName} 런 열기.",
 		"noLocales": "그 필터에 맞는 지역은 없습니다.",
-		"howItWorks": "작동 원리"
+		"howItWorks": {
+			"heading": "작동 원리",
+			"thisActionLabel": "바로 이 행동",
+			"steps": {
+				"source": "영어 소스 파일은 {messagesPath}에 저장되어 있습니다.",
+				"workflow": "그 터치를 밀어 {workflowLink} 발로 차고, 그 {thisAction} 서로 충돌합니다.",
+				"fanOut": "이 동작은 모든 Azure AI Translator가 지원하는 로케이션({configPath}에서 설정됨)으로 퍼져 각 타겟마다 형제 {messagesLocaleJson}를 작성합니다.",
+				"pullRequest": "새로운 번역이 포함된 풀 리퀘스트가 열립니다. 병합하면 이 페이지가 카드로 채워진 상태로 다시 게시됩니다."
+			}
+		},
+		"poweredBy": "리소스 번역기와 Azure AI 번역기로 구동됩니다."
 	},
 	"contributing": {
 		"title": "기여",
 		"eyebrow": "오픈 소스",
-		"lede": "버그 리포트, 기능 요청, 풀 리퀘스트 모두 환영합니다. 활동은 처음 참여하는 이들에게도 충분히 소박하게 진행됩니다."
+		"lede": "버그 리포트, 기능 요청, 풀 리퀘스트 모두 환영합니다. 활동은 처음 참여하는 이들에게도 충분히 소박하게 진행됩니다.",
+		"localDevelopment": {
+			"heading": "지역 개발"
+		},
+		"addingParser": {
+			"heading": "파서 추가",
+			"steps": {
+				"fixture": "{testDataDir} 아래에 조명 기구를 추가하세요.",
+				"implement": "{parserInterface}({parse}, {format}, {applyTranslations}, {toTranslatableTextMap})를 구현하세요.",
+				"register": "{factoryFile}에 등록하세요.",
+				"extension": "{finderFile}에서 {translationFileSchemes} 확장자를 추가하세요.",
+				"tests": "파스→ 형식에 대한 왕복 테스트를 작성하고 applyTranslations를 적용하세요."
+			}
+		},
+		"coverage": {
+			"heading": "보장 임계치",
+			"body": "Jest 설정은 최소 커버리지를 강제합니다. 새 코드는 문장 + 라인 임계값이 78% 이상, 함수가 90% 이상으로 유지되어야 합니다. 변경 사항과 함께 고정구와 테스트도 추가하세요."
+		},
+		"docsSite": {
+			"heading": "문서 사이트",
+			"body": "{docsDir} 파일 자체는 Astro 6 + Tailwind v4 프로젝트입니다. 한 번 {npmInstall} 실행한 후 로컬 미리보기를 위해 {npmRunDev}하세요. {pagesWorkflow} 워크플로우는 매번 병합할 때마다 문서를 GitHub Pages로 전송합니다."
+		}
 	},
 	"changelog": {
 		"title": "변경 기록",
 		"eyebrow": "역사",
-		"lede": "출시 요약. 정통적이고 권위 있는 변경 로그는 저장소 CHANGELOG.md 에 저장되어 있습니다."
+		"lede": "출시 요약. 정통적이고 권위 있는 변경 로그는 저장소 CHANGELOG.md 에 저장되어 있습니다.",
+		"fullRecord": "전체 기록은 {changelogLink} 참조.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "V3 (개발 중)",
+			"labels": {
+				"breaking": "브레이크",
+				"resilience": "회복력:",
+				"placeholderProtection": "임시 보호:",
+				"perKeyOptOut": "키별 옵트아웃:",
+				"docsAccessibility": "문서 접근성:",
+				"inlineCodeStyling": "인라인 코드 스타일링:"
+			},
+			"issueLabels": {
+				"closes46": "폐쇄 #46.",
+				"tightens16": "#16을 조여.",
+				"closes35": "닫는 #35."
+			},
+			"items": {
+				"runtime": "런타임이 {nodeRuntime} ({breaking})로 올랐습니다.",
+				"newInputs": "새로운 입력: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, 그리고 고급 번역기 노브{textType}, {profanityAction}, {profanityMarker}, {allowFallback}.",
+				"sourceLocale": "소스 로케이션도 {fromLocale} Translator로 전달되어 짧은 문자열이 자동 감지되지 않습니다.",
+				"resilience": "Azure의 {retryAfter} 헤더를 존중하는 일시적 HTTP 응답({statusCodes})에 대한 자동 재시도{label} — 없을 때는 지터드 지수 백오프로 되돌아갑니다. {maxRetries}와 {retryBackoffMs}를 통해 조절 가능합니다. {issue}",
+				"placeholderProtection": "{mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf}, HTML 엔티티 같은 {label} 토큰은 번역 전에 센티넬로 감싸지고 번역 후에는 복원되므로, 번역기가 i18next/Mustache/Handlebars/.NET/printf 자리 표시자를 망치는 것을 멈춥니다. {protectPlaceholders} 토글; {customPlaceholderPatterns} 확장하세요. {issue}",
+				"perKeyOptOut": "새로운 {noTranslatePatterns} 입력{label} 번역기 요청에서 일치하는 키를 완전히 삭제합니다(브랜드명, 오류 코드 등의 소스 값을 보존). 글롭 패턴을 파서 레벨 키(JSON 점선 경로, RESX {resxName}, PO {poMsgid}, XLIFF 단위 {xliffId}, INI/restext 키)와 일치시킵니다. {issue}",
+				"repoConfig": "{configPath}를 통한 저장소 레벨 설정.",
+				"glossary": "용어집 지원, {coreSummary} 단계를 통한 요약.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM 감사 청정 (취약점 0).",
+				"docsSite": "Astro + Tailwind v4 문서 사이트에 뷰 전환과 표현력 코드가 있습니다.",
+				"docsAccessibility": "{label} WCAG 2.1 AA 패스. 로고 글리프가 경로로 변환되어 그라데이언트 스톱에 대한 색상 대비 실패가 없고, 플로팅 {backToTop} 버튼은 숨겨진 상태에서 {inert}을 사용하며(탭 가능한 {ariaHidden} 토글 대신), {formatsAstro} 섹션이 자동 생성 제목 ID와 충돌하지 않고, 세 개의 로컬 카드가 BCP-47 유효 {lang} 속성({nya}, {lug}, {run})을 노출하고, 중복 {documentation} 랜드마크 라벨은 사이드바와 풋 사이에 중복 명확화됨,  {inputs}/{configuration}의 모든 데이터 테이블에는 스크린 리더 캡션이 포함되어 있습니다.",
+				"inlineCode": "{label} Docs 산문 {codeElement} 이제 링크와 제목에 사용되는 브랜드 악센트와 구별되는 따뜻하고 호박색 테마 → 어센트를 사용합니다.",
+				"automation": "Dependabot 자동 병합, CodeQL 스캔, CI 매트릭스."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "git 역사를 참고하세요."
+		}
 	}
 }

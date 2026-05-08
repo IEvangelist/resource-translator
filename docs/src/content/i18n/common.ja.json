@@ -15,7 +15,13 @@
 		"searchPlaceholder": "ドキュメント検索...",
 		"toggleTheme": "トグルテーマ",
 		"githubRepository": "GitHubリポジトリ",
-		"language": "言語"
+		"language": "言語",
+		"languageTitle": "言語を選びましょう",
+		"languageDescription": "同じページを別の言語で切り替えてください。",
+		"languageSearch": "フィルター言語",
+		"languageSearchPlaceholder": "言語や地域コードの検索...",
+		"languageNoResults": "そのフィルターに合う言語はありません。",
+		"closeLanguage": "密接言語選択者"
 	},
 	"search": {
 		"title": "検索ドキュメント",

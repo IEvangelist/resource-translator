@@ -18,18 +18,26 @@
 			"node": "Nód 20 / 22 / 24",
 			"sdk": "Oifigiúil Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "neadaithe nó cothrom",
+			"ini": "{keyValue}",
+			"restext": "Téacs MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Sé fhormáid comhaid",
-				"body": "Turais bhabhta .resx, .xliff, .po, .json, .ini, agus .restext le formáidiú beart-chobhsaí."
+				"body": "Round-trips {resx}, {xliff}, {po}, {json}, {ini}, and {restext} with byte-stable formatting."
 			},
 			"config": {
 				"title": "Cumraíocht leibhéal reatha",
-				"body": "Buail .github/resource-translator.yml le haghaidh catagóirí globs, gluaiseanna, agus Aistritheoir Saincheaptha san áireamh."
+				"body": "Buail comhad {configPath} le haghaidh catagóirí globs, gluaiseanna, agus Aistritheoir Saincheaptha."
 			},
 			"glossary": {
 				"title": "Gluais",
-				"body": "Cuir ainmneacha branda agus téarmaí táirge faoi ghlas le regex teorainn focal cliste a láimhseálann C ++, .NET, agus cairde."
+				"body": "Cuir ainmneacha branda agus téarmaí táirge faoi ghlas le regex cliste a láimhseálann {cpp}, {dotnet}, agus cairde."
 			},
 			"dryRun": {
 				"title": "Rith tirim + bog-teip",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Aschuir PR-chairdiúla",
-				"body": "achoimre-teideal, achoimre-sonraí, agus has-new-translations sliotán díreach isteach create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails}, agus {hasNewTranslations} sliotán go díreach isteach create-pull-request."
 			},
 			"sdk": {
 				"title": "Oifigiúil Azure SDK",
-				"body": "Tógtha ar @azure-rest/ai-translation-text + @azure/core-rest-pipeline - athiarrachtaí uathoibríocha ar 408/429/5xx, gan aon HTTP láimhe. esbuild-bundled, iniúchadh-glan."
+				"body": "Tógtha ar {azureSdk} + {corePipeline} - athiarrachtaí uathoibríocha ar {statusCodes}, gan aon HTTP lámh-rollta. {esbuild}-bundled, iniúchadh-glan."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Sreabhadh oibre buail isteach",
+			"titlePrefix": "Cóipeáil. Greamaigh.",
+			"titleAccent": "Aistrigh.",
+			"body": "Trí rúin, ceithre líne, agus tá do repo ilteangach ar an gcéad bhrú eile.",
+			"setupLink": "Siúil tríd an socrú iomlán"
+		},
+		"cta": {
+			"title": "Réidh le logánú ar uathphíolóta?",
+			"body": "Eochair Aistritheoir Azure AI amháin, comhad sreabhadh oibre amháin. Láimhseálann Resource Translator an chuid eile.",
+			"button": "Tosaigh"
 		}
 	},
 	"getting-started": {
 		"title": "Ag tosú",
 		"eyebrow": "Socrú",
-		"lede": "Cuir comhad sreabhadh oibre leis, dírigh é ar do dhintiúir Azure AI Translator, agus déanfaidh an gníomh - tógtha ar SDK oifigiúil @azure-rest / ai-translation-text Microsoft - an repo a scanadh le haghaidh comhaid acmhainne foinse agus astóidh siblíní aistrithe.",
+		"lede": "Cuir comhad sreabhadh oibre leis, dírigh é ar do dhintiúir Azure AI Translator, agus déanfaidh an gníomh scanadh ar an repo le haghaidh comhaid acmhainne foinse-teanga agus astóidh siblíní aistrithe.",
 		"steps": {
 			"provision": {
 				"title": "Acmhainn Azure AI Translator a sholáthar",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Cuir an sreabhadh oibre leis",
-				"body": "Cruthaigh .github/workflows/translate.yml:"
+				"body": "Cruthaigh {workflowPath}:"
 			},
 			"resource": {
 				"title": "Comhad acmhainne foinseacha a thiomnú",
-				"body": "Úsáideann comhaid acmhainne an t-ainm. .<sourceLocale> <ext> coinbhinsiún. Mar shampla, éiríonn Greetings.en.resx Greetings.fr.resx, Greetings.de.resx, agus mar sin de tar éis rith."
+				"body": "Baineann comhaid acmhainne úsáid as an gcoinbhinsiún {namingConvention}. Mar shampla, éiríonn {sourceFile} {frFile}, {deFile}, agus mar sin de tar éis rith."
 			},
 			"output": {
 				"title": "Déan iniúchadh ar an aschur",
-				"body": "Nuair a chríochnaíonn an sreabhadh oibre, nochtann an gníomh trí aschur is féidir leat a shreangú isteach i gcur síos PR: teideal achoimre, sonraí achoimre, agus aistriúcháin nua. Scríobhann sé achoimre Markdown isteach sa leathanach poist freisin trí core.summary."
+				"body": "Nuair a chríochnaíonn an sreabhadh oibre, nochtann an gníomh trí aschur is féidir leat a shreangú isteach i gcur síos PR: {summaryTitle}, {summaryDetails}, agus {hasNewTranslations}. Scríobhann sé achoimre Markdown isteach sa leathanach poist trí {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Na chéad chéimeanna eile",
-			"configuration": "Cumraigh réamhshocruithe leibhéal repo le .github/resource-translator.yml.",
+			"configuration": "Cumraigh réamhshocruithe leibhéal repo le {configPath}.",
 			"recipes": "Féach oidis do monorepos, gluaiseanna saincheaptha, agus catagóirí Aistritheoir Saincheaptha."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Cumraíocht",
 		"eyebrow": "YAML",
 		"heroTitle": "Cumraíocht an stórtha",
-		"lede": "Réamhshocraíonn Express uair amháin i .github/resource-translator.yml agus lig do gach sreabhadh oibre iad a oidhreacht. Bhuaigh ionchuir gníomhaíochta i gcónaí nuair a chuirtear an dá cheann ar fáil."
+		"lede": "Réamhshocraíonn Express uair amháin i gcomhad cumraíochta an stór agus lig do gach sreabhadh oibre iad a oidhreacht. Bhuaigh ionchuir gníomhaíochta i gcónaí nuair a chuirtear an dá cheann ar fáil.",
+		"intro": "Sáraigh an cosán leis an ionchur {configPath} má theastaíonn suíomh neamhréamhshocraithe uait.",
+		"schemaHeading": "Scéimre",
+		"fieldReference": {
+			"heading": "Tagairt réimse",
+			"caption": "Tagairt réimse cumraíochta",
+			"columns": {
+				"field": "Réimse",
+				"type": "Cineál",
+				"notes": "Nótaí"
+			},
+			"fields": {
+				"sourceLocale": "Titeann sé ar ais go dtí an t-ionchur {sourceLocale} mura bhfuil sé socraithe. Chomh maith leis sin ar aghaidh chuig an Aistritheoir mar {fromLocale} ionas nach ndéantar teaghráin ghearra a bhrath go huathoibríoch.",
+				"toLocales": "Eagar nó teaghrán scartha le camóga.",
+				"includeExclude": "Patrúin glob a mheastar i gcoinne cosáin absalóideacha agus spás oibre.",
+				"glossary": "Sáraíonn téarma iar-aistriúcháin. Feasach ar theorainn focal (láimhseálann {cpp}, {dotnet}).",
+				"categoryId": "Catagóir Azure {customTranslatorLink} - do knob tionscail / fearainn (dlíthiúil, leighis, ton margaíochta, srl.). Seolta mar {categoryQuery}.",
+				"textType": "Réamhshocraithe go {plain}. Úsáid {html} ach amháin má tá fíor-bhlúirí HTML i do luachanna acmhainne.",
+				"profanityAction": "Conas téarmaí profane a chóireáil san aschur aistrithe.",
+				"profanityMarker": "Ach amháin nuair a bhíonn {profanityAction} {marked}.",
+				"allowFallback": "Socraigh go {false} go dteipfidh ar an aistriúchán nuair nach bhfuil aon imscaradh ag do {categoryId} le haghaidh sprioc-áitiúil seachas titim ar ais go dtí an tsamhail ghinearálta.",
+				"apiVersion": "Leagan API REST an Aistritheora. Réamhshocraithe go {version}.",
+				"maxRetries": "Uasmhéid iarrachtaí athiarrachta ar fhreagairtí HTTP neamhbhuana ({statusCodes}). Réamhshocraithe {defaultRetries}. Is {totalCalls} glaonna HTTP iomlán in aghaidh an iarratais.",
+				"retryBackoffMs": "Caipín (ms) ar aon chodladh cúlú amháin. Réamhshocraithe go {defaultBackoff}. Tugtar onóir do cheanntásc {retryAfter} Azure go díreach nuair a bhíonn sé i láthair; seachas sin úsáidtear cúlú easpónantúil jittered, uasteorannaithe ag an luach seo.",
+				"protectPlaceholders": "Réamhshocraithe go {true}. Nuair a bhíonn siad ar siúl, cuirtear comharthaí sentinel in ionad comharthaí cosúil le {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} agus HTML sula ndéantar iad a aistriú agus a athchóiriú ina dhiaidh sin. Díchumasaigh ach amháin nuair a bhíonn litreacha i gcruth ionaid ag an bhfoinse d'aon ghnó.",
+				"customPlaceholderPatterns": "Patrúin bhreise regex (gan teorannaithe) curtha leis an tacar ionaid réamhshocraithe, m.sh. {angleToken} le haghaidh comhréir comhartha saincheaptha. Déantar neamhaird ar rialaithe neamhbhailí.",
+				"noTranslatePatterns": "Patrúin glob meaitseáilte i gcoinne eochracha leibhéal parsálaí (cosán poncaithe JSON, RESX {resxName}, PO {poMsgid}, aonad XLIFF {xliffId}, eochair INI / restext). Titeann eochracha meaitseála ón iarratas agus téann siad tríd lena luach foinse caomhnaithe."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Ord lochta",
+			"steps": {
+				"actionInputs": "Léann an gníomh ionchuir follasacha ón sreabhadh oibre.",
+				"config": "Luchtaíonn sé an chumraíocht YAML ó {configPath}.",
+				"precedence": "I gcás gach réimse roinnte, bhuaigh an t-ionchur; seachas sin úsáidtear an luach YAML.",
+				"validation": "Déantar na luachanna cumaisc a bhailíochtú. Is cúis le enumaí neamhbhailí (m.sh. {invalidEnum}) go dteipeann ar an ngníomh go tapa le teachtaireacht shoiléir."
+			}
+		},
+		"tone": {
+			"heading": "Ton agus tionscal, i dtéarmaí simplí",
+			"body": "Níl knob ton amháin ag API Azure AI Translator v3. Comhcheanglaíonn dhá shuíomh chun an chuid is mó den rialú céanna a thabhairt duit:",
+			"industryLabel": "Tionscal / fearann:",
+			"industryBody": "úsáid {categoryId} chun pointe a chur ar chatagóir Azure {customTranslatorLink} oilte ar do chorpas féin - dlíthiúil, teicniúil, leighis, margaíocht, nó aon rud eile. Is é seo an luamhán is láidre le haghaidh ton, guth branda, agus stór focal.",
+			"surfaceLabel": "Téacs dromchla:",
+			"surfaceBody": "bain úsáid as an {glossaryLink} chun ainmneacha branda agus téarmaí táirge a ghlasáil go briathartha, agus bain úsáid as {profanityAction} chun téarmaí profane a ghlanadh agus tú ag díriú ar logánú do lucht féachana níos óige.",
+			"glossaryLinkLabel": "gluais"
+		}
 	},
 	"inputs": {
 		"title": "Ionchuir & aschuir",
 		"eyebrow": "Tagairt",
-		"lede": "Glactar le gach ionchur sa chomhad cumraíochta repo roghnach freisin. Nuair a bhíonn an dá cheann socraithe, bhuaigh an t-ionchur gníomhaíochta."
+		"lede": "Glactar le gach ionchur sa chomhad cumraíochta repo roghnach freisin. Nuair a bhíonn an dá cheann socraithe, bhuaigh an t-ionchur gníomhaíochta.",
+		"configurationIntro": "Féach {configurationLink} le haghaidh an scéimre YAML agus an t-ord luchtaithe.",
+		"configurationLinkLabel": "Cumraíocht",
+		"columns": {
+			"name": "Ainm",
+			"default": "Réamhshocrú",
+			"description": "Cur síos"
+		},
+		"defaults": {
+			"none": "Níl aon cheann acu",
+			"allSupported": "Gach tacaíocht",
+			"translatorDefaultTrue": "true (réamhshocrú an aistritheora)"
+		},
+		"requiredInputs": {
+			"heading": "Ionchuir riachtanacha",
+			"caption": "Ionchuir riachtanacha",
+			"items": {
+				"sourceLocale": "Loguchtaigh foinse (m.sh. {en}) a úsáidtear chun comhaid acmhainne a aimsiú ar nós {sourceGlob}. Cuireadh ar aghaidh chuig an Aistritheoir mar {fromLocale} freisin.",
+				"subscriptionKey": "Eochair síntiúis Azure AI Translator. Pas trí {secrets}.",
+				"endpoint": "URL críochphointe an aistritheora, m.sh. {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Ionchuir roghnacha coitianta",
+			"caption": "Ionchuir roghnacha coitianta",
+			"items": {
+				"region": "Réigiún acmhainne an aistritheora (fág ar lár le haghaidh acmhainní domhanda).",
+				"toLocales": "Locales le haistriú chucu. Glacann sé le eagar JSON ({jsonArray}) nó luachanna deighilte le camóga.",
+				"include": "Patrúin glob scartha le líne nua; Ní aistrítear ach comhaid mheaitseála.",
+				"exclude": "Patrúin glob scartha le líne nua; Scipeáiltear comhaid mheaitseála (cuirtear i bhfeidhm tar éis áireamh).",
+				"configPath": "Conair chuig an gcomhad cumraíochta YAML (i gcoibhneas le fréamh an spás oibre).",
+				"dryRun": "Nuair a {true}, rith aistriúcháin agus astaigh achoimrí ach ná scríobh comhaid.",
+				"failOnError": "Nuair a {true}, teipeann ar earráidí gan choinne an gníomh; Nuair a {false}, is rabhaidh iad earráidí."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Ionchuir iarratais aistritheora",
+			"intro": "Mapálann siad seo go díreach ar pharaiméadair fiosrúcháin Azure AI Translator v3. Tá gach ceann roghnach; Baineann réamhshocruithe an Aistritheora le chéile nuair a dhíshocraíodh.",
+			"caption": "Ionchuir iarratais aistritheora",
+			"items": {
+				"categoryId": "Catagóir Azure {customTranslatorLink} - an tionscal / fearann / knob ton. Curtha ar aghaidh mar {categoryQuery}.",
+				"textType": "{plain} nó {html}. Úsáid {html} ach amháin nuair is fíor-bhlúirí HTML iad do luachanna acmhainne.",
+				"profanityAction": "{noAction}, {marked}, nó {deleted}. Rialaíonn sé an chaoi a n-astaítear téarmaí profane in aistriúcháin.",
+				"profanityMarker": "{asterisk} nó {tag}. Ach amháin nuair a bhíonn {profanityAction} {marked}.",
+				"allowFallback": "Nuair a {false}, filleann Translator earráid seachas titim ar ais chuig an gcóras ginearálta mura bhfuil imscaradh ag do {categoryId} le haghaidh sprioc-logánaigh.",
+				"apiVersion": "Leagan API REST an Aistritheora."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Athléimneacht agus cosaint ionaid",
+			"intro": "Rialaíonn na hionchuir seo an chaoi a n-iompraíonn an gníomh nuair a throttles Translator d'iarratas agus conas a chosnaíonn sé comharthaí ionaid cosúil le {mustache} nó {indexZero} ó bheith mangled le linn an aistriúcháin.",
+			"caption": "Athléimneacht agus ionchuir cosanta ionaid",
+			"items": {
+				"maxRetries": "Uasmhéid iarrachtaí athiarrachta ar fhreagairtí HTTP neamhbhuana ({statusCodes}). Is é líon iomlán na nglaonna HTTP in aghaidh an iarratais ná {totalCalls}.",
+				"retryBackoffMs": "Caipín (i milleasoicind) ar aon chodladh cúltaca amháin. Tugann an gníomh onóir do cheanntásc freagartha {retryAfter} Azure go díreach nuair a bhíonn sé i láthair; seachas sin úsáideann sé cúlú easpónantúil jittered atá teoranta ag an luach seo.",
+				"protectPlaceholders": "Nuair a {true} (réamhshocrú), cuirtear comharthaí sentinel in ionad ionaid ar nós {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} agus HTML sula ndéantar iad a aistriú agus a athchóiriú ina dhiaidh sin. Díchumasaigh ach amháin nuair a bhíonn téacs litriúil i gcruth ionadchoinne i d'fhoinse d'aon ghnó ba chóir a aistriú.",
+				"customPlaceholderPatterns": "Regexes deighilte le líne nua (gan teorannaithe) curtha leis an tacar ionaid réamhshocraithe, m.sh. {angleToken} le haghaidh comhréir comhartha saincheaptha.",
+				"noTranslatePatterns": "Patrúin glob scartha le líne nua a mheaitseáil le heochracha leibhéal parsálaí (cosán poncaithe JSON, RESX {resxName}, PO {poMsgid}, aonad XLIFF {xliffId}, eochair INI / restext). Titeann eochracha meaitseála ón iarratas Aistritheoir agus téann siad tríd lena luach foinse caomhnaithe."
+			}
+		},
+		"outputs": {
+			"heading": "Aschuir",
+			"caption": "Aschuir",
+			"items": {
+				"summaryTitle": "Achoimre ghearr PR-chairdiúil, m.sh. {summaryExample}.",
+				"summaryDetails": "Achoimre Markdown oiriúnach do chomhlacht PR nó achoimre poist.",
+				"hasNewTranslations": "{trueString} nuair a gineadh aistriúchán nua amháin nó níos mó."
+			}
+		}
 	},
 	"formats": {
 		"title": "Formáidí comhaid",
 		"eyebrow": "Tagairt",
 		"heroTitle": "Formáidí comhaid tacaithe",
-		"lede": "Sé fhormáid acmhainne bhabhta-trippable. Léann an gníomh gach comhad foinse-local, aistríonn sé na luachanna, agus scríobhann sé siblín in aghaidh an sprioc-locale."
+		"lede": "Sé fhormáid acmhainne bhabhta-trippable. Léann an gníomh gach comhad foinse-local, aistríonn sé na luachanna, agus scríobhann sé siblín in aghaidh an sprioc-locale.",
+		"namingConvention": "Baineann gach comhad úsáid as an gcoinbhinsiún ainmnithe {namingConvention}.",
+		"learnMore": "Faigh tuilleadh eolais",
+		"items": {
+			"resx": {
+				"blurb": "Comhaid acmhainne .NET XML-bhunaithe. Aistríonn sé téacs istigh gach nód {dataValue}, ag caomhnú tuairimí agus meiteashonraí.",
+				"specLabel": "Microsoft Learn - Acmhainní i gcomhaid .resx"
+			},
+			"xliff": {
+				"blurb": "Doiciméid OASIS XLIFF 2.0. Aistríonn sé gach {source} agus scríobhann sé an toradh isteach sa {target} chomhfhreagrach, ag socrú {trgLang} don logán.",
+				"specLabel": "Sonraíocht OASIS XLIFF 2.0"
+			},
+			"po": {
+				"blurb": "Comhaid Réad Iniompartha. Aistríonn gach {msgid} / {msgidPlural} i bhfoirmeacha {msgstr} / {msgstrPlural}.",
+				"specLabel": "GNU gettext — formáid comhaid PO"
+			},
+			"json": {
+				"blurb": "Comhaid JSON treallacha. Déantar rudaí neadaithe a leacú leis an teorannóir {delimiter} le haghaidh aistriúcháin, ansin ath-neadaithe ar aschur. Caomhnaítear eochracha poncaithe ({dottedKey}) briathartha.",
+				"specLabel": "Sonraíocht JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Comhaid {keyValue} shimplí (INI i stíl Win32 nó aon chumraíocht árasán). Caomhnaítear ceannteidil agus tuairimí rannóg.",
+				"specLabel": "Formáid comhaid INI ar Vicipéid"
+			},
+			"restext": {
+				"blurb": "Acmhainní téacs Microsoft MUI - péirí {keyValue} cothrom a úsáidtear mar chompánach téacsúil do {resx}.",
+				"specLabel": "Forbhreathnú ar Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Ráthaíochtaí turas babhta",
+			"body": "Fíoraíonn an tsraith tástála babhta beart ar bheart le haghaidh daingneáin ionadaíocha de gach formáid. Má bhriseann quirk formáide babhta i do codebase, {issueLink} le do thoil le sampla íosta.",
+			"issueLinkLabel": "Eisiúint a oscailt"
+		}
 	},
 	"recipes": {
 		"title": "Oidis",
 		"eyebrow": "Leabhar Cócaireachta",
-		"lede": "Patrúin choitianta le haghaidh aistriúcháin loingseoireachta: monorepos, gluaiseanna, catagóirí saincheaptha, ritheann tirim, agus rialú ton."
+		"lede": "Patrúin choitianta le haghaidh aistriúcháin loingseoireachta: monorepos, gluaiseanna, catagóirí saincheaptha, ritheann tirim, agus rialú ton.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Oscail iarratas tarraingthe tar éis gach rith"
+			},
+			"monorepo": {
+				"heading": "Monorepos: aistriúchán scóip in aghaidh an phacáiste"
+			},
+			"glossary": {
+				"heading": "Gluais d'ainmneacha branda agus do théarmaí táirge",
+				"intro": "Buail {configPath} isteach sa repo:",
+				"afterLabel": "tar éis",
+				"body": "Cuirtear téarmaí gluais i bhfeidhm {after} aistriúchán, mar sin coinníonn an t-aschur meaisín-aistrithe an brandáil is fearr leat fiú nuair a mhalartaigh an tsamhail é le haghaidh comhchiallach."
+			},
+			"customCategory": {
+				"heading": "Catagóir Aistritheoir Saincheaptha (tionscal / fearann)",
+				"body": "Traenáil catagóir Azure {customTranslatorLink} ar chorpas a ghabhann do stór focal agus ton tionscail (dlíthiúil, leighis, margaíocht, innealtóireacht inmheánach, srl.) agus pas a fháil ar a ID trí {categoryId}. Is é seo an luamhán ton is láidre a thairgeann Azure."
+			},
+			"tone": {
+				"heading": "Rialú ton + cúltaca dian",
+				"body": "Comhcheangail {categoryId} Aistritheoir Saincheaptha le {profanityAction} agus {allowFallbackFalse} chun guth comhsheasmhach a chur i bhfeidhm agus teip ar an sreabhadh oibre mura bhfuil imscaradh ag an gcatagóir roghnaithe do cheann de do sprioc-locales."
+			},
+			"dryRun": {
+				"heading": "Rith tirim sula ndéanann tú an sreabhadh oibre a chasadh air",
+				"body": "Astaíonn an gníomh aschuir achoimre agus achoimre céime fós, ach níl aon chomhaid scríofa. Comhcheangail le {failOnErrorFalse} chun gach saincheist a dhromchla mar rabhadh agus tú ag athrá."
+			}
+		}
 	},
 	"faq": {
 		"title": "Ceisteanna Coitianta",
 		"eyebrow": "Cabhair",
 		"heroTitle": "Ceisteanna coitianta",
-		"lede": "Freagraí tapa ar na ceisteanna is minice a thagann chun cinn nuair a ghlacann tú leis an ngníomh."
+		"lede": "Freagraí tapa ar na ceisteanna is minice a thagann chun cinn nuair a ghlacann tú leis an ngníomh.",
+		"questions": {
+			"azure": {
+				"heading": "Conas a labhraíonn an gníomh le Azure?",
+				"body": "Trí SDK oifigiúil {azureSdkLink} Microsoft, layered ar {corePipelineLink}. Faigheann sé sin athiarrachtaí uathoibríocha ar {statusCodes}, samhlacha iarratais agus freagartha clóscríofa, agus láimhseáil ceanntásc fíordheimhnithe saor in aisce - gach rud a bhí ina ghlao {axios} láimhe. Níl aon athrú ar dhromchla gníomhaíochta poiblí (ionchuir, aschuir, aschuir comhaid)."
+			},
+			"tone": {
+				"heading": "Cén fáth go mbíonn aistriúcháin uaireanta lasmuigh den bhranda nó lasmuigh den ton?",
+				"body": "Machine translation defaults to a general-purpose model. Cuidíonn trí knobs: {glossaryLink} le haghaidh sáruithe téarma crua, {customTranslatorLink} do mhúnlaí mionchoigeartaithe atá oilte ar do ton agus do stór focal, agus {profanityAction} chun téarmaí profane a scrobarnach nó a bhratach.",
+				"glossaryLinkLabel": "gluais",
+				"customTranslatorLinkLabel": "Catagóir Aistritheoir Saincheaptha"
+			},
+			"duplicateFiles": {
+				"heading": "Conas is féidir liom an comhad céanna a sheachaint faoi dhó?",
+				"body": "Trigger an sreabhadh oibre ar {paths} a mheaitseálann do do chomhaid foinse-locale amháin, m.sh. {sourceGlob}. Cuimsíonn an gníomh freisin a scagaire comhad féin in aghaidh an truicear nuair a bhíonn {githubToken} socraithe, ag cúngú obair go comhaid sa tiomantas is déanaí."
+			},
+			"offline": {
+				"heading": "An féidir liom an gníomh a reáchtáil as líne?",
+				"body": "Ní go díreach - is é Azure AI Translator an inchinn runtime. Ach is féidir leat rith le {dryRunTrue} chun parsáil agus cumraíocht a bhailíochtú gan aon iarratais HTTP a dhéanamh ar aistriúchán."
+			},
+			"node": {
+				"heading": "Cén leagan Nód a ritheann an gníomh?",
+				"body": "ritheann v3 ar an GitHub Actions {nodeRuntime} runtime. Tá an JavaScript cuachta comhoiriúnach le Nód 20, 22, agus 24, agus is é sin an rud a thástálann CI."
+			},
+			"dist": {
+				"heading": "Cad as a dtagann an {distDir} cuachta?",
+				"body": "Seolann gníomhartha GitHub JS a JS tiomsaithe sa stór. Déanann an sreabhadh oibre {distBuild} é a atógáil tar éis gach cumasc chun {mainBranch} an mbeadh sé ag sruth, agus blocálann {distCheck} PRanna a bheadh i dtír aschur as dáta."
+			},
+			"formats": {
+				"heading": "Cad faoi fhormáidí acmhainní eile?",
+				"body": "Sa lá atá inniu ann: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} má theastaíonn ceann eile uait - tá an comhéadan parsálaí beag (parsáil → léarscáil → aistriúcháin a chur i bhfeidhm → fhormáid) agus tá fáilte roimh rannchuidithe.",
+				"issueLinkLabel": "Oscail saincheist"
+			}
+		}
 	},
 	"translations": {
 		"title": "Aistriúcháin",
 		"eyebrow": "Taispeántas",
 		"heroTitle": "Dia duit i ngach teanga",
-		"locales": "Logántais",
-		"currentlyRendered": "Rindreáilte faoi láthair",
-		"complete": "críochnaithe!",
-		"pendingPrefix": "Ag feitheamh ar an gcéad rith eile translate-docs.",
+		"lede": "Tá an leathanach seo aistrithe ag Resource Translator féin, ar gach brú go príomh, i ngach teanga a thacaíonn le Azure AI Translator.",
+		"localeCountLabel": "{count} locales",
+		"statusComplete": "{translatedCount} rindreáilte faoi láthair - críochnaithe!",
+		"statusPending": "{translatedCount} rindreáilte faoi láthair - {pendingCount} ar feitheamh ar an gcéad {workflowName} eile a rith.",
 		"viewWorkflowRuns": "Féach ar ritheann sreabhadh oibre",
 		"filter": "Scagaire",
 		"filterPlaceholder": "Cuardaigh de réir teanga, cód, nó ainm dúchais...",
 		"source": "Foinse",
 		"machineTranslations": "Aistriúcháin mheaisíne",
-		"translationPending": "Aistriúchán ar feitheamh - oscail rith aistrithe-docs.",
+		"translationPending": "Aistriúchán ar feitheamh — oscail rith {workflowName}.",
 		"noLocales": "Níl aon logántais ag teacht leis an scagaire sin.",
-		"howItWorks": "Conas a oibríonn sé seo"
+		"howItWorks": {
+			"heading": "Conas a oibríonn sé seo",
+			"thisActionLabel": "an gníomh seo",
+			"steps": {
+				"source": "Tá an comhad foinse Béarla ina chónaí ag {messagesPath}.",
+				"workflow": "Brúigh an teagmháil sin {workflowLink}, a ritheann {thisAction} ina choinne féin.",
+				"fanOut": "An gníomh lucht leanúna amach chuig gach áitiúil le tacaíocht ó Azure AI Translator (cumraithe i {configPath}) agus scríobhann sé {messagesLocaleJson} sibling in aghaidh an sprioc.",
+				"pullRequest": "Osclaítear iarratas tarraingthe leis na haistriúcháin nua. Má dhéantar é a chumasc, athfhoilsítear an leathanach seo leis na cártaí líonta isteach."
+			}
+		},
+		"poweredBy": "Faoi thiomáint ag Resource Translator agus Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Ag rannchuidiú",
 		"eyebrow": "Foinse oscailte",
-		"lede": "Tá fáilte roimh thuairiscí fabhtanna, iarratais gné, agus iarratais tarraingthe. Tá an gníomh beag go leor chun a bheith cairdiúil do rannpháirtithe céaduaire."
+		"lede": "Tá fáilte roimh thuairiscí fabhtanna, iarratais gné, agus iarratais tarraingthe. Tá an gníomh beag go leor chun a bheith cairdiúil do rannpháirtithe céaduaire.",
+		"localDevelopment": {
+			"heading": "Forbairt áitiúil"
+		},
+		"addingParser": {
+			"heading": "Parsálaí á chur leis",
+			"steps": {
+				"fixture": "Cuir daingneán faoi {testDataDir}.",
+				"implement": "Cuir {parserInterface} i bhfeidhm ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Cláraigh é i {factoryFile}.",
+				"extension": "Cuir an síneadh comhaid le {translationFileSchemes} in {finderFile}.",
+				"tests": "Scríobh tástálacha babhta le haghaidh parsáil → fhormáid agus cuir Aistriúcháin i bhfeidhm."
+			}
+		},
+		"coverage": {
+			"heading": "Tairseacha clúdaigh",
+			"body": "Cuireann an chumraíocht Jest clúdach íosta i bhfeidhm. Caithfidh cód nua na ráitis + tairseach línte a choinneáil os cionn 78% agus feidhmeanna os cionn 90%. Cuir daingneáin agus tástálacha in éineacht le d'athrú."
+		},
+		"docsSite": {
+			"heading": "Suíomh doiciméadúcháin",
+			"body": "Is tionscadal Astro 6 + Tailwind v4 é an fillteán {docsDir}. Rith {npmInstall} ann uair amháin, ansin {npmRunDev} le haghaidh réamhamharc áitiúil. Seolann an sreabhadh oibre {pagesWorkflow} doiciméid chuig Leathanaigh GitHub ar gach cumasc."
+		}
 	},
 	"changelog": {
 		"title": "Loga athruithe",
 		"eyebrow": "Stair",
-		"lede": "Achoimre ardleibhéil ar eisiúintí. Tá an changelog canónach, údarásach ina chónaí i CHANGELOG.md sa stór."
+		"lede": "Achoimre ardleibhéil ar eisiúintí. Tá an changelog canónach, údarásach ina chónaí i CHANGELOG.md sa stór.",
+		"fullRecord": "Féach {changelogLink} don taifead iomlán.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (á fhorbairt)",
+			"labels": {
+				"breaking": "BRISEADH",
+				"resilience": "Athléimneacht:",
+				"placeholderProtection": "Cosaint ionadchoinneálaí:",
+				"perKeyOptOut": "Rogha an diúltaithe in aghaidh na heochrach:",
+				"docsAccessibility": "Inrochtaineacht Docs:",
+				"inlineCodeStyling": "Stíliú cód inlíne:"
+			},
+			"issueLabels": {
+				"closes46": "Dúnann # 46.",
+				"tightens16": "Tightens # 16.",
+				"closes35": "Dúnann # 35."
+			},
+			"items": {
+				"runtime": "Bumped go dtí {nodeRuntime} runtime ({breaking}).",
+				"newInputs": "Ionchuir nua: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, chomh maith le knobs Aistritheoir chun cinn {textType}, {profanityAction}, {profanityMarker}, agus {allowFallback}.",
+				"sourceLocale": "Cuirtear logáil foinse ar aghaidh chuig an Aistritheoir anois freisin mar {fromLocale} ionas nach ndéantar teaghráin ghearra a bhrath go huathoibríoch.",
+				"resilience": "{label} aththriail uathoibríoch ar fhreagairtí HTTP neamhbhuana ({statusCodes}) a thugann onóir do cheanntásc {retryAfter} Azure - titeann sé ar ais go cúl easpónantúil jittered nuair a bhíonn sé as láthair. Inchoigeartaithe trí {maxRetries} agus {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} comharthaí cosúil le {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} agus eintitis HTML fillte i sentinels sula ndéantar iad a aistriú agus a athchóiriú ina dhiaidh sin, mar sin stopann an tAistritheoir ionadshealbhóirí i18next / Mustache / Handlebars / .NET / printf a mangling. Scoránaigh trí {protectPlaceholders}; síneadh le {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} ionchur nua {noTranslatePatterns} titeann eochracha meaitseála ón iarratas Aistritheoir go hiomlán (caomhnaíonn luachanna foinse d'ainmneacha branda, cóid earráide, srl.). Meaitseálann patrúin glob i gcoinne eochracha leibhéal parsálaí (cosán poncaithe JSON, RESX {resxName}, PO {poMsgid}, aonad XLIFF {xliffId}, eochair INI / restext). {issue}",
+				"repoConfig": "Cumraíocht leibhéal repo trí {configPath}.",
+				"glossary": "Tacaíocht gluais, achoimre céime trí {coreSummary}.",
+				"tooling": "bundler esbuild, ESLint 9 cumraíocht árasán, Prettier, EditorConfig.",
+				"audit": "Glan Iniúchadh NPM (0 leochaileachtaí).",
+				"docsSite": "Suíomh docs Astro + Tailwind v4 le haistrithe amharc agus Cód Expressive.",
+				"docsAccessibility": "{label} pas WCAG 2.1 AA. D'athraigh glyphs lógó go cosáin ionas nach dteipeann orthu a thuilleadh i gcodarsnacht dathanna i gcoinne stadanna grádáin, úsáideann an cnaipe {backToTop} snámh {inert} agus é i bhfolach (in ionad scoránaigh {ariaHidden} a d'fhág sé tabbable), {formatsAstro} ní imbhuaileann rannóga a thuilleadh lena n-IDanna ceannteidil uathoibríoch-ghinte, nochtann trí chárta locale tréithe {lang} bailí BCP-47 anois ({nya}, {lug}, {run}), déantar lipéid dúblacha {documentation} sainchomhartha a dhí-athbhrú idir taobhbharra agus buntásc,  agus gach tábla sonraí ar {inputs}/{configuration} longa le fotheideal léitheoir scáileáin.",
+				"inlineCode": "Caitheann {label} docs prose {codeElement} an accent téama te / ómra anois - difriúil ón bpailéad branda→accent a úsáidtear le haghaidh naisc agus ceannteidil.",
+				"automation": "Cumaisc uathoibríoch Dependabot, scanadh CodeQL, maitrís CI."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Féach stair git."
+		}
 	}
 }

@@ -15,7 +15,13 @@
 		"searchPlaceholder": "Cari dokumentasi...",
 		"toggleTheme": "Beralih tema",
 		"githubRepository": "Repositori GitHub",
-		"language": "Bahasa"
+		"language": "Bahasa",
+		"languageTitle": "Pilih bahasa Anda",
+		"languageDescription": "Beralih ke halaman yang sama dalam bahasa lain.",
+		"languageSearch": "Memfilter bahasa",
+		"languageSearchPlaceholder": "Bahasa penelusuran atau kode lokal...",
+		"languageNoResults": "Tidak ada bahasa yang cocok dengan filter tersebut.",
+		"closeLanguage": "Tutup pemilih bahasa"
 	},
 	"search": {
 		"title": "Dokumentasi pencarian",

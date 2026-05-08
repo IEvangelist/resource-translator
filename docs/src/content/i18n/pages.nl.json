@@ -18,18 +18,26 @@
 			"node": "Node 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "Geneste of vlakke",
+			"ini": "{keyValue}",
+			"restext": "MUI-tekst"
+		},
 		"features": {
 			"formats": {
 				"title": "Zes bestandsformaten",
-				"body": "Roundtrips .resx, .xliff, .po, .json, .ini en .restext met byte-stabiele opmaak."
+				"body": "Retourreizen {resx}, {xliff}, {po}, {json}, {ini} en {restext} met byte-stabiele opmaak."
 			},
 			"config": {
 				"title": "Repo-level config",
-				"body": "Plaats een .github/resource-translator.yml voor inclusief globs, glossaria en Custom Translator-categorieën."
+				"body": "Plaats een {configPath} bestand met blobs, glossaria en Custom Translator-categorieën."
 			},
 			"glossary": {
 				"title": "Woordenlijst bewust",
-				"body": "Vergrendel merknamen en producttermen met slimme woordgrensregex die C++, .NET en andere zaken afhandelt."
+				"body": "Sluit merknamen en producttermen vast met slimme woordgrens-regex die {cpp}, {dotnet} en vrienden behandelt."
 			},
 			"dryRun": {
 				"title": "Droogloop + zachte mislukking",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR-vriendelijke uitkomsten",
-				"body": "Samenvatting-titel, samenvatting-details en heeft-nieuwe-vertalingen worden direct in create-pull-request geplaatst."
+				"body": "{summaryTitle}, {summaryDetails} en {hasNewTranslations} direct in create-pull-request worden gepast."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "Gebouwd op @azure-rest/ai-translation-text + @azure/core-rest-pipeline — automatische herpogingen op 408/429/5xx, geen handgerolde HTTP. Esbuild-gebundeld, audit-schoon."
+				"body": "Gebouwd op {azureSdk} + {corePipeline} — automatische herpogingen op {statusCodes}, geen handmatig gerolde HTTP. {esbuild} gebundeld, audit-schoon."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Drop-in workflow",
+			"titlePrefix": "Kopieer. plak.",
+			"titleAccent": "Vertaal.",
+			"body": "Drie geheimen, vier regels, en je repo is meertalig bij de volgende push.",
+			"setupLink": "Loop de volledige opzet door"
+		},
+		"cta": {
+			"title": "Klaar om op de automatische piloot te lokaliseren?",
+			"body": "Eén Azure AI Translator-sleutel, één workflowbestand. Resource Translator regelt de rest.",
+			"button": "Begin maar"
 		}
 	},
 	"getting-started": {
 		"title": "Beginnen",
 		"eyebrow": "Opstelling",
-		"lede": "Voeg een workflowbestand toe, wijs het naar je Azure AI Translator-credentials, en de actie — gebouwd op Microsofts officiële @azure-rest/ai-translation-text SDK — scant het repo op brontaalbronbestanden en genereert vertaalde broers en zussen uit.",
+		"lede": "Voeg een workflowbestand toe, wijs het naar je Azure AI Translator-credentials, en de actie scant het repo op brontaalbronbestanden en genereert vertaalde broers en zussen uit.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Voeg de workflow toe",
-				"body": "Maak .github/workflows/translate.yml:"
+				"body": "Maak {workflowPath}:"
 			},
 			"resource": {
 				"title": "Commit een bronbronbestand",
-				"body": "Resourcebestanden gebruiken de Naam. <sourceLocale>. <ext> conventie. Bijvoorbeeld, Greetings.en.resx wordt na een run Greetings.fr.resx, Greetings.de.resx, enzovoort."
+				"body": "Resourcebestanden gebruiken de {namingConvention} conventie. Bijvoorbeeld, {sourceFile} wordt {frFile}, {deFile}, enzovoort na een run."
 			},
 			"output": {
 				"title": "Inspecteer de output",
-				"body": "Zodra de workflow is afgerond, maakt de actie drie outputs beschikbaar die je kunt koppelen in een PR-beschrijving: samenvatting-titel, samenvatting-details en heeft-nieuwe-vertalingen. Het schrijft ook een Markdown-samenvatting in de functiepagina via core.summary."
+				"body": "Zodra de workflow is afgerond, wordt er drie uitvoeren blootgesteld die je kunt begeleiden in een PR-beschrijving: {summaryTitle}, {summaryDetails} en {hasNewTranslations}. Het schrijft ook een Markdown-samenvatting op de vacaturepagina via {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Volgende stappen",
-			"configuration": "Configureer repositoriaal-standaardinstellingen met .github/resource-translator.yml.",
+			"configuration": "Configureer repositoriaal-standaardinstellingen met {configPath}.",
 			"recipes": "Zie recepten voor monorepos, aangepaste glossaria en Custom Translator-categorieën."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Configuratie",
 		"eyebrow": "YAML",
 		"heroTitle": "Configuratie van de repository",
-		"lede": "Express defaults één keer in .github/resource-translator.yml en laat elke workflow ze erven. Actie-inputs winnen altijd wanneer beide worden gegeven."
+		"lede": "Express defaults één keer in het repository-configuratiebestand en laat elke workflow ze erven. Actie-inputs winnen altijd wanneer beide worden gegeven.",
+		"intro": "Overschrijf het pad met de {configPath} input als je een niet-standaard locatie nodig hebt.",
+		"schemaHeading": "Schema",
+		"fieldReference": {
+			"heading": "Veldreferentie",
+			"caption": "Configuratieveldreferentie",
+			"columns": {
+				"field": "Veld",
+				"type": "Type",
+				"notes": "Noten"
+			},
+			"fields": {
+				"sourceLocale": "Valt terug op de {sourceLocale} input als hij niet ingesteld is. Ook doorgestuurd naar de Vertaler als {fromLocale} zodat korte strings niet automatisch worden gedetecteerd.",
+				"toLocales": "Ofwel een array of een komma-gescheiden string.",
+				"includeExclude": "Globpatronen geëvalueerd aan de hand van absolute en werkruimte-relatieve paden.",
+				"glossary": "Term-overruling na vertaling. Woordgrensbewust (verwerkt {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} categorie — je branche-/domeinknop (juridisch, medisch, marketingtoon, enz.). Verzonden als {categoryQuery}.",
+				"textType": "Standaard staat {plain}. Gebruik {html} alleen als je resourcewaarden echte HTML-fragmenten bevatten.",
+				"profanityAction": "Hoe je grof taalgebruik in vertaalde output te gebruiken.",
+				"profanityMarker": "Alleen betekenisvol als {profanityAction} {marked} is.",
+				"allowFallback": "Stel het in op {false} om de vertaling te falen wanneer je {categoryId} geen deployment voor een doellocatie heeft, in plaats van terug te vallen op het algemene model.",
+				"apiVersion": "Translator REST API-versie. Standaard staat {version}.",
+				"maxRetries": "Maximale herpogingen bij transiente HTTP-antwoorden ({statusCodes}). Standaard staat {defaultRetries}. Het totale aantal HTTP-oproepen per verzoek is {totalCalls}.",
+				"retryBackoffMs": "Limiet (ms) op elke enkele backoff-slaap. Standaard staat {defaultBackoff}. Azure's {retryAfter} header wordt precies gerespecteerd wanneer aanwezig; anders wordt een jitterde exponentiële backoff gebruikt, gecapt op deze waarde.",
+				"protectPlaceholders": "Standaard staat {true}. Wanneer aan, worden tokens zoals {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} en HTML-entiteiten vervangen door sentinel-tokens vóór de vertaling en daarna hersteld. Schakel alleen uit wanneer de bron opzettelijk tijdelijke literals bevat.",
+				"customPlaceholderPatterns": "Extra regex-patronen (zonder scheidingstekens) toegevoegd aan de standaard plaatshouderset, bijvoorbeeld {angleToken} voor aangepaste tokensyntaxis. Ongeldige regexes worden genegeerd.",
+				"noTranslatePatterns": "Glob-patronen matchen parser-niveau sleutels (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). Overeenkomende sleutels worden uit het verzoek verwijderd en doorgegeven, waarbij hun bronwaarde behouden blijft."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Laadvolgorde",
+			"steps": {
+				"actionInputs": "De actie leest expliciete invoer uit de workflow.",
+				"config": "Het laadt de YAML-configuratie vanaf {configPath}.",
+				"precedence": "Voor elk gedeeld veld wint de invoer; anders wordt de YAML-waarde gebruikt.",
+				"validation": "De samengevoegde waarden worden gevalideerd. Ongeldige enums (bijvoorbeeld {invalidEnum}) zorgen ervoor dat de actie snel afloopt met een duidelijke melding."
+			}
+		},
+		"tone": {
+			"heading": "Toon en industrie, in gewone bewoordingen",
+			"body": "De Azure AI Translator v3 API heeft geen enkele toonknop. Twee instellingen combineren om je grotendeels dezelfde controle te geven:",
+			"industryLabel": "Industrie / domein:",
+			"industryBody": "gebruik {categoryId} om te wijzen op een Azure {customTranslatorLink} categorie die is getraind op je eigen corpus — juridisch, technisch, medisch, marketing, of iets anders. Dit is de sterkste hefboom voor toon, merkstem en woordenschat.",
+			"surfaceLabel": "Oppervlaktetekst:",
+			"surfaceBody": "Gebruik de {glossaryLink} om merknamen en producttermen letterlijk te vergrendelen, en gebruik {profanityAction} om grof te schrappen bij het richten op lokalisatie voor jongere doelgroepen.",
+			"glossaryLinkLabel": "Verklarende woordenlijst"
+		}
 	},
 	"inputs": {
 		"title": "Ingangen en uitvoeren",
 		"eyebrow": "Referentie",
-		"lede": "Elke invoer wordt ook geaccepteerd in het optionele repository-configuratiebestand. Wanneer beide zijn ingesteld, wint de actie-invoer."
+		"lede": "Elke invoer wordt ook geaccepteerd in het optionele repository-configuratiebestand. Wanneer beide zijn ingesteld, wint de actie-invoer.",
+		"configurationIntro": "Zie {configurationLink} voor het YAML-schema en laadvolgorde.",
+		"configurationLinkLabel": "Configuratie",
+		"columns": {
+			"name": "Naam",
+			"default": "Standaard",
+			"description": "Beschrijving"
+		},
+		"defaults": {
+			"none": "Geen",
+			"allSupported": "alle ondersteunde",
+			"translatorDefaultTrue": "waar (Vertaler standaard)"
+		},
+		"requiredInputs": {
+			"heading": "Vereiste invoer",
+			"caption": "Vereiste invoer",
+			"items": {
+				"sourceLocale": "Bronlocatie (bijv. {en}) gebruikt om bronbestanden zoals {sourceGlob} te vinden. Ook doorgestuurd naar de vertaler als {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator subscription key. Ga via {secrets}.",
+				"endpoint": "Vertaler-endpoint URL, bijvoorbeeld {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Veelvoorkomende optionele invoer",
+			"caption": "Veelvoorkomende optionele invoer",
+			"items": {
+				"region": "Vertalerresourceregio (weggelaten voor globale bronnen).",
+				"toLocales": "Locaties om naar te vertalen. Accepteert een JSON-array ({jsonArray}) of komma-gescheiden waarden.",
+				"include": "Newline-gescheiden globpatronen; alleen overeenkomende bestanden worden vertaald.",
+				"exclude": "Newline-gescheiden globpatronen; Matching files worden overgeslagen (toegepast na include).",
+				"configPath": "Pad naar het YAML-configuratiebestand (ten opzichte van de root van de werkruimte).",
+				"dryRun": "Wanneer {true}, voer vertalingen uit en genereer samenvattingen, maar schrijf geen bestanden.",
+				"failOnError": "Wanneer {true}, mislukken onverwachte fouten de actie; Wanneer {false}, zijn fouten waarschuwingen."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Invoer van vertalerverzoeken",
+			"intro": "Deze worden direct gekoppeld aan Azure AI Translator v3 queryparameters. Elke optie is optioneel; de standaardinstellingen van de Vertaler gelden wanneer deze worden uitgeschakeld.",
+			"caption": "Invoer van vertalerverzoeken",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} categorie — de industrie/domein/toonknop. Doorgestuurd als {categoryQuery}.",
+				"textType": "{plain} of {html}. Gebruik {html} alleen wanneer je resourcewaarden echte HTML-fragmenten zijn.",
+				"profanityAction": "{noAction}, {marked} of {deleted}. Bepaalt hoe grove termen worden uitgesproken in vertalingen.",
+				"profanityMarker": "{asterisk} of {tag}. Alleen betekenisvol als {profanityAction} {marked} is.",
+				"allowFallback": "Wanneer {false}, geeft Translator een foutmelding in plaats van terug te vallen op het algemene systeem als je {categoryId} geen deployment voor een doellocatie heeft.",
+				"apiVersion": "Translator REST API-versie."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Veerkracht en tijdelijke bescherming",
+			"intro": "Deze inputs bepalen hoe de actie zich gedraagt wanneer Translator je verzoek afknijpt en hoe het placeholder-tokens zoals {mustache} of {indexZero} beschermt tegen verminking tijdens vertaling.",
+			"caption": "Veerkracht- en tijdelijke beschermingsinputs",
+			"items": {
+				"maxRetries": "Maximale herpogingen bij transiente HTTP-antwoorden ({statusCodes}). Het totale aantal HTTP-aanroepen per verzoek is {totalCalls}.",
+				"retryBackoffMs": "Beperk (in milliseconden) op elke enkele backoff-slaapstand. De actie houdt zich precies aan Azure's {retryAfter} response-header wanneer aanwezig; anders gebruikt het jittered exponentiële backoff met een maximum op deze waarde.",
+				"protectPlaceholders": "Wanneer {true} (standaard), worden plaatshouders zoals {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} en HTML-entiteiten vervangen door sentinel-tokens vóór vertaling en daarna hersteld. Schakel alleen uit wanneer je bron opzettelijk letterlijke tijdelijke tekst bevat die vertaald moet worden.",
+				"customPlaceholderPatterns": "Nieuwlijn-gescheiden regexen (zonder scheidingstekens) toegevoegd aan de standaard plaatshouderset, bijvoorbeeld {angleToken} voor aangepaste tokensyntaxis.",
+				"noTranslatePatterns": "Newline-gescheiden globpatronen worden gekoppeld aan parser-niveau sleutels (JSON gestippelde pad, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). Overeenkomende sleutels worden uit het vertalerverzoek verwijderd en doorgegeven, waarbij hun bronwaarde behouden blijft."
+			}
+		},
+		"outputs": {
+			"heading": "Uitgangen",
+			"caption": "Uitgangen",
+			"items": {
+				"summaryTitle": "Korte PR-titelvriendelijke samenvatting, bijvoorbeeld {summaryExample}.",
+				"summaryDetails": "Markdown-samenvatting geschikt voor een PR-organisatie of functiebeschrijving.",
+				"hasNewTranslations": "{trueString} wanneer één of meer nieuwe vertalingen werden gegenereerd."
+			}
+		}
 	},
 	"formats": {
 		"title": "Bestandsformaten",
 		"eyebrow": "Referentie",
 		"heroTitle": "Ondersteunde bestandsformaten",
-		"lede": "Zes ronde-trippbare bronformaten. De actie leest elk bron-locatiebestand, vertaalt de waarden en schrijft per doellocatie een zus."
+		"lede": "Zes ronde-trippbare bronformaten. De actie leest elk bron-locatiebestand, vertaalt de waarden en schrijft per doellocatie een zus.",
+		"namingConvention": "Alle bestanden gebruiken de {namingConvention} naamgevingsconventie.",
+		"learnMore": "Lees meer",
+		"items": {
+			"resx": {
+				"blurb": "XML-gebaseerde .NET-bronbestanden. Vertaalt de binnenste tekst van elke {dataValue} node, waarbij opmerkingen en metadata behouden blijven.",
+				"specLabel": "Microsoft Learn — Bronnen in .resx-bestanden"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 documenten. Vertaalt elke {source} en schrijft het resultaat naar de bijbehorende {target}, waarbij {trgLang} wordt ingesteld voor de locatie.",
+				"specLabel": "OASIS XLIFF 2.0 specificatie"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object-bestanden. Vertaalt elke {msgid} / {msgidPlural} naar {msgstr} / {msgstrPlural} vormen.",
+				"specLabel": "GNU gettext — PO-bestandsformaat"
+			},
+			"json": {
+				"blurb": "Willekeurige JSON-bestanden. Geneste objecten worden afgevlakt met de {delimiter} scheidingsteken voor translatie, waarna ze opnieuw genest worden op de uitvoer. Gestippelde toetsen ({dottedKey}) worden letterlijk bewaard gebleven.",
+				"specLabel": "JSON-specificatie (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Eenvoudige {keyValue} bestanden (Win32-stijl INI of elke platte configuratie). Sectiekoppen en opmerkingen worden behouden.",
+				"specLabel": "INI-bestandsformaat op Wikipedia"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI-tekstbronnen — vlakke {keyValue} paren die als tekstuele aanvulling op {resx} worden gebruikt.",
+				"specLabel": "Microsoft MUI overzicht"
+			}
+		},
+		"roundTrip": {
+			"heading": "Retourgaranties",
+			"body": "De testsuite verifieert byte-voor-byte roundtripping voor representatieve fixtures van elk formaat. Als een formaatfout het heen en weer doorbreekt in je codebase, {issueLink} dan met een minimale sample.",
+			"issueLinkLabel": "Open een kwestie"
+		}
 	},
 	"recipes": {
 		"title": "Recepten",
 		"eyebrow": "Kookboek",
-		"lede": "Veelgebruikte patronen voor verzendvertalingen: monorepos, glossaria, aangepaste categorieën, droge runs en toonregeling."
+		"lede": "Veelgebruikte patronen voor verzendvertalingen: monorepos, glossaria, aangepaste categorieën, droge runs en toonregeling.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Open na elke run een pull request"
+			},
+			"monorepo": {
+				"heading": "Monorepos: scope-vertaling per pakket"
+			},
+			"glossary": {
+				"heading": "Verklarende woordenlijst voor merknamen en producttermen",
+				"intro": "Plaats een {configPath} in de repository:",
+				"afterLabel": "Daarna",
+				"body": "Woordenlijsttermen worden {after} vertaling toegepast, zodat de machinaal vertaalde output je voorkeursmerknaam behoudt, zelfs als het model het heeft vervangen door een synoniem."
+			},
+			"customCategory": {
+				"heading": "Aangepaste Vertalercategorie (industrie / domein)",
+				"body": "Train een Azure {customTranslatorLink} categorie op een corpus dat je branche-vocabulaire en toon (juridisch, medisch, marketing, interne engineering, enz.) vastlegt en haal de ID via {categoryId}. Dit is de sterkste toonhendel die Azure biedt."
+			},
+			"tone": {
+				"heading": "Toonregeling + strikte fallback",
+				"body": "Combineer een aangepaste vertaal {categoryId} met {profanityAction} en {allowFallbackFalse} om een consistente stem af te dwingen en de workflow te laten mislukken als de gekozen categorie geen deployment heeft voor een van je doellocaties."
+			},
+			"dryRun": {
+				"heading": "Proef het voordat je de workflow aanzet",
+				"body": "De actie geeft nog steeds samenvattingsuitwerkingen en een stapsamenvatting, maar er worden geen bestanden geschreven. Combineer het met {failOnErrorFalse} om elk probleem als waarschuwing te laten zien terwijl je iteratieert."
+			}
+		}
 	},
 	"faq": {
 		"title": "FAQ",
 		"eyebrow": "Help",
 		"heroTitle": "Veelgestelde vragen",
-		"lede": "Snelle antwoorden op de vragen die het vaakst opkomen bij het uitvoeren van de actie."
+		"lede": "Snelle antwoorden op de vragen die het vaakst opkomen bij het uitvoeren van de actie.",
+		"questions": {
+			"azure": {
+				"heading": "Hoe communiceert de actie met Azure?",
+				"body": "Via Microsofts officiële {azureSdkLink} SDK, bovenop {corePipelineLink}. Dat levert automatische herhalingen op {statusCodes}, getypte verzoek- en responsmodellen, en gratis afhandeling van authenticatieheaders — alles wat vroeger een handgeschreven {axios} oproep was. Het publieke actieoppervlak (invoer, uitvoer, bestandsuitvoer) is ongewijzigd."
+			},
+			"tone": {
+				"heading": "Waarom zijn vertalingen soms niet passend of niet in de toon?",
+				"body": "Machinevertaling gebruikt standaard een algemeen model. Drie knoppen helpen: een {glossaryLink} voor harde term-overrides, een {customTranslatorLink} voor fijn afgestelde modellen die getraind zijn op je toon en woordenschat, en {profanityAction} om grof of grof te schrapen.",
+				"glossaryLinkLabel": "Verklarende woordenlijst",
+				"customTranslatorLinkLabel": "Custom Translator-categorie"
+			},
+			"duplicateFiles": {
+				"heading": "Hoe voorkom ik dat ik hetzelfde bestand twee keer moet vertalen?",
+				"body": "Activeer de workflow op {paths} die alleen overeenkomen met je bron-locatiebestanden, bijvoorbeeld {sourceGlob}. De actie bevat ook een eigen per-trigger bestandsfilter wanneer {githubToken} is ingesteld, waardoor het werk wordt beperkt tot bestanden in de nieuwste commit."
+			},
+			"offline": {
+				"heading": "Kan ik de actie offline uitvoeren?",
+				"body": "Niet precies — Azure AI Translator is het runtime-brein. Maar je kunt met {dryRunTrue} draaien om parsing en config te valideren zonder HTTP-verzoeken voor vertaling te hoeven doen."
+			},
+			"node": {
+				"heading": "Op welke Node-versie draait de actie?",
+				"body": "v3 draait op de GitHub Actions {nodeRuntime} runtime. De meegeleverde JavaScript is compatibel met Node 20, 22 en 24, wat CI test."
+			},
+			"dist": {
+				"heading": "Waar komt de gebundelde {distDir} vandaan?",
+				"body": "GitHub JS-acties leveren hun gecompileerde JS in de repository. De {distBuild} workflow bouwt het na elke merge opnieuw op om te {mainBranch} of het zou driften, en blokkeert {distCheck} PR's die verouderde output zouden belanden."
+			},
+			"formats": {
+				"heading": "Hoe zit het met andere bronformaten?",
+				"body": "Vandaag: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} als je nog een optie nodig hebt — de parserinterface is klein (parsen → kaart → vertalingen → formaat toepassen) en bijdragen zijn welkom.",
+				"issueLinkLabel": "Open een probleem"
+			}
+		}
 	},
 	"translations": {
 		"title": "Vertalingen",
 		"eyebrow": "Showcase",
 		"heroTitle": "Hallo in elke taal",
-		"locales": "Locaties",
-		"currentlyRendered": "momenteel weergegeven",
-		"complete": "Compleet!",
-		"pendingPrefix": "Wacht op de volgende vertaaldocumentatie-run.",
+		"lede": "Deze pagina wordt vertaald door Resource Translator zelf, bij elke push naar main, in elke taal die Azure AI Translator ondersteunt.",
+		"localeCountLabel": "{count} locaties",
+		"statusComplete": "{translatedCount} momenteel gerenderd — compleet!",
+		"statusPending": "{translatedCount} momenteel gerenderd — {pendingCount} in afwachting van de volgende uitvoering {workflowName}.",
 		"viewWorkflowRuns": "Bekijk workflow-uitvoeringen",
 		"filter": "Filter",
 		"filterPlaceholder": "Zoek op taal, code of inheemse naam...",
 		"source": "Bron",
 		"machineTranslations": "Machinevertalingen",
-		"translationPending": "Vertaling in behandeling — open een translate-docs-run.",
+		"translationPending": "Vertaling in behandeling — open een {workflowName} run.",
 		"noLocales": "Geen enkele locatie komt overeen met dat filter.",
-		"howItWorks": "Hoe dit werkt"
+		"howItWorks": {
+			"heading": "Hoe dit werkt",
+			"thisActionLabel": "deze actie",
+			"steps": {
+				"source": "Het Engelse bronbestand bevindt zich op {messagesPath}.",
+				"workflow": "Als je die aanraakt, trapt hij {workflowLink} af, die {thisAction} tegen zichzelf in loopt.",
+				"fanOut": "De actie verspreidt zich naar elke door Azure AI Translator ondersteunde locatie (geconfigureerd in {configPath}) en schrijft per doelwit een broer-{messagesLocaleJson}.",
+				"pullRequest": "Er wordt een pull request geopend met de nieuwe vertalingen. Door het samenvoegen wordt deze pagina opnieuw gepubliceerd met de ingevuld kaarten."
+			}
+		},
+		"poweredBy": "Aangedreven door Resource Translator en Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Bijdragen",
 		"eyebrow": "Open source",
-		"lede": "Bugrapporten, feature-verzoeken en pull requests zijn allemaal welkom. De actie is klein genoeg om vriendelijk te zijn voor beginnende bijdragers."
+		"lede": "Bugrapporten, feature-verzoeken en pull requests zijn allemaal welkom. De actie is klein genoeg om vriendelijk te zijn voor beginnende bijdragers.",
+		"localDevelopment": {
+			"heading": "Lokale ontwikkeling"
+		},
+		"addingParser": {
+			"heading": "Een parser toevoegen",
+			"steps": {
+				"fixture": "Voeg een armatuur onder {testDataDir} toe.",
+				"implement": "Implementeer {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Registreer het in {factoryFile}.",
+				"extension": "Voeg de bestandsextensie toe aan {translationFileSchemes} in {finderFile}.",
+				"tests": "Schrijf heen-en-weer tests voor parse → format en pas Translations toe."
+			}
+		},
+		"coverage": {
+			"heading": "Dekkingsdrempels",
+			"body": "De Jest-configuratie handhaaft minimale dekking. Nieuwe code moet de drempel van statements + regels boven de 78% houden en de functies boven 90%. Voeg armaturen en tests toe naast je verandering."
+		},
+		"docsSite": {
+			"heading": "Documentatiesite",
+			"body": "De {docsDir}-map is een Astro 6 + Tailwind v4-project. Loop daar één keer {npmInstall} en {npmRunDev} dan voor lokale preview. De {pagesWorkflow} workflow stuurt documenten bij elke merge naar GitHub Pages."
+		}
 	},
 	"changelog": {
 		"title": "Wissellijst",
 		"eyebrow": "Geschiedenis",
-		"lede": "Samenvatting op hoog niveau van de releases. De canonieke, gezaghebbende changelog bevindt zich in CHANGELOG.md in de repository."
+		"lede": "Samenvatting op hoog niveau van de releases. De canonieke, gezaghebbende changelog bevindt zich in CHANGELOG.md in de repository.",
+		"fullRecord": "Zie {changelogLink} voor het volledige verslag.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (in ontwikkeling)",
+			"labels": {
+				"breaking": "BREAKING",
+				"resilience": "Veerkracht:",
+				"placeholderProtection": "Plaatsvervangerbescherming:",
+				"perKeyOptOut": "Opt-out per sleutel:",
+				"docsAccessibility": "Toegankelijkheid van documenten:",
+				"inlineCodeStyling": "Inline codestyling:"
+			},
+			"issueLabels": {
+				"closes46": "Sluit #46.",
+				"tightens16": "Draait #16 strakker aan.",
+				"closes35": "Sluit #35."
+			},
+			"items": {
+				"runtime": "Verhoogd naar {nodeRuntime} runtime ({breaking}).",
+				"newInputs": "Nieuwe ingangen: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, plus geavanceerde Translator-knoppen {textType}, {profanityAction}, {profanityMarker} en {allowFallback}.",
+				"sourceLocale": "De bronlocatie wordt nu ook doorgestuurd naar de vertaler als {fromLocale} zodat korte strings niet automatisch worden gedetecteerd.",
+				"resilience": "{label} automatische herpoging op transient HTTP-antwoorden ({statusCodes}) die Azure's {retryAfter}-header respecteren — valt terug op jittered exponentiële backoff wanneer het afwezig is. Tunable via {maxRetries} en {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} tokens zoals {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} en HTML-entiteiten worden vóór vertaling in sentinels verpakt en daarna hersteld, zodat Translator stopt met het verminken van i18next/Mustache/Handlebars/.NET/printf placeholders. Schakel via {protectPlaceholders}; Verleng met {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} nieuwe {noTranslatePatterns} invoer laat overeenkomende sleutels volledig vallen uit het vertalerverzoek (behoudt bronwaarden voor merknamen, foutcodes, enz.). Koppelt glob-patronen aan parser-niveau sleutels (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). {issue}",
+				"repoConfig": "Repo-niveau configuratie via {configPath}.",
+				"glossary": "Glossariumondersteuning, stapoverzicht via {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM Audit schoon (0 kwetsbaarheden).",
+				"docsSite": "Astro + Tailwind v4 docs-site met view-overgangen en Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA-voldoening. Logoglyphs zijn omgezet naar paden zodat ze niet langer falen bij kleurcontrast tegen gradient stops, de floating {backToTop}-knop gebruikt {inert} terwijl het verborgen is (in plaats van een {ariaHidden} toggle die het tabbladbaar maakt), {formatsAstro} secties botsen niet meer met hun automatisch gegenereerde kop-ID's, drie locale-kaarten nu BCP-47-geldige {lang}-attributen tonen ({nya}, {lug}, {run}), dubbele {documentation} herkenningslabels worden niet doordringd tussen zijbalk en voettekst,  en elke datatabel op {inputs}/{configuration} wordt geleverd met een schermlezeronderschrift.",
+				"inlineCode": "{label} docs-proza draagt nu {codeElement} het warme/amberkleurige thema — verschillend van het merk→accentpalet dat wordt gebruikt voor links en koppen.",
+				"automation": "Dependabot auto-merge, CodeQL-scanning, CI-matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Zie git-geschiedenis."
+		}
 	}
 }

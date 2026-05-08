@@ -18,18 +18,26 @@
 			"node": "Nodu 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "imdawwar jew ċatt",
+			"ini": "{keyValue}",
+			"restext": "Test MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Sitt formati ta' fajls",
-				"body": "Round-trips .resx, .xliff, .po, .json, .ini, u .restext b'format stabbli fil-bytes."
+				"body": "Vjaġġi ta' madwar {resx}, {xliff}, {po}, {json}, {ini}, u {restext} b'format stabbli fil-bytes."
 			},
 			"config": {
 				"title": "Konfigurazzjoni fil-livell ta' Repository",
-				"body": "Ħalli .github/resource-translator.yml biex tinkludi globs, glossaries, u kategoriji ta' Custom Translator."
+				"body": "Ħalli fajl {configPath} għal inklużi globs, glossaries, u kategoriji ta' Custom Translator."
 			},
 			"glossary": {
 				"title": "Konxju tal-glossarju",
-				"body": "Ikkonnettja ismijiet ta' marki u termini tal-prodott b'regex intelliġenti tal-limiti tal-kliem li jimmaniġġja C++, .NET, u ħbieb."
+				"body": "Agħti l-ismijiet tal-marki u t-termini tal-prodott b'regex intelliġenti ta' limiti ta' kliem li jimmaniġġjaw {cpp}, {dotnet}, u ħbieb."
 			},
 			"dryRun": {
 				"title": "Prova niexfa + falliment artab",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Output faċli għall-PR",
-				"body": "summary-title, summary-details, u has-new-translations jidħlu direttament fil-create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails}, u {hasNewTranslations} jidħlu direttament fil-create-pull-request."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "Mibni fuq @azure-rest/ai-translation-text + @azure/core-rest-pipeline — ripetizzjonijiet awtomatiċi fuq 408/429/5xx, l-ebda HTTP imdawwar bl-idejn. Esbuild-Bundle, awditjar-nadif."
+				"body": "Mibni fuq {azureSdk} + {corePipeline} — jerġgħu jippruvaw awtomatiċi fuq {statusCodes}, l-ebda HTTP imdawwar bl-idejn. {esbuild}-bundles, nadif għall-awditjar."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Fluss tax-xogħol drop-in",
+			"titlePrefix": "Kopja. Iħalli.",
+			"titleAccent": "Ittraduċi.",
+			"body": "Tliet sigrieti, erba' linji, u r-repo tiegħek ikun multilingwi fil-pressjoni li jmiss.",
+			"setupLink": "Imexxi permezz tal-setup kollu"
+		},
+		"cta": {
+			"title": "Lest biex tilokalizza fuq l-awtopilota?",
+			"body": "Ċavetta waħda ta' Azure AI Translator, fajl wieħed ta' fluss tax-xogħol. Resource Translator jimmaniġġja l-bqija.",
+			"button": "Ibda"
 		}
 	},
 	"getting-started": {
 		"title": "Bidu",
 		"eyebrow": "Setup",
-		"lede": "Żid fajl ta' workflow, ippuntah lejn il-kredenzjali tiegħek ta' Azure AI Translator, u l-azzjoni — mibnija fuq l-SDK uffiċjali ta' Microsoft @azure-rest/ai-translation-text — se tiskannja r-repo għal fajls ta' riżorsi fil-lingwa sors u toħroġ aħwa tradotti.",
+		"lede": "Żid fajl ta' workflow, ippuntah lejn il-kredenzjali tiegħek ta' Azure AI Translator, u l-azzjoni tiskannja r-repo għal fajls ta' riżorsi fil-lingwa sors u toħroġ aħwa tradotti.",
 		"steps": {
 			"provision": {
 				"title": "Provisiona riżorsa Azure AI Translator",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Żid il-fluss tax-xogħol",
-				"body": "Oħloq .github/workflows/translate.yml:"
+				"body": "Oħloq {workflowPath}:"
 			},
 			"resource": {
 				"title": "Commit ta' fajl ta' sors ta' riżorsa",
-				"body": "Il-fajls tar-riżorsi jużaw l-Isem. <sourceLocale>. <ext> konvenzjoni. Per eżempju Greetings.en.resx isir Greetings.fr.resx, Greetings.de.resx, u hekk 'il quddiem wara run."
+				"body": "Il-fajls tar-riżorsi jużaw il-konvenzjoni tal-{namingConvention}. Per eżempju {sourceFile} isir {frFile}, {deFile}, u hekk 'il quddiem wara run."
 			},
 			"output": {
 				"title": "Iċċekkja l-output",
-				"body": "Ladarba l-fluss tax-xogħol jispiċċa, l-azzjoni turi tliet outputs li tista' tħaddem f'deskrizzjoni PR: sommarju-titlu, sommarju-dettalji, u has-new-translations. Jikteb ukoll sommarju ta' Markdown fil-paġna tax-xogħol permezz ta' core.summary."
+				"body": "Ladarba l-fluss tax-xogħol jispiċċa, l-azzjoni turi tliet outputs li tista' tħaddem f'deskrizzjoni PR: {summaryTitle}, {summaryDetails}, u {hasNewTranslations}. Jikteb ukoll sommarju ta' Markdown fil-paġna tax-xogħol permezz ta' {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Il-passi li jmiss",
-			"configuration": "Ikkonfigura d-defaults fil-livell ta' repo-level bl-użu ta' .github/resource-translator.yml.",
+			"configuration": "Ikkonfigura d-deċiżi tal-livell ta' repo-level b'{configPath}.",
 			"recipes": "Ara riċetti għal monorepos, glossarji personalizzati, u kategoriji ta' Traduttur Personalizzat."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Konfigurazzjoni",
 		"eyebrow": "YAML",
 		"heroTitle": "Konfigurazzjoni tar-repożitorju",
-		"lede": "Express jiddeċiedi darba f'.github/resource-translator.yml u jħalli kull workflow jirċievi l-wirt. L-inputs ta' azzjoni dejjem jirbħu meta t-tnejn jiġu pprovduti."
+		"lede": "Express jagħmel default darba fil-fajl tal-konfigurazzjoni tar-repository u jħalli kull fluss tax-xogħol jieħu l-wirt. L-inputs ta' azzjoni dejjem jirbħu meta t-tnejn jiġu pprovduti.",
+		"intro": "Ikkontrolla t-triq bl-input tal-{configPath} jekk għandek bżonn post mhux default.",
+		"schemaHeading": "Skema",
+		"fieldReference": {
+			"heading": "Referenza fil-qasam",
+			"caption": "Referenza tal-kamp ta' konfigurazzjoni",
+			"columns": {
+				"field": "Qasam",
+				"type": "Tip",
+				"notes": "Noti"
+			},
+			"fields": {
+				"sourceLocale": "Jirritorna għall-{sourceLocale} input jekk ma jkunx issettjat. Ukoll mibgħuta lil Translator bħala {fromLocale} sabiex strings qosra ma jiġu awtoskettati.",
+				"toLocales": "Jew array jew stringa separata minn koma.",
+				"includeExclude": "Mudelli glob evalwati kontra toroq assoluti u relattivi għall-ispazju tax-xogħol.",
+				"glossary": "Overrides ta' termini wara t-traduzzjoni. Konxju tal-limiti tal-kliem (jimmaniġġja {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} kategorija — il-knob tal-industrija/dominju tiegħek (legali, mediċi, ton kummerċjali, eċċ.). Mibgħut bħala {categoryQuery}.",
+				"textType": "Jiddependi għal {plain}. Uża {html} biss jekk il-valuri tar-riżorsi tiegħek fihom frammenti HTML reali.",
+				"profanityAction": "Kif tittratta termini profani f'output tradotti.",
+				"profanityMarker": "Sens biss meta {profanityAction} tkun {marked}.",
+				"allowFallback": "Issettja għal {false} li tfalli t-traduzzjoni meta l-{categoryId} tiegħek m'għandux implimentazzjoni għal lokalità fil-mira minflok terġa' lura għall-mudell ġenerali.",
+				"apiVersion": "Verżjoni tal-API REST tat-traduttur. Jiddependi għal {version}.",
+				"maxRetries": "Tentattivi massimi ta' retry fuq risposti HTTP transitorji ({statusCodes}). Jiddependi għal {defaultRetries}. It-total ta' sejħiet HTTP għal kull talba huwa {totalCalls}.",
+				"retryBackoffMs": "Limit (ms) fuq kull waħda waħda ta' backoff. Jiddependi għal {defaultBackoff}. L-intestatura {retryAfter} ta' Azure tiġi onorata eżattament meta tkun preżenti; inkella jintuża jittered exponential backoff, limitat għal dan il-valur.",
+				"protectPlaceholders": "Jiddependi għal {true}. Meta jkunu attivi, tokens bħal {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} u entitajiet HTML jiġu sostitwiti b'tokens sentinel qabel it-traduzzjoni u jiġu restawrati wara. Idiżattivaw biss meta s-sors intenzjonalment fih letterali f'forma ta' placeholder.",
+				"customPlaceholderPatterns": "Mudelli regex żejda (mingħajr delimitaturi) miżjuda mas-sett default, eż. {angleToken} għal sintassi personalizzata ta' token. Ir-regex invalidi jiġu injorati.",
+				"noTranslatePatterns": "Il-mudelli Glob kienu jaqblu ma' ċwievet ta' livell ta' parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, unità XLIFF {xliffId}, ċavetta INI/restext). Il-keys li jaqblu jitneħħew mit-talba u jgħaddu permezz tal-valur tas-sors tagħhom ippreservat."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Ordni tat-tagħbija",
+			"steps": {
+				"actionInputs": "L-azzjoni taqra inputs espliciti mill-fluss tax-xogħol.",
+				"config": "Jħaddem il-konfigurazzjoni YAML minn {configPath}.",
+				"precedence": "Għal kull qasam kondiviż, l-input jirbaħ; inkella jintuża l-valur YAML.",
+				"validation": "Il-valuri magħquda jiġu vvalidati. Enums invalidi (eż. {invalidEnum}) jikkawżaw li l-azzjoni tfalli malajr b'messaġġ ċar."
+			}
+		},
+		"tone": {
+			"heading": "Ton u industrija, b'mod ċar",
+			"body": "L-API Azure AI Translator v3 m'għandhiex knob wieħed tat-ton. Żewġ settings flimkien jagħtuk l-istess kontroll:",
+			"industryLabel": "Industrija / dominju:",
+			"industryBody": "uża {categoryId} biex tindika kategorija ta' Azure {customTranslatorLink} mħarrġa fuq il-korpus tiegħek stess — legali, tekniċi, mediċi, kummerċjali, jew xi ħaġa oħra. Dan huwa l-aktar lever b'saħħtu għat-ton, il-vuċi tal-marka, u l-vokabularju.",
+			"surfaceLabel": "Test tal-wiċċ:",
+			"surfaceBody": "Uża l-{glossaryLink} biex tgħaqqad ismijiet ta' marki u termini tal-prodott littera għal oħra, u uża {profanityAction} biex tneħħi t-termini profani meta tiffoka fuq il-lokalizzazzjoni għal udjenzi iżgħar.",
+			"glossaryLinkLabel": "Glossarju"
+		}
 	},
 	"inputs": {
 		"title": "Inputs u outputs",
 		"eyebrow": "Referenza",
-		"lede": "Kull input huwa wkoll aċċettat fil-fajl ta' konfigurazzjoni tar-repo fakultattiv. Meta t-tnejn ikunu ssettjati, l-input tal-azzjoni jirbaħ."
+		"lede": "Kull input huwa wkoll aċċettat fil-fajl ta' konfigurazzjoni tar-repo fakultattiv. Meta t-tnejn ikunu ssettjati, l-input tal-azzjoni jirbaħ.",
+		"configurationIntro": "Ara {configurationLink} għall-iskema YAML u l-ordni tat-tagħbija.",
+		"configurationLinkLabel": "Konfigurazzjoni",
+		"columns": {
+			"name": "Isem",
+			"default": "Default",
+			"description": "Deskrizzjoni"
+		},
+		"defaults": {
+			"none": "xejn",
+			"allSupported": "kollha appoġġjati",
+			"translatorDefaultTrue": "true (Traduttur default)"
+		},
+		"requiredInputs": {
+			"heading": "Inputs meħtieġa",
+			"caption": "Inputs meħtieġa",
+			"items": {
+				"sourceLocale": "Il-lokalità tas-sors (eż. {en}) użata biex issib fajls ta' riżorsi bħal {sourceGlob}. Intbagħat ukoll lit-Traduttur bħala {fromLocale}.",
+				"subscriptionKey": "Ċavetta ta' abbonament Azure AI Translator. Għaddi minn {secrets}.",
+				"endpoint": "URL tal-endpoint tat-traduttur, eż. {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Inputs fakultattivi komuni",
+			"caption": "Inputs fakultattivi komuni",
+			"items": {
+				"region": "Reġjun tar-riżorsi tat-traduttur (mhux meħtieġ għal riżorsi globali).",
+				"toLocales": "Postijiet fejn tista' tittraduċi. Jaċċetta array JSON ({jsonArray}) jew valuri separati minn koma.",
+				"include": "mudelli ta' globi separati minn newline; huma tradotti biss fajls li jaqblu.",
+				"exclude": "mudelli ta' globi separati minn newline; fajls li jaqblu jiġu mħassra (applikati wara l-inklużjoni).",
+				"configPath": "Triq għall-fajl ta' konfigurazzjoni YAML (relattivament għar-root tax-xogħol).",
+				"dryRun": "Meta {true}, agħmel traduzzjonijiet u ħareġ sommarji iżda ma tiktibx fajls.",
+				"failOnError": "Meta {true}, żbalji mhux mistennija jfallu mill-azzjoni; Meta {false}, l-iżbalji huma twissijiet."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Inputs tat-talba tat-traduttur",
+			"intro": "Dawn jimparaw direttament mal-parametri ta' mistoqsija ta' Azure AI Translator v3. Kull waħda minnhom hija fakultattiva; it-Traduttur default japplika meta jkun mhux issettjat.",
+			"caption": "Inputs tat-talba tat-traduttur",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} category — il-knob industry/domain/ton. Mibgħuta bħala {categoryQuery}.",
+				"textType": "{plain} jew {html}. Uża {html} biss meta l-valuri tar-riżorsi tiegħek ikunu frammenti HTML veri.",
+				"profanityAction": "{noAction}, {marked}, jew {deleted}. Jikkontrolla kif it-termini profani jiġu emessi fit-traduzzjonijiet.",
+				"profanityMarker": "{asterisk} jew {tag}. Sens biss meta {profanityAction} tkun {marked}.",
+				"allowFallback": "Meta {false}, it-Traduttur jirritorna żball minflok jerġa' jidħol fis-sistema ġenerali jekk il-{categoryId} tiegħek m'għandux implimentazzjoni għal post fil-mira.",
+				"apiVersion": "Verżjoni tal-API REST tat-traduttur."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Reżiljenza u protezzjoni temporanja",
+			"intro": "Dawn l-inputs jikkontrollaw kif l-azzjoni taġixxi meta Translator jnaqqas it-talba tiegħek u kif jipproteġi tokens temporanji bħal {mustache} jew {indexZero} milli jiġu mħassra waqt it-traduzzjoni.",
+			"caption": "Reżiljenza u inputs ta' protezzjoni temporanja",
+			"items": {
+				"maxRetries": "Tentattivi massimi ta' retry fuq risposti HTTP transitorji ({statusCodes}). In-numru totali ta' sejħiet HTTP għal kull talba huwa {totalCalls}.",
+				"retryBackoffMs": "Il-limitu (fi millisekondi) fuq kwalunkwe rqad wieħed li jħalli l-backoff. L-azzjoni tirrispetta l-intestatura ta' rispons {retryAfter} ta' Azure eżatt meta tkun preżenti; inkella juża jittered exponential backoff limitat għal dan il-valur.",
+				"protectPlaceholders": "Meta {true} (default), placeholders bħal {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} u entitajiet HTML jiġu sostitwiti b'tokens sentinel qabel it-traduzzjoni u restawrati wara. Iddiżattivaw biss meta s-sors tiegħek intenzjonalment fih test letterali f'forma ta' placeholder li għandu jittraduċi.",
+				"customPlaceholderPatterns": "Regexes separati mill-linji ġodda (mingħajr delimitaturi) miżjuda mas-sett default, eż. {angleToken} għal sintassi personalizzata tat-token.",
+				"noTranslatePatterns": "Mudelli glob separati minn newline kienu jikkorrispondu ma' ċwievet ta' livell ta' parser (JSON doted path, RESX {resxName}, PO {poMsgid}, unità XLIFF {xliffId}, ċavetta INI/restext). Ċwievet li jaqblu jitneħħew mit-talba tat-Traduttur u jgħaddu permezz tal-valur sors tagħhom ippreservat."
+			}
+		},
+		"outputs": {
+			"heading": "Outputs",
+			"caption": "Outputs",
+			"items": {
+				"summaryTitle": "Sommarju qasir adattat għall-PR, eż. {summaryExample}.",
+				"summaryDetails": "Sommarju tal-markdown adattat għal korp ta' PR jew sommarju ta' xogħol.",
+				"hasNewTranslations": "{trueString} meta ġew ġġenerati traduzzjonijiet ġodda jew aktar."
+			}
+		}
 	},
 	"formats": {
 		"title": "Formati ta' fajls",
 		"eyebrow": "Referenza",
 		"heroTitle": "Formati ta' fajls appoġġjati",
-		"lede": "Sitt formati ta' riżorsa li jistgħu jiġu rritornati. L-azzjoni taqra kull fajl source-locale, tittraduċi l-valuri, u tikteb sibling għal kull lokalità fil-mira."
+		"lede": "Sitt formati ta' riżorsa li jistgħu jiġu rritornati. L-azzjoni taqra kull fajl source-locale, tittraduċi l-valuri, u tikteb sibling għal kull lokalità fil-mira.",
+		"namingConvention": "Il-fajls kollha jużaw il-konvenzjoni tal-ismijiet {namingConvention}.",
+		"learnMore": "Tgħallem aktar",
+		"items": {
+			"resx": {
+				"blurb": "fajls ta' riżorsi .NET bbażati fuq XML. Jittraduċi t-test intern ta' kull nod {dataValue}, jippreserva l-kummenti u l-metadata.",
+				"specLabel": "Microsoft Learn — Riżorsi fil-fajls .resx"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 dokumenti. Jittraduċi kull {source} u jikteb ir-riżultat fil-{target} korrispondenti, u jissettja {trgLang} għall-lokalità.",
+				"specLabel": "Speċifikazzjoni OASIS XLIFF 2.0"
+			},
+			"po": {
+				"blurb": "Fajls GNU gettext Portable Object. Jittraduċi kull {msgid} / {msgidPlural} f'formoli {msgstr} / {msgstrPlural}.",
+				"specLabel": "GNU gettext — Format tal-fajl PO"
+			},
+			"json": {
+				"blurb": "Fajls JSON arbitrarji. L-oġġetti imdawwra jiġu appattati bid-delimitatur tal-{delimiter} għat-traslazzjoni, u mbagħad jerġgħu jiġu mniżżla fuq l-output. Ċwievet b'punti ({dottedKey}) huma ppreservati verbatim.",
+				"specLabel": "Speċifikazzjoni JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Fajls {keyValue} sempliċi (INI b'stil Win32 jew kwalunkwe konfigurazzjoni ċatta). L-intestaturi tas-sezzjonijiet u l-kummenti huma ppreservati.",
+				"specLabel": "Format tal-fajl INI fuq Wikipedia"
+			},
+			"restext": {
+				"blurb": "Riżorsi testwali Microsoft MUI — parijiet ta' {keyValue} ċatti użati bħala kompanjon testwali għal {resx}.",
+				"specLabel": "Ħarsa ġenerali lejn Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Garanziji ta' vjaġġ ta' ritorn",
+			"body": "Is-suite tat-test tivverifika round-tripping byte-for-byte għal fixtures rappreżentattivi ta' kull format. Jekk quirk ta' format jiksir il-round-tripping fil-kodiċi tiegħek, jekk jogħġbok {issueLink} b'kampjun minimu.",
+			"issueLinkLabel": "iftaħ kwistjoni"
+		}
 	},
 	"recipes": {
 		"title": "Riċetti",
 		"eyebrow": "Ktieb ta' Riċetti",
-		"lede": "Mudelli komuni għat-traduzzjonijiet tat-tbagħdija: monorepos, glossarji, kategoriji personalizzati, dry runs, u kontroll tat-ton."
+		"lede": "Mudelli komuni għat-traduzzjonijiet tat-tbagħdija: monorepos, glossarji, kategoriji personalizzati, dry runs, u kontroll tat-ton.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Iftaħ pull request wara kull run"
+			},
+			"monorepo": {
+				"heading": "Monorepos: traduzzjoni tal-ambitu għal kull pakkett"
+			},
+			"glossary": {
+				"heading": "Glossarju għall-ismijiet tal-marka u t-termini tal-prodott",
+				"intro": "Poġġi {configPath} fil-popo:",
+				"afterLabel": "wara",
+				"body": "It-termini tal-glossarju jiġu applikati {after} traduzzjoni, għalhekk l-output tradott bil-magna jżomm il-marka preferuta tiegħek anke meta l-mudell jibdel dan għal sinonim."
+			},
+			"customCategory": {
+				"heading": "Kategorija ta' Traduttur Apposta (industrija / doktorju)",
+				"body": "Ħarreġ kategorija ta' Azure {customTranslatorLink} fuq corpus li jaqbad il-vokabularju u t-ton tal-industrija tiegħek (legali, mediċi, kummerċjalizzazzjoni, inġinerija interna, eċċ.) u għadda l-ID tagħha permezz ta' {categoryId}. Din hija l-aktar lever tat-ton b'saħħitha li toffri Azure."
+			},
+			"tone": {
+				"heading": "Kontroll tat-ton + fallback strett",
+				"body": "Kombina {categoryId} ta' Traduttur Personalizzat ma' {profanityAction} u {allowFallbackFalse} biex tinforza vuċi konsistenti u falli l-fluss tax-xogħol jekk il-kategorija magħżula ma għandhiex implimentazzjoni għal wieħed mill-postijiet miri tiegħek."
+			},
+			"dryRun": {
+				"heading": "Prova niexfa qabel tixgħel il-fluss tax-xogħol",
+				"body": "L-azzjoni għadha toħroġ riżultati ta' sommarju u sommarju tal-passi, iżda ma jinkitbu l-ebda fajls. Għaqqad ma' {failOnErrorFalse} biex turi kull problema bħala twissija waqt li tgħid."
+			}
+		}
 	},
 	"faq": {
 		"title": "FAQ",
 		"eyebrow": "Għajnuna",
 		"heroTitle": "Mistoqsijiet frekwenti",
-		"lede": "Tweġibiet malajr għall-mistoqsijiet li joħorġu l-aktar spiss meta tadotta l-azzjoni."
+		"lede": "Tweġibiet malajr għall-mistoqsijiet li joħorġu l-aktar spiss meta tadotta l-azzjoni.",
+		"questions": {
+			"azure": {
+				"heading": "Kif titkellem l-azzjoni ma' Azure?",
+				"body": "Permezz tal-{azureSdkLink} SDK uffiċjali ta' Microsoft, imħallat fuq {corePipelineLink}. Dan jagħtik ripetizzjonijiet awtomatiċi fuq {statusCodes}, mudelli ta' talba u risposta miktuba, u ġestjoni ta' header ta' awtentikazzjoni b'xejn — kollox li qabel kien sejħa ta' {axios} li kienet tiġi rrolljata bl-idejn. Il-wiċċ pubbliku tal-azzjoni (inputs, outputs, outputs ta' fajls) jibqa' l-istess."
+			},
+			"tone": {
+				"heading": "Għaliex it-traduzzjonijiet kultant huma mhux ta' marka jew ta' ton mhux preċiż?",
+				"body": "It-traduzzjoni bil-magna tiddependi fuq mudell ġenerali. Tliet knobs jgħinu: {glossaryLink} għal overrides ta' termini iebsa, {customTranslatorLink} għal mudelli fin-tuned imħarrġa fuq it-ton u l-vokabularju tiegħek, u {profanityAction} biex tħassar jew tmarka termini profani.",
+				"glossaryLinkLabel": "Glossarju",
+				"customTranslatorLinkLabel": "Kategorija ta' Traduttur Apposta"
+			},
+			"duplicateFiles": {
+				"heading": "Kif nista' nevita li nittraduċi l-istess fajl darbtejn?",
+				"body": "Attiva l-fluss tax-xogħol fuq {paths} li jaqblu biss mal-fajls tas-sors lokali tiegħek, eż. {sourceGlob}. L-azzjoni tinkludi wkoll filtru ta' fajl għal kull trigger meta jkun issettjat {githubToken}, li jnaqqas ix-xogħol għal fajls fl-aħħar commit."
+			},
+			"offline": {
+				"heading": "Nista' nħaddem l-azzjoni offline?",
+				"body": "Mhux eżattament — Azure AI Translator huwa l-moħħ tal-runtime. Imma tista' taħdem ma' {dryRunTrue} biex tivvalida l-parsing u l-konfigurazzjoni mingħajr ma tagħmel xi talbiet HTTP għat-traduzzjoni."
+			},
+			"node": {
+				"heading": "Fuq liema verżjoni ta' Node taħdem l-azzjoni?",
+				"body": "v3 jaħdem fuq il-runtime ta' GitHub Actions {nodeRuntime}. Il-JavaScript inkluża hija kompatibbli man-Node 20, 22, u 24, li huma dak li CI jittestja."
+			},
+			"dist": {
+				"heading": "Minn fejn ġejjin il-{distDir} magħquda?",
+				"body": "L-azzjonijiet ta' GitHub JS jibagħtu l-JS ikkompilat tagħhom fir-repository. Il-fluss tax-xogħol tal-{distBuild} jibni mill-ġdid wara kull merġa biex {mainBranch} jekk kienx se jiddriftja, u {distCheck} jimblokkja PRs li jħallu output skadut."
+			},
+			"formats": {
+				"heading": "X'għandek dwar formati oħra ta' riżorsi?",
+				"body": "Illum: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} jekk għandek bżonn ieħor — l-interface tal-parser huwa żgħir (parse → mappa → tapplika traduzzjonijiet → format) u l-kontribuzzjonijiet huma milqugħa.",
+				"issueLinkLabel": "Iftaħ kwistjoni"
+			}
+		}
 	},
 	"translations": {
 		"title": "Traduzzjonijiet",
 		"eyebrow": "Wirja",
 		"heroTitle": "Bongu f'kull lingwa",
-		"locales": "Postijiet",
-		"currentlyRendered": "Preżenti bħalissa",
-		"complete": "kompluta!",
-		"pendingPrefix": "Filwaqt li s-serje li jmiss ta' Translate-Docs.",
+		"lede": "Din il-paġna tiġi tradotta minn Resource Translator innifsu, f'kull push lejn main, f'kull lingwa li Azure AI Translator jappoġġja.",
+		"localeCountLabel": "{count}-postijiet",
+		"statusComplete": "{translatedCount} preżenti — kompluta!",
+		"statusPending": "{translatedCount} bħalissa rendered — {pendingCount} jistenna l-{workflowName} li jmiss.",
 		"viewWorkflowRuns": "Ara l-eżekuzzjonijiet tal-fluss tax-xogħol",
 		"filter": "Filtru",
 		"filterPlaceholder": "Fittex skont il-lingwa, il-kodiċi, jew l-isem nattiv...",
 		"source": "Sors",
 		"machineTranslations": "Traduzzjonijiet bil-magna",
-		"translationPending": "Traduzzjoni pendenti — iftaħ run ta' traduzzjoni-dokumenti.",
+		"translationPending": "Traduzzjoni pendenti — iftaħ {workflowName} run.",
 		"noLocales": "L-ebda post ma jikkorrispondi ma' dak il-filtru.",
-		"howItWorks": "Kif jaħdem dan"
+		"howItWorks": {
+			"heading": "Kif jaħdem dan",
+			"thisActionLabel": "Din l-azzjoni stess",
+			"steps": {
+				"source": "Il-fajl sors bl-Ingliż jinsab f'{messagesPath}.",
+				"workflow": "Jippushja dak it-touch kick off {workflowLink}, li jmur kontra {thisAction} nnifsu.",
+				"fanOut": "L-azzjoni tinfirex għal kull lokalità appoġġjata minn Azure AI Translator (konfigurata f'{configPath}) u tikteb {messagesLocaleJson} aħwa għal kull mira.",
+				"pullRequest": "Jinfetaħ pull request flimkien mat-traduzzjonijiet il-ġodda. Meta tgħaqqadha terġa' tippubblika din il-paġna bil-karti mimlija."
+			}
+		},
+		"poweredBy": "Imħaddem minn Resource Translator u Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Kontribut",
 		"eyebrow": "Sors miftuħ",
-		"lede": "Rapporti ta' bugs, talbiet ta' karatteristiċi, u pull requests huma kollha milqugħa. L-azzjoni hija żgħira biżżejjed biex tkun ħbiberija għal dawk li jikkontribwixxu għall-ewwel darba."
+		"lede": "Rapporti ta' bugs, talbiet ta' karatteristiċi, u pull requests huma kollha milqugħa. L-azzjoni hija żgħira biżżejjed biex tkun ħbiberija għal dawk li jikkontribwixxu għall-ewwel darba.",
+		"localDevelopment": {
+			"heading": "Żvilupp lokali"
+		},
+		"addingParser": {
+			"heading": "Żieda ta' parser",
+			"steps": {
+				"fixture": "Żid fixture taħt {testDataDir}.",
+				"implement": "Implimenta {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Irreġistrah f'{factoryFile}.",
+				"extension": "Żid l-estensjoni tal-fajl ma' {translationFileSchemes} f'{finderFile}.",
+				"tests": "Ikteb testijiet ta' vjaġġ u ritorn għall-format ta' parse → u applika Traduzzjonijiet."
+			}
+		},
+		"coverage": {
+			"heading": "Limiti ta' kopertura",
+			"body": "Il-konfigurazzjoni Jest timponi kopertura minima. Il-kodiċi ġdid irid iżomm id-dikjarazzjonijiet + il-limiti tal-linji 'il fuq minn 78% u l-funzjonijiet 'il fuq minn 90%. Żid fixtures u testijiet flimkien mal-bidla tiegħek."
+		},
+		"docsSite": {
+			"heading": "Sit ta' dokumentazzjoni",
+			"body": "Il-folder {docsDir} huwa proġett Astro 6 + Tailwind v4. Mur {npmInstall} hemm darba, imbagħad {npmRunDev} għal preview lokali. Il-fluss tax-xogħol tal-{pagesWorkflow} jibgħat id-dokumentazzjoni fuq GitHub Pages f'kull merge."
+		}
 	},
 	"changelog": {
 		"title": "Changelog",
 		"eyebrow": "Storja",
-		"lede": "Sommarju ta' livell għoli tar-rilaxxijiet. Il-bidliet kanoniku u awtorevoli jgħix f'CHANGELOG.md fir-repożitorju."
+		"lede": "Sommarju ta' livell għoli tar-rilaxxijiet. Il-bidliet kanoniku u awtorevoli jgħix f'CHANGELOG.md fir-repożitorju.",
+		"fullRecord": "Ara {changelogLink} għar-rekord sħiħ.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "V3 (fil-fażi ta' żvilupp)",
+			"labels": {
+				"breaking": "BREAKING",
+				"resilience": "Reżiljenza:",
+				"placeholderProtection": "Protezzjoni ta' postholder:",
+				"perKeyOptOut": "Għażla ta' kull ċavetta:",
+				"docsAccessibility": "Aċċessibilità tad-dokumenti:",
+				"inlineCodeStyling": "Stil tal-kodiċi inline:"
+			},
+			"issueLabels": {
+				"closes46": "Jagħlaq #46.",
+				"tightens16": "Jissaħħaħ #16.",
+				"closes35": "Jagħlaq #35."
+			},
+			"items": {
+				"runtime": "Ġie mġedded għal {nodeRuntime}-runtime ({breaking}).",
+				"newInputs": "Inputs ġodda: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, flimkien ma' knobs avvanzati tat-Traduttur {textType}, {profanityAction}, {profanityMarker}, u {allowFallback}.",
+				"sourceLocale": "Il-lokalità tas-sors issa hija wkoll mibgħuta lil Translator bħala {fromLocale} sabiex strings qosra ma jiġu awtoskettati.",
+				"resilience": "{label}-retry awtomatiku fuq risposti HTTP transienti ({statusCodes}) li jġib lura għall-header {retryAfter} ta' Azure — jerġa' lura għal jittered exponential backoff meta jkun nieqes. Tista' tiġi aġġustata permezz ta' {maxRetries} u {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label}-tokens bħal {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} u entitajiet HTML jiġu mgħottija f'sentinelli qabel it-traduzzjoni u jiġu restawrati wara, għalhekk it-Traduttur jieqaf li jħassar i18next/Mustache/Handlebars/.NET/printf placeholders. Toggle permezz ta' {protectPlaceholders}; Estendi b'{customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label}-input {noTranslatePatterns} ġdid jaqa' ċ-ċwievet li jaqblu kompletament mit-talba tat-Traduttur (jippreserva l-valuri tas-sors għall-ismijiet tal-marka, kodiċijiet ta' żball, eċċ.). Jqabbel mudelli glob ma' ċwievet ta' livell ta' parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, unità XLIFF {xliffId}, INI/restext key). {issue}",
+				"repoConfig": "Konfigurazzjoni fil-livell ta' repoo permezz ta' {configPath}.",
+				"glossary": "Appoġġ għall-glossarju, sommarju tal-passi permezz ta' {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "Npm Audit Nadif (0 vulnerabbiltajiet).",
+				"docsSite": "Sit ta' dokumentazzjoni ta' Astro + Tailwind v4 b'transizzjonijiet ta' veduta u Kodiċi Espressiv.",
+				"docsAccessibility": "{label} WCAG 2.1 pass AA. Il-glyphs tal-logo ġew konvertiti f'mogħdijiet sabiex ma jibqgħux jonqsu mill-kuntrast tal-kulur kontra l-waqfiet tal-gradjenti, il-buttuna tal-{backToTop} li tgħix tuża {inert} waqt li tkun moħbija (minflok toggle ta' {ariaHidden} li ħalliha tabableable), {formatsAstro}-sezzjonijiet ma jibqgħux jikkollidifikaw mal-IDs ta' intestatura ġenerati awtomatikament, tliet karti lokali issa jesponu attributi ta' {lang} validi għal BCP-47 ({nya}, {lug}, {run}), id-duplikati {documentation} it-tikketti tal-landmarks jiġu diżambiguizzati bejn sidebar u footer,  u kull tabella tad-dejta fuq {inputs}/{configuration} tiġi b'kaptan għall-qari tal-iskrin.",
+				"inlineCode": "{label}-proża ta' dokumentarji {codeElement} issa jilbsu l-aċċent tat-tema sħuna/ambra — distint mill-paletta ta' marka→aċċent użata għall-links u t-titliet.",
+				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Ara l-istorja tal-git."
+		}
 	}
 }

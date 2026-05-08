@@ -18,18 +18,26 @@
 			"node": "Node 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "ichma-ich yoki yassi",
+			"ini": "{keyValue}",
+			"restext": "MUI matni"
+		},
 		"features": {
 			"formats": {
 				"title": "Oltita fayl formati",
-				"body": ".resx, .xliff, .po, .json, .ini va .restext fayllarini bayt-barqaror formatlash bilan aylantiradi."
+				"body": "Orqaga qaytish yo'nalishlari bayt-barqaror formatda {resx}, {xliff}, {po}, {json}, {ini} va {restext}."
 			},
 			"config": {
 				"title": "Repo darajasidagi konfiguratsiya",
-				"body": ".github/resource-translator.yml faylini qo'shing, unda globlar, lug'atlar va Custom Translator kategoriyalarini qo'shing."
+				"body": "Insert globs, lug'atlar va Custom Translator kategoriyalari uchun {configPath} faylini joylashtiring."
 			},
 			"glossary": {
 				"title": "Lug'atga ega",
-				"body": "Brend nomlari va mahsulot atamalarini C++, .NET va do'stlarini boshqaradigan aqlli so'z chegarali regex bilan qulflang."
+				"body": "Brend nomlari va mahsulot atamalarini aqlli so'z chegarasi regex bilan qulflang, bu regex {cpp}, {dotnet} va do'stlarni boshqaradi."
 			},
 			"dryRun": {
 				"title": "Sinov + yumshoq muvaffaqiyatsizlik",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR uchun qulay chiqishlar",
-				"body": "summary-title, summary-details va has-new-translations to'g'ridan-to'g'ri create-pull-request ga joylashtiriladi."
+				"body": "{summaryTitle}, {summaryDetails} va {hasNewTranslations} to'g'ridan-to'g'ri create-pull-request ga joylashtiriladi."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "@azure-rest/ai-translation-text + @azure/core-rest-pipeline asosida qurilgan — 408/429/5xx da avtomatik qayta urinishlar, qo'lda aylantirilgan HTTP yo'q. Esbuild to'plami, audit toza."
+				"body": "{azureSdk} + {corePipeline} asosida qurilgan — {statusCodes} da avtomatik qayta urinishlar, qo'lda aylantiriladigan HTTP yo'q. {esbuild} to'plami, audit toza."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Drop-in ish jarayoni",
+			"titlePrefix": "Nusxa ol. Joylashtir.",
+			"titleAccent": "Tarjima qiling.",
+			"body": "Uchta sir, to'rt chiziq, va keyingi turtishda sizning repo ko'p tilli bo'ladi.",
+			"setupLink": "To'liq tizimni ko'rib chiqing"
+		},
+		"cta": {
+			"title": "Avtopilotda lokalizatsiya qilishga tayyormisiz?",
+			"body": "Bitta Azure AI Translator kaliti, bitta ish jarayoni fayli. Qolgan ishlarni Resource Translator bajaradi.",
+			"button": "Boshlang"
 		}
 	},
 	"getting-started": {
 		"title": "Boshlanish",
 		"eyebrow": "Sozlama",
-		"lede": "Ish jarayoni faylini qo'shing, uni Azure AI Translator ma'lumotlaringizga yo'naltiring, va bu harakat — Microsoft'ning rasmiy @azure-rest/ai-translation-text SDK ga asoslangan — repoda manba tilidagi resurs fayllarini skanerlaydi va tarjima qilingan aka-ukalar chiqaradi.",
+		"lede": "Ish jarayoni faylini qo'shing, uni Azure AI Translator ma'lumotlaringizga yo'naltiring, va harakat repoda manba tilidagi resurs fayllarini skanerlab, tarjima qilingan aka-ukalar yuboradi.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Ish jarayonini qo'shing",
-				"body": ".github/workflows/translate.yml yarating:"
+				"body": "Yarating {workflowPath}:"
 			},
 			"resource": {
 				"title": "Manba resurs faylini commit qilish",
-				"body": "Resurs fayllari Ism nomidan foydalanadi. <sourceLocale>. <ext> konventsiya. Masalan, Greetings.en.resx ishga tushirilgandan so'ng Greetings.fr.resx, Greetings.de.resx va hokazo ga aylanadi."
+				"body": "Resurs fayllari {namingConvention} konventsiyasidan foydalanadi. Masalan, {sourceFile} {frFile}, {deFile} va hokazo bo'ladi."
 			},
 			"output": {
 				"title": "Chiqishni tekshiring",
-				"body": "Ish jarayoni tugagach, harakat uchta chiqishni PR tavsifiga ulash imkonini beradi: summary-title, summary-details va has-new-translations. Shuningdek, u core.summary orqali ish sahifasiga Markdown qisqacha mazmunini yozadi."
+				"body": "Ish jarayoni tugagach, harakat uchta chiqishni PR tavsifiga ulash imkonini beradi: {summaryTitle}, {summaryDetails} va {hasNewTranslations}. Shuningdek, u ish sahifasiga Markdown qisqacha mazmunini {coreSummary} orqali yozadi."
 			}
 		},
 		"nextSteps": {
 			"title": "Keyingi qadamlar",
-			"configuration": "Repo darajasidagi defaultlarni .github/resource-translator.yml bilan sozlang.",
+			"configuration": "Repo darajasidagi defaultlarni {configPath} bilan sozlang.",
 			"recipes": "Monorepolar, maxsus lug'atlar va Maxsus Tarjimon kategoriyalari uchun retseptlarni ko'ring."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Konfiguratsiya",
 		"eyebrow": "YAML",
 		"heroTitle": "Ombor konfiguratsiyasi",
-		"lede": "Express .github/resource-translator.yml da bir marta standart bo'ladi va har bir ish jarayoni ularni meros qilib oladi. Harakat kirishlari har doim g'alaba qozonadi, agar ikkalasi ham mavjud bo'lsa."
+		"lede": "Express repository config faylida bir marta default bo'ladi va har bir ish jarayoni ularni meros qilib oladi. Harakat kirishlari har doim g'alaba qozonadi, agar ikkalasi ham mavjud bo'lsa.",
+		"intro": "Agar standart bo'lmagan joylashuv kerak bo'lsa, yo'lni {configPath} kirishi bilan o'zgartiring.",
+		"schemaHeading": "Sxema",
+		"fieldReference": {
+			"heading": "Maydon ma'lumotlari",
+			"caption": "Konfiguratsiya maydoni referensiyasi",
+			"columns": {
+				"field": "Maydon",
+				"type": "Turi",
+				"notes": "Izohlar"
+			},
+			"fields": {
+				"sourceLocale": "Agar sozlanmagan bo'lsa, {sourceLocale} kirishga qaytadi. Shuningdek, qisqa satrlar avtomatik aniqlanmasligi uchun Translator'ga ham yuboriladi {fromLocale}.",
+				"toLocales": "Yoki massiv, yoki vergul bilan ajratilgan satr.",
+				"includeExclude": "Glob naqshlari absolyut va ish maydoniga nisbat yo'llarga nisbatan baholandi.",
+				"glossary": "Tarjimadan keyingi atama o'zgartirishlari. So'z chegarasidan xabardor ({cpp}, {dotnet} manzillari).",
+				"categoryId": "Azure {customTranslatorLink} kategoriyasi — sizning sohangiz/domen tugmasi (huquqiy, tibbiy, marketing ohangi va boshqalar). {categoryQuery} sifatida yuborilgan.",
+				"textType": "Standart holatda {plain}. {html} faqat resurs qiymatlaringizda haqiqiy HTML fragmentlari bo'lsa, foydalaning.",
+				"profanityAction": "Tarjima qilingan mahsulotda haqoratli so'zlarni qanday muomala qilish kerak.",
+				"profanityMarker": "Faqat {profanityAction} {marked} bo'lsa, ahamiyatli bo'ladi.",
+				"allowFallback": "Umumiy modelga qaytish o'rniga tarjima muvaffaqiyatsiz bo'lishi uchun {false} sozlang, shunda {categoryId} maqsadli joyda joylashtirish bo'lmaydi.",
+				"apiVersion": "Tarjimon REST API versiyasi. Standart holatda {version}.",
+				"maxRetries": "Vaqtinchalik HTTP javoblarida maksimal qayta urinishlar ({statusCodes}). Standart holat {defaultRetries}. Har bir so'rov uchun jami HTTP qo'ng'iroqlari soni {totalCalls}.",
+				"retryBackoffMs": "Har qanday bitta orqaga qaytish uyqusi uchun cap (ms). Standart holatda {defaultBackoff}. Azure'ning {retryAfter} sarlavhasi aynan mavjud bo'lganda hurmat qilinadi; aks holda jittered eksponensial orqaga chekinish ishlatiladi, bu qiymat bilan cheklanadi.",
+				"protectPlaceholders": "Standart holatda {true}. Yoqilganda, {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} va HTML entitetlari kabi tokenlar tarjima qilinishidan oldin sentinel tokenlar bilan almashtiriladi va keyin tiklanadi. Faqat manba ataylab o'rinbosar shaklidagi literallarni o'z ichiga olganda o'chirib qo'ying.",
+				"customPlaceholderPatterns": "Qo'shimcha regex naqshlari (ajratgichsiz) standart joylashtiruvchi to'plamga qo'shilgan, masalan, maxsus token sintaksisi uchun {angleToken} qo'shilgan. Noto'g'ri regexlar e'tiborga olinmaydi.",
+				"noTranslatePatterns": "Glob naqshlari parser darajasidagi kalitlar (JSON nuqtali yo'l, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext kaliti) bilan mos keladi. Mos keluvchi kalitlar so'rovdan olib tashlanadi va ularning manba qiymati saqlanib o'tadi."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Yuklash tartibi",
+			"steps": {
+				"actionInputs": "Harakat ish jarayonidan aniq kirishlarni o'qiydi.",
+				"config": "U YAML konfiguratsiyasini {configPath} dan yuklaydi.",
+				"precedence": "Har bir umumiy maydon uchun kirish g'alaba qozonadi; aks holda YAML qiymati ishlatiladi.",
+				"validation": "Birlashtirilgan qiymatlar tasdiqlanadi. Noto'g'ri enumlar (masalan, {invalidEnum}) aniq xabar bilan harakatning tez muvaffaqiyatsiz bo'lishiga sabab bo'ladi."
+			}
+		},
+		"tone": {
+			"heading": "Ohang va sanoatkorlik, oddiy qilib aytganda",
+			"body": "Azure AI Translator v3 APIda bitta ton tugmasi yo'q. Ikki sozlama birlashib, deyarli bir xil boshqaruvni ta'minlaydi:",
+			"industryLabel": "Sanoat / soha:",
+			"industryBody": "{categoryId} yordamida o'zingizning korpusingizda o'qitilgan Azure {customTranslatorLink} kategoriyasini ko'rsating — huquqiy, texnik, tibbiy, marketing yoki boshqa sohalarda. Bu ohang, brend ovozi va lug'at boyligi uchun eng kuchli vosita.",
+			"surfaceLabel": "Yuzaki matn:",
+			"surfaceBody": "{glossaryLink} orqali brend nomlari va mahsulot atamalarini so'zma-so'z qulflang, shuningdek, yosh auditoriyalar uchun mahalliylashtirishda {profanityAction} so'zlarni tozalash uchun foydalaning.",
+			"glossaryLinkLabel": "Lug'at"
+		}
 	},
 	"inputs": {
 		"title": "Kirishlar va chiqishlar",
 		"eyebrow": "Manba",
-		"lede": "Har bir kirish ixtiyoriy repo konfiguratsiya faylida ham qabul qilinadi. Ikkalasi ham sozlanganda, harakat kirishi g'alaba qiladi."
+		"lede": "Har bir kirish ixtiyoriy repo konfiguratsiya faylida ham qabul qilinadi. Ikkalasi ham sozlanganda, harakat kirishi g'alaba qiladi.",
+		"configurationIntro": "YAML sxemasi va yuklash tartibi uchun {configurationLink} qarang.",
+		"configurationLinkLabel": "Konfiguratsiya",
+		"columns": {
+			"name": "Nomi",
+			"default": "Standart",
+			"description": "Tavsif"
+		},
+		"defaults": {
+			"none": "yo'q",
+			"allSupported": "Barchasi qo'llab-quvvatlanadi",
+			"translatorDefaultTrue": "true (Tarjimon defaulti)"
+		},
+		"requiredInputs": {
+			"heading": "Kerakli kirishlar",
+			"caption": "Kerakli kirishlar",
+			"items": {
+				"sourceLocale": "Manba lokaali (masalan, {en}) resurs fayllarini topish uchun ishlatiladi, masalan, {sourceGlob}. Shuningdek, Translator'ga {fromLocale} sifatida yuborilgan.",
+				"subscriptionKey": "Azure AI Translator obuna kaliti. O'tib {secrets}.",
+				"endpoint": "Translator endpoint URL, masalan {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Keng tarqalgan ixtiyoriy kirishlar",
+			"caption": "Keng tarqalgan ixtiyoriy kirishlar",
+			"items": {
+				"region": "Tarjimon resurs hududi (global resurslar uchun chiqarib tashlangan).",
+				"toLocales": "Tarjima qilish kerak bo'lgan joylar. JSON massivini ({jsonArray}) yoki vergul bilan ajratilgan qiymatlarni qabul qiladi.",
+				"include": "Newline ajratilgan glob naqshlari; faqat mos keladigan fayllar tarjima qilinadi.",
+				"exclude": "Newline ajratilgan glob naqshlari; Moslashtiruvchi fayllar o'tkazib yuboriladi (include so'zidan keyin qo'llaniladi).",
+				"configPath": "YAML konfiguratsiya fayliga yo'l (ish joyi ildiziga nisbatan).",
+				"dryRun": "{true} qilganda, tarjimalarni ishga tushiring va xulosalar chiqaring, lekin fayl yozmang.",
+				"failOnError": "{true} bo'lganda, kutilmagan xatolar harakatda muvaffaqiyatsiz bo'ladi; {false} bo'lsa, xatolar ogohlantirish hisoblanadi."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Tarjimon so'rovi kirishlari",
+			"intro": "Ular to'g'ridan-to'g'ri Azure AI Translator v3 so'rov parametrlariga xaritalanadi. Har biri ixtiyoriy; Translator standart funksiyalari o'rnatilmaganda qo'llaniladi.",
+			"caption": "Tarjimon so'rovi kirishlari",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} category — industry/domain/tone knob. {categoryQuery} sifatida yuborilgan.",
+				"textType": "{plain} yoki {html}. {html} faqat resurs qiymatlaringiz haqiqiy HTML fragmentlari bo'lsa ishlating.",
+				"profanityAction": "{noAction}, {marked} yoki {deleted}. Tarjimalarda haqoratli so'zlar qanday chiqarilishini nazorat qiladi.",
+				"profanityMarker": "{asterisk} yoki {tag}. Faqat {profanityAction} {marked} bo'lsa ahamiyatli.",
+				"allowFallback": "Agar {false} joylashtirilganda, Translator xato qaytaradi, agar {categoryId} maqsadli joyda joylashtirish bo'lmasa, umumiy tizimga qaytmaydi.",
+				"apiVersion": "Tarjimon REST API versiyasi."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Barqarorlik va vaqtinchalik himoya",
+			"intro": "Bu kirishlar Translator so'rovingizni cheklaganda harakatning qanday ishlashini va {mustache} yoki {indexZero} kabi vaqtinchalik tokenlarni tarjima paytida buzilishidan qanday himoya qilishini boshqaradi.",
+			"caption": "Barqarorlik va vaqtinchalik himoya kirishlari",
+			"items": {
+				"maxRetries": "Vaqtinchalik HTTP javoblarida maksimal qayta urinishlar ({statusCodes}). Har bir so'rov uchun umumiy HTTP qo'ng'iroqlari soni {totalCalls}.",
+				"retryBackoffMs": "Har qanday orqaga qaytish uyqusini (millisekundlarda) cheklang. Harakat Azure'ning {retryAfter} javob sarlavhasini aynan mavjud bo'lganda hurmat qiladi; aks holda, bu qiymat bilan cheklangan jittered eksponensial orqaga qaytishdan foydalanadi.",
+				"protectPlaceholders": "{true} (standart) bo'lganda, {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} va HTML elementlari tarjima qilinishidan oldin sentinel tokenlar bilan almashtiriladi va keyin tiklanadi. Faqat manbangiz ataylab tarjima qilinishi kerak bo'lgan so'zma-so'z almashtirish shaklidagi matn bo'lsa o'chirib qo'ying.",
+				"customPlaceholderPatterns": "Yangi qator bo'yicha ajratilgan regexlar (ajratgichsiz) standart joy tutuvchi to'plamga qo'shilgan, masalan, maxsus token sintaksisi uchun {angleToken}.",
+				"noTranslatePatterns": "Yangi chiziqli ajratilgan glob naqshlari parser darajasidagi kalitlarga (JSON nuqtali yo'l, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext kaliti) mos keladi. Mos keluvchi kalitlar Tarjimon so'rovidan olib tashlanadi va ularning manba qiymati saqlanib qoladi."
+			}
+		},
+		"outputs": {
+			"heading": "Natijalar",
+			"caption": "Natijalar",
+			"items": {
+				"summaryTitle": "Qisqa, PR sarlavhasi uchun qulay qisqacha mazmun, masalan, {summaryExample}.",
+				"summaryDetails": "PR organi yoki ish haqida qisqacha ma'lumot uchun mos keladigan markdown qisqacha mazmuni.",
+				"hasNewTranslations": "{trueString} bir yoki bir nechta yangi tarjimalar yaratilganda."
+			}
+		}
 	},
 	"formats": {
 		"title": "Fayl formatlari",
 		"eyebrow": "Manba",
 		"heroTitle": "Qo'llab-quvvatlanadigan fayl formatlari",
-		"lede": "Oltita aylanma resurs formati. Harakat har bir manba-lokal faylni o'qiydi, qiymatlarni tarjima qiladi va har bir maqsadli lokalka uchun aka-uka yozadi."
+		"lede": "Oltita aylanma resurs formati. Harakat har bir manba-lokal faylni o'qiydi, qiymatlarni tarjima qiladi va har bir maqsadli lokalka uchun aka-uka yozadi.",
+		"namingConvention": "Barcha fayllar {namingConvention} nomlash an'anasidan foydalanadi.",
+		"learnMore": "Ko'proq o'rganing",
+		"items": {
+			"resx": {
+				"blurb": "XML asosidagi .NET resurs fayllari. Har bir {dataValue} tugunining ichki matnini tarjima qiladi, izohlar va metama'lumotlarni saqlaydi.",
+				"specLabel": "Microsoft Learn — .resx fayllaridagi resurslar"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 hujjatlari. Har bir {source} tarjima qiladi va natijani mos {target} ichiga yozadi va joylashuv uchun {trgLang} belgilaydi.",
+				"specLabel": "OASIS XLIFF 2.0 spetsifikatsiyasi"
+			},
+			"po": {
+				"blurb": "GNU gettext Ko'chma obyekt fayllari. Har bir {msgid} / {msgidPlural} {msgstr} / {msgstrPlural} shakllarga tarjima qiladi.",
+				"specLabel": "GNU gettext — PO fayl formati"
+			},
+			"json": {
+				"blurb": "Ixtiyoriy JSON fayllari. Ichma-ich obyektlar tarjima uchun {delimiter} ajratgich bilan tekislanadi, so'ngra chiqishda qayta ichkariga joylashtiriladi. Nuqtali tugmalar ({dottedKey}) so'zma-so'z saqlanib qolgan.",
+				"specLabel": "JSON spetsifikatsiyasi (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Oddiy {keyValue} fayllari (Win32 uslubidagi INI yoki har qanday tekis konfiguratsiya). Bo'lim sarlavhalari va izohlar saqlanib qolgan.",
+				"specLabel": "Vikipediyada INI fayl formati"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI matn resurslari — {resx} matnli hamroh sifatida ishlatiladigan tekis {keyValue} juftliklari.",
+				"specLabel": "Microsoft MUI umumiy ko'rinishi"
+			}
+		},
+		"roundTrip": {
+			"heading": "Qatnov kafolatlari",
+			"body": "Test to'plami har bir formatdagi vakil moslamalar uchun baytma-bayt aylanma yurishni tekshiradi. Agar kod bazangizda formatdagi g'alati holat buzilsa, minimal namuna bilan {issueLink} qiling.",
+			"issueLinkLabel": "Masalani oching"
+		}
 	},
 	"recipes": {
 		"title": "Retseptlar",
 		"eyebrow": "Oshxona kitobi",
-		"lede": "Tarjimalarni jo'natishda keng tarqalgan naqshlar: monorepolar, lug'atlar, maxsus kategoriyalar, quruq yurishlar va ton nazorati."
+		"lede": "Tarjimalarni jo'natishda keng tarqalgan naqshlar: monorepolar, lug'atlar, maxsus kategoriyalar, quruq yurishlar va ton nazorati.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Har bir yurishdan so'ng pull so'rovini oching"
+			},
+			"monorepo": {
+				"heading": "Monorepos: paket bo'yicha ko'lam tarjimasi"
+			},
+			"glossary": {
+				"heading": "Brend nomlari va mahsulot atamalari uchun lug'at",
+				"intro": "Repoga {configPath} tashlang:",
+				"afterLabel": "Keyin",
+				"body": "Lug'at atamalari tarjima {after} qo'llaniladi, shuning uchun mashina tarjimasi natijasi sizning afzal brendingizni saqlab qoladi, hatto model uni sinonimga almashtirsa ham."
+			},
+			"customCategory": {
+				"heading": "Maxsus Tarjimon toifasi (sanoat / domen)",
+				"body": "Azure {customTranslatorLink} kategoriyasini sohadagi lug'at va ohangni (huquqiy, tibbiyot, marketing, ichki muhandislik va boshqalar) aks ettiruvchi korpusda o'qiting va uning IDsini {categoryId} orqali o'tkazing. Bu Azure'ning eng kuchli tovush tutqichi."
+			},
+			"tone": {
+				"heading": "Ton nazorati + qat'iy zaxira",
+				"body": "Custom Translator {categoryId} ni {profanityAction} va {allowFallbackFalse} bilan birlashtirib, izchil ovozni ta'minlang va tanlangan kategoriyada maqsadli joylardan biri uchun joylashtirish bo'lmasa, ish jarayonini muvaffaqiyatsiz qiling."
+			},
+			"dryRun": {
+				"heading": "Ish jarayonini yoqishdan oldin sinovdan o'tkazing",
+				"body": "Harakat hali ham qisqacha natijalar va bosqich xulosasini chiqaradi, lekin fayllar yozilmaydi. Har bir muammoni ogohlantirish sifatida ko'rsatish uchun {failOnErrorFalse} bilan birlashtiring."
+			}
+		}
 	},
 	"faq": {
 		"title": "Ko'p so'raladigan savollar",
 		"eyebrow": "Yordam bering",
 		"heroTitle": "Tez-tez so'raladigan savollar",
-		"lede": "Harakatni qabul qilishda eng ko'p yuzaga keladigan savollarga tezkor javoblar."
+		"lede": "Harakatni qabul qilishda eng ko'p yuzaga keladigan savollarga tezkor javoblar.",
+		"questions": {
+			"azure": {
+				"heading": "Harakat Azure bilan qanday muloqot qiladi?",
+				"body": "Microsoft'ning rasmiy {azureSdkLink} SDK orqali, {corePipelineLink} ustiga qatlamlangan. Bu sizga {statusCodes} uchun avtomatik qayta urinish, yozilgan so'rov va javob modellari, shuningdek, autentifikatsiya sarlavhalarini bepul boshqarish imkonini beradi — ilgari qo'lda {axios} qo'ng'irog'i bo'lgan barcha narsalar. Ommaviy harakat yuzasi (kirishlar, chiqishlar, fayl chiqishlari) o'zgarmagan."
+			},
+			"tone": {
+				"heading": "Nega tarjimalar ba'zan brendga mos yoki ohangga mos emas?",
+				"body": "Mashina tarjimasi standart ravishda umumiy maqsadli modelga o'tadi. Uchta tugma yordam beradi: qattiq muddatli bekor qilish uchun {glossaryLink}, ohang va lug'atingizga moslashtirilgan nozik modellar uchun {customTranslatorLink} va so'kinish so'zlarni tozalash yoki belgilash uchun {profanityAction}.",
+				"glossaryLinkLabel": "Lug'at",
+				"customTranslatorLinkLabel": "Custom Translator kategoriyasi"
+			},
+			"duplicateFiles": {
+				"heading": "Bir faylni ikki marta tarjima qilishdan qanday qochaman?",
+				"body": "Ish jarayonini faqat manba-lokal fayllaringizga mos keladigan {paths} orqali ishga tushiring, masalan, {sourceGlob}. Harakat, shuningdek {githubToken} sozlanganda o'zining trigger uchun fayl filtrini ham o'z ichiga oladi, bu esa ishni so'nggi commitdagi fayllarga toraytiradi."
+			},
+			"offline": {
+				"heading": "Harakatni oflayn rejimda ishlatsam bo'ladimi?",
+				"body": "To'liq emas — Azure AI Translator — bu ish vaqtidagi miya. Lekin siz {dryRunTrue} yordamida tahlil va konfiguratsiyani tasdiqlash uchun HTTP so'rovlarini yubormasdan ishlashingiz mumkin."
+			},
+			"node": {
+				"heading": "Qaysi Node versiyasida harakat amalga oshiriladi?",
+				"body": "v3 GitHub Actions {nodeRuntime} runtime'da ishlaydi. To'plamdagi JavaScript Node 20, 22 va 24 bilan mos keladi, aynan shu CI tomonidan sinovdan o'tkaziladi."
+			},
+			"dist": {
+				"heading": "Paketlangan {distDir} qayerdan keladi?",
+				"body": "GitHub JS harakatlari kompilyatsiyalangan JS ni omborda joylashtiradi. {distBuild} ish jarayoni har bir birlashmadan keyin uni qayta quradi, {mainBranch} drift qiladimi, va eskirgan chiqishlarni {distCheck} PRlarni bloklaydi."
+			},
+			"formats": {
+				"heading": "Boshqa resurs formatlari haqida nima deyish mumkin?",
+				"body": "Bugun: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} agar yana kerak bo'lsa — parser interfeysi kichik (parse → xaritalash → tarjimalarni format → qo'llaydi) va hissa qo'shilishi mumkin.",
+				"issueLinkLabel": "Masalani oching"
+			}
+		}
 	},
 	"translations": {
 		"title": "Tarjimalar",
 		"eyebrow": "Ko'rgazma",
 		"heroTitle": "Har bir tilda salom",
-		"locales": "Joylashuvlar",
-		"currentlyRendered": "Hozirda tasvirlanmoqda",
-		"complete": "To'liq!",
-		"pendingPrefix": "Keyingi Translate-Docs ishga tayyorlanmoqda.",
+		"lede": "Ushbu sahifa Resource Translator tomonidan har safar asosiy formatga bosilganda, Azure AI Translator qo'llab-quvvatlaydigan barcha tillarga tarjima qilinadi.",
+		"localeCountLabel": "{count} joylari",
+		"statusComplete": "{translatedCount} hozirda render qilingan — yakun!",
+		"statusPending": "{translatedCount} hozirda render qilinmoqda — {pendingCount} keyingi {workflowName} seriyasini kutmoqda.",
 		"viewWorkflowRuns": "Ish jarayonini ko'rish",
 		"filter": "Filtr",
 		"filterPlaceholder": "Til, kod yoki mahalliy ism bo'yicha qidiring...",
 		"source": "Manba",
 		"machineTranslations": "Mashina tarjimalari",
-		"translationPending": "Tarjima jarayoni kutilmoqda — translate-docs dasturini oching.",
+		"translationPending": "Tarjima kutilmoqda — {workflowName} seriyasini oching.",
 		"noLocales": "Hech qanday joylar shu filtrga mos keladi.",
-		"howItWorks": "Bu qanday ishlaydi"
+		"howItWorks": {
+			"heading": "Bu qanday ishlaydi",
+			"thisActionLabel": "aynan shu harakat",
+			"steps": {
+				"source": "Inglizcha manba fayli {messagesPath} manzilida joylashgan.",
+				"workflow": "O'sha tegishni itaradi, {workflowLink} o'ziga qarshi {thisAction} qiladi.",
+				"fanOut": "Harakat har bir Azure AI Translator tomonidan qo'llab-quvvatlanadigan joyga ({configPath} da sozlangan) tarqaladi va har bir maqsad uchun aka-uka {messagesLocaleJson} yozadi.",
+				"pullRequest": "Yangi tarjimalar bilan pull so'rovi ochiladi. Uni birlashtirish natijasida ushbu sahifa kartalar to'ldirilgan holda qayta nashr etiladi."
+			}
+		},
+		"poweredBy": "Resource Translator va Azure AI Translator tomonidan quvvatlanadi."
 	},
 	"contributing": {
 		"title": "Hissa qo'shish",
 		"eyebrow": "Ochiq manba",
-		"lede": "Xatoliklar haqida xabarlar, funksiya so'rovlari va pull so'rovlari qabul qilinadi. Harakatlar yetarlicha kichik bo'lib, birinchi marta ishtirok etayotganlar uchun qulay bo'ladi."
+		"lede": "Xatoliklar haqida xabarlar, funksiya so'rovlari va pull so'rovlari qabul qilinadi. Harakatlar yetarlicha kichik bo'lib, birinchi marta ishtirok etayotganlar uchun qulay bo'ladi.",
+		"localDevelopment": {
+			"heading": "Mahalliy rivojlanish"
+		},
+		"addingParser": {
+			"heading": "Parser qo'shish",
+			"steps": {
+				"fixture": "{testDataDir} ostida bir o'yinchoq qo'shing.",
+				"implement": "Joriy {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Uni {factoryFile} ro'yxatdan o'tkazing.",
+				"extension": "Fayl kengaytmasini {translationFileSchemes} in {finderFile} ga qo'shing.",
+				"tests": "Parse → format va applyTranslations uchun aylanma testlar yozing."
+			}
+		},
+		"coverage": {
+			"heading": "Qamrov chegaralari",
+			"body": "Jest konfiguratsiyasi minimal qamrovni ta'minlaydi. Yangi kod bayonotlar + chiziqlar chegarasini 78% dan yuqori, funksiyalar esa 90% dan yuqori bo'lishi kerak. O'zgartirish bilan birga jihozlar va testlarni ham qo'shing."
+		},
+		"docsSite": {
+			"heading": "Hujjatlar sayti",
+			"body": "{docsDir} papka Astro 6 + Tailwind v4 loyihasidir. U yerga bir marta {npmInstall}, keyin mahalliy oldindan ko'rishga {npmRunDev}. {pagesWorkflow} ish jarayoni har bir birlashmada hujjatlarni GitHub Pages'ga yuboradi."
+		}
 	},
 	"changelog": {
 		"title": "O'zgarishlar ro'yxati",
 		"eyebrow": "Tarix",
-		"lede": "Relizatsiyalarning yuqori darajadagi qisqacha mazmuni. Kanonik, vakolatli changelog CHANGELOG.md omborda yashaydi."
+		"lede": "Relizatsiyalarning yuqori darajadagi qisqacha mazmuni. Kanonik, vakolatli changelog CHANGELOG.md omborda yashaydi.",
+		"fullRecord": "To'liq yozuv uchun {changelogLink} qarang.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "V3 (rivojlantirilmoqda)",
+			"labels": {
+				"breaking": "BUZILISH",
+				"resilience": "Bardoshlilik:",
+				"placeholderProtection": "Vaqtinchalik himoya:",
+				"perKeyOptOut": "Kalit bo'yicha opt-out:",
+				"docsAccessibility": "Hujjatlarga kirish imkoniyati:",
+				"inlineCodeStyling": "Inline kod uslubi:"
+			},
+			"issueLabels": {
+				"closes46": "#46 yopildi.",
+				"tightens16": "#16 ni mahkamlaydi.",
+				"closes35": "#35 ni yopadi."
+			},
+			"items": {
+				"runtime": "Davomiyligi {nodeRuntime} ({breaking}) ga oshirildi.",
+				"newInputs": "Yangi kirishlar: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, shuningdek, ilg'or tarjimon tugmalari {textType}, {profanityAction}, {profanityMarker} va {allowFallback}.",
+				"sourceLocale": "Manba manzili endi Translator ga ham uzatiladi {fromLocale} shuning uchun qisqa satrlar avtomatik aniqlanmaydi.",
+				"resilience": "{label} avtomatik qayta urinish ({statusCodes} Azure'ning {retryAfter} sarlavhasini hurmat qilib, o'tkinchi HTTP javoblarida () — bo'lmaganda tebranadigan eksponensial orqaga qaytishga qaytadi. {maxRetries} va {retryBackoffMs} orqali sozlanadi. {issue}",
+				"placeholderProtection": "{label} {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} va HTML kabi tokenlar tarjima qilinishidan oldin sentinellarga o'raladi va keyin tiklanadi, shuning uchun Translator i18next/Mustache/Handlebars/.NET/printf joylarini buzishni to'xtatadi. To'chirish orqali {protectPlaceholders}; Birga {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} yangi {noTranslatePatterns} kirishi Translator so'rovidan mos keluvchi kalitlarni butunlay olib tashlaydi (brend nomlari, xato kodlari va boshqalar uchun manba qiymatlarini saqlaydi). Glob naqshlarini parser darajasidagi kalitlar (JSON nuqtali yo'l, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext kaliti) bilan moslashtiradi. {issue}",
+				"repoConfig": "Repo darajasidagi konfiguratsiya {configPath}.",
+				"glossary": "Lug'at qo'llab-quvvatlashi, bosqich qisqacha mazmuni {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM audit toza (0 zaiflik).",
+				"docsSite": "Astro + Tailwind v4 hujjatlar sayti, ko'rinish o'tishlari va ifodali kod bilan.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pas. Logotip gliflari yo'llarga aylantirilib, endi gradient to'xtash joylariga qarshi rang-kontrastni buzmaydi, suzuvchi {backToTop} tugmasi yashirin holatda {inert} ishlatadi (o'rniga {ariaHidden} tugmasi o'rniga, u o'z o'rniga), {formatsAstro} bo'limlar avtomatik yaratilgan sarlavha identifikatorlari bilan to'qnashmaydi, uchta joy kartasi endi BCP-47 uchun mos {lang} atributlarini ({nya}, {lug}, {run}) ko'rsatadi, takroriy {documentation} landmark yorliqlari yon panel va footer orasida aniqlanadi,  va {inputs}/{configuration} dagi har bir ma'lumot jadvali ekranni o'qiydigan sarlavha bilan birga keladi.",
+				"inlineCode": "{label} Docs Prose {codeElement} endi iliq/sarg'ish mavzu aksentini →kiyadi — bu brend va sarlavhalar uchun ishlatiladigan aksent palitrasidan farq qiladi.",
+				"automation": "Dependabot avtomatik birlashtirish, CodeQL skanerlash, CI matritsa."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Git tarixiga qarang."
+		}
 	}
 }

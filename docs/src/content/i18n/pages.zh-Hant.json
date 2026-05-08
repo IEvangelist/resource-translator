@@ -18,18 +18,26 @@
 			"node": "節點20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "取得文字",
+			"json": "巢狀或扁平型",
+			"ini": "{keyValue}",
+			"restext": "MUI 文本"
+		},
 		"features": {
 			"formats": {
 				"title": "六種檔案格式",
-				"body": "來回傳輸 .resx、.xliff、.po、.json、.ini 和 .restext，格式為位元組穩定。"
+				"body": "來回行程{resx}、{xliff}、{po}、{json}、{ini} 和 {restext}，並採用位元組穩定格式。"
 			},
 			"config": {
 				"title": "倉庫層級設定",
-				"body": "放置 .github/resource-translator.yml 以包含 globs、詞彙表和自訂翻譯器分類。"
+				"body": "放置一個{configPath}檔案，包含 globs、詞彙表和自訂翻譯器類別。"
 			},
 			"glossary": {
 				"title": "詞彙表感知",
-				"body": "用智慧字邊界正則表達式鎖定品牌名稱和產品名稱，這些正則表達式可處理 C++、.NET 及其他語言。"
+				"body": "用智慧字邊界正則表達式鎖定品牌名稱和產品名稱，處理{cpp}、{dotnet}和朋友。"
 			},
 			"dryRun": {
 				"title": "試跑 + 軟失敗",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR友善的輸出",
-				"body": "summary-title、summary-details 和 has-new-translations 直接插入 create-pull-request。"
+				"body": "{summaryTitle}、{summaryDetails} 和 {hasNewTranslations} 直接插入 create-pull-request。"
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "建立在 @azure-rest/ai-translation-text + @azure/core-rest-pipeline — 自動重試 408/429/5xx，無手動 HTTP。esbuild-bundled，審計乾淨。"
+				"body": "建立在 {azureSdk} + {corePipeline} — {statusCodes} 上自動重試，沒有手捲 HTTP。{esbuild}捆綁，審計乾淨。"
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "可直接使用工作流程",
+			"titlePrefix": "複製。貼上。",
+			"titleAccent": "翻譯。",
+			"body": "三個秘密，四行，你的倉庫在下一次推送時會變成多語言。",
+			"setupLink": "完整流程"
+		},
+		"cta": {
+			"title": "準備好自動在地化了嗎？",
+			"body": "一個 Azure AI 翻譯器金鑰，一個工作流程檔案。剩下的則由資源翻譯器處理。",
+			"button": "開始吧"
 		}
 	},
 	"getting-started": {
 		"title": "開始",
 		"eyebrow": "設定",
-		"lede": "新增一個工作流程檔案，指向你的 Azure AI Translator 憑證，這個動作——基於 Microsoft 官方的 @azure-rest/ai-translation-text SDK ——會掃描倉庫中的原始語言資源檔案，並發出翻譯過的兄弟檔。",
+		"lede": "新增一個工作流程檔案，指向你的 Azure AI 翻譯器憑證，動作會掃描倉庫中的原始語言資源檔案並輸出翻譯的兄弟檔案。",
 		"steps": {
 			"provision": {
 				"title": "Provision a Azure AI Translator 資源",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "新增工作流程",
-				"body": "建立 .github/workflows/translate.yml："
+				"body": "創建{workflowPath}："
 			},
 			"resource": {
 				"title": "提交原始資源檔案",
-				"body": "資源檔案使用 Name。<sourceLocale>。<ext> 大會。例如 Greetings.en.resx 在執行後會變成 Greetings.fr.resx、Greetings.de.resx 等。"
+				"body": "資源檔案使用{namingConvention}慣例。例如，{sourceFile}在一輪後變成{frFile}、{deFile}，依此類推。"
 			},
 			"output": {
 				"title": "檢查輸出",
-				"body": "工作流程結束後，動作會顯示三個輸出，你可以接入 PR 描述：summary-title、summary-details，以及 has-new-translations。它也會透過 core.summary 在職缺頁面寫入 Markdown 摘要。"
+				"body": "工作流程結束後，動作會顯示三個輸出，你可以接入 PR 描述：{summaryTitle}、{summaryDetails} 和 {hasNewTranslations}。它還會透過 {coreSummary} 在職缺頁面寫入 Markdown 摘要。"
 			}
 		},
 		"nextSteps": {
 			"title": "下一步",
-			"configuration": "用 .github/resource-translator.yml 設定倉庫層級的預設值。",
+			"configuration": "用 {configPath} 設定倉庫層級的預設值。",
 			"recipes": "請參閱 monorepo 的配方、自訂詞彙表和自訂翻譯器分類。"
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "配置",
 		"eyebrow": "YAML",
 		"heroTitle": "儲存庫配置",
-		"lede": "在 .github/resource-translator.yml 中表達一次預設，讓每個工作流程繼承它們。只要動作輸入同時提供，行動輸入總是會勝出。"
+		"lede": "在倉庫設定檔中表達一次預設，讓每個工作流程繼承這些預設。只要動作輸入同時提供，行動輸入總是會勝出。",
+		"intro": "如果你需要非預設位置，可以用 {configPath} 輸入覆蓋路徑。",
+		"schemaHeading": "結構",
+		"fieldReference": {
+			"heading": "現場參考",
+			"caption": "配置欄位參考",
+			"columns": {
+				"field": "場地",
+				"type": "類型",
+				"notes": "註釋"
+			},
+			"fields": {
+				"sourceLocale": "如果沒設定，會回退到{sourceLocale}輸入。也會像{fromLocale}轉發到 Translator，這樣短字串就不會自動偵測。",
+				"toLocales": "可以是陣列或逗號分隔的字串。",
+				"includeExclude": "球狀模式會以絕對路徑與工作空間相對路徑進行評估。",
+				"glossary": "翻譯後的術語會覆蓋。字邊界感知（handles {cpp}、{dotnet}）。",
+				"categoryId": "Azure {customTranslatorLink} 類別 — 你的產業/領域旋鈕（法律、醫療、行銷語氣等）。以{categoryQuery}形式發送。",
+				"textType": "預設是{plain}。只有當你的資源值包含真實的 HTML 片段時才使用 {html}。",
+				"profanityAction": "如何在翻譯輸出中處理粗俗詞彙。",
+				"profanityMarker": "只有當{profanityAction} {marked}時才有意義。",
+				"allowFallback": "設定為 {false}，當 {categoryId} 沒有針對目標區域部署時，轉換失敗，而不是回退到一般模型。",
+				"apiVersion": "翻譯器 REST API 版本。預設是{version}。",
+				"maxRetries": "暫時 HTTP 回應的最大重試次數（{statusCodes}）。預設是{defaultRetries}。每個請求的 HTTP 呼叫總數為 {totalCalls}。",
+				"retryBackoffMs": "任何單次退避睡眠都要用 cap（ms）。預設是{defaultBackoff}。Azure的{retryAfter}頭在出現時會被精確尊重;否則則使用抖動指數退縮，並限制在此值。",
+				"protectPlaceholders": "預設是{true}。啟用時，像 {mustache}、{jsVar}、{indexZero}、{numberFormat}、{printf}、{positionalPrintf} 和 HTML 等標記在轉換前會被哨兵標記取代，轉換後則恢復。只有當原始碼故意包含佔位符形狀的字面時才會停用。",
+				"customPlaceholderPatterns": "在預設佔位符集中加入了額外的正則表達式模式（不含分隔符），例如用於自訂標記語法的{angleToken}。無效的正則表達式會被忽略。",
+				"noTranslatePatterns": "球狀模式與解析器層級鍵（JSON 點線路徑、RESX {resxName}、PO {poMsgid}、XLIFF 單位 {xliffId}、INI/restext 鍵）相匹配。匹配的金鑰會從請求中被刪除，並保留其來源值通過。"
+			}
+		},
+		"loadingOrder": {
+			"heading": "載入順序",
+			"steps": {
+				"actionInputs": "這個動作會讀取工作流程中的明確輸入。",
+				"config": "它會從 {configPath} 載入 YAML 設定。",
+				"precedence": "每共用一個欄位，輸入會勝出;否則則使用 YAML 值。",
+				"validation": "合併後的值會被驗證。無效的枚舉（例如 {invalidEnum}）會使動作快速失敗且訊息為清晰。"
+			}
+		},
+		"tone": {
+			"heading": "簡單來說，就是語氣和工業",
+			"body": "Azure AI 翻譯器 v3 API 沒有單一音調旋鈕。兩種設定結合起來，讓你擁有大部分相同的控制：",
+			"industryLabel": "產業/領域：",
+			"industryBody": "用 {categoryId} 指向一個用你自己語料庫訓練的 Azure {customTranslatorLink} 類別——法律、技術、醫療、行銷或其他任何領域。這是判斷語氣、品牌聲音和詞彙最強的槓桿。",
+			"surfaceLabel": "表面文字：",
+			"surfaceBody": "利用{glossaryLink}逐字鎖定品牌名稱和產品術語，並在針對年輕族群的本地化時，用 {profanityAction} 刪除髒話。",
+			"glossaryLinkLabel": "詞彙表"
+		}
 	},
 	"inputs": {
 		"title": "輸入與輸出",
 		"eyebrow": "參考資料",
-		"lede": "每個輸入也會被接受在可選的 repo 設定檔中。當兩者都已設定時，行動輸入會獲勝。"
+		"lede": "每個輸入也會被接受在可選的 repo 設定檔中。當兩者都已設定時，行動輸入會獲勝。",
+		"configurationIntro": "請參閱{configurationLink} YAML 架構與載入順序。",
+		"configurationLinkLabel": "配置",
+		"columns": {
+			"name": "名稱",
+			"default": "預設",
+			"description": "描述"
+		},
+		"defaults": {
+			"none": "沒有",
+			"allSupported": "全部支持。",
+			"translatorDefaultTrue": "true（譯者預設）"
+		},
+		"requiredInputs": {
+			"heading": "所需輸入",
+			"caption": "所需輸入",
+			"items": {
+				"sourceLocale": "來源位置（例如 {en}）用於尋找資源檔案，如 {sourceGlob}。也轉發給翻譯器，作為{fromLocale}。",
+				"subscriptionKey": "Azure AI Translator 訂閱鑰匙。通過{secrets}。",
+				"endpoint": "翻譯端點網址，例如 {endpointUrl}。"
+			}
+		},
+		"optionalInputs": {
+			"heading": "常見的可選輸入",
+			"caption": "常見的可選輸入",
+			"items": {
+				"region": "翻譯資源區域（全域資源省略）。",
+				"toLocales": "翻譯地點。接受 JSON 陣列（{jsonArray}）或逗號分隔值。",
+				"include": "新線分離的球狀圖案;僅翻譯相符的檔案。",
+				"exclude": "新線分離的球狀圖案;會跳過匹配檔案（在 include 後套用）。",
+				"configPath": "相對於工作區根目錄的 YAML 設定檔路徑。",
+				"dryRun": "{true}時，執行翻譯並輸出摘要，但不要寫入檔案。",
+				"failOnError": "當 {true} 時，意外錯誤會失敗;當{false}時，錯誤就是警告。"
+			}
+		},
+		"translatorInputs": {
+			"heading": "轉播器請求輸入",
+			"intro": "這些參數直接對應到 Azure AI Translator v3 的查詢參數。每一個都可選;未設定時會維持翻譯器預設值。",
+			"caption": "轉播器請求輸入",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob.轉寄成{categoryQuery}。",
+				"textType": "{plain}或{html}。只有當你的資源值是真實的 HTML 片段時才使用{html}。",
+				"profanityAction": "{noAction}、{marked}或{deleted}。控制翻譯中髒話的使用方式。",
+				"profanityMarker": "{asterisk}或{tag}。只有當{profanityAction}是{marked}時才有意義的。",
+				"allowFallback": "當你{false}時，如果你的{categoryId}沒有針對目標地點的部署，翻譯器會回傳錯誤，而不是回退到一般系統。",
+				"apiVersion": "翻譯器 REST API 版本。"
+			}
+		},
+		"resilienceInputs": {
+			"heading": "韌性與佔位符保護",
+			"intro": "這些輸入控制 Translator 限制請求時動作的行為，以及如何保護像 {mustache} 或 {indexZero} 這類佔位標記在翻譯過程中不被破壞。",
+			"caption": "韌性與佔位保護輸入",
+			"items": {
+				"maxRetries": "暫時 HTTP 回應的最大重試次數（{statusCodes}）。每個請求的 HTTP 呼叫總數為 {totalCalls}。",
+				"retryBackoffMs": "任何一次退後睡眠都要以毫秒為單位限制。動作在 Azure {retryAfter}回應標頭出現時會精確執行;否則則使用抖動指數退回，並限制在此值。",
+				"protectPlaceholders": "當{true}（預設）時，{mustache}、{jsVar}、{indexZero}、{numberFormat}、{printf}、{positionalPrintf} 和 HTML 實體等佔位符會在翻譯前被哨兵標記取代，翻譯後則恢復。只有當你的來源故意包含需要翻譯的字面佔位文字時，才會停用。",
+				"customPlaceholderPatterns": "新增換行分隔的正則表達式（無分隔符）加入預設佔位符集，例如 {angleToken} 用於自訂標記語法。",
+				"noTranslatePatterns": "換行分離的球狀模式與解析器層級鍵（如 JSON 點線路徑、RESX {resxName}、PO {poMsgid}、XLIFF 單位{xliffId}、INI/restext 鍵）相匹配。匹配的金鑰會從轉譯器請求中被刪除，並保留其原始值。"
+			}
+		},
+		"outputs": {
+			"heading": "輸出",
+			"caption": "輸出",
+			"items": {
+				"summaryTitle": "簡短且符合公關標題的摘要，例如{summaryExample}。",
+				"summaryDetails": "適合公關機構或職缺摘要的 Markdown 摘要。",
+				"hasNewTranslations": "{trueString}產生一個或多個新譯本。"
+			}
+		}
 	},
 	"formats": {
 		"title": "檔案格式",
 		"eyebrow": "參考資料",
 		"heroTitle": "支援的檔案格式",
-		"lede": "六種可往返的資源格式。該動作會讀取每個來源-區域檔案，轉換值，並為每個目標區域寫入一個兄弟檔案。"
+		"lede": "六種可往返的資源格式。該動作會讀取每個來源-區域檔案，轉換值，並為每個目標區域寫入一個兄弟檔案。",
+		"namingConvention": "所有檔案皆使用 {namingConvention} 命名規則。",
+		"learnMore": "了解更多",
+		"items": {
+			"resx": {
+				"blurb": "基於 XML 的 .NET 資源檔案。翻譯每個{dataValue}節點的內層文字，保留註解與元資料。",
+				"specLabel": "Microsoft Learn — .resx 檔案中的資源"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 文件。將每個{source}平譯並寫入對應的{target}，並設定{trgLang}為該地點。",
+				"specLabel": "OASIS XLIFF 2.0 規範"
+			},
+			"po": {
+				"blurb": "GNU gettext 可攜式物件檔案。將每個{msgid}/{msgidPlural}翻譯成{msgstr}/{msgstrPlural}形式。",
+				"specLabel": "GNU gettext — PO 檔案格式"
+			},
+			"json": {
+				"blurb": "任意的 JSON 檔案。巢狀物件會用 {delimiter} 分隔符進行平整，然後在輸出時重新巢狀。附點鍵（{dottedKey}）則是逐字保存的。",
+				"specLabel": "JSON 規範（RFC 8259）"
+			},
+			"ini": {
+				"blurb": "簡單的{keyValue}檔案（Win32 風格的 INI 或任何平面設定）。章節標題與評論均被保留。",
+				"specLabel": "維基百科上的 INI 檔案格式"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI 文本資源 — 平面{keyValue}對，作為{resx}的文本伴隨。",
+				"specLabel": "Microsoft MUI 概述"
+			}
+		},
+		"roundTrip": {
+			"heading": "往返保證",
+			"body": "測試套件會驗證各格式代表性固定器的位元組對位元組往返。如果你的程式碼庫中有格式怪異來回出錯，請用最少的樣本{issueLink}。",
+			"issueLinkLabel": "開啟問題"
+		}
 	},
 	"recipes": {
 		"title": "食譜",
 		"eyebrow": "食譜",
-		"lede": "常見的翻譯發行模式包括：單彙集、詞彙表、自訂分類、試演和語調控制。"
+		"lede": "常見的翻譯發行模式包括：單彙集、詞彙表、自訂分類、試演和語調控制。",
+		"sections": {
+			"pullRequest": {
+				"heading": "每次執行後開啟拉取請求"
+			},
+			"monorepo": {
+				"heading": "Monorepos：每個套件的範圍轉換"
+			},
+			"glossary": {
+				"heading": "品牌名稱與產品術語詞彙表",
+				"intro": "把{configPath}放進倉庫：",
+				"afterLabel": "之後",
+				"body": "詞彙表術語會{after}翻譯，因此機器翻譯的輸出即使模型換成同義詞，仍保留你偏好的品牌名稱。"
+			},
+			"customCategory": {
+				"heading": "自訂翻譯器類別（產業/領域）",
+				"body": "用一個能捕捉你產業詞彙和語氣（法律、醫療、行銷、內部工程等）的語料庫訓練 Azure {customTranslatorLink} 類別，並透過 {categoryId} 通過識別碼。這是 Azure 最強的語氣槓桿。"
+			},
+			"tone": {
+				"heading": "音色控制 + 嚴格備援",
+				"body": "將自訂翻譯器{categoryId}與 {profanityAction} 和 {allowFallbackFalse} 結合，以確保語音一致性，若所選類別沒有針對目標區域的部署，工作流程就會失敗。"
+			},
+			"dryRun": {
+				"heading": "在開啟工作流程前先做一次試演",
+				"body": "動作仍會輸出摘要和步驟摘要，但不會寫入檔案。搭配{failOnErrorFalse}，在反覆迭代時將每個問題都當作警告。"
+			}
+		}
 	},
 	"faq": {
 		"title": "常見問題",
 		"eyebrow": "救命",
 		"heroTitle": "常見問題",
-		"lede": "快速回答採用行動時最常被問到的問題。"
+		"lede": "快速回答採用行動時最常被問到的問題。",
+		"questions": {
+			"azure": {
+				"heading": "動作怎麼跟 Azure 溝通？",
+				"body": "透過 Microsoft 官方的 {azureSdkLink} SDK 加上{corePipelineLink}層。這能讓你免費獲得{statusCodes}自動重試、輸入請求與回應模型，以及認證標頭處理——這些過去都是手動捲的{axios}呼叫。公開動作表（輸入、輸出、檔案輸出）保持不變。"
+			},
+			"tone": {
+				"heading": "為什麼翻譯有時會顯得不合品牌或不合常理？",
+				"body": "機器翻譯預設採用通用模型。三個旋鈕有幫助：一個用於重寫困難詞彙的{glossaryLink}、一個用來訓練基於你語氣和詞彙的精細模型的{customTranslatorLink}，以及用來擦除或標記髒話的{profanityAction}。",
+				"glossaryLinkLabel": "詞彙表",
+				"customTranslatorLinkLabel": "自訂翻譯器類別"
+			},
+			"duplicateFiles": {
+				"heading": "我該如何避免將同一個檔案翻譯兩次？",
+				"body": "只針對與來源區域檔案相符的{paths}觸發工作流程，例如 {sourceGlob}。當 {githubToken} 設定時，動作還包含每個觸發器的檔案過濾器，將工作範圍縮小到最新提交的檔案範圍。"
+			},
+			"offline": {
+				"heading": "我可以離線執行這個動作嗎？",
+				"body": "不完全是——Azure AI 翻譯器是執行時的大腦。但你可以用 {dryRunTrue} 來驗證解析和設定，而不需要發出任何 HTTP 的翻譯請求。"
+			},
+			"node": {
+				"heading": "動作是在哪個節點版本上執行的？",
+				"body": "v3 則運行在 GitHub Actions {nodeRuntime} 執行環境上。內建的 JavaScript 相容於 Node 20、22 和 24，這也是 CI 測試的對象。"
+			},
+			"dist": {
+				"heading": "這些打包{distDir}從哪裡來？",
+				"body": "GitHub JS 動作會將編譯後的 JS 寄送到倉庫。{distBuild} 的工作流程會在每次合併後重建，{mainBranch}漂移，並{distCheck}阻擋可能落在過時輸出的 PR。"
+			},
+			"formats": {
+				"heading": "其他資源格式呢？",
+				"body": "今日：{resx}、{xliff}、{po}、{json}、{ini}、{restext}。{issueLink}如果你需要另一個，解析器介面很小（解析→映射→套用翻譯→格式），歡迎大家貢獻。",
+				"issueLinkLabel": "開啟問題"
+			}
+		}
 	},
 	"translations": {
 		"title": "譯本",
 		"eyebrow": "展示",
 		"heroTitle": "各種語言的哈囉",
-		"locales": "地點",
-		"currentlyRendered": "目前呈現",
-		"complete": "完整！",
-		"pendingPrefix": "等待下一次翻譯文件的運行。",
+		"lede": "此頁面由 Resource Translator 本身在每次推送至 main 時，翻譯成 Azure AI Translator 支援的所有語言。",
+		"localeCountLabel": "{count}地點",
+		"statusComplete": "目前{translatedCount}已完成渲染！",
+		"statusPending": "{translatedCount}目前渲染中——{pendingCount}等待下一{workflowName}的播出。",
 		"viewWorkflowRuns": "檢視工作流程執行",
 		"filter": "濾波器",
 		"filterPlaceholder": "依語言、代碼或原住民名稱搜尋......",
 		"source": "資料來源",
 		"machineTranslations": "機器翻譯",
-		"translationPending": "翻譯待處理 — 開啟翻譯文件。",
+		"translationPending": "翻譯待定 — 開啟{workflowName}系列。",
 		"noLocales": "沒有任何地點符合這個篩選條件。",
-		"howItWorks": "運作方式"
+		"howItWorks": {
+			"heading": "運作方式",
+			"thisActionLabel": "正是這個動作",
+			"steps": {
+				"source": "英文原始碼檔案存放於 {messagesPath}。",
+				"workflow": "推開那個觸碰，踢{workflowLink}，{thisAction}自己碰撞。",
+				"fanOut": "動作會擴散到每個支援 Azure AI 翻譯器的區域（設定為 {configPath}），並為每個目標寫入姊妹{messagesLocaleJson}。",
+				"pullRequest": "會開啟一個拉取請求，包含新的翻譯。合併它會重新發布這個頁面，並填滿所有卡片。"
+			}
+		},
+		"poweredBy": "由 Resource Translator 與 Azure AI Translator 驅動。"
 	},
 	"contributing": {
 		"title": "貢獻",
 		"eyebrow": "開源",
-		"lede": "歡迎回報錯誤、功能請求和拉取請求。活動規模小，對首次投稿者來說相當友善。"
+		"lede": "歡迎回報錯誤、功能請求和拉取請求。活動規模小，對首次投稿者來說相當友善。",
+		"localDevelopment": {
+			"heading": "地方發展"
+		},
+		"addingParser": {
+			"heading": "新增解析器",
+			"steps": {
+				"fixture": "在{testDataDir}下方加裝一個固定裝置。",
+				"implement": "實作{parserInterface}（{parse}、{format}、{applyTranslations}、{toTranslatableTextMap}）。",
+				"register": "{factoryFile}註冊。",
+				"extension": "在 {finderFile} 中加上檔案副檔名{translationFileSchemes}。",
+				"tests": "寫來回測試，針對 parse → 格式並應用翻譯。"
+			}
+		},
+		"coverage": {
+			"heading": "覆蓋門檻",
+			"body": "Jest 設定強制執行最小覆蓋範圍。新程式碼必須保持語句+行數的門檻高於78%，函式則高於90%。在更換時加入夾具和測試設備。"
+		},
+		"docsSite": {
+			"heading": "文件網站",
+			"body": "{docsDir}資料夾是 Astro 6 + Tailwind v4 專案。在那裡跑一次{npmInstall}，然後{npmRunDev}本地預覽。{pagesWorkflow} 的工作流程會在每次合併時將文件傳送到 GitHub Pages。"
+		}
 	},
 	"changelog": {
 		"title": "更新日誌",
 		"eyebrow": "歷史",
-		"lede": "發布的高層次摘要。正統且權威的變更日誌存放在倉庫的 CHANGELOG.md 中。"
+		"lede": "發布的高層次摘要。正統且權威的變更日誌存放在倉庫的 CHANGELOG.md 中。",
+		"fullRecord": "完整紀錄請參見{changelogLink}。",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "V3（開發中）",
+			"labels": {
+				"breaking": "破碎",
+				"resilience": "韌性：",
+				"placeholderProtection": "佔位保護：",
+				"perKeyOptOut": "按金鑰選擇退出：",
+				"docsAccessibility": "文件的可及性：",
+				"inlineCodeStyling": "內嵌程式碼樣式設計："
+			},
+			"issueLabels": {
+				"closes46": "關閉 #46。",
+				"tightens16": "收緊 #16。",
+				"closes35": "關閉#35。"
+			},
+			"items": {
+				"runtime": "被調到{nodeRuntime}運行時間（{breaking}）。",
+				"newInputs": "新增輸入：{include}、{exclude}、{configPath}、{categoryId}、{apiVersion}、{dryRun}、{failOnError}，以及進階的翻譯旋鈕{textType}、{profanityAction}、{profanityMarker}和{allowFallback}。",
+				"sourceLocale": "來源位置現在也會像 {fromLocale} 一樣轉發到 Translator，這樣短字串就不會自動偵測到。",
+				"resilience": "{label} 在 Azure {retryAfter}標頭的臨時 HTTP 回應（{statusCodes}）自動重試，缺席時會退回抖動指數式退縮。可透過{maxRetries}和{retryBackoffMs}調整。{issue}",
+				"placeholderProtection": "{label} 代幣像是 {mustache}、{jsVar}、{indexZero}、{numberFormat}、{printf}、{positionalPrintf} 和 HTML 實體，在翻譯前會被 sentinels 包裹，翻譯後會恢復，所以 Translator 不會再搞亂 i18next/Mustache/Handlebars/.NET/printf 佔位符。透過{protectPlaceholders}切換;延伸{customPlaceholderPatterns}。{issue}",
+				"perKeyOptOut": "{label}新的{noTranslatePatterns}輸入會完全從翻譯器請求中移除匹配的鍵（保留品牌名稱、錯誤代碼等的原始值）。將 glob 模式與解析器層級的鍵（JSON 點線路徑、RESX {resxName}、PO {poMsgid}、XLIFF 單位{xliffId}、INI/重文本鍵）匹配。{issue}",
+				"repoConfig": "透過 {configPath} 進行倉庫層級設定。",
+				"glossary": "詞彙表支援，步驟摘要可透過{coreSummary}。",
+				"tooling": "esbuild bundler、ESLint 9 flat config、Prettier、EditorConfig.",
+				"audit": "NPM 審計清潔（0 漏洞）。",
+				"docsSite": "Astro + Tailwind v4 文件網站，附有視圖轉換和表達式程式碼。",
+				"docsAccessibility": "{label} WCAG 2.1 AA 通行證。標誌字形轉換為路徑，使其不再因漸層阻擋而失色，浮動{backToTop}按鈕隱藏時使用{inert}（取代{ariaHidden}切換，保持分頁），{formatsAstro}區塊不再與自動產生的標題 ID 碰撞，三張區域卡顯示符合 BCP-47 的 {lang} 屬性（{nya}、{lug}、{run}），重複的{documentation}地標標籤在側邊欄與頁尾間進行消歧， {inputs}/{configuration} 上的每個資料表都附有螢幕閱讀器說明。",
+				"inlineCode": "{label} Docs 的散文{codeElement}現在採用溫暖/琥珀色主題的強調——與品牌→強調連結和標題的口音調色不同。",
+				"automation": "Dependabot 自動合併、CodeQL 掃描、CI 矩陣。"
+			}
+		},
+		"v2": {
+			"heading": "v2.x 版本",
+			"gitHistory": "請參考 git 歷史。"
+		}
 	}
 }

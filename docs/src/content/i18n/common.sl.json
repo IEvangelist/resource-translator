@@ -15,7 +15,13 @@
 		"searchPlaceholder": "Poiščite dokumentacijo...",
 		"toggleTheme": "Preklopna tema",
 		"githubRepository": "GitHub repozitorij",
-		"language": "Jezik"
+		"language": "Jezik",
+		"languageTitle": "Izberite svoj jezik",
+		"languageDescription": "Preklopite na isto stran v drugem jeziku.",
+		"languageSearch": "Filtrirni jeziki",
+		"languageSearchPlaceholder": "Iskanje jezikov ali lokacijskih kod...",
+		"languageNoResults": "Noben jezik ne ustreza temu filtru.",
+		"closeLanguage": "Tesen jezikovni izbiralec"
 	},
 	"search": {
 		"title": "Iskalna dokumentacija",

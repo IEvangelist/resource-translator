@@ -15,7 +15,13 @@
 		"searchPlaceholder": "搜尋文件...",
 		"toggleTheme": "切換主題",
 		"githubRepository": "GitHub 儲存庫",
-		"language": "語言"
+		"language": "語言",
+		"languageTitle": "選擇你嘅語言",
+		"languageDescription": "用另一種語言切換到同一頁。",
+		"languageSearch": "過濾語言",
+		"languageSearchPlaceholder": "搜尋語言或地區代碼...",
+		"languageNoResults": "冇任何語言可以符合呢個篩選條件。",
+		"closeLanguage": "關閉語言選擇器"
 	},
 	"search": {
 		"title": "搜尋文件",

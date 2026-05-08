@@ -15,7 +15,13 @@
 		"searchPlaceholder": "Документация по поиску...",
 		"toggleTheme": "Тема переключения",
 		"githubRepository": "Репозиторий GitHub",
-		"language": "Язык"
+		"language": "Язык",
+		"languageTitle": "Выбирайте свой язык",
+		"languageDescription": "Переключитесь на ту же страницу на другом языке.",
+		"languageSearch": "Языки фильтров",
+		"languageSearchPlaceholder": "Языки поиска или коды локаций...",
+		"languageNoResults": "Ни один язык не соответствует этому фильтру.",
+		"closeLanguage": "Близкий языковой выборщик"
 	},
 	"search": {
 		"title": "Документация по поиску",

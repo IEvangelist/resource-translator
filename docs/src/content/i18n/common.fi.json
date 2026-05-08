@@ -15,7 +15,13 @@
 		"searchPlaceholder": "Hakudokumentaatio...",
 		"toggleTheme": "Kytkentäteema",
 		"githubRepository": "GitHub-repository",
-		"language": "Kieli"
+		"language": "Kieli",
+		"languageTitle": "Valitse kielesi",
+		"languageDescription": "Vaihda samalle sivulle toisella kielellä.",
+		"languageSearch": "Suodatinkielet",
+		"languageSearchPlaceholder": "Hakukielet tai paikkakoodit...",
+		"languageNoResults": "Mikään kieli ei vastaa tuota suodatinta.",
+		"closeLanguage": "Suljettu kielenvalitsija"
 	},
 	"search": {
 		"title": "Hakudokumentaatio",

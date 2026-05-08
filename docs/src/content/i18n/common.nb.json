@@ -15,7 +15,13 @@
 		"searchPlaceholder": "Søk i dokumentasjonen...",
 		"toggleTheme": "Toggle tema",
 		"githubRepository": "GitHub-repositoriet",
-		"language": "Språk"
+		"language": "Språk",
+		"languageTitle": "Velg ditt språk",
+		"languageDescription": "Bytt til samme side på et annet språk.",
+		"languageSearch": "Filterspråk",
+		"languageSearchPlaceholder": "Søkespråk eller lokalkoder...",
+		"languageNoResults": "Ingen språk matcher det filteret.",
+		"closeLanguage": "Lukket språkvelger"
 	},
 	"search": {
 		"title": "Søkedokumentasjon",

@@ -18,18 +18,26 @@
 			"node": "Node 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "Verschachtelt oder flaach",
+			"ini": "{keyValue}",
+			"restext": "MUI Text"
+		},
 		"features": {
 			"formats": {
 				"title": "Sechs Dateiformater",
-				"body": "Roundtrips .resx, .xliff, .po, .json, .ini an .restext mat byte-stabiler Formatéierung."
+				"body": "Ronnreesen {resx}, {xliff}, {po}, {json}, {ini} an {restext} mat byte-stabiler Formatéierung."
 			},
 			"config": {
 				"title": "Repo-level config",
-				"body": "Setzt eng .github/resource-translator.yml fir Globs, Glossairen an Custom Translator Kategorien ze enthalen."
+				"body": "Setzt eng {configPath} Datei fir Globs, Glossairen an Custom Translator Kategorien an."
 			},
 			"glossary": {
 				"title": "Glossarbewosst",
-				"body": "Sperrt Markennimm a Produktbegrëffer mat engem intelligente Wuertgrenz-Regex, deen C++, .NET an Friends behandelt."
+				"body": "Séchert Markennimm a Produktbegrëffer mat engem intelligente Wuertgrenz-Regex, deen {cpp}, {dotnet} a Frënn behandelt."
 			},
 			"dryRun": {
 				"title": "Dréchenlaf + mëllen Duerchfall",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR-frëndlech Resultater",
-				"body": "Zesummefaassung-Titel, Zesummefaassung-Detailer an huet-nei-Iwwersetzungen ginn direkt an d'Erstellen-Pull-Ufro integréiert."
+				"body": "{summaryTitle}, {summaryDetails} an {hasNewTranslations} direkt an create-pull-request integréiert ginn."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "Gebaut op @azure-rest/ai-translation-text + @azure/core-rest-pipeline — automatesch Neiversich op 408/429/5xx, kee manuell HTTP. Esbuild-bundled, audit-propper."
+				"body": "Gebaut op {azureSdk} + {corePipeline} — automatesch Neiversich op {statusCodes}, kee manuell gerullten HTTP. {esbuild} verpackt, audit-propper."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Drop-in Workflow",
+			"titlePrefix": "Kopéieren. Pechen.",
+			"titleAccent": "Iwwersetzen.",
+			"body": "Dräi Geheimnisser, véier Linnen, an däi Repo ass méi sproocheg beim nächste Push.",
+			"setupLink": "Gitt duerch d'ganz Opstellung"
+		},
+		"cta": {
+			"title": "Bereet fir op Autopilot ze lokaliséieren?",
+			"body": "Ee Azure AI Translator Schlëssel, eng Workflow-Datei. Resource Translator këmmert sech ëm de Rescht.",
+			"button": "Fänkt un"
 		}
 	},
 	"getting-started": {
 		"title": "Ufänken",
 		"eyebrow": "Opbau",
-		"lede": "Füügt eng Workflow-Datei derbäi, weist se op Är Azure AI Translator-Credentials, an d'Aktioun — baséiert op Microsofts offizieller @azure-rest/ai-translation-text SDK — scannt de Repo no Quellsprooch-Ressourcedateien a schéckt iwwersate Geschwëster aus.",
+		"lede": "Füügt eng Workflow-Datei derbäi, weist se op Är Azure AI Translator-Credentials, an d'Aktioun scannt de Repo no Quellsprooch-Ressourcedateien a schéckt iwwersate Geschwëster aus.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Füügt de Workflow derbäi",
-				"body": "Erstellt .github/workflows/translate.yml:"
+				"body": "Erstellt {workflowPath}:"
 			},
 			"resource": {
 				"title": "Commit eng Quellressourcedatei",
-				"body": "Ressourcedateien benotzen den Numm. <sourceLocale>. <ext> Konventioun. Zum Beispill gëtt Greetings.en.resx no engem Laf zu Greetings.fr.resx, Greetings.de.resx, an esou weider."
+				"body": "Ressourcedateien benotzen d'{namingConvention} Konventioun. Zum Beispill gëtt {sourceFile} no engem Laf {frFile}, {deFile}, asw."
 			},
 			"output": {
 				"title": "Iwwerpréift den Ausgang",
-				"body": "Wann de Workflow fäerdeg ass, weist d'Aktioun dräi Outputen, déi s de an eng PR-Beschreiwung integréiere kanns: Zesummefaassung-Titel, Zesummefaassung-Detailer an Iwwersetzungen-Has-New-Translations. Et schreift och eng Markdown-Zesummefaassung op d'Job-Säit iwwer core.summary."
+				"body": "Wann de Workflow fäerdeg ass, weist d'Aktioun dräi Outputen, déi s de an eng PR-Beschreiwung verbannen kanns: {summaryTitle}, {summaryDetails} an {hasNewTranslations}. Et schreift och eng Markdown-Zesummefaassung iwwer {coreSummary} op d'Job-Säit."
 			}
 		},
 		"nextSteps": {
 			"title": "Nächst Schrëtt",
-			"configuration": "Konfiguréiert Repo-Level Standarden mat .github/resource-translator.yml.",
+			"configuration": "Konfiguréier Repo-Level Standarden mat {configPath}.",
 			"recipes": "Kuckt Rezepter fir Monorepos, personaliséiert Glossairen an Custom Translator Kategorien."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Konfiguratioun",
 		"eyebrow": "YAML",
 		"heroTitle": "Repository-Konfiguratioun",
-		"lede": "Express defaultt eemol an .github/resource-translator.yml a léisst all Workflow se ierwen. Aktiounsinputen gewannen ëmmer, wann béid geliwwert ginn."
+		"lede": "Express defaultt eemol an der Repository-Konfiguratiounsdatei a léisst all Workflow se ierwen. Aktiounsinputen gewannen ëmmer, wann béid geliwwert ginn.",
+		"intro": "Iwwerschreif de Wee mat der {configPath} Input, wanns de eng net-standardméisseg Plaz brauchs.",
+		"schemaHeading": "Schema",
+		"fieldReference": {
+			"heading": "Feldreferenz",
+			"caption": "Konfiguratiounsfeldreferenz",
+			"columns": {
+				"field": "Feld",
+				"type": "Typ",
+				"notes": "Notizen"
+			},
+			"fields": {
+				"sourceLocale": "Fällt zeréck op den {sourceLocale} Input, wann en net gesat ass. Och als {fromLocale} un den Translator weidergeleet, sou datt kuerz Strings net automatesch erkannt ginn.",
+				"toLocales": "Entweder eng Array oder eng komma-getrennt String.",
+				"includeExclude": "Glob-Muster ginn am Verglach mat absoluten an Aarbechtsplazen-relativen Weeër evaluéiert.",
+				"glossary": "No der Iwwersetzung iwwerschreift de Begrëff. Wuertgrenzbewosst (behandelt {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} Kategorie — Äre Industrie-/Domain-Knäppchen (juristesch, medezinesch, Marketing-Toun, asw.). Geschéckt als {categoryQuery}.",
+				"textType": "Standardméisseg {plain}. Benotzt {html} nëmmen, wann Är Ressourcewäerter richteg HTML-Fragmenter enthalen.",
+				"profanityAction": "Wéi een profan Ausdréck an iwwersaten Output behandelt.",
+				"profanityMarker": "Nëmmen bedeitend wann {profanityAction} {marked} ass.",
+				"allowFallback": "Setzt op {false} fir d'Iwwersetzung ze feelen, wann deng {categoryId} keng Deployéierung fir eng Zilplaz huet, amplaz op de generelle Modell zréckzefalen.",
+				"apiVersion": "Translator REST API Versioun. Standardméisseg {version}.",
+				"maxRetries": "Maximal Retry-Versich op transient HTTP-Äntwerten ({statusCodes}). Standardméisseg {defaultRetries}. D'Zuel vun HTTP-Uruff pro Ufro ass {totalCalls}.",
+				"retryBackoffMs": "Cap (ms) op all eenzelen Backoff-Schlof. Standardméisseg {defaultBackoff}. Azure säi {retryAfter} Header gëtt genee dann respektéiert, wann en do ass; soss gëtt e jittered exponentiellen Backoff benotzt, deen op dësem Wäert limitéiert ass.",
+				"protectPlaceholders": "Standardméisseg {true}. Wann se op sinn, ginn Token wéi {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} an HTML Entitéiten virun der Iwwersetzung duerch Sentinel-Token ersat a spéider erëm restauréiert. Deaktivéiert nëmmen, wann d'Quell bewosst Plazhalter-ähnlech Literaler enthält.",
+				"customPlaceholderPatterns": "Zousätzlech Regex-Muster (ouni Delimiter), déi zum Standard-Platzhalter-Set derbäigesat goufen, z.B. {angleToken} fir personaliséiert Token-Syntax. Ongëlteg Regexen ginn ignoréiert.",
+				"noTranslatePatterns": "Glob-Mustere goufen mat Parser-Niveau Schlësselen ofgestëmmt (JSON gepunktete Wee, RESX {resxName}, PO {poMsgid}, XLIFF Eenheet {xliffId}, INI/restext Schlëssel). Passend Schlësselen ginn aus der Ufro erausgeholl a ginn duerch, mat hirem Quellwäert erhalen."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Luedreiefolleg",
+			"steps": {
+				"actionInputs": "D'Aktioun liest explizit Inputen aus dem Workflow.",
+				"config": "Et lued d'YAML-Konfiguratioun vun {configPath}.",
+				"precedence": "Fir all gedeelt Feld gewënnt den Input; soss gëtt de YAML-Wäert benotzt.",
+				"validation": "Déi fusionéiert Wäerter ginn validéiert. Ongëlteg Enums (z.B. {invalidEnum}) verursaachen, datt d'Aktioun séier mat enger kloerer Noriicht feelt."
+			}
+		},
+		"tone": {
+			"heading": "Ton an Industrie, einfach gesot",
+			"body": "D'Azure AI Translator v3 API huet kee eenzege Tounknäppchen. Zwee Astellungen kombinéieren sech fir Iech déi meescht vun der selwechter Kontroll ze ginn:",
+			"industryLabel": "Industrie / Domain:",
+			"industryBody": "benotzt {categoryId} fir op eng Azure {customTranslatorLink} Kategorie ze weisen, déi op Ärem eegene Korpus trainéiert ass — juristesch, technesch, medezinesch, Marketing oder eppes anescht. Dëst ass dee staarkste Hebel fir Toun, Markestëmm a Vokabular.",
+			"surfaceLabel": "Uewerflächtext:",
+			"surfaceBody": "Benotzt d'{glossaryLink} fir Markennimm a Produktbegrëffer wuertwiertlech ze spären, a benotzt {profanityAction} fir profan Begrëffer ze läschen, wann Dir d'Lokalisatioun fir jonk Publikum zielt.",
+			"glossaryLinkLabel": "Glossar"
+		}
 	},
 	"inputs": {
 		"title": "Inputs & Outputs",
 		"eyebrow": "Referenz",
-		"lede": "All Input gëtt och an der optionaler Repo-Konfiguratiounsdatei akzeptéiert. Wann béid gesat sinn, gewënnt d'Aktiounsinput."
+		"lede": "All Input gëtt och an der optionaler Repo-Konfiguratiounsdatei akzeptéiert. Wann béid gesat sinn, gewënnt d'Aktiounsinput.",
+		"configurationIntro": "Kuckt {configurationLink} fir d'YAML-Schema an d'Luedreiefolleg.",
+		"configurationLinkLabel": "Konfiguratioun",
+		"columns": {
+			"name": "Numm",
+			"default": "Default",
+			"description": "Beschreiwung"
+		},
+		"defaults": {
+			"none": "Keng",
+			"allSupported": "All ënnerstëtzt",
+			"translatorDefaultTrue": "true (Iwwersetzer Standard)"
+		},
+		"requiredInputs": {
+			"heading": "Erfuerderlech Inputen",
+			"caption": "Erfuerderlech Inputen",
+			"items": {
+				"sourceLocale": "Quellplaz (z.B. {en}), déi benotzt gëtt fir Ressourcedateien wéi {sourceGlob} ze fannen. Och un den Iwwersetzer als {fromLocale} weidergeleet.",
+				"subscriptionKey": "Azure AI Translator subscription key. Fuert iwwer {secrets}.",
+				"endpoint": "Translator-Endpunkt-URL, z.B. {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Allgemeng optional Inputen",
+			"caption": "Allgemeng optional Inputen",
+			"items": {
+				"region": "Translator-Ressourceregioun (fir global Ressourcen ewechgelooss).",
+				"toLocales": "Plazen fir ze iwwersetzen. Akzeptéiert e JSON-Array ({jsonArray}) oder Komma-getrennte Wäerter.",
+				"include": "Klo-Muster, déi duerch Newline getrennt sinn; nëmmen passend Dateien ginn iwwersat.",
+				"exclude": "Klo-Muster, déi duerch Newline getrennt sinn; Matchende Dateien ginn iwwersprongen (no Include ugewandt).",
+				"configPath": "Wee op d'YAML Konfiguratiounsdatei (relativ zum Workspace-Root).",
+				"dryRun": "Wann {true}, féiert Iwwersetzungen aus a generéiert Zesummefaassungen, awer schreift keng Dateien.",
+				"failOnError": "Wann {true} onerwaart Feeler d'Aktioun feelen; wann {false}, sinn Feeler Warnungen."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Translator-Ufro-Inputen",
+			"intro": "Dës ginn direkt op Azure AI Translator v3 Ufroparameter ofgemappt. All eenzel ass fakultativ; d'Iwwersetzer-Standarden gëllen wann se net gesat ginn.",
+			"caption": "Translator-Ufro-Inputen",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} Kategorie — den Industrie-/Domain-/Toun-Knäppchen. Weidergeleet als {categoryQuery}.",
+				"textType": "{plain} oder {html}. Benotz {html} nëmmen, wann deng Ressourcewäerter richteg HTML-Fragmenter sinn.",
+				"profanityAction": "{noAction}, {marked} oder {deleted}. Kontrolléiert, wéi profan Begrëffer an Iwwersetzungen ausgedréckt ginn.",
+				"profanityMarker": "{asterisk} oder {tag}. Nëmmen bedeitend wann {profanityAction} {marked} ass.",
+				"allowFallback": "Wann {false}, gëtt Translator eng Feeler zréck amplaz op de generelle System zréckzefalen, wann Äre {categoryId} keng Deployéierung fir eng Zilplaz huet.",
+				"apiVersion": "Translator REST API Versioun."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Resilienz a Platzhalter-Schutz",
+			"intro": "Dës Inputen kontrolléieren, wéi d'Aktioun sech verhält, wann den Translator deng Ufro drosselt, a wéi et Platzhalter-Token wéi {mustache} oder {indexZero} schützt, während der Iwwersetzung zerstéiert ze ginn.",
+			"caption": "Resilienz- a Plazhalter-Schutzinputen",
+			"items": {
+				"maxRetries": "Maximal Retry-Versich op transient HTTP-Äntwerten ({statusCodes}). D'Gesamtzuel vun HTTP-Uruff pro Ufro ass {totalCalls}.",
+				"retryBackoffMs": "Cap (an Millisekonnen) op all eenzelen Backoff-Schlof. D'Aktioun respektéiert Azure seng {retryAfter} Äntwert-Header genee wann se präsent ass; soss benotzt en jittered exponentiellen Backoff, deen op dëse Wäert limitéiert ass.",
+				"protectPlaceholders": "Wann {true} (Standard), ginn Plazhalter wéi {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} an HTML-Entitéiten virun der Iwwersetzung duerch Sentinel-Token ersat a spéider erëm restauréiert. Deaktivéiert nëmmen, wann Är Quell bewosst wörtlech Platzhalter-fërmegen Text enthält, deen iwwersat soll ginn.",
+				"customPlaceholderPatterns": "Zeilen-getrennte Regexen (ouni Delimiter), déi zum Standard-Platzhalter-Set derbäigesat goufen, z.B. {angleToken} fir personaliséiert Token-Syntax.",
+				"noTranslatePatterns": "Newline-getrennte Glob-Muster, déi mat Parser-Niveau Schlësselen verglach ginn (JSON punktéierte Wee, RESX {resxName}, PO {poMsgid}, XLIFF Eenheet {xliffId}, INI/restext Schlëssel). Passend Schlësselen ginn aus der Translator-Ufro ewechgeholl a ginn duerch, mat hirem Quellwäert erhalen."
+			}
+		},
+		"outputs": {
+			"heading": "Ausgänge",
+			"caption": "Ausgänge",
+			"items": {
+				"summaryTitle": "Kuerz PR-Titelfrëndlech Zesummefaassung, z.B. {summaryExample}.",
+				"summaryDetails": "Markdown-Zesummefaassung gëeegent fir e PR-Kierper oder eng Job-Zesummefaassung.",
+				"hasNewTranslations": "{trueString} wann eng oder méi nei Iwwersetzungen generéiert goufen."
+			}
+		}
 	},
 	"formats": {
 		"title": "Dateiformater",
 		"eyebrow": "Referenz",
 		"heroTitle": "Ënnerstëtzt Dateiformater",
-		"lede": "Sechs ronnrippbar Ressourceformater. D'Aktioun liest all Quell-Lokal-Datei, iwwersetzt d'Wäerter a schreift e Geschwëster pro Zilplaz."
+		"lede": "Sechs ronnrippbar Ressourceformater. D'Aktioun liest all Quell-Lokal-Datei, iwwersetzt d'Wäerter a schreift e Geschwëster pro Zilplaz.",
+		"namingConvention": "All Dateien benotzen d'{namingConvention} Benennungskonventioun.",
+		"learnMore": "Méi gewuer ginn",
+		"items": {
+			"resx": {
+				"blurb": "XML-baséiert .NET Ressourcedateien. Iwwersetzt den banneschten Text vun all {dataValue} Node, erhaalt Kommentaren a Metadaten.",
+				"specLabel": "Microsoft Learn — Ressourcen an .resx Dateien"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 Dokumenter. Iwwersetzt all {source} a schreift d'Resultat an déi entspriechend {target}, setzt {trgLang} fir d'Plaz.",
+				"specLabel": "OASIS XLIFF 2.0 Spezifikatioun"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object Dateien. Iwwersetzt all {msgid} / {msgidPlural} an {msgstr} / {msgstrPlural} Formen.",
+				"specLabel": "GNU gettext — PO Dateiformat"
+			},
+			"json": {
+				"blurb": "Arbiträr JSON-Dateien. Verschachtelte Objeten ginn mat dem {delimiter} Delimiter fir d'Translatioun plattgedréckt an duerno beim Ausgang nees verschachtelt. Gepunktte Schlësselen ({dottedKey}) ginn Wuert fir Wuert erhalen.",
+				"specLabel": "JSON Spezifikatioun (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Einfach {keyValue} Dateien (Win32-Stil INI oder all flaach Konfiguratioun). Sektiounskappen a Bemierkungen ginn erhalen.",
+				"specLabel": "INI-Dateiformat op Wikipedia"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI Textressourcen — flach {keyValue} Paare, déi als textuell Begleedung fir {resx} benotzt ginn.",
+				"specLabel": "Microsoft MUI Iwwerbléck"
+			}
+		},
+		"roundTrip": {
+			"heading": "Ronn-Rees-Garantien",
+			"body": "D'Testsuite verifizéiert Byte-fir-Byte Roundtripping fir representativ Fixturen vun all Format. Wann e Format-Quirk d'Round-Tripping an dengem Codebase brécht, {issueLink} w.e.g. mat engem minimalen Sample.",
+			"issueLinkLabel": "Maach eng Fro op"
+		}
 	},
 	"recipes": {
 		"title": "Rezepter",
 		"eyebrow": "Kachbuch",
-		"lede": "Gewéinlech Mustere fir d'Verschécken vun Iwwersetzungen: Monorepos, Glossairen, personaliséiert Kategorien, Trockenläufe an Tounkontroll."
+		"lede": "Gewéinlech Mustere fir d'Verschécken vun Iwwersetzungen: Monorepos, Glossairen, personaliséiert Kategorien, Trockenläufe an Tounkontroll.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Maach no all Laf eng Pull Request op"
+			},
+			"monorepo": {
+				"heading": "Monorepos: Ëmfangsiwwersetzung pro Package"
+			},
+			"glossary": {
+				"heading": "Glossar fir Markennimm a Produktbegrëffer",
+				"intro": "Gëff eng {configPath} an de Repository:",
+				"afterLabel": "no",
+				"body": "Glossarbegrëffer ginn {after} Iwwersetzung ugewannt, sou datt d'maschinell iwwersat Ausgab Är bevorzugt Markéierung behält, och wann de Modell se géint e Synonym ausgetosch huet."
+			},
+			"customCategory": {
+				"heading": "Custom Translator Kategorie (Industrie / Domain)",
+				"body": "Trainéier eng Azure {customTranslatorLink} Kategorie op engem Korpus, deen däi Industrie-Vokabular an Toun (juristesch, medezinesch, Marketing, intern Ingenieurwiesen, asw.) erfaasst, a passéier seng ID iwwer {categoryId}. Dat ass dee staarkste Tounhebel, deen Azure ubitt."
+			},
+			"tone": {
+				"heading": "Tounkontroll + strikt Fallback",
+				"body": "Kombinéiert e Custom Translator {categoryId} mat {profanityAction} an {allowFallbackFalse} fir eng konsequent Stëmm duerchzesetzen an de Workflow ze falen, wann d'gewielte Kategorie keng Deployement fir eng vun Äre Zielplazen huet."
+			},
+			"dryRun": {
+				"heading": "Probéier d'Aarbecht ier de Workflow ugeschalt gëtt",
+				"body": "D'Aktioun gëtt nach ëmmer Zesummefaassungsausgaben an eng Schrëtt-Zesummefaassung aus, mee et ginn keng Dateien geschriwwen. Kombinéiert mat {failOnErrorFalse} fir all Problem als Warnung ze weisen, während Dir iteréiert."
+			}
+		}
 	},
 	"faq": {
 		"title": "FAQ",
 		"eyebrow": "Hëllef",
 		"heroTitle": "Heefeg gestallte Froen",
-		"lede": "Séier Äntwerten op déi Froen, déi am heefegsten opkommen, wann een d'Aktioun ugeholl huet."
+		"lede": "Séier Äntwerten op déi Froen, déi am heefegsten opkommen, wann een d'Aktioun ugeholl huet.",
+		"questions": {
+			"azure": {
+				"heading": "Wéi schwätzt d'Aktioun mat Azure?",
+				"body": "Iwwer Microsoft seng offiziell {azureSdkLink} SDK, déi op {corePipelineLink} geluecht gëtt. Dat bedeit automatesch Neiversich op {statusCodes}, getippte Ufro- a Äntwertmodeller an eng gratis Authentifikatiouns-Header-Handhabung – alles, wat fréier eng handgerullt {axios} Uruff war. D'ëffentlech Aktiounsfläch (Inputen, Outputs, Dateioutputs) bleift onverännert."
+			},
+			"tone": {
+				"heading": "Firwat sinn Iwwersetzungen heiansdo net am Off-Brand oder net am Toun?",
+				"body": "Maschinniwwersetzung benotzt standardméisseg e allgemengt Zweckmodell. Dräi Knäppercher hëllefen: e {glossaryLink} fir haart Term-Iwwerschreiwungen, e {customTranslatorLink} fir fein ofgestëmmte Modeller, déi op däi Toun a Vokabular trainéiert sinn, an {profanityAction} fir vulgär Begrëffer ze läschen oder ze markéieren.",
+				"glossaryLinkLabel": "Glossar",
+				"customTranslatorLinkLabel": "Custom Translator Kategorie"
+			},
+			"duplicateFiles": {
+				"heading": "Wéi vermeide ech, déi selwecht Datei zweemol z'iwwersetzen?",
+				"body": "Triggert de Workflow op {paths}, déi nëmmen mat Äre Quell-Locale-Dateien passen, z.B. {sourceGlob}. D'Aktioun enthält och hiren eegene Fichierfilter pro Trigger, wann {githubToken} gesat ass, wat d'Aarbecht op Dateien am leschte Commit limitéiert."
+			},
+			"offline": {
+				"heading": "Kann ech d'Aktioun offline lafen?",
+				"body": "Net genee — Azure AI Translator ass d'Runtime-Gehir. Mee Dir kënnt mat {dryRunTrue} lafen fir Parsing a Konfiguratioun ze validéieren ouni HTTP-Ufroen fir Iwwersetzung ze maachen."
+			},
+			"node": {
+				"heading": "Op wéi enger Node-Versioun leeft d'Aktioun?",
+				"body": "v3 leeft op GitHub Actions {nodeRuntime} Lafzäit. D'Bundle JavaScript ass kompatibel mat Node 20, 22 an 24, wat CI test."
+			},
+			"dist": {
+				"heading": "Vu wou kënnt déi verbonnen {distDir}?",
+				"body": "GitHub JS Aktiounen liwweren hir kompiléiert JS am Repository. De {distBuild} Workflow baut et no all Merge nei op, fir ze {mainBranch} ob et drift, a blockéiert {distCheck} PRen, déi veraltet Ausgab géifen landen."
+			},
+			"formats": {
+				"heading": "Wat ass mat anere Ressourceformater?",
+				"body": "Haut: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} wann Dir nach eng aner braucht — d'Parser-Interface ass kleng (Parse → Map → Iwwersetzungen → Format applizéieren) an Bäiträg si wëllkomm.",
+				"issueLinkLabel": "Maach eng Fro op"
+			}
+		}
 	},
 	"translations": {
 		"title": "Iwwersetzungen",
 		"eyebrow": "Showcase",
 		"heroTitle": "Hallo an all Sprooch",
-		"locales": "Plazen",
-		"currentlyRendered": "aktuell gerendert",
-		"complete": "Fäerdeg!",
-		"pendingPrefix": "Bis op déi nächst Translate-Docs-Laaf.",
+		"lede": "Dës Säit gëtt vum Resource Translator selwer iwwersat, bei all Push op Main, an all Sprooch, déi Azure AI Translator ënnerstëtzt.",
+		"localeCountLabel": "{count} Plazen",
+		"statusComplete": "{translatedCount} aktuell gerendert — komplett!",
+		"statusPending": "{translatedCount} aktuell gerendert — {pendingCount} nach op déi nächst Ronn {workflowName}.",
 		"viewWorkflowRuns": "Workflow-Lafen ukucken",
 		"filter": "Filter",
 		"filterPlaceholder": "Sich no Sprooch, Code oder natierlechem Numm...",
 		"source": "Quell",
 		"machineTranslations": "Maschinn Iwwersetzungen",
-		"translationPending": "Iwwersetzung nach amgaangen — maacht eng Translate-Docs Laf op.",
+		"translationPending": "Iwwersetzung nach amgaangen — maacht eng {workflowName} Run op.",
 		"noLocales": "Keng Plazen entspriechen deem Filter.",
-		"howItWorks": "Wéi dat funktionéiert"
+		"howItWorks": {
+			"heading": "Wéi dat funktionéiert",
+			"thisActionLabel": "genau dës Aktioun",
+			"steps": {
+				"source": "D'Englesch Quelldatei liewt op {messagesPath}.",
+				"workflow": "Dréckt dee Kontakt a kickt {workflowLink} of, deen {thisAction} géint sech selwer leeft.",
+				"fanOut": "D'Aktioun verdeelt sech op all Azure AI Translator-ënnerstëtzt Plaz (an {configPath} konfiguréiert) a schreift eng Schwëster-{messagesLocaleJson} pro Zil.",
+				"pullRequest": "Eng Pull Request gëtt mat den neien Iwwersetzungen opgemaach. Wann een et fusionéiert, gëtt dës Säit mat de Kaarten erëm publizéiert."
+			}
+		},
+		"poweredBy": "Ugedriwwen vum Resource Translator an Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Bäiträg",
 		"eyebrow": "Open Source",
-		"lede": "Feelerberichter, Feature-Ufroen an Pull Requests si wëllkomm. D'Aktioun ass kleng genuch, fir fir d'éischt Kéier Bäiträg frëndlech ze sinn."
+		"lede": "Feelerberichter, Feature-Ufroen an Pull Requests si wëllkomm. D'Aktioun ass kleng genuch, fir fir d'éischt Kéier Bäiträg frëndlech ze sinn.",
+		"localDevelopment": {
+			"heading": "Lokal Entwécklung"
+		},
+		"addingParser": {
+			"heading": "E Parser derbäisetzen",
+			"steps": {
+				"fixture": "Füügt eng Armatur ënner {testDataDir}.",
+				"implement": "Implementéiert {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Registréiert et zu {factoryFile}.",
+				"extension": "Füügt d'Dateiendung zu {translationFileSchemes} an {finderFile} derbäi.",
+				"tests": "Schreift Round-Trip Tester fir Parse → Format a benotzt Translations."
+			}
+		},
+		"coverage": {
+			"heading": "Ofdeckungsschwellen",
+			"body": "D'Jest-Konfiguratioun setzt minimal Ofdeckung vir. Neie Code muss d'Statements + Zeilen Schwelle iwwer 78% halen an d'Funktiounen iwwer 90%. Füügt Fixturen a Tester zesumme mat Ärer Ännerung derbäi."
+		},
+		"docsSite": {
+			"heading": "Dokumentatiounssäit",
+			"body": "De {docsDir} Dossier ass e Projet mat Astro 6 + Tailwind v4. Laf {npmInstall} do eemol, dann {npmRunDev} fir lokal Virschau. De {pagesWorkflow} Workflow liwwert Dokumenter bei all Merge un GitHub Pages."
+		}
 	},
 	"changelog": {
 		"title": "Ännerungslëscht",
 		"eyebrow": "Geschicht",
-		"lede": "Héich Niveau Zesummefaassung vun de Verëffentlechungen. De kanonesche, autoritativen Changelog liewt an CHANGELOG.md am Repository."
+		"lede": "Héich Niveau Zesummefaassung vun de Verëffentlechungen. De kanonesche, autoritativen Changelog liewt an CHANGELOG.md am Repository.",
+		"fullRecord": "Kuckt {changelogLink} fir de komplette Rekord.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "V3 (an der Entwécklung)",
+			"labels": {
+				"breaking": "BRIECHEN",
+				"resilience": "Resilienz:",
+				"placeholderProtection": "Platzhalter-Schutz:",
+				"perKeyOptOut": "Opt-out pro Schlëssel:",
+				"docsAccessibility": "Zougänglechkeet vun de Dokumenter:",
+				"inlineCodeStyling": "Inline-Code-Design:"
+			},
+			"issueLabels": {
+				"closes46": "Schléisst #46.",
+				"tightens16": "Zitt #16 méi fest.",
+				"closes35": "Schléisst #35."
+			},
+			"items": {
+				"runtime": "Op {nodeRuntime} Lafzäit eropgesat ({breaking}).",
+				"newInputs": "Nei Inputen: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, plus fortgeschratt Translator-Knäppercher {textType}, {profanityAction}, {profanityMarker} an {allowFallback}.",
+				"sourceLocale": "D'Quelllokalitéit gëtt elo och als {fromLocale} un den Translator weidergeleet, sou datt kuerz Strings net automatesch erkannt ginn.",
+				"resilience": "{label} automatesch Neiversich op transient HTTP-Äntwerten ({statusCodes}), déi Azure säi {retryAfter}-Header respektéieren — gräift op jittered exponential Backoff zréck, wann se feelt. Tunable iwwer {maxRetries} an {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} Tokens wéi {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} an HTML Entitéiten ginn an Sentinels agewéckelt ier se iwwergesat ginn an duerno erëm restauréiert, sou datt den Translator ophält, i18next/Mustache/Handlebars/.NET/printf Platzhalter ze vermëschen. Schalt iwwer {protectPlaceholders}; Erweidert mat {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} neie {noTranslatePatterns} Input léisst passend Schlësselen komplett aus der Translator-Ufro falen (reservéiert Quellwäerter fir Markennimm, Feelercoden, asw.). Vergläicht Glob-Muster mat Parser-Niveau Schlësselen (JSON gepunktete Wee, RESX {resxName}, PO {poMsgid}, XLIFF Eenheet {xliffId}, INI/restext Schlëssel). {issue}",
+				"repoConfig": "Repo-Level Konfiguratioun iwwer {configPath}.",
+				"glossary": "Glossar-Ënnerstëtzung, Zesummefaassung vun de Schrëtt iwwer {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM Audit propper (0 Schwachstellen).",
+				"docsSite": "Astro + Tailwind v4 Dokumentatiounssäit mat View-Iwwergäng an Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA Pass. Logo-Glyphen goufen an Weeër ëmgewandelt, sou datt se net méi am Faarfkontrast géint Gradient-Stops feelen, de Floating {backToTop}-Knäppchen benotzt {inert} während verstoppt (amplaz vun engem {ariaHidden}-Schalter, deen et tabbar gelooss huet), {formatsAstro} Sektiounen kollidéieren net méi mat hiren automatesch generéierte Head-IDs, dräi Locale-Kaarten weisen elo BCP-47-gülteg {lang} Attributer ({nya}, {lug}, {run}), duplizéiert {documentation} Landmark-Etiketten ginn tëscht Sidebar an Footer getrennt,  an all Datentabell op {inputs}/{configuration} gëtt mat engem Bildschierm-Reader-Ënnerschrëft geliwwert.",
+				"inlineCode": "{label} Docs Prosa {codeElement} dréit elo den waarme/amber Thema-Akzent – ënnerschiddlech vun der Mark→Akzentpalette, déi fir Linken a Iwwerschrëften benotzt gëtt.",
+				"automation": "Dependabot Auto-Merge, CodeQL Scanning, CI-Matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Kuckt Git-Geschicht."
+		}
 	}
 }

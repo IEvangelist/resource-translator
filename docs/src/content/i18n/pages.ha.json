@@ -18,18 +18,26 @@
 			"node": "Node 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "Gettext",
+			"json": "Need ko lebur",
+			"ini": "{keyValue}",
+			"restext": "Rubutun MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Tsarin fayil shida",
-				"body": "Zagaye-tafiye-tafiye .resx, .xliff, .po, .json, .ini, da .restext tare da tsarin byte-stable."
+				"body": "Zagaye {resx}, {xliff}, {po}, {json}, {ini}, da {restext} tare da tsarin byte."
 			},
 			"config": {
 				"title": "Repo-level config",
-				"body": "Sauke .github/resource-translator.yml don haɗawa da globs, glossaries, da kuma Custom Translator Categories."
+				"body": "Sauke fayil ɗin {configPath} don haɗawa da globs, glossaries, da nau'ikan masu fassara na al'ada."
 			},
 			"glossary": {
 				"title": "Glossary-aware",
-				"body": "Kulle sunayen alama da sharuɗɗan samfura tare da regex mai kaifin baki wanda ke kula da C ++, .NET, da abokai."
+				"body": "Kulle sunayen alama da sharuɗɗan samfura tare da regex mai kaifin baki wanda ke kula da {cpp}, {dotnet}, da abokai."
 			},
 			"dryRun": {
 				"title": "Dry Run + Soft-Fail",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR-friendly outputs",
-				"body": "summary-title, summary-details, da kuma has-sababbin fassarori kai tsaye a cikin create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails}, da kuma {hasNewTranslations} kai tsaye a cikin create-jawo-request."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "An gina shi a kan @azure-rest / ai-translation-text + @azure / core-rest-pipeline - sake gwadawa ta atomatik akan 408/429/5xx, babu HTTP da aka birgima da hannu. esbuild-bundled, audit-clean."
+				"body": "An gina shi a kan {azureSdk} + {corePipeline} — sake gwadawa ta atomatik a kan {statusCodes}, babu HTTP da aka mirgine da hannu. {esbuild}-bundled, audit-clean."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Drop-in workflow",
+			"titlePrefix": "Copy. Paste.",
+			"titleAccent": "Fassara.",
+			"body": "Sirri uku, layi huɗu, kuma repo ɗinku yana da harsuna da yawa a turawa na gaba.",
+			"setupLink": "Yi tafiya ta hanyar cikakken saitin"
+		},
+		"cta": {
+			"title": "Shirye don yin amfani da autopilot?",
+			"body": "Maɓallin mai fassara na Azure AI, fayil ɗin aiki ɗaya. Resource Translator yana kula da sauran.",
+			"button": "Fara farawa"
 		}
 	},
 	"getting-started": {
 		"title": "Farawa",
 		"eyebrow": "Saitin",
-		"lede": "Ƙara fayil ɗin aiki, nuna shi zuwa takaddun shaidar mai fassarar Azure AI, kuma aikin - wanda aka gina akan SDK na Microsoft na @azure-rest / ai-translation-text - zai bincika repo don fayilolin albarkatun harshe kuma ya fitar da 'yan uwan da aka fassara.",
+		"lede": "Ƙara fayil ɗin aiki, nuna shi a takardun shaidar mai fassarar Azure AI, kuma aikin zai bincika repo don fayilolin albarkatun harshe na tushe kuma ya fitar da 'yan uwan da aka fassara.",
 		"steps": {
 			"provision": {
 				"title": "Samar da kayan aikin Azure AI Translator",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Ƙara aikin aiki",
-				"body": "Ƙirƙirar .github/workflows/translate.yml:"
+				"body": "Ƙirƙirar {workflowPath}:"
 			},
 			"resource": {
 				"title": "Shigar da fayil ɗin tushen tushen",
-				"body": "Fayilolin albarkatu suna amfani da suna. <sourceLocale>. <ext> taro. Alal misali Gaisuwa.en.resx ya zama gaisuwa.fr.resx, gaisuwa.de.resx, da sauransu bayan gudu."
+				"body": "Fayilolin albarkatu suna amfani da yarjejeniyar {namingConvention}. Alal misali, {sourceFile} ya zama {frFile}, {deFile}, da sauransu bayan gudu."
 			},
 			"output": {
 				"title": "Duba fitarwa",
-				"body": "Da zarar aikin ya gama, aikin ya fallasa fitarwa guda uku da zaku iya waya a cikin bayanin PR: taƙaitawa-take, taƙaitaccen bayani, da kuma sabbin fassarar. Har ila yau, yana rubuta taƙaitaccen bayani a cikin shafin aiki ta hanyar core.summary."
+				"body": "Da zarar aikin ya ƙare, aikin ya fallasa fitarwa guda uku da zaku iya waya a cikin bayanin PR: {summaryTitle}, {summaryDetails}, da {hasNewTranslations}. Har ila yau, yana rubuta taƙaitaccen bayani a cikin shafin aikin ta hanyar {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Matakai na gaba",
-			"configuration": "Yi amfani da maɓallin keɓaɓɓu tare da .github/resource-translator.yml.",
+			"configuration": "Saita kuskuren matakin repo tare da {configPath}.",
 			"recipes": "Duba girke-girke don monorepos, ƙamus na al'ada, da nau'ikan masu fassara na al'ada."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Daidaitawa",
 		"eyebrow": "YAML",
 		"heroTitle": "Tsarin ma'ajiyar ma'ajiya",
-		"lede": "Bayyana tsoho sau ɗaya a cikin .github/resource-translator.yml kuma bari kowane aiki ya gaji su. Abubuwan da aka yi amfani da su koyaushe suna cin nasara lokacin da aka samar da duka biyun."
+		"lede": "Bayyana tsoho sau ɗaya a cikin fayil ɗin saitin ma'ajiya kuma bari kowane aiki ya gaji su. Abubuwan da aka yi amfani da su koyaushe suna cin nasara lokacin da aka samar da duka biyun.",
+		"intro": "Yi amfani da hanyar tare da shigarwar {configPath} idan kana buƙatar wurin da ba na tsoho ba.",
+		"schemaHeading": "Tsarin",
+		"fieldReference": {
+			"heading": "Bayanin filin",
+			"caption": "Bayanin filin saiti",
+			"columns": {
+				"field": "Filin",
+				"type": "Nau'in",
+				"notes": "Bayanin kula"
+			},
+			"fields": {
+				"sourceLocale": "Komawa zuwa maɓallin {sourceLocale} idan ba a saita shi ba. Har ila yau, an tura shi zuwa ga mai fassara kamar yadda {fromLocale} don haka ba a gano gajerun igiyoyi ta atomatik.",
+				"toLocales": "Ko dai wani nau'i na nau'i",
+				"includeExclude": "Tsarin Glob da aka kimanta akan cikakkiyar hanyoyin da ke da alaƙa da wurin aiki.",
+				"glossary": "Post-translation term overrides. Word-boundary aware (rike {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} category — your industry/domain knob (shari'a, likitanci, sautin tallace-tallace, da sauransu). An aika shi a matsayin {categoryQuery}.",
+				"textType": "Rashin daidaituwa ga {plain}. Yi amfani da {html} ne kawai idan darajar albarkatun ka sun ƙunshi gutsutsuren HTML na ainihi.",
+				"profanityAction": "Ta yaya za a bi da kalmomin da ba su dace ba a cikin fassarar fassarar?",
+				"profanityMarker": "Ma'ana ne kawai lokacin da {profanityAction} {marked}.",
+				"allowFallback": "Saita zuwa {false} don gazawa fassarar lokacin da {categoryId} ka ba shi da ƙaddamar da wurin da aka yi niyya maimakon komawa zuwa samfurin gama gari.",
+				"apiVersion": "Translator REST API version. Rashin daidaituwa ga {version}.",
+				"maxRetries": "Matsakaicin ƙoƙari na sake gwadawa akan amsoshin HTTP na wucin gadi ({statusCodes}). Rashin daidaituwa ga {defaultRetries}. Jimlar kiran HTTP a kowace buƙata {totalCalls}.",
+				"retryBackoffMs": "Cap (ms) a kan kowane barci na baya. Rashin daidaituwa ga {defaultBackoff}. Ana girmama rubutun {retryAfter} na Azure daidai lokacin da yake nan; in ba haka ba ana amfani da jittered exponential backoff, wanda aka rufe a wannan darajar.",
+				"protectPlaceholders": "Rashin daidaituwa ga {true}. Lokacin da aka kunna, alamu kamar {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} da HTML ana maye gurbin su da alamun sentinel kafin fassara kuma an dawo da su daga baya. Kashe ne kawai idan tushen da gangan ya ƙunshi zahiri mai siffar placeholder.",
+				"customPlaceholderPatterns": "Ƙarin alamun regex (ba tare da ƙayyadaddun ƙayyadaddun ba) an ƙara su zuwa saitin mai riƙe wuri na asali, misali {angleToken} don ƙididdigar alamar al'ada. An yi watsi da regexes marasa inganci.",
+				"noTranslatePatterns": "Tsarin Glob ya dace da maɓallan matakin parser (hanyar JSON, RESX {resxName}, PO {poMsgid}, XLIFF naúrar {xliffId}, INI / restext key). Ana sauke maɓallan da suka dace daga buƙata kuma suna wucewa tare da ƙimar tushen su da aka kiyaye su."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Loading order",
+			"steps": {
+				"actionInputs": "Aikin yana karanta bayyananniyar shigarwa daga aikin aiki.",
+				"config": "Yana loda YAML config daga {configPath}.",
+				"precedence": "Ga kowane filin da aka raba, shigarwar ta ci nasara; in ba haka ba, ana amfani da darajar YAML.",
+				"validation": "An tabbatar da dabi'un da aka haɗa. Abubuwan da ba su da inganci (misali {invalidEnum}) suna haifar da aikin ya gaza da sauri tare da bayyananniyar saƙo."
+			}
+		},
+		"tone": {
+			"heading": "Tone da masana'antu, a bayyane yake",
+			"body": "Azure AI Translator v3 API ba shi da maɓallin sauti guda ɗaya. Saitin biyu sun haɗu don ba ku mafi yawan sarrafawa iri ɗaya:",
+			"industryLabel": "Masana'antu / yanki:",
+			"industryBody": "Yi amfani da {categoryId} don nuna rukunin Azure {customTranslatorLink} da aka horar da shi a kan jikin ku - shari'a, fasaha, likitanci, tallace-tallace, ko wani abu. Wannan shine mafi ƙarfin ƙarfi don sauti, muryar alama, da ƙamus.",
+			"surfaceLabel": "Rubutun farfajiya:",
+			"surfaceBody": "Yi amfani da {glossaryLink} don kulle sunayen alama da sharuɗɗan samfura a kalma, kuma yi amfani da {profanityAction} don goge sharuɗɗa marasa kyau yayin niyya ga yanki ga matasa masu sauraro.",
+			"glossaryLinkLabel": "Glossary"
+		}
 	},
 	"inputs": {
 		"title": "Abubuwan shigarwa da fitarwa",
 		"eyebrow": "Reference",
-		"lede": "Hakanan ana karɓar kowane shigarwa a cikin fayil ɗin repo na zaɓi. Lokacin da aka saita duka biyun, shigar da aikin ya ci nasara."
+		"lede": "Hakanan ana karɓar kowane shigarwa a cikin fayil ɗin repo na zaɓi. Lokacin da aka saita duka biyun, shigar da aikin ya ci nasara.",
+		"configurationIntro": "Duba {configurationLink} don tsarin YAML da umarnin lodawa.",
+		"configurationLinkLabel": "Daidaitawa",
+		"columns": {
+			"name": "Sunan",
+			"default": "Tsoho",
+			"description": "Bayanin"
+		},
+		"defaults": {
+			"none": "Babu wani",
+			"allSupported": "Duk goyon bayan",
+			"translatorDefaultTrue": "Gaskiya (Mai fassarar tsoho)"
+		},
+		"requiredInputs": {
+			"heading": "Abubuwan da ake buƙata",
+			"caption": "Abubuwan da ake buƙata",
+			"items": {
+				"sourceLocale": "Source locale (misali {en}) da aka yi amfani da su don nemo fayilolin albarkatu kamar {sourceGlob}. An kuma aika zuwa ga mai fassara kamar yadda {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator subscription key. Wucewa ta hanyar {secrets}.",
+				"endpoint": "Translator endpoint URL, misali {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Abubuwan da aka saba amfani da su na yau da kullun",
+			"caption": "Abubuwan da aka saba amfani da su na yau da kullun",
+			"items": {
+				"region": "Translator resource region (omit for global resources).",
+				"toLocales": "Yankunan da za a fassara zuwa Ya karɓi jerin JSON ({jsonArray}) ko dabi'un da aka raba da comma.",
+				"include": "Newline-raba glob alamu; Fayilolin da suka dace ne kawai ake fassara.",
+				"exclude": "Newline-raba glob alamu; An tsallake fayilolin da suka dace (an yi amfani da su bayan sun haɗa).",
+				"configPath": "Hanyar zuwa fayil ɗin ƙididdigar YAML (dangane da tushen wurin aiki).",
+				"dryRun": "Lokacin da {true}, gudanar da fassarar kuma fitar da taƙaitaccen bayani amma kar ka rubuta fayiloli.",
+				"failOnError": "Lokacin da {true}, kuskuren da ba zato ba tsammani ya kasa aiki; Lokacin da {false}, kurakurai suna gargaɗi."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Translator request inputs",
+			"intro": "Waɗannan taswirar kai tsaye zuwa sigogin tambaya na Azure AI Translator v3. Kowane ɗayan zaɓi ne; Kuskuren fassara yana aiki lokacin da ba a saita shi ba.",
+			"caption": "Translator request inputs",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. An tura shi kamar yadda {categoryQuery}.",
+				"textType": "{plain} ko {html}. Yi amfani da {html} ne kawai lokacin da ƙimar albarkatun ka na ainihi ne.",
+				"profanityAction": "{noAction}, {marked}, ko {deleted}. Yana sarrafa yadda ake fitar da kalmomin lalata a cikin fassarar.",
+				"profanityMarker": "{asterisk} ko {tag}. Ma'ana ne kawai lokacin da {profanityAction} {marked}.",
+				"allowFallback": "Lokacin da {false}, Mai fassara ya dawo da kuskure maimakon komawa zuwa tsarin gaba ɗaya idan {categoryId} ɗinku ba shi da ƙaddamar da wurin da aka yi niyya.",
+				"apiVersion": "Translator REST API version."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Resilience & placeholder kariya",
+			"intro": "Waɗannan shigarwar suna sarrafa yadda aikin ke aiki lokacin da Mai fassara ya ƙunshi buƙatarku da kuma yadda yake kare alamun riƙe wuri kamar {mustache} ko {indexZero} daga ɓarna yayin fassara.",
+			"caption": "Resilience da placeholder kariya inputs",
+			"items": {
+				"maxRetries": "Matsakaicin ƙoƙari na sake gwadawa akan amsoshin HTTP na wucin gadi ({statusCodes}). Jimlar adadin kiran HTTP a kowace buƙata {totalCalls}.",
+				"retryBackoffMs": "Rufe (a cikin milliseconds) a kan kowane bacci na baya. Aikin yana girmama taken amsa na {retryAfter} na Azure daidai lokacin da yake nan; in ba haka ba yana amfani da jittered exponential backoff rufe a wannan darajar.",
+				"protectPlaceholders": "Lokacin da aka {true} (tsoho), masu riƙe da wurare kamar {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} da HTML ana maye gurbin su da alamun sentinel kafin fassarar kuma an dawo da su daga baya. Kashe ne kawai idan tushen ka da gangan ya ƙunshi rubutun mai siffar wuri wanda ya kamata a fassara.",
+				"customPlaceholderPatterns": "Newline-rarrabuwa regexes (ba tare da delimiters ba) ƙara zuwa tsoho placeholder saiti, misali {angleToken} ga al'ada alama syntax.",
+				"noTranslatePatterns": "Tsarin glob na Newline da aka raba ya dace da maɓallan matakin parser (hanyar JSON dotted hanya, RESX {resxName}, PO {poMsgid}, XLIFF naúrar {xliffId}, INI / restext key). Ana sauke maɓallan da suka dace daga buƙatar Mai fassara kuma suna wucewa tare da ƙimar asalin su."
+			}
+		},
+		"outputs": {
+			"heading": "Abubuwan da aka samu",
+			"caption": "Abubuwan da aka samu",
+			"items": {
+				"summaryTitle": "Short PR-title-friendly summary, e.g. {summaryExample}.",
+				"summaryDetails": "Taƙaitaccen bayani na Markdown ya dace da jikin PR ko taƙaitaccen aiki.",
+				"hasNewTranslations": "{trueString} lokacin da aka samar da ɗaya ko fiye da sababbin fassarar."
+			}
+		}
 	},
 	"formats": {
 		"title": "Tsarin fayil",
 		"eyebrow": "Reference",
 		"heroTitle": "Tsarin fayil ɗin da aka goyi bayan",
-		"lede": "Tsarin albarkatun zagaye guda shida. Aikin yana karanta kowane fayil ɗin tushe, yana fassara dabi'u, kuma yana rubuta ɗan'uwa a kowane yanki da aka yi niyya."
+		"lede": "Tsarin albarkatun zagaye guda shida. Aikin yana karanta kowane fayil ɗin tushe, yana fassara dabi'u, kuma yana rubuta ɗan'uwa a kowane yanki da aka yi niyya.",
+		"namingConvention": "Dukkan fayilolin suna amfani da yarjejeniyar {namingConvention} suna da kyau.",
+		"learnMore": "Ka kara koyo",
+		"items": {
+			"resx": {
+				"blurb": "XML-tushen .NET albarkatun fayiloli. Fassara rubutun ciki na kowane {dataValue} node, adana comments da metadata.",
+				"specLabel": "Microsoft Learn — Resources in .resx files"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 takardu. Fassara kowane {source} kuma rubuta sakamakon a cikin {target} da ya dace, saita {trgLang} don yankin.",
+				"specLabel": "OASIS XLIFF 2.0 bayani dalla-dalla"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object files. Fassara kowane {msgid} / {msgidPlural} a cikin siffofin {msgstr} / {msgstrPlural}.",
+				"specLabel": "GNU gettext — PO file format"
+			},
+			"json": {
+				"blurb": "Fayilolin JSON na yau da kullun. Abubuwan da aka shimfiɗa suna shimfiɗa tare da {delimiter} delimiter don fassara, sa'an nan kuma sake yin nested a kan fitarwa. An kiyaye maɓallan maɓalli ({dottedKey}) a cikin kalma.",
+				"specLabel": "Ƙayyadaddun JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Fayilolin {keyValue} masu sauƙi (Win32-style INI ko kowane shimfidar lebur). An kiyaye rubutun sashe da sharhi.",
+				"specLabel": "Tsarin fayil ɗin INI akan Wikipedia"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI rubutu albarkatun — lebur {keyValue} nau'i-nau'i amfani a matsayin textual companion to {resx}.",
+				"specLabel": "Microsoft MUI overview"
+			}
+		},
+		"roundTrip": {
+			"heading": "Garantin zagaye",
+			"body": "Dakin gwajin yana tabbatar da zagaye na byte-for-byte don wakilan wakilan kowane tsari. Idan tsarin quirk ya karya zagaye-tripping a cikin codebase, don Allah {issueLink} tare da ƙaramin samfurin.",
+			"issueLinkLabel": "Bude batun"
+		}
 	},
 	"recipes": {
 		"title": "Girke-girke",
 		"eyebrow": "Littafin girke-girke",
-		"lede": "Alamu na yau da kullun don fassarar jigilar kaya: monorepos, ƙamus ɗin, nau'ikan al'ada, bushewar gudu, da sarrafa sauti."
+		"lede": "Alamu na yau da kullun don fassarar jigilar kaya: monorepos, ƙamus ɗin, nau'ikan al'ada, bushewar gudu, da sarrafa sauti.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Buɗe buƙatun jawo bayan kowane gudu"
+			},
+			"monorepo": {
+				"heading": "Monorepos: fassarar scope a kowane kunshin"
+			},
+			"glossary": {
+				"heading": "Glossary don sunayen samfura da sharuɗɗan samfura",
+				"intro": "Sanya {configPath} a cikin repo:",
+				"afterLabel": "bayan",
+				"body": "Ana amfani da kalmomin ƙamus {after} fassarar, don haka fitowar fassarar na'ura tana kiyaye alamar da kuka fi so koda lokacin da samfurin ya canza shi don ma'anar."
+			},
+			"customCategory": {
+				"heading": "Custom Translator category (masana'antu / yanki)",
+				"body": "Horar da rukunin Azure {customTranslatorLink} a kan corpus wanda ke ɗaukar ƙamus da sautin masana'antar ku (shari'a, likitanci, tallace-tallace, injiniyan ciki, da sauransu) kuma wuce ID ta hanyar {categoryId}. Wannan shine mafi ƙarfin sautin lever da Azure ke bayarwa."
+			},
+			"tone": {
+				"heading": "Kula da sauti + tsananin fallback",
+				"body": "Haɗa mai fassara na al'ada {categoryId} tare da {profanityAction} da {allowFallbackFalse} don tilasta murya mai daidaituwa kuma ya kasa aiki idan rukunin da aka zaɓa ba shi da ƙaddamar da ɗayan wuraren da kuka yi niyya."
+			},
+			"dryRun": {
+				"heading": "Tsaftace gudu kafin kunna aikin",
+				"body": "Aikin har yanzu yana fitar da taƙaitaccen fitarwa da taƙaitaccen mataki, amma ba a rubuta fayiloli ba. Haɗa tare da {failOnErrorFalse} don nuna kowane batun a matsayin gargaɗi yayin da kuke maimaitawa."
+			}
+		}
 	},
 	"faq": {
 		"title": "Tambayoyin da aka fi yawan yi",
 		"eyebrow": "Taimako",
 		"heroTitle": "Tambayoyi akai-akai",
-		"lede": "Amsoshi masu sauri ga tambayoyin da suka fi tasowa yayin ɗaukar matakin."
+		"lede": "Amsoshi masu sauri ga tambayoyin da suka fi tasowa yayin ɗaukar matakin.",
+		"questions": {
+			"azure": {
+				"heading": "Ta yaya aikin yake magana da Azure?",
+				"body": "Ta hanyar Microsoft ta hukuma {azureSdkLink} SDK, layered a kan {corePipelineLink}. Wannan yana ba ku sake gwadawa ta atomatik akan {statusCodes}, rubutun buƙata da samfuran amsawa, da sarrafa kanun kai na tabbatarwa kyauta - duk abin da ya kasance kiran {axios} da hannu. Yanayin aikin jama'a (shigarwa, fitarwa, fitarwa na fayil) ba a canza ba."
+			},
+			"tone": {
+				"heading": "Me yasa wasu lokuta fassarar ba ta da alama ko kashewa?",
+				"body": "Fassarar na'ura ta kasa zuwa samfurin gama gari. Ƙuƙwalwar ƙuƙwalwa uku tana taimakawa: {glossaryLink} don wuya lokaci overrides, {customTranslatorLink} don samfuran da aka horar da su akan sautin ku da ƙamus, da kuma {profanityAction} don goge ko nuna sharuɗɗa marasa kyau.",
+				"glossaryLinkLabel": "Glossary",
+				"customTranslatorLinkLabel": "Custom Translator category"
+			},
+			"duplicateFiles": {
+				"heading": "Ta yaya zan guji fassara fayil ɗaya sau biyu?",
+				"body": "Kunna aikin aiki a kan {paths} da suka dace da fayilolin tushen ku kawai, misali {sourceGlob}. Har ila yau, aikin ya haɗa da nasa tatar fayil lokacin da aka saita {githubToken}, yana rage aiki zuwa fayiloli a cikin sabon alƙawarin."
+			},
+			"offline": {
+				"heading": "Zan iya gudanar da aikin ba tare da layi ba?",
+				"body": "Ba daidai ba - Azure AI Translator shine kwakwalwar gudu. Amma zaku iya gudu tare da {dryRunTrue} don tabbatar da parsing da saiti ba tare da yin buƙatun HTTP don fassara ba."
+			},
+			"node": {
+				"heading": "Wace sigar Node aikin ke gudana?",
+				"body": "V3 yana gudana akan Ayyukan GitHub {nodeRuntime} lokaci. JavaScript ɗin da aka haɗa ya dace da Node 20, 22, da 24, wanda shine abin da CI ke gwadawa."
+			},
+			"dist": {
+				"heading": "Daga ina {distDir} da aka haɗa suka fito?",
+				"body": "GitHub JS ayyuka suna jigilar JS ɗin da aka tattara a cikin ma'ajiyar. Aikin {distBuild} yana sake gina shi bayan kowane haɗuwa zuwa {mainBranch} idan zai gudana, kuma {distCheck} toshe PRs waɗanda za su sauka da fitarwa na zamani."
+			},
+			"formats": {
+				"heading": "Yaya game da sauran tsarin albarkatu?",
+				"body": "Yau: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} idan kana bukatar wani — da parser dubawa ne kananan (parse → map → amfani da fassarar → format) da kuma gudummawa ne maraba.",
+				"issueLinkLabel": "Buɗe batun"
+			}
+		}
 	},
 	"translations": {
 		"title": "Fassarar",
 		"eyebrow": "Nunin",
 		"heroTitle": "Hello A Kowane Harshe",
-		"locales": "Wurare",
-		"currentlyRendered": "An yi amfani da shi a halin yanzu",
-		"complete": "Cikakke!",
-		"pendingPrefix": "A jiran fassarar Docs na gaba.",
+		"lede": "An fassara wannan shafin ta hanyar Mai Fassarar Albarkatu kanta, a kowane turawa zuwa main, zuwa kowane harshe da Azure AI Translator ke tallafawa.",
+		"localeCountLabel": "{count} wurare",
+		"statusComplete": "{translatedCount} a halin yanzu an fassara shi - cikakke!",
+		"statusPending": "{translatedCount} a halin yanzu an bayar da shi - {pendingCount} jiran {workflowName} na gaba.",
 		"viewWorkflowRuns": "Duba aikin aiki yana gudana",
 		"filter": "Filter",
 		"filterPlaceholder": "Bincika ta hanyar harshe, lambar ko sunan asali.",
 		"source": "Source",
 		"machineTranslations": "Fassarar na'ura",
-		"translationPending": "Translation pending — open a translate-docs run.",
+		"translationPending": "Translation pending — open a {workflowName} run.",
 		"noLocales": "Babu wurare da suka dace da wannan tace.",
-		"howItWorks": "Ta yaya wannan yake aiki"
+		"howItWorks": {
+			"heading": "Ta yaya wannan yake aiki",
+			"thisActionLabel": "wannan aikin",
+			"steps": {
+				"source": "Fayil ɗin tushen Turanci yana zaune a {messagesPath}.",
+				"workflow": "Tura wannan taɓawa yana farawa {workflowLink}, wanda ke gudana {thisAction} da kansa.",
+				"fanOut": "Aikin yana zuwa kowane yanki mai tallafawa mai fassara na Azure AI (wanda aka tsara a cikin {configPath}) kuma yana rubuta ɗan'uwan {messagesLocaleJson} a kowace manufa.",
+				"pullRequest": "An buɗe buƙatun janyewa tare da sababbin fassarar. Haɗa shi yana sake buga wannan shafin tare da katunan da aka cika."
+			}
+		},
+		"poweredBy": "Powered by Resource Translator da Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Bayar da gudummawa",
 		"eyebrow": "Bude tushen",
-		"lede": "Rahotannin kwaro, buƙatun fasali, da buƙatun jawo duk ana maraba da su. Aikin yana da ƙaramin isa ya zama abokantaka ga masu ba da gudummawa na farko."
+		"lede": "Rahotannin kwaro, buƙatun fasali, da buƙatun jawo duk ana maraba da su. Aikin yana da ƙaramin isa ya zama abokantaka ga masu ba da gudummawa na farko.",
+		"localDevelopment": {
+			"heading": "Ci gaban gida"
+		},
+		"addingParser": {
+			"heading": "Ƙara parser",
+			"steps": {
+				"fixture": "Ƙara wani abu a ƙarƙashin {testDataDir}.",
+				"implement": "Aiwatar da {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Yi rijista a cikin {factoryFile}.",
+				"extension": "Ƙara fayil din zuwa {translationFileSchemes} a cikin {finderFile}.",
+				"tests": "Write round-trip tests for parse → format and applyTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "Ƙofofin ɗaukar hoto",
+			"body": "Tsarin Jest yana tilasta mafi ƙarancin ɗaukar hoto. Sabon lambar dole ne ya kiyaye maganganun + layin sama da 78% kuma yana aiki sama da 90%. Ƙara gwaje-gwaje da gwaje-gwaje tare da canjin ku."
+		},
+		"docsSite": {
+			"heading": "Shafin takardu",
+			"body": "Babban fayil na {docsDir} shine aikin Astro 6 + Tailwind v4. Gudu {npmInstall} can sau ɗaya, sa'an nan kuma {npmRunDev} don samfoti na gida. Aikin {pagesWorkflow} yana jigilar takardun zuwa GitHub Pages akan kowane haɗuwa."
+		}
 	},
 	"changelog": {
 		"title": "Canje-canje",
 		"eyebrow": "Tarihi",
-		"lede": "Babban taƙaitaccen taƙaitaccen bayani game da fitarwa. Canonical, canji mai iko yana rayuwa a cikin CHANGELOG.md a cikin ma'ajiyar."
+		"lede": "Babban taƙaitaccen taƙaitaccen bayani game da fitarwa. Canonical, canji mai iko yana rayuwa a cikin CHANGELOG.md a cikin ma'ajiyar.",
+		"fullRecord": "Duba {changelogLink} don cikakken rikodin.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "V3 (a cikin ci gaba)",
+			"labels": {
+				"breaking": "KARYA",
+				"resilience": "Juriya:",
+				"placeholderProtection": "Kariya ta wuri:",
+				"perKeyOptOut": "Per-key fita:",
+				"docsAccessibility": "Docs accessibility:",
+				"inlineCodeStyling": "Inline code styling:"
+			},
+			"issueLabels": {
+				"closes46": "Rufe # 46.",
+				"tightens16": "Tightens # 16.",
+				"closes35": "Rufe # 35."
+			},
+			"items": {
+				"runtime": "Ya kamata a yi la'akari da lokacin da {nodeRuntime} gudu ({breaking}).",
+				"newInputs": "Sabbin shigarwa: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, tare da maɓallin mai fassara {textType}, {profanityAction}, {profanityMarker}, da {allowFallback}.",
+				"sourceLocale": "Source locale yanzu kuma an tura shi zuwa ga Mai fassara kamar yadda {fromLocale} don haka ba a gano gajerun igiyoyi ta atomatik.",
+				"resilience": "{label} sake gwadawa ta atomatik akan amsoshin HTTP na wucin gadi ({statusCodes}) wanda ke girmama taken {retryAfter} na Azure - ya koma baya mai ban sha'awa lokacin da ba ya nan. Tunable ta hanyar {maxRetries} da {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} alamu kamar {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} da HTML an nannade su a cikin sentinels kafin fassara kuma an dawo da su daga baya, don haka Mai fassara ya daina yin amfani da i18next / Mustache / Handlebars / .NET / printf placeholders. Toggle via {protectPlaceholders}; Ƙara tare da {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} sabon shigarwar {noTranslatePatterns} ya sauke maɓallan da suka dace daga buƙatar Mai fassara gaba ɗaya (yana adana ƙimar tushe don sunayen alama, lambobin kuskure, da sauransu). Matches glob alamu da parser-matakin keys (JSON dotted hanya, RESX {resxName}, PO {poMsgid}, XLIFF naúrar {xliffId}, INI / restext key). {issue}",
+				"repoConfig": "Repo-level config via {configPath}.",
+				"glossary": "Glossary support, step summary via {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM Audit Clean (0 vulnerabilities).",
+				"docsSite": "Astro + Tailwind v4 docs site with view transitions and Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA wucewa. Logo glyphs canza zuwa hanyoyi don haka ba su ƙara kasa launi-bambanci a kan gradient tsayawa, da iyo {backToTop} button yana amfani da {inert} yayin da ɓoye (maimakon wani {ariaHidden} toggle cewa ya bar shi tabbable), {formatsAstro} sassan ba su sake karo da su atomatik generated heading IDs, uku locale katunan yanzu fallasa BCP-47-inganci {lang} halaye ({nya}, {lug}, {run}), duplicate {documentation} landmark labels are disambiguated tsakanin sidebar da footer,  kuma kowane teburin bayanai a kan {inputs} / {configuration} jiragen ruwa tare da rubutun mai karanta allo.",
+				"inlineCode": "{label} Docs prose {codeElement} yanzu yana sanye da lafazin jigo mai dumi / amber - ya bambanta da alamar →alamar da aka yi amfani da ita don hanyoyin haɗi da kanun labarai.",
+				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Duba tarihin git"
+		}
 	}
 }

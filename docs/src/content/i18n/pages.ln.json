@@ -18,18 +18,26 @@
 			"node": "Node 20 / 22 / 24",
 			"sdk": "SDK officiel Azure"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "Kozwa texte",
+			"json": "koteswara to nandikeshwara",
+			"ini": "{keyValue}",
+			"restext": "Texte ya MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Lolenge motoba ya fichier",
-				"body": "Round-trips .resx, .xliff, .po, .json, .ini, and .restext with byte-stable formatting."
+				"body": "Mibembo ya kozonga-zonga {resx}, {xliff}, {po}, {json}, {ini}, mpe {restext} na formatage stable ya octets."
 			},
 			"config": {
 				"title": "Config ya niveau ya repo",
-				"body": "Drop a .github/resource-translator.yml for include globs, glossaries, and Custom Translator categories."
+				"body": "Drop a {configPath} file for include globs, glossaries, and Custom Translator categories."
 			},
 			"glossary": {
 				"title": "Glossaire",
-				"body": "Kanga bankombo ya bilembo mpe maloba ya produit na regex ya maloba ya smart oyo esimbaka C++, .NET, mpe baninga."
+				"body": "Kanga bankombo ya bilembo mpe maloba ya produit na regex ya maloba ya smart oyo esimbaka {cpp}, {dotnet}, mpe baninga."
 			},
 			"dryRun": {
 				"title": "Dry-run + soft-fail",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Ba résultats ya PR",
-				"body": "Summary-title, summary-details, and has-new-translations slot directly into create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails}, mpe {hasNewTranslations} ekɔtaka mbala moko na lisengi ya bozalisi."
 			},
 			"sdk": {
 				"title": "SDK officiel Azure",
-				"body": "Etongami na @azure-rest/ai-translation-text + @azure/core-rest-pipeline — ba essais automatiques na 408/429/5xx, HTTP ya maboko te. esbuild-bundled, audit-clean."
+				"body": "Etongami na {azureSdk} + {corePipeline} — ba retries automatiques na {statusCodes}, HTTP oyo esalemi na maboko te. {esbuild}-bundled, audit-clean."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Mosala ya kokita",
+			"titlePrefix": "Copie. Coller.",
+			"titleAccent": "Kobongola.",
+			"body": "Sekele misato, milongo minei, mpe repo na yo ezali na minoko ebele na push oyo elandi.",
+			"setupLink": "ya pas de souci pour moi"
+		},
+		"cta": {
+			"title": "Komibongisa mpo na localisation na pilote automatique?",
+			"body": "One Azure AI Translator key, one workflow file. Mobongoli ya ressource alandelaka makambo oyo etikali.",
+			"button": "Bandá"
 		}
 	},
 	"getting-started": {
 		"title": "Ebandeli",
 		"eyebrow": "Kobongisa",
-		"lede": "Kobakisa file ya workflow, lakisa yango na ba identifiants na yo ya mobongoli ya Azure AI, mpe action — etongami na SDK ya Microsoft ya @azure-rest/ai-translation-text — escanner repo mpo na ba fichier ya ressource ya lokota ya source mpe ekobimisa bandeko oyo babongoli.",
+		"lede": "Kobakisa fichier ya workflow, lakisa yango na ba identifiants na yo ya mobongoli ya Azure AI, mpe action escanner repo mpo na ba fichiers ya ressource ya lokota ya source mpe ekobimisa bandeko oyo babongoli.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Bakisá mosala na yo",
-				"body": "Créer .github/workflows/translate.yml:"
+				"body": "Kosala {workflowPath}:"
 			},
 			"resource": {
 				"title": "Commit a source resource file",
-				"body": "Batu oyo bazali na posa ya kotanga kombo na bango. <sourceLocale>. <ext> Liyangani. Na ndakisa, Greetings.en.resx ekomaka Greetings.fr.resx, Greetings.de.resx, mpe bongo na bongo."
+				"body": "Mikanda oyo ezali na mikanda oyo ezali na kati ya {namingConvention} ezali na kati ya liyangani. Na ndakisa, {sourceFile} akómaka {frFile}, {deFile}, mpe bongo na bongo."
 			},
 			"output": {
 				"title": "Tala ndenge biloko ebimi",
-				"body": "Tango mosala esili, action ekolakisa makambo misato oyo okoki kotia na description ya PR: résumé-titre, résumé, mpe babongoli ya sika. Ekomaka mpe résumé ya Markdown na lokasa ya mosala na nzela ya core.summary."
+				"body": "Soki mosala esili, action ekobimisa makambo misato oyo okoki kotia na description ya PR: {summaryTitle}, {summaryDetails}, na {hasNewTranslations}. Ekomaka mpe na mokuse na lokasa ya mosala na nzela ya {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Makambo oyo elandi",
-			"configuration": "Configurer ba défauts ya niveau repo na .github/resource-translator.yml.",
+			"configuration": "Configurer ba défauts ya niveau ya repo na {configPath}.",
 			"recipes": "Tala ba recettes mpo na monorepos, glossaires personnalisées, mpe catégories ya traducteur personnalisé."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Configuration",
 		"eyebrow": "YAML",
 		"heroTitle": "Configuration ya dépôt",
-		"lede": "Express defaults once in .github/resource-translator.yml and let every workflow inherit them. Action inputs elongaka ntango nyonso mibale epesami."
+		"lede": "Express defaults once in the repository config file and let every workflow inherit them. Action inputs elongaka ntango nyonso mibale epesami.",
+		"intro": "Finá na butɔ {configPath} soki ozali na mposa ya esika oyo ebongi te.",
+		"schemaHeading": "Schema",
+		"fieldReference": {
+			"heading": "Référence ya terrain",
+			"caption": "Référence ya champ ya configuration",
+			"columns": {
+				"field": "Elanga",
+				"type": "Lolenge ya",
+				"notes": "Maloba"
+			},
+			"fields": {
+				"sourceLocale": "Zonga na {sourceLocale} soki ozui yango te. Etindamaka mpe na Translator mpo {fromLocale} yango wana bansinga ya mikuse emonanaka te.",
+				"toLocales": "Koteyewi au sema:pikitise ipilise sita:latipa:.",
+				"includeExclude": "Ba modele ya glob etalelamaki na kolanda banzela ya absolu mpe ya esika ya mosala.",
+				"glossary": "Maloba ya nsima ya traduction eleki. Word-boundary aware (handles {cpp}, {dotnet}).",
+				"categoryId": "Catégorie {customTranslatorLink} Azure — bouton ya industrie/domaine na yo (ya mibeko, ya minganga, ya marketing, etc.). ya pas de {categoryQuery}.",
+				"textType": "Kosaka {plain} Salela {html} kaka soki ba valeurs ya ressource na yo ezali na biteni ya HTML ya solo.",
+				"profanityAction": "Ndenge nini tokoki kosalela maloba ya bosoto na mikanda oyo ebongolami na Lingala?",
+				"profanityMarker": "Ezali na ntina kaka soki {profanityAction} ezali {marked}.",
+				"allowFallback": "Sala {false} mpo na kokweya na libongoli soki {categoryId} na yo ezali na déploiement te mpo na esika ya kokweya na modele général.",
+				"apiVersion": "Translator REST API version. Kosaka {version}",
+				"maxRetries": "Maximum retry attempts on transient HTTP responses ({statusCodes}). Kosaka {defaultRetries} Total HTTP calls per request is {totalCalls}.",
+				"retryBackoffMs": "Cap (ms) na mbeto nyonso ya backoff. Kosaka {defaultBackoff} Mutu ya {retryAfter} ya Azure epesami lokumu exactement soki ezali; soki ezali bongo te, basalelaka yango na ndenge ya malamu mpenza.",
+				"protectPlaceholders": "Kosaka {true} Soki esalemi, ba tokens lokola {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} mpe HTML ekitanaka na ba tokens sentinelle liboso ya kobongola mpe kozongisa yango na nsima. Désactiver kaka soki source ezali na nko ya ba littérateurs oyo ezali na forme ya placeholder.",
+				"customPlaceholderPatterns": "Ba modèles ya regex mosusu (kozanga ba délimiteurs) ebakisami na esika ya défaut, na ndakisa {angleToken} mpo na syntaxe ya token ya momesano. Ba régexes oyo ebongi te bazali koboya yango.",
+				"noTranslatePatterns": "Ba patrons ya glob ekokani na bafungola ya niveau ya parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). Bafungola ya kokokana elongolamaka na lisengi mpe elekaka na motuya na yango ya source ebatelami."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Commande ya chargement",
+			"steps": {
+				"actionInputs": "Action ezali kotanga makambo ya polele uta na mosala ya mosala.",
+				"config": "ya pas de soucis de yaml de {configPath}.",
+				"precedence": "Na eteni moko na moko, contribution elongaka; soki te, motuya ya YAML ekosalema.",
+				"validation": "Ba valeurs oyo esangani endimami. Ba enums invalides (ndakisa, {invalidEnum}) esalaka ete action ekweya noki na nsango ya polele."
+			}
+		},
+		"tone": {
+			"heading": "bisous et bonne semaine a toi",
+			"body": "Azure AI Translator v3 API ezali na bouton moko te ya toni. Ba réglages mibale esangani mpo na kopesa yo mingi ya contrôle moko:",
+			"industryLabel": "Industrie / domaine:",
+			"industryBody": "Salela {categoryId} mpo na kolakisa catégorie ya Azure {customTranslatorLink} oyo esalami na corpus na yo moko — ya mibeko, ya tekiniki, ya monganga, ya marketing, to eloko mosusu nyonso. Oyo nde levier ya makasi mpo na mongongo, mongongo ya marque, mpe vocabulaire.",
+			"surfaceLabel": "Texte ya surface:",
+			"surfaceBody": "Salela {glossaryLink} mpona kokanga bankombo ya bilembo mpe maloba ya produit verbatim, mpe salela {profanityAction} mpo na kolongola maloba ya nsɔni ntango ozali koluka localisation mpo na bilenge.",
+			"glossaryLinkLabel": "Glossaire"
+		}
 	},
 	"inputs": {
 		"title": "Entrées et résultats",
 		"eyebrow": "Référence",
-		"lede": "Input nyonso endimami mpe na fichier ya repo config. Soki nyonso mibale esalemi, action ekolonga."
+		"lede": "Input nyonso endimami mpe na fichier ya repo config. Soki nyonso mibale esalemi, action ekolonga.",
+		"configurationIntro": "Tala {configurationLink} mpo na schéma ya YAML mpe etinda ya chargement.",
+		"configurationLinkLabel": "Configuration",
+		"columns": {
+			"name": "Nkombo",
+			"default": "Défaut",
+			"description": "Ndimbola"
+		},
+		"defaults": {
+			"none": "ata moko te",
+			"allSupported": "Nyonso esimbami",
+			"translatorDefaultTrue": "Solo (Traduction par défaut)"
+		},
+		"requiredInputs": {
+			"heading": "Makambo oyo esengeli",
+			"caption": "Makambo oyo esengeli",
+			"items": {
+				"sourceLocale": "Esika ya source (na ndakisa {en}) esalelamaka mpo na koluka ba fichiers ya ressource neti {sourceGlob}. Etindamaki mpe na mobongoli lokola {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator subscription key. Koleka na {secrets}.",
+				"endpoint": "Translator endpoint URL, e.g. {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Inputs optionnels communes",
+			"caption": "Inputs optionnels communes",
+			"items": {
+				"region": "Translator resource region (omit for global resources).",
+				"toLocales": "Bisika ya kobongola. Na koki ko loba na ba kombo ya ba ndeko na biso ({jsonArray}) to pe na ba kombo ya ba congolais.",
+				"include": "Mitindo ya glob oyo ekabwani na ligne ya sika; Kaka mikanda oyo ebongolamaka nde ebongolamaka.",
+				"exclude": "Mitindo ya glob oyo ekabwani na ligne ya sika; Ba fichiers oyo ekokani na yango elongolamaka (esalemi na sima ya kobakisama).",
+				"configPath": "Sɔ́kí mɔ̌kɔ́",
+				"dryRun": "Soki {true}, tyá bavɛrsɛ oyo ezali na bavɛrsɛ ya Biblia mpe tyá yango na mokuse te.",
+				"failOnError": "Soki {true}, mabunga oyo ekanami te elongi te; Soki {false}, mabunga ezali likebisi."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Translator request inputs",
+			"intro": "Oyo ezali na karte ya mbala moko na Azure AI Translator v3 paramètre ya requête. Moto na moto azali na likoki ya kopona; Mobongoli asalelaka yango te soki aboyi kobongola yango.",
+			"caption": "Translator request inputs",
+			"items": {
+				"categoryId": "Catégorie Azure {customTranslatorLink} — the industry/domain/tone knob. ya pas de {categoryQuery}.",
+				"textType": "{plain} to {html} Salela {html} kaka soki ba valeurs ya ressource na yo ezali ya solo ya HTML.",
+				"profanityAction": "{noAction}, {marked}, to {deleted}. Talá ndenge maloba ya nsɔni ebimaka na babongoli.",
+				"profanityMarker": "{asterisk} to {tag} Ezali na ntina kaka soki {profanityAction} {marked}.",
+				"allowFallback": "Soki {false}, Translator ekozongisa libunga na esika ya kokweya na systeme général soki {categoryId} na yo ezali na déploiement te mpo na esika cible.",
+				"apiVersion": "Translator REST API version."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Résilience mpe libateli ya esika",
+			"intro": "Makambo oyo etambwisaka ndenge action esalaka ntango mobongoli akangi lisengi na yo mpe ndenge ebatelaka bilembo ya placeholder lokola {mustache} to {indexZero} mpo ebebisama te na ntango ya kobongola.",
+			"caption": "Résilience mpe biloko ya kobatela esika",
+			"items": {
+				"maxRetries": "Maximum retry attempts on transient HTTP responses ({statusCodes}). Motango ya ba appels HTTP na bosengi ezali {totalCalls}.",
+				"retryBackoffMs": "Cap (na millisecondes) na mbeto nyonso ya backoff. Action ekumisaka motó ya eyano ya {retryAfter} ya Azure mpenza ntango ezali; soki te, esalelaka liboke ya exponentiel oyo ekangami na motuya wana.",
+				"protectPlaceholders": "Soki {true} (défaut), ba placeholder neti {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} na ba entités HTML ekitanaka na ba tokens sentinelles liboso ya kobongola mpe kozongisama na sima. Désactiver kaka soki source na yo ezali na nko ya makomi oyo esengeli kobongolama.",
+				"customPlaceholderPatterns": "Ba regexes ya sika oyo ekabwani na ligne ya sika (kozanga ba limites) ebakisami na esika ya défaut, na ndakisa {angleToken} mpo na syntaxe ya token ya ndenge na ndenge.",
+				"noTranslatePatterns": "Ba patrons ya glob oyo ekabolami na ligne ya sika ekokani na bafungola ya niveau ya parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). Bafungola oyo ekokani elongolamaka na lisengi ya mobongoli mpe elekaka na motuya na yango ya ebandeli."
+			}
+		},
+		"outputs": {
+			"heading": "Résultats",
+			"caption": "Résultats",
+			"items": {
+				"summaryTitle": "Résumé mokuse ya PR-Title-friendly, ndakisa {summaryExample}",
+				"summaryDetails": "Markdown summary suitable for a PR body or job summary.",
+				"hasNewTranslations": "{trueString} ntango babimisaki libongoli moko to mibale ya sika."
+			}
+		}
 	},
 	"formats": {
 		"title": "Format ya fichier",
 		"eyebrow": "Référence",
 		"heroTitle": "Ba formats ya fichier supporté",
-		"lede": "Six round-trippable resource formats. Action etangaka fichier moko na moko ya source-locale, ebongolaka ba valeurs, mpe ekomaka ndeko na esika moko na esika cible."
+		"lede": "Six round-trippable resource formats. Action etangaka fichier moko na moko ya source-locale, ebongolaka ba valeurs, mpe ekomaka ndeko na esika moko na esika cible.",
+		"namingConvention": "Mikanda nyonso oyo ezali na mokanda ya {namingConvention} nkombo ya bankombo ya bankombo ezali na kati ya mokanda yango.",
+		"learnMore": "Yekola lisusu",
+		"items": {
+			"resx": {
+				"blurb": "XML-based .NET resource files. Kobongola makomi ya kati ya lizita mokomoko ya {dataValue}, kobomba maloba mpe metadata.",
+				"specLabel": "Microsoft Learn — Ressources in .resx files"
+			},
+			"xliff": {
+				"blurb": "Mikanda ya OASIS XLIFF 2.0. Kobongola {source} mokomoko mpe kokoma yango na {target} oyo eyokani na yango mpo na kotya {trgLang} na esika yango.",
+				"specLabel": "Spécification ya OASIS XLIFF 2.0"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object files. Kobongola {msgid} moko na moko na {msgidPlural} na lolenge {msgstr} / {msgstrPlural}.",
+				"specLabel": "GNU gettext — Format ya fichier PO"
+			},
+			"json": {
+				"blurb": "Ba fichiers JSON arbitraire. Biloko oyo ezali na nested ebakisamaka na délimiteur ya {delimiter} mpo na kobongola, na nsima batyaka yango lisusu na esika oyo ebimi. Bafungola ya matɔnɔ ({dottedKey}) ebatelamaka na verbatim.",
+				"specLabel": "Spécification ya JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Ba fichiers {keyValue} ya pete (Win32-style INI to config plat nionso). Mitó ya makambo ya section mpe ba commentaires ebatelami.",
+				"specLabel": "Format ya fichier INI na Wikipedia"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI text resources — plat {keyValue} pairs used as a textual companion to {resx}.",
+				"specLabel": "Lisolo ya Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Garanties ya kokende na retour",
+			"body": "Suite ya test ekotala ba-octets mpo na kozongela balolenge nyonso. Soki format moko ebebi na codebase na yo, tosengi {issueLink} na ndakisa ya moke.",
+			"issueLinkLabel": "Fungola motuna moko"
+		}
 	},
 	"recipes": {
 		"title": "Recettes",
 		"eyebrow": "Buku ya cuisine",
-		"lede": "Mitindo oyo eyebani mingi mpo na babongoli ya masuwa: monorepos, glossaires, catégories personnalisées, dry runs, mpe contrôle ya toni."
+		"lede": "Mitindo oyo eyebani mingi mpo na babongoli ya masuwa: monorepos, glossaires, catégories personnalisées, dry runs, mpe contrôle ya toni.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Fungola lisengi ya kobenda nsima ya kokima moko na moko"
+			},
+			"monorepo": {
+				"heading": "Monorepos: scope translation per package"
+			},
+			"glossary": {
+				"heading": "Glossaire pour les noms de marques et les termes de produits",
+				"intro": "Kende {configPath} na repo:",
+				"afterLabel": "Nsima ya",
+				"body": "Maloba ya glossaire esalelamaka {after} kobongola, yango wana maloba oyo ebongolamaka na masini ebombaka bilembo oyo olingaka ata soki modele ebongoli yango na synonyme."
+			},
+			"customCategory": {
+				"heading": "Catégorie ya traducteur personnalisé (industrie / domaine)",
+				"body": "Yekola catégorie ya Azure {customTranslatorLink} na corpus oyo ezwaka vocabulaire ya industrie na yo mpe toni na yo (mibeko, minganga, marketing, ingénierie interne, etc.) mpe kolekisa ID na yango na nzela ya {categoryId}. Oyo ezali levier ya makasi koleka oyo Azure apesaka."
+			},
+			"tone": {
+				"heading": "Contrôle de ton + fallback stricte",
+				"body": "Sangisa {categoryId} ya traducteur personnalisé na {profanityAction} mpe {allowFallbackFalse} mpo na kopusa mongongo ya malamu mpe kokweya na mosala soki catégorie oyo oponi ezali te na déploiement mpo na moko ya bisika oyo ozali koluka."
+			},
+			"dryRun": {
+				"heading": "Kokausa liboso ya kofungola mosala",
+				"body": "Action ezali kaka kobimisa ba résultats ya mokuse mpe ya mokuse, kasi ba fichiers ekomami te. Sangisa na {failOnErrorFalse} mpo na kobimisa likambo nyonso lokola likebisi ntango ozali kozongela."
+			}
+		}
 	},
 	"faq": {
 		"title": "Mituna misusu",
 		"eyebrow": "Lisalisi",
 		"heroTitle": "Mituna oyo bato batunaka mingi",
-		"lede": "Biyano ya lombango na mituna oyo etunamaka mbala mingi ntango ozali kosala likambo."
+		"lede": "Biyano ya lombango na mituna oyo etunamaka mbala mingi ntango ozali kosala likambo.",
+		"questions": {
+			"azure": {
+				"heading": "Ndenge nini Azure asololaki na Azure?",
+				"body": "Na nzela ya {azureSdkLink} ya Microsoft, na nzela ya {corePipelineLink}. Yango ekopesa yo komeka mbala moko na {statusCodes}, lolenge ya kosenga mpe ya koyanola, mpe kolandela header ya authentification ofele—nyonso oyo ezalaki {axios} ya kobenga. Surface ya action publique (inputs, outputs, file outputs) ebongwani te."
+			},
+			"tone": {
+				"heading": "Mpo na nini na bantango mosusu mabongoli ya Biblia ebongolamaka te to ebongolamaka te?",
+				"body": "Libongoli ya Linɔ́ngi ya Mosɛnzɛli esalemi na ndenge ya malamu te. Matɔnɔ misato esalisaka: {glossaryLink} mpo na kolongola maloba ya makasi, {customTranslatorLink} mpo na bamodele oyo ebongisami malamu na elobeli na yo mpe na maloba na yo, mpe {profanityAction} ya kolongola to kotya bilembo na maloba ya nsɔni.",
+				"glossaryLinkLabel": "Glossaire",
+				"customTranslatorLinkLabel": "Catégorie ya Translator personnalisé"
+			},
+			"duplicateFiles": {
+				"heading": "Ndenge nini nakoki koboya kobongola mokanda moko mbala mibale?",
+				"body": "Déclencher le workflow na {paths} oyo eyokani kaka na ba fichiers ya source-locale na yo, ndakisa {sourceGlob}. Action ezali mpe na filtre ya fichier per-trigger ntango {githubToken} etiamaki, kokitisa mosala na ba fichiers na commit ya sika."
+			},
+			"offline": {
+				"heading": "Nakoki kosala mosala na ngai na nzela ya Internet?",
+				"body": "Mpenza te — Azure AI Translator ezali bɔɔngɔ ya ntango ya kotambola. Kasi okoki kosalela {dryRunTrue} mpo na valider parsing mpe config kozanga kosala bosengi ya HTTP mpo na kobongola."
+			},
+			"node": {
+				"heading": "Version ya Node nini action etambolaka?",
+				"body": "v3 etambolaka na GitHub Actions {nodeRuntime} runtime. JavaScript ya liboke ezali compatible na Node 20, 22, mpe 24, oyo CI ezali test."
+			},
+			"dist": {
+				"heading": "Biloko ya {distDir} oyo ezali na nse ya mabele eutaka wapi?",
+				"body": "GitHub JS actions sent their compiled JS in the repository. Workflow ya {distBuild} etongaka yango lisusu nsima ya kosangisa nyonso mpo na {mainBranch} soki ekokweya, mpe {distCheck} bloquer PR oyo elingaki kokita na sortie ya kala."
+			},
+			"formats": {
+				"heading": "Bongo balolenge mosusu ya ressources?",
+				"body": "Lelo oyo: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} soki ozali na mposa ya mosusu — interface ya parser ezali moke (parse → map → apply translations → format) mpe contributions are welcome.",
+				"issueLinkLabel": "Fungola motuna"
+			}
+		}
 	},
 	"translations": {
 		"title": "Traduction",
 		"eyebrow": "Vitrine",
 		"heroTitle": "Hello dans toutes les langues",
-		"locales": "Bisika",
-		"currentlyRendered": "Lelo oyo esalemi",
-		"complete": "Esili!",
-		"pendingPrefix": "Na kozelaka libongoli ya sika ya Linɔ́ngi ya Mosɛnzɛli.",
+		"lede": "Lokasa oyo ebongolami na Resource Translator yango moko, na bopusi nyonso ya main, na minoko nyonso oyo Azure AI Translator esungaka.",
+		"localeCountLabel": "{count} bisika",
+		"statusComplete": "{translatedCount} sikoyo ebongolami — esili!",
+		"statusPending": "{translatedCount} esalemi sik'oyo — {pendingCount} kozela {workflowName} oyo elandi.",
 		"viewWorkflowRuns": "View workflow runs",
 		"filter": "Filtre",
 		"filterPlaceholder": "Koluka na monoko, na monoko to na monoko ya mboka...",
 		"source": "Liziba",
 		"machineTranslations": "Traduction automatique",
-		"translationPending": "Traduction en attente — open a translate-docs run.",
+		"translationPending": "Traduction en attente — open a {workflowName} run.",
 		"noLocales": "Esika moko te ekokani na filtre wana.",
-		"howItWorks": "Ndenge oyo yango esalaka"
+		"howItWorks": {
+			"heading": "Ndenge oyo yango esalaka",
+			"thisActionLabel": "Likambo yango moko",
+			"steps": {
+				"source": "Mokanda ya Ingɛlɛ́tɛlɛ ezali na {messagesPath}.",
+				"workflow": "Pushes that touch it kick off {workflowLink}, which runs {thisAction} against itself.",
+				"fanOut": "Action etambolaka na esika nyonso oyo esimbami na Azure AI Translator (oyo ebongisami na {configPath}) mpe ekomaka ndeko moko {messagesLocaleJson} na cible moko.",
+				"pullRequest": "Babongoli ya sika babongoli ya Biblia babongoli yango na ndenge ya malamu mpenza. Kosangisa yango ekobimisa lisusu lokasa oyo na bakarte oyo etondi."
+			}
+		},
+		"poweredBy": "Powered by Resource Translator and Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Kopesa mabɔkɔ",
 		"eyebrow": "Source ouverte",
-		"lede": "Ba rapports ya bug, bosengi ya fonctionnalité, mpe bosengi ya pull nyonso eyambami. Mosala yango ezali moke mpenza mpo na kozala na boboto epai ya bato oyo bazali kopesa mabɔkɔ mpo na mbala ya liboso."
+		"lede": "Ba rapports ya bug, bosengi ya fonctionnalité, mpe bosengi ya pull nyonso eyambami. Mosala yango ezali moke mpenza mpo na kozala na boboto epai ya bato oyo bazali kopesa mabɔkɔ mpo na mbala ya liboso.",
+		"localDevelopment": {
+			"heading": "Développement local"
+		},
+		"addingParser": {
+			"heading": "Kobakisa parser",
+			"steps": {
+				"fixture": "Bakisá mwa eloko na nse ya {testDataDir}.",
+				"implement": "Salelá {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Komisa yango na {factoryFile}.",
+				"extension": "Kobakisa extension ya fichier na {translationFileSchemes} na {finderFile}.",
+				"tests": "Write round-trip tests for parse → format and applyTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "Seuil ya couverture",
+			"body": "Config ya Jest esengaka assurance minimale. Kode ya sika esengeli ezala na seuil ya maloba + lignes likolo ya 78% mpe kosala likolo ya 90%. Bakisá biloko ya sika mpe baekzamɛ pembeni ya mbongwana na yo."
+		},
+		"docsSite": {
+			"heading": "Site ya documentation",
+			"body": "Dossier ya {docsDir} ezali projet Astro 6 + Tailwind v4. Kende {npmInstall} kuna mbala moko, na nsima {npmRunDev} mpo na kotala esika ozali. Mosala ya {pagesWorkflow} etindaka docs na GitHub Pages na fusion nyonso."
+		}
 	},
 	"changelog": {
 		"title": "Changelog",
 		"eyebrow": "Lisolo",
-		"lede": "Résumé ya ba publications ya likolo. Changelog canonique, autorité efandaka na CHANGELOG.md na ebombelo."
+		"lede": "Résumé ya ba publications ya likolo. Changelog canonique, autorité efandaka na CHANGELOG.md na ebombelo.",
+		"fullRecord": "Tala {changelogLink} mpo na lisolo mobimba.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (na développement)",
+			"labels": {
+				"breaking": "KOBUKA",
+				"resilience": "Résilience:",
+				"placeholderProtection": "Libateli ya placeholder:",
+				"perKeyOptOut": "Kopona na fungola moko:",
+				"docsAccessibility": "Accessibilité ya docs:",
+				"inlineCodeStyling": "Styling ya code en ligne:"
+			},
+			"issueLabels": {
+				"closes46": "Eteni ya # 46.",
+				"tightens16": "Mikakatano # 16",
+				"closes35": "Eteni ya # 35."
+			},
+			"items": {
+				"runtime": "ya pas {nodeRuntime} temps ({breaking}).",
+				"newInputs": "Ba entrées ya sika: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, plus bouton ya bobongoli ya liboso {textType}, {profanityAction}, {profanityMarker}, mpe {allowFallback}.",
+				"sourceLocale": "Esika ya source etindamaka mpe na Translator mpo {fromLocale} yango wana bansinga ya mikuse emonanaka te na automatique.",
+				"resilience": "{label} komeka automatique na biyano ya HTTP ya ntango mokuse ({statusCodes}) oyo ezali kokumisa mutu ya {retryAfter} ya Azure — ezongaka na bozongi nsima soki ezali te. Tunable via {maxRetries} and {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} ba tokens lokola {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} mpe ba entités HTML ekangami na ba sentinelles liboso ya kobongola mpe kozongisama na sima, yango wana Translator atika kobebisa ba placeholders i18next/Mustache/Handlebars/.NET/printf. Toggle via {protectPlaceholders}; Kende na {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} ya sika ya {noTranslatePatterns} ebwakaka bafungola oyo ekokani na bosengi ya Translator mobimba (ebombaka ba valeurs ya source ya bankombo ya marque, ba code ya erreur, etc.). Matching glob patterns against parser-level keys (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). {issue}",
+				"repoConfig": "Repo-level config via {configPath}.",
+				"glossary": "Glossaire support, step summary via {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM audit clean (0 vulnérabilités).",
+				"docsSite": "Astro + Tailwind v4 docs site with view transitions and Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. Ba glyphes ya logo ebongwani na banzela mpo ete ebeba lisusu te na bokeseni ya langi na ba arrêts ya gradient, bouton ya {backToTop} oyo ezali kotepatepa esalelaka {inert} ntango ebombami (na esika ya bouton ya {ariaHidden} oyo etikaki yango tabbable), biteni {formatsAstro} etutanaka lisusu te na ID ya batitre na yango oyo esalemi na auto-généré, bakarte misato ya locale emonisaka sikoyo ba attributs ya {lang} ya BCP-47 ({nya}, {lug}, {run}), ba étiquette ya {documentation} ya bilembo ezali disambigué na kati ya barre latérale na footer,  mpe tablo nyonso ya bansango ya {inputs}/{configuration} ezali na maloba ya botangi ya écran.",
+				"inlineCode": "{label} Docs prose {codeElement} sikoyo alati accent ya thème ya molunge/ambre — ekeseni na palette ya accent ya marque→accent oyo esalelamaka mpo na ba liens mpe mitó ya mikanda.",
+				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Tala lisolo ya git."
+		}
 	}
 }

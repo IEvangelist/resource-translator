@@ -15,7 +15,13 @@
 		"searchPlaceholder": "Ieškoti dokumentacijos...",
 		"toggleTheme": "Perjungti temą",
 		"githubRepository": "\"GitHub\" saugykla",
-		"language": "Kalba"
+		"language": "Kalba",
+		"languageTitle": "Pasirinkite kalbą",
+		"languageDescription": "Perjunkite į tą patį puslapį kita kalba.",
+		"languageSearch": "Filtruoti kalbas",
+		"languageSearchPlaceholder": "Ieškoti kalbų arba lokalės kodų...",
+		"languageNoResults": "Nė viena kalba neatitinka šio filtro.",
+		"closeLanguage": "Uždaryti kalbos parinkiklį"
 	},
 	"search": {
 		"title": "Ieškoti dokumentacijos",

@@ -18,18 +18,26 @@
 			"node": "नोड 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "गेटटेक्स्ट",
+			"json": "बासा गोनां एबा दाब्ले",
+			"ini": "{keyValue}",
+			"restext": "MUI text"
+		},
 		"features": {
 			"formats": {
 				"title": "मोनद' फाइलनि फरमेटफोर",
-				"body": "Round-trips .resx, .xliff, .po, .json, .ini, आरो .restext बाइट-स्टेबल फरमेटिंजों लोगोसे ।"
+				"body": "राउन्ड-ट्रिपफोरा बाइट-स्टेबल फरमेटिंजों {resx}, {xliff}, {po}, {json}, {ini} आरो {restext}।"
 			},
 			"config": {
 				"title": "Repo-level config",
-				"body": "ग्लब, सोदोब बाख्रि आरो Custom रावसोलायगिरि थाखोफोरखौ सोफादेरनो थाखाय .github/resource-translator.yml दोन।"
+				"body": "ग्लब, सोदोब बाख्रि आरो Custom Translator थाखोफोरखौ सोफादेरनो थाखाय {configPath} फाइलखौ दोन।"
 			},
 			"glossary": {
 				"title": "सोदोब बाख्रि-सांग्रांथि",
-				"body": "ब्रान्ड मुं आरो दिहुनथाइ सोदोबफोरखौ स्मार्ट वर्ड-बाउन्ड्री रेगेक्सजों लक खालाम जाय C++, .NET आरो लोगोफोरखौ सामलायो।"
+				"body": "ब्रान्डनि मुं आरो दिहुनथाइ सोदोबफोरखौ स्मार्ट वर्ड-बाउन्ड्री रेगेक्सजों लक खालाम जाय {cpp}, {dotnet} आरो लोगोफोरखौ सामलायो।"
 			},
 			"dryRun": {
 				"title": "ड्राइ-रान + सफ्ट-फेल",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR-फ्रेंडली आउटपुटफोर",
-				"body": "Summary-title, summary-details, आरो has-new-रावसोलायनाया थोंजोङै create-pull-request आव स्लट।"
+				"body": "{summaryTitle}, {summaryDetails} आरो {hasNewTranslations} स्लटखौ थोंजोङै create-pull-request आव दोनगोन।"
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "@azure-rest/ai-translation-text + @azure/core-rest-pipeline आव बानायनाय — 408/429/5xx आव गाव हारसिङैनो फिन नाजानाय, आखायजों रल्ड खालामनाय HTTP गैया। esbuild-bundled, audit-clean।"
+				"body": "{azureSdk} + {corePipeline} आव बानायनाय — {statusCodes} आव गाव हारसिङैनो फिन नाजानाय, आखायजों रल्ड खालामनाय HTTP गैया। {esbuild}-बन्डल, अडिट-क्लीन।"
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "ड्रप-इन वर्कफ्लो",
+			"titlePrefix": "कपि पेस्ट खालाम।",
+			"titleAccent": "रावसोलाय.",
+			"body": "मोनथाम सिक्रेट, मोनब्रै सारि, आरो नोंथांनि रेप'आ उननि पुशआव गोबां रावारि जायो।",
+			"setupLink": "आबुं सेटअपनि गेजेरजों थाबाय"
+		},
+		"cta": {
+			"title": "अट'पाइलटआव जायगायारि खालामनो थियारि नामा?",
+			"body": "One Azure AI Translator key, मोनसे workflow file. फुंखा रावसोलायगिरिया आद्रा थानायखौ सामलायो।",
+			"button": "जागायजेन्दो"
 		}
 	},
 	"getting-started": {
 		"title": "जागायजेन्नाय",
 		"eyebrow": "थि खालामनाय",
-		"lede": "मोनसे वर्कफ़्लो फाइल दाजाबदेर, बेखौ नोंथांनि Azure AI Translator क्रेडेंशियल्सआव दिन्थि, आरो बे खामानिआ — माइक्र'सफ्टनि मावख'आरि @azure-rest/ai-translation-text SDK आव बानायनाय — फुंखा-राव फुंखा फाइलफोरनि थाखाय रेप'खौ स्केन खालामगोन आरो रावसोलायनाय बिदा-फंबायफोरखौ हगारगोन।",
+		"lede": "मोनसे वर्कफ़्लो फाइल दाजाबदेर, बेखौ नोंथांनि Azure AI Translator क्रेडेन्शियल्सआव दिन्थि, आरो खामानिआ source-language फुंखा फाइलफोरनि थाखाय रेप'खौ स्केन खालामगोन आरो रावसोलायनाय बिदा-फंबायफोरखौ हगारगोन।",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "वर्कफ्लो दाजाबदेर",
-				"body": "सोरजि .github/workflows/translate.yml:"
+				"body": "सोरजि {workflowPath}:"
 			},
 			"resource": {
 				"title": "फुंखा फुंखा फाइलखौ कमिट खालाम",
-				"body": "फुंखा फाइलफोरा मुं बाहायो। . . .<sourceLocale> <ext> जथुमा। बिदिन्थि हिसाबै Greetings.en.resx आ जाबाय Greetings.fr.resx, Greetings.de.resx आरो बेबादिनो खारनायनि उनाव।"
+				"body": "फुंखा फाइलफोरा {namingConvention} convention बाहायो। बिदिन्थि {sourceFile} खारनायनि उनाव {frFile}, {deFile} आरो बायदि-बायदि जायो।"
 			},
 			"output": {
 				"title": "आउटपुटखौ नायबिजिर",
-				"body": "खेबसे वर्कफ्लो जोबखांनायनि उनाव, खामानिआ मोनथाम आउटपुटफोरखौ दिन्थियो जायखौ नोंथाङा PR बेखेवनायाव वायर खालामनो हायो: सारांश-बिमुं, सारांश-फोरमायथि, आरो गोदान-रावसोलायनाय। बेयो core.summary नि गेजेरजों साख्रिनि पेजाव मोनसे मार्कडाउन सुंद' फोरमायथिबो लिरो।"
+				"body": "खेबसे वर्कफ्लोआ जोबखांनायनि उनाव, एक्शनआ मोनथाम आउटपुटफोरखौ दिन्थियो जायखौ नोंथाङा PR बेखेवनायाव वायर खालामनो हायो: {summaryTitle}, {summaryDetails} आरो {hasNewTranslations}। बेयो साख्रिनि पेजाव मोनसे मार्कडाउन सुंद' फोरमायथिबो लिरो {coreSummary}।"
 			}
 		},
 		"nextSteps": {
 			"title": "उननि राहाफोर",
-			"configuration": ".github/resource-translator.yml जों repo-level defaults कनफिगर खालाम।",
+			"configuration": "रेप'-लेभल दिफल्टफोरखौ कनफिगर खालाम आरो {configPath}।",
 			"recipes": "मोनोरेप'स, कस्टम सोदोब बाख्रि आरो कस्टम रावसोलायगिरि थाखोफोरनि थाखाय रेसिपिफोरखौ नाय।"
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "साजायनाय",
 		"eyebrow": "YAML",
 		"heroTitle": "Repository configuration",
-		"lede": "एक्सप्रेस .github/resource-translator.yml आव खेबसे default खालामो आरो मोनफ्रोमबो workflow खौ उनमोनगिरि जानो हो। Action Inputs आ जेब्लायबो देरहायो जेब्ला मोननैबो होनाय जायो।"
+		"lede": "रिप'जिटरी कनफिग फाइलाव खेबसे default खौ एक्सप्रेस खालाम आरो मोनफ्रोमबो workflow खौ इनहेरिट खालामनो हो। Action Inputs आ जेब्लायबो देरहायो जेब्ला मोननैबो होनाय जायो।",
+		"intro": "जुदि नोंथांनो default नङै location नांगौ अब्ला {configPath} इनपुटजों लामाखौ override खालाम।",
+		"schemaHeading": "Schema",
+		"fieldReference": {
+			"heading": "फोथार फोरमायथि",
+			"caption": "कनफिगरेसन फील्ड रिफरेन्स",
+			"columns": {
+				"field": "फोथार",
+				"type": "रोखोम",
+				"notes": "लिरथाय"
+			},
+			"fields": {
+				"sourceLocale": "सेट खालामाब्ला {sourceLocale} इनपुटआव गोग्लैफिनो। लोगोसे Translator नो फरवार्ड खालामनाय जायो मानोना {fromLocale} short strings आ autodetected जाया।",
+				"toLocales": "मोनसे array एबा comma-आलादा string।",
+				"includeExclude": "Glob pattern निरपेक्ष आरो workspace-relative paths नि बेरेखायै बिजिरनाय।",
+				"glossary": "रावसोलायनायनि उननि सोदोबा बारलाङो। सोदोब-सिमा सांग्रांथि (सामलाय {cpp}, {dotnet})।",
+				"categoryId": "Azure {customTranslatorLink} केटेगरी — नोंथांनि दारिमिन/डोमेन नब (आयेन, मेडिकेल, मारकेटिं टोन बायदि बायदि)। {categoryQuery} महरै दैथाय हरबाय।",
+				"textType": "डिफल्ट टु {plain}। नोंनि फुंखा {html} बेसेनाव नंगुबै HTML खोन्दोफोर दंब्लासो बाहाय।",
+				"profanityAction": "रावसोलायनाय आउटपुटआव गाज्रि सोदोबफोरखौ माबोरै फाहामनो।",
+				"profanityMarker": "अब्लासो ओंथिगोनां {profanityAction} {marked}।",
+				"allowFallback": "जेब्ला नोंथांनि {categoryId} सरासनस्रा मडेलआव थांफिन्नायनि अनगायै थांखिनाय लोकेलनि थाखाय जेबो थिसनथाय गैया अब्ला रावसोलायनायखौ फेलें खालामनो थाखाय {false} सेट खालाम।",
+				"apiVersion": "रावसोलायगिरि REST API रोखोम। डिफल्ट टु {version}।",
+				"maxRetries": "क्षणिक HTTP फिनजाथाइफोराव बांसिनै नाजानाय नाजानाय ({statusCodes})। डिफल्ट टु {defaultRetries}। मोनफ्रोमबो खावलायनायाव गासै HTTP कलफोरा {totalCalls}।",
+				"retryBackoffMs": "जायखि जाया मोनसे बेकअफ उन्दुनायाव Cap (ms)। डिफल्ट टु {defaultBackoff}। Azure नि {retryAfter} हेडरखौ थाबथाबैनो मान होनाय जायो; नङाब्ला जिट्टर घातारि बेकअफखौ बाहायनाय जायो, बे मानखौ केप खालामनाय जायो।",
+				"protectPlaceholders": "डिफल्ट टु {true}। जेब्ला सोलिबाय थायो, {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} आरो HTML सिनायथिफोर बायदि टोकनफोरखौ रावसोलायनायनि सिगां सेन्टिनल टोकनजों सोलायनाय जायो आरो उनाव फिन बानायफिननाय जायो। जेब्ला फुंखायाव गोसोजानानै प्लेसहोल्डर महरनि सोदोबफोर थायो अब्लासो होबथा।",
+				"customPlaceholderPatterns": "उफ्रा regex patterns (delimiters गैयालासे) default placeholder set आव दाजाबदेरनाय, जेरै custom token syntax नि थाखाय {angleToken}। इनलिड रेगेक्सफोरखौ नेवसिनाय जायो।",
+				"noTranslatePatterns": "ग्लब पेटार्नफोरा पार्सर-थाखोनि keys (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF इउनिट {xliffId}, INI/restext key) जों गोरोबदोंमोन। गोरोबनाय keys फोरखौ खावलायनायनिफ्राय बोखारनाय जायो आरो बिसोरनि फुंखा मानखौ संरैखा खालामनानै बारहोनाय जायो।"
+			}
+		},
+		"loadingOrder": {
+			"heading": "ल'द अर्डार",
+			"steps": {
+				"actionInputs": "खामानिआ वर्कफ्लोनिफ्राय रोखा इनपुटफोरखौ फरायो।",
+				"config": "बेयो YAML config खौ {configPath} निफ्राय ल'ड खालामो।",
+				"precedence": "मोनफ्रोमबो रानलायनाय फोथारनि थाखाय, इनपुटआ देरहायो; नङाब्ला YAML मानखौ बाहायनाय जायो।",
+				"validation": "ज' खालामनाय मानफोरा फोरमान जायो। इनलिड एनम (जेरै {invalidEnum}) मोनसे रोखा खौरांजों मावनायखौ गोख्रै फेलें खालामो।"
+			}
+		},
+		"tone": {
+			"heading": "टोन आरो दारिमिन, गोरलै सोदोबाव।",
+			"body": "Azure AI Translator v3 API आव मोनसेल' टोन knob गैया। मोननै सेटिंआ खौसे जानानै नोंथांनो बांसिन एखे कन्ट्रल होयो:",
+			"industryLabel": "दारिमिन / डोमेन:",
+			"industryBody": "गावनि कर्पासनि सायाव फोरोंथाय {customTranslatorLink} Azure  थाखोखौ दिन्थिनो थाखाय {categoryId} बाहाय। बेयो टोन, ब्रान्ड आवाज आरो सोदोब बिहुंनि थाखाय बयनिख्रुइबो गोख्रोंसिन लिभार।",
+			"surfaceLabel": "बिखं बिजाब:",
+			"surfaceBody": "ब्रान्ड मुं आरो दिहुनथाइ सोदोबफोरखौ सोदोबजों लक खालामनो थाखाय {glossaryLink} बाहाय, आरो लाइमोन नायगिरिफोरनि थाखाय जायगायारि {profanityAction} थांखिनाय समाव गाज्रि सोदोबफोरखौ स्क्रब खालामनो थाखाय बाहाय।",
+			"glossaryLinkLabel": "सोदोब बिहुं"
+		}
 	},
 	"inputs": {
 		"title": "इनपुटफोर आरो आउटपुटफोर",
 		"eyebrow": "फोरमायथाय",
-		"lede": "मोनफ्रोमबो इनपुटखौ optional repo config फाइलावबो नाजावनाय जायो। जेब्ला मोननैबो थि जायो, action input आ देरहायो।"
+		"lede": "मोनफ्रोमबो इनपुटखौ optional repo config फाइलावबो नाजावनाय जायो। जेब्ला मोननैबो थि जायो, action input आ देरहायो।",
+		"configurationIntro": "YAML {configurationLink} आरो ल'डिं अर्डारनि थाखाय  नाय।",
+		"configurationLinkLabel": "साजायनाय",
+		"columns": {
+			"name": "मुं",
+			"default": "दिफल्ट",
+			"description": "बेखेवथि"
+		},
+		"defaults": {
+			"none": "जेबो गैया।",
+			"allSupported": "गासैबो हेफाजाब होजानाय",
+			"translatorDefaultTrue": "सैथो (रावसोलायगिरि डिफल्ट)"
+		},
+		"requiredInputs": {
+			"heading": "नांगौ जानाय इनपुटफोर",
+			"caption": "नांगौ जानाय इनपुटफोर",
+			"items": {
+				"sourceLocale": "फुंखा लोकेल (जेरै {en}) फुंखा फाइलफोरखौ नागिरनो थाखाय बाहाय जायो जेरै {sourceGlob}। लोगोसे राव सोलायगिरिनो दैथाय हरनाय {fromLocale}।",
+				"subscriptionKey": "Azure AI Translator subscription key. {secrets} जानानै थांदो।",
+				"endpoint": "रावसोलायगिरि जोबथा बिन्दो URL, जेरै {endpointUrl}।"
+			}
+		},
+		"optionalInputs": {
+			"heading": "सरासनस्रा सायखʼजानाय इनपुटफोर",
+			"caption": "सरासनस्रा सायखʼजानाय इनपुटफोर",
+			"items": {
+				"region": "रावसोलायगिरि फुंखा ओनसोल (बुहुमनां फुंखाफोरनि थाखाय नागारनाय)।",
+				"toLocales": "रावसोलायनो थाखाय जायगाफोर। JSON array ({jsonArray}) एबा comma-आलादा मानफोरखौ नाजावो।",
+				"include": "गोदान हांखोजों गावस्रानाय ग्लब महर; गोरोबनाय फाइलफोराल' रावसोलायनाय जायो।",
+				"exclude": "गोदान हांखोजों गावस्रानाय ग्लब महर; गोरोबनाय फाइलफोरखौ स्किप खालामनाय जायो (सोफादेरनायनि उनाव बाहायजायो)।",
+				"configPath": "YAML config फाइलनि लामा (workspace root जों सोमोन्दो गोनां)।",
+				"dryRun": "जेब्ला {true}, रावसोलायनाय आरो सुंद' फोरमायथि हगार नाथाय फाइलफोरखौ दालिरो।",
+				"failOnError": "जेब्ला {true}, सानस्लाबै गोरोन्थिफोरा मावनायाव फेलें जायो; जेब्ला {false}, गोरोन्थिफोरा सांग्रांथि होयो।"
+			}
+		},
+		"translatorInputs": {
+			"heading": "रावसोलायगिरि खावलायनाय इनपुटफोर",
+			"intro": "बेफोर मेपफोरा थोंजोङै Azure AI Translator v3 query parameters आव मेप खालामो। गासैबोआनो सायख'जाथाव; रावसोलायगिरिनि default आ unset जायोब्ला बाहायजायो।",
+			"caption": "रावसोलायगिरि खावलायनाय इनपुटफोर",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} केटेगरी — दारिमिन/डोमेन/टोन knob। {categoryQuery} महरै दैथायहरनाय।",
+				"textType": "{plain} एबा {html}। जेब्ला नोंथांनि फुंखा {html} बेसेनफोरा नंगुबै HTML खोन्दोफोर जायो अब्लासो बाहाय।",
+				"profanityAction": "{noAction}, {marked} एबा {deleted}। रावसोलायनायाव गाज्रि सोदोबफोरा माबोरै ओंखारो बेखौ सामलायो।",
+				"profanityMarker": "{asterisk} एबा {tag}। अब्लासो ओंथिगोनां {profanityAction} {marked}।",
+				"allowFallback": "जेब्ला {false}, रावसोलायगिरिया सरासनस्रा सिस्टेमाव गोग्लैफिननायनि सोलाय मोनसे गोरोन्थि होफिनो, जुदि नोंथांनि {categoryId} थांखिनि थाखाय जेबो थिसनथाइ गैयाब्ला।",
+				"apiVersion": "रावसोलायगिरि REST API रोखोम।"
+			}
+		},
+		"resilienceInputs": {
+			"heading": "रेजिलिएन्स आरो प्लेसहोल्डर रैखाथि",
+			"intro": "बेफोर इनपुटफोरा सामलायो जेब्ला रावसोलायगिरिया नोंथांनि खावलायनायखौ थ्रोटल खालामो अब्ला मावनाया माबोरै आखु दिन्थियो आरो बेयो माबोरै {mustache} एबा {indexZero} बायदि प्लेसहोल्डर टोकनफोरखौ रावसोलायनाय समाव गाज्रि जानायनिफ्राय रैखा खालामो।",
+			"caption": "रेजिलिएन्स आरो प्लेसहोल्डर रैखाथि इनपुटफोर",
+			"items": {
+				"maxRetries": "क्षणिक HTTP फिनजाथाइफोराव बांसिनै नाजानाय नाजानाय ({statusCodes})। मोनफ्रोमबो खावलायनायनि थाखाय HTTP कलफोरनि गासै अनजिमाया {totalCalls}।",
+				"retryBackoffMs": "जायखि जाया मोनसे बेकअफ उन्दुनायाव केप (मिलिसेकेन्डाव)। बे खामानिआ Azure नि {retryAfter} फिन्नाय हेडरखौ थि समाव मान होयो; नङाब्ला बेयो बे बेसेनाव केप खालामजानाय जिटर्ड एक्सपोनेन्शियेल बेकअफखौ बाहायो।",
+				"protectPlaceholders": "जेब्ला {true} (default) जायो, अब्ला प्लेसहोल्डर जेरै {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} आरो HTML सिनायथिफोरखौ रावसोलायनायनि सिगां सेन्टिनेल टोकनजों सोलायनाय जायो आरो उनाव बानायफिननाय जायो। जेब्ला नोंथांनि फुंखायाव गोसोजानानै सोदोबारि प्लेसहोल्डर-महरनि टेक्स्ट थायो जायखौ रावसोलायनाय जानांगौ अब्लासो होबथा।",
+				"customPlaceholderPatterns": "newline-separated regexes (delimiters गैयालासे) default placeholder set आव दाजाबदेरबाय, जेरै custom token syntax नि थाखाय {angleToken}।",
+				"noTranslatePatterns": "गोदान लाइन-आलादा ग्लब महरफोरा पार्सर-थाखोनि keys (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF इउनिट {xliffId}, INI/restext key) जों गोरोबदोंमोन। गोरोबनाय keys फोरखौ रावसोलायगिरिनि खावलायनायनिफ्राय बोखारनाय जायो आरो बिसोरनि फुंखा मानखौ थिनानै दोननानै थाङो।"
+			}
+		},
+		"outputs": {
+			"heading": "आउटपुटफोर",
+			"caption": "आउटपुटफोर",
+			"items": {
+				"summaryTitle": "सुंद' PR-बिमुं-लोगो गोनां सुंद' फोरमायथि, जेरै {summaryExample}।",
+				"summaryDetails": "PR आफाद एबा साख्रिनि सुंदʼ फोरमायथिनि थाखाय साबजाथाव मार्कडाउन सुंदʼ।",
+				"hasNewTranslations": "{trueString} जेब्ला मोनसे एबा मोनसेनि बांसिन गोदान रावसोलायनाय सोमजिदोंमोन।"
+			}
+		}
 	},
 	"formats": {
 		"title": "फाइलनि फरमेटफोर",
 		"eyebrow": "फोरमायथाय",
 		"heroTitle": "हेफाजाब होजानाय फाइल फरमेटफोर",
-		"lede": "मोनद' राउन्ड-ट्रिपेबल फुंखा फरमेट। बे खामानिया मोनफ्रोमबो source-locale फाइलखौ फरायो, मानफोरखौ रावसोलायनाय खालामो आरो थांखिजानाय लोकेल मोनफ्रोमबो बिदा-फंबाय लिरो।"
+		"lede": "मोनद' राउन्ड-ट्रिपेबल फुंखा फरमेट। बे खामानिया मोनफ्रोमबो source-locale फाइलखौ फरायो, मानफोरखौ रावसोलायनाय खालामो आरो थांखिजानाय लोकेल मोनफ्रोमबो बिदा-फंबाय लिरो।",
+		"namingConvention": "गासिबो फाइलाव मुं दोनग्रा कनभेन्सन {namingConvention} बाहायो।",
+		"learnMore": "गोबां मिथि",
+		"items": {
+			"resx": {
+				"blurb": "XML-based .NET फुंखा फाइलफोर। कमेन्ट आरो मेटाडाटाखौ संरैखा खालामनानै मोनफ्रोमबो {dataValue} नोडनि सिंनि टेक्स्टखौ रावसोलायनाय खालामो।",
+				"specLabel": "माइक्रसफ्ट लर्न — .resx फाइलफोराव फुंखा"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 दकुमेन्टफोर। मोनफ्रोमबो {source} रावसोलायनाय खालामो आरो फिथायखौ सोमोन्दोगोनां {target} लिरनानै लोकेलनि थाखाय {trgLang} थि खालामो।",
+				"specLabel": "OASIS XLIFF 2.0 स्पेसिफिकेसन"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object files. मोनफ्रोमबो {msgid} / {msgidPlural} {msgstr} / {msgstrPlural} महराव राव दानस्लायो।",
+				"specLabel": "GNU gettext — PO file format"
+			},
+			"json": {
+				"blurb": "गोसो बादि JSON फाइलफोर। Nested मुवाफोरखौ रावसोलायनायनि थाखाय {delimiter} delimiter जों दाब्ले खालामनाय जायो, बेनि उनाव output आव फिन नेस्ट खालामनाय जायो। dotted keys ({dottedKey}) सोदोबजों संरैखा खालामना दोनजादों।",
+				"specLabel": "JSON स्पेसिफिकेसन (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "गोरलै {keyValue} फाइलफोर (Win32-style INI एबा जायखिजाया फ्लेट कनफिगरेसन)। खोन्दो हेडर आरो बिबुंथिफोरा संरैखा जानानै दं।",
+				"specLabel": "Wikipedia आव INI फाइलनि महर"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI text resources — फ्लेट {keyValue} ज'राफोरखौ बिजाबनि लोगो महरै बाहायनाय {resx}।",
+				"specLabel": "माइक्रसफ्ट MUI नि फोरमायथि"
+			}
+		},
+		"roundTrip": {
+			"heading": "राउन्ड-ट्रिप गेरेन्टि",
+			"body": "आनजाद सुइटआ मोनफ्रोमबो फरमेटनि थान्दैयारि फिक्स्चरफोरनि थाखाय बाइट-फर-बाइट राउन्ड-ट्रिपिंखौ फोरमान खालामो। जुदि नोंथांनि codebase आव मोनसे format quirk आ राउन्ड-ट्रिपिं सिफायोब्ला, अननानै खमसिन नमुनाजों {issueLink}।",
+			"issueLinkLabel": "मोनसे आयदाखौ बेखेव।"
+		}
 	},
 	"recipes": {
 		"title": "रेसिपिफोर",
 		"eyebrow": "संनाय-खावनायनि बिजाब",
-		"lede": "शिपिं रावसोलायनायनि थाखाय सरासनस्रा रोखोमफोर: मोनोरेप'स, सोदोब बिहुं, कस्टम थाखोफोर, ड्राइ रान आरो टोन कन्ट्रल।"
+		"lede": "शिपिं रावसोलायनायनि थाखाय सरासनस्रा रोखोमफोर: मोनोरेप'स, सोदोब बिहुं, कस्टम थाखोफोर, ड्राइ रान आरो टोन कन्ट्रल।",
+		"sections": {
+			"pullRequest": {
+				"heading": "मोनफ्रोम राननि उनाव पुल खावलायनायखौ खेव।"
+			},
+			"monorepo": {
+				"heading": "Monorepos: स्कोप रावसोलायनाय मोनफ्रोमबो पेकेजआव"
+			},
+			"glossary": {
+				"heading": "ब्रान्ड मुं आरो दिहुनथाइ सोदोबफोरनि थाखाय सोदोब बाख्रि",
+				"intro": "रेप'आव {configPath} दोनथ':",
+				"afterLabel": "उनाव",
+				"body": "सोदोब बिहुंनि सोदोबफोरखौ रावसोलायनाय {after} बाहायनाय जायो, बेनिखायनो मेसिनजों रावसोलायनाय आउटपुटआ नोंथांनि मोजां मोननाय ब्रान्डिंखौ लाखियो, जेब्ला मडेलआ बेखौ सिन'निमनि थाखाय सोलायदों।"
+			},
+			"customCategory": {
+				"heading": "Custom Translator category (दारिमिन / domain)",
+				"body": "मोनसे कर्पासआव मोनसे Azure {customTranslatorLink} थाखोखौ फोरोंथाय हो जाय नोंथांनि दारिमिननि सोदोब बिहुं आरो टोन (आयेन, मेडिकेल, मार्केटिं, सिंनि-इन्जिनियारिं, बायदि बायदि) खौ आवग्रियो आरो बेनि IDखौ {categoryId} गेजेरजों पास खालाम। बेयो Azure नि बयनिख्रुयबो गोख्रोंसिन टोन लिभार होयो।"
+			},
+			"tone": {
+				"heading": "टोन कन्ट्रल + स्ट्रिक्ट फॉलबेक",
+				"body": "मोनसे Custom Translator {categoryId} खौ {profanityAction} आरो {allowFallbackFalse} जों सरजाबना मोनसे गोरोबनाय गारां बाहाय आरो जुदि सायख'जानाय थाखोयाव नोंथांनि थांखिजानाय जायगाफोरनि मोनसेनि थाखाय थिसनथाइ गैयाब्ला वर्कफ्लोखौ फेलें खालाम।"
+			},
+			"dryRun": {
+				"heading": "वर्कफ्लोखौ अन खालामनायनि सिगां ड्राइ रान खालाम",
+				"body": "बे खामानिआ दासिमबो सुंद' फोरमायथि आरो मोनसे आगान सुंद' फोरमायथि ओंखारो, नाथाय जेबो फाइलफोर लिरनाय जायाखै। जेब्ला नोंथाङा पुनरावृत्ति {failOnErrorFalse} अब्ला मोनफ्रोमबो आयदाखौ मोनसे सांग्रांथि महरै दिन्थिनो थाखाय जोंजों ज' खालाम।"
+			}
+		}
 	},
 	"faq": {
 		"title": "खनले-खनले सोंनाय सोंथिफोर",
 		"eyebrow": "मदद",
 		"heroTitle": "गले गले सोंजानाय सोंलुफोर",
-		"lede": "बे खामानिखौ नाजावनाय समाव गोबां समावनो नुजानाय सोंलुफोरनि गोख्रै फिन्नाय।"
+		"lede": "बे खामानिखौ नाजावनाय समाव गोबां समावनो नुजानाय सोंलुफोरनि गोख्रै फिन्नाय।",
+		"questions": {
+			"azure": {
+				"heading": "एक्शनआ Azure जों माबोरै रायज्लायो?",
+				"body": "माइक्र'सफ्टनि मावख'आरि {azureSdkLink} SDK नि गेजेरजों, {corePipelineLink}। बेयो नोंथांखौ {statusCodes}, टाइप खालामनाय खावलायनाय आरो फिननाय मडेलफोर, आरो अथेन्टिकेसन हेडर हेन्डलिंगखौ बेसेन होनाङा जासे नाजायो - गासैबो जाय मोनसे आखायजों रोल खालामनाय {axios} कल जायोमोन। पाब्लिक एक्सन बिखं (इनपुट, आउटपुट, फाइल आउटपुट) सोलाया।"
+			},
+			"tone": {
+				"heading": "रावसोलायनाया माब्लाबा माब्लाबा अफ-ब्रान्ड एबा अफ-टोन मानो जायो?",
+				"body": "मेसिन रावसोलायनाया सरासनस्रा थांखिनि मडेलआव default जायो। मोनथाम knobs मदद: हार्ड टर्म ओवरराइडनि थाखाय मोनसे {glossaryLink}, नोंथांनि टोन आरो सोदोब बिहुंनि सायाव फोरोंथाय होनाय फाइन-ट्यून मडेलफोरनि थाखाय मोनसे {customTranslatorLink}, आरो गाज्रि सोदोबफोरखौ स्क्रब एबा फ्लेग खालामनो {profanityAction}।",
+				"glossaryLinkLabel": "सोदोब बिहुं",
+				"customTranslatorLinkLabel": "कस्टम रावसोलायगिरि थाखो"
+			},
+			"duplicateFiles": {
+				"heading": "मोनसे फाइलखौनो आं माबोरै खेबनै रावसोलायनायनिफ्राय बारग'नो?",
+				"body": "नोंथांनि source-locale फाइलफोरखौल' गोरोबनाय {paths} वर्कफ्लोखौ ट्रिगर खालाम, जेरै {sourceGlob}। जेब्ला {githubToken} सेट जायो अब्ला खामानिआ गावनि पर-ट्रिगर फाइल फिल्टारखौबो सोफायो, गोदानसिन कमिटआव फाइलफोराव खामानिखौ गुसेब खालामो।"
+			},
+			"offline": {
+				"heading": "आं बे खामानिखौ अफलाइननि गेजेरजों सालायनो हागोन नामा?",
+				"body": "नंगुबै नङा — Azure AI Translator आ रनटाइम ब्रेन । नाथाय नोंथाङा रावसोलायनायनि थाखाय जेबो HTTP खावलायनाय खालामालासेनो पार्सिं आरो config खौ भेलिडेट खालामनो {dryRunTrue} जों खारनो हायो।"
+			},
+			"node": {
+				"heading": "माबे Node version आव action आ सालायो?",
+				"body": "v3 आ GitHub Actions {nodeRuntime} रनटाइमाव सालायो। बन्डल खालामजानाय जाभास्क्रिप्टआ Node 20, 22 आरो 24 जों गोरोबनाय, जाय CI आनजाद नायजायो।"
+			},
+			"dist": {
+				"heading": "बन्डल खालामनाय {distDir} बबेनिफ्राय फैयो?",
+				"body": "GitHub JS नि खामानिफोरा गावसोरनि जथायनाय JS खौ दोनथुमग्रायाव दैथायहरो। {distBuild} वर्कफ़्लोआ मोनफ्रोमबो मर्जनि उनाव बेखौ बानायफिनो {mainBranch} जुदि बेयो बोहैगोन नामा, आरो {distCheck} PRs खौ ब्लक खालामो जाय आउट-ऑफ-डेट आउटपुटखौ लैंड खालामगोन।"
+			},
+			"formats": {
+				"heading": "गुबुन फुंखा फरमेटफोरनि सोमोन्दै मा?",
+				"body": "दिनै: {resx}, {xliff}, {po}, {json}, {ini}, {restext}। {issueLink} नोंथांनो गुबुन मोनसेनि गोनांथि जायोब्ला - पार्सार इन्टारफेसआ फिसा (मानसावगारि → पार्स → रावसोलायनायखौ → फरमेटखौ बाहाय) आरो बिहोमाफोरखौ बरायगोन।",
+				"issueLinkLabel": "मोनसे आयदा बेखेव"
+			}
+		}
 	},
 	"translations": {
 		"title": "रावसोलायनाय",
 		"eyebrow": "दिन्थिफुंनाय",
 		"heroTitle": "गासिबो रावाव नमस्कार।",
-		"locales": "जायगाफोर",
-		"currentlyRendered": "आथिखालाव रेन्डर खालामजानाय",
-		"complete": "आबुं !",
-		"pendingPrefix": "उननि रावसोलायनाय-docs खारनायखौ आद्रा दं।",
+		"lede": "बे पेजखौ Resource Translator आ गावनो गाहाय फारसे मोनफ्रोमबो नारसिन्नायाव Azure AI Translator हेफाजाब होनाय मोनफ्रोमबो रावाव राव दानस्लायनाय जादों।",
+		"localeCountLabel": "{count} थावनिफोर",
+		"statusComplete": "{translatedCount} दा रेन्डर्ड जादों — आबुं !",
+		"statusPending": "{translatedCount} दा रेंडर खालामनाय जादों — {pendingCount} {workflowName} रानसिम आद्रा दं।",
 		"viewWorkflowRuns": "वर्कफ्लो राननायखौ नाय।",
 		"filter": "फिल्टार",
 		"filterPlaceholder": "राव, कड एबा थागिबि मुंजों नागिर...",
 		"source": "फुंखा",
 		"machineTranslations": "मेसिननि रावसोलायनायफोर",
-		"translationPending": "रावसोलायनाया आद्रा दं — मोनसे रावसोलायनाय-docs run खुलि।",
+		"translationPending": "रावसोलायनाया आद्रा दं — मोनसे {workflowName} खुलि।",
 		"noLocales": "रावबो लोकेलफोरा बै फिल्टारजों गोरोबा।",
-		"howItWorks": "बेयो माबोरै खामानि मावो"
+		"howItWorks": {
+			"heading": "बेयो माबोरै खामानि मावो",
+			"thisActionLabel": "बे खामानिआनो",
+			"steps": {
+				"source": "इंराजि source file आ {messagesPath}।",
+				"workflow": "बे दांनायखौ नाथ्रोदना {workflowLink} जोनो, जाय गावनो {thisAction} खारलाङो।",
+				"fanOut": "मोनफ्रोमबो Azure AI रावसोलायगिरिजों हेफाजाब होजानाय लोकेल ({configPath} आव महर होनाय) आव एक्शन फैन खालामो आरो मोनफ्रोमबो थांखियाव बिदा-फंबाय {messagesLocaleJson} लिरो।",
+				"pullRequest": "गोदान रावसोलायनायजों लोगोसे मोनसे पुल खावलायनायखौ बेखेवनाय जायो। बेखौ ज' खालामोब्ला बे पेजखौ आबुं खालामनाय कार्डफोरजों फिन फोसावफिनगोन।"
+			}
+		},
+		"poweredBy": "फुंखा रावसोलायगिरि आरो Azure AI रावसोलायगिरिनि गेजेरजों पावर्ड खालामजानाय।"
 	},
 	"contributing": {
 		"title": "बिहोमा होनाय",
 		"eyebrow": "उदां फुंखा",
-		"lede": "बग रिपर्ट, फीचर खावलायनाय, आरो पुल खावलायनायफोरखौ गासैखौबो बरायगोन। गिबि खेब बिहोमा होग्राफोरनि थाखाय लोगोआरि जानो थाखाय मावनाया थोजासे फिसा।"
+		"lede": "बग रिपर्ट, फीचर खावलायनाय, आरो पुल खावलायनायफोरखौ गासैखौबो बरायगोन। गिबि खेब बिहोमा होग्राफोरनि थाखाय लोगोआरि जानो थाखाय मावनाया थोजासे फिसा।",
+		"localDevelopment": {
+			"heading": "ओनसोलारि जौगाखांनाय"
+		},
+		"addingParser": {
+			"heading": "मोनसे पार्सार दाजाबदेरनाय",
+			"steps": {
+				"fixture": "बेनि सिङाव मोनसे फिक्स्चर {testDataDir}।",
+				"implement": "{parserInterface} बाहाय ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap})।",
+				"register": "बेखौ दानाव रेजिस्टार {factoryFile}।",
+				"extension": "बेयाव {translationFileSchemes} आव फाइल एक्सटेन्सन {finderFile}।",
+				"tests": "पार्स → फरमेटनि थाखाय राउन्ड-ट्रिप टेस्ट लिर आरो Applications Translations।"
+			}
+		},
+		"coverage": {
+			"heading": "कभारेज थ्रेसहोल्ड",
+			"body": "Jest config आ खमसिन कभारेजखौ बाहायो। गोदान कडआ स्टेटमेन्टफोर + हांखोनि सिमा 78% नि गोजौआव लाखिनांगोन आरो फांसनफोरखौ 90% नि गोजौआव लाखिनांगोन। नोंथांनि सोलायनायजों लोगोसे फिक्स्चर आरो आनजादफोर दाजाबदेर।"
+		},
+		"docsSite": {
+			"heading": "दकुमेन्ट खालामनाय जायगा",
+			"body": "{docsDir} फल्डारआ मोनसे Astro 6 + Tailwind v4 प्रजेक्ट। बेयाव खेबसे {npmInstall}, बेनि उनाव {npmRunDev} नाय। {pagesWorkflow} वर्कफ़्लोआ मोनफ्रोमबो मर्जआव GitHub Pages आव docs दैथायहरो।"
+		}
 	},
 	"changelog": {
 		"title": "चेंजलग",
 		"eyebrow": "जारिमिन",
-		"lede": "फोसावथायनि गोजौ थाखोनि सुंदʼ फोरमायथि। बिबुंसारनि, मोनथाय गोनां सोलायनाया बाख्रियाव CHANGELOG.md थायो।"
+		"lede": "फोसावथायनि गोजौ थाखोनि सुंदʼ फोरमायथि। बिबुंसारनि, मोनथाय गोनां सोलायनाया बाख्रियाव CHANGELOG.md थायो।",
+		"fullRecord": "आबुं रेकर्डनि {changelogLink} नाय।",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (जौगानाय)",
+			"labels": {
+				"breaking": "सिफायनाय",
+				"resilience": "गोहो गोरा:",
+				"placeholderProtection": "प्लेसहोल्डर रैखाथि:",
+				"perKeyOptOut": "मोनफ्रोम key opt-out:",
+				"docsAccessibility": "Docs मोन्नो हाथावना:",
+				"inlineCodeStyling": "इनलाइन कड स्टाइलिं:"
+			},
+			"issueLabels": {
+				"closes46": "#46 खौ बन्द' खालामो।",
+				"tightens16": "#16 खौ गोख्रों खालामो।",
+				"closes35": "#35 खौ बन्द' खालामो।"
+			},
+			"items": {
+				"runtime": "{nodeRuntime} रनटाइम ({breaking}) आव बाम्बार जादों।",
+				"newInputs": "गोदान इनपुटफोर: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, लोगोसे जौगा थाखोनि रावसोलायगिरि knobs {textType}, {profanityAction}, {profanityMarker} आरो {allowFallback}।",
+				"sourceLocale": "source locale आबो दायो Translator निसिम दैथायहर जायो मानोना {fromLocale} गुसुं strings आ गाव हारसिङैनो हमदांनो हाया।",
+				"resilience": "Azure नि {retryAfter} header खौ मान होनानै क्षणिक HTTP फिनजाथाय ({statusCodes}) आव {label} गाव हारसिङैनो फिन नाजानाय - गैयैयाव जिटर्ड एक्सपोनेन्शियेल बेकअफआव गोग्लैफिनो। {maxRetries} आरो {retryBackoffMs}। {issue}",
+				"placeholderProtection": "{label} टोकन जेरै {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} आरो HTML सिनायथिफोरखौ रावसोलायनायनि सिगां सेन्टिनेलआव बोननाय जायो आरो उनाव फिन बानायफिननाय जायो, बेनिखायनो रावसोलायगिरिया i18next/Mustache/Handlebars/.NET/printf placeholders खौ होबथायो। {protectPlaceholders} गेजेरजों टगल खालाम; {customPlaceholderPatterns} बाराय। {issue}",
+				"perKeyOptOut": "{label} गोदान {noTranslatePatterns} इनपुटआ रावसोलायगिरि खावलायनायनिफ्राय गोरोबनाय key फोरखौ आबुङै ड्रप खालामो (ब्रान्ड मुं, गोरोन्थि कड बायदिनि थाखाय फुंखा मानफोरखौ रैखा खालामो)। पार्सर-लेभल keys (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF इउनिट {xliffId}, INI/restext key ) जों ग्लोब महरखौ गोरोबहोयो। {issue}",
+				"repoConfig": "{configPath} नि गेजेरजों रेप'-लेभेल कनफिग।",
+				"glossary": "सोदोब बिहुंनि हेफाजाब, आगाननि गेजेरजों सुंद' {coreSummary}।",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "एनपिएम अडिट साफा (0 लोरबांथि)।",
+				"docsSite": "Astro + Tailwind v4 docs site नुथाय सोलायनाय आरो एक्सप्रेसिभ कडजों लोगोसे।",
+				"docsAccessibility": "{label} WCAG 2.1 AA पास। लोगो ग्लिफफोरा पाथफोराव सोलायो जाहाथे बिसोरो ग्रेडिएन्ट स्टपफोरनि बेरेखायै गाब-कन्ट्रास्टखौ फेलें खालामा, फ्लोटिंग {backToTop} बटना थाखोमानाय समाव {inert} बाहायो (मोनसे {ariaHidden} टगलनि सोलायै जाय बेखौ tabbable खालामदोंमोन), {formatsAstro} खोन्दोफोरा दा गावसोरनि auto-generated heading IDs जों सौग्रावनाय नङा, मोनथाम लोकेल कार्डफोरा दा BCP-47-valid {lang} आखुथायफोरखौ दिन्थियो ({nya}, {lug}, {run}), डुप्लिकेट {documentation} लैंडमार्क लेबेलफोरा साइडबार आरो फुटारनि गेजेराव रोखा नङा,  आरो {inputs}/{configuration} आव मोनफ्रोमबो data table आ screen reader केप्सन होयो।",
+				"inlineCode": "{label} docs prose {codeElement} दायो वार्म/एम्बर थीम एक्सेंट गानो- लिंकफोर आरो हेडिंफोरनि थाखाय बाहायजानाय ब्रान्ड→एक्सेंट पेलेटनिफ्राय गुबुन।",
+				"automation": "Dependabot auto-merge, CodeQL स्केनिं, CI matrix।"
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "गिट जारिमिनखौ नाय।"
+		}
 	}
 }

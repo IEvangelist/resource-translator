@@ -15,7 +15,13 @@
 		"searchPlaceholder": "Kërko dokumentacionin...",
 		"toggleTheme": "Ndërroni temën",
 		"githubRepository": "Depoja e GitHub",
-		"language": "Gjuha"
+		"language": "Gjuha",
+		"languageTitle": "Zgjidhni gjuhën tuaj",
+		"languageDescription": "Kaloni në të njëjtën faqe në një gjuhë tjetër.",
+		"languageSearch": "Filtroni gjuhët",
+		"languageSearchPlaceholder": "Kërko gjuhët ose kodet e lokaliteteve...",
+		"languageNoResults": "Asnjë gjuhë nuk përputhet me atë filtër.",
+		"closeLanguage": "Mbyll zgjedhësin e gjuhës"
 	},
 	"search": {
 		"title": "Kërko dokumentacionin",

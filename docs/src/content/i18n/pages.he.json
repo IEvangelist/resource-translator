@@ -18,18 +18,26 @@
 			"node": "צומת 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "מקונן או שטוח",
+			"ini": "{keyValue}",
+			"restext": "טקסט MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "שישה פורמטים של קבצים",
-				"body": "נסיעות הלוך ושוב .resx, .xliff, .po, .json, .ini ו-.restext עם עיצוב יציב בתים."
+				"body": "נסיעות הלוך-חזור {resx}, {xliff}, {po}, {json}, {ini} ו-{restext} עם עיצוב יציב בתים."
 			},
 			"config": {
 				"title": "קונפיגורציה ברמת רפו",
-				"body": "השאירו קובץ .github/resource-translator.yml כדי לכלול גלובים, מילונים וקטגוריות מתרגמים מותאמים אישית."
+				"body": "השאירו קובץ {configPath} לכלול גלובים, מילונים וקטגוריות מתרגמים מותאמים אישית."
 			},
 			"glossary": {
 				"title": "מודע למילון",
-				"body": "נעול שמות מותגים ומונחי מוצר עם רגקס חכם עם גבול מילים שמטפל ב-C++, .NET וחברים."
+				"body": "נעל את שמות המותגים ומונחי המוצר עם רגקס חכם עם גבול מילים שמטפל {cpp}, {dotnet} וחברים."
 			},
 			"dryRun": {
 				"title": "ריצה יבשה + כישלון רך",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "פלטים ידידותיים ליחסי ציבור",
-				"body": "כותרת סיכום, סיכום פרטים, ו-have-new-translates משתלבים ישירות ב-create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails} ו-{hasNewTranslations} משתלבים ישירות ל-create-pull-request."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "מבוסס על @azure-rest/ai-translation-text + @azure/core-rest-pipeline — ניסיונות אוטומטיים ב-408/429/5xx, ללא HTTP ידני. עם ESBUILD-Bundle, נקי לביקורת."
+				"body": "מבוסס על {azureSdk} + {corePipeline} — ניסיונות אוטומטיים על {statusCodes}, ללא HTTP ידני. {esbuild}, נקי כמו ביקורת."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "זרימת עבודה ב-Drop-in",
+			"titlePrefix": "קיבלתי. הדבקה.",
+			"titleAccent": "תרגם.",
+			"body": "שלושה סודות, ארבעה שורות, והמאגר שלך הוא רב-לשוני בדחיפה הבאה.",
+			"setupLink": "עברו על כל ההגדרה"
+		},
+		"cta": {
+			"title": "מוכן ללוקליז על אוטומט?",
+			"body": "מפתח Azure AI Translator אחד, קובץ workflow אחד. Resource Translator מטפל בשאר.",
+			"button": "תתחילו"
 		}
 	},
 	"getting-started": {
 		"title": "התחלה",
 		"eyebrow": "הכנה",
-		"lede": "הוסף קובץ זרימת עבודה, כוון אותו לפרטי ה-Azure AI Translator שלך, והפעולה — שנבנתה על SDK הרשמי של מיקרוסופט @azure-rest/ai-translation-text — תסרוק את המאגר אחר קבצי משאבים בשפת המקור ותשלח אחים מתורגמים.",
+		"lede": "הוסף קובץ זרימת עבודה, כוון אותו לאישורי Azure AI Translator שלך, והפעולה תסרוק את המאגר לקבצי משאבים בשפת המקור ותשחרר אחים מתורגמים.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "הוסף את זרימת העבודה",
-				"body": "צור .github/workflows/translate.yml:"
+				"body": "צור {workflowPath}:"
 			},
 			"resource": {
 				"title": "commit קובץ משאב מקור",
-				"body": "קבצי משאבים משתמשים בשם. <sourceLocale>. <ext> מוסד. לדוגמה, Greetings.en.resx הופך ל-Greetings.fr.resx, Greetings.de.resx, וכן הלאה לאחר ריצה."
+				"body": "קבצי משאבים משתמשים בקונבנציה {namingConvention}. לדוגמה, {sourceFile} הופך ל-{frFile}, {deFile}, וכן הלאה אחרי ריצה."
 			},
 			"output": {
 				"title": "בדוק את הפלט",
-				"body": "לאחר סיום תהליך העבודה, הפעולה חושפת שלושה פלטים שניתן לשלב לתיאור יחסי ציבור: כותרת סיכום, סיכום פרטים ויש תרגומים חדשים. הוא גם כותב סיכום של Markdown בדף המשרות דרך core.summary."
+				"body": "לאחר סיום תהליך העבודה, הפעולה חושפת שלושה פלטים שניתן לחבר לתיאור PR: {summaryTitle}, {summaryDetails} ו-{hasNewTranslations}. הוא גם כותב סיכום Markdown בדף המשרות דרך {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "הצעדים הבאים",
-			"configuration": "הגדר ברירת מחדל ברמת ריפו עם .github/resource-translator.yml.",
+			"configuration": "הגדר ברירת מחדל ברמת ריפו עם {configPath}.",
 			"recipes": "ראו מתכונים למונורפואים, מילונים מותאמים אישית וקטגוריות מתרגמים מותאמים אישית."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "תצורה",
 		"eyebrow": "YAML",
 		"heroTitle": "תצורת מאגר",
-		"lede": "Express עושה ברירת מחדל פעם אחת ב-.github/resource-translator.yml ומאפשר לכל זרימת עבודה לרשת אותם. קלטי פעולה תמיד מנצחים כאשר שניהם ניתנים."
+		"lede": "Express עושה ברירת מחדל פעם אחת בקובץ הקונפיגורציה של המאגר ומאפשרת לכל זרימת עבודה לרשת אותם. קלטי פעולה תמיד מנצחים כאשר שניהם ניתנים.",
+		"intro": "עקף את הנתיב עם קלט {configPath} אם אתה צריך מיקום לא ברירת מחדל.",
+		"schemaHeading": "סכימה",
+		"fieldReference": {
+			"heading": "התייחסות לשדה",
+			"caption": "הפניה לשדה קונפיגורציה",
+			"columns": {
+				"field": "שדה",
+				"type": "סוג",
+				"notes": "הערות"
+			},
+			"fields": {
+				"sourceLocale": "הוא חוזר לקלט {sourceLocale} אם לא מוגדר. גם הועברתי למתרגם {fromLocale} כך שמחרוזות קצרות לא יתגלו אוטומטית.",
+				"toLocales": "או מערך או מחרוזת מופרדת בפסיק.",
+				"includeExclude": "דפוסי גלוב הוערכו מול מסלולים אבסולוטיים ויחסיים למרחבי עבודה.",
+				"glossary": "מונחים לאחר התרגום עוקפים. מודע לגבולות מילים (מטפל ב-{cpp}, {dotnet}).",
+				"categoryId": "קטגוריית Azure {customTranslatorLink} — תחום התעשייה/הדומיין שלך (משפטי, רפואי, שיווקי וכו'). נשלח כ-{categoryQuery}.",
+				"textType": "ברירת המחדל היא {plain}. השתמש {html} רק אם ערכי המשאבים שלך מכילים פרגמנטים אמיתיים של HTML.",
+				"profanityAction": "איך להתייחס למונחים גסים בתוצרים מתורגמים.",
+				"profanityMarker": "רק כש {profanityAction} {marked}.",
+				"allowFallback": "הגדר {false} להיכשל בתרגום כשאין {categoryId} שלך פריסה למיקום יעד במקום לחזור למודל הכללי.",
+				"apiVersion": "גרסת API של REST למתרגם (REST). ברירת המחדל היא {version}.",
+				"maxRetries": "ניסיונות ניסיון חוזרים מרביים על תגובות HTTP חולפות ({statusCodes}). ברירת המחדל היא {defaultRetries}. סך כל קריאות HTTP לכל בקשה הוא {totalCalls}.",
+				"retryBackoffMs": "קאפ (ms) בכל שינת Backoff בודדת. ברירת המחדל היא {defaultBackoff}. הכותרת {retryAfter} של אזור מכובדת בדיוק כשהיא נוכחת; אחרת משתמשים בחזרה מעריכית רועדת, שמוגבלת לערך זה.",
+				"protectPlaceholders": "ברירת המחדל היא {true}. כאשר פועלים, טוקנים כמו {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ו-HTML מוחלפים בטוקנים של סנטינל לפני התרגום ומשוחזרים לאחר מכן. בטל רק כאשר המקור מכיל בכוונה מילוליים בצורת משאבים זמניים.",
+				"customPlaceholderPatterns": "תבניות regex נוספות (ללא מגבילים) נוספו לסט הזמני ברירת המחדל, למשל {angleToken} לתחביר טוקנים מותאם אישית. רגקסים לא תקפים מתעלמים מהם.",
+				"noTranslatePatterns": "תבניות גלוב התאימו למפתחות ברמת המנתח (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, מפתח INI/restext). מפתחות תואמים נשלטים מהבקשה ומועברים עם ערך המקור שלהם נשמר."
+			}
+		},
+		"loadingOrder": {
+			"heading": "סדר הטעינה",
+			"steps": {
+				"actionInputs": "הפעולה קוראת קלטים מפורשים מתהליך העבודה.",
+				"config": "הוא טוען את קונפיגורציית ה-YAML מ-{configPath}.",
+				"precedence": "על כל שדה משותף, הקלט מנצח; אחרת משתמשים בערך YAML.",
+				"validation": "הערכים הממוזגים מאומתים. אנומים לא תקינים (למשל {invalidEnum}) גורמים לפעולה להיכשל במהירות עם הודעה ברורה."
+			}
+		},
+		"tone": {
+			"heading": "טון ותעשייה, במונחים פשוטים",
+			"body": "ל-Azure AI Translator v3 API אין כפתור טון יחיד. שתי הגדרות משתלבות כדי לתת לך את רוב השליטה:",
+			"industryLabel": "תעשייה / תחום:",
+			"industryBody": "השתמש {categoryId} כדי להצביע על קטגוריית Azure {customTranslatorLink} שמאומנת על קורפוס משלך — משפטי, טכני, רפואי, שיווקי או כל דבר אחר. זהו המנוף החזק ביותר לטון, קול מותג ואוצר מילים.",
+			"surfaceLabel": "טקסט שטחי:",
+			"surfaceBody": "השתמשו {glossaryLink} כדי לנעול שמות מותגים ומונחי מוצר במילה, והשתמשו {profanityAction} כדי למחוק מונחים גסים כאשר מכוונים ללוקליזציה לקהלים צעירים.",
+			"glossaryLinkLabel": "מילון מונחים"
+		}
 	},
 	"inputs": {
 		"title": "קלטים ויציאות",
 		"eyebrow": "מקור",
-		"lede": "כל קלט מתקבל גם בקובץ הקונפיגורציה של המאגר האופציונלי. כאשר שניהם מוגדרים, קלט הפעולה מנצח."
+		"lede": "כל קלט מתקבל גם בקובץ הקונפיגורציה של המאגר האופציונלי. כאשר שניהם מוגדרים, קלט הפעולה מנצח.",
+		"configurationIntro": "ראו {configurationLink} לסכימת YAML וסדר הטעינה.",
+		"configurationLinkLabel": "תצורה",
+		"columns": {
+			"name": "שם",
+			"default": "ברירת מחדל",
+			"description": "תיאור"
+		},
+		"defaults": {
+			"none": "אין",
+			"allSupported": "כולם נתמכו",
+			"translatorDefaultTrue": "true (ברירת מחדל של מתרגם)"
+		},
+		"requiredInputs": {
+			"heading": "קלטים נדרשים",
+			"caption": "קלטים נדרשים",
+			"items": {
+				"sourceLocale": "מיקום המקור (למשל {en}) המשמש למציאת קבצי משאבים כמו {sourceGlob}. הועבר גם למתרגם כ-{fromLocale}.",
+				"subscriptionKey": "Azure AI Translator subscription key. מעבר דרך {secrets}.",
+				"endpoint": "כתובת URL של נקודת קצה של המתרגם (Translator), לדוגמה {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "קלטים אופציונליים נפוצים",
+			"caption": "קלטים אופציונליים נפוצים",
+			"items": {
+				"region": "אזור משאבי מתרגם (השמטה עבור משאבים גלובליים).",
+				"toLocales": "מקומות לתרגום אליהם. מקבל מערך JSON ({jsonArray}) או ערכים מופרדים בפסיק.",
+				"include": "דפוסי כדורים מופרדים בקו חדש; רק קבצים תואמים מתורגמים.",
+				"exclude": "דפוסי כדורים מופרדים בקו חדש; קבצים תואמים מדלגים (מוחלים לאחר הכללה).",
+				"configPath": "נתיב לקובץ הקונפיגורציה של YAML (ביחס לשורש סביבת העבודה).",
+				"dryRun": "כאשר {true}, הרץ תרגומים ושחרר סיכומים אך אל תכתוב קבצים.",
+				"failOnError": "כאשר {true}, שגיאות בלתי צפויות נכשלות בפעולה; כש {false}, שגיאות הן אזהרות."
+			}
+		},
+		"translatorInputs": {
+			"heading": "קלטי בקשות למתרגם",
+			"intro": "אלה מתמפים ישירות לפרמטרי השאילתות של Azure AI Translator v3. כל אחד מהם הוא אופציונלי; ברירת המחדל של המתרגם חלה כאשר היא לא מוגדרת.",
+			"caption": "קלטי בקשות למתרגם",
+			"items": {
+				"categoryId": "קטגוריית Azure {customTranslatorLink} — ידית התעשייה/תחום/טון. הועבר כ-{categoryQuery}.",
+				"textType": "{plain} או {html}. השתמש {html} רק כאשר ערכי המשאבים שלך הם מקטעי HTML אמיתיים.",
+				"profanityAction": "{noAction}, {marked}, או {deleted}. שולט כיצד מונחים גסים נפלטים בתרגום.",
+				"profanityMarker": "{asterisk} או {tag}. רק כש {profanityAction} {marked}.",
+				"allowFallback": "כאשר {false}, המתרגם מחזיר שגיאה במקום לחזור למערכת הכללית אם {categoryId} שלך לא מפרסם למיקום יעד.",
+				"apiVersion": "גרסת API של REST למתרגם (REST)."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "חוסן והגנה זמנית",
+			"intro": "הקלטים האלה שולטים איך הפעולה מתנהגת כשהמתרגם מאט את הבקשה שלך ואיך הוא מגן על אסימונים זמניים כמו {mustache} או {indexZero} מפני פגיעה במהלך התרגום.",
+			"caption": "חוסן וקלטים להגנה זמנית",
+			"items": {
+				"maxRetries": "ניסיונות ניסיון חוזרים מרביים על תגובות HTTP חולפות ({statusCodes}). המספר הכולל של שיחות HTTP לכל בקשה הוא {totalCalls}.",
+				"retryBackoffMs": "הגבלה (במילישניות) בכל שינה. הפעולה מכבדת את כותרת התגובה {retryAfter} של Azure בדיוק כאשר היא קיימת; אחרת הוא משתמש בחזרה אקספוננציאלית מתנדנדת שמוגבלת לערך הזה.",
+				"protectPlaceholders": "כאשר {true} (ברירת מחדל), ישויות כמו {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ו-HTML מוחלפות באסימוני סנטינל לפני התרגום ומשוחזרים לאחר מכן. בטל רק כאשר המקור שלך מכיל בכוונה טקסט בצורת מרווח זמני שראוי לתרגם אותו.",
+				"customPlaceholderPatterns": "רגקסים מופרדים בקווים חדשים (ללא מגבלים) נוספו לקבוצת המשאבים הבסיסיים, למשל {angleToken} עבור תחביר טוקנים מותאם אישית.",
+				"noTranslatePatterns": "דפוסי גלוב מופרדים בקווים חדשים התאימו למפתחות ברמת המנתח (JSON Dotted Path, RESX {resxName}, PO {poMsgid}, יחידת XLIFF {xliffId}, מפתח INI/restext). מפתחות תואמים נשלטים מבקשת המתרגם ועוברים עם ערך המקור שלהם נשמר."
+			}
+		},
+		"outputs": {
+			"heading": "פלטים",
+			"caption": "פלטים",
+			"items": {
+				"summaryTitle": "סיכום קצר הידידותי לכותרת יחסי ציבור, למשל {summaryExample}.",
+				"summaryDetails": "סיכום Markdown מתאים לגוף יחסי ציבור או לסיכום עבודה.",
+				"hasNewTranslations": "{trueString} כאשר נוצרו תרגומים חדשים אחד או יותר."
+			}
+		}
 	},
 	"formats": {
 		"title": "פורמטים של קבצים",
 		"eyebrow": "מקור",
 		"heroTitle": "פורמטים נתמכים",
-		"lede": "שישה פורמטים של משאבים שניתנים לסיבוב. הפעולה קוראת כל קובץ מקור-לוקאל, מתרגמת את הערכים, וכותבת אחי לכל לוקאל יעד."
+		"lede": "שישה פורמטים של משאבים שניתנים לסיבוב. הפעולה קוראת כל קובץ מקור-לוקאל, מתרגמת את הערכים, וכותבת אחי לכל לוקאל יעד.",
+		"namingConvention": "כל הקבצים משתמשים בקונבנציה של {namingConvention} שמות.",
+		"learnMore": "למידע נוסף",
+		"items": {
+			"resx": {
+				"blurb": "קבצי משאב .NET מבוססי XML. מתרגם את הטקסט הפנימי של כל צומת {dataValue}, תוך שמירה על הערות ומטא-דאטה.",
+				"specLabel": "Microsoft Learn — משאבים בקבצי .resx"
+			},
+			"xliff": {
+				"blurb": "מסמכי OASIS XLIFF 2.0. מתרגם כל {source} וכותב את התוצאה לתוך {target} המתאים, ומגדיר {trgLang} ללוקאל.",
+				"specLabel": "מפרט OASIS XLIFF 2.0"
+			},
+			"po": {
+				"blurb": "קבצי אובייקטים ניידים של GNU gettext. מתרגם כל {msgid} / {msgidPlural} לצורות {msgstr} / {msgstrPlural}.",
+				"specLabel": "GNU gettext — פורמט קובץ PO"
+			},
+			"json": {
+				"blurb": "קבצי JSON שרירותיים. אובייקטים מקוננים מושטחים עם מגביל {delimiter} לתרגום, ואז מקוננים מחדש על הפלט. מקשים מנוקדים ({dottedKey}) נשמרים במדויק.",
+				"specLabel": "מפרט JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "קבצי {keyValue} פשוטים (INI בסגנון Win32 או כל קונפיגורציה שטוחה). כותרות הסעיפים והתגובות נשמרות.",
+				"specLabel": "פורמט קובץ INI בוויקיפדיה"
+			},
+			"restext": {
+				"blurb": "משאבי טקסט של מיקרוסופט MUI — זוגות {keyValue} שטוחים המשמשים כמדריך טקסטואלי ל-{resx}.",
+				"specLabel": "סקירה כללית של מיקרוסופט MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "הבטחות הלוך ושוב",
+			"body": "חבילת הבדיקה מאמת מעבר בין בית לבית עבור מתקנים מייצגים בכל פורמט. אם קווירק פורמט שובר את הסיבוב בקוד שלך, אנא {issueLink} עם דוגמה מינימלית.",
+			"issueLinkLabel": "פתח גיליון"
+		}
 	},
 	"recipes": {
 		"title": "מתכונים",
 		"eyebrow": "ספר בישול",
-		"lede": "דפוסים נפוצים לתרגומי משלוחים: מונורפואים, מילונים, קטגוריות מותאמות אישית, בדיקות יבשות ובקרת טון."
+		"lede": "דפוסים נפוצים לתרגומי משלוחים: מונורפואים, מילונים, קטגוריות מותאמות אישית, בדיקות יבשות ובקרת טון.",
+		"sections": {
+			"pullRequest": {
+				"heading": "פתח בקשת משיכה אחרי כל ריצה"
+			},
+			"monorepo": {
+				"heading": "Monorepos: תרגום היקף לכל חבילה"
+			},
+			"glossary": {
+				"heading": "מילון מונחים לשמות מותגים ומונחי מוצר",
+				"intro": "הורד {configPath} למאגר:",
+				"afterLabel": "אחרי",
+				"body": "מונחי מילון מונחים מיושמים {after} תרגום, כך שהפלט המתורגם במכונה שומר על המיתוג המועדף גם כאשר הדגם החליף אותו במילה נרדפת."
+			},
+			"customCategory": {
+				"heading": "קטגוריית מתרגם מותאם אישית (תעשייה / תחום)",
+				"body": "אמן קטגוריית Azure {customTranslatorLink} על קורפוס שמכסה את אוצר המילים והטון שלך בתעשייה (משפטי, רפואי, שיווק, הנדסה פנימית וכו') והעבר את מזהה שלה דרך {categoryId}. זהו הטון החזק ביותר ש-Azure מציע."
+			},
+			"tone": {
+				"heading": "בקרת טון + גיבוי מחמיר",
+				"body": "שלבו {categoryId} מתרגם מותאם אישית עם {profanityAction} ו-{allowFallbackFalse} כדי לאכוף קול עקבי ולהיכשל בזרימת העבודה אם לקטגוריה הנבחרת אין פריסה לאחד מהאתרים היעד שלכם."
+			},
+			"dryRun": {
+				"heading": "התחלה לפני הפעלת זרימת העבודה",
+				"body": "הפעולה עדיין משדרת פלטי סיכום וסיכום שלבים, אך לא נכתבים קבצים. שלב עם {failOnErrorFalse} כדי להעלות כל בעיה כאזהרה בזמן שאתה מתקדם."
+			}
+		}
 	},
 	"faq": {
 		"title": "שאלות נפוצות",
 		"eyebrow": "עזרה",
 		"heroTitle": "שאלות נפוצות",
-		"lede": "תשובות מהירות לשאלות שעולות הכי הרבה כשמאמצים את הפעולה."
+		"lede": "תשובות מהירות לשאלות שעולות הכי הרבה כשמאמצים את הפעולה.",
+		"questions": {
+			"azure": {
+				"heading": "איך הפעולה מדברת עם Azure?",
+				"body": "דרך ערכת הפיתוח הרשמית של {azureSdkLink} מיקרוסופט, שמונחת על {corePipelineLink}. זה נותן לך ניסיונות אוטומטיים על {statusCodes}, מודלים של בקשות ותגובה מוקלטת, וטיפול בכותרות אימות בחינם — כל מה שהיה פעם שיחת {axios} ידנית. משטח הפעולה הציבורית (קלטים, פלטים, פלטי קבצים) נשאר ללא שינוי."
+			},
+			"tone": {
+				"heading": "מדוע תרגומים לפעמים לא ממותגים או לא מדויקים?",
+				"body": "תרגום מכונה מוגדר כברירת מחדל למודל כללי. שלושה כפתורים עוזרים: {glossaryLink} לביטול מונחים קשיחים, {customTranslatorLink} לדוגמנים מדויקים שמאומנים על הטון והאוצר מילים שלך, {profanityAction} לניקוי או סימון מונחים גסים.",
+				"glossaryLinkLabel": "מילון מונחים",
+				"customTranslatorLinkLabel": "קטגוריית מתרגם מותאם אישית"
+			},
+			"duplicateFiles": {
+				"heading": "איך אני יכול להימנע מלתרגם את אותו קובץ פעמיים?",
+				"body": "הפעל את זרימת העבודה על {paths} שמתאימים רק לקבצי המקור שלך, למשל {sourceGlob}. הפעולה כוללת גם מסנן קובץ לכל טריגר כאשר {githubToken} מוגדר, מה שמצמצם את העבודה לקבצים ב-commit האחרון."
+			},
+			"offline": {
+				"heading": "האם אני יכול להריץ את הפעולה לא מקוון?",
+				"body": "לא בדיוק — Azure AI Translator הוא המוח של זמן הרצה. אבל אפשר להריץ עם {dryRunTrue} כדי לאמת ניתוח וקונפיגורציה מבלי לבצע בקשות HTTP לתרגום."
+			},
+			"node": {
+				"heading": "באיזו גרסת Node פועלת הפעולה?",
+				"body": "v3 רץ על GitHub Actions {nodeRuntime} זמן ריצה. ה-JavaScript המצורף תואם ל-Node 20, 22 ו-24, שזה מה ש-CI בודק."
+			},
+			"dist": {
+				"heading": "מאיפה מגיעים {distDir} המאוגדים?",
+				"body": "הפעולות של GitHub JS שולחות את ה-JS הקומפל שלהם במאגר. זרימת העבודה {distBuild} בונה אותה מחדש אחרי כל מיזוג כדי {mainBranch} אם היא תסטה, וחוסמת {distCheck} PRs שיקבלו פלט מיושן."
+			},
+			"formats": {
+				"heading": "ומה לגבי פורמטים אחרים של משאבים?",
+				"body": "היום: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} אם אתה צריך עוד אחד — ממשק המנתח קטן (ניתוח → מפה → יישום תרגומים → פורמט) ותרומות יתקבלו בברכה.",
+				"issueLinkLabel": "פתח גיליון"
+			}
+		}
 	},
 	"translations": {
 		"title": "תרגומים",
 		"eyebrow": "תצוגה",
 		"heroTitle": "שלום בכל שפה",
-		"locales": "מיקומים",
-		"currentlyRendered": "כיום מוצג",
-		"complete": "הושלם!",
-		"pendingPrefix": "להמתין לריצה הבאה של תיעוד התרגום.",
+		"lede": "עמוד זה מתורגם על ידי Resource Translator עצמו, בכל דחיפה ל-main, לכל שפה ש-Azure AI Translator תומך בה.",
+		"localeCountLabel": "{count} מקומות",
+		"statusComplete": "{translatedCount} כרגע מעובד — הושלם!",
+		"statusPending": "{translatedCount} מעובד כרגע — {pendingCount} ממתין לריצה הבאה של {workflowName}.",
 		"viewWorkflowRuns": "הצג רצות זרימת עבודה",
 		"filter": "פילטר",
 		"filterPlaceholder": "חפש לפי שפה, קוד או שם מקומי...",
 		"source": "מקור",
 		"machineTranslations": "תרגומים מכניים",
-		"translationPending": "תרגום ממתין — פתח ריצת תרגום-דוקומנטרי.",
+		"translationPending": "תרגום ממתין — פתחו הרצה {workflowName}.",
 		"noLocales": "אין מיקומים שתואמים את המסנן הזה.",
-		"howItWorks": "איך זה עובד"
+		"howItWorks": {
+			"heading": "איך זה עובד",
+			"thisActionLabel": "הפעולה הזו בדיוק",
+			"steps": {
+				"source": "קובץ המקור באנגלית נמצא ב-{messagesPath}.",
+				"workflow": "הוא דוחף את המגע הזה והוא מבעיט {workflowLink}, שרץ {thisAction} נגד עצמו.",
+				"fanOut": "הפעולה מתפשטת לכל מיקום הנתמך על ידי Azure AI Translator (מוגדר ב-{configPath}) וכותבת {messagesLocaleJson} אח לכל יעד.",
+				"pullRequest": "נפתחת בקשת משיכה עם התרגומים החדשים. מיזוג זה מפרסם מחדש את הדף הזה עם הכרטיסים שמולאו."
+			}
+		},
+		"poweredBy": "מופעל על ידי Resource Translator ו-Azure AI Translator."
 	},
 	"contributing": {
 		"title": "תרומה",
 		"eyebrow": "קוד פתוח",
-		"lede": "דוחות באגים, בקשות לפיצ'רים ובקשות משיכה כולם מתקבלים בברכה. הפעילות קטנה מספיק כדי להיות ידידותית לתורמים בפעם הראשונה."
+		"lede": "דוחות באגים, בקשות לפיצ'רים ובקשות משיכה כולם מתקבלים בברכה. הפעילות קטנה מספיק כדי להיות ידידותית לתורמים בפעם הראשונה.",
+		"localDevelopment": {
+			"heading": "פיתוח מקומי"
+		},
+		"addingParser": {
+			"heading": "הוספת מנתח",
+			"steps": {
+				"fixture": "הוסיפו גוף אור מתחת {testDataDir}.",
+				"implement": "מיישם {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "רשמו את זה ב-{factoryFile}.",
+				"extension": "הוסף את סיומת הקובץ ל-{translationFileSchemes} ב-{finderFile}.",
+				"tests": "כתוב מבחני הלוך-חזור לפורמט ניתוח → ו-applyTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "ספי כיסוי",
+			"body": "הקונפיגורציה של Jest מחייבת כיסוי מינימלי. קוד חדש חייב לשמור על סף ההצהרות + השורות מעל 78% ולתפקד מעל 90%. הוסף מתקנים ומבחנים לצד השינוי שלך."
+		},
+		"docsSite": {
+			"heading": "אתר תיעוד",
+			"body": "התיקייה {docsDir} היא פרויקט Astro 6 + Tailwind v4. הרץ {npmInstall} שם פעם אחת, ואז {npmRunDev} לתצוגה מקדימה מקומית. זרימת העבודה {pagesWorkflow} שולחת מסמכים ל-GitHub Pages בכל מיזוג."
+		}
 	},
 	"changelog": {
 		"title": "יומן שינויים",
 		"eyebrow": "היסטוריה",
-		"lede": "סיכום כללי של השחרורים. יומן השינויים הקנוני והסמכותי חי CHANGELOG.md במאגר."
+		"lede": "סיכום כללי של השחרורים. יומן השינויים הקנוני והסמכותי חי CHANGELOG.md במאגר.",
+		"fullRecord": "ראו {changelogLink} לפרוטוקול המלא.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "V3 (בפיתוח)",
+			"labels": {
+				"breaking": "שבירה",
+				"resilience": "חוסן:",
+				"placeholderProtection": "הגנה זמנית:",
+				"perKeyOptOut": "אפשרות יציאה לפי מפתח:",
+				"docsAccessibility": "נגישות למסמכים:",
+				"inlineCodeStyling": "עיצוב קוד אינליין:"
+			},
+			"issueLabels": {
+				"closes46": "סגירה #46.",
+				"tightens16": "מתקתק #16.",
+				"closes35": "סגירה #35."
+			},
+			"items": {
+				"runtime": "הועבר ל-{nodeRuntime} זמן ריצה ({breaking}).",
+				"newInputs": "קלטים חדשים: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, בנוסף לכפתורי מתורגמים מתקדמים {textType}, {profanityAction}, {profanityMarker} ו-{allowFallback}.",
+				"sourceLocale": "מיקום המקור מועבר כעת גם למתרגם כ {fromLocale} כך שמחרוזות קצרות לא מזוהות אוטומטית.",
+				"resilience": "{label} ניסיון אוטומטי על תגובות HTTP חולפות ({statusCodes}) שמכבדות את כותרת ה-{retryAfter} של Azure — נופלת לנסיגה אקספוננציאלית מתנדנדת כשהיא נעדרת. ניתן לכוונן דרך {maxRetries} ו-{retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} אסימונים כמו {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ו-HTML עטופים בסנטינלים לפני התרגום ומשוחזרים לאחר מכן, ולכן המתרגם מפסיק לעוות את ה-i18next/Mustache/Handlebars/.NET/printf. החלף דרך {protectPlaceholders}; להרחיב עם {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} קלט {noTranslatePatterns} חדש משחרר מפתחות תואמים מבקשת המתרגם לחלוטין (שומר על ערכי מקור לשמות מותגים, קודי שגיאה וכו'). מתאים תבניות גלוב למפתחות ברמת המנתח (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, מפתח INI/restext). {issue}",
+				"repoConfig": "קונפיגורציה ברמת ריפו דרך {configPath}.",
+				"glossary": "תמיכה במילון מונחים, סיכום שלבים דרך {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "בדיקת NPM נקייה (0 פגיעויות).",
+				"docsSite": "אתר תיעוד Astro + Tailwind v4 עם מעברי תצוגה וקוד אקספרסיבי.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. גליפים של לוגואים הומרו לנתיבים כך שלא ייכשלו בניגודיות צבע מול עצירות גרדיאנט, כפתור {backToTop} הצף משתמש {inert} כשהוא מוסתר (במקום מתג {ariaHidden} שהשאיר אותו ניתן ללשוניות), {formatsAstro} קטעים כבר לא מתנגשים עם מזהי הכותרות שנוצרו אוטומטית, שלושה כרטיסי לוקאל חושפים כעת תכונות {lang} תקפות BCP-47 ({nya}, {lug}, {run}), תוויות {documentation} נקודות ציון מופרדות בין סרגל הצד לתחתית,  וכל טבלת נתונים ב-{inputs}/{configuration} מגיעה עם כיתוב קורא מסך.",
+				"inlineCode": "{label} הפרוזה {codeElement} הדוקטורית משתמשת כעת במבטא חמים/ענברי — שונה מפלטת המותג→הדגשים המשמשת לקישורים ולכותרות.",
+				"automation": "מיזוג אוטומטי של Dependabot, סריקת CodeQL, מטריצת CI."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "ראו את ההיסטוריה של git."
+		}
 	}
 }

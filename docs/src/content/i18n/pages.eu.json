@@ -18,18 +18,26 @@
 			"node": "20 / 22 / 24 nodoa",
 			"sdk": "Azure SDK ofiziala"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "Habiaratua edo laua",
+			"ini": "{keyValue}",
+			"restext": "MUI-ren testua"
+		},
 		"features": {
 			"formats": {
 				"title": "Sei fitxategi-formatu",
-				"body": ".resx, .xliff, .po, .json, .ini eta .restext joan-etorriko bidaiak byte-formatu egonkorrarekin."
+				"body": "Joan-etorriko bidaiak {resx}, {xliff}, {po}, {json}, {ini} eta {restext} byte-egonkorreko formatuarekin."
 			},
 			"config": {
 				"title": "Biltegiratze mailako konfigurazioa",
-				"body": "Jaregin .github/resource-translator.yml globoak, glosarioak eta Itzultzaile pertsonalizatuaren kategoriak sartzeko."
+				"body": "Jaregin {configPath} fitxategi bat globoak, glosarioak eta Itzultzaile pertsonalizatua kategorietarako."
 			},
 			"glossary": {
 				"title": "Glosarioa ezagutzen duena",
-				"body": "Blokeatu marka izenak eta produktuen terminoak C ++, .NET eta lagunak kudeatzen dituen hitz-muga adimendunarekin."
+				"body": "Blokeatu marka izenak eta produktuen terminoak {cpp}, {dotnet} eta lagunak kudeatzen dituen hitz-muga adimendunarekin."
 			},
 			"dryRun": {
 				"title": "Lehorreko exekuzioa + hutsegite leuna",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR-friendly irteerak",
-				"body": "summary-title, summary-details eta has-new-translations zuzenean sartzen dira create-pull-request-en."
+				"body": "{summaryTitle}, {summaryDetails} eta {hasNewTranslations} zuzenean sartuko dira create-pull-request-ean."
 			},
 			"sdk": {
 				"title": "Azure SDK ofiziala",
-				"body": "@azure-rest / ai-translation-text + @azure / core-rest-pipeline - saiakera automatikoak 408 / 429 / 5xx-n, eskuz jaurtitako HTTP gabe. esbuild-bundled, audit-clean."
+				"body": "{azureSdk} + {corePipeline} gainean eraikia - {statusCodes} automatikoki saiakera, ez eskuz jaurtitako HTTP. {esbuild}-bundled, auditori-clean."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Jaregin lan-fluxua",
+			"titlePrefix": "Kopiatu. Itsatsi.",
+			"titleAccent": "Itzuli.",
+			"body": "Hiru sekretu, lau lerro eta zure erreposoa eleaniztuna da hurrengo bultzadarekin.",
+			"setupLink": "Ibilbide ezazu konfigurazio osoa"
+		},
+		"cta": {
+			"title": "Pilotu automatikoan lokalizatzeko prest?",
+			"body": "Azure AI Translator gako bat, lan-fluxuen fitxategi bat. Baliabideen itzultzaileak gainerakoaz arduratzen da.",
+			"button": "Hasi"
 		}
 	},
 	"getting-started": {
 		"title": "Erabiltzen hastea",
 		"eyebrow": "Konfigurazioa",
-		"lede": "Gehitu lan-fluxuaren fitxategi bat, seinalatu zure Azure AI Translator kredentzialetara eta ekintzak - Microsoft-en @azure-rest / ai-translation-text SDK ofizialean oinarritutako ekintzak - biltegia eskaneatuko du iturburuko hizkuntzako baliabideen fitxategiak bilatzeko eta itzulitako anai-arrebak igortzen ditu.",
+		"lede": "Gehitu lan-fluxuaren fitxategi bat, seinalatu zure Azure AI Translator kredentzialetara eta ekintzak biltegia eskaneatuko du iturburuko hizkuntzako baliabideen fitxategiak bilatzen eta itzulitako anai-arrebak igortuko ditu.",
 		"steps": {
 			"provision": {
 				"title": "Hornitu Azure AI Translator baliabide bat",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Gehitu lan-fluxua",
-				"body": "Sortu .github/workflows/translate.yml:"
+				"body": "Sortu {workflowPath}:"
 			},
 			"resource": {
 				"title": "Egikaritu iturburuko baliabide-fitxategia",
-				"body": "Baliabide-fitxategiek izena erabiltzen dute. .<sourceLocale> <ext> konbentzioa. Adibidez, Greetings.en.resx Greetings.fr.resx, Greetings.de.resx eta abar bihurtzen da exekuzio baten ondoren."
+				"body": "Baliabide-fitxategiek {namingConvention} konbentzioa erabiltzen dute. Adibidez, {sourceFile} {frFile}, {deFile} eta abar bihurtzen dira korrika baten ondoren."
 			},
 			"output": {
 				"title": "Begiratu irteera",
-				"body": "Lan-fluxua amaitutakoan, ekintzak PR deskribapen batean kableatu ditzakezun hiru irteera agerian uzten ditu: summary-title, summary-details, eta has-new-translations. Markdown laburpena ere idazten du lanaren orrialdean core.summary bidez."
+				"body": "Lan-fluxua amaitutakoan, ekintzak PR deskribapen batean kableatu ditzakezun hiru irteera agerian uzten ditu: {summaryTitle}, {summaryDetails} eta {hasNewTranslations}. Markdown laburpena ere idazten du lanaren orrialdean {coreSummary} bidez."
 			}
 		},
 		"nextSteps": {
 			"title": "Hurrengo urratsak",
-			"configuration": "Konfiguratu repositorio mailako lehenetsiak .github/resource-translator.yml-rekin.",
+			"configuration": "Konfiguratu repositorio mailako lehenetsiak {configPath}-rekin.",
 			"recipes": "Ikusi monorepos, glosario pertsonalizatuen eta itzultzaile pertsonalizatuen kategorien errezetak."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Konfigurazioa",
 		"eyebrow": "YAML",
 		"heroTitle": "Biltegiaren konfigurazioa",
-		"lede": "Adierazi lehenetsiak behin .github/resource-translator.yml eta utzi lan-fluxu bakoitzak heredatzen dituela. Ekintza-sarrerak beti irabazten dira biak ematen direnean."
+		"lede": "Adierazi lehenetsiak behin biltegiaren konfigurazio-fitxategian eta utzi lan-fluxu guztiei heredatzen. Ekintza-sarrerak beti irabazten dira biak ematen direnean.",
+		"intro": "Gainidatzi bide-izena {configPath} sarrerarekin, kokaleku lehenetsia ez den bat behar baduzu.",
+		"schemaHeading": "Eskema",
+		"fieldReference": {
+			"heading": "Eremuaren erreferentzia",
+			"caption": "Konfigurazio-eremuaren erreferentzia",
+			"columns": {
+				"field": "Eremua",
+				"type": "Mota",
+				"notes": "Oharrak"
+			},
+			"fields": {
+				"sourceLocale": "Sarrera {sourceLocale} itzultzen da, ezarrita ez badago. Itzultzailera ere birbidaltzen {fromLocale} kate laburrak automatikoki detektatu ez daitezen.",
+				"toLocales": "Array bat edo komaz bereizitako kate bat.",
+				"includeExclude": "Glob ereduak bide absolutuen eta laneko arearen erlatiboen arabera ebaluatuta.",
+				"glossary": "Itzulpenaren ondorengo terminoen gainidazketa. Hitzen mugak ezagutzen ditu ({cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} kategoria - zure industria / domeinuaren botoia (legea, medikuntza, marketin tonua, etab.). Bidali {categoryQuery}.",
+				"textType": "Lehenetsia {plain}. Erabili {html} baliabideen balioek HTML zati errealak badituzte soilik.",
+				"profanityAction": "Nola tratatu termino profanoak itzulitako emaitzetan.",
+				"profanityMarker": "Zentzua {profanityAction} denean bakarrik {marked}.",
+				"allowFallback": "Ezarri {false} itzulpenean huts egiteko zure {categoryId} helburuko lokal baterako inplementaziorik ez duenean, eredu orokorrera itzuli beharrean.",
+				"apiVersion": "Itzultzailearen REST APIaren bertsioa. Lehenetsia {version}.",
+				"maxRetries": "HTTP behin-behineko erantzunetan ({statusCodes}) berriro saiakera gehienez. Lehenetsia {defaultRetries}. Eskaera bakoitzeko HTTP dei guztira {totalCalls} da.",
+				"retryBackoffMs": "Txapela (ms) atzerapauso bakarreko loaldian. Lehenetsia {defaultBackoff}. Azure-ren {retryAfter} goiburua ohoratzen da hain zuzen ere; bestela, atzera egin esponentziala erabiltzen da, balio honekin mugatuta.",
+				"protectPlaceholders": "Lehenetsia {true}. Aktibatuta dagoenean, {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} eta HTML entitateak sentinel tokenekin ordezkatzen dira itzuli aurretik eta ondoren berreskuratzen dira. Desgaitu iturburuak nahita leku-marka formako literalak dituenean soilik.",
+				"customPlaceholderPatterns": "Erregulartasun erregularreko eredu gehigarriak (mugatzailerik gabe) gehitu zaizkion leku-marka multzo lehenetsiari, adibidez, token sintaxi pertsonalizatua {angleToken}. Baliogabeko adierazpen erregularrei ez ikusi egiten zaie.",
+				"noTranslatePatterns": "Glob ereduak analizatzaile mailako gakoekin bat datoz (JSON puntuzko bidea, RESX {resxName}, PO {poMsgid}, XLIFF unitate {xliffId}, INI/restext gakoa). Bat datozen gakoak eskaeratik kendu eta iturburu-balioa gordetzen dute."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Kargatzeko ordena",
+			"steps": {
+				"actionInputs": "Ekintzak lan-fluxuaren sarrera esplizituak irakurtzen ditu.",
+				"config": "YAML konfigurazioa kargatzen du {configPath}.",
+				"precedence": "Partekatutako eremu bakoitzeko, sarrerak irabazten du; bestela, YAML balioa erabiliko da.",
+				"validation": "Balio bateratuak baliozkotu egiten dira. Baliogabeko enumerazioek (adib. {invalidEnum}) ekintzak azkar huts egitea eragiten dute mezu garbi batekin."
+			}
+		},
+		"tone": {
+			"heading": "Tonua eta industria, argi eta garbi",
+			"body": "Azure AI Translator v3 APIak ez du tonu bakarreko botoirik. Bi ezarpen konbinatzen dira kontrol bera emateko:",
+			"industryLabel": "Industria / domeinua:",
+			"industryBody": "Erabili {categoryId} zure corpus propioan trebatutako Azure {customTranslatorLink} kategoria seinalatzeko - legea, teknikoa, medikoa, marketina edo beste edozer. Hau da tonua, markaren ahotsa eta hiztegiaren palanka indartsuena.",
+			"surfaceLabel": "Azaleko testua:",
+			"surfaceBody": "Erabili {glossaryLink} marka izenak eta produktuen terminoak hitzez hitz blokeatzeko, eta erabili {profanityAction} termino profanoak garbitzeko audientzia gazteagoei zuzenduta.",
+			"glossaryLinkLabel": "glosarioa"
+		}
 	},
 	"inputs": {
 		"title": "Sarrerak eta irteerak",
 		"eyebrow": "Erreferentzia",
-		"lede": "Sarrera guztiak aukerako biltegiaren konfigurazio-fitxategian ere onartzen dira. Biak ezartzen direnean, ekintzaren sarrerak irabazten du."
+		"lede": "Sarrera guztiak aukerako biltegiaren konfigurazio-fitxategian ere onartzen dira. Biak ezartzen direnean, ekintzaren sarrerak irabazten du.",
+		"configurationIntro": "Ikus {configurationLink} YAML eskema eta kargatzeko ordena.",
+		"configurationLinkLabel": "Konfigurazioa",
+		"columns": {
+			"name": "Izena",
+			"default": "Lehenetsia",
+			"description": "Deskribapena"
+		},
+		"defaults": {
+			"none": "bat ere ez",
+			"allSupported": "Denak onartuta",
+			"translatorDefaultTrue": "true (itzultzailearen lehenetsia)"
+		},
+		"requiredInputs": {
+			"heading": "Beharrezko sarrerak",
+			"caption": "Beharrezko sarrerak",
+			"items": {
+				"sourceLocale": "Iturburuko lokal (adib. {en}) baliabide-fitxategiak aurkitzeko erabiltzen da, hala nola {sourceGlob}. Itzultzaileari ere bidali {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator harpidetza-gakoa. Pasa ezazu {secrets}.",
+				"endpoint": "Itzultzailearen amaierako URLa, adib. {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Aukerako sarrera arruntak",
+			"caption": "Aukerako sarrera arruntak",
+			"items": {
+				"region": "Itzultzailearen baliabideen eskualdea (alde batera utzi baliabide globalentzat).",
+				"toLocales": "Itzulpenak egiteko lokalak. JSON array ({jsonArray}) edo komaz bereizitako balioak onartzen ditu.",
+				"include": "Lerro berriz bereizitako globo ereduak; Bat datozen fitxategiak soilik itzultzen dira.",
+				"exclude": "Lerro berriz bereizitako globo ereduak; bat datozen fitxategiak saltatu egiten dira (sartu ondoren aplikatu dira).",
+				"configPath": "YAML konfigurazio-fitxategiaren bide-izena (laneko arearen erroarekiko erlatiboa).",
+				"dryRun": "{true} duzunean, exekutatu itzulpenak eta igortzen ditu laburpenak, baina ez idatzi fitxategiak.",
+				"failOnError": "Ustekabeko erroreek {true} egiten dutenean, ekintzan huts egiten dute. {false}, akatsak abisuak dira."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Itzultzailearen eskaeraren sarrerak",
+			"intro": "Hauek zuzenean Azure AI Translator v3 kontsulta parametroetara mapatzen dira. Bakoitza aukerakoa da; Itzultzailearen lehenetsiak ezartzen ez direnean aplikatzen dira.",
+			"caption": "Itzultzailearen eskaeraren sarrerak",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} kategoria - industria/domeinua/tonu botoia. Bidali {categoryQuery}.",
+				"textType": "{plain} edo {html}. Erabili {html} baliabideen balioak HTML zati errealak direnean.",
+				"profanityAction": "{noAction}, {marked} edo {deleted}. Itzulpenetan termino profanoak nola igortzen diren kontrolatzen du.",
+				"profanityMarker": "{asterisk} edo {tag}. Zentzua {profanityAction} {marked} dagoenean bakarrik.",
+				"allowFallback": "{false} denean, Translator-ek errore bat itzultzen du sistema orokorrera itzuli beharrean, zure {categoryId} helburuko lokalaren inplementaziorik ez badu.",
+				"apiVersion": "Itzultzailearen REST APIaren bertsioa."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Erresilientzia eta leku-marken babesa",
+			"intro": "Sarrera hauek ekintzak nola jokatzen duen kontrolatzen dute Translator-ek zure eskaera murrizten duenean eta nola babesten dituen {mustache} edo {indexZero} bezalako leku-markak itzulpenean zehar manipulatu ez daitezen.",
+			"caption": "Erresilientzia eta leku-babeserako sarrerak",
+			"items": {
+				"maxRetries": "HTTP behin-behineko erantzunetan ({statusCodes}) berriro saiakera gehienez. Eskaera bakoitzeko HTTP dei kopurua {totalCalls} da.",
+				"retryBackoffMs": "Muga (milisegundotan) atzerako lo bakar batean. Ekintzak Azure-ren {retryAfter} erantzunaren goiburua errespetatzen du zehazki dagoenean; bestela, balio honekin mugatutako atzera esponentzial jittered erabiltzen du.",
+				"protectPlaceholders": "{true} denean (lehenetsia), {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} eta HTML entitateak itzuli aurretik sentinel tokenekin ordezkatzen dira eta ondoren berreskuratzen dira. Desgaitu zure iturburuak nahita itzuli beharreko leku-marka formako testu literala duenean soilik.",
+				"customPlaceholderPatterns": "Lerro berriez bereizitako regex-ak (mugatzailerik gabe) leku-marka multzo lehenetsiari gehitu zaizkio, adibidez, token sintaxi pertsonalizatua {angleToken}.",
+				"noTranslatePatterns": "Lerro berriez bereizitako globo-ereduak analizatzaile mailako gakoekin bat datoz (JSON puntuzko bidea, RESX {resxName}, PO {poMsgid}, XLIFF unitate {xliffId}, INI/restext gakoa). Bat datozen gakoak itzultzailearen eskaeratik kentzen dira eta iturburu-balioa gordetzen dute."
+			}
+		},
+		"outputs": {
+			"heading": "Irteerak",
+			"caption": "Irteerak",
+			"items": {
+				"summaryTitle": "PR-izenburuko laburpen laburra, adibidez, {summaryExample}.",
+				"summaryDetails": "Markdown laburpena PR erakunde baterako edo lanpostuen laburpenerako egokia.",
+				"hasNewTranslations": "{trueString} itzulpen berri bat edo gehiago sortzen direnean."
+			}
+		}
 	},
 	"formats": {
 		"title": "Fitxategi-formatuak",
 		"eyebrow": "Erreferentzia",
 		"heroTitle": "Onartutako fitxategi-formatuak",
-		"lede": "Sei joan-etorriko baliabide formatu. Ekintzak iturburu-lokalen fitxategi bakoitza irakurtzen du, balioak itzultzen ditu eta helburuko lokal bakoitzeko anaia bat idazten du."
+		"lede": "Sei joan-etorriko baliabide formatu. Ekintzak iturburu-lokalen fitxategi bakoitza irakurtzen du, balioak itzultzen ditu eta helburuko lokal bakoitzeko anaia bat idazten du.",
+		"namingConvention": "Fitxategi guztiek {namingConvention} izendatzeko konbentzioa erabiltzen dute.",
+		"learnMore": "Gehiago irakurri",
+		"items": {
+			"resx": {
+				"blurb": "XML oinarritutako .NET baliabide-fitxategiak. Nodo {dataValue} bakoitzaren barneko testua itzultzen du, iruzkinak eta metadatuak mantenduz.",
+				"specLabel": "Microsoft Learn - .resx fitxategietako baliabideak"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 dokumentuak. {source} bakoitza itzultzen du eta emaitza dagokion {target} batean idazten du, lokalaren {trgLang} ezarriz.",
+				"specLabel": "OASIS XLIFF 2.0 zehaztapena"
+			},
+			"po": {
+				"blurb": "GNU gettext objektu eramangarrien fitxategiak. {msgid} / {msgidPlural} bakoitza {msgstr} / {msgstrPlural} forma bihurtzen ditu.",
+				"specLabel": "GNU gettext — PO fitxategi-formatua"
+			},
+			"json": {
+				"blurb": "JSON fitxategi arbitrarioak. Objektu habiaratuak itzulpenerako {delimiter} mugatzailearekin berdindu egiten dira, eta irteeran berriro habiaratu egiten dira. Puntuzko teklak ({dottedKey}) hitzez hitz gordetzen dira.",
+				"specLabel": "JSON zehaztapena (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Fitxategi {keyValue} sinpleak (Win32 estiloko INI edo edozein konfigurazio lau). Atalen goiburuak eta iruzkinak gordetzen dira.",
+				"specLabel": "INI fitxategi-formatua Wikipedian"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI testu-baliabideak: {keyValue} lauak {resx} testu-laguntzaile gisa erabiltzen direnak.",
+				"specLabel": "Microsoft MUi-ren ikuspegi orokorra"
+			}
+		},
+		"roundTrip": {
+			"heading": "Joan-etorriko bermeak",
+			"body": "Proba-suiteak byte-byte biribila egiaztatzen du formatu guztietako fitxak adierazgarrietarako. Formatu bitxikeria batek zure kode-basean biribilketa apurtzen badu, {issueLink} lagin minimo batekin.",
+			"issueLinkLabel": "Ireki arazo bat"
+		}
 	},
 	"recipes": {
 		"title": "Errezetak",
 		"eyebrow": "Sukaldaritza liburua",
-		"lede": "Itzulpenak bidaltzeko ohiko ereduak: monorepos, glosarioak, kategoria pertsonalizatuak, lehorrak eta tonu-kontrola."
+		"lede": "Itzulpenak bidaltzeko ohiko ereduak: monorepos, glosarioak, kategoria pertsonalizatuak, lehorrak eta tonu-kontrola.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Ireki pull eskaera exekuzio bakoitzaren ondoren"
+			},
+			"monorepo": {
+				"heading": "Monorepos: pakete bakoitzeko esparru-itzulpena"
+			},
+			"glossary": {
+				"heading": "Marka izenen eta produktuen terminoen glosarioa",
+				"intro": "Jarri {configPath} bat errepoan:",
+				"afterLabel": "ondoren",
+				"body": "Glosarioko terminoak itzulpenean aplikatzen {after}, beraz, makina itzulitako irteerak zure marka gogokoena mantentzen du, nahiz eta ereduak sinonimo batengatik trukatu duen."
+			},
+			"customCategory": {
+				"heading": "Itzultzaile pertsonalizatuen kategoria (industria / domeinua)",
+				"body": "Entrenatu Azure {customTranslatorLink} kategoria bat zure industriako hiztegia eta tonua (legea, medikuntza, marketina, barne-ingeniaritza, etab.) jasotzen dituen corpus batean eta pasatu bere IDa {categoryId} bidez. Hau da Azure-k eskaintzen duen tonu palanka indartsuena."
+			},
+			"tone": {
+				"heading": "Tonu-kontrola + atzerakada zorrotza",
+				"body": "Konbinatu itzultzaile pertsonalizatua {categoryId} {profanityAction} eta {allowFallbackFalse} ahots koherentea indartzeko eta lan-fluxua huts egin aukeratutako kategoriak ez badu zure helburuko lokaletako baterako inplementaziorik."
+			},
+			"dryRun": {
+				"heading": "Exekuzio lehorra lan-fluxua aktibatu aurretik",
+				"body": "Ekintzak laburpen-irteerak eta urratsaren laburpena igortzen jarraitzen du, baina ez da fitxategirik idazten. Konbinatu {failOnErrorFalse} arazo bakoitza abisu gisa azaleratzeko iteratzen duzun bitartean."
+			}
+		}
 	},
 	"faq": {
 		"title": "FAQ",
 		"eyebrow": "Laguntza",
 		"heroTitle": "Maiz egiten diren galderak",
-		"lede": "Ekintza onartzerakoan gehien sortzen diren galderei erantzun azkarrak."
+		"lede": "Ekintza onartzerakoan gehien sortzen diren galderei erantzun azkarrak.",
+		"questions": {
+			"azure": {
+				"heading": "Nola hitz egiten du ekintzak Azure-rekin?",
+				"body": "Microsoft-en SDK {azureSdkLink} ofizialaren bidez, {corePipelineLink}. Horrek automatikoki saiakerak lortzen ditu {statusCodes}, idatzitako eskaera eta erantzun ereduak eta autentifikazio-goiburuen kudeaketa doan - eskuz egindako {axios} deia izan zen guztia. Ekintza publikoaren azalera (sarrerak, irteerak, fitxategien irteerak) ez da aldatu."
+			},
+			"tone": {
+				"heading": "Zergatik dira batzuetan itzulpenak markatik kanpo edo tonu desegokiak?",
+				"body": "Itzulpen automatikoa lehenespenez erabilera orokorreko eredu batera doa. Hiru botoiek laguntzen dute: termino gogorrak gainidazteko {glossaryLink}, zure tonuan eta hiztegian trebatutako ereduak doitzeko {customTranslatorLink} eta termino profanoak garbitzeko edo markatzeko {profanityAction}.",
+				"glossaryLinkLabel": "glosarioa",
+				"customTranslatorLinkLabel": "Itzultzaile pertsonalizatuaren kategoria"
+			},
+			"duplicateFiles": {
+				"heading": "Nola saihestu fitxategi bera bi aldiz itzultzea?",
+				"body": "Aktibatu lan-fluxua iturburu-lokaleko fitxategiekin bat datozen {paths} fitxategietan soilik, adib. {sourceGlob}. Ekintzak abiarazle bakoitzeko fitxategi-iragazkia ere badu, {githubToken} ezartzen denean, lana azken egikaritzean dauden fitxategietara murriztuz."
+			},
+			"offline": {
+				"heading": "Ekintza lineaz kanpo exekutatu dezaket?",
+				"body": "Ez zehazki - Azure AI Translator exekuzio garuna da. Baina {dryRunTrue}-ekin exekutatu dezakezu analisia eta konfigurazioa baliozkotzeko, itzulpenerako HTTP eskaerarik egin gabe."
+			},
+			"node": {
+				"heading": "Zein nodo-bertsiotan exekutatzen da ekintza?",
+				"body": "v3 exekutatzen da GitHub Actions {nodeRuntime} exekuzio denboran. Bundle JavaScript bateragarria da 20, 22 eta 24 nodoekin, hau da, CIk probatzen duena."
+			},
+			"dist": {
+				"heading": "Nondik dator {distDir} bilduta?",
+				"body": "GitHub JS ekintzek biltegian bidaltzen dituzte JS konpilatuak. {distBuild} lan-fluxuak bateratze bakoitzaren ondoren berreraikitzen du {mainBranch} noraezean egongo balitz, eta {distCheck} irteera zaharkituak lurreratuko lituzketen PRak blokeatzen ditu."
+			},
+			"formats": {
+				"heading": "Zer iruditzen zaizu beste baliabide formatu batzuk?",
+				"body": "Gaur: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} beste bat behar baduzu - analizatzailearen interfazea txikia da (analizatu → mapa → itzulpenak → formatuan aplikatu) eta ekarpenak ongi etorriak dira.",
+				"issueLinkLabel": "Ireki arazo bat"
+			}
+		}
 	},
 	"translations": {
 		"title": "Itzulpenak",
 		"eyebrow": "Erakusleihoa",
 		"heroTitle": "Kaixo hizkuntza guztietan",
-		"locales": "Ezarpenak",
-		"currentlyRendered": "Une honetan errendatuta",
-		"complete": "Osatuta!",
-		"pendingPrefix": "Hurrengo translate-docs-en exekuzioaren zain.",
+		"lede": "Orrialde hau Resource Translator-ek berak itzultzen du, bultzada bakoitzean, Azure AI Translator-ek onartzen dituen hizkuntza guztietara.",
+		"localeCountLabel": "{count} lokalak",
+		"statusComplete": "{translatedCount} oraingoz errendatuta - osoa!",
+		"statusPending": "{translatedCount} da errendatuta - {pendingCount} hurrengo {workflowName} exekuzioaren zain.",
 		"viewWorkflowRuns": "Ikusi lan-fluxuaren exekuzioak",
 		"filter": "Iragazkia",
 		"filterPlaceholder": "Bilatu hizkuntzaren, kodearen edo jatorrizko izenaren arabera...",
 		"source": "Iturburua",
 		"machineTranslations": "Itzulpen automatikoak",
-		"translationPending": "Itzulpenaren zain: translate-docs-en exekuzioa ireki du.",
+		"translationPending": "Itzulpenaren zain: {workflowName} exekuzio bat ireki.",
 		"noLocales": "Ez lokalak iragazki horrekin bat datorrela.",
-		"howItWorks": "Nola funtzionatzen du honek"
+		"howItWorks": {
+			"heading": "Nola funtzionatzen du honek",
+			"thisActionLabel": "Ekintza hau bera",
+			"steps": {
+				"source": "Ingelesezko iturburu-fitxategia {messagesPath} da.",
+				"workflow": "Ukitu hori bultzatzen {workflowLink}, bere buruaren aurka {thisAction} exekutatzen duena.",
+				"fanOut": "Ekintza Azure AI Translator-ek onartzen dituen lokal guztietara zabaltzen da ({configPath} konfiguratuta) eta helburu bakoitzeko {messagesLocaleJson} bat idazten du.",
+				"pullRequest": "Pull eskaera bat irekitzen da itzulpen berriekin. Hura batuz gero, orrialde hau berriro argitaratzen da txartelak beteta."
+			}
+		},
+		"poweredBy": "Powered by Resource Translator eta Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Ekarpenak",
 		"eyebrow": "Kode irekia",
-		"lede": "Akatsen txostenak, ezaugarrien eskaerak eta pull eskaerak ongi etorriak dira. Ekintza nahikoa txikia da lehen aldiz kolaboratzaileekin atsegina izateko."
+		"lede": "Akatsen txostenak, ezaugarrien eskaerak eta pull eskaerak ongi etorriak dira. Ekintza nahikoa txikia da lehen aldiz kolaboratzaileekin atsegina izateko.",
+		"localDevelopment": {
+			"heading": "Garapen lokala"
+		},
+		"addingParser": {
+			"heading": "Analizatzaile bat gehitzea",
+			"steps": {
+				"fixture": "Gehitu partida bat {testDataDir} azpian.",
+				"implement": "Inplementatu {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Erregistratu {factoryFile}.",
+				"extension": "Gehitu fitxategi-luzapena {translationFileSchemes} {finderFile}.",
+				"tests": "Idatzi joan-etorriko probak analizatzeko → formatua eta applyTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "Estalduraren atalaseak",
+			"body": "Jest konfigurazioak gutxieneko estaldura ezartzen du. Kode berriak instrukzioen + lerroen atalasea % 78tik gorakoa eta funtzioak % 90etik gora mantendu behar ditu. Gehitu fitxak eta probak zure aldaketarekin batera."
+		},
+		"docsSite": {
+			"heading": "Dokumentazio-gunea",
+			"body": "{docsDir} karpeta Astro 6 + Tailwind v4 proiektua da. Korrika egin {npmInstall} behin eta gero {npmRunDev} tokiko aurrebistarako. {pagesWorkflow} lan-fluxuak dokumentuak bidaltzen ditu GitHub Pages-era bateratze bakoitzean."
+		}
 	},
 	"changelog": {
 		"title": "Aldaketa-egunkaria",
 		"eyebrow": "Historia",
-		"lede": "Argitalpenen laburpena. Changelog kanonikoa eta autoritarioa biltegian CHANGELOG.md bizi da."
+		"lede": "Argitalpenen laburpena. Changelog kanonikoa eta autoritarioa biltegian CHANGELOG.md bizi da.",
+		"fullRecord": "Ikus {changelogLink} erregistro osoa.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (garatzen ari da)",
+			"labels": {
+				"breaking": "HAUSTURA",
+				"resilience": "Erresilientzia:",
+				"placeholderProtection": "Leku-markaren babesa:",
+				"perKeyOptOut": "Gako bakoitzeko bazterketa:",
+				"docsAccessibility": "Dokumentuen erabilerraztasuna:",
+				"inlineCodeStyling": "Barneko kodearen estiloa:"
+			},
+			"issueLabels": {
+				"closes46": "Ixten du # 46.",
+				"tightens16": "Estutu # 16.",
+				"closes35": "Ixten du # 35."
+			},
+			"items": {
+				"runtime": "Exekuzio-denbora {nodeRuntime} ({breaking}).",
+				"newInputs": "Sarrera berriak: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, gehi itzultzaile aurreratuak {textType}, {profanityAction}, {profanityMarker} eta {allowFallback}.",
+				"sourceLocale": "Iturburuko lokalak Translator-era ere birbidaltzen dira {fromLocale} gisa, beraz, kate laburrak ez dira automatikoki detektatzen.",
+				"resilience": "{label} HTTP erantzun aldi baterakoetan ({statusCodes}) automatikoki saiakera egitea Azure-ren {retryAfter} goiburua errespetatzen duena - atzera egin nahi du atzera esponentzialera ez dagoenean. Tunable {maxRetries} eta {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} tokenak {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} eta HTML entitateak itzuli aurretik sentineletan biltzen dira itzulpenaren aurretik eta ondoren berreskuratzen dira, beraz, Translator-ek i18next/Mustache/Handlebars/.NET/printf leku-markak manipulatzeari uzten dio. Txandakatu {protectPlaceholders} bidez; luzatu {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} sarrera berri {noTranslatePatterns} bat datorren gakoak erabat kentzen ditu Translator eskaeratik (marka-izenen, errore-kodeen eta abar iturburu-balioak gordetzen ditu). Glob ereduak parekatzen ditu analizatzaile mailako gakoekin (JSON puntuzko bidea, RESX {resxName}, PO {poMsgid}, XLIFF unitate {xliffId}, INI/restext gakoa). {issue}",
+				"repoConfig": "Repositorio mailako konfigurazioa {configPath}.",
+				"glossary": "Glosarioaren euskarria, urratsaren laburpena {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 konfigurazio laua, Prettier, EditorConfig.",
+				"audit": "npm auditoria garbia (0 ahultasun).",
+				"docsSite": "Astro + Tailwind v4 dokumentu gunea ikuspegi trantsizioekin eta kode adierazgarriarekin.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pasea. Logotipoaren glifoak bide bihurtuak, kolore-kontrastea jada ez dezaten huts egin gradiente-geldialdien aurka, {backToTop} mugikorreko botoiak {inert} erabiltzen du ezkutatuta dagoen bitartean (fitxagarria utzi zuen {ariaHidden} txandakatzearen ordez), {formatsAstro} atalek jada ez dute talka egiten automatikoki sortutako izenburu IDekin, hiru lokal-txartelek orain BCP-47-baliozko {lang} atributuak agerian uzten dituzte ({nya}, {lug}, {run}), bikoiztu {documentation} mugarrien etiketak alboko barraren eta orri-oinaren artean desanbiguatzen dira,  eta {inputs}/{configuration} datu-taula bakoitzak pantaila-irakurgailu batekin bidaltzen du.",
+				"inlineCode": "{label} Docs Prose {codeElement} orain gai beroa / anbar azentua janzten du - estekak eta izenburuak erabiltzen diren marka→azentu paletatik bereizita.",
+				"automation": "Dependabot auto-merge, CodeQL eskaneatzea, CI matrizea."
+			}
+		},
+		"v2": {
+			"heading": "2.x bertsioa",
+			"gitHistory": "Ikus git historia."
+		}
 	}
 }

@@ -15,7 +15,13 @@
 		"searchPlaceholder": "Dogfennaeth chwilio...",
 		"toggleTheme": "Toglu thema",
 		"githubRepository": "Storfa GitHub",
-		"language": "Iaith"
+		"language": "Iaith",
+		"languageTitle": "Dewiswch eich iaith",
+		"languageDescription": "Newid i'r un dudalen mewn iaith arall.",
+		"languageSearch": "Hidlo ieithoedd",
+		"languageSearchPlaceholder": "Chwilio ieithoedd neu godau locale...",
+		"languageNoResults": "Dim ieithoedd sy'n cyfateb i'r hidlydd hwnnw.",
+		"closeLanguage": "Cau dewisydd iaith"
 	},
 	"search": {
 		"title": "Dogfennaeth chwilio",

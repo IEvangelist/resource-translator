@@ -18,18 +18,26 @@
 			"node": "Node 20 / 22 / 24",
 			"sdk": "Resmi Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "almaktekst",
+			"json": "nested ýa-da flat",
+			"ini": "{keyValue}",
+			"restext": "MUI teksti"
+		},
 		"features": {
 			"formats": {
 				"title": "Alty faýl formaty",
-				"body": ".resx, .xliff, .po, .json, .ini we .restext byte-durnukly formatlama bilen round-tripler."
+				"body": "Round-tripler {resx}, {xliff}, {po}, {json}, {ini} we {restext} byte-stable formatlama."
 			},
 			"config": {
 				"title": "Repo derejeli konfigurasiýa",
-				"body": "Globlar, sözlükler we Custom Translator kategoriýalaryny goşmak üçin .github/resource-translator.yml goýuň."
+				"body": "Include globs, sözlükler we Custom Translator kategoriýalary üçin {configPath} faýly goýuň."
 			},
 			"glossary": {
 				"title": "Sözlük bilen tanyş",
-				"body": "Marka atlaryny we önümleriň terminlerini C++, .NET we dostlaryny işleýän akylly söz çäkli regex bilen gulplaň."
+				"body": "Marka atlaryny we önümleriň şertlerini {cpp}, {dotnet} we dostlary dolandyrýan akylly söz çäkli regex bilen gulplaň."
 			},
 			"dryRun": {
 				"title": "Dry-run + soft-fail",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR-dostlukly çykyşlar",
-				"body": "summary-title, summary-details we has-new-translations göni create-pull-request içine girýär."
+				"body": "{summaryTitle}, {summaryDetails} we {hasNewTranslations} göni create-pull-request içine girýärler."
 			},
 			"sdk": {
 				"title": "Resmi Azure SDK",
-				"body": "@azure-rest/ai-translation-text + @azure/core-rest-pipeline esasynda guruldy — 408/429/5xx-de otomatik gaýtalamalar, el bilen rulonlanan HTTP ýok. esbuild-bundled, audit-clean."
+				"body": "{azureSdk} + {corePipeline} esasynda guruldy — {statusCodes} awtomatik gaýtalamalar, el bilen rulonlanan HTTP ýok. {esbuild} paketlenen, audit-arassa."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Drop-in iş akışy",
+			"titlePrefix": "Kopyala. Yapıştır.",
+			"titleAccent": "Terjime et.",
+			"body": "Üç syr, dört hat we indiki itekde repoňyz köp dilde bolýar.",
+			"setupLink": "Doly gurluşyň içinden geçiň"
+		},
+		"cta": {
+			"title": "Awtopilotda ýerleşdirmäge taýýarmysyňyz?",
+			"body": "Bir Azure AI Translator açary, bir iş akış faýly. Galanlaryny bolsa Resource Translator çözýär.",
+			"button": "Başlaň"
 		}
 	},
 	"getting-started": {
 		"title": "Başlangyç",
 		"eyebrow": "Düzüm",
-		"lede": "Workflow faýly goşup, ony Azure AI Translator kimlik maglumatyňyza görkeziň we Microsoft-yň resmi @azure-rest/ai-translation-text SDK-nyň esasynda gurlan hereket repoda çeşme dilindäki resurs faýllaryny skan eder we terjime edilen dogan-uýalary emele getirer.",
+		"lede": "Workflow faýly goşuň, ony Azure AI Translator kimlik maglumatyňyza görkeziň, bu hereket repony çeşme dilindäki resurs faýllary üçin skan eder we terjime edilen dogan-uýalary emele getirer.",
 		"steps": {
 			"provision": {
 				"title": "Azure AI Translator resursyny üpjün et",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Iş akışyny goşuň",
-				"body": ".github/workflows/translate.yml dörediň:"
+				"body": "Dörediň {workflowPath}:"
 			},
 			"resource": {
 				"title": "Çeşme resurs faýly commit et",
-				"body": "Resurs faýllary Ady ulanýar. <sourceLocale>. <ext> konwensiýa. Mysal üçin, Greetings.en.resx bir ylgawdan soň Greetings.fr.resx, Greetings.de.resx we ş.m. bolýar."
+				"body": "Resurs faýllary {namingConvention} konwensiýasyny ulanýar. Mysal üçin {sourceFile} {frFile}, {deFile} we ş.m. bolýar."
 			},
 			"output": {
 				"title": "Çykyşy barlaň",
-				"body": "Iş prosesi tamamlanandan soň, bu hereket PR düşündirişine birikdirip biljek üç sany çykyşy görkezýär: summary-title, summary-details we has-new-translations. Şeýle-de core.summary arkaly iş sahypasyna Markdown gysgaça ýazýar."
+				"body": "Iş prosesi tamamlanandan soň, hereket PR düşündirişine birikdirip biljek üç sany çykyşy paş edýär: {summaryTitle}, {summaryDetails} we {hasNewTranslations}. Şeýle-de ol iş sahypasyna Markdown gysgaça maglumatyny {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Indiki ädimler",
-			"configuration": ".github/resource-translator.yml bilen repo-level defaultlary konfigurasiýa et.",
+			"configuration": "Repo derejesiniň öň bellenen görnüşlerini {configPath}.",
 			"recipes": "Monorepolaryň, ýörite sözlükleriň we Custom Translator kategoriýalarynyň taýýarlanyş usullaryna serediň."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Konfigurasiýa",
 		"eyebrow": "YAML",
 		"heroTitle": "Deponyň konfigurasiýasy",
-		"lede": "Express .github/resource-translator.yml içinde bir gezek öň bellenilýär we her iş akışyna olary miras almaga rugsat berýär. Olaryň ikisi-de berilse, hereketler hemişe ýeňiş gazanýar."
+		"lede": "Express repository config faýlda bir gezek öň bellenilýär we her iş akışyna olary miras almaga rugsat berýär. Olaryň ikisi-de berilse, hereketler hemişe ýeňiş gazanýar.",
+		"intro": "Eger öň bellenilmedik ýer gerek bolsa, {configPath} girişi bilen ýoly üýtget.",
+		"schemaHeading": "Şema",
+		"fieldReference": {
+			"heading": "Meýdan salgysy",
+			"caption": "Konfigurasiýa meýdanynyň referensiýasy",
+			"columns": {
+				"field": "Meýdan",
+				"type": "Görnüşi",
+				"notes": "Bellikler"
+			},
+			"fields": {
+				"sourceLocale": "Eger düzülmedik bolsa, {sourceLocale} girişine gaýdyp gelýär. Şeýle-de Translatora iberilýär {fromLocale} şonuň üçin gysga stringler otomatik anyklanylmaýar.",
+				"toLocales": "Ýa dizaýn, ýa-da virgül bilen aýrylan string.",
+				"includeExclude": "Glob nusgalary absolýut we iş ýeri bilen baglanyşykly ýollara garşy baha berildi.",
+				"glossary": "Terjimeden soň termin üýtgedilýär. Sözüň çägini bilýän (handles {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} kategoriýasy — siziň senagat/domain düwmejigiňiz (hukuk, medisina, marketing äheňi we ş.m.). Iberilen {categoryQuery}.",
+				"textType": "Öň bellenilen {plain}. {html} diňe siziň resurs gymmatlyklaryňyzda hakyky HTML bölekleri bar bolsa ulanyň.",
+				"profanityAction": "Terjime edilen çykyşda hapa sözlere nähili garamaly?",
+				"profanityMarker": "Diňe {profanityAction} manyly {marked}.",
+				"allowFallback": "Umumy modele dolanmagyň deregine, {categoryId} belli bir ýer üçin ýerleşdirilmedik ýagdaýynda terjimede şowsuzlyga uçramak üçin {false} goýuň.",
+				"apiVersion": "Terjimeçi REST API wersiýasy. Öň bellenilen {version}.",
+				"maxRetries": "Wagtlaýyn HTTP jogaplarynda maksimum gaýtalamak synanyşyklary ({statusCodes}). Öň bellenilen {defaultRetries}. Her haýyşyň umumy HTTP jaňlary {totalCalls}.",
+				"retryBackoffMs": "Islendik backoff ukusynda cap (ms). Öň bellenilen {defaultBackoff}. Azure-yň {retryAfter} başlygy bar wagty hormatlanýar; ýogsam jittered exponential backoff ulanylýar, bu möçberde çäklendirilýär.",
+				"protectPlaceholders": "Öň bellenilen {true}. {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} we HTML ýaly tokenlar terjime edilmezden öň sentinel tokenlar bilen çalşyrylýar we soň dikeldilýär. Diňe çeşmede bilgeşleýin placeholder şekilli literallar bar bolsa söndür.",
+				"customPlaceholderPatterns": "Öň bellenilen ýer tutucu setine goşmaça regex nusgalary (delimitersiz) goşuldy, meselem, {angleToken} token sintaksisi üçin. Nädogry regexler göz öňünde tutulmaýar.",
+				"noTranslatePatterns": "Glob nusgalary parser derejeli açarlara (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key) gabat gelýär. Gabat gelýän açarlar haýyşdan düşürilýär we olaryň çeşme gymmaty saklanyp geçirilýär."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Ýükleme tertibi",
+			"steps": {
+				"actionInputs": "Bu hereket iş prosesinden açyk girişleri okaýar.",
+				"config": "YAML konfigurasiýasyny {configPath}.",
+				"precedence": "Her bir paýlaşylan meýdan üçin giriş ýeňiş gazanýar; ýogsam YAML gymmaty ulanylýar.",
+				"validation": "Birleşen gymmatlyklar tassyklanýar. Nädogry enumlar (meselem, {invalidEnum}) aýdyň habar bilen hereketiň çalt şowsuzlyga uçramagyna sebäp bolýar."
+			}
+		},
+		"tone": {
+			"heading": "Äheň we senagat, ýönekeý sözler bilen aýdanyňda.",
+			"body": "Azure AI Translator v3 API-de ýekeje ses düwmesi ýok. Iki sazlama birleşip, size birmeňzeş kontrolyň köpüsini berýär:",
+			"industryLabel": "Senagat / domain:",
+			"industryBody": "{categoryId} öz korpusyňyzda taýýarlanan Azure {customTranslatorLink} kategoriýasyny görkezmek üçin ulanyň - hukuk, tehnika, medisina, marketing ýa-da şuňa meňzeş zatlar. Bu äheň, marka sesi we söz baýlygy üçin iň güýçli guraldyr.",
+			"surfaceLabel": "Daşky tekst:",
+			"surfaceBody": "Marka atlaryny we önümiň {glossaryLink} sözme-söz gulplamak, ýaş diňleýjilere ýetmek üçin hapa sözleri aýyrmak üçin {profanityAction} ulanyň.",
+			"glossaryLinkLabel": "sözlük"
+		}
 	},
 	"inputs": {
 		"title": "Girişler we çykyşlar",
 		"eyebrow": "Maglumat",
-		"lede": "Her bir giriş goşmaça repo config faýlynda hem kabul edilýär. Olaryň ikisi hem düzülende, hereketiň girişi ýeňýär."
+		"lede": "Her bir giriş goşmaça repo config faýlynda hem kabul edilýär. Olaryň ikisi hem düzülende, hereketiň girişi ýeňýär.",
+		"configurationIntro": "YAML şemasy we ýükleme tertibi üçin {configurationLink} serediň.",
+		"configurationLinkLabel": "Konfigurasiýa",
+		"columns": {
+			"name": "Ady",
+			"default": "Öň bellenilen",
+			"description": "Düşündiriş"
+		},
+		"defaults": {
+			"none": "ýok",
+			"allSupported": "Hemmesi goldanylýar",
+			"translatorDefaultTrue": "true (Translator default)"
+		},
+		"requiredInputs": {
+			"heading": "Gerekli girişler",
+			"caption": "Gerekli girişler",
+			"items": {
+				"sourceLocale": "Resurs faýllary tapmak üçin ulanylýan çeşme ýeri ({en}) {sourceGlob}. Şeýle-de Translatora iberilýär {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator abonentlik açary. Geçiň {secrets}.",
+				"endpoint": "Terjimeçi uç nokta URL, mysal {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Umumy goşmaça girişler",
+			"caption": "Umumy goşmaça girişler",
+			"items": {
+				"region": "Terjimeçi resurs regiony (global resurslar üçin aýryldy).",
+				"toLocales": "Terjime etmeli ýerler. JSON array ({jsonArray}) ýa-da virgül bilen aýrylan mykdarlary kabul edýär.",
+				"include": "Newline-aýrylan glob nusgalary; Diňe gabat gelýän faýllar terjime edilýär.",
+				"exclude": "Newline-aýrylan glob nusgalary; gabat gelýän faýllar atylýar (include edilenden soň ulanylýar).",
+				"configPath": "YAML config faýlyna ýol (iş ýeri köküne görä).",
+				"dryRun": "{true} wagty terjimeleri çalıştıryň we gysgaça maglumatlary çykaryň, ýöne faýllary ýazmaň.",
+				"failOnError": "Garaşylmadyk {true} ýalňyşlyklar şowsuzlyga uçraýar; {false} ýalňyşlyklar duýduryşdyr."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Terjimeçi haýyş girişleri",
+			"intro": "Bular göni Azure AI Translator v3 sorag parametrlerine meňzedilýär. Olaryň hemmesi hökman däl; Terjimeçi öň bellenilen ýagdaýynda ulanylýar.",
+			"caption": "Terjimeçi haýyş girişleri",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} kategoriýasy — senagat/domain/ton düwmesi. Iberilen {categoryQuery}.",
+				"textType": "{plain} ýa-da {html}. Diňe {html} gymmatlyklaryňyz hakyky HTML bölekleri bolanda ulanyň.",
+				"profanityAction": "{noAction}, {marked} ýa-da {deleted}. Terjimelerde hapa sözleriň nähili ulanylýandygyna gözegçilik edýär.",
+				"profanityMarker": "{asterisk} ýa-da {tag}. Diňe {profanityAction} manyly {marked}.",
+				"allowFallback": "{false} bolanda, eger siziň {categoryId} belli bir ýer üçin ýerleşdirilmedik bolsa, Translator umumy sistema dolanmagyň deregine hata gaýtaryp berýär.",
+				"apiVersion": "Terjimeçi REST API wersiýasy."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Çydamlylyk we ýer tutucu gorag",
+			"intro": "Bu girişler Translator haýyşyňyzy çäklendirende hereketiň nähili hereket edýändigine we terjime edilende {mustache} ýa-da {indexZero} ýaly placeholder tokenlary zaýalanmakdan nädip goraýandygyna gözegçilik edýär.",
+			"caption": "Çydamlylyk we ýer tutucu gorag girişleri",
+			"items": {
+				"maxRetries": "Wagtlaýyn HTTP jogaplarynda maksimum gaýtalamak synanyşyklary ({statusCodes}). Her haýyşda HTTP jaňlarynyň umumy sany {totalCalls}.",
+				"retryBackoffMs": "Islendik backoff ukusynda kapasa (milisekundda). Bu hereket Azure-yň {retryAfter} jogap başlygyna hormat goýýar; ýogsam bu möçberde çäklendirilen jittered exponential backoff ulanylýar.",
+				"protectPlaceholders": "{true} (default) bolanda, {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} we HTML obýektleri terjimeden öň sentinel tokenlar bilen çalşyrylýar we soň dikeldilýär. Diňe çeşmäňizde terjime edilmeli göni manyda ýer tutucu şekilli tekst bar bolsa söndüriň.",
+				"customPlaceholderPatterns": "Newline-aýrylan regexler (delimitersiz) öň bellenilen ýer tutucu setine goşuldy, meselem, custom token sintaksisi üçin {angleToken} goşuldy.",
+				"noTranslatePatterns": "Newline-aýrylan glob nusgalary parser derejeli açarlara (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key) gabat gelýär. Gabat gelýän açarlar terjimeçi haýyşyndan düşürilýär we olaryň çeşme gymmaty saklanyp geçirilýär."
+			}
+		},
+		"outputs": {
+			"heading": "Çykyşlar",
+			"caption": "Çykyşlar",
+			"items": {
+				"summaryTitle": "Gysgaça PR-titul dostlukly gysgaça maglumat, meselem, {summaryExample}.",
+				"summaryDetails": "PR organy ýa-da iş gysgaça maglumaty üçin markdown gysgaça maglumat.",
+				"hasNewTranslations": "{trueString} bir ýa-da birnäçe täze terjimeler çykarylanda."
+			}
+		}
 	},
 	"formats": {
 		"title": "Faýl formatlary",
 		"eyebrow": "Maglumat",
 		"heroTitle": "Goldanylýan faýl formatlary",
-		"lede": "Alty sany round-trippable resurs formaty. Bu hereket her bir source-locale faýly okaýar, gymmatlyklary terjime edýär we her maksat ýeri üçin dogany ýazýar."
+		"lede": "Alty sany round-trippable resurs formaty. Bu hereket her bir source-locale faýly okaýar, gymmatlyklary terjime edýär we her maksat ýeri üçin dogany ýazýar.",
+		"namingConvention": "Ähli faýllar {namingConvention} at düzgünini ulanýar.",
+		"learnMore": "Kän öwrenmek",
+		"items": {
+			"resx": {
+				"blurb": "XML esasly .NET resurs faýllary. Her {dataValue} düğümüniň içki tekstini terjime edýär, düşündirişleri we metamaglumatlary saklaýar.",
+				"specLabel": "Microsoft Learn — .resx faýllaryndaky resurslar"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 dokumentleri. Her {source} terjime edýär we netijeni degişli {target} ýazýar we {trgLang} üçin ýeri düzýär.",
+				"specLabel": "OASIS XLIFF 2.0 spesifikasiýasy"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object faýllar. Her {msgid} / {msgidPlural} {msgstr} / {msgstrPlural} görnüşine terjime edýär.",
+				"specLabel": "GNU gettext — PO faýl formaty"
+			},
+			"json": {
+				"blurb": "Tötänleýin JSON faýllary. İçiçe obýektler terjime etmek üçin {delimiter} delimiter bilen tekizlenýär, soňra çykyşda ýene-de iç içe ýerleşdirilýär. Nokat açarlar ({dottedKey}) sözme-söz saklanyp galýar.",
+				"specLabel": "JSON spesifikasiýasy (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Ýönekeý {keyValue} faýllar (Win32 stilinde INI ýa-da islendik tekiz konfigurasiýa). Bölüm başlyklary we düşündirişler saklanýar.",
+				"specLabel": "Wikipediýada INI faýl formaty"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI tekst resurslary — {keyValue} tekst ýoldaşy hökmünde ulanylýan tekiz {resx}.",
+				"specLabel": "Microsoft MUI overview"
+			}
+		},
+		"roundTrip": {
+			"heading": "Gidiş-dönüş kepillikleri",
+			"body": "Test süiti her formatyň wekilçilikli fikstürleri üçin byte-for-byte round-trippingi barlaýar. Eger siziň kod bazaňyzda formatyň üýtgeşikligi round-trippingi bozýan bolsa, haýyş {issueLink}, iň az nusga bilen jogap beriň.",
+			"issueLinkLabel": "jedelli meseläni aç"
+		}
 	},
 	"recipes": {
 		"title": "Taýýarlanyş usullary",
 		"eyebrow": "Aşpezlik kitaby",
-		"lede": "Ugratma terjimeleriniň giňden ýaýran nusgalary: monorepolar, sözlükler, ýörite kategoriýalar, gury ylgawlar we äheňe gözegçilik."
+		"lede": "Ugratma terjimeleriniň giňden ýaýran nusgalary: monorepolar, sözlükler, ýörite kategoriýalar, gury ylgawlar we äheňe gözegçilik.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Her ylgawdan soň bir pull request aç"
+			},
+			"monorepo": {
+				"heading": "Monorepos: her paket üçin scope translation"
+			},
+			"glossary": {
+				"heading": "Marka atlary we önümiň terminleri üçin sözlük",
+				"intro": "Reponyň içine {configPath} goýuň:",
+				"afterLabel": "soň",
+				"body": "Sözlük terminleri terjime {after} ulanylýar, şonuň üçin maşynda terjime edilen netije, hatda model ony sinonim bilen çalyşsa-da, gowy görýän markaňyzy saklaýar."
+			},
+			"customCategory": {
+				"heading": "Custom Translator kategoriýasy (senagat / domain)",
+				"body": "Azure {customTranslatorLink} kategoriýasyny senagat söz baýlygyňyzy we äheňiňizi (hukuk, medisina, marketing, içeri inženerçilik we ş.m.) öz içine alýan korpusda öwrediň we onuň ID-sini {categoryId} arkaly geçiriň. Bu Azure-yň hödürleýän iň güýçli äheňidir."
+			},
+			"tone": {
+				"heading": "Äheňe gözegçilik + berk yza çekilme",
+				"body": "Custom Translator {categoryId} {profanityAction} we {allowFallbackFalse} bilen birleşdirip, yzygiderli sesi mejbur ediň we saýlanan kategoriýaňyzda nyşan ýerleriňiziň biri üçin ýerleşdirilmedik ýagdaýynda iş akışyny şowsuzlyga uçraň."
+			},
+			"dryRun": {
+				"heading": "Iş akışyny açmazdan öň gurak ylgaň",
+				"body": "Bu hereket henizem gysgaça netijeleri we ädim gysgaça maglumaty çykarýar, ýöne hiç bir faýl ýazylmaýar. Her {failOnErrorFalse} bilen birleşdirip, her bir meseläni duýduryş hökmünde ýüze çykaryň."
+			}
+		}
 	},
 	"faq": {
 		"title": "Ýygy-ýygydan soralýan soraglar",
 		"eyebrow": "Kömek etmek",
 		"heroTitle": "Ýygy-ýygydan berilýän soraglar",
-		"lede": "Hereketi kabul edeniňizde köplenç ýüze çykýan soraglara çalt jogap bermek."
+		"lede": "Hereketi kabul edeniňizde köplenç ýüze çykýan soraglara çalt jogap bermek.",
+		"questions": {
+			"azure": {
+				"heading": "Bu hereket Azure bilen nähili gepleşýär?",
+				"body": "Microsoft-yň resmi {azureSdkLink} SDK-sy arkaly {corePipelineLink}. Bu size {statusCodes} otomatik gaýtalamaga, ýazylan haýyş we jogap modellerini hem-de autentifikatsiya başlygyny mugt işlemäge mümkinçilik berýär - öň el bilen ýazylan {axios} jaňlary. Jemgyýetçilik hereketiniň ýüzi (girişler, çykyşlar, faýllaryň çykyşlary) üýtgemedi."
+			},
+			"tone": {
+				"heading": "Näme üçin terjimeler käte off-brand ýa-da off-tone bolýar?",
+				"body": "Makina terjimesi öň bellenilen umumy maksatly modele geçýär. Üç düwme kömek edýär: kyn möhletli üýtgetmeler üçin {glossaryLink}, äheňiňize we söz baýlygyňyza öwrenişdirilen gowy sazlaşykly modeller üçin {customTranslatorLink} hem-de hapa sözleri arassalamak ýa-da bellik {profanityAction}.",
+				"glossaryLinkLabel": "sözlük",
+				"customTranslatorLinkLabel": "Custom Translator kategoriýasy"
+			},
+			"duplicateFiles": {
+				"heading": "Bir faýly iki gezek terjime etmekden nädip gaça durup bilerin?",
+				"body": "Iş akışyny diňe çeşme faýllaryňyza gabat gelýän {paths} boýunça başlatyň, meselem, {sourceGlob}. Şeýle-de bu hereket her trigger üçin faýl filtrini öz içine alýar {githubToken} bu bolsa işi iň soňky commitdäki faýllara daraltýar."
+			},
+			"offline": {
+				"heading": "Hereketi offline geçirip bilerinmi?",
+				"body": "Doly däl - Azure AI Translator runtime beýnisi. Ýöne siz terjime etmek üçin HTTP haýyşy etmän parsing we konfigurasiýasyny barlamak üçin {dryRunTrue} bilen işläp bilersiňiz."
+			},
+			"node": {
+				"heading": "Bu hereket haýsy Node wersiýasynda işleýär?",
+				"body": "v3 GitHub Actions {nodeRuntime} runtime-da işleýär. Paketlenen JavaScript Node 20, 22 we 24 bilen gabat gelýär."
+			},
+			"dist": {
+				"heading": "Paketlenen {distDir} nireden alynýar?",
+				"body": "GitHub JS hereketleri öz derlenen JS-lerini depoda ugradýar. {distBuild} iş akışy her birleşmeden soň ony täzeden gurýar we {mainBranch} süýşüp biljekdigini {distCheck} PR-leri bloklaýar."
+			},
+			"formats": {
+				"heading": "Beýleki resurs formatlary barada näme diýse bolar?",
+				"body": "Şu gün: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} ýene gerek bolsa — parser interfeýsi kiçijik (parse karta → → terjimeleri → formaty ulanmak) we goşandyňyzy kabul edýäris.",
+				"issueLinkLabel": "Mesele aç"
+			}
+		}
 	},
 	"translations": {
 		"title": "Terjimeler",
 		"eyebrow": "Sergi",
 		"heroTitle": "Her dilde salam",
-		"locales": "Ýaşaýan ýerleri",
-		"currentlyRendered": "şu wagt render edilýär",
-		"complete": "Tamamlandy!",
-		"pendingPrefix": "Indiki Translate-Docs ylgamagyna garaşýar.",
+		"lede": "Bu sahypa Resource Translator tarapyndan Azure AI Translatoryň goldaýan her diline terjime edilýär.",
+		"localeCountLabel": "{count} ýerleri",
+		"statusComplete": "{translatedCount} şu wagt render edilýär — tamamlandy!",
+		"statusPending": "{translatedCount} häzirki wagtda render edilýär - {pendingCount} indiki {workflowName} garaşýar.",
 		"viewWorkflowRuns": "Workflow işleýşini gör",
 		"filter": "Filtr",
 		"filterPlaceholder": "Dil, kod ýa-da ýerli at boýunça gözle...",
 		"source": "Çeşme",
 		"machineTranslations": "Makina terjimeleri",
-		"translationPending": "Terjime garaşýar — translate-docs run açyň.",
+		"translationPending": "Terjime garaşylýar — {workflowName} açyň.",
 		"noLocales": "Hiç bir ýer şol filtre gabat gelmeýär.",
-		"howItWorks": "Bu nädip işleýär?"
+		"howItWorks": {
+			"heading": "Bu nädip işleýär?",
+			"thisActionLabel": "Bu hereket",
+			"steps": {
+				"source": "Iňlis çeşme faýly {messagesPath}.",
+				"workflow": "Itekläp, öz-özüne garşy {workflowLink} {thisAction} başlaýar.",
+				"fanOut": "Bu hereket Azure AI Translator tarapyndan goldanylýan her bir ýere ({configPath}-da konfigurasiýa edilen) ýaýraýar we her maksada {messagesLocaleJson} ýazýar.",
+				"pullRequest": "Täze terjimeler bilen çekme haýyşy açylýar. Ony birleşdirmek kartlar doldurylyp bu sahypany täzeden çap edýär."
+			}
+		},
+		"poweredBy": "Resource Translator we Azure AI Translator tarapyndan goldanylýar."
 	},
 	"contributing": {
 		"title": "Goşant goşmak",
 		"eyebrow": "Açyk çeşme",
-		"lede": "Hata hasabatlary, aýratynlyk haýyşlary we pull haýyşlary kabul edilýär. Bu hereket ilkinji gezek goşant goşýanlar üçin ýeterlik derejede kiçi."
+		"lede": "Hata hasabatlary, aýratynlyk haýyşlary we pull haýyşlary kabul edilýär. Bu hereket ilkinji gezek goşant goşýanlar üçin ýeterlik derejede kiçi.",
+		"localDevelopment": {
+			"heading": "Ýerli ösüş"
+		},
+		"addingParser": {
+			"heading": "Parser eklemek",
+			"steps": {
+				"fixture": "Aşakda fikstür goş {testDataDir}.",
+				"implement": "Ýerine {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Ony hasaba {factoryFile}.",
+				"extension": "Faýl giňeltmesini {translationFileSchemes} içinde {finderFile}.",
+				"tests": "Parse → format we applyTranslations üçin round-trip testlerini ýaz."
+			}
+		},
+		"coverage": {
+			"heading": "Üpjünçiligiň çäkleri",
+			"body": "Jest konfigurasiýasy iň az üpjünçiligi talap edýär. Täze kod bildirişler + hatlaryň bosagasyny 78%-den ýokary we funksiýalary 90%-den ýokary saklamaly. Üýtgeşikligiň ýanynda armaturalary we testleri goşuň."
+		},
+		"docsSite": {
+			"heading": "Dokumentleşdirme saýty",
+			"body": "{docsDir} halta Astro 6 + Tailwind v4 proýekti. Ol ýere bir gezek {npmInstall}, soňra ýerli {npmRunDev} üçin gidiň. {pagesWorkflow} iş akışy her birleşmede dokumentleri GitHub Pages-e iberýär."
+		}
 	},
 	"changelog": {
 		"title": "Üýtgetme logy",
 		"eyebrow": "Taryhy",
-		"lede": "Çykarylyşlaryň ýokary derejeli gysgaça maglumaty. Kanonik, ygtybarly changelog CHANGELOG.md saklanylýan ýerde ýaşaýar."
+		"lede": "Çykarylyşlaryň ýokary derejeli gysgaça maglumaty. Kanonik, ygtybarly changelog CHANGELOG.md saklanylýan ýerde ýaşaýar.",
+		"fullRecord": "Doly ýazgy {changelogLink} serediň.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (ösüşde)",
+			"labels": {
+				"breaking": "DÖWÜLMEK",
+				"resilience": "Çydamlylyk:",
+				"placeholderProtection": "Placeholder goragy:",
+				"perKeyOptOut": "Her açar üçin opt-out:",
+				"docsAccessibility": "Dokumentleriň elýeterliligi:",
+				"inlineCodeStyling": "Inline kod stili:"
+			},
+			"issueLabels": {
+				"closes46": "#46 ýapylýar.",
+				"tightens16": "Gysylýar #16.",
+				"closes35": "#35 ýapylýar."
+			},
+			"items": {
+				"runtime": "Runtime {nodeRuntime} ({breaking}).",
+				"newInputs": "Täze girişler: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError} we öňdebaryjy terjimeçi düwmejikleri {textType}, {profanityAction}, {profanityMarker} we {allowFallback}.",
+				"sourceLocale": "Source locale indi Translatora hem iberilýär {fromLocale} şonuň üçin gysga stringler otomatik anyklanylmaýar.",
+				"resilience": "{label} wagtlaýyn HTTP jogaplarynda ({statusCodes}) otomatik gaýtadan synanyşmak Azure-yň {retryAfter} başlygyna hormat goýýar - ýok wagty jittered exponential backoffa gaýdyp gelýär. Programma arkaly {maxRetries} we {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} we HTML obýektleri terjime edilmezden öň sentinellere dolanýar we soň dikeldilýär, şonuň üçin Translator i18next/Mustache/Handlebars/.NET/printf ýerleşdirijilerini mangling etmegini bes edýär. Toggle arkaly {protectPlaceholders}; uzaltmak {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} täze {noTranslatePatterns} girişi Translator haýyşyndan gabat gelýän açarlary bütinleý düşürýär (marka atlarynyň, hata kodlarynyň we ş.m. üçin çeşme gymmatlyklaryny saklaýar). Glob nusgalaryny parser derejeli açarlara (JSON nokta ýoly, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key) bilen deňeşdirýär. {issue}",
+				"repoConfig": "Repo derejeli konfigurasiýa arkaly {configPath}.",
+				"glossary": "Sözlük goldawy, ädim gysgaça {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM audit arassa (0 gowşaklyk).",
+				"docsSite": "Astro + Tailwind v4 docs saýty görnüş geçişleri we Expressive Code bilen.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pökgüsi. Logo glifleri ýollara öwrülýär, şonuň üçin olar indi gradient duralgalara garşy reňk kontrastynda şowsuzlyga uçramaýar, ýüzýän {backToTop} düwmesi gizlin wagty {inert} ulanýar ({ariaHidden} toggle däl-de), {formatsAstro} bölümler indi awtomatik döredilen başlyk ID-leri bilen çakyşmaýar, üç sany ýer karty BCP-47-dogry {lang} atributlaryny ({nya}, {lug}, {run}) paş edýär, gaýtalanýan {documentation} landmark belgileri sidebar bilen footeriň arasynda düşnüksizdir,  {inputs} / {configuration}-däki her bir maglumat tablisasy ekran okyjy ýazgysy bilen iberilýär.",
+				"inlineCode": "{label} Docs proza {codeElement} baglaýyşlar we başlyklar üçin ulanylýan marka→aksentden tapawutlylykda, ýyly / amber tema aksentini geýýär.",
+				"automation": "Dependabot auto-merge, CodeQL skanerleme, CI matris."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "git geçmişine serediň."
+		}
 	}
 }

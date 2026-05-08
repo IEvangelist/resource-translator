@@ -18,18 +18,26 @@
 			"node": "Nodo 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "anidado o plano",
+			"ini": "{keyValue}",
+			"restext": "Texto MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Seis formatos de archivo",
-				"body": "Viajes de ida y vuelta .resx, .xliff, .po, .json, .ini y .restext con formato estable en bytes."
+				"body": "Viajes de ida y vuelta {resx}, {xliff}, {po}, {json}, {ini} y {restext} con formato estable en bytes."
 			},
 			"config": {
 				"title": "Configuración a nivel de repositorio",
-				"body": "Deja un .github/resource-translator.yml para incluir globos, glosarios y categorías de Traductor Personalizado."
+				"body": "Deja un archivo {configPath} para incluir globos, glosarios y categorías de Traductor Personalizado."
 			},
 			"glossary": {
 				"title": "Conocido del glosario",
-				"body": "Bloquea los nombres de marcas y términos de productos con regex inteligente de límites de palabras que maneje C++, .NET y amigos."
+				"body": "Bloquea los nombres de marcas y los términos de los productos con un regex inteligente que cubra {cpp}, {dotnet} y amigos."
 			},
 			"dryRun": {
 				"title": "Prueba en seco + fallo suave",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Salidas amigables con las relaciones públicas",
-				"body": "Resumen-título, resumen-detalles y tienes-nuevos-traducciones encajan directamente en crear-pull-request."
+				"body": "{summaryTitle}, {summaryDetails} y {hasNewTranslations} encajan directamente en crear-pull-request."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "Construido sobre @azure-rest/ai-translation-text + @azure/core-rest-pipeline — intentos automáticos en 408/429/5xx, sin HTTP enrollado a mano. Empaquetado por esbuild, auditoría-limpio."
+				"body": "Construido sobre {azureSdk} + {corePipeline} — intentos automáticos en {statusCodes}, sin HTTP enrollado a mano. {esbuild} empaquetado, limpio en auditoría."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Flujo de trabajo de entrada directa",
+			"titlePrefix": "Copiar. Pegar.",
+			"titleAccent": "Traduce.",
+			"body": "Tres secretos, cuatro líneas, y tu repositorio será multilingüe en el siguiente intento.",
+			"setupLink": "Repasa todo el montaje"
+		},
+		"cta": {
+			"title": "¿Listo para localizar en piloto automático?",
+			"body": "Una clave de Azure AI Translator, un archivo de flujo de trabajo. El traductor de recursos se encarga del resto.",
+			"button": "Empieza"
 		}
 	},
 	"getting-started": {
 		"title": "Empezando",
 		"eyebrow": "Configuración",
-		"lede": "Añade un archivo de flujo de trabajo, apunta a tus credenciales de Azure AI Translator, y la acción — basada en el SDK oficial de @azure-rest/ai-translation-text de Microsoft — escaneará el repositorio en busca de archivos de recursos en idioma fuente y emitirá los hermanos traducidos.",
+		"lede": "Añade un archivo de flujo de trabajo, apúntalo a tus credenciales de Azure AI Translator, y la acción escaneará el repositorio en busca de archivos de recursos en idioma fuente y emitirá los hermanos traducidos.",
 		"steps": {
 			"provision": {
 				"title": "Provisionar un recurso Azure AI Translator",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Añadir el flujo de trabajo",
-				"body": "Crea .github/workflows/translate.yml:"
+				"body": "Crea {workflowPath}:"
 			},
 			"resource": {
 				"title": "Commit de un archivo de recurso fuente",
-				"body": "Los archivos de recursos usan el Nombre. <sourceLocale>. <ext> convención. Por ejemplo, Greetings.en.resx se convierte en Greetings.fr.resx, Greetings.de.resx, y así sucesivamente tras una partida."
+				"body": "Los archivos de recursos utilizan la convención {namingConvention}. Por ejemplo, {sourceFile} se convierte en {frFile}, {deFile}, y así sucesivamente tras una partida."
 			},
 			"output": {
 				"title": "Inspeccionar la salida",
-				"body": "Una vez finalizado el flujo de trabajo, la acción expone tres salidas que puedes conectar en una descripción de PR: resumen-título, resumen-detalles y tienes-nuevas traducciones. También escribe un resumen de Markdown en la página de empleo a través de core.summary."
+				"body": "Una vez que termina el flujo de trabajo, la acción expone tres salidas que puedes conectar en una descripción de relaciones públicas: {summaryTitle}, {summaryDetails} y {hasNewTranslations}. También escribe un resumen de Markdown en la página de empleo a través de {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Próximos pasos",
-			"configuration": "Configura los valores predeterminados a nivel de repositorio con .github/resource-translator.yml.",
+			"configuration": "Configura los valores predeterminados a nivel de repositorio con {configPath}.",
 			"recipes": "Consulta recetas para monorepos, glosarios personalizados y categorías de Traductor Personalizado."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Configuración",
 		"eyebrow": "YAML",
 		"heroTitle": "Configuración del repositorio",
-		"lede": "Express se pone por defecto una vez en .github/resource-translator.yml y deja que todos los flujos de trabajo los hereden. Las entradas de acción siempre ganan cuando se proporcionan ambas."
+		"lede": "Express se pone por defecto una vez en el archivo de configuración del repositorio y deja que todos los flujos de trabajo los hereden. Las entradas de acción siempre ganan cuando se proporcionan ambas.",
+		"intro": "Anula el camino con la entrada {configPath} si necesitas una ubicación no predeterminada.",
+		"schemaHeading": "Esquema",
+		"fieldReference": {
+			"heading": "Referencia de campo",
+			"caption": "Referencia de campo de configuración",
+			"columns": {
+				"field": "Campo",
+				"type": "Tipo",
+				"notes": "Notas"
+			},
+			"fields": {
+				"sourceLocale": "Vuelve a la entrada {sourceLocale} si no está activado. También se reenvió a Translator como {fromLocale} para que las cadenas cortas no se detecten automáticamente.",
+				"toLocales": "Ya sea un array o una cadena separada por comas.",
+				"includeExclude": "Patrones de globos evaluados frente a caminos absolutos y relativos al espacio de trabajo.",
+				"glossary": "Anulaciones de términos post-traducción. Consciente de la frontera de palabras (maneja {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} categoría — tu perilla de industria/dominio (legal, médico, tono de marketing, etc.). Enviado como {categoryQuery}.",
+				"textType": "Por defecto es {plain}. Usa {html} solo si los valores de tus recursos contienen fragmentos HTML reales.",
+				"profanityAction": "Cómo tratar términos profanos en la traducción de la traducción.",
+				"profanityMarker": "Solo tiene sentido cuando {profanityAction} es {marked}.",
+				"allowFallback": "Configura para {false} falle la traducción cuando tu {categoryId} no tiene despliegue para una localidad objetivo en lugar de volver al modelo general.",
+				"apiVersion": "Versión de la API REST del traductor. Por defecto es {version}.",
+				"maxRetries": "Intentos máximos de reintentos en respuestas HTTP transitorias ({statusCodes}). Por defecto se pone {defaultRetries}. El total de llamadas HTTP por solicitud es {totalCalls}.",
+				"retryBackoffMs": "Límite (ms) en cualquier sueño de retroceso individual. Por defecto es {defaultBackoff}. El encabezado de {retryAfter} de Azure se respeta exactamente cuando está presente; de lo contrario, se utiliza un retroceso exponencial con jitter, limitado a este valor.",
+				"protectPlaceholders": "Por defecto es {true}. Cuando están activados, tokens como {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} y HTML se reemplazan por tokens centinela antes de la traducción y se restauran después. Desactiva solo cuando la fuente contiene intencionadamente literales con forma de marcador de posición.",
+				"customPlaceholderPatterns": "Patrones regex adicionales (sin delimitadores) añadidos al conjunto de marcadores de posición por defecto, por ejemplo, {angleToken} para sintaxis personalizada de tokens. Se ignoran las regex inválidas.",
+				"noTranslatePatterns": "Los patrones glob coincidían con las claves a nivel de analizador (JSON con puntos de camino, {resxName} RESX, {poMsgid} PO, {xliffId} de unidad XLIFF, clave INI/restext). Las claves coincidentes se eliminan de la solicitud y pasan manteniendo su valor fuente."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Orden de carga",
+			"steps": {
+				"actionInputs": "La acción lee entradas explícitas del flujo de trabajo.",
+				"config": "Carga la configuración YAML desde {configPath}.",
+				"precedence": "Para cada campo compartido, la entrada gana; de lo contrario, se utiliza el valor YAML.",
+				"validation": "Los valores fusionados se validan. Los enums inválidos (por ejemplo, {invalidEnum}) hacen que la acción falle rápidamente con un mensaje claro."
+			}
+		},
+		"tone": {
+			"heading": "Tono e industria, en términos claros",
+			"body": "La API de Azure AI Translator v3 no tiene ni un solo control de tono. Dos ajustes combinados te dan la mayor parte del mismo control:",
+			"industryLabel": "Industria / dominio:",
+			"industryBody": "usa {categoryId} para señalar una categoría de Azure {customTranslatorLink} entrenada con tu propio corpus — legal, técnico, médico, de marketing o cualquier otra cosa. Esta es la palanca más fuerte para el tono, la voz de marca y el vocabulario.",
+			"surfaceLabel": "Texto superficial:",
+			"surfaceBody": "Utiliza el {glossaryLink} para bloquear los nombres de marcas y términos de producto literalmente, y usa {profanityAction} para eliminar términos profanes cuando se dirija a la localización para audiencias más jóvenes.",
+			"glossaryLinkLabel": "Glosario"
+		}
 	},
 	"inputs": {
 		"title": "Entradas y salidas",
 		"eyebrow": "Referencia",
-		"lede": "Toda entrada también es aceptada en el archivo opcional de configuración del repositorio. Cuando ambos están activados, gana la entrada de acción."
+		"lede": "Toda entrada también es aceptada en el archivo opcional de configuración del repositorio. Cuando ambos están activados, gana la entrada de acción.",
+		"configurationIntro": "Consulta {configurationLink} para el esquema YAML y el orden de carga.",
+		"configurationLinkLabel": "Configuración",
+		"columns": {
+			"name": "Nombre",
+			"default": "Default",
+			"description": "Descripción"
+		},
+		"defaults": {
+			"none": "ninguno",
+			"allSupported": "todos apoyados",
+			"translatorDefaultTrue": "true (Traductor por defecto)"
+		},
+		"requiredInputs": {
+			"heading": "Entradas requeridas",
+			"caption": "Entradas requeridas",
+			"items": {
+				"sourceLocale": "Localidad de origen (por ejemplo, {en}) utilizada para encontrar archivos de recursos como {sourceGlob}. También reenviado a Traductor como {fromLocale}.",
+				"subscriptionKey": "Clave de suscripción Azure AI Translator. Pasa por {secrets}.",
+				"endpoint": "URL del traductor, por ejemplo, {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Entradas opcionales comunes",
+			"caption": "Entradas opcionales comunes",
+			"items": {
+				"region": "Región de recursos traductores (omitir recursos globales).",
+				"toLocales": "Lugares a los que traducir. Acepta un array JSON ({jsonArray}) o valores separados por comas.",
+				"include": "Patrones de globos separados por líneas de newline; solo se traducen los archivos coincidentes.",
+				"exclude": "Patrones de globos separados por líneas de newline; Los archivos coincidentes se saltan (se aplican después de incluir).",
+				"configPath": "Ruta hacia el archivo de configuración YAML (relativo a la raíz del espacio de trabajo).",
+				"dryRun": "Cuando {true}, ejecuta traducciones y emite resúmenes, pero no escribas archivos.",
+				"failOnError": "Cuando {true}, errores inesperados fallan la acción; Cuando {false}, los errores son advertencias."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Entradas de solicitud del traductor",
+			"intro": "Estos se asignan directamente a los parámetros de consulta de Azure AI Translator v3. Cada uno es opcional; los valores predeterminados del traductor se aplican cuando no se activan.",
+			"caption": "Entradas de solicitud del traductor",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} category — el perillón industry/domain/tone. Reenviado como {categoryQuery}.",
+				"textType": "{plain} o {html}. Usa {html} solo cuando los valores de tus recursos sean fragmentos HTML reales.",
+				"profanityAction": "{noAction}, {marked} o {deleted}. Controla cómo se emiten los términos profanos en las traducciones.",
+				"profanityMarker": "{asterisk} o {tag}. Solo tiene sentido cuando {profanityAction} es {marked}.",
+				"allowFallback": "Cuando {false}, el traductor devuelve un error en lugar de volver al sistema general si tu {categoryId} no tiene despliegue para una localización objetivo.",
+				"apiVersion": "Versión de la API REST del traductor."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Resiliencia y protección provisional",
+			"intro": "Estas entradas controlan cómo se comporta la acción cuando Traductor limita tu solicitud y cómo protege tokens marcadores como {mustache} o {indexZero} de ser alterados durante la traducción.",
+			"caption": "Insumos de resiliencia y protección provisional",
+			"items": {
+				"maxRetries": "Intentos máximos de reintentos en respuestas HTTP transitorias ({statusCodes}). El número total de llamadas HTTP por solicitud es {totalCalls}.",
+				"retryBackoffMs": "Limita (en milisegundos) cualquier sueño de retroceso individual. La acción honra el encabezado de respuesta {retryAfter} de Azure exactamente cuando está presente; de lo contrario, utiliza un retroceso exponencial con jitters limitado a este valor.",
+				"protectPlaceholders": "Cuando {true} (por defecto), los marcadores de posición como {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} y HTML se reemplazan por tokens centinela antes de la traducción y se restauran después. Desactiva solo cuando tu fuente contiene intencionadamente texto literal en forma de marcador que deba traducirse.",
+				"customPlaceholderPatterns": "Regexes separados por nueva línea (sin delimitadores) añadidos al conjunto de marcadores predeterminados, por ejemplo, {angleToken} para sintaxis personalizada de tokens.",
+				"noTranslatePatterns": "Los patrones de globos separados por nueva línea coincidían con las claves a nivel de analizador (JSON doted path, RESX {resxName}, PO {poMsgid}, unidad XLIFF {xliffId}, clave INI/restext). Las claves coincidentes se eliminan de la solicitud del traductor y pasan manteniendo su valor fuente."
+			}
+		},
+		"outputs": {
+			"heading": "Salidas",
+			"caption": "Salidas",
+			"items": {
+				"summaryTitle": "Resumen breve y amigable para el título de relaciones públicas, por ejemplo, {summaryExample}.",
+				"summaryDetails": "Resumen de descuento adecuado para un organismo de relaciones públicas o un resumen de puesto.",
+				"hasNewTranslations": "{trueString} cuando se generaban una o más nuevas traducciones."
+			}
+		}
 	},
 	"formats": {
 		"title": "Formatos de archivo",
 		"eyebrow": "Referencia",
 		"heroTitle": "Formatos de archivo compatibles",
-		"lede": "Seis formatos de recursos redondeables. La acción lee cada archivo de localidad fuente, traduce los valores y escribe un hermano por localidad de destino."
+		"lede": "Seis formatos de recursos redondeables. La acción lee cada archivo de localidad fuente, traduce los valores y escribe un hermano por localidad de destino.",
+		"namingConvention": "Todos los archivos usan la convención de nombres {namingConvention}.",
+		"learnMore": "Más información",
+		"items": {
+			"resx": {
+				"blurb": "archivos de recursos .NET basados en XML. Traduce el texto interior de cada nodo {dataValue}, preservando comentarios y metadatos.",
+				"specLabel": "Microsoft Learn — Recursos en archivos .resx"
+			},
+			"xliff": {
+				"blurb": "Documentos OASIS XLIFF 2.0. Traduce cada {source} y escribe el resultado en la {target} correspondiente, estableciendo {trgLang} para la localidad.",
+				"specLabel": "Especificación OASIS XLIFF 2.0"
+			},
+			"po": {
+				"blurb": "Archivos de objetos portátiles GNU gettext. Traduce cada {msgid} / {msgidPlural} en {msgstr} / {msgstrPlural} formas.",
+				"specLabel": "GNU gettext — Formato de archivo PO"
+			},
+			"json": {
+				"blurb": "Archivos JSON arbitrarios. Los objetos anidados se aplanan con el delimitador {delimiter} para la traslación, y luego se anidan de nuevo en la salida. Las teclas punteadas ({dottedKey}) se conservan literalmente.",
+				"specLabel": "Especificación JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Archivos {keyValue} sencillos (INI estilo Win32 o cualquier configuración plana). Se conservan los encabezados de sección y los comentarios.",
+				"specLabel": "Formato de archivo INI en Wikipedia"
+			},
+			"restext": {
+				"blurb": "Recursos de texto Microsoft MUI — pares de {keyValue} planos usados como complemento textual para {resx}.",
+				"specLabel": "Resumen de Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Garantías de ida y vuelta",
+			"body": "El conjunto de pruebas verifica byte por byte el recorrido de ida y vuelta para los elementos representativos de todos los formatos. Si una peculiaridad de formato falla en el viaje de ida y vuelta en tu base de código, por favor {issueLink} con una muestra mínima.",
+			"issueLinkLabel": "abrir un asunto"
+		}
 	},
 	"recipes": {
 		"title": "Recetas",
 		"eyebrow": "Libro de cocina",
-		"lede": "Patrones comunes para traducciones de envío: monoreposos, glosarios, categorías personalizadas, ensayos y control de tono."
+		"lede": "Patrones comunes para traducciones de envío: monoreposos, glosarios, categorías personalizadas, ensayos y control de tono.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Abre una solicitud de tirada tras cada partida"
+			},
+			"monorepo": {
+				"heading": "Monorepos: traducción de alcance por paquete"
+			},
+			"glossary": {
+				"heading": "Glosario de nombres de marcas y términos de productos",
+				"intro": "Deja un {configPath} en el repositorio:",
+				"afterLabel": "después",
+				"body": "Los términos del glosario se aplican {after} traducción, por lo que la salida traducida automáticamente mantiene tu marca preferida incluso cuando el modelo la cambió por un sinónimo."
+			},
+			"customCategory": {
+				"heading": "Categoría de traductor personalizado (industria / dominio)",
+				"body": "Entrena una categoría de {customTranslatorLink} de Azure en un corpus que capture tu vocabulario y tono del sector (legal, médico, marketing, ingeniería interna, etc.) y aprueba su ID por {categoryId}. Esta es la palanca de tono más potente que ofrece Azure."
+			},
+			"tone": {
+				"heading": "Control de tono + respaldo estricto",
+				"body": "Combina un {categoryId} de traductor personalizado con {profanityAction} y {allowFallbackFalse} para mantener una voz coherente y falla el flujo de trabajo si la categoría elegida no tiene un despliegue para una de tus localidades objetivo."
+			},
+			"dryRun": {
+				"heading": "Prueba en seco antes de activar el flujo de trabajo",
+				"body": "La acción sigue emitiendo salidas resumen y un resumen de pasos, pero no se escriben archivos. Combina con {failOnErrorFalse} para que cada problema aparezca como advertencia mientras iteras."
+			}
+		}
 	},
 	"faq": {
 		"title": "Preguntas frecuentes",
 		"eyebrow": "Ayuda",
 		"heroTitle": "Preguntas frecuentes",
-		"lede": "Respuestas rápidas a las preguntas que surgen con más frecuencia al adoptar la acción."
+		"lede": "Respuestas rápidas a las preguntas que surgen con más frecuencia al adoptar la acción.",
+		"questions": {
+			"azure": {
+				"heading": "¿Cómo comunica la acción con Azure?",
+				"body": "A través del SDK oficial de {azureSdkLink} de Microsoft, con {corePipelineLink}. Eso te permite reintentos automáticos en {statusCodes}, modelos de petición y respuesta tecleandos, y gestión gratuita de cabeceras de autenticación — todo lo que antes era una llamada {axios} rodada manualmente. La superficie pública de acción (entradas, salidas, salidas de archivos) permanece sin cambios."
+			},
+			"tone": {
+				"heading": "¿Por qué las traducciones a veces son de marca o tonal?",
+				"body": "La traducción automática se aplica por defecto a un modelo de propósito general. Tres mandos ayudan: un {glossaryLink} para anulaciones de términos duros, un {customTranslatorLink} para modelos ajustados entrenados con tu tono y vocabulario, y {profanityAction} para borrar o marcar términos profanos.",
+				"glossaryLinkLabel": "Glosario",
+				"customTranslatorLinkLabel": "Categoría de traductores personalizados"
+			},
+			"duplicateFiles": {
+				"heading": "¿Cómo evito traducir el mismo archivo dos veces?",
+				"body": "Activa el flujo de trabajo en {paths} que coincidan solo con tus archivos de origen y localidad, por ejemplo, {sourceGlob}. La acción también incluye su propio filtro de archivo por disparador cuando {githubToken} está activado, reduciendo el trabajo a los archivos en el último commit."
+			},
+			"offline": {
+				"heading": "¿Puedo ejecutar la acción sin conexión?",
+				"body": "No exactamente — Azure AI Translator es el cerebro de runtime. Pero puedes usar {dryRunTrue} para validar el análisis y la configuración sin hacer ninguna petición HTTP para traducir."
+			},
+			"node": {
+				"heading": "¿En qué versión de Node se ejecuta la acción?",
+				"body": "La v3 se ejecuta en el entorno de ejecución {nodeRuntime} Acciones de GitHub. El JavaScript incluido es compatible con los Nodos 20, 22 y 24, que es lo que CI prueba."
+			},
+			"dist": {
+				"heading": "¿De dónde proviene el {distDir} incluido?",
+				"body": "Las acciones de GitHub JS envían su JS compilado en el repositorio. El flujo de trabajo {distBuild} lo reconstruye tras cada fusión para {mainBranch} si se desplazaría, y {distCheck} bloquea PRs que generarían salidas desactualizadas."
+			},
+			"formats": {
+				"heading": "¿Y qué hay de otros formatos de recursos?",
+				"body": "Hoy: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} si necesitas otro — la interfaz del analizador es pequeña (analizar → mapear → aplicar traducciones → formato) y las contribuciones son bienvenidas.",
+				"issueLinkLabel": "Abre un asunto"
+			}
+		}
 	},
 	"translations": {
 		"title": "Traducciones",
 		"eyebrow": "Exhibición",
 		"heroTitle": "Hola en todos los idiomas",
-		"locales": "Lugares",
-		"currentlyRendered": "actualmente representado",
-		"complete": "¡Completo!",
-		"pendingPrefix": "Pendiente de la próxima emisión de Translate-Docs.",
+		"lede": "Esta página está traducida por el propio Resource Translator, en cada envío a main, a todos los idiomas que soporta Azure AI Translator.",
+		"localeCountLabel": "{count} localidades",
+		"statusComplete": "{translatedCount} actualmente renderizado — ¡completo!",
+		"statusPending": "{translatedCount} actualmente renderizado — {pendingCount} pendiente de la próxima {workflowName} ejecución.",
 		"viewWorkflowRuns": "Ver ejecuciones de flujo de trabajo",
 		"filter": "Filtro",
 		"filterPlaceholder": "Busca por idioma, código o nombre nativo...",
 		"source": "Fuente",
 		"machineTranslations": "Traducciones automáticas",
-		"translationPending": "Traducción pendiente — abre una partida de traducción-documentación.",
+		"translationPending": "Traducción pendiente — abre una {workflowName} run.",
 		"noLocales": "Ningún sitio coincide con ese filtro.",
-		"howItWorks": "Cómo funciona esto"
+		"howItWorks": {
+			"heading": "Cómo funciona esto",
+			"thisActionLabel": "Esta misma acción",
+			"steps": {
+				"source": "El archivo fuente en inglés se encuentra en {messagesPath}.",
+				"workflow": "Empuja ese toque que lo impulsa {workflowLink}, que corre {thisAction} contra sí mismo.",
+				"fanOut": "La acción se extiende a cada localización compatible con Azure AI Translator (configurada en {configPath}) y escribe un {messagesLocaleJson} hermano por objetivo.",
+				"pullRequest": "Se abre una solicitud pull con las nuevas traducciones. Al fusionarla, esta página vuelve a publicar con las tarjetas rellenadas."
+			}
+		},
+		"poweredBy": "Impulsado por Resource Translator y Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Contribuciones",
 		"eyebrow": "Código abierto",
-		"lede": "Se aceptan informes de errores, solicitudes de funciones y pull requests. La acción es lo suficientemente pequeña como para ser amigable con los colaboradores primerizos."
+		"lede": "Se aceptan informes de errores, solicitudes de funciones y pull requests. La acción es lo suficientemente pequeña como para ser amigable con los colaboradores primerizos.",
+		"localDevelopment": {
+			"heading": "Desarrollo local"
+		},
+		"addingParser": {
+			"heading": "Añadir un analizador sintáctico",
+			"steps": {
+				"fixture": "Añade un luminario debajo de {testDataDir}.",
+				"implement": "Implementa {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Regístrate en {factoryFile}.",
+				"extension": "Añade la extensión de archivo a {translationFileSchemes} en {finderFile}.",
+				"tests": "Escribe pruebas de ida y vuelta para el formato de análisis → y applyTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "Umbrales de cobertura",
+			"body": "La configuración Jest impone una cobertura mínima. El nuevo código debe mantener el umbral de sentencias + líneas por encima del 78% y funciones por encima del 90%. Añade accesorios y pruebas junto con tu cambio."
+		},
+		"docsSite": {
+			"heading": "Sitio de documentación",
+			"body": "La carpeta {docsDir} es un proyecto Astro 6 + Tailwind v4. Corre {npmInstall} allí una vez y luego {npmRunDev} para una vista previa local. El flujo de trabajo {pagesWorkflow} envia documentación a GitHub Pages en cada combinación."
+		}
 	},
 	"changelog": {
 		"title": "Registro de cambios",
 		"eyebrow": "Historia",
-		"lede": "Resumen general de los lanzamientos. El registro de cambios canónico y autoritativo se encuentra en CHANGELOG.md en el repositorio."
+		"lede": "Resumen general de los lanzamientos. El registro de cambios canónico y autoritativo se encuentra en CHANGELOG.md en el repositorio.",
+		"fullRecord": "Véase {changelogLink} para el registro completo.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "V3 (en desarrollo)",
+			"labels": {
+				"breaking": "ROMPIENDO",
+				"resilience": "Resiliencia:",
+				"placeholderProtection": "Protección provisional:",
+				"perKeyOptOut": "Exclusión por llave:",
+				"docsAccessibility": "Accesibilidad a la documentación:",
+				"inlineCodeStyling": "Estilo de código en línea:"
+			},
+			"issueLabels": {
+				"closes46": "Cierra el #46.",
+				"tightens16": "Aprieta el #16.",
+				"closes35": "Cierra el #35."
+			},
+			"items": {
+				"runtime": "Ha aumentado a {nodeRuntime} duración ({breaking}).",
+				"newInputs": "Nuevas entradas: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, además de perillas avanzadas del traductor {textType}, {profanityAction}, {profanityMarker} y {allowFallback}.",
+				"sourceLocale": "La localidad de origen ahora también se reenvía a Translator como {fromLocale} para que las cadenas cortas no se detecten automáticamente.",
+				"resilience": "{label} reintento automático en respuestas HTTP transitorias ({statusCodes}) que respeta la cabecera {retryAfter} de Azure — vuelve a un retroceso exponencial con jittered cuando está ausente. Ajustable mediante {maxRetries} y {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} tokens como {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} y HTML se envuelven en centinelas antes de la traducción y se restauran después, así que el traductor deja de alterar los marcadores de posición i18next/Mustache/Handlebars/.NET/printf. Alternar mediante {protectPlaceholders}; Extiende con {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} nueva entrada de {noTranslatePatterns} elimina por completo las claves coincidentes de la solicitud del traductor (conserva los valores fuente de nombres de marcas, códigos de error, etc.). Compara patrones glob con claves a nivel de analizador (JSON doted path, RESX {resxName}, PO {poMsgid}, unidad XLIFF {xliffId}, clave INI/restext). {issue}",
+				"repoConfig": "Configuración a nivel de repositorio mediante {configPath}.",
+				"glossary": "Soporte para el glosario, resumen de pasos vía {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "Auditoría NPM limpia (0 vulnerabilidades).",
+				"docsSite": "Sitio de documentación de Astro + Tailwind v4 con transiciones de vista y Código Expresivo.",
+				"docsAccessibility": "{label} pase WCAG 2.1 AA. Los glifos del logo se convierten en rutas para que ya no fallen en contraste de color con los registros de degradado, el botón de {backToTop} flotante usa {inert} mientras está oculto (en lugar de un interruptor de {ariaHidden} que lo dejaba tablable), {formatsAstro} secciones ya no colisionan con sus identificadores de encabezado generados automáticamente, tres tarjetas de localidad ahora exponen atributos de {lang} válidos para BCP-47 ({nya}, {lug}, {run}), las etiquetas duplicadas {documentation} de puntos de referencia se desambiguan entre la barra lateral y el pie de página,  y todas las tablas de datos en {inputs}/{configuration} vienen con un pie de foto para lector de pantalla.",
+				"inlineCode": "{label} prosa de Docs {codeElement} ahora lleva el acento cálido/ámbar — distinto de la paleta → marcasacentos usada para enlaces y encabezados.",
+				"automation": "Auto-fusión Dependabot, escaneo CodeQL, matriz CI."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Consulta la historia de git."
+		}
 	}
 }

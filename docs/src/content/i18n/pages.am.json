@@ -18,18 +18,26 @@
 			"node": "መስቀለኛ መንገድ 20 / 22 / 24",
 			"sdk": "ኦፊሴላዊ Azure ኤስዲኬ"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} ኤክስኤምኤል",
+			"xliff": "XLIFF 2.0",
+			"po": "አግኝ ጽሑፍ",
+			"json": "ጎጆ ወይም ጠፍጣፋ",
+			"ini": "{keyValue}",
+			"restext": "የMUI ጽሑፍ"
+		},
 		"features": {
 			"formats": {
 				"title": "ስድስት የፋይል ቅርጸቶች",
-				"body": "ክብ ጉዞዎች .resx፣ .xliff፣ .po፣ .json፣ .ini እና .restext በባይት-የተረጋጋ ቅርጸት።"
+				"body": "የዙር ጉዞዎች {resx}፣ {xliff}፣ {po}፣ {json}፣ {ini} እና {restext} በባይት-የተረጋጋ ቅርጸት።"
 			},
 			"config": {
 				"title": "የሪፖ-ደረጃ ውቅር",
-				"body": "ግሎቦችን፣ የቃላት መፍቻዎችን እና ብጁ ተርጓሚ ምድቦችን ለማካተት .github/resource-translator.yml ጣል ያድርጉ።"
+				"body": "ግሎብስ፣ መዝገበ ቃላት እና ብጁ ተርጓሚ ምድቦችን ለማካተት {configPath} ፋይል ጣል ያድርጉ።"
 			},
 			"glossary": {
 				"title": "የቃላት መፍቻ-አወቃቀር",
-				"body": "C+፣ .NET እና ጓደኞችን በሚያስተናግድ ብልጥ የቃል-ድንበር regex የምርት ስሞችን እና የምርት ቃላትን ቆልፍ።"
+				"body": "የምርት ስሞችን እና የምርት ቃላትን {cpp}፣ {dotnet} እና ጓደኞችን በሚያስተናግድ ዘመናዊ የቃል-ድንበር regex ይቆልፉ።"
 			},
 			"dryRun": {
 				"title": "ደረቅ-ሩጫ + ለስላሳ-ውድቀት",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "ለ PR ተስማሚ ውጤቶች",
-				"body": "ማጠቃለያ-ርዕስ፣ ማጠቃለያ-ዝርዝሮች እና አዲስ-ትርጉሞች በቀጥታ ወደ ፍጠር-መጎተት-ጥያቄ ያስገቡ።"
+				"body": "{summaryTitle}፣ {summaryDetails} እና {hasNewTranslations} ማስገቢያ በቀጥታ ወደ ፍጠር-መጎተት-ጥያቄ።"
 			},
 			"sdk": {
 				"title": "ኦፊሴላዊ Azure ኤስዲኬ",
-				"body": "በ @azure-እረፍት/ai-translation-text + @azure/core-rest-pipeline ላይ የተገነባ - በ408/429/5xx ላይ አውቶማቲክ ድጋሚ ሙከራዎች፣ በእጅ የሚጠቀለል ኤችቲቲፒ የለም። esbuild-የተጠቀለለ፣ ኦዲት-ንፁህ።"
+				"body": "በ {azureSdk} + {corePipeline} ላይ የተገነባ - በ {statusCodes} ላይ አውቶማቲክ ድጋሚ ሙከራዎች፣ በእጅ የሚጠቀለል ኤችቲቲፒ የለም። {esbuild} የተጠቀለለ፣ ኦዲት-ንፁህ።"
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "ጣል የስራ ፍሰት",
+			"titlePrefix": "ቅዳ። ለጥፍ።",
+			"titleAccent": "ተርጉም.",
+			"body": "ሶስት ሚስጥሮች፣ አራት መስመሮች፣ እና የእርስዎ ሪፖ በሚቀጥለው ግፊት ብዙ ቋንቋ ተናጋሪ ነው።",
+			"setupLink": "በሙሉው ማዋቀር ውስጥ ይራመዱ"
+		},
+		"cta": {
+			"title": "በአውቶ ፓይሎት ላይ አካባቢያዊ ለማድረግ ዝግጁ ነዎት?",
+			"body": "አንድ የ Azure AI ተርጓሚ ቁልፍ፣ አንድ የስራ ፍሰት ፋይል። የመርጃ ተርጓሚ የቀረውን ያስተናግዳል።",
+			"button": "መጀመር"
 		}
 	},
 	"getting-started": {
 		"title": "መጀመር",
 		"eyebrow": "አዘገጃጀት",
-		"lede": "የስራ ፍሰት ፋይል ያክሉ፣ ወደ Azure AI ተርጓሚ ምስክርነቶችዎ ይጠቁሙት፣ እና ድርጊቱ - በማይክሮሶፍት ኦፊሴላዊ @azure-እረፍት/ai-translation-text ኤስዲኬ ላይ የተገነባው - ሪፖውን ለምንጭ-ቋንቋ መገልገያ ፋይሎች ይቃኛል እና የተተረጎሙ ወንድሞችንና እህቶችን ያመነጫል።",
+		"lede": "የስራ ፍሰት ፋይል ያክሉ፣ ወደ Azure AI ተርጓሚ ምስክርነቶችዎ ይጠቁሙት፣ እና ድርጊቱ ሪፖውን የምንጭ-ቋንቋ መገልገያ ፋይሎችን ይቃኛል እና የተተረጎሙ ወንድሞችና እህቶችን ያወጣል።",
 		"steps": {
 			"provision": {
 				"title": "የ Azure AI ተርጓሚ መገልገያ ያቅርቡ",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "የስራ ሂደቱን ያክሉ",
-				"body": ".github/workflows/translate.yml ይፍጠሩ"
+				"body": "{workflowPath} ይፍጠሩ"
 			},
 			"resource": {
 				"title": "የምንጭ ምንጭ ፋይል ይፈጽሙ",
-				"body": "የመርጃ ፋይሎች ስሙን ይጠቀማሉ። <sourceLocale>. <ext> ኮንቬንሽን. ለምሳሌ ሰላምታ.en.resx ከሩጫ በኋላ ሰላምታዎች.fr.resx፣ ሰላምታዎች.de.resx እና የመሳሰሉት ይሆናል።"
+				"body": "የመርጃ ፋይሎች {namingConvention} ኮንቬንሽን ይጠቀማሉ። ለምሳሌ {sourceFile} ከሩጫ በኋላ {frFile}፣ {deFile} እና የመሳሰሉት ይሆናሉ።"
 			},
 			"output": {
 				"title": "ውጤቱን ይፈትሹ",
-				"body": "የስራ ፍሰቱ ካለቀ በኋላ ድርጊቱ ወደ PR መግለጫ ሊያገናኙዋቸው የሚችሏቸውን ሶስት ውጤቶች ያጋልጣል ማጠቃለያ-ርዕስ፣ ማጠቃለያ-ዝርዝሮች እና አዲስ-ትርጉሞች አሉት። እንዲሁም የማርክዳውን ማጠቃለያ በስራ ገጹ ላይ በ core.summary በኩል ይጽፋል።"
+				"body": "የስራ ፍሰቱ ካለቀ በኋላ ድርጊቱ ወደ PR መግለጫ ሽቦ ማድረግ የሚችሏቸውን ሶስት ውጤቶች ያጋልጣል {summaryTitle}፣ {summaryDetails} እና {hasNewTranslations}። እንዲሁም በ {coreSummary} በኩል በስራ ገጹ ላይ የማርክዳውን ማጠቃለያ ይጽፋል።"
 			}
 		},
 		"nextSteps": {
 			"title": "ቀጣይ እርምጃዎች",
-			"configuration": "የሪፖ-ደረጃ ነባሪዎችን በ.github/resource-translator.yml ያዋቅሩ።",
+			"configuration": "የሪፖ-ደረጃ ነባሪዎችን በ {configPath} ያዋቅሩ።",
 			"recipes": "ለሞኖሬፖስ፣ ብጁ መዝገበ ቃላት እና ብጁ ተርጓሚ ምድቦች የምግብ አዘገጃጀት መመሪያዎችን ይመልከቱ።"
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "ውቅር",
 		"eyebrow": "ያኤምኤል",
 		"heroTitle": "የማከማቻ ውቅር",
-		"lede": "ነባሪዎችን አንድ ጊዜ ይግለጹ .github/resource-translator.yml እና እያንዳንዱ የስራ ፍሰት እንዲወርሳቸው ያድርጉ። ሁለቱም ሲቀርቡ የድርጊት ግብዓቶች ሁል ጊዜ ያሸንፋሉ።"
+		"lede": "በማከማቻ ውቅር ፋይል ውስጥ አንድ ጊዜ ነባሪዎችን ይግለጹ እና እያንዳንዱ የስራ ፍሰት እንዲወርሳቸው ያድርጉ። ሁለቱም ሲቀርቡ የድርጊት ግብዓቶች ሁል ጊዜ ያሸንፋሉ።",
+		"intro": "ነባሪ ያልሆነ ቦታ ከፈለጉ መንገዱን በ {configPath} ግቤት ይሽሩ።",
+		"schemaHeading": "መርሃግብር",
+		"fieldReference": {
+			"heading": "የመስክ ማመሳከሪያ",
+			"caption": "የማዋቀር መስክ ማጣቀሻ",
+			"columns": {
+				"field": "መስክ",
+				"type": "ዓይነት",
+				"notes": "ማስታወሻዎች"
+			},
+			"fields": {
+				"sourceLocale": "ካልተዋቀረ ወደ {sourceLocale} ግብዓት ይመለሳል። እንዲሁም እንደ {fromLocale} ወደ ተርጓሚ ተላልፏል ስለዚህ አጭር ሕብረቁምፊዎች በራስ-ሰር አይታወቁም።",
+				"toLocales": "ድርድር ወይም በነጠላ ሰረዝ የተለየ ሕብረቁምፊ።",
+				"includeExclude": "የግሎብ ቅጦች በፍፁም እና በስራ ቦታ-አንጻራዊ መንገዶች ላይ ተገምግመዋል።",
+				"glossary": "የድህረ-ትርጉም ቃል ይሽራል። የቃል-ድንበር የሚያውቅ (እጀታዎች {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} ምድብ - የእርስዎ ኢንዱስትሪ/ጎራ ቁልፍ (ህጋዊ፣ ህክምና፣ የግብይት ቃና፣ ወዘተ)። እንደ {categoryQuery} ተልኳል።",
+				"textType": "ወደ {plain} ነባሪዎች። የንብረት እሴቶችዎ እውነተኛ የኤችቲኤምኤል ቁርጥራጮችን ከያዙ ብቻ {html} ይጠቀሙ።",
+				"profanityAction": "በተተረጎመ ውፅዓት ውስጥ ጸያፍ ቃላትን እንዴት ማከም እንደሚቻል።",
+				"profanityMarker": "ትርጉም ያለው {profanityAction} {marked} ሲሆን ብቻ ነው።",
+				"allowFallback": "ወደ አጠቃላይ ሞዴል ከመውደቅ ይልቅ የእርስዎ {categoryId} ለዒላማው አካባቢ ምንም ማሰማራት ከሌለበት ትርጉሙን ለመውደቅ {false} ያቀናብሩ።",
+				"apiVersion": "ተርጓሚ REST API ሥሪት። ወደ {version} ነባሪዎች።",
+				"maxRetries": "በጊዜያዊ የኤችቲቲፒ ምላሾች ላይ ከፍተኛው የድጋሚ ሙከራ ሙከራዎች ({statusCodes})። ወደ {defaultRetries} ነባሪዎች። ጠቅላላ የኤችቲቲፒ ጥሪዎች በአንድ ጥያቄ {totalCalls} ነው።",
+				"retryBackoffMs": "ካፕ (ms) በማንኛውም ነጠላ የኋላ እንቅልፍ ላይ። ወደ {defaultBackoff} ነባሪዎች። የ Azure {retryAfter} ራስጌ በሚገኝበት ጊዜ በትክክል ይከበራል; . አለበለዚያ የተደናገጠ ገላጭ ጀርባ ጥቅም ላይ ይውላል፣ በዚህ እሴት ተሸፍኗል።",
+				"protectPlaceholders": "ወደ {true} ነባሪዎች። ሲበራ እንደ {mustache}፣ {jsVar}፣ {indexZero}፣ {numberFormat}፣ {printf}፣ {positionalPrintf} እና ኤችቲኤምኤል አካላት ያሉ ቶከኖች ከመተርጎማቸው በፊት በሴንቲነል ቶከኖች ይተካሉ እና ከዚያ በኋላ ይመለሳሉ። ምንጩ ሆን ብሎ የቦታ ያዥ ቅርጽ ያላቸውን ቃል በቃል ሲይዝ ብቻ አሰናክል።",
+				"customPlaceholderPatterns": "ተጨማሪ የ regex ቅጦች (ያለ ገደቢዎች) ወደ ነባሪው የቦታ ያዥ ስብስብ ታክለዋል፣ ለምሳሌ {angleToken} ለብጁ ማስመሰያ አገባብ። ልክ ያልሆኑ regexs ችላ ተብሏል።",
+				"noTranslatePatterns": "የግሎብ ቅጦች ከትንተና-ደረጃ ቁልፎች ጋር ይዛመዳሉ (JSON ነጥብ ያለው መንገድ፣ RESX {resxName}፣ PO {poMsgid}፣ XLIFF አሃድ {xliffId}፣ INI/restext ቁልፍ)። ተዛማጅ ቁልፎች ከጥያቄው ይጣላሉ እና የምንጭ እሴታቸው ተጠብቆ ያልፋሉ።"
+			}
+		},
+		"loadingOrder": {
+			"heading": "ቅደም ተከተል በመጫን ላይ",
+			"steps": {
+				"actionInputs": "ድርጊቱ ከስራ ሂደቱ ግልጽ ግብዓቶችን ያነባል።",
+				"config": "የ YAML ውቅረትን ከ {configPath} ይጭናል።",
+				"precedence": "ለእያንዳንዱ የጋራ መስክ ግብአቱ ያሸንፋል; አለበለዚያ የ YAML እሴት ጥቅም ላይ ይውላል.",
+				"validation": "የተዋሃዱ እሴቶች ተረጋግጠዋል። ልክ ያልሆኑ enums (ለምሳሌ {invalidEnum}) ድርጊቱ ግልጽ በሆነ መልእክት በፍጥነት እንዲሳካ ያደርጉታል።"
+			}
+		},
+		"tone": {
+			"heading": "ቃና እና ኢንዱስትሪ፣ በግልፅ አነጋገር",
+			"body": "የ Azure AI ተርጓሚ v3 ኤፒአይ አንድም የቃና ቁልፍ የለውም። አብዛኛዎቹን ተመሳሳይ ቁጥጥር ለመስጠት ሁለት ቅንብሮች ይጣመራሉ -",
+			"industryLabel": "ኢንዱስትሪ / ጎራ",
+			"industryBody": "በራስዎ ኮርፐስ የሰለጠነ የ Azure {customTranslatorLink} ምድብ ላይ ለመጠቆም {categoryId} ይጠቀሙ - ህጋዊ፣ ቴክኒካል፣ ህክምና፣ ግብይት ወይም ሌላ ማንኛውም ነገር። ይህ ለድምፅ፣ ለብራንድ ድምጽ እና የቃላት ዝርዝር በጣም ጠንካራው ማንሻ ነው።",
+			"surfaceLabel": "የ ገጽ ጽሁፍ",
+			"surfaceBody": "የምርት ስሞችን እና የምርት ቃላትን በቃል ለመቆለፍ {glossaryLink} ይጠቀሙ እና ለወጣት ታዳሚዎች አካባቢያዊነትን ሲያነጣጥሩ ጸያፍ ቃላትን ለማፅዳት {profanityAction} ይጠቀሙ።",
+			"glossaryLinkLabel": "ትንሽ መዝገበ ቃላት"
+		}
 	},
 	"inputs": {
 		"title": "ግብዓቶች እና ውጤቶች",
 		"eyebrow": "ማጣቀሻ",
-		"lede": "እያንዳንዱ ግቤት በአማራጭ repo ውቅር ፋይል ውስጥም ተቀባይነት አለው። ሁለቱም ሲዋቀሩ የድርጊት ግቤት ያሸንፋል።"
+		"lede": "እያንዳንዱ ግቤት በአማራጭ repo ውቅር ፋይል ውስጥም ተቀባይነት አለው። ሁለቱም ሲዋቀሩ የድርጊት ግቤት ያሸንፋል።",
+		"configurationIntro": "ለ YAML መርሃግብር እና የመጫኛ ቅደም ተከተል {configurationLink} ይመልከቱ።",
+		"configurationLinkLabel": "ውቅር",
+		"columns": {
+			"name": "ስም",
+			"default": "ነባር",
+			"description": "መግለጫ"
+		},
+		"defaults": {
+			"none": "ምንም",
+			"allSupported": "ሁሉም ይደገፋሉ",
+			"translatorDefaultTrue": "እውነት (የተርጓሚ ነባሪ)"
+		},
+		"requiredInputs": {
+			"heading": "የሚያስፈልጉ ግብዓቶች",
+			"caption": "የሚያስፈልጉ ግብዓቶች",
+			"items": {
+				"sourceLocale": "የምንጭ አካባቢ (ለምሳሌ {en}) እንደ {sourceGlob} ያሉ የመርጃ ፋይሎችን ለማግኘት ጥቅም ላይ ይውላል። እንደ {fromLocale} ወደ ተርጓሚም ተላልፏል።",
+				"subscriptionKey": "Azure AI ተርጓሚ የደንበኝነት ምዝገባ ቁልፍ። በ {secrets} በኩል ማለፍ.",
+				"endpoint": "የተርጓሚ የመጨረሻ ነጥብ ዩአርኤል፣ ለምሳሌ {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "የተለመዱ አማራጭ ግብዓቶች",
+			"caption": "የተለመዱ አማራጭ ግብዓቶች",
+			"items": {
+				"region": "የተርጓሚ ሀብት ክልል (ለአለም አቀፍ ሀብቶች መተው)።",
+				"toLocales": "የሚተረጎሙ አካባቢዎች። የ JSON ማዘጋጃ ({jsonArray}) ወይንም በነጠላ ሰረዝ የተለያዩ ዋጋዎች መቀበል",
+				"include": "አዲስ መስመር-የተለዩ የግሎብ ቅጦች; የሚተረጎሙ ተዛማጅ ፋይሎች ብቻ ናቸው።",
+				"exclude": "አዲስ መስመር-የተለዩ የግሎብ ቅጦች; ተዛማጅ ፋይሎች ተዘለሉ (ከተካተቱ በኋላ ይተገበራሉ)።",
+				"configPath": "ወደ YAML ውቅር ፋይል የሚወስደው መንገድ (ከስራ ቦታ ሥር አንፃር)።",
+				"dryRun": "{true} ሲሆኑ ትርጉሞችን ያሂዱ እና ማጠቃለያዎችን ያውጡ ነገር ግን ፋይሎችን አይፃፉ።",
+				"failOnError": "{true}, ያልተጠበቁ ስህተቶች ድርጊቱን ይወድቃሉ; {false} ስህተቶች ማስጠንቀቂያ ይሆናሉ።"
+			}
+		},
+		"translatorInputs": {
+			"heading": "የአስተርጓሚ ጥያቄ ግብዓቶች",
+			"intro": "እነዚህ በቀጥታ ወደ Azure AI Translator v3 መጠይቅ መለኪያዎች ካርታ ያደርጋሉ። እያንዳንዱ አማራጭ ነው; የ የተርጓሚ ነባሪዎች ሲዘጋጁ ተፈጻሚ ይሆናሉ።",
+			"caption": "የአስተርጓሚ ጥያቄ ግብዓቶች",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} ምድብ - የኢንዱስትሪ/ጎራ/ቃና ቁልፍ። እንደ {categoryQuery} ተላልፏል።",
+				"textType": "{plain} ወይም {html}. የንብረት እሴቶችዎ እውነተኛ የኤችቲኤምኤል ቁርጥራጮች ሲሆኑ ብቻ {html} ይጠቀሙ።",
+				"profanityAction": "{noAction}፣ {marked} ወይም {deleted}። በትርጉሞች ውስጥ ጸያፍ ቃላት እንዴት እንደሚወጡ ይቆጣጠራል።",
+				"profanityMarker": "{asterisk} ወይም {tag}. ትርጉም ያለው {profanityAction} {marked} ሲሆን ብቻ ነው።",
+				"allowFallback": "{false} በሚሆንበት ጊዜ ተርጓሚዎ {categoryId} ለታለመው አካባቢ ምንም ማሰማራት ከሌለው ወደ አጠቃላይ ስርዓቱ ከመውደቅ ይልቅ ስህተት ይመልሳል።",
+				"apiVersion": "ተርጓሚ REST API ሥሪት።"
+			}
+		},
+		"resilienceInputs": {
+			"heading": "የመቋቋም ችሎታ እና የቦታ ያዥ ጥበቃ",
+			"intro": "እነዚህ ግብዓቶች ተርጓሚ ጥያቄዎን ሲያደናቅፍ ድርጊቱ እንዴት እንደሚሰራ እና እንደ {mustache} ወይም {indexZero} ያሉ የቦታ ያዥ ቶከኖችን በትርጉም ጊዜ እንዳይበላሹ እንዴት እንደሚከላከል ይቆጣጠራሉ።",
+			"caption": "የመቋቋም እና የቦታ ያዥ ጥበቃ ግብዓቶች",
+			"items": {
+				"maxRetries": "በጊዜያዊ የኤችቲቲፒ ምላሾች ላይ ከፍተኛው የድጋሚ ሙከራ ሙከራዎች ({statusCodes})። በአንድ ጥያቄ አጠቃላይ የኤችቲቲፒ ጥሪዎች ብዛት {totalCalls} ነው።",
+				"retryBackoffMs": "በማንኛውም ነጠላ የኋላ እንቅልፍ ላይ ካፕ (በሚሊሰከንዶች)። ድርጊቱ የ Azure {retryAfter} ምላሽ ራስጌን በትክክል በሚገኝበት ጊዜ ያከብራል; . ያለበለዚያ በዚህ እሴት ላይ የተያዘ የተንቆጠቆጠ ገላጭ ጀርባ ይጠቀማል።",
+				"protectPlaceholders": "{true} (ነባሪ) እንደ {mustache}፣ {jsVar}፣ {indexZero}፣ {numberFormat}፣ {printf}፣ {positionalPrintf} እና ኤችቲኤምኤል አካላት ያሉ ቦታ ያዢዎች ከመተርጎማቸው በፊት በሴንቲነል ቶከኖች ይተካሉ እና ከዚያ በኋላ ይመለሳሉ። ያሰናክሉት ምንጭዎ ሆን ብሎ መተርጎም ያለበት ቃል በቃል የቦታ ያዥ ቅርጽ ያለው ጽሑፍ ሲይዝ ብቻ ነው።",
+				"customPlaceholderPatterns": "በአዲስ መስመር የተለዩ regexes (ያለ ገደቢዎች) ወደ ነባሪው የቦታ ያዥ ስብስብ ታክሏል፣ ለምሳሌ {angleToken} ለብጁ ማስመሰያ አገባብ።",
+				"noTranslatePatterns": "በአዲስ መስመር የተለዩ የግሎብ ቅጦች ከትንተና-ደረጃ ቁልፎች ጋር ይዛመዳሉ (JSON ነጥብ ያለው መንገድ፣ RESX {resxName}፣ PO {poMsgid}፣ XLIFF አሃድ {xliffId}፣ INI/restext ቁልፍ)። ተዛማጅ ቁልፎች ከተርጓሚ ጥያቄ ይጣላሉ እና የምንጭ እሴታቸው ተጠብቆ ያልፋሉ።"
+			}
+		},
+		"outputs": {
+			"heading": "ውጤቶች",
+			"caption": "ውጤቶች",
+			"items": {
+				"summaryTitle": "አጭር PR-ርዕስ-ተስማሚ ማጠቃለያ፣ ለምሳሌ {summaryExample}.",
+				"summaryDetails": "የማርክዳውን ማጠቃለያ ለ PR አካል ወይም ለስራ ማጠቃለያ ተስማሚ።",
+				"hasNewTranslations": "{trueString} አንድ ወይም ከዚያ በላይ አዳዲስ ትርጉሞች ሲፈጠሩ።"
+			}
+		}
 	},
 	"formats": {
 		"title": "የፋይል ቅርጸቶች",
 		"eyebrow": "ማጣቀሻ",
 		"heroTitle": "የሚደገፉ የፋይል ቅርጸቶች",
-		"lede": "ስድስት ክብ ሊጎዱ የሚችሉ የመርጃ ቅርጸቶች። ድርጊቱ እያንዳንዱን ምንጭ-አካባቢ ፋይል ያነባል፣ እሴቶቹን ይተረጉማል እና በእያንዳንዱ የታለመ አካባቢ ወንድም ወይም እህት ይጽፋል።"
+		"lede": "ስድስት ክብ ሊጎዱ የሚችሉ የመርጃ ቅርጸቶች። ድርጊቱ እያንዳንዱን ምንጭ-አካባቢ ፋይል ያነባል፣ እሴቶቹን ይተረጉማል እና በእያንዳንዱ የታለመ አካባቢ ወንድም ወይም እህት ይጽፋል።",
+		"namingConvention": "ሁሉም ፋይሎች {namingConvention} የስም ስምምነትን ይጠቀማሉ።",
+		"learnMore": "ተጨማሪ እወቅ",
+		"items": {
+			"resx": {
+				"blurb": "በኤክስኤምኤል ላይ የተመሰረተ .NET መገልገያ ፋይሎች። አስተያየቶችን እና ሜታዳታን በመጠበቅ የእያንዳንዱን {dataValue} መስቀለኛ መንገድ ውስጣዊ ጽሑፍ ይተረጉማል።",
+				"specLabel": "Microsoft Learn - በ .resx ፋይሎች ውስጥ ያሉ ሀብቶች"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 ሰነዶች. እያንዳንዱን {source} ይተረጉማል እና ውጤቱን ወደ ተጓዳኝ {target} ይጽፋል, {trgLang} ለ አካባቢው ማሰናጃ",
+				"specLabel": "OASIS XLIFF 2.0 ዝርዝር መግለጫ"
+			},
+			"po": {
+				"blurb": "GNU gettext ተንቀሳቃሽ ነገር ፋይሎች። እያንዳንዱን {msgid} / {msgidPlural} ወደ {msgstr} / {msgstrPlural} ቅጾች ይተረጉማል።",
+				"specLabel": "GNU gettext – የፖስታ ፋይል ቅርጸት"
+			},
+			"json": {
+				"blurb": "የዘፈቀደ JSON ፋይሎች። የ ጎጆ እቃዎች ለትርጉም በ {delimiter} ገዳቢ ተዘርግተው ከ ውፅዓት ጋር እንደገና ይቀመጣሉ ነጠብጣብ ቁልፎች ({dottedKey}) በቃል ተጠብቀዋል።",
+				"specLabel": "JSON ዝርዝር (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "ቀላል {keyValue} ፋይሎች (Win32-style INI ወይም ማንኛውም ጠፍጣፋ ውቅረት)። የክፍል ራስጌዎች እና አስተያየቶች ተጠብቀዋል።",
+				"specLabel": "በዊኪፔዲያ ላይ የ INI ፋይል ቅርጸት"
+			},
+			"restext": {
+				"blurb": "የማይክሮሶፍት MUI የጽሑፍ ግብዓቶች - ጠፍጣፋ {keyValue} ጥንዶች {resx} እንደ ጽሑፋዊ ጓደኛ ያገለግላሉ።",
+				"specLabel": "የማይክሮሶፍት MUI አጠቃላይ እይታ"
+			}
+		},
+		"roundTrip": {
+			"heading": "የመልስ ጉዞ ዋስትናዎች",
+			"body": "የሙከራ ስብስቡ ለእያንዳንዱ ቅርጸት ተወካይ እቃዎች ባይት-ለ-ባይት ክብ መሰናከልን ያረጋግጣል። የቅርጸት ግርዶሽ በኮድ ቤዝዎ ውስጥ ክብ መሰናከልን ከጣሰ፣ እባክዎን በትንሹ ናሙና {issueLink}።",
+			"issueLinkLabel": "እትም ይክፈቱ"
+		}
 	},
 	"recipes": {
 		"title": "የምግብ አዘገጃጀቶች",
 		"eyebrow": "የማብሰያ መጽሐፍ",
-		"lede": "ለማጓጓዣ ትርጉሞች የተለመዱ ቅጦች monorepos፣ መዝገበ ቃላት፣ ብጁ ምድቦች፣ ደረቅ ሩጫዎች እና የቃና ቁጥጥር።"
+		"lede": "ለማጓጓዣ ትርጉሞች የተለመዱ ቅጦች monorepos፣ መዝገበ ቃላት፣ ብጁ ምድቦች፣ ደረቅ ሩጫዎች እና የቃና ቁጥጥር።",
+		"sections": {
+			"pullRequest": {
+				"heading": "ከእያንዳንዱ ሩጫ በኋላ የመጎተት ጥያቄን ይክፈቱ"
+			},
+			"monorepo": {
+				"heading": "Monorepos ወሰን ትርጉም በአንድ ጥቅል"
+			},
+			"glossary": {
+				"heading": "ለንግድ ስሞች እና ለምርት ውሎች መዝገበ-ቃላት",
+				"intro": "አንድ {configPath} ወደ ሪፖው ጣል ያድርጉ -",
+				"afterLabel": "በኋላ",
+				"body": "የቃላት መፍቻ ቃላት በትርጉም {after} ይተገበራሉ፣ ስለዚህ በማሽን የተተረጎመው ውፅዓት ሞዴሉ ለተመሳሳይ ቃል ቢቀይረውም የመረጡትን የምርት ስም ያቆያል።"
+			},
+			"customCategory": {
+				"heading": "ብጁ ተርጓሚ ምድብ (ኢንዱስትሪ / ጎራ)",
+				"body": "የኢንዱስትሪዎን የቃላት ዝርዝር እና ቃና (ህጋዊ፣ ህክምና፣ ግብይት፣ ውስጣዊ ምህንድስና፣ ወዘተ) በሚይዝ ኮርፐስ ላይ የ Azure {customTranslatorLink} ምድብ ያሠለጥኑ እና መታወቂያውን በ {categoryId} ያስተላልፉ። ይህ Azure የሚያቀርበው በጣም ጠንካራው የቃና ማንሻ ነው።"
+			},
+			"tone": {
+				"heading": "የቃና ቁጥጥር + ጥብቅ ውድቀት",
+				"body": "ወጥ የሆነ ድምጽን ለማስፈጸም ብጁ ተርጓሚ {categoryId} ከ {profanityAction} እና {allowFallbackFalse} ጋር ያዋህዱ እና የተመረጠው ምድብ ለአንዱ የታለመላቸው አካባቢዎች ማሰማራት ከሌለው የስራ ሂደቱን ይወድቃል።"
+			},
+			"dryRun": {
+				"heading": "የስራ ሂደቱን ከማብራትዎ በፊት ደረቅ ሩጫ",
+				"body": "ድርጊቱ አሁንም የማጠቃለያ ውጤቶችን እና የእርምጃ ማጠቃለያዎችን ያወጣል፣ ነገር ግን ምንም ፋይሎች አልተፃፉም። በሚደጋገሙበት ጊዜ እያንዳንዱን ጉዳይ እንደ ማስጠንቀቂያ ለማሳየት ከ {failOnErrorFalse} ጋር ያዋህዱ።"
+			}
+		}
 	},
 	"faq": {
 		"title": "በተደጋጋሚ የሚጠየቁ ጥያዌዎች",
 		"eyebrow": "እገዛ",
 		"heroTitle": "ተደጋግሞ የሚነሱ ጥያቄዎች",
-		"lede": "ድርጊቱን በሚወስዱበት ጊዜ ብዙ ጊዜ ለሚነሱት ጥያቄዎች ፈጣን መልሶች።"
+		"lede": "ድርጊቱን በሚወስዱበት ጊዜ ብዙ ጊዜ ለሚነሱት ጥያቄዎች ፈጣን መልሶች።",
+		"questions": {
+			"azure": {
+				"heading": "ድርጊቱ ከ Azure ጋር እንዴት ይናገራል?",
+				"body": "በማይክሮሶፍት ኦፊሴላዊ {azureSdkLink} ኤስዲኬ በኩል፣ {corePipelineLink} ላይ ተደራራቢ ነው። ያ በ {statusCodes}፣ በተተየቡ የጥያቄ እና የምላሽ ሞዴሎች እና የማረጋገጫ ራስጌ አያያዝ ላይ አውቶማቲክ ድጋሚ ሙከራ ያደርግዎታል - በእጅ የሚጠቀለል {axios} ጥሪ የነበረው ሁሉ። የህዝብ እርምጃ ወለል (ግብዓቶች፣ ውጤቶች፣ የፋይል ውጤቶች) አልተለወጠም።"
+			},
+			"tone": {
+				"heading": "ለምንድነው ትርጉሞች አንዳንድ ጊዜ ከብራንድ ውጪ ወይም ከድምፅ ውጪ የሚሆኑት?",
+				"body": "የማሽን ትርጉም ወደ አጠቃላይ ዓላማ ሞዴል ነባሪ ነው። ሶስት ቁልፎች ይረዳሉ ለከባድ የቃላት መሻር {glossaryLink}፣ በድምፅዎ እና በቃላትዎ ላይ የሰለጠኑ በጥሩ ሁኔታ የተስተካከሉ ሞዴሎች {customTranslatorLink} እና ጸያፍ ቃላትን ለማፅዳት ወይም ለመጠቆም {profanityAction}።",
+				"glossaryLinkLabel": "ትንሽ መዝገበ ቃላት",
+				"customTranslatorLinkLabel": "ብጁ ተርጓሚ ምድብ"
+			},
+			"duplicateFiles": {
+				"heading": "ተመሳሳዩን ፋይል ሁለት ጊዜ ከመተርጎም እንዴት መቆጠብ እችላለሁ?",
+				"body": "የስራ ፍሰቱን ከምንጭ-አካባቢ ፋይሎች ጋር ብቻ በሚዛመዱ {paths} ላይ ያስነሱ፣ ለምሳሌ {sourceGlob}። ድርጊቱ {githubToken} ሲዘጋጅ የራሱን የፋይል ማጣሪያን ያካትታል፣ ይህም ስራን በቅርብ ጊዜ ቁርጠኝነት ውስጥ ላሉ ፋይሎች ያጠባል።"
+			},
+			"offline": {
+				"heading": "ድርጊቱን ከመስመር ውጭ ማሄድ እችላለሁ?",
+				"body": "በትክክል አይደለም - Azure AI ተርጓሚ የአሂድ ጊዜ አንጎል ነው። ነገር ግን ምንም አይነት የኤችቲቲፒ የትርጉም ጥያቄ ሳያቀርቡ መተንተን እና ማዋቀርን ለማረጋገጥ ከ {dryRunTrue} ጋር መሮጥ ይችላሉ።"
+			},
+			"node": {
+				"heading": "ድርጊቱ የሚከናወነው በየትኛው የመስቀለኛ መንገድ ስሪት ነው?",
+				"body": "v3 በ GitHub ድርጊቶች {nodeRuntime} የሩጫ ጊዜ ላይ ይሰራል። የተጠቀለለው ጃቫ ስክሪፕት ከመስቀለኛ መንገድ 20፣ 22 እና 24 ጋር ተኳሃኝ ነው፣ ይህም CI የሚፈትነው ነው።"
+			},
+			"dist": {
+				"heading": "የታሸጉ {distDir} ከየት ይመጣሉ?",
+				"body": "የ GitHub JS ድርጊቶች የተጠናቀረውን JS በማከማቻው ውስጥ ይልካሉ። {distBuild} የስራ ፍሰት ከእያንዳንዱ ውህደት በኋላ ወደ {mainBranch} እንደገና ይገነባል፣ እና {distCheck} ጊዜ ያለፈበት ውፅዓት የሚያርፉ PRs ያግዳል።"
+			},
+			"formats": {
+				"heading": "ስለ ሌሎች የመርጃ ቅርጸቶችስ?",
+				"body": "ዛሬ {resx}፣ {xliff}፣ {po}፣ {json}፣ {ini}፣ {restext}። ሌላ ከፈለጉ {issueLink} - የ ተንታኝ በይነገጽ ትንሽ ነው (ተንተነባቢ → ካርታ → ቅርጸት  ትርጉሞች → ቅርጸት ይተግብሩ) እና መዋጮዎች አቀባበል ናቸው.",
+				"issueLinkLabel": "ጉዳይ ይክፈቱ"
+			}
+		}
 	},
 	"translations": {
 		"title": "ትርጉሞች",
 		"eyebrow": "የመክፈያ መስኮት",
 		"heroTitle": "ሰላም በሁሉም ቋንቋዎች",
-		"locales": "አካባቢዎች",
-		"currentlyRendered": "በአሁኑ ጊዜ የቀረበ",
-		"complete": "ተጠናቅቋል!",
-		"pendingPrefix": "የሚቀጥለውን የትርጉም ሰነዶች በመጠባበቅ ላይ።",
+		"lede": "ይህ ገጽ በራሱ በሪሶርስ ተርጓሚ ተተርጉሟል፣ ወደ ዋናው በሚገፋው እያንዳንዱ ቋንቋ፣ Azure AI Translator ወደሚደግፈው እያንዳንዱ ቋንቋ።",
+		"localeCountLabel": "{count} አካባቢዎች",
+		"statusComplete": "{translatedCount} በአሁኑ ጊዜ ቀርቧል - ተጠናቅቋል!",
+		"statusPending": "{translatedCount} በአሁኑ ጊዜ ቀርቧል - {pendingCount} የሚቀጥለውን {workflowName} ሩጫ በመጠባበቅ ላይ።",
 		"viewWorkflowRuns": "የስራ ፍሰት ሩጫዎችን ይመልከቱ",
 		"filter": "ማጣሪያ",
 		"filterPlaceholder": "በቋንቋ፣ በኮድ ወይም በአፍ መፍቻ ስም ፈልግ...",
 		"source": "ምንጭ",
 		"machineTranslations": "የማሽን ትርጉሞች",
-		"translationPending": "ትርጉም በመጠባበቅ ላይ - የትርጉም ሰነዶችን ይክፈቱ።",
+		"translationPending": "ትርጉም በመጠባበቅ ላይ - {workflowName} ሩጫ ይክፈቱ።",
 		"noLocales": "ከዚህ ማጣሪያ ጋር የሚዛመዱ ምንም አካባቢዎች የሉም።",
-		"howItWorks": "ይህ እንዴት እንደሚሰራ"
+		"howItWorks": {
+			"heading": "ይህ እንዴት እንደሚሰራ",
+			"thisActionLabel": "ይህ በጣም ድርጊት",
+			"steps": {
+				"source": "የእንግሊዘኛ ምንጭ ፋይል የሚኖረው በ {messagesPath} ነው።",
+				"workflow": "የሚነኩት ግፊቶች {workflowLink} ይጀምራሉ፣ ይህም በራሱ ላይ {thisAction} ይሮጣል።",
+				"fanOut": "የድርጊቱ ደጋፊዎች ለእያንዳንዱ Azure AI ተርጓሚ የሚደገፍ አካባቢ (በ {configPath} ውስጥ የተዋቀረ) እና በእያንዳንዱ ዒላማ የወንድም ወይም እህት {messagesLocaleJson} ይጽፋል።",
+				"pullRequest": "ከአዲሶቹ ትርጉሞች ጋር የመጎተት ጥያቄ ይከፈታል። እሱን ማዋሃድ ይህንን ገጽ ከተሞሉ ካርዶች ጋር እንደገና ያትማል።"
+			}
+		},
+		"poweredBy": "የተጎላበተው በ የሀብት ተርጓሚ እና Azure AI ተርጓሚ።"
 	},
 	"contributing": {
 		"title": "አስተዋፅዖ",
 		"eyebrow": "ክፍት ምንጭ",
-		"lede": "የሳንካ ሪፖርቶች፣ የባህሪ ጥያቄዎች እና የመጎተት ጥያቄዎች ሁሉም እንኳን ደህና መጡ። ድርጊቱ ለመጀመሪያ ጊዜ አስተዋፅዖ አበርካቾች ወዳጃዊ ለመሆን ትንሽ ነው።"
+		"lede": "የሳንካ ሪፖርቶች፣ የባህሪ ጥያቄዎች እና የመጎተት ጥያቄዎች ሁሉም እንኳን ደህና መጡ። ድርጊቱ ለመጀመሪያ ጊዜ አስተዋፅዖ አበርካቾች ወዳጃዊ ለመሆን ትንሽ ነው።",
+		"localDevelopment": {
+			"heading": "የአካባቢ ልማት"
+		},
+		"addingParser": {
+			"heading": "ትንታኔ በማከል ላይ",
+			"steps": {
+				"fixture": "ከ {testDataDir} በታች አንድ መሣሪያ ያክሉ።",
+				"implement": "{parserInterface} ({parse}፣ {format}፣ {applyTranslations}፣ {toTranslatableTextMap}) ይተግብሩ።",
+				"register": "በ {factoryFile} ውስጥ ያስመዝግቡት.",
+				"extension": "በ {finderFile} ውስጥ ወደ {translationFileSchemes} ቅጥያውን ያክሉ።",
+				"tests": "ለመተንተን → ቅርጸት የመልስ ጉዞ ሙከራዎችን ጻፍ እና ተግብርትርጉሞች."
+			}
+		},
+		"coverage": {
+			"heading": "የሽፋን ገደቦች",
+			"body": "የጄስት ውቅር አነስተኛውን ሽፋን ያስፈጽማል። አዲስ ኮድ መግለጫዎችን + መስመሮችን ገደብ ከ 78% በላይ እና ተግባራትን ከ 90% በላይ ማድረግ አለበት. ከለውጥዎ ጎን ለጎን መጫዎቻዎችን እና ሙከራዎችን ያክሉ።"
+		},
+		"docsSite": {
+			"heading": "የሰነድ ጣቢያ",
+			"body": "{docsDir} አቃፊ የ Astro 6 + Tailwind v4 ፕሮጀክት ነው። አንድ ጊዜ እዚያ {npmInstall} ያሂዱ፣ ከዚያ ለአካባቢያዊ ቅድመ እይታ {npmRunDev}። {pagesWorkflow} የስራ ፍሰት ሰነዶችን ወደ GitHub ገፆች በእያንዳንዱ ውህደት ይልካል።"
+		}
 	},
 	"changelog": {
 		"title": "የለውጥ",
 		"eyebrow": "ታሪክ",
-		"lede": "የተለቀቁት ከፍተኛ ደረጃ ማጠቃለያ። ቀኖናዊ፣ ስልጣን ያለው የለውጥ ሎግ በማከማቻው ውስጥ CHANGELOG.md ይኖራል።"
+		"lede": "የተለቀቁት ከፍተኛ ደረጃ ማጠቃለያ። ቀኖናዊ፣ ስልጣን ያለው የለውጥ ሎግ በማከማቻው ውስጥ CHANGELOG.md ይኖራል።",
+		"fullRecord": "ለሙሉ መዝገብ {changelogLink} ይመልከቱ።",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "V3 (በልማት ላይ)",
+			"labels": {
+				"breaking": "መስበር",
+				"resilience": "የመቋቋም ችሎታ",
+				"placeholderProtection": "የቦታ ያዥ ጥበቃ;",
+				"perKeyOptOut": "በእያንዳንዱ ቁልፍ መርጠው መውጣት -",
+				"docsAccessibility": "የሰነዶች ተደራሽነት -",
+				"inlineCodeStyling": "የመስመር ውስጥ ኮድ ዘይቤ -"
+			},
+			"issueLabels": {
+				"closes46": "ይዘጋል #46.",
+				"tightens16": "#16 ያጠነክራል።",
+				"closes35": "ይዘጋል #35."
+			},
+			"items": {
+				"runtime": "ወደ {nodeRuntime} የሩጫ ጊዜ ({breaking}) ተጭኗል።",
+				"newInputs": "አዲስ ግብዓቶች {include}፣ {exclude}፣ {configPath}፣ {categoryId}፣ {apiVersion}፣ {dryRun}፣ {failOnError}፣ እና የላቁ የተርጓሚ ቁልፎች {textType}፣ {profanityAction}፣ {profanityMarker} እና {allowFallback}።",
+				"sourceLocale": "የምንጭ ቋንቋ አሁን ወደ ተርጓሚ ተላልፏል {fromLocale} ስለዚህ አጫጭር ሕብረቁምፊዎች በራስ-ሰር አይታወቁም።",
+				"resilience": "{label} የ Azureን {retryAfter} ራስጌ በማክበር ጊዜያዊ የኤችቲቲፒ ምላሾች ({statusCodes}) ላይ አውቶማቲክ ድጋሚ ሙከራ - በማይኖርበት ጊዜ ወደ ተደናገጠ ገላጭ ወደ ኋላ ይመለሳል። {maxRetries} እና {retryBackoffMs} በኩል ሊስተካከል የሚችል። {issue}",
+				"placeholderProtection": "እንደ {mustache}፣ {jsVar}፣ {indexZero}፣ {numberFormat}፣ {printf}፣ {positionalPrintf} እና ኤችቲኤምኤል አካላት ያሉ {label} ቶከኖች ከመተርጎማቸው በፊት በሴንቲነሎች ተጠቅልለው ከዚያ በኋላ ወደነበሩበት ይመለሳሉ፣ ስለዚህ ተርጓሚ i18next/Mustache/Handlebars/.NET/printf ቦታ ያዢዎችን ማጭበርበር ያቆማል። በ {protectPlaceholders} በኩል ይቀያይሩ; ከ {customPlaceholderPatterns} ጋር ያራዝሙ. {issue}",
+				"perKeyOptOut": "{label} አዲስ {noTranslatePatterns} ግብዓት ከተርጓሚ ጥያቄ ሙሉ በሙሉ የሚዛመዱ ቁልፎችን ይጥላል (ለብራንድ ስሞች፣ የስህተት ኮዶች፣ ወዘተ የምንጭ እሴቶችን ይጠብቃል)። የግሎብ ቅጦችን ከትንተና-ደረጃ ቁልፎች ጋር ያዛምዳል (JSON ነጥብ ያለው መንገድ፣ RESX {resxName}፣ PO {poMsgid}፣ XLIFF አሃድ {xliffId}፣ INI/restext ቁልፍ)። {issue}",
+				"repoConfig": "የሪፖ-ደረጃ ውቅር በ {configPath} በኩል።",
+				"glossary": "የቃላት መፍቻ ድጋፍ፣ የደረጃ ማጠቃለያ በ {coreSummary} በኩል።",
+				"tooling": "esbuild bundler፣ ESLint 9 ጠፍጣፋ ውቅረት፣ Prettier፣ EditorConfig።",
+				"audit": "የ NPM ኦዲት ንፁህ (0 ተጋላጭነቶች)።",
+				"docsSite": "Astro + Tailwind v4 ሰነዶች ጣቢያ ከእይታ ሽግግሮች እና ገላጭ ኮድ ጋር።",
+				"docsAccessibility": "{label} WCAG 2.1 AA ማለፊያ። የአርማ ግሊፍስ ወደ ዱካዎች ተቀይሯል ስለዚህ ከአሁን በኋላ የቀለም-ንፅፅር ከግራዲየንት ማቆሚያዎች ጋር እንዳይወድቁ፣ ተንሳፋፊው {backToTop} ቁልፍ ተደብቆ {inert} ይጠቀማል (ከ {ariaHidden} መቀያየር ይልቅ) {formatsAstro} ክፍሎች ከአሁን በኋላ በራስ-ከሚመነጩ የርዕስ መታወቂያዎቻቸው ጋር አይጋጩም፣ ሶስት የአካባቢ ካርዶች አሁን BCP-47-የሚሰራ {lang} ባህሪያትን ያጋልጣሉ ({nya}፣ {lug}፣ {run})፣ የተባዙ {documentation} የመሬት ምልክት መለያዎች በጎን አሞሌ እና ግርጌ መካከል ተለያይተዋል።  እና በ {inputs}/{configuration} ላይ ያለው እያንዳንዱ የውሂብ ሠንጠረዥ በስክሪን-አንባቢ መግለጫ ፅሁፍ ይላካል።",
+				"inlineCode": "{label} ሰነዶች ፕሮሴስ {codeElement} አሁን ሞቅ ያለ/አምበር ጭብጥ ዘዬ ለብሷል - ለአገናኞች እና አርእስቶች ጥቅም ላይ ከሚውለው የምርት ስም→አነጋገር ቤተ-ስዕል የተለየ።",
+				"automation": "Dependabot ራስ-ማዋሃድ፣ CodeQL ቅኝት፣ CI ማትሪክስ።"
+			}
+		},
+		"v2": {
+			"heading": "ቪ 2.ኤክስ",
+			"gitHistory": "የ git ታሪክን ይመልከቱ።"
+		}
 	}
 }

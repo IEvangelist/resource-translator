@@ -18,18 +18,26 @@
 			"node": "Solmu 20 / 22 / 24",
 			"sdk": "Virallinen Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "Pesännäinen vai litteä",
+			"ini": "{keyValue}",
+			"restext": "MUI-teksti"
+		},
 		"features": {
 			"formats": {
 				"title": "Kuusi tiedostomuotoa",
-				"body": "Kierros .resx, .xliff, .po, .json, .ini ja .restext tavustabiidilla muotoilulla."
+				"body": "Edestakaiset matkat {resx}, {xliff}, {po}, {json}, {ini} ja {restext} tavuvakaalla muotoilulla."
 			},
 			"config": {
 				"title": "Repo-tason konfiguraatio",
-				"body": "Laita .github/resource-translator.yml mukaan globit, sanastot ja Custom Translator -kategoriat."
+				"body": "Laita {configPath}-tiedosto mukaan globseihin, sanastoihin ja Custom Translator -kategorioihin."
 			},
 			"glossary": {
 				"title": "Sanaston tietoinen",
-				"body": "Lukitse brändinimet ja tuotetermit älykkäällä sanarajaregexillä, joka käsittelee C++:n, .NET:n ja ystävät."
+				"body": "Lukitse brändinimet ja tuotetermit älykkäällä sanarajaregexillä, joka käsittelee {cpp}, {dotnet} ja ystävät."
 			},
 			"dryRun": {
 				"title": "Harjoitus + pehmeä epäonnistuminen",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR-ystävälliset tulokset",
-				"body": "summary-title, summary-details ja has-new-translations sijoittuvat suoraan create-pull-requestiin."
+				"body": "{summaryTitle}, {summaryDetails} ja {hasNewTranslations} sijoittuvat suoraan create-pull-requestiin."
 			},
 			"sdk": {
 				"title": "Virallinen Azure SDK",
-				"body": "Rakennettu @azure-rest/ai-translation-text + @azure/core-rest-pipeline — automaattiset uudelleenyritykset 408/429/5xx:llä, ei käsin rullattua HTTP:tä. Esbuild-paketissa, auditointi-puhtaana."
+				"body": "Rakennettu {azureSdk} + {corePipeline}:lle — automaattiset uudelleenyritykset {statusCodes}:llä, ei käsin rullattua HTTP:tä. {esbuild}-paketissa, audit-puhtaana."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Drop-in työnkulku",
+			"titlePrefix": "Kopioi. Liitä.",
+			"titleAccent": "Käännä.",
+			"body": "Kolme salaisuutta, neljä riviä, ja reposi on monikielinen seuraavalla hyökkäyksellä.",
+			"setupLink": "Käy läpi koko kokoonpano"
+		},
+		"cta": {
+			"title": "Valmiina lokalisoimaan autopilotilla?",
+			"body": "Yksi Azure AI Translator -avain, yksi työnkulkutiedosto. Resource Translator hoitaa loput.",
+			"button": "Aloita"
 		}
 	},
 	"getting-started": {
 		"title": "Aloitus",
 		"eyebrow": "Asetelma",
-		"lede": "Lisää työnkulkutiedosto, osoita se Azure AI Translator -tunnuksiisi, ja toiminto — joka perustuu Microsoftin viralliseen @azure-rest/ai-translation-text SDK:hon — skannaa reposita lähdekielen resurssitiedostojen varalta ja lähettää käännetyt sisarukset.",
+		"lede": "Lisää työnkulkutiedosto, osoita se Azure AI Translator -tunnuksiisi, ja toiminto skannaa reposta lähdekielen resurssitiedostoja ja lähettää käännetyt sisarukset.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Lisää työnkulku",
-				"body": "Luo .github/workflows/translate.yml:"
+				"body": "Luo {workflowPath}:"
 			},
 			"resource": {
 				"title": "Commit lähderesurssitiedosto",
-				"body": "Resurssitiedostot käyttävät nimeä. <sourceLocale>. <ext> kokouksessa. Esimerkiksi Greetings.en.resx muuttuu Greetings.fr.resxiksi, Greetings.de.resxiksi ja niin edelleen ajon jälkeen."
+				"body": "Resurssitiedostot käyttävät {namingConvention}-konventiota. Esimerkiksi {sourceFile} muuttuu {frFile}, {deFile} ja niin edelleen pelin jälkeen."
 			},
 			"output": {
 				"title": "Tarkista lähtö",
-				"body": "Kun työnkulku on valmis, toiminto paljastaa kolme tulosta, jotka voit yhdistää PR-kuvaukseen: yhteenveto-otsikko, yhteenveto-yksityiskohdat ja uusi-käännökset. Se kirjoittaa myös Markdown-yhteenvedon työpaikkasivulle core.summaryn kautta."
+				"body": "Kun työnkulku on valmis, toiminto paljastaa kolme ulostuloa, jotka voit yhdistää PR-kuvaukseen: {summaryTitle}, {summaryDetails} ja {hasNewTranslations}. Se kirjoittaa myös Markdown-yhteenvedon työpaikkasivulle {coreSummary}:n kautta."
 			}
 		},
 		"nextSteps": {
 			"title": "Seuraavat askeleet",
-			"configuration": "Määritä repo-tason oletukset .github/resource-translator.yml:lla.",
+			"configuration": "Määritä repo-tason oletusasetukset {configPath}.",
 			"recipes": "Katso reseptejä monorepoille, mukautetuille sanastoksille ja Custom Translator -kategorioille."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Kokoonpano",
 		"eyebrow": "YAML",
 		"heroTitle": "Arkiston konfiguraatio",
-		"lede": "Express oletuksena on kerran .github/resource-translator.yml:ssa ja antaa jokaisen työnkulun periä ne. Toimintosyötteet voittavat aina, kun molemmat ovat saatavilla."
+		"lede": "Express oletuksena on kerran repositorion konfiguraatiotiedostossa ja antaa jokaisen työnkulun periä ne. Toimintosyötteet voittavat aina, kun molemmat ovat saatavilla.",
+		"intro": "Ohita polku {configPath}-syötteellä, jos tarvitset ei-oletussijainnin.",
+		"schemaHeading": "Skeema",
+		"fieldReference": {
+			"heading": "Kenttäreferenssi",
+			"caption": "Konfiguraatiokenttäreferenssi",
+			"columns": {
+				"field": "Kenttä",
+				"type": "Tyyppi",
+				"notes": "Huomautuksia"
+			},
+			"fields": {
+				"sourceLocale": "Palautuu {sourceLocale} tuloon, jos sitä ei ole asetettu. Lähetetään myös kääntäjälle {fromLocale}, jotta lyhyet merkkijonot eivät automaattisesti tunnisteta.",
+				"toLocales": "Joko taulukko tai pilkulla erotettu merkkijono.",
+				"includeExclude": "Glob-kuviot arvioitiin absoluuttisia ja työtilan suhteellisia polkuja vastaan.",
+				"glossary": "Käännöksen jälkeiset termin ohitukset. Sanarajatietoinen (käsittelee {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} kategoria — toimialan/toimialan nuppi (oikeudellinen, lääketieteellinen, markkinointisävy jne.). Lähetetty {categoryQuery}.",
+				"textType": "Oletuksena {plain}. Käytä {html} vain, jos resurssiarvosi sisältävät oikeita HTML-fragmentteja.",
+				"profanityAction": "Kuinka käsitellä kirosanoja käännetyssä tekstissä.",
+				"profanityMarker": "Merkityksellistä vain, kun {profanityAction} on {marked}.",
+				"allowFallback": "Aseta {false} epäonnistumaan käännöksessä, kun {categoryId} ei ole lainkaan sijoitusta kohdealueelle, sen sijaan että palaisit yleiseen malliin.",
+				"apiVersion": "Kääntäjä REST API -versio. Oletuksena {version}.",
+				"maxRetries": "Suurin uusintayritys tilapäisille HTTP-vastauksille ({statusCodes}). Oletuksena {defaultRetries}. HTTP-kutsujen kokonaismäärä per pyyntö on {totalCalls}.",
+				"retryBackoffMs": "Cap (ms) kaikille yksittäisille backoff-unille. Oletuksena {defaultBackoff}. Azuren {retryAfter} otsikko kunnioitetaan täsmälleen silloin, kun se on läsnä; muussa tapauksessa käytetään tärisevää eksponentiaalista takaperintää, joka on rajattu tähän arvoon.",
+				"protectPlaceholders": "Oletuksena {true}. Kun tokenit ovat päällä, tokenit kuten {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ja HTML korvataan sentinel-tokeneilla ennen kääntämistä ja palautetaan sen jälkeen. Poista käytöstä vain, jos lähde sisältää tarkoituksella paikkamerkkimuotoisia literaaleja.",
+				"customPlaceholderPatterns": "Lisättyjä regex-kuvioita (ilman erottajia) lisättiin oletuspaikkamerkkijoukkoon, esim. {angleToken} mukautetulle token-syntaksille. Virheelliset regexit jätetään huomiotta.",
+				"noTranslatePatterns": "Glob-kuviot sopivat parser-tason avaimiin (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext-avain). Vastaavat avaimet pudotetaan pyynnöstä ja kulkevat läpi niiden lähdearvon säilyttäen."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Lastausjärjestys",
+			"steps": {
+				"actionInputs": "Toiminto lukee työnkulun eksplisiittiset syötteet.",
+				"config": "Se lataa YAML-konfiguraation {configPath}:sta.",
+				"precedence": "Jokaisessa jaetussa kentässä syöte voittaa; muussa tapauksessa käytetään YAML-arvoa.",
+				"validation": "Yhdistetyt arvot validoidaan. Virheelliset enumit (esim. {invalidEnum}) aiheuttavat toiminnon epäonnistumisen nopeasti selkeällä viestillä."
+			}
+		},
+		"tone": {
+			"heading": "Sävy ja teollisuus, yksinkertaisesti sanottuna",
+			"body": "Azure AI Translator v3 API:ssa ei ole yhtä sävynnuppia. Kaksi asetusta yhdistyy antaen sinulle suurimman osan samasta hallinnasta:",
+			"industryLabel": "Toimiala / toimiala:",
+			"industryBody": "käytä {categoryId} osoittaaksesi Azure {customTranslatorLink} -kategoriaa, joka on koulutettu omalla korpusellasi — oikeudellisilla, teknisillä, lääketieteellisillä, markkinoinnilla tai millä tahansa muulla. Tämä on vahvin vivu sävylle, brändiäänelle ja sanastolle.",
+			"surfaceLabel": "Pintateksti:",
+			"surfaceBody": "Käytä {glossaryLink} lukitsemaan brändinimet ja tuotetermit sanasta sanaan, ja käytä {profanityAction} poistaaksesi kirosanoja, kun kohdistat lokalisaatiota nuoremmille yleisöille.",
+			"glossaryLinkLabel": "sanasto"
+		}
 	},
 	"inputs": {
 		"title": "Tulot ja lähtöt",
 		"eyebrow": "Viite",
-		"lede": "Jokainen syöte hyväksytään myös valinnaisessa repon konfiguraatiotiedostossa. Kun molemmat on asetettu, toimintosyöte voittaa."
+		"lede": "Jokainen syöte hyväksytään myös valinnaisessa repon konfiguraatiotiedostossa. Kun molemmat on asetettu, toimintosyöte voittaa.",
+		"configurationIntro": "Katso {configurationLink} YAML-skeemasta ja latausjärjestyksestä.",
+		"configurationLinkLabel": "Kokoonpano",
+		"columns": {
+			"name": "Nimi",
+			"default": "Oletus",
+			"description": "Kuvaus"
+		},
+		"defaults": {
+			"none": "ei mikään",
+			"allSupported": "kaikki tukivat",
+			"translatorDefaultTrue": "true (Kääntäjän oletus)"
+		},
+		"requiredInputs": {
+			"heading": "Vaaditut syötteet",
+			"caption": "Vaaditut syötteet",
+			"items": {
+				"sourceLocale": "Lähdepaikka (esim. {en}), jota käytetään resurssitiedostojen, kuten {sourceGlob}, löytämiseen. Lähetetty myös kääntäjälle nimellä {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator -tilausavain. Kulje {secrets} kautta.",
+				"endpoint": "Kääntäjän päätepisteen URL, esim. {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Yleiset valinnaiset syötteet",
+			"caption": "Yleiset valinnaiset syötteet",
+			"items": {
+				"region": "Kääntäjäresurssialue (jätä globaalit resurssit pois).",
+				"toLocales": "Paikat, joihin kannattaa kääntää. Hyväksyy JSON-taulukon ({jsonArray}) tai pilkulla eroteltujen arvojen.",
+				"include": "Newline-eroteltuja pallokuvioita; Vain vastaavat tiedostot käännetään.",
+				"exclude": "Newline-eroteltuja pallokuvioita; Vastaavat tiedostot ohitetaan (sovelletaan include-toiminnon jälkeen).",
+				"configPath": "Polku YAML-konfiguraatiotiedostoon (suhteessa työtilan juureen).",
+				"dryRun": "Kun {true}, suorita käännökset ja lähetä yhteenvetoja, mutta älä kirjoita tiedostoja.",
+				"failOnError": "Kun {true}, odottamattomat virheet epäonnistuvat toiminnassa; Kun {false}, virheet ovat varoituksia."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Kääntäjän pyyntösyötteet",
+			"intro": "Nämä vastaavat suoraan Azure AI Translator v3 -kyselyparametreihin. Jokainen niistä on vapaaehtoinen; Kääntäjän oletusasetukset pätevät, kun ne ovat pois asetuksista.",
+			"caption": "Kääntäjän pyyntösyötteet",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} category — industry/domain/tone nnob. Lähetetty {categoryQuery}.",
+				"textType": "{plain} tai {html}. Käytä {html} vain silloin, kun resurssiarvosi ovat oikeita HTML-fragmentteja.",
+				"profanityAction": "{noAction}, {marked} tai {deleted}. Säätelee, miten kirosanoja esitetään käännöksissä.",
+				"profanityMarker": "{asterisk} tai {tag}. Merkityksellinen vain silloin, kun {profanityAction} on {marked}.",
+				"allowFallback": "Kun {false}, kääntäjä palauttaa virheen sen sijaan, että palaisi yleiseen järjestelmään, jos {categoryId} ei ole lainkaan käyttöönottoa kohdealueelle.",
+				"apiVersion": "Kääntäjä REST API -versio."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Resilienssi ja paikkamerkkisuojaus",
+			"intro": "Nämä syötteet ohjaavat, miten toiminto käyttäytyy, kun Kääntäjä rajoittaa pyyntöäsi, ja miten se suojaa väliaikaisia tokeneita, kuten {mustache} tai {indexZero}, kääntymisen aikana.",
+			"caption": "Resilienssi- ja paikkamerkkisuojaussyötteet",
+			"items": {
+				"maxRetries": "Suurin uusintayritys tilapäisille HTTP-vastauksille ({statusCodes}). HTTP-kutsujen kokonaismäärä per pyyntö on {totalCalls}.",
+				"retryBackoffMs": "Rajoitus (millisekunneissa) mille tahansa yksittäiselle backoff-unelle. Toiminto kunnioittaa Azuren {retryAfter} vastausotsikkoa täsmälleen silloin, kun se on läsnä; muussa tapauksessa käytetään tärisevää eksponentiaalista peruutusta, joka on rajattu tähän arvoon.",
+				"protectPlaceholders": "Kun {true} (oletus), paikkamerkit kuten {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ja HTML korvataan sentinel-tokeneilla ennen kääntämistä ja palautetaan sen jälkeen. Poista käytöstä vain, jos lähteessäsi on tarkoituksella kirjaimellista paikkamerkkimuotoista tekstiä, joka tulisi kääntää.",
+				"customPlaceholderPatterns": "Newline-erotetut regexit (ilman erottajia) lisättiin oletuspaikkamerkkijoukkoon, esim. {angleToken} mukautetulle token-syntaksille.",
+				"noTranslatePatterns": "Newline-erotetut glob-kuviot sopivat jäsentämistason avaimiin (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext-avain). Sovittavat avaimet pudotetaan Translator-pyynnöstä ja ne kulkevat läpi lähdearvonsa säilyttäen."
+			}
+		},
+		"outputs": {
+			"heading": "Tulokset",
+			"caption": "Tulokset",
+			"items": {
+				"summaryTitle": "Lyhyt, PR-otsikolle sopiva yhteenveto, esim. {summaryExample}.",
+				"summaryDetails": "Markdown-yhteenveto, joka sopii PR-elimelle tai työn yhteenvetoon.",
+				"hasNewTranslations": "{trueString} kun yksi tai useampi uusi käännös syntyi."
+			}
+		}
 	},
 	"formats": {
 		"title": "Tiedostomuodot",
 		"eyebrow": "Viite",
 		"heroTitle": "Tuetut tiedostomuodot",
-		"lede": "Kuusi edestakaista resurssimuotoa. Toiminto lukee jokaisen lähde-paikallistiedoston, kääntää arvot ja kirjoittaa sisaruksen per kohdepaikka."
+		"lede": "Kuusi edestakaista resurssimuotoa. Toiminto lukee jokaisen lähde-paikallistiedoston, kääntää arvot ja kirjoittaa sisaruksen per kohdepaikka.",
+		"namingConvention": "Kaikki tiedostot käyttävät {namingConvention} nimeämiskäytäntöä.",
+		"learnMore": "Opi lisää",
+		"items": {
+			"resx": {
+				"blurb": "XML-pohjaiset .NET-resurssitiedostot. Kääntää jokaisen {dataValue} solmun sisäisen tekstin, säilyttäen kommentit ja metatiedot.",
+				"specLabel": "Microsoft Learn — Resurssit .resx-tiedostoissa"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 -dokumentit. Kääntää jokaisen {source} ja kirjoittaa tuloksen vastaavaan {target}, asettaen {trgLang} paikalle.",
+				"specLabel": "OASIS XLIFF 2.0 -määrittely"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object -tiedostot. Kääntää jokaisen {msgid} / {msgidPlural} {msgstr} / {msgstrPlural} muotoon.",
+				"specLabel": "GNU gettext — PO-tiedostomuoto"
+			},
+			"json": {
+				"blurb": "Mielivaltaiset JSON-tiedostot. Sisäkkäiset objektit litistetään {delimiter}-jakajalla käännöksiä varten, minkä jälkeen ne pestetään uudelleen ulostulossa. Pistekoskettimet ({dottedKey}) on säilytetty sanasta sanaan.",
+				"specLabel": "JSON-määrittely (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Yksinkertaiset {keyValue}-tiedostot (Win32-tyylinen INI tai mikä tahansa tasainen konfiguraatio). Osioiden otsikot ja kommentit säilyvät.",
+				"specLabel": "INI-tiedostomuoto Wikipediassa"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI -tekstiresurssit — litteät {keyValue}-parit, joita käytetään tekstuaalisena kumppanina {resx}:lle.",
+				"specLabel": "Microsoft MUI:n yleiskatsaus"
+			}
+		},
+		"roundTrip": {
+			"heading": "Meno-paluutakuut",
+			"body": "Testipaketti varmistaa tavu tavulta -round-trippauksen edustaville fiktureille kaikissa formaateissa. Jos jokin formaatin erikoisuus rikkoo edestakaisen kierroksen koodipohjassasi, {issueLink} mahdollisimman vähän näytettä.",
+			"issueLinkLabel": "Avaa asia"
+		}
 	},
 	"recipes": {
 		"title": "Reseptit",
 		"eyebrow": "Keittokirja",
-		"lede": "Yleisiä kaavoja lähetyskäännöksissä: monorepot, sanastot, räätälöidyt kategoriat, harjoituskokeet ja sävynsäätö."
+		"lede": "Yleisiä kaavoja lähetyskäännöksissä: monorepot, sanastot, räätälöidyt kategoriat, harjoituskokeet ja sävynsäätö.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Avaa vetopyyntö jokaisen suorituksen jälkeen"
+			},
+			"monorepo": {
+				"heading": "Monorepos: laajuuskäännös per paketti"
+			},
+			"glossary": {
+				"heading": "Sanasto tuotemerkeille ja tuotetermeille",
+				"intro": "Pudota {configPath} repoon:",
+				"afterLabel": "jälkeen",
+				"body": "Sanaston termejä käytetään käännöksen {after}, joten koneellisesti käännetty tulos säilyttää suosikkibrändisi, vaikka malli vaihtaisi sen synonyymiin."
+			},
+			"customCategory": {
+				"heading": "Mukautettu kääntäjäkategoria (toimiala / toimiala)",
+				"body": "Kouluta Azure {customTranslatorLink} -kategoria korpuksella, joka tallentaa alasi sanaston, sävyn (oikeus, lääketiede, markkinointi, sisäinen suunnittelu jne.) ja välitä sen tunniste {categoryId}:n kautta. Tämä on vahvin sävyvipu, jonka Azure tarjoaa."
+			},
+			"tone": {
+				"heading": "Sävynhallinta + tiukka varasuunnitelma",
+				"body": "Yhdistä Custom Translator {categoryId} {profanityAction} ja {allowFallbackFalse} saadaksesi yhtenäisen äänen ja epäonnistuaksesi työnkulussa, jos valitulla kategorialla ei ole käyttöönottoa jollekin kohdepaikoistasi."
+			},
+			"dryRun": {
+				"heading": "Kokeile ennen työnkulun käynnistämistä",
+				"body": "Toiminto lähettää edelleen yhteenvetoja ja vaihetiivistelmän, mutta tiedostoja ei kirjoiteta. Yhdistä {failOnErrorFalse} ja nosta esiin jokainen ongelma varoituksena iteroinnin aikana."
+			}
+		}
 	},
 	"faq": {
 		"title": "UKK",
 		"eyebrow": "Apua",
 		"heroTitle": "Usein kysytyt kysymykset",
-		"lede": "Nopeat vastaukset niihin kysymyksiin, jotka nousevat esiin toiminnan omaksumisen yhteydessä."
+		"lede": "Nopeat vastaukset niihin kysymyksiin, jotka nousevat esiin toiminnan omaksumisen yhteydessä.",
+		"questions": {
+			"azure": {
+				"heading": "Miten toiminta kommunikoi Azuren kanssa?",
+				"body": "Microsoftin virallisen {azureSdkLink} SDK:n kautta, joka on kerrostettu {corePipelineLink}. Näin saat automaattiset uudelleenyritykset {statusCodes}, kirjoitetut pyyntö- ja vastausmallit sekä tunnistautumisen otsikon käsittelyn ilmaiseksi — kaiken, mikä ennen oli käsin rullattua {axios}-kutsua. Julkinen toimintapinta (syötteet, ulostulot, tiedoston ulostulot) pysyy ennallaan."
+			},
+			"tone": {
+				"heading": "Miksi käännökset ovat joskus epätyypillisiä tai epätyypillisiä?",
+				"body": "Konekäännös on oletuksena yleiskäyttöinen malli. Kolme nuppia auttaa: {glossaryLink} kovien termien ohittamiseen, {customTranslatorLink} hienosäädettyihin malleihin, jotka on koulutettu äänen ja sanaston mukaan, sekä {profanityAction} kirosanojen poistamiseen tai merkitsemiseen.",
+				"glossaryLinkLabel": "sanasto",
+				"customTranslatorLinkLabel": "Custom Translator -kategoria"
+			},
+			"duplicateFiles": {
+				"heading": "Miten voin välttää saman tiedoston kääntämisen kahdesti?",
+				"body": "Käynnistä työnkulku {paths}, jotka vastaavat vain lähdepaikkatiedostojasi, esim. {sourceGlob}. Toiminto sisältää myös oman laukaisinkohtaisen tiedostosuodattimen, kun {githubToken} on asetettu, kaventaen työn uusimman commitin tiedostoihin."
+			},
+			"offline": {
+				"heading": "Voinko ajaa toiminnon offline-tilassa?",
+				"body": "Ei aivan — Azure AI Translator on ajonaikainen aivo. Mutta voit ajaa {dryRunTrue}:n kanssa jäsentämisen ja konfiguroinnin validointiin ilman HTTP-pyyntöjä käännöstä varten."
+			},
+			"node": {
+				"heading": "Millä Node-versiolla toiminto pyörii?",
+				"body": "v3 pyörii GitHub Actionsissa {nodeRuntime} ajonaikaisesti. Mukana tuleva JavaScript on yhteensopiva Node 20:n, 22:n ja 24:n kanssa, joita CI testaa."
+			},
+			"dist": {
+				"heading": "Mistä paketoitu {distDir} tulee?",
+				"body": "GitHub JS -toiminnot lähettävät käännetyn JS:n repositoriossa. {distBuild} työnkulku rakentaa sen uudelleen jokaisen yhdistämisen jälkeen {mainBranch} ajautuuko se ja {distCheck} estää PR:t, jotka päätyisivät vanhentuneisiin tuloksiin."
+			},
+			"formats": {
+				"heading": "Entä muut resurssimuodot?",
+				"body": "Tänään: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} jos tarvitset toisen — jäsentäjän käyttöliittymä on pieni (jäsentää → kartoittaa → soveltaa käännöksiä → muotoa) ja panokset ovat tervetulleita.",
+				"issueLinkLabel": "Avaa asia"
+			}
+		}
 	},
 	"translations": {
 		"title": "Käännökset",
 		"eyebrow": "Näyttely",
 		"heroTitle": "Hei kaikilla kielillä",
-		"locales": "Paikat",
-		"currentlyRendered": "Tällä hetkellä renderöity",
-		"complete": "Valmis!",
-		"pendingPrefix": "Odottaa seuraavaa Translate-Docs-kierrosta.",
+		"lede": "Tämä sivu on käännetty Resource Translatorin toimesta jokaisella pääkäännöksellä kaikille Azure AI Translatorin tukemille kielille.",
+		"localeCountLabel": "{count} paikat",
+		"statusComplete": "{translatedCount} tällä hetkellä renderöity — valmis!",
+		"statusPending": "{translatedCount} tällä hetkellä renderöity — {pendingCount} odottaa seuraavaa {workflowName} kierrosta.",
 		"viewWorkflowRuns": "Katso työnkulkujen suoritukset",
 		"filter": "Suodatin",
 		"filterPlaceholder": "Etsi kielellä, koodilla tai alkuperäisnimellä...",
 		"source": "Lähde",
 		"machineTranslations": "Konekäännökset",
-		"translationPending": "Käännös odottaa — avaa käännösdokumentaatio.",
+		"translationPending": "Käännös kesken — avaa {workflowName} kierros.",
 		"noLocales": "Mikään paikka ei vastaa tuota suodatinta.",
-		"howItWorks": "Miten tämä toimii"
+		"howItWorks": {
+			"heading": "Miten tämä toimii",
+			"thisActionLabel": "juuri tämä teko",
+			"steps": {
+				"source": "Englanninkielinen lähdetiedosto sijaitsee osoitteessa {messagesPath}.",
+				"workflow": "Työntää sitä kosketusta ja potkaisee {workflowLink}, joka kulkee {thisAction} itseään vasten.",
+				"fanOut": "Toiminta leviää jokaiseen Azure AI Translator -tukemaan paikkaan (konfiguroitu {configPath}) ja kirjoittaa sisarus {messagesLocaleJson} per kohde.",
+				"pullRequest": "Uusilla käännöksillä avataan pull-pyyntö. Sen yhdistäminen julkaisee tämän sivun uudelleen täytettyinä kortteineen."
+			}
+		},
+		"poweredBy": "Toimii Resource Translatorilla ja Azure AI Translatorilla."
 	},
 	"contributing": {
 		"title": "Osallistuminen",
 		"eyebrow": "Avoin lähdekoodi",
-		"lede": "Bugiraportit, ominaisuuspyynnöt ja pull-pyynnöt ovat kaikki tervetulleita. Toiminta on tarpeeksi pientä ollakseen ystävällinen ensikertalaisille osallistujille."
+		"lede": "Bugiraportit, ominaisuuspyynnöt ja pull-pyynnöt ovat kaikki tervetulleita. Toiminta on tarpeeksi pientä ollakseen ystävällinen ensikertalaisille osallistujille.",
+		"localDevelopment": {
+			"heading": "Paikallinen kehitys"
+		},
+		"addingParser": {
+			"heading": "Parserin lisääminen",
+			"steps": {
+				"fixture": "Lisää valaisin {testDataDir} alle.",
+				"implement": "Toteuta {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Rekisteröi se {factoryFile}.",
+				"extension": "Lisää tiedostopääte {translationFileSchemes} {finderFile}.",
+				"tests": "Kirjoita edestakaiset testit jäsentämiselle → muotoilulle ja applyTranslationsille."
+			}
+		},
+		"coverage": {
+			"heading": "Peittokynnysarvot",
+			"body": "Jestin konfiguraatio vaatii minimikattavuutta. Uuden koodin on pidettävä lauseiden + rivin kynnys yli 78 % ja funktiot yli 90 %. Lisää kalusteet ja testit muutoksen rinnalle."
+		},
+		"docsSite": {
+			"heading": "Dokumentaatiosivusto",
+			"body": "{docsDir} kansio on Astro 6 + Tailwind v4 -projekti. Aja {npmInstall} siellä kerran, sitten {npmRunDev} paikallista esikatselua varten. {pagesWorkflow} työnkulku toimittaa dokumentit GitHub Pagesille jokaisessa yhdistämisessä."
+		}
 	},
 	"changelog": {
 		"title": "Muutosloki",
 		"eyebrow": "Historia",
-		"lede": "Julkaisujen yleiskatsaus. Kanoninen, auktoritatiivinen muutosloki elää CHANGELOG.md arkistossa."
+		"lede": "Julkaisujen yleiskatsaus. Kanoninen, auktoritatiivinen muutosloki elää CHANGELOG.md arkistossa.",
+		"fullRecord": "Katso {changelogLink} saadaksesi koko pöytäkirjan.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (kehitteillä oleva)",
+			"labels": {
+				"breaking": "RIKKOMINEN",
+				"resilience": "Resilienssi:",
+				"placeholderProtection": "Paikkamerkkisuoja:",
+				"perKeyOptOut": "Avainkohtainen opt-out:",
+				"docsAccessibility": "Asiakirjojen saavutettavuus:",
+				"inlineCodeStyling": "Inline-koodin tyyli:"
+			},
+			"issueLabels": {
+				"closes46": "Sulkee #46.",
+				"tightens16": "Kiristää #16.",
+				"closes35": "Sulkee #35."
+			},
+			"items": {
+				"runtime": "Siirretty {nodeRuntime} kestoon ({breaking}).",
+				"newInputs": "Uudet syötteet: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError} sekä kehittyneet kääntäjänupit {textType}, {profanityAction}, {profanityMarker} ja {allowFallback}.",
+				"sourceLocale": "Lähdepaikka välitetään nyt myös kääntäjälle {fromLocale}, joten lyhyitä merkkijonoja ei tunnisteta automaattisesti.",
+				"resilience": "{label} automaattinen uudelleenyritys tilapäisille HTTP-vastauksille ({statusCodes}), kunnioittaen Azuren {retryAfter}-otsikkoa — palautuu nykivään eksponentiaaliseen peruutukseen, kun sitä ei ole. Säädettävissä {maxRetries}:n ja {retryBackoffMs}:n kautta. {issue}",
+				"placeholderProtection": "{label} tokenit kuten {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ja HTML kääritään sentinelleihin ennen käännöstä ja palautetaan sen jälkeen, joten kääntäjä lopettaa i18next/Mustache/Handlebars/.NET/printf -paikkamerkkien sotkemisen. Kytke päälle {protectPlaceholders}; Jatka {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} uusi {noTranslatePatterns} syöte poistaa yhteensopivat avaimet kokonaan Translator-pyynnöstä (säilyttää lähdearvot tuotemerkeille, virhekoodeille jne.). Vertaa glob-kuvioita parser-tason avaimiin (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext-avain). {issue}",
+				"repoConfig": "Repo-tason konfigurointi {configPath}:n kautta.",
+				"glossary": "Sanaston tuki, vaiheiden yhteenveto {coreSummary}:n kautta.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM:n auditointi puhdas (0 haavoittuvuutta).",
+				"docsSite": "Astro + Tailwind v4 -dokumentaatiosivusto, jossa on näkymäsiirtymät ja Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA -heitto. Logon glyfit on muunnettu poluiksi, jotta ne eivät enää epäonnistu värikontrastissa liukuvärin pysäytyksiä vastaan, kelluva {backToTop}-painike käyttää {inert} piilossa (sen sijaan, että {ariaHidden}-kytkin jättäisi sen välikohtaiseksi), {formatsAstro} osiot eivät enää törmää automaattisesti luotujen otsikkotunnisteiden kanssa, kolme paikkakorttia paljastaa nyt BCP-47-pätevät {lang}-attribuutit ({nya}, {lug}, {run}), duplikaatit {documentation} maamerkkitunnisteet on erotettu sivupalkin ja alatunnisteen välillä,  ja jokainen {inputs}/{configuration}:n datataulukko toimitetaan ruudunlukijan kuvatekstin kanssa.",
+				"inlineCode": "{label} Docs Prose {codeElement} käyttää nyt lämpimän/meripihkan väristä teemaa — eroaa linkkeihin ja otsikoihin käytetystä brändi→aksenttipaletista.",
+				"automation": "Dependabot automaattinen yhdistäminen, CodeQL-skannaus, CI-matriisi."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Katso git-historia."
+		}
 	}
 }

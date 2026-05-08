@@ -18,18 +18,26 @@
 			"node": "Nodul 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "Imbricați sau plati",
+			"ini": "{keyValue}",
+			"restext": "Textul MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Șase formate de fișier",
-				"body": "Variante dus-întors .resx, .xliff, .po, .json, .ini și .restext cu formatare stabilă la octeți."
+				"body": "Călătorii dus-întors {resx}, {xliff}, {po}, {json}, {ini} și {restext} cu formatare stabilă la octeți."
 			},
 			"config": {
 				"title": "Configurare la nivel de repositoriu",
-				"body": "Lasă un .github/resource-translator.yml pentru a include globuri, glosare și categorii Custom Translator."
+				"body": "Lasă un fișier {configPath} pentru include globs, glosare și categorii Custom Translator."
 			},
 			"glossary": {
 				"title": "Conștient de glosar",
-				"body": "Blochează numele de mărci și termenii de produs cu regex inteligent la granița de cuvinte care să gestioneze C++, .NET și prieteni."
+				"body": "Blochează numele de mărci și termenii produselor cu regex inteligent cu limite de cuvinte, care să gestioneze {cpp}, {dotnet} și prietenii."
 			},
 			"dryRun": {
 				"title": "Testare la uscat + eșec blând",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Ieșiri prietenoase cu PR-ul",
-				"body": "summary-title, summary-details și has-new-translations se încadrează direct în create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails} și {hasNewTranslations} se integrează direct în create-pull-request."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "Construit pe @azure-rest/ai-translation-text + @azure/core-rest-pipeline — încercări automate pe 408/429/5xx, fără HTTP rulat manual. Esbuild-bundle, audit-clean."
+				"body": "Construit pe {azureSdk} + {corePipeline} — încercări automate pe {statusCodes}, fără HTTP rulat manual. {esbuild} în pachet, curat-audit."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Flux de lucru drop-in",
+			"titlePrefix": "Copie. Lipiște.",
+			"titleAccent": "Traduce.",
+			"body": "Trei secrete, patru rânduri, iar depozitul tău este multilingv la următoarea încercare.",
+			"setupLink": "Parcurge întreaga configurație"
+		},
+		"cta": {
+			"title": "Ești gata să localizezi pe pilot automat?",
+			"body": "O cheie Azure AI Translator, un fișier de workflow. Traducătorul de resurse se ocupă de restul.",
+			"button": "Începe"
 		}
 	},
 	"getting-started": {
 		"title": "Începerea",
 		"eyebrow": "Structură",
-		"lede": "Adaugă un fișier de workflow, îndreaptă-l către acreditările tale Azure AI Translator, iar acțiunea — construită pe SDK-ul oficial @azure-rest/ai-translation-text al Microsoft — va scana depozitul pentru fișiere de resurse în limba sursă și va emite frații traduși.",
+		"lede": "Adaugă un fișier de workflow, îndreaptă către credențialele tale Azure AI Translator, iar acțiunea va scana depozitul pentru fișiere de resurse în limba sursă și va emite frații traduși.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Adaugă fluxul de lucru",
-				"body": "Creează .github/workflows/translate.yml:"
+				"body": "Creează {workflowPath}:"
 			},
 			"resource": {
 				"title": "Confirmă un fișier sursă de resurse",
-				"body": "Fișierele de resurse folosesc numele. <sourceLocale>. <ext> convenție. De exemplu, Greetings.en.resx devine Greetings.fr.resx, Greetings.de.resx și așa mai departe după o rundă."
+				"body": "Fișierele de resurse folosesc convenția {namingConvention}. De exemplu, {sourceFile} devine {frFile}, {deFile} și așa mai departe după o rundă."
 			},
 			"output": {
 				"title": "Inspectează ieșirea",
-				"body": "Odată ce fluxul de lucru se termină, acțiunea expune trei ieșiri pe care le poți conecta într-o descriere PR: rezumat-titlu, rezumat-detalii și are-noi-traduceri. De asemenea, scrie un rezumat Markdown pe pagina jobului prin core.summary."
+				"body": "Odată ce fluxul de lucru se termină, acțiunea expune trei ieșiri pe care le poți conecta într-o descriere PR: {summaryTitle}, {summaryDetails} și {hasNewTranslations}. De asemenea, scrie un rezumat Markdown pe pagina jobului prin {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Pașii următori",
-			"configuration": "Configurează setările implicite la nivel de depozit cu .github/resource-translator.yml.",
+			"configuration": "Configurează setările implicite la nivel de depozit cu {configPath}.",
 			"recipes": "Vezi rețete pentru monorepos, glosare personalizate și categorii de traducători personalizate."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Configurație",
 		"eyebrow": "YAML",
 		"heroTitle": "Configurația depozitelor",
-		"lede": "Express folosește implicit o dată în .github/resource-translator.yml și lasă fiecare flux de lucru să le moștenească. Inputurile de acțiune câștigă întotdeauna când ambele sunt oferite."
+		"lede": "Express folosește implicit o dată în fișierul de configurare al depozitului și lasă fiecare flux de lucru să le moștenească. Inputurile de acțiune câștigă întotdeauna când ambele sunt oferite.",
+		"intro": "Suprascrie calea cu intrarea {configPath} dacă ai nevoie de o locație non-implicită.",
+		"schemaHeading": "Schema",
+		"fieldReference": {
+			"heading": "Referință de teren",
+			"caption": "Referință de câmp de configurație",
+			"columns": {
+				"field": "Teren",
+				"type": "Tip",
+				"notes": "Note"
+			},
+			"fields": {
+				"sourceLocale": "Se întoarce la intrarea {sourceLocale} dacă nu este setată. De asemenea, este redirecționat către Translator ca {fromLocale} ca șirurile scurte să nu fie detectate automat.",
+				"toLocales": "Fie un tablou, fie un șir separat de virgule.",
+				"includeExclude": "Modele glob evaluate în raport cu trasee absolute și relative cu spațiul de lucru.",
+				"glossary": "Suprascrieri de termeni post-traducere. Conștient de limitele cuvintelor (gestionează {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} categorie — butonul tău de industrie/domeniu (juridic, medical, ton de marketing etc.). Trimis ca {categoryQuery}.",
+				"textType": "Implicit este {plain}. Folosește {html} doar dacă valorile resurselor tale conțin fragmente HTML reale.",
+				"profanityAction": "Cum să tratezi termenii profani în rezultatele traduse.",
+				"profanityMarker": "Are sens doar când {profanityAction} este {marked}.",
+				"allowFallback": "Setat pe {false} să eșueze traducerea când {categoryId} tău nu are implementare pentru o locație țintă, în loc să revină la modelul general.",
+				"apiVersion": "Versiunea API REST a traducătorului. Implicit este {version}.",
+				"maxRetries": "Numărul maxim de încercări de reîncercare pentru răspunsurile HTTP tranzitorii ({statusCodes}). Implicit este {defaultRetries}. Numărul total de apeluri HTTP pe cerere este {totalCalls}.",
+				"retryBackoffMs": "Limită (ms) pentru orice somn cu retragere individuală. Implicit este {defaultBackoff}. Antetul {retryAfter} Azure este onorat exact când este prezent; altfel, se folosește un backoff exponențial jittered, limitat la această valoare.",
+				"protectPlaceholders": "Implicit este {true}. Când sunt activate, tokenuri precum {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} și entități HTML sunt înlocuite cu token-uri sentinel înainte de traducere și restaurate ulterior. Dezactivează doar atunci când sursa conține intenționat literale în formă de placeholder.",
+				"customPlaceholderPatterns": "Modele regex suplimentare (fără delimitatoare) adăugate setului implicit de placeholder, de exemplu {angleToken} pentru sintaxa tokenului personalizată. Regexurile invalide sunt ignorate.",
+				"noTranslatePatterns": "Modelele Glob se potriveau cu cheile la nivel de parser (JSON doted path, RESX {resxName}, PO {poMsgid}, {xliffId} unității XLIFF, cheia INI/restext). Cheile corespunzătoare sunt eliminate din cerere și trec cu valoarea sursă păstrată."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Ordinea de încărcare",
+			"steps": {
+				"actionInputs": "Acțiunea citește intrări explicite din fluxul de lucru.",
+				"config": "Încarcă configurația YAML din {configPath}.",
+				"precedence": "Pentru fiecare câmp partajat, intrarea câștigă; altfel se folosește valoarea YAML.",
+				"validation": "Valorile combinate sunt validate. Enum-urile invalide (de exemplu {invalidEnum}) cauzează eșecul rapid al acțiunii cu un mesaj clar."
+			}
+		},
+		"tone": {
+			"heading": "Tonul și industria, în termeni clari",
+			"body": "API-ul Azure AI Translator v3 nu are un singur buton de ton. Două setări combinate îți oferă majoritatea controlului:",
+			"industryLabel": "Industrie / domeniu:",
+			"industryBody": "folosește {categoryId} pentru a indica o categorie Azure {customTranslatorLink} antrenată pe propriul tău corpus — juridic, tehnic, medical, de marketing sau orice altceva. Aceasta este cea mai puternică pârghie pentru ton, vocea brandului și vocabular.",
+			"surfaceLabel": "Textul de la suprafață:",
+			"surfaceBody": "Folosește {glossaryLink} pentru a bloca numele de mărci și termenii de produs cuvânt cu cuvânt și folosește {profanityAction} pentru a elimina termenii vulgari atunci când vizezi localizarea către publicul mai tânăr.",
+			"glossaryLinkLabel": "Glosar"
+		}
 	},
 	"inputs": {
 		"title": "Intrări și ieșiri",
 		"eyebrow": "Referință",
-		"lede": "Fiecare intrare este acceptată și în fișierul opțional de configurare al depozitului. Când ambele sunt setate, intrarea acțiunii câștigă."
+		"lede": "Fiecare intrare este acceptată și în fișierul opțional de configurare al depozitului. Când ambele sunt setate, intrarea acțiunii câștigă.",
+		"configurationIntro": "Vezi {configurationLink} pentru schema YAML și ordinea de încărcare.",
+		"configurationLinkLabel": "Configurație",
+		"columns": {
+			"name": "Nume",
+			"default": "Implicit",
+			"description": "Descriere"
+		},
+		"defaults": {
+			"none": "niciuna",
+			"allSupported": "toate suportate",
+			"translatorDefaultTrue": "true (implicit traducător)"
+		},
+		"requiredInputs": {
+			"heading": "Intrări necesare",
+			"caption": "Intrări necesare",
+			"items": {
+				"sourceLocale": "Localitatea sursă (de exemplu {en}) folosită pentru a găsi fișiere de resurse precum {sourceGlob}. De asemenea, redirecționat către Translator ca {fromLocale}.",
+				"subscriptionKey": "Cheia de abonament Azure AI Translator. Treci prin {secrets}.",
+				"endpoint": "URL-ul de endpoint al traducătorului, de exemplu {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Intrări opționale comune",
+			"caption": "Intrări opționale comune",
+			"items": {
+				"region": "Regiunea de resurse traducătoare (omiterea resurselor globale).",
+				"toLocales": "Locații în care să traduci. Acceptă un array JSON ({jsonArray}) sau valori separate de virgule.",
+				"include": "Modele de glob separat de linii newline; Doar fișierele corespunzătoare sunt traduse.",
+				"exclude": "Modele de glob separat de linii newline; Fișierele de potrivire sunt sărite (aplicate după include).",
+				"configPath": "Calea către fișierul de configurare YAML (relativ la rădăcina spațiului de lucru).",
+				"dryRun": "Când {true}, rulează traduceri și emite rezumate, dar nu scrie fișiere.",
+				"failOnError": "Când {true}, erorile neașteptate eșuează acțiunea; Când {false}, erorile sunt avertismente."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Intrări de cerere de traducător",
+			"intro": "Acestea se mapează direct către parametrii interogării Azure AI Translator v3. Fiecare este opțional; implicitele Traducătorului se aplică când nu este setată.",
+			"caption": "Intrări de cerere de traducător",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} category — butonul industry/domain/ton. Redirecționat ca {categoryQuery}.",
+				"textType": "{plain} sau {html}. Folosește {html} doar când valorile resurselor tale sunt fragmente HTML reale.",
+				"profanityAction": "{noAction}, {marked} sau {deleted}. Controlează modul în care termenii profani sunt emși în traduceri.",
+				"profanityMarker": "{asterisk} sau {tag}. Are sens doar când {profanityAction} este {marked}.",
+				"allowFallback": "Când {false}, traducătorul returnează o eroare în loc să revină la sistemul general dacă {categoryId} ta nu are implementare pentru o locație țintă.",
+				"apiVersion": "Versiunea API REST a traducătorului."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Reziliență și protecție provizorie",
+			"intro": "Aceste intrări controlează modul în care acțiunea se comportă atunci când Translator îți limitează cererea și cum protejează tokenurile provizorii precum {mustache} sau {indexZero} de a fi distruse în timpul traducerii.",
+			"caption": "Reziliența și protecția provizorie",
+			"items": {
+				"maxRetries": "Numărul maxim de încercări de reîncercare pentru răspunsurile HTTP tranzitorii ({statusCodes}). Numărul total de apeluri HTTP pe cerere este {totalCalls}.",
+				"retryBackoffMs": "Limitează (în milisecunde) orice somn de retragere. Acțiunea onorează antetul {retryAfter} răspuns al Azure, exact când este prezent; în caz contrar, folosește un backoff exponențial cu tremurat, limitat la această valoare.",
+				"protectPlaceholders": "Când {true} (implicit), elementele de înlocuire precum {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} și entități HTML sunt înlocuite cu tokenuri sentinel înainte de traducere și restaurate ulterior. Dezactivează doar atunci când sursa ta conține intenționat text literal în formă de înlocuitor care ar trebui tradus.",
+				"customPlaceholderPatterns": "Regexuri separate de linii noi (fără delimitatori) adăugate la setul implicit de placeholder, de exemplu {angleToken} pentru sintaxă personalizată a tokenului.",
+				"noTranslatePatterns": "Modelele glob separate de linii noi se potriveau cu cheile la nivel de parser (căile punctate JSON, {resxName} RESX, {poMsgid} PO, {xliffId} unității XLIFF, cheia INI/restext). Cheile corespunzătoare sunt eliminate din cererea Translator și trec cu valoarea sursă păstrată."
+			}
+		},
+		"outputs": {
+			"heading": "Ieșiri",
+			"caption": "Ieșiri",
+			"items": {
+				"summaryTitle": "Rezumat scurt prietenos cu titlul de PR, de exemplu {summaryExample}.",
+				"summaryDetails": "Rezumat de reducere potrivit pentru un corp de PR sau un rezumat de post.",
+				"hasNewTranslations": "{trueString} când erau generate una sau mai multe traduceri noi."
+			}
+		}
 	},
 	"formats": {
 		"title": "Formate de fișiere",
 		"eyebrow": "Referință",
 		"heroTitle": "Formate de fișiere suportate",
-		"lede": "Șase formate de resurse care pot fi folosite dus-întors. Acțiunea citește fiecare fișier sursă-localitate, traduce valorile și scrie un frate pentru fiecare localitate țintă."
+		"lede": "Șase formate de resurse care pot fi folosite dus-întors. Acțiunea citește fiecare fișier sursă-localitate, traduce valorile și scrie un frate pentru fiecare localitate țintă.",
+		"namingConvention": "Toate fișierele folosesc convenția {namingConvention} de denumire.",
+		"learnMore": "Află mai multe",
+		"items": {
+			"resx": {
+				"blurb": "fișiere de resurse .NET bazate pe XML. Traduce textul interior al fiecărui nod {dataValue}, păstrând comentariile și metadatele.",
+				"specLabel": "Microsoft Learn — Resurse în fișiere .resx"
+			},
+			"xliff": {
+				"blurb": "Documente OASIS XLIFF 2.0. Traduce fiecare {source} și scrie rezultatul în {target} corespunzătoare, stabilind {trgLang} pentru locație.",
+				"specLabel": "Specificația OASIS XLIFF 2.0"
+			},
+			"po": {
+				"blurb": "Fișiere GNU gettext Portable Object. Traduce fiecare {msgid} / {msgidPlural} în {msgstr} / {msgstrPlural} forme.",
+				"specLabel": "GNU gettext — format de fișier PO"
+			},
+			"json": {
+				"blurb": "Fișiere JSON arbitrare. Obiectele imbricate sunt aplatizate cu delimitatorul {delimiter} pentru translație, apoi re-imbricate la ieșire. Tastele punctate ({dottedKey}) sunt păstrate cuvânt cu cuvânt.",
+				"specLabel": "Specificația JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Fișiere simple {keyValue} (INI în stil Win32 sau orice configurație plată). Anteturile secțiunilor și comentariile sunt păstrate.",
+				"specLabel": "Format de fișier INI pe Wikipedia"
+			},
+			"restext": {
+				"blurb": "Resurse text Microsoft MUI — perechi {keyValue} plate folosite ca companion textual pentru {resx}.",
+				"specLabel": "Prezentare generală a Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Garanții dus-întors",
+			"body": "Suita de teste verifică byte-for-byte-byte pentru echipamente reprezentative din orice format. Dacă o ciudățenie de format strică în codul tău de bază, te rugăm să {issueLink} cu un eșantion minim.",
+			"issueLinkLabel": "deschide o problemă"
+		}
 	},
 	"recipes": {
 		"title": "Rețete",
 		"eyebrow": "Carte de bucate",
-		"lede": "Modele comune pentru traduceri de livrare: monorepos, glosarele, categoriile personalizate, simulările și controlul tonului."
+		"lede": "Modele comune pentru traduceri de livrare: monorepos, glosarele, categoriile personalizate, simulările și controlul tonului.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Deschide o pull request după fiecare rundă"
+			},
+			"monorepo": {
+				"heading": "Monorepos: traducerea scopului pe pachet"
+			},
+			"glossary": {
+				"heading": "Glosar pentru denumirile de mărci și termenii produselor",
+				"intro": "Pune un {configPath} în depozit:",
+				"afterLabel": "după",
+				"body": "Termenii din glosar sunt aplicați {after} traducere, astfel încât rezultatul tradus automat păstrează brandingul preferat chiar și atunci când modelul l-a înlocuit cu un sinonim."
+			},
+			"customCategory": {
+				"heading": "Categorie de traducător personalizat (industrie / domeniu)",
+				"body": "Antrenează o categorie Azure {customTranslatorLink} pe un corpus care surprinde vocabularul și tonul tău din industrie (juridic, medical, marketing, inginerie internă etc.) și trece ID-ul prin {categoryId}. Aceasta este cea mai puternică pârghie de ton pe care o oferă Azure."
+			},
+			"tone": {
+				"heading": "Controlul tonului + rezervă strictă",
+				"body": "Combină un {categoryId} Custom Translator cu {profanityAction} și {allowFallbackFalse} pentru a impune o voce consecventă și eșuează fluxul de lucru dacă categoria aleasă nu are o implementare pentru una dintre locațiile țintă."
+			},
+			"dryRun": {
+				"heading": "Verifică înainte de a porni fluxul de lucru",
+				"body": "Acțiunea emite în continuare rezultate sumare și un rezumat al pașilor, dar nu se scriu fișiere. Combină cu {failOnErrorFalse} pentru a evidenția fiecare problemă ca avertisment în timp ce iterezi."
+			}
+		}
 	},
 	"faq": {
 		"title": "Întrebări frecvente",
 		"eyebrow": "Ajutor",
 		"heroTitle": "Întrebări frecvente",
-		"lede": "Răspunsuri rapide la întrebările care apar cel mai des când adopti această acțiune."
+		"lede": "Răspunsuri rapide la întrebările care apar cel mai des când adopti această acțiune.",
+		"questions": {
+			"azure": {
+				"heading": "Cum comunică acțiunea cu Azure?",
+				"body": "Prin SDK-ul oficial {azureSdkLink} al Microsoft, suprapus {corePipelineLink}. Asta îți oferă încercări automate pe {statusCodes}, modele de cereri și răspunsuri tastate și gestionarea antetului de autentificare gratuit — tot ce înainte era un apel {axios} rulat manual. Suprafața publică de acțiune (intrări, ieșiri, ieșiri de fișier) rămâne neschimbată."
+			},
+			"tone": {
+				"heading": "De ce traducerile sunt uneori necaracteristice sau netonale?",
+				"body": "Traducerea automată folosește implicit un model cu scop general. Trei butoane ajută: un {glossaryLink} pentru suprascrieri de termeni rigidi, un {customTranslatorLink} pentru modele reglate fin antrenate pe tonul și vocabularul tău și {profanityAction} pentru a șterge sau semnala termeni profani.",
+				"glossaryLinkLabel": "Glosar",
+				"customTranslatorLinkLabel": "Categoria traducătoare personalizate"
+			},
+			"duplicateFiles": {
+				"heading": "Cum evit să traduc același fișier de două ori?",
+				"body": "Declanșează fluxul de lucru pe {paths} care se potrivesc doar cu fișierele tale de localizare sursă, de exemplu {sourceGlob}. Acțiunea include și propriul filtru pe fișier de declanșare atunci când {githubToken} este setat, restrângând munca la fișierele din cel mai recent commit."
+			},
+			"offline": {
+				"heading": "Pot să rulez acțiunea offline?",
+				"body": "Nu chiar — Azure AI Translator este creierul runtime-ului. Dar poți folosi {dryRunTrue} pentru a valida analiza și configurarea fără să faci cereri HTTP pentru traducere."
+			},
+			"node": {
+				"heading": "Pe ce versiune Node rulează acțiunea?",
+				"body": "v3 rulează pe GitHub Actions {nodeRuntime} runtime. JavaScript-ul inclus este compatibil cu Nodurile 20, 22 și 24, ceea ce testează CI."
+			},
+			"dist": {
+				"heading": "De unde provine pachetul {distDir}?",
+				"body": "Acțiunile GitHub JS livrează JS-ul compilat în depozit. Fluxul de {distBuild} îl reconstruiește după fiecare merge pentru a {mainBranch} dacă va deriva și {distCheck} blochează PR-urile care ar genera ieșiri învechite."
+			},
+			"formats": {
+				"heading": "Dar ce se întâmplă cu alte formate de resurse?",
+				"body": "Astăzi: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} dacă ai nevoie de altceva — interfața parserului este mică (analizează → mapează → aplică traduceri → format) și contribuțiile sunt binevenite.",
+				"issueLinkLabel": "Deschide o problemă"
+			}
+		}
 	},
 	"translations": {
 		"title": "Traduceri",
 		"eyebrow": "Prezentare",
 		"heroTitle": "Salut în orice limbă",
-		"locales": "Locații",
-		"currentlyRendered": "Prezent",
-		"complete": "complet!",
-		"pendingPrefix": "În așteptarea următoarei rulări Translate-Docs.",
+		"lede": "Această pagină este tradusă chiar de Resource Translator, la fiecare trimitere către main, în toate limbile suportate de Azure AI Translator.",
+		"localeCountLabel": "{count} locații",
+		"statusComplete": "{translatedCount} în prezent redat — complet!",
+		"statusPending": "{translatedCount} în prezent redat — {pendingCount} în așteptarea următoarei {workflowName} de difuzare.",
 		"viewWorkflowRuns": "Vizualizează rulările fluxului de lucru",
 		"filter": "Filtru",
 		"filterPlaceholder": "Caută după limbă, cod sau nume nativ...",
 		"source": "Sursă",
 		"machineTranslations": "Traduceri automate",
-		"translationPending": "Traducere în așteptare — deschide o rulare translate-docs.",
+		"translationPending": "Traducere în așteptare — deschide o {workflowName} run.",
 		"noLocales": "Niciun loc nu se potrivește cu acel filtru.",
-		"howItWorks": "Cum funcționează"
+		"howItWorks": {
+			"heading": "Cum funcționează",
+			"thisActionLabel": "Chiar această acțiune",
+			"steps": {
+				"source": "Fișierul sursă în limba engleză se află la {messagesPath}.",
+				"workflow": "Împinge acea atingere {workflowLink} lovitură, care {thisAction} se lovește de ea însăși.",
+				"fanOut": "Acțiunea se răspândește în fiecare locație susținută de Azure AI Translator (configurată în {configPath}) și scrie un {messagesLocaleJson} frate pentru fiecare țintă.",
+				"pullRequest": "Se deschide o pull request cu noile traduceri. Îmbinarea ei republică această pagină cu cardurile completate."
+			}
+		},
+		"poweredBy": "Alimentat de Resource Translator și Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Contribuții",
 		"eyebrow": "Open source",
-		"lede": "Rapoartele de bug-uri, cererile de funcționalitate și pull request-urile sunt binevenite. Acțiunea este suficient de mică încât să fie prietenoasă cu cei care contribuie pentru prima dată."
+		"lede": "Rapoartele de bug-uri, cererile de funcționalitate și pull request-urile sunt binevenite. Acțiunea este suficient de mică încât să fie prietenoasă cu cei care contribuie pentru prima dată.",
+		"localDevelopment": {
+			"heading": "Dezvoltare locală"
+		},
+		"addingParser": {
+			"heading": "Adăugarea unui parser",
+			"steps": {
+				"fixture": "Adaugă un corp de iluminat sub {testDataDir}.",
+				"implement": "Implementează {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Înregistrează-l în {factoryFile}.",
+				"extension": "Adaugă extensia fișierului la {translationFileSchemes} în {finderFile}.",
+				"tests": "Scrie teste dus-întors pentru formatul parse → și aplică Traduceri."
+			}
+		},
+		"coverage": {
+			"heading": "Praguri de acoperire",
+			"body": "Configurația Jest impune o acoperire minimă. Noul cod trebuie să mențină pragul de instrucțiuni + linii peste 78% și funcțiile peste 90%. Adaugă corpuri de iluminat și teste alături de schimbarea ta."
+		},
+		"docsSite": {
+			"heading": "Site de documentație",
+			"body": "Folderul {docsDir} este un proiect Astro 6 + Tailwind v4. Aleargă {npmInstall} acolo o dată, apoi {npmRunDev} pentru o previzualizare locală. Fluxul de {pagesWorkflow} livrează documentația pe GitHub Pages la fiecare fuziune."
+		}
 	},
 	"changelog": {
 		"title": "Jurnalul modificărilor",
 		"eyebrow": "Istoric",
-		"lede": "Rezumat la nivel înalt al lansărilor. Jurnalul de modificări canonic și autoritar se află în CHANGELOG.md în depozit."
+		"lede": "Rezumat la nivel înalt al lansărilor. Jurnalul de modificări canonic și autoritar se află în CHANGELOG.md în depozit.",
+		"fullRecord": "Vezi {changelogLink} pentru înregistrarea completă.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (în dezvoltare)",
+			"labels": {
+				"breaking": "BREAK-UP",
+				"resilience": "Reziliență:",
+				"placeholderProtection": "Protecție provizorie:",
+				"perKeyOptOut": "Renunțare pe cheie:",
+				"docsAccessibility": "Accesibilitatea documentelor:",
+				"inlineCodeStyling": "Stilizarea codului inline:"
+			},
+			"issueLabels": {
+				"closes46": "Închide #46.",
+				"tightens16": "Strânge #16.",
+				"closes35": "Închide #35."
+			},
+			"items": {
+				"runtime": "A trecut la {nodeRuntime} timp de funcționare ({breaking}).",
+				"newInputs": "Intrări noi: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, plus butoane avansate de traducere {textType}, {profanityAction}, {profanityMarker} și {allowFallback}.",
+				"sourceLocale": "Localitatea sursă este acum redirecționată și către Translator ca {fromLocale} astfel încât șirurile scurte să nu fie detectate automat.",
+				"resilience": "{label} reîncercare automată la răspunsurile HTTP tranzitorii ({statusCodes}) care respectă antetul {retryAfter} Azure — revine la un backoff exponențial tremurat când lipsește. Poate fi reglat prin {maxRetries} și {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} tokenuri precum {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} și entități HTML sunt înfășurate în sentinele înainte de traducere și restaurate ulterior, astfel încât Translator încetează să mai strice i18next/Mustache/Handlebars/.NET/printf. Comută prin {protectPlaceholders}; Extindeți cu {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} intrare {noTranslatePatterns} nouă elimină complet cheile corespunzătoare din cererea Translator (păstrează valorile sursă pentru numele de brand, codurile de eroare etc.). Potrivește modelele glob cu cheile la nivel de parser (JSON doted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). {issue}",
+				"repoConfig": "Configurare la nivel de repository prin {configPath}.",
+				"glossary": "Suport pentru glosar, rezumat al pașilor prin {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "Audit NPM curat (0 vulnerabilități).",
+				"docsSite": "Site de documentație Astro + Tailwind v4 cu tranziții de vizualizare și Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA Pass. Glifele logo-ului au fost convertite în căi astfel încât să nu mai eșueze contrastul de culoare cu opririle de gradient, butonul de {backToTop} plutitor folosește {inert} când sunt ascunse (în loc de un comutator {ariaHidden} care îl făcea tababil), {formatsAstro} secțiuni nu mai intră în coliziune cu ID-urile de titlu generate automat, trei carduri de localizare expun acum atribute de {lang} valide BCP-47 ({nya}, {lug}, {run}), etichetele duplicate {documentation} repere sunt dezambiguizate între bara laterală și subsol,  iar fiecare tabel de date de pe {inputs}/{configuration} vine cu o legendă de cititor de ecran.",
+				"inlineCode": "Proza {label} documentară {codeElement} poartă acum accentul tematic cald/chihlimbar — distinct de paleta → accente de brand folosită pentru linkuri și titluri.",
+				"automation": "Dependabot auto-merge, scanare CodeQL, matrice CI."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Vezi istoricul git."
+		}
 	}
 }

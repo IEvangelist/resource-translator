@@ -18,18 +18,26 @@
 			"node": "Nyja 20 / 22 / 24",
 			"sdk": "Azure SDK zyrtar"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "foleze ose të sheshtë",
+			"ini": "{keyValue}",
+			"restext": "Teksti MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Gjashtë formate skedarësh",
-				"body": "Vajtje-ardhje .resx, .xliff, .po, .json, .ini dhe .restext me formatim të qëndrueshëm bajt."
+				"body": "Udhëtimet vajtje-ardhje {resx}, {xliff}, {po}, {json}, {ini} dhe {restext} me formatim të qëndrueshëm për bajt."
 			},
 			"config": {
 				"title": "Konfigurimi i nivelit të depos",
-				"body": "Hidhni një .github/resource-translator.yml për kategoritë e përfshirjes së globeve, fjalorëve dhe përkthyesve të personalizuar."
+				"body": "Hidhni një skedar {configPath} për kategoritë e përfshirjes së globeve, fjalorëve dhe përkthyesve të personalizuar."
 			},
 			"glossary": {
 				"title": "I vetëdijshëm për fjalorin",
-				"body": "Kyçni emrat e markave dhe termat e produkteve me regex të zgjuar të kufirit të fjalëve që trajton C++, .NET dhe miqtë."
+				"body": "Kyçni emrat e markave dhe termat e produkteve me regex të zgjuar të kufirit të fjalëve që trajton {cpp}, {dotnet} dhe miqtë."
 			},
 			"dryRun": {
 				"title": "Funksionim i thatë + dështim i butë",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Rezultate miqësore me PR",
-				"body": "titulli i përmbledhjes, detajet e përmbledhjes dhe përkthimet e reja futen direkt në krijim-tërheqje-kërkesë."
+				"body": "{summaryTitle}, {summaryDetails} dhe {hasNewTranslations} futen direkt në krijim-tërheqje-kërkesë."
 			},
 			"sdk": {
 				"title": "Azure SDK zyrtar",
-				"body": "Ndërtuar në @azure-rest/ai-translation-text + @azure/core-rest-pipeline — përsëritje automatike në 408/429/5xx, pa HTTP të mbështjellë me dorë. esbuild-bundled, audit-clean."
+				"body": "Ndërtuar në {azureSdk} + {corePipeline} - përsëritje automatike në {statusCodes}, pa HTTP të rrotulluar me dorë. {esbuild} të paketuara, të pastra me auditim."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Rrjedha e punës",
+			"titlePrefix": "Kopjo. Ngjit.",
+			"titleAccent": "Përkthe.",
+			"body": "Tre sekrete, katër rreshta dhe depoja juaj është shumëgjuhëshe në shtytjen tjetër.",
+			"setupLink": "Ecni nëpër konfigurimin e plotë"
+		},
+		"cta": {
+			"title": "Gati për të lokalizuar në autopilot?",
+			"body": "Një çelës Azure AI Translator, një skedar i rrjedhës së punës. Përkthyesi i burimeve merret me pjesën tjetër.",
+			"button": "Fillo"
 		}
 	},
 	"getting-started": {
 		"title": "Fillimi",
 		"eyebrow": "Konfigurimi",
-		"lede": "Shtoni një skedar të rrjedhës së punës, drejtojeni atë në kredencialet tuaja të Azure AI Translator dhe veprimi - i ndërtuar në SDK-në zyrtare @azure-rest/ai-translation-text të Microsoft - do të skanojë depon për skedarët e burimeve në gjuhën burimore dhe do të lëshojë vëllezërit e motrat e përkthyer.",
+		"lede": "Shtoni një skedar të rrjedhës së punës, drejtojeni atë në kredencialet tuaja të Azure AI Translator dhe veprimi do të skanojë depon për skedarët e burimeve në gjuhën burimore dhe do të lëshojë vëllezërit e motrat e përkthyer.",
 		"steps": {
 			"provision": {
 				"title": "Siguroni një burim Azure AI Translator",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Shtoni rrjedhën e punës",
-				"body": "Krijoni .github/workflows/translate.yml:"
+				"body": "Krijoni {workflowPath}:"
 			},
 			"resource": {
 				"title": "Kryeni një skedar burimi burimor",
-				"body": "Skedarët e burimeve përdorin emrin. .<sourceLocale> <ext> konventa. Për shembull Greetings.en.resx bëhet Greetings.fr.resx, Greetings.de.resx, etj."
+				"body": "Skedarët e burimeve përdorin konventën {namingConvention}. Për shembull {sourceFile} bëhet {frFile}, {deFile}, e kështu me radhë pas një vrapimi."
 			},
 			"output": {
 				"title": "Inspektoni daljen",
-				"body": "Pasi të përfundojë rrjedha e punës, veprimi ekspozon tre dalje që mund t'i lidhni në një përshkrim PR: titulli i përmbledhjes, detajet e përmbledhjes dhe përkthimet e reja. Ai gjithashtu shkruan një përmbledhje Markdown në faqen e punës përmes core.summary."
+				"body": "Pasi të përfundojë rrjedha e punës, veprimi ekspozon tre dalje që mund t'i lidhni në një përshkrim PR: {summaryTitle}, {summaryDetails} dhe {hasNewTranslations}. Ai gjithashtu shkruan një përmbledhje Markdown në faqen e punës përmes {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Hapat e ardhshëm",
-			"configuration": "Konfiguroni parazgjedhjet e nivelit të depove me .github/resource-translator.yml.",
+			"configuration": "Konfiguroni parazgjedhjet e nivelit të depove me {configPath}.",
 			"recipes": "Shihni recetat për monorepos, fjalorët e personalizuar dhe kategoritë e përkthyesve të personalizuar."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Konfigurimi",
 		"eyebrow": "YAML",
 		"heroTitle": "Konfigurimi i depove",
-		"lede": "Express parazgjedh një herë në .github/resource-translator.yml dhe lëreni çdo rrjedhë pune t'i trashëgojë ato. Inputet e veprimit fitojnë gjithmonë kur ofrohen të dyja."
+		"lede": "Express parazgjedh një herë në skedarin e konfigurimit të depove dhe lëreni çdo rrjedhë pune t'i trashëgojë ato. Inputet e veprimit fitojnë gjithmonë kur ofrohen të dyja.",
+		"intro": "Anashkaloni shtegun me hyrjen {configPath} nëse keni nevojë për një vendndodhje jo të paracaktuar.",
+		"schemaHeading": "Skema",
+		"fieldReference": {
+			"heading": "Referenca në terren",
+			"caption": "Referenca e fushës së konfigurimit",
+			"columns": {
+				"field": "Fusha",
+				"type": "Lloji",
+				"notes": "Shënime"
+			},
+			"fields": {
+				"sourceLocale": "Kthehet në hyrjen {sourceLocale} nëse nuk vendoset. Gjithashtu përcillet në Translator si {fromLocale} në mënyrë që vargjet e shkurtra të mos zbulohen automatikisht.",
+				"toLocales": "Ose një varg ose një varg i ndarë me presje.",
+				"includeExclude": "Modelet e globit të vlerësuara kundrejt shtigjeve absolute dhe relative të hapësirës së punës.",
+				"glossary": "Termi pas përkthimit anashkalon. I vetëdijshëm për kufijtë e fjalëve (dorezat {cpp}, {dotnet}).",
+				"categoryId": "Kategoria e Azure {customTranslatorLink} - çelësi i industrisë/domenit tuaj (ligjor, mjekësor, toni i marketingut, etj.). Dërguar si {categoryQuery}.",
+				"textType": "Parazgjedhje në {plain}. Përdorni {html} vetëm nëse vlerat tuaja të burimeve përmbajnë fragmente të vërteta HTML.",
+				"profanityAction": "Si të trajtohen termat profan në prodhimin e përkthyer.",
+				"profanityMarker": "Kuptimplotë vetëm kur {profanityAction} është {marked}.",
+				"allowFallback": "Vendosni në {false} për të dështuar përkthimin kur {categoryId} juaj nuk ka vendosje për një lokal të synuar në vend që të kthehet në modelin e përgjithshëm.",
+				"apiVersion": "Versioni REST API i përkthyesit. Parazgjedhje në {version}.",
+				"maxRetries": "Përpjekjet maksimale të përsëritjes në përgjigjet kalimtare HTTP ({statusCodes}). Parazgjedhje në {defaultRetries}. Numri total i thirrjeve HTTP për kërkesë është {totalCalls}.",
+				"retryBackoffMs": "Cap (ms) në çdo gjumë të vetëm prapa. Parazgjedhje në {defaultBackoff}. Koka e {retryAfter} e Azure nderohet pikërisht kur është e pranishme; përndryshe përdoret prapambetja eksponenciale e lëkundur, e kufizuar në këtë vlerë.",
+				"protectPlaceholders": "Parazgjedhje në {true}. Kur aktivizohet, argumentet si {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} dhe HTML zëvendësohen me argumente sentinel përpara përkthimit dhe rikthehen më pas. Çaktivizo vetëm kur burimi qëllimisht përmban fjalë të mira në formë vendmbajtësi.",
+				"customPlaceholderPatterns": "Modele shtesë regex (pa kufizues) të shtuara në grupin e paracaktuar të mbajtësve të vendeve, p.sh. {angleToken} për sintaksën e tokenit të personalizuar. Regekset e pavlefshme injorohen.",
+				"noTranslatePatterns": "Modelet e globit përputheshin me çelësat e nivelit të analizuesit (shtegu me pika JSON, RESX {resxName}, PO {poMsgid}, njësia XLIFF {xliffId}, çelësi INI/restext). Çelësat që përputhen hiqen nga kërkesa dhe kalojnë me vlerën e tyre burimore të ruajtur."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Rendi i ngarkimit",
+			"steps": {
+				"actionInputs": "Veprimi lexon të dhëna eksplicite nga rrjedha e punës.",
+				"config": "Ai ngarkon konfigurimin YAML nga {configPath}.",
+				"precedence": "Për çdo fushë të përbashkët, hyrja fiton; përndryshe përdoret vlera YAML.",
+				"validation": "Vlerat e shkrira vërtetohen. Enumimet e pavlefshme (p.sh. {invalidEnum}) bëjnë që veprimi të dështojë shpejt me një mesazh të qartë."
+			}
+		},
+		"tone": {
+			"heading": "Toni dhe industria, në terma të thjeshtë",
+			"body": "Azure AI Translator v3 API nuk ka një çelës të vetëm toni. Dy cilësime kombinohen për t'ju dhënë pjesën më të madhe të të njëjtit kontroll:",
+			"industryLabel": "Industria / domeni:",
+			"industryBody": "përdorni {categoryId} për të treguar një kategori Azure {customTranslatorLink} të trajnuar në korpusin tuaj - ligjore, teknike, mjekësore, marketingu ose çdo gjë tjetër. Kjo është leva më e fortë për tonin, zërin e markës dhe fjalorin.",
+			"surfaceLabel": "Teksti sipërfaqësor:",
+			"surfaceBody": "Përdorni {glossaryLink} për të kyçur emrat e markave dhe termat e produkteve fjalë për fjalë dhe përdorni {profanityAction} për të pastruar termat profane kur synoni lokalizimin për audiencën më të re.",
+			"glossaryLinkLabel": "fjalor"
+		}
 	},
 	"inputs": {
 		"title": "Hyrjet dhe daljet",
 		"eyebrow": "Referencë",
-		"lede": "Çdo hyrje pranohet gjithashtu në skedarin opsional të konfigurimit të depove. Kur të dyja janë vendosur, hyrja e veprimit fiton."
+		"lede": "Çdo hyrje pranohet gjithashtu në skedarin opsional të konfigurimit të depove. Kur të dyja janë vendosur, hyrja e veprimit fiton.",
+		"configurationIntro": "Shihni {configurationLink} për skemën YAML dhe rendin e ngarkimit.",
+		"configurationLinkLabel": "Konfigurimi",
+		"columns": {
+			"name": "Emri",
+			"default": "Parazgjedhje",
+			"description": "Përshkrim"
+		},
+		"defaults": {
+			"none": "asnjë",
+			"allSupported": "të gjitha të mbështetura",
+			"translatorDefaultTrue": "true (parazgjedhja e përkthyesit)"
+		},
+		"requiredInputs": {
+			"heading": "Inputet e kërkuara",
+			"caption": "Inputet e kërkuara",
+			"items": {
+				"sourceLocale": "Lokaliteti burimor (p.sh. {en}) përdoret për të gjetur skedarë burimesh si {sourceGlob}. Gjithashtu i përcjellë Përkthyesit si {fromLocale}.",
+				"subscriptionKey": "Çelësi i abonimit Azure AI Translator. Kaloni përmes {secrets}.",
+				"endpoint": "URL-ja përfundimtare e përkthyesit, p.sh. {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Hyrjet e zakonshme opsionale",
+			"caption": "Hyrjet e zakonshme opsionale",
+			"items": {
+				"region": "Rajoni i burimeve të përkthyesit (hiqni për burimet globale).",
+				"toLocales": "Lokalitetet për t'u përkthyer. Pranon një grup JSON ({jsonArray}) ose vlera të ndara me presje.",
+				"include": "Modelet e globit të ndara nga vija e reja; Vetëm skedarët që përputhen përkthehen.",
+				"exclude": "Modelet e globit të ndara nga vija e reja; skedarët që përputhen anashkalohen (aplikohen pas përfshirjes).",
+				"configPath": "Rruga për në skedarin e konfigurimit YAML (në lidhje me rrënjën e hapësirës së punës).",
+				"dryRun": "Kur {true}, ekzekutoni përkthime dhe lëshoni përmbledhje, por mos shkruani skedarë.",
+				"failOnError": "Kur {true}, gabimet e papritura dështojnë në veprim; Kur {false}, gabimet janë paralajmërime."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Hyrjet e kërkesave të përkthyesit",
+			"intro": "Këto hartojnë drejtpërdrejt në parametrat e pyetjeve Azure AI Translator v3. Secili është opsionale; parazgjedhjet e përkthyesit zbatohen kur nuk vendosen.",
+			"caption": "Hyrjet e kërkesave të përkthyesit",
+			"items": {
+				"categoryId": "Kategoria e Azure {customTranslatorLink} - çelësi i industrisë/domenit/tonit. Përcjellë si {categoryQuery}.",
+				"textType": "{plain} ose {html}. Përdorni {html} vetëm kur vlerat tuaja të burimeve janë fragmente të vërteta HTML.",
+				"profanityAction": "{noAction}, {marked} ose {deleted}. Kontrollon se si lëshohen terma profanë në përkthime.",
+				"profanityMarker": "{asterisk} ose {tag}. Kuptimplotë vetëm kur {profanityAction} është {marked}.",
+				"allowFallback": "Kur {false}, Translator kthen një gabim në vend që të kthehet në sistemin e përgjithshëm nëse {categoryId} juaj nuk ka vendosje për një lokal të synuar.",
+				"apiVersion": "Versioni REST API i përkthyesit."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Elasticiteti dhe mbrojtja e mbajtësve të vendeve",
+			"intro": "Këto hyrje kontrollojnë se si sillet veprimi kur Translator pengon kërkesën tuaj dhe si mbron argumentet e mbajtësve të vendeve si {mustache} ose {indexZero} nga ngatërrimi gjatë përkthimit.",
+			"caption": "Të dhënat e elasticitetit dhe mbrojtjes së mbajtësve të vendeve",
+			"items": {
+				"maxRetries": "Përpjekjet maksimale të përsëritjes në përgjigjet kalimtare HTTP ({statusCodes}). Numri i përgjithshëm i thirrjeve HTTP për kërkesë është {totalCalls}.",
+				"retryBackoffMs": "Kapaku (në milisekonda) në çdo gjumë të vetëm prapa. Veprimi nderon kokën e përgjigjes së {retryAfter} të Azure pikërisht kur është i pranishëm; përndryshe përdor prapambetje eksponenciale të nervozuar të kufizuar në këtë vlerë.",
+				"protectPlaceholders": "Kur {true} (parazgjedhje), mbajtësit e vendeve si {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} dhe HTML zëvendësohen me argumente sentinel përpara përkthimit dhe rikthehen më pas. Çaktivizoni vetëm kur burimi juaj përmban qëllimisht tekst fjalë për fjalë në formë vendmbajtësi që duhet të përkthehet.",
+				"customPlaceholderPatterns": "Regekset e ndara me rreshta të reja (pa kufizues) të shtuara në grupin e paracaktuar të mbajtësve të vendeve, p.sh. {angleToken} për sintaksën e tokenit të personalizuar.",
+				"noTranslatePatterns": "Modelet e globit të ndara me rreshta të reja përputheshin me çelësat e nivelit të analizuesit (rruga me pika JSON, RESX {resxName}, PO {poMsgid}, njësia XLIFF {xliffId}, çelësi INI/restext). Çelësat që përputhen hiqen nga kërkesa e përkthyesit dhe kalojnë me vlerën e tyre burimore të ruajtur."
+			}
+		},
+		"outputs": {
+			"heading": "Rezultatet",
+			"caption": "Rezultatet",
+			"items": {
+				"summaryTitle": "Përmbledhje e shkurtër miqësore për emrin e PR-it, p.sh. {summaryExample}.",
+				"summaryDetails": "Përmbledhje e shënimit e përshtatshme për një organ PR ose përmbledhje pune.",
+				"hasNewTranslations": "{trueString} kur u krijuan një ose më shumë përkthime të reja."
+			}
+		}
 	},
 	"formats": {
 		"title": "Formatet e skedarëve",
 		"eyebrow": "Referencë",
 		"heroTitle": "Formatet e mbështetura të skedarëve",
-		"lede": "Gjashtë formate burimesh vajtje-ardhje-ardhje. Veprimi lexon çdo skedar burimor, përkthen vlerat dhe shkruan një vëlla për lokalizimin e synuar."
+		"lede": "Gjashtë formate burimesh vajtje-ardhje-ardhje. Veprimi lexon çdo skedar burimor, përkthen vlerat dhe shkruan një vëlla për lokalizimin e synuar.",
+		"namingConvention": "Të gjithë skedarët përdorin konventën e emërtimit {namingConvention}.",
+		"learnMore": "Mëso më shumë",
+		"items": {
+			"resx": {
+				"blurb": "skedarët e burimeve .NET të bazuara në XML. Përkthen tekstin e brendshëm të secilës {dataValue} nyje, duke ruajtur komentet dhe meta të dhënat.",
+				"specLabel": "Microsoft Learn — Burimet në skedarët .resx"
+			},
+			"xliff": {
+				"blurb": "Dokumentet OASIS XLIFF 2.0. Përkthen çdo {source} dhe shkruan rezultatin në {target} përkatës, duke vendosur {trgLang} për lokalin.",
+				"specLabel": "Specifikimi OASIS XLIFF 2.0"
+			},
+			"po": {
+				"blurb": "Skedarët GNU gettext të Objekteve Portative. Përkthen çdo {msgid} / {msgidPlural} në forma {msgstr} / {msgstrPlural}.",
+				"specLabel": "GNU gettext — Formati i skedarit PO"
+			},
+			"json": {
+				"blurb": "Skedarët arbitrarë JSON. Objektet e folezuara rrafshohen me kufizuesin {delimiter} për përkthim, pastaj rivendosen në dalje. Çelësat me pika ({dottedKey}) ruhen fjalë për fjalë.",
+				"specLabel": "Specifikimi JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Skedarë të thjeshtë {keyValue} (INI i stilit Win32 ose ndonjë konfigurim i sheshtë). Titujt dhe komentet e seksioneve ruhen.",
+				"specLabel": "Formati i skedarit INI në Wikipedia"
+			},
+			"restext": {
+				"blurb": "Burimet e tekstit Microsoft MUI - çifte {keyValue} të sheshta të përdorura si një shoqërues tekstual për {resx}.",
+				"specLabel": "Përmbledhje e Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Garancitë vajtje-ardhje",
+			"body": "Paketa e testimit verifikon vajtje-ardhje bajt për bajt për pajisje përfaqësuese të çdo formati. Nëse një çuditje formati prish vajtje-ardhje në bazën tuaj të kodit, ju lutemi {issueLink} me një mostër minimale.",
+			"issueLinkLabel": "hapni një çështje"
+		}
 	},
 	"recipes": {
 		"title": "Receta",
 		"eyebrow": "Libër gatimi",
-		"lede": "Modelet e zakonshme për përkthimet e transportit: monorepos, fjalorë, kategori të personalizuara, ekzekutime të thata dhe kontroll toni."
+		"lede": "Modelet e zakonshme për përkthimet e transportit: monorepos, fjalorë, kategori të personalizuara, ekzekutime të thata dhe kontroll toni.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Hapni një kërkesë tërheqjeje pas çdo ekzekutimi"
+			},
+			"monorepo": {
+				"heading": "Monorepos: përkthimi i fushës për paketë"
+			},
+			"glossary": {
+				"heading": "Fjalor për emrat e markave dhe termat e produkteve",
+				"intro": "Hidhni një {configPath} në depo:",
+				"afterLabel": "pas",
+				"body": "Termat e fjalorit aplikohen {after} përkthim, kështu që rezultati i përkthyer nga makina ruan markën tuaj të preferuar edhe kur modeli e ndërroi atë me një sinonim."
+			},
+			"customCategory": {
+				"heading": "Kategoria e përkthyesit me porosi (industri / domen)",
+				"body": "Trajnoni një kategori Azure {customTranslatorLink} në një korpus që kap fjalorin dhe tonin e industrisë tuaj (ligjore, mjekësore, marketingu, inxhinieri të brendshme, etj.) dhe kaloni ID-në e saj përmes {categoryId}. Kjo është leva më e fortë e tonit që ofron Azure."
+			},
+			"tone": {
+				"heading": "Kontrolli i tonit + rezervë e rreptë",
+				"body": "Kombinoni një {categoryId} përkthyesi të personalizuar me {profanityAction} dhe {allowFallbackFalse} për të zbatuar një zë të qëndrueshëm dhe për të dështuar në rrjedhën e punës nëse kategoria e zgjedhur nuk ka një vendosje për një nga vendet tuaja të synuara."
+			},
+			"dryRun": {
+				"heading": "Funksionimi i thatë përpara se të ndizni rrjedhën e punës",
+				"body": "Veprimi ende lëshon rezultate përmbledhëse dhe një përmbledhje hapash, por asnjë skedar nuk është shkruar. Kombinoni me {failOnErrorFalse} për të shfaqur çdo problem si paralajmërim ndërsa përsërisni."
+			}
+		}
 	},
 	"faq": {
 		"title": "Pyetjet më të shpeshta",
 		"eyebrow": "Ndihmoni",
 		"heroTitle": "Pyetjet e bëra më shpesh",
-		"lede": "Përgjigje të shpejta për pyetjet që dalin më shpesh kur miratoni veprimin."
+		"lede": "Përgjigje të shpejta për pyetjet që dalin më shpesh kur miratoni veprimin.",
+		"questions": {
+			"azure": {
+				"heading": "Si flet veprimi me Azure?",
+				"body": "Përmes SDK-së zyrtare të {azureSdkLink} të Microsoft, të shtresuar në {corePipelineLink}. Kjo ju jep përsëritje automatike në {statusCodes}, modelet e kërkesave dhe përgjigjeve të shtypura dhe trajtimin e titullit të vërtetimit falas - gjithçka që dikur ishte një telefonatë {axios} e rrotulluar me dorë. Sipërfaqja e veprimit publik (inputet, daljet, daljet e skedarëve) është e pandryshuar."
+			},
+			"tone": {
+				"heading": "Pse përkthimet ndonjëherë janë jashtë markës ose jashtë tonit?",
+				"body": "Përkthimi automatik është i paracaktuar në një model për qëllime të përgjithshme. Tre pulla ndihmojnë: një {glossaryLink} për anashkalimet e afateve të vështira, një {customTranslatorLink} për modele të rregulluara të trajnuara në tonin dhe fjalorin tuaj dhe {profanityAction} për të pastruar ose shënuar terma profanë.",
+				"glossaryLinkLabel": "fjalor",
+				"customTranslatorLinkLabel": "Kategoria e përkthyesit të personalizuar"
+			},
+			"duplicateFiles": {
+				"heading": "Si mund të shmang përkthimin e të njëjtit skedar dy herë?",
+				"body": "Aktivizoni rrjedhën e punës në {paths} që përputhen vetëm me skedarët tuaj burimor, p.sh. {sourceGlob}. Veprimi përfshin gjithashtu filtrin e vet të skedarit për nxitje kur vendoset {githubToken}, duke ngushtuar punën në skedarët në angazhimin më të fundit."
+			},
+			"offline": {
+				"heading": "A mund ta ekzekutoj veprimin jashtë linje?",
+				"body": "Jo saktësisht - Azure AI Translator është truri i kohës së ekzekutimit. Por mund të ekzekutoni me {dryRunTrue} për të vërtetuar analizimin dhe konfigurimin pa bërë asnjë kërkesë HTTP për përkthim."
+			},
+			"node": {
+				"heading": "Në cilin version të nyjes funksionon veprimi?",
+				"body": "v3 funksionon në kohën e ekzekutimit të GitHub Actions {nodeRuntime}. JavaScript i bashkuar është i pajtueshëm me nyjen 20, 22 dhe 24, që është ajo që teston CI."
+			},
+			"dist": {
+				"heading": "Nga vjen {distDir} e paketuar?",
+				"body": "Veprimet GitHub JS dërgojnë JS-në e tyre të përpiluar në depo. Rrjedha e punës {distBuild} e rindërton atë pas çdo bashkimi për të {mainBranch} nëse do të zhvendosej dhe {distCheck} bllokon PR-të që do të zbarkonin prodhimin e vjetëruar."
+			},
+			"formats": {
+				"heading": "Po formatet e tjera të burimeve?",
+				"body": "Sot: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} nëse keni nevojë për një tjetër - ndërfaqja e analizuesit është e vogël (analizoni → hartën → aplikoni përkthime → format) dhe kontributet janë të mirëseardhura.",
+				"issueLinkLabel": "Hapni një çështje"
+			}
+		}
 	},
 	"translations": {
 		"title": "Përkthimet",
 		"eyebrow": "Vitrina",
 		"heroTitle": "Përshëndetje në çdo gjuhë",
-		"locales": "Vendndodhjet",
-		"currentlyRendered": "aktualisht i paraqitur",
-		"complete": "E plotë!",
-		"pendingPrefix": "në pritje të ekzekutimit të ardhshëm të dokumenteve të përkthimit.",
+		"lede": "Kjo faqe është përkthyer nga vetë Resource Translator, në çdo shtytje në kryesor, në çdo gjuhë që mbështet Azure AI Translator.",
+		"localeCountLabel": "{count} vendndodhje",
+		"statusComplete": "{translatedCount} aktualisht i dhënë - i plotë!",
+		"statusPending": "{translatedCount} aktualisht të paraqitur - {pendingCount} në pritje të ekzekutimit të {workflowName} të ardhshëm.",
 		"viewWorkflowRuns": "Shikoni ekzekutimet e rrjedhës së punës",
 		"filter": "Filtri",
 		"filterPlaceholder": "Kërkoni sipas gjuhës, kodit ose emrit amtare...",
 		"source": "Burimi",
 		"machineTranslations": "Përkthime makinerive",
-		"translationPending": "Përkthimi në pritje — hapni një ekzekutim të dokumenteve të përkthimit.",
+		"translationPending": "Përkthimi në pritje — hapni një {workflowName} ekzekutim.",
 		"noLocales": "Asnjë lokal nuk përputhet me atë filtër.",
-		"howItWorks": "Si funksionon kjo"
+		"howItWorks": {
+			"heading": "Si funksionon kjo",
+			"thisActionLabel": "Pikërisht ky veprim",
+			"steps": {
+				"source": "Skedari burimor anglisht jeton në {messagesPath}.",
+				"workflow": "Shtyrë atë prekje {workflowLink}, e cila {thisAction} kundër vetes.",
+				"fanOut": "Veprimi shtrihet në çdo lokal të mbështetur nga Azure AI Translator (i konfiguruar në {configPath}) dhe shkruan një vëlla {messagesLocaleJson} për objektiv.",
+				"pullRequest": "Një kërkesë tërheqëse hapet me përkthimet e reja. Bashkimi i tij ripublikon këtë faqe me kartat e plotësuara."
+			}
+		},
+		"poweredBy": "Mundësuar nga Resource Translator dhe Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Kontributi",
 		"eyebrow": "Burim i hapur",
-		"lede": "Raportet e gabimeve, kërkesat për veçori dhe kërkesat për tërheqje janë të gjitha të mirëseardhura. Veprimi është mjaft i vogël për të qenë miqësor me kontribuesit për herë të parë."
+		"lede": "Raportet e gabimeve, kërkesat për veçori dhe kërkesat për tërheqje janë të gjitha të mirëseardhura. Veprimi është mjaft i vogël për të qenë miqësor me kontribuesit për herë të parë.",
+		"localDevelopment": {
+			"heading": "Zhvillimi lokal"
+		},
+		"addingParser": {
+			"heading": "Shtimi i një analizuesi",
+			"steps": {
+				"fixture": "Shtoni një pajisje nën {testDataDir}.",
+				"implement": "Zbatoni {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Regjistrojeni në {factoryFile}.",
+				"extension": "Shtoni shtesën e skedarit në {translationFileSchemes} në {finderFile}.",
+				"tests": "Shkruani teste vajtje-ardhje për formatin e analizimit → dhe aplikoni Translations."
+			}
+		},
+		"coverage": {
+			"heading": "Pragjet e mbulimit",
+			"body": "Konfigurimi Jest zbaton mbulimin minimal. Kodi i ri duhet të mbajë pragun e deklaratave + rreshtave mbi 78% dhe funksionet mbi 90%. Shtoni pajisje dhe teste së bashku me ndryshimin tuaj."
+		},
+		"docsSite": {
+			"heading": "Faqja e dokumentacionit",
+			"body": "Dosja {docsDir} është një projekt Astro 6 + Tailwind v4. Drejtoni {npmInstall} atje një herë, pastaj {npmRunDev} për pamje paraprake lokale. Rrjedha e punës {pagesWorkflow} dërgon dokumente në GitHub Pages në çdo bashkim."
+		}
 	},
 	"changelog": {
 		"title": "Regjistri i ndryshimeve",
 		"eyebrow": "Histori",
-		"lede": "Përmbledhje e nivelit të lartë të lëshimeve. Ndryshimi kanonik, autoritar jeton në CHANGELOG.md në depo."
+		"lede": "Përmbledhje e nivelit të lartë të lëshimeve. Ndryshimi kanonik, autoritar jeton në CHANGELOG.md në depo.",
+		"fullRecord": "Shih {changelogLink} për të dhënat e plota.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (në zhvillim)",
+			"labels": {
+				"breaking": "THYERJA",
+				"resilience": "Elasticiteti:",
+				"placeholderProtection": "Mbrojtja e mbajtësit të vendeve:",
+				"perKeyOptOut": "Përjashtimi për çelës:",
+				"docsAccessibility": "Aksesueshmëria e dokumenteve:",
+				"inlineCodeStyling": "Stili i kodit në linjë:"
+			},
+			"issueLabels": {
+				"closes46": "Mbyllet #46.",
+				"tightens16": "Shtrëngon #16.",
+				"closes35": "Mbyllet #35."
+			},
+			"items": {
+				"runtime": "U përplas në kohën e {nodeRuntime} ({breaking}).",
+				"newInputs": "Hyrje të reja: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, plus pullat e avancuara të përkthyesit {textType}, {profanityAction}, {profanityMarker} dhe {allowFallback}.",
+				"sourceLocale": "Lokaliteti i burimit tani përcillet gjithashtu në Translator si {fromLocale} në mënyrë që vargjet e shkurtra të mos zbulohen automatikisht.",
+				"resilience": "{label} përsëritje automatike në përgjigjet kalimtare HTTP ({statusCodes}) që nderojnë kokën {retryAfter} të Azure — kthehet në kthimin eksponencial të dridhur kur mungon. I akordueshëm përmes {maxRetries} dhe {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} argumente si {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} dhe entitetet HTML mbështillen me rojtarë përpara përkthimit dhe rikthehen më pas, kështu që Përkthyesi ndalon së ngatërruari i18next/Mustache/Handlebars/.NET/printf. Ndërroni nëpërmjet {protectPlaceholders}; zgjat me {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} hyrje e re {noTranslatePatterns} heq plotësisht çelësat që përputhen nga kërkesa e përkthyesit (ruan vlerat burimore për emrat e markave, kodet e gabimit, etj.). Përputhet me modelet e globit me çelësat e nivelit të analizuesit (shtegu me pika JSON, RESX {resxName}, PO {poMsgid}, njësia XLIFF {xliffId}, çelësi INI/restext). {issue}",
+				"repoConfig": "Konfigurimi i nivelit të depos nëpërmjet {configPath}.",
+				"glossary": "Mbështetje e fjalorit, përmbledhje e hapave përmes {coreSummary}.",
+				"tooling": "esbuild bundler, konfigurimi i sheshtë ESLint 9, Prettier, EditorConfig.",
+				"audit": "npm audit clean (0 dobësi).",
+				"docsSite": "Faqja e dokumenteve Astro + Tailwind v4 me tranzicione pamjeje dhe kod shprehës.",
+				"docsAccessibility": "{label} WCAG 2.1 AA kalim. Glifet e logos u konvertuan në shtigje në mënyrë që të mos dështojnë më në kontrastin e ngjyrave kundër ndalesave të gradientit, butoni lundrues i {backToTop} përdor {inert} ndërsa është i fshehur (në vend të një çelësi {ariaHidden} që e la atë të tabulueshëm), seksionet {formatsAstro} nuk përplasen më me ID-të e tyre të drejtave të gjeneruara automatikisht, tre karta lokalizimi tani ekspozojnë atributet e {lang} të vlefshme BCP-47 ({nya}, {lug}, {run}), etiketat e kopjuara {documentation} të monumenteve janë të paqarta midis shiritit anësor dhe fundit,  dhe çdo tabelë e të dhënave në {inputs}/{configuration} dërgohet me një mbishkrim të lexuesit të ekranit.",
+				"inlineCode": "{label} Docs Prose {codeElement} tani mban theksin e temës së ngrohtë/qelibar - të ndryshme nga paleta e markës→theksit të përdorur për lidhjet dhe titujt.",
+				"automation": "Bashkimi automatik i Dependabot, skanimi CodeQL, matrica CI."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Shihni historinë e git."
+		}
 	}
 }

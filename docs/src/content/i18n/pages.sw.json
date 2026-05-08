@@ -18,18 +18,26 @@
 			"node": "Nodi 20 / 22 / 24",
 			"sdk": "SDK rasmi ya Azure"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "kupata maandishi",
+			"json": "kiota au gorofa",
+			"ini": "{keyValue}",
+			"restext": "Maandishi ya MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Fomati sita za faili",
-				"body": "Safari za kwenda na kurudi .resx, .xliff, .po, .json, .ini, na .restext na umbizo thabiti la baiti."
+				"body": "Safari za kwenda na kurudi {resx}, {xliff}, {po}, {json}, {ini}, na {restext} na muundo thabiti wa baiti."
 			},
 			"config": {
 				"title": "Usanidi wa kiwango cha Repo",
-				"body": "Acha .github/resource-translator.yml kwa ni pamoja na globs, faharasa, na kategoria za Mtafsiri Maalum."
+				"body": "Doka faili ya {configPath} kwa jumuisha globs, faharasa, na kategoria za Mtafsiri Maalum."
 			},
 			"glossary": {
 				"title": "Kufahamu faharasa",
-				"body": "Funga majina ya chapa na maneno ya bidhaa ukitumia regex mahiri ya mipaka ya maneno ambayo hushughulikia C++, .NET, na marafiki."
+				"body": "Funga majina ya chapa na maneno ya bidhaa na regex mahiri ya mipaka ya maneno ambayo inashughulikia {cpp}, {dotnet} na marafiki."
 			},
 			"dryRun": {
 				"title": "Kavu-kukimbia + laini-kushindwa",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Matokeo ya kirafiki ya PR",
-				"body": "muhtasari-kichwa, maelezo ya muhtasari, na ana-tafsiri mpya huingia moja kwa moja kwenye create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails}, na {hasNewTranslations} yanayopangwa moja kwa moja kwenye ombi la kuunda-kuvuta-kuunda."
 			},
 			"sdk": {
 				"title": "SDK rasmi ya Azure",
-				"body": "Imejengwa juu ya @azure-rest/ai-translation-text + @azure/core-rest-pipeline - majaribio ya kiotomatiki kwenye 408/429/5xx, hakuna HTTP iliyovingirishwa kwa mkono. esbuild-bundled, audit-clean."
+				"body": "Imejengwa kwa {azureSdk} + {corePipeline} - majaribio ya kiotomatiki kwenye {statusCodes}, hakuna HTTP iliyovingirishwa kwa mkono. {esbuild}-bundled, ukaguzi-safi."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Mtiririko wa kazi wa kushuka",
+			"titlePrefix": "Nakala. Bandika.",
+			"titleAccent": "Tafsiri.",
+			"body": "Siri tatu, mistari minne, na repo yako ni ya lugha nyingi kwenye msukumo unaofuata.",
+			"setupLink": "Tembea kupitia usanidi kamili"
+		},
+		"cta": {
+			"title": "Je, uko tayari kubinafsisha kwenye majaribio ya kiotomatiki?",
+			"body": "Ufunguo mmoja wa Mtafsiri wa Azure AI, faili moja ya mtiririko wa kazi. Mtafsiri wa Rasilimali hushughulikia mengine.",
+			"button": "Anza"
 		}
 	},
 	"getting-started": {
 		"title": "Kuanza",
 		"eyebrow": "Usanidi",
-		"lede": "Ongeza faili ya mtiririko wa kazi, ielekeze kwenye kitambulisho chako cha Azure AI Translator, na kitendo - kilichojengwa kwenye SDK rasmi ya maandishi ya Microsoft ya @azure-rest/ai-tafsiri-maandishi - itachanganua repo kwa faili za rasilimali za lugha ya chanzo na kutoa ndugu waliotafsiriwa.",
+		"lede": "Ongeza faili ya mtiririko wa kazi, ielekeze kwenye kitambulisho chako cha Mtafsiri wa Azure AI, na kitendo kitachanganua repo kwa faili za rasilimali za lugha ya chanzo na kutoa ndugu waliotafsiriwa.",
 		"steps": {
 			"provision": {
 				"title": "Kutoa rasilimali ya Mtafsiri wa Azure AI",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Ongeza mtiririko wa kazi",
-				"body": "Unda .github/workflows/translate.yml:"
+				"body": "Unda {workflowPath}:"
 			},
 			"resource": {
 				"title": "Fanya faili ya rasilimali ya chanzo",
-				"body": "Faili za rasilimali hutumia Jina. <sourceLocale>. <ext> mkusanyiko. Kwa mfano Greetings.en.resx inakuwa Greetings.fr.resx, Greetings.de.resx, na kadhalika baada ya kukimbia."
+				"body": "Faili za rasilimali hutumia mkataba wa {namingConvention}. Kwa mfano {sourceFile} inakuwa {frFile}, {deFile}, na kadhalika baada ya kukimbia."
 			},
 			"output": {
 				"title": "Kagua pato",
-				"body": "Mara tu mtiririko wa kazi unapomalizika, kitendo kinafichua matokeo matatu unayoweza kuunganisha kwenye maelezo ya PR: kichwa cha muhtasari, maelezo ya muhtasari, na tafsiri mpya. Pia inaandika muhtasari wa Markdown kwenye ukurasa wa kazi kupitia core.summary."
+				"body": "Mara tu mtiririko wa kazi unapomalizika, kitendo kinafunua matokeo matatu unayoweza kuunganisha kwenye maelezo ya PR: {summaryTitle}, {summaryDetails}, na {hasNewTranslations}. Pia inaandika muhtasari wa Markdown kwenye ukurasa wa kazi kupitia {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Hatua zifuatazo",
-			"configuration": "Sanidi chaguo-msingi za kiwango cha repo na .github/resource-translator.yml.",
+			"configuration": "Sanidi chaguo-msingi za kiwango cha repo na {configPath}.",
 			"recipes": "Tazama mapishi ya monorepos, faharasa maalum, na kategoria za Mtafsiri Maalum."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Usanidi",
 		"eyebrow": "YAML",
 		"heroTitle": "Usanidi wa hazina",
-		"lede": "Express chaguo-msingi mara moja katika .github/resource-translator.yml na uruhusu kila mtiririko wa kazi urithi. Pembejeo za hatua hushinda kila wakati zote mbili zinatolewa."
+		"lede": "Eleza chaguo-msingi mara moja kwenye faili ya usanidi wa hazina na uruhusu kila mtiririko wa kazi urithi. Pembejeo za hatua hushinda kila wakati zote mbili zinatolewa.",
+		"intro": "Batilisha njia na pembejeo ya {configPath} ikiwa unahitaji eneo lisilo chaguomsingi.",
+		"schemaHeading": "Mpangilio",
+		"fieldReference": {
+			"heading": "Rejea ya shamba",
+			"caption": "Rejea ya uwanja wa usanidi",
+			"columns": {
+				"field": "Sehemu",
+				"type": "Aina",
+				"notes": "Vidokezo"
+			},
+			"fields": {
+				"sourceLocale": "Inarudi kwenye pembejeo ya {sourceLocale} ikiwa haijawekwa. Pia imetumwa kwa Mtafsiri kama {fromLocale} kwa hivyo masharti mafupi hayatambuliwi kiotomatiki.",
+				"toLocales": "Ama safu au kamba iliyotenganishwa na koma.",
+				"includeExclude": "Mifumo ya Glob iliyotathminiwa dhidi ya njia kamili na za jamaa za nafasi ya kazi.",
+				"glossary": "Neno la baada ya tafsiri linabatilisha. Ufahamu wa mpaka wa maneno (hushughulikia {cpp}, {dotnet}).",
+				"categoryId": "Kitengo cha {customTranslatorLink} Azure - kisu chako cha tasnia/kikoa (kisheria, matibabu, sauti ya uuzaji, n.k.). Imetumwa kama {categoryQuery}.",
+				"textType": "Chaguo-msingi kwa {plain}. Tumia {html} tu ikiwa maadili yako ya rasilimali yana vipande halisi vya HTML.",
+				"profanityAction": "Jinsi ya kutibu maneno machafu katika matokeo yaliyotafsiriwa.",
+				"profanityMarker": "Maana tu wakati {profanityAction} ni {marked}.",
+				"allowFallback": "Weka {false} kushindwa kutafsiri wakati {categoryId} yako haina kupelekwa kwa eneo lengwa badala ya kurudi kwenye muundo wa jumla.",
+				"apiVersion": "Toleo la API la REST la Mtafsiri. Chaguo-msingi kwa {version}.",
+				"maxRetries": "Upeo wa majaribio ya kujaribu tena majibu ya muda mfupi ya HTTP ({statusCodes}). Chaguo-msingi kwa {defaultRetries}. Jumla ya simu za HTTP kwa kila ombi ni {totalCalls}.",
+				"retryBackoffMs": "Kofia (ms) kwenye usingizi wowote wa nyuma. Chaguo-msingi kwa {defaultBackoff}. Kichwa cha {retryAfter} cha Azure kinaheshimiwa haswa wakati kipo; vinginevyo nyuma ya kielelezo cha jittered hutumiwa, iliyofungwa kwa thamani hii.",
+				"protectPlaceholders": "Chaguo-msingi kwa {true}. Inapowashwa, tokeni kama vile {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} na HTML hubadilishwa na tokeni za sentinel kabla ya kutafsiriwa na kurejeshwa baadaye. Lemaza tu wakati chanzo kimakusudi kina halisi zenye umbo la kishika nafasi.",
+				"customPlaceholderPatterns": "Mifumo ya ziada ya regex (bila mipaka) imeongezwa kwa seti chaguomsingi ya kishika nafasi, kwa mfano {angleToken} kwa sintaksia maalum ya tokeni. Regexes batili hupuuzwa.",
+				"noTranslatePatterns": "Mifumo ya Glob inayolingana na funguo za kiwango cha kichanganuzi (njia ya nukta ya JSON, RESX {resxName}, PO {poMsgid}, kitengo cha XLIFF {xliffId}, kitufe cha INI/restext). Vifunguo vinavyolingana huondolewa kutoka kwa ombi na kupita na thamani yao ya chanzo imehifadhiwa."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Agizo la kupakia",
+			"steps": {
+				"actionInputs": "Kitendo kinasoma pembejeo wazi kutoka kwa mtiririko wa kazi.",
+				"config": "Inapakia usanidi wa YAML kutoka {configPath}.",
+				"precedence": "Kwa kila uwanja ulioshirikiwa, pembejeo inashinda; vinginevyo thamani ya YAML hutumiwa.",
+				"validation": "Maadili yaliyounganishwa yanathibitishwa. Enums batili (k.m. {invalidEnum}) husababisha kitendo kushindwa haraka na ujumbe wazi."
+			}
+		},
+		"tone": {
+			"heading": "Toni na tasnia, kwa maneno wazi",
+			"body": "API ya Azure AI Translator v3 haina kisu kimoja cha toni. Mipangilio miwili inachanganya kukupa udhibiti sawa:",
+			"industryLabel": "Viwanda / kikoa:",
+			"industryBody": "tumia {categoryId} kuelekeza kwenye kitengo cha {customTranslatorLink} cha Azure kilichofunzwa kwenye mkusanyiko wako mwenyewe - kisheria, kiufundi, matibabu, uuzaji, au kitu kingine chochote. Hii ndiyo lever yenye nguvu zaidi ya sauti, sauti ya chapa, na msamiati.",
+			"surfaceLabel": "Maandishi ya uso:",
+			"surfaceBody": "Tumia {glossaryLink} kufunga majina ya chapa na maneno ya bidhaa kwa neno, na utumie {profanityAction} kusugua maneno machafu wakati wa kulenga ujanibishaji kwa hadhira ya vijana.",
+			"glossaryLinkLabel": "Kamusi"
+		}
 	},
 	"inputs": {
 		"title": "Pembejeo na matokeo",
 		"eyebrow": "Rejea",
-		"lede": "Kila pembejeo pia inakubaliwa katika faili ya hiari ya usanidi wa repo. Wakati zote mbili zimewekwa, pembejeo ya hatua hushinda."
+		"lede": "Kila pembejeo pia inakubaliwa katika faili ya hiari ya usanidi wa repo. Wakati zote mbili zimewekwa, pembejeo ya hatua hushinda.",
+		"configurationIntro": "Tazama {configurationLink} kwa schema ya YAML na mpangilio wa kupakia.",
+		"configurationLinkLabel": "Usanidi",
+		"columns": {
+			"name": "Jina",
+			"default": "Chaguo-msingi",
+			"description": "Maelezo"
+		},
+		"defaults": {
+			"none": "hakuna",
+			"allSupported": "zote zinaungwa mkono",
+			"translatorDefaultTrue": "kweli (Mtafsiri chaguo-msingi)"
+		},
+		"requiredInputs": {
+			"heading": "Pembejeo zinazohitajika",
+			"caption": "Pembejeo zinazohitajika",
+			"items": {
+				"sourceLocale": "Eneo la chanzo (k.m. {en}) linalotumika kupata faili za rasilimali kama vile {sourceGlob}. Pia imetumwa kwa Mtafsiri kama {fromLocale}.",
+				"subscriptionKey": "Ufunguo wa usajili wa Azure AI Translator. Pita kupitia {secrets}.",
+				"endpoint": "URL ya mwisho ya mtafsiri, kwa mfano {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Pembejeo za hiari za kawaida",
+			"caption": "Pembejeo za hiari za kawaida",
+			"items": {
+				"region": "Eneo la rasilimali za mtafsiri (acha kwa rasilimali za ulimwengu).",
+				"toLocales": "Maeneo ya kutafsiri. Inakubali safu ya JSON ({jsonArray}) au maadili yaliyotenganishwa kwa koma.",
+				"include": "Mifumo ya glob iliyotenganishwa na mstari mpya; faili zinazolingana tu ndizo zinazotafsiriwa.",
+				"exclude": "Mifumo ya glob iliyotenganishwa na mstari mpya; faili zinazolingana zinarukwa (zinatumika baada ya kujumuisha).",
+				"configPath": "Njia ya faili ya usanidi wa YAML (inayohusiana na mzizi wa nafasi ya kazi).",
+				"dryRun": "Wakati {true}, endesha tafsiri na utoe muhtasari lakini usiandike faili.",
+				"failOnError": "Wakati {true}, makosa yasiyotarajiwa yanashindwa kitendo; wakati {false}, makosa ni maonyo."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Pembejeo za ombi la mtafsiri",
+			"intro": "Hizi ramani moja kwa moja kwenye vigezo vya hoja vya Azure AI Translator v3. Kila moja ni hiari; chaguo-msingi za Mtafsiri zinatumika wakati hazijawekwa.",
+			"caption": "Pembejeo za ombi la mtafsiri",
+			"items": {
+				"categoryId": "Kitengo cha {customTranslatorLink} cha Azure - kisu cha tasnia/kikoa/toni. Imesambazwa kama {categoryQuery}.",
+				"textType": "{plain} au {html}. Tumia {html} tu wakati maadili yako ya rasilimali ni vipande halisi vya HTML.",
+				"profanityAction": "{noAction}, {marked}, au {deleted}. Inadhibiti jinsi maneno machafu yanavyotolewa katika tafsiri.",
+				"profanityMarker": "{asterisk} au {tag}. Maana tu wakati {profanityAction} ni {marked}.",
+				"allowFallback": "Wakati {false}, Mtafsiri hurudisha hitilafu badala ya kurudi kwenye mfumo wa jumla ikiwa {categoryId} yako haina kupelekwa kwa eneo lengwa.",
+				"apiVersion": "Toleo la API la REST la Mtafsiri."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Ustahimilivu na ulinzi wa kishikilia nafasi",
+			"intro": "Pembejeo hizi hudhibiti jinsi kitendo kinavyofanya wakati Mtafsiri anapunguza ombi lako na jinsi inavyolinda tokeni za kishika nafasi kama vile {mustache} au {indexZero} dhidi ya kuharibika wakati wa tafsiri.",
+			"caption": "Ustahimilivu na pembejeo za ulinzi wa kishika nafasi",
+			"items": {
+				"maxRetries": "Upeo wa majaribio ya kujaribu tena majibu ya muda mfupi ya HTTP ({statusCodes}). Jumla ya simu za HTTP kwa kila ombi ni {totalCalls}.",
+				"retryBackoffMs": "Kofia (kwa milliseconds) kwenye usingizi wowote wa kurudi nyuma. Kitendo hicho kinaheshimu kichwa cha majibu ya {retryAfter} cha Azure haswa wakati kipo; vinginevyo hutumia backoff ya kielelezo iliyowekwa kwa thamani hii.",
+				"protectPlaceholders": "Wakati {true} (chaguo-msingi), vishika nafasi kama vile {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} na HTML hubadilishwa na tokeni za sentinel kabla ya kutafsiriwa na kurejeshwa baadaye. Zima tu wakati chanzo chako kimakusudi kina maandishi halisi yenye umbo la kishika nafasi ambayo yanapaswa kutafsiriwa.",
+				"customPlaceholderPatterns": "Regexes zilizotenganishwa na mstari mpya (bila mipaka) zimeongezwa kwenye seti chaguomsingi ya kishika nafasi, kwa mfano {angleToken} kwa sintaksia maalum ya tokeni.",
+				"noTranslatePatterns": "Mifumo ya glob iliyotenganishwa na mstari mpya inayolingana na funguo za kiwango cha kichanganuzi (njia ya nukta ya JSON, RESX {resxName}, PO {poMsgid}, kitengo cha XLIFF {xliffId}, kitufe cha INI/restext). Vifunguo vinavyolingana huondolewa kutoka kwa ombi la Mtafsiri na kupita na thamani yao ya chanzo imehifadhiwa."
+			}
+		},
+		"outputs": {
+			"heading": "Matokeo",
+			"caption": "Matokeo",
+			"items": {
+				"summaryTitle": "Muhtasari mfupi wa kichwa cha PR, kwa mfano {summaryExample}.",
+				"summaryDetails": "Muhtasari wa Markdown unafaa kwa mwili wa PR au muhtasari wa kazi.",
+				"hasNewTranslations": "{trueString} wakati tafsiri moja au zaidi mpya ilitolewa."
+			}
+		}
 	},
 	"formats": {
 		"title": "Fomati za faili",
 		"eyebrow": "Rejea",
 		"heroTitle": "Fomati za faili zinazotumika",
-		"lede": "Fomati sita za rasilimali zinazoweza kuzunguka. Kitendo kinasoma kila faili ya chanzo-locale, hutafsiri maadili, na kuandika ndugu kwa kila eneo lengwa."
+		"lede": "Fomati sita za rasilimali zinazoweza kuzunguka. Kitendo kinasoma kila faili ya chanzo-locale, hutafsiri maadili, na kuandika ndugu kwa kila eneo lengwa.",
+		"namingConvention": "Faili zote hutumia mkataba wa kutaja {namingConvention}.",
+		"learnMore": "Jifunze zaidi",
+		"items": {
+			"resx": {
+				"blurb": "Faili za rasilimali za .NET zenye msingi wa XML. Hutafsiri maandishi ya ndani ya kila nodi {dataValue}, kuhifadhi maoni na metadata.",
+				"specLabel": "Microsoft Jifunze - Rasilimali katika faili za .resx"
+			},
+			"xliff": {
+				"blurb": "Nyaraka za OASIS XLIFF 2.0. Hutafsiri kila {source} na kuandika matokeo katika {target} inayolingana, ikiweka {trgLang} kwa eneo.",
+				"specLabel": "Vipimo vya OASIS XLIFF 2.0"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object files. Inatafsiri kila {msgid} / {msgidPlural} katika fomu za {msgstr} / {msgstrPlural}.",
+				"specLabel": "GNU gettext - muundo wa faili ya PO"
+			},
+			"json": {
+				"blurb": "Faili za JSON kiholela. Vitu vilivyowekwa viota vimepangwa na kikomo cha {delimiter} kwa tafsiri, kisha kuwekwa tena kwenye pato. Vifunguo vyenye nukta ({dottedKey}) vimehifadhiwa neno kwa neno.",
+				"specLabel": "Uainishaji wa JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Faili rahisi za {keyValue} (INI ya mtindo wa Win32 au usanidi wowote wa gorofa). Vichwa vya sehemu na maoni yamehifadhiwa.",
+				"specLabel": "Fomati ya faili ya INI kwenye Wikipedia"
+			},
+			"restext": {
+				"blurb": "Rasilimali za maandishi za Microsoft MUI - jozi za gorofa {keyValue} zinazotumiwa kama mwandamani wa maandishi kwa {resx}.",
+				"specLabel": "Muhtasari wa Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Dhamana ya kwenda na kurudi",
+			"body": "Kitengo cha majaribio huthibitisha kusafiri kwa mzunguko wa baiti kwa baiti kwa ratiba za uwakilishi wa kila umbizo. Ikiwa quirk ya umbizo itavunja kuzunguka kwa pande zote katika msingi wako wa msimbo, tafadhali {issueLink} na sampuli ndogo.",
+			"issueLinkLabel": "Fungua suala"
+		}
 	},
 	"recipes": {
 		"title": "Maelekezo",
 		"eyebrow": "Kitabu cha kupikia",
-		"lede": "Mifumo ya kawaida ya tafsiri za usafirishaji: monorepos, faharasa, kategoria maalum, kukimbia kavu, na udhibiti wa sauti."
+		"lede": "Mifumo ya kawaida ya tafsiri za usafirishaji: monorepos, faharasa, kategoria maalum, kukimbia kavu, na udhibiti wa sauti.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Fungua ombi la kuvuta baada ya kila kukimbia"
+			},
+			"monorepo": {
+				"heading": "Monorepos: tafsiri ya upeo kwa kila kifurushi"
+			},
+			"glossary": {
+				"heading": "Kamusi ya majina ya chapa na masharti ya bidhaa",
+				"intro": "Dopa {configPath} kwenye repo:",
+				"afterLabel": "Baada ya",
+				"body": "Maneno ya faharasa hutumiwa {after} tafsiri, kwa hivyo matokeo yaliyotafsiriwa kwa mashine huweka chapa unayopendelea hata wakati modeli iliibadilisha kwa kisawe."
+			},
+			"customCategory": {
+				"heading": "Kitengo cha Mtafsiri Maalum (tasnia / kikoa)",
+				"body": "Funza kitengo cha {customTranslatorLink} cha Azure kwenye mkusanyiko unaonasa msamiati na sauti ya tasnia yako (kisheria, matibabu, uuzaji, uhandisi wa ndani, n.k.) na upitishe kitambulisho chake kupitia {categoryId}. Hii ndiyo lever ya sauti yenye nguvu zaidi ambayo Azure inatoa."
+			},
+			"tone": {
+				"heading": "Udhibiti wa sauti + kurudi nyuma kali",
+				"body": "Changanya {categoryId} ya Mtafsiri Maalum na {profanityAction} na {allowFallbackFalse} ili kutekeleza sauti thabiti na kushindwa mtiririko wa kazi ikiwa kategoria iliyochaguliwa haina uwekaji wa moja ya maeneo unayolenga."
+			},
+			"dryRun": {
+				"heading": "Kukimbia kavu kabla ya kuwasha mtiririko wa kazi",
+				"body": "Kitendo bado hutoa matokeo ya muhtasari na muhtasari wa hatua, lakini hakuna faili zilizoandikwa. Changanya na {failOnErrorFalse} ili kuibua kila suala kama onyo wakati unarudia."
+			}
+		}
 	},
 	"faq": {
 		"title": "Maswali",
 		"eyebrow": "Msaada",
 		"heroTitle": "Maswali yanayoulizwa mara kwa mara",
-		"lede": "Majibu ya haraka kwa maswali ambayo huja mara nyingi wakati wa kupitisha hatua."
+		"lede": "Majibu ya haraka kwa maswali ambayo huja mara nyingi wakati wa kupitisha hatua.",
+		"questions": {
+			"azure": {
+				"heading": "Je, kitendo kinazungumzaje na Azure?",
+				"body": "Kupitia SDK rasmi ya {azureSdkLink} ya Microsoft, iliyowekwa kwenye {corePipelineLink}. Hiyo inakuletea majaribio ya kiotomatiki kwenye {statusCodes}, miundo ya maombi na majibu, na utunzaji wa kichwa cha uthibitishaji bila malipo - kila kitu ambacho kilikuwa simu ya {axios} iliyovingirishwa kwa mkono. Uso wa hatua ya umma (pembejeo, matokeo, matokeo ya faili) haujabadilika."
+			},
+			"tone": {
+				"heading": "Kwa nini tafsiri wakati mwingine hazina chapa au zisizo na sauti?",
+				"body": "Tafsiri ya mashine chaguo-msingi kwa mfano wa kusudi la jumla. Vifungo vitatu husaidia: {glossaryLink} ya kubatilisha kwa muda mgumu, {customTranslatorLink} ya mifano iliyopangwa vizuri iliyofunzwa juu ya sauti na msamiati wako, na {profanityAction} kusugua au kuripoti maneno macafu.",
+				"glossaryLinkLabel": "Kamusi",
+				"customTranslatorLinkLabel": "Kategoria ya Mtafsiri Maalum"
+			},
+			"duplicateFiles": {
+				"heading": "Je, ninawezaje kuepuka kutafsiri faili sawa mara mbili?",
+				"body": "Anzisha mtiririko wa kazi kwenye {paths} zinazolingana na faili zako za chanzo pekee, kwa mfano {sourceGlob}. Kitendo hiki pia kinajumuisha kichujio chake cha faili kwa kila kichochezi wakati {githubToken} imewekwa, kupunguza kazi kwa faili katika ahadi ya hivi punde."
+			},
+			"offline": {
+				"heading": "Je, ninaweza kuendesha kitendo nje ya mtandao?",
+				"body": "Sio haswa - Azure AI Translator ni ubongo wa wakati wa kukimbia. Lakini unaweza kukimbia na {dryRunTrue} ili kuthibitisha uchanganuzi na usanidi bila kufanya maombi yoyote ya HTTP ya tafsiri."
+			},
+			"node": {
+				"heading": "Ni toleo gani la Node ambalo kitendo kinaendeshwa?",
+				"body": "v3 inaendesha wakati wa utekelezaji wa Vitendo vya GitHub {nodeRuntime}. JavaScript iliyounganishwa inaoana na Node 20, 22, na 24, ambayo ndiyo majaribio ya CI."
+			},
+			"dist": {
+				"heading": "{distDir} iliyounganishwa inatoka wapi?",
+				"body": "Vitendo vya GitHub JS husafirisha JS yao iliyokusanywa kwenye hazina. Mtiririko wa kazi wa {distBuild} huijenga upya baada ya kila kuunganishwa hadi {mainBranch} ikiwa ingeteleza, na {distCheck} huzuia PR ambazo zingetua matokeo yaliyopitwa na wakati."
+			},
+			"formats": {
+				"heading": "Vipi kuhusu fomati zingine za rasilimali?",
+				"body": "Leo: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} ikiwa unahitaji nyingine - kiolesura cha uchanganuzi ni kidogo (changanua → ramani → kutumia tafsiri → umbizo) na michango inakaribishwa.",
+				"issueLinkLabel": "Fungua suala"
+			}
+		}
 	},
 	"translations": {
 		"title": "Tafsiri",
 		"eyebrow": "Kuonyesha",
 		"heroTitle": "Halo katika kila lugha",
-		"locales": "maeneo",
-		"currentlyRendered": "Imetolewa kwa sasa",
-		"complete": "kamili!",
-		"pendingPrefix": "inasubiri kukimbia kwa hati zinazofuata za tafsiri.",
+		"lede": "Ukurasa huu unatafsiriwa na Mtafsiri wa Rasilimali yenyewe, kwa kila msukumo kuu, katika kila lugha ambayo Azure AI Translator inasaidia.",
+		"localeCountLabel": "{count} maeneo",
+		"statusComplete": "{translatedCount} imetolewa kwa sasa - imekamilika!",
+		"statusPending": "{translatedCount} kwa sasa imetolewa - {pendingCount} inasubiri kukimbia {workflowName} ijayo.",
 		"viewWorkflowRuns": "Tazama uendeshaji wa mtiririko wa kazi",
 		"filter": "Kichujio",
 		"filterPlaceholder": "Tafuta kwa lugha, msimbo, au jina la asili...",
 		"source": "Chanzo",
 		"machineTranslations": "Tafsiri za mashine",
-		"translationPending": "Tafsiri inasubiri - fungua kukimbia kwa hati za kutafsiri.",
+		"translationPending": "Tafsiri inasubiri - fungua {workflowName} kukimbia.",
 		"noLocales": "Hakuna maeneo yanayolingana na kichujio hicho.",
-		"howItWorks": "Jinsi hii inavyofanya kazi"
+		"howItWorks": {
+			"heading": "Jinsi hii inavyofanya kazi",
+			"thisActionLabel": "Kitendo hiki",
+			"steps": {
+				"source": "Faili ya chanzo cha Kiingereza inaishi {messagesPath}.",
+				"workflow": "Inasukuma mguso huo huanza {workflowLink}, ambayo inaendesha {thisAction} dhidi yake yenyewe.",
+				"fanOut": "Kitendo hicho huenda kwa kila eneo linaloungwa mkono na Mtafsiri wa Azure AI (lililosanidiwa mnamo {configPath}) na kuandika ndugu {messagesLocaleJson} kwa kila lengo.",
+				"pullRequest": "Ombi la kuvuta linafunguliwa na tafsiri mpya. Kuiunganisha huchapisha tena ukurasa huu na kadi zilizojazwa."
+			}
+		},
+		"poweredBy": "Inaendeshwa na Mtafsiri wa Rasilimali na Mtafsiri wa Azure AI."
 	},
 	"contributing": {
 		"title": "Kuchangia",
 		"eyebrow": "Chanzo wazi",
-		"lede": "Ripoti za hitilafu, maombi ya vipengele, na maombi ya kuvuta yote yanakaribishwa. Kitendo hicho ni kidogo vya kutosha kuwa rafiki kwa wachangiaji wa mara ya kwanza."
+		"lede": "Ripoti za hitilafu, maombi ya vipengele, na maombi ya kuvuta yote yanakaribishwa. Kitendo hicho ni kidogo vya kutosha kuwa rafiki kwa wachangiaji wa mara ya kwanza.",
+		"localDevelopment": {
+			"heading": "Maendeleo ya ndani"
+		},
+		"addingParser": {
+			"heading": "Kuongeza kichanganuzi",
+			"steps": {
+				"fixture": "Ongeza muundo chini ya {testDataDir}.",
+				"implement": "Tekeleza {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Isajili katika {factoryFile}.",
+				"extension": "Ongeza kiendelezi cha faili kwa {translationFileSchemes} katika {finderFile}.",
+				"tests": "Andika majaribio ya kwenda na kurudi kwa muundo wa uchanganuzi → na utumieTafsiri."
+			}
+		},
+		"coverage": {
+			"heading": "Vizingiti vya chanjo",
+			"body": "Usanidi wa Jest unatekeleza chanjo ya chini. Msimbo mpya lazima uweke kizingiti cha taarifa + mistari juu ya 78% na kazi zaidi ya 90%. Ongeza fixtures na majaribio pamoja na mabadiliko yako."
+		},
+		"docsSite": {
+			"heading": "Tovuti ya nyaraka",
+			"body": "Folda ya {docsDir} ni mradi wa Astro 6 + Tailwind v4. Endesha {npmInstall} huko mara moja, kisha {npmRunDev} kwa onyesho la kukagua la ndani. Mtiririko wa kazi wa {pagesWorkflow} husafirisha hati kwa Kurasa za GitHub kila muunganisho."
+		}
 	},
 	"changelog": {
 		"title": "Logi ya mabadiliko",
 		"eyebrow": "Hadithi",
-		"lede": "Muhtasari wa kiwango cha juu wa matoleo. Mabadiliko ya kisheria, yenye mamlaka huishi CHANGELOG.md kwenye hazina."
+		"lede": "Muhtasari wa kiwango cha juu wa matoleo. Mabadiliko ya kisheria, yenye mamlaka huishi CHANGELOG.md kwenye hazina.",
+		"fullRecord": "Tazama {changelogLink} kwa rekodi kamili.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (katika maendeleo)",
+			"labels": {
+				"breaking": "KUVUNJA",
+				"resilience": "Ustahimilivu:",
+				"placeholderProtection": "Ulinzi wa kishika nafasi:",
+				"perKeyOptOut": "Kuchagua kwa kila ufunguo:",
+				"docsAccessibility": "Ufikivu wa hati:",
+				"inlineCodeStyling": "Mtindo wa msimbo wa ndani:"
+			},
+			"issueLabels": {
+				"closes46": "Inafunga #46.",
+				"tightens16": "Inaimarisha #16.",
+				"closes35": "Inafunga #35."
+			},
+			"items": {
+				"runtime": "Imepigwa hadi wakati {nodeRuntime} kukimbia ({breaking}).",
+				"newInputs": "Pembejeo mpya: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, pamoja na vifungo vya hali ya juu vya Mtafsiri {textType}, {profanityAction}, {profanityMarker}, na {allowFallback}.",
+				"sourceLocale": "Eneo la chanzo sasa pia limetumwa kwa Mtafsiri kama {fromLocale} kwa hivyo mifuatano mifupi haitambuliwi kiotomatiki.",
+				"resilience": "{label} jaribio la kiotomatiki kwenye majibu ya muda mfupi ya HTTP ({statusCodes}) kuheshimu kichwa cha {retryAfter} cha Azure - inarudi kwenye mzigo wa kielelezo wakati haupo. Inaweza kubadilishwa kupitia {maxRetries} na {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} tokeni kama vile {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} na huluki za HTML zimefungwa kwenye walinzi kabla ya kutafsiriwa na kurejeshwa baadaye, kwa hivyo Mtafsiri huacha kuharibu vishika nafasi vya i18next/Mustache/Handlebars/.NET/printf. Geuza kupitia {protectPlaceholders}; kupanua na {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} ingizo jipya la {noTranslatePatterns} hudondosha funguo zinazolingana kutoka kwa ombi la Mtafsiri kabisa (huhifadhi maadili ya chanzo cha majina ya chapa, misimbo ya hitilafu, n.k.). Inalingana na mifumo ya glob dhidi ya funguo za kiwango cha kichanganuzi (njia ya nukta ya JSON, RESX {resxName}, PO {poMsgid}, {xliffId} ya kitengo cha XLIFF, kitufe cha INI/restext). {issue}",
+				"repoConfig": "Usanidi wa kiwango cha Repo kupitia {configPath}.",
+				"glossary": "Msaada wa faharasa, muhtasari wa hatua kupitia {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "Ukaguzi wa NPM safi (udhaifu 0).",
+				"docsSite": "Tovuti ya hati za Astro + Tailwind v4 na mabadiliko ya mtazamo na Msimbo wa Kuelezea.",
+				"docsAccessibility": "{label} WCAG 2.1 AA kupita. Glyphs za nembo zilizobadilishwa kuwa njia ili zisishindwe tena utofautishaji wa rangi dhidi ya vituo vya gradient, kitufe cha {backToTop} kinachoelea hutumia {inert} wakati kimefichwa (badala ya kigeuzi cha {ariaHidden} ambacho kiliiacha iweze kuwezwa), sehemu {formatsAstro} hazigongani tena na vitambulisho vyao vya kichwa vinavyozalishwa kiotomatiki, kadi tatu za eneo sasa zinafichua sifa halali za {lang} za BCP-47 ({nya}, {lug}, {run}), nakala {documentation} lebo za alama za kihistoria zimetenganishwa kati ya upau wa kando na kijachini,  na kila jedwali la data kwenye {inputs}/{configuration} husafirishwa na maelezo mafupi ya msomaji wa skrini.",
+				"inlineCode": "{label} hati za nathari sasa {codeElement} huvaa lafudhi ya mandhari ya joto/kahawia - tofauti na palette →lafudhi ya chapa inayotumiwa kwa viungo na vichwa.",
+				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Tazama historia ya git."
+		}
 	}
 }

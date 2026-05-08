@@ -18,18 +18,26 @@
 			"node": "Nœud 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "GetText",
+			"json": "nich oswa plat",
+			"ini": "{keyValue}",
+			"restext": "MUI tèks"
+		},
 		"features": {
 			"formats": {
 				"title": "Sis fòma dosye",
-				"body": "Roundtrips .resx, .xliff, .po, .json, .ini ak .restext ak byte-ki estab fòma."
+				"body": "Wonn-vwayaj {resx}, {xliff}, {po}, {json}, {ini} ak {restext} ak fòma byte-estab."
 			},
 			"config": {
 				"title": "Repo-nivo konfigirasyon",
-				"body": "Drop yon .github/resource-translator.yml pou enkli globs, glosè ak kategori tradiktè Custom."
+				"body": "Drop yon dosye {configPath} pou enkli globs, glosè ak kategori tradiktè Custom."
 			},
 			"glossary": {
 				"title": "Glosè okouran",
-				"body": "Fèmen non mak ak tèm pwodwi ak regex entelijan mo-fwontyè ki okipe C ++, .NET ak zanmi yo."
+				"body": "Fèmen non mak ak tèm pwodwi ak regex entelijan mo-fwontyè ki okipe {cpp}, {dotnet}, ak zanmi yo."
 			},
 			"dryRun": {
 				"title": "Sèk kouri + mou echwe",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR-zanmitay pwodiksyon",
-				"body": "rezime-, rezime-detay ak gen-nouvo-tradiksyon plas dirèkteman nan kreye-rale-demann."
+				"body": "{summaryTitle}, {summaryDetails} ak plas {hasNewTranslations} dirèkteman nan kreye-rale demann"
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "Bati sou @azure-rès / ai-tradiksyon tèks + @azure / nwayo-rès-tiyo — otomatikman retries sou 408 / 429 / 5xx, pa gen men woule HTTP. esbuild-pake, odit pwòp"
+				"body": "Bati sou {azureSdk} + {corePipeline} — otomatikman retries sou {statusCodes}, pa gen men woule HTTP. {esbuild}-pake, odit pwòp"
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Gout-nan workflow",
+			"titlePrefix": "Kopi. Paste",
+			"titleAccent": "Tradwi",
+			"body": "Twa sekrè, kat liy ak repo ou se plizyè lang sou pouse kap vini an.",
+			"setupLink": "Mache nan konfigirasyon an plen"
+		},
+		"cta": {
+			"title": "Pare yo lokalize sou pilòt otomatik?",
+			"body": "Yon sèl Azure AI tradiktè kle, yon sèl dosye workflow. Resource Translator okipe rès la.",
+			"button": "Jwenn te kòmanse"
 		}
 	},
 	"getting-started": {
 		"title": "Pou kòmanse",
 		"eyebrow": "Konfigirasyon",
-		"lede": "Ajoute yon dosye workflow, lonje dwèt sou kalifikasyon tradiktè Azure AI ou ak aksyon an - bati sou SDK ofisyèl Microsoft @azure-rest / ai-translation-text - ap eskane repo a pou dosye resous sous-lang epi emèt frè-sè tradui.",
+		"lede": "Ajoute yon dosye workflow, lonje dwèt sou kalifikasyon Azure AI tradiktè ou epi aksyon an pral eskane repo a pou dosye resous lang sous ak emèt frè ak sè tradui.",
 		"steps": {
 			"provision": {
 				"title": "Pwovizyon yon resous Azure AI Translator",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Ajoute workflow la",
-				"body": "Kreye .github/workflows/translate.yml:"
+				"body": "Kreye {workflowPath}:"
 			},
 			"resource": {
 				"title": "Komèt yon dosye resous sous",
-				"body": "Dosye resous yo itilize non an. <sourceLocale>. <ext> Konvansyon Pou egzanp Greetings.en.resx vin Greetings.fr.resx, Greetings.de.resx, ak sou sa apre yon kouri."
+				"body": "Dosye resous yo itilize konvansyon {namingConvention} Pou egzanp {sourceFile} vin {frFile}, {deFile} ak sou sa apre yon kouri."
 			},
 			"output": {
 				"title": "Enspekte pwodiksyon an",
-				"body": "Yon fwa workflow la fini, aksyon an ekspoze twa rezilta ke ou ka fil nan yon deskripsyon PR: rezime-, rezime-detay, ak gen-nouvo-tradiksyon. Li ekri tou yon rezime Markdown nan paj travay la atravè core.summary."
+				"body": "Yon fwa workflow la fini, aksyon an ekspoze twa pwodiksyon ou ka fil nan yon deskripsyon PR: {summaryTitle}, {summaryDetails}, ak {hasNewTranslations}. Li ekri tou yon rezime Markdown nan paj travay la atravè {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Pwochen etap yo",
-			"configuration": "Konfigirasyon defo-nivo repo ak .github/resource-translator.yml.",
+			"configuration": "Konfigirasyon defo-nivo repo ak {configPath}",
 			"recipes": "Gade resèt pou monorepos, glosè koutim, ak kategori tradiktè Custom"
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Konfigirasyon an",
 		"eyebrow": "YAML",
 		"heroTitle": "Konfigirasyon depo",
-		"lede": "Express default yon fwa nan .github / resource-translator.yml epi kite chak workflow eritye yo. Aksyon opinyon toujou genyen lè tou de yo bay."
+		"lede": "Eksprime default yon fwa nan dosye a konfigirasyon depo epi kite chak workflow eritye yo. Aksyon opinyon toujou genyen lè tou de yo bay.",
+		"intro": "Override chemen an ak opinyon {configPath} si ou bezwen yon kote ki pa default.",
+		"schemaHeading": "Schema",
+		"fieldReference": {
+			"heading": "Referans jaden an",
+			"caption": "Referans jaden konfigirasyon",
+			"columns": {
+				"field": "Jaden an",
+				"type": "Kalite",
+				"notes": "Nòt yo"
+			},
+			"fields": {
+				"sourceLocale": "Tonbe tounen nan opinyon an {sourceLocale} si se pa mete Tou voye pou tradiktè kòm {fromLocale} se konsa strings kout yo pa otodetected.",
+				"toLocales": "Swa yon etalaj oswa yon kòd separe virgèl.",
+				"includeExclude": "Modèl Glob evalye kont chemen absoli ak espas travay relatif.",
+				"glossary": "Post tradiksyon tèm Mo-fwontyè okouran (manch {cpp}, {dotnet})",
+				"categoryId": "Kategori {customTranslatorLink} Azure — endistri ou / domèn bouton (legal, medikal, ton maketing, elatriye). Voye kòm {categoryQuery}",
+				"textType": "Défaut {plain} Sèvi ak {html} sèlman si valè resous ou yo gen fragman HTML reyèl.",
+				"profanityAction": "Ki jan yo trete tèm pwofèn nan pwodiksyon tradui",
+				"profanityMarker": "Sèlman sans lè {profanityAction} {marked}.",
+				"allowFallback": "Mete nan {false} yo echwe tradiksyon an lè {categoryId} ou a pa gen okenn deplwaman pou yon lokal sib olye pou yo tonbe tounen nan modèl la jeneral.",
+				"apiVersion": "Tradiktè vèsyon API REST Défaut {version}",
+				"maxRetries": "Tantativ retan maksimòm sou repons HTTP pasajè ({statusCodes}) Défaut {defaultRetries} Total HTTP apèl pou chak demann {totalCalls}.",
+				"retryBackoffMs": "Cap (ms) sou nenpòt ki sèl dòmi retounen. Défaut {defaultBackoff} Azure {retryAfter} header onore egzakteman lè prezan; Sinon, jittered eksponansyèl rebak, bouche nan valè sa a.",
+				"protectPlaceholders": "Défaut {true} Lè sou, marqueur tankou {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ak antite HTML yo ranplase ak siy santinèl anvan tradiksyon ak retabli apre sa. Enfim sèlman lè sous entansyonèlman gen literal plas-ki gen fòm.",
+				"customPlaceholderPatterns": "Modèl regex siplemantè (san delimiteur) ajoute nan seri a placeholder default, egzanp {angleToken} pou sentaks siy koutim. Regexes envalid yo inyore.",
+				"noTranslatePatterns": "Modèl Glob matche ak parser-nivo kle (JSON pwen chimen, RESX {resxName}, PO {poMsgid}, XLIFF inite {xliffId}, INI / retext kle). Matche kle yo tonbe nan demann lan ak pase nan ak valè sous yo konsève."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Loading lòd",
+			"steps": {
+				"actionInputs": "Aksyon an li entrain eksplisit soti nan workflow la.",
+				"config": "Li chaje konfigirasyon an YAML soti nan {configPath}.",
+				"precedence": "Pou chak jaden pataje, opinyon an ranport; sinon se valè YAML la itilize.",
+				"validation": "Valè yo fusionné yo valide. Enums envalid (egzanp {invalidEnum}) lakòz aksyon an echwe vit ak yon mesaj klè."
+			}
+		},
+		"tone": {
+			"heading": "Ton ak endistri, an tèm plenn",
+			"body": "API Azure AI Translator v3 pa gen yon bouton ton sèl. De anviwònman konbine ba ou pi fò nan kontwòl la menm:",
+			"industryLabel": "Endistri / domèn:",
+			"industryBody": "Sèvi ak {categoryId} pou pwen nan yon kategori {customTranslatorLink} Azure ki resevwa fòmasyon sou pwòp corpus ou - legal, teknik, medikal, maketing, oswa nenpòt lòt bagay. Sa a se levye ki pi fò pou ton, vwa mak ak vokabilè.",
+			"surfaceLabel": "Sifas tèks:",
+			"surfaceBody": "Sèvi ak {glossaryLink} a pou fèmen non mak ak tèm pwodwi pou l verbatim, epi sèvi ak {profanityAction} pou fwote tèm pwofon lè vize lokalizasyon pou odyans ki pi piti.",
+			"glossaryLinkLabel": "Glosè"
+		}
 	},
 	"inputs": {
 		"title": "Entrain & Sòti",
 		"eyebrow": "Referans",
-		"lede": "Chak opinyon tou aksepte nan dosye a opsyonèl repo config. Lè tou de yo mete, opinyon nan aksyon ranport."
+		"lede": "Chak opinyon tou aksepte nan dosye a opsyonèl repo config. Lè tou de yo mete, opinyon nan aksyon ranport.",
+		"configurationIntro": "Gade {configurationLink} pou YAML schema ak loading lòd.",
+		"configurationLinkLabel": "Konfigirasyon an",
+		"columns": {
+			"name": "Fe-apel",
+			"default": "Default",
+			"description": "Deskripsyon"
+		},
+		"defaults": {
+			"none": "Pa gen yonn",
+			"allSupported": "tout sipòte",
+			"translatorDefaultTrue": "vre (Tradiktè default)"
+		},
+		"requiredInputs": {
+			"heading": "Entrain obligatwa yo",
+			"caption": "Entrain obligatwa yo",
+			"items": {
+				"sourceLocale": "Sous lokal (egzanp {en}) itilize pou jwenn dosye resous tankou {sourceGlob}. Tou voye nan Translator kòm {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator abònman kle Pase nan {secrets}",
+				"endpoint": "URL ekstremite tradiktè, egzanp {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Komen si ou vle entrain",
+			"caption": "Komen si ou vle entrain",
+			"items": {
+				"region": "Rejyon resous tradiktè (omèt resous mondyal)",
+				"toLocales": "Lokal yo tradui nan Aksepte yon etalaj JSON ({jsonArray}) oswa valè separe virgul.",
+				"include": "Newline-separe modèl glob; Se sèlman matche dosye yo tradwi.",
+				"exclude": "Newline-separe modèl glob; matche dosye yo sote (aplike apre gen ladan li).",
+				"configPath": "Chemen nan dosye konfigirasyon YAML (relatif nan rasin nan espas travay la)",
+				"dryRun": "Lè {true}, kouri tradiksyon ak emèt rezime, men se pa ekri dosye.",
+				"failOnError": "Lè {true}, erè inatandi echwe aksyon an; Lè {false}, erè yo se avètisman."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Tradiktè demann opinyon",
+			"intro": "Sa yo kat dirèkteman nan paramèt rechèch Azure AI Translator v3. Tout moun se si ou vle; defo Translator aplike lè unset.",
+			"caption": "Tradiktè demann opinyon",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} kategori — endistri / domèn / bouton ton Voye kòm {categoryQuery}.",
+				"textType": "{plain} oswa {html} Sèvi ak {html} sèlman lè valè resous ou yo se fragman HTML reyèl.",
+				"profanityAction": "{noAction}, {marked} oswa {deleted} Kontwole kijan tèm pwofen yo emèt nan tradiksyon yo",
+				"profanityMarker": "{asterisk} oswa {tag} Sèlman sans lè {profanityAction} {marked}.",
+				"allowFallback": "Lè {false}, Translator retounen yon erè olye ke tonbe tounen nan sistèm nan jeneral si {categoryId} ou pa gen okenn deplwaman pou yon lokal sib.",
+				"apiVersion": "Tradiktè vèsyon API REST"
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Detèminasyon & pwoteksyon placeholder",
+			"intro": "Entrain sa yo kontwole ki jan aksyon an konpòte yo lè Translator throttles demann ou an ak ki jan li pwoteje marqueholder tankou {mustache} oswa {indexZero} soti nan ke yo te mangled pandan tradiksyon.",
+			"caption": "Detèminasyon ak entrain pwoteksyon placeholder",
+			"items": {
+				"maxRetries": "Tantativ retan maksimòm sou repons HTTP pasajè ({statusCodes}) Kantite total apèl HTTP pou chak demann {totalCalls}.",
+				"retryBackoffMs": "Cap (nan milisgond) sou nenpòt ki dòmi bakoff sèl. Aksyon an onore {retryAfter} Header repons Azure egzakteman lè prezan; Sinon, li itilize jittered eksponansyèl rebak, bouche nan valè sa a.",
+				"protectPlaceholders": "Lè {true} (default), placeholder tankou {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ak antite HTML yo ranplase ak siy santinèl anvan tradiksyon ak retabli apre sa. Enfim sèlman lè sous ou a entansyonèlman gen literal plas ki gen fòm tèks ki ta dwe tradwi.",
+				"customPlaceholderPatterns": "Regexes Newline separe (san delimiteur) te ajoute nan seri a placeholder default, egzanp {angleToken} pou sentaks siy koutim.",
+				"noTranslatePatterns": "Newline-separe modèl glob matche ak kle parser-nivo (JSON pwen chimen, RESX {resxName}, PO {poMsgid}, XLIFF inite {xliffId}, INI / kle retext). Kle matche yo tonbe nan demann lan tradiktè epi yo pase nan ak valè sous yo konsève."
+			}
+		},
+		"outputs": {
+			"heading": "Rezilta yo",
+			"caption": "Rezilta yo",
+			"items": {
+				"summaryTitle": "Kout PR--zanmitay rezime, egzanp {summaryExample}.",
+				"summaryDetails": "Markdown rezime apwopriye pou yon kò PR oswa rezime travay",
+				"hasNewTranslations": "{trueString} lè youn oswa plis nouvo tradiksyon yo te pwodwi."
+			}
+		}
 	},
 	"formats": {
 		"title": "Fòma dosye",
 		"eyebrow": "Referans",
 		"heroTitle": "Te sipòte fòma dosye",
-		"lede": "Sis fòma resous wonn-trippable Aksyon an li chak dosye sous-lokal, tradui valè yo, epi ekri yon frè pou chak lokal sib."
+		"lede": "Sis fòma resous wonn-trippable Aksyon an li chak dosye sous-lokal, tradui valè yo, epi ekri yon frè pou chak lokal sib.",
+		"namingConvention": "Tout dosye itilize konvansyon {namingConvention} nonmen an.",
+		"learnMore": "Aprann plis",
+		"items": {
+			"resx": {
+				"blurb": "XML ki baze sou .NET dosye resous Tradui tèks enteryè a nan chak ne {dataValue}, prezève kòmantè ak metadata.",
+				"specLabel": "Microsoft Learn — Resous nan dosye .resx"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 dokiman Tradwi chak {source} epi ekri rezilta a nan {target} ki koresponn lan, mete {trgLang} pou lokal la.",
+				"specLabel": "OASIS XLIFF 2.0 spesifikasyon"
+			},
+			"po": {
+				"blurb": "GNU gettext Pòtab objè dosye Tradwi chak {msgid} / {msgidPlural} nan {msgstr} / {msgstrPlural} fòm.",
+				"specLabel": "GNU gettext — PO fòma dosye"
+			},
+			"json": {
+				"blurb": "Dosye JSON abitrè Objè enbrike yo aplati ak delimiteur {delimiter} pou tradiksyon, Lè sa a, re-enbrike sou pwodiksyon. Kle pwen ({dottedKey}) yo konsève mo",
+				"specLabel": "Espesifikasyon JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Dosye {keyValue} senp (Win32 style INI oswa nenpòt ki konfigirasyon plat) Seksyon ak kòmantè yo konsève.",
+				"specLabel": "INI fòma dosye sou Wikipedia"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI tèks resous — pè {keyValue} plat itilize kòm yon konpayon tèks {resx}.",
+				"specLabel": "Microsoft MUI apèsi sou lekòl la"
+			}
+		},
+		"roundTrip": {
+			"heading": "Retounen vwayaj garanti",
+			"body": "Suite tès la verifye byte-pou-byte wonn-tripping pou aparèy reprezantan nan chak fòma. Si yon fòma kapris kraze wonn-trip nan codebase ou, tanpri {issueLink} ak yon echantiyon minimòm.",
+			"issueLinkLabel": "Louvri yon pwoblèm"
+		}
 	},
 	"recipes": {
 		"title": "Resèt yo",
 		"eyebrow": "Liv pou kwit manje",
-		"lede": "Modèl komen pou tradiksyon anbake: monorepos, glosèr, kategori koutim, sèk kouri, ak kontwòl ton."
+		"lede": "Modèl komen pou tradiksyon anbake: monorepos, glosèr, kategori koutim, sèk kouri, ak kontwòl ton.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Louvri yon demann rale apre chak kouri"
+			},
+			"monorepo": {
+				"heading": "Monorepos: dimansyon tradiksyon pou chak pake"
+			},
+			"glossary": {
+				"heading": "Glosè pou non mak ak tèm pwodwi",
+				"intro": "Drop yon {configPath} nan repo a:",
+				"afterLabel": "apre",
+				"body": "Glossary tèm yo aplike {after} tradiksyon se konsa pwodiksyon an tradui machin kenbe mak ou pi pito menm lè modèl la te chanje li pou yon sinonim."
+			},
+			"customCategory": {
+				"heading": "Custom Tradiktè kategori (endistri / domèn)",
+				"body": "Tren yon kategori {customTranslatorLink} Azure sou yon corpus ki kaptire endistri ou vokabilè ak ton (legal, medikal, maketing, entèn-jeni, elatriye) epi pase ID li atravè {categoryId}. Sa a se levye a ton pi fò Azure ofri."
+			},
+			"tone": {
+				"heading": "Kontwòl ton + strik tonbe",
+				"body": "Konbine yon tradiktè Custom {categoryId} ak {profanityAction} ak {allowFallbackFalse} pou ranfòse yon vwa ki konsistan ak fail workflow la si kategori a chwazi pa gen yon deplwaman pou youn nan lokal sib ou."
+			},
+			"dryRun": {
+				"heading": "Sèk kouri anvan ou vire workflow la sou",
+				"body": "Aksyon an toujou emèt rezilta rezime ak yon rezime etap, men pa gen dosye yo ekri. Konbine avèk {failOnErrorFalse} sifas chak pwoblèm kòm yon avètisman pandan w ap repete."
+			}
+		}
 	},
 	"faq": {
 		"title": "FAQ",
 		"eyebrow": "Anmwe",
 		"heroTitle": "Kesyon yo poze souvan",
-		"lede": "Repons rapid nan kesyon yo ki vini pi souvan lè adopte aksyon an."
+		"lede": "Repons rapid nan kesyon yo ki vini pi souvan lè adopte aksyon an.",
+		"questions": {
+			"azure": {
+				"heading": "Ki jan aksyon an pale ak Azure?",
+				"body": "Atravè SDK ofisyèl {azureSdkLink} Microsoft a, kouch sou {corePipelineLink}. Sa vin ou otomatikman retries sou {statusCodes}, tape demann ak modèl repons, ak otantifikasyon header manyen pou gratis - tout bagay ki itilize yo dwe yon men-woule apèl {axios}. Sifas aksyon piblik la (antre, pwodiksyon, pwodiksyon dosye) se san chanje."
+			},
+			"tone": {
+				"heading": "Poukisa tradiksyon yo pafwa koupe mak oswa koupe-ton?",
+				"body": "Tradiksyon machin default nan yon modèl objektif jeneral Twa bouton ede: yon {glossaryLink} pou tèm difisil, yon {customTranslatorLink} pou modèl amann-branche ki resevwa fòmasyon sou ton ou ak vokabilè, ak {profanityAction} fwote oswa drapo tèm pwofan.",
+				"glossaryLinkLabel": "Glosè",
+				"customTranslatorLinkLabel": "Tradiktè Custom kategori"
+			},
+			"duplicateFiles": {
+				"heading": "Kouman pou mwen evite tradui menm dosye a de fwa?",
+				"body": "Deklanche workflow la sou {paths} ki matche ak dosye sous-lokal ou sèlman, egzanp {sourceGlob}. Aksyon an gen ladan tou pwòp li yo pou chak deklanche filtè dosye lè {githubToken} mete, travay etwat nan dosye nan dènye komèt la."
+			},
+			"offline": {
+				"heading": "Èske mwen ka kouri aksyon an offline?",
+				"body": "Pa egzakteman — Azure AI tradiktè se sèvo a kouri Men, ou ka kouri ak {dryRunTrue} valide analiz ak konfigirasyon san yo pa fè okenn demann HTTP pou tradiksyon."
+			},
+			"node": {
+				"heading": "Ki vèsyon Node aksyon an kouri sou?",
+				"body": "v3 kouri sou GitHub Actions {nodeRuntime} runtime. Mete JavaScript la konpatib ak nº 20, 22, ak 24, ki se sa CI tès."
+			},
+			"dist": {
+				"heading": "Ki kote {distDir} yo pake soti?",
+				"body": "Aksyon GitHub JS bato JS konpile yo nan repozitwa a. Workflow {distBuild} rebati li apre chak rantre nan {mainBranch} si li ta flote, ak {distCheck} blòk PRs ki ta peyi soti-of-dat pwodiksyon."
+			},
+			"formats": {
+				"heading": "Kouman sou lòt fòma resous?",
+				"body": "Jodi a: {resx}, {xliff}, {po}, {json}, {ini}, {restext} {issueLink} si ou bezwen yon lòt — koòdone analize a piti (analize kat → → aplike tradiksyon → fòma) ak kontribisyon yo akeyi.",
+				"issueLinkLabel": "Louvri yon pwoblèm"
+			}
+		}
 	},
 	"translations": {
 		"title": "Tradiksyon yo",
 		"eyebrow": "Vitrin",
 		"heroTitle": "Bonjou nan tout lang",
-		"locales": "lokal yo",
-		"currentlyRendered": "Kounye a rann",
-		"complete": "Ranpli !",
-		"pendingPrefix": "annatant pwochen tradwi-doks kouri",
+		"lede": "Paj sa a tradui pa Tradiktè Resous tèt li, sou chak pouse nan prensipal, nan chak lang Azure AI tradiktè sipòte.",
+		"localeCountLabel": "{count} lokal yo",
+		"statusComplete": "{translatedCount} ki rann kounye a — konplè!",
+		"statusPending": "{translatedCount} kounye a rann — {pendingCount} annatant pwochen {workflowName} a",
 		"viewWorkflowRuns": "Gade workflow kouri",
 		"filter": "Filtre",
 		"filterPlaceholder": "Search pa lang, kòd oswa non natif natal ...",
 		"source": "Sous",
 		"machineTranslations": "Tradiksyon machin",
-		"translationPending": "Tradiksyon annatant — louvri yon tradwi-docs kouri.",
+		"translationPending": "Tradiksyon annatant — louvri yon {workflowName} kouri",
 		"noLocales": "Pa gen lokal matche ak filtre sa a.",
-		"howItWorks": "Ki jan sa a fonksyone"
+		"howItWorks": {
+			"heading": "Ki jan sa a fonksyone",
+			"thisActionLabel": "aksyon sa a menm",
+			"steps": {
+				"source": "Dosye sous angle a ap viv nan {messagesPath}",
+				"workflow": "Pouse ki manyen li kòmanse {workflowLink} ki kouri {thisAction} kont tèt li.",
+				"fanOut": "Fanatik yo aksyon soti nan chak lokal Azure AI tradiktè sipòte (configuré nan {configPath}) epi ekri yon {messagesLocaleJson} frè ak sè pou chak sib.",
+				"pullRequest": "Yon demann rale louvri ak tradiksyon yo nouvo. Fusion li republishs paj sa a ak kat yo ranpli nan."
+			}
+		},
+		"poweredBy": "Powered by Resource Translator ak Azure AI Translator"
 	},
 	"contributing": {
 		"title": "Kontribye",
 		"eyebrow": "Louvri sous",
-		"lede": "Rapò ensèk, demann karakteristik, ak demann rale yo tout akeyi. Aksyon an se ti ase yo dwe zanmitay pou premye fwa kontribitè."
+		"lede": "Rapò ensèk, demann karakteristik, ak demann rale yo tout akeyi. Aksyon an se ti ase yo dwe zanmitay pou premye fwa kontribitè.",
+		"localDevelopment": {
+			"heading": "Devlopman lokal yo"
+		},
+		"addingParser": {
+			"heading": "Ajoute yon analizè",
+			"steps": {
+				"fixture": "Ajoute yon aparèy anba {testDataDir}",
+				"implement": "Aplike {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap})",
+				"register": "Enskri li nan {factoryFile}",
+				"extension": "Ajoute ekstansyon dosye a {translationFileSchemes} nan {finderFile}",
+				"tests": "Ekri tès roundtrip pou fòma analize → epi aplikeTranslations"
+			}
+		},
+		"coverage": {
+			"heading": "Papòt pwoteksyon yo",
+			"body": "Jwèt la config ranfòse pwoteksyon minimòm Nouvo kòd dwe kenbe deklarasyon yo + liy papòt pi wo a 78% ak fonksyon pi wo a 90%. Ajoute aparèy ak tès ansanm ak chanjman ou an."
+		},
+		"docsSite": {
+			"heading": "Sit dokimantasyon",
+			"body": "Katab {docsDir} se yon pwojè Astro 6 + Tailwind v4. Kouri {npmInstall} gen yon fwa, Lè sa a, {npmRunDev} pou preview lokal yo. Workflow {pagesWorkflow} bato docs nan GitHub Paj sou chak fizyon."
+		}
 	},
 	"changelog": {
 		"title": "Chanjman boutèy demi lit",
 		"eyebrow": "Istwa",
-		"lede": "Segondè rezime nivo degaje Changelog kanonik, autorité ap viv nan CHANGELOG.md nan depo a."
+		"lede": "Segondè rezime nivo degaje Changelog kanonik, autorité ap viv nan CHANGELOG.md nan depo a.",
+		"fullRecord": "Gade {changelogLink} pou dosye konplè a",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (nan devlopman)",
+			"labels": {
+				"breaking": "KRAZE",
+				"resilience": "Rezilyans:",
+				"placeholderProtection": "Pwoteksyon Placeholder:",
+				"perKeyOptOut": "Pou chak kle opt-out:",
+				"docsAccessibility": "Aksesib Docs:",
+				"inlineCodeStyling": "Inline kòd style:"
+			},
+			"issueLabels": {
+				"closes46": "Fèmen #46",
+				"tightens16": "Sere boulon # 16",
+				"closes35": "Fèmen # 35"
+			},
+			"items": {
+				"runtime": "Monte nan {nodeRuntime} kouri ({breaking})",
+				"newInputs": "Nouvo antre: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError} plis avanse Translator bouton {textType}, {profanityAction}, {profanityMarker} ak {allowFallback}.",
+				"sourceLocale": "Sous lokalite se kounye a tou voye nan tradiktè kòm {fromLocale} se konsa strings kout yo pa otodetekte.",
+				"resilience": "{label} reeseye otomatik sou repons HTTP pasajè ({statusCodes}) onore {retryAfter} Azure a — tonbe tounen nan jittered eksponansyèl dèyè lè absan. Tunable via {maxRetries} ak {retryBackoffMs} {issue}",
+				"placeholderProtection": "{label} siy tankou {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ak antite HTML yo vlope nan santinel anvan tradiksyon ak retabli apre sa, se konsa tradiktè sispann mangling i18next / moustache / gidon / .NET / printf placeholders. Vire via {protectPlaceholders}; Pwolonje ak {customPlaceholderPatterns} {issue}",
+				"perKeyOptOut": "{label} nouvo {noTranslatePatterns} opinyon gout matche kle ki soti nan demann lan tradiktè antyèman (prezève valè sous pou non mak, kòd erè, elatriye). Matche ak modèl glob kont kle parser-nivo (JSON pwen kou, RESX {resxName}, PO {poMsgid}, XLIFF inite {xliffId}, INI / kle retext). {issue}",
+				"repoConfig": "Repo-nivo config via {configPath}.",
+				"glossary": "Glosè sipò, rezime etap pa {coreSummary}",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig",
+				"audit": "NPM odit pwòp (0 frajilite)",
+				"docsSite": "Astro + Tailwind v4 docs sit ak tranzisyon View ak Kòd Espresif",
+				"docsAccessibility": "{label} WCAG 2.1 AA pase Glyphs logo konvèti nan chemen pou yo pa fail koulè-kontras kont arè gradyan ankò, bouton an {backToTop} k ap flote itilize {inert} pandan y ap kache (olye pou yo yon {ariaHidden} toggle ki kite li tabbable), {formatsAstro} seksyon pa gen okenn ankò fè kolizyon ak ID oto-pwodwi yo, twa kat lokal kounye a ekspoze BCP-47-valab {lang} atribi ({nya}, {lug}, {run}), doub {documentation} etikèt bòn tè yo disambiguated ant ankadre ak footer,  ak chak tablo done sou {inputs} / {configuration} bato ak yon caption ekran-lektè.",
+				"inlineCode": "{label} Docs {codeElement} kounye a mete aksan tèm cho / amber - diferan de palèt mak→aksan yo itilize pou lyen ak.",
+				"automation": "Dependabot oto-rantre , CodeQL eskane CI matris"
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Gade git istwa"
+		}
 	}
 }

@@ -18,18 +18,26 @@
 			"node": "Uzol 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "getText",
+			"json": "vnorené alebo ploché",
+			"ini": "{keyValue}",
+			"restext": "Text MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Šesť formátov súborov",
-				"body": "Spiatočné formáty .resx, .xliff, .po, .json, .ini a .restext s formátovaním stabilným podľa bajtov."
+				"body": "Spiatočné cesty {resx}, {xliff}, {po}, {json}, {ini} a {restext} s formátovaním stabilným na bajty."
 			},
 			"config": {
 				"title": "Konfigurácia na úrovni repozitára",
-				"body": "Vložte .github/resource-translator.yml aby ste zahrnuli globy, glosáre a kategórie Custom Translator."
+				"body": "Vytvorte {configPath} súbor pre zahrnutie globov, slovníkov a kategórií vlastného prekladača."
 			},
 			"glossary": {
 				"title": "Glosárom vedomý",
-				"body": "Uzamknite názvy značiek a produktové termíny inteligentným regexom hraníc slov, ktorý spracováva C++, .NET a ďalšie produkty."
+				"body": "Uzamknite názvy značiek a produktové termíny inteligentným pravidlom hraníc slov, ktoré spracovávajú {cpp}, {dotnet} a priateľov."
 			},
 			"dryRun": {
 				"title": "Skúšobný pokus + mäkký neúspech",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR-friendly výstupy",
-				"body": "Summary-Title, Summary-Details a Has-New-Translations sa priamo zaradia do create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails} a {hasNewTranslations} priamo zapadajú do create-pull-request."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "Postavený na @azure-rest/ai-translation-text + @azure/core-rest-pipeline — automatické pokusy na 408/429/5xx, bez ručne vytvoreného HTTP. esbuild-bundle, audit-clean."
+				"body": "Postavené na {azureSdk} + {corePipeline} — automatické opakovania na {statusCodes}, žiadny ručne vytváraný HTTP. {esbuild} balíky, audity čisté."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Pracovný postup s drop-in",
+			"titlePrefix": "Kopírovať. Vkladať.",
+			"titleAccent": "Prekladaj.",
+			"body": "Tri tajomstvá, štyri riadky a váš repozitár je pri ďalšom pushi viacjazyčný.",
+			"setupLink": "Prejdite si celé nastavenie"
+		},
+		"cta": {
+			"title": "Ste pripravení lokalizovať na autopilota?",
+			"body": "Jeden kľúč Azure AI Translator, jeden workflow súbor. Resource Translator sa postará o zvyšok.",
+			"button": "Začnite"
 		}
 	},
 	"getting-started": {
 		"title": "Začiatky",
 		"eyebrow": "Príprava",
-		"lede": "Pridajte workflow súbor, nasmerujte ho na vaše Azure AI Translator prihlasovacie údaje a akcia — postavená na oficiálnom SDK Microsoft @azure-rest/ai-translation-text — prehľadá repozitár na zdrojové súbory a vygeneruje preložené súrodenky.",
+		"lede": "Pridajte workflow súbor, nasmerujte ho na vaše Azure AI Translator prihlasovacie údaje a akcia prehľadá repozitár na zdrojové súbory zdrojov a vygeneruje preložené súrodencov.",
 		"steps": {
 			"provision": {
 				"title": "Provisioning a Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Pridajte workflow",
-				"body": "Vytvorte .github/workflows/translate.yml:"
+				"body": "Vytvorte {workflowPath}:"
 			},
 			"resource": {
 				"title": "Commitujte zdrojový resource súbor",
-				"body": "Súbory zdrojov používajú názov (Name). .<sourceLocale> <ext> konvencii. Napríklad Greetings.en.resx sa po behu zmení na Greetings.fr.resx, Greetings.de.resx a tak ďalej."
+				"body": "Súbory zdrojov používajú {namingConvention} konvenciu. Napríklad {sourceFile} sa po behu zmení na {frFile}, {deFile} a tak ďalej."
 			},
 			"output": {
 				"title": "Skontrolujte výstup",
-				"body": "Keď workflow skončí, akcia odhalí tri výstupy, ktoré môžete prepojiť do PR popisu: summary-title, summary-details a has-new-translations. Tiež zapíše zhrnutie Markdownu na stránku práce cez core.summary."
+				"body": "Keď workflow skončí, akcia odhalí tri výstupy, ktoré môžete zapojiť do PR popisu: {summaryTitle}, {summaryDetails} a {hasNewTranslations}. Tiež zapíše zhrnutie Markdownu na stránku práce cez {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Ďalšie kroky",
-			"configuration": "Nastavte predvolené nastavenia na úrovni repozitára pomocou .github/resource-translator.yml.",
+			"configuration": "Nastavte predvolené nastavenia na úrovni repozitára pomocou {configPath}.",
 			"recipes": "Pozrite si recepty na monorepo, vlastné slovníky a kategórie vlastných prekladateľov."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Konfigurácia",
 		"eyebrow": "YAML",
 		"heroTitle": "Konfigurácia repozitára",
-		"lede": "Express defaultuje raz v .github/resource-translator.yml a necháva každý workflow ich zdediť. Akčné vstupy vždy vyhrajú, keď sú obe poskytnuté."
+		"lede": "Express defaultuje raz v konfiguračnom súbore repozitára a necháva každý workflow ich zdediť. Akčné vstupy vždy vyhrajú, keď sú obe poskytnuté.",
+		"intro": "Ak potrebujete nepredvolenú polohu, prepíšte cestu vstupom {configPath}.",
+		"schemaHeading": "Schéma",
+		"fieldReference": {
+			"heading": "Terénna referencia",
+			"caption": "Referenčné pole konfigurácie",
+			"columns": {
+				"field": "Pole",
+				"type": "Typ",
+				"notes": "Poznámky"
+			},
+			"fields": {
+				"sourceLocale": "Ak nie je nastavený, vracia sa späť na vstup {sourceLocale}. Tiež som {fromLocale} preposlal do Translatoru, aby sa krátke reťazce nedetekovali automaticky.",
+				"toLocales": "Buď pole alebo reťazec oddelený čiarkou.",
+				"includeExclude": "Globové vzory vyhodnocované voči absolútnym a pracovnému priestoru relatívnym cestám.",
+				"glossary": "Prepisy termínov po preklade. Vníma hranice slov (ovláda {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} kategória — váš odvetvie/doménový ovládač (právny, medicínsky, marketingový tón atď.). Odoslané ako {categoryQuery}.",
+				"textType": "Predvolene sa zobrazuje na {plain}. Používajte {html} len vtedy, ak vaše hodnoty zdrojov obsahujú skutočné HTML fragmenty.",
+				"profanityAction": "Ako zaobchádzať s vulgánnymi výrazmi v preloženom výstupe.",
+				"profanityMarker": "Zmysluplné len vtedy, keď {profanityAction} {marked}.",
+				"allowFallback": "Nastavte {false}, aby preklad zlyhal, keď váš {categoryId} nemá nasadenie pre cieľové miesto, namiesto toho, aby ste sa vrátili k všeobecnému modelu.",
+				"apiVersion": "Translator REST API verzia. Predvolene sa zobrazuje na {version}.",
+				"maxRetries": "Maximálny počet pokusov o opakované pokusy pri prechodných HTTP odpovediach ({statusCodes}). Predvolene {defaultRetries}. Celkový počet HTTP hovorov na požiadavku je {totalCalls}.",
+				"retryBackoffMs": "Obmedzte (ms) pri akomkoľvek jednorazovom spánku. Predvolene sa zobrazuje na {defaultBackoff}. Hlavička {retryAfter} v Azure je ctená presne vtedy, keď je prítomná; inak sa používa kolísaný exponenciálny spätný ústup, obmedzený na túto hodnotu.",
+				"protectPlaceholders": "Predvolene sa zobrazuje na {true}. Keď sú zapnuté, tokeny ako {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} a HTML entity sú pred prekladom nahradené sentinel tokenmi a obnovené po preklade. Vypnúť len vtedy, keď zdrojový kód zámerne obsahuje literály v tvare zástupcov.",
+				"customPlaceholderPatterns": "Dodatočné regex vzory (bez oddeľovačov) pridané do predvolenej sady zástupcov, napr. {angleToken} pre vlastnú syntax tokenov. Neplatné regexy sa ignorujú.",
+				"noTranslatePatterns": "Glob vzory sa zhodovali s kľúčmi na úrovni parsera (JSON bodkovaná cesta, RESX {resxName}, PO {poMsgid}, jednotka XLIFF {xliffId}, INI/restext kľúč). Zodpovedajúce kľúče sa z požiadavky vypustia a prejdú s zachovanou zdrojovou hodnotou."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Poradie nakladania",
+			"steps": {
+				"actionInputs": "Akcia číta explicitné vstupy z pracovného postupu.",
+				"config": "Načíta YAML konfiguráciu z {configPath}.",
+				"precedence": "Pre každé zdieľané pole vyhráva vstup; inak sa používa hodnota YAML.",
+				"validation": "Zlúčené hodnoty sú overené. Neplatné enumy (napr. {invalidEnum}) spôsobia, že akcia rýchlo zlyhá s jasnou správou."
+			}
+		},
+		"tone": {
+			"heading": "Tón a priemysel, jednoducho",
+			"body": "API Azure AI Translator v3 nemá jediný tónový gombík. Dve nastavenia sa kombinujú, aby vám dali väčšinu rovnakého ovládania:",
+			"industryLabel": "Odvetvie / oblasť:",
+			"industryBody": "Použite {categoryId} na označenie kategórie Azure {customTranslatorLink} trénovanej na vašom vlastnom korpuse — právnej, technickej, lekárskej, marketingovej alebo akejkoľvek inej. Toto je najsilnejší nástroj pre tón, hlas značky a slovnú zásobu.",
+			"surfaceLabel": "Text na povrchu:",
+			"surfaceBody": "Použite {glossaryLink} na doslovné uzamknutie značiek a produktových termínov a použite {profanityAction} na odstránenie vulgárnych výrazov pri cielení na lokalizáciu pre mladšie publikum.",
+			"glossaryLinkLabel": "Slovník slovníka"
+		}
 	},
 	"inputs": {
 		"title": "Vstupy a výstupy",
 		"eyebrow": "Referencie",
-		"lede": "Každý vstup je tiež akceptovaný v voliteľnom konfiguračnom súbore repozitára. Keď sú obe nastavené, vyhráva akcia."
+		"lede": "Každý vstup je tiež akceptovaný v voliteľnom konfiguračnom súbore repozitára. Keď sú obe nastavené, vyhráva akcia.",
+		"configurationIntro": "Pozri {configurationLink} pre schému YAML a poradie načítania.",
+		"configurationLinkLabel": "Konfigurácia",
+		"columns": {
+			"name": "Názov",
+			"default": "Predvolený stav",
+			"description": "Popis"
+		},
+		"defaults": {
+			"none": "žiadna",
+			"allSupported": "všetky podporované",
+			"translatorDefaultTrue": "true (predvolený prekladateľ)"
+		},
+		"requiredInputs": {
+			"heading": "Požadované vstupy",
+			"caption": "Požadované vstupy",
+			"items": {
+				"sourceLocale": "Zdrojová lokalita (napr. {en}) sa používa na vyhľadávanie zdrojových súborov, ako je {sourceGlob}. Tiež preposlané prekladateľovi ako {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator subscription key. Prejdite cez {secrets}.",
+				"endpoint": "URL endpointu prekladača, napr. {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Bežné voliteľné vstupy",
+			"caption": "Bežné voliteľné vstupy",
+			"items": {
+				"region": "Región zdrojov prekladača (vynechať pre globálne zdroje).",
+				"toLocales": "Miesta na preklad. Akceptuje JSON pole ({jsonArray}) alebo hodnoty oddelené čiarkami.",
+				"include": "Vzory gúľ oddelené newline; prekladajú sa len zhodné súbory.",
+				"exclude": "Vzory gúľ oddelené newline; zhodné súbory sa preskakujú (aplikované po zahrnutí).",
+				"configPath": "Cesta k YAML konfiguračnému súboru (vzhľadom na koreňový súbor pracovného priestoru).",
+				"dryRun": "Keď {true}, spúšťajte preklady a generujte zhrnutia, ale nezapisujte súbory.",
+				"failOnError": "Keď {true}, nečakané chyby akciu zlyhajú; Keď {false}, chyby sú varovania."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Požiadavky na vstupy prekladateľa",
+			"intro": "Tieto sa priamo mapujú na parametre dotazu Azure AI Translator v3. Každý je voliteľný; predvolené nastavenia prekladateľa platia, keď nie sú nastavené.",
+			"caption": "Požiadavky na vstupy prekladateľa",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} kategória — gombík priemysel/doména/tón. Preposlané ako {categoryQuery}.",
+				"textType": "{plain} alebo {html}. Používajte {html} len vtedy, keď sú vaše hodnoty zdrojov skutočné HTML fragmenty.",
+				"profanityAction": "{noAction}, {marked} alebo {deleted}. Kontroluje, ako sa vulgárne výrazy používajú v prekladoch.",
+				"profanityMarker": "{asterisk} alebo {tag}. Zmysluplné len vtedy, keď {profanityAction} {marked}.",
+				"allowFallback": "Keď {false}, Translator vráti chybu namiesto toho, aby sa vrátil k všeobecnému systému, ak váš {categoryId} nemá nasadenie pre cieľové miesto.",
+				"apiVersion": "Translator REST API verzia."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Odolnosť a ochrana zástupcov",
+			"intro": "Tieto vstupy riadia, ako sa akcia správa, keď Translator obmedzí vašu požiadavku, a ako chráni dočasné tokeny ako {mustache} alebo {indexZero} pred poškodením počas prekladu.",
+			"caption": "Vstupy na ochranu odolnosti a zástupcov",
+			"items": {
+				"maxRetries": "Maximálny počet pokusov o opakované pokusy pri prechodných HTTP odpovediach ({statusCodes}). Celkový počet HTTP volaní na požiadavku je {totalCalls}.",
+				"retryBackoffMs": "Obmedzte (v milisekundách) pri akomkoľvek jedinom spánku s odstupom. Akcia rešpektuje {retryAfter} odpoveď hlavičky Azure presne vtedy, keď je prítomná; inak používa kolísaný exponenciálny spätný ústup obmedzený na túto hodnotu.",
+				"protectPlaceholders": "Keď {true} (predvolené), zástupné entity ako {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} a HTML entity sú pred prekladom nahradené sentinel tokenmi a obnovené po preklade. Vypnite len vtedy, keď váš zdroj zámerne obsahuje doslovný text v tvare zástupcov, ktorý by mal byť preložený.",
+				"customPlaceholderPatterns": "Regexy oddelené od nových riadkov (bez oddeľovačov) boli pridané do predvolenej sady zástupcov, napr. {angleToken} pre vlastnú syntax tokenov.",
+				"noTranslatePatterns": "Vzory globov oddelené po novom riadku sa zhodovali s kľúčmi na úrovni parsera (JSON bodkovaná cesta, RESX {resxName}, PO {poMsgid}, jednotka XLIFF {xliffId}, INI/restext kľúč). Zodpovedajúce kľúče sa vyhadzujú z požiadavky Translator a prechádzajú s zachovanou zdrojovou hodnotou."
+			}
+		},
+		"outputs": {
+			"heading": "Výstupy",
+			"caption": "Výstupy",
+			"items": {
+				"summaryTitle": "Krátke zhrnutie vhodné pre PR, napríklad {summaryExample}.",
+				"summaryDetails": "Zhrnutie Markdownu vhodné pre PR orgán alebo súhrn pracovných pozícií.",
+				"hasNewTranslations": "{trueString}, keď sa generoval jeden alebo viac nových prekladov."
+			}
+		}
 	},
 	"formats": {
 		"title": "Formáty súborov",
 		"eyebrow": "Referencie",
 		"heroTitle": "Podporované formáty súborov",
-		"lede": "Šesť formátov zdrojov s možnosťou spiatočnej cesty. Akcia prečíta každý súbor zdrojového miesta, preloží hodnoty a zapíše súrodenca pre každú cieľovú lokalitu."
+		"lede": "Šesť formátov zdrojov s možnosťou spiatočnej cesty. Akcia prečíta každý súbor zdrojového miesta, preloží hodnoty a zapíše súrodenca pre každú cieľovú lokalitu.",
+		"namingConvention": "Všetky súbory používajú {namingConvention} pomenovanie.",
+		"learnMore": "Zistite viac",
+		"items": {
+			"resx": {
+				"blurb": "XML-založené .NET resource súbory. Prekladá vnútorný text každého {dataValue} uzla, zachováva komentáre a metadáta.",
+				"specLabel": "Microsoft Learn — Zdroje v .resx súboroch"
+			},
+			"xliff": {
+				"blurb": "Dokumenty OASIS XLIFF 2.0. Preloží každý {source} a zapíše výsledok do zodpovedajúcej {target}, čím nastaví {trgLang} pre lokalitu.",
+				"specLabel": "Špecifikácia OASIS XLIFF 2.0"
+			},
+			"po": {
+				"blurb": "GNU gettext prenosné objektové súbory. Prekladá každý {msgid} / {msgidPlural} do {msgstr} / {msgstrPlural} foriem.",
+				"specLabel": "GNU gettext — PO formát súboru"
+			},
+			"json": {
+				"blurb": "Ľubovoľné JSON súbory. Vnorené objekty sa sploštia s {delimiter} oddeľovačom pre transláciu a potom sa na výstupe znovu vnoria. Bodkované klávesy ({dottedKey}) sa zachovávajú doslovne.",
+				"specLabel": "Špecifikácia JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Jednoduché {keyValue} súbory (Win32-štýlový INI alebo akákoľvek plochá konfigurácia). Hlavičky sekcií a komentáre sú zachované.",
+				"specLabel": "INI formát súboru na Wikipédii"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI textové zdroje — ploché {keyValue} páry používané ako textový sprievodca k {resx}.",
+				"specLabel": "Prehľad Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Záruky spiatočnej cesty",
+			"body": "Testovacia sada overuje bajt-po-bajt round-tripovanie pre reprezentatívne fixture každého formátu. Ak sa vo vašom kóde nejaká formátová zvláštnosť poruší round-tripping, prosím, {issueLink} s minimálnou vzorkou.",
+			"issueLinkLabel": "otvoriť problém"
+		}
 	},
 	"recipes": {
 		"title": "Recepty",
 		"eyebrow": "Kuchárska kniha",
-		"lede": "Bežné vzory pri preprave prekladov: monorepo, glosáre, vlastné kategórie, skúšobné skúšky a kontrola tónu."
+		"lede": "Bežné vzory pri preprave prekladov: monorepo, glosáre, vlastné kategórie, skúšobné skúšky a kontrola tónu.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Po každom spustení otvorte pull request"
+			},
+			"monorepo": {
+				"heading": "Monorepos: preklad rozsahu na balík"
+			},
+			"glossary": {
+				"heading": "Slovník pre názvy značiek a produktové termíny",
+				"intro": "Vložte {configPath} do repozitára:",
+				"afterLabel": "Po",
+				"body": "Pojmy zo slovníka sa používajú {after} preklad, takže strojovo preložený výstup zachováva vašu preferovanú značku aj vtedy, keď ju model vymenil za synonymum."
+			},
+			"customCategory": {
+				"heading": "Kategória vlastných prekladačov (odvetvie / doména)",
+				"body": "Natrénujte Azure {customTranslatorLink} kategóriu na korpuse, ktorý zachytáva vašu slovnú zásobu a tón v odvetví (právne, medicínske, marketingové, interné inžinierstvo atď.) a odovzdajte jej ID cez {categoryId}. Toto je najsilnejšia tónová páka, akú Azure ponúka."
+			},
+			"tone": {
+				"heading": "Ovládanie tónu + prísny záložný systém",
+				"body": "Skombinujte {categoryId} vlastného prekladača s {profanityAction} a {allowFallbackFalse}, aby ste zabezpečili konzistentný hlas a zlyhali v pracovnom postupe, ak vybraná kategória nemá nasadenie pre jednu z vašich cieľových lokalít."
+			},
+			"dryRun": {
+				"heading": "Pred zapnutím pracovného postupu si urobte skúšobnú skúšku",
+				"body": "Akcia stále generuje súhrnné výstupy a zhrnutie kroku, ale súbory sa nepíšu. Kombinujte s {failOnErrorFalse} tak, aby ste každý problém odhalili ako varovanie počas iterácie."
+			}
+		}
 	},
 	"faq": {
 		"title": "FAQ",
 		"eyebrow": "Pomoc",
 		"heroTitle": "Často kladené otázky",
-		"lede": "Rýchle odpovede na otázky, ktoré sa najčastejšie objavujú pri prijímaní akcie."
+		"lede": "Rýchle odpovede na otázky, ktoré sa najčastejšie objavujú pri prijímaní akcie.",
+		"questions": {
+			"azure": {
+				"heading": "Ako akcia komunikuje s Azure?",
+				"body": "Prostredníctvom oficiálneho {azureSdkLink} SDK od Microsoftu, vrstveného na {corePipelineLink}. To vám umožní automatické opakované pokusy na {statusCodes}, modely písaných požiadaviek a odpovedí a spracovanie autentifikačných hlavičiek zadarmo — všetko, čo kedysi bolo ručne vytvárané {axios} hovory. Verejná akčná plocha (vstupy, výstupy, výstupy súborov) zostáva nezmenená."
+			},
+			"tone": {
+				"heading": "Prečo sú preklady niekedy mimo značky alebo mimo tónu?",
+				"body": "Strojový preklad sa automaticky používa na univerzálny model. Pomáhajú tri gombíky: {glossaryLink} na tvrdé prepísanie termínov, {customTranslatorLink} na jemne vyladené modely trénované podľa vášho tónu a slovnej zásoby a {profanityAction} na odstránenie alebo označenie vulgárnych výrazov.",
+				"glossaryLinkLabel": "Slovník slovníka",
+				"customTranslatorLinkLabel": "Kategória vlastných prekladačov"
+			},
+			"duplicateFiles": {
+				"heading": "Ako sa vyhnúť prekladu toho istého súboru dvakrát?",
+				"body": "Spustite workflow na {paths}, ktoré zodpovedajú len súborom source-locale, napríklad {sourceGlob}. Akcia tiež obsahuje vlastný filter súborov pre každý spúšťač, keď je {githubToken} nastavený, čím sa práca zužuje na súbory v najnovšom commite."
+			},
+			"offline": {
+				"heading": "Môžem spustiť akciu offline?",
+				"body": "Nie presne — Azure AI Translator je mozog za behu. Ale môžete spustiť {dryRunTrue} na overenie parsovania a konfigurácie bez toho, aby ste museli robiť HTTP požiadavky na preklad."
+			},
+			"node": {
+				"heading": "Na akej verzii Node táto akcia beží?",
+				"body": "v3 beží na GitHub Actions {nodeRuntime} runtime. Priložený JavaScript je kompatibilný s uzlami 20, 22 a 24, ktoré CI testuje."
+			},
+			"dist": {
+				"heading": "Odkiaľ pochádzajú balíkové {distDir}?",
+				"body": "GitHub JS akcie posielajú svoj skompilovaný JS do repozitára. Workflow {distBuild} ho po každom zlúčení prebuduje, aby {mainBranch}, či by sa neposunul, a {distCheck} blokuje PR, ktoré by priniesli zastaraný výstup."
+			},
+			"formats": {
+				"heading": "A čo iné formáty zdrojov?",
+				"body": "Dnes: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} ak potrebujete ďalší — rozhranie parsera je malé (parsovať → mapovať → aplikovať preklady → formát) a príspevky sú vítané.",
+				"issueLinkLabel": "Otvorte číslo"
+			}
+		}
 	},
 	"translations": {
 		"title": "Preklady",
 		"eyebrow": "Showcase",
 		"heroTitle": "Ahoj v každom jazyku",
-		"locales": "Lokality",
-		"currentlyRendered": "Aktuálne renderované",
-		"complete": "Dokončené!",
-		"pendingPrefix": "Čaká na ďalšiu sériu Translate-Docs.",
+		"lede": "Táto stránka je prekladaná samotným Resource Translatorom pri každom pushi na main, do každého jazyka, ktorý Azure AI Translator podporuje.",
+		"localeCountLabel": "{count} lokality",
+		"statusComplete": "{translatedCount} momentálne vykreslené — dokončené!",
+		"statusPending": "{translatedCount} momentálne vykresľované — {pendingCount} čaká na ďalšie {workflowName} spustenie.",
 		"viewWorkflowRuns": "Zobraziť behy pracovných tokov",
 		"filter": "Filter",
 		"filterPlaceholder": "Vyhľadávajte podľa jazyka, kódu alebo rodeného mena...",
 		"source": "Zdroj",
 		"machineTranslations": "Strojové preklady",
-		"translationPending": "Preklad čaká — otvorte spustenie prekladateľskej dokumentácie.",
+		"translationPending": "Preklad čaká — otvorte {workflowName} beh.",
 		"noLocales": "Žiadna lokalita sa tomuto filtru nevyrovná.",
-		"howItWorks": "Ako to funguje"
+		"howItWorks": {
+			"heading": "Ako to funguje",
+			"thisActionLabel": "Práve tento čin",
+			"steps": {
+				"source": "Anglický zdrojový súbor sa nachádza na {messagesPath}.",
+				"workflow": "Tlačí ten dotyk a odkopne {workflowLink}, ktorý {thisAction} narazí sám na seba.",
+				"fanOut": "Akcia sa rozšíri do všetkých lokalít podporovaných Azure AI Translatorom (nakonfigurovaných v {configPath}) a napíše súrodeneckú {messagesLocaleJson} na každý cieľ.",
+				"pullRequest": "Otvorí sa pull request s novými prekladmi. Zlúčením sa táto stránka znovu zverejní s vyplnenými kartami."
+			}
+		},
+		"poweredBy": "Poháňané Resource Translatorom a Azure AI Translatorom."
 	},
 	"contributing": {
 		"title": "Príspevky",
 		"eyebrow": "Open source",
-		"lede": "Hlásenia chýb, požiadavky na funkcie a pull requesty sú vítané. Akcia je dostatočne malá na to, aby bola priateľská pre nováčikov."
+		"lede": "Hlásenia chýb, požiadavky na funkcie a pull requesty sú vítané. Akcia je dostatočne malá na to, aby bola priateľská pre nováčikov.",
+		"localDevelopment": {
+			"heading": "Miestny rozvoj"
+		},
+		"addingParser": {
+			"heading": "Pridanie parsera",
+			"steps": {
+				"fixture": "Pridajte svietidlo pod {testDataDir}.",
+				"implement": "Implementujte {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Zaregistrujte ho v {factoryFile}.",
+				"extension": "Pridajte príponu súboru k {translationFileSchemes} v {finderFile}.",
+				"tests": "Píšte okružné testy na parsovanie → formátovanie a aplikujte preklady."
+			}
+		},
+		"coverage": {
+			"heading": "Prahy pokrytia",
+			"body": "Konfigurácia Jest vyžaduje minimálne pokrytie. Nový kód musí udržiavať prah príkazov + riadkov nad 78 % a funkcie nad 90 %. Pridajte príslušenstvo a testy spolu so zmenou."
+		},
+		"docsSite": {
+			"heading": "Stránka dokumentácie",
+			"body": "Priečinok {docsDir} je projekt Astro 6 + Tailwind v4. Spusti {npmInstall} tam raz, potom {npmRunDev} na lokálnu ukážku. Workflow {pagesWorkflow} posiela dokumentáciu do GitHub Pages pri každom zlúčení."
+		}
 	},
 	"changelog": {
 		"title": "Changelog",
 		"eyebrow": "História",
-		"lede": "Prehľad vydaní na vysokej úrovni. Kanonický, autoritatívny changelog sa nachádza CHANGELOG.md v repozitári."
+		"lede": "Prehľad vydaní na vysokej úrovni. Kanonický, autoritatívny changelog sa nachádza CHANGELOG.md v repozitári.",
+		"fullRecord": "Pozri {changelogLink} pre kompletný záznam.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "V3 (vo vývoji)",
+			"labels": {
+				"breaking": "BREAKING",
+				"resilience": "Odolnosť:",
+				"placeholderProtection": "Ochrana zástupcov:",
+				"perKeyOptOut": "Odhlásenie za každý kľúč:",
+				"docsAccessibility": "Dostupnosť dokumentov:",
+				"inlineCodeStyling": "Inline štýlovanie kódu:"
+			},
+			"issueLabels": {
+				"closes46": "Uzatvára #46.",
+				"tightens16": "Sprísni #16.",
+				"closes35": "Uzatvára #35."
+			},
+			"items": {
+				"runtime": "Posunulo sa na {nodeRuntime} čas behu ({breaking}).",
+				"newInputs": "Nové vstupy: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, plus pokročilé gombíky prekladača {textType}, {profanityAction}, {profanityMarker} a {allowFallback}.",
+				"sourceLocale": "Zdrojové prostredie je teraz tiež preposielané do Translatoru ako {fromLocale} aby sa krátke reťazce nedetekovali automaticky.",
+				"resilience": "{label} automatické opakovanie pri prechodných HTTP odpovediach ({statusCodes}), ktoré rešpektuje {retryAfter} hlavičku Azure — keď chýba, sa vracia k trhanému exponenciálnemu cúvaniu. Nastaviteľné cez {maxRetries} a {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} tokeny ako {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} a HTML entity sú pred prekladom zabalené do sentinelov a potom obnovené, takže Translator prestane upravovať zástupce i18next/Mustache/Handlebars/.NET/printf. Prepínanie cez {protectPlaceholders}; Rozšírte s {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} nový vstup {noTranslatePatterns} úplne vynecháva zodpovedajúce kľúče z požiadavky Translator (zachováva zdrojové hodnoty pre značky, chybové kódy a pod.). Porovnáva globové vzory s kľúčmi na úrovni parsera (JSON bodkovaná cesta, RESX {resxName}, PO {poMsgid}, XLIFF jednotka {xliffId}, INI/restext kľúč). {issue}",
+				"repoConfig": "Konfigurácia na úrovni repozitára cez {configPath}.",
+				"glossary": "Podpora slovníka, zhrnutie krokov cez {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM audit čistý (0 zraniteľností).",
+				"docsSite": "Astro + Tailwind v4 dokumentácia s prechodmi pohľadov a Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. Glyfy loga sa konvertovali na cesty, takže už neprechádzajú farebným kontrastom proti gradientovým zastaveniam, plávajúce tlačidlo {backToTop} používa {inert}, keď je skryté (namiesto {ariaHidden} prepínača, ktorý by ho umožnil na kartovanie), {formatsAstro} sekcie už nekolidujú so svojimi automaticky generovanými ID nadpisov, tri karty lokality teraz odhaľujú atribúty {lang} platné podľa BCP-47 ({nya}, {lug}, {run}), duplicitné {documentation} značky orientačných značiek sú rozlíšené medzi bočným panelom a pätou,  a každá dátová tabuľka na {inputs}/{configuration} je dodávaná s popisom na čítačke obrazovky.",
+				"inlineCode": "{label} docs prose {codeElement} teraz nosí teplý/jantárový akcent — odlišný od značky→akcentovej palety používanej na odkazy a nadpisy.",
+				"automation": "Dependabot auto-merge, CodeQL skenovanie, CI matica."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Pozri históriu gitu."
+		}
 	}
 }

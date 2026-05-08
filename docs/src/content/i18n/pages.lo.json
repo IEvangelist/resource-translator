@@ -18,18 +18,26 @@
 			"node": "ໂນດ 20 / 22 / 24",
 			"sdk": "Azure SDK ທາງການ"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "ຮັງ ຫຼື ຮາບ",
+			"ini": "{keyValue}",
+			"restext": "ຂໍ້ຄວາມ MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "ຫົກຮູບແບບແຟ້ມ",
-				"body": "ການເດີນທາງໄປມາ .resx, .xliff, .po, .json, .ini ແລະ .restext ດ້ວຍການຈັດຮູບແບບທີ່ຫມັ້ນຄົງຂອງ byte."
+				"body": "ການເດີນທາງໄປມາ {resx}, {xliff}, {po}, {json}, {ini} ແລະ {restext} ດ້ວຍການຈັດຮູບແບບທີ່ຫມັ້ນຄົງ."
 			},
 			"config": {
 				"title": "ຄ່າຕັ້ງລະດັບ repo",
-				"body": "ວາງ .github / resource-translator.yml ສໍາ ລັບ ລວມ ທັງ globs, glossaries ແລະ Custom Translator categories."
+				"body": "ວາງ ແຟ້ມ {configPath} ສໍາ ລັບ ລວມ ທັງ globs, glossaries, ແລະ Custom Translator categories."
 			},
 			"glossary": {
 				"title": "ຄໍາສັບທີ່ຮູ້ຈັກ",
-				"body": "ລ໊ອກຊື່ແບຣນແລະຄໍາສັບຂອງຜະລິດຕະພັນດ້ວຍ regex ຂອບເຂດຄໍາສັບທີ່ສະຫລາດທີ່ຈັດການກັບ C ++, .NET ແລະຫມູ່ເພື່ອນ."
+				"body": "ລ໊ອກຊື່ brand ແລະ ຄໍາສັບຂອງຜະລິດຕະພັນດ້ວຍ regex ຂອບເຂດຄໍາສັບທີ່ສະຫລາດທີ່ຈັດການກັບ {cpp}, {dotnet} ແລະ ຫມູ່ເພື່ອນ."
 			},
 			"dryRun": {
 				"title": "Dry-run + soft-fail",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "ຜົນງານທີ່ເປັນມິດກັບ PR",
-				"body": "summary-title, summary-details, ແລະ has-new-translations slot ໂດຍກົງໃນ create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails} ແລະ {hasNewTranslations} ຊ່ອງ ໂດຍ ກົງ ໃນ create-pull-request."
 			},
 			"sdk": {
 				"title": "Azure SDK ທາງການ",
-				"body": "ສ້າງຂຶ້ນ ເທິງ @azure-rest/ai-translation-text + @azure/core-rest-pipeline - ການລອງຄືນໃຫມ່ໂດຍອັດຕະໂນມັດໃນ 408/429/5xx, ບໍ່ມີ HTTP ທີ່ໃຊ້ມື. esbuild-bundled, audit-clean."
+				"body": "ສ້າງ ຂຶ້ນ ເທິງ {azureSdk} + {corePipeline} - ການ ທົດ ລອງ ໃຫມ່ ໂດຍ ອັດ ຕະ ໂນ ມັດ ໃນ {statusCodes}, ບໍ່ ມີ HTTP ທີ່ ໃຊ້ ມື. {esbuild} ຫໍ່, ສະອາດການກວດສອບ."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Drop-in workflow",
+			"titlePrefix": "Copy. Paste.",
+			"titleAccent": "ແປ.",
+			"body": "ຄວາມ ລັບ ສາມ ຢ່າງ, ສີ່ ແຖວ, ແລະ repo ຂອງ ທ່ານ ແມ່ນ ຫລາຍ ພາ ສາ ໃນ ການ ຊຸກ ຍູ້ ຕໍ່ ໄປ.",
+			"setupLink": "ຍ່າງ ຜ່ານ ການ ຈັດ ຕັ້ງ ຄົບ ຖ້ວນ"
+		},
+		"cta": {
+			"title": "ພ້ອມແລ້ວບໍທີ່ຈະ localize ໂດຍອັດຕະໂນມັດ?",
+			"body": "ຫນຶ່ງກະແຈ Azure AI Translator, ຫນຶ່ງແຟ້ມວຽກງານ. Resource Translator ຈັດການກັບສ່ວນທີ່ເຫຼືອ.",
+			"button": "ເລີ່ມຕົ້ນ"
 		}
 	},
 	"getting-started": {
 		"title": "ການ ເລີ່ມຕົ້ນ",
 		"eyebrow": "ການຈັດຕັ້ງ",
-		"lede": "ເພີ່ມແຟ້ມ workflow, ຊີ້ໄປຫາຂໍ້ມູນ Azure AI Translator ຂອງເຈົ້າ ແລະການກະທໍາ - ທີ່ສ້າງຂຶ້ນ SDK @azure-rest/ai-translation-text ທາງການຂອງ Microsoft - ຈະກວດສອບ repo ສໍາລັບແຟ້ມຊັບພະຍາກອນທີ່ເປັນພາສາແຫຼ່ງ ແລະ ສົ່ງອ້າຍເອື້ອຍນ້ອງທີ່ແປ.",
+		"lede": "ເພີ່ມແຟ້ມ workflow, ຊີ້ໄປທີ່ຂໍ້ມູນ Azure AI Translator ຂອງທ່ານ, ແລະການກະທໍາຈະກວດ repo ສໍາລັບແຟ້ມຊັບພະຍາກອນທີ່ເປັນພາສາແຫຼ່ງ ແລະ ສົ່ງອ້າຍເອື້ອຍນ້ອງທີ່ແປ.",
 		"steps": {
 			"provision": {
 				"title": "ຈັດຕຽມຊັບພະຍາກອນ Azure AI Translator",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "ເພີ່ມຂະບວນການເຮັດວຽກ",
-				"body": "ສ້າງ .github/workflows/translate.yml:"
+				"body": "ສ້າງ ຂໍ້ {workflowPath}:"
 			},
 			"resource": {
 				"title": "ມອບແຟ້ມຊັບພະຍາກອນແຫຼ່ງ",
-				"body": "ແຟ້ມຊັບພະຍາກອນໃຊ້ຊື່. .<sourceLocale> <ext> ການປະຊຸມພາກ. ຕົວຢ່າງເຊັ່ນ Greetings.en.resx ຈະກາຍເປັນ Greetings.fr.resx, Greetings.de.resx ແລະອື່ນໆຫຼັງຈາກການແລ່ນ."
+				"body": "ແຟ້ມຊັບພະຍາກອນໃຊ້ຂໍ້ຕົກລົງ {namingConvention}. ຍົກ ຕົວ ຢ່າງ, {sourceFile} ກາຍ ເປັນ {frFile}, {deFile}, ແລະ ອື່ນໆ ຫລັງ ຈາກ ການ ແລ່ນ."
 			},
 			"output": {
 				"title": "ກວດເບິ່ງຜົນຜະລິດ",
-				"body": "ເມື່ອຂັ້ນຕອນການເຮັດວຽກສິ້ນສຸດລົງ, ການກະທໍາຈະເປີດເຜີຍຜົນອອກສາມຢ່າງທີ່ເຈົ້າສາມາດເຊື່ອມຕໍ່ໃນຄໍາອະທິບາຍຂອງ PR: summary-title, summary-details ແລະ has-new-translations. ນອກຈາກນັ້ນ ມັນຍັງຂຽນບົດສະຫຼຸບ Markdown ໃນຫນ້າວຽກຜ່ານ core.summary."
+				"body": "ເມື່ອຂະບວນການສໍາເລັດແລ້ວ, ການກະທໍາຈະເປີດເຜີຍສາມຜົນອອກທີ່ເຈົ້າສາມາດເຊື່ອມຕໍ່ໃນຄໍາອະທິບາຍຂອງ PR: {summaryTitle}, {summaryDetails} ແລະ {hasNewTranslations}. ມັນ ຍັງ ຂຽນ ຂໍ້ ສະຫລຸບ ຂອງ Markdown ໃນ ຫນ້າ ວຽກ ງານ ຜ່ານ ທາງ {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "ຂັ້ນຕອນຕໍ່ໄປ",
-			"configuration": "ຕັ້ງຄ່າມາດຕະຖານລະດັບ repo ດ້ວຍ .github/resource-translator.yml.",
+			"configuration": "ຕັ້ງຄ່າມາດຕະຖານລະດັບ repo ດ້ວຍ {configPath}.",
 			"recipes": "ເບິ່ງ recipes for monorepos, custom glossaries ແລະ Custom Translator categories."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "ການຕັ້ງຄ່າ",
 		"eyebrow": "ຢາມ",
 		"heroTitle": "ຕັ້ງຄ່າບ່ອນເກັບຂໍ້ມູນ",
-		"lede": "ສະແດງມາດຕະຖານຄັ້ງຫນຶ່ງໃນ .github/resource-translator.yml ແລະປ່ອຍໃຫ້ທຸກຂະບວນການສືບທອດມັນ. ການ ກະ ທໍາ ຈະ ຊະ ນະ ສະ ເຫມີ ເມື່ອ ມີ ທັງ ສອງ ຢ່າງ."
+		"lede": "ສະ ແດງ ມາດ ຕະ ຖານ ເທື່ອ ຫນຶ່ງ ໃນ ແຟ້ມ ຕັ້ງ ຄ່າ ຂອງ repository ແລະ ປ່ອຍ ໃຫ້ ທຸກໆ workflow ຮັບ ເອົາ ມັນ ມາ ເປັນ ມູນ ມໍ ລະ ດົກ. ການ ກະ ທໍາ ຈະ ຊະ ນະ ສະ ເຫມີ ເມື່ອ ມີ ທັງ ສອງ ຢ່າງ.",
+		"intro": "ປ່ຽນເສັ້ນທາງດ້ວຍຂໍ້ມູນ {configPath} ຖ້າທ່ານຕ້ອງການສະຖານທີ່ທີ່ບໍ່ເປັນມາດຕະຖານ.",
+		"schemaHeading": "ແບບແຜນ",
+		"fieldReference": {
+			"heading": "ຂໍ້ອ້າງອີງໃນທົ່ງນາ",
+			"caption": "ຂໍ້ອ້າງອີງເຂດຂໍ້ມູນການຕັ້ງຄ່າ",
+			"columns": {
+				"field": "ທົ່ງນາ",
+				"type": "ປະເພດ",
+				"notes": "ບັນທຶກ"
+			},
+			"fields": {
+				"sourceLocale": "ກັບ ຄືນ ໄປ ຫາ input {sourceLocale} ຖ້າ ບໍ່ ໄດ້ ຕັ້ງ ໄວ້. ຍັງສົ່ງຕໍ່ໃຫ້ຜູ້ແປ {fromLocale} ດັ່ງນັ້ນເຊືອກສັ້ນໆຈຶ່ງບໍ່ຖືກກວດພົບໂດຍອັດຕະໂນມັດ.",
+				"toLocales": "ບໍ່ວ່າຈະເປັນ array ຫຼື string ທີ່ແຍກດ້ວຍเครื่องหมาย comma.",
+				"includeExclude": "ແບບ ແຜນ Glob ຖືກ ປະ ເມີນ ກັບ ເສັ້ນ ທາງ ທີ່ ສົມ ບູນ ແລະ ກ່ຽວ ພັນ ກັບ ບ່ອນ ທໍາ ງານ.",
+				"glossary": "ການປ່ຽນຄໍາສັບຫຼັງການແປ. Word-boundary aware (handles {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} category — ອຸດສາຫະກໍາ / domain knob ຂອງເຈົ້າ (ກົດຫມາຍ, ການແພດ, ນ້ໍາສຽງການຕະຫຼາດ, ແລະ ອື່ນໆ). ຖືກ ສົ່ງ ໄປ ເປັນ {categoryQuery}.",
+				"textType": "ມາດຕະຖານ {plain}. ໃຊ້ {html} ຖ້າຄ່າຊັບພະຍາກອນຂອງເຈົ້າມີຊິ້ນສ່ວນ HTML ແທ້ໆ.",
+				"profanityAction": "ວິທີປະຕິບັດກັບຄໍາສັບທີ່ຫມິ່ນປະຫມາດໃນຜົນງານທີ່ແປ.",
+				"profanityMarker": "ມີ ຄວາມ ຫມາຍ ພຽງ ແຕ່ ເມື່ອ {profanityAction} ເປັນ {marked}.",
+				"allowFallback": "ຕັ້ງໄວ້ເປັນ {false} ເພື່ອບໍ່ສາມາດແປໄດ້ເມື່ອ {categoryId} ຂອງເຈົ້າບໍ່ມີການນໍາໃຊ້ສໍາລັບສະຖານທີ່ເປົ້າຫມາຍແທນທີ່ຈະກັບຄືນໄປຫາແບບຢ່າງທົ່ວໄປ.",
+				"apiVersion": "Translator REST API version. ມາດຕະຖານ {version}.",
+				"maxRetries": "ຄວາມພະຍາຍາມສູງສຸດໃນການຕອບສະຫນອງ HTTP ຊົ່ວຄາວ ({statusCodes}). ມາດຕະຖານເປັນ {defaultRetries}. ການ ເອີ້ນ HTTP ທັງ ຫມົດ ຕໍ່ ຄໍາ ຂໍ ຮ້ອງ ແມ່ນ {totalCalls}.",
+				"retryBackoffMs": "Cap (ms) ສໍາລັບການນອນຫຼັງເທື່ອດຽວ. ມາດຕະຖານ {defaultBackoff}. ຫົວ ຂໍ້ {retryAfter} ຂອງ Azure ໄດ້ ຮັບ ກຽດ ຢ່າງ ແນ່ນອນ ເມື່ອ ມີ ຢູ່; ຖ້າບໍ່ດັ່ງນັ້ນຈະໃຊ້ການຖອຍຫລັງແບບ jittered exponential ຈໍາກັດໃນມູນຄ່ານີ້.",
+				"protectPlaceholders": "ມາດຕະຖານ {true}. ເມື່ອເປີດ, token ເຊັ່ນ {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ແລະ HTML ຈະຖືກປ່ຽນແທນດ້ວຍ sentinel token ກ່ອນການແປ ແລະ ຟື້ນຟູຫຼັງຈາກນັ້ນ. ປິດສະເພາະເມື່ອແຫຼ່ງຂໍ້ມູນມີຕົວອັກສອນທີ່ເປັນຮູບຮ່າງຂອງບ່ອນເທົ່ານັ້ນ.",
+				"customPlaceholderPatterns": "ແບບແຜນ regex ເພີ່ມເຕີມ (ບໍ່ມີຕົວຈໍາກັດ) ເພີ່ມເຕີມໃສ່ໃນຊຸດ placeholder ມາດຕະຖານ, ຍົກຕົວຢ່າງ {angleToken} ສໍາລັບ custom token syntax. regex ທີ່ບໍ່ຖືກຕ້ອງຈະບໍ່ເອົາໃຈໃສ່.",
+				"noTranslatePatterns": "ແບບແຜນ Glob ທີ່ສອດຄ່ອງກັບກະແຈລະດັບ parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). ກະແຈທີ່ສອດຄ່ອງກັນຈະຖືກຖອນອອກຈາກຄໍາຮ້ອງຂໍແລະສົ່ງຜ່ານພ້ອມກັບຄ່າແຫຼ່ງຂອງມັນທີ່ເກັບຮັກສາໄວ້."
+			}
+		},
+		"loadingOrder": {
+			"heading": "ລໍາດັບການບັນຈຸ",
+			"steps": {
+				"actionInputs": "ການກະທໍາຈະອ່ານຂໍ້ມູນທີ່ແຈ່ມແຈ້ງຈາກຂະບວນການ.",
+				"config": "ມັນโหลดการกําหนดค่า YAML ຈາກ {configPath}.",
+				"precedence": "ສໍາລັບທຸກໆຂະແຫນງການທີ່ແບ່ງປັນ, ຂໍ້ມູນຈະຊະນະ; ຖ້າບໍ່ດັ່ງນັ້ນຄ່າ YAML ຈະຖືກໃຊ້.",
+				"validation": "ຄ່າທີ່ລວມເຂົ້າກັນຈະໄດ້ຮັບການກວດສອບ. enums ທີ່ບໍ່ຖືກຕ້ອງ (ຕົວຢ່າງ: {invalidEnum}) ເຮັດໃຫ້ການກະທໍາລົ້ມເຫລວຢ່າງໄວວາພ້ອມກັບຂ່າວສານທີ່ແຈ່ມແຈ້ງ."
+			}
+		},
+		"tone": {
+			"heading": "ນ້ໍາສຽງ ແລະ ອຸດສະຫະ ກໍາ, ໃນ ຖ້ອຍ ຄໍາ ທີ່ ແຈ່ມ ແຈ້ງ",
+			"body": "Azure AI Translator v3 API ບໍ່ມີ knob ສຽງດຽວ. ການຕັ້ງຄ່າສອງຢ່າງລວມກັນເພື່ອໃຫ້ເຈົ້າມີການຄວບຄຸມແບບດຽວກັນ:",
+			"industryLabel": "ອຸດສາຫະກໍາ / ຂອບເຂດ:",
+			"industryBody": "ໃຊ້ {categoryId} ເພື່ອ ຊີ້ ໄປ ຫາ Azure {customTranslatorLink} ປະເພດ ທີ່ ໄດ້ ຮັບ ການ ຝຶກ ຝົນ ໃນ ກຸ່ມ ຂອງ ທ່ານ ເອງ - ກົດຫມາຍ, ເຕັກນິກ, ການ ແພດ, ການ ຄ້າ ຫລື ສິ່ງ ອື່ນໆ. ນີ້ ເປັນ ສິ່ງ ທີ່ ເຂັ້ມ ແຂງ ທີ່ ສຸດ ສໍາລັບ ນ້ໍາສຽງ, ສຽງ ຂອງ brand ແລະ ຄໍາ ສັບ.",
+			"surfaceLabel": "ຂໍ້ຄວາມຜິວຫນ້າ:",
+			"surfaceBody": "ໃຊ້ {glossaryLink} ເພື່ອ ລ໊ອກ ຊື່ brand ແລະ ຄໍາ ສັບ ຂອງ ຜະລິດຕະພັນ ຕາມ ຄໍາ ເວົ້າ, ແລະ ໃຊ້ {profanityAction} ເພື່ອ ລຶບລ້າງ ຄໍາ ຫມິ່ນປະຫມາດ ເມື່ອ ເປົ້າ ຫມາຍ localization ສໍາລັບ ຜູ້ ຄົນ ທີ່ ຫນຸ່ມ ກວ່າ.",
+			"glossaryLinkLabel": "ຄໍາສັບ"
+		}
 	},
 	"inputs": {
 		"title": "Inputs & outputs",
 		"eyebrow": "ຂໍ້ ອ້າງ ອີງ",
-		"lede": "ທຸກໆຂໍ້ມູນຍັງໄດ້ຮັບການຍອມຮັບໃນແຟ້ມຄ່າຕັ້ງ repo ທາງເລືອກ. ເມື່ອທັງສອງຖືກກໍານົດໄວ້, ການກະທໍາຈະຊະນະ."
+		"lede": "ທຸກໆຂໍ້ມູນຍັງໄດ້ຮັບການຍອມຮັບໃນແຟ້ມຄ່າຕັ້ງ repo ທາງເລືອກ. ເມື່ອທັງສອງຖືກກໍານົດໄວ້, ການກະທໍາຈະຊະນະ.",
+		"configurationIntro": "ເບິ່ງ {configurationLink} ສໍາລັບແບບແຜນ YAML ແລະ ລໍາດັບການโหลด.",
+		"configurationLinkLabel": "ການຕັ້ງຄ່າ",
+		"columns": {
+			"name": "ຊື່",
+			"default": "ມາດຕະຖານ",
+			"description": "ຄໍາອະທິບາຍ"
+		},
+		"defaults": {
+			"none": "ບໍ່ມີ",
+			"allSupported": "ສະຫນັບສະຫນູນທັງຫມົດ",
+			"translatorDefaultTrue": "true (ມາດຕະຖານຂອງຜູ້ແປ)"
+		},
+		"requiredInputs": {
+			"heading": "ຂໍ້ມູນທີ່ຈໍາເປັນ",
+			"caption": "ຂໍ້ມູນທີ່ຈໍາເປັນ",
+			"items": {
+				"sourceLocale": "ແຫຼ່ງຂໍ້ມູນ (ຕົວຢ່າງ: {en}) ທີ່ໃຊ້ເພື່ອຊອກຫາແຟ້ມຊັບພະຍາກອນເຊັ່ນ {sourceGlob}. ຍັງສົ່ງຕໍ່ໃຫ້ຜູ້ແປໃນຊື່ {fromLocale}.",
+				"subscriptionKey": "ກະແຈການຈົດທະບຽນ Azure AI Translator. ຜ່ານ {secrets}.",
+				"endpoint": "URL endpoint ຂອງຜູ້ແປ, ຕົວຢ່າງ: {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "ຂໍ້ມູນທາງເລືອກທົ່ວໄປ",
+			"caption": "ຂໍ້ມູນທາງເລືອກທົ່ວໄປ",
+			"items": {
+				"region": "ພາກພື້ນຊັບພະຍາກອນຜູ້ແປ (ຍົກເວັ້ນສໍາລັບຊັບພະຍາກອນທົ່ວໂລກ).",
+				"toLocales": "ທ້ອງຖິ່ນທີ່ຈະແປ. ຮັບເອົາ JSON array ({jsonArray}) ຫຼືຄ່າທີ່ແຍກດ້ວຍเครื่องหมาย comma.",
+				"include": "ແບບແຜນ glob ທີ່ແຍກອອກຈາກແຖວໃຫມ່; ມີແຕ່ແຟ້ມທີ່ສອດຄ່ອງກັນເທົ່ານັ້ນ.",
+				"exclude": "ແບບແຜນ glob ທີ່ແຍກອອກຈາກແຖວໃຫມ່; ແຟ້ມທີ່ສອດຄ່ອງກັນຈະຖືກຂ້າມ (ນໍາໃຊ້ຫຼັງຈາກລວມ).",
+				"configPath": "ເສັ້ນທາງໄປຫາແຟ້ມຄ່າຕັ້ງ YAML (ກ່ຽວຂ້ອງກັບຮາກຂອງບ່ອນເຮັດວຽກ).",
+				"dryRun": "ເມື່ອ {true}, ໃຫ້ ແລ່ນ ແປ ແລະ ສົ່ງ ຂໍ້ ມູນ ສະຫລຸບ ແຕ່ ຢ່າ ຂຽນ ແຟ້ມ.",
+				"failOnError": "ເມື່ອ {true}, ຄວາມ ຜິດ ພາດ ທີ່ ບໍ່ ຄາດ ຄິດ ຈະ ລົ້ມ ເຫລວ; ເມື່ອ {false}, ຄວາມ ຜິດ ພາດ ກໍ ເປັນ ການ ເຕືອນ."
+			}
+		},
+		"translatorInputs": {
+			"heading": "ຄໍາຮ້ອງຂໍຂອງຜູ້ແປ",
+			"intro": "ສິ່ງເຫຼົ່ານີ້ຖືກວາງແຜນໂດຍກົງກັບ Azure AI Translator v3 query parameters. ທຸກ ຢ່າງ ເປັນ ທາງ ເລືອກ; ມາດຕະຖານ Translator ໃຊ້ໄດ້ເມື່ອບໍ່ໄດ້ຕັ້ງຄ່າ.",
+			"caption": "ຄໍາຮ້ອງຂໍຂອງຜູ້ແປ",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} category — ອຸດສາຫະກໍາ/domain/tone knob. ສົ່ງ ຕໍ່ ເປັນ {categoryQuery}.",
+				"textType": "{plain} ຫລື {html}. ໃຊ້ {html} ເມື່ອຄ່າຊັບພະຍາກອນຂອງເຈົ້າເປັນຊິ້ນສ່ວນ HTML ແທ້.",
+				"profanityAction": "{noAction}, {marked} ຫລື {deleted}. ຄວບຄຸມວິທີທີ່ຄໍາຫມິ່ນປະຫມາດອອກມາໃນການແປ.",
+				"profanityMarker": "{asterisk} ຫລື {tag}. ມີ ຄວາມ ຫມາຍ ພຽງ ແຕ່ ເມື່ອ {profanityAction} ເປັນ {marked}.",
+				"allowFallback": "ເມື່ອ {false}, Translator ຈະ ສົ່ງ ຄືນ ຄວາມ ຜິດ ພາດ ແທນ ທີ່ ຈະ ກັບ ຄືນ ໄປ ຫາ ລະບົບ ທົ່ວ ໄປ ຖ້າ ຫາກ {categoryId} ຂອງ ທ່ານ ບໍ່ ມີ ການ ນໍາ ໃຊ້ ສໍາ ລັບ locale ເປົ້າ ຫມາຍ.",
+				"apiVersion": "Translator REST API version."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "ຄວາມອົດທົນ ແລະ ການປົກປ້ອງບ່ອນນັ່ງ",
+			"intro": "ຂໍ້ ມູນ ເຫລົ່າ ນີ້ ຄວບ ຄຸມ ວິ ທີ ທີ່ ການ ກະ ທໍາ ຈະ ປະ ພຶດ ເມື່ອ Translator ຄວບ ຄຸມ ຄໍາ ຂໍ ຮ້ອງ ຂອງ ທ່ານ ແລະ ວິ ທີ ທີ່ ມັນ ປົກ ປ້ອງ ເຄື່ອງ ຫມາຍ ຂອງ ບ່ອນ ດັ່ງ ເຊັ່ນ {mustache} ຫລື {indexZero} ຈາກ ການ ຖືກ ທໍາ ລາຍ ໃນ ລະ ຫວ່າງ ການ ແປ.",
+			"caption": "ຄວາມ ອົດທົນ ແລະ ການ ປົກ ປ້ອງ ບ່ອນ ນັ່ງ",
+			"items": {
+				"maxRetries": "ຄວາມພະຍາຍາມສູງສຸດໃນການຕອບສະຫນອງ HTTP ຊົ່ວຄາວ ({statusCodes}). ຈໍານວນ ການ ເອີ້ນ HTTP ຕໍ່ ຄໍາ ຂໍ ຮ້ອງ ແມ່ນ {totalCalls}.",
+				"retryBackoffMs": "Cap (ເປັນມິລິວິນາທີ) ໃນການນອນຫຼັບຫຼັງ. ການ ກະທໍາ ໃຫ້ ກຽດ ແກ່ ຫົວ ຂໍ້ ຕອບ {retryAfter} ຂອງ Azure ເມື່ອ ມີ ຢູ່; ຖ້າບໍ່ດັ່ງນັ້ນມັນຈະໃຊ້ jittered exponential backoff ຈໍາກັດໃນມູນຄ່ານີ້.",
+				"protectPlaceholders": "ເມື່ອ {true} (ມາດຕະຖານ), placeholders ເຊັ່ນ {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ແລະ HTML ຈະຖືກປ່ຽນແທນດ້ວຍ sentinel token ກ່ອນການແປແລະຟື້ນຟູຫຼັງຈາກນັ້ນ. ປິດສະເພາະເມື່ອແຫຼ່ງຂໍ້ມູນຂອງທ່ານມີເນື້ອໃນທີ່ເປັນຮູບຮ່າງຕາມຕົວອັກສອນທີ່ຄວນແປ.",
+				"customPlaceholderPatterns": "regexes ທີ່ແຍກຈາກແຖວໃຫມ່ (ບໍ່ມີຕົວຈໍາກັດ) ຖືກເພີ່ມໃສ່ໃນຊຸດ placeholder ມາດຕະຖານ, ຍົກຕົວຢ່າງ {angleToken} ສໍາລັບ syntax token custom .",
+				"noTranslatePatterns": "ແບບແຜນ glob ທີ່ແຍກຈາກແຖວໃຫມ່ທີ່ສອດຄ່ອງກັບກະແຈລະດັບ parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). ກະແຈທີ່ສອດຄ່ອງກັນຈະຖືກຖອນອອກຈາກຄໍາຮ້ອງຂໍ Translator ແລະຜ່ານໄປພ້ອມກັບຄ່າແຫຼ່ງທີ່ເກັບຮັກສາໄວ້."
+			}
+		},
+		"outputs": {
+			"heading": "ຜົນຜະລິດ",
+			"caption": "ຜົນຜະລິດ",
+			"items": {
+				"summaryTitle": "ການສະຫລຸບສັ້ນໆທີ່ເປັນມິດກັບຫົວຂໍ້ PR ຕົວຢ່າງ: {summaryExample}.",
+				"summaryDetails": "ການສະຫລຸບ Markdown ເຫມາະສົມສໍາລັບຮ່າງກາຍ PR ຫຼື ການສະຫລຸບວຽກ.",
+				"hasNewTranslations": "{trueString} ເມື່ອ ມີ ການ ແປ ໃຫມ່ ຫນຶ່ງ ຫລື ຫລາຍ ກວ່າ ນັ້ນ."
+			}
+		}
 	},
 	"formats": {
 		"title": "ຮູບແບບແຟ້ມ",
 		"eyebrow": "ຂໍ້ ອ້າງ ອີງ",
 		"heroTitle": "ຮູບແບບແຟ້ມທີ່ສະຫນັບສະຫນູນ",
-		"lede": "ຫົກ ຮູບ ແບບ ແຫລ່ງ ຊ່ວຍ ເຫລືອ ທີ່ ສາ ມາດ ເດີນ ທາງ ໄດ້. ການກະທໍາຈະອ່ານແຕ່ລະແຟ້ມແຫຼ່ງຂໍ້ມູນ, ແປຄ່າແລະຂຽນອ້າຍເອື້ອຍນ້ອງຕໍ່ພາສາເປົ້າຫມາຍ."
+		"lede": "ຫົກ ຮູບ ແບບ ແຫລ່ງ ຊ່ວຍ ເຫລືອ ທີ່ ສາ ມາດ ເດີນ ທາງ ໄດ້. ການກະທໍາຈະອ່ານແຕ່ລະແຟ້ມແຫຼ່ງຂໍ້ມູນ, ແປຄ່າແລະຂຽນອ້າຍເອື້ອຍນ້ອງຕໍ່ພາສາເປົ້າຫມາຍ.",
+		"namingConvention": "ແຟ້ມທັງຫມົດໃຊ້ແບບແຜນການຕັ້ງຊື່ {namingConvention}.",
+		"learnMore": "ຮຽນຮູ້ຕື່ມ",
+		"items": {
+			"resx": {
+				"blurb": "ແຟ້ມຊັບພະຍາກອນ .NET ທີ່ອີງໃສ່ XML. ແປຂໍ້ຄວາມພາຍໃນຂອງແຕ່ລະ {dataValue} node, ຮັກສາຄວາມຄິດເຫັນ ແລະ metadata.",
+				"specLabel": "Microsoft Learn — ແຫລ່ງຊ່ວຍເຫຼືອໃນແຟ້ມ .resx"
+			},
+			"xliff": {
+				"blurb": "ເອກະສານ OASIS XLIFF 2.0. ແປ ແຕ່ ລະ ຂໍ້ {source} ແລະ ຂຽນ ຜົນ ທີ່ ຕາມ ມາ ໃສ່ {target} ທີ່ ກ່ຽວ ພັນ ກັນ, ກໍາ ນົດ {trgLang} ສໍາ ລັບ ທ້ອງ ຖິ່ນ.",
+				"specLabel": "ລາຍລະອຽດ OASIS XLIFF 2.0"
+			},
+			"po": {
+				"blurb": "GNU gettext ແຟ້ມ Portable Object. ແປແຕ່ລະ {msgid} / {msgidPlural} ເປັນຮູບແບບ {msgstr} / {msgstrPlural}.",
+				"specLabel": "GNU gettext — ຮູບແບບແຟ້ມ PO"
+			},
+			"json": {
+				"blurb": "ແຟ້ມ JSON ຕາມລໍາພັງ. ວັດຖຸທີ່ຮັງກັນຈະຖືກລຽບດ້ວຍຕົວຈໍາກັດ {delimiter} ສໍາລັບການແປ, ຈາກນັ້ນກໍຖືກຮັງຄືນໃຫມ່ໃນຜົນອອກ. ກະແຈຈຸດ ({dottedKey}) ຖືກເກັບຮັກສາໄວ້ຕາມຄໍາເວົ້າ.",
+				"specLabel": "ລາຍລະອຽດ JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "ແຟ້ມ {keyValue} ງ່າຍໆ (Win32-style INI ຫຼື flat config). ຫົວຂໍ້ແລະຄວາມຄິດເຫັນຂອງພາກຖືກເກັບຮັກສາໄວ້.",
+				"specLabel": "ຮູບແບບແຟ້ມ INI ໃນ Wikipedia"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI text resources — flat {keyValue} pairs ທີ່ ໃຊ້ ເປັນ ຄູ່ ມື ຂອງ {resx}.",
+				"specLabel": "ພາບລວມຂອງ Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "ການຮັບປະກັນການເດີນທາງໄປມາ",
+			"body": "ຊຸດທົດສອບຈະກວດສອບການເດີນທາງໄປມາແບບ byte-for-byte ສໍາລັບອຸປະກອນທີ່ເປັນຕົວແທນຂອງທຸກຮູບແບບ. ຖ້າ ຫາກ ຮູບ ແບບ ແປກ ປະຫລາດ ໃນ codebase ຂອງ ທ່ານ, ຂໍ {issueLink} ດ້ວຍ ຕົວຢ່າງ ຫນ້ອຍ ທີ່ ສຸດ.",
+			"issueLinkLabel": "ເປີດປະເດັນ"
+		}
 	},
 	"recipes": {
 		"title": "Recipes",
 		"eyebrow": "ປຶ້ມ ເຮັດ ອາຫານ",
-		"lede": "ແບບແຜນທົ່ວໄປສໍາລັບການແປ: monorepos, glossaries, custom categories, dry runs ແລະ tone control."
+		"lede": "ແບບແຜນທົ່ວໄປສໍາລັບການແປ: monorepos, glossaries, custom categories, dry runs ແລະ tone control.",
+		"sections": {
+			"pullRequest": {
+				"heading": "ເປີດ pull request ຫຼັງຈາກການແລ່ນແຕ່ລະເທື່ອ"
+			},
+			"monorepo": {
+				"heading": "Monorepos: ການແປຂອບເຂດຕໍ່ແພັກເກດ"
+			},
+			"glossary": {
+				"heading": "ຄໍາສັບສໍາລັບຊື່ແບຣນ ແລະ ຄໍາສັບຂອງຜະລິດຕະພັນ",
+				"intro": "ວາງ ຂໍ້ {configPath} ໃນ repo:",
+				"afterLabel": "ຫຼັງຈາກ",
+				"body": "ຄໍາ ສັບ ຂອງ ຄໍາ ສັບ ຈະ ຖືກ ນໍາ ໃຊ້ {after} ການ ແປ, ສະ ນັ້ນ ຜົນ ສະ ທ້ອນ ທີ່ ແປ ໂດຍ ເຄື່ອງ ຈັກ ຈະ ຮັກ ສາ brand ທີ່ ທ່ານ ມັກ ເຖິງ ແມ່ນ ວ່າ model ໄດ້ ແລກ ປ່ຽນ ມັນ ເປັນ ຄໍາ ທີ່ ຄ້າຍ ຄື ກັນ."
+			},
+			"customCategory": {
+				"heading": "ປະເພດ Custom Translator (ອຸດສາຫະກໍາ / domain)",
+				"body": "ຝຶກອົບຮົມປະເພດ Azure {customTranslatorLink} ໃນກຸ່ມທີ່ຈັບຄໍາສັບແລະນໍ້າສຽງໃນອຸດສະຫະກໍາຂອງເຈົ້າ (ກົດຫມາຍ, ການແພດ, ການຕະຫຼາດ, ວິສະວະກອນພາຍໃນ, ແລະອື່ນໆ) ແລະສົ່ງ ID ຂອງມັນຜ່ານ {categoryId}. ນີ້ ຄື ສຽງ ທີ່ ເຂັ້ມ ແຂງ ທີ່ ສຸດ ທີ່ Azure ສະ ເຫນີ."
+			},
+			"tone": {
+				"heading": "ການ ຄວບ ຄຸມ ນ້ໍາ ສຽງ + ການ ປ່ຽນ ແປງ ຢ່າງ ເຄັ່ງ ຄັດ",
+				"body": "ລວມເອົາລະບົບ Custom Translator {categoryId} ກັບ {profanityAction} ແລະ {allowFallbackFalse} ເພື່ອບັງຄັບສຽງທີ່ສອດຄ່ອງແລະລົ້ມລະລາຍຖ້າປະເພດທີ່ເລືອກບໍ່ມີການນໍາໃຊ້ສໍາລັບຫນຶ່ງໃນທ້ອງຖິ່ນເປົ້າຫມາຍຂອງເຈົ້າ."
+			},
+			"dryRun": {
+				"heading": "ແລ່ນ ແຫ້ງ ກ່ອນ ເປີດ ວຽກ ງານ",
+				"body": "ການກະທໍາຍັງສົ່ງຜົນສະຫລຸບແລະສະຫຼຸບຂັ້ນຕອນ, ແຕ່ບໍ່ມີການຂຽນແຟ້ມ. ຮ່ວມ ກັບ ການ {failOnErrorFalse} ເພື່ອ ສະ ແດງ ບັນ ຫາ ທຸກ ຢ່າງ ເພື່ອ ເປັນ ການ ເຕືອນ ໃນ ຂະ ນະ ທີ່ ທ່ານ ເຮັດ ຊ້ໍາ ອີກ."
+			}
+		}
 	},
 	"faq": {
 		"title": "ຄຳຖາມທີ່ຖືກຖາມເລື້ອຍໆ",
 		"eyebrow": "ຊ່ວຍເຫຼືອ",
 		"heroTitle": "ຄໍາຖາມທີ່ຖາມເລື້ອຍໆ",
-		"lede": "ຄໍາຕອບໄວໆສໍາລັບຄໍາຖາມທີ່ເກີດຂຶ້ນເລື້ອຍໆເມື່ອນໍາໃຊ້ການກະທໍາ."
+		"lede": "ຄໍາຕອບໄວໆສໍາລັບຄໍາຖາມທີ່ເກີດຂຶ້ນເລື້ອຍໆເມື່ອນໍາໃຊ້ການກະທໍາ.",
+		"questions": {
+			"azure": {
+				"heading": "ການກະທໍາເວົ້າກັບ Azure ແນວໃດ?",
+				"body": "ຜ່ານ ທາງ {azureSdkLink} SDK ທີ່ ເປັນ ທາງ ການ ຂອງ Microsoft, ທີ່ ຕິດ ຢູ່ ກັບ {corePipelineLink}. ສິ່ງ ນັ້ນ ເຮັດ ໃຫ້ ທ່ານ ທົດ ລອງ ຄືນ ໃຫມ່ ໂດຍ ອັດ ຕະ ໂນ ມັດ ໃນ {statusCodes}, ພິມ ຄໍາ ຂໍ ຮ້ອງ ແລະ ການ ຕອບ ຮັບ, ແລະ ການ ຈັດ ການ ກັບ ຫົວ ຂໍ້ ຂອງ ການ ຢືນ ຢັນ ໂດຍ ບໍ່ ຄິດ ຄ່າ - ທຸກ ສິ່ງ ທີ່ ເຄີຍ ເປັນ ການ ເອີ້ນ {axios} ມື . ຜິວຫນ້າການກະທໍາສາທາລະນະ (inputs, outputs, file outputs) ບໍ່ປ່ຽນແປງ."
+			},
+			"tone": {
+				"heading": "ເປັນ ຫຍັງ ການ ແປ ບາງ ເທື່ອ ຈຶ່ງ ບໍ່ ມີ ຊື່ ສຽງ ຫລື ບໍ່ ເຫມາະ ສົມ?",
+				"body": "ການແປເຄື່ອງຈັກມາດຕະຖານເປັນແບບຢ່າງທີ່ມີຈຸດປະສົງທົ່ວໄປ. ສາມ knobs ຊ່ວຍ ໄດ້: {glossaryLink} ສໍາ ລັບ ການ ປ່ຽນ ແປງ ຄໍາ ສັບ ທີ່ ຍາກ, {customTranslatorLink} ສໍາ ລັບ ຕົວ ຢ່າງ ທີ່ ຖືກ ປັບ ປຸງ ໂດຍ ການ ຝຶກ ຝົນ ໃນ ນ້ໍາ ສຽງ ແລະ ຄໍາ ສັບ ຂອງ ທ່ານ, ແລະ {profanityAction} ທີ່ ຈະ ລົບ ລ້າງ ຫລື ທຸງ ຄໍາ ສັບ ທີ່ ຫມິ່ນ ປະ ຫມາດ.",
+				"glossaryLinkLabel": "ຄໍາສັບ",
+				"customTranslatorLinkLabel": "ປະເພດ Custom Translator"
+			},
+			"duplicateFiles": {
+				"heading": "ຂ້ອຍຈະຫຼີກລ່ຽງການແປແຟ້ມດຽວກັນສອງເທື່ອໄດ້ແນວໃດ?",
+				"body": "ເປີດ workflow ໃນ {paths} ທີ່ ສອດຄ່ອງ ກັບ ແຟ້ມ source-locale ຂອງ ທ່ານ ເທົ່າ ນັ້ນ, ຍົກ ຕົວຢ່າງ {sourceGlob}. ການກະທໍານີ້ຍັງລວມເອົາເຄື່ອງຕອງແຟ້ມແຕ່ລະຕົວຂອງມັນເອງເມື່ອຕັ້ງ {githubToken}, ເຮັດໃຫ້ວຽກແຄບລົງກັບແຟ້ມໃນ commit ຫຼ້າສຸດ."
+			},
+			"offline": {
+				"heading": "ຂ້ອຍສາມາດດໍາເນີນການທາງອິນເຕີເນັດໄດ້ບໍ?",
+				"body": "ບໍ່ ແມ່ນ ແນ່ນອນ - Azure AI Translator ເປັນ ສະຫມອງ runtime. ແຕ່ທ່ານສາມາດແລ່ນດ້ວຍ {dryRunTrue} ເພື່ອກວດສອບການແກ້ໄຂແລະການຕັ້ງຄ່າໂດຍບໍ່ຕ້ອງຮ້ອງຂໍ HTTP ສໍາລັບການແປ."
+			},
+			"node": {
+				"heading": "ການກະທໍາດໍາເນີນການໃນລຸ້ນ Node ໃດ?",
+				"body": "v3 ແລ່ນ ຢູ່ ໃນ GitHub Actions {nodeRuntime} runtime. JavaScript ທີ່ປະກອບເຂົ້າກັນໄດ້ກັບ Node 20, 22 ແລະ 24 ເຊິ່ງເປັນສິ່ງທີ່ CI ທົດສອບ."
+			},
+			"dist": {
+				"heading": "ເຄື່ອງ {distDir} ທີ່ ຫຸ້ມ ຫໍ່ ມາ ຈາກ ໃສ?",
+				"body": "ການກະທໍາ GitHub JS ສົ່ງ JS ທີ່ຮຽບຮ້ອຍແລ້ວໃນເກັບຂໍ້ມູນ. ລະບົບ {distBuild} ຈະ ສ້າງ ມັນ ຄືນ ໃຫມ່ ຫລັງ ຈາກ ການ ລວມ ເຂົ້າກັນ ທຸກ ເທື່ອ ເພື່ອ {mainBranch} ວ່າ ມັນ ຈະ ລອຍ ໄປ ຫລື ບໍ່, ແລະ {distCheck} ກີດ ກັນ PR ທີ່ ຈະ ລົງ ເດີ່ນ ທີ່ ລ້າ ສະ ໄຫມ."
+			},
+			"formats": {
+				"heading": "ຈະວ່າແນວໃດກ່ຽວກັບຮູບແບບແຫລ່ງອື່ນໆ?",
+				"body": "ທຸກ ວັນ ນີ້: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} ຖ້າ ຫາກ ທ່ານ ຕ້ອງການ ອີກ ຢ່າງ ຫນຶ່ງ - interface ຂອງ parser ແມ່ນ ນ້ອຍ (parse → map → ນໍາ ໃຊ້ ການ ແປ → format) ແລະ ຍິນ ດີ ຕ້ອນຮັບ ການ ບໍລິຈາກ.",
+				"issueLinkLabel": "ເປີດປະເດັນ"
+			}
+		}
 	},
 	"translations": {
 		"title": "ການ ແປ",
 		"eyebrow": "ສະ ແດງ",
 		"heroTitle": "ສະບາຍດີໃນທຸກພາສາ",
-		"locales": "ທ້ອງຖິ່ນ",
-		"currentlyRendered": "ສະແດງໃນປັດຈຸບັນ",
-		"complete": "ສໍາ ເລັດ!",
-		"pendingPrefix": "ລໍຖ້າ ການ ແປ ເອກະສານ ຕໍ່ ໄປ.",
+		"lede": "ຫນ້າ ນີ້ ຖືກ ແປ ໂດຍ Resource Translator ເອງ, ໃນ ທຸກ ການ ຊຸກ ຍູ້ ໃຫ້ main, ເປັນ ທຸກ ພາ ສາ ທີ່ Azure AI Translator ສະ ຫນັບ ສະ ຫນູນ.",
+		"localeCountLabel": "{count} ທ້ອງຖິ່ນ",
+		"statusComplete": "{translatedCount} ຕອນ ນີ້ ຖືກ render ແລ້ວ - ຄົບ ຖ້ວນ!",
+		"statusPending": "{translatedCount} ໃນ ປະຈຸ ບັນ ນີ້ - {pendingCount} ລໍຖ້າ ການ ແຂ່ງຂັນ ເທື່ອ {workflowName} ຕໍ່ ໄປ.",
 		"viewWorkflowRuns": "ເບິ່ງການແລ່ນຂອງຂະບວນການ",
 		"filter": "ເຄື່ອງຕອງ",
 		"filterPlaceholder": "ຄົ້ນຫາຕາມພາສາ, ລະຫັດ ຫຼື ຊື່ແມ່...",
 		"source": "ແຫລ່ງ",
 		"machineTranslations": "ການແປເຄື່ອງຈັກ",
-		"translationPending": "ລໍຖ້າການແປ - ເປີດການແປເອກະສານ.",
+		"translationPending": "ລໍຖ້າ ການ ແປ - ເປີດ ການ {workflowName}.",
 		"noLocales": "ບໍ່ ມີ ທ້ອງ ຖິ່ນ ໃດ ທີ່ ເຫມາະ ສົມ ກັບ ເຄື່ອງ ຕອງ ນັ້ນ.",
-		"howItWorks": "ວິທີເຮັດວຽກ"
+		"howItWorks": {
+			"heading": "ວິທີເຮັດວຽກ",
+			"thisActionLabel": "ການ ກະທໍາ ນີ້",
+			"steps": {
+				"source": "ແຟ້ມ ແຫລ່ງ ພາສາ ອັງກິດ ມີ ຢູ່ ທີ່ {messagesPath}.",
+				"workflow": "ການ ຊຸກ ຍູ້ ທີ່ ສໍາ ພັດ ມັນ ຈະ ເລີ່ ມຕົ້ນ {workflowLink}, ຊຶ່ງ ແລ່ນ {thisAction} ກັບ ຕົວ ມັນ ເອງ.",
+				"fanOut": "ການ ກະ ທໍາ ຈະ ແຜ່ ຂະ ຫຍາຍ ອອກ ໄປ ຫາ ທຸກໆ locale ທີ່ ສະ ຫນັບ ສະ ຫນູນ Azure AI Translator (ຕັ້ງ ຄ່າ ໃນ {configPath}) ແລະ ຂຽນ ອ້າຍ ເອື້ອຍ ນ້ອງ {messagesLocaleJson} ຕໍ່ ເປົ້າ ຫມາຍ.",
+				"pullRequest": "ມີການເປີດຄໍາຮ້ອງຂໍດຶງພ້ອມກັບການແປໃຫມ່. ການລວມເຂົ້າກັນຈະຈັດພິມຫນ້ານີ້ຄືນໃຫມ່ພ້ອມກັບບັດທີ່ຂຽນໄວ້."
+			}
+		},
+		"poweredBy": "Powered by Resource Translator ແລະ Azure AI Translator."
 	},
 	"contributing": {
 		"title": "ການ ບໍລິຈາກ",
 		"eyebrow": "ແຫລ່ງ ເປີດ",
-		"lede": "ລາຍງານຂໍ້ບົກພ່ອງ, ຄໍາຮ້ອງຂໍລັກສະນະ ແລະ ຄໍາຮ້ອງຂໍດຶງແມ່ນຍິນດີຕ້ອນຮັບ. ການ ກະທໍາ ແມ່ນ ເລັກ ນ້ອຍ ພໍ ທີ່ ຈະ ເປັນ ມິດ ກັບ ຜູ້ ບໍລິຈາກ ເທື່ອ ທໍາ ອິດ."
+		"lede": "ລາຍງານຂໍ້ບົກພ່ອງ, ຄໍາຮ້ອງຂໍລັກສະນະ ແລະ ຄໍາຮ້ອງຂໍດຶງແມ່ນຍິນດີຕ້ອນຮັບ. ການ ກະທໍາ ແມ່ນ ເລັກ ນ້ອຍ ພໍ ທີ່ ຈະ ເປັນ ມິດ ກັບ ຜູ້ ບໍລິຈາກ ເທື່ອ ທໍາ ອິດ.",
+		"localDevelopment": {
+			"heading": "ການ ພັດທະນາ ໃນ ທ້ອງ ຖິ່ນ"
+		},
+		"addingParser": {
+			"heading": "ການເພີ່ມຕົວແກ້ໄຂ",
+			"steps": {
+				"fixture": "ຕື່ມ ເຄື່ອງ ຕິດ ຢູ່ ໃຕ້ {testDataDir}.",
+				"implement": "ປະຕິບັດ {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "ຈົດທະບຽນໃນ {factoryFile}.",
+				"extension": "ເພີ່ມການຂະຫຍາຍແຟ້ມໃສ່ {translationFileSchemes} ໃນ {finderFile}.",
+				"tests": "ຂຽນການທົດສອບການທົດສອບສໍາລັບການແກ້ໄຂ → ແລະ applyTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "ມາດຕະຖານການປະກັນໄພ",
+			"body": "ການຕັ້ງຄ່າ Jest ບັງຄັບໃຫ້ມີການປົກປ້ອງຫນ້ອຍທີ່ສຸດ. ໂປຣແກຣມໃຫມ່ຕ້ອງຮັກສາຂອບເຂດຂອງຄໍາສັ່ງ + ແຖວໃຫ້ສູງກວ່າ 78% ແລະຫນ້າທີ່ສູງກວ່າ 90%. ຕື່ມ ເຄື່ອງ ແລະ ການ ທົດ ສອບ ຄຽງ ຄູ່ ກັບ ການ ປ່ຽນ ແປງ ຂອງ ທ່ານ."
+		},
+		"docsSite": {
+			"heading": "ເວັບໄຊເອກະສານ",
+			"body": "ແຟ້ມ {docsDir} ແມ່ນ ໂຄງການ Astro 6 + Tailwind v4. ແລ່ນ {npmInstall} ຢູ່ ທີ່ ນັ້ນ ເທື່ອ ຫນຶ່ງ, ແລ້ວ {npmRunDev} ເບິ່ງ ການ ທົບ ທວນ ໃນ ທ້ອງ ຖິ່ນ. ລະບົບ {pagesWorkflow} ສົ່ງ ເອກະສານ ໄປ ຫາ GitHub Pages ໃນ ທຸກ ເທື່ອ."
+		}
 	},
 	"changelog": {
 		"title": "ບັນທຶກການປ່ຽນແປງ",
 		"eyebrow": "ປະຫວັດສາດ",
-		"lede": "ການສະຫລຸບລະດັບສູງຂອງການປົດປ່ອຍ. changelog ທີ່ ມີ ສິດ ອໍາ ນາດ ແລະ ມີ ສິດ ອໍາ ນາດ ມີ ຢູ່ ໃນ CHANGELOG.md ໃນ repository."
+		"lede": "ການສະຫລຸບລະດັບສູງຂອງການປົດປ່ອຍ. changelog ທີ່ ມີ ສິດ ອໍາ ນາດ ແລະ ມີ ສິດ ອໍາ ນາດ ມີ ຢູ່ ໃນ CHANGELOG.md ໃນ repository.",
+		"fullRecord": "ເບິ່ງ {changelogLink} ສໍາ ລັບ ບັນ ທຶກ ຄົບ ຖ້ວນ.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (ກໍາລັງພັດທະນາ)",
+			"labels": {
+				"breaking": "ການ ຫັກ",
+				"resilience": "ຄວາມອົດທົນ:",
+				"placeholderProtection": "ການປົກປ້ອງບ່ອນນັ່ງ:",
+				"perKeyOptOut": "ການເລືອກບໍ່ຍອມຮັບຕໍ່ກະແຈ:",
+				"docsAccessibility": "ການເຂົ້າເຖິງເອກະສານ:",
+				"inlineCodeStyling": "ການອອກແບບໂປຣແກຣມໃນແຖວ:"
+			},
+			"issueLabels": {
+				"closes46": "ປິດ # 46.",
+				"tightens16": "ແຫນ້ນ # 16.",
+				"closes35": "ປິດ # 35."
+			},
+			"items": {
+				"runtime": "Bumped to {nodeRuntime} runtime ({breaking}).",
+				"newInputs": "ຂໍ້ ມູນ ໃຫມ່: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, ພ້ອມ ທັງ ເຄື່ອງ ແປ ທີ່ ກ້າວຫນ້າ {textType}, {profanityAction}, {profanityMarker} ແລະ {allowFallback}.",
+				"sourceLocale": "ບັດນີ້ແຫຼ່ງຂໍ້ມູນຍັງຖືກສົ່ງຕໍ່ໄປໃຫ້ Translator as {fromLocale} ດັ່ງນັ້ນ strings ສັ້ນໆຈະບໍ່ຖືກກວດພົບໂດຍອັດຕະໂນມັດ.",
+				"resilience": "{label} ການ ທົດ ລອງ ຄືນ ໃຫມ່ ໂດຍ ອັດ ຕະ ໂນ ມັດ ໃນ ການ ຕອບ ຮັບ HTTP ຊົ່ວ ຄາວ ({statusCodes}) ທີ່ ໃຫ້ ກຽດ ແກ່ ຫົວ ຂໍ້ {retryAfter} ຂອງ Azure - ຈະ ກັບ ຄືນ ໄປ ຫາ ການ ຫັນ ຫນີ ຢ່າງ ວ່ອງ ໄວ ເມື່ອ ບໍ່ ມີ ຢູ່. ສາມາດປັບປ່ຽນໄດ້ຜ່ານ {maxRetries} ແລະ {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} token ເຊັ່ນ {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ແລະ HTML ຖືກຫຸ້ມຫໍ່ດ້ວຍຕົວເຝົ້າຍາມກ່ອນການແປແລະຟື້ນຟູຫຼັງຈາກນັ້ນ, ດັ່ງນັ້ນ Translator ຈຶ່ງຢຸດການແກ້ໄຂ i18next/Mustache/Handlebars/.NET/printf. Toggle ຜ່ານ {protectPlaceholders}; ຂະຫຍາຍ ອອກ ໄປ ດ້ວຍ {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} {noTranslatePatterns} input ໃຫມ່ ຈະ ຫລຸດ ກະແຈ ທີ່ ສອດຄ່ອງ ຈາກ ຄໍາ ຂໍ ຮ້ອງ ຂອງ Translator ທັງ ຫມົດ (ຮັກສາ ຄ່າ ແຫລ່ງ ສໍາລັບ brand name, error code, ແລະ ອື່ນໆ). ສອດຄ່ອງກັບແບບແຜນ glob ກັບກະແຈລະດັບ parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). {issue}",
+				"repoConfig": "ການຕັ້ງຄ່າລະດັບ repo ຜ່ານ {configPath}.",
+				"glossary": "ການສະຫນັບສະຫນູນຄໍາສັບ, ການສະຫລຸບຂັ້ນຕອນຜ່ານ {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "npm audit clean (0 ຄວາມອ່ອນແອ).",
+				"docsSite": "ເວັບໄຊ Astro + Tailwind v4 docs ທີ່ມີການປ່ຽນແປງຮູບພາບ ແລະ Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. ຕົວອັກສອນໂລໂກ້ຖືກປ່ຽນເປັນເສັ້ນທາງເພື່ອບໍ່ໃຫ້ຄວາມແຕກຕ່າງຂອງສີກັບການຢຸດຂອງລະດັບຄວາມແຕກຕ່າງອີກຕໍ່ໄປ, ປຸ່ມ floating {backToTop} ໃຊ້ {inert} ໃນຂະນະທີ່ເຊື່ອງຊ້ອນ (ແທນທີ່ຈະເປັນ {ariaHidden} toggle ທີ່ເຮັດໃຫ້ມັນສາມາດຕິດແທັບໄດ້), {formatsAstro} ພາກຕ່າງໆບໍ່ຂັດແຍ່ງກັບ ID ຫົວຂໍ້ທີ່ສ້າງຂຶ້ນໂດຍອັດຕະໂນມັດອີກຕໍ່ໄປ, ບັດສາມບ່ອນເປີດເຜີຍຄຸນສົມບັດ {lang} ທີ່ໃຊ້ໄດ້ BCP-47 ({nya}, {lug}, {run}), ລາຍຊື່ທີ່ຊ້ໍາກັນ {documentation} markmark ຖືກແກ້ໄຂລະຫວ່າງsidebar ແລະ footer,  ແລະ ທຸກໆ ຕາຕະລາງ ຂໍ້ ມູນ ໃນ {inputs} / {configuration} ຈະ ສົ່ງ ມາ ພ້ອມ ດ້ວຍ ຄໍາ ອະທິບາຍ ຂອງ ຜູ້ ອ່ານ ຈໍ.",
+				"inlineCode": "{label} Docs prose {codeElement} ບັດ ນີ້ ນຸ່ງ ເຄື່ອງ ທີ່ ອົບ ອຸ່ນ / ສີ ເຫລືອງ - ແຕກ ຕ່າງ ຈາກ brand → palette ທີ່ ໃຊ້ ສໍາລັບ link ແລະ ຫົວ ຂໍ້.",
+				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "ເບິ່ງ git history."
+		}
 	}
 }

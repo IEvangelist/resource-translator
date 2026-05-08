@@ -18,18 +18,26 @@
 			"node": "Mezgls 20 / 22 / 24",
 			"sdk": "Oficiālais Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "Iegūt tekstu",
+			"json": "ligzdots vai plakans",
+			"ini": "{keyValue}",
+			"restext": "MUI teksts"
+		},
 		"features": {
 			"formats": {
 				"title": "Seši failu formāti",
-				"body": "Turp un atpakaļ .resx, .xliff, .po, .json, .ini un .restext ar baitu stabilu formatējumu."
+				"body": "Turp un atpakaļ {resx}, {xliff}, {po}, {json}, {ini} un {restext} ar baitu stabilu formatējumu."
 			},
 			"config": {
 				"title": "Repo līmeņa konfigurācija",
-				"body": "Nometiet .github/resource-translator.yml, lai iekļautu globus, glosārijus un pielāgoto tulkotāju kategorijas."
+				"body": "Nometiet {configPath} failu, lai iekļautu globus, glosārijus un pielāgotā tulkotāja kategorijas."
 			},
 			"glossary": {
 				"title": "Glosārijs",
-				"body": "Bloķējiet zīmolu nosaukumus un produktu terminus, izmantojot viedo vārdu robežu regulāro izteiksmi, kas apstrādā C++, .NET un draugus."
+				"body": "Bloķējiet zīmolu nosaukumus un produktu terminus ar viedo vārdu robežu regulāro izteiksmi, kas apstrādā {cpp}, {dotnet} un draugus."
 			},
 			"dryRun": {
 				"title": "Sausā darbība + mīksta neveiksme",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR draudzīgi rezultāti",
-				"body": "summary-title, summary-details un has-new-translations slotu tieši create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails} un {hasNewTranslations} slotu tieši create-pull-request."
 			},
 			"sdk": {
 				"title": "Oficiālais Azure SDK",
-				"body": "Veidots uz @azure-rest/ai-translation-text + @azure/core-rest-pipeline - automātiski atkārtoti mēģinājumi 408/429/5xx, bez ar roku velmēta HTTP. esbuild-komplekts, audit-clean."
+				"body": "Veidots uz {azureSdk} + {corePipeline} — automātiski atkārtoti mēģinājumi {statusCodes}, bez HTTP ar roku. {esbuild} komplektā, audita tīrs."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Drop-in darbplūsma",
+			"titlePrefix": "Kopēt. Ielīmēt.",
+			"titleAccent": "Tulkot.",
+			"body": "Trīs noslēpumi, četras līnijas, un jūsu repo ir daudzvalodu nākamajā gājienā.",
+			"setupLink": "Izstaigājiet pilnu iestatīšanu"
+		},
+		"cta": {
+			"title": "Vai esat gatavs lokalizēt autopilotā?",
+			"body": "Viena Azure AI tulkotāja atslēga, viens darbplūsmas fails. Resursu tulkotājs veic pārējo.",
+			"button": "Darba sākšana"
 		}
 	},
 	"getting-started": {
 		"title": "Darba sākšana",
 		"eyebrow": "Iestatīšana",
-		"lede": "Pievienojiet darbplūsmas failu, norādiet to uz saviem Azure AI Translator akreditācijas datiem, un darbība, kas veidota uz Microsoft oficiālā @azure-rest/ai-translation-text SDK, skenēs repo avota valodas resursu failus un izstaros tulkotos brāļus un māsas.",
+		"lede": "Pievienojiet darbplūsmas failu, norādiet to uz saviem Azure AI Translator akreditācijas datiem, un darbība skenēs repo avota valodas resursu failus un izstaros tulkotos brāļus un māsas.",
 		"steps": {
 			"provision": {
 				"title": "Azure AI tulkotāja resursa nodrošināšana",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Darbplūsmas pievienošana",
-				"body": "Izveidojiet .github/workflows/translate.yml:"
+				"body": "Izveidot {workflowPath}:"
 			},
 			"resource": {
 				"title": "Avota resursu faila apstiprināšana",
-				"body": "Resursu faili izmanto nosaukumu. <sourceLocale>. <ext> konvenciju. Piemēram, Greetings.lv.resx pēc skrējiena kļūst par Greetings.fr.resx, Greetings.de.resx utt."
+				"body": "Resursu faili izmanto {namingConvention} konvenciju. Piemēram, {sourceFile} pēc skrējiena kļūst par {frFile}, {deFile} utt."
 			},
 			"output": {
 				"title": "Pārbaudiet izeju",
-				"body": "Kad darbplūsma ir pabeigta, darbība atklāj trīs izejas, kuras varat savienot ar PR aprakstu: kopsavilkuma nosaukums, kopsavilkuma detaļas un jauni tulkojumi. Tas arī raksta Markdown kopsavilkumu darba lapā, izmantojot core.summary."
+				"body": "Kad darbplūsma ir pabeigta, darbība atklāj trīs izvades, kuras varat savienot ar PR aprakstu: {summaryTitle}, {summaryDetails} un {hasNewTranslations}. Tas arī ieraksta Markdown kopsavilkumu darba lapā, izmantojot {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Turpmākie pasākumi",
-			"configuration": "Konfigurējiet repo līmeņa noklusējuma iestatījumus, izmantojot .github/resource-translator.yml.",
+			"configuration": "Konfigurējiet repo līmeņa noklusējuma iestatījumus, izmantojot {configPath}.",
 			"recipes": "Skatiet monorepo, pielāgoto glosāriju un pielāgoto tulkotāju kategoriju receptes."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Konfigurācija",
 		"eyebrow": "JAMLS",
 		"heroTitle": "Repozitorija konfigurācija",
-		"lede": "Vienreiz izsakiet noklusējuma iestatījumus .github/resource-translator.yml un ļaujiet katrai darbplūsmai tos mantot. Darbības ieguldījumi vienmēr uzvar, ja tiek nodrošināti abi."
+		"lede": "Vienreiz izsakiet noklusējumus repozitorija konfigurācijas failā un ļaujiet katrai darbplūsmai tos mantot. Darbības ieguldījumi vienmēr uzvar, ja tiek nodrošināti abi.",
+		"intro": "Ignorējiet ceļu ar {configPath} ievadi, ja jums ir nepieciešama atrašanās vieta, kas nav noklusējuma.",
+		"schemaHeading": "Shēma",
+		"fieldReference": {
+			"heading": "Lauka atsauce",
+			"caption": "Konfigurācijas lauka atsauce",
+			"columns": {
+				"field": "Lauks",
+				"type": "Veids",
+				"notes": "Piezīmes"
+			},
+			"fields": {
+				"sourceLocale": "Atgriežas pie {sourceLocale} ievades, ja tas nav iestatīts. Pārsūtīts arī uz tulkotāju, jo {fromLocale} tāpēc īsās virknes netiek automātiski noteiktas.",
+				"toLocales": "Masīvs vai ar komatiem atdalīta virkne.",
+				"includeExclude": "Glob modeļi, kas novērtēti pret absolūtiem un darbvietas relatīviem ceļiem.",
+				"glossary": "Pēctulkošanas terminu ignorēšana. Vārdu robežas apzinās (rokturi {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} kategorija — jūsu nozares/domēna poga (juridiskā, medicīniskā, mārketinga tonis utt.). Nosūtīts kā {categoryQuery}.",
+				"textType": "Noklusējuma vērtība ir {plain}. Izmantojiet {html} tikai tad, ja resursu vērtības satur reālus HTML fragmentus.",
+				"profanityAction": "Kā izturēties pret profāniem terminiem tulkotajā izvadē.",
+				"profanityMarker": "Tikai tad, ja {profanityAction} ir {marked}.",
+				"allowFallback": "Iestatiet {false}, lai neizdodas tulkot, ja jūsu {categoryId} nav izvietojuma mērķa lokalizācijai, nevis atgriezties pie vispārējā modeļa.",
+				"apiVersion": "Tulkotāja REST API versija. Noklusējuma vērtība ir {version}.",
+				"maxRetries": "Maksimālais atkārtoto mēģinājumu skaits ar īslaicīgām HTTP atbildēm ({statusCodes}). Noklusējuma vērtība ir {defaultRetries}. Kopējais HTTP zvanu skaits vienā pieprasījumā ir {totalCalls}.",
+				"retryBackoffMs": "Ierobežojums (ms) uz jebkuru atsevišķu backoff miega režīmu. Noklusējuma vērtība ir {defaultBackoff}. Azure {retryAfter} galvene tiek godināta tieši tad, kad tā ir klāt; pretējā gadījumā tiek izmantots trīcīgs eksponenciāls backoff, kas ierobežots ar šo vērtību.",
+				"protectPlaceholders": "Noklusējuma vērtība ir {true}. Kad tie ir ieslēgti, tādi marķieri kā {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} un HTML entītijas pirms tulkošanas tiek aizstāti ar kontrolmarķieriem un pēc tam atjaunoti. Atspējot tikai tad, ja avots apzināti satur viettura formas literāļus.",
+				"customPlaceholderPatterns": "Papildu regulārās izteiksmes modeļi (bez norobežotājiem), kas pievienoti noklusējuma vietturu kopai, piemēram, {angleToken} pielāgotai marķieru sintaksei. Nederīgi regeksi tiek ignorēti.",
+				"noTranslatePatterns": "Glob modeļi, kas saskaņoti ar parsētāja līmeņa atslēgām (JSON punktētais ceļš, RESX {resxName}, PO {poMsgid}, XLIFF vienība {xliffId}, INI/restext taustiņš). Atbilstošās atslēgas tiek izmestas no pieprasījuma un tiek izvadītas, saglabājot to avota vērtību."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Iekraušanas pasūtījums",
+			"steps": {
+				"actionInputs": "Darbība nolasa nepārprotamu ievadi no darbplūsmas.",
+				"config": "Tas ielādē YAML konfigurāciju no {configPath}.",
+				"precedence": "Katrā koplietojamajā laukā uzvar ievade; pretējā gadījumā tiek izmantota YAML vērtība.",
+				"validation": "Sapludinātās vērtības tiek validētas. Nederīgi uzskaitījumi (piemēram, {invalidEnum}) izraisa ātru darbības neveiksmi ar skaidru ziņojumu."
+			}
+		},
+		"tone": {
+			"heading": "Tonis un rūpniecība, vienkārši izsakoties.",
+			"body": "Azure AI Translator v3 API nav vienas toņa pogas. Divi iestatījumi apvienojas, lai nodrošinātu lielāko daļu no vienas un tās pašas vadības:",
+			"industryLabel": "Nozare / joma:",
+			"industryBody": "izmantojiet {categoryId}, lai norādītu uz Azure {customTranslatorLink} kategoriju, kas ir apmācīta jūsu korpusā — juridiskajā, tehniskajā, medicīniskajā, mārketinga vai jebkā citā. Šī ir spēcīgākā tonis, zīmola balss un vārdu krājuma svira.",
+			"surfaceLabel": "Virsmas teksts:",
+			"surfaceBody": "Izmantojiet {glossaryLink}, lai burtiski bloķētu zīmolu nosaukumus un produktu terminus, un izmantojiet {profanityAction}, lai iztīrītu rupjus terminus, atlasot lokalizāciju jaunākām mērķauditorijām.",
+			"glossaryLinkLabel": "glosārijs"
+		}
 	},
 	"inputs": {
 		"title": "Ieejas un izejas",
 		"eyebrow": "Atsauce",
-		"lede": "Katra ievade tiek pieņemta arī izvēles repo konfigurācijas failā. Kad abi ir iestatīti, uzvar darbības ievade."
+		"lede": "Katra ievade tiek pieņemta arī izvēles repo konfigurācijas failā. Kad abi ir iestatīti, uzvar darbības ievade.",
+		"configurationIntro": "Skatiet {configurationLink} par YAML shēmu un ielādes secību.",
+		"configurationLinkLabel": "Konfigurācija",
+		"columns": {
+			"name": "Vārds",
+			"default": "Noklusējums",
+			"description": "Apraksts"
+		},
+		"defaults": {
+			"none": "nav",
+			"allSupported": "visi atbalstīti",
+			"translatorDefaultTrue": "true (tulkotāja noklusējums)"
+		},
+		"requiredInputs": {
+			"heading": "Nepieciešamās ievades",
+			"caption": "Nepieciešamās ievades",
+			"items": {
+				"sourceLocale": "Avota lokalizācija (piemēram, {en}), ko izmanto, lai atrastu resursu failus, piemēram, {sourceGlob}. Pārsūtīts arī tulkotājam kā {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator abonementa atslēga. Iet cauri {secrets}.",
+				"endpoint": "Tulkotāja galapunkta URL, piemēram, {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Kopējie fakultatīvie ievaddati",
+			"caption": "Kopējie fakultatīvie ievaddati",
+			"items": {
+				"region": "Tulkotāja resursu reģions (izlaist globālos resursus).",
+				"toLocales": "Lokalizācijas, uz kurām tulkot. Akceptē JSON masīvu ({jsonArray}) vai ar komatiem atdalītas vērtības.",
+				"include": "Ar jaunām līnijām atdalīti globu raksti; tiek tulkoti tikai atbilstošie faili.",
+				"exclude": "Ar jaunām līnijām atdalīti globu raksti; Atbilstošie faili tiek izlaisti (lietoti pēc iekļaušanas).",
+				"configPath": "Ceļš uz YAML konfigurācijas failu (attiecībā pret darbvietas sakni).",
+				"dryRun": "Kad {true}, palaidiet tulkojumus un izdaliet kopsavilkumus, bet nerakstiet failus.",
+				"failOnError": "Ja {true}, negaidītas kļūdas neizdodas veikt darbību; Ja {false}, kļūdas ir brīdinājumi."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Tulkotāja pieprasījuma ievades",
+			"intro": "Tie tiek kartēti tieši uz Azure AI Translator v3 vaicājuma parametriem. Katrs no tiem nav obligāts; tulkotāja noklusējuma iestatījumi tiek piemēroti, ja tas ir atcelts.",
+			"caption": "Tulkotāja pieprasījuma ievades",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} kategorija — nozares/domēna/toņa poga. Pārsūtīts kā {categoryQuery}.",
+				"textType": "{plain} vai {html}. Izmantojiet {html} tikai tad, ja resursu vērtības ir reāli HTML fragmenti.",
+				"profanityAction": "{noAction}, {marked} vai {deleted}. Kontrolē, kā tulkojumos tiek emitēti rupji termini.",
+				"profanityMarker": "{asterisk} vai {tag}. Tikai jēgpilni, ja {profanityAction} ir {marked}.",
+				"allowFallback": "Ja {false}, tulkotājs atgriež kļūdu, nevis atgriežas vispārējā sistēmā, ja jūsu {categoryId} nav izvietojuma mērķa lokalizācijai.",
+				"apiVersion": "Tulkotāja REST API versija."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Izturība un vietturu aizsardzība",
+			"intro": "Šīs ievades kontrolē, kā darbība darbojas, kad tulkotājs ierobežo jūsu pieprasījumu, un kā tas pasargā viettura marķierus, piemēram, {mustache} vai {indexZero}, no izkropļošanas tulkošanas laikā.",
+			"caption": "Elastība un vietturu aizsardzības ievades",
+			"items": {
+				"maxRetries": "Maksimālais atkārtoto mēģinājumu skaits ar īslaicīgām HTTP atbildēm ({statusCodes}). Kopējais HTTP zvanu skaits vienā pieprasījumā ir {totalCalls}.",
+				"retryBackoffMs": "Ierobežojums (milisekundēs) jebkuram atsevišķam miega režīmam. Darbība godina Azure {retryAfter} atbildes galveni tieši tad, kad tā ir klāt; pretējā gadījumā tas izmanto trīcīgu eksponenciālu atgriešanos, kas ierobežota ar šo vērtību.",
+				"protectPlaceholders": "Ja {true} (noklusējums), vietturi, piemēram, {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} un HTML entītijas, pirms tulkošanas tiek aizstāti ar kontrolmarķieriem un pēc tam atjaunoti. Atspējot tikai tad, ja avots apzināti satur burtisku viettura formas tekstu, kas jātulko.",
+				"customPlaceholderPatterns": "Ar jaunām rindiņām atdalītas regulārās ekses (bez norobežotājiem), kas pievienotas noklusējuma vietturu kopai, piemēram, {angleToken} pielāgotai marķieru sintaksei.",
+				"noTranslatePatterns": "Ar jaunām rindām atdalīti glob modeļi, kas atbilst parsētāja līmeņa atslēgām (JSON punktētais ceļš, RESX {resxName}, PO {poMsgid}, XLIFF vienība {xliffId}, INI/restext taustiņš). Atbilstošās atslēgas tiek izmestas no tulkotāja pieprasījuma un tiek izvadītas, saglabājot to avota vērtību."
+			}
+		},
+		"outputs": {
+			"heading": "Rezultāti",
+			"caption": "Rezultāti",
+			"items": {
+				"summaryTitle": "Īss PR nosaukumam draudzīgs kopsavilkums, piem., {summaryExample}.",
+				"summaryDetails": "Markdown kopsavilkums piemērots PR iestādei vai darba kopsavilkumam.",
+				"hasNewTranslations": "{trueString}, kad tika ģenerēts viens vai vairāki jauni tulkojumi."
+			}
+		}
 	},
 	"formats": {
 		"title": "Failu formāti",
 		"eyebrow": "Atsauce",
 		"heroTitle": "Atbalstītie failu formāti",
-		"lede": "Seši resursu formāti ar turp un atpakaļ. Darbība nolasa katru avota lokalizācijas failu, tulko vērtības un raksta brāli katrai mērķa lokalizācijai."
+		"lede": "Seši resursu formāti ar turp un atpakaļ. Darbība nolasa katru avota lokalizācijas failu, tulko vērtības un raksta brāli katrai mērķa lokalizācijai.",
+		"namingConvention": "Visi faili izmanto {namingConvention} nosaukumu piešķiršanas konvenciju.",
+		"learnMore": "Uzzināt vairāk",
+		"items": {
+			"resx": {
+				"blurb": "XML .NET resursu faili. Tulko katra {dataValue} mezgla iekšējo tekstu, saglabājot komentārus un metadatus.",
+				"specLabel": "Microsoft Learn — resursi .resx failos"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 dokumenti. Tulko katru {source} un ieraksta rezultātu atbilstošajā {target}, iestatot lokalizācijas {trgLang}.",
+				"specLabel": "OASIS XLIFF 2.0 specifikācija"
+			},
+			"po": {
+				"blurb": "GNU gettext portatīvo objektu faili. Tulko katru {msgid} / {msgidPlural} {msgstr} / {msgstrPlural} formās.",
+				"specLabel": "GNU gettext — PO faila formāts"
+			},
+			"json": {
+				"blurb": "Patvaļīgi JSON faili. Ligzdotie objekti tiek saplacināti ar {delimiter} norobežotāju tulkošanai, pēc tam atkārtoti ligzdoti izvades laikā. Punktētie taustiņi ({dottedKey}) tiek saglabāti burtiski.",
+				"specLabel": "JSON specifikācija (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Vienkārši {keyValue} faili (Win32 stila INI vai jebkura plakana konfigurācija). Sadaļu galvenes un komentāri tiek saglabāti.",
+				"specLabel": "INI faila formāts Vikipēdijā"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI teksta resursi — plakani {keyValue} pāri, kas tiek izmantoti kā {resx} teksta pavadonis.",
+				"specLabel": "Microsoft MUI pārskats"
+			}
+		},
+		"roundTrip": {
+			"heading": "Garantijas turp un atpakaļ",
+			"body": "Testa komplekts pārbauda baitu pa baitam turp un atpakaļ visu formātu reprezentatīviem aprīkojumiem. Ja formāta dīvainība pārtrauc turp un atpakaļ jūsu kodu bāzē, lūdzu, {issueLink} ar minimālu paraugu.",
+			"issueLinkLabel": "Problēmas atvēršana"
+		}
 	},
 	"recipes": {
 		"title": "Receptes",
 		"eyebrow": "Pavārgrāmata",
-		"lede": "Izplatītākie tulkojumu piegādes modeļi: monorepos, glosāriji, pielāgotas kategorijas, sausie tirāžas un toņu kontrole."
+		"lede": "Izplatītākie tulkojumu piegādes modeļi: monorepos, glosāriji, pielāgotas kategorijas, sausie tirāžas un toņu kontrole.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Pull pieprasījuma atvēršana pēc katras izpildes"
+			},
+			"monorepo": {
+				"heading": "Monorepos: apjoma tulkojums paketē"
+			},
+			"glossary": {
+				"heading": "Zīmolu nosaukumu un produktu terminu glosārijs",
+				"intro": "Ievietojiet {configPath} repo:",
+				"afterLabel": "pēc",
+				"body": "Vārdnīcas termini tiek izmantoti {after} tulkojumam, tāpēc mašīntulkotā izvade saglabā vēlamo zīmolu pat tad, ja modelis to nomainīja pret sinonīmu."
+			},
+			"customCategory": {
+				"heading": "Custom Translator kategorija (nozare / domēns)",
+				"body": "Apmāciet Azure {customTranslatorLink} kategoriju korpusā, kas aptver jūsu nozares vārdu krājumu un toni (juridiskā, medicīniskā, mārketinga, iekšējās inženierijas utt.), un nododiet tās ID, izmantojot {categoryId}. Šī ir spēcīgākā toņa svira, ko piedāvā Azure."
+			},
+			"tone": {
+				"heading": "Toņa kontrole + stingra atkāpe",
+				"body": "Apvienojiet pielāgoto tulkotāju {categoryId} ar {profanityAction} un {allowFallbackFalse}, lai nodrošinātu konsekventu balsi un neizdodas darbplūsmai, ja izvēlētajai kategorijai nav izvietojuma kādai no mērķa lokalizācijām."
+			},
+			"dryRun": {
+				"heading": "Sausā darbība pirms darbplūsmas ieslēgšanas",
+				"body": "Darbība joprojām izdod kopsavilkuma izvades un soļu kopsavilkumu, bet faili netiek rakstīti. Apvienojiet ar {failOnErrorFalse}, lai parādītu katru problēmu kā brīdinājumu atkārtošanas laikā."
+			}
+		}
 	},
 	"faq": {
 		"title": "Biežāk uzdotie jautājumi",
 		"eyebrow": "Palīdzība",
 		"heroTitle": "Biežāk uzdotie jautājumi",
-		"lede": "Ātras atbildes uz jautājumiem, kas visbiežāk rodas, pieņemot darbību."
+		"lede": "Ātras atbildes uz jautājumiem, kas visbiežāk rodas, pieņemot darbību.",
+		"questions": {
+			"azure": {
+				"heading": "Kā darbība runā ar Azure?",
+				"body": "Izmantojot Microsoft oficiālo {azureSdkLink} SDK, kas slāņojas uz {corePipelineLink}. Tas nodrošina automātiskus atkārtotus {statusCodes} mēģinājumus, ierakstītus pieprasījumu un atbilžu modeļus un autentifikācijas galvenes apstrādi bez maksas - viss, kas agrāk bija {axios} zvana ar roku. Publiskās darbības virsma (ievades, izejas, failu izvades) nav mainījusies."
+			},
+			"tone": {
+				"heading": "Kāpēc tulkojumi dažkārt ir ārpus zīmola vai neatbilstoša?",
+				"body": "Mašīntulkošana pēc noklusējuma ir universāls modelis. Trīs pogas palīdz: {glossaryLink} smagu termiņu ignorēšanai, {customTranslatorLink} precīzi noregulētiem modeļiem, kas apmācīti jūsu tonī un vārdu krājumā, un {profanityAction} skrubēt vai atzīmēt rupjus terminus.",
+				"glossaryLinkLabel": "glosārijs",
+				"customTranslatorLinkLabel": "Kategorija Pielāgots tulkotājs"
+			},
+			"duplicateFiles": {
+				"heading": "Kā izvairīties no viena faila divreiz tulkošanas?",
+				"body": "Aktivizējiet darbplūsmu {paths}, kas atbilst tikai avota lokalizācijas failiem, piemēram, {sourceGlob}. Darbība ietver arī savu aktivizētāja failu filtru, kad {githubToken} ir iestatīts, sašaurinot darbu līdz failiem jaunākajā saistībā."
+			},
+			"offline": {
+				"heading": "Vai darbību var palaist bezsaistē?",
+				"body": "Ne gluži - Azure AI Translator ir izpildlaika smadzenes. Bet jūs varat palaist ar {dryRunTrue}, lai pārbaudītu parsēšanu un konfigurāciju, neveicot nekādus HTTP tulkošanas pieprasījumus."
+			},
+			"node": {
+				"heading": "Kādā mezgla versijā darbība tiek izpildīta?",
+				"body": "v3 darbojas GitHub darbību {nodeRuntime} izpildlaikā. Komplektā iekļautais JavaScript ir saderīgs ar 20., 22. un 24. mezglu, kas ir tas, ko CI pārbauda."
+			},
+			"dist": {
+				"heading": "No kurienes nāk komplektētie {distDir}?",
+				"body": "GitHub JS darbības piegādā savu kompilēto JS repozitorijā. {distBuild} darbplūsma to pārveido pēc katras apvienošanas, lai {mainBranch}, ja tā novirzītos, un {distCheck} bloķē PR, kas iegūtu novecojušu produkciju."
+			},
+			"formats": {
+				"heading": "Kā ar citiem resursu formātiem?",
+				"body": "Šodien: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink}, ja jums ir nepieciešams cits - parsētāja interfeiss ir mazs (parsēt → kartēt → lietot tulkojumus → formātā) un ieguldījumi ir laipni gaidīti.",
+				"issueLinkLabel": "Problēmas atvēršana"
+			}
+		}
 	},
 	"translations": {
 		"title": "Tulkojumi",
 		"eyebrow": "Vitrīna",
 		"heroTitle": "Sveiki visās valodās",
-		"locales": "Lokalizācijas",
-		"currentlyRendered": "Pašlaik atveidots",
-		"complete": "Pabeigts!",
-		"pendingPrefix": "gaidot nākamo tulkošanas dokumentu izpildi.",
+		"lede": "Šo lapu tulko pats resursu tulkotājs, katru reizi piespiežot uz galveno, visās valodās, ko atbalsta Azure AI Translator.",
+		"localeCountLabel": "{count} vietas",
+		"statusComplete": "{translatedCount} pašlaik atveidots - pabeigts!",
+		"statusPending": "{translatedCount} pašlaik tiek atveidots — {pendingCount} gaida nākamo {workflowName} izpildi.",
 		"viewWorkflowRuns": "Darbplūsmas izpildes skatīšana",
 		"filter": "Filtrs",
 		"filterPlaceholder": "Meklēt pēc valodas, koda vai dzimtā vārda...",
 		"source": "Avots",
 		"machineTranslations": "Mašīntulkojumi",
-		"translationPending": "Tulkošana gaida — atveriet tulkošanas dokumentu izpildi.",
+		"translationPending": "Tulkošana gaida — atveriet {workflowName} izpildi.",
 		"noLocales": "Neviena lokalizācija neatbilst šim filtram.",
-		"howItWorks": "Kā tas darbojas"
+		"howItWorks": {
+			"heading": "Kā tas darbojas",
+			"thisActionLabel": "Šī pati darbība",
+			"steps": {
+				"source": "Angļu valodas avota fails atrodas {messagesPath}.",
+				"workflow": "Nospiež šo pieskārienu, tas sāk {workflowLink}, kas {thisAction} pret sevi.",
+				"fanOut": "Darbība tiek izvadīta uz katru Azure AI tulkotāja atbalstīto lokalizāciju (konfigurēta {configPath}) un katram mērķim raksta brāļa {messagesLocaleJson}.",
+				"pullRequest": "Tiek atvērts pull pieprasījums ar jaunajiem tulkojumiem. Apvienojot to, šī lapa tiek atkārtoti publicēta ar aizpildītām kartītēm."
+			}
+		},
+		"poweredBy": "Nodrošina resursu tulkotājs un Azure AI tulkotājs."
 	},
 	"contributing": {
 		"title": "Ieguldījums",
 		"eyebrow": "Atvērtais kods",
-		"lede": "Ziņojumi par kļūdām, funkciju pieprasījumi un vilkšanas pieprasījumi ir laipni gaidīti. Darbība ir pietiekami maza, lai būtu draudzīga pirmreizējiem līdzstrādniekiem."
+		"lede": "Ziņojumi par kļūdām, funkciju pieprasījumi un vilkšanas pieprasījumi ir laipni gaidīti. Darbība ir pietiekami maza, lai būtu draudzīga pirmreizējiem līdzstrādniekiem.",
+		"localDevelopment": {
+			"heading": "Vietējā attīstība"
+		},
+		"addingParser": {
+			"heading": "Parsētāja pievienošana",
+			"steps": {
+				"fixture": "Pievienojiet armatūru zem {testDataDir}.",
+				"implement": "Ieviesiet {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Reģistrējiet to {factoryFile}.",
+				"extension": "Pievienojiet faila paplašinājumu {translationFileSchemes} {finderFile}.",
+				"tests": "Uzrakstiet testus turp un atpakaļ, lai parsētu → formātu un applyTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "Seguma sliekšņi",
+			"body": "Jest konfigurācija nodrošina minimālo segumu. Jaunajam kodam ir jāsaglabā paziņojumu + rindu slieksnis virs 78% un funkcijām virs 90%. Pievienojiet spēles un testus kopā ar izmaiņām."
+		},
+		"docsSite": {
+			"heading": "Dokumentācijas vietne",
+			"body": "Mape {docsDir} ir Astro 6 + Tailwind v4 projekts. Palaidiet {npmInstall} tur vienu reizi, pēc tam {npmRunDev} vietējam priekšskatījumam. {pagesWorkflow} darbplūsma nosūta dokumentus uz GitHub lapām katrā sapludināšanā."
+		}
 	},
 	"changelog": {
 		"title": "Izmaiņu žurnāls",
 		"eyebrow": "Vēsture",
-		"lede": "Augsta līmeņa laidienu kopsavilkums. Kanoniskais, autoritatīvais izmaiņu žurnāls dzīvo CHANGELOG.md repozitorijā."
+		"lede": "Augsta līmeņa laidienu kopsavilkums. Kanoniskais, autoritatīvais izmaiņu žurnāls dzīvo CHANGELOG.md repozitorijā.",
+		"fullRecord": "Skatīt {changelogLink} pilnu ierakstu.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (izstrādes stadijā)",
+			"labels": {
+				"breaking": "LAUŠANA",
+				"resilience": "Izturība:",
+				"placeholderProtection": "Viettura aizsardzība:",
+				"perKeyOptOut": "Atteikšanās par atslēgu:",
+				"docsAccessibility": "Dokumentu pieejamība:",
+				"inlineCodeStyling": "Iekļautā koda stils:"
+			},
+			"issueLabels": {
+				"closes46": "Aizver #46.",
+				"tightens16": "Pievelk #16.",
+				"closes35": "Aizver #35."
+			},
+			"items": {
+				"runtime": "Pārcelts uz {nodeRuntime} izpildlaiku ({breaking}).",
+				"newInputs": "Jaunas ievades: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, kā arī uzlabotas tulkotāja pogas {textType}, {profanityAction}, {profanityMarker} un {allowFallback}.",
+				"sourceLocale": "Avota lokalizācija tagad tiek pārsūtīta arī uz tulkotāju, jo {fromLocale} tāpēc īsas virknes netiek automātiski noteiktas.",
+				"resilience": "{label} automātiska atkārtota mēģināšana uz īslaicīgām HTTP atbildēm ({statusCodes}), ievērojot Azure {retryAfter} galveni, atgriežas pie nervozas eksponenciālas atgriešanās, kad tā nav. Regulējams, izmantojot {maxRetries} un {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} marķieri, piemēram, {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} un HTML entītijas, pirms tulkošanas tiek iesaiņoti sargjoslās un pēc tam atjaunoti, tāpēc tulkotājs pārtrauc i18next/Mustache/Handlebars/.NET/printf vietturus. Pārslēgties, izmantojot {protectPlaceholders}; pagarināt ar {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} jaunā {noTranslatePatterns} ievade pilnībā nomet atbilstošās atslēgas no tulkotāja pieprasījuma (saglabā zīmolu nosaukumu, kļūdu kodu u.c. avota vērtības). Saskaņo glob modeļus ar parsētāja līmeņa atslēgām (JSON punktētais ceļš, RESX {resxName}, PO {poMsgid}, XLIFF vienība {xliffId}, INI/restext taustiņš). {issue}",
+				"repoConfig": "Repo līmeņa konfigurācija, izmantojot {configPath}.",
+				"glossary": "Glosārija atbalsts, soļu kopsavilkums, izmantojot {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "npm audits tīrs (0 ievainojamības).",
+				"docsSite": "Astro + Tailwind v4 dokumentu vietne ar skatu pārejām un izteiksmīgu kodu.",
+				"docsAccessibility": "{label} WCAG 2.1 AA caurlaide. Logotipa glifi pārvērsti par ceļiem, lai tie vairs neizdodas krāsu kontrasts pret gradienta pieturām, peldošā {backToTop} poga izmanto {inert}, kamēr tā ir paslēpta (nevis {ariaHidden} pārslēdzis, kas atstāja to tabible), {formatsAstro} sadaļas vairs nesaduras ar automātiski ģenerētajiem virsrakstu ID, trīs lokalizācijas kartītes tagad atklāj BCP-47 derīgus {lang} atribūtus ({nya}, {lug}, {run}), dublikātu {documentation} orientieru etiķetes ir atdalītas starp sānjoslu un kājeni,  un katra datu tabula {inputs}/{configuration} tiek piegādāta ar ekrāna lasītāja parakstu.",
+				"inlineCode": "{label} dokumentu prozā {codeElement} tagad nēsā siltu/dzintara tēmas akcentu, kas atšķiras no zīmola→akcenta paletes, ko izmanto saitēm un virsrakstiem.",
+				"automation": "Atkarīgā automātiskā apvienošana, CodeQL skenēšana, CI matrica."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Skatīt git vēsturi."
+		}
 	}
 }

@@ -15,7 +15,13 @@
 		"searchPlaceholder": "문서 검색 중...",
 		"toggleTheme": "토글 테마",
 		"githubRepository": "GitHub 저장소",
-		"language": "언어"
+		"language": "언어",
+		"languageTitle": "언어를 선택하세요",
+		"languageDescription": "다른 언어로 된 같은 페이지로 전환하세요.",
+		"languageSearch": "필터 언어",
+		"languageSearchPlaceholder": "검색어나 지역 코드...",
+		"languageNoResults": "그 필터에 맞는 언어는 없습니다.",
+		"closeLanguage": "밀접한 언어 선택자"
 	},
 	"search": {
 		"title": "검색 문서",

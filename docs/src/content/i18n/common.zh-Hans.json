@@ -15,7 +15,13 @@
 		"searchPlaceholder": "搜索文档......",
 		"toggleTheme": "切换主题",
 		"githubRepository": "GitHub仓库",
-		"language": "语言"
+		"language": "语言",
+		"languageTitle": "选择你的语言",
+		"languageDescription": "切换到同一页的另一种语言。",
+		"languageSearch": "过滤语言",
+		"languageSearchPlaceholder": "搜索语言或地区代码......",
+		"languageNoResults": "没有语言能匹配到那个过滤器。",
+		"closeLanguage": "近距离语言选择器"
 	},
 	"search": {
 		"title": "检索文档",

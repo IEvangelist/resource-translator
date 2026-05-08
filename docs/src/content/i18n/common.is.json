@@ -15,7 +15,13 @@
 		"searchPlaceholder": "Leitaðu að skjölum...",
 		"toggleTheme": "Slökkva á þema",
 		"githubRepository": "GitHub geymsla",
-		"language": "Tungumál"
+		"language": "Tungumál",
+		"languageTitle": "Veldu þitt tungumál",
+		"languageDescription": "Skiptu yfir á sömu síðu á öðru tungumáli.",
+		"languageSearch": "Síumál",
+		"languageSearchPlaceholder": "Leitarmál eða staðsetningarkóðar...",
+		"languageNoResults": "Engin tungumál passa við þá síu.",
+		"closeLanguage": "Loka tungumálavali"
 	},
 	"search": {
 		"title": "Leitarskjöl",

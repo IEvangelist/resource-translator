@@ -18,18 +18,26 @@
 			"node": "Girêk 20 / 22 / 24",
 			"sdk": "Fermî Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "Nivîs Wergirtin",
+			"json": "hêlîn an rast",
+			"ini": "{keyValue}",
+			"restext": "Nivîsa MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Şeş formatên pelan",
-				"body": "Rêwîtiyên .resx, .xliff, .po, .json, .ini û .restext bi formatkirina byte-stabîl."
+				"body": "Rêwîtiyên dorpêçê {resx}, {xliff}, {po}, {json}, {ini} û {restext} bi formatkirina byte-stabîl re derbas dibin."
 			},
 			"config": {
 				"title": "Mîhenga asta repo",
-				"body": "Ji bo kategoriyên globs, ferheng û Wergêra Xwerû .github/resource-translator.yml bavêjin."
+				"body": "Ji bo kategoriyên globs, ferheng û Wergêra Taybet pelê {configPath} bavêjin."
 			},
 			"glossary": {
 				"title": "Ferheng-agahdar",
-				"body": "Navên marqeyan û termên hilberê bi regex-sînorê peyva zîrek a ku C ++, .NET û hevalên xwe digire kilîd bikin."
+				"body": "Navên marqeyan û termên hilberê bi regex-sînorê peyva zîrek a ku {cpp}, {dotnet} û hevalên xwe birêve dibe, kilîd bikin."
 			},
 			"dryRun": {
 				"title": "Ziwa + nerm-têkçûn",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Berhemên PR-heval",
-				"body": "kurte-sernav, kurte-hûrgulî û wergerên nû rasterast di create-pull-request de cih digirin."
+				"body": "{summaryTitle}, {summaryDetails} û {hasNewTranslations} rasterast di nav afirandin-kişandin-daxwazê de cih digirin."
 			},
 			"sdk": {
 				"title": "Fermî Azure SDK",
-				"body": "Li ser @azure-rest / ai-translation-text + @azure / core-rest-pipeline hatiye avakirin - li ser 408/429/5xx dubarekirina otomatîk e, HTTP bi destan nehatiye pêçandin. esbuild-bundled, audit-clean."
+				"body": "Li ser {azureSdk} + {corePipeline} hatiye avakirin - li ser {statusCodes} ceribandinên otomatîk hene, HTTP-ya destan tune ye. {esbuild}-pakêt, kontrol-paqij."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Workflow Drop-in",
+			"titlePrefix": "Kopî bike. Paste bike.",
+			"titleAccent": "Wergerandin.",
+			"body": "Sê raz, çar rêzik, û repoya we di pêlên din de pirzimanî ye.",
+			"setupLink": "Di tevahiya sazkirinê de bimeşin"
+		},
+		"cta": {
+			"title": "Amade ne ku li ser otopîlotê herêmî bikin?",
+			"body": "Yek mifteya wergera Azure AI, yek pelê herikîna xebatê. Wergêra Çavkaniyê yên mayî birêve dibe.",
+			"button": "Dest pê bikin"
 		}
 	},
 	"getting-started": {
 		"title": "Destpêkirin",
 		"eyebrow": "Sazkirin",
-		"lede": "Pelê herikîna xebatê lê zêde bikin, wê li ser nasnameyên xwe yên Azure AI Translator nîşan bidin, û çalakî - li ser SDK-ya fermî ya Microsoft-ê @azure-rest / ai-translation-text hatî çêkirin - dê repo ji bo pelên çavkaniya çavkaniya zimanê çavkaniyê skan bike û xwişk û birayên wergerandî belav bike.",
+		"lede": "Pelê herikîna xebatê lê zêde bikin, wê li ser nasnameyên xwe yên Azure AI Translator nîşan bidin, û çalakî dê repoyê ji bo pelên çavkaniya zimanê çavkaniyê skan bike û xwişk û birayên wergerandî belav bike.",
 		"steps": {
 			"provision": {
 				"title": "Supply an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Workflow lê zêde bikin",
-				"body": ".github/workflows/translate.yml biafirînin:"
+				"body": "Afirandina {workflowPath}:"
 			},
 			"resource": {
 				"title": "Pelê çavkaniya çavkaniyê pêk bînin",
-				"body": "Pelên çavkaniyê Navê bikar tînin. <sourceLocale>. <ext> Peyman. Bo nimûne, Greetings.en.resx dibe Greetings.fr.resx, Greetings.de.resx, û hwd."
+				"body": "Pelên çavkaniyê peymana {namingConvention} bikar tînin. Mînak {sourceFile} piştî bezê dibe {frFile}, {deFile} û hwd."
 			},
 			"output": {
 				"title": "Hilberînê kontrol bikin",
-				"body": "Dema ku herikîna kar bi dawî dibe, çalakî sê hilberên ku hûn dikarin di nav danasîna PR-ê de girêbidin derdixe holê: kurte-sernav, kurte-hûrgulî, û wergerên nû. Di heman demê de ew bi rêya core.summary kurteyek Markdown di rûpela kar de dinivîse."
+				"body": "Dema ku herikîna kar bi dawî dibe, çalakî sê hilberên ku hûn dikarin di nav danasîna PR-ê de girêbidin derdixe holê: {summaryTitle}, {summaryDetails} û {hasNewTranslations}. Di heman demê de ew bi navgîniya navnîşanê kurteyek Markdown di rûpela kar de dinivîse {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Gavên din",
-			"configuration": "Bi .github/resource-translator.yml re xwerûyên asta repo-yê vesaz bikin.",
+			"configuration": "Xwerû asta repo-yê bi {configPath} vesaz bikin.",
 			"recipes": "Li reçeteyên ji bo monorepo, ferhengên xwerû û kategoriyên Wergêra Taybet binêrin."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Vesazkirin",
 		"eyebrow": "YAML",
 		"heroTitle": "Mîhengkirina depoyê",
-		"lede": "Express carekê di .github/resource-translator.yml de xwerû ye û bila her herikîna kar wan mîras bigire. Dema ku her du jî têne peyda kirin, têketinên çalakiyê her gav qezenc dikin."
+		"lede": "Express carekê di pelê vesazkirina depoyê de xwerû dibe û bila her herikîna kar wan mîras bigire. Dema ku her du jî têne peyda kirin, têketinên çalakiyê her gav qezenc dikin.",
+		"intro": "Heke hewcedariya we bi cîhekî ne-xwerû hebe, bi têketina {configPath} re rê betal bikin.",
+		"schemaHeading": "Şema",
+		"fieldReference": {
+			"heading": "Referansa qadê",
+			"caption": "Referansa qada vesazkirinê",
+			"columns": {
+				"field": "zevî",
+				"type": "Cure",
+				"notes": "Têbinî"
+			},
+			"fields": {
+				"sourceLocale": "Ger neyê eyarkirin vedigere têketina {sourceLocale}. Di heman demê de ji ber vê yekê rêzikên kurt otomatîk nayên tespîtkirin {fromLocale} ji Wergêrê re hate şandin.",
+				"toLocales": "An rêzek an jî rêzikek veqetandî ye.",
+				"includeExclude": "Nimûneyên Glob li dijî rêyên mutleq û qada xebatê nirxandin.",
+				"glossary": "Peyva piştî wergerê derbas dibe. Peyv-sînor (destên {cpp}, {dotnet}).",
+				"categoryId": "Kategoriya Azure {customTranslatorLink} - pîşesaziya we / bişkoka domainê (qanûnî, bijîşkî, tona kirrûbirrê, hwd.). Wekî {categoryQuery}.",
+				"textType": "Defaults ji bo {plain}. {html} tenê heke nirxên çavkaniya we perçeyên HTML-ê yên rastîn hebin, bikar bînin.",
+				"profanityAction": "Meriv çawa di hilberîna wergerandî de peyvên neheq derman dike.",
+				"profanityMarker": "Tenê dema ku {profanityAction} watedar {marked}.",
+				"allowFallback": "Li şûna ku vegerin modela gelemperî, dema ku {categoryId} we ji bo herêmek armanc belav nebe, ji bo wergerê têk {false}.",
+				"apiVersion": "Wergêr REST API guherto. Defaults ji bo {version}.",
+				"maxRetries": "Hewldanên herî zêde yên li ser bersivên HTTP yên demkî ({statusCodes}). Defaults to {defaultRetries}. Tevahiya bangên HTTP ji bo her daxwazê {totalCalls}.",
+				"retryBackoffMs": "Cap (ms) li ser xewa paşveçûnê. Defaults ji bo {defaultBackoff}. Sernivîsa {retryAfter} ya Azure tam dema ku heyî tê rûmetkirin; Wekî din, paşveçûna exponential a jittered tê bikar anîn, bi vê nirxê ve tê girtin.",
+				"protectPlaceholders": "Defaults ji bo {true}. Dema ku vekirî be, nîşanên wekî {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} û HTML berî wergerê bi nîşanên sentinel têne guhertin û paşê têne sererastkirin. Tenê dema ku çavkanî bi zanebûn lîteralên bi şiklê cîh dihewîne, neçalak bikin.",
+				"customPlaceholderPatterns": "Nimûneyên regexê yên zêde (bêyî sînordarkirin) li seta cîhê xwerû hatine zêdekirin, mînak {angleToken} ji bo hevoksaziya tokenê ya xwerû. Regexên nederbasdar têne paşguh kirin.",
+				"noTranslatePatterns": "Modelên Glob li dijî mifteyên asta parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext key). Mifteyên lihevhatinê ji daxwazê têne avêtin û bi nirxa çavkaniya xwe re derbas dibin."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Fermana barkirinê",
+			"steps": {
+				"actionInputs": "Çalakî têketinên eşkere yên ji herikîna kar dixwîne.",
+				"config": "Ew vesazkirina YAML ji {configPath} bar dike.",
+				"precedence": "Ji bo her qada hevpar, input qezenc dike; wekî din nirxa YAML tê bikar anîn.",
+				"validation": "Nirxên yekbûyî têne pejirandin. Enumên nederbasdar (mînak {invalidEnum}) dibe sedem ku çalakî bi peyamek zelal zû têk biçe."
+			}
+		},
+		"tone": {
+			"heading": "Ton û pîşesazî, bi awayekî zelal",
+			"body": "Azure AI Translator v3 API yek bişkoka tonê tune ye. Du mîheng bi hev re dibin da ku piraniya heman kontrolê bidin we:",
+			"industryLabel": "Pîşesazî / domain:",
+			"industryBody": "{categoryId} bikar bînin da ku hûn li ser kategoriya Azure {customTranslatorLink} ku li ser korpusa xwe perwerde bûne - hiqûqî, teknîkî, bijîşkî, bazirganî, an tiştek din. Ev ji bo ton, dengê marqeyê û ferhengê herî bihêz e.",
+			"surfaceLabel": "Nivîsa rûberê:",
+			"surfaceBody": "{glossaryLink} bikar bînin da ku navên marqeyan û termên hilberê bi peyv bigirin, û {profanityAction} bikar bînin da ku dema ku ji bo temaşevanên ciwan armanc dikin ku peyvên neheq paqij bikin.",
+			"glossaryLinkLabel": "ferheng"
+		}
 	},
 	"inputs": {
 		"title": "Têketin û derketin",
 		"eyebrow": "Referans",
-		"lede": "Her têketin di pelê vesazkirina repoyê ya vebijarkî de jî tê pejirandin. Dema ku her du jî têne eyarkirin, têketina çalakiyê qezenc dike."
+		"lede": "Her têketin di pelê vesazkirina repoyê ya vebijarkî de jî tê pejirandin. Dema ku her du jî têne eyarkirin, têketina çalakiyê qezenc dike.",
+		"configurationIntro": "Ji bo şema YAML û rêza barkirinê li {configurationLink} binêrin.",
+		"configurationLinkLabel": "Vesazkirin",
+		"columns": {
+			"name": "Nav",
+			"default": "Default",
+			"description": "Daxuyanî"
+		},
+		"defaults": {
+			"none": "tunebûn",
+			"allSupported": "hemî piştgirî kirin",
+			"translatorDefaultTrue": "rast (Wergera xwerû)"
+		},
+		"requiredInputs": {
+			"heading": "Têketinên pêwîst",
+			"caption": "Têketinên pêwîst",
+			"items": {
+				"sourceLocale": "Çavkaniya herêmî (mînak {en}) ji bo dîtina pelên çavkaniyê yên wekî {sourceGlob}. Her weha wekî Wergêr jî {fromLocale}.",
+				"subscriptionKey": "Mifteya abonetiyê ya Azure AI Translator. Bi rêya {secrets} derbas bibin.",
+				"endpoint": "URL-ya dawîn a wergêrê, mînak {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Têketinên vebijarkî yên hevpar",
+			"caption": "Têketinên vebijarkî yên hevpar",
+			"items": {
+				"region": "Herêma çavkaniya wergêr (ji bo çavkaniyên gerdûnî jêbirin).",
+				"toLocales": "Cihên wergerandinê. Rêzeya JSON ({jsonArray}) an nirxên veqetandî qebûl dike.",
+				"include": "Şêwazên globê yên Newline-veqetandî ne; Tenê pelên lihevhatî têne wergerandin.",
+				"exclude": "Şêwazên globê yên Newline-veqetandî ne; Pelên lihevhatî têne derbas kirin (piştî ku tê de tê sepandin).",
+				"configPath": "Riya pelê vesazkirina YAML (li gorî koka qada xebatê).",
+				"dryRun": "Dema ku {true}, wergeran bixebitînin û kurtefîlman belav bikin lê dosyayan nenivîsin.",
+				"failOnError": "Dema ku {true}, xeletiyên nehêvîkirî di çalakiyê de têk diçin; Dema ku {false}, xeletî hişyarî ne."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Têketinên daxwaza wergêr",
+			"intro": "Ev rasterast li ser parametreyên lêpirsînê yên Azure AI Translator v3 nexşeyê dikin. Her yek vebijarkî ye; dema ku neyê danîn xwerû yên Wergêr têne sepandin.",
+			"caption": "Têketinên daxwaza wergêr",
+			"items": {
+				"categoryId": "Kategoriya Azure {customTranslatorLink} — bişkoja pîşesaziyê / domainê / ton. Wekî {categoryQuery}.",
+				"textType": "{plain} an {html}. {html} tenê dema ku nirxên çavkaniya we perçeyên HTML-ê yên rastîn in, bikar bînin.",
+				"profanityAction": "{noAction}, {marked} an jî {deleted}. Kontrol dike ka di wergeran de peyvên neheq çawa têne belav kirin.",
+				"profanityMarker": "{asterisk} an {tag}. Tenê dema ku {profanityAction} watedar {marked}.",
+				"allowFallback": "Dema ku {false}, heke {categoryId} we ji bo herêmek armanc belav nebe, Wergêr li şûna ku vegere pergala giştî xeletiyek vedigerîne.",
+				"apiVersion": "Wergêr REST API guherto."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Berxwedan û parastina cîhê",
+			"intro": "Van têketinan kontrol dikin ka dema ku Wergêr daxwaza we teng dike û ew çawa nîşanên cîhgir ên wekî {mustache} an {indexZero} di dema wergerê de diparêze.",
+			"caption": "Têketinên parastinê û cîh",
+			"items": {
+				"maxRetries": "Hewldanên herî zêde yên li ser bersivên HTTP yên demkî ({statusCodes}). Hejmara giştî ya bangên HTTP ji bo her daxwazê {totalCalls}.",
+				"retryBackoffMs": "Li ser xewa paşveçûnê (bi milisaniyeyan) kap bikin. Çalakî dema ku heyî sernavê bersiva {retryAfter} ya Azure-ê rûmetdar dike; Wekî din, ew paşveçûna berbiçav a ku di vê nirxê de hatî girtin bikar tîne.",
+				"protectPlaceholders": "Dema ku {true} (xwerû), cihên wekî {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} û HTML berî wergerê bi nîşanên sentinel têne guhertin û paşê têne sererastkirin. Tenê dema ku çavkaniya we bi zanebûn nivîsa rasterast a ku divê were wergerandin hebe, neçalak bikin.",
+				"customPlaceholderPatterns": "Regexên nû yên veqetandî (bêyî sînordar) li seta cîhê xwerû zêde kirin, mînak {angleToken} ji bo hevoksaziya tokenê ya xwerû.",
+				"noTranslatePatterns": "Şêwazên glob ên ku ji nû ve hatine veqetandin li dijî mifteyên asta parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext key). Mifteyên lihevhatinê ji daxwaza Wergêr têne avêtin û bi nirxa çavkaniya xwe re derbas dibin."
+			}
+		},
+		"outputs": {
+			"heading": "Encam",
+			"caption": "Encam",
+			"items": {
+				"summaryTitle": "Kurteya PR-sernav-heval, mînak {summaryExample}.",
+				"summaryDetails": "Kurteya Markdown ji bo laşek PR an kurteya kar guncan e.",
+				"hasNewTranslations": "{trueString} dema ku yek an jî çend wergerên nû hatin çêkirin."
+			}
+		}
 	},
 	"formats": {
 		"title": "Formatên pelan",
 		"eyebrow": "Referans",
 		"heroTitle": "Formatên pelê yên piştgirî",
-		"lede": "Şeş formatên çavkaniya dorpêçkirî. Çalakî her pelê çavkanî-herêmî dixwîne, nirxan werdigerîne, û ji bo her herêmek armanc bira dinivîse."
+		"lede": "Şeş formatên çavkaniya dorpêçkirî. Çalakî her pelê çavkanî-herêmî dixwîne, nirxan werdigerîne, û ji bo her herêmek armanc bira dinivîse.",
+		"namingConvention": "Hemû pel peymana navlêkirinê ya {namingConvention} bikar tînin.",
+		"learnMore": "Zêdetîr hîn bibe",
+		"items": {
+			"resx": {
+				"blurb": "Pelên çavkaniya .NET yên li ser bingeha XML. Nivîsa hundurîn a her girêkek {dataValue} wergerîne, şîrove û metadata diparêze.",
+				"specLabel": "Microsoft Learn - Çavkaniyên di pelên .resx de"
+			},
+			"xliff": {
+				"blurb": "Belgeyên OASIS XLIFF 2.0. Her {source} werdigerîne û encamê li {target} têkildar dinivîse, {trgLang} ji bo herêmî eyar dike.",
+				"specLabel": "Taybetmendiya OASIS XLIFF 2.0"
+			},
+			"po": {
+				"blurb": "GNU pelên Portable Object gettext bistînin. Her {msgid} / {msgidPlural} bi formên {msgstr} / {msgstrPlural} werdigerîne.",
+				"specLabel": "GNU gettext — formata pelê PO"
+			},
+			"json": {
+				"blurb": "Pelên JSON-ê yên keyfî. Tiştên hêlînkirî ji bo wergerê bi sînorkerê {delimiter} ve têne rastkirin, paşê li ser derketinê ji nû ve têne bicîh kirin. Mifteyên xalî ({dottedKey}) bi peyv têne parastin.",
+				"specLabel": "Taybetmendiya JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Pelên {keyValue} hêsan (Win32-style INI an mîhengek rast). Sernavên beşan û şîrove tên parastin.",
+				"specLabel": "Formata pelê INI li ser Wîkîpediya"
+			},
+			"restext": {
+				"blurb": "Çavkaniyên nivîsê yên Microsoft MUI - cotên {keyValue} yên rast ên ku wekî hevalek nivîskî ji bo {resx} têne bikar anîn.",
+				"specLabel": "Nêrîna Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Garantiyên çûn û hatinê",
+			"body": "Paketa testê ji bo armancên temsîlkar ên her formatê byte-for-byte piştrast dike. Ger quirkek formatê di bingeha koda we de dorpêç bike, ji kerema xwe {issueLink} bi nimûneyek herî kêm re hilbijêrin.",
+			"issueLinkLabel": "Pirsgirêkekê vekin"
+		}
 	},
 	"recipes": {
 		"title": "Recipes",
 		"eyebrow": "Pirtûka xwarinê",
-		"lede": "Şêwazên hevpar ên ji bo wergerên barkirinê: monorepos, ferheng, kategoriyên xwerû, rêwîtiyên hişk û kontrola tonê."
+		"lede": "Şêwazên hevpar ên ji bo wergerên barkirinê: monorepos, ferheng, kategoriyên xwerû, rêwîtiyên hişk û kontrola tonê.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Piştî her bezê daxwazek kişandinê vekin"
+			},
+			"monorepo": {
+				"heading": "Monorepos: wergera çarçoveyê ji bo her pakêtê"
+			},
+			"glossary": {
+				"heading": "Peyva ji bo navên marka û termên hilberan",
+				"intro": "Li {configPath} bavêjin nav repoyê:",
+				"afterLabel": "li pey",
+				"body": "Peyvên ferhengê di wergerê {after} têne sepandin, ji ber vê yekê dema ku modela wê ji bo hevwate guherand, hilberîna wergera makîneyê marqeya we ya bijarte digire."
+			},
+			"customCategory": {
+				"heading": "Kategoriya Wergêra Taybet (pîşesazî / domain)",
+				"body": "Kategoriyek Azure {customTranslatorLink} li ser korpusek ku ferheng û tona pîşesaziya we digire (hiqûqî, bijîşkî, kirrûbirra, endezyariya navxweyî, hwd.) perwerde bikin û nasnameya wê bi rêya {categoryId} derbas bikin. Ev leverê herî bihêz e ku Azure pêşkêş dike."
+			},
+			"tone": {
+				"heading": "Kontrola tonê + paşveçûna hişk",
+				"body": "Ji bo ku hûn dengekî hevgirtî bicîh bînin û heke kategoriya hilbijartî ji bo yek ji deverên armancên we belav nebe, {categoryId} Wergera Xwerû bi {profanityAction} û {allowFallbackFalse} re bikin yek."
+			},
+			"dryRun": {
+				"heading": "Berî ku herikîna xebatê vekin hişk bikin",
+				"body": "Çalakî hîn jî encamên kurt û kurteyek gavan belav dike, lê tu pel nayên nivîsîn. Dema ku hûn dubare dikin, bi {failOnErrorFalse} re bikin yek da ku her pirsgirêkê wekî hişyariyek derxînin."
+			}
+		}
 	},
 	"faq": {
 		"title": "Pirsên gişpirsî",
 		"eyebrow": "Alîkarî",
 		"heroTitle": "Pirsên Pir Têne Pirsîn",
-		"lede": "Bersivên bilez ji bo pirsên ku herî zêde dema pejirandina çalakiyê derdikevin holê."
+		"lede": "Bersivên bilez ji bo pirsên ku herî zêde dema pejirandina çalakiyê derdikevin holê.",
+		"questions": {
+			"azure": {
+				"heading": "Çalakî çawa bi Azure re diaxive?",
+				"body": "Bi navgîniya {azureSdkLink} fermî ya Microsoft-ê SDK, li ser {corePipelineLink}. Ev ji we re ceribandinên otomatîk ên li ser {statusCodes}, modelên daxwaz û bersivên nivîskî, û sernavên nasnameyê belaş peyda dike - her tiştê ku berê bangek {axios} ya destan bû. Rûyê çalakiya gelemperî (input, outputs, pel) neguherî."
+			},
+			"tone": {
+				"heading": "Çima werger carinan off-brand an off-tone ne?",
+				"body": "Wergera makîneyê ji bo modela gelemperî ye. Sê bişkok dibin alîkar: {glossaryLink} ji bo derbaskirina termên dijwar, {customTranslatorLink} ji bo modelên xweşik ên ku li ser ton û peyvsaziya we hatine perwerde kirin, û {profanityAction} ji bo paqijkirin an nîşankirina termên neheq.",
+				"glossaryLinkLabel": "ferheng",
+				"customTranslatorLinkLabel": "Kategoriya Wergêrê Taybet"
+			},
+			"duplicateFiles": {
+				"heading": "Ez çawa dikarim ji wergerandina heman dosyayê du caran dûr bisekinim?",
+				"body": "Li ser {paths} ku tenê bi pelên we yên çavkanî-herêmî re lihevhatî ne, wek mînak {sourceGlob}. Çalakî di heman demê de dema ku {githubToken} tê saz kirin, parzûna pelê xwe ya per-trigger jî dihewîne, xebatê li pelên di peymana herî dawî de teng dike."
+			},
+			"offline": {
+				"heading": "Gelo ez dikarim çalakîyê offline bimeşînim?",
+				"body": "Ne tam - Azure AI Translator mêjiyê runtime ye. Lê hûn dikarin bi {dryRunTrue} re bixebitînin da ku parsing û mîhengê piştrast bikin bêyî ku ji bo wergerê daxwazên HTTP bikin."
+			},
+			"node": {
+				"heading": "Çalakî li ser kîjan guhertoya Node dixebite?",
+				"body": "v3 di dema xebitandinê de li ser Çalakiyên GitHub {nodeRuntime} dixebite. JavaScript-a pakêtê bi Node 20, 22 û 24 re lihevhatî ye, ku CI test dike."
+			},
+			"dist": {
+				"heading": "Pêvekên pakêtê {distDir} ji ku tên?",
+				"body": "Çalakiyên GitHub JS JS-ya xwe ya berhevkirî di depoyê de dişînin. Herikîna {distBuild} piştî her yekbûnê wê ji nû ve ava dike da ku {mainBranch} ka ew ê bikişîne an na, û {distCheck} PR-ên ku dê hilberîna kevn bigirin asteng dike."
+			},
+			"formats": {
+				"heading": "Li ser formatên çavkaniyên din çi dibêjin?",
+				"body": "Îro: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} heke hewcedariya we bi yekî din hebe - navrûya parser piçûk e (parse → nexşeyê → wergerên → formatê bicîh bikin) û beşdarî bi xêr hatin.",
+				"issueLinkLabel": "Pirsgirêkekê vekin"
+			}
+		}
 	},
 	"translations": {
 		"title": "Werger",
 		"eyebrow": "Pêşangeh",
 		"heroTitle": "Silav bi her zimanî",
-		"locales": "herêm",
-		"currentlyRendered": "niha hatiye çêkirin",
-		"complete": "temam!",
-		"pendingPrefix": "Li benda wergera belgeyên din.",
+		"lede": "Ev rûpel ji hêla Wergêra Çavkaniyê bixwe ve, di her pêvajoyek sereke de, li her zimanê ku Azure AI Translator piştgirî dike, tê wergerandin.",
+		"localeCountLabel": "{count}",
+		"statusComplete": "{translatedCount} niha hatî çêkirin - temam!",
+		"statusPending": "{translatedCount} niha hatine çêkirin - {pendingCount} li benda pêşbirka {workflowName} ya din.",
 		"viewWorkflowRuns": "Xebata herikîna xebatê bibîne",
 		"filter": "Fîltre",
 		"filterPlaceholder": "Li gorî ziman, kod an navê zikmakî bigerin...",
 		"source": "Çavkanî",
 		"machineTranslations": "Wergerên makîneyê",
-		"translationPending": "Werger li bendê ye - wergera belgeyan veke.",
+		"translationPending": "Werger li bendê ye - xebatek {workflowName} veke.",
 		"noLocales": "Ti herêm bi vê fîltreyê re hevûdu nabe.",
-		"howItWorks": "Ev çawa dixebite?"
+		"howItWorks": {
+			"heading": "Ev çawa dixebite?",
+			"thisActionLabel": "Ev çalakî bi xwe",
+			"steps": {
+				"source": "Dosyaya çavkaniya îngilîzî li {messagesPath}.",
+				"workflow": "Wê destdanê dehf dide, ew dest pê {workflowLink}, ku {thisAction} li dijî xwe dimeşe.",
+				"fanOut": "Çalakî li her herêmek piştgirî ya Azure AI Translator (di {configPath}-an de hatî vesazkirin) û her armancê {messagesLocaleJson} bira dinivîse.",
+				"pullRequest": "Bi wergerên nû re daxwaza kişandinê tê vekirin. Yekkirina wê vê rûpelê bi kartên dagirtî re ji nû ve diweşîne."
+			}
+		},
+		"poweredBy": "Ji hêla Wergêra Çavkaniyê û Wergera Azure AI ve hatî piştgirîkirin."
 	},
 	"contributing": {
 		"title": "Beşdarî",
 		"eyebrow": "Çavkaniya vekirî",
-		"lede": "Raporên bug, daxwazên taybetmendiyê û daxwazên kişandinê hemî bi xêr hatin. Çalakî têra xwe piçûk e ku ji bo beşdarên cara yekem heval be."
+		"lede": "Raporên bug, daxwazên taybetmendiyê û daxwazên kişandinê hemî bi xêr hatin. Çalakî têra xwe piçûk e ku ji bo beşdarên cara yekem heval be.",
+		"localDevelopment": {
+			"heading": "Pêşveçûna herêmî"
+		},
+		"addingParser": {
+			"heading": "Lêzêdekirina parser",
+			"steps": {
+				"fixture": "Di binê lîstikê de fiksturek lê zêde {testDataDir}.",
+				"implement": "Pêkanîna {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Li {factoryFile} tomar bikin.",
+				"extension": "Dirêjkirina pelê li {translationFileSchemes} li {finderFile} zêde bikin.",
+				"tests": "Ji bo parse → format û serîlêdanê testên rêwîtiyê binivîsin."
+			}
+		},
+		"coverage": {
+			"heading": "Sînorên vegirtinê",
+			"body": "Mîhenga Jest vegirtina herî kêm ferz dike. Koda nû divê daxuyaniyên + xetan li jor% 78 û fonksiyonên li jor% 90 bihêle. Li kêleka guhertina xwe armanc û ceribandinan lê zêde bikin."
+		},
+		"docsSite": {
+			"heading": "Malpera belgekirinê",
+			"body": "Peldanka {docsDir} projeyek Astro 6 + Tailwind v4 e. Carekê {npmInstall} wir bimeşin, paşê ji bo pêşdîtina herêmî {npmRunDev} bikin. Xebata {pagesWorkflow} di her yekbûnê de belgeyan dişîne Rûpelên GitHub."
+		}
 	},
 	"changelog": {
 		"title": "Guhertina Guhertinê",
 		"eyebrow": "Dîrok",
-		"lede": "Kurteya asta bilind a guhertoyan. Guhertina kanonîk, otorîter di CHANGELOG.md de di depoyê de dijî."
+		"lede": "Kurteya asta bilind a guhertoyan. Guhertina kanonîk, otorîter di CHANGELOG.md de di depoyê de dijî.",
+		"fullRecord": "Ji bo qeyda {changelogLink} binêrin.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (di pêşveçûnê de)",
+			"labels": {
+				"breaking": "ŞIKESTIN",
+				"resilience": "Berxwedan:",
+				"placeholderProtection": "Parastina cîhê:",
+				"perKeyOptOut": "Vebijêrka per-key:",
+				"docsAccessibility": "Gihîştina belgeyan:",
+				"inlineCodeStyling": "Şêwaza koda navxweyî:"
+			},
+			"issueLabels": {
+				"closes46": "#46 digire.",
+				"tightens16": "Teng dike #16.",
+				"closes35": "#35 digire."
+			},
+			"items": {
+				"runtime": "Li {nodeRuntime} runtime ({breaking}) hate xistin.",
+				"newInputs": "Têketinên nû: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, û bişkokên pêşkeftî yên wergerê {textType}, {profanityAction}, {profanityMarker} û {allowFallback}.",
+				"sourceLocale": "Herêma çavkaniyê niha wekî {fromLocale} ji Translator re jî tê şandin, ji ber vê yekê rêzikên kurt otomatîk nayên tespîtkirin.",
+				"resilience": "{label} ceribandina otomatîkî ya li ser bersivên HTTP yên demkî ({statusCodes}) ku sernavê {retryAfter} ya Azure-ê rûmet dike - dema ku tune be vedigere paşveçûna exponential a jittered. Bi navgîniya {maxRetries} û {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} nîşanên wekî {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} û HTML berî wergerê di nobedaran de têne pêçandin û paşê têne sererastkirin, ji ber vê yekê Wergêr i18next/Mustache/Handlebars/.NET/printf rawestîne. Bi rêya veguheztina {protectPlaceholders}; bi {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} têketina nû ya {noTranslatePatterns} ji daxwaza Wergêrê bi tevahî mifteyên lihevhatinê davêje (nirxên çavkaniyê ji bo navên markayê, kodên xeletiyê, hwd. diparêze). Modelên globê li dijî mifteyên asta parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext key) li hev dike. {issue}",
+				"repoConfig": "Vesazkirina asta repo-yê bi rêya {configPath}.",
+				"glossary": "Piştgiriya ferhengê, kurteya gavê bi rêya {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM Audit Clean (0 qelsbûn).",
+				"docsSite": "Malpera belgeyên Astro + Tailwind v4 bi veguhastinên dîtinê û Koda Expressive.",
+				"docsAccessibility": "{label} WCAG 2.1 AA derbas dibe. Glyphên logoyê veguherandine rêyan da ku ew êdî li dijî rawestgehên gradient reng-kontrast têk neçin, bişkoka {backToTop} ya float {inert} bikar tîne dema ku veşartî ye (li şûna guhertoyek {ariaHidden} ku ew hiştiye), {formatsAstro} beşên êdî bi nasnameyên sernavên otomatîk ên hilberîner re nakevin hev, sê kartên herêmî niha taybetmendiyên {lang} yên BCP-47-derbasdar ({nya}, {lug}, {run}), dubare {documentation} nîşanên nîşanê di navbera kêlekê û jêrzemînê de têne veqetandin.  û her tabloya daneyê li ser {inputs}/{configuration} bi sernivîsa ekran-xwendevan re tê şandin.",
+				"inlineCode": "{label} Docs Prose {codeElement} niha devoka mijara germ / amber li xwe dike - ji paleta marqeyê→devokê ku ji bo girêdan û sernavan tê bikar anîn.",
+				"automation": "Hevgirtina otomatîk a Dependabot, CodeQL scanning, matrix CI."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Dîroka gitê binêrin."
+		}
 	}
 }

@@ -18,18 +18,26 @@
 			"node": "Node 20 / 22 / 24",
 			"sdk": "Aloaia Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "Gettext",
+			"json": "Fa'apipi'i pe mafolafola",
+			"ini": "{keyValue}",
+			"restext": "Tusitusiga MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Ono mamanu faila",
-				"body": "Round-trips .resx, .xliff, .po, .json, .ini, ma .restext ma byte-stable formatting."
+				"body": "Round-malaga {resx}, {xliff}, {po}, {json}, {ini}, ma {restext} ma byte-stable formatting."
 			},
 			"config": {
 				"title": "Repo-level config",
-				"body": "Tu'u se .github / resource-translator.yml mo aofia ai globs, glossaries, ma vaega o le Custom Translator."
+				"body": "Fa'apa'u se faila {configPath} mo aofia ai globs, glossaries, ma vaega o le Custom Translator."
 			},
 			"glossary": {
 				"title": "Glossary-iloa",
-				"body": "Loka igoa igoa ma oloa tuutuuga ma atamai upu-tuaoi regex e fa'atautaia C ++, .NET, ma uo."
+				"body": "Loka igoa igoa ma oloa tuutuuga ma atamai upu-tuaoi regex e taulimaina {cpp}, {dotnet}, ma uo."
 			},
 			"dryRun": {
 				"title": "Fa'amamago-tamo'e + vaivai-toilalo",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR-faauo galuega faatino",
-				"body": "aotelega-ulutala, aotelega-auiliiliga, ma has-fou-faaliliuga slot tuusao i le create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails}, ma {hasNewTranslations} slot sa'o i le fausiaina-toso-talosaga."
 			},
 			"sdk": {
 				"title": "Aloaia Azure SDK",
-				"body": "Fausia i luga o le @azure-rest/ai-translation-text + @azure/core-rest-pipeline — otometi toe taumafai i le 408/429/5xx, leai se HTTP. esbuild-bundled, suegatusi-mama."
+				"body": "Fausia i luga o {azureSdk} + {corePipeline} — otometi toe taumafai i {statusCodes}, leai se HTTP. {esbuild}-fusi, suegatusi-mama."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Drop-in workflow",
+			"titlePrefix": "Kopi. Faapipii.",
+			"titleAccent": "Fa'aliliu.",
+			"body": "Tolu mea lilo, fa laina, ma o lau repo e tele gagana i le isi tulei.",
+			"setupLink": "Savalivali i le faatulagaga atoa"
+		},
+		"cta": {
+			"title": "Sauni e fa'apipi'i i luga o le autopilot?",
+			"body": "Tasi le Azure AI Translator key, tasi le faila o le workflow. O le Resource Translator e taulimaina le vaega o totoe.",
+			"button": "Amata"
 		}
 	},
 	"getting-started": {
 		"title": "Amata",
 		"eyebrow": "Fa'atulagaina",
-		"lede": "Fa'aopopo se faila fa'asologa, fa'asino i lau Azure AI Translator credentials, ma le gaioiga - fausia i luga o le Microsoft aloaia @azure-rest / ai-translation-text SDK - o le a fa'ata'ita'ia le repo mo punaoa punaoa ma fa'asalalau fa'aliliuina tei.",
+		"lede": "Fa'aopopo se faila fa'asolosolo, fa'asino i lau Azure AI Translator credentials, ma o le gaioiga o le a fa'ata'ita'ia le repo mo punaoa punaoa ma fa'asalalau uso ua fa'aliliuina.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Fa'aopopo le fa'agaioiga",
-				"body": "Fausia .github/workflows/translate.yml:"
+				"body": "Fausia {workflowPath}:"
 			},
 			"resource": {
 				"title": "Faia se faila punaoa punaoa",
-				"body": "E faaaoga e faila punaoa le igoa. <sourceLocale>. <ext> tauaofiaga. Mo se fa'ata'ita'iga, Greetings.en.resx avea ma Greetings.fr.resx, Greetings.de.resx, ma isi pe a mae'a se tamo'e."
+				"body": "O faila o punaoa e faaaoga ai le tauaofiaga {namingConvention}. Mo se fa'ata'ita'iga, {sourceFile} avea ma {frFile}, {deFile}, ma isi mea pe a mae'a se tamo'e."
 			},
 			"output": {
 				"title": "Siaki le galuega faatino",
-				"body": "O le taimi lava e mae'a ai le galuega, o le gaioiga e fa'aalia ai galuega faatino e tolu e mafai ona e fa'afeso'ota'i i totonu o se fa'amatalaga PR: aotelega-ulutala, aotelega-auiliiliga, ma has-fou-fa'aliliuga. E tusia ai foi se aotelega o le Markdown i le itulau o galuega e ala i le core.summary."
+				"body": "O le taimi lava e mae'a ai le galuega, o le gaioiga e fa'aalia ai galuega faatino e tolu e mafai ona e uaea i totonu o se fa'amatalaga PR: {summaryTitle}, {summaryDetails}, ma {hasNewTranslations}. E tusia ai foi se aotelega o le Markdown i le itulau o galuega e ala i {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Laasaga e sosoo ai",
-			"configuration": "Fa'atulaga le fa'aletonu o le repo-level ma le .github / resource-translator.yml.",
+			"configuration": "Configure repo-level defaults with {configPath}.",
 			"recipes": "Tagai fua mo monorepos, glossaries masani, ma vaega o Custom Translator."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Fa'atulagaina",
 		"eyebrow": "YAML",
 		"heroTitle": "Fa'atulagaina o le fale teu oloa",
-		"lede": "Fa'ailoa le fa'aletonu tasi i le .github / resource-translator.yml ma fa'atagaina galuega uma e mautofi i latou. E manumalo i taimi uma le faatinoga pe a tuuina atu uma e lua."
+		"lede": "Fa'ailoa le fa'aletonu tasi i le faila config repository ma fa'atagaina galuega uma e mautofi i latou. E manumalo i taimi uma le faatinoga pe a tuuina atu uma e lua.",
+		"intro": "Fa'afeso'ota'i le auala i le fa'amaumauga {configPath} pe afai e te mana'omia se nofoaga e le fa'aletonu.",
+		"schemaHeading": "Schema",
+		"fieldReference": {
+			"heading": "Fa'asino i le fanua",
+			"caption": "Fa'asinomaga o le fanua fa'atulagaina",
+			"columns": {
+				"field": "Fanua",
+				"type": "Ituaiga",
+				"notes": "Faamatalaga"
+			},
+			"fields": {
+				"sourceLocale": "Toe fo'i i le {sourceLocale} fa'amaumauga pe a le fa'aaogaina. Fa'apea foi ona tu'uina atu i le Fa'aliliu Upu e pei o {fromLocale} o lea e le mafai ai ona fa'ailoa mai ni manoa pu'upu'u.",
+				"toLocales": "A le o se fa'ata'ita'iga po'o se koma-vavae'ese manoa.",
+				"includeExclude": "Glob mamanu iloiloina e faasaga i auala atoatoa ma workspace-relatif.",
+				"glossary": "Post-translation term overrides. Upu-tuaoi iloa (taulimaina {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} vaega — lau alamanuia / vaega knob (faaletulafono, faafomai, maketiina leo, ma isi). Auina atu e pei o {categoryQuery}.",
+				"textType": "Fa'aletonu i le {plain}. Fa'aaoga {html} pe a fai o au punaoa o lo'o i ai ni vaega HTML moni.",
+				"profanityAction": "E fa'apefea ona fa'aliliuina upu masoa i le fa'aliliuga?",
+				"profanityMarker": "E na o le taua pe a {profanityAction} {marked}.",
+				"allowFallback": "Seti i le {false} e toilalo le faaliliuga pe afai e leai se {categoryId} o le faaaogaina mo se nofoaga autu nai lo le toe pa'u i tua i le faataitaiga lautele.",
+				"apiVersion": "Translator REST API version. Fa'aletonu i le {version}.",
+				"maxRetries": "Fa'ateleina taumafaiga toe taumafai i luga o tali HTTP le tumau ({statusCodes}). E le mafai ona {defaultRetries}. O le aofa'i o vala'au HTTP i le talosaga e {totalCalls}.",
+				"retryBackoffMs": "Cap (ms) i luga o so'o se moe e tasi. Fa'aletonu i le {defaultBackoff}. O le ulutala {retryAfter} a Azure e fa'aaloalo tonu lava pe a i ai; a leai, o lo'o fa'aaogaina le fa'amalosia o le fa'alavelave fa'afuase'i, fa'atapula'aina i lenei fa'alavelave fa'afuase'i.",
+				"protectPlaceholders": "Fa'aletonu i le {true}. A i ai, o fa'ailoga e pei o le {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ma HTML fa'alapotopotoga e suia i fa'ailoga sentinel a'o le'i fa'aliliuina ma toe fa'afo'i mulimuli ane. Fa'aleaogaina pe a fai o le punavai o lo'o i ai ni fa'ata'ita'iga fa'apitoa.",
+				"customPlaceholderPatterns": "Fa'aopopo fa'ata'ita'iga regex (e aunoa ma le fa'atapula'aina) fa'aopopo i le seti placeholder faaletonu, mo se fa'ata'ita'iga {angleToken} mo le syntax fa'ailoga masani. E le amana'iaina regexes le aoga.",
+				"noTranslatePatterns": "Glob mamanu fetaui ma parser-tulaga ki (JSON togitogi auala, RESX {resxName}, PO {poMsgid}, XLIFF iunite {xliffId}, INI / restext ki). O ki e fetaui ma le a pa'u i lalo mai le talosaga ma pasi atu faatasi ai ma lo latou taua o le punavai ua faasaoina."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Fa'atonuga o le utaina",
+			"steps": {
+				"actionInputs": "O le gaioiga e faitau ai fa'amatalaga manino mai le fa'agaioiga.",
+				"config": "E utaina le YAML config mai {configPath}.",
+				"precedence": "Mo fanua uma e fefa'asoaa'i, o le sao e manumalo; A leai, o le a fa'aaogaina le fa'aaogaina o le YAML.",
+				"validation": "O tulaga faatauaina ua tuufaatasia ua faamaonia. O le fa'alavelave fa'afuase'i (mo se fa'ata'ita'iga, {invalidEnum}) e mafua ai le vave fa'aletonu o le gaioiga ma se fe'au manino."
+			}
+		},
+		"tone": {
+			"heading": "Tone ma alamanuia, i faaupuga manino",
+			"body": "O le Azure AI Translator v3 API e leai se tone knob e tasi. E lua fa'ata'ita'iga e tu'ufa'atasia e tu'uina atu ia te oe le tele o le fa'atonutonu tutusa:",
+			"industryLabel": "Alamanuia / vaega:",
+			"industryBody": "fa'aaoga {categoryId} e fa'asino ai i se vaega o le Azure {customTranslatorLink} a'oa'oina i luga o lau oe lava corpus — fa'aletulafono, fa'apitoa, fa'afoma'i, maketiina, po'o se isi lava mea. O le malosi lea mo le leo, leo o le ituaiga, ma le gagana.",
+			"surfaceLabel": "Tusitusiga i luga:",
+			"surfaceBody": "Fa'aaoga le {glossaryLink} e loka ai igoa ma oloa fa'aupuga verbatim, ma fa'aaoga {profanityAction} e fufulu ai upu masoa pe a fa'atatau i le localization mo le au maimoa laiti.",
+			"glossaryLinkLabel": "Glossary"
+		}
 	},
 	"inputs": {
 		"title": "Fa'amatalaga ma galuega faatino",
 		"eyebrow": "Fa'amatalaga",
-		"lede": "O fa'amatalaga uma e taliaina foi i totonu o le faila config repo filifiliga. A mae'a ona fa'atulagaina uma e lua, o le a manumalo le sao o le gaioiga."
+		"lede": "O fa'amatalaga uma e taliaina foi i totonu o le faila config repo filifiliga. A mae'a ona fa'atulagaina uma e lua, o le a manumalo le sao o le gaioiga.",
+		"configurationIntro": "Va'ai {configurationLink} mo le fa'asologa o le YAML ma le utaina o le fa'atonuga.",
+		"configurationLinkLabel": "Fa'atulagaina",
+		"columns": {
+			"name": "Igoa",
+			"default": "Faaletonu",
+			"description": "Faamatalaga"
+		},
+		"defaults": {
+			"none": "leai se tasi",
+			"allSupported": "Lagolagoina uma",
+			"translatorDefaultTrue": "sa'o (Fa'aliliu fa'aliliu)"
+		},
+		"requiredInputs": {
+			"heading": "Fa'amatalaga mana'omia",
+			"caption": "Fa'amatalaga mana'omia",
+			"items": {
+				"sourceLocale": "Punaoa nofoaga (eg {en}) fa'aaogaina e su'e ai punaoa faila e pei o {sourceGlob}. Na auina atu foi i le faaliliu upu e pei o {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator subscription key. Pasi e ala i {secrets}.",
+				"endpoint": "Fa'aliliuga fa'aiuga URL, fa'ata'ita'iga {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Fa'amatalaga fa'apitoa masani",
+			"caption": "Fa'amatalaga fa'apitoa masani",
+			"items": {
+				"region": "Itulagi o punaoa faaliliu (aveese mo punaoa o le lalolagi).",
+				"toLocales": "Nofoaga e fa'aliliuina ai. Talia se JSON array ({jsonArray}) po'o se koma-vavae'ese tulaga faatauaina.",
+				"include": "Newline-vavae'ese glob mamanu; E na'o fa'amaumauga fa'amaumauga e mafai ona fa'aliliuina.",
+				"exclude": "Newline-vavae'ese glob mamanu; E faamisi faila tutusa (faaaoga pe a uma ona aofia ai).",
+				"configPath": "Ala i le faila config YAML (e fa'atatau i le a'a o le workspace).",
+				"dryRun": "Pe a {true}, tamoe faaliliuga ma auina atu aotelega ae aua le tusia faila.",
+				"failOnError": "Pe a {true}, o mea sese e le'i mafaufauina e le mafai ona faia; Pe a {false}, o mea sese o ni lapataiga."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Talosaga a le tagata faaliliu sao",
+			"intro": "O nei fa'afanua sa'o i luga o Azure AI Translator v3 fesili fa'ata'ita'iga. O mea uma e filifilia; O le faaletonu o le Faaliliu e faatatau pe a le seti.",
+			"caption": "Talosaga a le tagata faaliliu sao",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} vaega — o le alamanuia / vaega / tone knob. Fa'alauiloaina e pei o {categoryQuery}.",
+				"textType": "{plain} po o {html}. Fa'aaoga {html} pe a fai o au punaoa taua o ni vaega HTML moni.",
+				"profanityAction": "{noAction}, {marked}, po'o le {deleted}. Fa'atonutonu pe fa'afefea ona fa'asalalau upu masoa i fa'aliliuga.",
+				"profanityMarker": "{asterisk} po o {tag}. E na o le taua pe a {profanityAction} {marked}.",
+				"allowFallback": "Pe a {false}, e toe faafoi mai e le Faaliliu se mea sese nai lo le toe pa'u i tua i le faiga lautele pe afai e leai se {categoryId} e faaaoga mo se nofoaga e taulai atu i ai.",
+				"apiVersion": "Translator REST API version."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Puipuiga ma le puipuiga o le placeholder",
+			"intro": "O nei sao e pulea ai le auala e amio ai le gaioiga pe a fa'aitiitia e le Fa'aliliu lau talosaga ma pe fa'afefea ona puipuia fa'ailoga e pei o le {mustache} po'o le {indexZero} mai le fa'aleagaina i le taimi o le fa'aliliuga.",
+			"caption": "Resilience ma placeholder puipuiga sao",
+			"items": {
+				"maxRetries": "Fa'ateleina taumafaiga toe taumafai i luga o tali HTTP le tumau ({statusCodes}). O le aofa'i atoa o vala'au HTTP i le talosaga e {totalCalls}.",
+				"retryBackoffMs": "Pulou (i milliseconds) i luga o so'o se moe e tasi. O le gaioiga e fa'aaloalo ai i le ulutala o le tali a le {retryAfter} a Azure pe a i ai; a leai, e fa'aaogaina le jittered exponential backoff fa'atapula'aina i lenei taua.",
+				"protectPlaceholders": "A {true} (faaletonu), placeholders e pei o {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ma HTML fa'alapotopotoga ua suia i sentinel fa'ailoga a'o le'i fa'aliliuina ma toe fa'afo'i mulimuli ane. Fa'aleaogaina pe a fai o lau punaoa o lo'o i ai ma le loto i ai ni tusitusiga e tatau ona fa'aliliuina.",
+				"customPlaceholderPatterns": "Newline-vavae'ese regexes (e aunoa ma le fa'atapula'aina) fa'aopopo i le seti placeholder faaletonu, mo se fa'ata'ita'iga {angleToken} mo le syntax fa'ailoga masani.",
+				"noTranslatePatterns": "Newline-vavae'ese glob mamanu fetaui ma parser-tulaga ki (JSON togitogi auala, RESX {resxName}, PO {poMsgid}, XLIFF iunite {xliffId}, INI / restext ki). O ki e fetaui e lafoina mai le talosaga a le Faaliliu ma pasi atu faatasi ai ma le faasaoina o lo latou taua o le punavai."
+			}
+		},
+		"outputs": {
+			"heading": "Galuega faatino",
+			"caption": "Galuega faatino",
+			"items": {
+				"summaryTitle": "Aotelega puupuu PR-ulutala-faauo, mo se faataitaiga {summaryExample}.",
+				"summaryDetails": "Markdown aotelega talafeagai mo se PR tino po'o se aotelega o galuega.",
+				"hasNewTranslations": "{trueString} pe a faia se tasi pe sili atu faaliliuga fou."
+			}
+		}
 	},
 	"formats": {
 		"title": "Fa'atulagaga o faila",
 		"eyebrow": "Fa'amatalaga",
 		"heroTitle": "Mamanu faila lagolagoina",
-		"lede": "Ono fa'ata'amilomiloina fa'ata'amilomiloina punaoa fa'ata'amilomilo. O le gaioiga e faitau ai faila punaoa ta'itasi, fa'aliliuina tulaga faatauaina, ma tusi se uso i le nofoaga fa'atatau."
+		"lede": "Ono fa'ata'amilomiloina fa'ata'amilomiloina punaoa fa'ata'amilomilo. O le gaioiga e faitau ai faila punaoa ta'itasi, fa'aliliuina tulaga faatauaina, ma tusi se uso i le nofoaga fa'atatau.",
+		"namingConvention": "O fa'amaumauga uma e fa'aaoga ai le {namingConvention} fa'aigoaina o le tauaofiaga.",
+		"learnMore": "Su'esu'e atili",
+		"items": {
+			"resx": {
+				"blurb": "XML-fa'avae .NET punaoa faila. Fa'aliliuina le tusiga i totonu o {dataValue} node ta'itasi, fa'asaoina fa'amatalaga ma metadata.",
+				"specLabel": "Microsoft Learn — Punaoa i faila .resx"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 pepa aloaia Faaliliuina {source} taitasi ma tusi le taunuuga i le {target} talafeagai, faatulaga {trgLang} mo le nofoaga.",
+				"specLabel": "OASIS XLIFF 2.0 fa'amatalaga"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object files. Fa'aliliuina ta'itasi {msgid} / {msgidPlural} i {msgstr} / {msgstrPlural} fomu.",
+				"specLabel": "GNU gettext — PO file format"
+			},
+			"json": {
+				"blurb": "Faila JSON fa'afuase'i. O mea faitino nested ua flattened ma le {delimiter} delimiter mo le faaliliuga, ona toe nested lea i luga o galuega faatino. O ki togitogi ({dottedKey}) o lo'o fa'asaoina i upu pu'upu'u.",
+				"specLabel": "JSON fa'amatalaga (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Faigofie {keyValue} faila (Win32-style INI po'o so'o se config mafolafola). O ulutala o vaega ma fa'amatalaga e fa'asaoina.",
+				"specLabel": "INI file format on Wikipedia"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI punaoa tusitusiga — mafolafola {keyValue} paga faaaogaina o se soa tusitusiga e {resx}.",
+				"specLabel": "Aotelega Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Fa'amaoniga fa'ata'amilomilo",
+			"body": "O le su'ega fa'ata'ita'iga e fa'amaonia ai le byte-for-byte round-tripping mo sui o fa'atulagaga uma. Afai o se fa'atulagaga quirk e malepe ai le taamilosaga i lau codebase, fa'amolemole fa'{issueLink} ma se fa'ata'ita'iga la'ititi.",
+			"issueLinkLabel": "Tatala se lomiga"
+		}
 	},
 	"recipes": {
 		"title": "Fua",
 		"eyebrow": "Tusi Kuka",
-		"lede": "Fa'ata'ita'iga masani mo le lafoina o fa'aliliuga: monorepos, glossaries, vaega fa'apitoa, mago tamo'e, ma le fa'atonutonuina o leo."
+		"lede": "Fa'ata'ita'iga masani mo le lafoina o fa'aliliuga: monorepos, glossaries, vaega fa'apitoa, mago tamo'e, ma le fa'atonutonuina o leo.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Tatala se talosaga toso pe a mae'a tamo'e ta'itasi"
+			},
+			"monorepo": {
+				"heading": "Monorepos: fa'aliliuga lautele i le afifi"
+			},
+			"glossary": {
+				"heading": "Glossary mo igoa fa'ailoga ma tuutuuga o oloa",
+				"intro": "Tu'u se {configPath} i totonu o le repo:",
+				"afterLabel": "ina ua mavae",
+				"body": "O faaupuga glossary e fa'aaogaina {after} le fa'aliliuga, o lea o le masini-fa'aliliuina galuega faatino tausia lau fa'ailoga e sili ona e fiafia i ai tusa lava pe fesuia'i e le fa'ata'ita'iga mo se uiga tutusa."
+			},
+			"customCategory": {
+				"heading": "Vaega o le Fa'aliliuga Fa'apitoa (alamanuia / vaega)",
+				"body": "A'oa'o se vaega o le Azure {customTranslatorLink} i luga o se corpus e pu'eina ai lau alamanuia upu ma leo (fa'aletulafono, fa'afoma'i, maketiina, inisinia i totonu, ma isi) ma pasi lona ID e ala i {categoryId}. O le leo sili lea ona malosi o lo'o ofoina mai e Azure."
+			},
+			"tone": {
+				"heading": "Leo fa'atonutonu + fa'amalosia fallback",
+				"body": "Tu'ufa'atasia se {categoryId} Fa'aliliu Fa'aliliuga ma {profanityAction} ma {allowFallbackFalse} e fa'amalosia ai se leo faifai pea ma toilalo le fa'agaioiga pe a fai o le vaega filifilia e leai se fa'aaogaina mo se tasi o au nofoaga fa'amoemoe."
+			},
+			"dryRun": {
+				"heading": "Fa'apipi'i le fa'amamaina a'o le'i fa'apipi'iina le fa'agaioiga",
+				"body": "O le gaioiga o lo'o fa'aalia pea le aotelega o galuega faatino ma se aotelega o laasaga, ae leai ni faila o lo'o tusia. Tu'ufa'atasia ma {failOnErrorFalse} e fa'aalia ai mataupu uma o se lapataiga a'o e fa'ata'ita'ia."
+			}
+		}
 	},
 	"faq": {
 		"title": "Fesili ma tali",
 		"eyebrow": "Fesoasoani",
 		"heroTitle": "Fesili e masani ona fesiligia",
-		"lede": "Tali vave i fesili e masani ona tula'i mai pe a fa'aaogaina le gaioiga."
+		"lede": "Tali vave i fesili e masani ona tula'i mai pe a fa'aaogaina le gaioiga.",
+		"questions": {
+			"azure": {
+				"heading": "E fa'apefea ona talanoa le gaioiga ia Azure?",
+				"body": "E ala i le Microsoft aloaia {azureSdkLink} SDK, layered i luga o {corePipelineLink}. O lena mea e te maua ai otometi toe taumafai i luga o {statusCodes}, taina talosaga ma tali fa'ata'ita'iga, ma fa'amaoniga header fa'atautaia mo le leai o se totogi — mea uma sa masani ona avea ma lima-fa'asolosolo {axios} vala'au. O le laualuga o gaioiga lautele (inputs, outputs, faila outputs) e le suia."
+			},
+			"tone": {
+				"heading": "Aisea e fa'aliliuina ai i nisi taimi e le fa'ailoga pe fa'aleagaina?",
+				"body": "O le fa'aliliuga o masini e fa'aletonu i se fa'ata'ita'iga lautele. Tolu knobs fesoasoani: o se {glossaryLink} mo faigata vaitaimi overrides, o se {customTranslatorLink} mo fa'ata'ita'iga lelei a'oa'oina i lou leo ma upu, ma {profanityAction} e fufulu pe fu'a upu masoa.",
+				"glossaryLinkLabel": "Glossary",
+				"customTranslatorLinkLabel": "Vaega o le Faaliliu Custom"
+			},
+			"duplicateFiles": {
+				"heading": "E faapefea ona ou aloese mai le faaliliuina faalua o le faila lava lea e tasi?",
+				"body": "Fa'aosoina le fa'agaioiga i luga o {paths} e fetaui ma na'o au punavai-lotoifale faila, mo se fa'ata'ita'iga, {sourceGlob}. O le gaioiga e aofia ai fo'i lana lava fa'amama faila pe a seti le {githubToken}, fa'aititia le galuega i faila i le lata mai tautinoga."
+			},
+			"offline": {
+				"heading": "E mafai ona ou fa'atautaia le gaioiga offline?",
+				"body": "E le sa'o — Azure AI Translator o le fai'ai o le taimi tamo'e. Ae e mafai ona e tamo'e ma {dryRunTrue} e fa'amaonia ai le fa'ata'ita'iga ma le config e aunoa ma le faia o so'o se talosaga HTTP mo le fa'aliliuga."
+			},
+			"node": {
+				"heading": "O le a le Node version e tamo'e ai le gaioiga?",
+				"body": "v3 tamo'e i luga o le GitHub Actions {nodeRuntime} runtime. O le JavaScript e fetaui ma le Node 20, 22, ma le 24, o le mea lea e su'esu'eina e le CI."
+			},
+			"dist": {
+				"heading": "O fea e sau ai le {distDir} afifiina?",
+				"body": "GitHub JS gaioiga lafoina a latou tu'ufa'atasia JS i le fale teu oloa. O le {distBuild} workflow e toe fausia pe a mae'a tu'ufa'atasia uma e {mainBranch} pe a tafetafea, ma poloka {distCheck} PRs o le a tulaueleele ai galuega tuai."
+			},
+			"formats": {
+				"heading": "Ae fa'apefea isi fa'atulagaga o punaoa?",
+				"body": "Aso nei: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} afai e te mana'omia se isi — o le fa'afanua e la'ititi (fa'afanua → fa'afanua → fa'aaoga fa'aliliuga → le fa'atulagaga) ma e talia saofaga.",
+				"issueLinkLabel": "Tatala se lomiga"
+			}
+		}
 	},
 	"translations": {
 		"title": "Faaliliuga",
 		"eyebrow": "Fa'aaliga",
 		"heroTitle": "Talofa i gagana uma",
-		"locales": "nofoaga",
-		"currentlyRendered": "O lo'o tu'uina atu nei",
-		"complete": "Mae'a!",
-		"pendingPrefix": "Fa'atali le isi fa'aliliuga-docs tamo'e.",
+		"lede": "O lenei itulau ua faaliliuina e le Resource Translator lava ia, i luga o tulei uma i le autu, i gagana uma e lagolagoina e le Azure AI Translator.",
+		"localeCountLabel": "{count} nofoaga",
+		"statusComplete": "{translatedCount} ua tuuina atu nei — atoatoa!",
+		"statusPending": "{translatedCount} o lo'o tu'uina atu nei — {pendingCount} fa'atali mo le isi {workflowName} tamo'e.",
 		"viewWorkflowRuns": "Va'ai i le fa'agaioiga o fa'a",
 		"filter": "Faamama",
 		"filterPlaceholder": "Saili e ala i le gagana, code, po'o le igoa moni ...",
 		"source": "Punavai",
 		"machineTranslations": "Faaliliuga masini",
-		"translationPending": "Translation pending — open a translate-docs run.",
+		"translationPending": "Faaliliuga o loo faatalitali — tatala se {workflowName} tamo'e.",
 		"noLocales": "E leai ni nofoaga e tutusa ma lena faamama.",
-		"howItWorks": "Fa'afefea ona galue lenei mea"
+		"howItWorks": {
+			"heading": "Fa'afefea ona galue lenei mea",
+			"thisActionLabel": "O lenei lava gaioiga",
+			"steps": {
+				"source": "O le faila faa-Peretania o loo ola i {messagesPath}.",
+				"workflow": "Tulei lena pa'i e kiki ese ai {workflowLink}, lea e tamo'e {thisAction} faasaga ia te ia lava.",
+				"fanOut": "O le gaioiga e fa'aalu i nofoaga uma e lagolagoina e le Azure AI Translator (fa'atulagaina i le {configPath}) ma tusi se {messagesLocaleJson} i le taula'iga.",
+				"pullRequest": "O lo'o fa'aauau pea ona fa'aliliuina se fa'aliliuga fou. O le tu'ufa'atasia o le a toe lolomiina ai lenei itulau ma fa'atumuina kata."
+			}
+		},
+		"poweredBy": "Fa'amalosia e le Resource Translator ma le Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Saofaga",
 		"eyebrow": "Punaoa tatala",
-		"lede": "Bug lipoti, foliga talosaga, ma toso talosaga e talia uma. O le gaioiga e la'ititi lava e fa'auo ai i tagata fai saofaga muamua."
+		"lede": "Bug lipoti, foliga talosaga, ma toso talosaga e talia uma. O le gaioiga e la'ititi lava e fa'auo ai i tagata fai saofaga muamua.",
+		"localDevelopment": {
+			"heading": "Atina'e i le lotoifale"
+		},
+		"addingParser": {
+			"heading": "Fa'aopopo se fa'ata'ita'iga",
+			"steps": {
+				"fixture": "Fa'aopopo se fa'amau i lalo o le {testDataDir}.",
+				"implement": "Fa'atino {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Lesitala i le {factoryFile}.",
+				"extension": "Fa'aopopo le fa'aopoopoga o le faila i le {translationFileSchemes} i le {finderFile}.",
+				"tests": "Tusi ni suega faataamilo mo le faatulagaga → le faatulagaga ma le faaliliuga."
+			}
+		},
+		"coverage": {
+			"heading": "Tapulaa o inisiua",
+			"body": "O le Jest config e fa'amalosia ai le inisiua maualalo. O le tulafono fou e tatau ona tausia le fa'amatalaga + laina i luga atu o le 78% ma galuega i luga atu o le 90%. Fa'aopopo fa'ata'ita'iga ma su'ega fa'atasi ma lau suiga."
+		},
+		"docsSite": {
+			"heading": "Nofoaga o faamaumauga",
+			"body": "O le {docsDir} folder o se Astro 6 + Tailwind v4 poloketi. Tamoe {npmInstall} iina i le taimi e tasi, ona {npmRunDev} lea mo le muai vaaiga i le lotoifale. O le {pagesWorkflow} workflow e lafoina pepa i GitHub Pages i luga o tu'ufa'atasia uma."
+		}
 	},
 	"changelog": {
 		"title": "Suiga",
 		"eyebrow": "Talafaasolopito",
-		"lede": "Aotelega maualuga o fa'asa'olotoga. O le canonical, fa'amaoni changelog o lo'o ola i CHANGELOG.md i totonu o le faleteuoloa."
+		"lede": "Aotelega maualuga o fa'asa'olotoga. O le canonical, fa'amaoni changelog o lo'o ola i CHANGELOG.md i totonu o le faleteuoloa.",
+		"fullRecord": "Tagai {changelogLink} mo le faamaumauga atoa.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (i le atina'e)",
+			"labels": {
+				"breaking": "SOLIA",
+				"resilience": "Maufetuuna'i:",
+				"placeholderProtection": "Puipuiga placeholder:",
+				"perKeyOptOut": "Per-ki opt-out:",
+				"docsAccessibility": "Docs accessibility:",
+				"inlineCodeStyling": "Inline code styling:"
+			},
+			"issueLabels": {
+				"closes46": "Tapunia # 46.",
+				"tightens16": "Fa'amalosia # 16.",
+				"closes35": "Tapunia # 35."
+			},
+			"items": {
+				"runtime": "Fa'apipi'i i le {nodeRuntime} runtime ({breaking}).",
+				"newInputs": "Fa'amatalaga fou: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, fa'atasi ai ma le alualu i luma Translator knobs {textType}, {profanityAction}, {profanityMarker}, ma {allowFallback}.",
+				"sourceLocale": "Source locale o lo'o tu'uina atu foi i le Fa'aliliu Upu ona o {fromLocale} o lea e le otometi ona iloa manoa pu'upu'u.",
+				"resilience": "{label} otometi toe taumafai i luga o tali HTTP le tumau ({statusCodes}) e fa'aaloalo ai i le {retryAfter} header a Azure — e toe fo'i i tua i le jittered exponential backoff pe a toesea. E ala i {maxRetries} ma {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} fa'ailoga e pei o {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ma HTML fa'alapotopotoga o lo'o afifi i sentinels a'o le'i fa'aliliuina ma toe fa'afo'i mulimuli ane, o lea e taofi ai e le Fa'aliliu le i18next / Mustache / Handlebars / .NET / printf placeholders. Toggle e ala i {protectPlaceholders}; Fa'alauteleina ma le {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} {noTranslatePatterns} sao fou e pa'u ai ki tutusa mai le talosaga a le Faaliliu upu atoa (faasaoina tulaga faatauaina punaoa mo igoa igoa, tulafono sese, ma isi). Fetaui glob mamanu faasaga parser-tulaga ki (JSON togitogi ala, RESX {resxName}, PO {poMsgid}, XLIFF iunite {xliffId}, INI / restext ki). {issue}",
+				"repoConfig": "Repo-level config e ala i {configPath}.",
+				"glossary": "Lagolago glossary, aotelega o laasaga e ala i {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM Audit Clean (0 vulnerabilities).",
+				"docsSite": "Astro + Tailwind v4 docs site with view transitions and Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pasi. Logo glyphs liua i auala ina ia latou le toe toilalo lanu-eseesega faasaga i gradient taofi, o le opeopea {backToTop} faamau faaaogaina {inert} ao natia (nai lo se {ariaHidden} toggle na tuua ai tabbable), {formatsAstro} vaega ua le toe feto'ai ma latou otometi-gaosia ulutala IDs, tolu pepa lotoifale nei faaalia BCP-47-aoga uiga {lang} ({nya}, {lug}, {run}), faaluaina {documentation} faailoga faailo ua disambiguated i le va o sidebar ma footer,  ma laulau uma o fa'amaumauga i luga o {inputs} / {configuration} va'a ma se fa'amatalaga fa'amaumauga.",
+				"inlineCode": "{label} Docs prose {codeElement} o lo'o ofuina nei le mafanafana / amber theme accent — ese mai le brand→accent palette fa'aaogaina mo feso'ota'iga ma ulutala.",
+				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Va'ai git talafa'asolopito."
+		}
 	}
 }

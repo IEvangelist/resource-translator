@@ -18,18 +18,26 @@
 			"node": "Nút 20 / 22 / 24",
 			"sdk": "Azure SDK chính thức"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "Lấy văn bản",
+			"json": "lồng nhau hoặc phẳng",
+			"ini": "{keyValue}",
+			"restext": "Văn bản MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Sáu định dạng tệp",
-				"body": "Các chuyến đi khứ hồi .resx, .xliff, .po, .json, .ini và .restext với định dạng ổn định byte."
+				"body": "Khứ hồi {resx}, {xliff}, {po}, {json}, {ini} và {restext} với định dạng ổn định byte."
 			},
 			"config": {
 				"title": "Cấu hình cấp repo",
-				"body": "Thả .github/resource-translator.yml để bao gồm các danh mục globs, bảng thuật ngữ và Trình dịch tùy chỉnh."
+				"body": "Thả tệp {configPath} để bao gồm các quả cầu, bảng thuật ngữ và danh mục Trình dịch tùy chỉnh."
 			},
 			"glossary": {
 				"title": "Nhận biết thuật ngữ",
-				"body": "Khóa tên thương hiệu và điều khoản sản phẩm bằng biểu thức chính quy ranh giới từ thông minh xử lý C++, .NET và bạn bè."
+				"body": "Khóa tên thương hiệu và điều khoản sản phẩm bằng biểu thức chính quy ranh giới từ thông minh xử lý {cpp}, {dotnet} và bạn bè."
 			},
 			"dryRun": {
 				"title": "Chạy khô + thất bại mềm",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Đầu ra thân thiện với PR",
-				"body": "summary-title, summary-details và has-new-translations trực tiếp vào create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails} và {hasNewTranslations} vị trí trực tiếp vào create-pull-request."
 			},
 			"sdk": {
 				"title": "Azure SDK chính thức",
-				"body": "Được xây dựng trên @azure-rest/ai-translation-text + @azure/core-rest-pipeline — tự động thử lại trên 408/429/5xx, không có HTTP cuộn tay. Esbuild-đi kèm, kiểm tra-sạch."
+				"body": "Được xây dựng trên {azureSdk} + {corePipeline} — tự động thử lại trên {statusCodes}, không có HTTP cuộn tay. {esbuild} gói, kiểm tra sạch sẽ."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Quy trình làm việc thả vào",
+			"titlePrefix": "Sao chép. Dán.",
+			"titleAccent": "Dịch.",
+			"body": "Ba bí mật, bốn dòng và repo của bạn đa ngôn ngữ trong lần đẩy tiếp theo.",
+			"setupLink": "Hướng dẫn thiết lập đầy đủ"
+		},
+		"cta": {
+			"title": "Sẵn sàng bản địa hóa trên chế độ lái tự động?",
+			"body": "Một khóa Azure AI Translator, một tệp quy trình làm việc. Resource Translator xử lý phần còn lại.",
+			"button": "Bắt đầu"
 		}
 	},
 	"getting-started": {
 		"title": "Bắt đầu",
 		"eyebrow": "Thành lập",
-		"lede": "Thêm tệp quy trình làm việc, trỏ tệp đó vào thông tin đăng nhập Azure AI Translator của bạn và hành động — được xây dựng trên SDK @azure-rest/ai-translation-text chính thức của Microsoft — sẽ quét kho lưu trữ để tìm các tệp tài nguyên ngôn ngữ nguồn và phát ra các anh chị em đã dịch.",
+		"lede": "Thêm tệp quy trình làm việc, trỏ tệp đó vào thông tin đăng nhập Azure AI Translator của bạn và hành động sẽ quét kho lưu trữ để tìm các tệp tài nguyên ngôn ngữ nguồn và phát ra các anh chị em đã dịch.",
 		"steps": {
 			"provision": {
 				"title": "Cung cấp tài nguyên Azure AI Translator",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Thêm quy trình làm việc",
-				"body": "Tạo .github/workflows/translate.yml:"
+				"body": "Tạo {workflowPath}:"
 			},
 			"resource": {
 				"title": "Cam kết tệp tài nguyên nguồn",
-				"body": "Các tệp tài nguyên sử dụng Tên. .<sourceLocale> <ext> quy ước. Ví dụ: Greetings.vi.resx trở thành Greetings.fr.resx, Greetings.de.resx, v.v. sau khi chạy."
+				"body": "Các tệp tài nguyên sử dụng quy ước {namingConvention}. Ví dụ, {sourceFile} trở thành {frFile}, {deFile}, v.v. sau khi chạy."
 			},
 			"output": {
 				"title": "Kiểm tra đầu ra",
-				"body": "Sau khi quy trình làm việc kết thúc, hành động sẽ hiển thị ba kết quả đầu ra mà bạn có thể kết nối thành mô tả PR: tóm tắt-tiêu đề, tóm tắt-chi tiết và has-new-translations. Nó cũng viết một bản tóm tắt Markdown vào trang công việc thông qua core.summary."
+				"body": "Sau khi quy trình làm việc kết thúc, hành động sẽ hiển thị ba đầu ra mà bạn có thể kết nối vào mô tả PR: {summaryTitle}, {summaryDetails} và {hasNewTranslations}. Nó cũng viết một bản tóm tắt Markdown vào trang việc làm thông qua {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Các bước tiếp theo",
-			"configuration": "Định cấu hình mặc định cấp repo với .github/resource-translator.yml.",
+			"configuration": "Định cấu hình mặc định cấp repo với {configPath}.",
 			"recipes": "Xem công thức nấu ăn cho monorepos, bảng thuật ngữ tùy chỉnh và danh mục Trình dịch tùy chỉnh."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Cấu hình",
 		"eyebrow": "YAML",
 		"heroTitle": "Cấu hình kho lưu trữ",
-		"lede": "Thể hiện các giá trị mặc định một lần trong .github/resource-translator.yml và để mọi quy trình làm việc kế thừa chúng. Đầu vào hành động luôn chiến thắng khi cả hai đều được cung cấp."
+		"lede": "Thể hiện các giá trị mặc định một lần trong tệp cấu hình kho lưu trữ và để mọi quy trình làm việc kế thừa chúng. Đầu vào hành động luôn chiến thắng khi cả hai đều được cung cấp.",
+		"intro": "Ghi đè đường dẫn bằng đầu vào {configPath} nếu bạn cần một vị trí không mặc định.",
+		"schemaHeading": "Lược đồ",
+		"fieldReference": {
+			"heading": "Tham chiếu trường",
+			"caption": "Tham chiếu trường cấu hình",
+			"columns": {
+				"field": "Lĩnh vực",
+				"type": "Kiểu",
+				"notes": "Ghi chú"
+			},
+			"fields": {
+				"sourceLocale": "Quay trở lại đầu vào {sourceLocale} nếu không được đặt. Cũng được chuyển tiếp đến Translator dưới dạng {fromLocale} vì vậy các chuỗi ngắn không được tự động phát hiện.",
+				"toLocales": "Một mảng hoặc một chuỗi được phân tách bằng dấu phẩy.",
+				"includeExclude": "Các mẫu Glob được đánh giá dựa trên đường dẫn tuyệt đối và tương đối không gian làm việc.",
+				"glossary": "Ghi đè thuật ngữ sau dịch. Nhận biết ranh giới từ (xử lý {cpp}, {dotnet}).",
+				"categoryId": "Danh mục Azure {customTranslatorLink} — nút ngành/miền của bạn (giọng điệu pháp lý, y tế, tiếp thị, v.v.). Gửi dưới dạng {categoryQuery}.",
+				"textType": "Mặc định là {plain}. Chỉ sử dụng {html} nếu giá trị tài nguyên của bạn chứa các đoạn HTML thực.",
+				"profanityAction": "Cách xử lý các thuật ngữ tục tĩu trong đầu ra đã dịch.",
+				"profanityMarker": "Chỉ có ý nghĩa khi {profanityAction} {marked}.",
+				"allowFallback": "Đặt thành {false} để dịch không thành công khi {categoryId} của bạn không triển khai cho ngôn ngữ đích thay vì quay trở lại mô hình chung.",
+				"apiVersion": "Phiên bản API REST của dịch giả. Mặc định là {version}.",
+				"maxRetries": "Số lần thử lại tối đa đối với phản hồi HTTP tạm thời ({statusCodes}). Mặc định là {defaultRetries}. Tổng số lệnh gọi HTTP trên mỗi yêu cầu là {totalCalls}.",
+				"retryBackoffMs": "Giới hạn (ms) trên bất kỳ giấc ngủ dự phòng nào. Mặc định là {defaultBackoff}. Tiêu đề {retryAfter} của Azure được vinh danh chính xác khi có mặt; nếu không, lùi theo cấp số nhân chập chờn được sử dụng, giới hạn ở giá trị này.",
+				"protectPlaceholders": "Mặc định là {true}. Khi bật, các token như {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} và HTML được thay thế bằng sentinel token trước khi dịch và được khôi phục sau đó. Chỉ tắt khi nguồn cố tình chứa các chữ hình giữ chỗ.",
+				"customPlaceholderPatterns": "Các mẫu biểu thức chính quy bổ sung (không có dấu phân cách) được thêm vào bộ giữ chỗ mặc định, ví dụ: {angleToken} cho cú pháp mã thông báo tùy chỉnh. Các biểu thức chính quy không hợp lệ sẽ bị bỏ qua.",
+				"noTranslatePatterns": "Các mẫu Glob khớp với các khóa cấp trình phân tích cú pháp (đường dẫn chấm JSON, {resxName} RESX, PO {poMsgid}, {xliffId} đơn vị XLIFF, khóa INI/restext). Các khóa phù hợp được loại bỏ khỏi yêu cầu và chuyển qua với giá trị nguồn của chúng được giữ nguyên."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Đang tải thứ tự",
+			"steps": {
+				"actionInputs": "Hành động này đọc đầu vào rõ ràng từ quy trình làm việc.",
+				"config": "Nó tải cấu hình YAML từ {configPath}.",
+				"precedence": "Đối với mỗi trường được chia sẻ, đầu vào sẽ thắng; nếu không, giá trị YAML sẽ được sử dụng.",
+				"validation": "Các giá trị hợp nhất được xác thực. Enum không hợp lệ (ví dụ: {invalidEnum}) khiến hành động nhanh chóng không thành công với thông báo rõ ràng."
+			}
+		},
+		"tone": {
+			"heading": "Giọng điệu và công nghiệp, nói một cách đơn giản",
+			"body": "API Azure AI Translator v3 không có một núm âm duy nhất. Hai cài đặt kết hợp để cung cấp cho bạn hầu hết các quyền kiểm soát giống nhau:",
+			"industryLabel": "Ngành / lĩnh vực:",
+			"industryBody": "sử dụng {categoryId} để trỏ vào danh mục Azure {customTranslatorLink} được đào tạo trên kho dữ liệu của riêng bạn — pháp lý, kỹ thuật, y tế, tiếp thị hoặc bất kỳ thứ gì khác. Đây là đòn bẩy mạnh nhất cho giọng điệu, tiếng nói thương hiệu và từ vựng.",
+			"surfaceLabel": "Văn bản bề mặt:",
+			"surfaceBody": "Sử dụng {glossaryLink} để khóa nguyên văn tên thương hiệu và cụm từ sản phẩm, đồng thời sử dụng {profanityAction} để loại bỏ các cụm từ tục tĩu khi nhắm mục tiêu bản địa hóa cho đối tượng trẻ tuổi.",
+			"glossaryLinkLabel": "Thuật ngữ"
+		}
 	},
 	"inputs": {
 		"title": "Đầu vào và đầu ra",
 		"eyebrow": "Tài liệu tham khảo",
-		"lede": "Mọi đầu vào cũng được chấp nhận trong tệp cấu hình repo tùy chọn. Khi cả hai được đặt, đầu vào hành động sẽ thắng."
+		"lede": "Mọi đầu vào cũng được chấp nhận trong tệp cấu hình repo tùy chọn. Khi cả hai được đặt, đầu vào hành động sẽ thắng.",
+		"configurationIntro": "Xem {configurationLink} để biết lược đồ YAML và thứ tự tải.",
+		"configurationLinkLabel": "Cấu hình",
+		"columns": {
+			"name": "Tên",
+			"default": "Mặc định",
+			"description": "Sự miêu tả"
+		},
+		"defaults": {
+			"none": "Không có",
+			"allSupported": "Tất cả đều được hỗ trợ",
+			"translatorDefaultTrue": "true (Mặc định của Trình dịch)"
+		},
+		"requiredInputs": {
+			"heading": "Đầu vào bắt buộc",
+			"caption": "Đầu vào bắt buộc",
+			"items": {
+				"sourceLocale": "Ngôn ngữ nguồn (ví dụ: {en}) được sử dụng để tìm các tệp tài nguyên như {sourceGlob}. Cũng được chuyển tiếp cho Translator dưới dạng {fromLocale}.",
+				"subscriptionKey": "Khóa đăng ký Azure AI Translator. Đi qua {secrets}.",
+				"endpoint": "URL điểm cuối của trình dịch, ví dụ: {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Đầu vào tùy chọn phổ biến",
+			"caption": "Đầu vào tùy chọn phổ biến",
+			"items": {
+				"region": "Khu vực tài nguyên dịch (bỏ qua đối với tài nguyên toàn cầu).",
+				"toLocales": "Ngôn ngữ cần dịch. Chấp nhận mảng JSON ({jsonArray}) hoặc các giá trị được phân tách bằng dấu phẩy.",
+				"include": "Các mẫu hình cầu được phân tách bằng đường mới; Chỉ các tệp phù hợp mới được dịch.",
+				"exclude": "Các mẫu hình cầu được phân tách bằng đường mới; Các tệp phù hợp sẽ bị bỏ qua (áp dụng sau khi bao gồm).",
+				"configPath": "Đường dẫn đến tệp cấu hình YAML (liên quan đến gốc không gian làm việc).",
+				"dryRun": "Khi {true}, hãy chạy bản dịch và phát ra bản tóm tắt nhưng không ghi tệp.",
+				"failOnError": "Khi {true}, các lỗi không mong muốn sẽ làm hỏng hành động; Khi {false}, lỗi là cảnh báo."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Đầu vào yêu cầu dịch giả",
+			"intro": "Các thông số này ánh xạ trực tiếp vào các tham số truy vấn Azure AI Translator v3. Mỗi cái là tùy chọn; Giá trị mặc định của Trình dịch áp dụng khi không đặt.",
+			"caption": "Đầu vào yêu cầu dịch giả",
+			"items": {
+				"categoryId": "Danh mục Azure {customTranslatorLink} — núm ngành/miền/tông màu. Chuyển tiếp dưới dạng {categoryQuery}.",
+				"textType": "{plain} hoặc {html}. Chỉ sử dụng {html} khi giá trị tài nguyên của bạn là các đoạn HTML thực.",
+				"profanityAction": "{noAction}, {marked} hoặc {deleted}. Kiểm soát cách các thuật ngữ tục tĩu được phát ra trong bản dịch.",
+				"profanityMarker": "{asterisk} hoặc {tag}. Chỉ có ý nghĩa khi {profanityAction} được {marked}.",
+				"allowFallback": "Khi {false}, Translator trả về lỗi thay vì quay trở lại hệ thống chung nếu {categoryId} của bạn không triển khai cho ngôn ngữ đích.",
+				"apiVersion": "Phiên bản API REST của dịch giả."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Khả năng phục hồi và bảo vệ giữ chỗ",
+			"intro": "Các đầu vào này kiểm soát cách hành động hoạt động khi Translator điều chỉnh yêu cầu của bạn và cách nó bảo vệ các mã thông báo giữ chỗ như {mustache} hoặc {indexZero} khỏi bị phá vỡ trong quá trình dịch.",
+			"caption": "Đầu vào bảo vệ khả năng phục hồi và giữ chỗ",
+			"items": {
+				"maxRetries": "Số lần thử lại tối đa đối với phản hồi HTTP tạm thời ({statusCodes}). Tổng số lệnh gọi HTTP cho mỗi yêu cầu là {totalCalls}.",
+				"retryBackoffMs": "Giới hạn (tính bằng mili giây) trên bất kỳ chế độ ngủ dự phòng nào. Hành động tôn trọng tiêu đề phản hồi {retryAfter} của Azure chính xác khi có mặt; nếu không, nó sử dụng lùi theo cấp số nhân chập chờn được giới hạn ở giá trị này.",
+				"protectPlaceholders": "Khi {true} (mặc định), các trình giữ chỗ như {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} và HTML được thay thế bằng mã thông báo sentinel trước khi dịch và được khôi phục sau đó. Chỉ tắt khi nguồn của bạn cố tình chứa văn bản hình giữ chỗ theo nghĩa đen cần được dịch.",
+				"customPlaceholderPatterns": "Các biểu thức chính quy được phân tách bằng dòng mới (không có dấu phân cách) được thêm vào bộ giữ chỗ mặc định, ví dụ: {angleToken} cho cú pháp mã thông báo tùy chỉnh.",
+				"noTranslatePatterns": "Các mẫu glob được phân tách bằng dòng mới khớp với các khóa cấp trình phân tích cú pháp (đường dẫn chấm JSON, {resxName} RESX, PO {poMsgid}, {xliffId} đơn vị XLIFF, khóa INI/restext). Các khóa phù hợp được loại bỏ khỏi yêu cầu Translator và chuyển qua với giá trị nguồn của chúng được giữ nguyên."
+			}
+		},
+		"outputs": {
+			"heading": "Kết quả đầu ra",
+			"caption": "Kết quả đầu ra",
+			"items": {
+				"summaryTitle": "Tóm tắt ngắn thân thiện với tiêu đề PR, ví dụ: {summaryExample}.",
+				"summaryDetails": "Tóm tắt Markdown phù hợp với nội dung PR hoặc tóm tắt công việc.",
+				"hasNewTranslations": "{trueString} khi một hoặc nhiều bản dịch mới được tạo ra."
+			}
+		}
 	},
 	"formats": {
 		"title": "Định dạng tệp",
 		"eyebrow": "Tài liệu tham khảo",
 		"heroTitle": "Các định dạng tệp được hỗ trợ",
-		"lede": "Sáu định dạng tài nguyên khứ hồi. Hành động đọc từng tệp ngôn ngữ nguồn, dịch các giá trị và ghi một anh chị em trên mỗi ngôn ngữ đích."
+		"lede": "Sáu định dạng tài nguyên khứ hồi. Hành động đọc từng tệp ngôn ngữ nguồn, dịch các giá trị và ghi một anh chị em trên mỗi ngôn ngữ đích.",
+		"namingConvention": "Tất cả các tệp đều sử dụng quy ước đặt tên {namingConvention}.",
+		"learnMore": "Tìm hiểu thêm",
+		"items": {
+			"resx": {
+				"blurb": "Các tệp tài nguyên .NET dựa trên XML. Dịch văn bản bên trong của mỗi nút {dataValue}, giữ nguyên nhận xét và siêu dữ liệu.",
+				"specLabel": "Microsoft Learn — Tài nguyên trong tệp .resx"
+			},
+			"xliff": {
+				"blurb": "Tài liệu OASIS XLIFF 2.0. Dịch từng {source} và ghi kết quả vào {target} tương ứng, đặt {trgLang} cho ngôn ngữ.",
+				"specLabel": "Đặc điểm kỹ thuật OASIS XLIFF 2.0"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object. Dịch từng {msgid} / {msgidPlural} thành các dạng {msgstr} / {msgstrPlural}.",
+				"specLabel": "GNU gettext — Định dạng tệp PO"
+			},
+			"json": {
+				"blurb": "Các tệp JSON tùy ý. Các đối tượng lồng nhau được làm phẳng bằng dấu phân cách {delimiter} để dịch, sau đó lồng lại trên đầu ra. Các phím chấm ({dottedKey}) được giữ nguyên văn.",
+				"specLabel": "Đặc điểm kỹ thuật JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Các tệp {keyValue} đơn giản (INI kiểu Win32 hoặc bất kỳ cấu hình phẳng nào). Tiêu đề phần và nhận xét được giữ nguyên.",
+				"specLabel": "Định dạng tệp INI trên Wikipedia"
+			},
+			"restext": {
+				"blurb": "Tài nguyên văn bản Microsoft MUI — cặp {keyValue} phẳng được sử dụng như một người bạn đồng hành với {resx}.",
+				"specLabel": "Tổng quan về Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Đảm bảo khứ hồi",
+			"body": "Bộ kiểm tra xác minh khứ hồi từng byte cho các đồ đạc đại diện của mọi định dạng. Nếu một định dạng kỳ quặc phá vỡ khứ hồi trong cơ sở mã của bạn, vui lòng {issueLink} với một mẫu tối thiểu.",
+			"issueLinkLabel": "Mở một vấn đề"
+		}
 	},
 	"recipes": {
 		"title": "Công thức nấu ăn",
 		"eyebrow": "Sách dạy nấu ăn",
-		"lede": "Các mẫu phổ biến để vận chuyển bản dịch: monorepos, bảng thuật ngữ, danh mục tùy chỉnh, chạy khô và kiểm soát giọng điệu."
+		"lede": "Các mẫu phổ biến để vận chuyển bản dịch: monorepos, bảng thuật ngữ, danh mục tùy chỉnh, chạy khô và kiểm soát giọng điệu.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Mở yêu cầu kéo sau mỗi lần chạy"
+			},
+			"monorepo": {
+				"heading": "Monorepos: dịch phạm vi mỗi gói"
+			},
+			"glossary": {
+				"heading": "Bảng thuật ngữ về tên thương hiệu và thuật ngữ sản phẩm",
+				"intro": "Thả một {configPath} vào kho lưu trữ:",
+				"afterLabel": "sau khi",
+				"body": "Thuật ngữ thuật ngữ được áp dụng {after} dịch, vì vậy đầu ra được dịch bằng máy vẫn giữ được thương hiệu ưa thích của bạn ngay cả khi mô hình đã hoán đổi nó thành một từ đồng nghĩa."
+			},
+			"customCategory": {
+				"heading": "Danh mục Trình dịch tùy chỉnh (ngành / miền)",
+				"body": "Đào tạo danh mục Azure {customTranslatorLink} trên một kho dữ liệu nắm bắt từ vựng và giọng điệu trong ngành của bạn (pháp lý, y tế, tiếp thị, kỹ thuật nội bộ, v.v.) và chuyển ID của nó qua {categoryId}. Đây là đòn bẩy âm thanh mạnh nhất mà Azure cung cấp."
+			},
+			"tone": {
+				"heading": "Kiểm soát giai điệu + dự phòng nghiêm ngặt",
+				"body": "Kết hợp {categoryId} Trình dịch tùy chỉnh với {profanityAction} và {allowFallbackFalse} để thực thi giọng nói nhất quán và không thực hiện được quy trình làm việc nếu danh mục đã chọn không triển khai cho một trong các ngôn ngữ mục tiêu của bạn."
+			},
+			"dryRun": {
+				"heading": "Chạy khô trước khi bật quy trình làm việc",
+				"body": "Hành động vẫn phát ra kết quả tóm tắt và tóm tắt bước, nhưng không có tệp nào được ghi. Kết hợp với {failOnErrorFalse} để hiển thị mọi vấn đề dưới dạng cảnh báo trong khi bạn lặp lại."
+			}
+		}
 	},
 	"faq": {
 		"title": "Câu hỏi thường gặp",
 		"eyebrow": "Trợ giúp",
 		"heroTitle": "Câu hỏi thường gặp",
-		"lede": "Câu trả lời nhanh cho các câu hỏi xuất hiện thường xuyên nhất khi áp dụng hành động."
+		"lede": "Câu trả lời nhanh cho các câu hỏi xuất hiện thường xuyên nhất khi áp dụng hành động.",
+		"questions": {
+			"azure": {
+				"heading": "Hành động nói chuyện với Azure như thế nào?",
+				"body": "Thông qua SDK {azureSdkLink} chính thức của Microsoft, được xếp lớp trên {corePipelineLink}. Điều đó cho phép bạn tự động thử lại các mô hình {statusCodes}, yêu cầu và phản hồi được nhập cũng như xử lý tiêu đề xác thực miễn phí — mọi thứ từng là một cuộc gọi {axios} cuộn bằng tay. Bề mặt hành động công khai (đầu vào, đầu ra, đầu ra tệp) không thay đổi."
+			},
+			"tone": {
+				"heading": "Tại sao bản dịch đôi khi không có thương hiệu hoặc lệch điệu?",
+				"body": "Dịch máy mặc định là mô hình có mục đích chung. Ba núm giúp: một {glossaryLink} để ghi đè thuật ngữ khó, một {customTranslatorLink} cho các mô hình tinh chỉnh được đào tạo về giọng điệu và từ vựng của bạn, và {profanityAction} để loại bỏ hoặc gắn cờ các thuật ngữ tục tĩu.",
+				"glossaryLinkLabel": "Thuật ngữ",
+				"customTranslatorLinkLabel": "Danh mục Trình dịch tùy chỉnh"
+			},
+			"duplicateFiles": {
+				"heading": "Làm cách nào để tránh dịch cùng một tệp hai lần?",
+				"body": "Kích hoạt quy trình làm việc trên {paths} chỉ khớp với tệp ngôn ngữ nguồn của bạn, ví dụ: {sourceGlob}. Hành động này cũng bao gồm bộ lọc tệp cho mỗi trình kích hoạt của riêng nó khi {githubToken} được đặt, thu hẹp công việc đối với các tệp trong cam kết mới nhất."
+			},
+			"offline": {
+				"heading": "Tôi có thể chạy hành động ngoại tuyến không?",
+				"body": "Không chính xác - Azure AI Translator là bộ não thời gian chạy. Nhưng bạn có thể chạy với {dryRunTrue} để xác thực phân tích cú pháp và cấu hình mà không cần thực hiện bất kỳ yêu cầu HTTP nào để dịch."
+			},
+			"node": {
+				"heading": "Hành động chạy trên phiên bản Node nào?",
+				"body": "v3 chạy trên thời gian chạy GitHub Actions {nodeRuntime}. JavaScript đi kèm tương thích với Node 20, 22 và 24, đó là những gì CI kiểm tra."
+			},
+			"dist": {
+				"heading": "Các {distDir} đi kèm đến từ đâu?",
+				"body": "Các hành động GitHub JS gửi JS đã biên dịch của họ trong kho lưu trữ. Quy trình làm việc {distBuild} xây dựng lại nó sau mỗi lần hợp nhất để {mainBranch} xem nó có trôi dạt hay không và {distCheck} chặn các PR sẽ đạt được đầu ra lỗi thời."
+			},
+			"formats": {
+				"heading": "Còn các định dạng tài nguyên khác thì sao?",
+				"body": "Ngày nay: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} nếu bạn cần một giao diện khác - giao diện trình phân tích cú pháp nhỏ (phân tích cú pháp → ánh xạ → áp dụng bản dịch → định dạng) và đóng góp được hoan nghênh.",
+				"issueLinkLabel": "Mở một vấn đề"
+			}
+		}
 	},
 	"translations": {
 		"title": "Bản dịch",
 		"eyebrow": "Trưng bày",
 		"heroTitle": "Xin chào bằng mọi ngôn ngữ",
-		"locales": "Ngôn ngữ",
-		"currentlyRendered": "hiện đang được hiển thị",
-		"complete": "hoàn thành!",
-		"pendingPrefix": "đang chờ chạy tài liệu dịch tiếp theo.",
+		"lede": "Trang này được dịch bởi chính Resource Translator, trên mỗi lần đẩy sang chính, sang mọi ngôn ngữ mà Azure AI Translator hỗ trợ.",
+		"localeCountLabel": "{count} ngôn ngữ",
+		"statusComplete": "{translatedCount} hiện đang được hiển thị - hoàn tất!",
+		"statusPending": "{translatedCount} hiện đang được hiển thị - {pendingCount} đang chờ chạy {workflowName} tiếp theo.",
 		"viewWorkflowRuns": "Xem các lần chạy quy trình làm việc",
 		"filter": "Bộ lọc",
 		"filterPlaceholder": "Tìm kiếm theo ngôn ngữ, mã hoặc tên bản địa...",
 		"source": "Nguồn",
 		"machineTranslations": "Bản dịch máy",
-		"translationPending": "Đang chờ dịch — mở một lần chạy dịch tài liệu.",
+		"translationPending": "Đang chờ dịch — mở một {workflowName} chạy.",
 		"noLocales": "Không có ngôn ngữ nào khớp với bộ lọc đó.",
-		"howItWorks": "Cách hoạt động"
+		"howItWorks": {
+			"heading": "Cách hoạt động",
+			"thisActionLabel": "chính hành động này",
+			"steps": {
+				"source": "Tệp nguồn tiếng Anh nằm ở {messagesPath}.",
+				"workflow": "Những cú chạm đó sẽ khởi động {workflowLink}, chạy {thisAction} chống lại chính nó.",
+				"fanOut": "Hành động phân bổ đến mọi ngôn ngữ được hỗ trợ Azure AI Translator (được đặt cấu hình bằng {configPath}) và ghi một {messagesLocaleJson} anh em cho mỗi mục tiêu.",
+				"pullRequest": "Một yêu cầu kéo được mở với các bản dịch mới. Hợp nhất nó sẽ xuất bản lại trang này với các thẻ được điền vào."
+			}
+		},
+		"poweredBy": "Được hỗ trợ bởi Resource Translator và Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Đóng góp",
 		"eyebrow": "Mã nguồn mở",
-		"lede": "Báo cáo lỗi, yêu cầu tính năng và yêu cầu kéo đều được hoan nghênh. Hành động đủ nhỏ để thân thiện với những người đóng góp lần đầu."
+		"lede": "Báo cáo lỗi, yêu cầu tính năng và yêu cầu kéo đều được hoan nghênh. Hành động đủ nhỏ để thân thiện với những người đóng góp lần đầu.",
+		"localDevelopment": {
+			"heading": "Phát triển địa phương"
+		},
+		"addingParser": {
+			"heading": "Thêm trình phân tích cú pháp",
+			"steps": {
+				"fixture": "Thêm một vật cố định trong {testDataDir}.",
+				"implement": "Triển khai {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Đăng ký nó trong {factoryFile}.",
+				"extension": "Thêm phần mở rộng tệp vào {translationFileSchemes} trong {finderFile}.",
+				"tests": "Viết các bài kiểm tra khứ hồi để phân tích cú pháp định dạng → và áp dụngTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "Ngưỡng bảo hiểm",
+			"body": "Cấu hình Jest thực thi phạm vi bảo hiểm tối thiểu. Mã mới phải giữ ngưỡng câu lệnh + dòng trên 78% và các hàm trên 90%. Thêm đồ đạc và thử nghiệm cùng với thay đổi của bạn."
+		},
+		"docsSite": {
+			"heading": "Trang web tài liệu",
+			"body": "Thư mục {docsDir} là một dự án Astro 6 + Tailwind v4. Chạy {npmInstall} đó một lần, sau đó {npmRunDev} xem trước cục bộ. Quy trình làm việc {pagesWorkflow} gửi tài liệu đến Trang GitHub trên mỗi lần hợp nhất."
+		}
 	},
 	"changelog": {
 		"title": "Nhật ký thay đổi",
 		"eyebrow": "Lịch sử",
-		"lede": "Tóm tắt cấp cao về các bản phát hành. Nhật ký thay đổi chính tắc, có thẩm quyền nằm trong CHANGELOG.md trong kho lưu trữ."
+		"lede": "Tóm tắt cấp cao về các bản phát hành. Nhật ký thay đổi chính tắc, có thẩm quyền nằm trong CHANGELOG.md trong kho lưu trữ.",
+		"fullRecord": "Xem {changelogLink} để biết hồ sơ đầy đủ.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (đang phát triển)",
+			"labels": {
+				"breaking": "PHÁ VỠ",
+				"resilience": "Khả năng phục hồi:",
+				"placeholderProtection": "Bảo vệ giữ chỗ:",
+				"perKeyOptOut": "Chọn không tham gia cho mỗi phím:",
+				"docsAccessibility": "Khả năng truy cập tài liệu:",
+				"inlineCodeStyling": "Tạo kiểu mã cùng dòng:"
+			},
+			"issueLabels": {
+				"closes46": "Đóng cửa # 46.",
+				"tightens16": "Thắt chặt # 16.",
+				"closes35": "Đóng cửa # 35."
+			},
+			"items": {
+				"runtime": "Đã tăng lên {nodeRuntime} thời gian chạy ({breaking}).",
+				"newInputs": "Đầu vào mới: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, cùng với các nút Translator nâng cao {textType}, {profanityAction}, {profanityMarker} và {allowFallback}.",
+				"sourceLocale": "Ngôn ngữ nguồn hiện cũng được chuyển tiếp đến Translator dưới dạng {fromLocale} vì vậy các chuỗi ngắn không được tự động phát hiện.",
+				"resilience": "{label} thử lại tự động trên các phản hồi HTTP tạm thời ({statusCodes}) tôn trọng tiêu đề {retryAfter} của Azure - quay trở lại trạng thái lùi theo cấp số nhân bị chập chờn khi vắng mặt. Có thể điều chỉnh qua {maxRetries} và {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} các token như {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} và HTML được bao bọc trong các vệ binh trước khi dịch và được khôi phục sau đó, vì vậy Translator ngừng thay đổi các trình giữ chỗ i18next/Mustache/Handlebars/.NET/printf. Chuyển đổi qua {protectPlaceholders}; mở rộng với {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} đầu vào {noTranslatePatterns} mới sẽ loại bỏ hoàn toàn các khóa phù hợp khỏi yêu cầu Translator (giữ nguyên các giá trị nguồn cho tên thương hiệu, mã lỗi, v.v.). Khớp các mẫu glob với các khóa cấp trình phân tích cú pháp (đường dẫn chấm JSON, {resxName} RESX, PO {poMsgid}, {xliffId} đơn vị XLIFF, khóa INI/restext). {issue}",
+				"repoConfig": "Cấu hình cấp repo thông qua {configPath}.",
+				"glossary": "Hỗ trợ thuật ngữ, tóm tắt các bước qua {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM Audit Clean (0 lỗ hổng).",
+				"docsSite": "Trang web tài liệu Astro + Tailwind v4 với chuyển đổi chế độ xem và Mã biểu cảm.",
+				"docsAccessibility": "{label} Vượt qua WCAG 2.1 AA. Glyph logo được chuyển đổi thành đường dẫn để chúng không còn thất bại về độ tương phản màu so với các điểm dừng gradient, nút {backToTop} nổi sử dụng {inert} khi ẩn (thay vì nút chuyển đổi {ariaHidden} khiến nó có thể gắn thẻ), {formatsAstro} các phần không còn xung đột với ID tiêu đề được tạo tự động của chúng, ba thẻ ngôn ngữ hiện hiển thị các thuộc tính {lang} hợp lệ BCP-47 ({nya}, {lug}, {run}), nhãn mốc {documentation} trùng lặp được phân biệt giữa thanh bên và chân trang,  và mọi bảng dữ liệu trên {inputs}/{configuration} đều có chú thích trình đọc màn hình.",
+				"inlineCode": "{label} tài liệu văn xuôi {codeElement} hiện có điểm nhấn chủ đề ấm / hổ phách - khác với bảng màu → điểm nhấn thương hiệu được sử dụng cho các liên kết và tiêu đề.",
+				"automation": "Tự động hợp nhất Dependabot, quét CodeQL, ma trận CI."
+			}
+		},
+		"v2": {
+			"heading": "phiên bản 2.x",
+			"gitHistory": "Xem lịch sử git."
+		}
 	}
 }

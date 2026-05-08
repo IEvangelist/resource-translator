@@ -18,18 +18,26 @@
 			"node": "Node 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "Gettext",
+			"json": "Ho Flat Or Flat",
+			"ini": "{keyValue}",
+			"restext": "Sengoloa sa MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Lifomate tse tšeletseng tsa lifaele",
-				"body": "Maeto a ho potoloha .resx, .xliff, .po, .json, .ini, le .restext ka sebopeho se tsitsitseng sa byte."
+				"body": "Maeto a ho potoloha {resx}, {xliff}, {po}, {json}, {ini} le {restext} tse nang le sebopeho se tsitsitseng sa byte."
 			},
 			"config": {
 				"title": "Repo-level config",
-				"body": "Lahla .github / resource-translator.yml bakeng sa kenyelletsa li-globs, li-glossaries le lihlopha tsa mofetoleli oa tloaelo."
+				"body": "Drop a {configPath} file for include globs, glossaries, and Custom Translator categories."
 			},
 			"glossary": {
 				"title": "Glossary-Aware",
-				"body": "Notlela mabitso a mabitso le mantsoe a sehlahisoa ka regex e bohlale ea moeli oa mantsoe e sebetsanang le C ++, .NET le metsoalle."
+				"body": "Notlela mabitso a lihlahisoa le mantsoe a sehlahisoa ka regex e bohlale ea moeli oa mantsoe e sebetsanang le {cpp}, {dotnet} le metsoalle."
 			},
 			"dryRun": {
 				"title": "Ho Ho Ho + Soft-Fail",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Lihlahisoa tsa PR",
-				"body": "summary-title, summary-details, and has-new-translations kena ka kotloloho ho create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails} le {hasNewTranslations} slot ka kotloloho ho theha-hula-kopo."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "E hahiloe ka @azure-rest / ai-translation-text + @azure / core-rest-pipeline — liteko tse iketsang ho 408/429/5xx, ha ho na HTTP e phutholohileng ka letsoho. esbuild-bundled, audit-clean."
+				"body": "E hahiloe ka {azureSdk} + {corePipeline} — liteko tse iketsang ho {statusCodes}, ha ho na HTTP e phutholohileng ka letsoho. {esbuild}-bundled, audit-clean."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Ts'ebetso ea ts'ebetso",
+			"titlePrefix": "Kopitsa. Paste.",
+			"titleAccent": "Fetolela.",
+			"body": "Liphiri tse tharo, mela e mene, 'me repo ea hau e na le lipuo tse ngata ho sutumelletsa ho latelang.",
+			"setupLink": "Tsamaea ka Kakaretso ea Setup"
+		},
+		"cta": {
+			"title": "Na u se u itokiselitse ho sebelisa Autopilot?",
+			"body": "Senotlolo se le seng sa mofetoleli oa Azure AI, faele e le 'ngoe ea ts'ebetso. Mofetoleli oa Resource o sebetsana le tse ling kaofela.",
+			"button": "Qala"
 		}
 	},
 	"getting-started": {
 		"title": "Ho qala",
 		"eyebrow": "Tlhophiso",
-		"lede": "Kenya faele ea ts'ebetso, e supe ho lifaele tsa hau tsa Azure AI Translator, 'me ketso — e hahiloeng ho SDK ea semmuso ea Microsoft ea @azure-rest / ai-translation-text — e tla skena repo bakeng sa lifaele tsa mohloli oa mohloli le ho ntša banab'eso ba fetolelitsoeng.",
+		"lede": "Kenya faele ea ts'ebetso, e supe ho lifaele tsa hau tsa Azure AI Translator, 'me ketso e tla skena repo bakeng sa lifaele tsa mohloli oa mohloli le ho ntša banab'eso ba fetolelitsoeng.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Eketsa ts'ebetso ea ts'ebetso",
-				"body": "Theha .github/workflows/translate.yml:"
+				"body": "Theha {workflowPath}:"
 			},
 			"resource": {
 				"title": "Etsa file ea mohloli oa mohloli",
-				"body": "Lifaele tsa lisebelisoa li sebelisa lebitso. <sourceLocale>. <ext> Kopano. Ka mohlala, Greetings.en.resx e fetoha Greetings.fr.resx, Greetings.de.resx, joalo-joalo kamora ho matha."
+				"body": "Lifaele tsa lisebelisoa li sebelisa kopano ea {namingConvention}. Ka mohlala, {sourceFile} ba {frFile}, {deFile}, joalo-joalo kamora ho matha."
 			},
 			"output": {
 				"title": "Hlahloba tlhahiso",
-				"body": "Hang ha ts'ebetso e felile, ketso e senola liphetho tse tharo tseo u ka li kopanyang ka tlhaloso ea PR: kakaretso-sehlooho, kakaretso-lintlha, le liphetolelo tse ncha. E boetse e ngola kakaretso ea Markdown leqepheng la mosebetsi ka core.summary."
+				"body": "Hang ha ts'ebetso e felile, ketso e pepesa liphetho tse tharo tseo u ka li hokahanyang le tlhaloso ea PR: {summaryTitle}, {summaryDetails} le {hasNewTranslations}. E boetse e ngola kakaretso ea Markdown leqepheng la mosebetsi ka {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Mehato e latelang",
-			"configuration": "Fetola li-default tsa repo ka .github/resource-translator.yml.",
+			"configuration": "Ho hlophisa liphoso tsa boemo ba repo ka {configPath}.",
 			"recipes": "Sheba lipe tsa li-monorepos, li-glossaries tsa moetlo, le lihlopha tsa mofetoleli oa tloaelo."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Tlhophiso",
 		"eyebrow": "YAML",
 		"heroTitle": "Tlhophiso ea polokelo",
-		"lede": "Hlahisa liphoso hang ho .github/resource-translator.yml 'me u lumelle ts'ebetso e ngoe le e ngoe hore e e rue. Liketso li lula li hlōla ha li fanoa ka bobeli."
+		"lede": "Express defaults hang in the repository config file and let every workflow inherit them. Liketso li lula li hlōla ha li fanoa ka bobeli.",
+		"intro": "Tlosa tsela ka ho kenya {configPath} haeba u hloka sebaka se sa fetoheng.",
+		"schemaHeading": "Schema",
+		"fieldReference": {
+			"heading": "Reference ea tšimo",
+			"caption": "Tlhaloso ea tšimo ea tlhaloso",
+			"columns": {
+				"field": "Tšimo",
+				"type": "Mofuta",
+				"notes": "Lintlha"
+			},
+			"fields": {
+				"sourceLocale": "Khutlela ho kenyelletso ea {sourceLocale} haeba e sa sebelisoe. E boetse e romelloa ho Mofetoleli joalo ka {fromLocale} e le hore likhoele tse khuts'oane ha li fumanoe ka boiketsetso.",
+				"toLocales": "Ebang ke letoto kapa khoele e arohaneng ea comma.",
+				"includeExclude": "Lipaterone tsa Glob tse hlahlojoang khahlano le litsela tse felletseng le tsa mosebetsi.",
+				"glossary": "Phetolelo ea morao-rao e fetisoa. Ho tseba moeli oa lentsoe (ho sebetsana le {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} category — your industry/domain knob (legal, medical, marketing tone, etc.). E rometsoe joalo ka {categoryQuery}.",
+				"textType": "Ho hloleha ho {plain}. Sebelisa {html} feela haeba boleng ba hau ba mohloli bo na le likotoana tsa 'nete tsa HTML.",
+				"profanityAction": "Mokhoa oa ho sebetsana le lipolelo tse sa tloaelehang liphetolelong tsa liphetolelo?",
+				"profanityMarker": "E na le moelelo feela ha {profanityAction} {marked}.",
+				"allowFallback": "Beha ho {false} ho hloleha phetolelo ha {categoryId} hau e se na ts'ebetso bakeng sa sebaka se shebiloeng ho fapana le ho khutlela mofuteng o akaretsang.",
+				"apiVersion": "Translator REST API version. Ho hloleha ho {version}.",
+				"maxRetries": "Liteko tse phahameng tsa ho leka hape ho likarabo tsa nakoana tsa HTTP ({statusCodes}). Ho hloleha ho {defaultRetries}. Kakaretso ea mehala ea HTTP ka kopo e {totalCalls}.",
+				"retryBackoffMs": "Cap (MS) bakeng sa boroko bofe kapa bofe ba mokokotlo. Ho hloleha ho {defaultBackoff}. Hlooho ea {retryAfter} ea Azure e hlomphuoa hantle ha e le teng; ho seng joalo ho sebelisoa li-backoff tse sa tloaelehang, tse koahetsoeng ka boleng bona.",
+				"protectPlaceholders": "Ho hloleha ho {true}. Ha e le teng, li-tokens tse kang {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} le HTML li nkeloa sebaka ke li-tokens tsa sentinel pele li fetoleloa ebe li khutlisetsoa morao. Tima feela ha mohloli o na le li-literals tse bōpehileng joaloka placeholder.",
+				"customPlaceholderPatterns": "Lipaterone tse eketsehileng tsa regex (ntle le li-delimiters) li ekelitsoe ho sete ea sebaka sa marang-rang, mohlala {angleToken} bakeng sa syntax ea letšoao la tloaelo. Li-regex tse sa sebetseng li hlokomolohuoa.",
+				"noTranslatePatterns": "Lipaterone tsa Glob li bapisoa le linotlolo tsa boemo ba parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext key). Linotlolo tse lumellanang li tlosoa ho tsoa ho kopo ebe li feta ka boleng ba tsona ba mohloli bo bolokiloeng."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Taelo ea ho kenya",
+			"steps": {
+				"actionInputs": "Ketso e bala litlatsetso tse hlakileng ho tsoa ts'ebetsong ea mosebetsi.",
+				"config": "E kenya YAML config ho tloha {configPath}.",
+				"precedence": "Bakeng sa tšimo e 'ngoe le e' ngoe e arolelanoeng, kenyelletso e hlola; ho seng joalo, boleng ba YAML bo sebelisoa.",
+				"validation": "Litekanyetso tse kopaneng li netefalitsoe. Li-enums tse sa sebetseng (mohlala, {invalidEnum}) li etsa hore ketso e hlōlehe ka potlako ka molaetsa o hlakileng."
+			}
+		},
+		"tone": {
+			"heading": "Tone le indasteri ka mantsoe a hlakileng",
+			"body": "Azure AI Translator v3 API ha e na konopo e le 'ngoe ea molumo. Li-setting tse peli li kopanya ho u fa boholo ba taolo e tšoanang:",
+			"industryLabel": "Indasteri / Domain:",
+			"industryBody": "sebelisa {categoryId} ho supa sehlopha sa Azure {customTranslatorLink} se koetlisitsoeng ka corpus ea hau — molao, tekheniki, bongaka, papatso, kapa eng kapa eng. Ena ke sesebelisoa se matla ka ho fetisisa sa molumo, lentsoe la lebitso le mantsoe.",
+			"surfaceLabel": "Sengoloa sa bokaholimo:",
+			"surfaceBody": "Sebelisa {glossaryLink} ho notlela mabitso a lihlahisoa le mantsoe a sehlahisoa ka nepo, 'me u sebelise {profanityAction} ho hlakola mantsoe a litšila ha u shebile sebaka sa bamameli ba banyenyane.",
+			"glossaryLinkLabel": "Glossary"
+		}
 	},
 	"inputs": {
 		"title": "Input & Outputs",
 		"eyebrow": "Litšupiso",
-		"lede": "Tlhahiso e 'ngoe le e' ngoe e boetse e amoheloa faeleng ea boikhethelo ea repo config. Ha bobeli bo behiloe, ts'ebetso ea ts'ebetso e hlola."
+		"lede": "Tlhahiso e 'ngoe le e' ngoe e boetse e amoheloa faeleng ea boikhethelo ea repo config. Ha bobeli bo behiloe, ts'ebetso ea ts'ebetso e hlola.",
+		"configurationIntro": "Sheba {configurationLink} bakeng sa schema ea YAML le taelo ea ho jara.",
+		"configurationLinkLabel": "Tlhophiso",
+		"columns": {
+			"name": "Lebitso",
+			"default": "Default",
+			"description": "Tlhaloso"
+		},
+		"defaults": {
+			"none": "Ha ho le ea mong",
+			"allSupported": "Kaofela li tšehetsoa",
+			"translatorDefaultTrue": "'nete (Phetolelo e sa fetoheng)"
+		},
+		"requiredInputs": {
+			"heading": "Lisebelisoa tse hlokahalang",
+			"caption": "Lisebelisoa tse hlokahalang",
+			"items": {
+				"sourceLocale": "Mohloli oa sebaka (mohlala, {en}) o sebelisetsoang ho fumana lifaele tsa lisebelisoa tse kang {sourceGlob}. E boetse e romelloa ho mofetoleli joalo ka {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator subscription key. Fetisa ka {secrets}.",
+				"endpoint": "URL ea mofetoleli, mohlala, {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Lisebelisoa tse tloaelehileng tsa boikhethelo",
+			"caption": "Lisebelisoa tse tloaelehileng tsa boikhethelo",
+			"items": {
+				"region": "Sebaka sa mohloli oa mofetoleli (tlohela lisebelisoa tsa lefats'e).",
+				"toLocales": "Libaka tseo u lokelang ho li fetolela E amohela JSON array ({jsonArray}) kapa litekanyetso tse arohaneng ka comma.",
+				"include": "Lipaterone tsa glob tse arohaneng tsa Newline; Ke lifaele tse lumellanang feela tse fetolelitsoeng.",
+				"exclude": "Lipaterone tsa glob tse arohaneng tsa Newline; Lifaele tse lumellanang li tlosoa (li sebelisoa ka mor'a ho kenyelletsa).",
+				"configPath": "Tsela e eang faeleng ea config ea YAML (e amanang le motso oa sebaka sa mosebetsi).",
+				"dryRun": "Ha {true}, tsamaisa liphetolelo 'me u ntše litlhaloso empa u se ke ua ngola lifaele.",
+				"failOnError": "Ha {true}, liphoso tse sa lebelloang li hloleha ketso; Ha {false}, liphoso ke tlhokomeliso."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Lisebelisoa tsa kopo ea mofetoleli",
+			"intro": "Tsena li etsa 'mapa ka kotloloho ho Azure AI Translator v3 mekhahlelo ea lipotso E 'ngoe le e' ngoe ke ea boikhethelo; Liphoso tsa mofetoleli li sebetsa ha li sa sebelisoa.",
+			"caption": "Lisebelisoa tsa kopo ea mofetoleli",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. E romele E romele Joalo ka {categoryQuery}",
+				"textType": "{plain} kapa {html}. Sebelisa {html} feela ha boleng ba hau ba lisebelisoa e le likotoana tsa 'nete tsa HTML.",
+				"profanityAction": "{noAction}, {marked} kapa {deleted}. Laola hore na mantsoe a litšila a hlahisoa joang liphetolelong.",
+				"profanityMarker": "{asterisk} kapa {tag}. E na le moelelo feela ha {profanityAction} {marked}.",
+				"allowFallback": "Ha {false}, mofetoleli o khutlisetsa phoso ho fapana le ho khutlela tsamaisong e akaretsang haeba {categoryId} ea hau e se na ts'ebetso ea sebaka se shebiloeng.",
+				"apiVersion": "Translator REST API version."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Ts'ireletso ea Ts'ireletso le Ts'ireletso ea Sebaka",
+			"intro": "Lisebelisoa tsena li laola hore na ketso e itšoara joang ha Mofetoleli a fokotsa kopo ea hau le hore na e sireletsa li-tokens tsa placeholder joalo ka {mustache} kapa {indexZero} hore li se ke tsa senyeha nakong ea phetolelo.",
+			"caption": "Ts'ireletso ea ts'ireletso le ts'ireletso ea sebaka",
+			"items": {
+				"maxRetries": "Liteko tse phahameng tsa ho leka hape ho likarabo tsa nakoana tsa HTTP ({statusCodes}). Palo e felletseng ea mehala ea HTTP ka kopo ke {totalCalls}.",
+				"retryBackoffMs": "Cap (ka milliseconds) ka boroko bofe kapa bofe ba morao. Ketso e hlompha hlooho ea karabelo ea {retryAfter} ea Azure hantle ha e le teng; ho seng joalo e sebelisa jittered exponential backoff e koahetsoeng ka boleng bona.",
+				"protectPlaceholders": "Ha {true} (default), li-placeholder tse kang {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} le HTML li nkeloa sebaka ke li-tokens tsa sentinel pele li fetoleloa ebe li khutlisetsoa morao. Tima feela ha mohloli oa hau o na le mongolo o bōpehileng joaloka sebaka o lokelang ho fetoleloa.",
+				"customPlaceholderPatterns": "Li-regexes tse arohaneng tsa Newline (ntle le li-delimiters) li ekelitsoe ho sete ea placeholder e sa fetoheng, mohlala {angleToken} bakeng sa syntax ea letšoao la tloaelo.",
+				"noTranslatePatterns": "Lipaterone tsa glob tse arohaneng tsa Newline li bapisoa le linotlolo tsa boemo ba parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext key). Linotlolo tse lumellanang li tlosoa ho tsoa ho kopo ea Mofetoleli ebe li fetisoa ka boleng ba tsona ba mohloli bo bolokiloeng."
+			}
+		},
+		"outputs": {
+			"heading": "Liphetho",
+			"caption": "Liphetho",
+			"items": {
+				"summaryTitle": "Kakaretso e khuts'oane ea PR-title-friendly, mohlala {summaryExample}.",
+				"summaryDetails": "Markdown summary e loketseng 'mele oa PR kapa kakaretso ea mosebetsi.",
+				"hasNewTranslations": "{trueString} ha phetolelo e le 'ngoe kapa tse' maloa tse ncha li hlahisitsoe."
+			}
+		}
 	},
 	"formats": {
 		"title": "Lifomate tsa faele",
 		"eyebrow": "Litšupiso",
 		"heroTitle": "Lifomate tsa faele tse tšehelitsoeng",
-		"lede": "Lifomate tse tšeletseng tsa lisebelisoa tse potolohang. Ketso e bala faele e 'ngoe le e' ngoe ea mohloli-locale, e fetolela litekanyetso, 'me e ngola ngoan'abo rōna ka sebaka se shebiloeng."
+		"lede": "Lifomate tse tšeletseng tsa lisebelisoa tse potolohang. Ketso e bala faele e 'ngoe le e' ngoe ea mohloli-locale, e fetolela litekanyetso, 'me e ngola ngoan'abo rōna ka sebaka se shebiloeng.",
+		"namingConvention": "Lifaele tsohle li sebelisa kopano ea {namingConvention} ea mabitso.",
+		"learnMore": "Ithute haholwanyane",
+		"items": {
+			"resx": {
+				"blurb": "Lifaele tsa .NET tse thehiloeng ho XML. Fetolela mongolo o ka hare oa node e {dataValue} ka 'ngoe, ho boloka litlhaloso le metadata.",
+				"specLabel": "Microsoft Learn — Resources in .resx files"
+			},
+			"xliff": {
+				"blurb": "Litokomane tsa OASIS XLIFF 2.0. Fetolela {source} e 'ngoe le e' ngoe ebe o ngola sephetho ho {target} e tsamaellanang, ho beha {trgLang} bakeng sa sebaka.",
+				"specLabel": "Tlhaloso ea OASIS XLIFF 2.0"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object files. Fetolela {msgid} / {msgidPlural} e 'ngoe le e' ngoe ka mefuta ea {msgstr} / {msgstrPlural}.",
+				"specLabel": "GNU gettext — PO file format"
+			},
+			"json": {
+				"blurb": "Lifaele tsa JSON tse sa reroang. Lintho tse hlasetsoeng li bataletse ka delimiter ea {delimiter} bakeng sa phetolelo, ebe li khutlisetsoa hape ka tlhahiso. Linotlolo tse nang le matšoao ({dottedKey}) li bolokiloe ka verbatim.",
+				"specLabel": "Tlhaloso ea JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Lifaele tse bonolo tsa {keyValue} (Win32-style INI kapa config efe kapa efe e bataletseng). Lihlooho tsa likarolo le litlhaloso li bolokiloe.",
+				"specLabel": "Sebopeho sa faele ea INI ho Wikipedia"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI text resources — flat {keyValue} pairs used as a textual companion to {resx}.",
+				"specLabel": "Kakaretso ea Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Netefatso ea leeto la ho potoloha",
+			"body": "Suite ea liteko e netefatsa ho potoloha ha byte bakeng sa lisebelisoa tse emelang sebopeho se seng le se seng. Haeba quirk ea fomate e roba ho potoloha ho codebase ea hau, ka kopo {issueLink} ka sampole e fokolang.",
+			"issueLinkLabel": "Bula potso"
+		}
 	},
 	"recipes": {
 		"title": "Lipe",
 		"eyebrow": "Buka ea ho pheha",
-		"lede": "Mekhoa e tloaelehileng ea liphetolelo tsa thomello: li-monorepos, li-glossaries, lihlopha tsa moetlo, ho matha ho ommeng le taolo ea molumo."
+		"lede": "Mekhoa e tloaelehileng ea liphetolelo tsa thomello: li-monorepos, li-glossaries, lihlopha tsa moetlo, ho matha ho ommeng le taolo ea molumo.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Bula kopo ea ho hula ka mor'a ho matha ka 'ngoe le e' ngoe"
+			},
+			"monorepo": {
+				"heading": "Monorepos: phetolelo ea scope ka sephutheloana"
+			},
+			"glossary": {
+				"heading": "Glossary bakeng sa mabitso a brand le mantsoe a sehlahisoa",
+				"intro": "Beha {configPath} ho repo:",
+				"afterLabel": "Ka mor'a",
+				"body": "Mantsoe a glossary a sebelisoa {after} phetolelo, ka hona tlhahiso e fetoletsoeng ka mochini e boloka letšoao leo u le ratang le ha mohlala o le fapanyetsana bakeng sa synonym."
+			},
+			"customCategory": {
+				"heading": "Sehlopha sa mofetoleli oa tloaelo (indasteri / domain)",
+				"body": "Koetlisa sehlopha sa Azure {customTranslatorLink} ho corpus e nkang mantsoe le molumo oa hau oa indasteri (molao, bongaka, papatso, boenjiniere ba kahare, jj.) 'me u fetise ID ea eona ka {categoryId}. Ena ke molumo o matla ka ho fetisisa oa molumo o fanang ka Azure."
+			},
+			"tone": {
+				"heading": "Taolo ea molumo + ho oela ka thata",
+				"body": "Kopanya mofetoleli oa moetlo {categoryId} le {profanityAction} le {allowFallbackFalse} ho qobella lentsoe le sa fetoheng le ho hloleha ts'ebetso haeba sehlopha se khethiloeng se se na ts'ebetso bakeng sa e 'ngoe ea libaka tseo u li shebileng."
+			},
+			"dryRun": {
+				"heading": "Dry run pele o bula ts'ebetso ea ts'ebetso",
+				"body": "Ketso e ntse e fana ka liphetho tse khuts'oane le kakaretso ea mohato, empa ha ho na lifaele tse ngotsoeng. Kopanya le {failOnErrorFalse} ho hlahisa taba e 'ngoe le e' ngoe e le temoso ha u ntse u pheta-pheta."
+			}
+		}
 	},
 	"faq": {
 		"title": "DBK",
 		"eyebrow": "Thuso",
 		"heroTitle": "Lipotso tse botsoang khafetsa",
-		"lede": "Likarabo tse potlakileng tsa lipotso tse hlahang khafetsa ha u nka khato."
+		"lede": "Likarabo tse potlakileng tsa lipotso tse hlahang khafetsa ha u nka khato.",
+		"questions": {
+			"azure": {
+				"heading": "Ketso e bua joang le Azure?",
+				"body": "Ka {azureSdkLink} SDK ea semmuso ea Microsoft, e behiloeng ho {corePipelineLink}. Seo se u fa liteko tse iketsang ho {statusCodes}, mefuta ea kopo le karabelo e thaepa, le ho sebetsana le hlooho ea netefatso mahala — ntho e ngoe le e ngoe e neng e le mohala oa {axios} ka letsoho. Sebaka sa ts'ebetso ea sechaba (litlatsetso, lihlahisoa, liphetho tsa faele) ha li fetohe."
+			},
+			"tone": {
+				"heading": "Ke hobane'ng ha liphetolelo ka linako tse ling li sa sebetse kapa li sa sebetse?",
+				"body": "Phetolelo ea mochini ha e sebetse ka mokhoa o akaretsang. Likonopo tse tharo lia thusa: {glossaryLink} bakeng sa li-override tsa nako e thata, {customTranslatorLink} bakeng sa mehlala e hlophisitsoeng hantle e koetlisitsoeng ka molumo oa hau le mantsoe, le {profanityAction} ho hlakola kapa ho folakha mantsoe a litšila.",
+				"glossaryLinkLabel": "Glossary",
+				"customTranslatorLinkLabel": "Sehlopha sa mofetoleli oa tloaelo"
+			},
+			"duplicateFiles": {
+				"heading": "Nka qoba joang ho fetolela faele e tšoanang habeli?",
+				"body": "Qala ts'ebetso ea ts'ebetso ho {paths} e lumellanang le lifaele tsa hau tsa mohloli feela, mohlala {sourceGlob}. Ketso e boetse e kenyelletsa filthara ea eona ea faele ea 'ngoe le {githubToken} ha e behiloe, e fokotsa mosebetsi ho lifaele tsa boitlamo ba morao-rao."
+			},
+			"offline": {
+				"heading": "A na nka tsamaisa ts'ebetso ntle le marang-rang?",
+				"body": "Eseng hantle — Azure AI Translator ke boko ba nako ea ho matha. Empa o ka matha le {dryRunTrue} ho netefatsa parsing le config ntle le ho etsa likopo tsa HTTP tsa phetolelo."
+			},
+			"node": {
+				"heading": "Ke mofuta ofe oa Node oo ketso e sebetsang ho eona?",
+				"body": "V3 e matha ho GitHub Actions {nodeRuntime} runtime. JavaScript e kopantsoeng e lumellana le Node 20, 22 le 24, e leng seo CI e se lekang."
+			},
+			"dist": {
+				"heading": "Li-{distDir} tse kopaneng li tsoa kae?",
+				"body": "Liketso tsa GitHub JS li romella JS ea tsona e hlophisitsoeng polokelong. Ts'ebetso ea {distBuild} e e aha bocha kamora ho kopanya ho {mainBranch} hore na e ka tsamaea, 'me {distCheck} e thibela li-PR tse neng li tla fumana tlhahiso e siiloeng ke nako."
+			},
+			"formats": {
+				"heading": "Ho thoe'ng ka mefuta e meng ea lisebelisoa?",
+				"body": "Kajeno: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} haeba u hloka e 'ngoe — sebopeho sa parser se senyenyane (parse → 'mapa → sebelisa liphetolelo → sebopeho) mme menehelo e amoheleha.",
+				"issueLinkLabel": "Bula potso"
+			}
+		}
 	},
 	"translations": {
 		"title": "Liphetolelo",
 		"eyebrow": "Pontšo",
 		"heroTitle": "Hello Hello",
-		"locales": "Libaka",
-		"currentlyRendered": "Hona joale e fanoe",
-		"complete": "E felletseng!",
-		"pendingPrefix": "Ho emetse phetolelo e latelang ea li-docs.",
+		"lede": "Leqephe lena le fetoleloa ke Resource Translator ka boeona, ka ho sutumelletsa ho ea holimo, puong e 'ngoe le e' ngoe eo Azure AI Translator e e tšehetsang.",
+		"localeCountLabel": "{count} libaka",
+		"statusComplete": "{translatedCount} hona joale e fetotsoe — e felletseng!",
+		"statusPending": "{translatedCount} hona joale e fetotsoe — {pendingCount} emetse {workflowName} e latelang.",
 		"viewWorkflowRuns": "Sheba li-workflow tse mathang",
 		"filter": "Filter",
 		"filterPlaceholder": "Batla ka puo, khoutu kapa lebitso la matsoalloa ...",
 		"source": "Mohloli",
 		"machineTranslations": "Liphetolelo tsa mochini",
-		"translationPending": "Phetolelo e emetse — bula phetolelo-docs run.",
+		"translationPending": "Phetolelo e emetse — bula {workflowName} matha.",
 		"noLocales": "Ha ho na libaka tse lumellanang le filthara eo.",
-		"howItWorks": "Kamoo see se sebetsang kateng"
+		"howItWorks": {
+			"heading": "Kamoo see se sebetsang kateng",
+			"thisActionLabel": "ketso ena",
+			"steps": {
+				"source": "Faele ea mohloli oa Senyesemane e lula {messagesPath}.",
+				"workflow": "Pushes that touch it kick off {workflowLink}, which runs {thisAction} against itself.",
+				"fanOut": "Ketso e ea sebakeng se seng le se seng se tšehelitsoeng ke mofetoleli oa Azure AI (e hlophisitsoeng ka {configPath}) mme e ngola ngoan'abo {messagesLocaleJson} ka sepheo se seng le se seng.",
+				"pullRequest": "Kopo ea ho hula e buloa ka liphetolelo tse ncha. Ho e kopanya ho hatisa leqephe lena hape ka likarete tse tlatsitsoeng."
+			}
+		},
+		"poweredBy": "E tsamaisoa ke mofetoleli oa lisebelisoa le mofetoleli oa Azure AI."
 	},
 	"contributing": {
 		"title": "Ho kenya letsoho",
 		"eyebrow": "Mohloli o bulehileng",
-		"lede": "Litlaleho tsa bug, likopo tsa likarolo le likopo tsa ho hula kaofela lia amoheleha. Ts'ebetso e nyane ka ho lekana hore e ka ba botsoalle ho bafani ba lekhetlo la pele."
+		"lede": "Litlaleho tsa bug, likopo tsa likarolo le likopo tsa ho hula kaofela lia amoheleha. Ts'ebetso e nyane ka ho lekana hore e ka ba botsoalle ho bafani ba lekhetlo la pele.",
+		"localDevelopment": {
+			"heading": "Nts'etsopele ea lehae"
+		},
+		"addingParser": {
+			"heading": "Ho eketsa parser",
+			"steps": {
+				"fixture": "Eketsa sephutheloana se ka tlas'a {testDataDir}.",
+				"implement": "Sebelisa {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "E ngolise ho {factoryFile}.",
+				"extension": "Eketsa katoloso ea faele ho {translationFileSchemes} ka {finderFile}.",
+				"tests": "Write round-trip tests for parse → format and applyTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "Meeli ea ho koahela",
+			"body": "Ts'ebetso ea ts'ireletso ea ts'ireletso ea ts'ireletso ea Khoutu e ncha e tlameha ho boloka lipolelo + mela e kaholimo ho 78% mme e sebetsa kaholimo ho 90%. Eketsa li-fixtures le liteko hammoho le phetoho ea hau."
+		},
+		"docsSite": {
+			"heading": "Sebaka sa litokomane",
+			"body": "Foldara ea {docsDir} ke projeke ea Astro 6 + Tailwind v4. Matha {npmInstall} moo hanngoe, ebe {npmRunDev} bakeng sa ponelopele ea lehae. Ts'ebetso ea {pagesWorkflow} e romella li-docs ho GitHub Pages ho kopanyo e ngoe le e ngoe."
+		}
 	},
 	"changelog": {
 		"title": "Phetoho ea Phetoho",
 		"eyebrow": "Histori",
-		"lede": "Kakaretso e phahameng ea litokomane. Phetoho ea canonical, e nang le matla e lula CHANGELOG.md polokelong."
+		"lede": "Kakaretso e phahameng ea litokomane. Phetoho ea canonical, e nang le matla e lula CHANGELOG.md polokelong.",
+		"fullRecord": "Sheba {changelogLink} bakeng sa rekoto e felletseng.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "V3 (Ho Ho Ho)",
+			"labels": {
+				"breaking": "HO ROBEHA",
+				"resilience": "Mamello:",
+				"placeholderProtection": "Ts'ireletso ea sebaka:",
+				"perKeyOptOut": "Per-key opt-out:",
+				"docsAccessibility": "Phihlello ea Docs:",
+				"inlineCodeStyling": "Inline code styling:"
+			},
+			"issueLabels": {
+				"closes46": "E koala # 46.",
+				"tightens16": "E tiisa # 16.",
+				"closes35": "E koala # 35."
+			},
+			"items": {
+				"runtime": "Ho {nodeRuntime} Runtime ({breaking})",
+				"newInputs": "Lisebelisoa tse ncha: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, hammoho le likonopo tse tsoetseng pele tsa Mofetoleli {textType}, {profanityAction}, {profanityMarker} le {allowFallback}.",
+				"sourceLocale": "Mohloli oa sebaka joale o boetse o fetisetsoa ho Mofetoleli e le {fromLocale} ka hona likhoele tse khuts'oane ha li fumanoe ka boiketsetso.",
+				"resilience": "{label} ka boiketsetso ho likarabo tsa nakoana tsa HTTP ({statusCodes}) tse hlomphang hlooho ea {retryAfter} ea Azure — e khutlela morao ha e le sieo. Tunable ka {maxRetries} le {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} li-tokens tse kang {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} le HTML li phuthetsoe ka li-sentinels pele li fetoleloa ebe li khutlisetsoa kamora moo, ka hona Mofetoleli o emisa ho senya li-placeholder tsa i18next / Mustache / Handlebars / .NET / printf. Toggle ka {protectPlaceholders}; Atolosa {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} e ncha ea ho kenya {noTranslatePatterns} e theola linotlolo tse lumellanang ho tsoa ho kopo ea Mofetoleli ka botlalo (e boloka boleng ba mohloli bakeng sa mabitso a mabitso, likhoutu tsa phoso, jj.). E bapisa lipaterone tsa glob khahlano le linotlolo tsa boemo ba parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext key). {issue}",
+				"repoConfig": "Ho Repo Via {configPath}",
+				"glossary": "Glossary support, mohato kakaretso ka {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM Audit Clean (0 vulnerabilities).",
+				"docsSite": "Sebaka sa Astro + Tailwind v4 docs se nang le liphetoho tsa pono le Khoutu ea Expressive.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. Li-glyphs tsa logo li fetotsoe litseleng e le hore li se ke tsa hlola li hloleha ho fapana le li-gradient stops, konopo ea {backToTop} e phaphametseng e sebelisa {inert} ha e ntse e patiloe (ho e-na le toggle ea {ariaHidden} e ileng ea e siea e le tabbable), likarolo tse {formatsAstro} ha li sa thulana le li-ID tsa bona tsa sehlooho tse hlahisitsoeng ka boiketsetso , likarete tse tharo tsa sebaka joale li pepesa litšobotsi tsa {lang} tsa BCP-47 ({nya}, {lug}, {run}), mabitso a kopitsoang {documentation} a matšoao a marang-rang a arohaneng pakeng tsa sidebar le footer,  'me tafole e 'ngoe le e' ngoe ea data ho {inputs} / {configuration} e na le tlhaloso ea sebali sa skrini.",
+				"inlineCode": "{label} Docs prose {codeElement} hona joale e roala sehlooho se futhumetseng / sa amber — se fapaneng le palette ea brand→accent e sebelisetsoang lihokela le lihlooho.",
+				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "See git history."
+		}
 	}
 }

@@ -18,18 +18,26 @@
 			"node": "ថ្នាំង 20 / 22 / 24",
 			"sdk": "Azure SDK ផ្លូវការ"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0 ។",
+			"po": "អត្ថបទ gettext",
+			"json": "សំបុកឬផ្ទះល្វែង",
+			"ini": "{keyValue}",
+			"restext": "អត្ថបទ MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "ទ្រង់ទ្រាយឯកសារប្រាំមួយ",
-				"body": "ការធ្វើដំណើរទៅមក .resx, .xliff, .po, .json, .ini និង .restext ជាមួយនឹងទម្រង់ស្ថេរភាពបៃ។"
+				"body": "ការធ្វើដំណើរទៅមក {resx}, {xliff}, {po}, {json}, {ini} និង {restext} ជាមួយនឹងទម្រង់ស្ថេរភាពបៃ។"
 			},
 			"config": {
 				"title": "ការកំណត់កម្រិត repo",
-				"body": "ទម្លាក់ .github/resource-translator.yml សម្រាប់រួមបញ្ចូល globs, សទ្ទានុក្រម និងប្រភេទអ្នកបកប្រែផ្ទាល់ខ្លួន។"
+				"body": "ទម្លាក់ឯកសារ {configPath} សម្រាប់រួមបញ្ចូល globs, សទ្ទានុក្រម និងប្រភេទអ្នកបកប្រែផ្ទាល់ខ្លួន។"
 			},
 			"glossary": {
 				"title": "សទ្ទានុក្រមដឹង",
-				"body": "ចាក់សោឈ្មោះម៉ាក និងលក្ខខណ្ឌផលិតផលជាមួយនឹងពាក្យឆ្លាតវៃ-ព្រំដែន regex ដែលគ្រប់គ្រង C++, .NET និងមិត្តភក្តិ។"
+				"body": "ចាក់សោឈ្មោះម៉ាក និងលក្ខខណ្ឌផលិតផលជាមួយនឹងពាក្យឆ្លាតវៃ-ព្រំដែន regex ដែលគ្រប់គ្រង {cpp}, {dotnet} និងមិត្តភក្តិ។"
 			},
 			"dryRun": {
 				"title": "ស្ងួត-រត់ + ទន់-បរាជ័យ",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "លទ្ធផលដែលងាយស្រួលប្រើ PR",
-				"body": "summary-title, summary-details, និង has-new-translations រន្ធដោតដោយផ្ទាល់ទៅក្នុង create-pull-request ។"
+				"body": "{summaryTitle}, {summaryDetails} និង {hasNewTranslations} រន្ធដោតដោយផ្ទាល់ទៅក្នុង create-pull-request ។"
 			},
 			"sdk": {
 				"title": "Azure SDK ផ្លូវការ",
-				"body": "បង្កើតឡើងនៅលើ @azure-rest/ai-translation-text + @azure/core-rest-pipeline - ការព្យាយាមឡើងវិញដោយស្វ័យប្រវត្តិនៅលើ 408/429/5xx មិនមាន HTTP រមៀលដោយដៃទេ។ esbuild-bundled, សវនកម្មស្អាត។"
+				"body": "បង្កើតឡើងនៅលើ {azureSdk} + {corePipeline} - ការព្យាយាមឡើងវិញដោយស្វ័យប្រវត្តិនៅលើ {statusCodes} មិនមាន HTTP រមៀលដោយដៃទេ។ {esbuild} កញ្ចប់សវនកម្មស្អាត។"
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "លំហូរការងារធ្លាក់ចុះ",
+			"titlePrefix": "ចម្លង។ បិទភ្ជាប់។",
+			"titleAccent": "បកប្រែ.",
+			"body": "អាថ៌កំបាំងបី, បួនបន្ទាត់, និង repo របស់អ្នកគឺពហុភាសានៅលើការជំរុញបន្ទាប់.",
+			"setupLink": "ដើរឆ្លងកាត់ការរៀបចំពេញលេញ"
+		},
+		"cta": {
+			"title": "ត្រៀមខ្លួនរួចរាល់ដើម្បីធ្វើមូលដ្ឋានីយកម្មនៅលើ autopilot ហើយឬនៅ?",
+			"body": "សោ Azure AI Translator មួយ ឯកសារលំហូរការងារមួយ។ Resource Translator ដោះស្រាយនៅសល់។",
+			"button": "ចាប់ផ្តើម"
 		}
 	},
 	"getting-started": {
 		"title": "ការចាប់ផ្តើម",
 		"eyebrow": "ការរៀបចំ",
-		"lede": "បន្ថែមឯកសារលំហូរការងារ ចង្អុលវាទៅកាន់ព័ត៌មានសម្គាល់ Azure AI Translator របស់អ្នក ហើយសកម្មភាព — បង្កើតឡើងនៅលើ SDK @azure-rest/ai-translation-text ផ្លូវការរបស់ Microsoft — នឹងស្កេន repo សម្រាប់ឯកសារធនធានភាសាប្រភព និងបញ្ចេញបងប្អូនដែលបានបកប្រែ។",
+		"lede": "បន្ថែមឯកសារលំហូរការងារ ចង្អុលវាទៅកាន់ព័ត៌មានសម្គាល់ Azure AI Translator របស់អ្នក ហើយសកម្មភាពនឹងស្កេន repo សម្រាប់ឯកសារធនធានភាសាប្រភព និងបញ្ចេញបងប្អូនដែលបានបកប្រែ។",
 		"steps": {
 			"provision": {
 				"title": "ការផ្តល់ធនធាន Azure AI Translator",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "បន្ថែមលំហូរការងារ",
-				"body": "បង្កើត .github/workflows/translate.yml៖"
+				"body": "បង្កើត {workflowPath}៖"
 			},
 			"resource": {
 				"title": "ប្តេជ្ញាឯកសារធនធានប្រភព",
-				"body": "ឯកសារធនធានប្រើឈ្មោះ។ .<sourceLocale> <ext> អនុសញ្ញា។ ឧទាហរណ៍ Greetings.en.resx ក្លាយជា Greetings.fr.resx, Greetings.de.resx ហើយដូច្នេះបន្ទាប់ពីការរត់។"
+				"body": "ឯកសារធនធានប្រើអនុសញ្ញា {namingConvention} ។ ឧទាហរណ៍ {sourceFile} ក្លាយជា {frFile}, {deFile} និងដូច្នេះបន្ទាប់ពីការរត់។"
 			},
 			"output": {
 				"title": "ពិនិត្យមើលលទ្ធផល",
-				"body": "នៅពេលដែលលំហូរការងារបញ្ចប់ សកម្មភាពបង្ហាញលទ្ធផលចំនួនបីដែលអ្នកអាចភ្ជាប់ចូលទៅក្នុងការពិពណ៌នា PR: summary-title, summary-details, and has-new-translations. វាក៏សរសេរសេចក្តីសង្ខេប Markdown ទៅក្នុងទំព័រការងារតាមរយៈ core.summary."
+				"body": "នៅពេលដែលលំហូរការងារបញ្ចប់ សកម្មភាពបង្ហាញលទ្ធផលចំនួនបីដែលអ្នកអាចភ្ជាប់ទៅក្នុងការពិពណ៌នា PR: {summaryTitle}, {summaryDetails} និង {hasNewTranslations} ។ វាក៏សរសេរសេចក្តីសង្ខេប Markdown ទៅក្នុងទំព័រការងារតាមរយៈ {coreSummary} ។"
 			}
 		},
 		"nextSteps": {
 			"title": "ជំហានបន្ទាប់",
-			"configuration": "កំណត់រចនាសម្ព័ន្ធលំនាំដើមកម្រិត repo ជាមួយ .github/resource-translator.yml ។",
+			"configuration": "កំណត់រចនាសម្ព័ន្ធលំនាំដើមកម្រិត repo ជាមួយ {configPath} ។",
 			"recipes": "សូមមើលរូបមន្តសម្រាប់ monorepos, សទ្ទានុក្រមផ្ទាល់ខ្លួន និងប្រភេទអ្នកបកប្រែផ្ទាល់ខ្លួន។"
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "ការកំណត់រចនាសម្ព័ន្ធ",
 		"eyebrow": "យ៉ាមីល",
 		"heroTitle": "ការកំណត់រចនាសម្ព័ន្ធឃ្លាំង",
-		"lede": "បង្ហាញលំនាំដើមម្តងនៅក្នុង .github/resource-translator.yml ហើយអនុញ្ញាតឱ្យរាល់លំហូរការងារទទួលមរតកពួកវា។ ការបញ្ចូលសកម្មភាពតែងតែឈ្នះនៅពេលដែលទាំងពីរត្រូវបានផ្តល់។"
+		"lede": "Express defaults ម្តងនៅក្នុង repository config file ហើយអនុញ្ញាតឱ្យរាល់លំហូរការងារទទួលបានពួកវា។ ការបញ្ចូលសកម្មភាពតែងតែឈ្នះនៅពេលដែលទាំងពីរត្រូវបានផ្តល់។",
+		"intro": "បដិសេធផ្លូវជាមួយនឹងការបញ្ចូល {configPath} ប្រសិនបើអ្នកត្រូវការទីតាំងដែលមិនមែនជាលំនាំដើម។",
+		"schemaHeading": "គ្រោងការណ៍",
+		"fieldReference": {
+			"heading": "ឯកសារយោងវាល",
+			"caption": "ឯកសារយោងវាលការកំណត់រចនាសម្ព័ន្ធ",
+			"columns": {
+				"field": "វាល",
+				"type": "ប្រភេទ",
+				"notes": "ភក្ដិកំណត់ត្រាកំណត់"
+			},
+			"fields": {
+				"sourceLocale": "ធ្លាក់ត្រឡប់ទៅការបញ្ចូល {sourceLocale} ប្រសិនបើមិនបានកំណត់។ ក៏បានបញ្ជូនទៅអ្នកបកប្រែជា {fromLocale} ដូច្នេះខ្សែអក្សរខ្លីមិនត្រូវបានរកឃើញដោយស្វ័យប្រវត្តិ។",
+				"toLocales": "អារេ ឬខ្សែអក្សរដែលបំបែកដោយសញ្ញាក្បៀស។",
+				"includeExclude": "លំនាំ Glob បានវាយតម្លៃប្រឆាំងនឹងផ្លូវដាច់ខាត និងកន្លែងធ្វើការ។",
+				"glossary": "ពាក្យក្រោយការបកប្រែ។ ពាក្យ-ព្រំដែនដឹង (ចំណុចទាញ {cpp}, {dotnet}) ។",
+				"categoryId": "ប្រភេទ Azure {customTranslatorLink} - ឧស្សាហកម្ម/ដែនរបស់អ្នក knob (ច្បាប់ វេជ្ជសាស្រ្ត សម្លេងទីផ្សារ។ល។) ផ្ញើជា {categoryQuery} ។",
+				"textType": "លំនាំដើមទៅ {plain}. ប្រើ {html} តែប្រសិនបើតម្លៃធនធានរបស់អ្នកមានបំណែក HTML ពិតប្រាកដ។",
+				"profanityAction": "របៀបព្យាបាលពាក្យប្រមាថនៅក្នុងលទ្ធផលដែលបានបកប្រែ។",
+				"profanityMarker": "មានន័យតែនៅពេលដែល {profanityAction} {marked}។",
+				"allowFallback": "កំណត់ទៅ {false} ដើម្បីបរាជ័យក្នុងការបកប្រែនៅពេលដែល {categoryId} របស់អ្នកមិនមានការដាក់ពង្រាយសម្រាប់មូលដ្ឋានគោលដៅជំនួសឱ្យការធ្លាក់ត្រឡប់ទៅគំរូទូទៅវិញ។",
+				"apiVersion": "កំណែអ្នកបកប្រែ REST API ។ លំនាំដើមទៅ {version}.",
+				"maxRetries": "ការប៉ុនប៉ងព្យាយាមឡើងវិញអតិបរមាលើការឆ្លើយតប HTTP បណ្តោះអាសន្ន ({statusCodes}) ។ លំនាំដើមទៅ {defaultRetries} ។ ការហៅ HTTP សរុបក្នុងមួយសំណើគឺ {totalCalls}។",
+				"retryBackoffMs": "Cap (ms) លើការគេង backoff តែមួយ។ លំនាំដើមទៅ {defaultBackoff}. ក្បាល {retryAfter} របស់ Azure ត្រូវបានផ្តល់កិត្តិយសយ៉ាងពិតប្រាកដនៅពេលមានវត្តមាន; បើមិនដូច្នេះទេ jittered អិចស្ប៉ូណង់ស្យែល backoff ត្រូវបានប្រើ, កំណត់នៅតម្លៃនេះ.",
+				"protectPlaceholders": "លំនាំដើមទៅ {true}. នៅពេលបើក ថូខឹនដូចជា {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} និង HTML ត្រូវបានជំនួសដោយថូខឹន sentinel មុនពេលបកប្រែ និងស្ដារឡើងវិញក្រោយមក។ បិទតែនៅពេលដែលប្រភពមានព្យញ្ជនៈរាងកន្លែងដោយចេតនា។",
+				"customPlaceholderPatterns": "លំនាំ regex បន្ថែម (ដោយគ្មានសញ្ញាកំណត់) បានបន្ថែមទៅសំណុំកន្លែងដាក់លំនាំដើម ឧទាហរណ៍ {angleToken} សម្រាប់វាក្យសម្ព័ន្ធនិមិត្តសញ្ញាផ្ទាល់ខ្លួន។ regexes មិនត្រឹមត្រូវត្រូវបានមិនអើពើ។",
+				"noTranslatePatterns": "លំនាំ Glob ផ្គូផ្គងប្រឆាំងនឹងគ្រាប់ចុចកម្រិត parser (ផ្លូវចំនុច JSON, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key)។ កូនសោដែលផ្គូផ្គងត្រូវបានទម្លាក់ចេញពីសំណើ ហើយឆ្លងកាត់ជាមួយនឹងតម្លៃប្រភពរបស់ពួកគេត្រូវបានរក្សាទុក។"
+			}
+		},
+		"loadingOrder": {
+			"heading": "កំពុងផ្ទុកលំដាប់",
+			"steps": {
+				"actionInputs": "សកម្មភាពអានធាតុចូលច្បាស់លាស់ពីលំហូរការងារ។",
+				"config": "វាផ្ទុកការកំណត់រចនាសម្ព័ន្ធ YAML ពី {configPath} ។",
+				"precedence": "សម្រាប់រាល់វាលដែលបានចែករំលែក, ការបញ្ចូលឈ្នះ; បើមិនដូច្នេះទេ តម្លៃ YAML ត្រូវបានប្រើ។",
+				"validation": "តម្លៃបញ្ចូលគ្នាមានសុពលភាព។ enums មិនត្រឹមត្រូវ (ឧទាហរណ៍ {invalidEnum}) បណ្តាលឱ្យសកម្មភាពបរាជ័យយ៉ាងឆាប់រហ័សជាមួយនឹងសារច្បាស់លាស់។"
+			}
+		},
+		"tone": {
+			"heading": "សម្លេងនិងឧស្សាហកម្ម, នៅក្នុងលក្ខខណ្ឌធម្មតា",
+			"body": "Azure AI Translator v3 API មិនមាន knob សម្លេងតែមួយទេ។ ការកំណត់ពីររួមបញ្ចូលគ្នាដើម្បីផ្តល់ឱ្យអ្នកនូវការគ្រប់គ្រងដូចគ្នាភាគច្រើន៖",
+			"industryLabel": "ឧស្សាហកម្ម / ដែន:",
+			"industryBody": "ប្រើ {categoryId} ដើម្បីចង្អុលទៅលើប្រភេទ Azure {customTranslatorLink} ដែលត្រូវបានបណ្តុះបណ្តាលលើកម្រងផ្ទាល់ខ្លួនរបស់អ្នក — ច្បាប់ បច្ចេកទេស វេជ្ជសាស្រ្ត ទីផ្សារ ឬអ្វីផ្សេងទៀត។ នេះគឺជាចំណុចខ្លាំងបំផុតសម្រាប់សម្លេង សំឡេងម៉ាក និងវាក្យសព្ទ។",
+			"surfaceLabel": "អត្ថបទផ្ទៃ:",
+			"surfaceBody": "ប្រើ {glossaryLink} ដើម្បីចាក់សោឈ្មោះម៉ាក និងលក្ខខណ្ឌផលិតផលយ៉ាងច្បាស់លាស់ ហើយប្រើ {profanityAction} ដើម្បីសម្អាតពាក្យប្រមាថនៅពេលកំណត់គោលដៅការធ្វើមូលដ្ឋានីយកម្មសម្រាប់ទស្សនិកជនវ័យក្មេង។",
+			"glossaryLinkLabel": "សទ្ទានុក្រម"
+		}
 	},
 	"inputs": {
 		"title": "បញ្ចូល & ទិន្នផល",
 		"eyebrow": "ឯកសារយោង",
-		"lede": "រាល់ការបញ្ចូលក៏ត្រូវបានទទួលយកនៅក្នុងឯកសារកំណត់រចនាសម្ព័ន្ធ repo ស្រេចចិត្តផងដែរ។ នៅពេលដែលទាំងពីរត្រូវបានកំណត់ ការបញ្ចូលសកម្មភាពឈ្នះ។"
+		"lede": "រាល់ការបញ្ចូលក៏ត្រូវបានទទួលយកនៅក្នុងឯកសារកំណត់រចនាសម្ព័ន្ធ repo ស្រេចចិត្តផងដែរ។ នៅពេលដែលទាំងពីរត្រូវបានកំណត់ ការបញ្ចូលសកម្មភាពឈ្នះ។",
+		"configurationIntro": "សូមមើល {configurationLink} សម្រាប់គ្រោងការណ៍ YAML និងលំដាប់ផ្ទុក។",
+		"configurationLinkLabel": "ការកំណត់រចនាសម្ព័ន្ធ",
+		"columns": {
+			"name": "ឈ្មោះ",
+			"default": "លំនាំដើម",
+			"description": "ការពិពណ៌នា"
+		},
+		"defaults": {
+			"none": "គ្មាន",
+			"allSupported": "គាំទ្រទាំងអស់។",
+			"translatorDefaultTrue": "true (លំនាំដើមអ្នកបកប្រែ)"
+		},
+		"requiredInputs": {
+			"heading": "ធាតុចូលដែលត្រូវការ",
+			"caption": "ធាតុចូលដែលត្រូវការ",
+			"items": {
+				"sourceLocale": "មូលដ្ឋានប្រភព (ឧទាហរណ៍ {en}) ប្រើដើម្បីស្វែងរកឯកសារធនធានដូចជា {sourceGlob} ។ ក៏បានបញ្ជូនទៅអ្នកបកប្រែជា {fromLocale} ។",
+				"subscriptionKey": "សោការជាវ Azure AI Translator ។ ឆ្លងកាត់ {secrets} ។",
+				"endpoint": "URL ចំណុចបញ្ចប់របស់អ្នកបកប្រែ ឧទាហរណ៍ {endpointUrl}"
+			}
+		},
+		"optionalInputs": {
+			"heading": "ការបញ្ចូលស្រេចចិត្តទូទៅ",
+			"caption": "ការបញ្ចូលស្រេចចិត្តទូទៅ",
+			"items": {
+				"region": "តំបន់ធនធានអ្នកបកប្រែ (លុបចោលសម្រាប់ធនធានសកល)។",
+				"toLocales": "ទីតាំងដែលត្រូវបកប្រែទៅ។ ទទួលយកអារេ JSON ({jsonArray}) ឬតម្លៃដែលបំបែកដោយសញ្ញាក្បៀស។",
+				"include": "លំនាំ glob បំបែក Newline; មានតែឯកសារដែលត្រូវគ្នាប៉ុណ្ណោះដែលត្រូវបានបកប្រែ។",
+				"exclude": "លំនាំ glob បំបែក Newline; ឯកសារផ្គូផ្គងត្រូវបានរំលង (អនុវត្តបន្ទាប់ពីរួមបញ្ចូល)។",
+				"configPath": "ផ្លូវទៅកាន់ឯកសារកំណត់រចនាសម្ព័ន្ធ YAML (ទាក់ទងនឹង root កន្លែងធ្វើការ)។",
+				"dryRun": "នៅពេល {true} ដំណើរការការបកប្រែ និងបញ្ចេញសេចក្តីសង្ខេប ប៉ុន្តែកុំសរសេរឯកសារ។",
+				"failOnError": "នៅពេលដែល {true} កំហុសដែលមិននឹកស្មានដល់បរាជ័យសកម្មភាព; នៅពេលដែល {false} កំហុសគឺជាការព្រមាន។"
+			}
+		},
+		"translatorInputs": {
+			"heading": "ការបញ្ចូលសំណើអ្នកបកប្រែ",
+			"intro": "ផែនទីទាំងនេះដោយផ្ទាល់ទៅលើប៉ារ៉ាម៉ែត្រសំណួរ Azure AI Translator v3 ។ រាល់មួយគឺស្រេចចិត្ត; លំនាំដើមអ្នកបកប្រែអនុវត្តនៅពេលមិនបានកំណត់។",
+			"caption": "ការបញ្ចូលសំណើអ្នកបកប្រែ",
+			"items": {
+				"categoryId": "ប្រភេទ Azure {customTranslatorLink} - ឧស្សាហកម្ម/ដែន/សម្លេង knob ។ បញ្ជូនបន្តជា {categoryQuery} ។",
+				"textType": "{plain} ឬ {html} ។ ប្រើ {html} តែនៅពេលដែលតម្លៃធនធានរបស់អ្នកគឺជាបំណែក HTML ពិតប្រាកដ។",
+				"profanityAction": "{noAction}, {marked}, ឬ {deleted} ។ គ្រប់គ្រងរបៀបដែលពាក្យប្រមាថត្រូវបានបញ្ចេញនៅក្នុងការបកប្រែ។",
+				"profanityMarker": "{asterisk} ឬ {tag} ។ មានន័យតែនៅពេលដែល {profanityAction} {marked}។",
+				"allowFallback": "នៅពេលដែល {false} អ្នកបកប្រែត្រឡប់កំហុសជំនួសឱ្យការធ្លាក់ត្រឡប់ទៅប្រព័ន្ធទូទៅវិញ ប្រសិនបើ {categoryId} របស់អ្នកមិនមានការដាក់ពង្រាយសម្រាប់មូលដ្ឋានគោលដៅ។",
+				"apiVersion": "កំណែអ្នកបកប្រែ REST API ។"
+			}
+		},
+		"resilienceInputs": {
+			"heading": "ភាពធន់ & ការការពារកន្លែងដាក់",
+			"intro": "ធាតុបញ្ចូលទាំងនេះគ្រប់គ្រងរបៀបដែលសកម្មភាពមានឥរិយាបថនៅពេលដែល Translator បិទសំណើរបស់អ្នក និងរបៀបដែលវាការពារនិមិត្តសញ្ញាកន្លែងដាក់ដូចជា {mustache} ឬ {indexZero} ពីការបំផ្លាញកំឡុងពេលបកប្រែ។",
+			"caption": "ភាពធន់ និងការបញ្ចូលការការពារកន្លែងដាក់",
+			"items": {
+				"maxRetries": "ការប៉ុនប៉ងព្យាយាមឡើងវិញអតិបរមាលើការឆ្លើយតប HTTP បណ្តោះអាសន្ន ({statusCodes}) ។ ចំនួនសរុបនៃការហៅ HTTP ក្នុងមួយសំណើគឺ {totalCalls}។",
+				"retryBackoffMs": "Cap (គិតជាមីលីវិនាទី) លើការគេង backoff តែមួយ។ សកម្មភាពនេះផ្តល់កិត្តិយសដល់បឋមកថាឆ្លើយតប {retryAfter} របស់ Azure យ៉ាងពិតប្រាកដនៅពេលមានវត្តមាន; បើមិនដូច្នេះទេវាប្រើ jittered អិចស្ប៉ូណង់ស្យែល backoff កំណត់នៅតម្លៃនេះ។",
+				"protectPlaceholders": "នៅពេលដែល {true} (លំនាំដើម) កន្លែងដាក់ដូចជា {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} និង HTML ត្រូវបានជំនួសដោយសញ្ញាសម្ងាត់ sentinel មុនពេលបកប្រែ និងស្ដារឡើងវិញក្រោយមក។ បិទតែនៅពេលដែលប្រភពរបស់អ្នកមានចេតនាមានអត្ថបទរាងកន្លែងដាក់ព្យញ្ជនៈដែលគួរតែត្រូវបានបកប្រែ។",
+				"customPlaceholderPatterns": "regexes ដែលបំបែកដោយបន្ទាត់ថ្មី (ដោយគ្មានសញ្ញាកំណត់) បានបន្ថែមទៅសំណុំកន្លែងដាក់លំនាំដើម ឧទាហរណ៍ {angleToken} សម្រាប់វាក្យសម្ព័ន្ធនិមិត្តសញ្ញាផ្ទាល់ខ្លួន។",
+				"noTranslatePatterns": "លំនាំ glob ដែលបំបែកដោយបន្ទាត់ថ្មីផ្គូផ្គងនឹងគ្រាប់ចុចកម្រិត parser (ផ្លូវចំនុច JSON, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key)។ កូនសោដែលផ្គូផ្គងត្រូវបានទម្លាក់ចេញពីសំណើ Translator ហើយឆ្លងកាត់ជាមួយនឹងតម្លៃប្រភពរបស់ពួកគេត្រូវបានរក្សាទុក។"
+			}
+		},
+		"outputs": {
+			"heading": "លទ្ធផល",
+			"caption": "លទ្ធផល",
+			"items": {
+				"summaryTitle": "សង្ខេបសង្ខេបដែលងាយស្រួលប្រើ PR ឧទាហរណ៍ {summaryExample}.",
+				"summaryDetails": "សេចក្តីសង្ខេប Markdown សមស្របសម្រាប់ស្ថាប័ន PR ឬសេចក្តីសង្ខេបការងារ។",
+				"hasNewTranslations": "{trueString} នៅពេលដែលការបកប្រែថ្មីមួយ ឬច្រើនត្រូវបានបង្កើត។"
+			}
+		}
 	},
 	"formats": {
 		"title": "ទ្រង់ទ្រាយឯកសារ",
 		"eyebrow": "ឯកសារយោង",
 		"heroTitle": "ទ្រង់ទ្រាយ file គាំទ្រ",
-		"lede": "ទម្រង់ធនធានដែលអាចធ្វើដំណើរបានចំនួនប្រាំមួយ។ សកម្មភាពអានឯកសារ source-locale នីមួយៗ បកប្រែតម្លៃ និងសរសេរបងប្អូនក្នុងមួយមូលដ្ឋានគោលដៅ។"
+		"lede": "ទម្រង់ធនធានដែលអាចធ្វើដំណើរបានចំនួនប្រាំមួយ។ សកម្មភាពអានឯកសារ source-locale នីមួយៗ បកប្រែតម្លៃ និងសរសេរបងប្អូនក្នុងមួយមូលដ្ឋានគោលដៅ។",
+		"namingConvention": "ឯកសារទាំងអស់ប្រើអនុសញ្ញាដាក់ឈ្មោះ {namingConvention} ។",
+		"learnMore": "ស្វែង​យល់​បន្ថែម",
+		"items": {
+			"resx": {
+				"blurb": "ឯកសារធនធាន .NET ដែលមានមូលដ្ឋានលើ XML ។ បកប្រែអត្ថបទខាងក្នុងនៃថ្នាំង {dataValue} នីមួយៗ រក្សាមតិយោបល់ និងទិន្នន័យមេតា។",
+				"specLabel": "Microsoft Learn - ធនធាននៅក្នុងឯកសារ .resx"
+			},
+			"xliff": {
+				"blurb": "ឯកសារ OASIS XLIFF 2.0 ។ បកប្រែ {source} នីមួយៗ ហើយសរសេរលទ្ធផលទៅក្នុង {target} ដែលត្រូវគ្នា ដោយកំណត់ {trgLang} សម្រាប់មូលដ្ឋាន។",
+				"specLabel": "លក្ខណៈបច្ចេកទេស OASIS XLIFF 2.0"
+			},
+			"po": {
+				"blurb": "GNU gettext ឯកសារវត្ថុចល័ត។ បកប្រែ {msgid} / {msgidPlural} នីមួយៗទៅជាទម្រង់ {msgstr} / {msgstrPlural} ។",
+				"specLabel": "GNU gettext - ទ្រង់ទ្រាយឯកសារសំបុត្រ"
+			},
+			"json": {
+				"blurb": "ឯកសារ JSON តាមអំពើចិត្ត។ Nested objects ត្រូវបានសំប៉ែតជាមួយនឹង {delimiter} delimiter សម្រាប់ការបកប្រែ បន្ទាប់មក re-nested នៅលើទិន្នផល។ គ្រាប់ចុចចំនុច ({dottedKey}) ត្រូវបានរក្សាទុកតាមពាក្យសម្ដី។",
+				"specLabel": "លក្ខណៈបច្ចេកទេស JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "ឯកសារ {keyValue} សាមញ្ញ (Win32-style INI ឬការកំណត់រចនាសម្ព័ន្ធផ្ទះល្វែងណាមួយ)។ បឋមកថាផ្នែក និងមតិយោបល់ត្រូវបានរក្សាទុក។",
+				"specLabel": "ទ្រង់ទ្រាយឯកសារ INI នៅលើវិគីភីឌា"
+			},
+			"restext": {
+				"blurb": "ធនធានអត្ថបទ Microsoft MUI — flat {keyValue} pairs ប្រើជាដៃគូអត្ថបទទៅ {resx} ។",
+				"specLabel": "ទិដ្ឋភាពទូទៅរបស់ Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "ការធានាការធ្វើដំណើរទៅមក",
+			"body": "ឈុតសាកល្បងផ្ទៀងផ្ទាត់ការធ្វើដំណើរទៅមក byte-for-byte សម្រាប់ការប្រកួតតំណាងនៃគ្រប់ទម្រង់។ ប្រសិនបើទម្រង់ quirk បំបែកការធ្វើដំណើរទៅមកនៅក្នុង codebase របស់អ្នក សូម {issueLink} ជាមួយនឹងគំរូតិចតួចបំផុត។",
+			"issueLinkLabel": "បើកបញ្ហា"
+		}
 	},
 	"recipes": {
 		"title": "រូបមន្ត",
 		"eyebrow": "សៀវភៅចម្អិនអាហារ",
-		"lede": "លំនាំទូទៅសម្រាប់ការបកប្រែដឹកជញ្ជូន៖ monorepos, glossaries, custom categories, dry runs, and tone control."
+		"lede": "លំនាំទូទៅសម្រាប់ការបកប្រែដឹកជញ្ជូន៖ monorepos, glossaries, custom categories, dry runs, and tone control.",
+		"sections": {
+			"pullRequest": {
+				"heading": "បើកសំណើទាញបន្ទាប់ពីដំណើរការនីមួយៗ"
+			},
+			"monorepo": {
+				"heading": "Monorepos: ការបកប្រែវិសាលភាពក្នុងមួយកញ្ចប់"
+			},
+			"glossary": {
+				"heading": "សទ្ទានុក្រមសម្រាប់ឈ្មោះម៉ាក និងលក្ខខណ្ឌផលិតផល",
+				"intro": "ទម្លាក់ {configPath} ចូលទៅក្នុង repo:",
+				"afterLabel": "បន្ទាប់ពី",
+				"body": "ពាក្យសទ្ទានុក្រមត្រូវបានអនុវត្ត {after} ដូច្នេះលទ្ធផលដែលបកប្រែដោយម៉ាស៊ីនរក្សាម៉ាកដែលអ្នកពេញចិត្ត ទោះបីជាគំរូបានប្តូរវាសម្រាប់មានន័យដូចគ្នាក៏ដោយ។"
+			},
+			"customCategory": {
+				"heading": "ប្រភេទអ្នកបកប្រែផ្ទាល់ខ្លួន (ឧស្សាហកម្ម / ដែន)",
+				"body": "បណ្តុះបណ្តាលប្រភេទ Azure {customTranslatorLink} នៅលើកម្រងដែលចាប់យកវាក្យសព្ទ និងសម្លេងឧស្សាហកម្មរបស់អ្នក (ច្បាប់ វេជ្ជសាស្រ្ត ទីផ្សារ វិស្វកម្មផ្ទៃក្នុង។ល។) ហើយបញ្ជូនលេខសម្គាល់របស់វាតាមរយៈ {categoryId} ។ នេះគឺជាដៃចង្កូតសម្លេងខ្លាំងបំផុតដែល Azure ផ្តល់ជូន។"
+			},
+			"tone": {
+				"heading": "ការត្រួតពិនិត្យសម្លេង + ការត្រឡប់មកវិញយ៉ាងតឹងរឹង",
+				"body": "រួមបញ្ចូលគ្នានូវ Custom Translator {categoryId} ជាមួយ {profanityAction} និង {allowFallbackFalse} ដើម្បីអនុវត្តសំឡេងស្របគ្នា និងបរាជ័យក្នុងលំហូរការងារ ប្រសិនបើប្រភេទដែលបានជ្រើសរើសមិនមានការដាក់ពង្រាយសម្រាប់ទីតាំងគោលដៅរបស់អ្នក។"
+			},
+			"dryRun": {
+				"heading": "រត់ស្ងួតមុនពេលបើកលំហូរការងារ",
+				"body": "សកម្មភាពនេះនៅតែបញ្ចេញលទ្ធផលសង្ខេប និងសេចក្តីសង្ខេបជំហាន ប៉ុន្តែមិនមានឯកសារណាមួយត្រូវបានសរសេរទេ។ រួមបញ្ចូលគ្នាជាមួយ {failOnErrorFalse} ដើម្បីបង្ហាញរាល់បញ្ហាជាការព្រមានខណៈពេលដែលអ្នកធ្វើម្តងទៀត។"
+			}
+		}
 	},
 	"faq": {
 		"title": "សំណួរគេសួរញឹកញាប់",
 		"eyebrow": "ជំនួយ",
 		"heroTitle": "សំណួរដែលគេសួរញឹកញាប់",
-		"lede": "ចម្លើយរហ័សចំពោះសំណួរដែលកើតឡើងញឹកញាប់បំផុតនៅពេលទទួលយកសកម្មភាព។"
+		"lede": "ចម្លើយរហ័សចំពោះសំណួរដែលកើតឡើងញឹកញាប់បំផុតនៅពេលទទួលយកសកម្មភាព។",
+		"questions": {
+			"azure": {
+				"heading": "តើសកម្មភាពនិយាយទៅ Azure យ៉ាងដូចម្តេច?",
+				"body": "តាមរយៈ {azureSdkLink} SDK ផ្លូវការរបស់ Microsoft ស្រទាប់នៅលើ {corePipelineLink} ។ That gets you automatic retry on {statusCodes}, typed request and response models, and authentication header handling for free — អ្វីគ្រប់យ៉ាងដែលធ្លាប់ជាការហៅ {axios} រមៀលដោយដៃ. ផ្ទៃសកម្មភាពសាធារណៈ (inputs, outputs, file outputs) មិនផ្លាស់ប្តូរទេ។"
+			},
+			"tone": {
+				"heading": "ហេតុអ្វីបានជាការបកប្រែពេលខ្លះ off-brand ឬ off-tone?",
+				"body": "ការបកប្រែម៉ាស៊ីនលំនាំដើមទៅជាគំរូគោលបំណងទូទៅ។ knobs បីជួយ: a {glossaryLink} for hard term overrides, a {customTranslatorLink} for fine-tuned models trained on your tone and vocabulary, and {profanityAction} to scrub or flag profane terms.",
+				"glossaryLinkLabel": "សទ្ទានុក្រម",
+				"customTranslatorLinkLabel": "ប្រភេទអ្នកបកប្រែផ្ទាល់ខ្លួន"
+			},
+			"duplicateFiles": {
+				"heading": "តើខ្ញុំត្រូវជៀសវាងការបកប្រែឯកសារដូចគ្នាពីរដងដោយរបៀបណា?",
+				"body": "កេះលំហូរការងារនៅលើ {paths} ដែលត្រូវនឹងឯកសារ source-locale របស់អ្នកតែប៉ុណ្ណោះ ឧទាហរណ៍ {sourceGlob}។ សកម្មភាពនេះក៏រួមបញ្ចូលទាំងតម្រងឯកសារក្នុងមួយកេះផ្ទាល់ខ្លួនរបស់វានៅពេលដែល {githubToken} ត្រូវបានកំណត់ ដោយបង្រួមការងារទៅឯកសារនៅក្នុងការប្តេជ្ញាចិត្តចុងក្រោយបំផុត។"
+			},
+			"offline": {
+				"heading": "តើខ្ញុំអាចដំណើរការសកម្មភាពក្រៅបណ្តាញបានទេ?",
+				"body": "មិនពិតប្រាកដទេ - Azure AI Translator គឺជាខួរក្បាលពេលដំណើរការ។ ប៉ុន្តែអ្នកអាចដំណើរការជាមួយ {dryRunTrue} ដើម្បីធ្វើសុពលភាព parsing និង config ដោយមិនចាំបាច់ធ្វើការស្នើសុំ HTTP សម្រាប់ការបកប្រែណាមួយ។"
+			},
+			"node": {
+				"heading": "តើសកម្មភាពដំណើរការលើកំណែ Node អ្វីខ្លះ?",
+				"body": "v3 ដំណើរការលើពេលដំណើរការ GitHub Actions {nodeRuntime} ។ JavaScript ដែលបានកញ្ចប់អាចប្រើបានជាមួយ Node 20, 22, និង 24 ដែលជាអ្វីដែល CI សាកល្បង។"
+			},
+			"dist": {
+				"heading": "តើ {distDir} បាច់មកពីណា?",
+				"body": "សកម្មភាព GitHub JS ដឹកជញ្ជូន JS ដែលបានចងក្រងរបស់ពួកគេនៅក្នុងឃ្លាំង។ លំហូរការងារ {distBuild} បង្កើតវាឡើងវិញបន្ទាប់ពីរាល់ការបញ្ចូលគ្នាទៅ {mainBranch} ប្រសិនបើវានឹងរសាត់ ហើយ {distCheck} រារាំង PRs ដែលនឹងចុះចតទិន្នផលហួសសម័យ។"
+			},
+			"formats": {
+				"heading": "ចុះទម្រង់ធនធានផ្សេងទៀតវិញ?",
+				"body": "ថ្ងៃនេះ: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} ប្រសិនបើអ្នកត្រូវការផ្សេងទៀត — ចំណុចប្រទាក់ parser មានទំហំតូច (parse → map → apply translations → format) ហើយការរួមចំណែកត្រូវបានស្វាគមន៍។",
+				"issueLinkLabel": "បើកបញ្ហា"
+			}
+		}
 	},
 	"translations": {
 		"title": "ការបកប្រែ",
 		"eyebrow": "បង្ហាញ",
 		"heroTitle": "ជំរាបសួរគ្រប់ភាសា",
-		"locales": "តំបន់",
-		"currentlyRendered": "បង្ហាញបច្ចុប្បន្ន",
-		"complete": "ពេញលេញ!",
-		"pendingPrefix": "កំពុងរង់ចាំការរត់ Translate-Docs បន្ទាប់។",
+		"lede": "ទំព័រនេះត្រូវបានបកប្រែដោយ Resource Translator ខ្លួនឯង រាល់ការជំរុញទៅកាន់មេ ទៅជាគ្រប់ភាសា Azure AI Translator គាំទ្រ។",
+		"localeCountLabel": "{count}",
+		"statusComplete": "{translatedCount} បច្ចុប្បន្នបានបង្ហាញ - ពេញលេញ!",
+		"statusPending": "{translatedCount} បច្ចុប្បន្នបានបង្ហាញ — {pendingCount} កំពុងរង់ចាំការរត់ {workflowName} បន្ទាប់។",
 		"viewWorkflowRuns": "មើលដំណើរការលំហូរការងារ",
 		"filter": "តម្រង",
 		"filterPlaceholder": "ស្វែងរកតាមភាសា កូដ ឬឈ្មោះដើម...",
 		"source": "ប្រភព",
 		"machineTranslations": "ការបកប្រែម៉ាស៊ីន",
-		"translationPending": "ការបកប្រែកំពុងរង់ចាំ — បើកការបកប្រែឯកសារ។",
+		"translationPending": "កំពុងរង់ចាំការបកប្រែ — បើកការរត់ {workflowName} ។",
 		"noLocales": "គ្មានមូលដ្ឋានផ្គូផ្គងនឹងតម្រងនោះទេ។",
-		"howItWorks": "របៀបដែលវាដំណើរការ"
+		"howItWorks": {
+			"heading": "របៀបដែលវាដំណើរការ",
+			"thisActionLabel": "សកម្មភាពនេះ",
+			"steps": {
+				"source": "ឯកសារប្រភពភាសាអង់គ្លេសរស់នៅ {messagesPath} ។",
+				"workflow": "ការរុញដែលប៉ះវាចាប់ផ្តើម {workflowLink} ដែលរត់ {thisAction} ប្រឆាំងនឹងខ្លួនវា។",
+				"fanOut": "សកម្មភាពនេះកង្ហារទៅកាន់រាល់មូលដ្ឋានដែលគាំទ្រដោយ Azure AI Translator (កំណត់រចនាសម្ព័ន្ធជា {configPath}) និងសរសេរ {messagesLocaleJson} បងប្អូនក្នុងមួយគោលដៅ។",
+				"pullRequest": "សំណើទាញត្រូវបានបើកជាមួយនឹងការបកប្រែថ្មី។ ការបញ្ចូលវាបោះពុម្ពទំព័រនេះឡើងវិញជាមួយនឹងកាតដែលបានបំពេញ។"
+			}
+		},
+		"poweredBy": "ដំណើរការដោយ Resource Translator និង Azure AI Translator ។"
 	},
 	"contributing": {
 		"title": "រួមចំណែក",
 		"eyebrow": "ប្រភពបើកចំហ",
-		"lede": "របាយការណ៍កំហុស សំណើលក្ខណៈពិសេស និងសំណើទាញទាំងអស់ត្រូវបានស្វាគមន៍។ សកម្មភាពនេះគឺតូចគ្រប់គ្រាន់ដើម្បីមានភាពរួសរាយរាក់ទាក់ចំពោះអ្នករួមចំណែកលើកដំបូង។"
+		"lede": "របាយការណ៍កំហុស សំណើលក្ខណៈពិសេស និងសំណើទាញទាំងអស់ត្រូវបានស្វាគមន៍។ សកម្មភាពនេះគឺតូចគ្រប់គ្រាន់ដើម្បីមានភាពរួសរាយរាក់ទាក់ចំពោះអ្នករួមចំណែកលើកដំបូង។",
+		"localDevelopment": {
+			"heading": "ការអភិវឌ្ឍន៍ក្នុងស្រុក"
+		},
+		"addingParser": {
+			"heading": "ការបន្ថែម parser",
+			"steps": {
+				"fixture": "បន្ថែមការប្រកួតនៅក្រោម {testDataDir} ។",
+				"implement": "អនុវត្ត {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap})។",
+				"register": "ចុះឈ្មោះវានៅក្នុង {factoryFile}.",
+				"extension": "បន្ថែមផ្នែកបន្ថែមឯកសារទៅ {translationFileSchemes} in {finderFile} ។",
+				"tests": "សរសេរការធ្វើតេស្តទៅមកសម្រាប់ទម្រង់ parse → និង applyTranslations ។"
+			}
+		},
+		"coverage": {
+			"heading": "កម្រិតគ្របដណ្តប់",
+			"body": "ការកំណត់រចនាសម្ព័ន្ធ Jest អនុវត្តការគ្របដណ្តប់អប្បបរមា។ កូដថ្មីត្រូវតែរក្សាកម្រិតសេចក្តីថ្លែងការណ៍ + បន្ទាត់លើសពី 78% និងមុខងារលើសពី 90% ។ បន្ថែមការប្រកួត និងការធ្វើតេស្តរួមជាមួយនឹងការផ្លាស់ប្តូររបស់អ្នក។"
+		},
+		"docsSite": {
+			"heading": "គេហទំព័រឯកសារ",
+			"body": "ថត {docsDir} គឺជាគម្រោង Astro 6 + Tailwind v4 ។ រត់ {npmInstall} នៅទីនោះម្តង, បន្ទាប់មក {npmRunDev} សម្រាប់ការមើលជាមុនក្នុងស្រុក. លំហូរការងារ {pagesWorkflow} ដឹកជញ្ជូនឯកសារទៅកាន់ GitHub Pages នៅលើរាល់ការបញ្ចូលគ្នា។"
+		}
 	},
 	"changelog": {
 		"title": "កំណត់ហេតុផ្លាស់ប្តូរ",
 		"eyebrow": "ប្រវត្តិសាស្រ្ត",
-		"lede": "សេចក្តីសង្ខេបកម្រិតខ្ពស់នៃការចេញផ្សាយ។ changelog canonical, authoritative lives in CHANGELOG.md in the repository."
+		"lede": "សេចក្តីសង្ខេបកម្រិតខ្ពស់នៃការចេញផ្សាយ។ changelog canonical, authoritative lives in CHANGELOG.md in the repository.",
+		"fullRecord": "សូមមើល {changelogLink} សម្រាប់កំណត់ត្រាពេញលេញ។",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (កំពុងអភិវឌ្ឍន៍)",
+			"labels": {
+				"breaking": "បំបែក",
+				"resilience": "ភាពធន់:",
+				"placeholderProtection": "ការការពារកន្លែងដាក់:",
+				"perKeyOptOut": "ការជ្រើសរើសចេញក្នុងមួយគន្លឹះ៖",
+				"docsAccessibility": "ភាពងាយស្រួលនៃឯកសារ៖",
+				"inlineCodeStyling": "រចនាប័ទ្មកូដក្នុងជួរ៖"
+			},
+			"issueLabels": {
+				"closes46": "បិទ #46 ។",
+				"tightens16": "រឹតបន្តឹង #16.",
+				"closes35": "បិទ #35."
+			},
+			"items": {
+				"runtime": "Bumped to {nodeRuntime} runtime ({breaking}) ។",
+				"newInputs": "ធាតុបញ្ចូលថ្មី៖ {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError} បូករួមទាំង Translator knobs កម្រិតខ្ពស់ {textType}, {profanityAction}, {profanityMarker} និង {allowFallback} ។",
+				"sourceLocale": "Source locale ឥឡូវនេះក៏ត្រូវបានបញ្ជូនទៅ Translator ជា {fromLocale} ដូច្នេះខ្សែអក្សរខ្លីមិនត្រូវបានរកឃើញដោយស្វ័យប្រវត្តិ។",
+				"resilience": "{label} ការព្យាយាមឡើងវិញដោយស្វ័យប្រវត្តិលើការឆ្លើយតប HTTP បណ្តោះអាសន្ន ({statusCodes}) គោរពដល់បឋមកថា {retryAfter} របស់ Azure — ធ្លាក់ត្រឡប់ទៅ jittered អិចស្ប៉ូណង់ស្យែល backoff នៅពេលអវត្តមាន។ អាចលៃតម្រូវបានតាមរយៈ {maxRetries} និង {retryBackoffMs} ។ {issue}",
+				"placeholderProtection": "{label} សញ្ញាសម្ងាត់ដូចជា {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} និងអង្គភាព HTML ត្រូវបានរុំនៅក្នុង sentinels មុនពេលបកប្រែ និងស្ដារឡើងវិញក្រោយមក ដូច្នេះអ្នកបកប្រែឈប់ mangling i18next/Mustache/Handlebars/.NET/printf placeholders។ បិទបើកតាមរយៈ {protectPlaceholders}; ពង្រីកជាមួយ {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} {noTranslatePatterns} input ថ្មីទម្លាក់គ្រាប់ចុចដែលត្រូវគ្នាពីសំណើ Translator ទាំងស្រុង (រក្សាតម្លៃប្រភពសម្រាប់ឈ្មោះម៉ាក លេខកូដកំហុស។ល។) ផ្គូផ្គងលំនាំ glob ប្រឆាំងនឹងគ្រាប់ចុចកម្រិត parser (ផ្លូវចំនុច JSON, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key)។ {issue}",
+				"repoConfig": "ការកំណត់កម្រិត repo តាមរយៈ {configPath} ។",
+				"glossary": "ការគាំទ្រសទ្ទានុក្រម សេចក្តីសង្ខេបជំហានតាមរយៈ {coreSummary} ។",
+				"tooling": "esbuild bundler, ESLint 9 flat config, ស្អាត, EditorConfig ។",
+				"audit": "npm audit clean (0 ភាពងាយរងគ្រោះ)។",
+				"docsSite": "គេហទំព័រឯកសារ Astro + Tailwind v4 ជាមួយនឹងការផ្លាស់ប្តូរទិដ្ឋភាព និងកូដបញ្ចេញមតិ។",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass ។ និមិត្តសញ្ញា glyphs បានបំប្លែងទៅជាផ្លូវ ដូច្នេះពួកគេលែងបរាជ័យកម្រិតពណ៌ប្រឆាំងនឹងការបញ្ឈប់ជម្រាល ប៊ូតុង {backToTop} អណ្តែតប្រើ {inert} ខណៈពេលដែលលាក់ (ជំនួសឱ្យបិទបើក {ariaHidden} ដែលទុកឱ្យវាអាចផ្ទាំងបាន) ផ្នែក {formatsAstro} លែងប៉ះទង្គិចជាមួយលេខសម្គាល់ក្បាលដែលបង្កើតដោយស្វ័យប្រវត្តិរបស់ពួកគេទៀតហើយ កាតមូលដ្ឋានចំនួនបីឥឡូវនេះបង្ហាញគុណលក្ខណៈ {lang} ដែលមានសុពលភាព BCP-47 ({nya}, {lug}, {run}) ស្ទួន {documentation} ស្លាកសម្គាល់ត្រូវបានបែងចែករវាងរបារចំហៀង និងបាតកថា  ហើយរាល់តារាងទិន្នន័យនៅលើ {inputs}/{configuration} ដឹកជញ្ជូនជាមួយនឹងចំណងជើងកម្មវិធីអានអេក្រង់។",
+				"inlineCode": "{label} docs prose {codeElement} ឥឡូវនេះពាក់សង្កត់សំឡេងប្រធានបទក្តៅ/ពណ៌លឿង — ខុសពីក្ដារលាយ brand→accent ដែលប្រើសម្រាប់តំណភ្ជាប់ និងចំណងជើង។",
+				"automation": "Dependabot auto-merge, ការស្កេន CodeQL, ម៉ាទ្រីស CI ។"
+			}
+		},
+		"v2": {
+			"heading": "v2.x ។",
+			"gitHistory": "សូមមើលប្រវត្តិ git ។"
+		}
 	}
 }

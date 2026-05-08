@@ -15,7 +15,13 @@
 		"searchPlaceholder": "Keresési dokumentáció...",
 		"toggleTheme": "Kapcsoló téma",
 		"githubRepository": "GitHub repository",
-		"language": "Nyelv"
+		"language": "Nyelv",
+		"languageTitle": "Válaszd ki a nyelved",
+		"languageDescription": "Válts ugyanarra az oldalra egy másik nyelven.",
+		"languageSearch": "Szűrőnyelvek",
+		"languageSearchPlaceholder": "Keresési nyelvek vagy helyi kódok...",
+		"languageNoResults": "Egyetlen nyelv sem érné fel ezt a szűrőt.",
+		"closeLanguage": "Zárt nyelvválasztó"
 	},
 	"search": {
 		"title": "Keresési dokumentáció",

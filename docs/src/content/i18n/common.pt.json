@@ -15,7 +15,13 @@
 		"searchPlaceholder": "Pesquise documentação...",
 		"toggleTheme": "Tema alternar",
 		"githubRepository": "Repositório GitHub",
-		"language": "Idioma"
+		"language": "Idioma",
+		"languageTitle": "Escolha seu idioma",
+		"languageDescription": "Mude para a mesma página em outro idioma.",
+		"languageSearch": "Linguagens de filtro",
+		"languageSearchPlaceholder": "Pesquise idiomas ou códigos locais...",
+		"languageNoResults": "Nenhum idioma corresponde a esse filtro.",
+		"closeLanguage": "Seletor de linguagem próxima"
 	},
 	"search": {
 		"title": "Pesquise documentação",

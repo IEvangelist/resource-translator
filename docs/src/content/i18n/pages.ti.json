@@ -18,18 +18,26 @@
 			"node": "መስቀለኛ መንገድ 20 / 22 / 24",
 			"sdk": "ወግዓዊ Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} ኤክስኤምኤል",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "ሰፈራ ወይ ጽፉፍ",
+			"ini": "{keyValue}",
+			"restext": "ጽሑፍ MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "ሽዱሽተ ቅርጺ ፋይላት",
-				"body": ".resx, .xliff, .po, .json, .ini, and .restext ምስ ባይት-ቀዋሚ ቅርጺ ዘለዎ።"
+				"body": "{resx} {xliff} {po} {json} {ini} ከምኡውን {restext} ባይት-ቀዋሚ ቅርጺ ዘለዎ።"
 			},
 			"config": {
 				"title": "Repo-level config",
-				"body": ".github/resource-translator.yml ደርብዮ ግሎብስን መዝገበ-ቃላትን ብጁ ተርጓሚ ምድባትን የጠቓልል።"
+				"body": "ግሎብስ መዝገበ ቃላት ከምኡውን ብጁ ተርጓሚ ምድብ ንምውቃዕ {configPath} ፋይል ደርብዮ።"
 			},
 			"glossary": {
 				"title": "መዝገበ-ቃላት ኣፍልጦ ምሃብ",
-				"body": "ስማት ብራንድን ናይ ፍርያት ቃላትን በቲ C ++ .NET ከምኡውን ኣዕሩኽ ዚቈጻጸር ብልሂ ዶብ ቃላት ዘለዎ regex ዓጸዎ።"
+				"body": "ን {cpp} {dotnet} ከምኡውን ንኣዕሩኽ ዚቈጻጸር ብልሂ ናይ ቃላት ዶብ ሪጌክስ ኣቢልካ ስማት ብራንድን ናይ ፍርያት ቃላትን ዓጸዎ።"
 			},
 			"dryRun": {
 				"title": "ንቑጽ ሩጫ + ልስሉስ",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR-ምቹእ ውፅኢት",
-				"body": "summary-title, summary-details, and has-new-translations ብቐጥታ ናብ create-pull-request።"
+				"body": "{summaryTitle} {summaryDetails} ከምኡውን {hasNewTranslations} ብቐጥታ ናብ ፍጥረት-ፑት-ሕቶ።"
 			},
 			"sdk": {
 				"title": "ወግዓዊ Azure SDK",
-				"body": "ኣብ @azure-rest/ai-translation-text + @azure/core-rest-pipeline እተሃንጸ — ኣብ 408/429/5xx ብኡንብኡ ዳግመ-ፈተነ፣ ብኢድ እተጠቕለለ HTTP የልቦን። esbuild-bundled, audit-clean."
+				"body": "ኣብ {azureSdk} + {corePipeline} እተሃንጸ — ኣብ {statusCodes} ብኡንብኡ ዳግመ-ፈተነ ብኢድ እተጠቕለለ HTTP የልቦን። {esbuild} እተጠቕለለ ጽሩይ ኦዲት"
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Drop-in workflow",
+			"titlePrefix": "ቅዳሕ። ለጥፍ።",
+			"titleAccent": "ተርጉም.",
+			"body": "ሰለስተ ምስጢራት ኣርባዕተ መስመራት ከምኡውን ሪፖ ኣብቲ ቐጺሉ ዘሎ ጸቕጢ ብዙሕ ቋንቋታት ይዛረብ።",
+			"setupLink": "ምሉእ ብምሉእ ብምድላው ተጓዕዝ"
+		},
+		"cta": {
+			"title": "ኣብ ኣውቶፒሎት ንኽትከይድ ድሉው ዲኻ?",
+			"body": "ሓደ መፍትሕ Azure AI ተርጓሚ፣ ሓደ ናይ ስራሕ ፋይል። ተርጓሚ ምንጪ ነቲ ዝተረፈ ይፈትሖ።",
+			"button": "ጀምር"
 		}
 	},
 	"getting-started": {
 		"title": "ምጅማር",
 		"eyebrow": "ምድላው",
-		"lede": "ናይ ስራሕ ፋይል ወሲኽካ ናብ Azure AI Translator ምስክር ወረቓቕቲ ኣመልክት እቲ ኣብ ወግዓዊ ናይ ማይክሮሶፍት @azure-rest/ai-translation-text SDK እተሃንጸ ተግባር ድማ ነቲ ሪፖ ምንጪ ቛንቋ ምንጪ ፋይላት ስካን ይገብረሉ ነቶም እተተርጐሙ ኣሕዋትን ድማ የውጽእ።",
+		"lede": "ናይ ስራሕ መስርሕ ፋይል ወሲኽካ ናብ Azure AI Translator መረጋገጺኻ ኣመልክት እቲ ተግባር ድማ ነቲ ሪፖ ምንጪ ቛንቋ ምንጪ ፋይላት ስካን ይገብረሉ ከምኡውን እተተርጐመ ኣሕዋትን ኣሓትን የውጽእ።",
 		"steps": {
 			"provision": {
 				"title": "Azure AI Translator ምንጪ ምድላው",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "ነቲ መስርሕ ምውሳኽ",
-				"body": "ፍጠር .github/workflows/translate.yml"
+				"body": "ፍጠር {workflowPath}"
 			},
 			"resource": {
 				"title": "ምንጪ ምንጪ ፋይል ምፍጻም",
-				"body": "ናይ መራኸቢ ብዙሓን መራኸቢ ብዙሓን ነቲ ስም ይጥቀሙ። <sourceLocale>። <ext> ኣኼባ ኣውራጃ። ንኣብነት Greetings.en.resx Greetings.fr.resx Greetings.de.resx ከምኡ'ውን ድሕሪ ምጕያይ ይኸውን።"
+				"body": "ናይ ምንጪ ፋይላት ነቲ {namingConvention} ውዕል ይጥቀሙ። ንኣብነት {sourceFile} ድሕሪ ምጕያይ {frFile} {deFile} ከምኡ ዝኣመሰለ ነገራት ይኸውን።"
 			},
 			"output": {
 				"title": "ነቲ ውጽኢት መርምሮ",
-				"body": "እቲ መስርሕ ምስ ተወድአ እቲ ተግባር ኣብ ናይ PR መግለጺ ከተእትዎ እትኽእል ሰለስተ ውፅኢታት የቃልዕ ጽማቝ ኣርእስቲ ጽማቝ ዝርዝራት ከምኡውን ሓደስቲ ትርጕማት ኣለዎ። ብተወሳኺውን ብcore.summary ኣቢሉ ኣብ ናይ ስራሕ ገጽ ናይ ማርክዳውን ጽማቝ ጽማቝ ጽሑፍ ይጽሕፍ።"
+				"body": "እቲ መስርሕ ምስ ተወድአ እቲ ተግባር ኣብ ናይ PR መግለጺ ከተእትዎ እትኽእል ሰለስተ ውፅኢታት የቃልዕ - {summaryTitle} {summaryDetails} ከምኡውን {hasNewTranslations}። ብተወሳኺ'ውን ኣብ ናይ ስራሕ ገጽ ናይ {coreSummary} ጽማቝ ጽሑፍ ይጽሕፍ።"
 			}
 		},
 		"nextSteps": {
 			"title": "ቀጺሉ ዘሎ ስጕምትታት",
-			"configuration": "ምስ .github/resource-translator.yml repo-level defaults ኣዋቅር።",
+			"configuration": "ናይ ሪፖ-ደረጃ ጉድለታት ምስ {configPath} ኣቀራረብ።",
 			"recipes": "ንሞኖሬፖ፣ ብጁ መዝገበ-ቃላትን ብጁ ተርጓሚ ምድባትን ዚኸውን ኣሰራርሓ ርአ።"
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "ኣሰራርሓ",
 		"eyebrow": "ያኤምኤል",
 		"heroTitle": "ኣሰራርሓ መኽዘን",
-		"lede": "ኤክስፕረስ ሓንሳእ ኣብ .github/resource-translator.yml ይሳቐ እሞ ነፍሲ ወከፍ መስርሕ ክወርሶ ፍቐደሉ። ክልቲኡ ምስ ተዋህበ ኵሉ ሳዕ ናይ ተግባር መእተዊ ይዕወት።"
+		"lede": "ኤክስፕረስ ሓንሳእ ኣብ መኽዘን ኮንቨር ፋይል ሓንሳእ ነባሪ ግበር ነፍሲ ወከፍ መስርሕ ድማ ኪወርሶ ፍቐደሉ። ክልቲኡ ምስ ተዋህበ ኵሉ ሳዕ ናይ ተግባር መእተዊ ይዕወት።",
+		"intro": "ዘይግቡእ ቦታ እንተ ደሊኻ ነቲ መገዲ በቲ {configPath} መእተዊ ኣወግዶ።",
+		"schemaHeading": "ንድፊ",
+		"fieldReference": {
+			"heading": "መወከሲ ግራት",
+			"caption": "መወከሲ ሜዳ ኣሰራርሓ",
+			"columns": {
+				"field": "ግራት",
+				"type": "ዓይነት",
+				"notes": "መዘኻኸሪታት"
+			},
+			"fields": {
+				"sourceLocale": "እንተ ዘይተቘጺሩ ናብቲ {sourceLocale} መእተዊ ይምለስ። ብተወሳኺ'ውን ናብ ተርጓሚ ተላኢኹ {fromLocale} ስለዚ ሓጺር ሕታማት ብገዛእ ርእሶም ኣይረኽቡን እዮም።",
+				"toLocales": "ወይ ከኣ ብኮማ እተፈልየ ገመድ ወይ ብኮማ እተፈላለየ ገመድ እዩ።",
+				"includeExclude": "ናይ ግሎብ ንድፊ ምስ ፍጹምን ምስ ናይ ስራሕ ቦታን ተዛማዲ መገድታት ገምጊሙ።",
+				"glossary": "ድሕሪ ምትርጓም ናይ ምትርጓም ቃል ይዕብልል። ዶብ ቃላት (ኣተሓሕዛ {cpp} {dotnet}) ።",
+				"categoryId": "Azure {customTranslatorLink} ምድብ — ናይ ኢንዱስትሪ/ዶሜይን መትሓዚ (ሕጋዊ፣ ሕክምናዊ፣ ናይ ዕዳጋ ቃና፣ ወዘተ)። ከም {categoryQuery} ተላኢኹ።",
+				"textType": "ናብ {plain} ዚኸይድ ዘሎ ጕድለታት። {html} ናይ ምንጪ ዋጋታትካ ናይ ሓቂ ቝርጽራጽ HTML እንተ ኣልይዎ ጥራይ ተጠቐመሉ።",
+				"profanityAction": "ኣብ ትርጕማት እተተርጐመ ጽዩፍ ቃላት ብኸመይ ከም እትሕዞ።",
+				"profanityMarker": "ትርጉም ዘለዎ {profanityAction} {marked} ምስ ኰነ ጥራይ እዩ።",
+				"allowFallback": "ኣብ ክንዲ ናብ ሓፈሻዊ ሞደል ኣብ ክንዲ እትወድቕ {categoryId} ኣብ ክንዲ እትምለስ ነቲ ትርጕም ክትውድኦ {false} ኣቐምጦ።",
+				"apiVersion": "ተርጓሚ REST API version። ናብ {version} ዚኸይድ ዘሎ ጕድለታት።",
+				"maxRetries": "ኣብ ግዜያዊ HTTP መልስታት ({statusCodes}) ዝለዓለ ናይ ዳግመ-ፈተነ ፈተነ። ንጕድለታት {defaultRetries}። ጠቕላላ ናይ ኤችቲቲፒ ጻውዒት ኣብ ነፍሲ ወከፍ ሕቶ {totalCalls} እዩ።",
+				"retryBackoffMs": "ካፕ (ms) ኣብ ዝዀነ ይኹን ንድሕሪት ዚምለስ ድቃስ ናብ {defaultBackoff} ዚኸይድ ዘሎ ጕድለታት። ኣዙር {retryAfter} ርእሲ ኣብ ዚህልወሉ እዋን ብልክዕ እዩ ዚኽበር፣ እንተ ዘይኰይኑ በዚ ዋጋ እዚ እተሸፈነ ኤክስፖነንሽያል ንድሕሪት ተመሊሱ ይጥቀመሉ።",
+				"protectPlaceholders": "ናብ {true} ዚኸይድ ዘሎ ጕድለታት። ከም {mustache} {jsVar} {indexZero} {numberFormat} {printf} {positionalPrintf} ከምኡውን HTML ዝኣመሰሉ ቶከናት ቅድሚ ምትርጓሞም ብሴንቲነል ቶከን ይትካእ ድሕሪኡ ድማ ይምለስ። ምንጪ ደይመደይ ኢሉ ቃል ብቓሉ ምስ ዚሕዝ ጥራይ እዩ ኣሰናክሎ።",
+				"customPlaceholderPatterns": "ተወሳኺ ናይ ሬጅክስ ንድፊ (ብዘይ ገደብ) ናብ ነባሪ ቦታ ተወሰኸ፣ ንኣብነት {angleToken} ናይ ልሙድ ቶከን ኣገባብ። ዘይቅኑዓት ሪግክስ ዕሽሽ ይብሉ።",
+				"noTranslatePatterns": "ንድፊ ግሎብ ምስ መፋትሕ ደረጃ ተንታኒ (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key) ይሰማማዕ ነበረ። እቲ ዝሰማማዕ መፍትሕ ካብቲ ሕቶ ይድርበ ምንጪ ዋጋኡ ድማ ይዕቀብ።"
+			}
+		},
+		"loadingOrder": {
+			"heading": "ናይ ጽዕነት ትእዛዝ",
+			"steps": {
+				"actionInputs": "እቲ ተግባር ካብ ስራሕ ዝወጸ ንጹር ሓሳባት የንብብ።",
+				"config": "ካብ {configPath} ዝወጸ ናይ YAML ቅርጺ ይጽዕኖ።",
+				"precedence": "ንነፍሲ ወከፍ ሓባራዊ ዓውዲ እቲ ኣበርክቶ ይዕወት; እንተ ዘይኰይኑ ግን ዋጋ YAML ይጥቀም።",
+				"validation": "እቲ እተሓዋወሰ ዋጋታት ተቐባልነት ረኺቡ እዩ። ዘይቅቡል ቍጽሪ (ንኣብነት {invalidEnum}) ነቲ ተግባር ብንጹር መልእኽቲ ብቕልጡፍ ከም ዚፈሽል ይገብሮ።"
+			}
+		},
+		"tone": {
+			"heading": "ቃናን ኢንዱስትርን ብንጹር",
+			"body": "Azure AI Translator v3 API ሓንቲ ቃና ኣይነበሮን። ክልተ ኣቀማምጣታት ተደሚሩ ንመብዛሕትኡ ሓደ ዓይነት ቍጽጽር ይህቡኻ፦",
+			"industryLabel": "ኢንዱስትሪ / ዶሜን፦",
+			"industryBody": "ኣብ ናይ ገዛእ ርእስኻ ኮርፐስ ዝሰልጠነ ናይ Azure {customTranslatorLink} ምድብ ንምሕባር {categoryId} ተጠቐመሉ — ሕጋዊ፣ ተክኒካዊ፣ ሕክምናዊ፣ ዕዳጋ ወይ ዝዀነ ይኹን ነገር። እዚ ንቃና ድምጽን ቃላትን ቃላትን እቲ ዝሓየለ መትረብ እዩ።",
+			"surfaceLabel": "ናይ ገጽ ጽሑፍ፦",
+			"surfaceBody": "ነቲ {glossaryLink} ተጠቐመሉ ስማት ብራንድን ናይ ፍርያት ስያመታትን ቃል ብቓሉ ንምዕጻው ከምኡውን ንመንእሰያት ሰማዕቲ ኣብ ከባቢኦም ከተተኵር ከለኻ ጽዩፍ ቃላት ንምጥፋእ {profanityAction} ተጠቐም።",
+			"glossaryLinkLabel": "መዝገበ-ቃላት"
+		}
 	},
 	"inputs": {
 		"title": "ውፅኢትን ውፅኢትን",
 		"eyebrow": "መወከሲ",
-		"lede": "ነፍሲ ወከፍ መእተዊ ኣብ ኣማራጺ ሪፖ ኮንቨር ፋይል እውን ተቐባልነት ኣለዎ። ክልቲኡ ምስ ተወድአ እቲ ተግባር ይዕወት።"
+		"lede": "ነፍሲ ወከፍ መእተዊ ኣብ ኣማራጺ ሪፖ ኮንቨር ፋይል እውን ተቐባልነት ኣለዎ። ክልቲኡ ምስ ተወድአ እቲ ተግባር ይዕወት።",
+		"configurationIntro": "ናይ YAML ንድፍን ናይ ጽዕነት መስርዕን {configurationLink} ርአ።",
+		"configurationLinkLabel": "ኣሰራርሓ",
+		"columns": {
+			"name": "ስም",
+			"default": "ነባሪ",
+			"description": "መግለጺ"
+		},
+		"defaults": {
+			"none": "ዋላ ሓደ",
+			"allSupported": "ኵሉ ይድገፍ",
+			"translatorDefaultTrue": "true (ተርጓሚ ነባሪ)"
+		},
+		"requiredInputs": {
+			"heading": "ኣድላዪ ኣገባባት",
+			"caption": "ኣድላዪ ኣገባባት",
+			"items": {
+				"sourceLocale": "ምንጪ ቦታ (ንኣብነት {en}) ከም {sourceGlob} ዝኣመሰሉ ምንጪ ፋይላት ንምርካብ የገልግል። ከም {fromLocale} ተርጓሚ እውን ተላእከ።",
+				"subscriptionKey": "Azure AI Translator subscription key። ብ {secrets} ሓለፍ።",
+				"endpoint": "ተርጓሚ ናይ መወዳእታ ነጥብ URL ንኣብነት {endpointUrl}"
+			}
+		},
+		"optionalInputs": {
+			"heading": "ሓባራዊ ኣማራጺ ኣገባባት",
+			"caption": "ሓባራዊ ኣማራጺ ኣገባባት",
+			"items": {
+				"region": "ናይ ተርጓሚ ምንጪ ዞባ (ንዓለምለኻዊ ምንጪ ኣቋሪጽ)።",
+				"toLocales": "ንምትርጓም ዘድሊ ቦታታት። JSON array ({jsonArray}) ወይ ብኮማ እተፈላለዩ ዋጋታት ይቕበል።",
+				"include": "ኒውላይን እተፈልየ ንድፊ ግሎብ; ምስ ተቓወምቲ ፋይላት ጥራይ እዮም ተተርጒሞም።",
+				"exclude": "ኒውላይን እተፈልየ ንድፊ ግሎብ; እቲ ዝበጽሖ ፋይላት ይጠፍእ (ድሕሪ ምውሳድ ይዕየየሉ) ።",
+				"configPath": "ናብ YAML config file (ምስ ሱር ናይ ስራሕ ቦታ ብተዛማዲ) ።",
+				"dryRun": "{true} ምስ  ትርጕማት ኣካይዱ ጽማቝ ሓሳባት ኣውጽእ ግን ፋይላት ኣይትጽሓፍ።",
+				"failOnError": "{true} ዘይተጸበኻዮ ጌጋታት ነቲ ተግባር ይፈሽሎ፣ {false} ጌጋታት መጠንቀቕታ እዩ ።"
+			}
+		},
+		"translatorInputs": {
+			"heading": "ናይ ተርጓሚ ሕቶ ሓሳባት",
+			"intro": "እዚ ካርታ እዚ ብቐጥታ ናብ Azure AI Translator v3 ናይ ሕቶ መዐቀኒታት የቕርብ። ነፍሲ ወከፎም ኣማራጺ እዮም፣ እቲ ተርጓሚ ምስ ዘይተዓወተ እዩ ዚዓዪ።",
+			"caption": "ናይ ተርጓሚ ሕቶ ሓሳባት",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} category — ኢንዱስትሪ/ዶሜን/ቶን ኖብ። ከም {categoryQuery} ተላእከ።",
+				"textType": "{plain} ወይ {html}። {html} ናይ ምንጪ ዋጋታትካ ናይ ሓቂ ቍርጽራጽ HTML ምስ ዝኸውን ጥራይ ተጠቐመሉ።",
+				"profanityAction": "{noAction} {marked} ወይ {deleted} ። ኣብ ትርጕማት ጽዩፍ ቃላት ብኸመይ ከም ዚወጽእ ይቈጻጸር።",
+				"profanityMarker": "{asterisk} ወይ {tag}። ትርጉም ዘለዎ {profanityAction} {marked} ምስ ኰነ ጥራይ እዩ።",
+				"allowFallback": "{false} ምስ {categoryId} ተርጓሚ ናብ ሓፈሻዊ ስርዓት ኣብ ክንዲ ዚምለስ ጌጋ ይመልስ።",
+				"apiVersion": "ተርጓሚ REST API version።"
+			}
+		},
+		"resilienceInputs": {
+			"heading": "ናይ ምክልኻል ዕቝባን ምክልኻልን",
+			"intro": "እዚ መእተዊ እዚ ተርጓሚ ንሕቶኻ ኺዓግቶ ኸሎ እቲ ተግባር ብኸመይ ከም ዚዓዪ ከምኡውን ከም {mustache} ወይ {indexZero} ዝኣመሰሉ ኣብ እዋን ትርጕም ንኸይበላሾ ብኸመይ ከም ዚከላኸለሎም ይቈጻጸር።",
+			"caption": "ተጻዋርነትን መከላኸሊ ቦታን",
+			"items": {
+				"maxRetries": "ኣብ ግዜያዊ HTTP መልስታት ({statusCodes}) ዝለዓለ ናይ ዳግመ-ፈተነ ፈተነ። ጠቕላላ ቍጽሪ ናይ HTTP ጻውዒት ኣብ ሓደ ጠለብ {totalCalls} እዩ።",
+				"retryBackoffMs": "ኣብ ዝዀነ ይኹን ንድሕሪት ዚምለስ ድቃስ (ብሚሊ ሰከንድ) ካፕ ግበር። እቲ ተግባር ነቲ ኣዙር ዝሃበቶ {retryAfter} ምላሽ ብልክዕ ኣብ ዝህልወሉ እዋን የኽብር። እንተ ዘይኰይኑ ግን በዚ ዋጋ እዚ እተሸፈነ ኤክስፖነንሽያል ድሕሪት ይጥቀም።",
+				"protectPlaceholders": "ኣብ {true} (ነባሪ) ከም {mustache} {jsVar} {indexZero} {numberFormat} {printf} {positionalPrintf} ከምኡውን HTML ዝኣመሰሉ ቦታታት ቅድሚ ምትርጓሙ ብሴንቲነል ቶከን ይትካእ ድሕሪኡ ድማ ይምለስ። ምንጪኻ ደይመደይ ኢልካ ቃል ብቓሉ ኺትርጐም ዘለዎ ጽሑፍ ምስ ዝሓዘ ጥራይ ኣሰናክል።",
+				"customPlaceholderPatterns": "ኣብ ሓድሽ መስመር እተፈላለዩ regexes (ብዘይ ገደብቲ) ናብ ነባሪ ቦታ ተወሰኸ፣ ንኣብነት {angleToken} ናይ ልሙድ ቶከን ኣገባብ።",
+				"noTranslatePatterns": "ብሓድሽ መስመር እተፈላለዩ ግሎብ ንድፊ ምስ መፍትሕ ተንታኒ (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key) ይሰማማዕ ። እቲ ዝሰማማዕ መፍትሕ ካብቲ ናይ ተርጓሚ ሕቶ ይድርብዮ ምንጪ ዋጋኡ ድማ ይዕቀብ።"
+			}
+		},
+		"outputs": {
+			"heading": "ውፅኢት",
+			"caption": "ውፅኢት",
+			"items": {
+				"summaryTitle": "ሓጺር ናይ PR-ኣርእስቲ ጽማቝ ጽማቝ፣ ንኣብነት {summaryExample}።",
+				"summaryDetails": "ንናይ PR ኣካል ወይ ናይ ስራሕ ጽማቝ ጽማቝ ሓሳባት ዝሰማማዕ ጽማቝ ጽማቝ።",
+				"hasNewTranslations": "{trueString} ሓደ ወይ ካብኡ ንላዕሊ ሓደስቲ ትርጕማት ምስ ተዳለወ እዩ ።"
+			}
+		}
 	},
 	"formats": {
 		"title": "ቅርጺ ፋይላት",
 		"eyebrow": "መወከሲ",
 		"heroTitle": "እተደገፈ ቅርጺ ፋይላት",
-		"lede": "ሽዱሽተ ዙር ቅርጺ ምንጪ። እቲ ተግባር ንነፍሲ ወከፍ ምንጪ-locale ፋይል የንብቦ ነቲ ዋጋታት ይትርጕሞ ከምኡውን ኣብ ነፍሲ ወከፍ ዕላማ ዘለዎ ቦታ ሓው ይጽሕፍ።"
+		"lede": "ሽዱሽተ ዙር ቅርጺ ምንጪ። እቲ ተግባር ንነፍሲ ወከፍ ምንጪ-locale ፋይል የንብቦ ነቲ ዋጋታት ይትርጕሞ ከምኡውን ኣብ ነፍሲ ወከፍ ዕላማ ዘለዎ ቦታ ሓው ይጽሕፍ።",
+		"namingConvention": "ኩሎም ፋይላት ነቲ ናይ {namingConvention} ስም ስምምዕ ይጥቀሙ።",
+		"learnMore": "ዝያዳ ተምሃር",
+		"items": {
+			"resx": {
+				"blurb": "ኣብ ኤክስኤምኤል እተመስረተ .NET ምንጪ ፋይላት ንውሽጣዊ ጽሑፍ ነፍሲ ወከፍ {dataValue} መስርዕ ተርጒምካ ሓሳባትን ሜታዳታን ይዕቅብ።",
+				"specLabel": "Microsoft Learn — Resources in .resx files"
+			},
+			"xliff": {
+				"blurb": "ሰነዳት OASIS XLIFF 2.0። ንነፍሲ ወከፍ {source} ይትርጕሞ እሞ ነቲ ውጽኢት ናብቲ ዚሰማማዕ {target} ይጽሕፎ፣ ነቲ ኸባቢ ዚኸውን {trgLang} ድማ ይሰርሖ።",
+				"specLabel": "OASIS XLIFF 2.0 ዝርዝር"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object files። ንነፍሲ ወከፍ {msgid} / {msgidPlural} ናብ {msgstr} / {msgstrPlural} ቅርጺ ይትርጕሞ ።",
+				"specLabel": "GNU gettext — PO file format"
+			},
+			"json": {
+				"blurb": "ብሃውሪ እተዳለወ ፋይላት JSON። እቲ እተሰርሐ ነገራት ንምትርጓም በቲ {delimiter} መለለዪ ይጠፍእ፣ ድሕሪኡ ኣብ ውፅኢት እንደገና ይእከብ። {dottedKey} () ብቓሉ ተዓቂቡ ኣሎ።",
+				"specLabel": "ዝርዝር JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "ቀሊል {keyValue} ፋይላት (Win32-style INI ወይ ዝዀነ ይኹን ጠፍጣፋ ቅርጺ)። ኣርእስትታትን ሓሳባትን ክፋላት ተዓቂቡ ኣሎ።",
+				"specLabel": "ቅርጺ ፋይል INI ኣብ ዊኪፔዲያ"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI ናይ ጽሑፍ ምንጪ — ን {resx} ከም ናይ ጽሑፍ ብጻይ ኰይኑ ዘገልግል ጽፍሒ {keyValue} ጽምዲ ።",
+				"specLabel": "Microsoft MUI ሓፈሻዊ ትሕዝቶ"
+			}
+		},
+		"roundTrip": {
+			"heading": "ናይ ዙረት ጕዕዞ ውሕስነት",
+			"body": "እቲ ናይ ፈተና ስዊት ንነፍሲ ወከፍ ቅርጺ ንተወካሊ መሳርሒታት ባይት-ፎር-ባይት ዙረት የረጋግጽ። ሓደ ቅርጺ ኣብ ኮድባይዝካ ዙረት እንተ ኣቋሪጹ በጃኻ ብውሑድ መርኣዪ {issueLink}።",
+			"issueLinkLabel": "ሕቶ ክፈት"
+		}
 	},
 	"recipes": {
 		"title": "ኣመጋግባ",
 		"eyebrow": "መጽሓፍ ምኽሻን",
-		"lede": "ንትርጕማት ምልኣኽ ልሙድ ንድፊ ሞኖሬፖ መዝገበ ቃላት ፍሉይ ምድባት ንቑጽ ጕያ ከምኡውን ቃና ምቍጽጻር"
+		"lede": "ንትርጕማት ምልኣኽ ልሙድ ንድፊ ሞኖሬፖ መዝገበ ቃላት ፍሉይ ምድባት ንቑጽ ጕያ ከምኡውን ቃና ምቍጽጻር",
+		"sections": {
+			"pullRequest": {
+				"heading": "ድሕሪ ነፍሲ ወከፍ ጕያ ናይ ስሕበት ሕቶ ክፈት"
+			},
+			"monorepo": {
+				"heading": "Monorepos፦ scope translation per package"
+			},
+			"glossary": {
+				"heading": "መዝገበ-ቃላት ናይ ብራንድ ስያማትን ናይ ፍርያት ቃላትን",
+				"intro": "ሓደ {configPath} ናብ ሪፖ ደርብዮ፦",
+				"afterLabel": "ድሕሪ",
+				"body": "መዝገበ ቃላት {after} ትርጕም እዩ ዚውዕል፣ ስለዚ እቲ ብማሽን እተተርጐመ ውፅኢት እቲ ሞዴል ናብ ተመሳሳሊ ስም ኪቕይሮ ኸሎ እውን ከይተረፈ እቲ እትመርጾ ምልክት ይዕቅቦ።"
+			},
+			"customCategory": {
+				"heading": "ምድብ ብጁ ተርጓሚ (ኢንዱስትሪ / ዶሜን)",
+				"body": "ናይ ኢንዱስትሪ ቃላትን ቃናኻን (ሕጋዊ፣ ሕክምናዊ፣ ዕዳጋ፣ ውሽጣዊ ምህንድስና፣ ወዘተ) ኣብ ዝሕዝ ኮርፐስ ናይ Azure {customTranslatorLink} ምድብ ኣሰልጥኖ እሞ መንነቱ ብ {categoryId} ኣመሓላልፍ። እዚ ኣዙር ዘቕርቦ ዝሓየለ ቃና ሊቨር እዩ።"
+			},
+			"tone": {
+				"heading": "ቃና ምቍጽጻር + ጥብቂ ምውዳቕ",
+				"body": "ሓደ ናይ ተርጓሚ {categoryId} ምስ {profanityAction} ከምኡውን {allowFallbackFalse} ኣጣሚርካ ሓደ ዓይነት ድምጺ ንምትግባርን እቲ እተመርጸ ምድብ ንሓደ ኻብቲ ዕላማኻ ዝዝርጋሕ ቦታ እንተ ዘይረኺቡ ነቲ መስርሕ ከም ዝፈሸለ ግበር።"
+			},
+			"dryRun": {
+				"heading": "ቅድሚ ምጅማሩ ንቑጽ ጕያ",
+				"body": "እቲ ተግባር ገና ጽማቝ ውጽኢትን ጽማቝ ስጕምትን የውጽእ እኳ እንተ ዀነ ፋይላት ግን ኣይተጻሕፈን። ክትደጋገም ከለኻ ንነፍሲ ወከፍ ጕዳይ ከም መጠንቀቕታ ጌርካ ንምውጻእ ምስ {failOnErrorFalse} ተሓዋዊስካ ።"
+			}
+		}
 	},
 	"faq": {
 		"title": "ብዙሕ ግዜ ዝሕተት ሕቶ",
 		"eyebrow": "ሓገዝ",
 		"heroTitle": "ብተደጋጋሚ ዝሕተቱ ሕቶታት",
-		"lede": "ነቲ መብዛሕትኡ ግዜ ዚለዓል ሕቶታት ቅልጡፍ መልሲ ኽትህብ ከሎ።"
+		"lede": "ነቲ መብዛሕትኡ ግዜ ዚለዓል ሕቶታት ቅልጡፍ መልሲ ኽትህብ ከሎ።",
+		"questions": {
+			"azure": {
+				"heading": "እቲ ተግባር ምስ Azure ብኸመይ ይዛረብ?",
+				"body": "በቲ ናይ ማይክሮሶፍት ወግዓዊ {azureSdkLink} ኤስዲኬ ኣቢሉ ኣብ {corePipelineLink} ተደራራቢ ኣሎ። እዚ ኸኣ ኣብ {statusCodes} ብጽሑፍ እተጻሕፈ ሕቶን መልስን ሞዴላት ከምኡውን ናይ መረጋገጺ ኣርእስቲ ብናጻ ንኽትሕዞ የኽእለካ - ኵሉ እቲ ብኢድ እተጠቕለለ {axios} ጻውዒት እዩ ነይሩ። ህዝባዊ ተግባር ገጽ (መእተዊ፣ ውፅኢት፣ ውፅኢት ፋይል) ኣይተቐየረን።"
+			},
+			"tone": {
+				"heading": "ስለምንታይ እዩ ሓድሓደ ግዜ ትርጕማት ካብ ብራንድ ወጻኢ ወይ ካብ ቃና ወጻኢ ዚኸውን?",
+				"body": "ናይ ማሽን ምትርጓም ናብ ሓፈሻዊ ዕላማ ዘለዎ ሞደል ኣይቅበልን እዩ። ሰለስተ መቝረጺታት ይሕግዙ፦ ተሪር ቃላት ንምውጋድ ዚሕግዝ {glossaryLink} ኣብ ቃናኻን ቃላትካን ዝሰልጠኑ ብግቡእ እተዓራረዩ ሞዴላት ዚኸውን {customTranslatorLink} ከምኡውን ጽዩፍ ቃላት ንምጽራይ ወይ ንምልላይ ዜኽእል {profanityAction}።",
+				"glossaryLinkLabel": "መዝገበ-ቃላት",
+				"customTranslatorLinkLabel": "ምድብ ብጁ ተርጓሚ"
+			},
+			"duplicateFiles": {
+				"heading": "ሓደ ዓይነት ፋይል ክልተ ሳዕ ካብ ምትርጓም ብኸመይ ክቝጠብ እኽእል?",
+				"body": "ነቲ ናይ ምንጪ-locale ፋይላትካ ጥራይ ዝሰማማዕ {paths} ኣሰራርሓ፣ ንኣብነት {sourceGlob}። እቲ ተግባር {githubToken} ምስ ተዳለወ ናይ ገዛእ ርእሱ ናይ ፋይል ማጣሪያ እውን የጠቓልል።"
+			},
+			"offline": {
+				"heading": "ነቲ ተግባር ካብ መስመር ወጻኢ ክገብሮ እኽእል ድየ?",
+				"body": "ብልክዕ ኣይኰነን — Azure AI Translator ናይ runtime ሓንጎል እዩ። እንተዀነ ግን ዝዀነ ይኹን ናይ ኤችቲቲፒ ሕቶ ኸይገበርካ ንምርግጋጽን ንምርግጋጽን {dryRunTrue} ክትጐዪ ትኽእል ኢኻ።"
+			},
+			"node": {
+				"heading": "እቲ ተግባር ኣብ ኣየናይ ናይ ኖድ ትርጕም ኢዩ ዝካየድ?",
+				"body": "v3 ኣብ GitHub Actions {nodeRuntime} runtime እዩ ዚዓዪ። እቲ እተጠቕለለ ጃቫስክሪፕት ምስ Node 20 22 ከምኡውን 24 ዝሰማማዕ ኢዩ እዚ ድማ CI ዝፍትኖ ኢዩ።"
+			},
+			"dist": {
+				"heading": "እቲ እተጠቕለለ {distDir} ካበይ እዩ መጺኡ?",
+				"body": "GitHub JS ስጕምትታት ነቲ እተኣከበ JS ኣብ መኽዘን ይልእኽዎ። እቲ {distBuild} መስርሕ ድሕሪ ነፍሲ ወከፍ ውህደት እንደገና ይሃንጾ {mainBranch} እንተ ዀይኑ ድማ {distCheck} ግዜኡ ዝሓለፎ ውጽኢት ዝወርድ PRs ይዓግቶ።"
+			},
+			"formats": {
+				"heading": "ብዛዕባ ኻልእ ቅርጺ ምንጪኸ?",
+				"body": "ሎሚ፦ {resx} {xliff} {po} {json} {ini} {restext}። ካልእ እንተ ደሊኻ {issueLink} — እቲ ናይ ተንታኒ መራኸቢ ንእሽቶ እዩ (→ ካርታ ትንተና → ትርጕማት → ቅርጺ ኣወዓዕሎ) ወፈያታት ድማ ሓንጐፋይ ኢሉ ይቕበል።",
+				"issueLinkLabel": "ሕታም ክፈት"
+			}
+		}
 	},
 	"translations": {
 		"title": "ትርጕማት",
 		"eyebrow": "መርኣዪ",
 		"heroTitle": "ሰላምታ ብዅሉ ቛንቋታት",
-		"locales": "ከባብያታት",
-		"currentlyRendered": "ኣብዚ እዋን እዚ ተተርጒሙ ኣሎ",
-		"complete": "ምሉእ!",
-		"pendingPrefix": "ኣብ ዝቕጽል ናይ ተርጓሚ ዶክተራት ዝካየድ ዘሎ ኣኼባ ይጽበ።",
+		"lede": "እዚ ገጽ እዚ ብResource Translator ባዕሉ ተተርጒሙ ኣብ ነፍሲ ወከፍ ጸቕጢ ናብ ቀንዲ ናብ ኵሉ ቛንቋታት Azure AI Translator ይተርጐም።",
+		"localeCountLabel": "{count} ከባቢታት",
+		"statusComplete": "ኣብዚ እዋን እዚ {translatedCount} ተተርጒሙ — ምሉእ!",
+		"statusPending": "ኣብዚ እዋን እዚ {translatedCount} ተተርጒሙ ኣሎ - {pendingCount} ዚቕጽል {workflowName} ውድድር ይጽበ ኣሎ።",
 		"viewWorkflowRuns": "ናይ ስራሕ መስርሕ ተመልከት",
 		"filter": "ማጣሪያ",
 		"filterPlaceholder": "ብቛንቛ ኮድ ወይ ብስም ኣደ ድለ።",
 		"source": "ምንጪ",
 		"machineTranslations": "ናይ ማሽን ትርጕማት",
-		"translationPending": "ትርጉም ይጽበ ኣሎ — ናይ ትርጉም ሰነዳት ክፈት።",
+		"translationPending": "ትርጉም ይጽበ ኣሎ — {workflowName} ጕያ ክፈት።",
 		"noLocales": "ምስዚ ማጣሪያ ዚሰማማዕ ቦታ የልቦን።",
-		"howItWorks": "እዚ ብኸመይ ከም ዚዓዪ"
+		"howItWorks": {
+			"heading": "እዚ ብኸመይ ከም ዚዓዪ",
+			"thisActionLabel": "እዚ ተግባር እዚ",
+			"steps": {
+				"source": "እቲ ናይ እንግሊዝኛ ምንጪ ፋይል ኣብ {messagesPath} እዩ ዚነብር።",
+				"workflow": "ነቲ ምትንካፍ {workflowLink} ይደፍኦ እዚ ድማ ንገዛእ ርእሱ {thisAction} ይጐዪ።",
+				"fanOut": "እቲ ተግባር ናብ ነፍሲ ወከፍ Azure AI Translator ዚድግፍ ቦታ (ኣብ {configPath} እተዋህረ) ይድግፍ ኣብ ነፍሲ ወከፍ ዕላማ ድማ {messagesLocaleJson} ሓው ይጽሕፍ።",
+				"pullRequest": "ምስ ሓደስቲ ትርጕማት ዝቐረበ ሕቶ ይኽፈት። ነዚ ገጽ እዚ ምስ ዝመልአ ካርድታት ከም ብሓድሽ ይሕተሞ።"
+			}
+		},
+		"poweredBy": "ብተርጓሚ ምንጪ ከምኡውን ብAzure AI ተርጓሚ እተደገፈ።"
 	},
 	"contributing": {
 		"title": "ኣበርክቶ ምግባር",
 		"eyebrow": "ክፉት ምንጪ",
-		"lede": "ጸብጻባት ጌጋታት ናይ ባህሪ ጠለባት ከምኡውን ናይ ስሕበት ጠለባት ኵሉ ሓንጐፋይ ኢሉ ኢዩ ዝቕበል። እዚ ተግባር እዚ ንመጀመርታ ግዜ ኣበርክቶ ዚገብሩ ሰባት ምቕሉል ንምዃን ንእሽቶ እዩ።"
+		"lede": "ጸብጻባት ጌጋታት ናይ ባህሪ ጠለባት ከምኡውን ናይ ስሕበት ጠለባት ኵሉ ሓንጐፋይ ኢሉ ኢዩ ዝቕበል። እዚ ተግባር እዚ ንመጀመርታ ግዜ ኣበርክቶ ዚገብሩ ሰባት ምቕሉል ንምዃን ንእሽቶ እዩ።",
+		"localDevelopment": {
+			"heading": "ከባብያዊ ምዕባለ"
+		},
+		"addingParser": {
+			"heading": "ተንታኒ ምውሳኽ",
+			"steps": {
+				"fixture": "ኣብ ትሕቲ {testDataDir} መቝጸርያ ወሲኽ።",
+				"implement": "{parserInterface} ኣብ ግብሪ ኣውዕሎ ({parse} {format} {applyTranslations} {toTranslatableTextMap}) ።",
+				"register": "ኣብ {factoryFile} ተመዝገቡ።",
+				"extension": "ነቲ ፋይል ናብ {translationFileSchemes} ኣብ {finderFile} ወሲኽዎ።",
+				"tests": "ንምትንታኔን → ቅርጽን ዚኸውን ናይ ዙረት ጕዕዞ ፈተናታት ጽሓፍ።"
+			}
+		},
+		"coverage": {
+			"heading": "ናይ ሽፋን ድርኵዂት",
+			"body": "እቲ ናይ ጄስት ቅርጺ ዝተሓተ ሽፋን የገድድ። ሓድሽ ኮድ ነቲ መግለጺታት + መስመራት ድርኵዂት ልዕሊ 78% ኪገብሮ ኣለዎ ልዕሊ 90 ሚእታዊት ከኣ ኪዓዪ ኣለዎ። ኣብ ጐድኒ እቲ እትገብሮ ለውጥታት ኣቕሑን ፈተናታትን ወሲኽካ ።"
+		},
+		"docsSite": {
+			"heading": "ሰነዳዊ ወብ ሳይት",
+			"body": "እቲ {docsDir} ኣቃውማ ኣስትሮ 6 + Tailwind v4 ፕሮጀክት እዩ። ሓንሳእ ኣብኡ {npmInstall} ድሕሪኡ ነቲ ኸባቢ ንምርኣይ {npmRunDev} ግበር። እቲ {pagesWorkflow} ስራሕ ኣብ ነፍሲ ወከፍ ውህደት ሰነዳት ናብ GitHub ገጻት ይልእኽ።"
+		}
 	},
 	"changelog": {
 		"title": "ናይ ለውጢ መዝገብ",
 		"eyebrow": "ታሪኽ",
-		"lede": "ላዕለዋይ ደረጃ ጽማቝ ጽማቝ ናጻ ሓርነት። ቀኖናውን ስልጣን ዘለዎን ለውጥታት ኣብ CHANGELOG.md ኣብ መኽዘን እዩ ዚነብር።"
+		"lede": "ላዕለዋይ ደረጃ ጽማቝ ጽማቝ ናጻ ሓርነት። ቀኖናውን ስልጣን ዘለዎን ለውጥታት ኣብ CHANGELOG.md ኣብ መኽዘን እዩ ዚነብር።",
+		"fullRecord": "ምሉእ ሓበሬታ ንምርካብ {changelogLink} ርአ።",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "V3 (ኣብ ምዕባለ)",
+			"labels": {
+				"breaking": "ምስብራ",
+				"resilience": "ተጻዋርነት፦",
+				"placeholderProtection": "መከላኸሊ ቦታ፦",
+				"perKeyOptOut": "ኣብ ነፍሲ ወከፍ መፍትሕ ምውጻእ፦",
+				"docsAccessibility": "Docs ተደራሽነት፦",
+				"inlineCodeStyling": "ናይ ኢንላይን ኮድ ኣጸሓሕፋ፦"
+			},
+			"issueLabels": {
+				"closes46": "ተዓጽዩ #46።",
+				"tightens16": "ኣጥብቂ #16።",
+				"closes35": "ተዓጽዩ #35።"
+			},
+			"items": {
+				"runtime": "ናብ {nodeRuntime} ግዜ ({breaking})",
+				"newInputs": "ሓደስቲ ኣገባባት፦ {include} {exclude} {configPath} {categoryId} {apiVersion} {dryRun} {failOnError} ከምኡውን ምዕቡል ተርጓሚ {textType} {profanityAction} {profanityMarker} ከምኡውን {allowFallback}።",
+				"sourceLocale": "ምንጪ locale ሕጂ እውን ናብ ተርጓሚ ይመሓላለፍ ስለ ዘሎ {fromLocale} ሓጺር ሕብረቁምፊታት ብገዛእ ርእሱ ኣይፍለጥን እዩ።",
+				"resilience": "{label} ነቲ ናይ Azure {retryAfter} ርእሲ ንምኽባር ኣብ ግዜያዊ HTTP መልስታት ({statusCodes}) ብኡንብኡ እንደገና ምፍታን — ኣብ ዘይህልወሉ እዋን ናብቲ እተጨቓጨቐ ኤክስፖነንሽያል ንድሕሪት ይምለስ። ብ {maxRetries} ከምኡውን ብ {retryBackoffMs} ኣተዓራረየ። {issue}",
+				"placeholderProtection": "ከም {mustache} {jsVar} {indexZero} {numberFormat} {printf} {positionalPrintf} ከምኡውን HTML ዝኣመሰሉ {label} ቶከናት ቅድሚ ምትርጓሞም ኣብ ሴንቲነል ተጠቒሞም ድሕሪኡ ይምለሱ፣ ስለዚ ተርጓሚ i18next/Mustache/Handlebars/.NET/printf placeholders ምብልሻው የቋርጽ። ብ {protectPlaceholders} ኣቢልካ ተለዋወጠ፤ ምስ {customPlaceholderPatterns} ተዘርግሐ። {issue}",
+				"perKeyOptOut": "{label} ሓድሽ {noTranslatePatterns} መእተዊ ነቲ ናይ ተርጓሚ ሕቶ ምሉእ ብምሉእ ዝሰማማዕ መፍትሕ ይድርብዮ (ናይ ብራንድ ስማት ናይ ጌጋ ኮድ ወዘተ ናይ ምንጪ ዋጋታት ይዕቅብ)። ንድፊ ግሎብ ምስ ናይ ተንታኒ ደረጃ መፍትሕ (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key) የመሳስሎ። {issue}",
+				"repoConfig": "Repo-level config via {configPath}.",
+				"glossary": "መዝገበ-ቃላት ደገፍ፣ ጽማቝ ስጕምቲ ብ {coreSummary}።",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "npm audit clean (0 ድኽመት)።",
+				"docsSite": "Astro + Tailwind v4 docs site with view transitions and Expressive Code።",
+				"docsAccessibility": "{label} WCAG 2.1 AA ሓለፈ። ሎጎ ግሊፍስ ናብ መገድታት ተቐዪሩ ድሕሪ ደጊም ሕብሪ ንጽጽር ኣንጻር ግራዲየንት ደው ንምባል ይወድቁ፣ እቲ ጸምበለል ዚብል {backToTop} {inert} ተጠቒሙ (ኣብ ክንዲ እቲ ታብለል ዚገብሮ {ariaHidden} መወዓውዒ) {formatsAstro} ክፋላት ምስቲ ብርእሱ ዚፍጠር ኣርእስትታት ኣይጋጮን፣ ሰለስተ ናይ ከባቢ ካርድታት ሕጂ BCP-47-valid {lang} ባህርያት ({nya}, {lug}, {run}) የቃልዕ፣ ብተደጋጋሚ {documentation} ምልክት ምልክት ኣብ መንጎ ጐድናዊ ባርን እግርን ተፈልየ፣  ከምኡውን ነፍሲ ወከፍ ኣብ {inputs}/{configuration} ዘሎ ሰደቓ ዳታ ስክሪን-ኣንባቢ ጽሑፍ ሒዙ ይልእኽ።",
+				"inlineCode": "{label} ሰነድ ፕሮዝ {codeElement} ሕጂ ኻብቲ ንመራኸቢታትን ኣርእስትታትን ዜገልግል ብራንድ→ኣደማምጻ እተፈልየ ምዉቕ/ኣምበር ኣደማምጻ እዩ ዚጥቀም።",
+				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "ታሪኽ git ርአ።"
+		}
 	}
 }

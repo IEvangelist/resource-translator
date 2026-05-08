@@ -18,18 +18,26 @@
 			"node": "Node 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "tau txais cov ntawv nyeem",
+			"json": "tiaj",
+			"ini": "{keyValue}",
+			"restext": "MUI ntawv nyeem"
+		},
 		"features": {
 			"formats": {
 				"title": "Rau cov ntaub ntawv tawm tswv yim",
-				"body": "Round-trips .resx, .xliff, .po, .json, .ini thiab .restext nrog byte-ruaj khov formatting."
+				"body": "Round-trips {resx}, {xliff}, {po}, {json}, {ini} thiab {restext} nrog byte-ruaj khov formatting."
 			},
 			"config": {
 				"title": "Repo-qib config",
-				"body": "Poob ib qho .github / resource-translator.yml rau suav nrog globs, glossaries, thiab Custom Translator pawg."
+				"body": "Poob ib {configPath} ntaub ntawv rau xws li globs, glossaries, thiab Custom Translator pawg."
 			},
 			"glossary": {
 				"title": "Glossary-paub txog",
-				"body": "Xauv cov npe lag luam thiab cov ntsiab lus khoom lag luam nrog cov lus ntse-ciam teb regex uas tuav C ++, .NET thiab phooj ywg."
+				"body": "Xauv cov npe lag luam thiab cov ntsiab lus khoom lag luam nrog ntse lo lus-ciam teb regex uas tuav {cpp}, {dotnet} thiab phooj ywg."
 			},
 			"dryRun": {
 				"title": "Qhuav-khiav + mos-tsis ua hauj lwm",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR-phooj ywg tso zis",
-				"body": "ntsiab lus-title, ntsiab lus-cov ntsiab lus, thiab muaj-tshiab-txhais lus qhov ncaj qha rau hauv tsim-rub-thov."
+				"body": "{summaryTitle}, {summaryDetails} thiab {hasNewTranslations} qhov ncaj qha rau hauv tsim-rub-thov."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "Ua rau @azure-so / ai-translation-text + @azure / core-so-pipeline — tsis siv neeg rov sim ntawm 408/429/5xx, tsis muaj tes-dov HTTP. esbuild-bundled, audit-huv."
+				"body": "Ua rau {azureSdk} + {corePipeline} — tsis siv neeg rov sim ntawm {statusCodes}, tsis muaj tes-dov HTTP. {esbuild}-bundled, audit-huv."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Poob rau hauv workflow",
+			"titlePrefix": "luam. Muab txhuam.",
+			"titleAccent": "txhais.",
+			"body": "Peb qhov zais cia, plaub kab, thiab koj lub repo yog ntau hom lus ntawm kev thawb tom ntej.",
+			"setupLink": "Taug kev los ntawm kev teeb tsa tag nrho"
+		},
+		"cta": {
+			"title": "Npaj txhij rau localize ntawm autopilot?",
+			"body": "Ib tug Azure AI txhais lus yuam sij, ib tug workflow ntaub ntawv. Resource Translator tuav tus so.",
+			"button": "Pib"
 		}
 	},
 	"getting-started": {
 		"title": "Pib",
 		"eyebrow": "Kev teeb tsa",
-		"lede": "Ntxiv ib tug workflow ntaub ntawv, taw tes rau koj Azure AI txhais lus cov ntawv pov thawj, thiab qhov kev txiav txim — ua nyob rau hauv Microsoft tus nom @azure-so / ai-translation-text SDK — yuav luam theej duab lub repo rau qhov chaw-lus resource ntaub ntawv thiab emit txhais cov kwv tij.",
+		"lede": "Ntxiv cov ntaub ntawv workflow, taw tes rau koj Azure AI Txhais lus cov ntawv pov thawj, thiab qhov kev txiav txim yuav luam theej duab lub repo rau qhov chaw-lus cov ntaub ntawv thiab emit txhais cov kwv tij.",
 		"steps": {
 			"provision": {
 				"title": "Muab Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Ntxiv cov workflow",
-				"body": "Tsim .github/workflows/translate.yml:"
+				"body": "Tsim {workflowPath}:"
 			},
 			"resource": {
 				"title": "Cog lus ib qho ntaub ntawv peev txheej",
-				"body": "Cov ntaub ntawv resource siv lub Npe. <sourceLocale>. <ext> rooj sib tham. Piv txwv li, Greetings.en.resx dhau los ua Greetings.fr.resx, Greetings.de.resx, thiab lwm yam tom qab khiav."
+				"body": "Cov ntaub ntawv peev txheej siv cov {namingConvention} lus cog tseg. Piv txwv li {sourceFile} dhau los ua {frFile}, {deFile} thiab lwm yam tom qab khiav."
 			},
 			"output": {
 				"title": "Xyuas cov zis",
-				"body": "Thaum lub workflow tiav, qhov kev txiav txim exposes peb outputs koj yuav xaim rau hauv ib tug PR piav qhia: ntsiab lus-title, ntsiab lus-ntsiab lus thiab muaj-tshiab-txhais lus. Nws kuj sau ib tug Markdown ntsiab lus rau hauv txoj hauj lwm nplooj ntawv los ntawm core.summary."
+				"body": "Thaum lub workflow tiav, qhov kev txiav txim nthuav tawm peb cov zis uas koj tuaj yeem xaim rau hauv PR cov lus piav qhia: {summaryTitle}, {summaryDetails} thiab {hasNewTranslations}. Nws kuj sau ib tug Markdown ntsiab lus rau hauv txoj hauj lwm nplooj ntawv los ntawm {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Cov kauj ruam tom ntej",
-			"configuration": "Configure repo-theem defaults nrog .github/resource-translator.yml.",
+			"configuration": "Configure repo-theem defaults nrog {configPath}.",
 			"recipes": "Saib cov zaub mov txawv rau monorepos, kev cai glossaries thiab Custom Translator pawg."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Kev teeb tsa",
 		"eyebrow": "YAML",
 		"heroTitle": "Repository configuration",
-		"lede": "Qhia defaults ib zaug hauv .github/resource-translator.yml thiab cia txhua qhov kev ua haujlwm tau txais lawv. Kev nqis tes ua inputs yeej yeej thaum ob qho tib si muab."
+		"lede": "Express defaults ib zaug nyob rau hauv lub repository config ntaub ntawv thiab cia txhua workflow inherit lawv. Kev nqis tes ua inputs yeej yeej thaum ob qho tib si muab.",
+		"intro": "Override txoj kev nrog cov {configPath} tswv yim yog tias koj xav tau qhov chaw tsis yog lub neej ntawd.",
+		"schemaHeading": "Cov phiaj xwm",
+		"fieldReference": {
+			"heading": "Field reference",
+			"caption": "Configuration teb reference",
+			"columns": {
+				"field": "Daim teb",
+				"type": "Hom",
+				"notes": "Cov ntawv sau tseg"
+			},
+			"fields": {
+				"sourceLocale": "Ntog rov qab mus rau qhov {sourceLocale} tswv yim yog tias tsis tau teeb tsa. Kuj tau xa mus rau Tus Neeg Txhais Lus raws li {fromLocale} yog li cov hlua luv luv tsis autodetected.",
+				"toLocales": "Tog twg los ib tug array los yog ib tug comma-cais hlua.",
+				"includeExclude": "Glob qauv ntsuam xyuas tawm tsam qhov tseeb thiab chaw ua hauj lwm-txheeb ze txoj kev.",
+				"glossary": "Tom qab txhais lus overrides. Lo lus-ciam teb paub (tuav {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} qeb — koj qhov kev lag luam / sau pob (kev cai lij choj, kev kho mob, kev lag luam suab, thiab lwm yam). Xa raws li {categoryQuery}.",
+				"textType": "Defaults rau {plain}. Siv {html} tsuas yog tias koj cov peev txheej muaj cov khoom siv tiag tiag HTML tawg.",
+				"profanityAction": "Yuav ua li cas kho cov ntsiab lus profane hauv cov zis txhais",
+				"profanityMarker": "Tsuas yog muaj txiaj ntsig thaum {profanityAction} yog {marked}.",
+				"allowFallback": "Teem rau {false} kom ua tsis tiav qhov kev txhais lus thaum koj lub {categoryId} tsis muaj kev xa tawm rau lub hom phiaj hauv zos es tsis txhob poob rov qab mus rau tus qauv dav dav.",
+				"apiVersion": "Tus neeg txhais lus REST API version. Defaults rau {version}.",
+				"maxRetries": "Qhov siab tshaj plaws rov sim ntawm cov lus teb HTTP ib ntus ({statusCodes}). Defaults rau {defaultRetries}. Tag nrho HTTP hu rau ib qho kev thov yog {totalCalls}.",
+				"retryBackoffMs": "Cap (ms) ntawm ib qho kev pw tsaug zog rov qab. Defaults rau {defaultBackoff}. Azure lub {retryAfter} header yog honored raws nraim thaum muaj; txwv tsis pub jittered exponential backoff yog siv, capped ntawm tus nqi no.",
+				"protectPlaceholders": "Defaults rau {true}. Thaum nyob rau, tokens zoo li {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} thiab HTML cov chaw raug hloov nrog sentinel tokens ua ntej txhais lus thiab rov qab kho tom qab. Lov tes taw tsuas yog thaum qhov chaw txhob txwm muaj qhov chaw zoo li qhov tseeb.",
+				"customPlaceholderPatterns": "Ntxiv regex qauv (tsis muaj delimiters) ntxiv rau lub neej ntawd placeholder teeb, piv txwv li {angleToken} rau kev cai token syntax. Cov regexes tsis raug tsis quav ntsej.",
+				"noTranslatePatterns": "Glob qauv sib phim tiv thaiv parser-theem yuam sij (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF chav tsev {xliffId}, INI / restext yuam sij). Cov yuam sij sib txuam yog poob los ntawm qhov kev thov thiab dhau los ntawm lawv qhov chaw tus nqi khaws cia."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Chaw thau khoom txiav txim",
+			"steps": {
+				"actionInputs": "Qhov kev nqis tes ua nyeem cov tswv yim meej los ntawm kev ua haujlwm.",
+				"config": "Nws thauj khoom YAML config los ntawm {configPath}.",
+				"precedence": "Rau txhua daim teb sib koom, cov tswv yim yeej; txwv tsis pub siv tus nqi YAML.",
+				"validation": "Cov txiaj ntsig sib koom ua ke yog validated. Cov enums tsis raug (piv txwv li {invalidEnum}) ua rau qhov kev ua tsis tiav sai nrog cov lus meej."
+			}
+		},
+		"tone": {
+			"heading": "Lub suab thiab kev lag luam, hauv cov ntsiab lus yooj yim",
+			"body": "Azure AI Translator v3 API tsis muaj ib lub suab nrov. Ob qhov chaw ua ke los muab koj feem ntau ntawm tib qho kev tswj hwm:",
+			"industryLabel": "Kev lag luam / domain:",
+			"industryBody": "siv {categoryId} taw tes rau ib qho Azure {customTranslatorLink} qeb uas tau kawm ntawm koj tus kheej corpus — kev cai lij choj, thev naus laus zis, kev kho mob, kev lag luam, lossis lwm yam. Qhov no yog qhov muaj zog tshaj plaws rau lub suab, hom suab thiab cov lus.",
+			"surfaceLabel": "Cov ntawv nyeem:",
+			"surfaceBody": "Siv cov {glossaryLink} los xauv cov npe lag luam thiab cov khoom lag luam cov lus verbatim, thiab siv {profanityAction} los txhuam cov lus tsis zoo thaum lub hom phiaj hauv zos rau cov neeg tuaj saib hluas.",
+			"glossaryLinkLabel": "phau ntawv txhais lus"
+		}
 	},
 	"inputs": {
 		"title": "Cov tswv yim & tso zis",
 		"eyebrow": "Reference",
-		"lede": "Txhua cov tswv yim kuj tau txais nyob rau hauv cov ntaub ntawv xaiv repo config. Thaum ob qho tib si tau teeb tsa, qhov kev txiav txim siab yeej yeej."
+		"lede": "Txhua cov tswv yim kuj tau txais nyob rau hauv cov ntaub ntawv xaiv repo config. Thaum ob qho tib si tau teeb tsa, qhov kev txiav txim siab yeej yeej.",
+		"configurationIntro": "Saib {configurationLink} rau YAML schema thiab kev txiav txim thau khoom.",
+		"configurationLinkLabel": "Kev teeb tsa",
+		"columns": {
+			"name": "Lub Npe",
+			"default": "Lub neej ntawd",
+			"description": "Kev piav qhia"
+		},
+		"defaults": {
+			"none": "tsis muaj",
+			"allSupported": "tag nrho cov kev txhawb nqa",
+			"translatorDefaultTrue": "muaj tseeb (Tus neeg txhais lus lub neej ntawd)"
+		},
+		"requiredInputs": {
+			"heading": "Yuav tsum tau tawm tswv yim",
+			"caption": "Yuav tsum tau tawm tswv yim",
+			"items": {
+				"sourceLocale": "Qhov chaw hauv zos (piv txwv li {en}) siv los nrhiav cov ntaub ntawv peev txheej xws li {sourceGlob}. Kuj xa mus rau Tus Neeg Txhais Lus raws li {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator subscription yuam sij. Dhau los ntawm {secrets}.",
+				"endpoint": "Tus neeg txhais lus endpoint URL, piv txwv li {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Cov tswv yim xaiv feem ntau",
+			"caption": "Cov tswv yim xaiv feem ntau",
+			"items": {
+				"region": "Txhais lus resource cheeb tsam (omit rau cov peev txheej thoob ntiaj teb).",
+				"toLocales": "Locales los txhais rau. Txais JSON array ({jsonArray}) los yog comma-cais qhov tseem ceeb.",
+				"include": "Newline-cais glob qauv; Tsuas yog cov ntaub ntawv sib txuam yog txhais.",
+				"exclude": "Newline-cais glob qauv; Cov ntaub ntawv sib txuam yog hla (thov tom qab suav nrog).",
+				"configPath": "Txoj kev mus rau YAML config cov ntaub ntawv (txheeb ze rau lub hauv paus chaw ua haujlwm).",
+				"dryRun": "Thaum {true}, khiav translations thiab emit summaries tab sis tsis txhob sau cov ntaub ntawv.",
+				"failOnError": "Thaum {true}, qhov yuam kev tsis tau npaj siab ua tsis tiav qhov kev ua; Thaum {false}, yuam kev yog ceeb toom."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Tus neeg txhais lus thov tswv yim",
+			"intro": "Cov ntawv qhia no ncaj qha mus rau Azure AI Translator v3 query parameter. Txhua tus yog xaiv tau; lub Txhais lus defaults siv thaum unset.",
+			"caption": "Tus neeg txhais lus thov tswv yim",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} qeb — kev lag luam / domain / tone pob khawm Forwarded raws li {categoryQuery}.",
+				"textType": "{plain} los yog {html}. Siv {html} tsuas yog thaum koj cov peev txheej muaj nuj nqis yog HTML tawg tiag tiag.",
+				"profanityAction": "{noAction}, {marked}, lossis {deleted}. Tswj yuav ua li cas cov lus tsis zoo yog tso tawm hauv kev txhais lus.",
+				"profanityMarker": "{asterisk} los yog {tag}. Tsuas yog muaj txiaj ntsig thaum {profanityAction} yog {marked}.",
+				"allowFallback": "Thaum {false}, Tus Neeg Txhais Lus rov qab ib qho yuam kev es tsis txhob poob rov qab mus rau qhov system dav dav yog tias koj lub {categoryId} tsis muaj kev xa tawm rau lub hom phiaj hauv zos.",
+				"apiVersion": "Tus neeg txhais lus REST API version."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Resilience & placeholder tiv thaiv",
+			"intro": "Cov tswv yim no tswj hwm yuav ua li cas qhov kev txiav txim thaum Lub Tshuab Txhais Lus throttles koj qhov kev thov thiab yuav ua li cas nws shields placeholder tokens xws li {mustache} los yog {indexZero} los ntawm raug mangled thaum lub sij hawm txhais lus.",
+			"caption": "Kev ua siab ntev thiab qhov chaw tiv thaiv cov tswv yim",
+			"items": {
+				"maxRetries": "Qhov siab tshaj plaws rov sim ntawm cov lus teb HTTP ib ntus ({statusCodes}). Tag nrho cov naj npawb ntawm HTTP hu rau ib qho kev thov yog {totalCalls}.",
+				"retryBackoffMs": "Cap (hauv milliseconds) ntawm ib qho kev pw tsaug zog rov qab. Qhov kev nqis tes ua hwm Azure lub {retryAfter} teb header raws nraim thaum muaj; txwv tsis pub nws siv jittered exponential backoff capped ntawm tus nqi no.",
+				"protectPlaceholders": "Thaum {true} (lub neej ntawd), qhov chaw xws li {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} thiab HTML cov chaw raug hloov nrog sentinel tokens ua ntej txhais lus thiab rov qab kho tom qab. Lov tes taw tsuas yog thaum koj qhov chaw txhob txwm muaj cov ntawv nyeem literal placeholder uas yuav tsum tau txhais.",
+				"customPlaceholderPatterns": "Newline-cais regexes (tsis muaj delimiters) ntxiv rau lub neej ntawd placeholder teeb, piv txwv li {angleToken} rau kev cai token syntax.",
+				"noTranslatePatterns": "Newline-cais glob qauv sib phim tiv thaiv parser-theem yuam sij (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF chav tsev {xliffId}, INI/restext yuam sij). Cov yuam sij sib txuam yog poob los ntawm tus neeg txhais lus thov thiab dhau los ntawm lawv qhov chaw tus nqi khaws cia."
+			}
+		},
+		"outputs": {
+			"heading": "Cov zis",
+			"caption": "Cov zis",
+			"items": {
+				"summaryTitle": "Luv luv PR-title-phooj ywg ntsiab lus, piv txwv li {summaryExample}.",
+				"summaryDetails": "Markdown ntsiab lus haum rau PR lub cev lossis cov ntsiab lus ntawm txoj haujlwm.",
+				"hasNewTranslations": "{trueString} thaum ib lossis ntau dua cov lus txhais tshiab tau tsim."
+			}
+		}
 	},
 	"formats": {
 		"title": "Cov ntaub ntawv tawm tswv yim",
 		"eyebrow": "Reference",
 		"heroTitle": "Txaus siab ua ntaub ntawv tawm tswv yim",
-		"lede": "Rau round-trippable peev txheej hom ntawv. Qhov kev nqis tes ua nyeem txhua qhov chaw-locale cov ntaub ntawv, txhais cov nqis, thiab sau ib tug kwv tij rau ib lub hom phiaj hauv zos."
+		"lede": "Rau round-trippable peev txheej hom ntawv. Qhov kev nqis tes ua nyeem txhua qhov chaw-locale cov ntaub ntawv, txhais cov nqis, thiab sau ib tug kwv tij rau ib lub hom phiaj hauv zos.",
+		"namingConvention": "Tag nrho cov ntaub ntawv siv lub {namingConvention} npe convention.",
+		"learnMore": "Kawm ntxiv",
+		"items": {
+			"resx": {
+				"blurb": "XML-based .NET cov ntaub ntawv peev txheej. Txhais cov ntawv sab hauv ntawm txhua lub {dataValue} node, khaws cov lus thiab metadata.",
+				"specLabel": "Microsoft Kawm — Cov khoom siv hauv .resx cov ntaub ntawv"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 cov ntaub ntawv. Txhais txhua {source} thiab sau qhov tshwm sim rau hauv qhov sib {target}, teeb {trgLang} rau lub zos.",
+				"specLabel": "OASIS XLIFF 2.0 specification"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object ntaub ntawv. Txhais txhua {msgid} / {msgidPlural} ua {msgstr} / {msgstrPlural} ntawv.",
+				"specLabel": "GNU gettext — PO hom ntaub ntawv"
+			},
+			"json": {
+				"blurb": "Arbitrary JSON ntaub ntawv. Cov khoom ua zes yog flattened nrog lub {delimiter} delimiter rau kev txhais lus, tom qab ntawd rov ua zes ntawm cov zis. Dotted yuam sij ({dottedKey}) yog khaws cia verbatim.",
+				"specLabel": "JSON specification (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Cov ntaub ntawv yooj yim {keyValue} (Win32-style INI lossis txhua tiaj tiaj config). Tshooj headers thiab cov lus tau khaws cia.",
+				"specLabel": "INI cov ntaub ntawv hom ntawv ntawm Wikipedia"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI cov ntawv nyeem cov peev txheej — tiaj tus {keyValue} khub siv los ua tus khub ntawv {resx}.",
+				"specLabel": "Microsoft MUI txheej txheem cej luam"
+			}
+		},
+		"roundTrip": {
+			"heading": "Round-trip guarantees",
+			"body": "Cov ntawv xeem suite txheeb xyuas byte-rau-byte round-tripping rau cov neeg sawv cev fixtures ntawm txhua hom ntawv. Yog hais tias ib hom ntawv quirk tawg round-tripping nyob rau hauv koj codebase, thov {issueLink} nrog ib tug tsawg kawg nkaus qauv.",
+			"issueLinkLabel": "qhib ib qho teeb meem"
+		}
 	},
 	"recipes": {
 		"title": "Cov zaub mov txawv",
 		"eyebrow": "Phau ntawv ua noj",
-		"lede": "Cov qauv feem ntau rau kev xa khoom txhais lus: monorepos, glossaries, kev cai pawg, khiav qhuav thiab tone tswj."
+		"lede": "Cov qauv feem ntau rau kev xa khoom txhais lus: monorepos, glossaries, kev cai pawg, khiav qhuav thiab tone tswj.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Qhib ib qho kev thov rub tom qab txhua khiav"
+			},
+			"monorepo": {
+				"heading": "Monorepos: scope txhais lus ib pob"
+			},
+			"glossary": {
+				"heading": "Glossary rau hom npe thiab cov khoom lag luam",
+				"intro": "Poob ib {configPath} rau hauv lub repo:",
+				"afterLabel": "tom qab",
+				"body": "Glossary cov ntsiab lus yog siv {after} txhais lus, li ntawd, lub tshuab-txhais tso zis khaws koj nyiam branding txawm thaum tus qauv swapped nws rau ib tug synonym."
+			},
+			"customCategory": {
+				"heading": "Kev cai txhais lus qeb (kev lag luam / domain)",
+				"body": "Cob qhia ib qho Azure {customTranslatorLink} qeb ntawm lub corpus uas ntes koj cov lus lag luam thiab lub suab nrov (kev cai lij choj, kev kho mob, kev lag luam, sab hauv-engineering, thiab lwm yam) thiab dhau nws tus ID los ntawm {categoryId}. Qhov no yog qhov muaj zog tshaj plaws tone lever Azure muab."
+			},
+			"tone": {
+				"heading": "Tone tswj + nruj rov qab",
+				"body": "Ua ke ib qho kev cai txhais lus {categoryId} {profanityAction} thiab {allowFallbackFalse} kom tswj hwm lub suab zoo ib yam thiab ua tsis tiav kev ua haujlwm yog tias qeb xaiv tsis muaj kev xa tawm rau ib qho ntawm koj lub hom phiaj hauv zos."
+			},
+			"dryRun": {
+				"heading": "Qhuav khiav ua ntej tig lub workflow rau",
+				"body": "Qhov kev txiav txim tseem emits cov ntsiab lus thiab ib kauj ruam ntsiab lus, tab sis tsis muaj ntaub ntawv sau. Ua ke nrog {failOnErrorFalse} kom nto txhua qhov teeb meem raws li kev ceeb toom thaum koj rov ua dua."
+			}
+		}
 	},
 	"faq": {
 		"title": "FAQ",
 		"eyebrow": "Pab",
 		"heroTitle": "Cov lus nug nquag nug",
-		"lede": "Cov lus teb ceev rau cov lus nug uas tuaj txog feem ntau thaum txais yuav qhov kev ua."
+		"lede": "Cov lus teb ceev rau cov lus nug uas tuaj txog feem ntau thaum txais yuav qhov kev ua.",
+		"questions": {
+			"azure": {
+				"heading": "Qhov kev txiav txim siab tham nrog Azure li cas?",
+				"body": "Los ntawm Microsoft tus nom {azureSdkLink} SDK, txheej ntawm {corePipelineLink}. Qhov ntawd tau txais koj tsis siv neeg rov sim ntawm {statusCodes}, ntaus ntawv thov thiab teb cov qauv, thiab kev txheeb xyuas lub taub hau tuav dawb - txhua yam uas siv los ua kev hu xov {axios} tooj ntawm tes. Cov pej xeem kev ua nto (cov tswv yim, cov zis, cov ntaub ntawv tawm) tsis hloov pauv."
+			},
+			"tone": {
+				"heading": "Vim li cas cov lus txhais qee zaum tawm ntawm hom lossis tawm ntawm lub suab?",
+				"body": "Tshuab txhais lus defaults rau ib tug dav dav-hom phiaj qauv. Peb lub pob khawm pab: ib qho kev {glossaryLink} rau lub sij hawm nyuaj overrides, ib qho kev {customTranslatorLink} rau cov qauv zoo uas tau kawm ntawm koj lub suab thiab cov lus, thiab {profanityAction} txhuam lossis chij cov ntsiab lus tsis zoo.",
+				"glossaryLinkLabel": "phau ntawv txhais lus",
+				"customTranslatorLinkLabel": "Kev cai txhais lus qeb"
+			},
+			"duplicateFiles": {
+				"heading": "Kuv yuav ua li cas kom tsis txhob txhais tib cov ntaub ntawv ob zaug?",
+				"body": "Ua rau cov haujlwm ua haujlwm ntawm cov {paths} uas phim koj cov ntaub ntawv qhov chaw-locale nkaus xwb, piv txwv li {sourceGlob}. Qhov kev txiav txim kuj muaj nws tus kheej ib-trigger ntaub ntawv lim thaum {githubToken} yog teem, nqaim ua hauj lwm rau cov ntaub ntawv nyob rau hauv qhov tseeb cog lus."
+			},
+			"offline": {
+				"heading": "Kuv puas tuaj yeem khiav qhov kev txiav txim offline?",
+				"body": "Tsis raws nraim — Azure AI Txhais lus yog lub hlwb runtime. Tab sis koj tuaj yeem khiav nrog {dryRunTrue} los lees paub parsing thiab config yam tsis muaj kev thov HTTP rau kev txhais lus."
+			},
+			"node": {
+				"heading": "Dab tsi Node version ua qhov kev nqis tes ua khiav?",
+				"body": "v3 khiav ntawm GitHub Kev Ua {nodeRuntime} lub sijhawm runtime. Lub bundled JavaScript yog sib xws nrog Node 20, 22 thiab 24, uas yog dab tsi CI kuaj."
+			},
+			"dist": {
+				"heading": "Cov {distDir} bundled los qhov twg los?",
+				"body": "GitHub JS kev nqis tes ua xa lawv cov JS tso ua ke hauv lub chaw cia khoom. Lub {distBuild} workflow rebuilds nws tom qab txhua kev sib koom ua ke rau {mainBranch} yog hais tias nws yuav drift, thiab {distCheck} blocks PRs uas yuav tsaws tawm-of-date tso zis."
+			},
+			"formats": {
+				"heading": "Yuav ua li cas txog lwm cov peev txheej hom ntawv?",
+				"body": "Niaj hnub no: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} yog hais tias koj xav tau lwm — lub parser interface yog me me (parse → daim ntawv qhia → thov translations → hom ntawv) thiab kev pab yog txais tos.",
+				"issueLinkLabel": "Qhib ib qho teeb meem"
+			}
+		}
 	},
 	"translations": {
 		"title": "Kev txhais lus",
 		"eyebrow": "Nthuav tawm",
 		"heroTitle": "Nyob zoo hauv txhua hom lus",
-		"locales": "thaj chaw",
-		"currentlyRendered": "tam sim no rendered",
-		"complete": "tag nrho!",
-		"pendingPrefix": "tos tom ntej txhais lus-docs khiav.",
+		"lede": "Nplooj ntawv no yog txhais los ntawm Resource Translator nws tus kheej, ntawm txhua qhov kev thawb mus rau qhov tseem ceeb, ua txhua hom lus Azure AI Translator txhawb nqa.",
+		"localeCountLabel": "{count} zos",
+		"statusComplete": "{translatedCount} tam sim no ua tiav — tiav!",
+		"statusPending": "{translatedCount} tam sim no ua — {pendingCount} tos tom ntej {workflowName} khiav.",
 		"viewWorkflowRuns": "Saib workflow khiav",
 		"filter": "lim",
 		"filterPlaceholder": "Tshawb nrhiav los ntawm hom lus, code, lossis haiv neeg lub npe...",
 		"source": "Tau qhov twg los",
 		"machineTranslations": "Tshuab txhais lus",
-		"translationPending": "Txhais lus tos — qhib ib tug txhais lus-docs khiav.",
+		"translationPending": "Txhais lus tos — qhib ib tug {workflowName} khiav.",
 		"noLocales": "Tsis muaj locales phim ntawd lim.",
-		"howItWorks": "Qhov no ua haujlwm li cas"
+		"howItWorks": {
+			"heading": "Qhov no ua haujlwm li cas",
+			"thisActionLabel": "qhov kev ua no heev",
+			"steps": {
+				"source": "Cov ntaub ntawv Askiv qhov chaw nyob ntawm {messagesPath}.",
+				"workflow": "Thawb uas kov nws ncaws tawm {workflowLink}, uas khiav {thisAction} tawm tsam nws tus kheej.",
+				"fanOut": "Qhov kev ua kiv cua tawm mus rau txhua Azure AI Tus Neeg Txhais Lus-txhawb nqa locale (teeb tsa hauv {configPath}) thiab sau ib tus kwv tij {messagesLocaleJson} rau ib lub hom phiaj.",
+				"pullRequest": "Ib qho kev thov rub yog qhib nrog cov lus txhais tshiab. Kev sib koom ua ke nws rov luam tawm nplooj ntawv no nrog cov ntawv sau rau hauv."
+			}
+		},
+		"poweredBy": "Powered los ntawm Resource Translator thiab Azure AI Tus Neeg Txhais Lus."
 	},
 	"contributing": {
 		"title": "Pab Txhawb",
 		"eyebrow": "Qhib qhov chaw",
-		"lede": "Cov ntawv ceeb toom kab laum, kev thov tshwj xeeb, thiab rub thov yog txhua tus txais tos. Qhov kev txiav txim yog me me txaus los ua phooj ywg rau thawj lub sij hawm contributors."
+		"lede": "Cov ntawv ceeb toom kab laum, kev thov tshwj xeeb, thiab rub thov yog txhua tus txais tos. Qhov kev txiav txim yog me me txaus los ua phooj ywg rau thawj lub sij hawm contributors.",
+		"localDevelopment": {
+			"heading": "Kev txhim kho hauv zos"
+		},
+		"addingParser": {
+			"heading": "Ntxiv ib tug parser",
+			"steps": {
+				"fixture": "Ntxiv ib qho khoom siv hauv qab {testDataDir}.",
+				"implement": "Siv {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Sau npe rau hauv {factoryFile}.",
+				"extension": "Ntxiv cov ntaub ntawv txuas ntxiv rau {translationFileSchemes} hauv {finderFile}.",
+				"tests": "Sau round-trip xeem rau parse → hom ntawv thiab applyTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "Cov kev pab them nqi",
+			"body": "Lub Jest config tswj hwm kev pab them nqi yam tsawg kawg nkaus. Cov cai tshiab yuav tsum khaws cov nqe lus + kab siab dua 78% thiab ua haujlwm siab dua 90%. Ntxiv fixtures thiab kev sim ib sab ntawm koj qhov kev hloov pauv."
+		},
+		"docsSite": {
+			"heading": "Cov ntaub ntawv chaw",
+			"body": "Lub nplaub tshev {docsDir} yog Astro 6 + Tailwind v4 project. Khiav {npmInstall} ntawd ib zaug, tom qab ntawd {npmRunDev} rau kev saib ua ntej hauv zos. Lub {pagesWorkflow} workflow xa cov ntaub ntawv mus rau GitHub Nplooj ntawv ntawm txhua qhov kev sib koom ua ke."
+		}
 	},
 	"changelog": {
 		"title": "Kev hloov pauv",
 		"eyebrow": "Keeb Kwm",
-		"lede": "Cov ntsiab lus qib siab ntawm kev tso tawm. Lub canonical, authoritative changelog nyob rau hauv CHANGELOG.md nyob rau hauv lub repository."
+		"lede": "Cov ntsiab lus qib siab ntawm kev tso tawm. Lub canonical, authoritative changelog nyob rau hauv CHANGELOG.md nyob rau hauv lub repository.",
+		"fullRecord": "Saib {changelogLink} rau tag nrho cov ntaub ntawv.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (nyob rau hauv txoj kev loj hlob)",
+			"labels": {
+				"breaking": "TAWG",
+				"resilience": "Kev ua siab ntev:",
+				"placeholderProtection": "Qhov chaw tiv thaiv:",
+				"perKeyOptOut": "Ib qho tseem ceeb xaiv tawm:",
+				"docsAccessibility": "Docs kev nkag mus:",
+				"inlineCodeStyling": "Inline code styling:"
+			},
+			"issueLabels": {
+				"closes46": "Kaw # 46.",
+				"tightens16": "Zawm # 16.",
+				"closes35": "Kaw # 35."
+			},
+			"items": {
+				"runtime": "Bumped mus rau {nodeRuntime} runtime ({breaking}).",
+				"newInputs": "Cov tswv yim tshiab: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, ntxiv rau cov lus txhais lus siab {textType}, {profanityAction}, {profanityMarker} thiab {allowFallback}.",
+				"sourceLocale": "Source locale yog tam sim no kuj xa mus rau Tus Neeg Txhais Lus raws li {fromLocale} li ntawd luv hlua yog tsis autodetected.",
+				"resilience": "{label} tsis siv neeg rov sim ntawm transient HTTP teb ({statusCodes}) hwm Azure lub {retryAfter} header — ntog rov qab mus rau jittered exponential backoff thaum tsis muaj. Tunable los ntawm {maxRetries} thiab {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} tokens zoo li {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} thiab HTML cov chaw tau qhwv hauv sentinels ua ntej txhais lus thiab rov qab kho tom qab, yog li Tus Neeg Txhais Lus nres mangling i18next / Mustache / Handlebars / .NET / printf qhov chaw. Toggle ntawm {protectPlaceholders}; txuas nrog {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} cov tswv yim tshiab {noTranslatePatterns} poob cov yuam sij sib txuam los ntawm Tus Neeg Txhais Lus thov tag nrho (khaws cov txiaj ntsig ntawm cov npe lag luam, cov lej yuam kev, thiab lwm yam). Phim glob qauv tiv thaiv parser-theem yuam sij (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF chav tsev {xliffId}, INI/restext yuam sij). {issue}",
+				"repoConfig": "Repo-qib config ntawm {configPath}.",
+				"glossary": "Kev txhawb nqa glossary, cov kauj ruam ntsiab lus ntawm {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 tiaj tiaj config, Prettier, EditorConfig.",
+				"audit": "npm audit huv (0 qhov tsis muaj zog).",
+				"docsSite": "Astro + Tailwind v4 docs site nrog saib kev hloov pauv thiab Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. Logo glyphs hloov mus rau txoj kev kom lawv tsis ua tiav cov xim-sib piv tiv thaiv gradient nres, lub ntab {backToTop} khawm siv {inert} thaum muab zais (es tsis txhob muaj {ariaHidden} toggle uas ua rau nws tabbable), {formatsAstro} ntu tsis sib tsoo nrog lawv cov pib-tsim cov npe IDs, peb daim npav locale tam sim no nthuav tawm BCP-47-siv tau {lang} yam ntxwv ({nya}, {lug}, {run}), theej tawm {documentation} cov cim cim yog disambiguated ntawm sidebar thiab footer,  thiab txhua lub rooj ntaub ntawv ntawm {inputs} / {configuration} nkoj nrog lub vijtsam-nyeem ntawv caption.",
+				"inlineCode": "{label} docs prose {codeElement} tam sim no hnav lub sov / amber ntsiab lus accent — txawv los ntawm lub hom→accent palette siv rau kev sib txuas thiab cov ntsiab lus.",
+				"automation": "Dependabot pib-merge, CodeQL luam theej duab, CI matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Saib git keeb kwm."
+		}
 	}
 }

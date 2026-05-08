@@ -18,18 +18,26 @@
 			"node": "I-Node 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "I-XLIFF 2.0",
+			"po": "umbhalo wokuthola",
+			"json": "Isidleke noma isicaba",
+			"ini": "{keyValue}",
+			"restext": "Umbhalo we-MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Amafomethi wefayela ayisithupha",
-				"body": "Uhambo olujikelezayo .resx, .xliff, .po, .json, .ini, kanye ne-.restext ngokufometha okuzinzile kwe-byte."
+				"body": "Uhambo lokubuya nokubuya {resx}, {xliff}, {po}, {json}, {ini}, no-{restext} ngokufometha okuzinzile kwe-byte."
 			},
 			"config": {
 				"title": "Ukumiselwa kwezinga le-Repo",
-				"body": "Phonsa i-.github/resource-translator.yml kufaka phakathi ama-globs, ama-glossaries, kanye nezigaba ze-Custom Translator."
+				"body": "Phonsa ifayela le-{configPath} ukufaka ama-globs, ama-glossaries, kanye nezigaba Zomhumushi Ngokwezifiso."
 			},
 			"glossary": {
 				"title": "I-Glossary-aware",
-				"body": "Khiya amagama womkhiqizo nemigomo yomkhiqizo nge-regex ehlakaniphile ephatha i-C ++, .NET, nabangani."
+				"body": "Khiya amagama womkhiqizo nemigomo yomkhiqizo nge-regex ehlakaniphile ye-word-boundary ephatha {cpp}, {dotnet}, nabangane."
 			},
 			"dryRun": {
 				"title": "I-Dry-run + soft-fail",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Imiphumela ye-PR-friendly",
-				"body": "isifinyezo-isihloko, isifinyezo-imininingwane, futhi has-new-translations slot ngqo ku-create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails}, ne-{hasNewTranslations} slot ngqo ku-create-pull-request."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "Yakhelwe ku-@azure-rest / ai-translation-text + @azure / core-rest-pipeline - ukuzama kabusha okuzenzakalelayo ku-408 / 429 / 5xx, ayikho i-HTTP esongwe ngesandla. esbuild-bundled, audit-clean."
+				"body": "Yakhelwe ku-{azureSdk} + {corePipeline} - ukuzama kabusha okuzenzakalelayo ku-{statusCodes}, akukho HTTP esongwe ngesandla. {esbuild}-bundled, audit-clean."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Ukuhamba komsebenzi okudonsa",
+			"titlePrefix": "Kopisha. Namathisela.",
+			"titleAccent": "Humusha.",
+			"body": "Izimfihlo ezintathu, imigqa emine, futhi i-repo yakho ikhuluma izilimi eziningi ekucindezeleni okulandelayo.",
+			"setupLink": "Chofoza inkinobho ephelele"
+		},
+		"cta": {
+			"title": "Ukulungele ukungena endaweni ku-autopilot?",
+			"body": "Ukhiye owodwa we-Azure AI Translator, ifayela elilodwa lokuhamba komsebenzi. Umhumushi wemithombo uphatha okusele.",
+			"button": "Qala"
 		}
 	},
 	"getting-started": {
 		"title": "Ukuqala",
 		"eyebrow": "Ukusetha",
-		"lede": "Engeza ifayela lokuhamba komsebenzi, likhombe eziqinisekisweni zakho ze-Azure AI Translator, futhi isenzo - esakhiwe ku-SDK esemthethweni ye-Microsoft ye-@azure-rest / ai-translation-text - sizoskena i-repo yamafayela emithombo yolimi lomthombo futhi sikhiphe izingane zakubo ezihunyushiwe.",
+		"lede": "Engeza ifayela lokuhamba komsebenzi, likhombe kuziqinisekiso zakho ze-Azure AI Translator, futhi isenzo sizoskena i-repo yamafayela emithombo yolimi lomthombo futhi sikhiphe izingane zakubo ezihunyushiwe.",
 		"steps": {
 			"provision": {
 				"title": "Ukuhlinzeka umthombo we-Azure AI Translator",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Engeza ukuhamba komsebenzi",
-				"body": "Dala .github/workflows/translate.yml:"
+				"body": "Dala {workflowPath}:"
 			},
 			"resource": {
 				"title": "Yenza ifayela lomthombo",
-				"body": "Amafayela emithombo asebenzisa igama. <sourceLocale>. <ext> Umhlabano. Isibonelo i-Greetings.en.resx iba yi-Greetings.fr.resx, i-Greetings.de.resx, njll ngemuva kokugijima."
+				"body": "Amafayela emithombo asebenzisa isivumelwano {namingConvention}. Isibonelo, {sourceFile} iba {frFile}, {deFile}, njll ngemuva kokugijima."
 			},
 			"output": {
 				"title": "Hlola okukhiphayo",
-				"body": "Lapho ukuhamba komsebenzi sekuphelile, isenzo siveza imiphumela emithathu ongayifaka encazelweni ye-PR: isifinyezo-isihloko, isifinyezo-imininingwane, kanye nezinguqulo ezintsha. Ibuye ibhale isifinyezo se-Markdown ekhasini lomsebenzi nge-core.summary."
+				"body": "Lapho ukuhamba komsebenzi sekuphelile, isenzo siveza imiphumela emithathu ongayifaka encazelweni ye-PR: {summaryTitle}, {summaryDetails}, ne-{hasNewTranslations}. Ibuye ibhale isifinyezo se-Markdown ekhasini lomsebenzi nge-{coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Izinyathelo ezilandelayo",
-			"configuration": "Misa okumisiwe kwezinga le-repo nge-.github/resource-translator.yml.",
+			"configuration": "Misa okumisiwe kwezinga le-repo nge-{configPath}.",
 			"recipes": "Bheka izindlela zokupheka zama-monorepos, ama-glossaries angokwezifiso, nezigaba ze-Custom Translator."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Ukumiswa",
 		"eyebrow": "I-YAML",
 		"heroTitle": "Ukumiswa kwenqolobane",
-		"lede": "Veza okuzenzakalelayo kanye ku-.github/resource-translator.yml bese uvumela wonke umsebenzi ukuthi awuzuze ifa. Ukufakwa kwesenzo kuhlale kunqoba lapho kokubili kunikezwa."
+		"lede": "Veza okuzenzakalelayo kanye kufayela lokumiswa kwendawo yokugcina futhi uvumele yonke imisebenzi ithole ifa. Ukufakwa kwesenzo kuhlale kunqoba lapho kokubili kunikezwa.",
+		"intro": "Dlulisa umkhondo ngofakelo lwe-{configPath} uma udinga indawo engeyona emisiwe.",
+		"schemaHeading": "Isikimu",
+		"fieldReference": {
+			"heading": "Inkomba yenkambu",
+			"caption": "Inkomba yensimu yokumiswa",
+			"columns": {
+				"field": "Insimu",
+				"type": "Uhlobo",
+				"notes": "Amanothi"
+			},
+			"fields": {
+				"sourceLocale": "Buyela emuva ekufakweni {sourceLocale} uma kungenzeki. Iphinde idluliselwe ku-Translator njengoba {fromLocale} ngakho-ke izintambo ezimfushane azitholakali ngokuzenzakalelayo.",
+				"toLocales": "Noma i-array noma intambo ehlukaniswe nge-comma.",
+				"includeExclude": "Amaphethini we-Glob ahlolwe ngokumelene nezindlela ezihlobene ngokuphelele nendawo yokusebenzela.",
+				"glossary": "Ukuhumusha kwegama lokuhumusha kudlulile. Word-boundary aware (izibambo {cpp}, {dotnet}).",
+				"categoryId": "Isigaba se-Azure {customTranslatorLink} - imboni yakho / isizinda (ezomthetho, ezokwelapha, ithoni yokumaketha, njll.). Ithunyelwe njenge-{categoryQuery}.",
+				"textType": "Okuzenzakalelayo ku-{plain}. Sebenzisa {html} kuphela uma amanani omnyombo wakho equkethe izingcezu zangempela ze-HTML.",
+				"profanityAction": "Indlela yokuphatha amagama ahlanzekile ekukhiqizeni okuhunyushiwe?",
+				"profanityMarker": "Okunenjongo kuphela uma {profanityAction} {marked}.",
+				"allowFallback": "Setha {false} ukwehluleka ukuhumusha uma {categoryId} yakho ingenakho ukuthunyelwa kwendawo okuhlosiwe esikhundleni sokubuyela emuva kumodeli ejwayelekile.",
+				"apiVersion": "Umhumushi we-REST API version. Okuzenzakalelayo ku-{version}.",
+				"maxRetries": "Imizamo ephezulu yokuzama kabusha izimpendulo ze-HTTP zesikhashana ({statusCodes}). Okuzenzakalelayo ku-{defaultRetries}. Izingcingo ze-HTTP eziphelele ngesicelo ngasinye {totalCalls}.",
+				"retryBackoffMs": "I-Cap (ms) kunoma yikuphi ukulala okukodwa kwe-backoff. Okuzenzakalelayo ku-{defaultBackoff}. Isihloko se-{retryAfter} se-Azure sihlonishwa ncamashi lapho sikhona; ngaphandle kwalokho kusetshenziswa i-backoff exponential, efakwe kuleli nani.",
+				"protectPlaceholders": "Okuzenzakalelayo ku-{true}. Lapho ivuliwe, amathokheni afana ne-{mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ne-HTML athathelwa indawo ngamathokheni we-sentinel ngaphambi kokuhumusha futhi abuyiselwe ngemuva kwalokho. Khubaza kuphela uma umthombo uqukethe ngamabomu imibhalo emise okwendawo.",
+				"customPlaceholderPatterns": "Amaphethini we-regex angeziwe (ngaphandle kwama-delimiters) afakwe kusethi ye-placeholder ezenzakalelayo, isib. {angleToken}-syntax yethokheni yangokwezifiso. Ama-regexes angavumelekile awanakwa.",
+				"noTranslatePatterns": "Amaphethini we-Glob ahambisana nokhiye bezinga le-parser (indlela yamachashazi e-JSON, i-RESX {resxName}, i-PO {poMsgid}, iyunithi ye-XLIFF {xliffId}, ukhiye we-INI / restext). Okhiye abahambisanayo baphonswa esicelweni bese bedlula ngenani labo lomthombo lilondoloziwe."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Ukufaka i-oda",
+			"steps": {
+				"actionInputs": "Isenzo sifunda okokufaka okucacile komsebenzi wokusebenza.",
+				"config": "Ilayisha i-YAML config kusuka {configPath}.",
+				"precedence": "Kuyo yonke inkambu eyabiwe, okokufaka kunqoba; ngaphandle kwalokho inani le-YAML lisetshenziswa.",
+				"validation": "Amanani ahlanganisiwe aqinisekisiwe. Ama-enums angaqinisekisiwe (isib. {invalidEnum}) enza isenzo sihluleke ngokushesha ngomyalezo ocacile."
+			}
+		},
+		"tone": {
+			"heading": "Ithoni kanye nomkhakha ngamagama acacile",
+			"body": "I-Azure AI Translator v3 API ayinayo inkinobho eyodwa yethoni. Izilungiselelo ezimbili zihlangana ukukunikeza iningi lokulawula okufanayo:",
+			"industryLabel": "Imboni / isizinda:",
+			"industryBody": "sebenzisa {categoryId} ukukhomba isigaba se-Azure {customTranslatorLink} esiqeqeshwe ku-corpus yakho - ezomthetho, ezobuchwepheshe, ezokwelapha, ukumaketha, noma yini enye. Lesi yisigwedlo esinamandla kakhulu sethoni, izwi lomkhiqizo, nesilulumagama.",
+			"surfaceLabel": "Umbhalo ongaphezulu:",
+			"surfaceBody": "Sebenzisa i-{glossaryLink} ukukhiya amagama omkhiqizo nemigomo yomkhiqizo ngezwi, futhi usebenzise i-{profanityAction} ukuhlanza amagama angcolile lapho ubhekise endaweni yezithameli ezincane.",
+			"glossaryLinkLabel": "I-Glossary"
+		}
 	},
 	"inputs": {
 		"title": "Okokufaka nokukhiphayo",
 		"eyebrow": "Inkomba",
-		"lede": "Konke okufakiwe kwamukelwa kufayela lokuzikhethela le-repo config. Lapho zombili lezi ziqephu zisetshenzisiwe, inkinobho yesenzo iyanqoba."
+		"lede": "Konke okufakiwe kwamukelwa kufayela lokuzikhethela le-repo config. Lapho zombili lezi ziqephu zisetshenzisiwe, inkinobho yesenzo iyanqoba.",
+		"configurationIntro": "Bheka {configurationLink} ye-schema ye-YAML kanye ne-oda lokulayisha.",
+		"configurationLinkLabel": "Ukumiswa",
+		"columns": {
+			"name": "Igama",
+			"default": "Okuzenzakalelayo",
+			"description": "Incazelo"
+		},
+		"defaults": {
+			"none": "Akekho",
+			"allSupported": "Konke kusekelwa",
+			"translatorDefaultTrue": "Yiqiniso (Umhumushi okuzenzakalelayo)"
+		},
+		"requiredInputs": {
+			"heading": "Okokufaka okudingekayo",
+			"caption": "Okokufaka okudingekayo",
+			"items": {
+				"sourceLocale": "Indawo yomthombo (isib. {en}) esetshenziselwa ukuthola amafayela omnyombo afana {sourceGlob}. Ngaphezu kwalokho, umhumushi udluliselwe ku-{fromLocale}.",
+				"subscriptionKey": "Azure AI Translator subscription key. Dlula nge-{secrets}.",
+				"endpoint": "I-URL yesiphetho somhumushi, isib. {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Okokufaka okujwayelekile kokuzikhethela",
+			"caption": "Okokufaka okujwayelekile kokuzikhethela",
+			"items": {
+				"region": "Isifunda semithombo yomhumushi (shiya imithombo yomhlaba wonke).",
+				"toLocales": "Izindawo zokuhumusha Yamukela i-JSON array ({jsonArray}) noma amanani ahlukaniswe ngamakoma.",
+				"include": "Amaphethini we-glob ahlukaniswe yi-Newline; Amafayela ahambisanayo kuphela ahunyushiwe.",
+				"exclude": "Amaphethini we-glob ahlukaniswe yi-Newline; Amafayela afanayo yeqa (asetshenziswe ngemuva kokufaka).",
+				"configPath": "Indlela eya kwifayela lokumiswa kwe-YAML (maqondana nempande yendawo yokusebenzela).",
+				"dryRun": "Uma {true}, sebenzisa ukuhumusha bese ukhipha izifinyezo kodwa ungabhali amafayela.",
+				"failOnError": "Lapho {true}, amaphutha angalindelekile ehluleka isenzo; Lapho {false}, amaphutha ayisixwayiso."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Okufakiwe kwesicelo somhumushi",
+			"intro": "Lezi zibalazwe ngqo kumapharamitha wombuzo we-Azure AI Translator v3. Ngayinye iyazikhethela; Umhumushi ozenzakalelayo usebenza uma ungasekwanga.",
+			"caption": "Okufakiwe kwesicelo somhumushi",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. Zithunyelwe njenge-{categoryQuery}.",
+				"textType": "{plain} noma {html}. Sebenzisa {html} kuphela uma amanani emithombo yakho eyizingcezu zangempela ze-HTML.",
+				"profanityAction": "{noAction}, {marked}, noma {deleted}. Ilawula ukuthi amagama angcolile akhishwa kanjani ekuhumusheni.",
+				"profanityMarker": "{asterisk} noma {tag}. Okunenjongo kuphela uma {profanityAction} {marked}.",
+				"allowFallback": "Uma {false}, Umhumushi ubuyisela iphutha esikhundleni sokubuyela emgudwini ojwayelekile uma {categoryId} yakho ingenakho ukuthunyelwa kwendawo okuhlosiwe.",
+				"apiVersion": "Umhumushi we-REST API version."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Ukuqina nokuvikelwa kwendawo",
+			"intro": "Lezi okokufaka zilawula ukuthi isenzo siziphatha kanjani lapho uMhumushi enciphisa isicelo sakho nokuthi ivikela kanjani amathokheni we-placeholder afana ne-{mustache} noma i-{indexZero} ekuphazamiseni ngesikhathi sokuhumusha.",
+			"caption": "Ukuqina nokuvikelwa kwendawo",
+			"items": {
+				"maxRetries": "Imizamo ephezulu yokuzama kabusha izimpendulo ze-HTTP zesikhashana ({statusCodes}). Inani eliphelele lezingcingo ze-HTTP ngesicelo ngasinye liyi-{totalCalls}.",
+				"retryBackoffMs": "Cap (ngama-milliseconds) kunoma yikuphi ukulala okukodwa kwe-backoff. Isenzo sihlonipha ikhanda lempendulo ye-{retryAfter} ye-Azure ncamashi lapho ikhona; ngaphandle kwalokho isebenzisa i-jittered exponential backoff ehlanganiswe kuleli nani.",
+				"protectPlaceholders": "Lapho {true} (okuzenzakalelayo), abanikazi bezindawo ezifana ne-{mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ne-HTML izinhlangano zithathelwa indawo ngamathokheni we-sentinel ngaphambi kokuhumusha futhi zibuyiselwe ngemuva kwalokho. Khubaza kuphela uma umthombo wakho uqukethe ngamabomu umbhalo ongokoqobo omise okwe-placeholder okufanele uhunyushelwe.",
+				"customPlaceholderPatterns": "Ama-regexes ahlukaniswe yi-Newline (ngaphandle kwama-delimiters) afakwe kusethi ye-placeholder ezenzakalelayo, isib. {angleToken} ye-syntax yethokheni yangokwezifiso.",
+				"noTranslatePatterns": "Amaphethini we-glob ahlukaniswe nomugqa omusha ahambisana nokhiye bezinga le-parser (indlela yamachashazi e-JSON, i-RESX {resxName}, i-PO {poMsgid}, iyunithi ye-XLIFF {xliffId}, ukhiye we-INI / restext). Okhiye abahambisanayo baphonswa esicelweni soMhumushi bese bedlula ngenani labo lomthombo lilondoloziwe."
+			}
+		},
+		"outputs": {
+			"heading": "Okukhiphayo",
+			"caption": "Okukhiphayo",
+			"items": {
+				"summaryTitle": "Isifinyezo esifushane se-PR-title-friendly, isib. {summaryExample}.",
+				"summaryDetails": "Isifinyezo se-Markdown esifanele umzimba we-PR noma isifinyezo somsebenzi.",
+				"hasNewTranslations": "{trueString} lapho inguqulo eyodwa noma ngaphezulu entsha yakhiqizwa."
+			}
+		}
 	},
 	"formats": {
 		"title": "Amafomethi wefayela",
 		"eyebrow": "Inkomba",
 		"heroTitle": "Amafomethi wefayela axhasiwe",
-		"lede": "Amafomethi ayisithupha wezinsizakusebenza ezijikelezayo. Isenzo sifunda ifayela ngalinye lomthombo-wendawo, ihumusha amanani, futhi ibhale umfowabo ngendawo ngayinye ehlosiwe."
+		"lede": "Amafomethi ayisithupha wezinsizakusebenza ezijikelezayo. Isenzo sifunda ifayela ngalinye lomthombo-wendawo, ihumusha amanani, futhi ibhale umfowabo ngendawo ngayinye ehlosiwe.",
+		"namingConvention": "Wonke amafayela asebenzisa isivumelwano {namingConvention} sokuqamba amagama.",
+		"learnMore": "Funda kabanzi",
+		"items": {
+			"resx": {
+				"blurb": "Amafayela wemithombo ye-.NET asuselwa ku-XML. Ukuhumusha umbhalo wangaphakathi we-node ngayinye ye-{dataValue}, ulondoloze amazwana nemethadatha.",
+				"specLabel": "IMicrosoft Learn - Izinsiza kumafayela we-.resx"
+			},
+			"xliff": {
+				"blurb": "Imibhalo ye-OASIS XLIFF 2.0. Humusha {source} ngalinye bese ubhala umphumela ku-{target} ohambisanayo, usetha {trgLang} yendawo.",
+				"specLabel": "Ukucaciswa kwe-OASIS XLIFF 2.0"
+			},
+			"po": {
+				"blurb": "Amafayela we-GNU gettext Into ephathekayo. Ukuhumusha {msgid} / {msgidPlural} ngalinye libe ngamafomu {msgstr} / {msgstrPlural}.",
+				"specLabel": "GNU gettext — Ifomethi yefayela le-PO"
+			},
+			"json": {
+				"blurb": "Amafayela we-JSON angakhethiwe. Izinto ezidlekeni zifakwe phansi nge-{delimiter} delimiter yokuhumusha, bese ziphinda zidleke ekukhiqizeni. Okhiye abanamachashazi ({dottedKey}) bagcinwa ngezwi.",
+				"specLabel": "Ukucaciswa kwe-JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Amafayela {keyValue} alula (i-Win32-style INI noma iyiphi i-config eyisicaba). Izihloko zezigaba kanye nokuphawula kugcinwa.",
+				"specLabel": "Ifomethi yefayela le-INI ku-Wikipedia"
+			},
+			"restext": {
+				"blurb": "Imithombo yombhalo we-Microsoft MUI - ama-{keyValue} ayisicaba asetshenziswa njengomlingani wombhalo {resx}.",
+				"specLabel": "Ukubuka konke kwe-Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Iziqinisekiso zohambo lokuya nokubuya",
+			"body": "I-suite yokuhlola iqinisekisa i-byte-for-byte round-tripping yezinto ezimele zonke ifomethi. Uma i-quirk yefomethi iphula i-round-tripping ku-codebase yakho, sicela {issueLink} ngesampula encane.",
+			"issueLinkLabel": "Vula udaba"
+		}
 	},
 	"recipes": {
 		"title": "Izindlela zokupheka",
 		"eyebrow": "Incwadi yokupheka",
-		"lede": "Amaphethini ajwayelekile wokuhumusha kokuthumela: ama-monorepos, ama-glossaries, izigaba zangokwezifiso, ukugijima okomile, nokulawulwa kwethoni."
+		"lede": "Amaphethini ajwayelekile wokuhumusha kokuthumela: ama-monorepos, ama-glossaries, izigaba zangokwezifiso, ukugijima okomile, nokulawulwa kwethoni.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Vula isicelo sokudonsa ngemuva kokugijima ngakunye"
+			},
+			"monorepo": {
+				"heading": "I-Monorepos: ukuhumusha ububanzi ngephakethe ngalinye"
+			},
+			"glossary": {
+				"heading": "I-Glossary yamagama emikhiqizo nemigomo yomkhiqizo",
+				"intro": "Faka {configPath} ku-repo:",
+				"afterLabel": "Ngemuva",
+				"body": "Amagama e-glossary asetshenziswa {after} ukuhumusha, ngakho-ke okukhiphayo okuhunyushwe ngomshini kugcina uphawu lwakho oluthandayo ngisho nalapho imodeli ishintshanisa isifaniso."
+			},
+			"customCategory": {
+				"heading": "Isigaba Sokuhumusha Ngokwezifiso (imboni / isizinda)",
+				"body": "Qeqesha isigaba se-Azure {customTranslatorLink} ku-corpus ebamba isilulumagama sakho somkhakha kanye nethoni (yezomthetho, yezokwelapha, ukumaketha, ubunjiniyela bangaphakathi, njll) bese udlulisa i-ID yayo nge-{categoryId}. Lena ithoni enamandla kakhulu enikezwa yi-Azure."
+			},
+			"tone": {
+				"heading": "Ukulawula ithoni + ukubuyela emuva okuqinile",
+				"body": "Hlanganisa i-{categoryId} yomhumushi wangokwezifiso ne-{profanityAction} ne-{allowFallbackFalse} ukuphoqelela izwi elingaguquguquki futhi wehluleke ukuhamba komsebenzi uma isigaba esikhethiwe singenakho ukuthunyelwa kwenye yezindawo zakho ezihlosiwe."
+			},
+			"dryRun": {
+				"heading": "Ukugijima okomile ngaphambi kokuvula ukusebenza komsebenzi",
+				"body": "Isenzo sisakhipha imiphumela efingqiwe kanye nesifinyezo sesinyathelo kodwa awekho amafayela abhaliwe. Hlanganisa ne-{failOnErrorFalse} ukuveza yonke inkinga njengesixwayiso ngenkathi uphinda."
+			}
+		}
 	},
 	"faq": {
 		"title": "Imibuzo",
 		"eyebrow": "Usizo",
 		"heroTitle": "Imibuzo ebuzwa njalo",
-		"lede": "Izimpendulo ezisheshayo zemibuzo evelayo kaningi lapho uthatha isenzo."
+		"lede": "Izimpendulo ezisheshayo zemibuzo evelayo kaningi lapho uthatha isenzo.",
+		"questions": {
+			"azure": {
+				"heading": "Isenzo sikhuluma kanjani ne-Azure?",
+				"body": "Nge-SDK esemthethweni ye-Microsoft {azureSdkLink}, efakwe ku-{corePipelineLink}. Lokho kukuthola ukuzama kabusha okuzenzakalelayo ku-{statusCodes}, ukuthayipha isicelo namamodeli wempendulo, nokuphathwa kwekhanda lokuqinisekiswa mahhala - konke okwakuyikholi ye-{axios} esongwe ngesandla. Indawo yesenzo somphakathi (okokhiphayo, okukhiphayo, okukhiphayo kwefayela) ayishintshiwe."
+			},
+			"tone": {
+				"heading": "Kungani ngezinye izikhathi izinguqulo zingekho emthethweni noma ezingekho emthethweni?",
+				"body": "Ukuhumusha komshini kuhluleka kumodeli ejwayelekile. Izinkinobho ezintathu ziyasiza: i-{glossaryLink} yesikhathi esinzima, i-{customTranslatorLink} yamamodeli ahleliwe aqeqeshwe ngethoni yakho nesilulumagama, kanye {profanityAction} ukuhlanza noma ukushaya amagama angcolile.",
+				"glossaryLinkLabel": "I-Glossary",
+				"customTranslatorLinkLabel": "Isigaba Somhumushi Ngokwezifiso"
+			},
+			"duplicateFiles": {
+				"heading": "Ngingakugwema kanjani ukuhumusha ifayela elifanayo kabili?",
+				"body": "Vula ukuhamba komsebenzi kuma-{paths} ahambisana namafayela akho omthombo-wendawo kuphela, isib {sourceGlob}. Isenzo siphinde sifake isihlungi sayo sefayela le-per-trigger lapho {githubToken} isethiwe, ukunciphisa umsebenzi kumafayela ekuzibophezeleni kwakamuva."
+			},
+			"offline": {
+				"heading": "Ngingakwazi yini ukwenza isenzo ngaphandle kwe-intanethi?",
+				"body": "Hhayi ncamashi — Umhumushi we-Azure AI ubuchopho besikhathi sokugijima. Kepha ungagijima ne-{dryRunTrue} ukuze uqinisekise i-parsing ne-config ngaphandle kokwenza izicelo ze-HTTP zokuhumusha."
+			},
+			"node": {
+				"heading": "Iyiphi inguqulo ye-Node esenzweni esisebenza kuso?",
+				"body": "I-v3 isebenza ku-GitHub Actions {nodeRuntime} runtime. I-JavaScript ehlanganisiwe iyahambisana ne-Node 20, 22, ne-24, okuyilokho okuvivinya i-CI."
+			},
+			"dist": {
+				"heading": "Ivelaphi i-{distDir} ehlanganisiwe?",
+				"body": "Izenzo ze-GitHub JS zithumela i-JS yazo ehlanganisiwe endaweni yokugcina. Ukuhamba komsebenzi {distBuild} kuyakha kabusha ngemuva kokuhlanganiswa ngakunye kuya ku-{mainBranch} uma kuzokhuphuka, futhi {distCheck} kuvimbela ama-PR azothola okukhiphayo okuphelelwe yisikhathi."
+			},
+			"formats": {
+				"heading": "Kuthiwani ngamanye amafomethi emithombo?",
+				"body": "Namuhla: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} uma udinga enye - isikhombimsebenzisi se-parser sincane (i-parse → imephu → usebenzise izinguqulo → ifomethi) futhi iminikelo yamukelekile.",
+				"issueLinkLabel": "Vula udaba"
+			}
+		}
 	},
 	"translations": {
 		"title": "Ukuhumusha",
 		"eyebrow": "Umbukiso",
 		"heroTitle": "Sawubona kuzo zonke izilimi",
-		"locales": "Izindawo",
-		"currentlyRendered": "Kuhunyushwe njengamanje",
-		"complete": "Qedela!",
-		"pendingPrefix": "Ulinde ukuhumusha okulandelayo kwe-docs.",
+		"lede": "Leli khasi lihunyushwa yi-Resource Translator uqobo, kuzo zonke izilimi ezisekelwayo, kuzo zonke izilimi ezisekelwa yi-Azure AI Translator.",
+		"localeCountLabel": "{count} izindawo",
+		"statusComplete": "{translatedCount} okwamanje - ephelele!",
+		"statusPending": "{translatedCount} okwamanje - {pendingCount} kusalindwe ukugijima okulandelayo {workflowName}.",
 		"viewWorkflowRuns": "Buka ukusebenza komsebenzi",
 		"filter": "Hlunga",
 		"filterPlaceholder": "Sesha ngolimi, ikhodi noma igama lendabuko.",
 		"source": "Umthombo",
 		"machineTranslations": "Ukuhumusha komshini",
-		"translationPending": "Ukuhumusha kulindile — vula ukuhumusha-amadokhumenti ukugijima.",
+		"translationPending": "Ukuhumusha kulindile — vula ukugijima {workflowName}.",
 		"noLocales": "Azikho izindawo ezihambisana naleso sihlungi.",
-		"howItWorks": "Isebenza kanjani lokhu"
+		"howItWorks": {
+			"heading": "Isebenza kanjani lokhu",
+			"thisActionLabel": "Lesi senzo kanye",
+			"steps": {
+				"source": "Ifayela lomthombo wesiNgisi lihlala ku-{messagesPath}.",
+				"workflow": "Pushes that touch it kick off {workflowLink}, which runs {thisAction} against itself.",
+				"fanOut": "Isenzo siphuma kuyo yonke indawo esekelwa yi-Azure AI Translator (elungiselelwe ngo-{configPath}) futhi ibhala umfowabo {messagesLocaleJson} ngenhloso ngayinye.",
+				"pullRequest": "Isicelo sokudonsa sivulwa ngezinguqulo ezintsha. Ukuyihlanganisa kushicilela kabusha leli khasi ngamakhadi agcwalisiwe."
+			}
+		},
+		"poweredBy": "Inikwe amandla yi-Resource Translator ne-Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Ukunikela",
 		"eyebrow": "Umthombo ovulekile",
-		"lede": "Imibiko ye-bug, izicelo zesici, nezicelo zokudonsa konke kwamukelekile. Isenzo sincane ngokwanele ukuba sibe nobungane kubanikeli besikhathi sokuqala."
+		"lede": "Imibiko ye-bug, izicelo zesici, nezicelo zokudonsa konke kwamukelekile. Isenzo sincane ngokwanele ukuba sibe nobungane kubanikeli besikhathi sokuqala.",
+		"localDevelopment": {
+			"heading": "Ukuthuthukiswa kwendawo"
+		},
+		"addingParser": {
+			"heading": "Ukwengeza i-parser",
+			"steps": {
+				"fixture": "Engeza inkinobho ngaphansi kwe-{testDataDir}.",
+				"implement": "Sebenzisa {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Yibhalise ku-{factoryFile}.",
+				"extension": "Yengeza isalulo sefayela {translationFileSchemes} ku-{finderFile}.",
+				"tests": "Bhala ukuhlolwa kohambo lokuya nokubuya kwefomethi ye-parse → bese ufaka izinguqulo."
+			}
+		},
+		"coverage": {
+			"heading": "Imikhawulo yokumboza",
+			"body": "I-Jest config iphoqelela ukumbozwa okuncane. Ikhodi entsha kufanele igcine izitatimende + imigqa umkhawulo ngenhla 78% futhi imisebenzi ngaphezu 90%. Engeza ama-fixtures nezivivinyo eceleni kwenguquko yakho."
+		},
+		"docsSite": {
+			"heading": "Isayithi lemibhalo",
+			"body": "Ifolda {docsDir} iphrojekthi ye-Astro 6 + Tailwind v4. Sebenzisa {npmInstall} lapho kanye, bese {npmRunDev} ukubuka kuqala kwendawo. Ukuhamba komsebenzi kwe-{pagesWorkflow} kuthumela amadokhumenti kumakhasi eGitHub kuwo wonke ama-merge."
+		}
 	},
 	"changelog": {
 		"title": "I-Changelog",
 		"eyebrow": "Umlando",
-		"lede": "Isifinyezo esiphezulu sokukhishwa. I-canonical, i-changelog enegunya ihlala CHANGELOG.md endaweni yokugcina."
+		"lede": "Isifinyezo esiphezulu sokukhishwa. I-canonical, i-changelog enegunya ihlala CHANGELOG.md endaweni yokugcina.",
+		"fullRecord": "Bheka {changelogLink} ukuze uthole irekhodi eliphelele.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "I-v3 (ekuthuthukisweni)",
+			"labels": {
+				"breaking": "UKUPHULA",
+				"resilience": "Ukuqina:",
+				"placeholderProtection": "Ukuvikelwa kwe-placeholder:",
+				"perKeyOptOut": "Ukuphuma kokhiye ngamunye:",
+				"docsAccessibility": "Ukufinyeleleka kwamadokhumenti:",
+				"inlineCodeStyling": "Isitayela sekhodi ye-inline:"
+			},
+			"issueLabels": {
+				"closes46": "Vala # 46.",
+				"tightens16": "Qinisa # 16.",
+				"closes35": "Vala # 35."
+			},
+			"items": {
+				"runtime": "Yiba nesikhathi {nodeRuntime} sokugijima ({breaking}).",
+				"newInputs": "Okokufaka okusha: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, kanye nezinkinobho ezithuthukisiwe ze-Translator {textType}, {profanityAction}, {profanityMarker}, ne-{allowFallback}.",
+				"sourceLocale": "Indawo yomthombo manje nayo idluliselwe kuMhumushi njengoba {fromLocale} ngakho-ke izintambo ezimfushane azitholakali ngokuzenzakalelayo.",
+				"resilience": "{label} ukuzama kabusha okuzenzakalelayo kwezimpendulo zesikhashana ze-HTTP ({statusCodes}) ezihlonipha ikhanda le-{retryAfter} le-Azure - libuyela emuva emuva lapho lingekho. I-Tunable nge-{maxRetries} ne-{retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} amathokheni afana ne-{mustache}, i-{jsVar}, i-{indexZero}, i-{numberFormat}, i-{printf}, i-{positionalPrintf} ne-HTML ihlanganiswe ngama-sentinels ngaphambi kokuhumusha futhi ibuyiselwe ngemuva kwalokho, ngakho-ke uMhumushi uyeka ukubamba i-i18next / Mustache / Handlebars / .NET / printf placeholders. Shintsha nge-{protectPlaceholders}; Ukwandisa {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} okufakwa okusha kwe-{noTranslatePatterns} kudonsa okhiye abahambisanayo kusuka esicelweni se-Translator ngokuphelele (kulondoloza amanani omthombo wamagama omkhiqizo, amakhodi wephutha, njll.). Ihambisana namaphethini we-glob ngokumelene nokhiye bezinga le-parser (indlela yamachashazi ye-JSON, i-RESX {resxName}, i-PO {poMsgid}, iyunithi ye-XLIFF {xliffId}, ukhiye we-INI / restext). {issue}",
+				"repoConfig": "Ukumiswa kwezinga le-Repo nge-{configPath}.",
+				"glossary": "Ukusekelwa kwe-glossary, isifinyezo sesinyathelo nge-{coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "Ukuhlolwa kwe-NPM okuhlanzekile (0 ubuthakathaka).",
+				"docsSite": "I-Astro + Tailwind v4 docs site ngokubuka izinguquko kanye ne-Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. Ama-glyphs we-logo aguqulwe abe izindlela ukuze angabe esahluleka ukuqhathanisa umbala ngokumelene nezitobhi ze-gradient, inkinobho ye-{backToTop} entantayo isebenzisa i-{inert} ngenkathi ifihliwe (esikhundleni se-toggle ye-{ariaHidden} eshiye i-tabbable), {formatsAstro} izigaba azisashayisani nama-ID abo akhiqizwa ngokuzenzakalelayo, amakhadi amathathu endawo manje aveza izimfanelo ze-{lang} ze-BCP-47 ezivumelekile ({nya}, {lug}, {run}), amalebula aphindwe kabili {documentation} aphawulekayo ahlukaniswe phakathi kwebha eseceleni ne-footer,  futhi itafula ngalinye ledatha ku-{inputs} / {configuration} imikhumbi enesihloko se-screen-reader.",
+				"inlineCode": "{label} docs prose {codeElement} manje igqoke ukugcizelela kwengqikithi efudumele / ye-amber - ehlukile kuphalethi ye→accent esetshenziselwa izixhumanisi nezihloko.",
+				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Bheka umlando we-git."
+		}
 	}
 }

@@ -18,18 +18,26 @@
 			"node": "Node 20 / 22 / 24",
 			"sdk": "Vakadonui Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "nested se flat",
+			"ini": "{keyValue}",
+			"restext": "iTukutuku ni MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Ono na ivakarau ni faile",
-				"body": "Round-trips .resx, .xliff, .po, .json, .ini, kei na .restext vata kei na byte-tudei formatting."
+				"body": "Lesu {resx}, {xliff}, {po}, {json}, {ini}, kei na {restext} vata kei na ituvatuva tudei ni byte."
 			},
 			"config": {
 				"title": "Config ni ivakatagedegede ni repo",
-				"body": "Biuta e dua na .github/resource-translator.yml me okati kina na globs, glossaries, kei na iwasewase ni Custom Translator."
+				"body": "Biuta e dua na faile {configPath} me baleta na globs, glossaries, kei na iwasewase ni Custom Translator."
 			},
 			"glossary": {
 				"title": "Kilai ni Glossary",
-				"body": "Lokataka na yaca ni brand kei na vosa ni ivoli vata kei na regex ni iyalayala ni vosa vuku ka qarava na C++, .NET, kei na itokani."
+				"body": "Lokataka na yaca ni brand kei na vosa ni ivoli vata kei na regex ni iyalayala ni vosa vuku ka qarava na {cpp}, {dotnet}, kei na itokani."
 			},
 			"dryRun": {
 				"title": "Dry-run + soft-fail",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Output ni PR-friendly",
-				"body": "summary-title, summary-details, and has-new-translations slot directly into create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails}, kei na {hasNewTranslations} slot vakadodonu ki na create-pull-request."
 			},
 			"sdk": {
 				"title": "Vakadonui Azure SDK",
-				"body": "Tarai cake ena @azure-rest/ai-translation-text + @azure/core-rest-pipeline — automatic retries on 408/429/5xx, no hand-rolled HTTP. esbuild-bundled, dikevi fika-savasava."
+				"body": "Tarai cake ena {azureSdk} + {corePipeline} — automatic retries on {statusCodes}, no hand-rolled HTTP. {esbuild}-bundled, dikevi fika-savasava."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Cakacaka ni drodro ni cakacaka",
+			"titlePrefix": "Lavetaka. Vakabira.",
+			"titleAccent": "Vakadewataka.",
+			"body": "Tolu na ka vuni, va na laini, kei na nomu repo e multilingual ena push ka tarava.",
+			"setupLink": "Lako curuma na ituvatuva taucoko"
+		},
+		"cta": {
+			"title": "Vakarau tu mo localize ena autopilot?",
+			"body": "Dua na idola ni Azure AI Translator, dua na faile ni cakacaka. Na Resource Translator e qarava na kena vo.",
+			"button": "Tekivu"
 		}
 	},
 	"getting-started": {
 		"title": "Tekivu",
 		"eyebrow": "Vakaduri",
-		"lede": "Vakuria e dua na faile ni cakacaka, dusia ki na nomu ivakatakilakila ni Azure AI Translator, kei na cakacaka — tarai cake ena SDK vakadonui ni Microsoft @azure-rest/ai-translation-text — ena scan na repo me baleta na faile ni ivurevure ni ivurevure ni ivurevure ka solia na veitacini vakadewataki.",
+		"lede": "Vakuria e dua na faile ni cakacaka, dusia ki na nomu Azure AI Translator credentials, ka na vakadikeva na cakacaka na repo me baleta na faili ni ivurevure ni ivurevure ni vosa ka solia na veitacini vakadewataki.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Kuria na cakacaka ni cakacaka",
-				"body": "Tauyavutaka na .github/workflows/translate.yml:"
+				"body": "Bulia na {workflowPath}:"
 			},
 			"resource": {
 				"title": "Vakadeitaka e dua na faile ni ivurevure ni ivurevure",
-				"body": "Na faili ni ivurevure e vakayagataka na Yaca. <sourceLocale>. <ext> Convention. Me kena ivakaraitaki na Greetings.en.resx sa yaco me Greetings.fr.resx, Greetings.de.resx, kei na so tale ni oti e dua na cici."
+				"body": "Na faili ni ivurevure e vakayagataka na {namingConvention} convention. Kena ivakaraitaki {sourceFile} yaco me {frFile}, {deFile}, kei na so tale ni oti e dua na cici."
 			},
 			"output": {
 				"title": "Dikeva na output",
-				"body": "Ni sa oti na cakacaka, na cakacaka e vakaraitaka e tolu na outputs e rawa ni o vakauqeta ki na dua na ivakamacala ni PR: ivakalekaleka-ulutaga, ivakalekaleka-matailalai, kei na has-new-translations. E vola talega e dua na ivakaleka ni Markdown ki na tabana ni cakacaka ena core.summary."
+				"body": "Ni sa oti na cakacaka, na cakacaka e vakaraitaka e tolu na outputs e rawa ni o vakauqeta ki na dua na ivakamacala ni PR: {summaryTitle}, {summaryDetails}, kei na {hasNewTranslations}. E vola talega e dua na ivakaleka ni Markdown ki na tabana ni cakacaka ena {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Na ikalawa e tarava",
-			"configuration": "Configure repo-level defaults with .github/resource-translator.yml.",
+			"configuration": "Configure repo-level defaults with {configPath}.",
 			"recipes": "Raica na icakacaka ni monorepos, custom glossaries, kei na iwasewase ni Custom Translator."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Tuvatuva",
 		"eyebrow": "YAML",
 		"heroTitle": "Ituvatuva ni repository",
-		"lede": "Express defaults once in .github/resource-translator.yml and let every workflow inherit them. Na input ni cakacaka e dau qaqa ni sa vakarautaki ruarua."
+		"lede": "Express defaults once in the repository config file and let every workflow inherit them. Na input ni cakacaka e dau qaqa ni sa vakarautaki ruarua.",
+		"intro": "Override the path with the {configPath} input if you need a non-default location.",
+		"schemaHeading": "Schema",
+		"fieldReference": {
+			"heading": "iDusidusi ni vanua",
+			"caption": "iDusidusi ni lomanibai ni configuration",
+			"columns": {
+				"field": "Vanua",
+				"type": "Mataqali",
+				"notes": "iDusidusi"
+			},
+			"fields": {
+				"sourceLocale": "Lesu tale ki na {sourceLocale} input kevaka e sega ni tuvatuva. Also forwarded to Translator as {fromLocale} so short strings aren't autodetected.",
+				"toLocales": "E dua na array se dua na string tawasei koma.",
+				"includeExclude": "Glob patterns dikevi vata kei na sala taucoko kei na vanua ni cakacaka.",
+				"glossary": "Na vosa ni oti na vakadewa. Word-boundary aware (handles {cpp}, {dotnet}).",
+				"categoryId": "Iwasewase ni Azure {customTranslatorLink} — nomu knob ni cakacaka/vanua (vakalawa, vakavuniwai, rorogo ni volivolitaki, kei na so tale). Vakau me {categoryQuery}.",
+				"textType": "Defaults ki na {plain}. Vakayagataka ga na {html} kevaka e tiko ena nomu ivurevure na tiki ni HTML dina.",
+				"profanityAction": "How to treat profane words in translated output.",
+				"profanityMarker": "E vakaibalebale ga ni {profanityAction} {marked}.",
+				"allowFallback": "Tuvanaka me {false} me sega ni vakadewataki ni sega ni dua na deployment ni nomu {categoryId} me baleta e dua na vanua takete ka sega ni lesu tale ki na ivakaraitaki raraba.",
+				"apiVersion": "Translator REST API version. Defaults ki na {version}.",
+				"maxRetries": "Maximum retry attempts on transient HTTP responses ({statusCodes}). Defaults ki na {defaultRetries}. Na iwiliwili taucoko ni kaci ni HTTP ena dua na kerekere e {totalCalls}.",
+				"retryBackoffMs": "Cap (ms) ena dua ga na moce vakamuri. Defaults ki na {defaultBackoff}. Na ulutaga ni {retryAfter} ni Azure e rokovi sara ga ena gauna e tiko kina; kevaka e sega e vakayagataki na jittered exponential backoff, capped ena yavunilewa oqo.",
+				"protectPlaceholders": "Defaults ki na {true}. Ni sa yaco, na ivakatakilakila me vaka na {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} kei na HTML entity era sa vakaisosomitaki vata kei na ivakatakilakila ni sentinel ni bera na vakadewataki ka vakalesui mai ni sa oti. Disable only when source intentionally contains placeholder-shaped literals.",
+				"customPlaceholderPatterns": "Ikuri ni ivakarau ni regex (sega ni delimiters) vakuri ki na ituvatuva ni placeholder lalai, e.g. {angleToken} me baleta na syntax ni ivakatakilakila tudei. E sega ni kauwaitaki na regexes sega ni dodonu.",
+				"noTranslatePatterns": "Glob patterns matched against parser-level keys (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). Na idola veisotari era na vakasuka mai na kerekere ka curu yani vata kei na kena ivurevure maroroi."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Ota ni vakavodoki",
+			"steps": {
+				"actionInputs": "Na cakacaka e wilika na vakasama matata mai na cakacaka.",
+				"config": "E vakavodoka na config ni YAML mai na {configPath}.",
+				"precedence": "Me baleta na veivanua kece e wasea, e qaqa na input; kevaka e sega sa vakayagataki na yavunilewa ni YAML.",
+				"validation": "Sa vakadeitaki na yavunilewa sa cokovata tu. Na enum sega ni cala (e.g. {invalidEnum}) e vakavuna na cakacaka me leqa vakatotolo ena dua na itukutuku matata."
+			}
+		},
+		"tone": {
+			"heading": "Rorogo kei na cakacaka, ena vosa matata",
+			"body": "Na Azure AI Translator v3 API e sega ni dua na knob ni rorogo. E rua na ivakarau e cokovata me solia vei iko e levu na lewa vata ga:",
+			"industryLabel": "Cakacaka / vanua:",
+			"industryBody": "vakayagataka na {categoryId} mo dusia kina e dua na iwasewase ni Azure {customTranslatorLink} ka tuberi ena nomu corpus — vakalawa, gacagaca, vakavuniwai, volivolitaki, se dua tale na ka. Oqo na lever kaukauwa duadua me baleta na rorogo, domo ni brand, kei na vosa.",
+			"surfaceLabel": "Na itukutuku e dela:",
+			"surfaceBody": "Vakayagataka na {glossaryLink} me lokataki kina na yaca ni brand kei na vosa ni ivoli ena vosa vosa, ka vakayagataka na {profanityAction} me vakasavasavataki kina na vosa vakasisila ni takete na localization me baleti ira na gone.",
+			"glossaryLinkLabel": "iVolatukutuku"
+		}
 	},
 	"inputs": {
 		"title": "Inputs & outputs",
 		"eyebrow": "iDusidusi",
-		"lede": "Sa ciqomi talega na vakacurumi kece ena faile ni config ni repo digitaki. Ni rau sa tuvanaki ruarua, sa na qaqa na input ni cakacaka."
+		"lede": "Sa ciqomi talega na vakacurumi kece ena faile ni config ni repo digitaki. Ni rau sa tuvanaki ruarua, sa na qaqa na input ni cakacaka.",
+		"configurationIntro": "Raica na {configurationLink} me baleta na ituvatuva ni YAML kei na ituvatuva ni vakavodoki.",
+		"configurationLinkLabel": "Tuvatuva",
+		"columns": {
+			"name": "Yaca",
+			"default": "Lalai",
+			"description": "iVakamacala"
+		},
+		"defaults": {
+			"none": "sega ni dua",
+			"allSupported": "Tokoni kece",
+			"translatorDefaultTrue": "dina (Dauvakadewa lalai)"
+		},
+		"requiredInputs": {
+			"heading": "Inputs e gadrevi",
+			"caption": "Inputs e gadrevi",
+			"items": {
+				"sourceLocale": "Vanua ni ivurevure (e.g. {en}) e vakayagataki me kunei kina na faile ni ivurevure me vaka na {sourceGlob}. Vakau talega ki na Dauvakadewa me {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator subscription key. Lako yani ki na {secrets}.",
+				"endpoint": "URL ni icavacava ni dauvakadewa, e.g. {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Vakacurumi ni digidigi raraba",
+			"caption": "Vakacurumi ni digidigi raraba",
+			"items": {
+				"region": "Vanua ni ivurevure ni dauvakadewa (sega ni baleta na ivurevure ni vuravura raraba).",
+				"toLocales": "Vanua me vakadewataki kina. Ciqoma e dua na JSON array ({jsonArray}) se yavunilewa tawasei koma.",
+				"include": "Newline-separated glob patterns; na faile veisotari ga e vakadewataki.",
+				"exclude": "Newline-separated glob patterns; Era sa calata na faile veisotari (vakayagataki ni sa okati oti).",
+				"configPath": "Sala ki na faile ni config ni YAML (veiwekani ki na wakana ni vanua ni cakacaka).",
+				"dryRun": "Ni {true}, cicivaka na vakadewa ka solia na ivakaleka ia kakua ni vola na faile.",
+				"failOnError": "Ni sa {true}, na cala sega ni namaki ena sega ni yaco; Ni {false}, na cala e veivakasalataki."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Kerekere ni dauvakadewa",
+			"intro": "Oqo na mape vakadodonu ki na Azure AI Translator v3 query parameters. Na veika kece e digitaki; na default ni Translator e vakayagataki ni sega ni tuvatuva.",
+			"caption": "Kerekere ni dauvakadewa",
+			"items": {
+				"categoryId": "Na iwasewase ni Azure {customTranslatorLink} — na knob ni cakacaka/domain/tone. Vakau me {categoryQuery}.",
+				"textType": "{plain} se {html}. Vakayagataka ga na {html} ni nomu ivurevure e tiki ni HTML dina.",
+				"profanityAction": "{noAction}, {marked}, se {deleted}. Vakatulewataka na ivakarau ni kena kacivaki na vosa ca ena vakadewa.",
+				"profanityMarker": "{asterisk} se {tag}. E vakaibalebale ga ni {profanityAction} {marked}.",
+				"allowFallback": "Ni sa {false}, ena vakalesuya mai na Translator e dua na cala ka sega ni lesu tale ki na ivakarau raraba kevaka e sega ni vakayagataki na nomu {categoryId} me baleta e dua na vanua takete.",
+				"apiVersion": "Translator REST API version."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Resilience & placeholder protection",
+			"intro": "Na inputs oqo e vakatulewataka na ivakarau ni cakacaka ena gauna e throttles kina na nomu kerekere na Translator kei na sala e taqomaki kina na ivakatakilakila ni placeholder me vaka na {mustache} se {indexZero} mai na kena mangled ena gauna ni vakadewa.",
+			"caption": "Resilience kei na veitaqomaki ni placeholder",
+			"items": {
+				"maxRetries": "Maximum retry attempts on transient HTTP responses ({statusCodes}). Na iwiliwili taucoko ni veikacivi HTTP ena dua na kerekere e {totalCalls}.",
+				"retryBackoffMs": "Cap (ena milliseconds) ena dua ga na moce ni backoff. Na cakacaka e doka na ulutaga ni isau ni {retryAfter} ni Azure ena gauna sara ga e tiko kina; kevaka e sega e vakayagataka na jittered exponential backoff capped ena yavunilewa oqo.",
+				"protectPlaceholders": "Ni sa {true} (lalai), placeholders me vaka na {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} kei na HTML entity era sa vakaisosomitaki vata kei na ivakatakilakila ni sentinel ni bera na vakadewataki ka vakalesui mai ni sa oti. Disable walega kevaka e nakiti na nomu ivurevure e tiko kina na itukutuku vakaibalebale e dodonu me vakadewataki.",
+				"customPlaceholderPatterns": "Newline-separated regexes (without delimiters) added to the default placeholder set, e.g. {angleToken} for custom token syntax.",
+				"noTranslatePatterns": "Newline-separated glob patterns matched against parser-level keys (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). Na idola veisotari era na biu laivi mai na kerekere ni Dauvakadewa ka curu yani ni maroroi tu na kedra ivurevure ni ivurevure."
+			}
+		},
+		"outputs": {
+			"heading": "Output",
+			"caption": "Output",
+			"items": {
+				"summaryTitle": "iVakaleka lekaleka ni ulutaga ni PR, e.g. {summaryExample}.",
+				"summaryDetails": "iVakaleka ni Markdown e veiganiti me baleta e dua na isoqosoqo ni PR se ivakaleka ni cakacaka.",
+				"hasNewTranslations": "{trueString} na gauna e caka kina e dua se sivia na vakadewa vou."
+			}
+		}
 	},
 	"formats": {
 		"title": "Ivakarau ni faile",
 		"eyebrow": "iDusidusi",
 		"heroTitle": "Veitokoni ni ituvatuva ni faile",
-		"lede": "Ono na ituvatuva ni ivurevure e rawa ni veisautaki. Na cakacaka e wilika na faile yadua ni ivurevure-vanua, vakadewataka na yavunilewa, ka vola e dua na tacina ena dua na vanua takete."
+		"lede": "Ono na ituvatuva ni ivurevure e rawa ni veisautaki. Na cakacaka e wilika na faile yadua ni ivurevure-vanua, vakadewataka na yavunilewa, ka vola e dua na tacina ena dua na vanua takete.",
+		"namingConvention": "Na faile kece e vakayagataka na {namingConvention} na yacana ni yacana.",
+		"learnMore": "Vulica eso tale na ka",
+		"items": {
+			"resx": {
+				"blurb": "Faili ni ivurevure ni .NET yavutaki ena XML. Vakadewataka na itukutuku e loma ni node {dataValue} yadua, maroroya na vakasama kei na metadata.",
+				"specLabel": "Microsoft Learn — iVurevure ena faile ni .resx"
+			},
+			"xliff": {
+				"blurb": "iVola ni OASIS XLIFF 2.0. Vakadewataka na {source} yadua ka vola na kena macala ki na {target} e veiganiti, ka tuvanaka na {trgLang} me baleta na vanua.",
+				"specLabel": "OASIS XLIFF 2.0 specification"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object files. Vakadewataka na {msgid} / {msgidPlural} yadua ki na {msgstr} / {msgstrPlural} fomu.",
+				"specLabel": "GNU gettext — PO file format"
+			},
+			"json": {
+				"blurb": "Faili ni JSON sega ni vakatautauvata. Nested objects are flattened with the {delimiter} delimiter for translation, then re-nested on output. Dotted keys ({dottedKey}) are reserved verbatim.",
+				"specLabel": "Ivakamacala ni JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Faile ni {keyValue} rawarawa (Win32-style INI se dua ga na config raraba). E maroroi na ulutaga ni iwasewase kei na vakasama.",
+				"specLabel": "Format ni faile ni INI ena Wikipedia"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI text resources — flat {keyValue} pairs used as a textual companion to {resx}.",
+				"specLabel": "Vakararaba ni Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Veivakadeitaki ni ilakolako lesu",
+			"body": "Na ituvatuva ni vakatovotovo e vakadeitaka na byte-for-byte round-tripping me baleta na matataka na fixtures ni ituvatuva yadua. Kevaka e dua na ivakarau ni quirk e voroka na wavoki ena nomu codebase, yalovinaka {issueLink} vata kei na dua na ivakaraitaki lailai.",
+			"issueLinkLabel": "dolava e dua na ilavelave"
+		}
 	},
 	"recipes": {
 		"title": "iCakacaka ni kakana",
 		"eyebrow": "iVola ni vakasaqa",
-		"lede": "Na iwalewale kilai levu me baleta na vakadewa ni vakauya: monorepos, glossaries, iwasewase ni ivakarau ni cakacaka, cici mamaca, kei na lewa ni rorogo."
+		"lede": "Na iwalewale kilai levu me baleta na vakadewa ni vakauya: monorepos, glossaries, iwasewase ni ivakarau ni cakacaka, cici mamaca, kei na lewa ni rorogo.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Dolava e dua na kerekere ni pull ni oti na cici yadua"
+			},
+			"monorepo": {
+				"heading": "Monorepos: vakadewa ni rabailevu ena dua na pakete"
+			},
+			"glossary": {
+				"heading": "Glossary me baleta na yaca ni brand kei na vosa ni ivoli",
+				"intro": "Biuta e dua na {configPath} ki na repo:",
+				"afterLabel": "ni oti na",
+				"body": "Na vosa ni glossary e vakayagataki {after} na vakadewa, o koya gona na output vakadewataki vakamisini ena maroroya na nomu branding taleitaki ena gauna mada ga e veisautaka kina na ivakaraitaki me dua na ibalebale."
+			},
+			"customCategory": {
+				"heading": "iWasewase ni Dauvakadewa Tudei (cakacaka / vanua)",
+				"body": "Vakavulica e dua na iwasewase ni Azure {customTranslatorLink} ena dua na corpus e toboka na nomu vosa kei na rorogo ni cakacaka (vakalawa, vakavuniwai, volivolitaki, idinia e loma, kei na so tale) ka solia na kena ID ena {categoryId}. Oqo na lever ni rorogo kaukauwa duadua e solia o Azure."
+			},
+			"tone": {
+				"heading": "Vakatulewa ni rorogo + fallback vakadodonu",
+				"body": "Cokoti vata e dua na {categoryId} ni Custom Translator vata kei na {profanityAction} kei na {allowFallbackFalse} me vakaukauwataka e dua na domo tudei ka sega ni rawa na cakacaka kevaka e sega ni tiko e dua na deployment ena iwasewase digitaki me baleta e dua vei ira na nomu vanua takete."
+			},
+			"dryRun": {
+				"heading": "Cici mamaca ni bera ni dolava na cakacaka",
+				"body": "Na cakacaka e se emits tikoga na output vakalekaleka kei na dua na ivakaleka ni ikalawa ia e sega ni volai e dua na faile. Cokovata vata kei na {failOnErrorFalse} me laurai kina na leqa yadua me ivakasala ni o iterate."
+			}
+		}
 	},
 	"faq": {
 		"title": "FAQ",
 		"eyebrow": "Veivuke",
 		"heroTitle": "Taro e dau tarogi wasoma",
-		"lede": "Saumi totolo ki na taro e dau basika vakawasoma ena gauna e vakayacori kina na cakacaka."
+		"lede": "Saumi totolo ki na taro e dau basika vakawasoma ena gauna e vakayacori kina na cakacaka.",
+		"questions": {
+			"azure": {
+				"heading": "E vosa vakacava na cakacaka ki Azure?",
+				"body": "Mai na {azureSdkLink} vakadonui ni Microsoft na SDK, layered ena {corePipelineLink}. Oqori ena kauta mai vei iko na retries vakaikoya ena {statusCodes}, taipataki ni kerekere kei na kena isau, kei na veiqaravi ni ulutaga ni veivakadeitaki sega ni saumi — na veika kece e dau dua na kaci ni {axios} ena liga. E sega ni veisau na dela ni cakacaka raraba (inputs, outputs, output ni faile)."
+			},
+			"tone": {
+				"heading": "Na cava na vuna e so na gauna e sega ni vakatakilakilataki se sega ni rogorogo na vakadewa?",
+				"body": "Na vakadewa ni misini defaults ki na dua na ivakaraitaki raraba. E tolu na knobs e vukea: e dua na {glossaryLink} me baleta na override ni gauna dredre, e dua na {customTranslatorLink} me baleta na ivakaraitaki vakamatailalai ka vakavulici ena nomu rorogo kei na vosa, kei na {profanityAction} me scrub se vakatakilakilataka na vosa ca.",
+				"glossaryLinkLabel": "iVolatukutuku",
+				"customTranslatorLinkLabel": "iWasewase ni Dauvakadewa Tudei"
+			},
+			"duplicateFiles": {
+				"heading": "Me'u na levea vakacava na vakadewataki vakarua ni faile vata ga?",
+				"body": "Trigger the workflow on {paths} that matches your source-locale files only, e.g. {sourceGlob}. Na cakacaka e oka talega kina na kena itatarovi ni faile ni {githubToken} sa tuvanaki tu, vakalailaitaki na cakacaka ki na faile ena iotioti ni commit."
+			},
+			"offline": {
+				"heading": "E rawa beka ni'u ciciva na cakacaka ena offline?",
+				"body": "Sega sara ga — Azure AI Translator na mona ni cicivaki. Ia e rawa ni o cici vata kei na {dryRunTrue} me vakadeitaka na parsing kei na config ka sega ni cakava e dua na kerekere HTTP me baleta na vakadewa."
+			},
+			"node": {
+				"heading": "Na mataqali Node cava e cici kina na cakacaka?",
+				"body": "v3 cici ena GitHub Actions {nodeRuntime} runtime. Na JavaScript bundled e veiraurau kei na Node 20, 22, kei na 24, oqori na ka e vakatovotovotaka na CI."
+			},
+			"dist": {
+				"heading": "E lako mai vei na {distDir} bundled?",
+				"body": "Na cakacaka ni GitHub JS e vakauta na nodra JS vakasokumuni ena repository. Na {distBuild} cakacaka e tarai cake tale ni oti na veisemati yadua me {mainBranch} kevaka e na kui, ka {distCheck} na tarova na PRs ka na yaco kina na output makawa."
+			},
+			"formats": {
+				"heading": "Vakacava na ituvatuva ni ivurevure tale eso?",
+				"body": "Nikua: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} kevaka o gadreva e dua tale — na interface ni parser e lailai (parse → na mape → vakayagataka na vakadewa → na format) ka marautaki na cau.",
+				"issueLinkLabel": "Dolava e dua na ilavelave"
+			}
+		}
 	},
 	"translations": {
 		"title": "Vakadewa",
 		"eyebrow": "Vakaraitaki",
 		"heroTitle": "Bula ena veivosa kecega",
-		"locales": "vanua",
-		"currentlyRendered": "Sa vakaraitaki tiko ena gauna oqo",
-		"complete": "taucoko!",
-		"pendingPrefix": "Ni waraka tiko na cici ni vakadewa-docs ka tarava.",
+		"lede": "Na tabana oqo e vakadewataki mai na Resource Translator vakaikoya, ena veisasaga kece ki na main, ki na veivosa kece e tokona na Azure AI Translator.",
+		"localeCountLabel": "{count} vanua",
+		"statusComplete": "{translatedCount} sa vakarautaki tu ena gauna oqo — taucoko!",
+		"statusPending": "{translatedCount} sa vakaraitaki tiko ena gauna oqo — {pendingCount} ni waraka tiko na cici {workflowName} tarava.",
 		"viewWorkflowRuns": "Raica na cici ni cakacaka",
 		"filter": "Itatarovi",
 		"filterPlaceholder": "Vakasaqaqara ena vosa, nabavuni, se yaca ni vanua...",
 		"source": "iVurevure",
 		"machineTranslations": "Vakadewa vakamisini",
-		"translationPending": "Vakadewa vakawawa — dolava e dua na cicivaki ni vakadewa.",
+		"translationPending": "Vakadewa vakawawa — dolava e dua na cici {workflowName}.",
 		"noLocales": "E sega ni dua na vanua e tautauvata kei na filter oya.",
-		"howItWorks": "Na sala e cakacaka kina oqo"
+		"howItWorks": {
+			"heading": "Na sala e cakacaka kina oqo",
+			"thisActionLabel": "na cakacaka sara ga oqo",
+			"steps": {
+				"source": "Na faili ni ivurevure vakavalagi e tiko ena {messagesPath}.",
+				"workflow": "Pushes that touch it kick off {workflowLink}, which runs {thisAction} against itself.",
+				"fanOut": "Na cakacaka e vakayacori, ki na veivanua kece e tokoni kina na Azure AI Translator (configure ena {configPath}) ka vola e dua na {messagesLocaleJson} ni veitacini ena dua na takete.",
+				"pullRequest": "Sa dolavi e dua na kerekere ni pull vata kei na vakadewa vou. Na kena cokoti vata ena tabaka tale na tabana oqo ni sa vakaleweni na kadi."
+			}
+		},
+		"poweredBy": "Powered by Resource Translator and Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Veivuke",
 		"eyebrow": "Dolavi na ivurevure",
-		"lede": "E marautaki kece na ripote ni bug, kerekere ni gacagaca, kei na kerekere ni pull. Na cakacaka e lailai sara me veiyaloni vei ira era cau ena imatai ni gauna."
+		"lede": "E marautaki kece na ripote ni bug, kerekere ni gacagaca, kei na kerekere ni pull. Na cakacaka e lailai sara me veiyaloni vei ira era cau ena imatai ni gauna.",
+		"localDevelopment": {
+			"heading": "Veivakatorocaketaki ena noda vanua"
+		},
+		"addingParser": {
+			"heading": "Kuria e dua na parser",
+			"steps": {
+				"fixture": "Kuria e dua na qito ena ruku ni {testDataDir}.",
+				"implement": "Vakayagataka na {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Rejisita ena {factoryFile}.",
+				"extension": "Kuria na isema ni faile ki na {translationFileSchemes} ena {finderFile}.",
+				"tests": "Vola na vakatovotovo lesu me baleta na ituvatuva ni parse → kei na applyTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "iVakatagedegede ni inisua",
+			"body": "Na config ni Jest e vakaukauwataka na kena isau lailai. Na nabavuni vou e dodonu me maroroya na itukutuku + laini ena dela ni 78% kei na cakacaka e cake ena 90%. Kuria na iyaya kei na vakatovotovo vata kei na nomu veisau."
+		},
+		"docsSite": {
+			"heading": "Vanua ni iTukutuku",
+			"body": "Na {docsDir} folder e dua na cakacaka ni Astro 6 + Tailwind v4. Cici {npmInstall} kea vakadua, qai {npmRunDev} me baleta na preview ni vanua. Na cakacaka ni cakacaka {pagesWorkflow} e vakauta na ivola ki na GitHub Pages ena veisemati yadua."
+		}
 	},
 	"changelog": {
 		"title": "iVolatukutuku ni veisau",
 		"eyebrow": "iTukutuku Makawa",
-		"lede": "iVakaleka cecere ni veivagalalataki. Na canonical, authoritative changelog e bula tiko ena CHANGELOG.md ena repository."
+		"lede": "iVakaleka cecere ni veivagalalataki. Na canonical, authoritative changelog e bula tiko ena CHANGELOG.md ena repository.",
+		"fullRecord": "Raica na {changelogLink} me baleta na itukutuku taucoko.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (ena veivakatorocaketaki)",
+			"labels": {
+				"breaking": "VOROKI",
+				"resilience": "Veivosoti:",
+				"placeholderProtection": "Veitaqomaki ni placeholder:",
+				"perKeyOptOut": "Digitaki ena dua na idola:",
+				"docsAccessibility": "Rawa ni curu ki na Docs:",
+				"inlineCodeStyling": "Inline nabavuni styling:"
+			},
+			"issueLabels": {
+				"closes46": "Sogo #46.",
+				"tightens16": "Tightens #16.",
+				"closes35": "Sogo #35."
+			},
+			"items": {
+				"runtime": "Bumped to {nodeRuntime} runtime ({breaking}).",
+				"newInputs": "Vakacurumi vou: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, vata kei na knobs ni Translator torocake {textType}, {profanityAction}, {profanityMarker}, kei na {allowFallback}.",
+				"sourceLocale": "Source locale is now also forwarded to Translator as {fromLocale} so short strings are not autodetected.",
+				"resilience": "{label} na tovo tale vakaikoya ena isau ni HTTP transient ({statusCodes}) doka na ulutaga ni {retryAfter} ni Azure — lutu lesu ki na jittered exponential backoff ni yali yani. Vakarorogo ena {maxRetries} kei na {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} na ivakatakilakila me vaka na {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} kei na HTML entity era sa solegi ena sentinels ni bera na vakadewataki ka vakalesui mai ni oti, sa muduka kina na Dauvakadewa na mangling i18next/Mustache/Handlebars/.NET/printf placeholders. Toggle via {protectPlaceholders}; vakalevutaka vata kei na {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} na vakacurumi vou ni {noTranslatePatterns} e vakalutuma taucoko na idola veisotari mai na kerekere ni Dauvakadewa (maroroya na yavunilewa ni ivurevure me baleta na yaca ni brand, nabavuni ni cala, kei na so tale). Veisotari na iwalewale ni glob vata kei na idola ni ivakatagedegede ni parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). {issue}",
+				"repoConfig": "Repo-level config via {configPath}.",
+				"glossary": "Veitokoni ni glossary, ivakaleka ni ikalawa mai na {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "Savasava ni dikevi fika ni npm (0 malumalumu).",
+				"docsSite": "Astro + Tailwind v4 docs site with view transitions and Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. Sa veisautaki na glyphs ni ivakatakilakila ki na gaunisala me ra kakua tale ni leqa kina na veibasai ni roka mai na gradient stops, na bulukau ni {backToTop} e vakayagataka na {inert} ni vunitaki (ka sega ni dua na toggle ni {ariaHidden} ka biuta tu me tabbable), {formatsAstro} na iwasewase sa sega tale ni coqa vata kei na nodra ID ni ulutaga e vakavurea na auto, tolu na kadi ni vanua oqo e vakaraitaka na BCP-47-valid {lang} na ivakarau ni  ({nya}, {lug}, {run}), vakaruataki {documentation} ivakatakilakila ni ivakatakilakila sa disambiguated ena maliwa ni sidebar kei na footer,  kei na ituvatuva ni itukutuku kece ena {inputs}/{configuration} waqa vata kei na dua na ivakamacala ni wiliwili ni sikirini.",
+				"inlineCode": "{label} Docs Prose {codeElement} sa daramaka tu oqo na ivakatakilakila ni ulutaga katakata/amber — duidui mai na palette ni brand→accent e vakayagataki me baleta na isema kei na ulutaga.",
+				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Raica na itukutuku makawa."
+		}
 	}
 }

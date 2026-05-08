@@ -15,7 +15,13 @@
 		"searchPlaceholder": "Претрага документације...",
 		"toggleTheme": "Српскохрватски / српскохрватски",
 		"githubRepository": "ГитХуб спремиште",
-		"language": "Језик"
+		"language": "Језик",
+		"languageTitle": "Изаберите језик",
+		"languageDescription": "Пребаците се на исту страницу на другом језику.",
+		"languageSearch": "Филтрирај језике",
+		"languageSearchPlaceholder": "Претрага језика или локалних кодова...",
+		"languageNoResults": "Ниједан језик не одговара том филтеру.",
+		"closeLanguage": "Затвори бирач језика"
 	},
 	"search": {
 		"title": "Претрага документације",

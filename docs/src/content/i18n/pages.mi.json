@@ -18,18 +18,26 @@
 			"node": "Kōpuku 20 / 22 / 24",
 			"sdk": "SDK Azure Whaimana"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "tiki kuputuhi",
+			"json": "kōpae, papatahi rānei",
+			"ini": "{keyValue}",
+			"restext": "Kuputuhi MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "E ono ngā hōputu kōnae",
-				"body": "Ngā haerenga huri noa i te .resx, .xliff, .po, .json, .ini, me te .restext me te hōputu paita-pūmau."
+				"body": "Ngā {resx} haere, {xliff}, {po}, {json}, {ini}, me ngā {restext} me te hōputu pūmau-paita."
 			},
 			"config": {
 				"title": "Whirihoranga taumata-repo",
-				"body": "Whakataka he .github/resource-translator.yml mō ngā kāwai whakauru, ngā kupukupu, me ngā kāwai Kaiwhakamāori Ritenga."
+				"body": "Whakataka i tētahi kōnae {configPath} mō ngā kāwai whakauru, ngā kupukupu, me ngā kāwai Kaiwhakamāori Ritenga."
 			},
 			"glossary": {
 				"title": "Kupukupu-mōhio",
-				"body": "Maukatia ngā ingoa waitohu me ngā whakaritenga hua ki te regex rohe-kupu atamai e whakahaere ana i te C++, .NET, me ngā hoa."
+				"body": "Maukatia ngā ingoa parani me ngā whakaritenga hua ki te regex rohe-kupu atamai e whakahaere ana i ngā {cpp}, {dotnet}, me ngā hoa."
 			},
 			"dryRun": {
 				"title": "Whakahaere-maroke + hinganga ngohengohe",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Ngā huaputa ratarata PR",
-				"body": "Summary-title, summary-details, and has-new-translations slot directly into create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails}, me {hasNewTranslations} kāniwha hāngai tonu ki te waihanga-kume-tono."
 			},
 			"sdk": {
 				"title": "SDK Azure Whaimana",
-				"body": "I hangaia ki runga i te @azure-okiokinga/ai-translation-text + @azure/core-rest-pipeline — ka ngana anō aunoa i te 408/429/5xx, kāore he HTTP ā-ringa. esbuild-paiherea, arotaupū-horoi."
+				"body": "I hangaia ki runga i te {azureSdk} + {corePipeline} — ka ngana anō aunoa ki {statusCodes}, kāore he HTTP kua hurihia ā-ringa. {esbuild}-paiheretia, mā te arotaupū."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Rerengamahi taka-mai",
+			"titlePrefix": "Tārua. Whakapiri.",
+			"titleAccent": "Whakamāorihia.",
+			"body": "E toru ngā muna, e whā ngā raina, ā, he reo maha tō repo i te pana panuku.",
+			"setupLink": "Hīkoi i te tatūnga katoa"
+		},
+		"cta": {
+			"title": "Kua rite koe ki te whakawāhi i runga i te autopilot?",
+			"body": "Kotahi te kī Azure AI Translator, kotahi te kōnae rerengamahi. Mā te Kaiwhakamāori Rauemi e whakahaere te toenga.",
+			"button": "Tīmata"
 		}
 	},
 	"getting-started": {
 		"title": "Kei te tīmata",
 		"eyebrow": "Tatūnga",
-		"lede": "Tāpirihia tētahi kōnae rerengamahi, tohua ki ō taipitopito tuakiri Azure AI Translator, ā, mā te hohenga — i hangaia ki runga i te SDK @azure-rest/ai-translation-text mana a Microsoft — ka karapa i te repo mō ngā kōnae rauemi reo-pūtake, ā, ka whakaputa i ngā teina kua whakamāoritia.",
+		"lede": "Tāpirihia he kōnae rerengamahi, tohua ki ō taipitopito tuakiri Azure AI Translator, ā, mā te hohenga e karapa te repo mō ngā kōnae rauemi reo-pūtake, ā, ka whakaputa i ngā teina kua whakamāoritia.",
 		"steps": {
 			"provision": {
 				"title": "Whakarato rauemi Azure AI Translator",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Tāpirihia te rerengamahi",
-				"body": "Waihangatia .github/workflows/translate.yml:"
+				"body": "Waihanga {workflowPath}:"
 			},
 			"resource": {
 				"title": "Tukua he kōnae rauemi pūtake",
-				"body": "Ka whakamahia te Ingoa e ngā kōnae rauemi. <sourceLocale>. <ext> hui. Hei tauira, ka noho a Greetings.en.resx hei Greetings.fr.resx, Greetings.de.resx, me ērā atu mea i muri i te whakahaere."
+				"body": "Ka whakamahia e ngā kōnae rauemi te {namingConvention} convention. Hei tauira, ka noho {sourceFile} {frFile}, {deFile}, me ērā atu mea i muri i te oma."
 			},
 			"output": {
 				"title": "Tirohia te huaputa",
-				"body": "Ka mutu te rerengamahi, ka whakaaturia e te hohenga e toru ngā huaputa ka taea e koe te waea ki tētahi whakaahuatanga PR: taitara-whakarāpopoto, taipitopito-whakarāpopoto, me ngā whakamāoritanga-hōu. Ka tuhi hoki i tētahi whakarāpopototanga Markdown ki te whārangi mahi mā te core.summary."
+				"body": "Ka mutu te rerengamahi, ka whakaaturia e te hohenga e toru ngā huaputa ka taea e koe te waea ki tētahi whakaahuatanga PR: {summaryTitle}, {summaryDetails}, me {hasNewTranslations}. Ka tuhi hoki i tētahi whakarāpopototanga Markdown ki te whārangi mahi mā te {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Ngā tūmahi panuku",
-			"configuration": "Whirihoratia ngā taunoa taumata-repo ki te .github/resource-translator.yml.",
+			"configuration": "Whirihoratia ngā taunoa taumata-repo ki te {configPath}.",
 			"recipes": "Tirohia ngā tohutohu mō ngā monorepos, ngā papakupu ritenga, me ngā kāwai Kaiwhakamāori Ritenga."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Whirihoranga",
 		"eyebrow": "YAML",
 		"heroTitle": "Whirihoranga putunga",
-		"lede": "Whakapuakina ngā taunoa kotahi i roto i te .github/resource-translator.yml ka tuku i ia rerengamahi kia riro i a rātou. Ka toa ngā tāurunga hohenga i ngā wā katoa ina tukua ngā mea e rua."
+		"lede": "Kia kotahi te whakapuaki i ngā taunoa i roto i te kōnae whirihoranga putunga, ā, ka tuku i ia rerengamahi kia riro i a rātou. Ka toa ngā tāurunga hohenga i ngā wā katoa ina tukua ngā mea e rua.",
+		"intro": "Takahi i te ara ki te tāuru {configPath} mēnā e hiahia ana koe ki tētahi tauwāhi taunoa-kore.",
+		"schemaHeading": "Aronuinga",
+		"fieldReference": {
+			"heading": "Tohutoro āpure",
+			"caption": "Tohutoro āpure whirihoranga",
+			"columns": {
+				"field": "Āpure",
+				"type": "Momo",
+				"notes": "Ngā Tuhipoka"
+			},
+			"fields": {
+				"sourceLocale": "Ka hoki whakamuri ki te tāuru {sourceLocale} ki te kore e tautuhia. Ka whakamua hoki ki te Kaiwhakamāori hei {fromLocale} kia kore ai ngā aho poto e kiteanoatia.",
+				"toLocales": "He huānga, he aho whakawehe-piko rānei.",
+				"includeExclude": "Ngā tauira glob i arotakea ki ngā ara pūmau me ngā ara pātahi mokowāmahi.",
+				"glossary": "Ngā takahitanga kupu i muri i te whakamāoritanga. E mōhio ana ki te rohenga-kupu (ka raweke i te {cpp}, {dotnet}).",
+				"categoryId": "Kāwai {customTranslatorLink} Azure — tō pona umanga/rohe (ā-ture, rongoā, oro mākete, aha atu). I tukua hei {categoryQuery}.",
+				"textType": "Taunoa ai ki te {plain}. Whakamahia {html} anake mēnā he kongakonga HTML tūturu kei ō uara rauemi.",
+				"profanityAction": "Me pēhea te whakamahi i ngā kupu whakarihariha i roto i te huaputa kua whakamāoritia.",
+				"profanityMarker": "Whai tikanga anake ina {marked} {profanityAction}.",
+				"allowFallback": "Tautuhia ki te {false} kia rahua te whakawhitinga ina kore tō {categoryId} e tuku mō tētahi wāhi ūnga, kaua e hoki whakamuri ki te tauira ahuwhānui.",
+				"apiVersion": "Putanga REST API kaiwhakamāori. Taunoa ai ki te {version}.",
+				"maxRetries": "Ko te mōrahi o ngā nganatanga ngana anō i runga i ngā urupare HTTP rangitahi ({statusCodes}). Taunoa ai ki te {defaultRetries}. He {totalCalls} te tapeke o ngā waea HTTP mō ia tono.",
+				"retryBackoffMs": "Pū (ms) i runga i tētahi moe whakamuri kotahi. Taunoa ai ki te {defaultBackoff}. Ka whakahonoretia te pane {retryAfter} o Azure i te wā i konei; ki te kore ka whakamahia te whakahoki taupua āmaimai, ka whakawhāititia ki tēnei uara.",
+				"protectPlaceholders": "Taunoa ai ki te {true}. Ina kā ana, ka whakakapia ngā maimai pēnei i te {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} me ngā mea HTML ki ngā maimai sentinel i mua i te whakamāoritanga, ā, ka whakaoratia i muri iho. Monokia anake mēnā kei roto i te pūtake ngā āhuatanga puriwāhi.",
+				"customPlaceholderPatterns": "Kua tāpirihia ētahi atu tauira regex (me te kore kaiwehe) ki te huinga puriwāhi taunoa, hei tauira, {angleToken} mō te wetereo maimai ritenga. Ka waihotia ngā kōrero kōrero muhu.",
+				"noTranslatePatterns": "Ko ngā tauira glob e ōrite ana ki ngā kī taumata-parser (ara iraira JSON, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, kī INI/restext). Ka whakatakahia ngā kī ōrite mai i te tono, ā, ka puta atu me te uara pūtake e pupuritia ana."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Uta ana i te raupapa",
+			"steps": {
+				"actionInputs": "Ka pānui te hohenga i ngā tāurunga mārama mai i te rerengamahi.",
+				"config": "Ka utaina te whirihoranga YAML mai i {configPath}.",
+				"precedence": "Mō ia āpure tiritiri, ka toa te tāuru; ki te kore ka whakamahia te uara YAML.",
+				"validation": "Kua whakamanatia ngā uara hanumi. Mā ngā tau muhu (hei tauira, {invalidEnum}) ka rahua tere te hohenga me tētahi karere ūkui."
+			}
+		},
+		"tone": {
+			"heading": "Oro me te mahi, i roto i ngā kupu māmā",
+			"body": "Kāore he pona oro kotahi o te Azure AI Translator v3 API. E rua ngā tautuhinga e paheko ana hei hoatu i te nuinga o te mana ōrite:",
+			"industryLabel": "Ahumahi / rohe:",
+			"industryBody": "whakamahia {categoryId} hei tohu i tētahi kāwai Azure {customTranslatorLink} kua whakaakona ki tō ake huinga — ā-ture, hangarau, rongoā, mākete, tētahi atu mea rānei. Koinei te kōwhiti tino kaha mō te oro, te reo parani, me te kupu.",
+			"surfaceLabel": "Kuputuhi mata:",
+			"surfaceBody": "Whakamahia te {glossaryLink} hei maukati i ngā ingoa parani me ngā kupu hua kuputuhi, me te whakamahi i te {profanityAction} hei horoi i ngā kupu whakarihariha ina whakarite i te whakawāteatanga mō ngā kaimātakitaki tamariki.",
+			"glossaryLinkLabel": "pukapuka kupu"
+		}
 	},
 	"inputs": {
 		"title": "Ngā tāuru me ngā tāputa",
 		"eyebrow": "Tohutoro",
-		"lede": "Ka whakaaetia hoki ia tāurunga i roto i te kōnae whirihoranga repo kōwhiringa. Ina tautuhia ngā mea e rua, ka toa te tāuru hohenga."
+		"lede": "Ka whakaaetia hoki ia tāurunga i roto i te kōnae whirihoranga repo kōwhiringa. Ina tautuhia ngā mea e rua, ka toa te tāuru hohenga.",
+		"configurationIntro": "Tirohia {configurationLink} mō te aronuinga YAML me te raupapa utanga.",
+		"configurationLinkLabel": "Whirihoranga",
+		"columns": {
+			"name": "Ingoa",
+			"default": "Taunoa",
+			"description": "Whakamārama:"
+		},
+		"defaults": {
+			"none": "Kore",
+			"allSupported": "tautokona katoatia",
+			"translatorDefaultTrue": "pono (Taunoa kaiwhakamāori)"
+		},
+		"requiredInputs": {
+			"heading": "Ngā tāuru e hiahiatia ana",
+			"caption": "Ngā tāuru e hiahiatia ana",
+			"items": {
+				"sourceLocale": "Ko te wāhi pūtake (hei tauira, {en}) e whakamahia ana hei kimi i ngā kōnae rauemi pēnei i te {sourceGlob}. I tukuna hoki ki te Kaiwhakamāori hei {fromLocale}.",
+				"subscriptionKey": "Kī ohaurunga Azure AI Translator. Hipa mā te {secrets}.",
+				"endpoint": "URL whakamutunga kaiwhakamāori, hei tauira, {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Ngā tāurunga kōwhiringa pūnoa",
+			"caption": "Ngā tāurunga kōwhiringa pūnoa",
+			"items": {
+				"region": "Rohe rauemi kaiwhakamāori (waiho mō ngā rauemi huri noa).",
+				"toLocales": "Ngā rohe hei whakamāori. Ka whakaae ki tētahi huānga JSON ({jsonArray}), ngā uara whakawehe-piko rānei.",
+				"include": "Ngā tauira glob wehewehe-raina-hou; Ko ngā kōnae ōrite anake ka whakamāoritia.",
+				"exclude": "Ngā tauira glob wehewehe-raina-hou; Ka tīpoka ngā kōnae ōrite (ka hoatu ā muri i te whakauru).",
+				"configPath": "Ara ki te kōnae whirihoranga YAML (e pātahi ana ki te iomatua mokowāmahi).",
+				"dryRun": "Ina {true}, whakahaerehia ngā whakawhitinga me te tuku whakarāpopototanga, engari kaua e tuhi kōnae.",
+				"failOnError": "Ina {true}, ka hinga ngā hapa ohorere i te hohenga; Ina {false}, he whakatūpato ngā hapa."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Ngā tāurunga tono kaiwhakamāori",
+			"intro": "Ka mahere hāngai ēnei ki ngā tawhā uiui Azure AI Translator v3. He kōwhiringa ia mea; ka hoatu ngā taunoa Kaiwhakamāori inā wetetautuhia.",
+			"caption": "Ngā tāurunga tono kaiwhakamāori",
+			"items": {
+				"categoryId": "Kāwai {customTranslatorLink} Azure — te pona ahumahi/rohe/oro. I whakamua hei {categoryQuery}.",
+				"textType": "{plain} {html} rānei. Whakamahia {html} anake ina he kongakonga HTML tūturu ō uara rauemi.",
+				"profanityAction": "{noAction}, {marked}, {deleted} rānei. Ka whakahaere i te āhua o te whakaputa i ngā kupu whakarihariha i roto i ngā whakamāoritanga.",
+				"profanityMarker": "{asterisk} {tag} rānei. Whai tikanga anake ina {marked} {profanityAction}.",
+				"allowFallback": "Ina {false}, ka whakahokia e te Kaiwhakamāori tētahi hapa, kaua e hoki whakamuri ki te pūnaha ahuwhānui mēnā kāore he tukunga o tō {categoryId} mō tētahi wāhi ūnga.",
+				"apiVersion": "Putanga REST API kaiwhakamāori."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Te manahau me te parenga puriwāhi",
+			"intro": "Mā ēnei tāurunga e whakahaere te whanonga o te hohenga ina katia e te Kaiwhakamāori tō tono, me te whakangungu i ngā maimai puriwāhi pēnei i te {mustache}, i te {indexZero} rānei kia kore ai e pakaru i te wā o te whakamāoritanga.",
+			"caption": "Ngā tāurunga manahau me te parenga puriwāhi",
+			"items": {
+				"maxRetries": "Ko te mōrahi o ngā nganatanga ngana anō i runga i ngā urupare HTTP rangitahi ({statusCodes}). He {totalCalls} te tapeke o ngā waea HTTP mō ia tono.",
+				"retryBackoffMs": "Pū (i roto i ngā hēkona) i runga i tētahi moe whakamuri kotahi. Ka whakahonoretia e te hohenga te pane urupare {retryAfter} a Azure i te wā e noho ana; ki te kore ka whakamahia e ia te whakahoki taupua jittered kua whakakapia ki tēnei uara.",
+				"protectPlaceholders": "Ina {true} (taunoa), ka whakakapia ngā puriwāhi pēnei i te {mustache}, te {jsVar}, te {indexZero}, te {numberFormat}, te {printf}, te {positionalPrintf} me ngā mea HTML ki ngā maimai sentinel i mua i te whakamāoritanga, ā, ka whakaoratia ā muri ake. Monokia anake mēnā kei roto i tō pūtake he kupu puriwāhi tūturu e tika ana kia whakamāoritia.",
+				"customPlaceholderPatterns": "Kua tāpirihia ngā regex wehe-raina hōu (me te kore kaiwehe) ki te huinga puriwāhi taunoa, hei tauira, {angleToken} mō te wetereo maimai ritenga.",
+				"noTranslatePatterns": "Ko ngā tauira glob wehe-raina hōu e ōrite ana ki ngā kī taumata-parser (ara iraira JSON, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, kī INI/restext). Ka whakatakahia ngā kī ōrite mai i te tono Kaiwhakamāori, ā, ka puta atu me te uara pūtake e pupuritia ana."
+			}
+		},
+		"outputs": {
+			"heading": "Ngā Huaputa",
+			"caption": "Ngā Huaputa",
+			"items": {
+				"summaryTitle": "He whakarāpopototanga taitara PR poto, hei tauira, {summaryExample}.",
+				"summaryDetails": "Whakarāpopototanga whakahekenga e tika ana mō tētahi tinana PR, whakarāpopototanga mahi rānei.",
+				"hasNewTranslations": "{trueString} i te wā i hangaia ai tētahi, neke atu rānei o ngā whakamāoritanga hōu."
+			}
+		}
 	},
 	"formats": {
 		"title": "Ngā hōputu kōnae",
 		"eyebrow": "Tohutoro",
 		"heroTitle": "Ngā hōputu kōnae e tautokona ana",
-		"lede": "E ono ngā hōputu rauemi ka taea te haere. Ka pānui te hohenga i ia kōnae pūtake-rohe, ka whakamāori i ngā uara, ka tuhi hoki i tētahi teina mō ia wāhi ūnga."
+		"lede": "E ono ngā hōputu rauemi ka taea te haere. Ka pānui te hohenga i ia kōnae pūtake-rohe, ka whakamāori i ngā uara, ka tuhi hoki i tētahi teina mō ia wāhi ūnga.",
+		"namingConvention": "Ka whakamahi ngā kōnae katoa i te tikanga whakaingoa {namingConvention}.",
+		"learnMore": "Ako tonu",
+		"items": {
+			"resx": {
+				"blurb": "Ngā kōnae rauemi .NET ā-XML. Ka whakamāori i ngā kupu ā-roto o ia kōpuku {dataValue}, e tiaki ana i ngā tākupu me ngā raraungameta.",
+				"specLabel": "Microsoft Learn — Ngā Rauemi i roto i ngā kōnae .resx"
+			},
+			"xliff": {
+				"blurb": "Ngā tuhinga OASIS XLIFF 2.0. Ka whakamāoritia ia {source} me te tuhi i te hua ki te {target} e hāngai ana, ka tautuhi {trgLang} mō te tauwāhi.",
+				"specLabel": "OASIS XLIFF 2.0 whakapūtātanga"
+			},
+			"po": {
+				"blurb": "Kōnae Ahanoa Kawe GNU gettext. Ka whakamāoritia ia {msgid} / {msgidPlural} ki ngā puka {msgstr} / {msgstrPlural}.",
+				"specLabel": "GNU gettext — hōputu kōnae PO"
+			},
+			"json": {
+				"blurb": "Ngā kōnae JSON pokanoa. Ka papatahitia ngā ahanoa whakakōpaetia ki te kaiwehe {delimiter} mō te whakamāoritanga, kātahi ka whakakōpaetia anōtia ki te huaputa. Ka puritia ngā kī iraira ({dottedKey}) ki te kupu.",
+				"specLabel": "Whakapūtātanga JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Ngā kōnae {keyValue} ngāwari (Win32-kāhua INI, tētahi whirihoranga papatahi rānei). Ka tiakina ngā pane wāhanga me ngā tākupu.",
+				"specLabel": "Hōputu kōnae INI i Wikipedia"
+			},
+			"restext": {
+				"blurb": "Ngā rauemi kuputuhi Microsoft MUI — he takirua papatahi {keyValue} whakamahia hei hoa kuputuhi ki te {resx}.",
+				"specLabel": "Tirohanga whānui Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Ngā pūmautanga haere-huri noa",
+			"body": "Ka manatoko te huinga whakamātautau i te paita-ki-te-paita porowhita mō ngā maunga māngai o ia hōputu. Mēnā ka whati tētahi āhuatanga hōputu i tō pūtake waehere, tēnā {issueLink} ki tētahi tauira iti rawa.",
+			"issueLinkLabel": "Whakatuwheratia he take"
+		}
 	},
 	"recipes": {
 		"title": "Ngā Tohutao",
 		"eyebrow": "pukapuka tunu kai",
-		"lede": "Ngā tauira noa mō ngā whakawhitinga tuku: monorepos, glossaries, kāwai ritenga, whakahaere maroke, me te mana oro."
+		"lede": "Ngā tauira noa mō ngā whakawhitinga tuku: monorepos, glossaries, kāwai ritenga, whakahaere maroke, me te mana oro.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Whakatuwheratia he tono kume i muri i ia whakahaere"
+			},
+			"monorepo": {
+				"heading": "Monorepos: whakawhitinga whānuitanga mō ia mōkī"
+			},
+			"glossary": {
+				"heading": "Papakupu mō ngā ingoa parani me ngā kupu hua",
+				"intro": "Whakataka {configPath} ki roto i te repo:",
+				"afterLabel": "i muri i te",
+				"body": "Ka hoatu ngā kupu papakupu {after} te whakamāoritanga, nā reira ka puritia e te huaputa whakamāori-mīhini tō tohu manako ahakoa i whakawhitia e te tauira mō tētahi kupu taurite."
+			},
+			"customCategory": {
+				"heading": "Kāwai Kaiwhakamāori Ritenga (ahumahi/rohe)",
+				"body": "Whakaakona tētahi kāwai Azure {customTranslatorLink} ki tētahi huinga e hopu ana i ō kupu me te oro o te umanga (ā-ture, rongoā, mākete, pūkaha ā-roto, aha atu) ka tukuna tōna ID mā te {categoryId}. Koinei te kōwhiti oro tino kaha e tukuna ana e Azure."
+			},
+			"tone": {
+				"heading": "Mana oro + whakahoki pākaha",
+				"body": "Whakakotahitia tētahi {categoryId} Kaiwhakamāori Ritenga ki te {profanityAction} me te {allowFallbackFalse} hei whakaū i tētahi reo ōrite, ā, ka rahua te rerengamahi mēnā kāore he tukunga o te kāwai i kōwhiria mō tētahi o ō rohe ūnga."
+			},
+			"dryRun": {
+				"heading": "Whakahaere maroke i mua i te whakakānga o te rerengamahi",
+				"body": "Ka whakaputa tonu te hohenga i ngā huaputa whakarāpopoto me tētahi whakarāpopototanga hipanga, engari kāore he kōnae i tuhia. Whakakotahitia me {failOnErrorFalse} ki te whakaputa i ia take hei whakatūpato i a koe e auau ana."
+			}
+		}
 	},
 	"faq": {
 		"title": "Nga pātai e uiuitia ai",
 		"eyebrow": "Āwhina",
 		"heroTitle": "Ngā pātai auau",
-		"lede": "Ngā whakautu tere ki ngā pātai e puta ake ana i te nuinga o te wā e whāngai ana i te mahi."
+		"lede": "Ngā whakautu tere ki ngā pātai e puta ake ana i te nuinga o te wā e whāngai ana i te mahi.",
+		"questions": {
+			"azure": {
+				"heading": "He pēhea te kōrero a te hohenga ki Azure?",
+				"body": "Mā te SDK {azureSdkLink} mana o Microsoft, i apa ki {corePipelineLink}. Mā tēnā ka ngana aunoa koe ki ngā tauira tono me te urupare {statusCodes}, me te whakahaere pane motuhēhēnga mō te koreutu — ngā mea katoa i whakamahia hei waea {axios} ā-ringa. Kāore te mata hohenga tūmatanui (ngā tāuru, ngā tāputa, ngā huaputa kōnae) i te huri."
+			},
+			"tone": {
+				"heading": "He aha ngā whakamāori i ētahi wā i waho i te waitohu, i waho rānei o te oro?",
+				"body": "Ka taunoa te whakawhitinga mihini ki tētahi tauira take-whānui. E toru ngā pona e āwhina ana: he {glossaryLink} mō ngā takahi wā uaua, he {customTranslatorLink} mō ngā tauira kua whakaakona ki tō oro me ō kupu, me te {profanityAction} ki te horoi, ki te kara rānei i ngā kupu whakarihariha.",
+				"glossaryLinkLabel": "pukapuka kupu",
+				"customTranslatorLinkLabel": "Kāwai Kaiwhakamāori Ritenga"
+			},
+			"duplicateFiles": {
+				"heading": "Me pēhea taku karo i te whakamāori rua i te kōnae ōrite?",
+				"body": "Whakaoho i te rerengamahi ki ngā {paths} e ōrite ana ki ō kōnae tauwāhi-pūtake anake, hei tauira, {sourceGlob}. Kei roto hoki i te hohenga tōna ake tātari kōnae ā-keu ina tautuhia {githubToken}, e whakawhāiti ana i te mahi ki ngā kōnae i roto i te tukunga hōu rawa."
+			},
+			"offline": {
+				"heading": "Ka taea e au te whakahaere tuimotu i te hohenga?",
+				"body": "Ehara i te mea tika - ko Azure AI Translator te roro wāwhakahaere. Engari ka taea e koe te whakahaere me te {dryRunTrue} hei whakamana i te poroporo me te whirihoranga me te kore tono HTTP mō te whakamāoritanga."
+			},
+			"node": {
+				"heading": "He aha te putanga Kōpuku e haere ai te hohenga?",
+				"body": "Ka haere te v3 i runga i te wā whakahaere o GitHub Actions {nodeRuntime}. He hototahi te JavaScript paihere ki te Node 20, 22, me te 24, koia te mea e whakamātauria ana e CI."
+			},
+			"dist": {
+				"heading": "No hea mai te {distDir} paihere?",
+				"body": "Ka tukuna e ngā hohenga GitHub JS tā rātou JS kua whakahiatohia ki te whare putunga. Ka hangaia anō e te rerengamahi {distBuild} i muri i ia hanumi ki te {mainBranch} mēnā ka mānu, ā, ka āraia e {distCheck} ngā PR ka tau i te huaputa tawhito."
+			},
+			"formats": {
+				"heading": "Me pēhea ētahi atu hōputu rauemi?",
+				"body": "I tēnei rā: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} mēnā e hiahia ana koe ki tētahi atu — he iti te atanga parser (wetewete → mahere → hoatu whakawhitinga → hōputu) ā, ka manakohia ngā koha.",
+				"issueLinkLabel": "Whakatuwheratia he take"
+			}
+		}
 	},
 	"translations": {
 		"title": "Ngā Whakawhitinga",
 		"eyebrow": "Whakaaturanga",
 		"heroTitle": "Kia ora i roto i ia reo",
-		"locales": "rohe",
-		"currentlyRendered": "Kua tāhuahuatia ināianei",
-		"complete": "Kua oti!",
-		"pendingPrefix": "e tārewa ana i te whakahaerenga o ngā tuhinga-whakamāori panuku.",
+		"lede": "Ka whakamāoritia tēnei whārangi e te Kaiwhakamāori Rauemi, i ia pana ki te matua, ki ia reo e tautokona ana e Azure AI Translator.",
+		"localeCountLabel": "{count} ngā rohe",
+		"statusComplete": "{translatedCount} tāhuahua i tēnei wā — kua oti!",
+		"statusPending": "{translatedCount} te tāhuahua i tēnei wā — {pendingCount} tārewa ana i te {workflowName} e whai ake nei.",
 		"viewWorkflowRuns": "Tirohia ngā whakahaere rerengamahi",
 		"filter": "Tātari",
 		"filterPlaceholder": "Rapua mā te reo, waehere, ingoa taketake rānei...",
 		"source": "Pūtake",
 		"machineTranslations": "Ngā whakawhitinga mihini",
-		"translationPending": "E tārewa ana te whakawhitinga — whakatuwheratia he whakahaere tuhinga whakamāori.",
+		"translationPending": "E tārewa ana te whakawhitinga — whakatuwheratia he whakahaere {workflowName}.",
 		"noLocales": "Kāore he rohe e ōrite ana ki taua tātari.",
-		"howItWorks": "He pēhea tēnei mahi"
+		"howItWorks": {
+			"heading": "He pēhea tēnei mahi",
+			"thisActionLabel": "tēnei mahi tonu",
+			"steps": {
+				"source": "Kei te {messagesPath} te kōnae pūtake Ingarihi.",
+				"workflow": "Ka pana i taua pā ki a ia ka whana i {workflowLink}, e rere {thisAction} ana ki a ia anō.",
+				"fanOut": "Ka rere atu te hohenga ki ia wāhi e tautokona ana e Azure AI Translator (kua whirihoratia ki te {configPath}) me te tuhi i tētahi {messagesLocaleJson} teina mō ia ūnga.",
+				"pullRequest": "Ka whakatuwheratia he tono kume me ngā whakamāoritanga hōu. Mā te hanumi ka whakaputa anō i tēnei whārangi me ngā kāri kua whakakīa."
+			}
+		},
+		"poweredBy": "He mea whakahiko nā te Kaiwhakamāori Rauemi me te Kaiwhakamāori Azure AI."
 	},
 	"contributing": {
 		"title": "Te Hāpai Ana",
 		"eyebrow": "Pūtake tuwhera",
-		"lede": "E manakohia ana ngā pūrongo iro, ngā tono āhuahira, me ngā tono kume. He iti rawa te mahi kia rata ki ngā kaitāpae tuatahi."
+		"lede": "E manakohia ana ngā pūrongo iro, ngā tono āhuahira, me ngā tono kume. He iti rawa te mahi kia rata ki ngā kaitāpae tuatahi.",
+		"localDevelopment": {
+			"heading": "Whanaketanga ā-rohe"
+		},
+		"addingParser": {
+			"heading": "Tāpiri ana i tētahi poroporo",
+			"steps": {
+				"fixture": "Tāpirihia he maunga ki raro i te {testDataDir}.",
+				"implement": "Whakatinana {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Rēhitatia ki te {factoryFile}.",
+				"extension": "Tāpirihia te toronga kōnae ki te {translationFileSchemes} i te {finderFile}.",
+				"tests": "Tuhia ngā whakamātautau haere-huri noa mō te poroporo → te hōputu me te hoatu Whakamāoritanga."
+			}
+		},
+		"coverage": {
+			"heading": "Ngā paepae kapinga",
+			"body": "Ka whakaū te whirihoranga Jest i te kapinga mōkito. Me pupuri e te waehere hōu ngā tauākī + paepae raina ki runga ake i te 78% me ngā taumahi ki runga ake i te 90%. Tāpirihia ngā maunga me ngā whakamātautau i te taha o tō huringa."
+		},
+		"docsSite": {
+			"heading": "Pae tuhinga",
+			"body": "Ko te kōpaki {docsDir} he kaupapa Astro 6 + Tailwind v4. Kia kotahi {npmInstall} whakahaerehia ki reira, kātahi ka {npmRunDev} mō te arokite paetata. Ka tukuna e te rerengamahi {pagesWorkflow} ngā tuhinga ki ngā Whārangi GitHub i ia hanumi."
+		}
 	},
 	"changelog": {
 		"title": "Rangitaki Huringa",
 		"eyebrow": "Hītori",
-		"lede": "Whakarāpopototanga taumata tiketike o ngā pānuitanga. E noho ana te changelog canonical, whai mana i roto i te CHANGELOG.md i roto i te whare putunga."
+		"lede": "Whakarāpopototanga taumata tiketike o ngā pānuitanga. E noho ana te changelog canonical, whai mana i roto i te CHANGELOG.md i roto i te whare putunga.",
+		"fullRecord": "Tirohia {changelogLink} mō te pūkete katoa.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (kei te whanaketia)",
+			"labels": {
+				"breaking": "WHATI ANA",
+				"resilience": "Te manawanui:",
+				"placeholderProtection": "Parenga puriwāhi:",
+				"perKeyOptOut": "Kōwhiri-atu mō ia pātuhi:",
+				"docsAccessibility": "Āheitanga tuhinga:",
+				"inlineCodeStyling": "Kāhua waehere rōraina:"
+			},
+			"issueLabels": {
+				"closes46": "Ka kati i te #46.",
+				"tightens16": "Ka whakamau i te #16.",
+				"closes35": "Ka kati i te #35."
+			},
+			"items": {
+				"runtime": "I tūtuki ki {nodeRuntime} wā whakahaere ({breaking}).",
+				"newInputs": "Ngā tāurunga hōu: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, me ngā pona Kaiwhakamāori arā atu anō {textType}, {profanityAction}, {profanityMarker}, me {allowFallback}.",
+				"sourceLocale": "Kua whakamua hoki te wāhi pūtake ki te Kaiwhakamāori hei {fromLocale} kia kore ai ngā aho poto e kiteanoatia.",
+				"resilience": "{label} ngana anō aunoa ki ngā urupare HTTP rangitahi ({statusCodes}) e whakahonore ana i te pane {retryAfter} o Azure — ka hoki whakamuri ki te whakahoki taupua ātete. Ka taea te whakarite mā te {maxRetries} me te {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} ngā maimai pēnei i {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} me ngā mea HTML ka takaia ki ngā kaitiaki i mua i te whakamāoritanga, ā, ka whakaorangia ā muri ake, nā reira ka mutu te whakangaro a te Kaiwhakamāori i ngā puriwāhi i18next/Mustache/Handlebars/.NET/printf. Takahuri mā te {protectPlaceholders}; toro atu ki te {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} tāurunga {noTranslatePatterns} hōu ka whakataka katoa ngā kī ōrite mai i te tono Kaiwhakamāori (ka pupuri i ngā uara pūtake mō ngā ingoa parani, waehere hapa, aha atu). He whakaōrite i ngā tauira glob ki ngā kī taumata-parser (ara iraira JSON, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). {issue}",
+				"repoConfig": "Whirihoranga taumata-repo mā te {configPath}.",
+				"glossary": "Tautoko kupukupu, whakarāpopototanga hipanga mā {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "Mā te Arotaupū NPM (0 ngā whakaranautanga).",
+				"docsSite": "Astro + Tailwind v4 docs site with view transitions and Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA paheke. Ka tahuri ngā glyphs moko ki ngā ara kia kore ai e hinga i te taumira tae ki ngā tūnga rōnaki, ka whakamahia e te pātene {backToTop} māngi te {inert} i te wā e huna ana (kaua ko te takahuri {ariaHidden} ka taea te ripa), {formatsAstro} kua kore ngā wāhanga e tūtuki ki ō rātou ID panekōrero i hangaia aunoatia, e toru ngā kāri tauwāhi ināianei e whakaatu ana i ngā huanga {lang} whaimana BCP-47 ({nya}, {lug}, {run}), ka wetewete te tārite {documentation} ngā tapanga rohe i waenga i te paetaha me te hiku,  ā, ko ia ripanga raraunga i runga i ngā kaipuke {inputs}/{configuration} me tētahi tapanga pūpānui mata.",
+				"inlineCode": "{label} te {codeElement} prose docs ināianei e mau ana i te nako tāhuhu mahana/amipere — he rerekē i te papatā nako parani→nako e whakamahia ana mō ngā hononga me ngā panekōrero.",
+				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Tirohia te hītori git."
+		}
 	}
 }

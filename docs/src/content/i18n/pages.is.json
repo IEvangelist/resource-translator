@@ -18,18 +18,26 @@
 			"node": "Hnútur 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "Innbyggð eða flöt",
+			"ini": "{keyValue}",
+			"restext": "MUI texti"
+		},
 		"features": {
 			"formats": {
 				"title": "Sex skráarsnið",
-				"body": "Hringferðir .resx, .xliff, .po, .json, .ini og .restext með bætastöðugri sniðun."
+				"body": "Hringferðir {resx}, {xliff}, {po}, {json}, {ini} og {restext} með bætastöðugri uppsetningu."
 			},
 			"config": {
 				"title": "Repo-level stillingar",
-				"body": "Settu inn .github/resource-translator.yml til að innihalda klöppur, orðalista og flokka fyrir sérsniðna þýðendur."
+				"body": "Settu inn {configPath} skrá sem inniheldur klúta, orðalista og flokka sérsniðinna þýðenda."
 			},
 			"glossary": {
 				"title": "Orðalistameðvitaður",
-				"body": "Læstu vörumerkjanöfnum og vöruskilmálum með snjöllum orðamörkum sem sjá um C++, .NET og aðra vini."
+				"body": "Læstu vörumerkjanöfnum og vöruskilmálum með snjöllum orðamörkum sem sjá um {cpp}, {dotnet} og vini."
 			},
 			"dryRun": {
 				"title": "Þurrleikur + mjúkur misheppnaður",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Almannatengt úttak",
-				"body": "samantekt-titill, samantekt-upplýsingar og hefur-nýjar-þýðingar fara beint inn í create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails} og {hasNewTranslations} beint inn í create-pull-request."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "Byggt á @azure-rest/ai-translation-text + @azure/core-rest-pipeline — sjálfvirkar endurraunir á 408/429/5xx, engin handrúlluð HTTP. Esbuild-bundið, hreint og úttektarlaust."
+				"body": "Byggt á {azureSdk} + {corePipeline} — sjálfvirkar endurraunir á {statusCodes}, engin handrúlluð HTTP. {esbuild} pakkað, hreint í endurskoðun."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Drop-in vinnuflæði",
+			"titlePrefix": "Afritaðu. Límdu.",
+			"titleAccent": "Þýða.",
+			"body": "Þrjú leyndarmál, fjórar línur, og endurtekningin þín er fjöltyngd í næstu sókn.",
+			"setupLink": "Farðu í gegnum alla uppsetninguna"
+		},
+		"cta": {
+			"title": "Ertu tilbúinn að staðsetja á sjálfvirkri stýringu?",
+			"body": "Einn Azure AI þýðingarlykill, ein vinnuflæðisskrá. Resource Translator sér um restina.",
+			"button": "Byrjaðu"
 		}
 	},
 	"getting-started": {
 		"title": "Að byrja",
 		"eyebrow": "Uppsetning",
-		"lede": "Bættu við vinnuflæðisskrá, beina henni á Azure AI þýðingarupplýsingarnar þínar, og aðgerðin — byggð á opinberu @azure-rest/ai-translation-text SDK Microsoft — mun skanna geymsluna eftir heimildarskrám og senda út þýddar systur.",
+		"lede": "Bættu við vinnuflæðisskrá, bendið henni á Azure AI þýðingarskrána þína, og aðgerðin mun skanna geymsluna eftir auðlindaskrám á upprunalegu tungumáli og senda út þýdd systkini.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Bættu við vinnuflæðinu",
-				"body": "Búðu til .github/workflows/translate.yml:"
+				"body": "Búðu til {workflowPath}:"
 			},
 			"resource": {
 				"title": "Setja inn upprunalega auðlindaskrá",
-				"body": "Auðlindaskrár nota Nafnið. <sourceLocale>. <ext> ráðstefnu. Til dæmis verður Greetings.en.resx að Greetings.fr.resx, Greetings.de.resx og svo framvegis eftir keyrslu."
+				"body": "Auðlindaskrár nota {namingConvention} venjuna. Til dæmis verður {sourceFile} {frFile}, {deFile} og svo framvegis eftir hlaup."
 			},
 			"output": {
 				"title": "Skoðaðu úttakið",
-				"body": "Þegar vinnuflæðinu lýkur birtir aðgerðin þrjár útkomur sem þú getur tengt inn í PR-lýsingu: samantekt-titil, samantekt-smáatriði og nýjar-þýðingar. Það skrifar einnig Markdown-samantekt á starfssíðuna í gegnum core.summary."
+				"body": "Þegar vinnuflæðinu lýkur birtir aðgerðin þrjá úttak sem þú getur tengt í PR-lýsingu: {summaryTitle}, {summaryDetails} og {hasNewTranslations}. Það skrifar einnig Markdown-samantekt inn á starfssíðuna með {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Næstu skref",
-			"configuration": "Stilltu sjálfgefnar geymslustig með .github/resource-translator.yml.",
+			"configuration": "Stilltu sjálfgefnar stillingar á repóstigi með {configPath}.",
 			"recipes": "Sjá uppskriftir fyrir monorepos, sérsniðna orðalista og flokka sérsniðinna þýðenda."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Uppsetning",
 		"eyebrow": "YAML",
 		"heroTitle": "Uppsetning geymslu",
-		"lede": "Express sjálfgefnar einu sinni í .github/resource-translator.yml og leyfir öllum vinnuflæði að erfa þau. Aðgerðainntak vinnur alltaf þegar bæði eru veitt."
+		"lede": "Express sjálfgefnar stillingar einu sinni í stillingarskránni í geymslunni og leyfðu öllum vinnuflæði að erfa þær. Aðgerðainntak vinnur alltaf þegar bæði eru veitt.",
+		"intro": "Yfirskrifaðu leiðina með {configPath} inntakinu ef þú þarft staðsetningu sem er ekki sjálfgefin.",
+		"schemaHeading": "Skema",
+		"fieldReference": {
+			"heading": "Sviðsvísun",
+			"caption": "Stillingarsviðsvísun",
+			"columns": {
+				"field": "Völlur",
+				"type": "Tegund",
+				"notes": "Athugasemdir"
+			},
+			"fields": {
+				"sourceLocale": "Fellur aftur í {sourceLocale} inntak ef það er ekki stillt. Einnig sent til þýðanda sem {fromLocale} svo stuttir strengir séu ekki sjálfkrafa greindir.",
+				"toLocales": "Annað hvort fylki eða kommuaðskilinn strengur.",
+				"includeExclude": "Glob-mynstur metin út frá algildum og vinnusvæðum hlutfallslegum leiðum.",
+				"glossary": "Yfirskriftir eftir þýðingu. Orðmörk meðvituð (meðhöndlar {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} flokkur — iðnaðar-/sviðshnappurinn þinn (lögfræðilegur, læknisfræðilegur, markaðstónn o.s.frv.). Sent sem {categoryQuery}.",
+				"textType": "Sjálfgefið {plain}. Notaðu {html} aðeins ef auðlindagildin þín innihalda raunveruleg HTML-brot.",
+				"profanityAction": "Hvernig á að meðhöndla blótsyrði í þýddum texta.",
+				"profanityMarker": "Aðeins merkingarbær þegar {profanityAction} er {marked}.",
+				"allowFallback": "Stilltu á {false} að þýðingin mistakist þegar {categoryId} þín hefur enga dreifingu fyrir markstað í stað þess að falla aftur í almenna líkanið.",
+				"apiVersion": "Þýðandi REST API útgáfa. Sjálfgefið {version}.",
+				"maxRetries": "Hámarks tilraunir til endurtekninga á tímabundnum HTTP-svörum ({statusCodes}). Sjálfgefið {defaultRetries}. Heildarfjöldi HTTP-símtala á beiðni er {totalCalls}.",
+				"retryBackoffMs": "Takmörkun (MS) á hvaða einstöku svefni sem er. Sjálfgefið {defaultBackoff}. Azure {retryAfter} hausinn er virtur nákvæmlega þegar hann er til staðar; annars er notaður jitteraður veldisvöxtur aftur, takmarkaður við þetta gildi.",
+				"protectPlaceholders": "Sjálfgefið {true}. Þegar kveikt er á eru tákn eins og {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} og HTML einingar skipt út fyrir sentinel-tákn fyrir þýðingu og endurheimt eftir það. Slökktu aðeins á þegar uppsprettan inniheldur viljandi staðgengilslaga bókstafa.",
+				"customPlaceholderPatterns": "Auka regex-mynstur (án afmarkana) bætt við sjálfgefna staðsetningarsettið, t.d. {angleToken} fyrir sérsniðna táknasetningu. Ógild regex eru hunsuð.",
+				"noTranslatePatterns": "Glob-mynstur pöruðust við parser-stig lykla (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext lykill). Samsvarandi lyklar eru felldir út úr beiðninni og sendir áfram með upprunagildi þeirra varðveitt."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Hleðsluröð",
+			"steps": {
+				"actionInputs": "Aðgerðin les skýrar inntök úr vinnuflæðinu.",
+				"config": "Það hleður YAML stillingunni frá {configPath}.",
+				"precedence": "Fyrir hvern sameiginlegan reit, vinnur inntakið; annars er YAML-gildið notað.",
+				"validation": "Sameinuðu gildin eru staðfest. Ógild enumum (t.d. {invalidEnum}) valda því að aðgerðin mistekst hratt með skýru skilaboði."
+			}
+		},
+		"tone": {
+			"heading": "Tónn og iðnaður, í einföldum orðum",
+			"body": "Azure AI Translator v3 API hefur ekki einn tónhnapp. Tvær stillingar sameinast og gefa þér mest af sömu stjórn:",
+			"industryLabel": "Iðnaður / svið:",
+			"industryBody": "Notaðu {categoryId} til að benda á Azure {customTranslatorLink} flokk sem er þjálfaður á þínu eigin safni — lögfræðilegt, tæknilegt, læknisfræðilegt, markaðsfræðilegt eða eitthvað annað. Þetta er sterkasta stöngin fyrir tón, rödd vörumerkisins og orðaforða.",
+			"surfaceLabel": "Yfirborðstexti:",
+			"surfaceBody": "Notaðu {glossaryLink} til að læsa vörumerkjum og vöruhugtökum orðrétt, og notaðu {profanityAction} til að hreinsa út blótsyrði þegar þú miðar að staðfærslu fyrir yngri áhorfendur.",
+			"glossaryLinkLabel": "Orðalisti"
+		}
 	},
 	"inputs": {
 		"title": "Inntak og úttak",
 		"eyebrow": "Heimild",
-		"lede": "Öll inntök eru einnig samþykkt í valfrjálsu geymslustillingarskránni. Þegar bæði eru stillt vinnur aðgerðarinntakið."
+		"lede": "Öll inntök eru einnig samþykkt í valfrjálsu geymslustillingarskránni. Þegar bæði eru stillt vinnur aðgerðarinntakið.",
+		"configurationIntro": "Sjá {configurationLink} fyrir YAML skemað og hleðsluröðina.",
+		"configurationLinkLabel": "Uppsetning",
+		"columns": {
+			"name": "Nafn",
+			"default": "Sjálfgefið",
+			"description": "Lýsing"
+		},
+		"defaults": {
+			"none": "Engin",
+			"allSupported": "Allir studdir",
+			"translatorDefaultTrue": "true (þýðandi sjálfgefið)"
+		},
+		"requiredInputs": {
+			"heading": "Nauðsynleg inntök",
+			"caption": "Nauðsynleg inntök",
+			"items": {
+				"sourceLocale": "Upprunastaður (t.d. {en}) sem notaður er til að finna auðlindaskrár eins og {sourceGlob}. Einnig sent áfram til þýðanda sem {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator subscription key. Farðu í gegnum {secrets}.",
+				"endpoint": "Þýðandi endapunktsslóð, t.d. {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Algeng valfrjáls inntök",
+			"caption": "Algeng valfrjáls inntök",
+			"items": {
+				"region": "Þýðandi auðlindasvæði (sleppi fyrir alþjóðlegar auðlindir).",
+				"toLocales": "Staðir til að þýða á. Tekur við JSON fylki ({jsonArray}) eða kommuaðskildum gildum.",
+				"include": "nýlínuaðskilin glob-mynstur; aðeins samsvarandi skrár eru þýddar.",
+				"exclude": "nýlínuaðskilin glob-mynstur; Samsvarandi skrár eru slepptar (bætt við eftir include).",
+				"configPath": "Leið að YAML stillingarskránni (miðað við rót vinnusvæðisins).",
+				"dryRun": "Þegar {true}, keyrðu þýðingar og sendu samantektir en skrifaðu ekki skrár.",
+				"failOnError": "Þegar {true} óvæntar villur bregðast aðgerðinni; Þegar {false} eru villur viðvaranir."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Inntök þýðanda",
+			"intro": "Þessar tengjast beint Azure AI Translator v3 fyrirspurnarbreytum. Allar eru valkvæðar; þýðandi sjálfgefnar gildir þegar þeir eru ósettir.",
+			"caption": "Inntök þýðanda",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} flokkurinn — iðnaðar-/léns-/tónhnappurinn. Framsent eins {categoryQuery}.",
+				"textType": "{plain} eða {html}. Notaðu {html} aðeins þegar auðlindagildin þín eru raunveruleg HTML-brot.",
+				"profanityAction": "{noAction}, {marked} eða {deleted}. Stjórnar því hvernig blótsyrði eru notuð í þýðingum.",
+				"profanityMarker": "{asterisk} eða {tag}. Aðeins merkingarbær þegar {profanityAction} er {marked}.",
+				"allowFallback": "Þegar {false} skilar þýðandinn villu í stað þess að falla aftur í almennt kerfi ef {categoryId} þitt hefur enga uppsetningu fyrir markstað.",
+				"apiVersion": "Þýðandi REST API útgáfa."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Þol og staðgengilsvernd",
+			"intro": "Þessi inntök stjórna því hvernig aðgerðin hegðar sér þegar þýðandi dregur úr beiðni þinni og hvernig hún verndar staðgengilstákn eins og {mustache} eða {indexZero} frá því að verða skemmd við þýðingu.",
+			"caption": "Þol og staðgengilsvörn",
+			"items": {
+				"maxRetries": "Hámarks tilraunir til endurtekninga á tímabundnum HTTP-svörum ({statusCodes}). Heildarfjöldi HTTP-símtala á hverja beiðni er {totalCalls}.",
+				"retryBackoffMs": "Takmörkun (í millisekúndum) á hvaða einstöku afturvirku svefni sem er. Aðgerðin virðir Azure {retryAfter} svarhausinn nákvæmlega þegar hann er til staðar; Annars notar það jitterað, veldisvaxandi bakslag sem er takmarkað við þetta gildi.",
+				"protectPlaceholders": "Þegar {true} (sjálfgefið) eru staðgengilar eins og {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} og HTML einingar skipt út fyrir sentinel-tákn fyrir þýðingu og endurheimtar eftir á. Slökktu aðeins á þegar heimildin þín inniheldur viljandi bókstaflegan staðgengilstexta sem ætti að þýða.",
+				"customPlaceholderPatterns": "Nýlínuaðskildir regexar (án skilamarka) bætt við sjálfgefna staðsetningarsettið, t.d. {angleToken} fyrir sérsniðna táknasetningu.",
+				"noTranslatePatterns": "Newline-aðskilin glob-mynstur pöruð við greiningarlykla (JSON punktaleið, RESX {resxName}, PO {poMsgid}, XLIFF eining {xliffId}, INI/restext lykill). Samsvarandi lyklar eru felldir úr þýðandabeiðninni og sendir áfram með upprunagildi þeirra varðveitt."
+			}
+		},
+		"outputs": {
+			"heading": "Úttak",
+			"caption": "Úttak",
+			"items": {
+				"summaryTitle": "Stutt samantekt sem hentar PR-titli, t.d. {summaryExample}.",
+				"summaryDetails": "Yfirlit yfir markdown sem hentar PR-líkama eða starfslýsingu.",
+				"hasNewTranslations": "{trueString} þegar ein eða fleiri nýjar þýðingar voru búnar til."
+			}
+		}
 	},
 	"formats": {
 		"title": "Skráarsnið",
 		"eyebrow": "Heimild",
 		"heroTitle": "Stuðningsskráarsnið",
-		"lede": "Sex auðlindasnið sem hægt er að dreifa umferðum. Aðgerðin les hverja upprunastaðsetningarskrá, þýðir gildin og skrifar systkini fyrir hvert marksvæði."
+		"lede": "Sex auðlindasnið sem hægt er að dreifa umferðum. Aðgerðin les hverja upprunastaðsetningarskrá, þýðir gildin og skrifar systkini fyrir hvert marksvæði.",
+		"namingConvention": "Allar skrár nota {namingConvention} nafngiftarvenjuna.",
+		"learnMore": "Lærðu meira",
+		"items": {
+			"resx": {
+				"blurb": "XML-byggðar .NET auðlindaskrár. Þýðir innri texta hvers {dataValue} hnúts, varðveitir athugasemdir og lýsigögn.",
+				"specLabel": "Microsoft Learn — Auðlindir í .resx skrám"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 skjöl. Þýðir hverja {source} og skrifar niðurstöðuna í samsvarandi {target}, og setur {trgLang} fyrir staðinn.",
+				"specLabel": "OASIS XLIFF 2.0 forskriftin"
+			},
+			"po": {
+				"blurb": "GNU gettext flytjanlegar hlutaskrár. Þýðir hverja {msgid} / {msgidPlural} yfir í {msgstr} / {msgstrPlural} form.",
+				"specLabel": "GNU gettext — PO skráarsnið"
+			},
+			"json": {
+				"blurb": "Handahófskenndar JSON skrár. Innfelldir hlutir eru flataðir með {delimiter} skilamerki til þýðingar og síðan endurinnfelldir við úttak. Punktalyklarnir ({dottedKey}) eru varðveittir orðrétt.",
+				"specLabel": "JSON forskrift (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Einföld {keyValue} skrár (Win32-stíll INI eða hvaða flata stillingu sem er). Kaflafyrirsagnir og athugasemdir eru varðveittar.",
+				"specLabel": "INI skráarsnið á Wikipedia"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI textaauðlindir — flatar {keyValue} pör sem notuð eru sem textafylgi við {resx}.",
+				"specLabel": "Yfirlit Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Tryggingar fyrir fram og til baka",
+			"body": "Prófunarsafnið sannreynir byte-fyrir-byte hringferð fyrir fulltrúa festingar í hverju sniði. Ef sniðbreyting truflar hringferð í kóðagrunninum þínum, vinsamlegast {issueLink} með lágmarks sýni.",
+			"issueLinkLabel": "Opnaðu mál"
+		}
 	},
 	"recipes": {
 		"title": "Uppskriftir",
 		"eyebrow": "Matreiðslubók",
-		"lede": "Algeng mynstur fyrir sendingarþýðingar: monorepos, orðalistar, sérsniðnir flokkar, prufukeyrslur og tónstýring."
+		"lede": "Algeng mynstur fyrir sendingarþýðingar: monorepos, orðalistar, sérsniðnir flokkar, prufukeyrslur og tónstýring.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Opnaðu pull request eftir hverja keyrslu"
+			},
+			"monorepo": {
+				"heading": "Monorepos: umfangsþýðing á pakka"
+			},
+			"glossary": {
+				"heading": "Orðalisti fyrir vörumerki og vöruheiti",
+				"intro": "Settu {configPath} í geymsluna:",
+				"afterLabel": "Eftir",
+				"body": "Orðalistar eru notaðir {after} þýðingu, þannig að vélrænt þýdd úttak heldur uppáhalds vörumerkinu þínu jafnvel þegar líkanið skipti því út fyrir samheiti."
+			},
+			"customCategory": {
+				"heading": "Flokkur sérsniðins þýðanda (iðnaður / lén)",
+				"body": "Þjálfaðu Azure {customTranslatorLink} flokk á gagnasafni sem fangar orðaforða og tón í greininni þinni (lögfræði, læknisfræði, markaðsmál, innri verkfræði o.s.frv.) og standastu auðkenni þess í gegnum {categoryId}. Þetta er sterkasti tónspakinn sem Azure býður upp á."
+			},
+			"tone": {
+				"heading": "Tónstýring + strangt bakslag",
+				"body": "Sameinaðu sérsniðinn þýðanda {categoryId} með {profanityAction} og {allowFallbackFalse} til að tryggja samræmda rödd og mistakast í vinnuflæðinu ef valinn flokkur hefur ekki uppsetningu fyrir eitt af marksvæðum þínum."
+			},
+			"dryRun": {
+				"heading": "Prófaðu áður en þú kveikir á vinnuflæðinu",
+				"body": "Aðgerðin sendir samt út samantekt og samantekt á skrefum, en engar skrár eru skrifaðar. Sameinaðu {failOnErrorFalse} til að koma öllum vandamálum á framfæri sem viðvörun á meðan þú endurtekur."
+			}
+		}
 	},
 	"faq": {
 		"title": "Algengar spurningar",
 		"eyebrow": "Hjálp",
 		"heroTitle": "Algengar spurningar",
-		"lede": "Fljótleg svör við þeim spurningum sem koma oftast upp þegar aðgerðin er tekin upp."
+		"lede": "Fljótleg svör við þeim spurningum sem koma oftast upp þegar aðgerðin er tekin upp.",
+		"questions": {
+			"azure": {
+				"heading": "Hvernig talar aðgerðin við Azure?",
+				"body": "Í gegnum opinbera {azureSdkLink} SDK Microsoft, ofan á {corePipelineLink}. Það gefur þér sjálfvirkar endurtilraunir á {statusCodes}, innsláttar beiðnir og svörunarlíkön, og meðhöndlun auðkenningarhausa án endurgjalds — allt sem áður var handskrifað {axios} símtal. Opinberi aðgerðarflöturinn (inntak, úttak, skráarúttak) er óbreyttur."
+			},
+			"tone": {
+				"heading": "Af hverju eru þýðingar stundum ekki í samræmi við vörumerkið eða ekki í réttum tón?",
+				"body": "Vélþýðing notar sjálfgefið almennt líkan. Þrír takkar hjálpa: {glossaryLink} fyrir harðar yfirskriftir, {customTranslatorLink} fyrir fínstillt líkön sem eru þjálfuð á tóni og orðaforða, og {profanityAction} til að hreinsa eða merkja blótsyrði.",
+				"glossaryLinkLabel": "Orðalisti",
+				"customTranslatorLinkLabel": "Flokkur sérsniðinna þýðanda"
+			},
+			"duplicateFiles": {
+				"heading": "Hvernig forðast ég að þýða sömu skrá tvisvar?",
+				"body": "Kveiktu á vinnuflæði á {paths} sem passa aðeins við upprunalegu skrárnar þínar, t.d. {sourceGlob}. Aðgerðin inniheldur einnig sinn eigin skráarsíu fyrir hvern kveikju þegar {githubToken} er stillt, sem þrengir vinnuna að skrám í nýjustu commitinu."
+			},
+			"offline": {
+				"heading": "Get ég keyrt aðgerðina án nettengingar?",
+				"body": "Ekki alveg — Azure AI Translator er keyrsluhugurinn. En þú getur keyrt með {dryRunTrue} til að staðfesta greiningu og stillingar án þess að þurfa að biðja um HTTP þýðingu."
+			},
+			"node": {
+				"heading": "Á hvaða Node útgáfu keyrir aðgerðin?",
+				"body": "v3 keyrir á GitHub Actions {nodeRuntime} keyrslutíma. JavaScript sem fylgir með er samhæft við Node 20, 22 og 24, sem CI prófar."
+			},
+			"dist": {
+				"heading": "Hvaðan kemur samsetta {distDir}?",
+				"body": "GitHub JS aðgerðir senda þýdda JS þeirra í geymsluna. {distBuild} vinnuflæðið byggir það upp aftur eftir hverja samruna til að {mainBranch} hvort það myndi reka, og {distCheck} blokkar PR sem myndu lenda úreltum úttaki."
+			},
+			"formats": {
+				"heading": "Hvað með önnur auðlindasnið?",
+				"body": "Í dag: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} ef þú þarft annan — greiningarviðmótið er lítið (greina → kortleggja → þýða → sniði) og framlag er vel þegið.",
+				"issueLinkLabel": "Opnaðu mál"
+			}
+		}
 	},
 	"translations": {
 		"title": "Þýðingar",
 		"eyebrow": "Sýning",
 		"heroTitle": "Halló á öllum tungumálum",
-		"locales": "Staðsetningar",
-		"currentlyRendered": "nú renderað",
-		"complete": "Lokið!",
-		"pendingPrefix": "Í bið næstu þýðingar-skjala keyrslu.",
+		"lede": "Þessi síða er þýdd af Resource Translator sjálfum, við hvert skipti yfir í aðal, yfir á öll tungumál sem Azure AI Translator styður.",
+		"localeCountLabel": "{count} staðir",
+		"statusComplete": "{translatedCount} nú þegar útbúið — fullkomið!",
+		"statusPending": "{translatedCount} núna í vinnslu — {pendingCount} bíður næstu {workflowName} keyrslu.",
 		"viewWorkflowRuns": "Skoðaðu vinnuflæði keyrsla",
 		"filter": "Sía",
 		"filterPlaceholder": "Leitaðu eftir tungumáli, kóða eða innfæddum nafni...",
 		"source": "Heimild",
 		"machineTranslations": "Vélþýðingar",
-		"translationPending": "Þýðing biður — opnaðu þýðingar-skjöl keyrslu.",
+		"translationPending": "Þýðing í bið — opnaðu {workflowName} run.",
 		"noLocales": "Engar staðsetningar passa við þá síu.",
-		"howItWorks": "Hvernig þetta virkar"
+		"howItWorks": {
+			"heading": "Hvernig þetta virkar",
+			"thisActionLabel": "einmitt þessi aðgerð",
+			"steps": {
+				"source": "Enska heimildarskráin er á {messagesPath}.",
+				"workflow": "Ef hún ýtir á þá snertingu sparkar hún af {workflowLink}, sem hleypur {thisAction} á móti sjálfu sér.",
+				"fanOut": "Aðgerðin dreifist til allra Azure AI þýðanda (stillt í {configPath}) og skrifar systkini {messagesLocaleJson} fyrir hvert markmið.",
+				"pullRequest": "Pull request er opnuð með nýju þýðingunum. Með því að sameina hana birtist þessi síða aftur með kortunum fylltum út."
+			}
+		},
+		"poweredBy": "Knúið áfram af Resource Translator og Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Framlag",
 		"eyebrow": "Opinn hugbúnaður",
-		"lede": "Villuskýrslur, óskir um eiginleika og beiðnir um pull eru allar velkomnar. Atburðurinn er nógu lítill til að vera vingjarnlegur við þá sem leggja sitt af mörkum í fyrsta sinn."
+		"lede": "Villuskýrslur, óskir um eiginleika og beiðnir um pull eru allar velkomnar. Atburðurinn er nógu lítill til að vera vingjarnlegur við þá sem leggja sitt af mörkum í fyrsta sinn.",
+		"localDevelopment": {
+			"heading": "Staðbundin þróun"
+		},
+		"addingParser": {
+			"heading": "Að bæta við þýðanda",
+			"steps": {
+				"fixture": "Bættu við ljósi undir {testDataDir}.",
+				"implement": "Innleiða {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Skráðu það í {factoryFile}.",
+				"extension": "Bættu við skráarendingu við {translationFileSchemes} í {finderFile}.",
+				"tests": "Skrifaðu hringferðarpróf fyrir greiningu → sniði og beittu þýðingum."
+			}
+		},
+		"coverage": {
+			"heading": "Þekjumörk",
+			"body": "Jest-stillingin krefst lágmarks þekju. Nýr kóði þarf að halda þröskuldi setninga + lína yfir 78% og virkni yfir 90%. Bættu við innréttingum og prófunum samhliða breytingunni."
+		},
+		"docsSite": {
+			"heading": "Skjölunarsíða",
+			"body": "{docsDir} möppan er Astro 6 + Tailwind v4 verkefni. Keyrðu {npmInstall} þangað einu sinni, svo {npmRunDev} fyrir staðbundna forskoðun. {pagesWorkflow} vinnuflæðið sendir skjöl á GitHub Pages við hverja samruna."
+		}
 	},
 	"changelog": {
 		"title": "Breytingaskrá",
 		"eyebrow": "Saga",
-		"lede": "Yfirlit yfir útgáfur á háu stigi. Hin kanóníska, áreiðanlega breytingaskrá lifir í CHANGELOG.md í geymslunni."
+		"lede": "Yfirlit yfir útgáfur á háu stigi. Hin kanóníska, áreiðanlega breytingaskrá lifir í CHANGELOG.md í geymslunni.",
+		"fullRecord": "Sjáðu {changelogLink} fyrir fulla skrá.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "V3 (í þróun)",
+			"labels": {
+				"breaking": "BROT",
+				"resilience": "Seigla:",
+				"placeholderProtection": "Staðgengilsvörn:",
+				"perKeyOptOut": "Val á hverjum lykli:",
+				"docsAccessibility": "Aðgengi að Docs:",
+				"inlineCodeStyling": "Innbyggður kóðastíll:"
+			},
+			"issueLabels": {
+				"closes46": "Lokar #46.",
+				"tightens16": "Herðir #16.",
+				"closes35": "Lokar #35."
+			},
+			"items": {
+				"runtime": "Hækkaði í {nodeRuntime} keyrslutíma ({breaking}).",
+				"newInputs": "Ný inntak: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, auk háþróaðra þýðandatakka {textType}, {profanityAction}, {profanityMarker} og {allowFallback}.",
+				"sourceLocale": "Upprunastaðurinn er nú einnig sendur áfram til þýðanda sem {fromLocale} svo stuttir strengir séu ekki sjálfkrafa greindir.",
+				"resilience": "{label} sjálfvirk endurtilraun á tímabundnum HTTP-svörum ({statusCodes}) sem virðir {retryAfter} haus Azure — fellur aftur í jittered exponential backoff þegar það vantar. Stillanlegt með {maxRetries} og {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} tákn eins og {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} og HTML einingar eru vafin inn í sentinels fyrir þýðingu og endurheimt eftir á, svo þýðandinn hættir að rugla i18next/Mustache/Handlebars/.NET/printf staðgenglara. Skiptu um með {protectPlaceholders}; Lengja með {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} nýja {noTranslatePatterns} inntak fellur alveg út samsvarandi lykla úr þýðandabeiðninni (varðveitir upprunagildi fyrir vörumerki, villukóða o.s.frv.). Samræmir glob-mynstur við greiningarlykla (JSON punktaleið, RESX {resxName}, PO {poMsgid}, XLIFF eining {xliffId}, INI/restext lykill). {issue}",
+				"repoConfig": "Repo-stig stillingar í gegnum {configPath}.",
+				"glossary": "Orðalistastuðningur, skrefasamantekt í gegnum {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM Audit hreint (0 veikleikar).",
+				"docsSite": "Astro + Tailwind v4 skjöl með sjónarhornsbreytingum og Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. Lógótákn umbreytt í slóðir svo þau mistakast ekki lengur í litamun við litastig, fljótandi {backToTop} hnappurinn notar {inert} þegar hann er falinn (í stað {ariaHidden} rofa sem gerði hann tabbaranlegan), {formatsAstro} hlutar rekast ekki lengur saman við sjálfvirkt búin fyrirsagnarauðkenni sín, þrjú staðsetningarkort sýna nú BCP-47-gild {lang} eiginleika ({nya}, {lug}, {run}), tvítekin {documentation} kennileiti eru aðgreind milli hliðarstiku og fótar,  Og hver gagnatöflu á {inputs}/{configuration} fylgir skjálesaratexta.",
+				"inlineCode": "{label} Docs prósa {codeElement} ber nú hlýja/amber þemaáherslu — ólíkan merki→áherslupallettunni sem notuð er fyrir tengla og fyrirsagnir.",
+				"automation": "Dependabot sjálfvirk samruni, CodeQL skönnun, CI fylki."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Sjá git sögu."
+		}
 	}
 }

@@ -18,18 +18,26 @@
 			"node": "Node 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "iç içe ya da düz",
+			"ini": "{keyValue}",
+			"restext": "MUI metni"
+		},
 		"features": {
 			"formats": {
 				"title": "Altı dosya formatı",
-				"body": ".resx, .xliff, .po, .json, .ini ve .restext adreslerini bayt kararlı biçimlendirme ile gidiş-dönüş yapar."
+				"body": "Gidiş-dönüş yollar bayt-stabil formatlama ile {resx}, {xliff}, {po}, {json}, {ini} ve {restext} olur."
 			},
 			"config": {
 				"title": "Repo seviyesinde yapılandırma",
-				"body": "Bir .github/resource-translator.yml ekleyin, içinde globs, sözlük ve Özel Çevirici kategorileri ekleyin."
+				"body": "Ekle globs, sözlük ve Özel Çevirici kategorileri için {configPath} dosyası bırakın."
 			},
 			"glossary": {
 				"title": "Sözlük bilgisi",
-				"body": "Marka adlarını ve ürün terimlerini, C++, .NET ve arkadaşlarını işleyen akıllı kelime sınırı regexi ile kilitleyin."
+				"body": "Marka isimlerini ve ürün terimlerini {cpp}, {dotnet} ve arkadaşları yöneten akıllı kelime sınırı regex'iyle kilitleyin."
 			},
 			"dryRun": {
 				"title": "Deneme + yumuşak başarısızlık",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR dostu çıktılar",
-				"body": "özet-başlık, özet-detaylar ve yeni çevirileri doğrudan create-pull-request içine yerleştirilir."
+				"body": "{summaryTitle}, {summaryDetails} ve {hasNewTranslations} doğrudan create-pull-request sistemine yerleşir."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "@azure-rest/ai-translation-text + @azure/core-rest-pipeline üzerine inşa edilmiştir — 408/429/5xx üzerinde otomatik yeniden denemeler, el ile rulo HTTP yok. esbuild paketinde, denetim temizliğinde."
+				"body": "{azureSdk} + {corePipeline} üzerine inşa edilmiş — {statusCodes}'de otomatik tekrar denemeler, el ile hazırlanmış HTTP yok. {esbuild} paketli, denetim temizliğinde."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Açılmadan iş akışı",
+			"titlePrefix": "Kopyala. Yapıştır.",
+			"titleAccent": "Çevir.",
+			"body": "Üç sır, dört hat ve bir sonraki itimde depo çok dilli oluyor.",
+			"setupLink": "Tam kurulumu inceleyin"
+		},
+		"cta": {
+			"title": "Otomatik pilotta lokalize etmeye hazır mısınız?",
+			"body": "Bir Azure AI Translator anahtarı, bir iş akışı dosyası. Geri kalanını Kaynak Çevirici halleder.",
+			"button": "Başla"
 		}
 	},
 	"getting-started": {
 		"title": "Başlamak",
 		"eyebrow": "Kurulum",
-		"lede": "Bir iş akışı dosyası ekleyin, Azure AI Translator kimlik bilgilerinize yönlendirin; Microsoft'un resmi @azure-rest/ai-translation-text SDK'sı üzerine kurulan eylem, depoda kaynak dil kaynak dosyalarını tarar ve çevrilmiş kardeşler gönderir.",
+		"lede": "Bir iş akışı dosyası ekleyin, Azure AI Translator kimlik bilgilerinize yönlendirin, işlem depoda kaynak dili kaynak dosyalarını tarar ve çevrilmiş kardeşler gönderir.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "İş akışını ekle",
-				"body": ".github/workflows/translate.yml oluşturun:"
+				"body": "Oluşturun {workflowPath}:"
 			},
 			"resource": {
 				"title": "Bir kaynak kaynak dosyası commit et",
-				"body": "Kaynak dosyaları ise Adı kullanır. <sourceLocale>. <ext> Kongre. Örneğin, Greetings.en.resx bir çalıştırmadan sonra Greetings.fr.resx, Greetings.de.resx ve benzeri olur."
+				"body": "Kaynak dosyaları {namingConvention} konvansiyonunu kullanır. Örneğin {sourceFile} bir koşudan sonra {frFile}, {deFile} ve benzeri olur."
 			},
 			"output": {
 				"title": "Çıkışı inceleyin",
-				"body": "İş akışı bittiğinde, eylem PR açıklamasına bağlayabileceğiniz üç çıktıyı ortaya çıkarır: özet-başlık, özet-detaylar ve yeni-çeviriler. Ayrıca core.summary üzerinden iş sayfasına bir Markdown özeti yazar."
+				"body": "İş akışı bittiğinde, eylem PR açıklamasına bağlayabileceğiniz üç çıktıyı ortaya çıkarır: {summaryTitle}, {summaryDetails} ve {hasNewTranslations}. Ayrıca iş sayfasına {coreSummary} aracılığıyla Markdown özeti yazıyor."
 			}
 		},
 		"nextSteps": {
 			"title": "Sonraki adımlar",
-			"configuration": "Repo seviyesi varsayılan ayarları .github/resource-translator.yml ile yapılandırın.",
+			"configuration": "Repo seviyesi varsayılanları {configPath} ile yapılandırın.",
 			"recipes": "Monorepo, özel sözlükler ve Özel Çevirici kategorileri için tariflere bakınız."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Yapılandırma",
 		"eyebrow": "YAML",
 		"heroTitle": "Depo yapılandırması",
-		"lede": "Express .github/resource-translator.yml'de bir kez varsayılan oluyor ve her iş akışının bunları devralmasına izin veriyor. Her ikisi de sağlandığında aksiyon girişleri her zaman kazanır."
+		"lede": "Express, depo yapılandırma dosyasında bir kez varsayılan olarak durur ve her iş akışının bunları devralmasına izin verir. Her ikisi de sağlandığında aksiyon girişleri her zaman kazanır.",
+		"intro": "Varsayılan olmayan bir konuma ihtiyacınız varsa yolu {configPath} girdisiyle geçersiz edin.",
+		"schemaHeading": "Şema",
+		"fieldReference": {
+			"heading": "Alan referansı",
+			"caption": "Yapılandırma alanı referansı",
+			"columns": {
+				"field": "Saha",
+				"type": "Tip",
+				"notes": "Notlar"
+			},
+			"fields": {
+				"sourceLocale": "Ayarlanmadıysa {sourceLocale} girişine geri döner. Ayrıca kısa dizeler otomatik algılanmadığı için Translator'a da {fromLocale} olarak iletildi.",
+				"toLocales": "Ya bir dizi ya da virgülle ayrılmış bir dizedir.",
+				"includeExclude": "Glob desenleri, mutlak ve çalışma alanına bağlı yollara göre değerlendirildi.",
+				"glossary": "Çeviri sonrası terim geçersiz bırakmalar. Kelime sınırının farkında ({cpp}, {dotnet} adreslerini kullanır).",
+				"categoryId": "Azure {customTranslatorLink} kategorisi — sektör/alan düğmeniz (hukuk, tıbbi, pazarlama tonu vb.). {categoryQuery} olarak gönderildi.",
+				"textType": "Varsayılan olarak {plain}. {html} yalnızca kaynak değerleriniz gerçek HTML parçaları içeriyorsa kullanın.",
+				"profanityAction": "Tercüme edilen terimleri çeviri çıktısında nasıl ele alınır.",
+				"profanityMarker": "Anlamlı {profanityAction} sadece {marked} olduğunda.",
+				"allowFallback": "Genel modele dönmek yerine {categoryId} hedef bölge için dağıtım yokken çeviriyi başarısız {false} olarak ayarlayın.",
+				"apiVersion": "Translator REST API sürümü. Varsayılan olarak {version}.",
+				"maxRetries": "Geçici HTTP yanıtlarında maksimum tekrar deneme girişimi ({statusCodes}). Varsayılan olarak {defaultRetries}. Toplam HTTP çağrısı bir istek başına {totalCalls}.",
+				"retryBackoffMs": "Herhangi bir geri çekilme uykusunda cap (ms) var. Varsayılan olarak {defaultBackoff}. Azure'un {retryAfter} başlığı tam olarak orada onurlandırılır; aksi takdirde titrek üstel geri dönüş kullanılır ve bu değerle sınırlandırılır.",
+				"protectPlaceholders": "Varsayılan olarak {true}. Açık olduğunda, {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ve HTML varlıkları gibi tokenlar çeviri öncesi sentinel token'larla değiştirilir ve sonrasında geri yüklenir. Yalnızca kaynak kasıtlı olarak yer tutucu şeklinde literallar içerdiğinde devre dışı bırakın.",
+				"customPlaceholderPatterns": "Varsayılan yer tutucu setine ekstra regex desenleri (sınırlayıcı olmadan) eklendi, örneğin özel token sözdizimi için {angleToken}. Geçersiz regexler göz ardı edilir.",
+				"noTranslatePatterns": "Glob desenleri, ayrıştırıcı seviyesinde anahtarlarla eşleşiyordu (JSON noktalı yol, RESX {resxName}, PO {poMsgid}, XLIFF birim {xliffId}, INI/restext anahtarı). Eşleşen anahtarlar istekten çıkarılır ve kaynak değeri korunur."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Yükleme sırası",
+			"steps": {
+				"actionInputs": "Eylem, iş akışından açık girdileri okur.",
+				"config": "YAML yapılandırmasını {configPath}'dan yüklüyor.",
+				"precedence": "Her paylaşılan alan için girdi kazanır; aksi takdirde YAML değeri kullanılır.",
+				"validation": "Birleştirilen değerler doğrulanır. Geçersiz enumlar (örneğin {invalidEnum}), eylemin net bir mesajla hızlı başarısız olmasına neden olur."
+			}
+		},
+		"tone": {
+			"heading": "Açık terimle ton ve sanayi",
+			"body": "Azure AI Translator v3 API'sinde tek bir ton düğmesi yoktur. İki ayar birleşerek size neredeyse aynı kontrolü sağlıyor:",
+			"industryLabel": "Sektör / alan alanı:",
+			"industryBody": "{categoryId} kullanarak kendi korpusunuzda eğitilmiş bir Azure {customTranslatorLink} kategorisine işaret edin — hukuki, teknik, tıbbi, pazarlama veya başka herhangi bir alanda. Bu, ton, marka sesi ve kelime dağarcığı için en güçlü kaldıraçtır.",
+			"surfaceLabel": "Yüzey metni:",
+			"surfaceBody": "Marka isimlerini ve ürün terimlerini kelimesi kelimesine kilitlemek için {glossaryLink} kullanın ve genç kitlelere yönelik yerelleştirmeyi hedeflerken küfüm terimlerini {profanityAction} temizlemek için kullanın.",
+			"glossaryLinkLabel": "Sözlük"
+		}
 	},
 	"inputs": {
 		"title": "Girişler ve çıkışlar",
 		"eyebrow": "Referans",
-		"lede": "Her girdi, isteğe bağlı repo yapılandırma dosyasında da kabul edilir. İkisi de ayarlandığında, aksiyon girişi kazanır."
+		"lede": "Her girdi, isteğe bağlı repo yapılandırma dosyasında da kabul edilir. İkisi de ayarlandığında, aksiyon girişi kazanır.",
+		"configurationIntro": "YAML şeması ve yükleme sırası için {configurationLink}'a bakınız.",
+		"configurationLinkLabel": "Yapılandırma",
+		"columns": {
+			"name": "İsim",
+			"default": "Varsayılan",
+			"description": "Tanım"
+		},
+		"defaults": {
+			"none": "Hiçbiri",
+			"allSupported": "hepsi desteklendi",
+			"translatorDefaultTrue": "true (Çevirmen varsayılı)"
+		},
+		"requiredInputs": {
+			"heading": "Gerekli girdiler",
+			"caption": "Gerekli girdiler",
+			"items": {
+				"sourceLocale": "Kaynak dosyalarını bulmak için kullanılan kaynak yerel (örneğin {en}), örneğin {sourceGlob}. Ayrıca Translator'a {fromLocale} olarak iletildi.",
+				"subscriptionKey": "Azure AI Translator subscription key. {secrets} üzerinden geçin.",
+				"endpoint": "Çevirici uç nokta URL'si, örneğin {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Yaygın isteğe bağlı girişler",
+			"caption": "Yaygın isteğe bağlı girişler",
+			"items": {
+				"region": "Çevirici kaynak bölgesi (küresel kaynaklar için çıkar).",
+				"toLocales": "Çeviri yapılacak yerler. JSON dizisi ({jsonArray}) veya virgülle ayrılmış değerleri kabul eder.",
+				"include": "Yeni hattı ayrılmış küre desenleri; Sadece eşleşen dosyalar çevrilir.",
+				"exclude": "Yeni hattı ayrılmış küre desenleri; Eşleşen dosyalar atlanır (dahil edildikten sonra uygulanır).",
+				"configPath": "YAML yapılandırma dosyasına giden yol (çalışma alanı köküne göre).",
+				"dryRun": "{true} yaptığınızda çevirileri çalıştırın ve özetler gönderin ama dosya yazmayın.",
+				"failOnError": "{true} edildiğinde, beklenmedik hatalar işlemi başarısız eder; {false} olduğunda, hatalar uyarı olarak kullanılır."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Çevirici isteği girişleri",
+			"intro": "Bunlar doğrudan Azure AI Translator v3 sorgu parametrelerine eşlenir. Her biri isteğe bağlıdır; Translator varsayılan ayarları ayarlanmadığında geçerlidir.",
+			"caption": "Çevirici isteği girişleri",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} category — industry/domain/tone knob. {categoryQuery} olarak iletildi.",
+				"textType": "{plain} ya da {html}. {html} sadece kaynak değerleriniz gerçek HTML parçaları olduğunda kullanın.",
+				"profanityAction": "{noAction}, {marked} ya da {deleted}. Çevirilerde küfün terimlerin nasıl yayımlandığını kontrol eder.",
+				"profanityMarker": "{asterisk} ya da {tag}. Anlamlı olan {profanityAction} {marked} olduğunda.",
+				"allowFallback": "{false} olduğunda, {categoryId} hedef bölge için dağıtımı yoksa, Translator genel sisteme geri dönmek yerine hata döndürür.",
+				"apiVersion": "Translator REST API sürümü."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Dayanıklılık ve yer tutucu koruma",
+			"intro": "Bu girdiler, Translator isteğinizi kısıtladığında eylemin nasıl davrandığını ve {mustache} veya {indexZero} gibi geçici tokenların çeviri sırasında bozulmadan nasıl korunduğunu kontrol eder.",
+			"caption": "Dayanıklılık ve yer tutucu koruma girdileri",
+			"items": {
+				"maxRetries": "Geçici HTTP yanıtlarında maksimum tekrar deneme girişimi ({statusCodes}). Her istek başına toplam HTTP çağrı sayısı {totalCalls}.",
+				"retryBackoffMs": "Herhangi bir geri çekilme uykusunda milisaniye cinsinden kapalı. Eylem, Azure'un {retryAfter} yanıt başlığını tam olarak bulunduğunda onurlandırır; aksi takdirde, bu değerle sınırlanmış titrek üstel geri geri dönüş kullanır.",
+				"protectPlaceholders": "{true} (varsayılan) olduğunda, {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ve HTML varlıkları gibi yer tutucular çeviri öncesinde sentinel token'larla değiştirilir ve sonrasında geri yüklenir. Yalnızca kaynağınızda kasıtlı olarak çevrilmesi gereken yer tutucu şeklinde metin içerdiğinde devre dışı bırakın.",
+				"customPlaceholderPatterns": "Yeni satırla ayrılmış regexler (sınırlayıcısız) varsayılan yer tutucu setine eklendi, örneğin özel token sözdizimi için {angleToken}.",
+				"noTranslatePatterns": "Yeni satırdan ayrılmış glob desenleri, ayrıştırıcı seviyesinde anahtarlarla eşleştirildi (JSON noktalı yol, RESX {resxName}, PO {poMsgid}, XLIFF birim {xliffId}, INI/restext anahtarı). Eşleşen anahtarlar Çevirmen isteğinden çıkarılır ve kaynak değeri korunur."
+			}
+		},
+		"outputs": {
+			"heading": "Çıktılar",
+			"caption": "Çıktılar",
+			"items": {
+				"summaryTitle": "Kısa PR başlığı dostu özet, örneğin {summaryExample}.",
+				"summaryDetails": "Bir PR kurumu veya iş özeti için uygun bir indirim özeti.",
+				"hasNewTranslations": "{trueString} bir veya daha fazla yeni çevirinin üretildiği zaman."
+			}
+		}
 	},
 	"formats": {
 		"title": "Dosya formatları",
 		"eyebrow": "Referans",
 		"heroTitle": "Desteklenen dosya formatları",
-		"lede": "Altı adet gidiş-dönüş kullanılabilir kaynak formatı. Eylem, her bir kaynak-yerel dosyasını okur, değerleri çevirir ve hedef yerel başına bir kardeş yazar."
+		"lede": "Altı adet gidiş-dönüş kullanılabilir kaynak formatı. Eylem, her bir kaynak-yerel dosyasını okur, değerleri çevirir ve hedef yerel başına bir kardeş yazar.",
+		"namingConvention": "Tüm dosyalar {namingConvention} adlandırma geleneğini kullanır.",
+		"learnMore": "Daha fazla bilgi edinin",
+		"items": {
+			"resx": {
+				"blurb": "XML tabanlı .NET kaynak dosyaları. Her {dataValue} düğümünün iç metnini çevirir, yorumları ve meta verileri korur.",
+				"specLabel": "Microsoft Learn — .resx dosyalarındaki kaynaklar"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 belgeleri. Her {source} çevirir ve sonucu ilgili {target} yazar, böylece {trgLang} için yer ayarlar.",
+				"specLabel": "OASIS XLIFF 2.0 spesifikasyonu"
+			},
+			"po": {
+				"blurb": "GNU gettext Taşınabilir nesne dosyaları. Her {msgid} / {msgidPlural} {msgstr} / {msgstrPlural} biçimlerine çevirir.",
+				"specLabel": "GNU gettext — PO dosya formatı"
+			},
+			"json": {
+				"blurb": "Keyfi JSON dosyaları. İçiçe yerleştirilmiş nesneler, çeviri için {delimiter} ayırıcı ile düzleştirilir, ardından çıktıda yeniden iç içe geçirilir. Noktalı tuşlar ({dottedKey}) kelimesi kelimesine korunmuştur.",
+				"specLabel": "JSON spesifikasyonu (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Basit {keyValue} dosyaları (Win32 tarzı INI veya herhangi bir düz yapılandırma). Bölüm başlıkları ve yorumlar korunmuştur.",
+				"specLabel": "Wikipedia'da INI dosya formatı"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI metin kaynakları — {resx} için metin eşliğinde kullanılan düz {keyValue} çiftleri.",
+				"specLabel": "Microsoft MUI genel bakış"
+			}
+		},
+		"roundTrip": {
+			"heading": "Gidiş-dönüş garantileri",
+			"body": "Test paketi, her formatın temsilci fikstürleri için bayt-bayt round-tripping'i doğrular. Kod tabanınızda bir format quirk'i round-trip'i bozarsa, lütfen minimum bir örnekle {issueLink}.",
+			"issueLinkLabel": "Bir sorun açın"
+		}
 	},
 	"recipes": {
 		"title": "Tarifler",
 		"eyebrow": "Yemek Kitabı",
-		"lede": "Gönderim çevirileri için yaygın kalıplar: monorepolar, sözlükler, özel kategoriler, kuru denemeler ve ton kontrolü."
+		"lede": "Gönderim çevirileri için yaygın kalıplar: monorepolar, sözlükler, özel kategoriler, kuru denemeler ve ton kontrolü.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Her koşudan sonra bir pull request açın"
+			},
+			"monorepo": {
+				"heading": "Monorepos: paket başına kapsam çevirisi"
+			},
+			"glossary": {
+				"heading": "Marka isimleri ve ürün terimleri için sözlük",
+				"intro": "Depoya bir {configPath} bırakın:",
+				"afterLabel": "Sonrasında",
+				"body": "Sözlük terimleri çeviri {after} uygulanır, böylece makine çevirisi çıktısı, model eşanlamlıyla değiştirilse bile tercih ettiğiniz markayı korur."
+			},
+			"customCategory": {
+				"heading": "Özel Çevirici kategorisi (sektör / alan alanı)",
+				"body": "Sektörünüzdeki kelime dağarcığını ve tonunu (hukuk, tıbbi, pazarlama, iç mühendislik vb.) kapsayan bir Azure {customTranslatorLink} kategorisi üzerinde eğitin ve ID'sini {categoryId} üzerinden geçirin. Bu, Azure'un sunduğu en güçlü ton koludur."
+			},
+			"tone": {
+				"heading": "Ton kontrolü + katı yedek",
+				"body": "Özel Çevirici {categoryId}'yi {profanityAction} ve {allowFallbackFalse} ile birleştirerek tutarlı bir ses sağlayın ve seçilen kategoride hedef bölgelerden biri için dağıtım yoksa iş akışını başarısız kalın."
+			},
+			"dryRun": {
+				"heading": "İş akışını açmadan önce deneme yap",
+				"body": "Eylem yine özet çıktıları ve bir adım özeti gönderir, ancak dosya yazılmaz. Her sorunu uyarı olarak ortaya çıkarmak için {failOnErrorFalse} ile birleştirin."
+			}
+		}
 	},
 	"faq": {
 		"title": "SSS",
 		"eyebrow": "Yardım edin",
 		"heroTitle": "Sıkça Sorulan Sorular",
-		"lede": "Eylemi benimserken en sık karşılaşan sorulara hızlı cevaplar."
+		"lede": "Eylemi benimserken en sık karşılaşan sorulara hızlı cevaplar.",
+		"questions": {
+			"azure": {
+				"heading": "Eylem Azure ile nasıl iletişim kuruyor?",
+				"body": "Microsoft'un resmi {azureSdkLink} SDK'sı üzerinden, {corePipelineLink} katmanlı olarak. Bu, {statusCodes} otomatik tekrar denemeleri, yazılı istek ve yanıt modelleri ve kimlik doğrulama başlığı işleme gibi ücretsiz işlemleri sağlar — eskiden elle atılmış {axios} çağrısı olan her şey. Genel işlem yüzeyi (girişler, çıktılar, dosya çıktıları) değişmemiştir."
+			},
+			"tone": {
+				"heading": "Neden çeviriler bazen marka dışı ya da tonsuz olabiliyor?",
+				"body": "Makine çevirisi varsayılan olarak genel amaçlı bir modele yöneler. Üç düğme yardımcı olur: kesin geçersiz kılar için bir {glossaryLink}, ton ve kelime dağarcığınıza göre eğitilmiş ince ayar modeller için bir {customTranslatorLink} ve küfür terimleri temizlemek veya işaretlemek için {profanityAction}.",
+				"glossaryLinkLabel": "Sözlük",
+				"customTranslatorLinkLabel": "Özel Çevirici kategorisi"
+			},
+			"duplicateFiles": {
+				"heading": "Aynı dosyayı iki kez çevirmekten nasıl kaçınabilirim?",
+				"body": "İş akışını, yalnızca kaynak yerel dosyalarınıza uyan {paths} tetikleyin, örneğin {sourceGlob}. Eylem ayrıca {githubToken} ayarlandığında kendi tetikleyici başına dosya filtresini içerir; bu da en son commit'teki dosyalara çalışmayı daraltır."
+			},
+			"offline": {
+				"heading": "Aksiyonu çevrimdışı çalıştırabilir miyim?",
+				"body": "Tam olarak değil — Azure AI Translator çalışma zamanı beyni. Ama ayrıştırma ve yapılandırmayı doğrulamak için {dryRunTrue} ile çalıştırabilirsiniz, çeviri için HTTP isteği vermeden."
+			},
+			"node": {
+				"heading": "Aksiyon hangi Node versiyonunda çalışıyor?",
+				"body": "v3, GitHub Actions {nodeRuntime} çalışma zamanı üzerinde çalışır. Pakette olan JavaScript, CI'nin test ettiği Node 20, 22 ve 24 ile uyumludur."
+			},
+			"dist": {
+				"heading": "Paketlenmiş {distDir} nereden geliyor?",
+				"body": "GitHub JS eylemleri, derlenmiş JS'lerini depoda gönderir. {distBuild} iş akışı, her birleşmeden sonra sürüklenip kaymayacağını {mainBranch} için yeniden inşa eder ve eski çıktıya inecek PR'ları engeller {distCheck}."
+			},
+			"formats": {
+				"heading": "Peki ya diğer kaynak formatları?",
+				"body": "Bugün: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} başka birine ihtiyacınız olursa — ayrıştırıcı arayüzü küçük (ayrıştırmak → harita → çevirileri → format uygulamak) ve katkılar memnuniyetle karşılanır.",
+				"issueLinkLabel": "Bir sorun açın"
+			}
+		}
 	},
 	"translations": {
 		"title": "Çeviriler",
 		"eyebrow": "Vitrin",
 		"heroTitle": "Her dilde merhaba",
-		"locales": "Yerleşimler",
-		"currentlyRendered": "Şu anda render ediliyor",
-		"complete": "Tamam!",
-		"pendingPrefix": "Bir sonraki Translate-Docs çalışması bekleniyor.",
+		"lede": "Bu sayfa, Resource Translator tarafından, ana sayfaya her baskıda, Azure AI Translator'ın desteklediği her dile çevriliyor.",
+		"localeCountLabel": "{count} mekanlar",
+		"statusComplete": "{translatedCount} şu anda render edildi — tamamlandı!",
+		"statusPending": "{translatedCount} şu anda render ediliyor — {pendingCount} bir sonraki {workflowName} yayınını bekliyor.",
 		"viewWorkflowRuns": "İş akışı çalıştırmalarını görüntüle",
 		"filter": "Filtre",
 		"filterPlaceholder": "Dil, kod veya yerel isimle ara...",
 		"source": "Kaynak",
 		"machineTranslations": "Makine çevirileri",
-		"translationPending": "Çeviri bekleme aşamasında — bir translate-docs çalıştırmasını açın.",
+		"translationPending": "Çeviri bekleme aşamasında — {workflowName} bir yayın açın.",
 		"noLocales": "Hiçbir yer o filtreyle eşleşmiyor.",
-		"howItWorks": "Bu nasıl çalışır"
+		"howItWorks": {
+			"heading": "Bu nasıl çalışır",
+			"thisActionLabel": "Tam da bu eylem",
+			"steps": {
+				"source": "İngilizce kaynak dosyası {messagesPath}'da bulunmaktadır.",
+				"workflow": "O dokunmayı itiyor ve bu {workflowLink} kendi kendiliğine {thisAction} koşuyor.",
+				"fanOut": "Aksiyon, her Azure AI Translator destekli ({configPath}'de yapılandırılmış) bir yere yayılır ve her hedef için bir kardeş {messagesLocaleJson} yazar.",
+				"pullRequest": "Yeni çevirilerle birlikte bir pull request açılır. Birleştirmek, kartları doldurmuş şekilde bu sayfayı yeniden yayımlıyor."
+			}
+		},
+		"poweredBy": "Resource Translator ve Azure AI Translator tarafından desteklenmektedir."
 	},
 	"contributing": {
 		"title": "Katkı",
 		"eyebrow": "Açık kaynak",
-		"lede": "Hata raporları, özellik istekleri ve pull istekleri hepsi memnuniyetle karşılanır. Aksiyon, ilk kez katkıda bulunanlara dostane olacak kadar küçük."
+		"lede": "Hata raporları, özellik istekleri ve pull istekleri hepsi memnuniyetle karşılanır. Aksiyon, ilk kez katkıda bulunanlara dostane olacak kadar küçük.",
+		"localDevelopment": {
+			"heading": "Yerel gelişim"
+		},
+		"addingParser": {
+			"heading": "Ayrıştırıcı ekleme",
+			"steps": {
+				"fixture": "{testDataDir} altına bir armatür ekleyin.",
+				"implement": "{parserInterface} uygulayın ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Kayda {factoryFile}.",
+				"extension": "{finderFile}'de dosya uzantısını {translationFileSchemes}'a ekleyin.",
+				"tests": "Ayrıştırma → biçimlendirme ve uygulamaÇeviriler için gidiş-dönüş testleri yaz."
+			}
+		},
+		"coverage": {
+			"heading": "Kapsama eşikleri",
+			"body": "Jest yapılandırması minimum kapsamayı zorunlu kılar. Yeni kod, ifadeler + satır eşiğini %78'in üzerinde tutmalı ve fonksiyonları %90'ın üzerinde tutmalı. Değişikliğinizin yanında armatur ve testler ekleyin."
+		},
+		"docsSite": {
+			"heading": "Dokümantasyon sitesi",
+			"body": "{docsDir} klasör ise bir Astro 6 + Tailwind v4 projesi. Oraya bir kez {npmInstall} koştur, sonra yerel önizleme için {npmRunDev}. {pagesWorkflow} iş akışı her birleşmede belgeleri GitHub Pages'e gönderiyor."
+		}
 	},
 	"changelog": {
 		"title": "Değişiklik Günlüğü",
 		"eyebrow": "Tarihçe",
-		"lede": "Yayınların üst düzey özeti. Kanonik, otoriter değişim logu CHANGELOG.md depoda yaşar."
+		"lede": "Yayınların üst düzey özeti. Kanonik, otoriter değişim logu CHANGELOG.md depoda yaşar.",
+		"fullRecord": "Tam kayıt için {changelogLink} bakınız.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (geliştirme aşamasında)",
+			"labels": {
+				"breaking": "BREAKING",
+				"resilience": "Dayanıklılık:",
+				"placeholderProtection": "Geçici koruma:",
+				"perKeyOptOut": "Anahtar başına opt-out:",
+				"docsAccessibility": "Belgelerin erişilebilirliği:",
+				"inlineCodeStyling": "Hat içi kod stili:"
+			},
+			"issueLabels": {
+				"closes46": "#46 numarayı kapatıyor.",
+				"tightens16": "#16 numaralı sıkılaştırıyor.",
+				"closes35": "#35 numarayı kapatıyor."
+			},
+			"items": {
+				"runtime": "Çalışma süresi {nodeRuntime} ({breaking}) olarak yükseltildi.",
+				"newInputs": "Yeni girişler: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError} ve gelişmiş Çevirmen düğmeleri {textType}, {profanityAction}, {profanityMarker} ve {allowFallback}.",
+				"sourceLocale": "Kaynak konumu artık Translator'a da {fromLocale} olarak iletilir, böylece kısa dizeler otomatik algılanmaz.",
+				"resilience": "{label} otomatik yeniden deneme geçişli HTTP yanıtlarında ({statusCodes}) Azure'un {retryAfter} başlığını onaylayarak — yokken titreyen üstel geri dönüşe geri döner. {maxRetries} ve {retryBackoffMs} üzerinden ayarlanabilir. {issue}",
+				"placeholderProtection": "{mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ve HTML gibi {label} tokenlar, çeviri öncesinde sentinel'lere sarılır ve sonrasında geri yüklenir, böylece Translator i18next/Mustache/Handlebars/.NET/printf yer tutucularını bozmayı durdurur. Toggle via {protectPlaceholders}; {customPlaceholderPatterns} ile uzat. {issue}",
+				"perKeyOptOut": "{label} yeni {noTranslatePatterns} girişi, Translator isteğinden eşleşen anahtarları tamamen çıkarır (marka adları, hata kodları vb. için kaynak değerleri korunur). Glob desenlerini ayrıştırıcı seviyesinde anahtarlarla eşleştirir (JSON noktalı yol, RESX {resxName}, PO {poMsgid}, XLIFF birim {xliffId}, INI/restext anahtarı). {issue}",
+				"repoConfig": "Repo seviyesi yapılandırma {configPath} aracılığıyla.",
+				"glossary": "Sözlük desteği, adım özeti {coreSummary} aracılığıyla.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM denetimi temiz (0 güvenlik açığı).",
+				"docsSite": "Astro + Tailwind v4 docs sitesi, görünüm geçişleri ve Expressive Code ile.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pas. Logo glifleri yola dönüştürülerek gradyan duraklarına karşı renk kontrastında başarısız olmamasını sağladı, yüzen {backToTop} düğmesi {inert} gizli halde kullanıyor ({ariaHidden} anahtarı yerine tabak edilebilir bırakıyordu), {formatsAstro} bölümler artık otomatik oluşturulan başlık kimlikleriyle çarpışmıyor, üç yerel kart artık BCP-47 geçerli {lang} özelliklerini ({nya}, {lug}, {run}) ortaya koyuyor, tekrarlanan {documentation} işaret etiketleri yan bar ile alt sayfa arasında anlaşılmazlık ayrımına ayrılıyor,  ve {inputs}/{configuration}'daki her veri tablosu ekran okuyucu başlığı ile birlikte gönderiliyor.",
+				"inlineCode": "{label} Docs Prose {codeElement} artık sıcak/kehribar tema aksanını taşıyor — bu da bağlantılar ve başlıklar için kullanılan marka→aksan paletinden farklı.",
+				"automation": "Dependabot otomatik birleştirme, CodeQL taraması, CI matrisi."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Git geçmişine bakınız."
+		}
 	}
 }

@@ -18,18 +18,26 @@
 			"node": "Node 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "Bye Bye Birdie or Flat",
+			"ini": "{keyValue}",
+			"restext": "Inyandiko ya MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Six file formats",
-				"body": "Round-trips .resx, .xliff, .po, .json, .ini, and .restext with byte-stable formatting."
+				"body": "Round-trips {resx}, {xliff}, {po}, {json}, {ini}, and {restext} with byte-stable formatting."
 			},
 			"config": {
 				"title": "Repo-level config",
-				"body": "Drop a .github/resource-translator.yml for include globs, glossaries, and Custom Translator categories."
+				"body": "Drop a {configPath} file for include globs, glossaries, and Custom Translator categories."
 			},
 			"glossary": {
 				"title": "Glossary-aware",
-				"body": "Funga amazina y'ibicuruzwa n'amagambo y'ibicuruzwa ukoresheje regex y'amagambo meza ikora C ++, .NET, n'inshuti."
+				"body": "Funga amazina y'ibicuruzwa n'amagambo y'ibicuruzwa hamwe na regex y'amagambo meza ifata {cpp}, {dotnet}, n'inshuti."
 			},
 			"dryRun": {
 				"title": "Dry-run + soft-fail",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR-friendly outputs",
-				"body": "summary-title, summary-details, and has-new-translations slot directly into create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails}, and {hasNewTranslations} Direct into create-pull-request."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "Built on @azure-rest/ai-translation-text + @azure/core-rest-pipeline — automatic retries on 408/429/5xx, no hand-rolled HTTP. esbuild-bundled, audit-clean."
+				"body": "Built on {azureSdk} + {corePipeline} — automatic retries on {statusCodes}, no hand-rolled HTTP. {esbuild}-bundled, audit-clean."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Drop-in workflow",
+			"titlePrefix": "Copy. Paste.",
+			"titleAccent": "Semura.",
+			"body": "Three secrets, four lines, and your repo is multilingual on the next push.",
+			"setupLink": "Genda unyuze muri gahunda yuzuye"
+		},
+		"cta": {
+			"title": "Ready to localize on autopilot?",
+			"body": "One Azure AI Translator key, one workflow file. Resource Translator ikora ibisigaye.",
+			"button": "Tangira"
 		}
 	},
 	"getting-started": {
 		"title": "Gutangira",
 		"eyebrow": "Gushiraho",
-		"lede": "Ongeraho dosiye y'akazi, uyiyerekeze ku byemezo byawe bya Azure AI Translator, kandi igikorwa - cyubatswe kuri SDK yemewe ya Microsoft ya @azure-rest / ai-translation-text - kizasuzumisha repo ya dosiye y'ibikoresho by'ururimi rw'inkomoko kandi isohore abavandimwe bahinduwe.",
+		"lede": "Ongeraho dosiye y'akazi, uyiyerekeze ku byemezo byawe bya Azure AI Translator, kandi igikorwa kizasuzumisha repo ya dosiye y'ururimi rw'inkomoko no gusohora abavandimwe bahinduwe.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Add the workflow",
-				"body": "Create .github/workflows/translate.yml:"
+				"body": "Create {workflowPath}:"
 			},
 			"resource": {
 				"title": "Commit a source resource file",
-				"body": "Ibicuruzwa bikoresha izina ry'ibicuruzwa. <sourceLocale>. <ext> Convention. For example Greetings.en.resx becomes Greetings.fr.resx, Greetings.de.resx, and so on after a run."
+				"body": "Resource files use the {namingConvention} convention. Urugero {sourceFile} {frFile}, {deFile}, n'ibindi nyuma yo kwiruka."
 			},
 			"output": {
 				"title": "Genzura umusaruro",
-				"body": "Once the workflow finishes, the action exposes three outputs you can wire into a PR description: summary-title, summary-details, and has-new-translations. It also writes a Markdown summary into the job page via core.summary."
+				"body": "Iyo akazi karangiye, igikorwa kigaragaza ibicuruzwa bitatu ushobora guhuza mu bisobanuro bya PR: {summaryTitle}, {summaryDetails}, na {hasNewTranslations}. It also writes a Markdown summary into the job page via {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Intambwe zikurikira",
-			"configuration": "Configure repo-level defaults with .github/resource-translator.yml.",
+			"configuration": "Configure repo-level defaults with {configPath}.",
 			"recipes": "See recipes for monorepos, custom glossaries, and Custom Translator categories."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Configuration",
 		"eyebrow": "YAML",
 		"heroTitle": "Imiterere y'ububiko",
-		"lede": "Express defaults once in .github/resource-translator.yml and let every workflow inherit them. Action inputs always win when both are provided"
+		"lede": "Express defaults once in the repository config file and let every workflow inherit them. Action inputs always win when both are provided",
+		"intro": "Kanda kuri {configPath} ukoresheje uburyo bwo kugenzura niba ukeneye ahantu hadakwiye.",
+		"schemaHeading": "Schema",
+		"fieldReference": {
+			"heading": "Field reference",
+			"caption": "Configuration field reference",
+			"columns": {
+				"field": "Field",
+				"type": "Ubwoko",
+				"notes": "Notes"
+			},
+			"fields": {
+				"sourceLocale": "Reka dusubire ku murongo {sourceLocale} niba utarashyizweho. Ikindi ni uko n'abasemuzi b'ikinyamakuru Izuba Rirashe {fromLocale} ku buryo nta n'umwe ugira icyo abivugaho.",
+				"toLocales": "Cyangwa umurongo cyangwa umugozi utandukanywa na koma.",
+				"includeExclude": "Ibipimo bya Glob byasuzumiwe ugereranyije n'inzira zuzuye n'iz'akazi.",
+				"glossary": "Post-translation term overrides. Word-boundary aware (handles {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} category — your industry/domain knob (legal, medical, marketing tone, etc.). Sent as {categoryQuery}.",
+				"textType": "Kudakora {plain}. Use {html} only if your resource values contain real HTML fragments.",
+				"profanityAction": "How to treat profane terms in translated output.",
+				"profanityMarker": "Only meaningful when {profanityAction} is {marked}.",
+				"allowFallback": "Set to {false} to fail the translation when your {categoryId} has no deployment for a target locale instead of falling back to the general model.",
+				"apiVersion": "Translator REST API version. Kudakora {version}.",
+				"maxRetries": "Maximum retry attempts on transient HTTP responses ({statusCodes}). Kudakora {defaultRetries}. Total HTTP calls per request is {totalCalls}.",
+				"retryBackoffMs": "Bye Bye Birdie (On Any Backoff Sleep) Kudakora {defaultBackoff}. Umutwe wa {retryAfter} wa Azure wubashywe neza igihe uhari; otherwise jittered exponential backoff is used, capped at this value.",
+				"protectPlaceholders": "Kudakora {true}. Iyo umaze guhindurwa, ibimenyetso nka {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} na HTML bisimbuzwa ibimenyetso bya sentinel mbere yo guhindurwa hanyuma bigasubizwa nyuma. Disable only when source intentionally contains placeholder-shaped literals.",
+				"customPlaceholderPatterns": "Ibishushanyo byinyongera bya regex (bidafite delimiters) byongerewe kuri seti ya placeholder ya mbere, urugero {angleToken} kuri syntax ya token isanzwe. Invalid regexes are ignored.",
+				"noTranslatePatterns": "Ibishushanyo bya Glob bihujwe n'urufunguzo rwo ku rwego rwa parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext key). Matching keys are dropped from the request and pass through with their source value preserved."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Loading order",
+			"steps": {
+				"actionInputs": "The action reads explicit inputs from the workflow.",
+				"config": "It loads the YAML config from {configPath}.",
+				"precedence": "Kuri buri murima uhuriweho, umusaruro utsinda; otherwise the YAML value is used.",
+				"validation": "Ibiciro by'ibicuruzwa byashyizweho byemewe. Invalid enums (e.g. {invalidEnum}) cause the action to fail fast with a clear message."
+			}
+		},
+		"tone": {
+			"heading": "Tone and industry, in plain terms",
+			"body": "Azure AI Translator v3 API ntabwo ifite tone imwe. Ibice bibiri bihuriye hamwe biguha igice kinini cy'ubugenzuzi bumwe:",
+			"industryLabel": "Industry / domain:",
+			"industryBody": "Use {categoryId} to point at an Azure {customTranslatorLink} category trained on your own corpus — legal, technical, medical, marketing, or anything else. Iyi ni lever ikomeye cyane y'amajwi, ijwi ry'ikirango, n'amagambo.",
+			"surfaceLabel": "Surface text:",
+			"surfaceBody": "Use the {glossaryLink} to lock brand names and product terms verbatim, and use {profanityAction} to scrub profane terms when targeting localization for young audiences.",
+			"glossaryLinkLabel": "Glossary"
+		}
 	},
 	"inputs": {
 		"title": "Inputs & outputs",
 		"eyebrow": "Reference",
-		"lede": "Ibicuruzwa byose kandi byemewe muri dosiye ya repo config. Iyo byombi bimaze gushyirwa mu bikorwa, ibikorwa by'indashyikirwa biratsinda."
+		"lede": "Ibicuruzwa byose kandi byemewe muri dosiye ya repo config. Iyo byombi bimaze gushyirwa mu bikorwa, ibikorwa by'indashyikirwa biratsinda.",
+		"configurationIntro": "See {configurationLink} for the YAML schema and loading order.",
+		"configurationLinkLabel": "Configuration",
+		"columns": {
+			"name": "Izina",
+			"default": "Default",
+			"description": "Ibisobanuro"
+		},
+		"defaults": {
+			"none": "none",
+			"allSupported": "Bose bashyigikiwe",
+			"translatorDefaultTrue": "true (Translator default)"
+		},
+		"requiredInputs": {
+			"heading": "Inputs required",
+			"caption": "Inputs required",
+			"items": {
+				"sourceLocale": "Source locale (e.g. {en}) used to find resource files such as {sourceGlob}. Yoherejwe kandi n'umusemuzi nk'uko {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator subscription key. Pass via {secrets}.",
+				"endpoint": "Translator endpoint URL, e.g. {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Common optional inputs",
+			"caption": "Common optional inputs",
+			"items": {
+				"region": "Translator resource region (omit for global resources).",
+				"toLocales": "Locales to translate to. Yemera JSON array ({jsonArray}) cyangwa ibipimo bitandukanywa na koma.",
+				"include": "Newline-separated glob patterns; gusa inyandiko zihuje n'izo zihindurwa.",
+				"exclude": "Newline-separated glob patterns; Matching files are skipped (applied after include).",
+				"configPath": "Inzira y'umurongo wa YAML config file (ijyanye n'umuzi w'akazi).",
+				"dryRun": "Mu gihe {true}, jya uhindura inyandiko n'inyandiko zinyuranye, ariko ntuzigere wandika.",
+				"failOnError": "When {true}, unexpected errors fail the action; Iyo {false} amakosa aba ari umuburo."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Translator request inputs",
+			"intro": "These map directly into Azure AI Translator v3 query parameters. Buri wese aba ari amahitamo ye; The Translator defaults apply when unset.",
+			"caption": "Translator request inputs",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. Bye Bye {categoryQuery}.",
+				"textType": "{plain} cyangwa {html}. Use {html} only when your resource values are real HTML fragments.",
+				"profanityAction": "{noAction}, {marked}, cyangwa {deleted}. Genzura uburyo amagambo y'urukozasoni akoreshwa mu buhinduzi.",
+				"profanityMarker": "{asterisk} cyangwa {tag}. Only significant when {profanityAction} is {marked}.",
+				"allowFallback": "Mu gihe {false}, umusemuzi asubiza ikosa aho gusubira muri sisitemu rusange niba {categoryId} yawe idafite aho igenewe.",
+				"apiVersion": "Translator REST API version."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Resilience & placeholder protection",
+			"intro": "These inputs control how the action behaves when Translator throttles your request and how it shields placeholder tokens like {mustache} or {indexZero} from being mangled during translation.",
+			"caption": "Resilience and placeholder protection inputs",
+			"items": {
+				"maxRetries": "Maximum retry attempts on transient HTTP responses ({statusCodes}). Umubare w'abahamagara kuri buri busabe ni {totalCalls}.",
+				"retryBackoffMs": "Cap (in milliseconds) on any single backoff sleep. The action honors Azure's {retryAfter} response header exactly when present; otherwise it uses jittered exponential backoff capped at this value.",
+				"protectPlaceholders": "When {true} (default), placeholders such as {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} and HTML entities are replaced with sentinel tokens before translation and restored afterward. Disable only when your source intentionally contains literal placeholder-shaped text that should be translated.",
+				"customPlaceholderPatterns": "Newline-separated regexes (without delimiters) added to the default placeholder set, e.g. {angleToken} for custom token syntax.",
+				"noTranslatePatterns": "Newline-separated glob patterns matched against parser-level keys (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext key). Imfunguzo zihuza zikurwa ku busabe bw'Umusemuzi hanyuma zinyura hamwe n'agaciro k'inkomoko yazo."
+			}
+		},
+		"outputs": {
+			"heading": "Ibicuruzwa",
+			"caption": "Ibicuruzwa",
+			"items": {
+				"summaryTitle": "Short PR-title-friendly summary, e.g. {summaryExample}.",
+				"summaryDetails": "Markdown summary suitable for a PR body or job summary.",
+				"hasNewTranslations": "{trueString} igihe hasohotse ubuhinduzi bushya bumwe cyangwa bwinshi."
+			}
+		}
 	},
 	"formats": {
 		"title": "Imiterere ya dosiye",
 		"eyebrow": "Reference",
 		"heroTitle": "Imiterere ya dosiye ishyigikiwe",
-		"lede": "Six round-trippable resource formats. The action reads each source-locale file, translates the values, and writes a sibling per target locale."
+		"lede": "Six round-trippable resource formats. The action reads each source-locale file, translates the values, and writes a sibling per target locale.",
+		"namingConvention": "Ibicuruzwa byose bikoresha {namingConvention} izina ry'ikinyabiziga.",
+		"learnMore": "Iga cyane",
+		"items": {
+			"resx": {
+				"blurb": "XML-based .NET resource files. Translates the inner text of each {dataValue} node, keeping comments and metadata.",
+				"specLabel": "Microsoft Learn — Resources in .resx files"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 documents. Translates each {source} and writes the result into the matching {target}, setting {trgLang} for the locale.",
+				"specLabel": "OASIS XLIFF 2.0 ibisobanuro"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object files. Translates each {msgid} / {msgidPlural} into {msgstr} / {msgstrPlural} forms.",
+				"specLabel": "GNU gettext — PO file format"
+			},
+			"json": {
+				"blurb": "Arbitrary JSON files. Nested objects are flattened with the {delimiter} delimiter for translation, then re-nested on output. Imfunguzo z'amadolari ({dottedKey}) zibikwa mu majwi.",
+				"specLabel": "Ibisobanuro bya JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Simple {keyValue} files (Win32-style INI or any flat config). Section headers and comments are preserved.",
+				"specLabel": "INI file format on Wikipedia"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI text resources — flat {keyValue} pairs used as a textual companion to {resx}.",
+				"specLabel": "Microsoft MUI overview"
+			}
+		},
+		"roundTrip": {
+			"heading": "Ubwishingizi bw'ingendo zo kugaruka",
+			"body": "The test suite verifies byte-for-byte round-tripping for representative fixtures of every format. If a format quirk breaks round-tripping in your codebase, please {issueLink} with a minimal sample.",
+			"issueLinkLabel": "Fungura ikibazo"
+		}
 	},
 	"recipes": {
 		"title": "Recipes",
 		"eyebrow": "Igitabo cyo guteka",
-		"lede": "Uburyo busanzwe bwo gusemura kohereza: monorepos, glossaries, ibyiciro by'umwihariko, dry runs, no kugenzura amajwi."
+		"lede": "Uburyo busanzwe bwo gusemura kohereza: monorepos, glossaries, ibyiciro by'umwihariko, dry runs, no kugenzura amajwi.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Fungura ubusabe bwo gukuramo nyuma ya buri gikorwa"
+			},
+			"monorepo": {
+				"heading": "Monorepos: scope translation per package"
+			},
+			"glossary": {
+				"heading": "Glossary for brand names and product terms",
+				"intro": "Shyira {configPath} muri repo:",
+				"afterLabel": "Nyuma y'",
+				"body": "Glossary terms are applied {after} translation, so the machine-translated output keeps your preferred branding even when the model swapped it for a synonym."
+			},
+			"customCategory": {
+				"heading": "Custom Translator category (industry / domain)",
+				"body": "Itoza icyiciro cya Azure {customTranslatorLink} kuri corpus ifata imvugo n'imvugo y'inganda zawe (amategeko, ubuvuzi, kwamamaza, ubwubatsi bw'imbere, n'ibindi) hanyuma unyuze mu {categoryId}. This is the strongest tone lever Azure offers."
+			},
+			"tone": {
+				"heading": "Tone control + strict fallback",
+				"body": "Combine a Custom Translator {categoryId} with {profanityAction} and {allowFallbackFalse} to enforce a consistent voice and fail the workflow if the chosen category does not have a deployment for one of your target locales."
+			},
+			"dryRun": {
+				"heading": "Mbere yo gufungura ikibuga cy'indege cya Bugesera",
+				"body": "The action still emits summary outputs and a step summary, but no files are written. Combine with {failOnErrorFalse} to surface every issue as a warning while you iterate."
+			}
+		}
 	},
 	"faq": {
 		"title": "FAQ",
 		"eyebrow": "Gufasha",
 		"heroTitle": "Ibibazo bikunze kubazwa",
-		"lede": "Ibisubizo byihuse by'ibibazo bikunze kwibazwa cyane mu gihe cy'imibonano mpuzabitsina."
+		"lede": "Ibisubizo byihuse by'ibibazo bikunze kwibazwa cyane mu gihe cy'imibonano mpuzabitsina.",
+		"questions": {
+			"azure": {
+				"heading": "How does the action talk to Azure?",
+				"body": "Binyuze mu {azureSdkLink} SDK ya Microsoft, yashyizweho {corePipelineLink}. Ibyo biguha ibisubizo byikora kuri {statusCodes}, kwandika ubusabe n'ibisubizo by'ibisubizo, no gufata umutwe wo kwemeza ku buntu - ibintu byose byahoze ari guhamagara {axios} intoki. Ibicuruzwa by'ibicuruzwa (ibicuruzwa, ibicuruzwa, ibicuruzwa) ntibihinduka."
+			},
+			"tone": {
+				"heading": "Kuki rimwe na rimwe abahinduzi bakunze gusesengura cyangwa gusezerana imbere y'amategeko?",
+				"body": "Porogaramu ya USU ikora sisitemu yo kugenzura ibaruramari ryububiko bwibicuruzwa. Three knobs help: a {glossaryLink} for hard term overrides, a {customTranslatorLink} for fine-tuned models trained on your tone and vocabulary, and {profanityAction} to scrub or flag profane terms.",
+				"glossaryLinkLabel": "Glossary",
+				"customTranslatorLinkLabel": "Custom Translator category"
+			},
+			"duplicateFiles": {
+				"heading": "Ni gute nakwirinda gusemura dosiye imwe inshuro ebyiri?",
+				"body": "Kora igenzura ry'imikoreshereze {sourceGlob} {paths} y'ibicuruzwa by The action also includes its own per-trigger file filter when {githubToken} is set, narrowing work to files in the latest commit."
+			},
+			"offline": {
+				"heading": "Nshobora gukora ibikorwa hanze ya interineti?",
+				"body": "Not exactly — Azure AI Translator is the runtime brain. Ariko urashobora gukora hamwe na {dryRunTrue} kugirango wemeze parsing na config utiriwe utanga ubusabe bwa HTTP bwo guhindura."
+			},
+			"node": {
+				"heading": "What Node version does the action run on?",
+				"body": "v3 runs on the GitHub Actions {nodeRuntime} runtime. JavaScript ihuriweho na Node 20, 22, na 24, nibyo CI igerageza."
+			},
+			"dist": {
+				"heading": "Izo {distDir} z'amabuye y'agaciro zituruka he?",
+				"body": "GitHub JS actions ship their compiled JS in the repository. The {distBuild} workflow rebuilds it after every merge to {mainBranch} if it would drift, and {distCheck} blocks PRs that would land out-of-date output."
+			},
+			"formats": {
+				"heading": "Bite se ku bindi bikoresho by'ikoranabuhanga?",
+				"body": "Uyu munsi: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} if you need another — the parser interface is small (parse → map → apply translations → format) and contributions are welcome.",
+				"issueLinkLabel": "Fungura ikibazo"
+			}
+		}
 	},
 	"translations": {
 		"title": "Ubuhinduzi",
 		"eyebrow": "Kwerekana",
 		"heroTitle": "Bye Bye Birdie in All Languages",
-		"locales": "Locales",
-		"currentlyRendered": "currently rendered",
-		"complete": "Complete!",
-		"pendingPrefix": "Pending the next translate-docs run.",
+		"lede": "This page is translated by Resource Translator itself, on every push to main, into every language Azure AI Translators supports.",
+		"localeCountLabel": "{count} locales",
+		"statusComplete": "{translatedCount} currently rendered — complete!",
+		"statusPending": "{translatedCount} currently rendered — {pendingCount} pending the next {workflowName} run.",
 		"viewWorkflowRuns": "View workflow runs",
 		"filter": "Filtre",
 		"filterPlaceholder": "Shaka ukoresheje ururimi, kode cyangwa izina kavukire...",
 		"source": "Inkomoko",
 		"machineTranslations": "Ubuhinduzi bw'imashini",
-		"translationPending": "Translation pending — open a translate-docs run.",
+		"translationPending": "Translation pending — open a {workflowName} run.",
 		"noLocales": "No locales match that filter.",
-		"howItWorks": "Uko ibi bikorwa"
+		"howItWorks": {
+			"heading": "Uko ibi bikorwa",
+			"thisActionLabel": "Iki gikorwa ubwacyo",
+			"steps": {
+				"source": "The English source file lives at {messagesPath}.",
+				"workflow": "Pushes that touch it kick off {workflowLink}, which runs {thisAction} against itself.",
+				"fanOut": "The action fans out to every Azure AI Translator-supported locale (configured in {configPath}) and writes a sibling {messagesLocaleJson} per target.",
+				"pullRequest": "Icyifuzo cyo gukuraho cyafunguwe hamwe n'ubuhinduzi bushya. Kuyihuza isubiramo iyi paji hamwe n'amakarita yuzuye."
+			}
+		},
+		"poweredBy": "Powered by Resource Translator and Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Gutanga umusanzu",
 		"eyebrow": "Open source",
-		"lede": "Bug reports, feature requests, and pull requests are all welcome. Iki gikorwa ni gito bihagije ku buryo umuntu atanga umusanzu we ku nshuro ya mbere."
+		"lede": "Bug reports, feature requests, and pull requests are all welcome. Iki gikorwa ni gito bihagije ku buryo umuntu atanga umusanzu we ku nshuro ya mbere.",
+		"localDevelopment": {
+			"heading": "Iterambere ry'akarere"
+		},
+		"addingParser": {
+			"heading": "Adding a parser",
+			"steps": {
+				"fixture": "Add a fixture under {testDataDir}.",
+				"implement": "Gushyira mu bikorwa {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Andika kuri {factoryFile}.",
+				"extension": "Add the file extension to {translationFileSchemes} in {finderFile}.",
+				"tests": "Write round-trip tests for parse → format and applyTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "Ibipimo by'ubwishingizi",
+			"body": "The Jest config enforces minimum coverage. New code must keep the statements + lines threshold above 78% and functions above 90%. Ongeraho ibipimo n'ibipimo hamwe n'impinduka zawe."
+		},
+		"docsSite": {
+			"heading": "Urubuga rw'inyandiko",
+			"body": "The {docsDir} folder is an Astro 6 + Tailwind v4 project. Run {npmInstall} there once, then {npmRunDev} for local preview. The {pagesWorkflow} workflow sends docs to GitHub Pages on every merge."
+		}
 	},
 	"changelog": {
 		"title": "Changelog",
 		"eyebrow": "Amateka",
-		"lede": "High-level summary of releases. The canonical, authoritative changelog lives in CHANGELOG.md in the repository."
+		"lede": "High-level summary of releases. The canonical, authoritative changelog lives in CHANGELOG.md in the repository.",
+		"fullRecord": "Reba {changelogLink} kugira ngo ubone ibisobanuro birambuye.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "V3 (mu iterambere)",
+			"labels": {
+				"breaking": "KUVUNIKA",
+				"resilience": "Kwihangana:",
+				"placeholderProtection": "Placeholder protection:",
+				"perKeyOptOut": "Per-key opt-out:",
+				"docsAccessibility": "Docs accessibility:",
+				"inlineCodeStyling": "Inline code styling:"
+			},
+			"issueLabels": {
+				"closes46": "Closes # 46.",
+				"tightens16": "Tightens # 16.",
+				"closes35": "Closes # 35."
+			},
+			"items": {
+				"runtime": "Bye Bye {nodeRuntime} Runtime ({breaking}).",
+				"newInputs": "New inputs: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, plus advanced Translator knobs {textType}, {profanityAction}, {profanityMarker}, and {allowFallback}.",
+				"sourceLocale": "Source locale is now also forwarded to Translator as {fromLocale} so short strings are not autodetected.",
+				"resilience": "{label} automatic retry on transient HTTP responses ({statusCodes}) honoring Azure's {retryAfter} header — falls back to jittered exponential backoff when absent. Tunable via {maxRetries} and {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} tokens like {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} and HTML entities are wrapped in sentinels before translation and restored afterward, so Translator stops mangling i18next/Mustache/Handlebars/.NET/printf placeholders. Toggle via {protectPlaceholders}; Kwagura {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} new {noTranslatePatterns} input drops matching keys from the Translator request completely (preserves source values for brand names, error codes, etc.). Matches glob patterns against parser-level keys (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext key). {issue}",
+				"repoConfig": "Repo-level config via {configPath}.",
+				"glossary": "Glossary support, step summary via {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM audit clean (0 vulnerabilities).",
+				"docsSite": "Astro + Tailwind v4 docs site with view transitions and Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. Logo glyphs converted to paths so they no longer fail color-contrast against gradient stops, the floating {backToTop} button uses {inert} while hidden (instead of an {ariaHidden} toggle that left it tabbable), {formatsAstro} sections no longer collide with their auto-generated heading IDs, three locale cards now expose BCP-47-valid {lang} attributes ({nya}, {lug}, {run}), duplicate {documentation} landmark labels are disambiguated between sidebar and footer,  and every data table on {inputs}/{configuration} ships with a screen-reader caption.",
+				"inlineCode": "{label} docs prose {codeElement} now wears the warm/amber theme accent — distinct from the brand→accent palette used for links and headings.",
+				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "See git history."
+		}
 	}
 }

@@ -18,18 +18,26 @@
 			"node": "Zvaungaita Kuti Zvive Nyore Kuti Uite Izvozvo / 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "Yakasvibiswa kana Flat",
+			"ini": "{keyValue}",
+			"restext": "Chinyorwa cheMUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Mafomati matanhatu emafaira",
-				"body": "Kutenderera-nzendo .resx, .xliff, .po, .json, .ini, uye .restext ine byte-yakagadzikana fomati."
+				"body": "Kutenderera-nzendo {resx}, {xliff}, {po}, {json}, {ini}, uye {restext} ine byte-yakagadzikana fomati."
 			},
 			"config": {
 				"title": "Repo-level config",
-				"body": "Drop a .github/resource-translator.yml for include globs, glossaries, and Custom Translator categories."
+				"body": "Drop a {configPath} file for include globs, glossaries, and Custom Translator categories."
 			},
 			"glossary": {
 				"title": "Glossary-kuziva",
-				"body": "Vhara mazita emhando uye mazwi echigadzirwa ne smart word-boundary regex iyo inobata C ++, .NET, uye shamwari."
+				"body": "Vhara mazita emhando uye mazwi echigadzirwa ne smart shoko-muganho regex iyo inobata {cpp}, {dotnet}, uye shamwari."
 			},
 			"dryRun": {
 				"title": "Dry-run + yakapfava-kukundikana",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR-inoshamwaridzika miburitso",
-				"body": "Summary-title, summary-details, and has-new-translations slot directly into create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails}, uye {hasNewTranslations} slot zvakananga mukugadzira-dhonza-chikumbiro."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "Yakavakirwa pa @azure-zororo / ai-shanduro-chinyorwa + @azure / core-rest-pipeline - otomatiki kudzokorora pa408/429/5xx, hapana ruoko-rwakungurutswa HTTP. esbuild-bundled, audit-clean."
+				"body": "Yakavakirwa pa {azureSdk} + {corePipeline} — otomatiki kudzokorora pane {statusCodes}, hapana ruoko-rwakungurutswa HTTP. {esbuild}-bundled, audit-yakachena."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Kudonha-mukati workflow",
+			"titlePrefix": "Copy. Paste.",
+			"titleAccent": "Shandura.",
+			"body": "Zvakavanzika zvitatu, mitsara mina, uye repo yako iri mitauro yakawanda pane inotevera push.",
+			"setupLink": "Famba kuburikidza neyakazara setup"
+		},
+		"cta": {
+			"title": "Wakagadzirira kumisikidza autopilot?",
+			"body": "Imwe Azure AI Muturikiri kiyi, imwe workflow faira. Mushanduri weResource anobata zvimwe zvese.",
+			"button": "Tanga"
 		}
 	},
 	"getting-started": {
 		"title": "Kutanga",
 		"eyebrow": "Setup",
-		"lede": "Wedzera faira rekushanda, nongedzera kune yako Azure AI Muturikiri zvitupa, uye chiito — chakavakirwa paMicrosoft's yepamutemo @azure-zororo / ai-shanduro-chinyorwa SDK — ichaongorora iyo repo yeanobva-mutauro zviwanikwa mafaera uye kuburitsa hama dzakashandurwa.",
+		"lede": "Wedzera faira rebasa, nongedzera kune yako Azure AI Muturikiri zvitupa, uye chiito chinoongorora iyo repo yeanobva-mutauro zviwanikwa mafaera uye kuburitsa hama dzakashandurwa.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Wedzera Workflow",
-				"body": "Gadzira .github/workflows/translate.yml:"
+				"body": "Gadzira {workflowPath}:"
 			},
 			"resource": {
 				"title": "Ita Source Resource File",
-				"body": "Mazita anozivikanwa uye asinganzwisisi ane zita rezita. <sourceLocale>. <ext> gungano. Semuenzaniso Greetings.en.resx inova Greetings.fr.resx, Greetings.de.resx, zvichingodaro mushure mekumhanya."
+				"body": "Zvishandiso zvekushandisa zvinoshandisa {namingConvention} convention. Somuenzaniso, {sourceFile} inova {frFile}, {deFile}, zvichingodaro mushure mekumhanya."
 			},
 			"output": {
 				"title": "Ongorora zvakabuda",
-				"body": "Kana iyo workflow yapera, chiito chinofumura zvinhu zvitatu zvaunogona kubatanidza mune PR tsananguro: pfupiso-musoro, pfupiso-tsananguro, uye ine-nyowani-shanduro. Inonyorawo pfupiso yeMarkdown mune peji rebasa kuburikidza necore.summary."
+				"body": "Kana kufamba kwebasa kwapera, chiito chinofumura zvinhu zvitatu zvaunogona kubatanidza mune PR tsananguro: {summaryTitle}, {summaryDetails}, uye {hasNewTranslations}. Iyo zvakare inonyora pfupiso yeMarkdown mune peji rebasa kuburikidza {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Matanho anotevera",
-			"configuration": "Gadzirisa repo-level defaults ne .github/resource-translator.yml.",
+			"configuration": "Gadzirisa repo-level defaults ne {configPath}.",
 			"recipes": "Ona mabikirwo emonorepos, tsika glossaries, uye Custom Translator zvikamu."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Configuration",
 		"eyebrow": "YAML",
 		"heroTitle": "Repository configuration",
-		"lede": "Ratidza kutadza kamwe chete mu .github/resource-translator.yml uye rega yega yebasa ienderere nhaka. Zviito zvinogara zvichikunda kana zvese zviri zviviri zvakapihwa."
+		"lede": "Express defaults kamwe chete mune repository config faira uye rega yega yega workflow itore nhaka. Zviito zvinogara zvichikunda kana zvese zviri zviviri zvakapihwa.",
+		"intro": "Dzvanya bhatani rekumisikidza {configPath} kana iwe uchida nzvimbo isiri yekutadza.",
+		"schemaHeading": "Schema",
+		"fieldReference": {
+			"heading": "Field reference",
+			"caption": "Configuration munda mareferenzi",
+			"columns": {
+				"field": "Munda",
+				"type": "Type",
+				"notes": "Zvinyorwa"
+			},
+			"fields": {
+				"sourceLocale": "Dzokera kunzvimbo {sourceLocale} kana isina kumisikidzwa. Also forwarded to Translator as {fromLocale} so short strings are not autodetected.",
+				"toLocales": "Kana kuti yakaparadzaniswa kana yakaparadzaniswa nekomma.",
+				"includeExclude": "Glob mapatani akaongororwa achipesana neyakakwana uye nzvimbo yekushandira-hukama nzira.",
+				"glossary": "Post-shanduro yemazwi anodarika. Shoko-muganho kuziva (kubata {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} chikamu — yako indasitiri / domain knob (zviri pamutemo, zvekurapa, kushambadzira toni, nezvimwewo). Yakatumirwa {categoryQuery}.",
+				"textType": "Kukundikana {plain}. Shandisa {html} chete kana zviwanikwa zvako zviine chaiyo HTML zvidimbu.",
+				"profanityAction": "Nzira yekugadzirisa sei mazwi akashata mushanduro?",
+				"profanityMarker": "Izvo zvinongobatsira chete kana {profanityAction} {marked}.",
+				"allowFallback": "Set to {false} to fail the translation when your {categoryId} has no deployment for a target locale instead of falling back to the general model.",
+				"apiVersion": "Translator REST API version. Kukundikana {version}.",
+				"maxRetries": "● Yakanyanya kuedza kuedza pane yenguva pfupi HTTP mhinduro ({statusCodes}). Kukundikana {defaultRetries}. Yese HTTP kufona pachikumbiro {totalCalls}.",
+				"retryBackoffMs": "Dzvanya pano kuti uone chero chinhu chisina kukodzera kurara. Kukundikana {defaultBackoff}. Azure's {retryAfter} header inokudzwa chaizvo kana iripo; zvikasadaro, jittered exponential backoff inoshandiswa, yakavharwa pakukosha uku.",
+				"protectPlaceholders": "Kukundikana {true}. Kana iripo, zviratidzo zvakaita se {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} uye HTML masangano anotsiviwa nezviratidzo zvesentinel zvisati zvashandurwa uye kudzoreredzwa mushure. Disable only when source intentionally contains placeholder-shaped literals.",
+				"customPlaceholderPatterns": "Mamwe regex mapatani (pasina delimiters) akawedzerwa kune default placeholder seti, semuenzaniso {angleToken} yetsika chiratidzo syntax. Regexes dzisina kukodzera dzinofuratirwa.",
+				"noTranslatePatterns": "Glob mapatani anoenderana neparser-level makiyi (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext kiyi). Makiyi anowirirana anodonhedzwa kubva pachikumbiro uye anopfuura nekukosha kwavo kunobva kwakachengetedzwa."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Kurodha kurodha",
+			"steps": {
+				"actionInputs": "Chiito chinoverenga zvakajeka zvinongedzo kubva kubasa.",
+				"config": "Inotakura iyo YAML config kubva {configPath}.",
+				"precedence": "Kune yega yega yakagovaniswa munda, iyo yekupinza inokunda; Zvikasadaro, kukosha kweYAML kunoshandiswa.",
+				"validation": "Zviyero zvakabatanidzwa zvinosimbiswa. Zvishandiso zvisina kukodzera (semuenzaniso {invalidEnum}) zvinokonzeresa kuti chiito chikundikane nekukurumidza neshoko rakajeka."
+			}
+		},
+		"tone": {
+			"heading": "Toni uye indasitiri mune yakajeka mazwi",
+			"body": "Iyo Azure AI Muturikiri v3 API haina imwechete toni knob. Zvirongwa zviviri zvinobatana kuti zvikupe iwe yakawanda yekutonga kwakafanana:",
+			"industryLabel": "Indasitiri / Domain:",
+			"industryBody": "shandisa {categoryId} kunongedzera kuchikamu cheAzure {customTranslatorLink} chakadzidziswa pane yako corpus — zviri pamutemo, zvehunyanzvi, zvekurapa, kushambadzira, kana chero chimwe chinhu. Iyi ndiyo yakasimba lever yetoni, izwi rechiratidzo, uye mazwi.",
+			"surfaceLabel": "Zvinyorwa zvepamusoro:",
+			"surfaceBody": "Shandisa {glossaryLink} kukiya mazita emhando uye mazwi echigadzirwa verbatim, uye shandisa {profanityAction} kupukuta mazwi anosemesa kana uchitarisa nzvimbo kune vateereri vadiki.",
+			"glossaryLinkLabel": "Glossary"
+		}
 	},
 	"inputs": {
 		"title": "Inputs & Outputs",
 		"eyebrow": "Reference",
-		"lede": "Zvese zvinopihwa zvinogamuchirwa mune yakasarudzika repo config faira. Kana ese ari maviri akaiswa, chiito chinokunda."
+		"lede": "Zvese zvinopihwa zvinogamuchirwa mune yakasarudzika repo config faira. Kana ese ari maviri akaiswa, chiito chinokunda.",
+		"configurationIntro": "Tarisa uone {configurationLink} yeiyo YAML schema uye kurodha kurongeka.",
+		"configurationLinkLabel": "Configuration",
+		"columns": {
+			"name": "Zita",
+			"default": "Default",
+			"description": "Tsanangudzo"
+		},
+		"defaults": {
+			"none": "hapana",
+			"allSupported": "Zvese zvinotsigirwa",
+			"translatorDefaultTrue": "true (Translator default)"
+		},
+		"requiredInputs": {
+			"heading": "Zvishandiso zvinodikanwa",
+			"caption": "Zvishandiso zvinodikanwa",
+			"items": {
+				"sourceLocale": "Source locale (semuenzaniso {en}) inoshandiswa kutsvaga mafaira ezviwanikwa senge {sourceGlob}. Yakatumirwawo kune mushanduri semushanduri {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator subscription key. Pfuura kuburikidza {secrets}.",
+				"endpoint": "Mushanduri endpoint URL, semuenzaniso {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Common optional inputs",
+			"caption": "Common optional inputs",
+			"items": {
+				"region": "Translator resource region (omit for global resources).",
+				"toLocales": "Nzvimbo dzekushandura. Inogamuchira JSON array ({jsonArray}) kana makoma-akaparadzaniswa kukosha.",
+				"include": "Newline-yakaparadzaniswa glob mapatani; Zvinyorwa zvinowirirana chete ndizvo zvinoshandurwa.",
+				"exclude": "Newline-yakaparadzaniswa glob mapatani; Zvinyorwa zvinowirirana zvinosvetuka (zvinoshandiswa mushure mekusanganisira).",
+				"configPath": "Dzvanya bhatani rekumisikidza faira (inoenderana nenzvimbo yebasa rekushandira).",
+				"dryRun": "Paunenge {true}, mhanya shanduro uye kuburitsa pfupiso asi usanyora mafaera.",
+				"failOnError": "Kana {true}, zvikanganiso zvisingatarisirwi zvinokundikana chiito; Kana {false}, zvikanganiso zvinonyevera."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Translator request inputs",
+			"intro": "Aya mepu akananga kuAzure AI Muturikiri v3 mubvunzo parameter. Imwe neimwe inosarudzika; Zvikanganiso zvemushanduri zvinoshanda kana zvisina kugadziriswa.",
+			"caption": "Translator request inputs",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. Yakatumirwa seyakagadziridzwa {categoryQuery}.",
+				"textType": "{plain} kana {html}. Shandisa {html} chete kana zviwanikwa zvako zviwanikwa zviri zvechokwadi HTML zvidimbu.",
+				"profanityAction": "{noAction}, {marked}, kana {deleted}. Tarisa uone kuti mazwi akashata anoburitswa sei mushanduro.",
+				"profanityMarker": "{asterisk} kana {tag}. Izvo zvinongoreva chete kana {profanityAction} iri {marked}.",
+				"allowFallback": "Kana {false}, Muturikiri anodzorera chikanganiso pane kudzokera kuhurongwa hwese kana {categoryId} rako risina kutumirwa kwenzvimbo yakanangwa.",
+				"apiVersion": "Translator REST API version."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Resilience & placeholder protection",
+			"intro": "Izvi zvinopindirana zvinodzora kuti chiito chinozvibata sei kana Muturikiri achidzivirira chikumbiro chako uye kuti chinodzivirira sei zviratidzo zvenzvimbo senge {mustache} kana {indexZero} kubva pakukanganiswa panguva yekushandura.",
+			"caption": "Resilience uye placeholder dziviriro inputs",
+			"items": {
+				"maxRetries": "● Yakanyanya kuedza kuedza pane yenguva pfupi HTTP mhinduro ({statusCodes}). Nhamba yakazara yeHTTP kufona pachikumbiro {totalCalls}.",
+				"retryBackoffMs": "Cap (mumamirisekondi) pane chero imwechete backoff kurara. Chiito chinokudza Azure's {retryAfter} mhinduro header chaizvo kana iripo; zvikasadaro, inoshandisa jittered exponential backoff yakavharwa pakukosha uku.",
+				"protectPlaceholders": "Kana {true} (default), placeholders senge {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} uye HTML masangano anotsiviwa nezviratidzo zvesentinel zvisati zvashandurwa uye kudzoreredzwa mushure. Disable only when your source intentionally contains chaiyo placeholder-shaped text that should be translated.",
+				"customPlaceholderPatterns": "Newline-yakaparadzaniswa regexes (isina delimiters) yakawedzerwa kune yakasarudzika placeholder seti, semuenzaniso {angleToken} yetsika chiratidzo syntax.",
+				"noTranslatePatterns": "Newline-yakaparadzaniswa glob mapatani anoenderana neparser-level makiyi (JSON dotted nzira, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext kiyi). Makiyi anowirirana anodonhedzwa kubva kuchikumbiro cheMushanduri uye anopfuura nekukosha kwavo kunobva kwakachengetedzwa."
+			}
+		},
+		"outputs": {
+			"heading": "Zvibuda",
+			"caption": "Zvibuda",
+			"items": {
+				"summaryTitle": "Pfupiso yePR-musoro-inoshamwaridzika pfupiso, semuenzaniso {summaryExample}.",
+				"summaryDetails": "Markdown pfupiso yakakodzera kune PR muviri kana pfupiso yebasa.",
+				"hasNewTranslations": "{trueString} kana imwe kana dzakawanda shanduro itsva dzakagadzirwa."
+			}
+		}
 	},
 	"formats": {
 		"title": "Mafomati efaira",
 		"eyebrow": "Reference",
 		"heroTitle": "Yakatsigirwa mafaera mafomati",
-		"lede": "Six round-trippable resource formats. Chiito chinoverenga yega yega sosi-locale faira, inoshandura kukosha, uye inonyora hama pane yakanangwa nzvimbo."
+		"lede": "Six round-trippable resource formats. Chiito chinoverenga yega yega sosi-locale faira, inoshandura kukosha, uye inonyora hama pane yakanangwa nzvimbo.",
+		"namingConvention": "Zvese zvinyorwa zvinoshandisa {namingConvention} mazita echibvumirano.",
+		"learnMore": "Dzidza zvimwe",
+		"items": {
+			"resx": {
+				"blurb": "XML-yakavakirwa .NET zviwanikwa mafaera. Inoshandura zvinyorwa zvemukati zveimwe {dataValue} node, ichichengetedza makomendi uye metadata.",
+				"specLabel": "Microsoft Dzidza — Zviwanikwa mu .resx mafaera"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 zvinyorwa. Shandura {source} yega yega uye inonyora mhedzisiro mune inoenderana {target}, ichiisa {trgLang} yenzvimbo.",
+				"specLabel": "OASIS XLIFF 2.0 tsanangudzo"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object mafaera. Shandura yega yega {msgid} / {msgidPlural} kuita {msgstr} / {msgstrPlural} mafomu.",
+				"specLabel": "GNU gettext — PO file format"
+			},
+			"json": {
+				"blurb": "Arbitrary JSON mafaera. Zvinhu zvakasvibiswa zvakatsetseka neiyo {delimiter} delimiter yekushandura, wobva wadzoreredzwa pane zvinobuda. Mavara ({dottedKey}) anochengetwa verbatim.",
+				"specLabel": "JSON tsanangudzo (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Yakapusa {keyValue} mafaera (Win32-style INI kana chero flat config). Misoro yezvikamu uye makomendi akachengetwa.",
+				"specLabel": "INI faira fomati paWikipedia"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI mameseji zviwanikwa — flat {keyValue} vaviri vanoshandiswa seshamwari yemavara kune {resx}.",
+				"specLabel": "Microsoft MUI Overview"
+			}
+		},
+		"roundTrip": {
+			"heading": "Kutenderera-rwendo vimbiso",
+			"body": "Iyo bvunzo suite inosimbisa byte-for-byte kutenderera-tripping yeanomiririra zvigadziriso zvemhando yega yega. Kana fomati quirk ikaputsa kutenderera-tripping mune yako codebase, ndapota {issueLink} nemuenzaniso mushoma.",
+			"issueLinkLabel": "Vhura nyaya"
+		}
 	},
 	"recipes": {
 		"title": "Recipes",
 		"eyebrow": "Bhuku rekubika",
-		"lede": "Maitiro akajairika ekushandura kwekutakura: monorepos, glossaries, tsika dzetsika, kumhanya kwakaoma, uye kutonga kwetoni."
+		"lede": "Maitiro akajairika ekushandura kwekutakura: monorepos, glossaries, tsika dzetsika, kumhanya kwakaoma, uye kutonga kwetoni.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Vhura chikumbiro chekudhonza mushure mekumhanya kwega kwega"
+			},
+			"monorepo": {
+				"heading": "Monorepos: Scope Translation per package"
+			},
+			"glossary": {
+				"heading": "Glossary yemazita emhando uye mazwi echigadzirwa",
+				"intro": "Dzvanya pane imwe {configPath} mubhokisi rekutsvaga:",
+				"afterLabel": "Mushure meizvozvo",
+				"body": "Mazwi eglossary anoshandiswa {after} mushanduro, saka muchina-wakashandurwa kuburitsa unochengeta yako yaunofarira branding kunyangwe iyo modhi yakachinjanisa kune yakafanana."
+			},
+			"customCategory": {
+				"heading": "Custom Translator category (indasitiri / domain)",
+				"body": "Dzidzisa chikamu cheAzure {customTranslatorLink} pane corpus iyo inotora mazwi ako eindasitiri uye toni (zviri pamutemo, zvekurapa, kushambadzira, zvemukati-engineering, nezvimwewo) uye upfuure ID yayo kuburikidza {categoryId}. Iyi ndiyo yakasimba toni lever iyo Azure inopa."
+			},
+			"tone": {
+				"heading": "Tone control + yakasimba fallback",
+				"body": "Sanganisa Tsika Muturikiri {categoryId} ne {profanityAction} uye {allowFallbackFalse} kuti usimbise izwi rinowirirana uye kukundikana kufamba kwebasa kana chikamu chakasarudzwa chisina kutumirwa kune imwe yenzvimbo dzako dzakanangwa."
+			},
+			"dryRun": {
+				"heading": "Dzvanya pano kuti uone kuti ndeapi mabhenefiti asati atanga kumisikidza",
+				"body": "Chiito chichiri kuburitsa pfupiso uye nhanho pfupiso, asi hapana mafaera akanyorwa. Sanganisa {failOnErrorFalse} kuburitsa nyaya yega yega seyambiro paunenge uchidzokorora."
+			}
+		}
 	},
 	"faq": {
 		"title": "Mibvunzo Inonyanya Kubvunzwa",
 		"eyebrow": "Rubatsiro",
 		"heroTitle": "Mibvunzo inowanzo bvunzwa",
-		"lede": "Mhinduro dzinokurumidza kumibvunzo inowanzo kuuya kana uchitora chiito."
+		"lede": "Mhinduro dzinokurumidza kumibvunzo inowanzo kuuya kana uchitora chiito.",
+		"questions": {
+			"azure": {
+				"heading": "Chiito chinotaura sei neAzure?",
+				"body": "Kuburikidza neMicrosoft's yepamutemo {azureSdkLink} SDK, yakarongedzwa {corePipelineLink}. Izvo zvinokupa iwe otomatiki kudzokorora pane {statusCodes}, kunyorera chikumbiro uye mhinduro mamodheru, uye yekusimbisa musoro kubata mahara - zvese zvaimbove ruoko-rwakungurutswa {axios} kufona. Nzvimbo yeruzhinji yekuita (zvinopinda, zvinobuda, faira zvinobuda) hazvina kuchinja."
+			},
+			"tone": {
+				"heading": "Nei dzimwe nguva mavhezheni achiita kunge asina kukodzera kana kuti asingazivikanwe?",
+				"body": "Shanduro yemuchina inokundikana kune yakajairika-chinangwa modhi. Mapfundo matatu anobatsira: {glossaryLink} yemazwi akaomarara ekudarika, {customTranslatorLink} yemhando dzakanyatsogadziriswa dzakadzidziswa pane yako toni uye mazwi, uye {profanityAction} kukwesha kana mureza mazwi akasviba.",
+				"glossaryLinkLabel": "Glossary",
+				"customTranslatorLinkLabel": "Custom Translator category"
+			},
+			"duplicateFiles": {
+				"heading": "Ndingaite sei kuti ndidzivise kushandura iyo imwechete faira kaviri?",
+				"body": "Ita shuwa kuti iwe unongofanirwa kumisikidza iyo {paths} inoenderana neyako sosi-yemunharaunda mafaera chete, semuenzaniso {sourceGlob}. Chiito chacho chinosanganisirawo yayo yega yega-trigger faira firita kana {githubToken} yaiswa, ichideredza basa kumafaira mune yazvino kuzvipira."
+			},
+			"offline": {
+				"heading": "Ini ndinogona kumhanyisa chiito kunze kwenyika?",
+				"body": "Kwete chaizvo — Azure AI Muturikiri ndiyo huropi hwekumhanya. Asi iwe unogona kumhanya ne {dryRunTrue} kuti usimbise parsing uye config pasina kuita chero zvikumbiro zveHTTP zvekushandura."
+			},
+			"node": {
+				"heading": "Ndeipi Node vhezheni iyo chiito chinomhanya?",
+				"body": "v3 inomhanya paGitHub Zviito {nodeRuntime} kumhanya. Iyo bundled JavaScript inoenderana neNode 20, 22, uye 24, zvinova ndizvo zvinoitwa neCI bvunzo."
+			},
+			"dist": {
+				"heading": "Ko iyo bundled {distDir} inobvepi?",
+				"body": "GitHub JS zviito zvinotumira yavo yakaunganidzwa JS mune repository. Iyo {distBuild} workflow inoivakazve mushure mekubatanidzwa kwega kwega kune {mainBranch} kana ichizotsauka, uye {distCheck} inovhara maPR ayo aizoisa kuburitswa kwechinyakare."
+			},
+			"formats": {
+				"heading": "Zvakadii nemamwe mafomati ezviwanikwa?",
+				"body": "Nhasi: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} kana iwe uchida imwe — iyo parser interface idiki (parse → mepu → shandisa shanduro → fomati) uye mipiro inogamuchirwa.",
+				"issueLinkLabel": "Vhura nyaya"
+			}
+		}
 	},
 	"translations": {
 		"title": "Shanduro",
 		"eyebrow": "Kuratidzira",
 		"heroTitle": "Mhoro mumitauro yega yega",
-		"locales": "Nzvimbo",
-		"currentlyRendered": "Parizvino yakapihwa",
-		"complete": "Zvakakwana!",
-		"pendingPrefix": "Mirira inotevera shanduro-docs inomhanya.",
+		"lede": "Iri peji rinoshandurwa neResource Translator pachayo, pane yega yega kusundidzira kune huru, mumutauro wega wega Azure AI Muturikiri inotsigira.",
+		"localeCountLabel": "{count} nzvimbo",
+		"statusComplete": "{translatedCount} parizvino yakashandurwa — yakakwana!",
+		"statusPending": "{translatedCount} parizvino yakapihwa — {pendingCount} yakamirira inotevera {workflowName} kumhanya.",
 		"viewWorkflowRuns": "Ona workflow inomhanya",
 		"filter": "Filter",
 		"filterPlaceholder": "Tsvaga nemutauro, kodhi kana zita rekuzvarwa ...",
 		"source": "Kunobva",
 		"machineTranslations": "Shanduro dzemuchina",
-		"translationPending": "Translation pending — open a translate-docs run.",
+		"translationPending": "Translation pending — open a {workflowName} run.",
 		"noLocales": "Hapana nzvimbo dzinoenderana neiyo firita.",
-		"howItWorks": "Izvi zvinoshanda sei"
+		"howItWorks": {
+			"heading": "Izvi zvinoshanda sei",
+			"thisActionLabel": "Ichi chiito chaicho",
+			"steps": {
+				"source": "Chirungu chinobva paIndaneti chinogara {messagesPath}.",
+				"workflow": "Pushes that touch it kick off {workflowLink}, which runs {thisAction} against itself.",
+				"fanOut": "Chiito chinoenda kune yega yega Azure AI Muturikiri-inotsigirwa nzvimbo (yakagadziridzwa muna {configPath}) uye inonyora hama {messagesLocaleJson} pachinangwa.",
+				"pullRequest": "Chikumbiro chekudonhedza chinovhurwa neshanduro itsva. Kuibatanidza kunodzokorora peji ino nemakadhi akazadzwa."
+			}
+		},
+		"poweredBy": "Powered by Resource Translator uye Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Kupa",
 		"eyebrow": "Yakavhurika sosi",
-		"lede": "Bug mishumo, zvikumbiro zvemaficha, uye zvikumbiro zvekudhonza zvese zvinogamuchirwa. Chiito chidiki zvakakwana kuti chive nehushamwari kune vekutanga-nguva vanopa."
+		"lede": "Bug mishumo, zvikumbiro zvemaficha, uye zvikumbiro zvekudhonza zvese zvinogamuchirwa. Chiito chidiki zvakakwana kuti chive nehushamwari kune vekutanga-nguva vanopa.",
+		"localDevelopment": {
+			"heading": "Kukura kwemunharaunda"
+		},
+		"addingParser": {
+			"heading": "Kuwedzera parser",
+			"steps": {
+				"fixture": "Wedzera chidimbu pasi {testDataDir}.",
+				"implement": "Shandisa {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Nyoresa izvi {factoryFile}.",
+				"extension": "Wedzera iyo faira yekuwedzera kune {translationFileSchemes} {finderFile}.",
+				"tests": "Nyora round-trip bvunzo kuti parse → fomati uye applyTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "Kufukidza zvikumbaridzo",
+			"body": "Iyo Jest config inosimbisa kushoma kufukidzwa. Kodhi nyowani inofanirwa kuchengeta zvirevo + mitsara chikumbaridzo pamusoro pe78% uye inoshanda pamusoro pe90%. Wedzera zvirongwa uye bvunzo padivi pekuchinja kwako."
+		},
+		"docsSite": {
+			"heading": "Zvinyorwa zvemagwaro",
+			"body": "Iyo {docsDir} folda ndeye Astro 6 + Tailwind v4 chirongwa. Mhanya {npmInstall} ipapo kamwechete, wobva wadzvanya {npmRunDev} kuti uone kuti ndeapi mabhenefiti. Iyo {pagesWorkflow} workflow inotumira docs kuGitHub Mapeji pane yega yega kubatanidzwa."
+		}
 	},
 	"changelog": {
 		"title": "Shanduko",
 		"eyebrow": "Nhoroondo",
-		"lede": "Pfupiso yemhando yepamusoro yekuburitswa. Iyo canonical, ine chiremera changelog inogara CHANGELOG.md mune yekuchengetera."
+		"lede": "Pfupiso yemhando yepamusoro yekuburitswa. Iyo canonical, ine chiremera changelog inogara CHANGELOG.md mune yekuchengetera.",
+		"fullRecord": "Tarisa uone {changelogLink} kuti uwane chinyorwa chakazara.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (mubudiriro)",
+			"labels": {
+				"breaking": "KUPUTSA",
+				"resilience": "Kutsungirira:",
+				"placeholderProtection": "Dziviriro yenzvimbo:",
+				"perKeyOptOut": "Per-kiyi yekusarudza:",
+				"docsAccessibility": "Docs kuwanikwa:",
+				"inlineCodeStyling": "Inline kodhi dhizaini:"
+			},
+			"issueLabels": {
+				"closes46": "Inovhara # 46.",
+				"tightens16": "Inosimbisa # 16.",
+				"closes35": "Inovhara # 35."
+			},
+			"items": {
+				"runtime": "Yakazara nzira kuchinyorwa: Linux Vakapindwa muropa » General » Noticias » {nodeRuntime} ({breaking}).",
+				"newInputs": "Zvitsva: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, pamwe neyepamberi Translator knobs {textType}, {profanityAction}, {profanityMarker}, uye {allowFallback}.",
+				"sourceLocale": "Source locale ikozvino inotumirwawo kuMushanduri sezvo {fromLocale} saka tambo pfupi hadzisi autodetected.",
+				"resilience": "{label} otomatiki kudzokorora pane yenguva pfupi HTTP mhinduro ({statusCodes}) kukudza Azure's {retryAfter} header — inodzokera kune jittered exponential backoff kana isipo. Tunable kuburikidza {maxRetries} uye {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} zviratidzo senge {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} uye HTML masangano akaputirwa muvarindi vasati vashandurwa uye kudzoreredzwa mushure, saka Muturikiri anomira kuvhara i18next / Mustache / Handlebars / .NET / printf placeholders. Toggle kuburikidza {protectPlaceholders}; Wedzera {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} nyowani {noTranslatePatterns} yekuisa inodonhedza makiyi anoenderana kubva kuMushanduri chikumbiro zvachose (inochengetedza sosi kukosha kwemazita echiratidzo, makodhi ekukanganisa, nezvimwewo). Inowirirana glob mapatani achipesana neparser-level makiyi (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext kiyi). {issue}",
+				"repoConfig": "Repo-level config via {configPath}.",
+				"glossary": "Glossary support, step summary via {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM Audit Yakachena (0 kusagadzikana).",
+				"docsSite": "Astro + Tailwind v4 docs saiti ine maonero shanduko uye Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA kupfuura. Logo glyphs yakashandurwa kuita nzira kuitira kuti varege kukundikana mavara-musiyano pamusoro gradient anomira, iyo inoyangarara {backToTop} bhatani inoshandisa {inert} painenge yakavanzwa (pachinzvimbo cheiyo {ariaHidden} toggle iyo yakaisiya tabbable), {formatsAstro} zvikamu hazvichisiri kudhumhana neavo auto-yakagadzirwa musoro IDs, matatu enzvimbo makadhi ikozvino anofumura BCP-47-inoshanda {lang} hunhu ({nya}, {lug}, {run}), zvakapetwa {documentation} zviratidzo zvechiratidzo zvinoparadzaniswa pakati pesidebar uye footer,  uye tafura yega yega yedata pane {inputs} / {configuration} ngarava ine skrini-muverengi chinyorwa.",
+				"inlineCode": "{label} docs prose {codeElement} ikozvino inopfeka inodziya / amber theme accent — yakasiyana neiyo brand→accent palette inoshandiswa kune zvinongedzo uye misoro.",
+				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Ona nhoroondo yeGIT."
+		}
 	}
 }

@@ -18,18 +18,26 @@
 			"node": "Sõlm 20 / 22 / 24",
 			"sdk": "Ametlik Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "pesastatud või lame",
+			"ini": "{keyValue}",
+			"restext": "MUI tekst"
+		},
 		"features": {
 			"formats": {
 				"title": "Kuus failivormingut",
-				"body": "Ringreisid .resx, .xliff, .po, .json, .ini ja .restext bait-stabiilse vormindusega."
+				"body": "Edasi-tagasi {resx}, {xliff}, {po}, {json}, {ini} ja {restext} baitstabiilse vormindusega."
 			},
 			"config": {
 				"title": "Repo-taseme konfiguratsioon",
-				"body": "Pane .github/resource-translator.yml, et lisada globid, sõnastikud ja kohandatud tõlkijate kategooriad."
+				"body": "Pane {configPath} fail, et lisada globid, sõnastikud ja kohandatud tõlkijate kategooriad."
 			},
 			"glossary": {
 				"title": "Sõnastikust teadlik",
-				"body": "Lukusta kaubamärgid ja tooteterminid nutika sõnapiiriga regexiga, mis haldab C++, .NET ja sõbrad."
+				"body": "Lukusta kaubamärgid ja tooteterminid nutika sõnapiiriga regexiga, mis käsitleb {cpp}, {dotnet} ja sõpru."
 			},
 			"dryRun": {
 				"title": "Proovisõit + pehme läbikukkumine",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR-sõbralikud väljundid",
-				"body": "summary-title, summary-details ja has-new-translations sobivad otse create-pull-request'i."
+				"body": "{summaryTitle}, {summaryDetails} ja {hasNewTranslations} sobituvad otse create-pull-request režiimi."
 			},
 			"sdk": {
 				"title": "Ametlik Azure SDK",
-				"body": "Ehitatud @azure-rest/ai-translation-text + @azure/core-rest-pipeline peale — automaatsed kordused 408/429/5xx peal, ilma käsitsi rullitud HTTP-ta. esbuild-komplekt, audit-puhas."
+				"body": "Ehitatud {azureSdk} + {corePipeline} peale — automaatsed korduskatsed {statusCodes}-l, ilma käsitsi rullitud HTTP-ta. {esbuild}-komplekt, audit-puhas."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Drop-in töövoog",
+			"titlePrefix": "Kopeeri. Kleebi.",
+			"titleAccent": "Tõlgi.",
+			"body": "Kolm saladust, neli rida ja su repositsioon on järgmisel tõukel mitmekeelne.",
+			"setupLink": "Käi läbi kogu seadistuse"
+		},
+		"cta": {
+			"title": "Kas oled valmis autopiloodil lokaliseerimiseks?",
+			"body": "Üks Azure AI tõlkija võti, üks töövoo fail. Ressursitõlkija tegeleb ülejäänuga.",
+			"button": "Alusta"
 		}
 	},
 	"getting-started": {
 		"title": "Alustamine",
 		"eyebrow": "Seadistus",
-		"lede": "Lisa töövoo fail, suuna see oma Azure AI Translatori mandaadiandmetele ja tegevus — mis põhineb Microsofti ametlikul @azure-rest/ai-translation-text SDK-l — skaneerib repositooriumist lähtekoodi ressursifaile ja saadab tõlgitud õdesid-vennasid.",
+		"lede": "Lisa töövoo fail, suuna see oma Azure AI Translatori mandaadi juurde ja tegevus skaneerib repositooriumist lähtekoodi ressursifaile ning saadab tõlgitud õdesid-vennasid.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator ressurss",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Lisa töövoog",
-				"body": "Loo .github/workflows/translate.yml:"
+				"body": "Loo {workflowPath}:"
 			},
 			"resource": {
 				"title": "Commit lähteressursifail",
-				"body": "Ressursifailid kasutavad nime. <sourceLocale>. <ext> konventsioon. Näiteks Greetings.en.resx muutub pärast jooksu Greetings.fr.resx, Greetings.de.resx ja nii edasi."
+				"body": "Ressursifailid kasutavad {namingConvention} konventsiooni. Näiteks muutub {sourceFile} pärast jooksu {frFile}, {deFile} ja nii edasi."
 			},
 			"output": {
 				"title": "Kontrolli väljundit",
-				"body": "Kui töövoog on lõppenud, avab tegevus kolm väljundit, mida saab PR-kirjeldusse ühendada: summary-title, summary-details ja has-new-translations. Samuti kirjutab see Markdowni kokkuvõtte töölehele core.summary kaudu."
+				"body": "Kui töövoog on lõppenud, avab tegevus kolm väljundit, mida saad PR-kirjeldusse ühendada: {summaryTitle}, {summaryDetails} ja {hasNewTranslations}. Samuti kirjutab see töölehele Markdowni kokkuvõtte {coreSummary} kaudu."
 			}
 		},
 		"nextSteps": {
 			"title": "Järgmised sammud",
-			"configuration": "Seadista repo taseme vaikeseaded .github/resource-translator.yml-ga.",
+			"configuration": "Seadista repo-taseme vaikeseaded {configPath}.",
 			"recipes": "Vaata retsepte monorepode, kohandatud sõnastuse ja kohandatud tõlkijate kategooriate jaoks."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Konfiguratsioon",
 		"eyebrow": "YAML",
 		"heroTitle": "Hoidla konfiguratsioon",
-		"lede": "Express vaikimisi on üks fail .github/resource-translator.yml-s ja laseb igal töövool need pärida. Tegevussisendid võidavad alati, kui mõlemad on olemas."
+		"lede": "Express vaikimisi on üks kord hoidla konfiguratsioonifailis ja laseb igal töövol need pärida. Tegevussisendid võidavad alati, kui mõlemad on olemas.",
+		"intro": "Kui vajad mitte-vaikimisi asukohta, kirjuta tee {configPath} sisendiga.",
+		"schemaHeading": "Skeem",
+		"fieldReference": {
+			"heading": "Väliviited",
+			"caption": "Konfiguratsioonivälja viide",
+			"columns": {
+				"field": "Väli",
+				"type": "Tüüp",
+				"notes": "Märkused"
+			},
+			"fields": {
+				"sourceLocale": "Kui pole seadistatud, langeb tagasi {sourceLocale} sisendile. Saadeti ka tõlkijale {fromLocale}, et lühikesi stringe automaatselt ei tuvastata.",
+				"toLocales": "Kas massiivi või komadega eraldatud stringi.",
+				"includeExclude": "Glob-mustrid hinnati absoluutsete ja tööala-suhteliste teede suhtes.",
+				"glossary": "Tõlkejärgsed terminite ülekirjutamised. Sõnade piiritundlik (käsitleb {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} kategooria — sinu tööstusharu/domeeni nupp (juriidiline, meditsiin, turundustoon jne). Saadetud {categoryQuery}.",
+				"textType": "Vaikimisi {plain}. Kasuta {html} ainult siis, kui sinu ressursiväärtused sisaldavad päris HTML-fragmente.",
+				"profanityAction": "Kuidas käsitleda roppusid termineid tõlgitud väljundis.",
+				"profanityMarker": "Tähenduslik ainult siis, kui {profanityAction} on {marked}.",
+				"allowFallback": "Sea {false} tõlke ebaõnnestumiseks, kui su {categoryId} pole sihtkoha jaoks juurutatud, selle asemel et tagasi pöörduda üldise mudeli juurde.",
+				"apiVersion": "Tõlkija REST API versioon. Vaikimisi {version}.",
+				"maxRetries": "Maksimaalne korduskatse ajutiste HTTP vastuste puhul ({statusCodes}). Vaikimisi {defaultRetries}. Kogu HTTP kõnede arv ühe päringu kohta on {totalCalls}.",
+				"retryBackoffMs": "Piirang (ms) igale ühele tagasilöögiunele. Vaikimisi {defaultBackoff}. Azure'i {retryAfter} päist austatakse täpselt siis, kui see on olemas; muidu kasutatakse värisevat eksponentsiaalset tagasilööki, mis on selle väärtusega piiratud.",
+				"protectPlaceholders": "Vaikimisi {true}. Kui need on sisse lülitatud, asendatakse tokenid nagu {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ja HTML entiteedid enne tõlkimist sentinel-tokenitega ja taastatakse hiljem. Keela ainult siis, kui allikas sisaldab tahtlikult ajutise kujuga literaale.",
+				"customPlaceholderPatterns": "Lisaregex-mustrid (ilma eraldajateta) lisati vaikimisi kohatäite komplekti, nt {angleToken} kohandatud tokeni süntaksi jaoks. Kehtetud regexid jäetakse tähelepanuta.",
+				"noTranslatePatterns": "Glob-mustrid sobitusid parseri taseme võtmetega (JSON punktrada, RESX {resxName}, PO {poMsgid}, XLIFF ühik {xliffId}, INI/restext võti). Sobivad võtmed eemaldatakse päringust ja edastatakse nende lähteväärtuse säilitamisega."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Laadimisjärjekord",
+			"steps": {
+				"actionInputs": "Tegevus loeb töövoo selgeid sisendeid.",
+				"config": "See laadib YAML konfiguratsiooni {configPath}.",
+				"precedence": "Iga jagatud välja puhul võidab sisendis; vastasel juhul kasutatakse YAML väärtust.",
+				"validation": "Ühendatud väärtused valideeritakse. Kehtetud enumid (nt {invalidEnum}) põhjustavad tegevuse kiire ebaõnnestumise selge sõnumiga."
+			}
+		},
+		"tone": {
+			"heading": "Toon ja tööstus, otsekoheselt",
+			"body": "Azure AI Translator v3 API-l ei ole ühte tooninuppu. Kaks seadet annavad sulle enam-vähem sama kontrolli:",
+			"industryLabel": "Tööstusharu / valdkond:",
+			"industryBody": "kasuta {categoryId}, et osutada Azure {customTranslatorLink} kategooriale, mis on treenitud sinu enda korpuses — juriidilised, tehnilised, meditsiinilised, turunduse või mis tahes muuga. See on tugevaim hoob tooni, brändi hääle ja sõnavara jaoks.",
+			"surfaceLabel": "Pinnatekst:",
+			"surfaceBody": "Kasuta {glossaryLink} brändinimede ja tooteterminite lukustamiseks, ning kasuta {profanityAction}, et eemaldada roppusi noorematele sihtrühmadele.",
+			"glossaryLinkLabel": "Sõnastik"
+		}
 	},
 	"inputs": {
 		"title": "Sisendid ja väljundid",
 		"eyebrow": "Viide",
-		"lede": "Iga sisend on aktsepteeritud ka valikulises repo konfiguratsioonifailis. Kui mõlemad on seatud, võidab tegevuse sisend."
+		"lede": "Iga sisend on aktsepteeritud ka valikulises repo konfiguratsioonifailis. Kui mõlemad on seatud, võidab tegevuse sisend.",
+		"configurationIntro": "Vaata {configurationLink} YAML skeemi ja laadimisjärjekorra kohta.",
+		"configurationLinkLabel": "Konfiguratsioon",
+		"columns": {
+			"name": "Nimi",
+			"default": "Vaikimisi",
+			"description": "Kirjeldus"
+		},
+		"defaults": {
+			"none": "puudub",
+			"allSupported": "kõik toetatud",
+			"translatorDefaultTrue": "true (tõlkija vaikeseade)"
+		},
+		"requiredInputs": {
+			"heading": "Nõutud sisendid",
+			"caption": "Nõutud sisendid",
+			"items": {
+				"sourceLocale": "Allika asukoht (nt {en}) kasutati ressursifailide, näiteks {sourceGlob} leidmiseks. Samuti saadeti edasi Translatorile kui {fromLocale}.",
+				"subscriptionKey": "Azure AI Translatori tellimusvõti. Sõida läbi {secrets}.",
+				"endpoint": "Tõlkija lõpp-punkti URL, nt {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Levinud valikulised sisendid",
+			"caption": "Levinud valikulised sisendid",
+			"items": {
+				"region": "Tõlkija ressursipiirkond (globaalsete ressursside jaoks välja jäetud).",
+				"toLocales": "Kohad, kuhu tõlkida. Aktsepteerib JSON-massiivi ({jsonArray}) või komadega eraldatud väärtusi.",
+				"include": "Newline eraldatud globi mustrid; tõlgitakse ainult sobivad failid.",
+				"exclude": "Newline eraldatud globi mustrid; Vastavad failid jäetakse vahele (rakendatakse pärast kaasamist).",
+				"configPath": "Tee YAML konfiguratsioonifaili juurde (tööruumi juure suhtes).",
+				"dryRun": "Kui {true}, käivita tõlked ja edasta kokkuvõtteid, kuid ära kirjuta faile.",
+				"failOnError": "Kui {true}, ebaõnnestuvad ootamatud vead tegevuses; Kui {false}, on vead hoiatused."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Tõlkija päringu sisendid",
+			"intro": "Need kaardistuvad otse Azure AI Translator v3 päringuparameetritele. Igaüks neist on vabatahtlik; Translatori vaikeseaded kehtivad, kui seade on eemaldatud.",
+			"caption": "Tõlkija päringu sisendid",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} kategooria — tööstus/domeen/tooninupp. Saadetud {categoryQuery}.",
+				"textType": "{plain} või {html}. Kasuta {html} ainult siis, kui sinu ressursiväärtused on päris HTML-fragmendid.",
+				"profanityAction": "{noAction}, {marked} või {deleted}. Kontrollib, kuidas ropud väljendid tõlgetes tekivad.",
+				"profanityMarker": "{asterisk} või {tag}. Tähenduslik ainult siis, kui {profanityAction} on {marked}.",
+				"allowFallback": "Kui {false}, tagastab Translator vea, selle asemel et pöörduda üldise süsteemi juurde, kui {categoryId} pole sihtkoha jaoks juurutatud.",
+				"apiVersion": "Tõlkija REST API versioon."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Vastupidavus ja ajutise kaitse",
+			"intro": "Need sisendid kontrollivad, kuidas tegevus käitub, kui Tõlkija sinu päringut piirab, ja kuidas see kaitseb ajutisi tokeneid nagu {mustache} või {indexZero} tõlkimise ajal kahjustamise eest.",
+			"caption": "Vastupidavus ja ajutise kaitse sisendid",
+			"items": {
+				"maxRetries": "Maksimaalne korduskatse ajutiste HTTP vastuste puhul ({statusCodes}). HTTP-kõnede koguarv ühe päringu kohta on {totalCalls}.",
+				"retryBackoffMs": "Piirang (millisekundites) igale ühele tagasilöögi unele. Tegevus austab Azure'i {retryAfter} vastusepäist täpselt siis, kui see on olemas; vastasel juhul kasutab see värisevat eksponentsiaalset tagasilööki, mis on selle väärtusega piiratud.",
+				"protectPlaceholders": "Kui {true} (vaikimisi), asendatakse kohatäitjad nagu {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ja HTML enne tõlkimist sentinel-tokenitega ja taastatakse hiljem. Keela ainult siis, kui sinu allikas sisaldab tahtlikult sõna-sõnalt ajutise täide-kujulist teksti, mis tuleks tõlkida.",
+				"customPlaceholderPatterns": "Uue rea eraldatud regexid (ilma eraldajateta) lisati vaikimisi kohatäitjate hulka, nt {angleToken} kohandatud tokeni süntaksi jaoks.",
+				"noTranslatePatterns": "Uue rea eraldatud glob-mustrid sobitusid parseri taseme võtmetega (JSON punktrada, RESX {resxName}, PO {poMsgid}, XLIFF ühik {xliffId}, INI/restext võti). Sobivad võtmed eemaldatakse tõlkija päringust ja edastatakse nende lähteväärtuse säilitamisega."
+			}
+		},
+		"outputs": {
+			"heading": "Väljundid",
+			"caption": "Väljundid",
+			"items": {
+				"summaryTitle": "Lühike PR-sõbralik kokkuvõte, nt {summaryExample}.",
+				"summaryDetails": "Allahindluse kokkuvõte, mis sobib PR-i või töö kokkuvõtte jaoks.",
+				"hasNewTranslations": "{trueString} siis, kui toodeti üks või mitu uut tõlget."
+			}
+		}
 	},
 	"formats": {
 		"title": "Failivormingud",
 		"eyebrow": "Viide",
 		"heroTitle": "Toetatud failivormingud",
-		"lede": "Kuus ringreisi ressursiformaati. Tegevus loeb iga allika-koha faili, tõlgib väärtused ja kirjutab iga sihtkoha jaoks venna."
+		"lede": "Kuus ringreisi ressursiformaati. Tegevus loeb iga allika-koha faili, tõlgib väärtused ja kirjutab iga sihtkoha jaoks venna.",
+		"namingConvention": "Kõik failid kasutavad {namingConvention} nimetamise konventsiooni.",
+		"learnMore": "Loe lähemalt",
+		"items": {
+			"resx": {
+				"blurb": "XML-põhised .NET ressursifailid. Tõlgib iga {dataValue} sõlme sisemise teksti, säilitades kommentaarid ja metaandmed.",
+				"specLabel": "Microsoft Learn — Ressursid .resx failides"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 dokumendid. Tõlgib iga {source} ja kirjutab tulemuse vastavasse {target}, seades {trgLang} lokaalile.",
+				"specLabel": "OASIS XLIFF 2.0 spetsifikatsioon"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object failid. Tõlgendab iga {msgid} / {msgidPlural} {msgstr} / {msgstrPlural} vormi.",
+				"specLabel": "GNU gettext — PO failiformaat"
+			},
+			"json": {
+				"blurb": "Suvalised JSON-failid. Pesastatud objektid lamedaks muudetakse tõlkimiseks {delimiter} eraldajaga ja seejärel pesastatakse uuesti väljundil. Punktklahvid ({dottedKey}) on sõna-sõnalt säilinud.",
+				"specLabel": "JSON spetsifikatsioon (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Lihtsad {keyValue} failid (Win32-stiilis INI või mõni lame konfiguratsioon). Sektsioonide päised ja kommentaarid on säilitatud.",
+				"specLabel": "INI-failiformaat Vikipeedias"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI tekstiressursid — lamedad {keyValue} paarid, mida kasutatakse {resx} tekstilise kaaslasena.",
+				"specLabel": "Microsoft MUI ülevaade"
+			}
+		},
+		"roundTrip": {
+			"heading": "Edasi-tagasi garantiid",
+			"body": "Testikomplekt kontrollib baitide kaupa ringkäiku igas formaadis esinduslike fiktide puhul. Kui mingi formaadi eripära rikub sinu koodibaasis ring-käiku, palun {issueLink} minimaalse prooviga.",
+			"issueLinkLabel": "Avage probleem"
+		}
 	},
 	"recipes": {
 		"title": "Retseptid",
 		"eyebrow": "Kokaraamat",
-		"lede": "Levinud mustrid tõlgete saatmiseks: monorepod, sõnastikud, kohandatud kategooriad, kuivad proovid ja toonikontroll."
+		"lede": "Levinud mustrid tõlgete saatmiseks: monorepod, sõnastikud, kohandatud kategooriad, kuivad proovid ja toonikontroll.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Ava pärast iga jooksu tõmbetaotlus"
+			},
+			"monorepo": {
+				"heading": "Monorepos: ulatuse tõlge paketi kaupa"
+			},
+			"glossary": {
+				"heading": "Brändinimede ja tooteterminite sõnastik",
+				"intro": "Pane {configPath} reposse:",
+				"afterLabel": "pärast",
+				"body": "Sõnastiku terminid {after} tõlke, nii et masintõlgitud väljund säilitab sinu eelistatud brändingu isegi siis, kui mudel vahetab selle sünonüümi vastu."
+			},
+			"customCategory": {
+				"heading": "Kohandatud tõlkija kategooria (tööstus / domeen)",
+				"body": "Koolita Azure {customTranslatorLink} kategooriat korpusel, mis haarab sinu tööstuse sõnavara ja tooni (juriidiline, meditsiin, turundus, siseinseneriteadus jne) ning edasta selle ID {categoryId} kaudu. See on Azure'i tugevaim toonikang."
+			},
+			"tone": {
+				"heading": "Toonikontroll + range tagavarasüsteem",
+				"body": "Kombineeri kohandatud tõlkija {categoryId} {profanityAction} ja {allowFallbackFalse}-ga, et tagada järjepidev hääl ja ebaõnnestuda töövoog, kui valitud kategoorial puudub juurutus mõnele sihtkohale."
+			},
+			"dryRun": {
+				"heading": "Proovi enne töövoo sisselülitamist",
+				"body": "Tegevus annab endiselt kokkuvõtteid ja sammude kokkuvõtte, kuid faile ei kirjutata. Kombineeri {failOnErrorFalse}, et iga probleem oleks hoiatuseks iteratsiooni ajal."
+			}
+		}
 	},
 	"faq": {
 		"title": "KKK",
 		"eyebrow": "Abi",
 		"heroTitle": "Korduma kippuvad küsimused",
-		"lede": "Kiired vastused kõige sagedamini tekkivatele küsimustele, kui tegevust rakendada."
+		"lede": "Kiired vastused kõige sagedamini tekkivatele küsimustele, kui tegevust rakendada.",
+		"questions": {
+			"azure": {
+				"heading": "Kuidas see tegevus Azure'iga suhtleb?",
+				"body": "Microsofti ametliku {azureSdkLink} SDK kaudu, mis on kihiline {corePipelineLink}. See võimaldab automaatseid korduskatseid {statusCodes}, trükitud päringu- ja vastusemudelid ning autentimispäise käsitlemise tasuta — kõik, mis varem oli käsitsi rullitud {axios} kõne. Avalik tegevuspind (sisendid, väljundid, failiväljundid) jääb muutumatuks."
+			},
+			"tone": {
+				"heading": "Miks on tõlked mõnikord brändivabad või ebatavalised?",
+				"body": "Masintõlge kasutab vaikimisi üldotstarbelist mudelit. Kolm nuppu aitavad: {glossaryLink} rangete ülekirjutuste jaoks, {customTranslatorLink} peenhäälestatud mudelitele, mis on treenitud sinu tooni ja sõnavaraga, ning {profanityAction} roppuste eemaldamiseks või märgistamiseks.",
+				"glossaryLinkLabel": "Sõnastik",
+				"customTranslatorLinkLabel": "Kohandatud tõlkija kategooria"
+			},
+			"duplicateFiles": {
+				"heading": "Kuidas vältida sama faili kahekordset tõlkimist?",
+				"body": "Käivita töövoog {paths}, mis vastavad ainult sinu allika-koha failidele, nt {sourceGlob}. Tegevus sisaldab ka oma käivitaja failifiltrit, kui {githubToken} on seatud, kitsendades tööd failidele viimases commitis."
+			},
+			"offline": {
+				"heading": "Kas ma saan tegevust võrguühenduseta käivitada?",
+				"body": "Mitte päris — Azure AI Translator on käitusaegne aju. Aga {dryRunTrue}-ga saab kasutada parsimist ja konfiguratsiooni valideerimist ilma HTTP tõlkepäringuid tegemata."
+			},
+			"node": {
+				"heading": "Millisel Node'i versioonil tegevus töötab?",
+				"body": "v3 töötab GitHub Actions {nodeRuntime} runtime'il. Komplektis olev JavaScript on ühilduv Node 20, 22 ja 24-ga, mida CI testib."
+			},
+			"dist": {
+				"heading": "Kust pärineb komplekteeritud {distDir}?",
+				"body": "GitHub JS toimingud saadavad kompileeritud JS-i repositooriumis. {distBuild} töövoog ehitab selle uuesti üles pärast iga ühinemist, et {mainBranch} triivida, ning {distCheck} blokeerib PR-id, mis jõuavad aegunud väljundini."
+			},
+			"formats": {
+				"heading": "Kuidas on lood teiste ressursiformaatidega?",
+				"body": "Täna: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} kui vajad teist — parser-liides on väike (parse → kaardistada → rakendada tõlkeid → formaadi) ja panused on teretulnud.",
+				"issueLinkLabel": "Avage probleem"
+			}
+		}
 	},
 	"translations": {
 		"title": "Tõlked",
 		"eyebrow": "Showcase",
 		"heroTitle": "Tere igas keeles",
-		"locales": "Paigad",
-		"currentlyRendered": "Praegu renderdatakse",
-		"complete": "Täielik!",
-		"pendingPrefix": "Järgmise Translate-Docs jooksu ootel.",
+		"lede": "See leht tõlgitakse Resource Translatori enda poolt iga peamise keele tõukega igasse keelde, mida Azure AI Translator toetab.",
+		"localeCountLabel": "{count} paigad",
+		"statusComplete": "{translatedCount} hetkel renderdatud — valmis!",
+		"statusPending": "{translatedCount} hetkel renderdatud — {pendingCount} ootab järgmist {workflowName} jooksu.",
 		"viewWorkflowRuns": "Vaata töövoo käikeid",
 		"filter": "Filter",
 		"filterPlaceholder": "Otsi keele, koodi või emanime järgi...",
 		"source": "Allikas",
 		"machineTranslations": "Masintõlked",
-		"translationPending": "Tõlkimine ootel — ava translate-docs jooks.",
+		"translationPending": "Tõlge ootel — ava {workflowName} jooks.",
 		"noLocales": "Ükski asukoht ei vasta sellele filtrile.",
-		"howItWorks": "Kuidas see toimib"
+		"howItWorks": {
+			"heading": "Kuidas see toimib",
+			"thisActionLabel": "Just see tegevus",
+			"steps": {
+				"source": "Ingliskeelne lähtefail asub aadressil {messagesPath}.",
+				"workflow": "Lükkab selle puudutuse {workflowLink}, mis {thisAction} iseenda vastu.",
+				"fanOut": "Tegevus levib igasse Azure AI Translatori toetatud asukohta (konfigureeritud {configPath}) ja kirjutab iga sihtmärgi jaoks õe-{messagesLocaleJson}.",
+				"pullRequest": "Avatakse tõmbetaotlus uute tõlgetega. Selle ühendamine avaldab selle lehekülje uuesti koos kaartidega."
+			}
+		},
+		"poweredBy": "Toidab Resource Translator ja Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Panustamine",
 		"eyebrow": "Avatud lähtekoodiga",
-		"lede": "Veateated, funktsioonipäringud ja tõmbetaotlused on kõik teretulnud. Tegevus on piisavalt väike, et olla sõbralik esmakordsetele panustajatele."
+		"lede": "Veateated, funktsioonipäringud ja tõmbetaotlused on kõik teretulnud. Tegevus on piisavalt väike, et olla sõbralik esmakordsetele panustajatele.",
+		"localDevelopment": {
+			"heading": "Kohalik areng"
+		},
+		"addingParser": {
+			"heading": "Parseri lisamine",
+			"steps": {
+				"fixture": "Lisa valgusti {testDataDir} alla.",
+				"implement": "Rakenda {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Registreeri see {factoryFile}.",
+				"extension": "Lisa faililaiend {translationFileSchemes} {finderFile}.",
+				"tests": "Kirjuta edasi-tagasi testid parse'i → vormindamiseks ja applyTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "Katvuse lävendid",
+			"body": "Jesti konfiguratsioon tagab minimaalse katvuse. Uus kood peab hoidma laused + read läve üle 78% ja funktsioonid üle 90%. Lisa muudatuse kõrvale ka seadmeid ja teste."
+		},
+		"docsSite": {
+			"heading": "Dokumentatsioonileht",
+			"body": "{docsDir} kaust on Astro 6 + Tailwind v4 projekt. Jookse {npmInstall} seal korra, siis {npmRunDev} kohaliku eelvaate jaoks. {pagesWorkflow} töövoog saadab dokumendid GitHub Pagesile iga ühendamise ajal."
+		}
 	},
 	"changelog": {
 		"title": "Muudatuste logi",
 		"eyebrow": "Ajalugu",
-		"lede": "Kõrgetasemeline kokkuvõte väljaannetest. Kanoniline, autoriteetne muutuste logi elab CHANGELOG.md repositooriumis."
+		"lede": "Kõrgetasemeline kokkuvõte väljaannetest. Kanoniline, autoriteetne muutuste logi elab CHANGELOG.md repositooriumis.",
+		"fullRecord": "Vaata {changelogLink} täielikku protokolli.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "V3 (arenduses)",
+			"labels": {
+				"breaking": "MURDMINE",
+				"resilience": "Vastupidavus:",
+				"placeholderProtection": "Kohatäite kaitse:",
+				"perKeyOptOut": "Võtmepõhine loobumine:",
+				"docsAccessibility": "Dokumentide kättesaadavus:",
+				"inlineCodeStyling": "Inline-koodi stiil:"
+			},
+			"issueLabels": {
+				"closes46": "Sulgeb #46.",
+				"tightens16": "Pingutab #16.",
+				"closes35": "Sulgeb #35."
+			},
+			"items": {
+				"runtime": "Tõsteti {nodeRuntime} kestusele ({breaking}).",
+				"newInputs": "Uued sisendid: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, pluss täiustatud tõlkija nupud {textType}, {profanityAction}, {profanityMarker} ja {allowFallback}.",
+				"sourceLocale": "Lähtekoodi asukoht edastatakse nüüd ka tõlkijale {fromLocale}-na, nii et lühikesi stringe automaatselt ei tuvastata.",
+				"resilience": "{label} automaatne korduskatse ajutiste HTTP-vastuste puhul ({statusCodes}), mis austab Azure'i {retryAfter} päist — langeb tagasi väriseva eksponentsiaalse tagasitõmbe juurde, kui see puudub. Häälestatav {maxRetries} ja {retryBackoffMs} kaudu. {issue}",
+				"placeholderProtection": "{label} tokenid nagu {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ja HTML üksused mähitakse enne tõlkimist sentinellidesse ja taastatakse hiljem, nii et Translator lõpetab i18next/Mustache/Handlebars/.NET/printf kohatäitjate segamise. Lülita {protectPlaceholders} kaudu; Laienda {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} uus {noTranslatePatterns} sisend eemaldab tõlkija päringust vastavad võtmed täielikult (säilitab allikaväärtused kaubamärkide, veakoodide jms jaoks). Võrdleb glob-mustreid parser-taseme võtmetega (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). {issue}",
+				"repoConfig": "Repo-taseme konfiguratsioon {configPath} kaudu.",
+				"glossary": "Sõnastiku tugi, sammude kokkuvõte {coreSummary} kaudu.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM audit clean (0 haavatavust).",
+				"docsSite": "Astro + Tailwind v4 dokumentatsioonileht koos vaate üleminekute ja ekspressiivse koodiga.",
+				"docsAccessibility": "{label} WCAG 2.1 AA sööt. Logo glüüfid on muudetud teedeks, nii et need ei ebaõnnestu värvikontrastis gradientide vastu, hõljuv {backToTop} nupp kasutab {inert} peidetuna (mitte {ariaHidden} lülitit, mis jättis selle tiibitavaks), {formatsAstro} sektsioonid ei põrku enam automaatselt genereeritud pealkirja ID-dega, kolm kohakaarti paljastavad nüüd BCP-47 kehtivad {lang} atribuudid ({nya}, {lug}, {run}), duplikaat {documentation} maamärgi sildid on eristatud külgriba ja jaluse vahel,  ja iga {inputs}/{configuration} andmetabel tuleb ekraanilugeja pealkirjaga.",
+				"inlineCode": "{label} Docs Prose {codeElement} kannab nüüd sooja/merevaigukollase teema aktsenti — mis erineb brändi→aktsendi paletist, mida kasutatakse linkide ja pealkirjade jaoks.",
+				"automation": "Dependabot automaatne ühendamine, CodeQL skaneerimine, CI maatriks."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Vaata giti ajalugu."
+		}
 	}
 }

@@ -15,7 +15,13 @@
 		"searchPlaceholder": "დოკუმენტაციის ძებნა...",
 		"toggleTheme": "თემის გადართვა",
 		"githubRepository": "GitHub საცავი",
-		"language": "ენა"
+		"language": "ენა",
+		"languageTitle": "აირჩიეთ თქვენი ენა",
+		"languageDescription": "გადადით იმავე გვერდზე სხვა ენაზე.",
+		"languageSearch": "ფილტრის ენები",
+		"languageSearchPlaceholder": "მოძებნეთ ენები ან ლოკალური კოდები...",
+		"languageNoResults": "არცერთი ენა არ ემთხვევა ამ ფილტრს.",
+		"closeLanguage": "დახურეთ ენის ამომრჩევი"
 	},
 	"search": {
 		"title": "მოძებნეთ დოკუმენტაცია",

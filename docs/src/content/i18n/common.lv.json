@@ -15,7 +15,13 @@
 		"searchPlaceholder": "Meklēt dokumentāciju...",
 		"toggleTheme": "Pārslēgt dizainu",
 		"githubRepository": "GitHub repozitorijs",
-		"language": "Valoda"
+		"language": "Valoda",
+		"languageTitle": "Izvēlieties valodu",
+		"languageDescription": "Pārslēgties uz to pašu lapu citā valodā.",
+		"languageSearch": "Valodu filtrēšana",
+		"languageSearchPlaceholder": "Meklēt valodas vai lokalizācijas kodus...",
+		"languageNoResults": "Neviena valoda neatbilst šim filtram.",
+		"closeLanguage": "Aizvērt valodas atlasītāju"
 	},
 	"search": {
 		"title": "Meklēt dokumentāciju",

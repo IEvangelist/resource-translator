@@ -18,18 +18,26 @@
 			"node": "Node 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "geneste of plat",
+			"ini": "{keyValue}",
+			"restext": "MUI-teks"
+		},
 		"features": {
 			"formats": {
 				"title": "Ses lêerformate",
-				"body": "Rondreise .resx, .xliff, .po, .json, .ini, en .restext met byte-stabiele formatering."
+				"body": "Rondreise {resx}, {xliff}, {po}, {json}, {ini} en {restext} met byte-stabiele formatering."
 			},
 			"config": {
 				"title": "Repo-vlak konfigurasie",
-				"body": "Sit 'n .github/resource-translator.yml in om globs, woordelyste en Custom Translator-kategorieë in te sluit."
+				"body": "Laat 'n {configPath} lêer los om klontjies, woordelyste en Pasgemaakte Vertaler-kategorieë in te sluit."
 			},
 			"glossary": {
 				"title": "Woordelys-bewus",
-				"body": "Sluit handelsname en produkterme met slim woordgrens-regex wat C++, .NET en ander hanteer."
+				"body": "Sluit handelsname en produkterme met slim woordgrens-regex wat {cpp}, {dotnet} en vriende hanteer."
 			},
 			"dryRun": {
 				"title": "Droë lopie + sagte mislukking",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR-vriendelike uitsette",
-				"body": "Opsomming-titel, opsomming-besonderhede, en het-nuwe-vertalings pas direk in skep-trek-versoek."
+				"body": "{summaryTitle}, {summaryDetails} en {hasNewTranslations} direk in skep-trek-versoek ingepas."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "Gebou op @azure-rest/ai-translation-text + @azure/core-rest-pipeline — outomatiese herpogings op 408/429/5xx, geen handgerolde HTTP nie. Esbuild-gebundel, oudit-skoon."
+				"body": "Gebou op {azureSdk} + {corePipeline} — outomatiese herpogings op {statusCodes}, geen handgerolde HTTP nie. {esbuild} gebundel, oudit-skoon."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Drop-in werkvloei",
+			"titlePrefix": "Kopieer. Plak.",
+			"titleAccent": "Vertaal.",
+			"body": "Drie geheime, vier reëls, en jou repo is meertalig op die volgende stoot.",
+			"setupLink": "Loop deur die volledige opstelling"
+		},
+		"cta": {
+			"title": "Gereed om op outopilot te lokaliseer?",
+			"body": "Een Azure AI Translator-sleutel, een workflow-lêer. Resource Translator hanteer die res.",
+			"button": "Begin"
 		}
 	},
 	"getting-started": {
 		"title": "Begin",
 		"eyebrow": "Opstelling",
-		"lede": "Voeg 'n werkvloeilêer by, wys dit na jou Azure AI Vertaler-geloofsbriewe, en die aksie — gebou op Microsoft se amptelike @azure-rest/ai-translation-text SDK — sal die repo skandeer vir brontaal-hulpbronlêers en vertaalde broers en susters uitstuur.",
+		"lede": "Voeg 'n werkvloeilêer by, wys dit na jou Azure AI Vertaler-geloofsbriewe, en die aksie sal die repo skandeer vir brontaal-hulpbronlêers en vertaalde broers en susters uitstuur.",
 		"steps": {
 			"provision": {
 				"title": "Voorsiening van 'n Azure AI Translator-hulpbron",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Voeg die werkvloei by",
-				"body": "Skep .github/workflows/translate.yml:"
+				"body": "Skep {workflowPath}:"
 			},
 			"resource": {
 				"title": "Commit 'n bronbronlêer",
-				"body": "Hulpbronlêers gebruik die Naam. .<sourceLocale> <ext> konvensie. Byvoorbeeld, Greetings.en.resx word Greetings.fr.resx, Greetings.de.resx, ensovoorts na 'n loop."
+				"body": "Hulpbronlêers gebruik die {namingConvention} konvensie. Byvoorbeeld, {sourceFile} word {frFile}, {deFile}, ensovoorts na 'n hardloop."
 			},
 			"output": {
 				"title": "Inspekteer die uitset",
-				"body": "Sodra die werkvloei voltooi is, stel die aksie drie uitsette bloot wat jy in 'n PR-beskrywing kan bedraad: opsomming-titel, opsomming-besonderhede, en het-nuwe-vertalings. Dit skryf ook 'n Markdown-opsomming in die werkbladsy via core.summary."
+				"body": "Sodra die werkvloei klaar is, stel die aksie drie uitsette bloot wat jy in 'n PR-beskrywing kan bedra: {summaryTitle}, {summaryDetails} en {hasNewTranslations}. Dit skryf ook 'n Markdown-opsomming in die werkbladsy via {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Volgende stappe",
-			"configuration": "Konfigureer repo-vlak verstekinstellings met .github/resource-translator.yml.",
+			"configuration": "Konfigureer repo-vlak verstekinstellings met {configPath}.",
 			"recipes": "Sien resepte vir monorepos, pasgemaakte woordelys, en Pasgemaakte Vertaler-kategorieë."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Konfigurasie",
 		"eyebrow": "YAML",
 		"heroTitle": "Bewaarplekkonfigurasie",
-		"lede": "Express verstek een keer in .github/resource-translator.yml en laat elke werkvloei dit erf. Aksie-insette wen altyd wanneer albei voorsien word."
+		"lede": "Express defaults een keer in die repository-konfigurasielêer en laat elke werkvloei dit erf. Aksie-insette wen altyd wanneer albei voorsien word.",
+		"intro": "Oorskryf die pad met die {configPath} inset as jy 'n nie-standaard ligging nodig het.",
+		"schemaHeading": "Skema",
+		"fieldReference": {
+			"heading": "Veldverwysing",
+			"caption": "Konfigurasieveldverwysing",
+			"columns": {
+				"field": "Veld",
+				"type": "Tipe",
+				"notes": "Notas"
+			},
+			"fields": {
+				"sourceLocale": "Dit val terug op die {sourceLocale} inset as dit nie gestel is nie. Dit word ook as {fromLocale} na Vertaler gestuur sodat kort stringe nie outomaties opgespoor word nie.",
+				"toLocales": "Of 'n skikking of 'n komma-geskeide string.",
+				"includeExclude": "Glob-patrone geëvalueer teen absolute en werksruimte-relatiewe paaie.",
+				"glossary": "Term-oorskrywings na vertaling. Woordgrensbewus (hanteer {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} kategorie — jou bedryf/domeinknop (reg, medies, bemarkingstoon, ens.). Gestuur as {categoryQuery}.",
+				"textType": "Standaard is {plain}. Gebruik {html} slegs as jou hulpbronwaardes regte HTML-fragmente bevat.",
+				"profanityAction": "Hoe om vloekwoorde in vertaalde uitsette te hanteer.",
+				"profanityMarker": "Net betekenisvol wanneer {profanityAction} {marked} is.",
+				"allowFallback": "Stel dit op {false} om die vertaling te misluk wanneer jou {categoryId} geen ontplooiing vir 'n teikenplek het nie, in plaas daarvan om terug te val op die algemene model.",
+				"apiVersion": "Vertaler REST API-weergawe. Standaard is {version}.",
+				"maxRetries": "Maksimum herpogingspogings op tydelike HTTP-antwoorde ({statusCodes}). Standaard is {defaultRetries}. Die totale HTTP-oproepe per versoek is {totalCalls}.",
+				"retryBackoffMs": "Kap (MS) op enige enkele terug-af-slaap. Standaard is {defaultBackoff}. Azure se {retryAfter}-kop word presies geëer wanneer dit teenwoordig is; andersins word 'n gejitterde eksponensiële terugslag gebruik, beperk tot hierdie waarde.",
+				"protectPlaceholders": "Standaard is {true}. Wanneer dit aan is, word tokens soos {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} en HTML-entiteite vervang met sentinel-tokens voor vertaling en daarna herstel. Deaktiveer slegs wanneer die bron doelbewus plekhouer-vormige letterlikes bevat.",
+				"customPlaceholderPatterns": "Ekstra regex-patrone (sonder afbakeners) is by die standaard plekhouerstel gevoeg, bv. {angleToken} vir pasgemaakte token-sintaksis. Ongeldige regexe word geïgnoreer.",
+				"noTranslatePatterns": "Glob-patrone het ooreenstem met parservlak-sleutels (JSON gestippelde pad, RESX {resxName}, PO {poMsgid}, XLIFF eenheid {xliffId}, INI/restext sleutel). Ooreenstemmende sleutels word uit die versoek verwyder en deurgegee met hul bronwaarde behou."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Laaivolgorde",
+			"steps": {
+				"actionInputs": "Die aksie lees eksplisiete insette uit die werkvloei.",
+				"config": "Dit laai die YAML-konfigurasie van {configPath}.",
+				"precedence": "Vir elke gedeelde veld wen die inset; andersins word die YAML-waarde gebruik.",
+				"validation": "Die saamgevoegde waardes word gevalideer. Ongeldige enums (bv. {invalidEnum}) veroorsaak dat die aksie vinnig misluk met 'n duidelike boodskap."
+			}
+		},
+		"tone": {
+			"heading": "Toon en industrie, in eenvoudige terme",
+			"body": "Die Azure AI Translator v3 API het nie 'n enkele toonknop nie. Twee instellings kombineer om jou die meeste van dieselfde beheer te gee:",
+			"industryLabel": "Bedryf / domein:",
+			"industryBody": "gebruik {categoryId} om na 'n Azure {customTranslatorLink}-kategorie te wys wat op jou eie korpus opgelei is — regs, tegnies, medies, bemarking, of enigiets anders. Dit is die sterkste hefboom vir toon, handelsmerkstem en woordeskat.",
+			"surfaceLabel": "Oppervlakteks:",
+			"surfaceBody": "Gebruik die {glossaryLink} om handelsname en produkterme woordeliks te sluit, en gebruik {profanityAction} om vloekwoorde te verwyder wanneer lokalisering vir jonger gehore geteiken word.",
+			"glossaryLinkLabel": "Woordelys"
+		}
 	},
 	"inputs": {
 		"title": "Insette en uitsette",
 		"eyebrow": "Verwysing",
-		"lede": "Elke inset word ook in die opsionele repo konfigurasielêer aanvaar. Wanneer albei gestel is, wen die aksie-invoer."
+		"lede": "Elke inset word ook in die opsionele repo konfigurasielêer aanvaar. Wanneer albei gestel is, wen die aksie-invoer.",
+		"configurationIntro": "Sien {configurationLink} vir die YAML-skema en laaivolgorde.",
+		"configurationLinkLabel": "Konfigurasie",
+		"columns": {
+			"name": "Naam",
+			"default": "Verstek",
+			"description": "Beskrywing"
+		},
+		"defaults": {
+			"none": "Geen",
+			"allSupported": "almal ondersteun",
+			"translatorDefaultTrue": "waar (Vertaler standaard)"
+		},
+		"requiredInputs": {
+			"heading": "Vereiste insette",
+			"caption": "Vereiste insette",
+			"items": {
+				"sourceLocale": "Bronligging (bv. {en}) wat gebruik word om hulpbronlêers soos {sourceGlob} te vind. Ook deurgestuur na Vertaler as {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator subscription key. Gaan via {secrets}.",
+				"endpoint": "Vertaler-eindpunt URL, bv. {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Algemene opsionele insette",
+			"caption": "Algemene opsionele insette",
+			"items": {
+				"region": "Vertalerhulpbronstreek (uitlaat vir globale hulpbronne).",
+				"toLocales": "Plekke om na te vertaal. Aanvaar 'n JSON-skikking ({jsonArray}) of komma-geskeide waardes.",
+				"include": "Newline-geskeide glob-patrone; slegs ooreenstemmende lêers word vertaal.",
+				"exclude": "Newline-geskeide glob-patrone; Ooreenstemmende lêers word oorgeslaan (toegepas ná insluiting).",
+				"configPath": "Pad na die YAML-konfigurasielêer (relatief tot die werkswinkelwortel).",
+				"dryRun": "Wanneer {true}, voer vertalings uit en stuur opsommings uit, maar skryf nie lêers nie.",
+				"failOnError": "Wanneer {true}, misluk onverwagte foute die aksie; Wanneer {false}, is foute waarskuwings."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Vertalerversoek-insette",
+			"intro": "Hierdie kaart direk na Azure AI Translator v3-navraagparameters. Elkeen is opsioneel; die verstekinstellings van Vertaler geld wanneer dit ontstel word.",
+			"caption": "Vertalerversoek-insette",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} kategorie — die bedryf/domein/toonknoppie. Gestuur soos {categoryQuery}.",
+				"textType": "{plain} of {html}. Gebruik {html} net wanneer jou hulpbronwaardes regte HTML-fragmente is.",
+				"profanityAction": "{noAction}, {marked}, of {deleted}. Beheer hoe profane terme in vertalings uitgespreek word.",
+				"profanityMarker": "{asterisk} of {tag}. Net betekenisvol wanneer {profanityAction} {marked} is.",
+				"allowFallback": "Wanneer {false}, gee Vertaler 'n fout terug in plaas daarvan om terug te val na die algemene stelsel as jou {categoryId} geen ontplooiing vir 'n teikenlokasie het nie.",
+				"apiVersion": "Vertaler REST API-weergawe."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Veerkragtigheid en plaasvervangerbeskerming",
+			"intro": "Hierdie insette beheer hoe die aksie optree wanneer Vertaler jou versoek beperk en hoe dit plekhouer-tokens soos {mustache} of {indexZero} beskerm teen verminking tydens vertaling.",
+			"caption": "Veerkragtigheids- en plaasvervangerbeskermingsinsette",
+			"items": {
+				"maxRetries": "Maksimum herpogingspogings op tydelike HTTP-antwoorde ({statusCodes}). Die totale aantal HTTP-oproepe per versoek is {totalCalls}.",
+				"retryBackoffMs": "Beperk (in millisekondes) op enige enkele backoff-slaap. Die aksie eer Azure se {retryAfter} response-kop presies wanneer dit teenwoordig is; Andersins gebruik dit 'n gejitterde eksponensiële terugslag wat by hierdie waarde gekap is.",
+				"protectPlaceholders": "Wanneer {true} (standaard), word plekhouers soos {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} en HTML-entiteite vervang met sentinel-tokens voor vertaling en daarna herstel. Deaktiveer slegs wanneer jou bron doelbewus letterlike plekhouer-vormige teks bevat wat vertaal moet word.",
+				"customPlaceholderPatterns": "Newline-geskeide regexe (sonder afbakeners) wat by die standaard plekhouerstel gevoeg is, bv. {angleToken} vir pasgemaakte token-sintaksis.",
+				"noTranslatePatterns": "Newline-geskeide glob-patrone is ooreenstem met parservlak-sleutels (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext sleutel). Ooreenstemmende sleutels word uit die Vertalerversoek verwyder en deurgegee met hul bronwaarde behou."
+			}
+		},
+		"outputs": {
+			"heading": "Uitsette",
+			"caption": "Uitsette",
+			"items": {
+				"summaryTitle": "Kort PR-titel-vriendelike opsomming, bv. {summaryExample}.",
+				"summaryDetails": "Markdown-opsomming geskik vir 'n PR-liggaam of posopsomming.",
+				"hasNewTranslations": "{trueString} wanneer een of meer nuwe vertalings gegenereer is."
+			}
+		}
 	},
 	"formats": {
 		"title": "Lêerformate",
 		"eyebrow": "Verwysing",
 		"heroTitle": "Ondersteunde lêerformate",
-		"lede": "Ses ronde-trippbare hulpbronformate. Die aksie lees elke bron-lokasielêer, vertaal die waardes, en skryf 'n broer per teikenlokasie."
+		"lede": "Ses ronde-trippbare hulpbronformate. Die aksie lees elke bron-lokasielêer, vertaal die waardes, en skryf 'n broer per teikenlokasie.",
+		"namingConvention": "Alle lêers gebruik die {namingConvention} naamgewingkonvensie.",
+		"learnMore": "Leer meer",
+		"items": {
+			"resx": {
+				"blurb": "XML-gebaseerde .NET-hulpbronlêers. Vertaal die binneste teks van elke {dataValue} nodus, en bewaar kommentaar en metadata.",
+				"specLabel": "Microsoft Learn — Hulpbronne in .resx-lêers"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 dokumente. Vertaal elke {source} en skryf die resultaat in die ooreenstemmende {target}, en stel {trgLang} vir die lokaliteit.",
+				"specLabel": "OASIS XLIFF 2.0 spesifikasie"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object-lêers. Vertaal elke {msgid} / {msgidPlural} in {msgstr} / {msgstrPlural} vorme.",
+				"specLabel": "GNU gettext — PO-lêerformaat"
+			},
+			"json": {
+				"blurb": "Arbitrêre JSON-lêers. Geneste objekte word met die {delimiter} afbakender vir translasie platgedruk, en dan weer geneste op die uitset. Gestippelde sleutels ({dottedKey}) word woord vir woord bewaar.",
+				"specLabel": "JSON-spesifikasie (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Eenvoudige {keyValue}-lêers (Win32-styl INI of enige plat konfigurasie). Afdelingsopskrifte en kommentaar word bewaar.",
+				"specLabel": "INI-lêerformaat op Wikipedia"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI-teksbronne — plat {keyValue} pare wat as 'n teksmaat vir {resx} gebruik word.",
+				"specLabel": "Microsoft MUI-oorsig"
+			}
+		},
+		"roundTrip": {
+			"heading": "Rondreiswaarborge",
+			"body": "Die toetssuite verifieer byte-vir-byte rondreis vir verteenwoordigende toebehore van elke formaat. As 'n formaat-eienaardigheid die heen-en-weer in jou kodebasis breek, {issueLink} asseblief met 'n minimale voorbeeld.",
+			"issueLinkLabel": "Maak 'n kwessie oop"
+		}
 	},
 	"recipes": {
 		"title": "Resepte",
 		"eyebrow": "Kookboek",
-		"lede": "Algemene patrone vir versending van vertalings: monorepos, woordelys, pasgemaakte kategorieë, droë lopies, en toonbeheer."
+		"lede": "Algemene patrone vir versending van vertalings: monorepos, woordelys, pasgemaakte kategorieë, droë lopies, en toonbeheer.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Maak 'n pull request oop na elke lopie"
+			},
+			"monorepo": {
+				"heading": "Monorepos: omvangvertaling per pakket"
+			},
+			"glossary": {
+				"heading": "Woordelys vir handelsname en produkterme",
+				"intro": "Plaas 'n {configPath} in die bewaarplek:",
+				"afterLabel": "Daarna",
+				"body": "Woordelysterme word {after} vertaling toegepas, so die masjien-vertaalde uitset behou jou voorkeurhandelsmerk selfs wanneer die model dit vir 'n sinoniem vervang het."
+			},
+			"customCategory": {
+				"heading": "Pasgemaakte Vertaler-kategorie (bedryf / domein)",
+				"body": "Lei 'n Azure {customTranslatorLink} kategorie op 'n korpus wat jou bedryfswoordeskat en toon vasvang (reg, medies, bemarking, interne ingenieurswese, ens.) en slaag sy ID via {categoryId}. Dit is die sterkste toonhefboom wat Azure bied."
+			},
+			"tone": {
+				"heading": "Toonbeheer + streng terugval",
+				"body": "Kombineer 'n Pasgemaakte Vertaler-{categoryId} met {profanityAction} en {allowFallbackFalse} om 'n konsekwente stem af te dwing en die werkvloei te laat misluk as die gekose kategorie nie 'n ontplooiing vir een van jou teikenplekke het nie."
+			},
+			"dryRun": {
+				"heading": "Oefen dit voordat jy die werkvloei aanskakel",
+				"body": "Die aksie stuur steeds opsommingsuitsette en 'n stapopsomming uit, maar geen lêers word geskryf nie. Kombineer dit met {failOnErrorFalse} om elke kwessie as 'n waarskuwing na vore te bring terwyl jy dit herhaal."
+			}
+		}
 	},
 	"faq": {
 		"title": "VGV",
 		"eyebrow": "Help",
 		"heroTitle": "Gereelde vrae",
-		"lede": "Vinnige antwoorde op die vrae wat die meeste opduik wanneer jy die aksie aanneem."
+		"lede": "Vinnige antwoorde op die vrae wat die meeste opduik wanneer jy die aksie aanneem.",
+		"questions": {
+			"azure": {
+				"heading": "Hoe kommunikeer die aksie met Azure?",
+				"body": "Deur Microsoft se amptelike {azureSdkLink} SDK, gelaag op {corePipelineLink}. Dit gee jou outomatiese herpogings op {statusCodes}, getikte versoek- en reaksiemodelle, en verifikasie-kophantering gratis — alles wat voorheen 'n handgerolde {axios}-oproep was. Die openbare aksieoppervlak (insette, uitsette, lêeruitsette) bly onveranderd."
+			},
+			"tone": {
+				"heading": "Hoekom is vertalings soms van die handelsmerk of van toon af?",
+				"body": "Masjienvertaling gebruik standaard 'n algemene doeleinde-model. Drie knoppies help: 'n {glossaryLink} vir harde termyn-oorskrywings, 'n {customTranslatorLink} vir fyn ingestelde modelle wat op jou toon en woordeskat opgelei is, en {profanityAction} om vloekwoorde te verwyder of te merk.",
+				"glossaryLinkLabel": "Woordelys",
+				"customTranslatorLinkLabel": "Pasgemaakte Vertaler-kategorie"
+			},
+			"duplicateFiles": {
+				"heading": "Hoe vermy ek om dieselfde lêer twee keer te vertaal?",
+				"body": "Aktiveer die werkvloei op {paths} wat net by jou bron-ligging lêers pas, bv. {sourceGlob}. Die aksie sluit ook sy eie per-trigger lêerfilter in wanneer {githubToken} gestel is, wat werk beperk tot lêers in die nuutste commit."
+			},
+			"offline": {
+				"heading": "Kan ek die aksie vanlyn laat loop?",
+				"body": "Nie presies nie — Azure AI Translator is die runtime-brein. Maar jy kan met {dryRunTrue} hardloop om parsing en konfigurasie te valideer sonder om enige HTTP-versoeke vir vertaling te maak."
+			},
+			"node": {
+				"heading": "Op watter Node-weergawe loop die aksie?",
+				"body": "v3 loop op die GitHub Actions {nodeRuntime} looptyd. Die ingeslote JavaScript is versoenbaar met Node 20, 22 en 24, wat CI toets."
+			},
+			"dist": {
+				"heading": "Waar kom die gebundelde {distDir} vandaan?",
+				"body": "GitHub JS-aksies stuur hul saamgestelde JS in die bewaarplek. Die {distBuild}-werkvloei bou dit na elke samevoeging weer op om te {mainBranch} of dit sou dryf, en blokkeer {distCheck} PR's wat verouderde uitsette sou beland."
+			},
+			"formats": {
+				"heading": "Wat van ander hulpbronformate?",
+				"body": "Vandag: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} as jy nog een nodig het — die parser-koppelvlak is klein (ontleed → kaart → pas vertalings → formaat toe) en bydraes is welkom.",
+				"issueLinkLabel": "Maak 'n kwessie oop"
+			}
+		}
 	},
 	"translations": {
 		"title": "Vertalings",
 		"eyebrow": "Uitstalling",
 		"heroTitle": "Hallo in elke taal",
-		"locales": "Plekke",
-		"currentlyRendered": "tans gerender",
-		"complete": "Voltooi!",
-		"pendingPrefix": "Hangende die volgende vertaal-dokumentasie-lopie.",
+		"lede": "Hierdie bladsy word deur Resource Translator self vertaal, by elke skuif na hoof, in elke taal wat Azure AI Translator ondersteun.",
+		"localeCountLabel": "{count} plekke",
+		"statusComplete": "{translatedCount} tans gerender — voltooi!",
+		"statusPending": "{translatedCount} tans gerender — {pendingCount} wag op die volgende {workflowName} lopie.",
 		"viewWorkflowRuns": "Kyk na werkvloei-uitvoerings",
 		"filter": "Filter",
 		"filterPlaceholder": "Soek volgens taal, kode of inheemse naam...",
 		"source": "Bron",
 		"machineTranslations": "Masjienvertalings",
-		"translationPending": "Vertaling hangende — open 'n vertaal-dokumente-loop.",
+		"translationPending": "Vertaling hangende — open 'n {workflowName} loop.",
 		"noLocales": "Geen plekke pas by daardie filter nie.",
-		"howItWorks": "Hoe dit werk"
+		"howItWorks": {
+			"heading": "Hoe dit werk",
+			"thisActionLabel": "hierdie presiese aksie",
+			"steps": {
+				"source": "Die Engelse bronlêer bestaan by {messagesPath}.",
+				"workflow": "As jy daardie aanraking druk, skop dit {workflowLink} af, wat {thisAction} teen homself loop.",
+				"fanOut": "Die aksie versprei na elke Azure AI Translator-ondersteunde plek (gekonfigureer in {configPath}) en skryf 'n broer {messagesLocaleJson} per teiken.",
+				"pullRequest": "'n Pull request word met die nuwe vertalings oopgemaak. As jy dit saamvoeg, word hierdie bladsy met die kaarte ingevul weer gepubliseer."
+			}
+		},
+		"poweredBy": "Aangedryf deur Resource Translator en Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Bydraers",
 		"eyebrow": "Oopbron",
-		"lede": "Foutverslae, funksieversoeke en pull requests is almal welkom. Die aksie is klein genoeg om vriendelik te wees vir eerstekeer-bydraers."
+		"lede": "Foutverslae, funksieversoeke en pull requests is almal welkom. Die aksie is klein genoeg om vriendelik te wees vir eerstekeer-bydraers.",
+		"localDevelopment": {
+			"heading": "Plaaslike ontwikkeling"
+		},
+		"addingParser": {
+			"heading": "Voeg 'n ontleder by",
+			"steps": {
+				"fixture": "Voeg 'n armatuur onder {testDataDir} by.",
+				"implement": "Implementeer {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Registreer dit in {factoryFile}.",
+				"extension": "Voeg die lêeruitbreiding by {translationFileSchemes} in {finderFile}.",
+				"tests": "Skryf heen-en-weer toetse vir ontleding → formaat en pas Vertalings toe."
+			}
+		},
+		"coverage": {
+			"heading": "Dekkingsdrempels",
+			"body": "Die Jest-konfigurasie dwing minimum dekking af. Nuwe kode moet die stellings + reëls drempel bo 78% hou en funksies bo 90%. Voeg toebehore en toetse saam met jou verandering by."
+		},
+		"docsSite": {
+			"heading": "Dokumentasiewebwerf",
+			"body": "Die {docsDir}-lêergids is 'n Astro 6 + Tailwind v4-projek. Hardloop {npmInstall} daar een keer, en {npmRunDev} dan vir plaaslike voorskou. Die {pagesWorkflow} werkvloei stuur dokumente na GitHub Pages by elke samevoeging."
+		}
 	},
 	"changelog": {
 		"title": "Wisselregister",
 		"eyebrow": "Geskiedenis",
-		"lede": "Hoëvlak-opsomming van vrystellings. Die kanonieke, gesaghebbende veranderingslogboek leef in CHANGELOG.md in die bewaarplek."
+		"lede": "Hoëvlak-opsomming van vrystellings. Die kanonieke, gesaghebbende veranderingslogboek leef in CHANGELOG.md in die bewaarplek.",
+		"fullRecord": "Sien {changelogLink} vir die volledige rekord.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (in ontwikkeling)",
+			"labels": {
+				"breaking": "BREEK",
+				"resilience": "Veerkragtigheid:",
+				"placeholderProtection": "Plaasvervangerbeskerming:",
+				"perKeyOptOut": "Per-sleutel opt-out:",
+				"docsAccessibility": "Toeganklikheid van Docs:",
+				"inlineCodeStyling": "Inlynkode-styl:"
+			},
+			"issueLabels": {
+				"closes46": "Maak #46 af.",
+				"tightens16": "Draai #16 styf.",
+				"closes35": "Sluit #35."
+			},
+			"items": {
+				"runtime": "Verhoog na {nodeRuntime} looptyd ({breaking}).",
+				"newInputs": "Nuwe insette: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, plus gevorderde Vertalerknoppies {textType}, {profanityAction}, {profanityMarker} en {allowFallback}.",
+				"sourceLocale": "Bronligging word nou ook as {fromLocale} na Vertaler deurgestuur, sodat kort stringe nie outomaties opgespoor word nie.",
+				"resilience": "{label} outomatiese herpoging op tydelike HTTP-antwoorde ({statusCodes}) wat Azure se {retryAfter}-kopstuk eerbied — val terug op jittered eksponensiële backoff wanneer dit afwesig is. Instelbaar via {maxRetries} en {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} tokens soos {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} en HTML-entiteite word voor vertaling in sentinels toegedraai en daarna herstel, sodat Translator ophou om i18next/Mustache/Handlebars/.NET/printf plekhouers te verwar. Skakel via {protectPlaceholders}; Brei uit met {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} nuwe {noTranslatePatterns} inset laat ooreenstemmende sleutels heeltemal uit die Vertalerversoek val (bewaar bronwaardes vir handelsname, foutkodes, ens.). Vergelyk glob-patrone met parser-vlak sleutels (JSON gestippelde pad, RESX {resxName}, PO {poMsgid}, XLIFF eenheid {xliffId}, INI/restext sleutel). {issue}",
+				"repoConfig": "Repo-vlak konfigurasie via {configPath}.",
+				"glossary": "Woordelysondersteuning, stapopsomming via {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM-oudit skoon (0 kwesbaarhede).",
+				"docsSite": "Astro + Tailwind v4 dokumentasie-webwerf met kyk-oorgange en Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA-slaag. Logo-glywe word na paaie omgeskakel sodat hulle nie meer kleurkontras teen gradiëntstoppe faal nie, die drywende {backToTop}-knoppie gebruik {inert} terwyl dit versteek is (in plaas van 'n {ariaHidden}-skakelaar wat dit tabbabel gelaat het), {formatsAstro} afdelings bots nie meer met hul outomaties-gegenereerde kop-ID's nie, drie lokaalkaarte wys nou BCP-47-geldige {lang}-eienskappe ({nya}, {lug}, {run}), duplikaat {documentation} landmerketikette word tussen sybalk en voetskrif onderskei,  en elke datatabel op {inputs}/{configuration} word met 'n skermleser-onderskrif versend.",
+				"inlineCode": "{label} docs prosa dra nou {codeElement} die warm/amber tema aksent — onderskeibaar van die handelsmerk→aksentpalet wat vir skakels en opskrifte gebruik word.",
+				"automation": "Dependabot outomatiese samevoeging, CodeQL-skandering, CI-matriks."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Sien git-geskiedenis."
+		}
 	}
 }

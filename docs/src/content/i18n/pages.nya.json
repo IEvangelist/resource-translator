@@ -18,18 +18,26 @@
 			"node": "Kodi Mungakhalire Ndi Moyo Wabwino / 20 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "zisa kapena lathyathyathya",
+			"ini": "{keyValue}",
+			"restext": "Lemba la MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Mitundu isanu ndi umodzi ya mafayilo",
-				"body": "Maulendo ozungulira .resx, .xliff, .po, .json, .ini, ndi .restext ndi mawonekedwe okhazikika a byte."
+				"body": "Maulendo ozungulira {resx}, {xliff}, {po}, {json}, {ini}, ndi {restext} okhala ndi mawonekedwe okhazikika a byte."
 			},
 			"config": {
 				"title": "Repo-level config",
-				"body": "Gwetsani .github/resource-translator.yml kuti muphatikize ma globs, ma glossaries, ndi magulu a Custom Translator."
+				"body": "Gwetsani fayilo {configPath} kuti muphatikizepo ma globs, glossaries, ndi magulu a Custom Translator."
 			},
 			"glossary": {
 				"title": "Glossary-ozindikira",
-				"body": "Tsekani mayina amtundu ndi mawu a mankhwala ndi regex yanzeru ya mawu omwe amagwira ntchito C ++, .NET, ndi abwenzi."
+				"body": "Tsekani mayina amtundu ndi mawu amtundu ndi regex yanzeru yomwe imagwira {cpp}, {dotnet}, ndi abwenzi."
 			},
 			"dryRun": {
 				"title": "Dry-run + zofewa-kulephera",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Zotsatira za PR",
-				"body": "summary-title, summary-details, and has-new-translations slot directly into create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails}, ndi {hasNewTranslations} kagawo mwachindunji mu kulenga-kukoka-pempho."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "Yomangidwa pa @azure-rest / ai-translation-text + @azure / core-rest-pipeline - zodziwikiratu zoyesanso pa 408 / 429 / 5xx, palibe HTTP yomwe idagulung'undisa pamanja. esbuild-bundled, audit-clean."
+				"body": "Yomangidwa pa {azureSdk} + {corePipeline} - zodziwikiratu zoyesanso pa {statusCodes}, palibe HTTP yogubuduzidwa pamanja. {esbuild}-bundled, audit-woyera."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Ntchito yotsitsa",
+			"titlePrefix": "Kopera. Phalani.",
+			"titleAccent": "Kumasulira.",
+			"body": "Zinsinsi zitatu, mizere inayi, ndipo repo yanu ndi zilankhulo zambiri pakukankha kotsatira.",
+			"setupLink": "Yendani pakukhazikitsa kwathunthu"
+		},
+		"cta": {
+			"title": "Takonzeka kukhazikitsa malo pa autopilot?",
+			"body": "Chinsinsi chimodzi cha Azure AI Translator, fayilo imodzi yogwirira ntchito. Womasulira Resource amasamalira zina zonse.",
+			"button": "Yambani"
 		}
 	},
 	"getting-started": {
 		"title": "Kuyamba",
 		"eyebrow": "Kukhazikitsa",
-		"lede": "Onjezerani fayilo ya ntchito, lozani pa zidziwitso zanu za Azure AI Translator, ndipo zochitikazo - zomangidwa pa SDK yovomerezeka ya Microsoft @azure-rest / ai-translation-text - zidzafufuza repo ya mafayilo a chinenero cha gwero ndikutulutsa abale omasuliridwa.",
+		"lede": "Onjezerani fayilo ya ntchito, lozani pa zidziwitso zanu za Azure AI Translator, ndipo zochitikazo zidzafufuza repo ya mafayilo a chinenero cha gwero ndikutulutsa abale omasulidwa.",
 		"steps": {
 			"provision": {
 				"title": "Perekani chuma cha Azure AI Translator",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Onjezani kayendedwe ka ntchito",
-				"body": "Pangani .github/workflows/translate.yml:"
+				"body": "Pangani {workflowPath}:"
 			},
 			"resource": {
 				"title": "Chitani fayilo ya source resource",
-				"body": "Mafayilo a Resource amagwiritsa ntchito Dzina. <sourceLocale>. <ext> msonkhano. Mwachitsanzo Greetings.en.resx imakhala Greetings.fr.resx, Greetings.de.resx, ndi zina zotero pambuyo pa kuthamanga."
+				"body": "Mafayilo othandizira amagwiritsa ntchito msonkhano wa {namingConvention}. Mwachitsanzo {sourceFile} amakhala {frFile}, {deFile}, ndi zina zotero pambuyo pa kuthamanga."
 			},
 			"output": {
 				"title": "Yang'anani zotuluka",
-				"body": "Ntchitoyi ikatha, zochitikazo zimavumbula zotuluka zitatu zomwe mungathe kufotokozera mu mafotokozedwe a PR: chidule-mutu, chidule-tsatanetsatane, ndi kukhala ndi matembenuzidwe atsopano. Imalemba chidule cha Markdown patsamba la ntchito kudzera pa core.summary."
+				"body": "Ntchitoyi ikatha, zochitikazo zimavumbula zotuluka zitatu zomwe mungathe kuzigwiritsa ntchito mu mafotokozedwe a PR: {summaryTitle}, {summaryDetails}, ndi {hasNewTranslations}. Imalemba chidule cha Markdown patsamba la ntchito kudzera pa {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Masitepe otsatira",
-			"configuration": "Konzani kusakhulupirika kwa repo ndi .github/resource-translator.yml.",
+			"configuration": "Konzani kusakhulupirika kwa repo-level ndi {configPath}.",
 			"recipes": "Onani maphikidwe a monorepos, ma glossaries achizolowezi, ndi magulu a Custom Translator."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Kasinthidwe",
 		"eyebrow": "YAML",
 		"heroTitle": "Kasinthidwe ka malo osungirako",
-		"lede": "Fotokozani kusakhulupirika kamodzi mu .github/resource-translator.yml ndipo lolani kuti ntchito iliyonse ikhale ndi cholowa. Zochita zolowetsa nthawi zonse zimapambana pamene zonsezi zaperekedwa."
+		"lede": "Fotokozani kusakhulupirika kamodzi mu fayilo ya config yosungira ndikulola kuti ntchito iliyonse ilandire cholowa. Zochita zolowetsa nthawi zonse zimapambana pamene zonsezi zaperekedwa.",
+		"intro": "Sinthani njirayo ndi {configPath} yolowetsa ngati mukufuna malo osakhala osakhulupirika.",
+		"schemaHeading": "Schema",
+		"fieldReference": {
+			"heading": "Chidziwitso cha munda",
+			"caption": "Chidziwitso cha munda wa kasinthidwe",
+			"columns": {
+				"field": "Munda",
+				"type": "Mtundu",
+				"notes": "Zolemba"
+			},
+			"fields": {
+				"sourceLocale": "Imagwera kumbuyo kwa {sourceLocale} kulowetsa ngati sikunakhazikitsidwe. Komanso kutumizidwa kwa Womasulira monga {fromLocale} kotero zingwe zazifupi sizidziwika zokha.",
+				"toLocales": "Mwina mndandanda kapena chingwe cholekanitsidwa ndi koma.",
+				"includeExclude": "Zojambula za Glob zoyesedwa motsutsana ndi njira zenizeni komanso zogwirizana ndi malo ogwirira ntchito.",
+				"glossary": "Mawu omasulira pambuyo pa kumasulira amagonjetsa. Mawu ozindikira malire (amagwirira {cpp}, {dotnet}).",
+				"categoryId": "Gulu la Azure {customTranslatorLink} - makampani anu / gawo lanu (zamalamulo, zamankhwala, mawu ogulitsa, ndi zina zotero). Kutumizidwa ngati {categoryQuery}.",
+				"textType": "Kusakhulupirika kwa {plain}. Gwiritsani ntchito {html} pokhapokha ngati mtengo wanu wa chuma uli ndi zidutswa zenizeni za HTML.",
+				"profanityAction": "Momwe mungachitire mawu otukwana mu zotsatira zomasuliridwa.",
+				"profanityMarker": "Kokha tanthauzo pamene {profanityAction} ndi {marked}.",
+				"allowFallback": "Ikani {false} kuti mulephere kumasulira pamene {categoryId} yanu ilibe kutumizidwa kwa malo ogulitsira m'malo mobwerera ku chitsanzo chachikulu.",
+				"apiVersion": "Womasulira REST API version. Kusakhulupirika kwa {version}.",
+				"maxRetries": "Kuyesayesa kwakukulu pa mayankho osakhalitsa a HTTP ({statusCodes}). Kusakhulupirika kwa {defaultRetries}. Mafoni onse a HTTP pa pempho ndi {totalCalls}.",
+				"retryBackoffMs": "Kapu (ms) pa tulo tum'mbuyo kalikonse. Kusakhulupirika kwa {defaultBackoff}. Mutu wa {retryAfter} wa Azure umalemekezedwa ndendende pamene alipo; apo ayi jittered exponential backoff imagwiritsidwa ntchito, yotsekedwa pa mtengo uwu.",
+				"protectPlaceholders": "Kusakhulupirika kwa {true}. Pamene pa, zizindikiro monga {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ndi mabungwe a HTML amasinthidwa ndi zizindikiro za sentinel musanayambe kumasulira ndikubwezeretsedwa pambuyo pake. Lekani pokhapokha ngati gwero lili ndi mfundo zenizeni zowoneka ngati placeholder.",
+				"customPlaceholderPatterns": "Zitsanzo zowonjezera za regex (popanda delimiters) zinawonjezeredwa ku malo osasinthika, mwachitsanzo {angleToken} kwa chizolowezi cha chizindikiro syntax. Ma regexes osagwira ntchito amanyalanyazidwa.",
+				"noTranslatePatterns": "Zojambula za Glob zikugwirizana ndi makiyi amtundu wa parser (njira ya JSON dontho, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext kiyi). Makiyi ofananira amagwetsedwa kuchokera ku pempholo ndikudutsa ndi mtengo wawo wa gwero wosungidwa."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Kutsegula dongosolo",
+			"steps": {
+				"actionInputs": "Mchitidwewu umawerenga zolowetsa zomveka bwino kuchokera ku ntchito.",
+				"config": "Imanyamula YAML config kuchokera ku {configPath}.",
+				"precedence": "Pa gawo lililonse logawana, zolowetsa zimapambana; apo ayi mtengo wa YAML umagwiritsidwa ntchito.",
+				"validation": "Makhalidwe ophatikizidwa amatsimikiziridwa. Ma enums osagwira ntchito (mwachitsanzo {invalidEnum}) amachititsa kuti zochitikazo zilephere mwachangu ndi uthenga womveka bwino."
+			}
+		},
+		"tone": {
+			"heading": "Mawu ndi mafakitale, m'mawu omveka bwino",
+			"body": "Azure AI Translator v3 API ilibe batani limodzi la kamvekedwe. Makonzedwe awiri amaphatikizana kuti akupatseni ulamuliro wambiri womwewo:",
+			"industryLabel": "Makampani / gawo:",
+			"industryBody": "gwiritsani ntchito {categoryId} kuloza gulu la Azure {customTranslatorLink} lophunzitsidwa pa corpus yanu - zamalamulo, zaukadaulo, zamankhwala, malonda, kapena china chilichonse. Ichi ndi chikhomo champhamvu kwambiri cha mawu, mawu amtundu, ndi mawu.",
+			"surfaceLabel": "Lemba lapamwamba:",
+			"surfaceBody": "Gwiritsani ntchito {glossaryLink} kutseka mayina a mtundu ndi mawu a mankhwala mawu, ndipo gwiritsani ntchito {profanityAction} kupukuta mawu otukwana pamene mukuyang'ana malo kwa omvera achichepere.",
+			"glossaryLinkLabel": "Glossary"
+		}
 	},
 	"inputs": {
 		"title": "Zolowetsa ndi zotuluka",
 		"eyebrow": "Zolemba",
-		"lede": "Chilichonse cholowetsa chimavomerezedwanso mu fayilo yosankha repo config. Pamene zonsezi zakhazikitsidwa, kulowetsedwa kwa kachitidwe kumapambana."
+		"lede": "Chilichonse cholowetsa chimavomerezedwanso mu fayilo yosankha repo config. Pamene zonsezi zakhazikitsidwa, kulowetsedwa kwa kachitidwe kumapambana.",
+		"configurationIntro": "Onani {configurationLink} kwa schema ya YAML ndi dongosolo lotsegulira.",
+		"configurationLinkLabel": "Kasinthidwe",
+		"columns": {
+			"name": "Dzina",
+			"default": "Kusakhulupirika",
+			"description": "Kufotokozera"
+		},
+		"defaults": {
+			"none": "Palibe",
+			"allSupported": "Zonse zimathandizidwa",
+			"translatorDefaultTrue": "zoona (Womasulira kusakhulupirika)"
+		},
+		"requiredInputs": {
+			"heading": "Zofunikira zofunikira",
+			"caption": "Zofunikira zofunikira",
+			"items": {
+				"sourceLocale": "Source locale (mwachitsanzo {en}) yomwe imagwiritsidwa ntchito kupeza mafayilo othandizira monga {sourceGlob}. Komanso kutumizidwa kwa Womasulira monga {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator muzimvetsera kiyi. Pitani kudzera {secrets}.",
+				"endpoint": "Translator endpoint URL, mwachitsanzo {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Zogwiritsira ntchito zofala",
+			"caption": "Zogwiritsira ntchito zofala",
+			"items": {
+				"region": "Dera la chuma chomasulira (siyani chuma chapadziko lonse lapansi).",
+				"toLocales": "Malo oti mumasuliridwe. Amavomereza JSON array ({jsonArray}) kapena makhalidwe olekanitsidwa ndi koma.",
+				"include": "Mawonekedwe a glob olekanitsidwa ndi Newline; Mafayilo ofananira okha ndi omwe amamasuliridwa.",
+				"exclude": "Mawonekedwe a glob olekanitsidwa ndi Newline; mafayilo ofananira amadumpha (amagwiritsidwa ntchito pambuyo pophatikizapo).",
+				"configPath": "Njira yopita ku fayilo ya YAML config (yokhudzana ndi muzu wa malo ogwirira ntchito).",
+				"dryRun": "Mukakhala {true}, yendetsani matembenuzidwe ndikutulutsa chidule koma osalemba mafayilo.",
+				"failOnError": "Pamene {true}, zolakwika zosayembekezereka zimalephera kuchitapo kanthu; pamene {false}, zolakwika ndi machenjezo."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Womasulira pempho athandizira",
+			"intro": "Izi zimapanga mapu mwachindunji pa magawo a mafunso a Azure AI Translator v3. Aliyense ndi wosankha; ndi Womasulira defaults ntchito pamene unset.",
+			"caption": "Womasulira pempho athandizira",
+			"items": {
+				"categoryId": "Gulu la Azure {customTranslatorLink} - batani la makampani / gawo / kamvekedwe. Kutumizidwa monga {categoryQuery}.",
+				"textType": "{plain} kapena {html}. Gwiritsani ntchito {html} pokhapokha ngati mtengo wanu wa chuma ndi zidutswa zenizeni za HTML.",
+				"profanityAction": "{noAction}, {marked}, kapena {deleted}. Imayang'anira momwe mawu otukwana amatulutsidwa m'matembenuzidwe.",
+				"profanityMarker": "{asterisk} kapena {tag}. Kokha tanthauzo pamene {profanityAction} ndi {marked}.",
+				"allowFallback": "Pamene {false}, Womasulira amabweza cholakwika m'malo mobwerera ku dongosolo lonse ngati {categoryId} lanu lilibe kutumizidwa kwa malo ogulitsira.",
+				"apiVersion": "Womasulira REST API version."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Kukhazikika ndi chitetezo cha placeholder",
+			"intro": "Zolowetsa izi zimayang'anira momwe zochitikazo zimakhalira pamene Womasulira akuchepetsa pempho lanu komanso momwe amateteza zizindikiro za placeholder monga {mustache} kapena {indexZero} kuti asawonongeke panthawi yomasulira.",
+			"caption": "Kukhazikika ndi chitetezo cha placeholder",
+			"items": {
+				"maxRetries": "Kuyesayesa kwakukulu pa mayankho osakhalitsa a HTTP ({statusCodes}). Chiwerengero chonse cha mafoni a HTTP pa pempho lililonse ndi {totalCalls}.",
+				"retryBackoffMs": "Kapu (mu milliseconds) pa tulo tum'mbuyo kalikonse. Mchitidwewu umalemekeza mutu woyankha {retryAfter} wa Azure ndendende pamene alipo; apo ayi imagwiritsa ntchito jittered exponential backoff yotsekedwa pamtengo uwu.",
+				"protectPlaceholders": "Pamene {true} (kusakhulupirika), placeholders monga {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ndi HTML mabungwe amasinthidwa ndi zizindikiro za sentinel musanayambe kumasulira ndikubwezeretsedwa pambuyo pake. Kuletsa pokhapokha ngati gwero lanu mwadala lili ndi malemba enieni omwe ayenera kutanthauzidwa.",
+				"customPlaceholderPatterns": "Ma regexes olekanitsidwa ndi Newline (popanda delimiters) adawonjezera ku malo osakhulupirika, mwachitsanzo {angleToken} kwa chizolowezi cha chizindikiro.",
+				"noTranslatePatterns": "Newline-olekanitsidwa glob zitsanzo zogwirizana ndi makiyi parser-mlingo (JSON madontho njira, RESX {resxName}, PO {poMsgid}, XLIFF wagawo {xliffId}, INI / restext kiyi). Makiyi ofananira amagwetsedwa kuchokera ku pempho la Womasulira ndipo amadutsa ndi mtengo wawo wa gwero wosungidwa."
+			}
+		},
+		"outputs": {
+			"heading": "Zotulutsa",
+			"caption": "Zotulutsa",
+			"items": {
+				"summaryTitle": "Chidule chachidule cha PR-mutu-wochezeka, mwachitsanzo {summaryExample}.",
+				"summaryDetails": "Chidule cha Markdown choyenera thupi la PR kapena chidule cha ntchito.",
+				"hasNewTranslations": "{trueString} pamene Baibulo limodzi kapena angapo atsopano anapangidwa."
+			}
+		}
 	},
 	"formats": {
 		"title": "Mawonekedwe a fayilo",
 		"eyebrow": "Zolemba",
 		"heroTitle": "Mitundu yothandizira mafayilo",
-		"lede": "Mitundu isanu ndi umodzi yozungulira. Mchitidwewu umawerenga fayilo iliyonse ya gwero-locale, kumasulira makhalidwe, ndikulemba mchimwene pa malo aliwonse."
+		"lede": "Mitundu isanu ndi umodzi yozungulira. Mchitidwewu umawerenga fayilo iliyonse ya gwero-locale, kumasulira makhalidwe, ndikulemba mchimwene pa malo aliwonse.",
+		"namingConvention": "Mafayilo onse amagwiritsa ntchito msonkhano wa dzina la {namingConvention}.",
+		"learnMore": "Phunzira zambiri",
+		"items": {
+			"resx": {
+				"blurb": "XML-based .NET resource files. Amamasulira malemba amkati a mfundo iliyonse ya {dataValue}, kusunga ndemanga ndi metadata.",
+				"specLabel": "Microsoft Phunzirani - Zothandizira mu mafayilo a .resx"
+			},
+			"xliff": {
+				"blurb": "Zolemba za OASIS XLIFF 2.0. Amamasulira {source} lililonse ndikulemba zotsatira zake m'{target} lofananira, ndikukhazikitsa {trgLang} a malo.",
+				"specLabel": "Mafotokozedwe a OASIS XLIFF 2.0"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object files. Kumasulira {msgid} / {msgidPlural} lililonse kukhala mawonekedwe {msgstr} / {msgstrPlural}.",
+				"specLabel": "GNU gettext - PO file format"
+			},
+			"json": {
+				"blurb": "Mafayilo a JSON odzisankhira. Zinthu zomwe zili ndi zisa zimaphwanyidwa ndi {delimiter} delimiter kuti zimasuliridwe, kenako zimapangidwanso pazotulutsa. Makiyi a madontho ({dottedKey}) amasungidwa mawu.",
+				"specLabel": "Mafotokozedwe a JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Mafayilo osavuta {keyValue} (Win32-style INI kapena config iliyonse yotsetsereka). Mitu ya magawo ndi ndemanga zimasungidwa.",
+				"specLabel": "Mtundu wa fayilo ya INI pa Wikipedia"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI text resources - lathyathyathya {keyValue} awiriawiri omwe amagwiritsidwa ntchito ngati mnzake wa malemba ku {resx}.",
+				"specLabel": "Chidule cha Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Zitsimikizo zozungulira",
+			"body": "Suite yoyeserera imatsimikizira byte-for-byte kuzungulira-tripping kwa zoyimira zoimira mtundu uliwonse. Ngati mtundu wa quirk umaphwanya kuzungulira-tripping mu codebase yanu, chonde {issueLink} ndi chitsanzo chochepa.",
+			"issueLinkLabel": "Tsegulani nkhani"
+		}
 	},
 	"recipes": {
 		"title": "Maphikidwe",
 		"eyebrow": "Buku lophika",
-		"lede": "Njira zofala zomasulira zotumizira: monorepos, glossaries, magulu amwambo, kuthamanga kouma, ndi kulamulira mawu."
+		"lede": "Njira zofala zomasulira zotumizira: monorepos, glossaries, magulu amwambo, kuthamanga kouma, ndi kulamulira mawu.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Tsegulani pempho lokoka pambuyo pa kuthamanga kulikonse"
+			},
+			"monorepo": {
+				"heading": "Monorepos: kumasulira kwakukulu pa phukusi lililonse"
+			},
+			"glossary": {
+				"heading": "Glossary ya mayina amtundu ndi mawu a mankhwala",
+				"intro": "Ponyani {configPath} mu repo:",
+				"afterLabel": "pambuyo pake",
+				"body": "Mawu a glossary amagwiritsidwa ntchito {after} kumasulira, kotero zotsatira zomasuliridwa ndi makina zimasunga chizindikiro chanu chomwe mumakonda ngakhale pamene chitsanzocho chinasinthanitsa ndi chofanana."
+			},
+			"customCategory": {
+				"heading": "Gulu la Womasulira Mwambo (makampani / gawo)",
+				"body": "Phunzitsani gulu la Azure {customTranslatorLink} pa corpus yomwe imagwira mawu anu a makampani ndi mawu (malamulo, zamankhwala, malonda, zomangamanga zamkati, ndi zina zotero) ndikudutsa ID yake kudzera pa {categoryId}. Iyi ndi mawu amphamvu kwambiri omwe Azure amapereka."
+			},
+			"tone": {
+				"heading": "Kulamulira kwa kamvekedwe + kugwa kokhwima",
+				"body": "Phatikizani {categoryId} Womasulira Wachizolowezi ndi {profanityAction} ndi {allowFallbackFalse} kuti mugwiritse ntchito mawu osasinthasintha ndikulephera kugwira ntchito ngati gulu losankhidwa lilibe kutumizidwa kwa imodzi mwa malo anu omwe mukufuna."
+			},
+			"dryRun": {
+				"heading": "Kuthamanga kouma musanayambe kuyatsa ntchito",
+				"body": "Mchitidwewu umatulutsabe zotsatira zachidule ndi chidule cha sitepe, koma palibe mafayilo omwe amalembedwa. Phatikizani ndi {failOnErrorFalse} kuti muwonetsetse nkhani iliyonse ngati chenjezo pamene mukubwereza."
+			}
+		}
 	},
 	"faq": {
 		"title": "Mafunso Ofunsidwa Kawirikawiri",
 		"eyebrow": "Thandizo",
 		"heroTitle": "Mafunso Ofunsidwa Kawirikawiri",
-		"lede": "Mayankho ofulumira a mafunso omwe amabwera nthawi zambiri mukamatengera zochitazo."
+		"lede": "Mayankho ofulumira a mafunso omwe amabwera nthawi zambiri mukamatengera zochitazo.",
+		"questions": {
+			"azure": {
+				"heading": "Kodi zochitikazo zimalankhula bwanji ndi Azure?",
+				"body": "Kudzera mu {azureSdkLink} SDK yovomerezeka ya Microsoft, yosanjikiza pa {corePipelineLink}. Izi zimakupatsirani kuti muyesenso zokha pa {statusCodes}, zolemba zopempha ndi zitsanzo zoyankha, ndi kusamalira mutu wotsimikizika kwaulere - zonse zomwe zinali zoyimbira {axios} pamanja. Malo ogwirira ntchito pagulu (zolowetsa, zotuluka, zotuluka za fayilo) sizisinthika."
+			},
+			"tone": {
+				"heading": "Chifukwa chiyani matembenuzidwe nthawi zina amakhala opanda mtundu kapena opanda mawu?",
+				"body": "Kumasulira kwa makina kumakhala chitsanzo chachikulu. Mabatani atatu amathandiza: {glossaryLink} kwa mawu ovuta, {customTranslatorLink} kwa zitsanzo zabwino zophunzitsidwa pa kamvekedwe ndi mawu, ndi {profanityAction} kupukuta kapena mbendera mawu otukwana.",
+				"glossaryLinkLabel": "Glossary",
+				"customTranslatorLinkLabel": "Gulu la Womasulira Mwambo"
+			},
+			"duplicateFiles": {
+				"heading": "Kodi ndingapewe bwanji kumasulira fayilo yomweyo kawiri?",
+				"body": "Yambitsani kayendedwe ka ntchito pa {paths} omwe amagwirizana ndi mafayilo anu a gwero-locale okha, mwachitsanzo {sourceGlob}. Mchitidwewu umaphatikizaponso fyuluta yake ya fayilo pa fayilo pamene {githubToken} yakhazikitsidwa, kuchepetsa ntchito ku mafayilo mu commit yaposachedwa."
+			},
+			"offline": {
+				"heading": "Kodi ndingathe kuyendetsa zochitikazo pa intaneti?",
+				"body": "Osati kwenikweni - Azure AI Translator ndi ubongo wothamanga. Koma mutha kuthamanga ndi {dryRunTrue} kuti mutsimikizire parsing ndi config popanda kupanga zopempha zilizonse za HTTP zomasulira."
+			},
+			"node": {
+				"heading": "Kodi ndi mtundu wanji wa Node womwe mchitidwewu umayenda?",
+				"body": "v3 imayenda pa GitHub Actions {nodeRuntime} nthawi yothamanga. JavaScript yophatikizidwa imagwirizana ndi Node 20, 22, ndi 24, zomwe ndi zomwe CI imayesa."
+			},
+			"dist": {
+				"heading": "Kodi {distDir} ophatikizidwa amachokera kuti?",
+				"body": "Zochita za GitHub JS zimatumiza JS yawo yosonkhanitsidwa mu nkhokwe. Ntchito ya {distBuild} imamanganso pambuyo pa kuphatikiza kulikonse ku {mainBranch} ngati idzayendayenda, ndipo {distCheck} imatseka ma PR omwe angatsike zotulutsa zachikale."
+			},
+			"formats": {
+				"heading": "Nanga bwanji mitundu ina yothandizira?",
+				"body": "Lero: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} ngati mukufuna wina - mawonekedwe a parser ndi ang'onoang'ono (parse → mapu → kugwiritsa ntchito matembenuzidwe → mtundu) ndipo zopereka zimalandiridwa.",
+				"issueLinkLabel": "Tsegulani nkhani"
+			}
+		}
 	},
 	"translations": {
 		"title": "Matembenuzidwe",
 		"eyebrow": "Chiwonetsero",
 		"heroTitle": "Moni m'chilankhulo chilichonse",
-		"locales": "malo",
-		"currentlyRendered": "Panopa anamasulira",
-		"complete": "wathunthu!",
-		"pendingPrefix": "podikira lotsatira lomasulira-docs kuthamanga.",
+		"lede": "Tsambali limamasuliridwa ndi Resource Translator palokha, pa kukankha kulikonse kwakukulu, m'chinenero chilichonse chomwe Azure AI Translator imathandizira.",
+		"localeCountLabel": "{count} malo",
+		"statusComplete": "{translatedCount} panopa kumasuliridwa - wathunthu!",
+		"statusPending": "{translatedCount} pakali pano akuperekedwa - {pendingCount} podikira kuthamanga kwa {workflowName} wotsatira.",
 		"viewWorkflowRuns": "Onani kuthamanga kwa ntchito",
 		"filter": "Fyuluta",
 		"filterPlaceholder": "Fufuzani ndi chilankhulo, code, kapena dzina lachibadwidwe...",
 		"source": "Gwero",
 		"machineTranslations": "Kumasulira kwa makina",
-		"translationPending": "Kutanthauzira kuyembekezeka - tsegulani kumasulira-docs kuthamanga.",
+		"translationPending": "Kumasulira kuyembekezeka - tsegulani {workflowName} kuthamanga.",
 		"noLocales": "Palibe malo omwe amafanana ndi fyuluta imeneyo.",
-		"howItWorks": "Momwe izi zimagwirira ntchito"
+		"howItWorks": {
+			"heading": "Momwe izi zimagwirira ntchito",
+			"thisActionLabel": "Mchitidwe womwewu",
+			"steps": {
+				"source": "Fayilo ya gwero la Chingerezi imakhala ku {messagesPath}.",
+				"workflow": "Kukankha kuti kukhudza izo kick off {workflowLink}, amene amathamanga {thisAction} motsutsana palokha.",
+				"fanOut": "Zochitikazo zimapita kumalo aliwonse omwe amathandizidwa ndi Azure AI Translator (okonzedwa mu {configPath}) ndikulemba mchimwene {messagesLocaleJson} pa chandamale.",
+				"pullRequest": "Pempho lokoka limatsegulidwa ndi matembenuzidwe atsopano. Kuphatikiza kumafalitsanso tsambali ndi makhadi odzaza."
+			}
+		},
+		"poweredBy": "Zoyendetsedwa ndi Resource Translator ndi Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Kuthandizira",
 		"eyebrow": "Gwero lotseguka",
-		"lede": "Malipoti a cholakwika, zopempha zamawonekedwe, ndi zopempha zokoka zonse zimalandiridwa. Mchitidwewu ndi waung'ono mokwanira kuti ukhale wochezeka kwa othandizira nthawi yoyamba."
+		"lede": "Malipoti a cholakwika, zopempha zamawonekedwe, ndi zopempha zokoka zonse zimalandiridwa. Mchitidwewu ndi waung'ono mokwanira kuti ukhale wochezeka kwa othandizira nthawi yoyamba.",
+		"localDevelopment": {
+			"heading": "Chitukuko cha m'deralo"
+		},
+		"addingParser": {
+			"heading": "Kuwonjezera parser",
+			"steps": {
+				"fixture": "Onjezani chokhazikika pansi pa {testDataDir}.",
+				"implement": "Gwiritsani ntchito {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Lembetsani mu {factoryFile}.",
+				"extension": "Onjezani zowonjezera fayilo ku {translationFileSchemes} mu {finderFile}.",
+				"tests": "Lembani mayeso ozungulira a parse → mtundu ndikugwiritsa ntchitoTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "Mipata yophimba",
+			"body": "The Jest config imakhazikitsa chidziwitso chochepa. Khodi yatsopano iyenera kusunga mawu + mizere pamwamba pa 78% ndikugwira ntchito pamwamba pa 90%. Onjezani zokonzekera ndi mayesero pambali pa kusintha kwanu."
+		},
+		"docsSite": {
+			"heading": "Malo olembera",
+			"body": "Foda ya {docsDir} ndi polojekiti ya Astro 6 + Tailwind v4. Thamangani {npmInstall} kumeneko kamodzi, kenako {npmRunDev} kuti muwone m'deralo. Ntchito ya {pagesWorkflow} imatumiza ma doc ku GitHub Pages pa kuphatikiza kulikonse."
+		}
 	},
 	"changelog": {
 		"title": "Kusintha kwa Kusintha",
 		"eyebrow": "Mbiri",
-		"lede": "Chidule chapamwamba cha kutulutsidwa. The canonical, authoritative changelog amakhala mu CHANGELOG.md mu nkhokwe."
+		"lede": "Chidule chapamwamba cha kutulutsidwa. The canonical, authoritative changelog amakhala mu CHANGELOG.md mu nkhokwe.",
+		"fullRecord": "Onani {changelogLink} kuti mupeze mbiri yonse.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (mu chitukuko)",
+			"labels": {
+				"breaking": "KUPHWANYA",
+				"resilience": "Kupirira:",
+				"placeholderProtection": "Chitetezo cha placeholder:",
+				"perKeyOptOut": "Pa kiyi yosankha:",
+				"docsAccessibility": "Kupezeka kwa Docs:",
+				"inlineCodeStyling": "Inline code kalembedwe:"
+			},
+			"issueLabels": {
+				"closes46": "Tsekani # 46.",
+				"tightens16": "Amalimbitsa # 16.",
+				"closes35": "Tsekani # 35."
+			},
+			"items": {
+				"runtime": "Anagunda {nodeRuntime} nthawi yothamanga ({breaking}).",
+				"newInputs": "Zolowetsa zatsopano: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, kuphatikiza mabatani apamwamba a Translator {textType}, {profanityAction}, {profanityMarker}, ndi {allowFallback}.",
+				"sourceLocale": "Gwero locale tsopano likutumizidwanso ku Translator monga {fromLocale} kotero zingwe zazifupi sizikudziwika zokha.",
+				"resilience": "{label} kuyesanso kwadzidzidzi pa mayankho osakhalitsa a HTTP ({statusCodes}) kulemekeza mutu wa {retryAfter} wa Azure - kumagwera kumbuyo kwa jittered exponential pamene kulibe. Tunable kudzera pa {maxRetries} ndi {retryBackoffMs}. {issue}",
+				"placeholderProtection": "Zizindikiro za {label} monga {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ndi mabungwe a HTML amakulungidwa mu alonda asanamasuliridwe ndikubwezeretsedwa pambuyo pake, kotero Translator amasiya mangling i18next / Mustache / Handlebars / .NET / printf placeholders. Sinthani kudzera pa {protectPlaceholders}; Tambasula ndi {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} latsopano {noTranslatePatterns} athandizira madontho makiyi ofanana ndi pempho Womasulira kwathunthu (amasunga mfundo gwero mayina mtundu, zizindikiro zolakwika, etc.). Zikugwirizana ndi mawonekedwe a glob motsutsana ndi makiyi amtundu wa parser (njira ya JSON, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext kiyi). {issue}",
+				"repoConfig": "Repo-level config kudzera pa {configPath}.",
+				"glossary": "Chithandizo cha glossary, chidule cha sitepe kudzera pa {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM Audit Clean (0 vulnerabilities).",
+				"docsSite": "Malo a Astro + Tailwind v4 docs okhala ndi kusintha kwa mawonedwe ndi Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA kudutsa. Ma glyphs a logo adasinthidwa kukhala njira kuti asalepherenso kusiyanitsa mtundu motsutsana ndi kuyimitsa kwa gradient, batani la {backToTop} likudzandira limagwiritsa ntchito {inert} pamene likubisika (m'malo mwa {ariaHidden} toggle yomwe idasiya tabbable), zigawo {formatsAstro} sizikugundananso ndi ma ID awo omutu, makadi atatu am'deralo tsopano amavumbula makhalidwe a BCP-47-valid {lang} ({nya}, {lug}, {run}), zolemba zobwerezabwereza {documentation} zizindikiro zodziwika bwino zimasokonezedwa pakati pa sidebar ndi footer,  ndipo tebulo lililonse la deta pa {inputs} / {configuration} zombo ndi mawu owerenga chophimba.",
+				"inlineCode": "{label} docs prose {codeElement} tsopano imavala mawu ofunda / amber - osiyana ndi mtundu →accent womwe umagwiritsidwa ntchito polumikizana ndi mitu.",
+				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Onani mbiri ya git."
+		}
 	}
 }

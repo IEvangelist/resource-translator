@@ -18,18 +18,26 @@
 			"node": "Node 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "ivavviit qairaqtulluunniit",
+			"ini": "{keyValue}",
+			"restext": "MUI titiraqsimajut"
+		},
 		"features": {
 			"formats": {
 				"title": "arviniliit tuqquqsimavviit aaqqiksimaningit",
-				"body": "utimut .resx, .xliff, .po, .json, .ini, amma .restext byte-stable formatting."
+				"body": "utimut utimut {resx}, {xliff}, {po}, {json}, {ini}, amma {restext} byte-stable formatting."
 			},
 			"config": {
 				"title": "Repo-level config",
-				"body": "ililugu .github/resource-translator.yml ilaliutilugit globs, tukiit, amma Custom Translator qanuittuuningit."
+				"body": "piiqsilutit {configPath} tuqquqsimavvingmik ukununga ilaliutilugit globs, tukiit, ammalu Custom Translator qanuittuuningit."
 			},
 			"glossary": {
 				"title": "uqausiit tukinginnik ujjirusuttiarniq",
-				"body": "kiiksimalugit niuviaksat atingit amma niuviaksat taigusingit qaujimanilingmut uqausirmut-kigligijaujumut regex kamagijaqaqtunut C++, .NET, amma piqannarijarnut."
+				"body": "kiiksimalugit niuviaksat atingit amma niuviaksat taigusingit qaujimaniqattiaqtunut uqausirnut-kigligijaujunut regex-mut kamagijaqaqtunut {cpp}, {dotnet}, amma piqannarijarnut."
 			},
 			"dryRun": {
 				"title": "Dry-run + soft-fail",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "kikkutuinnanut tusaumatittinirmut tunnganattiaqtut saqqippalliajut",
-				"body": "summary-title, summary-details, amma has-new-translations iliuqqaikautigivut create-pull-request-mut."
+				"body": "{summaryTitle}, {summaryDetails}, amma {hasNewTranslations} iliuqqaikautigilutik create-pull-request-mut."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "sanajausimajuq @azure-rest/ai-translation-text + @azure/core-rest-pipeline — irngiinnaq uuktukkannirniq 408/429/5xx, aggamut ingirratitaunngittuq HTTP. esbuild-bundled, audit-clean."
+				"body": "sanajausimajuq {azureSdk} + {corePipeline} — irngiinnaq uuktukkannirniq {statusCodes}, aggamut imusimajuq HTTP. {esbuild} katiqsuqsimajut, tammaqsimajuqsiuqtaujut."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "isituinnarluni pilirinirijaujuq",
+			"titlePrefix": "ajjiliurlugu. nipitirlugu.",
+			"titleAccent": "tukiliurlugu.",
+			"body": "pingasut uqaqtailimajjutit, tisamat titiraqsimajut, amma tuqquqsijjutigijait atausiunngittumik uqausiqarluni kingullirmi.",
+			"setupLink": "qimirrulugit atangirlugit aaqqiksuqsimaningit"
+		},
+		"cta": {
+			"title": "pituinnariaqaliqpiit naniititaujunnarnirmik imminik aulajunnarnirmik?",
+			"body": "atausiq Azure AI Translator key, atausiq workflow file. atuqtaujunnaqtunut tukiliuriji kamagijaqaqpakpuq asilimaanginnik.",
+			"button": "pigiarit"
 		}
 	},
 	"getting-started": {
 		"title": "pigiaqpallianiq",
 		"eyebrow": "aaqqiksimaninga",
-		"lede": "ilasilutit workflow file-mik, turaaqtillugu Azure AI Translator ajunngijjutingnut, ammalu taanna pilirinirijaujuq — sanajausimajuq Microsoft-kut ilisarijausimajumut @azure-rest/ai-translation-text SDK — qimirruaqsiniaqpuq inigijauniaqtumik nakinngaarninginnik-uqausirmik atuqtaujunnaqtunik titiraqsimajunik saqqitittilunilu tukiliuqtausimajunik qatanngutigijaujunik.",
+		"lede": "ilasilutit workflow file-mik, turaaqtillugu Azure AI Translator ajunngijjutingnut, ammalu taanna pilirinirijaujuq qimirrulirniaqpuq inigijauniaqtumik nakinngaarninginnik-uqausirmik atuqtaujunnaqtunik titiraqsimajunik ammalu saqqitittiluni tukiliuqtausimajunik qatanngutigijaujunik.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "ilalugu pilirinirijauvaktuq",
-				"body": "saqqitittilutit .github/workflows/translate.yml:"
+				"body": "saqqitittiluni {workflowPath}:"
 			},
 			"resource": {
 				"title": "tunisiniq pivviujunnaqtumik tuqquqsisimavvingmik",
-				"body": "atuqtaujunnaqtut tuqquqsimavviit atirmik atuqput. <sourceLocale>. <ext> angiqatigiigutausimajuq. suurlu Greetings.en.resx Greetings.fr.resx, Greetings.de.resx, asingillu ullalauqtillugit."
+				"body": "ikajuutiksat tuqquqsimajut atusuunguvut {namingConvention} angiqatigiigutimik. suurlu {sourceFile} {frFile}, {deFile}, asingillu ullalauqtillugit."
 			},
 			"output": {
 				"title": "qaujisarlugu anivalliajuq",
-				"body": "tamanna pilirinirijaujuq pijariiqpat, tamanna piliriangujuq saqqitittiliqpuq pingasunik saqqippalliajunik iliuqqaijunnaqtarnik kikkutuinnanut tusaumatittinirmut unikkaaqsimajumut: naigligiaqsimajuq-taijauninga, naigligiaqsimajuq-nalunaijaqsimajut, ammalu has-new-translations. titirasuungungmijuq Markdown naigligiaqsimajumik iqqanaijaaksamut makpiqtugarmut ukutiguunaq, core.summary."
+				"body": "tamanna pilirinirijaujuq pijariiqpat, tamanna piliriangujuq saqqitittilirajaqpuq pingasunik saqqippalliajunik iliuqqaijunnaqtarnik kikkutuinnanut tusaumatittinirmut unikkaaqsimajumut: {summaryTitle}, {summaryDetails}, ammalu {hasNewTranslations}. titirasuungungmijuq Markdown nainaaqsimajumik iqqanaijaaksamut makpiqtugarmut {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "kingullirmi piliriangujuksat",
-			"configuration": "aaqqiksurlugit repo-level defaults with .github/resource-translator.yml.",
+			"configuration": "aaqqiksurlugit repo-level defaults {configPath}.",
 			"recipes": "takulugit niqiliugaksait monorepos, custom glossaries, ammalu Custom Translator qanuittuuningit."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "aaqqiksimaninga",
 		"eyebrow": "YAML",
 		"heroTitle": "iliuqqaiviup aaqqiksimaninga",
-		"lede": "Express defaults atausiarlugu .github/resource-translator.yml ammalu tamarmik piliriniujut pijaulirlutik. qanuiliurnirmut iliuqqaqtaujut saalaqainnaujaqput tamarmik pititaugaangata."
+		"lede": "nalunairlugit défauts atausiarlutik tuqquqsisimavvingmut config file-mi amma tamarmik piliriniujut pijaujunnarlutik. qanuiliurnirmut iliuqqaqtaujut saalaqainnaujaqput tamarmik pititaugaangata.",
+		"intro": "qaangirlugu aqquti {configPath} iliuqqaqtaujumut pijariaqaruvit inigijaunngittumik.",
+		"schemaHeading": "aaqqiksuqsimaninga",
+		"fieldReference": {
+			"heading": "silami qaujigiarviksaq",
+			"caption": "aaqqiksimaningata iningani qaujigiarviksaq",
+			"columns": {
+				"field": "silami",
+				"type": "qanuittuuninga",
+				"notes": "ujjirijarialit"
+			},
+			"fields": {
+				"sourceLocale": "utirvigilugu {sourceLocale} iliuqqaqtaujuq aaqqiktausimanngippat. tunijaungmijuq tukiliurijimut {fromLocale} naittukuluit qilalugait qaujijaukautigiqattajjaanngimmata.",
+				"toLocales": "naliangnituinnaq katiqsuqsimajumik uvvaluunniit virgukkut-aviksimajumik string-mik.",
+				"includeExclude": "Glob aaqqiksimaningit qaujisaqtaujut pillattaanut amma iqqanaijarvingnut−aktuanilingnut aqqutinut.",
+				"glossary": "tukiliuqtauraaniksimaliqtillugu taigusiq qaangiqsijuq. uqausirnik−kigligijaujunik ujjirusungniq ({cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} qanuittuuninga — pilirivvigijait/inigijait naqittarvinga (maligaqtigut, aanniaqtulirinirmut, niurrutiqarnirmut nipinga, asingillu). naksiujjaujuq {categoryQuery}.",
+				"textType": "aaqqiksimavagiiqtuq {plain}. aturlugit {html} kisiani pitaqauqtut pimmariuningit iluliqaqpata HTML fragments-nik.",
+				"profanityAction": "qanuq kamagijaqarunnarmangaat piunngittunik uqausirnik tukiliuqtausimajuni.",
+				"profanityMarker": "tukiqattiaqtuq kisiani {profanityAction} {marked}.",
+				"allowFallback": "aaqqiglugu {false} kajusijunnailliluni tukiliuqtaujuq {categoryId} atuliqtittijunnanngitillugu turaarijaujumut inimut utinngingaarluni atuqtaugajuktumut.",
+				"apiVersion": "tukiliuriji REST API version. aaqqiksimavagiiqtuq {version}.",
+				"maxRetries": "unulaakkut uuktukkannirasuktillugit HTTP−mut kiujjutaujut ({statusCodes}). aaqqiksimavagiiqtuq {defaultRetries}. katiłługit HTTP uqaluktut atuni tuksirautaujumut {totalCalls}.",
+				"retryBackoffMs": "matulugu (ms) naliangnutuinnaq atausiarluni siningnirnut. aaqqiksimavagiiqtuq {defaultBackoff}. Azure's {retryAfter} niaqunga upigijauttiaqtuq taikaniitillugu; asiagulli jittered exponential backoff atuqtauvuq, isulittarviqaqtitaulluni taassumunga naasautimut.",
+				"protectPlaceholders": "aaqqiksimavagiiqtuq {true}. ikumagaangata, nalunaikkutait suurlu {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} amma HTML entities inangiqtausuunguvut sentinel tokens−nut tukiliuqtaulaunnginninginnik utiqtitauvakłutiglu kinguniagut. ajuliqtitauluni kisiani nakinngaarninga pijaariluni iluliqaqpat inangiijjutimik aaqqiksimanilingmik.",
+				"customPlaceholderPatterns": "qaakkanniagut regex-mut atuqtauvaktut (kigliqaqtittinngiłłutik) ilajaullutik inigijauvagiiqtunut aaqqiksimajunut, suurlu {angleToken} atuqtauvaktunut nalunaikkutarnut atuqtauvaktunut. atunngittut regexes suqutigijaunngittut.",
+				"noTranslatePatterns": "Glob patterns ajjiqaqtitaujut parser-level keys-nut (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). ajjigiiktut kiingit piiqtausuut tuksirautaujumit aqqusaaqtaullutiglu nakinngaarningit papataullutik."
+			}
+		},
+		"loadingOrder": {
+			"heading": "usiliqsuinirmut tilisijjuti",
+			"steps": {
+				"actionInputs": "taanna piliriangujuq uqalimaaqpakpuq tukisinattiaqtunik iliuqqaqtausimajunik piliriangujumit.",
+				"config": "iliuqqaijuq YAML config {configPath}.",
+				"precedence": "tamainnut amiqqaarutaujunut ininut, iliuqqaqtaujut saalaqaqput; taimainngippat YAML naasautinga atuqtauvuq.",
+				"validation": "katitausimajut qassiuningit nalunaiqtauvut. atuutiqanngittut enums (suurlu {invalidEnum}) sukkalijumik ajuqtittisuut tukisinattiaqtumik tusaqtittijjutimik."
+			}
+		},
+		"tone": {
+			"heading": "nipinga amma sanavvik, tukisinattiaqtukkut",
+			"body": "Azure AI Translator v3 API atausirmit nipimut naqittautiqanngilaq. marruuk aaqqiksimajuuk katiłłutik ajjigiimik aulattijunnaqłutit:",
+			"industryLabel": "sanavvik / kisulirijiuninga:",
+			"industryBody": "aturlugit {categoryId} tikkuaqsinirmut Azure {customTranslatorLink} qanuittuuninga pilimmaksaqtaujuq nangminiq katiqsuqsimajarnut − maligaqtigut, pilirijjutinut, aanniaqtulirinirmut, niurrutiqarnirmut, qanutuinnarluunniit. taanna sanngilaanguvuq nipinganut, nipinganut, amma uqausirnut.",
+			"surfaceLabel": "qaangagut titiraqsimajut:",
+			"surfaceBody": "aturlugu {glossaryLink} kiigutilugit niuviaksat atingit amma niuviaksat taigusingit titiraqsimattiarlugit, amma {profanityAction} piijarlugit piunngittut uqausiqtat turaarijaqaliraangata nunalingni makkuktunut naalaktinut.",
+			"glossaryLinkLabel": "uqausiit tukingit"
+		}
 	},
 	"inputs": {
 		"title": "isiqpalliajut anivalliajullu",
 		"eyebrow": "qaujigiarviksaq",
-		"lede": "iliuqqaqtaujulimaat pijaujunnarmijut isumaqsuutaujunnaqtumi repo config file-mi. tamarmik aaqqiktausimakpata, qanuiliurnirmut iliuqqaqtaujuq saalaqarluni."
+		"lede": "iliuqqaqtaujulimaat pijaujunnarmijut isumaqsuutaujunnaqtumi repo config file-mi. tamarmik aaqqiktausimakpata, qanuiliurnirmut iliuqqaqtaujuq saalaqarluni.",
+		"configurationIntro": "takulugu {configurationLink} YAML schema ammalu iliuqqaivallianirmut aaqqiksimaninga.",
+		"configurationLinkLabel": "aaqqiksimaninga",
+		"columns": {
+			"name": "atinga",
+			"default": "akiliinnginniq",
+			"description": "qanuittuuninga"
+		},
+		"defaults": {
+			"none": "pitaqanngittuq",
+			"allSupported": "ikajuqsuqtaujulimaat",
+			"translatorDefaultTrue": "true (tukiliurijiup défaut)"
+		},
+		"requiredInputs": {
+			"heading": "tusaqtaujarialiit",
+			"caption": "tusaqtaujarialiit",
+			"items": {
+				"sourceLocale": "nakinngaarningit (suurlu {en}) atuqtausuut nanisijjutaullutik ikajuutiksanik tuqquqtausimajunik suurlu {sourceGlob}. tunijaungmijuq tukiliurijimut {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator ilagijaujjuti. aqqusaarlugu {secrets}.",
+				"endpoint": "tukiliurijiup isuanut URL, suurlu {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "atuqtaugajuktut atuqtaungaarunnaqtut iliuqqaqtaujut",
+			"caption": "atuqtaugajuktut atuqtaungaarunnaqtut iliuqqaqtaujut",
+			"items": {
+				"region": "tukiliurijinut atuqtaujunnaqtunut aviksimanirijaujuq (piirlugu nunarjualimaami atuqtaujunnaqtunut).",
+				"toLocales": "nunait tukiliuqtaujarialiit. angiqsijuq JSON array ({jsonArray}) uvvaluunniit virgukkut-aviksimajunik valeurs.",
+				"include": "Newline-aviksimajut glob aaqqiksimaningit; ajjigiiktut kisiani tukiliuqtausuut.",
+				"exclude": "Newline-aviksimajut glob aaqqiksimaningit; ajjigiinik tuqquqsimavviit kikitausuut (iliuqqaqtaullutik ilaliutilauqtillugit).",
+				"configPath": "aqqutinga YAML config file (aktuaniqaqtuq iqqanaijarviup tunngavinganut).",
+				"dryRun": "{true}, tukiliurivaglutit naigligiaqsimajuniglu titiraqpaglutit kisiani titiraqpanngillutit.",
+				"failOnError": "{true}, niriunanngittukkut tammarniujut kajusijunnaillijut; {false}, tammaqsimajut iniqtirijjutauvut."
+			}
+		},
+		"translatorInputs": {
+			"heading": "tukiliurijiup tuksiraqtanga iliuqqaqtaujut",
+			"intro": "taakkua turaakautigijut Azure AI Translator v3 query parameters. tamarmik isumaqsuutauvut; tukiliurijiup aaqqiksimaningit atuqput aaqqiktausimanngikkaangata.",
+			"caption": "tukiliurijiup tuksiraqtanga iliuqqaqtaujut",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} qanuittuuninga — sanavvik/domaine/tone knob. tunijaujuq {categoryQuery}.",
+				"textType": "{plain} uvvaluunniit {html}. aturlugit {html} kisiani pijjutiksatit pillattaangukpata HTML fragments.",
+				"profanityAction": "{noAction}, {marked}, uvvaluunniit {deleted}. aulattijuq qanuq uqausiit piunngittut saqqitauvangmangaata tukiliuqtautillugit.",
+				"profanityMarker": "{asterisk} uvvaluunniit {tag}. tukiqatuinnaqtuq {profanityAction} {marked}.",
+				"allowFallback": "{false}, tukiliuriji utiqtittivakpuq tammaqsimajumik utinngingaarluni tamainnuungajunut atuqtauvaktunut {categoryId} iliuqqaivviusimanngippat turaarijaujumut inimut.",
+				"apiVersion": "tukiliuriji REST API version."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "annagunnarniq amma inigijaujunnaqtut sapujjausimaningit",
+			"intro": "taakkua iliuqqaqtaujut aulattivut qanuq piliriangujumik iliqqusiqarmangaat tukiliuriji nuqqaqtittigaangat tuksiraqtarnik amma qanuq saputisimangmangaat nalunaikkutarnik suurlu {mustache} uvvaluunniit {indexZero} suraktiqtauqunagit tukiliuqtautillugit.",
+			"caption": "annagunnarniq amma inigijaujunnaqtut sapujjausimaninginnut iliuqqaqtaujut",
+			"items": {
+				"maxRetries": "unulaakkut uuktukkannirasuktillugit HTTP−mut kiujjutaujut ({statusCodes}). katiłługit HTTP uqaluktut atausirmut tuksirautaujumut {totalCalls}.",
+				"retryBackoffMs": "matulugu (miliseconds-tigut) naliangnutuinnaq sinilaukangnirmut. qanuiliurniujuq upigusuttiaqtuq Azure's {retryAfter} kiujjutingata qulaani pitaqaqtillugu; asiagulli atusuunguvuq jittered exponential backoff isulittarvilingmik taassumunga qassiuninganut.",
+				"protectPlaceholders": "{true} (défaut), inangiijjutit suurlu {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} amma HTML entities inangiqtausuunguvut sentinel tokens−nut tukiliuqtaulaunnginninginnik utiqtitauvakłutiglu kinguniagut. aturunniiqtituinnarlugu pivvigijait pijaariluni iluliqaqpat titiraqsimajunik inangiqsijjutilingmik tukiliuqtaujarialingnik.",
+				"customPlaceholderPatterns": "Newline-separate regexes (kigliliuqsimanngiłłutik) ilajaullutik inigijauvagiiqtumut, suurlu {angleToken} custom token syntax.",
+				"noTranslatePatterns": "Newline-separated glob patterns ajjigiiktitaullutik parser-level keys-nut (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). ajjigiiktut naqittautiit piiqtauvakput tukiliurijiup tuksiraqtanganit kajusititauvakłutiglu nakinngaarningit papataullutik."
+			}
+		},
+		"outputs": {
+			"heading": "saqqippalliajut",
+			"caption": "saqqippalliajut",
+			"items": {
+				"summaryTitle": "naittukulungmik kikkutuinnanut tusaumatittinirmut−taijaujjusirmut naigligiaqsimajumik, suurlu {summaryExample}.",
+				"summaryDetails": "Markdown naigligiaqsimajuq naammaktuq tusagaksalirijimut timiujumut uvvaluunniit iqqanaijaamut nainaaqsimajumut.",
+				"hasNewTranslations": "{trueString} atausirmik ungataanulluunniit nutaanik tukiliuqtaujuqaraangat."
+			}
+		}
 	},
 	"formats": {
 		"title": "tuqquqsimavviit aaqqiksimaningit",
 		"eyebrow": "qaujigiarviksaq",
 		"heroTitle": "ikajuqsuqtaujut tuqquqsimajut aaqqiksimaningit",
-		"lede": "arviniliit utiqtaraujaqtut ikajuutiksat aaqqiksimaningit. taanna pilirinirijaujuq uqalimaaqpakpuq tamainnik nakinngaarninginnik−locale tuqquqtausimajunik, tukiliurivakłuni qassiunirijanginnik, titiraqpakłunilu qatanngutigijaujunik atunit turaarijaujunut inigijaujunut."
+		"lede": "arviniliit utiqtaraujaqtut ikajuutiksat aaqqiksimaningit. taanna pilirinirijaujuq uqalimaaqpakpuq tamainnik nakinngaarninginnik−locale tuqquqtausimajunik, tukiliurivakłuni qassiunirijanginnik, titiraqpakłunilu qatanngutigijaujunik atunit turaarijaujunut inigijaujunut.",
+		"namingConvention": "tamarmittiaq tuqquqtausimajut atuqpaktut {namingConvention} attiqsinirmut atuqtauvaktumik.",
+		"learnMore": "qaujigiakkannirit",
+		"items": {
+			"resx": {
+				"blurb": "XML-based .NET resource files. tukiliurivakpuq iluaniittunik titiraqsimajunik tamainnut {dataValue} nœudnut, jagatittittailimavakłuni uqausiksarijaujunik titiraqsimajuniglu.",
+				"specLabel": "Microsoft Learn — ikajuutiksat .resx tuqquqsimajuni"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 titiqqat. tukiliurivakpuq atunit {source} titiraqpakłunilu qanuilinganirijaujumik aktuaniqaqtumut {target}, aaqqiksimaliqtittivakłuni {trgLang} naniinnirijanganut.",
+				"specLabel": "OASIS XLIFF 2.0 atuqtaujarialiit"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object files. tukiliurivagluni tamainnik {msgid} / {msgidPlural} {msgstr} / {msgstrPlural} tatatirialingnut.",
+				"specLabel": "GNU gettext — PO file format"
+			},
+			"json": {
+				"blurb": "Arbitrary JSON files. katiqsuqsimajut piqutiit saallititauvakput {delimiter} kigliliurijjutimut tukiliuqtauniarlutik, ammailaak ilijaukkanniqpakłutik anivalliajunut. nalunaikkuttiqsimajut naqittautiit ({dottedKey}) papataujut uqausikkut.",
+				"specLabel": "JSON spécification (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "ajurnanngittukuluit {keyValue} tuqquqsimavviit (Win32-titut INI uvvaluunniit naliatuinnaq aaqqiksimajuq aaqqiksimaninga). titiraqsimajut qulaaniittut amma uqausiksat papataujut.",
+				"specLabel": "INI file format on Wikipedia"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI text resources — flat {keyValue} two used to text companion to {resx}.",
+				"specLabel": "Microsoft MUI qanuilinganinga"
+			}
+		},
+		"roundTrip": {
+			"heading": "utimut suliniraruti",
+			"body": "qaujisarutit nalunaiqsisuunguvut byte-byte-mut utiqtarlutik kiggaqtuijunik aaqqiksimajunik tamainnik aaqqiksimaninginnik. aaqqiksimaningata ajjiunnginninga suraikpat utiqtaqtumik nalunaikkutiqarvingni, {issueLink} uukturautimik aturlutit.",
+			"issueLinkLabel": "matuirlugu pijjutaujuq"
+		}
 	},
 	"recipes": {
 		"title": "niqiliugaksat",
 		"eyebrow": "niqiliurnirmut qimirruagaq",
-		"lede": "atuqtaugajuktut aullaqtittiniarluni tukiliuqtausimajunik: atausirmuungajut, tukiit, immikkuungajut qanuittuuningit, nipiqannginningit, amma nipinganik aulattiniq."
+		"lede": "atuqtaugajuktut aullaqtittiniarluni tukiliuqtausimajunik: atausirmuungajut, tukiit, immikkuungajut qanuittuuningit, nipiqannginningit, amma nipinganik aulattiniq.",
+		"sections": {
+			"pullRequest": {
+				"heading": "makpiqsilutit pull request-mit ingirraanikkaangamik"
+			},
+			"monorepo": {
+				"heading": "Monorepos: qanuq angitigininga tukiliuqtauninga atuni katiqsuqsimajunut"
+			},
+			"glossary": {
+				"heading": "tukingit niuviaksat atinginnut amma niuviaksat taigusinginnut",
+				"intro": "ililugu {configPath} tuqquqsivvingmut:",
+				"afterLabel": "kinguniagut",
+				"body": "tukiit tukingit atuqtausuut {after} tukiliuqtauliraangata, taimaimmat qarasaujakkut-tukiliuqtaujuq pisimainnaqpuq niruarijarnik nalunaikkuttiqsinirmik taanna uukturauti kipuktikkaluaqpat tukinganut."
+			},
+			"customCategory": {
+				"heading": "tukiliurijiup qanuittuuninga (sanavvik/naniinninga)",
+				"body": "ajurunniiqsaqtittilutit Azure {customTranslatorLink} qanuittuuninganik katiqsuqsimajunut pilirivvigijarnut uqausirnik amma nipinganik (maligaliriniq, aanniaqtuliriniq, niurrutiqarniq, pilirivviup iluani titiraujarniq, asingillu) tunilugulu nalunaikkutanga {categoryId}. taanna sanngilaanguvuq nipimut naqittijjuti Azur-kut manimatitanginnik."
+			},
+			"tone": {
+				"heading": "nipimik aulattiniq + atuqtaujariaqallariktuq",
+				"body": "ilaliutilugu Custom Translator {categoryId} {profanityAction} amma {allowFallbackFalse} atuqtittiluni atausiinnalijumik nipimik kajusinngillunilu pilirinirijaujuq niruaqtaujuq qanuittuuninga atuliqtittisimanngippat naliangnutuinnaq turaarijarnut inigijarnut."
+			},
+			"dryRun": {
+				"heading": "ingirratikkannirlugu ingirrasigialaunnginnirni",
+				"body": "qanuiliurniujuq suli saqqitittivakpuq naigligiaqsimajunik saqqippalliajunik ammalu qanuiliuqpallianirmut naigligiaqsimajumik, kisianilu titiraqsimajunik titiraqsimajuqtaqanngilaq. ilaliutilugit {failOnErrorFalse} saqqinniarlugit pijjutaujut iniqtirijjutaulutik pilirinirni."
+			}
+		}
 	},
 	"faq": {
 		"title": "apiqqutaugajuktut",
 		"eyebrow": "ikajurniq",
 		"heroTitle": "apiqqutaugajuktut",
-		"lede": "kiukauqturniq apiqqutinut saqqigajunniqsanut atuliqtillugu aulajjagiaruti."
+		"lede": "kiukauqturniq apiqqutinut saqqigajunniqsanut atuliqtillugu aulajjagiaruti.",
+		"questions": {
+			"azure": {
+				"heading": "qanuq qanuiliurniujuq uqallagunnaqpa Azure-mut?",
+				"body": "ukutiguunaq, Microsoft−kut {azureSdkLink} SDK−kut, qaliriiliqsimallutik {corePipelineLink}. tamanna irngiinnaq uuktukkannirutaujunnaqpuq {statusCodes}, naqittaqsimajunut tuksirautinut kiujjutauvaktunullu atuqtauvaktunut, ammalu nalunaiqsinirmut qulaaniittunik kamagijaqarniq akiqanngiłłuni − tamarmittiaq aggamut pilirianguvalauqtuugaluat {axios} uqalugviuvalauqtunut. kikkutuinnanut piliriangujut qaangagut (isiqpalliajut, anivalliajut, tuqquqsimajut anivalliajut) asijjiqsimanngittuq."
+			},
+			"tone": {
+				"heading": "qanuimmat tukiliuqtaujut ilaannikkut tammaqsimavat uvvaluunniit nipiqquqtuluaqattanngilat?",
+				"body": "qarisaujakkut tukiliuriniq atuqtaugajukpuq kisutuinnarmut atuqtausuumut. pingasut naqittautiit ikajuqpaktut: {glossaryLink} ajurnaqtunut uqausirnut, {customTranslatorLink} aaqqittiaqsimajunut uukturautinut ajurunniiqsaqtitaujunut nipingnut uqausirnullu, ammalu {profanityAction} piijainirmut nalunaikkuttiqsinirmulluunniit piunngittunit uqausirnit.",
+				"glossaryLinkLabel": "uqausiit tukingit",
+				"customTranslatorLinkLabel": "tukiliurijiup qanuittuuninga"
+			},
+			"duplicateFiles": {
+				"heading": "qanurli marruirlugu tukiliurittailimajunnarama?",
+				"body": "pigiaqtillugu pilirinirijaujuq {paths} ajjiqaqłutik nakinngaarnirijarnut tuqquqsimavvingnutuaq, suurlu {sourceGlob}. taanna pilirinirijaujuq ilaqarivuq nangminiq atunit pigiaqtittijjutauvaktumut tuqquqsisimanirmut {githubToken} aaqqiksimaliraangat, mikigligiaqtittilluni piliriaksanik titiraqsimajunut kingulliqpaamut commit−mut."
+			},
+			"offline": {
+				"heading": "aulattunnaqpara qanuiliugaksaq qaritaujakkuunngittukkut?",
+				"body": "aagga — Azure AI Translator runtime brain-nguvuq. kisiani ingirratittijunnaqputit {dryRunTrue} nalunaiqsinirmut qimirrunirmut amma config HTTP tuksiranngillutit tukiliuqtauqujinirmut."
+			},
+			"node": {
+				"heading": "naliangni Node version taanna aulava?",
+				"body": "v3 ingirrajuq GitHub Actions {nodeRuntime} runtime. katiqsuqsimajut JavaScript naammakpuq Node 20, 22, amma 24−mut, CI qaujisarutaulluni."
+			},
+			"dist": {
+				"heading": "nakinngaarmata katiqsuqsimajut {distDir}?",
+				"body": "GitHub JS qanuiliurningit naksiujjivakput katiqsuqtausimajunik JS-nik tuqquqsivvingmut. taanna {distBuild} pilirinirijauvaktuq aaqqiksuikkanniqpakpuq katitauraanikkaangata {mainBranch} namunngauvallianajarmangaat, {distCheck} nuqqangatittivakłuni PR−nik nutaujunniiqtunik saqqititaunajaqtunik."
+			},
+			"formats": {
+				"heading": "taikkualikiaq asingit atuqtaujunnaqtut aaqqiksimaningit?",
+				"body": "ullumi: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} asianik pijariaqaruvit — qimirrujjuti pilirijjutinga mikittukuluungmat (qimirrulugu → → tukiliuriniq → aaqqiksimaninga) tunirrusiallu tunngasuktitaujut.",
+				"issueLinkLabel": "matuirlugu pijjutaujuq"
+			}
+		}
 	},
 	"translations": {
 		"title": "tukiliuqtauningit",
 		"eyebrow": "takuksautittiniq",
 		"heroTitle": "haluu tamainnik uqausirnik atuqłunga",
-		"locales": "nunait",
-		"currentlyRendered": "maanna sanajaujuq",
-		"complete": "pijariiqtuq!",
-		"pendingPrefix": "utaqqijut kingullirmit tukiliurinirmut titiqqanit ingirraniujumit.",
+		"lede": "taanna makpiqtugaq tukiliuqtauvakpuq Resource Translator−kunnut, naqittaraangata, tamainnut uqausirnut Azure AI Translator−mut ikajuqtuivaktunut.",
+		"localeCountLabel": "{count} nunait",
+		"statusComplete": "{translatedCount} maanna sanajaujuq — pijariiqsimajuq!",
+		"statusPending": "{translatedCount} maanna takuksautitaujuq — {pendingCount} utaqqijuq kingullirmik {workflowName} pinnguaqtaukkanniliqpat.",
 		"viewWorkflowRuns": "qimirrulugit pilirianguvalliajut",
 		"filter": "surujjaikkuti",
 		"filterPlaceholder": "qinirlutit uqausikkut, nalunaikkutikkut, uvvaluunniit atituqakkut...",
 		"source": "nakinngaarningit",
 		"machineTranslations": "qarisaujakkut tukiliuriniq",
-		"translationPending": "tukiliuqtauninga utaqqijuq — makpirlugu tukiliuriniq-docs ingirratitaujuq.",
+		"translationPending": "tukiliuqtaujuq utaqqijuq — makpirlugu {workflowName} ingirraniujuq.",
 		"noLocales": "naniinningit ajjiqanngilat taassumunga.",
-		"howItWorks": "qanuq tamanna aturutiqarmangaat"
+		"howItWorks": {
+			"heading": "qanuq tamanna aturutiqarmangaat",
+			"thisActionLabel": "tamanna qanuiliurniujuq",
+			"steps": {
+				"source": "qallunaatituungajut tuqquqsimajut {messagesPath}.",
+				"workflow": "ajaurlugu aktuqsiluni pigiarluni {workflowLink}, {thisAction} imminut ingirralluni.",
+				"fanOut": "taanna piliriangujuq saqqitittivakpuq tamainnut Azure AI Translator-ikajuqtuqtaujunut inigijauvaktunut (aaqqiksuqtausimalluni {configPath}-mi) titiraqpakłunilu qatanngutigijaujunik {messagesLocaleJson} atausirmut turaarijaujumut.",
+				"pullRequest": "pull request makpiqtaujuq nutaanut tukiliuqtaujunut. katitaukpat taanna makpigaq saqqikkannirajaqpuq pattakuluit tatatiqsimallutik."
+			}
+		},
+		"poweredBy": "aulataujuq Resource Translator amma Azure AI Translator."
 	},
 	"contributing": {
 		"title": "tunisiniq",
 		"eyebrow": "pijaujunnaqtut",
-		"lede": "bug unikkaat, feature requests, amma pull requests tunngasuktitaujut. qanuiliurniujuq mikittukuluungmat tunnganaqłuni sivulliqpaattiami tunisisimajunut."
+		"lede": "bug unikkaat, feature requests, amma pull requests tunngasuktitaujut. qanuiliurniujuq mikittukuluungmat tunnganaqłuni sivulliqpaattiami tunisisimajunut.",
+		"localDevelopment": {
+			"heading": "nunalingni pivalliatittiniq"
+		},
+		"addingParser": {
+			"heading": "ilasiniq qimirrujjutimik",
+			"steps": {
+				"fixture": "ilasilutit aaqqitsimajjutimik {testDataDir}.",
+				"implement": "atuliqtillugu {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "atiliurlugu {factoryFile}.",
+				"extension": "ilalugu tuqquqsimavviup uigunga {translationFileSchemes} {finderFile}.",
+				"tests": "titirarlutit utimut qaujisarutinit qimirrunirmut → aaqqiksimaninganit ammalu applyTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "nalliukkumaat kiglingit",
+			"body": "taanna Jest config atuqtittivuq mikinniqpaamik aturunnarnirmik. nutaaq nalunaikkutaq pisimainnarialik titiraqsimajunit + tukiliaqtut kiglinga qulaani 78% aulalunilu qulaani 90%. ilasilutit qaujisarutinik asijjiqtarnut."
+		},
+		"docsSite": {
+			"heading": "titiraqtausimavvik",
+			"body": "taanna {docsDir} tuqquqsisimavvik Astro 6 + Tailwind v4 piliriangujuq. atausiarlugu {npmInstall}, ammailaak {npmRunDev} nunalingni qimirruakkannirlugu. taanna {pagesWorkflow} pilirinirijauvaktuq naksiujjivakpuq titiraqsimajunik GitHub Pages−mut katitaujuqaraangat."
+		}
 	},
 	"changelog": {
 		"title": "asijjiqpalliajut",
 		"eyebrow": "piusirijauvalauqtut",
-		"lede": "quttiktumiinniqsat nainaaqsimajut saqqitaujut. canonical, pijunnautilik asijjiruti iniqaqpuq CHANGELOG.md tuqquqsivingmi."
+		"lede": "quttiktumiinniqsat nainaaqsimajut saqqitaujut. canonical, pijunnautilik asijjiruti iniqaqpuq CHANGELOG.md tuqquqsivingmi.",
+		"fullRecord": "takuguk {changelogLink} titiraqsimajulimaanut.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (pivalliatitaujuq)",
+			"labels": {
+				"breaking": "SURAKSIMANIQ",
+				"resilience": "sapiliqsarainnginniq:",
+				"placeholderProtection": "inigijaujunnaqtut sapujjausimajjutit:",
+				"perKeyOptOut": "atuni kiimut ilaujumannginniq:",
+				"docsAccessibility": "Docs atuinnauningit:",
+				"inlineCodeStyling": "nalunaikkutiit aaqqitsimaningit:"
+			},
+			"issueLabels": {
+				"closes46": "matujuq #46.",
+				"tightens16": "sukaktigiarlugu #16.",
+				"closes35": "matujuq #35."
+			},
+			"items": {
+				"runtime": "nuutaujuq {nodeRuntime} ({breaking}).",
+				"newInputs": "nutaat iliuqqaqtaujut: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, ammalu piusigiaqsimajut tukiliurijinut naqittautingit {textType}, {profanityAction}, {profanityMarker}, ammalu {allowFallback}.",
+				"sourceLocale": "nakinngaarninga naksiujjauqattalirmijuq tukiliurijimut {fromLocale} naittukuluit naqittautiit qaujijaukautigiqattajjaanngimmata.",
+				"resilience": "{label} pigiakkannirniq HTTP−mut kiujjutaujunut ({statusCodes}) atuqługu Azure's {retryAfter} header — utituinnaliqpakpuq jittered exponential backoff pitaqanngikkaangat. aaqqiktaujunnaqpuq {maxRetries} amma {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} nalunaikkutat suurlu {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} amma HTML timiit puuqtausimavut sentinels−nut tukiliuqtaulaunnginninginnik utiqtitauvakłutiglu kinguniagut, tukiliuriji nuqqaqtittivakpuq i18next/Mustache/Handlebars/.NET/printf inigijaujunnaqtunik. naqillugu {protectPlaceholders}; ungavariaqtauluni {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} nutaaq {noTranslatePatterns} iliuqqaijuq piiqsijuq ajjigiinik naqittautinik tukiliurijiup tuksiraqtanganik atangiqługu (papattijuq nakinngaarninginnik nalunaikkutat atingit, tammaqsimajut nalunaikkutangit, asingillu). ajjigiiktittijuq glob patterns parser-level keys-nut (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). {issue}",
+				"repoConfig": "Repo-level config via {configPath}.",
+				"glossary": "uqausiit tukinginnik ikajuqtuiniq, qanuiliuqpallianirmut naigligiaqsimajuq {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM tammaqsimajuqsiurniq salumajuq (0 ulurianaqtut).",
+				"docsSite": "Astro + Tailwind v4 docs ikiaqqivik takujaksaqaqłuni asijjiqpalliajunik amma Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. taqsat naqittautiit aqqutinnguqtitaullutik ajuliqattaqunagit taqsangit ajjigiinngitillugit gradient nuqqaqtarvingnut, {backToTop} naqittagaq atuqattaqtuq {inert} ijiqsimagaluaqtillugu ({ariaHidden} naqittagaksaunngingaaqłuni), {formatsAstro} ilangit apuutiqattarunniiqłutik irngiinnaq aulatanginnut nalunaikkutanut, pingasut naniinningit takuksautittiliqput BCP-47-aturunnaqtunik {lang} nalunaikkutanginnik ({nya}, {lug}, {run}), ajjingit {documentation} nalunaikkutat nalunarunniiqtitaullutik saniraani amma ataani,  titiqqalimaallu titiraqsimajut {inputs}/{configuration} naksiujjausuut igalaujakkut uqalimaarutimit uqaqsimajumit.",
+				"inlineCode": "{label} Docs titirausingit {codeElement} maanna atuqput uqquujumik/aupajaaqtumik taqsaqaqłutik − ajjiginngimmagu →nalunaikkutangata taqsanga atuqtauvakłuni attatarviujunnaqtunut amma taijaujjusirnut.",
+				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "takulugu git history."
+		}
 	}
 }

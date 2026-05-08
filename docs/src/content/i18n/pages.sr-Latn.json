@@ -18,18 +18,26 @@
 			"node": "Čvor 20 / 22 / 24",
 			"sdk": "Zvanični Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "Pretraživanje",
+			"json": "ugnežđen ili ravan",
+			"ini": "{keyValue}",
+			"restext": "MUI tekst"
+		},
 		"features": {
 			"formats": {
 				"title": "Šest formata datoteka",
-				"body": "Povratna putovanja .resk, .kliff, .po, .json, .ini i .restekt sa bajt-stabilnim formatiranjem."
+				"body": "Povratna putovanja {resx}, {xliff}, {po}, {json}, {ini} i {restext} sa formatiranjem stabilnim bajtovima."
 			},
 			"config": {
 				"title": "Konfiguracija na nivou repo prostora",
-				"body": "Ispustite .github / resource-translator.yml za uključivanje globova, glosara i kategorija prilagođenog prevoditelja."
+				"body": "Ispustite {configPath} datoteku za uključivanje globova, glosara i kategorija prilagođenog prevodioca."
 			},
 			"glossary": {
 				"title": "Pojmovnik-svestan",
-				"body": "Zaključajte imena brendova i termine proizvoda sa pametnim rečnim granicama koje obrađuju C ++, .NET i prijatelje."
+				"body": "Zaključajte imena brendova i termine proizvoda sa pametnim rečnim granicama koje obrađuju {cpp}, {dotnet} i prijatelje."
 			},
 			"dryRun": {
 				"title": "Suho trčanje + meko neuspeh",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR-prijateljski izlazi",
-				"body": "summary-title, summary-details i has-new-translations slot direktno u create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails} i {hasNewTranslations} slot direktno u create-pull-request."
 			},
 			"sdk": {
 				"title": "Zvanični Azure SDK",
-				"body": "Izgrađen na @azure-rest/ai-translation-text + @azure/core-rest-pipeline — automatski pokušaji na 408/429/5xx, bez ručno valjanog HTTP-a. esbuild-bundled, revizija-čista."
+				"body": "Izgrađen na {azureSdk} + {corePipeline} — automatskim ponovnim pokušajima na {statusCodes}, bez ručno valjanog HTTP-a. {esbuild}-paket, revizija-čista."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Drop-in tok posla",
+			"titlePrefix": "Kopiraj. Nalepi.",
+			"titleAccent": "Prevedi.",
+			"body": "Tri tajne, četiri linije i vaš repo je višejezični na sledećem pritisku.",
+			"setupLink": "Prođite kroz kompletnu postavku"
+		},
+		"cta": {
+			"title": "Spremni za lokalizaciju na autopilotu?",
+			"body": "Jedan ključ Azure AI Translator, jedna datoteka toka posla. Prevodilac resursa se bavi ostatkom.",
+			"button": "Početak rada"
 		}
 	},
 	"getting-started": {
 		"title": "Prvi koraci",
 		"eyebrow": "Pretraga",
-		"lede": "Dodajte datoteku toka posla, usmerite je na svoje Azure AI Translator akreditive, a akcija - izgrađena na Microsoftovom zvaničnom SDK-u @azure-rest / ai-translation-text - skeniraće repozitorij za datoteke resursa izvornog jezika i emitovati prevedenu braću i sestre.",
+		"lede": "Dodajte datoteku toka posla, usmerite je na Azure AI Translator akreditive, a akcija će skenirati repozitorij za datoteke resursa izvornog jezika i emitovati prevedenu braću i sestre.",
 		"steps": {
 			"provision": {
 				"title": "Obezbeđivanje resursa Azure AI Translator",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Dodajte tok posla",
-				"body": "Kreirajte .github / tokove posla / translate.yml:"
+				"body": "Kreirajte {workflowPath}:"
 			},
 			"resource": {
 				"title": "Urezivanje izvornog fajla resursa",
-				"body": "Datoteke resursa koriste ime. .<sourceLocale> <ext> konvencija. Na primer, Greetings.en.resk postaje Greetings.fr.resx, Greetings.de.resx, i tako dalje nakon trčanja."
+				"body": "Datoteke resursa koriste {namingConvention} konvenciju. Na primer, {sourceFile} postaje {frFile}, {deFile}, i tako dalje nakon trčanja."
 			},
 			"output": {
 				"title": "Pregledajte izlaz",
-				"body": "Kada se radni tok završi, akcija izlaže tri izlaza koja možete spojiti u PR opis: summary-title, summary-details i has-new-translations. Takođe piše rezime Markdovn-a na stranicu za posao preko core.summary."
+				"body": "Kada se radni tok završi, akcija izlaže tri izlaza koja možete spojiti u PR opis: {summaryTitle}, {summaryDetails} i {hasNewTranslations}. Takođe piše rezime Markdovn-a na stranicu posla preko {coreSummary}-a."
 			}
 		},
 		"nextSteps": {
 			"title": "Sledeći koraci",
-			"configuration": "Konfigurišite podrazumevane vrednosti na nivou repo prostora sa .github / resource-translator.yml.",
+			"configuration": "Konfigurišite podrazumevane vrednosti na nivou repo prostora sa {configPath}.",
 			"recipes": "Pogledajte recepte za monorepos, prilagođene glosare i kategorije prilagođenih prevodilaca."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Konfiguracija",
 		"eyebrow": "YAML",
 		"heroTitle": "Konfiguracija spremišta",
-		"lede": "Ekpress podrazumeva jednom u .github / resource-translator.yml i neka ih svaki tok posla nasledi. Akcioni ulazi uvek pobeđuju kada su oba obezbeđena."
+		"lede": "Izričite podrazumevane vrednosti jednom u konfiguracionom fajlu spremišta i dozvolite svakom toku posla da ih nasledi. Akcioni ulazi uvek pobeđuju kada su oba obezbeđena.",
+		"intro": "Premostite putanju sa {configPath} ulazom ako vam je potrebna ne-podrazumevana lokacija.",
+		"schemaHeading": "Šema",
+		"fieldReference": {
+			"heading": "Terenska referenca",
+			"caption": "Referenca polja konfiguracije",
+			"columns": {
+				"field": "Pretraga",
+				"type": "Kategorije",
+				"notes": "Beleške"
+			},
+			"fields": {
+				"sourceLocale": "Vraća se na {sourceLocale} ulaz ako nije podešen. Takođe se prosleđuje prevodilcu kao {fromLocale} tako da kratke žice nisu automatski otkrivene.",
+				"toLocales": "Ili niz ili niz odvojen zarezom.",
+				"includeExclude": "Glob obrasci procenjeni u odnosu na apsolutne i radne prostor-relativne puteve.",
+				"glossary": "Post-prevod termin premošćiva. Granica reči svesna (obrađuje {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} kategorija — vaše dugme za industriju / domen (pravni, medicinski, marketinški ton, itd.). Poslato kao {categoryQuery}.",
+				"textType": "Podrazumevano je {plain}. Koristite {html} samo ako vaše vrednosti resursa sadrže stvarne HTML fragmente.",
+				"profanityAction": "Kako tretirati profane izraze u prevedenom izlazu.",
+				"profanityMarker": "Smisleno samo kada je {profanityAction} {marked}.",
+				"allowFallback": "Podesite na {false} da ne prevod kada vaš {categoryId} nema raspoređivanje za ciljni jezik umesto da se vrati na opšti model.",
+				"apiVersion": "Prevodilac REST API verzija. Podrazumevano je {version}.",
+				"maxRetries": "Maksimalni pokušaji ponovnog pokušaja na prolaznim HTTP odgovorima ({statusCodes}). Podrazumevano je {defaultRetries}. Ukupan HTTP poziv po zahtevu je {totalCalls}.",
+				"retryBackoffMs": "Kapa (ms) na bilo koji pojedinačni backoff san. Podrazumevano je {defaultBackoff}. Azure-ovo {retryAfter} zaglavlje je poštovano tačno kada je prisutno; u suprotnom se koristi podrhtana eksponencijalna pozadina, ograničena na ovu vrednost.",
+				"protectPlaceholders": "Podrazumevano je {true}. Kada su uključeni, tokeni kao što su {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} i HTML entiteti se zamenjuju sentinel tokenima pre prevođenja i vraćaju nakon toga. Onemogući samo kada izvor namerno sadrži bukvale u obliku zamena.",
+				"customPlaceholderPatterns": "Dodatni regeks obrasci (bez razdjelnika) dodat u podrazumevani skup, npr. {angleToken} za prilagođenu sintaksu tokena. Nevažeći regeksi se ignorišu.",
+				"noTranslatePatterns": "Glob obrasci upareni sa tasterima na nivou parsera (JSON isprekidana putanja, RESX {resxName}, PO {poMsgid}, KSLIFF jedinica {xliffId}, INI / restekst ključ). Odgovarajući ključevi su ispušteni iz zahteva i prolaze sa sačuvanom izvornom vrednošću."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Redosled učitavanja",
+			"steps": {
+				"actionInputs": "Akcija čita eksplicitne ulaze iz toka posla.",
+				"config": "Učitava YAML konfiguraciju iz {configPath}.",
+				"precedence": "Za svako zajedničko polje, ulaz pobeđuje; u suprotnom se koristi IAML vrednost.",
+				"validation": "Stopljene vrednosti su potvrđene. Nevažeći enumovi (npr. {invalidEnum}) uzrokuju da akcija brzo propadne sa jasnom porukom."
+			}
+		},
+		"tone": {
+			"heading": "Ton i industrija, jednostavno rečeno",
+			"body": "Azure AI Translator v3 API nema ni jedno dugme za ton. Dva podešavanja kombinuju da vam daju većinu iste kontrole:",
+			"industryLabel": "Industrija / domen:",
+			"industryBody": "koristite {categoryId} da ukažete na Azure {customTranslatorLink} kategoriju obučenu na vašem korpusu - pravnom, tehničkom, medicinskom, marketinškom ili bilo čemu drugom. Ovo je najjača poluga za ton, glas brenda i vokabular.",
+			"surfaceLabel": "Površinski tekst:",
+			"surfaceBody": "Koristite {glossaryLink} da biste doslovno zaključali imena brendova i uslove proizvoda i koristili {profanityAction} da biste očistili profane izraze kada ciljate lokalizaciju za mlađu publiku.",
+			"glossaryLinkLabel": "Ćiriliцa"
+		}
 	},
 	"inputs": {
 		"title": "Ulazi i izlazi",
 		"eyebrow": "Referenцe",
-		"lede": "Svaki ulaz je takođe prihvaćen u opcionom repo config fajlu. Kada su oba postavljena, akcija ulaz pobeđuje."
+		"lede": "Svaki ulaz je takođe prihvaćen u opcionom repo config fajlu. Kada su oba postavljena, akcija ulaz pobeđuje.",
+		"configurationIntro": "Pogledajte {configurationLink} za IAML šemu i redosled učitavanja.",
+		"configurationLinkLabel": "Konfiguracija",
+		"columns": {
+			"name": "Ime i prezime",
+			"default": "Pretraživanje",
+			"description": "Pretraga"
+		},
+		"defaults": {
+			"none": "nijedan",
+			"allSupported": "sve podržano",
+			"translatorDefaultTrue": "true (podrazumevano prevodilac)"
+		},
+		"requiredInputs": {
+			"heading": "Potrebni ulazi",
+			"caption": "Potrebni ulazi",
+			"items": {
+				"sourceLocale": "Izvorni jezik (npr. {en}) koji se koristi za pronalaženje datoteka resursa kao što je {sourceGlob}. Takođe prosleđen prevodiocu kao {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator pretplatnički ključ. Prođite preko {secrets}.",
+				"endpoint": "URL krajnje tačke prevodioca, npr. {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Uobičajeni opcioni ulazi",
+			"caption": "Uobičajeni opcioni ulazi",
+			"items": {
+				"region": "Region resursa prevodilca (izostaviti za globalne resurse).",
+				"toLocales": "Lokaliteti za prevođenje. Prihvata JSON niz ({jsonArray}) ili vrednosti razdvojene zarezom.",
+				"include": "Nevline-odvojeni glob obrasci; prevode se samo odgovarajući fajlovi.",
+				"exclude": "Nevline-odvojeni glob obrasci; Odgovarajući fajlovi su preskočeni (primenjuju se posle uključivanja).",
+				"configPath": "Putanja do IAML config fajla (u odnosu na koren radnog prostora).",
+				"dryRun": "Kada {true}, pokrenite prevode i emituju rezimee, ali ne pišu datoteke.",
+				"failOnError": "Kada {true}, neočekivane greške ne uspevaju u akciji; Kada {false}, greške su upozorenja."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Prevodilaц zahtev ulazi",
+			"intro": "Oni se mapiraju direktno na Azure AI Translator v3 parametre upita. Svaki od njih nije obavezan; podrazumevane vrednosti prevodioca primenjuju se kada nisu podešene.",
+			"caption": "Prevodilaц zahtev ulazi",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} kategorija — dugme za industriju/domen/ton. Prosleđeno kao {categoryQuery}.",
+				"textType": "{plain} ili {html}. Koristite {html} samo kada su vaše vrednosti resursa stvarni HTML fragmenti.",
+				"profanityAction": "{noAction}, {marked} ili {deleted}. Kontroliše kako se emituju profani izrazi u prevodima.",
+				"profanityMarker": "{asterisk} ili {tag}. Smisleno samo kada je {profanityAction} {marked}.",
+				"allowFallback": "Kada {false}, Prevodilac vraća grešku umesto da se vrati na opšti sistem ako vaš {categoryId} nema raspoređivanje za ciljni jezik.",
+				"apiVersion": "Prevodilac REST API verzija."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Otpornost i zaštita zamena",
+			"intro": "Ovi ulazi kontrolišu kako se akcija ponaša kada prevodilac priguši vaš zahtev i kako štiti tokene kao što su {mustache} ili {indexZero} od iskrivljavanja tokom prevođenja.",
+			"caption": "Ulazi za otpornost i zaštitu mesta",
+			"items": {
+				"maxRetries": "Maksimalni pokušaji ponovnog pokušaja na prolaznim HTTP odgovorima ({statusCodes}). Ukupan broj HTTP poziva po zahtevu je {totalCalls}.",
+				"retryBackoffMs": "Kapa (u milisekundama) na bilo kom pojedinačnom spavanju. Akcija poštuje Azure-ov {retryAfter} odgovor zaglavlje tačno kada je prisutan; u suprotnom koristi podrhtana eksponencijalna leđa ograničena na ovu vrednost.",
+				"protectPlaceholders": "Kada {true} (podrazumevano), držači mesta kao što su {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} i HTML entiteti se zamenjuju sa sentinel tokenima pre prevoda i vraćaju kasnije. Onemogućite samo kada vaš izvor namerno sadrži bukvalno tekst u obliku rezervnog mesta koji treba prevesti.",
+				"customPlaceholderPatterns": "Regeksi razdvojeni novom linijom (bez razdjelnika) dodani u podrazumevani skup, npr. {angleToken} za prilagođenu sintaksu tokena.",
+				"noTranslatePatterns": "Newline-separated glob patterns matched against parser-level keys (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). Odgovarajući ključevi su ispušteni iz zahteva prevodioca i prolaze sa sačuvanom izvornom vrednošću."
+			}
+		},
+		"outputs": {
+			"heading": "Izlazi",
+			"caption": "Izlazi",
+			"items": {
+				"summaryTitle": "Kratak PR-naslov-prijateljski rezime, npr. {summaryExample}.",
+				"summaryDetails": "Rezime Markdovn-a pogodan za PR telo ili rezime posla.",
+				"hasNewTranslations": "{trueString} kada je generisan jedan ili više novih prevoda."
+			}
+		}
 	},
 	"formats": {
 		"title": "Formati datoteka",
 		"eyebrow": "Referenцe",
 		"heroTitle": "Podržani formati datoteka",
-		"lede": "Šest formata resursa koji se mogu zaokružiti. Akcija čita svaku datoteku izvornog jezika, prevodi vrednosti i piše brata ili sestru po ciljnom jeziku."
+		"lede": "Šest formata resursa koji se mogu zaokružiti. Akcija čita svaku datoteku izvornog jezika, prevodi vrednosti i piše brata ili sestru po ciljnom jeziku.",
+		"namingConvention": "Svi fajlovi koriste {namingConvention} konvenciju imenovanja.",
+		"learnMore": "Saznajte više",
+		"items": {
+			"resx": {
+				"blurb": ".NET datoteke resursa zasnovane na KSML-u. Prevodi unutrašnji tekst svakog {dataValue} čvora, čuvajući komentare i metapodatke.",
+				"specLabel": "Microsoft Learn — Resursi u .resx datotekama"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 dokumenti. Prevodi svaki {source} i piše rezultat u odgovarajući {target}, postavljajući {trgLang} za lokal.",
+				"specLabel": "OASIS KSLIFF 2.0 specifikacija"
+			},
+			"po": {
+				"blurb": "GNU-ovi gettext Prenosivi objekat fajlovi. Prevodi svaki {msgid} / {msgidPlural} u {msgstr} / {msgstrPlural} oblika.",
+				"specLabel": "GNU gettext — PO format datoteke"
+			},
+			"json": {
+				"blurb": "Proizvoljni JSON fajlovi. Ugnežđeni objekti su spljošteni sa {delimiter} razdjelnikom za prevođenje, a zatim ponovo ugnežđeni na izlazu. Tačkasti tasteri ({dottedKey}) su sačuvani doslovno.",
+				"specLabel": "JSON specifikacija (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Jednostavna {keyValue} fajlova (Vin32-stil INI ili bilo koji stan config). Zaglavlja odeljka i komentari su sačuvani.",
+				"specLabel": "INI format datoteke na Vikipediji"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI tekstualni resursi — ravni {keyValue} parovi koji se koriste kao tekstualni pratilac {resx}.",
+				"specLabel": "Pregled Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Povratne garancije",
+			"body": "Test paket verifikuje bajt-za-bajt kružno okidanje za reprezentativne čvora svakog formata. Ako format hir razbija kružno okidanje u vašoj bazi koda, molimo vas da {issueLink} sa minimalnim uzorkom.",
+			"issueLinkLabel": "Otvori problem"
+		}
 	},
 	"recipes": {
 		"title": "Saveti",
 		"eyebrow": "Kuvar",
-		"lede": "Uobičajeni obrasci za isporuku prevoda: monorepos, glosari, prilagođene kategorije, suve vožnje i kontrola tona."
+		"lede": "Uobičajeni obrasci za isporuku prevoda: monorepos, glosari, prilagođene kategorije, suve vožnje i kontrola tona.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Otvorite zahtev za povlačenje nakon svakog pokretanja"
+			},
+			"monorepo": {
+				"heading": "Monorepos: obim prevod po paketu"
+			},
+			"glossary": {
+				"heading": "Rečnik za robne marke i termine proizvoda",
+				"intro": "Ispustite {configPath} u repo:",
+				"afterLabel": "posle",
+				"body": "Pojmovi rečnika se primenjuju {after} prevod, tako da mašinski prevedeni izlaz zadržava željeni brend čak i kada ga je model zamenio za sinonim."
+			},
+			"customCategory": {
+				"heading": "Kategorija prilagođenog prevodilca (industrija / domen)",
+				"body": "Obučite Azure {customTranslatorLink} kategoriju na korpusu koji obuhvata vaš rečnik i ton u industriji (pravni, medicinski, marketinški, interni inženjering, itd.) I prenesite svoj ID preko {categoryId}. Ovo je najjača tonska poluga koju Azure nudi."
+			},
+			"tone": {
+				"heading": "Kontrola tona + stroga rezerva",
+				"body": "Kombinujte Custom Translator {categoryId} sa {profanityAction} i {allowFallbackFalse} da sprovede dosledan glas i ne tok posla ako izabrana kategorija nema raspoređivanje za jedan od vaših ciljnih lokala."
+			},
+			"dryRun": {
+				"heading": "Suvo trčanje pre uključivanja toka posla",
+				"body": "Akcija i dalje emituje rezime izlaza i rezime koraka, ali nema fajlova su napisani. Kombinujte sa {failOnErrorFalse} da biste svaki problem prikazali kao upozorenje dok ponavljate."
+			}
+		}
 	},
 	"faq": {
 		"title": "Fejsbuk",
 		"eyebrow": "Pomoć",
 		"heroTitle": "Često postavljana pitanja",
-		"lede": "Brzi odgovori na pitanja koja se najčešće pojavljuju prilikom usvajanja akcije."
+		"lede": "Brzi odgovori na pitanja koja se najčešće pojavljuju prilikom usvajanja akcije.",
+		"questions": {
+			"azure": {
+				"heading": "Kako akcija razgovara sa Azure-om?",
+				"body": "Kroz Microsoftov zvanični {azureSdkLink} SDK, slojevito na {corePipelineLink}. To vam daje automatske ponovne pokušaje na {statusCodes}, otkucane modele zahteva i odgovora i rukovanje zaglavljem za autentifikaciju besplatno - sve što je nekada bio ručno valjani {axios} poziv. Površina javne akcije (ulazi, izlazi, izlazi datoteka) je nepromenjena."
+			},
+			"tone": {
+				"heading": "Zašto su prevodi ponekad van brenda ili van tona?",
+				"body": "Mašinsko prevođenje podrazumeva model opšte namene. Tri dugmeta pomažu: {glossaryLink} za premošćivanje tvrdih termina, {customTranslatorLink} za fino podešene modele obučene na vašem tonu i vokabularu, i {profanityAction} za ribanje ili označavanje profanih izraza.",
+				"glossaryLinkLabel": "Ćiriliцa",
+				"customTranslatorLinkLabel": "Kategorija prilagođenog prevodilca"
+			},
+			"duplicateFiles": {
+				"heading": "Kako da izbegnem prevođenje istog fajla dva puta?",
+				"body": "Pokrenite tok posla na {paths} koji odgovaraju samo vašim datotekama izvornog jezika, npr. {sourceGlob}. Radnja takođe uključuje sopstveni filter fajlova po okidaču kada je {githubToken} podešeno, sužavajući rad na fajlove u poslednjem urezivanja."
+			},
+			"offline": {
+				"heading": "Mogu li pokrenuti akciju van mreže?",
+				"body": "Ne baš - Azure AI Translator je mozak za izvođenje. Ali možete pokrenuti sa {dryRunTrue} da potvrdi parsiranje i konfiguraciju bez pravljenja bilo kakvih HTTP zahteva za prevođenje."
+			},
+			"node": {
+				"heading": "Na kojoj verziji čvora radi akcija?",
+				"body": "vKSNUMKS radi na GitHub Actions {nodeRuntime} runtime. U paketu JavaScript je kompatibilan sa čvorom 20, 22 i 24, što je ono što CI testira."
+			},
+			"dist": {
+				"heading": "Odakle dolaze paketi {distDir}?",
+				"body": "GitHub JS akcije šalju svoje kompajlirane JS u spremište. {distBuild} tok posla ga obnavlja nakon svakog spajanja kako bi {mainBranch} da li bi se kretao, a {distCheck} blokira PR-ove koji bi sleteli zastareli izlaz."
+			},
+			"formats": {
+				"heading": "Šta je sa drugim formatima resursa?",
+				"body": "Danas: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} ako vam je potreban još jedan — interfejs parsera je mali (parsirajte → mapu → primenite prevode → formatu) i doprinosi su dobrodošli.",
+				"issueLinkLabel": "Otvori problem"
+			}
+		}
 	},
 	"translations": {
 		"title": "Prevodi",
 		"eyebrow": "Vitrina",
 		"heroTitle": "Pozdrav na svim jezicima",
-		"locales": "Lokali",
-		"currentlyRendered": "Trenutno rendered",
-		"complete": "Kompletan!",
-		"pendingPrefix": "čekajući sledeći prevodioci-docs run.",
+		"lede": "Ovu stranicu prevodi sam Resource Translator, na svakom pritisku na glavni, na svaki jezik koji Azure AI Translator podržava.",
+		"localeCountLabel": "{count} lokaliteta",
+		"statusComplete": "{translatedCount} trenutno prikazan — kompletan!",
+		"statusPending": "{translatedCount} trenutno renderovan — {pendingCount} čeka sledeću {workflowName} trčanje.",
 		"viewWorkflowRuns": "Pogledaj tok posla radi",
 		"filter": "Filter filtera",
 		"filterPlaceholder": "Pretraga po jeziku, kodu ili maternjem imenu...",
 		"source": "Izvor",
 		"machineTranslations": "Mašinski prevodi",
-		"translationPending": "Prevod na čekanju — otvori translate-docs run.",
+		"translationPending": "Prevod na čekanju — otvorite {workflowName} trčanje.",
 		"noLocales": "Nijedan lokal ne odgovara tom filteru.",
-		"howItWorks": "Kako ovo funkcioniše"
+		"howItWorks": {
+			"heading": "Kako ovo funkcioniše",
+			"thisActionLabel": "upravo ova akcija",
+			"steps": {
+				"source": "Engleski izvorni fajl živi na {messagesPath}.",
+				"workflow": "Gura taj dodir počinje {workflowLink}, koji radi {thisAction} protiv sebe.",
+				"fanOut": "Akcija se navija na svakom lokalnom jeziku koji podržava Azure AI Translator (konfigurisan u {configPath}) i piše {messagesLocaleJson} braće i sestre po cilju.",
+				"pullRequest": "Zahtev za spajanje je otvoren sa novim prevodima. Spajanjem se ponovo objavljuje ova stranica sa popunjenim karticama."
+			}
+		},
+		"poweredBy": "Pokreće ga Resource Translator i Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Doprinos",
 		"eyebrow": "Otvorenog koda",
-		"lede": "Izveštaji o greškama, zahtevi za funkcije i zahtevi za povlačenje su dobrodošli. Akcija je dovoljno mala da bude prijateljska prema onima koji prvi put sarađuju."
+		"lede": "Izveštaji o greškama, zahtevi za funkcije i zahtevi za povlačenje su dobrodošli. Akcija je dovoljno mala da bude prijateljska prema onima koji prvi put sarađuju.",
+		"localDevelopment": {
+			"heading": "Lokalni razvoj"
+		},
+		"addingParser": {
+			"heading": "Dodavanje parsera",
+			"steps": {
+				"fixture": "Dodajte učvršćenje pod {testDataDir}.",
+				"implement": "Implementirati {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Registrujte ga u {factoryFile}.",
+				"extension": "Dodajte ekstenziju datoteke da {translationFileSchemes} u {finderFile}.",
+				"tests": "Napišite povratne testove za analizu → formatu i applyTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "Pragovi pokrivenosti",
+			"body": "Jest config sprovodi minimalnu pokrivenost. Novi kod mora da zadrži prag izjava + linija iznad 78% i funkcije iznad 90%. Dodajte čvora i testove uz vašu promenu."
+		},
+		"docsSite": {
+			"heading": "Dokumentacija sajt",
+			"body": "Fascikla {docsDir} je Astro KSNUMKS + Tailvind vKSNUMKS projekat. Pokrenite {npmInstall} tamo jednom, a zatim {npmRunDev} za lokalni pregled. {pagesWorkflow} tok posla isporučuje dokumente na GitHub stranice na svakom spajanju."
+		}
 	},
 	"changelog": {
 		"title": "Dnevnik izmena",
 		"eyebrow": "Istorija",
-		"lede": "Sažetak izdanja na visokom nivou. Kanonski, autoritativni dnevnik promena živi u CHANGELOG.md u spremištu."
+		"lede": "Sažetak izdanja na visokom nivou. Kanonski, autoritativni dnevnik promena živi u CHANGELOG.md u spremištu.",
+		"fullRecord": "Pogledajte {changelogLink} za kompletan zapisnik.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (u razvoju)",
+			"labels": {
+				"breaking": "RAZBIJANJE",
+				"resilience": "Otpornost:",
+				"placeholderProtection": "Zaštita zamena:",
+				"perKeyOptOut": "Po ključu opt-out:",
+				"docsAccessibility": "Dostupnost dokumenata:",
+				"inlineCodeStyling": "Stil inline koda:"
+			},
+			"issueLabels": {
+				"closes46": "Zatvara #46.",
+				"tightens16": "Zateže #16.",
+				"closes35": "Zatvara #35."
+			},
+			"items": {
+				"runtime": "Naleteo na {nodeRuntime} runtime ({breaking}).",
+				"newInputs": "Novi ulazi: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, plus napredni Translator dugmad {textType}, {profanityAction}, {profanityMarker} i {allowFallback}.",
+				"sourceLocale": "Izvorni jezik je sada takođe prosleđen na Translator kao {fromLocale} tako kratki stringovi nisu automatski detektovani.",
+				"resilience": "{label} automatsko ponavljanje na prolaznim HTTP odgovorima ({statusCodes}) koji poštuju Azure-ovo {retryAfter} zaglavlje — vraća se na podrhtano eksponencijalno povlačenje kada je odsutan. Podesivo preko {maxRetries} i {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} tokeni kao što su {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} i HTML entiteti su umotani u sentinele pre prevoda i obnovljeni kasnije, tako da prevodilac prestaje mangling i18nekt/Mustache/Handlebars/.NET/printf placeholders. Prebaci preko {protectPlaceholders}; proširiti sa {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} novi {noTranslatePatterns} ulaz kapi odgovarajuće ključeve iz zahteva prevodilac u potpunosti (čuva izvorne vrednosti za imena brendova, kodovi grešaka, itd). Upoređuje glob obrasce protiv tastera na nivou parsera (JSON isprekidana putanja, RESX {resxName}, PO {poMsgid}, KSLIFF jedinica {xliffId}, INI / restekst ključ). {issue}",
+				"repoConfig": "Konfiguracija na nivou repo-a preko {configPath}.",
+				"glossary": "Podrška za rečnik, rezime koraka preko {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 stan config, Lepši, EditorConfig.",
+				"audit": "NPM revizija čista (0 ranjivosti).",
+				"docsSite": "Astro + Tailvind vKSNUMKS docs sajt sa pogledom prelaza i ekspresivnog koda.",
+				"docsAccessibility": "{label} VCAG 2.1 AA prolaz. Logo glifovi pretvoreni u putanje tako da više ne uspevaju kontrast boja u odnosu na gradijent zaustavljanja, plutajuće dugme {backToTop} koristi {inert} dok je skriveno (umesto {ariaHidden} prekidača koji ga je ostavio tabable), {formatsAstro} sekcije se više ne sudaraju sa svojim automatski generisanim ID naslova, tri locale kartice sada izlažu BCP-47-validne {lang} atribute ({nya}, {lug}, {run}), duplikat {documentation} oznake orijentira su razdvojeni između bočne trake i podnožja,  i svaka tabela podataka na {inputs}/{configuration} isporučuje se sa natpisom čitača ekrana.",
+				"inlineCode": "{label} dokumentarni prozni {codeElement} sada nosi topli / ćilibarni akcent - različit od brend→akcentne palete koja se koristi za linkove i naslove.",
+				"automation": "Dependabot automatsko spajanje, CodeKL skeniranje, CI matrica."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Pogledajte istoriju git-a."
+		}
 	}
 }

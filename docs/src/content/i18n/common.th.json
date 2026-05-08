@@ -15,7 +15,13 @@
 		"searchPlaceholder": "ค้นหาเอกสาร...",
 		"toggleTheme": "สลับธีม",
 		"githubRepository": "ที่เก็บ GitHub",
-		"language": "ภาษา"
+		"language": "ภาษา",
+		"languageTitle": "เลือกภาษาของคุณ",
+		"languageDescription": "สลับไปยังหน้าเดียวกันในภาษาอื่น",
+		"languageSearch": "กรองภาษา",
+		"languageSearchPlaceholder": "ค้นหาภาษาหรือรหัสตําแหน่งที่ตั้ง...",
+		"languageNoResults": "ไม่มีภาษาใดที่ตรงกับตัวกรองนั้น",
+		"closeLanguage": "ปิดตัวเลือกภาษา"
 	},
 	"search": {
 		"title": "ค้นหาเอกสาร",

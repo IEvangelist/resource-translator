@@ -18,18 +18,26 @@
 			"node": "Node 20 / 22 / 24",
 			"sdk": "Azure SDK Rasmiga ah"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "isku dhex dhisan ama fidsan",
+			"ini": "{keyValue}",
+			"restext": "Qoraalka MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Lix qaab fayl",
-				"body": "Wareegyo .resx, .xliff, .po, .json, .ini, iyo .restext oo leh qaabeyn byte-stable ah."
+				"body": "Safarrada wareega {resx}, {xliff}, {po}, {json}, {ini}, iyo {restext} oo leh qaab byte-stable ah."
 			},
 			"config": {
 				"title": "Repo-level config",
-				"body": "Soo saar .github/resource-translator.yml si aad ugu darto globs, glossaries, iyo qaybaha Custom Translator."
+				"body": "Ku rid fayl {configPath} ah si aad ugu darto globs, glossaries, iyo qaybaha Custom Translator."
 			},
 			"glossary": {
 				"title": "Qaamuus-yaqaan",
-				"body": "Ku xidh magacyada sumadaha iyo erayada alaabta adigoo adeegsanaya xeerarka xariiqda erayada caqliga leh ee maamula C++, .NET, iyo asxaabta."
+				"body": "Ku xir magacyada sumadaha iyo erayada alaabta adigoo adeegsanaya xeerka xariiqda erayada caqliga leh ee maareeya {cpp}, {dotnet}, iyo asxaabta."
 			},
 			"dryRun": {
 				"title": "Dry-run + guuldarro fudud",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Wax soo saarka saaxiibtinimada PR-ka",
-				"body": "summary-title, summary-details, iyo has-new-translations waxay si toos ah ugu jiraan create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails}, iyo {hasNewTranslations} si toos ah ugu dhex galaan create-pull-request."
 			},
 			"sdk": {
 				"title": "Azure SDK Rasmiga ah",
-				"body": "Waxaa lagu dhisay @azure-rest/ai-translation-text + @azure/core-rest-pipeline — isku dayo toos ah 408/429/5xx, HTTP gacanta lagu duubo ma jiro. Esbuild-ku xiran, nadiif kormeer."
+				"body": "Waxaa lagu dhisay {azureSdk} + {corePipeline} — isku dayo toos ah oo {statusCodes} ah, HTTP gacanta lagu duubo ma jiro. {esbuild} la xiray, nadiif kormeer."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Habka Drop-in",
+			"titlePrefix": "Nuqul. Ku dheji.",
+			"titleAccent": "Tarjun.",
+			"body": "Saddex sir, afar sadar, iyo repo-gaagu waa luqado badan marka xigta.",
+			"setupLink": "Socod dhammaan dejinta"
+		},
+		"cta": {
+			"title": "Diyaar ma u tahay inaad ku degto autopilot?",
+			"body": "Hal furaha Azure AI Translator, hal fayl workflow. Resource Translator ayaa gacanta ku haya inta kale.",
+			"button": "Bilow"
 		}
 	},
 	"getting-started": {
 		"title": "Bilowga",
 		"eyebrow": "Dejinta",
-		"lede": "Ku dar faylka workflow, u jeedi aqoonsigaaga Azure AI Translator, falka — oo ku dhisan SDK-ga rasmiga ah ee Microsoft @azure-rest/ai-translation-text — wuxuu baari doonaa repo-ga faylasha kheyraadka luqadda ilaha wuxuuna sii deyn doonaa walaalo turjumaad ah.",
+		"lede": "Ku dar fayl workflow ah, u jeedi aqoonsiga Azure AI Translator, falkaasna wuxuu baadhaa repo-ga faylasha kheyraadka luqadda ilaha wuxuuna sii deyn doonaa walaalo la turjumay.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Ku dar habka shaqada",
-				"body": "Create .github/workflows/translate.yml:"
+				"body": "Abuur {workflowPath}:"
 			},
 			"resource": {
 				"title": "Commit faylka kheyraadka ilaha",
-				"body": "Faylasha kheyraadka waxay isticmaalaan Magaca. <sourceLocale>. <ext> Shir. Tusaale ahaan, Greetings.en.resx wuxuu isu beddelaa Greetings.fr.resx, Greetings.de.resx, iyo wixii la mid ah kadib socod."
+				"body": "Faylasha kheyraadka waxay isticmaalaan nidaamka {namingConvention}. Tusaale ahaan, {sourceFile} waxay noqotaa {frFile}, {deFile}, iyo wixii la mid ah kadib socod."
 			},
 			"output": {
 				"title": "Eeg wax soo saarka",
-				"body": "Marka hawsha shaqada la dhammeeyo, falku wuxuu soo bandhigayaa saddex natiijo oo aad ku xiri karto sharaxaadda PR: summary-title, summary-details, iyo has-new-translations. Sidoo kale waxay ku qoraa dulmar Markdown bogga shaqada iyada oo loo marayo core.summary."
+				"body": "Marka hawsha shaqada la dhammeeyo, falku wuxuu soo bandhigayaa saddex natiijo oo aad ku xiri karto sharaxaadda PR: {summaryTitle}, {summaryDetails}, iyo {hasNewTranslations}. Sidoo kale waxay ku qoraa dulmar Markdown bogga shaqada iyada oo loo marayo {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Tallaabooyinka xiga",
-			"configuration": "Qaabee repo-level default adigoo adeegsanaya .github/resource-translator.yml.",
+			"configuration": "Qaabee default heerka repo-ga adigoo {configPath}.",
 			"recipes": "Eeg cuntooyinka monorepos, lumaha gaarka ah, iyo qaybaha Turjumaadda Gaarka ah."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Qaabeynta",
 		"eyebrow": "YAML",
 		"heroTitle": "Qaabeynta kaydka",
-		"lede": "Express waa mid default ah hal mar .github/resource-translator.yml waxayna u ogolaataa dhammaan workflow-yada inay dhaxlaan. Input action had iyo jeer way guuleystaan marka labadaba la bixiyo."
+		"lede": "Express waxay mar hore ugu jirtaa faylka repository config file waxayna u ogolaataa dhammaan workflow-yada inay ka dhaxlaan. Input action had iyo jeer way guuleystaan marka labadaba la bixiyo.",
+		"intro": "Ka dhaaf waddada adigoo isticmaalaya input-ka {configPath} haddii aad u baahan tahay meel aan default ahayn.",
+		"schemaHeading": "Qorshaha",
+		"fieldReference": {
+			"heading": "Tixraaca goobta",
+			"caption": "Tixraaca goobta qaabeynta",
+			"columns": {
+				"field": "Garoonka",
+				"type": "Nooca",
+				"notes": "Xusuusin"
+			},
+			"fields": {
+				"sourceLocale": "Haddii aan la dejiyin, waxay ku noqotaa gelinta {sourceLocale}. Sidoo kale waxaa loo diray Translator sida {fromLocale} si xadhkaha gaagaaban aan si toos ah loo ogaan.",
+				"toLocales": "Ama array ama xarig kala soocan comma.",
+				"includeExclude": "Qaababka Glob oo lagu qiimeeyay waddooyinka absolute iyo kuwa la xiriira shaqada.",
+				"glossary": "Ka dib-u-eegista erayga post-turjumaadda. Erey-xuduudda (gacanta {cpp}, {dotnet}).",
+				"categoryId": "Qaybta Azure {customTranslatorLink} — badhka warshada/domain-kaaga (sharci, caafimaad, codka suuqgeynta, iwm). Waxaa loo diray {categoryQuery}.",
+				"textType": "Default ahaan waa {plain}. Isticmaal {html} kaliya haddii qiimaha kheyraadkaaga ay ka kooban yihiin qaybo HTML dhab ah.",
+				"profanityAction": "Sida loo daaweeyo erayada aceliska ah ee wax soo saarka la turjumay.",
+				"profanityMarker": "Kaliya macno leh marka {profanityAction} ay {marked} tahay.",
+				"allowFallback": "U dejisay {false} si uu u fashilmo turjumaadda marka {categoryId}-gaagu uusan lahayn deployment goob bartilmaameed ah halkii aad ku laaban lahayd moodelka guud.",
+				"apiVersion": "Nooca turjumaadda REST API. Default ahaan waa {version}.",
+				"maxRetries": "Isku dayga ugu badan ee dib-u-eegista jawaabaha HTTP ee ku meel gaarka ah ({statusCodes}). Caadi ahaan {defaultRetries}. Wadarta wicitaannada HTTP ee codsi kasta waa {totalCalls}.",
+				"retryBackoffMs": "Cap (ms) hurdo kasta oo backoff ah. Default ahaan waa {defaultBackoff}. Madaxa {retryAfter} ee Azure si sax ah ayaa loo ixtiraamaa marka uu jiro; haddii kale jittered exponential backoff ayaa la isticmaalaa, oo lagu xaddiday qiimahan.",
+				"protectPlaceholders": "Default ahaan waa {true}. Marka la shido, tokens-ka sida {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} iyo HTML entities ayaa lagu beddelaa sentinel tokens ka hor turjumaadda kadibna dib ayaa loo soo celiyaa. Dami kaliya marka isha si ula kac ah uu u leeyahay literals qaab placeholder ah.",
+				"customPlaceholderPatterns": "Qaabab regex dheeraad ah (oo aan lahayn debounders) ayaa lagu daray set-ka placeholder-ka caadiga ah, tusaale ahaan {angleToken} loogu talagalay syntax token gaar ah. Regexes-ka aan saxda ahayn waa la iska indhatiraa.",
+				"noTranslatePatterns": "Qaababka Glob ayaa la waafajiyay furayaasha heerka parser-ka (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). Furayaasha iswaafajinta ayaa laga saaraa codsiga waxaana la gudbiyaa iyadoo qiimaha asalka ah la ilaaliyo."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Amar rarista",
+			"steps": {
+				"actionInputs": "Ficilku wuxuu akhriyaa gelinta cad ee workflow-ka.",
+				"config": "Waxay ka shubtaa qaabka YAML ee {configPath}.",
+				"precedence": "Goob kasta oo la wadaago, gelinta ayaa guuleysta; haddii kale qiimaha YAML ayaa la isticmaalaa.",
+				"validation": "Qiimaha la isku daray waa la xaqiijiyay. Enums-ka aan saxda ahayn (tusaale, {invalidEnum}) waxay keenaan in falku si degdeg ah u fashilmo iyadoo fariin cad la helo."
+			}
+		},
+		"tone": {
+			"heading": "Codka iyo warshadda, si cad",
+			"body": "Azure AI Translator v3 API ma laha hal badhanka codka. Laba dejin ayaa isku dara si ay kuu siiyaan inta badan xakameyn isku mid ah:",
+			"industryLabel": "Warshadaha / aagga:",
+			"industryBody": "isticmaal {categoryId} si aad u tilmaamto qayb Azure {customTranslatorLink} ah oo lagu tababaray corpus-kaaga — sharci, farsamo, caafimaad, suuq-geyn, ama wax kale. Tani waa gacanta ugu xooggan ee codka, codka sumadda, iyo ereyada.",
+			"surfaceLabel": "Qoraalka dusha sare:",
+			"surfaceBody": "Isticmaal {glossaryLink} si aad si toos ah u xirto magacyada sumadaha iyo alaabta, sidoo kale isticmaal {profanityAction} si aad uga saarto erayada xun marka la beegsanayo maxallinta dhagaystayaasha da'da yar.",
+			"glossaryLinkLabel": "Qaamuuska"
+		}
 	},
 	"inputs": {
 		"title": "Gelinta iyo wax soo saarka",
 		"eyebrow": "Tixraac",
-		"lede": "Gelin kasta sidoo kale waa la aqbalaa faylka repo-ga ikhtiyaariga ah. Marka labadaba la dejiyo, gelinta ficilka ayaa guuleysta."
+		"lede": "Gelin kasta sidoo kale waa la aqbalaa faylka repo-ga ikhtiyaariga ah. Marka labadaba la dejiyo, gelinta ficilka ayaa guuleysta.",
+		"configurationIntro": "Eeg {configurationLink} si aad u aragto schema-ga YAML iyo amarka loading-ka.",
+		"configurationLinkLabel": "Qaabeynta",
+		"columns": {
+			"name": "Magaca",
+			"default": "Default",
+			"description": "Sharaxaad"
+		},
+		"defaults": {
+			"none": "Midna",
+			"allSupported": "dhamaantood waa la taageeray",
+			"translatorDefaultTrue": "true (Turjubaan default)"
+		},
+		"requiredInputs": {
+			"heading": "Gelinta loo baahnaa",
+			"caption": "Gelinta loo baahnaa",
+			"items": {
+				"sourceLocale": "Goobta isha (tusaale ahaan {en}) ayaa loo isticmaalaa in lagu helo faylasha kheyraadka sida {sourceGlob}. Sidoo kale waxaa loo diray Translator sida {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator subscription key. Ka gudub {secrets}.",
+				"endpoint": "URL-ka dhammaadka turjumaadda, tusaale ahaan {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Gelinta ikhtiyaariga ah ee caadiga ah",
+			"caption": "Gelinta ikhtiyaariga ah ee caadiga ah",
+			"items": {
+				"region": "Gobolka kheyraadka turjumaadda (ka saar kheyraadka guud).",
+				"toLocales": "Goobaha lagu turjumo. Waxay aqbashaa JSON array ({jsonArray}) ama qiimo kala soocan comma.",
+				"include": "qaababka goolasha ee Newline; Kaliya faylasha is waafaqa ayaa la turjumaa.",
+				"exclude": "qaababka goolasha ee Newline; faylasha la waafajiyay waa la dhaafay (lagu dabaqaa ka dib include).",
+				"configPath": "Jidka faylka qaabeynta YAML (marka la barbar dhigo xididka workspace-ka).",
+				"dryRun": "Markaad {true}, orodka turjumaadaha oo soo saar soo koobid, laakiin ha qorin faylal.",
+				"failOnError": "Marka {true}, khaladaad lama filaan ah ayaa ku guuldareysta falka; Marka {false}, khaladaadku waa digniin."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Gelinta codsiyada turjumaadda",
+			"intro": "Kuwani si toos ah ayay ugu xirmaan Azure AI Translator v3 query parameters. Mid kasta waa ikhtiyaari; Translator-ka default ayaa khuseeya marka la joojiyo.",
+			"caption": "Gelinta codsiyada turjumaadda",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. Waxaa loo diray {categoryQuery}.",
+				"textType": "{plain} ama {html}. Isticmaal {html} kaliya marka qiimaha kheyraadkaaga ay yihiin qaybo HTML dhab ah.",
+				"profanityAction": "{noAction}, {marked}, ama {deleted}. Waxay xakameysaa sida erayada xun loo soo saaro turjumaadaha.",
+				"profanityMarker": "{asterisk} ama {tag}. Kaliya macno leh marka {profanityAction} ay {marked} tahay.",
+				"allowFallback": "Marka la {false}, Turjumaadku wuxuu soo celinayaa qalad halkii uu ku laaban lahaa nidaamka guud haddii {categoryId}-gaagu uusan lahayn hawlgelin goob bartilmaameed ah.",
+				"apiVersion": "Nooca turjumaadda REST API."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Adkeysiga iyo ilaalinta meel ka hortagga",
+			"intro": "Inputs-kan waxay xakameeyaan sida falku u dhaqmo marka Translator uu xaddido codsigaaga iyo sida uu u ilaaliyo placeholder tokens sida {mustache} ama {indexZero} si aan loo dhaawacin inta lagu jiro turjumaadda.",
+			"caption": "Adkeysiga iyo gelinta ilaalinta meel kasta",
+			"items": {
+				"maxRetries": "Isku dayga ugu badan ee dib-u-eegista jawaabaha HTTP ee ku meel gaarka ah ({statusCodes}). Tirada guud ee wicitaannada HTTP ee codsi kasta waa {totalCalls}.",
+				"retryBackoffMs": "Koobo (milliseconds) hurdo kasta oo backoff ah. Ficilku wuxuu xushmayaa madaxa jawaabta {retryAfter} ee Azure marka uu jiro; haddii kale waxay isticmaashaa jittered exponential backoff oo lagu xakameeyo qiimahan.",
+				"protectPlaceholders": "Marka la {true} (default), placeholders sida {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} iyo HTML waxaa lagu beddelaa sentinel tokens ka hor turjumaadda kadibna dib ayaa loo soo celiyaa. Dami kaliya marka ishaagu si ula kac ah u jiro qoraal si toos ah u qaab placeholder ah oo la turjumo.",
+				"customPlaceholderPatterns": "Regexes-ka kala soocay xariiqda cusub (aan lahayn kala soocid) ayaa lagu daray set-ka placeholder-ka caadiga ah, tusaale ahaan {angleToken} loogu talagalay naxwaha token-ka gaarka ah.",
+				"noTranslatePatterns": "Qaababka newline-separated glob ayaa la waafajiyay furayaasha heerka parser-ka (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). Furayaasha iswaafajinta ayaa laga saaraa codsiga Turjubaanka waxaana la gudbiyaa iyadoo qiimaha asalka ah la ilaaliyo."
+			}
+		},
+		"outputs": {
+			"heading": "Wax soo saarka",
+			"caption": "Wax soo saarka",
+			"items": {
+				"summaryTitle": "Kooban kooban oo u wanaagsan cinwaanka PR-ka, tusaale ahaan {summaryExample}.",
+				"summaryDetails": "Soo koobid qiimeyn ku habboon hay'adda PR ama warbixinta shaqada.",
+				"hasNewTranslations": "{trueString} marka hal ama in ka badan turjumaado cusub la sameeyay."
+			}
+		}
 	},
 	"formats": {
 		"title": "Qaababka faylasha",
 		"eyebrow": "Tixraac",
 		"heroTitle": "Qaababka faylasha la taageero",
-		"lede": "Lix qaab oo kheyraad wareeg ah oo la wareegi karo. Ficilku wuxuu akhriyaa fayl kasta oo source-locale ah, wuxuu turjumaa qiimayaasha, wuxuuna qoraa walaal kasta oo bartilmaameed ah."
+		"lede": "Lix qaab oo kheyraad wareeg ah oo la wareegi karo. Ficilku wuxuu akhriyaa fayl kasta oo source-locale ah, wuxuu turjumaa qiimayaasha, wuxuuna qoraa walaal kasta oo bartilmaameed ah.",
+		"namingConvention": "Dhammaan faylasha waxay isticmaalaan nidaamka magacaabista {namingConvention}.",
+		"learnMore": "Waxbadan baro",
+		"items": {
+			"resx": {
+				"blurb": "Faylasha kheyraadka .NET ee ku saleysan XML. Waxay turjumaysaa qoraalka gudaha ee node kasta oo {dataValue} ah, iyadoo ilaalinaysa faallooyinka iyo metadata.",
+				"specLabel": "Microsoft Learn — Kheyraadka ku jira faylasha .resx"
+			},
+			"xliff": {
+				"blurb": "Dukumentiyada OASIS XLIFF 2.0. Wuxuu turjumaa {source} kasta wuxuuna natiijada ku qoraa {target}-ka la mid ah, isagoo dejiya {trgLang} deegaanka.",
+				"specLabel": "Qeexitaanka OASIS XLIFF 2.0"
+			},
+			"po": {
+				"blurb": "GNU gettext faylasha walxaha la qaadan karo. Wuxuu turjumaa {msgid} / {msgidPlural} kasta qaababka {msgstr} / {msgstrPlural}.",
+				"specLabel": "GNU gettext — qaabka faylka PO"
+			},
+			"json": {
+				"blurb": "Faylasha JSON ee aan caadiga ahayn. Walxaha la isku dhex dhexeeyay waxaa la simiyaa iyadoo la adeegsanayo {delimiter} delimiter si loo turjumo, kadibna dib ayaa loo dhex geliyaa marka la soo saaro. Furayaasha dhibcaha leh ({dottedKey}) si toos ah ayaa loo ilaaliyay.",
+				"specLabel": "Qeexitaanka JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Faylasha {keyValue} fudud (INI qaabka Win32 ama qaab kasta oo fidsan). Cinwaannada qaybaha iyo faallooyinka waa la ilaaliyay.",
+				"specLabel": "Qaabka faylka INI ee Wikipedia"
+			},
+			"restext": {
+				"blurb": "Kheyraadka qoraalka Microsoft MUI — lammaane {keyValue} fidsan oo loo isticmaalo sidii saaxiib qoraal ah oo {resx}.",
+				"specLabel": "Guudmar Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Dammaanad safar wareeg ah",
+			"body": "Suite-ka tijaabada wuxuu xaqiijiyaa byte-for-byte round-tripping ee qalabka matalaya ee qaab kasta. Haddii quirk format uu jebiyo round-tripping ee codebase-kaaga, fadlan {issueLink} isticmaal sample yar.",
+			"issueLinkLabel": "Fur arrin"
+		}
 	},
 	"recipes": {
 		"title": "Cunto karinta",
 		"eyebrow": "Buugga Cuntada",
-		"lede": "Qaababka caadiga ah ee turjumaadaha maraakiibta: monorepos, glossaries, qaybaha gaarka ah, dry runs, iyo kontoroolka codka."
+		"lede": "Qaababka caadiga ah ee turjumaadaha maraakiibta: monorepos, glossaries, qaybaha gaarka ah, dry runs, iyo kontoroolka codka.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Fur codsi pull ah kadib orod kasta"
+			},
+			"monorepo": {
+				"heading": "Monorepos: turjumaadda baaxadda mid kasta oo xirmo ah"
+			},
+			"glossary": {
+				"heading": "Qaamuuska magacyada sumadaha iyo erayada alaabta",
+				"intro": "Ku tuur {configPath} repo-ga:",
+				"afterLabel": "kadib",
+				"body": "Ereyada qaamuuska waxaa loo isticmaalaa {after} turjumaad, sidaas darteed natiijada mashiinka ayaa sii haysata sumadda aad jeceshahay xitaa marka moodelku beddelo magac la mid ah."
+			},
+			"customCategory": {
+				"heading": "Qaybta Turjubaan Gaar ah (warshad / domain)",
+				"body": "Tababar qayb Azure {customTranslatorLink} ah oo ku saabsan corpus qabta erayada iyo codka warshadahaaga (sharci, caafimaad, suuq-geyn, injineernimada gudaha, iwm.) oo aqoonsigeeda ku gudbi {categoryId}. Tani waa lever-ka codka ugu xooggan ee Azure bixiyo."
+			},
+			"tone": {
+				"heading": "Xakamaynta codka + dib u dhac adag",
+				"body": "Isku dar Custom Translator {categoryId} oo leh {profanityAction} iyo {allowFallbackFalse} si aad u xoojiso cod joogto ah oo aad ku guuldareysato shaqada shaqada haddii qaybta la doortay aysan lahayn deployment mid ka mid ah goobahaaga bartilmaameedka."
+			},
+			"dryRun": {
+				"heading": "Tijaabo ka hor inta aan la shidin habka shaqada",
+				"body": "Ficilku weli wuxuu soo saaraa soo koobid iyo dulmar tallaabo, laakiin faylal lama qoro. Isku dar {failOnErrorFalse} si aad u muujiso dhammaan dhibaatooyinka digniin inta aad ku dayactirayso."
+			}
+		}
 	},
 	"faq": {
 		"title": "Ereyo la soo gaabiayay oo loo sameyay su'aalahu loogu weydiinta badan yahay",
 		"eyebrow": "Caawi",
 		"heroTitle": "Su'aalaha Inta Badan La Isweydiiyo",
-		"lede": "Jawaabo degdeg ah oo ku saabsan su'aalaha inta badan soo baxa marka tallaabada la qaadanayo."
+		"lede": "Jawaabo degdeg ah oo ku saabsan su'aalaha inta badan soo baxa marka tallaabada la qaadanayo.",
+		"questions": {
+			"azure": {
+				"heading": "Sidee falku ula xiriiraa Azure?",
+				"body": "Iyada oo loo marayo SDK-ga rasmiga ah ee {azureSdkLink} Microsoft, oo lagu daray {corePipelineLink}. Taasi waxay kuu ogolaanaysaa inaad si toos ah u isku daydo {statusCodes}, noocyada codsiyo iyo jawaab la qoray, iyo maaraynta madaxa aqoonsiga bilaash — wax walba oo horey loogu sameyn jiray wicitaan {axios} gacanta lagu duubay. Dusha ficilka dadweynaha (inputs, outputs, file outputs) waa mid aan isbeddelin."
+			},
+			"tone": {
+				"heading": "Maxay mararka qaar turjumaadu u yihiin kuwo aan lahayn sumcad ama aan lahayn codka?",
+				"body": "Turjumaadda mashiinka waxay si caadi ah u noqotaa moodel ujeeddo guud. Saddex badhanka ayaa caawiya: {glossaryLink} loogu talagalay xeerarka adag ee la dhaafo, {customTranslatorLink} loogu talagalay moodooyinka si fiican loo hagaajiyay oo lagu tababaray codkaaga iyo ereyada, iyo {profanityAction} lagu tirtiro ama calaamadeeyo erayada aceebka ah.",
+				"glossaryLinkLabel": "Qaamuuska",
+				"customTranslatorLinkLabel": "Qaybta Custom Translator"
+			},
+			"duplicateFiles": {
+				"heading": "Sideen uga fogaadaa in faylkaas laba jeer la turjumo?",
+				"body": "Ka bilow workflow-ka {paths} oo la mid ah faylasha source-locale oo kaliya, tusaale ahaan {sourceGlob}. Ficilku sidoo kale wuxuu leeyahay shaandhadhka faylka ee kicinta kasta marka {githubToken} la dejiyo, taasoo shaqada ku kooban tahay faylasha ku jira commit-kii ugu dambeeyay."
+			},
+			"offline": {
+				"heading": "Ma ku hawlgelin karaa ficilka offline?",
+				"body": "Maya si sax ah — Azure AI Translator waa maskaxda runtime-ka. Laakiin waad ku ordi kartaa {dryRunTrue} si aad u xaqiijiso parsing iyo config adigoon u baahnayn HTTP codsi turjumaad."
+			},
+			"node": {
+				"heading": "Node-kee ayuu action ku shaqeeyaa?",
+				"body": "v3 waxay ku socotaa GitHub Actions {nodeRuntime} runtime. JavaScript-ka la socday wuxuu la jaanqaadayaa Node 20, 22, iyo 24, taasoo CI tijaabiso."
+			},
+			"dist": {
+				"heading": "Xaggee ka yimaadaan {distDir} la xiray?",
+				"body": "GitHub JS actions waxay ku soo diraan JS-kooda compiled gudaha kaydka. Workflow-ka {distBuild} wuxuu dib u dhisaa ka dib midoobid kasta si uu {mainBranch} haddii uu u leexdo, wuxuuna {distCheck} xannibaa PR-yada keena wax soo saarka duugoobay."
+			},
+			"formats": {
+				"heading": "Maxaa ku saabsan qaababka kale ee kheyraadka?",
+				"body": "Maanta: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} haddii aad u baahan tahay mid kale — interface-ka parser-ka waa yar yahay (parse → map → apply translations → format) waxaana la soo dhaweyn karaa wax-ku-darka.",
+				"issueLinkLabel": "Fur arrin"
+			}
+		}
 	},
 	"translations": {
 		"title": "Turjumaado",
 		"eyebrow": "Bandhig",
 		"heroTitle": "Salaan luqad kasta",
-		"locales": "Goobaha",
-		"currentlyRendered": "Hadda la sawiro",
-		"complete": "dhameystiran!",
-		"pendingPrefix": "Ilaa la sugayo socodka xiga ee Translate-Docs.",
+		"lede": "Boggan waxaa turjumay Resource Translator laftiisa, mar kasta oo la riixayo main, luqadaha kasta ee Azure AI Translator taageero.",
+		"localeCountLabel": "{count} goobaha",
+		"statusComplete": "{translatedCount} hadda la sawiray — dhameystiran!",
+		"statusPending": "{translatedCount} hadda la sawiray — {pendingCount} sugaya {workflowName} xiga.",
 		"viewWorkflowRuns": "Eeg socodka workflow-ka",
 		"filter": "Shaandhe",
 		"filterPlaceholder": "Raadi luqad, koodh, ama magac hooyo...",
 		"source": "Ilo",
 		"machineTranslations": "Turjumaadda mashiinka",
-		"translationPending": "Turjumaad sugaysa — fur orodka translate-docs.",
+		"translationPending": "Turjumaad sugaysa — fur socod {workflowName} ah.",
 		"noLocales": "Ma jiraan goobo la mid ah filter-kaas.",
-		"howItWorks": "Sida ay tani u shaqeyso"
+		"howItWorks": {
+			"heading": "Sida ay tani u shaqeyso",
+			"thisActionLabel": "Falkan isla markiiba",
+			"steps": {
+				"source": "Faylka ilaha Ingiriisiga wuxuu ku jiraa {messagesPath}.",
+				"workflow": "Wuxuu riixayaa taabashadaas, wuxuuna ka bilaabaa {workflowLink}, taasoo si {thisAction} uga soo horjeeda naftiisa.",
+				"fanOut": "Ficilku wuxuu ku fidsan yahay meel kasta oo ay taageerto Azure AI Translator (oo lagu habeeyay {configPath}) wuxuuna qoraa {messagesLocaleJson} walaal ah mid kasta oo bartilmaameed ah.",
+				"pullRequest": "Codsi pull ah ayaa la furay iyadoo la raacayo tarjumaadaha cusub. Isku darka ayaa dib u daabacaya boggan iyadoo kaararka la buuxiyay."
+			}
+		},
+		"poweredBy": "Waxaa ku shaqeeya Resource Translator iyo Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Ka qayb qaadashada",
 		"eyebrow": "Il furan",
-		"lede": "Warbixinnada khaladaadka, codsiyada astaamaha, iyo codsiyada pull waa la soo dhaweynayaa. Falka waa yar yahay si uu u noqdo mid saaxiib u ah kuwa markii ugu horreysay ka qayb qaatay."
+		"lede": "Warbixinnada khaladaadka, codsiyada astaamaha, iyo codsiyada pull waa la soo dhaweynayaa. Falka waa yar yahay si uu u noqdo mid saaxiib u ah kuwa markii ugu horreysay ka qayb qaatay.",
+		"localDevelopment": {
+			"heading": "Horumarinta maxalliga ah"
+		},
+		"addingParser": {
+			"heading": "Ku darista parser",
+			"steps": {
+				"fixture": "Ku dar qalab ka hooseeya {testDataDir}.",
+				"implement": "Hirgelin {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Diiwaangeli {factoryFile}.",
+				"extension": "Ku dar file extension-ka {translationFileSchemes} ee {finderFile}.",
+				"tests": "Qor tijaabooyin wareeg ah oo ku saabsan qaabka fasaxa → iyo applyTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "Xadka daboolka",
+			"body": "Qaabka Jest wuxuu ku qasbaa daboolka ugu yar. Koodhka cusub waa inuu xakameeyaa weedhaha + xariiqaha ka sarreeya 78% iyo shaqooyinka ka sarreeya 90%. Ku dar qalab iyo tijaabooyin la socda isbeddelkaaga."
+		},
+		"docsSite": {
+			"heading": "Goobta dukumentiyada",
+			"body": "Faylka {docsDir} waa mashruuc Astro 6 + Tailwind v4. Hal mar {npmInstall} halkaas, ka dibna {npmRunDev} tijaabada maxalliga ah. Habka {pagesWorkflow} wuxuu u diraa dukumentiyada GitHub Pages marka la mido."
+		}
 	},
 	"changelog": {
 		"title": "Diiwaanka Isbeddelka",
 		"eyebrow": "Taariikhda",
-		"lede": "Soo koobid heer sare ah oo ku saabsan sii deynta. Changelog-ka rasmiga ah ee awoodda leh wuxuu ku nool yahay CHANGELOG.md ku jira kaydka."
+		"lede": "Soo koobid heer sare ah oo ku saabsan sii deynta. Changelog-ka rasmiga ah ee awoodda leh wuxuu ku nool yahay CHANGELOG.md ku jira kaydka.",
+		"fullRecord": "Eeg {changelogLink} si aad u aragto diiwaanka buuxa.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (horumarin)",
+			"labels": {
+				"breaking": "JABINTA",
+				"resilience": "Adkeysiga:",
+				"placeholderProtection": "Ilaalinta meelaha haysta:",
+				"perKeyOptOut": "Ka bixitaanka furaha kasta:",
+				"docsAccessibility": "Helitaanka dukumentiyada:",
+				"inlineCodeStyling": "Qaabka koodhka inline:"
+			},
+			"issueLabels": {
+				"closes46": "Xiritaanka #46.",
+				"tightens16": "Adkee #16.",
+				"closes35": "Xiritaanka #35."
+			},
+			"items": {
+				"runtime": "Waxaa loo kordhiyay {nodeRuntime} waqtiga ({breaking}).",
+				"newInputs": "Gelin cusub: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, iyo badhamada tarjumaha horumarsan {textType}, {profanityAction}, {profanityMarker}, iyo {allowFallback}.",
+				"sourceLocale": "Source locale hadda sidoo kale waxaa loo gudbiyaa Translator as {fromLocale} si xargaha gaagaaban looma ogaanin si toos ah.",
+				"resilience": "{label} automatic retry on transient HTTP responses ({statusCodes}) oo sharaf u ah Azure's {retryAfter} header — waxay ku noqotaa jittered exponential backoff marka la maqto. Waxaa la hagaajin karaa iyada oo loo marayo {maxRetries} iyo {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} calaamadaha sida {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} iyo HTML waxaa lagu duubaa sentinels ka hor turjumaadda kadibna dib ayaa loo soo celiyaa, sidaas darteed Turjubaanka wuxuu joojiyaa inuu burburiyo meelaha i18next/Mustache/Handlebars/.NET/printf. Toggle via {protectPlaceholders}; La soco {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} {noTranslatePatterns} cusub ee gelinta ayaa gebi ahaanba ka saartay furayaasha iswaafajinta codsiga Translator-ka (wuxuu ilaaliyaa qiimaha ilaha magacyada sumadda, koodhadhka khaladaadka, iwm). Waxay la jaanqaadaysaa qaababka glob ee furayaasha heerka parser-ka (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). {issue}",
+				"repoConfig": "Qaabeynta heerka repo-ga iyada oo loo marayo {configPath}.",
+				"glossary": "Taageerada qaamuuska, dulmar tallaabooyin oo loo marayo {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM Audit Clean (0 dabacsanaansho).",
+				"docsSite": "Bogga Astro + Tailwind v4 docs oo leh isbeddelada muuqaalka iyo Expressive Code.",
+				"docsAccessibility": "{label} baaska WCAG 2.1 AA. Glyphs-ka logo-ga waxaa loo beddelaa waddooyin si aysan mar dambe u fashilmin midabka ka dhanka ah joojinta gradient-ka, badhanka {backToTop} ee dul sabeynaya wuxuu isticmaalaa {inert} isagoo qarsoon (halkii laga isticmaali lahaa beddelka {ariaHidden} ee ka tagay xadhigga), {formatsAstro} qaybaha ma isku dhacaan aqoonsiyada cinwaanka ee si toos ah loo abuuray, saddex kaararka deegaanka ayaa hadda muujinaya astaamaha {lang} ee BCP-47 sax ah ({nya}, {lug}, {run}), calaamadaha {documentation} calaamadaha taariikhiga ah ayaa lagu kala saarayaa sidebar iyo footer,  iyo miiska xogta ee {inputs}/{configuration} waxaa lagu soo bandhigaa qoraal akhristaha shaashadda.",
+				"inlineCode": "{label} Docs Prose {codeElement} hadda waxay xirataa lahjada mawduuca warm/amber — taasoo ka duwan palette→accent-ka loo isticmaalo xiriiriyeyaasha iyo cinwaanada.",
+				"automation": "Isku-darka otomaatiga ah ee Dependabot, baaritaanka CodeQL, CI matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Eeg taariikhda git."
+		}
 	}
 }

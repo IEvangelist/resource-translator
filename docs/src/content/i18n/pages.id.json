@@ -18,18 +18,26 @@
 			"node": "Node 20 / 22 / 24",
 			"sdk": "Azure SDK resmi"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "bersarang atau datar",
+			"ini": "{keyValue}",
+			"restext": "Teks MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Enam format file",
-				"body": "Pulang pergi .resx, .xliff, .po, .json, .ini, dan .restext dengan pemformatan byte-stabil."
+				"body": "Pulang pergi {resx}, {xliff}, {po}, {json}, {ini}, dan {restext} dengan pemformatan byte-stabil."
 			},
 			"config": {
 				"title": "Konfigurasi tingkat repositori",
-				"body": "Lepaskan .github/resource-translator.yml untuk kategori menyertakan globs, glosarium, dan Penerjemah Kustom."
+				"body": "Jatuhkan file {configPath} untuk kategori menyertakan globs, glosarium, dan Penerjemah Kustom."
 			},
 			"glossary": {
 				"title": "Sadar glosarium",
-				"body": "Kunci nama merek dan istilah produk dengan ekspresi regulasi batas kata pintar yang menangani C++, .NET, dan teman."
+				"body": "Kunci nama merek dan istilah produk dengan regex batas kata cerdas yang menangani {cpp}, {dotnet}, dan teman."
 			},
 			"dryRun": {
 				"title": "Dry-run + soft-fail",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Output yang ramah PR",
-				"body": "summary-title, summary-details, dan has-new-translations langsung ke create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails}, dan {hasNewTranslations} dimasukkan langsung ke create-pull-request."
 			},
 			"sdk": {
 				"title": "Azure SDK resmi",
-				"body": "Dibangun di atas @azure-rest/ai-translation-text + @azure/core-rest-pipeline — percobaan ulang otomatis pada 408/429/5xx, tanpa HTTP yang digulung tangan. esbuild-bundled, audit-clean."
+				"body": "Dibangun di atas {azureSdk} + {corePipeline} — percobaan ulang otomatis pada {statusCodes}, tidak ada HTTP yang digulung tangan. {esbuild}-bundel, audit bersih."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Alur kerja drop-in",
+			"titlePrefix": "Salin. Tempel.",
+			"titleAccent": "Terjemahkan.",
+			"body": "Tiga rahasia, empat baris, dan repositori Anda multibahasa pada dorongan berikutnya.",
+			"setupLink": "Berjalan melalui pengaturan lengkap"
+		},
+		"cta": {
+			"title": "Siap untuk melokalkan secara otomatis?",
+			"body": "Satu kunci Azure AI Translator, satu file alur kerja. Penerjemah Sumber Daya menangani sisanya.",
+			"button": "Mulai"
 		}
 	},
 	"getting-started": {
 		"title": "Memulai",
 		"eyebrow": "Pengaturan",
-		"lede": "Tambahkan file alur kerja, arahkan ke kredensial Azure AI Translator Anda, dan tindakan — dibangun di atas SDK @azure-rest/ai-translation-text resmi Microsoft — akan memindai repositori untuk file sumber daya bahasa sumber dan memancarkan saudara yang diterjemahkan.",
+		"lede": "Tambahkan file alur kerja, arahkan ke kredensial Azure AI Translator Anda, dan tindakan akan memindai repositori untuk file sumber daya bahasa sumber dan memancarkan saudara yang diterjemahkan.",
 		"steps": {
 			"provision": {
 				"title": "Menyediakan sumber daya Azure AI Translator",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Tambahkan alur kerja",
-				"body": "Buat .github/workflows/translate.yml:"
+				"body": "Buat {workflowPath}:"
 			},
 			"resource": {
 				"title": "Menerapkan file sumber daya",
-				"body": "File sumber daya menggunakan Nama. <sourceLocale>. <ext> konvensi. Misalnya Greetings.en.resx menjadi Greetings.fr.resx, Greetings.de.resx, dan seterusnya setelah berjalan."
+				"body": "File sumber daya menggunakan konvensi {namingConvention}. Misalnya {sourceFile} menjadi {frFile}, {deFile}, dan seterusnya setelah berlari."
 			},
 			"output": {
 				"title": "Periksa keluaran",
-				"body": "Setelah alur kerja selesai, tindakan tersebut mengekspos tiga output yang dapat Anda sambungkan ke dalam deskripsi PR: summary-title, summary-details, dan has-new-translations. Ini juga menulis ringkasan Markdown ke halaman pekerjaan melalui core.summary."
+				"body": "Setelah alur kerja selesai, tindakan tersebut mengekspos tiga output yang dapat Anda sambungkan ke dalam deskripsi PR: {summaryTitle}, {summaryDetails}, dan {hasNewTranslations}. Ini juga menulis ringkasan Markdown ke halaman pekerjaan melalui {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Langkah berikutnya",
-			"configuration": "Konfigurasikan default tingkat repositori dengan .github/resource-translator.yml.",
+			"configuration": "Konfigurasikan default tingkat repositori dengan {configPath}.",
 			"recipes": "Lihat resep untuk kategori monorepos, glosarium khusus, dan Penerjemah Kustom."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Konfigurasi",
 		"eyebrow": "YAML",
 		"heroTitle": "Konfigurasi repositori",
-		"lede": "Ekspresikan default sekali di .github/resource-translator.yml dan biarkan setiap alur kerja mewarisinya. Input aksi selalu menang ketika keduanya disediakan."
+		"lede": "Ekspresikan default sekali dalam file konfigurasi repositori dan biarkan setiap alur kerja mewarisinya. Input aksi selalu menang ketika keduanya disediakan.",
+		"intro": "Ganti jalur dengan input {configPath} jika Anda memerlukan lokasi non-default.",
+		"schemaHeading": "Skema",
+		"fieldReference": {
+			"heading": "Referensi bidang",
+			"caption": "Referensi bidang konfigurasi",
+			"columns": {
+				"field": "Bidang",
+				"type": "Tipe",
+				"notes": "Catatan"
+			},
+			"fields": {
+				"sourceLocale": "Kembali ke input {sourceLocale} jika tidak diatur. Juga diteruskan ke Penerjemah karena {fromLocale} sehingga string pendek tidak terdeteksi secara otomatis.",
+				"toLocales": "Baik array atau string yang dipisahkan koma.",
+				"includeExclude": "Pola glob dievaluasi terhadap jalur absolut dan relatif ruang kerja.",
+				"glossary": "Penggantian istilah pasca-terjemahan. Sadar batas kata (menangani {cpp}, {dotnet}).",
+				"categoryId": "Kategori {customTranslatorLink} Azure — kenop industri/domain Anda (nada hukum, medis, pemasaran, dll.). Dikirim sebagai {categoryQuery}.",
+				"textType": "Default ke {plain}. Gunakan {html} hanya jika nilai resource Anda berisi fragmen HTML nyata.",
+				"profanityAction": "Bagaimana memperlakukan istilah tidak senonoh dalam keluaran terjemahan.",
+				"profanityMarker": "Hanya berarti ketika {profanityAction} {marked}.",
+				"allowFallback": "Atur ke {false} untuk gagal dalam terjemahan saat {categoryId} Anda tidak memiliki penyebaran untuk lokal target alih-alih kembali ke model umum.",
+				"apiVersion": "Versi REST API penerjemah. Default ke {version}.",
+				"maxRetries": "Upaya coba ulang maksimum pada respons HTTP sementara ({statusCodes}). Default ke {defaultRetries}. Total panggilan HTTP per permintaan adalah {totalCalls}.",
+				"retryBackoffMs": "Tutup (ms) pada satu tidur mundur. Default ke {defaultBackoff}. Header {retryAfter} Azure dihormati persis saat ada; jika tidak, backoff eksponensial yang gelisah digunakan, dibatasi pada nilai ini.",
+				"protectPlaceholders": "Default ke {true}. Saat aktif, token seperti entitas {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf}, dan HTML diganti dengan token sentinel sebelum diterjemahkan dan dipulihkan setelahnya. Nonaktifkan hanya jika sumber sengaja berisi literal berbentuk placeholder.",
+				"customPlaceholderPatterns": "Pola regulex tambahan (tanpa pembatas) ditambahkan ke set placeholder default, misalnya {angleToken} untuk sintaks token kustom. Regex yang tidak valid diabaikan.",
+				"noTranslatePatterns": "Pola glob cocok dengan kunci tingkat parser (jalur putus-putus JSON, {resxName} RESX, PO {poMsgid}, {xliffId} unit XLIFF, kunci INI/restext). Kunci yang cocok dihapus dari permintaan dan diteruskan dengan nilai sumbernya dipertahankan."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Memuat pesanan",
+			"steps": {
+				"actionInputs": "Tindakan membaca input eksplisit dari alur kerja.",
+				"config": "Ini memuat konfigurasi YAML dari {configPath}.",
+				"precedence": "Untuk setiap bidang bersama, input menang; jika tidak, nilai YAML digunakan.",
+				"validation": "Nilai yang digabungkan divalidasi. Enum yang tidak valid (misalnya {invalidEnum}) menyebabkan tindakan gagal dengan cepat dengan pesan yang jelas."
+			}
+		},
+		"tone": {
+			"heading": "Nada dan industri, secara sederhana",
+			"body": "Azure AI Translator v3 API tidak memiliki kenop nada tunggal. Dua pengaturan digabungkan untuk memberi Anda sebagian besar kontrol yang sama:",
+			"industryLabel": "Industri / domain:",
+			"industryBody": "gunakan {categoryId} untuk menunjuk ke kategori {customTranslatorLink} Azure yang dilatih pada korpus Anda sendiri — hukum, teknis, medis, pemasaran, atau apa pun. Ini adalah tuas terkuat untuk nada, suara merek, dan kosakata.",
+			"surfaceLabel": "Teks permukaan:",
+			"surfaceBody": "Gunakan {glossaryLink} untuk mengunci nama merek dan istilah produk kata demi kata, dan gunakan {profanityAction} untuk menghapus istilah tidak senonoh saat menargetkan pelokalan untuk audiens yang lebih muda.",
+			"glossaryLinkLabel": "glosarium"
+		}
 	},
 	"inputs": {
 		"title": "Input & output",
 		"eyebrow": "Referensi",
-		"lede": "Setiap input juga diterima dalam file konfigurasi repo opsional. Ketika keduanya diatur, input tindakan menang."
+		"lede": "Setiap input juga diterima dalam file konfigurasi repo opsional. Ketika keduanya diatur, input tindakan menang.",
+		"configurationIntro": "Lihat {configurationLink} untuk skema YAML dan urutan pemuatan.",
+		"configurationLinkLabel": "Konfigurasi",
+		"columns": {
+			"name": "Nama",
+			"default": "Bawaan",
+			"description": "Deskripsi"
+		},
+		"defaults": {
+			"none": "tidak ada",
+			"allSupported": "Semua didukung",
+			"translatorDefaultTrue": "true (Penerjemah default)"
+		},
+		"requiredInputs": {
+			"heading": "Masukan yang diperlukan",
+			"caption": "Masukan yang diperlukan",
+			"items": {
+				"sourceLocale": "Lokal sumber (misalnya {en}) yang digunakan untuk menemukan file sumber daya seperti {sourceGlob}. Juga diteruskan ke Penerjemah sebagai {fromLocale}.",
+				"subscriptionKey": "Kunci langganan Azure AI Translator. Lewati melalui {secrets}.",
+				"endpoint": "URL titik akhir penerjemah, misalnya {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Input opsional umum",
+			"caption": "Input opsional umum",
+			"items": {
+				"region": "Wilayah sumber daya penerjemah (dihilangkan untuk sumber daya global).",
+				"toLocales": "Lokal untuk diterjemahkan. Menerima array JSON ({jsonArray}) atau nilai yang dipisahkan koma.",
+				"include": "pola glob yang dipisahkan garis baru; hanya file yang cocok yang diterjemahkan.",
+				"exclude": "pola glob yang dipisahkan garis baru; File yang cocok dilewati (diterapkan setelah disertakan).",
+				"configPath": "Jalur ke file konfigurasi YAML (relatif terhadap akar ruang kerja).",
+				"dryRun": "Saat {true}, jalankan terjemahan dan keluarkan ringkasan tetapi jangan menulis file.",
+				"failOnError": "Ketika {true}, kesalahan tak terduga gagal dalam tindakan; ketika {false}, kesalahan adalah peringatan."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Input permintaan penerjemah",
+			"intro": "Ini memetakan langsung ke parameter kueri Azure AI Translator v3. Masing-masing adalah opsional; default Penerjemah berlaku saat tidak disetel.",
+			"caption": "Input permintaan penerjemah",
+			"items": {
+				"categoryId": "Kategori {customTranslatorLink} Azure — kenop industri/domain/nada. Diteruskan sebagai {categoryQuery}.",
+				"textType": "{plain} atau {html}. Gunakan {html} hanya jika nilai resource Anda adalah fragmen HTML nyata.",
+				"profanityAction": "{noAction}, {marked}, atau {deleted}. Mengontrol bagaimana istilah profan dipancarkan dalam terjemahan.",
+				"profanityMarker": "{asterisk} atau {tag}. Hanya berarti ketika {profanityAction} {marked}.",
+				"allowFallback": "Saat {false}, Penerjemah mengembalikan kesalahan alih-alih kembali ke sistem umum jika {categoryId} Anda tidak memiliki penyebaran untuk lokal target.",
+				"apiVersion": "Versi REST API penerjemah."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Ketahanan & perlindungan placeholder",
+			"intro": "Input ini mengontrol bagaimana tindakan berperilaku saat Penerjemah membatasi permintaan Anda dan bagaimana hal itu melindungi token placeholder seperti {mustache} atau {indexZero} agar tidak rusak selama terjemahan.",
+			"caption": "Input perlindungan ketahanan dan placeholder",
+			"items": {
+				"maxRetries": "Upaya coba ulang maksimum pada respons HTTP sementara ({statusCodes}). Jumlah total panggilan HTTP per permintaan adalah {totalCalls}.",
+				"retryBackoffMs": "Tutup (dalam milidetik) pada satu tidur mundur. Tindakan ini menghormati header respons {retryAfter} Azure persis saat ada; jika tidak, ia menggunakan backoff eksponensial jittered yang dibatasi pada nilai ini.",
+				"protectPlaceholders": "Saat {true} (default), placeholder seperti entitas {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf}, dan HTML diganti dengan token sentinel sebelum diterjemahkan dan dipulihkan setelahnya. Nonaktifkan hanya jika sumber Anda sengaja berisi teks berbentuk placeholder literal yang harus diterjemahkan.",
+				"customPlaceholderPatterns": "Regex yang dipisahkan baris baru (tanpa pembatas) ditambahkan ke set placeholder default, misalnya {angleToken} untuk sintaks token kustom.",
+				"noTranslatePatterns": "Pola glob yang dipisahkan garis baru yang cocok dengan kunci tingkat parser (jalur putus-putus JSON, {resxName} RESX, PO {poMsgid}, {xliffId} unit XLIFF, kunci INI/restext). Kunci yang cocok dihapus dari permintaan Penerjemah dan diteruskan dengan nilai sumbernya dipertahankan."
+			}
+		},
+		"outputs": {
+			"heading": "Keluaran",
+			"caption": "Keluaran",
+			"items": {
+				"summaryTitle": "Ringkasan singkat yang ramah judul PR, misalnya {summaryExample}.",
+				"summaryDetails": "Ringkasan penurunan harga cocok untuk badan PR atau ringkasan pekerjaan.",
+				"hasNewTranslations": "{trueString} ketika satu atau beberapa terjemahan baru dibuat."
+			}
+		}
 	},
 	"formats": {
 		"title": "Format file",
 		"eyebrow": "Referensi",
 		"heroTitle": "Format file yang didukung",
-		"lede": "Enam format sumber daya yang dapat diputar-balik. Tindakan ini membaca setiap file sumber-lokal, menerjemahkan nilai, dan menulis saudara per lokal target."
+		"lede": "Enam format sumber daya yang dapat diputar-balik. Tindakan ini membaca setiap file sumber-lokal, menerjemahkan nilai, dan menulis saudara per lokal target.",
+		"namingConvention": "Semua file menggunakan konvensi penamaan {namingConvention}.",
+		"learnMore": "Pelajari lebih lanjut",
+		"items": {
+			"resx": {
+				"blurb": "File sumber daya .NET berbasis XML. Menerjemahkan teks bagian dalam setiap simpul {dataValue}, melestarikan komentar dan metadata.",
+				"specLabel": "Microsoft Learn — Sumber daya dalam file .resx"
+			},
+			"xliff": {
+				"blurb": "Dokumen OASIS XLIFF 2.0. Menerjemahkan setiap {source} dan menulis hasilnya ke dalam {target} yang sesuai, mengatur {trgLang} untuk lokal.",
+				"specLabel": "Spesifikasi OASIS XLIFF 2.0"
+			},
+			"po": {
+				"blurb": "GNU gettext File Objek Portabel . Menerjemahkan setiap {msgid} / {msgidPlural} ke dalam bentuk {msgstr} / {msgstrPlural}.",
+				"specLabel": "GNU gettext — Format file PO"
+			},
+			"json": {
+				"blurb": "File JSON sewenang-wenang. Objek berlapis diratakan dengan pemisah {delimiter} untuk terjemahan, kemudian bersarang kembali pada output. Tombol putus-putus ({dottedKey}) dipertahankan kata demi kata.",
+				"specLabel": "Spesifikasi JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "File {keyValue} sederhana (INI gaya Win32 atau konfigurasi datar apa pun). Header bagian dan komentar dipertahankan.",
+				"specLabel": "Format file INI di Wikipedia"
+			},
+			"restext": {
+				"blurb": "Sumber daya teks Microsoft MUI — pasangan {keyValue} datar yang digunakan sebagai pendamping tekstual untuk {resx}.",
+				"specLabel": "Gambaran umum Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Jaminan pulang pergi",
+			"body": "Rangkaian pengujian memverifikasi byte-for-byte round-trip untuk perlengkapan perwakilan dari setiap format. Jika keanehan format merusak round-trip di basis kode Anda, harap {issueLink} dengan sampel minimal.",
+			"issueLinkLabel": "Membuka masalah"
+		}
 	},
 	"recipes": {
 		"title": "Resep",
 		"eyebrow": "Buku masak",
-		"lede": "Pola umum untuk pengiriman terjemahan: monorepos, glosarium, kategori khusus, dry run, dan kontrol nada."
+		"lede": "Pola umum untuk pengiriman terjemahan: monorepos, glosarium, kategori khusus, dry run, dan kontrol nada.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Buka permintaan pull setelah setiap eksekusi"
+			},
+			"monorepo": {
+				"heading": "Monorepos: terjemahan cakupan per paket"
+			},
+			"glossary": {
+				"heading": "Glosarium untuk nama merek dan istilah produk",
+				"intro": "Masukkan {configPath} ke dalam reposito:",
+				"afterLabel": "setelah",
+				"body": "Istilah glosarium diterapkan {after} terjemahan, sehingga output yang diterjemahkan mesin mempertahankan merek pilihan Anda bahkan ketika model menukarnya dengan sinonim."
+			},
+			"customCategory": {
+				"heading": "Kategori Penerjemah Kustom (industri / domain)",
+				"body": "Latih kategori Azure {customTranslatorLink} pada korpus yang menangkap kosakata dan nada industri Anda (hukum, medis, pemasaran, teknik internal, dll.) dan teruskan ID-nya melalui {categoryId}. Ini adalah tuas nada terkuat yang ditawarkan Azure."
+			},
+			"tone": {
+				"heading": "Kontrol nada + penggantian ketat",
+				"body": "Gabungkan {categoryId} Penerjemah Kustom dengan {profanityAction} dan {allowFallbackFalse} untuk menegakkan suara yang konsisten dan gagal dalam alur kerja jika kategori yang dipilih tidak memiliki penyebaran untuk salah satu lokal target Anda."
+			},
+			"dryRun": {
+				"heading": "Lari kering sebelum mengaktifkan alur kerja",
+				"body": "Tindakan ini masih memancarkan output ringkasan dan ringkasan langkah, tetapi tidak ada file yang ditulis. Gabungkan dengan {failOnErrorFalse} untuk memunculkan setiap masalah sebagai peringatan saat Anda melakukan iterasi."
+			}
+		}
 	},
 	"faq": {
 		"title": "Pertanyaan yang diajukan",
 		"eyebrow": "Bantuan",
 		"heroTitle": "Pertanyaan yang sering diajukan",
-		"lede": "Jawaban cepat untuk pertanyaan yang paling sering muncul saat mengadopsi tindakan."
+		"lede": "Jawaban cepat untuk pertanyaan yang paling sering muncul saat mengadopsi tindakan.",
+		"questions": {
+			"azure": {
+				"heading": "Bagaimana tindakan berbicara dengan Azure?",
+				"body": "Melalui {azureSdkLink} SDK resmi Microsoft, berlapis di {corePipelineLink}. Itu memberi Anda percobaan ulang otomatis pada {statusCodes}, model permintaan dan respons yang diketik, dan penanganan header otentikasi secara gratis — semua yang dulunya merupakan panggilan {axios} yang digulung tangan. Permukaan tindakan publik (input, output, output file) tidak berubah."
+			},
+			"tone": {
+				"heading": "Mengapa terjemahan terkadang di luar merek atau di luar nada?",
+				"body": "Terjemahan mesin default ke model tujuan umum. Tiga kenop membantu: {glossaryLink} untuk penggantian jangka keras, {customTranslatorLink} untuk model yang disesuaikan dengan baik yang dilatih pada nada dan kosakata Anda, dan {profanityAction} untuk menggosok atau menandai istilah yang tidak senonoh.",
+				"glossaryLinkLabel": "glosarium",
+				"customTranslatorLinkLabel": "Kategori Penerjemah Kustom"
+			},
+			"duplicateFiles": {
+				"heading": "Bagaimana cara menghindari menerjemahkan file yang sama dua kali?",
+				"body": "Picu alur kerja pada {paths} yang hanya cocok dengan file lokal sumber Anda, misalnya {sourceGlob}. Tindakan ini juga menyertakan filter file per pemicu sendiri saat {githubToken} diatur, mempersempit pekerjaan ke file dalam penerapan terbaru."
+			},
+			"offline": {
+				"heading": "Bisakah saya menjalankan tindakan secara offline?",
+				"body": "Tidak persis — Azure AI Translator adalah otak runtime. Tetapi Anda dapat menjalankan dengan {dryRunTrue} untuk memvalidasi penguraian dan konfigurasi tanpa membuat permintaan HTTP apa pun untuk terjemahan."
+			},
+			"node": {
+				"heading": "Versi Node apa yang dilakukan tindakan tersebut?",
+				"body": "v3 berjalan pada runtime GitHub Actions {nodeRuntime}. JavaScript yang dibundel kompatibel dengan Node 20, 22, dan 24, yang diuji oleh CI."
+			},
+			"dist": {
+				"heading": "Dari mana {distDir} yang dibundel berasal?",
+				"body": "Tindakan GitHub JS mengirimkan JS yang dikompilasi di repositori. Alur kerja {distBuild} membangunnya kembali setelah setiap penggabungan untuk {mainBranch} apakah itu akan melayang, dan {distCheck} memblokir PR yang akan mendapatkan output kedaluwarsa."
+			},
+			"formats": {
+				"heading": "Bagaimana dengan format sumber daya lainnya?",
+				"body": "Hari ini: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} jika Anda membutuhkan yang lain — antarmuka parser kecil (mengurai → peta → menerapkan terjemahan → format) dan kontribusi dipersilakan.",
+				"issueLinkLabel": "Membuka masalah"
+			}
+		}
 	},
 	"translations": {
 		"title": "Terjemahan",
 		"eyebrow": "Etalase",
 		"heroTitle": "Halo dalam setiap bahasa",
-		"locales": "Lokasi",
-		"currentlyRendered": "saat ini dirender",
-		"complete": "lengkap!",
-		"pendingPrefix": "Menunggu eksekusi translate-docs berikutnya.",
+		"lede": "Halaman ini diterjemahkan oleh Penerjemah Sumber Daya itu sendiri, pada setiap dorongan ke utama, ke dalam setiap bahasa yang didukung Azure AI Translator.",
+		"localeCountLabel": "{count} lokasi",
+		"statusComplete": "{translatedCount} saat ini dirender — selesai!",
+		"statusPending": "{translatedCount} saat ini dirender — {pendingCount} menunggu {workflowName} berikutnya.",
 		"viewWorkflowRuns": "Melihat eksekusi alur kerja",
 		"filter": "Filter",
 		"filterPlaceholder": "Cari berdasarkan bahasa, kode, atau nama asli...",
 		"source": "Sumber",
 		"machineTranslations": "Terjemahan mesin",
-		"translationPending": "Terjemahan tertunda — buka eksekusi terjemahan dokumen.",
+		"translationPending": "Terjemahan tertunda — buka eksekusi {workflowName}.",
 		"noLocales": "Tidak ada lokal yang cocok dengan filter tersebut.",
-		"howItWorks": "Cara kerjanya"
+		"howItWorks": {
+			"heading": "Cara kerjanya",
+			"thisActionLabel": "tindakan ini",
+			"steps": {
+				"source": "File sumber bahasa Inggris berada di {messagesPath}.",
+				"workflow": "Mendorong sentuhan itu menendang {workflowLink}, yang berlari {thisAction} melawan dirinya sendiri.",
+				"fanOut": "Tindakan ini menyebar ke setiap lokal yang didukung Azure AI Translator (dikonfigurasi dalam {configPath}) dan menulis {messagesLocaleJson} saudara per target.",
+				"pullRequest": "Permintaan tarik dibuka dengan terjemahan baru. Menggabungkannya menerbitkan ulang halaman ini dengan kartu yang diisi."
+			}
+		},
+		"poweredBy": "Didukung oleh Penerjemah Sumber Daya dan Penerjemah AI Azure."
 	},
 	"contributing": {
 		"title": "Berkontribusi",
 		"eyebrow": "Sumber terbuka",
-		"lede": "Laporan bug, permintaan fitur, dan permintaan pull semuanya dipersilakan. Aksinya cukup kecil untuk bersahabat dengan kontributor pertama kali."
+		"lede": "Laporan bug, permintaan fitur, dan permintaan pull semuanya dipersilakan. Aksinya cukup kecil untuk bersahabat dengan kontributor pertama kali.",
+		"localDevelopment": {
+			"heading": "Pembangunan lokal"
+		},
+		"addingParser": {
+			"heading": "Menambahkan parser",
+			"steps": {
+				"fixture": "Tambahkan perlengkapan di bawah {testDataDir}.",
+				"implement": "Terapkan {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Daftarkan di {factoryFile}.",
+				"extension": "Tambahkan ekstensi file ke {translationFileSchemes} di {finderFile}.",
+				"tests": "Tulis pengujian bolak-balik untuk menguraikan format → dan applyTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "Ambang batas pertanggungan",
+			"body": "Konfigurasi Jest memberlakukan cakupan minimum. Kode baru harus menjaga ambang batas pernyataan + baris di atas 78% dan fungsi di atas 90%. Tambahkan perlengkapan dan pengujian di samping perubahan Anda."
+		},
+		"docsSite": {
+			"heading": "Situs dokumentasi",
+			"body": "Folder {docsDir} adalah proyek Astro 6 + Tailwind v4. Jalankan {npmInstall} sana sekali, lalu {npmRunDev} untuk pratinjau lokal. Alur kerja {pagesWorkflow} mengirimkan dokumen ke Halaman GitHub pada setiap penggabungan."
+		}
 	},
 	"changelog": {
 		"title": "Log perubahan",
 		"eyebrow": "Sejarah",
-		"lede": "Ringkasan rilis tingkat tinggi. Changelog kanonik dan otoritatif berada di CHANGELOG.md di repositori."
+		"lede": "Ringkasan rilis tingkat tinggi. Changelog kanonik dan otoritatif berada di CHANGELOG.md di repositori.",
+		"fullRecord": "Lihat {changelogLink} untuk catatan lengkapnya.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (dalam pengembangan)",
+			"labels": {
+				"breaking": "MEMECAHKAN",
+				"resilience": "Ketahanan:",
+				"placeholderProtection": "Perlindungan placeholder:",
+				"perKeyOptOut": "Penolakan per kunci:",
+				"docsAccessibility": "Aksesibilitas dokumen:",
+				"inlineCodeStyling": "Gaya kode sebaris:"
+			},
+			"issueLabels": {
+				"closes46": "Menutup #46.",
+				"tightens16": "Mengencangkan #16.",
+				"closes35": "Tutup #35."
+			},
+			"items": {
+				"runtime": "Menabrak ke {nodeRuntime} runtime ({breaking}).",
+				"newInputs": "Input baru: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, ditambah kenop Penerjemah tingkat lanjut {textType}, {profanityAction}, {profanityMarker}, dan {allowFallback}.",
+				"sourceLocale": "Lokal sumber sekarang juga diteruskan ke Penerjemah karena {fromLocale} sehingga string pendek tidak terdeteksi secara otomatis.",
+				"resilience": "{label} percobaan ulang otomatis pada respons HTTP sementara ({statusCodes}) yang menghormati header {retryAfter} Azure — kembali ke backoff eksponensial yang gelisah saat tidak ada. Dapat disetel melalui {maxRetries} dan {retryBackoffMs}. {issue}",
+				"placeholderProtection": "Token {label} seperti entitas {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf}, dan HTML dibungkus dalam penjaga sebelum diterjemahkan dan dipulihkan setelahnya, sehingga Penerjemah berhenti merusak placeholder i18next/Mustache/Handlebars/.NET/printf. Beralih melalui {protectPlaceholders}; memperluas dengan {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} input {noTranslatePatterns} baru akan menghapus kunci yang cocok dari permintaan Penerjemah sepenuhnya (mempertahankan nilai sumber untuk nama merek, kode kesalahan, dll.). Mencocokkan pola glob dengan kunci tingkat parser (jalur putus-putus JSON, {resxName} RESX, PO {poMsgid}, {xliffId} unit XLIFF, kunci INI/restext). {issue}",
+				"repoConfig": "Konfigurasi tingkat repositori melalui {configPath}.",
+				"glossary": "Dukungan glosarium, ringkasan langkah melalui {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 konfigurasi datar, Prettier, EditorConfig.",
+				"audit": "Audit NPM bersih (0 kerentanan).",
+				"docsSite": "Situs dokumen Astro + Tailwind v4 dengan transisi tampilan dan Kode Ekspresif.",
+				"docsAccessibility": "{label} WCAG 2.1 AA lulus. Mesin terbang logo dikonversi menjadi jalur sehingga tidak lagi gagal kontras warna terhadap penghentian gradien, tombol {backToTop} mengambang menggunakan {inert} saat tersembunyi (alih-alih sakelar {ariaHidden} yang membuatnya dapat ditab), bagian {formatsAstro} tidak lagi bertabrakan dengan ID judul yang dibuat secara otomatis, tiga kartu lokal sekarang mengekspos atribut {lang} yang valid BCP-47 ({nya}, {lug}, {run}), label landmark duplikat {documentation} didisambiguasi antara bilah sisi dan footer,  dan setiap tabel data di {inputs}/{configuration} dikirimkan dengan keterangan pembaca layar.",
+				"inlineCode": "{label} {codeElement} prosa docs sekarang mengenakan aksen tema hangat/kuning — berbeda dari palet aksen →merek yang digunakan untuk tautan dan judul.",
+				"automation": "Penggabungan otomatis Dependabot, pemindaian CodeQL, matriks CI."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Lihat riwayat git."
+		}
 	}
 }

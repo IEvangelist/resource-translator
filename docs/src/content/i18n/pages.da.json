@@ -18,18 +18,26 @@
 			"node": "Node 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "Gettext",
+			"json": "Indlejret eller fladt",
+			"ini": "{keyValue}",
+			"restext": "MUI-tekst"
+		},
 		"features": {
 			"formats": {
 				"title": "Seks filformater",
-				"body": "Roundtrips .resx, .xliff, .po, .json, .ini og .restext med byte-stabil formatering."
+				"body": "Rundrejser {resx}, {xliff}, {po}, {json}, {ini} og {restext} med byte-stabil formatering."
 			},
 			"config": {
 				"title": "Repo-level konfiguration",
-				"body": "Læg en .github/resource-translator.yml ind for inkludér globs, ordlister og Custom Translator-kategorier."
+				"body": "Læg en {configPath} fil ind for inkludér klumper, ordlister og Custom Translator-kategorier."
 			},
 			"glossary": {
 				"title": "Ordlistebevidst",
-				"body": "Lås mærkenavne og produkttermer med smart ordgrænse-regex, der håndterer C++, .NET og andre steder."
+				"body": "Lås mærkenavne og produkttermer med smart ordgrænse-regex, der håndterer {cpp}, {dotnet} og venner."
 			},
 			"dryRun": {
 				"title": "Tørkørsel + blød fejl",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "PR-venlige output",
-				"body": "Resumé-titel, oversigt-detaljer og har-nye-oversættelser passer direkte ind i create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails} og {hasNewTranslations} direkte ind i create-pull-request."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "Bygget på @azure-rest/ai-translation-text + @azure/core-rest-pipeline — automatiske genforsøg på 408/429/5xx, ingen håndrullet HTTP. Esbuild-bundlet, audit-ren."
+				"body": "Bygget på {azureSdk} + {corePipeline} — automatiske genforsøg på {statusCodes}, ingen håndrullet HTTP. {esbuild} pakket, revisionsren."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Drop-in arbejdsgang",
+			"titlePrefix": "Kopier. Indsæt.",
+			"titleAccent": "Oversætt.",
+			"body": "Tre hemmeligheder, fire linjer, og dit repo er flersproget ved næste push.",
+			"setupLink": "Gå igennem hele opsætningen"
+		},
+		"cta": {
+			"title": "Klar til at lokalisere på autopilot?",
+			"body": "Én Azure AI Translator-nøgle, én workflow-fil. Resource Translator håndterer resten.",
+			"button": "Kom i gang"
 		}
 	},
 	"getting-started": {
 		"title": "At komme i gang",
 		"eyebrow": "Opsætning",
-		"lede": "Tilføj en workflow-fil, peg den mod dine Azure AI Translator-legitimationsoplysninger, og handlingen — bygget på Microsofts officielle @azure-rest/ai-translation-text SDK — vil scanne repoet for kildesprogs-ressourcefiler og sende oversatte søskende.",
+		"lede": "Tilføj en workflow-fil, peg den på dine Azure AI Translator-oplysninger, og handlingen vil scanne repoet for kildesprogs-ressourcefiler og sende oversatte søskende.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Tilføj arbejdsgangen",
-				"body": "Opret .github/workflows/translate.yml:"
+				"body": "Opret {workflowPath}:"
 			},
 			"resource": {
 				"title": "Commit en kilderessourcefil",
-				"body": "Ressourcefiler bruger Navnet. <sourceLocale>. <ext> konvention. For eksempel bliver Greetings.en.resx til Greetings.fr.resx, Greetings.de.resx og så videre efter et run."
+				"body": "Ressourcefiler bruger {namingConvention}-konventionen. For eksempel bliver {sourceFile} {frFile}, {deFile} og så videre efter et run."
 			},
 			"output": {
 				"title": "Inspicer outputtet",
-				"body": "Når arbejdsgangen er færdig, eksponerer handlingen tre output, du kan koble ind i en PR-beskrivelse: resumé-titel, resumé-detaljer og har-ny-oversættelser. Den skriver også et Markdown-resumé ind på jobsiden via core.summary."
+				"body": "Når arbejdsgangen er færdig, eksponerer handlingen tre output, som du kan koble ind i en PR-beskrivelse: {summaryTitle}, {summaryDetails} og {hasNewTranslations}. Den skriver også et Markdown-resumé ind på jobsiden via {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Næste skridt",
-			"configuration": "Konfigurer repo-niveau standardindstillinger med .github/resource-translator.yml.",
+			"configuration": "Konfigurer repo-niveau standardindstillinger med {configPath}.",
 			"recipes": "Se opskrifter for monorepos, brugerdefinerede ordlister og kategorier for brugerdefinerede oversættere."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Konfiguration",
 		"eyebrow": "YAML",
 		"heroTitle": "Repository-konfiguration",
-		"lede": "Express defaults én gang i .github/resource-translator.yml og lader alle workflows arve dem. Handlingsinput vinder altid, når begge dele."
+		"lede": "Udtryk standardindstillinger én gang i repository-konfigurationsfilen og lad alle arbejdsgange arve dem. Handlingsinput vinder altid, når begge dele.",
+		"intro": "Overskriv stien med {configPath} input, hvis du har brug for en ikke-standard placering.",
+		"schemaHeading": "Skema",
+		"fieldReference": {
+			"heading": "Feltreference",
+			"caption": "Konfigurationsfeltreference",
+			"columns": {
+				"field": "Bane",
+				"type": "Type",
+				"notes": "Noter"
+			},
+			"fields": {
+				"sourceLocale": "Den falder tilbage til {sourceLocale} input, hvis den ikke er sat. Også videresendt til Oversætteren som {fromLocale}, så korte strenge ikke automatisk opdages.",
+				"toLocales": "Enten et array eller en komma-separeret streng.",
+				"includeExclude": "Glob-mønstre evalueret mod absolutte og arbejdsområde-relative stier.",
+				"glossary": "Efter-oversættelse overstyrer termer. Ord-grænsebevidst (håndterer {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} kategori — din branche-/domæneknap (juridisk, medicinsk, markedsføringstone osv.). Sendt som {categoryQuery}.",
+				"textType": "Som standard er {plain}. Brug kun {html}, hvis dine ressourceværdier indeholder ægte HTML-fragmenter.",
+				"profanityAction": "Hvordan man behandler bandeord i oversat output.",
+				"profanityMarker": "Kun meningsfuldt, når {profanityAction} er {marked}.",
+				"allowFallback": "Sæt til {false} til at fejle oversættelsen, når din {categoryId} ikke har nogen udrulning til et målområde, i stedet for at falde tilbage til den generelle model.",
+				"apiVersion": "Oversætter REST API-version. Som standard er {version}.",
+				"maxRetries": "Maksimale genforsøg på transiente HTTP-svar ({statusCodes}). Som standard er {defaultRetries}. Det samlede antal HTTP-kald pr. forespørgsel er {totalCalls}.",
+				"retryBackoffMs": "Grænse (MS) for enhver enkelt backoff-søvn. Som standard er {defaultBackoff}. Azures {retryAfter} header bliver respekteret præcis, når den er til stede; ellers bruges jitteret eksponentiel backoff, begrænset til denne værdi.",
+				"protectPlaceholders": "Som standard er {true}. Når de er tændt, erstattes tokens som {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} og HTML-enheder med sentinel-tokens før oversættelse og gendannes bagefter. Deaktiver kun, når kildekoden bevidst indeholder pladsholderformede literals.",
+				"customPlaceholderPatterns": "Ekstra regex-mønstre (uden afgrænsere) tilføjet til standardpladsholdersættet, f.eks. {angleToken} til brugerdefineret tokensyntaks. Ugyldige regexes ignoreres.",
+				"noTranslatePatterns": "Glob-mønstre matchede mod parser-niveau nøgler (JSON sti, RESX {resxName}, PO {poMsgid}, XLIFF enhed {xliffId}, INI/restext-nøgle). Matchende nøgler fjernes fra forespørgslen og sendes videre med deres kildeværdi bevaret."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Lasterækkefølge",
+			"steps": {
+				"actionInputs": "Handlingen læser eksplicitte input fra workflowet.",
+				"config": "Den indlæser YAML-konfigurationen fra {configPath}.",
+				"precedence": "For hvert delt felt vinder inputtet; ellers bruges YAML-værdien.",
+				"validation": "De sammenlagte værdier valideres. Ugyldige enums (f.eks. {invalidEnum}) får handlingen til hurtigt at fejle med en klar besked."
+			}
+		},
+		"tone": {
+			"heading": "Tone og industri, i klare vendinger",
+			"body": "Azure AI Translator v3 API'en har ikke en enkelt toneknap. To indstillinger kombineres for at give dig det meste af den samme kontrol:",
+			"industryLabel": "Branche / domæne:",
+			"industryBody": "brug {categoryId} til at pege på en Azure {customTranslatorLink}-kategori, der er trænet på dit eget korpus — juridisk, teknisk, medicinsk, marketing eller noget andet. Dette er den stærkeste løftestang for tone, brandets stemme og ordforråd.",
+			"surfaceLabel": "Overfladetekst:",
+			"surfaceBody": "Brug {glossaryLink} til at låse brandnavne og produkttermer ordret, og brug {profanityAction} til at fjerne bandeord, når du målretter lokalisering til yngre målgrupper.",
+			"glossaryLinkLabel": "Ordliste"
+		}
 	},
 	"inputs": {
 		"title": "Input & output",
 		"eyebrow": "Reference",
-		"lede": "Alle input accepteres også i den valgfrie repo config-fil. Når begge er sat, vinder handlingsinputtet."
+		"lede": "Alle input accepteres også i den valgfrie repo config-fil. Når begge er sat, vinder handlingsinputtet.",
+		"configurationIntro": "Se {configurationLink} for YAML-skemaet og indlæsningsrækkefølgen.",
+		"configurationLinkLabel": "Konfiguration",
+		"columns": {
+			"name": "Navn",
+			"default": "Default",
+			"description": "Beskrivelse"
+		},
+		"defaults": {
+			"none": "Ingen",
+			"allSupported": "Alle støttede",
+			"translatorDefaultTrue": "true (Oversætterstandard)"
+		},
+		"requiredInputs": {
+			"heading": "Påkrævede input",
+			"caption": "Påkrævede input",
+			"items": {
+				"sourceLocale": "Kildelokalitet (f.eks. {en}), der bruges til at finde ressourcefiler som {sourceGlob}. Også videresendt til Oversætter som {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator subscription key. Kør via {secrets}.",
+				"endpoint": "Oversætter-endpoint URL, f.eks. {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Almindelige valgfrie input",
+			"caption": "Almindelige valgfrie input",
+			"items": {
+				"region": "Oversætterressourceregion (udelad for globale ressourcer).",
+				"toLocales": "Steder at oversætte til. Accepterer et JSON-array ({jsonArray}) eller komma-separerede værdier.",
+				"include": "nylinje-separerede klumpmønstre; kun matchende filer oversættes.",
+				"exclude": "nylinje-separerede klumpmønstre; Matchende filer springes over (anvendes efter include).",
+				"configPath": "Sti til YAML-konfigurationsfilen (i forhold til arbejdsområdets rod).",
+				"dryRun": "Når {true}, kør oversættelser og udsend resuméer, men skriv ikke filer.",
+				"failOnError": "Når {true}, fejler uventede fejl handlingen; Når {false}, er fejl advarsler."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Oversætteranmodninger",
+			"intro": "Disse mappes direkte til Azure AI Translator v3 forespørgselsparametre. Alle er valgfrie; oversætterstandarderne gælder, når de ikke aktiveres.",
+			"caption": "Oversætteranmodninger",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} kategori — industri/domæne/tone-knappen. Videresendt som {categoryQuery}.",
+				"textType": "{plain} eller {html}. Brug {html} kun, når dine ressourceværdier er ægte HTML-fragmenter.",
+				"profanityAction": "{noAction}, {marked} eller {deleted}. Kontrollerer, hvor bandeord der udsendes i oversættelser.",
+				"profanityMarker": "{asterisk} eller {tag}. Kun meningsfuldt, når {profanityAction} er {marked}.",
+				"allowFallback": "Når {false}, returnerer Oversætteren en fejl i stedet for at falde tilbage til det generelle system, hvis din {categoryId} ikke har en udrulning til et målområde.",
+				"apiVersion": "Oversætter REST API-version."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Modstandsdygtighed og midlertidig beskyttelse",
+			"intro": "Disse input styrer, hvordan handlingen opfører sig, når Oversætteren kvæler din anmodning, og hvordan den beskytter pladsholder-tokens som {mustache} eller {indexZero} mod at blive ødelagt under oversættelsen.",
+			"caption": "Modstandsdygtighed og pladsholderbeskyttelsesinput",
+			"items": {
+				"maxRetries": "Maksimale genforsøg på transiente HTTP-svar ({statusCodes}). Det samlede antal HTTP-kald pr. anmodning er {totalCalls}.",
+				"retryBackoffMs": "Kondensator (i millisekunder) på enhver enkelt backoff-dvale. Handlingen respekterer Azures {retryAfter} response-header præcis, når den er til stede; ellers bruger den jitteret eksponentiel backoff begrænset til denne værdi.",
+				"protectPlaceholders": "Når {true} (standard), erstattes pladsholdere som {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} og HTML-enheder med sentinel-tokens før oversættelse og genoprettes bagefter. Deaktiver kun, når din kilde bevidst indeholder bogstavelig pladsholderformet tekst, som bør oversættes.",
+				"customPlaceholderPatterns": "Linjeskifte-adskilte regexes (uden afgrænsere) tilføjet til standardpladsholdersættet, f.eks. {angleToken} til brugerdefineret tokensyntaks.",
+				"noTranslatePatterns": "Newline-separerede glob-mønstre matchet mod parser-niveau nøgler (JSON sti, RESX {resxName}, PO {poMsgid}, XLIFF enhed {xliffId}, INI/restext-nøgle). Matchende nøgler fjernes fra oversætteranmodningen og sendes videre med deres kildeværdi bevaret."
+			}
+		},
+		"outputs": {
+			"heading": "Output",
+			"caption": "Output",
+			"items": {
+				"summaryTitle": "Kort PR-titelvenlig opsummering, f.eks. {summaryExample}.",
+				"summaryDetails": "Markdown-resumé, der passer til en PR-krop eller joboversigt.",
+				"hasNewTranslations": "{trueString} hvornår en eller flere nye oversættelser blev genereret."
+			}
+		}
 	},
 	"formats": {
 		"title": "Filformater",
 		"eyebrow": "Reference",
 		"heroTitle": "Understøttede filformater",
-		"lede": "Seks rundtrippbare ressourceformater. Handlingen læser hver kilde-lokationsfil, oversætter værdierne og skriver en søskende pr. mållokation."
+		"lede": "Seks rundtrippbare ressourceformater. Handlingen læser hver kilde-lokationsfil, oversætter værdierne og skriver en søskende pr. mållokation.",
+		"namingConvention": "Alle filer bruger den {namingConvention} navngivningskonvention.",
+		"learnMore": "Læs mere",
+		"items": {
+			"resx": {
+				"blurb": "XML-baserede .NET-ressourcefiler. Oversætter den indre tekst i hver {dataValue} node, bevarer kommentarer og metadata.",
+				"specLabel": "Microsoft Learn — Ressourcer i .resx-filer"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 dokumenter. Oversætter hver {source} og skriver resultatet til den tilsvarende {target}, hvor {trgLang} sættes for lokaliteten.",
+				"specLabel": "OASIS XLIFF 2.0-specifikation"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object-filer. Oversætter hver {msgid} / {msgidPlural} til {msgstr} / {msgstrPlural} former.",
+				"specLabel": "GNU gettext — PO-filformat"
+			},
+			"json": {
+				"blurb": "Vilkårlige JSON-filer. Indlejrede objekter flades ud med {delimiter} afgrænser til translation, hvorefter de genindlejres ved output. Prikkede tangenter ({dottedKey}) bevares ordret.",
+				"specLabel": "JSON-specifikation (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Simple {keyValue}-filer (Win32-stil INI eller en hvilken som helst flad konfiguration). Sektionsoverskrifter og kommentarer bevares.",
+				"specLabel": "INI-filformat på Wikipedia"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI-tekstressourcer — flade {keyValue} par, der bruges som tekstlig ledsager til {resx}.",
+				"specLabel": "Microsoft MUI oversigt"
+			}
+		},
+		"roundTrip": {
+			"heading": "Retur-til-retur-garantier",
+			"body": "Testsuiten verificerer byte-for-byte roundtripping for repræsentative fiksturer i alle formater. Hvis en formatfejl bryder rundturen i din kodebase, så {issueLink} venligst med et minimalt eksempel.",
+			"issueLinkLabel": "Åbn et problem"
+		}
 	},
 	"recipes": {
 		"title": "Opskrifter",
 		"eyebrow": "Kogebog",
-		"lede": "Almindelige mønstre til forsendelsesoversættelser: monorepos, ordlister, brugerdefinerede kategorier, prøvekørsler og tonekontrol."
+		"lede": "Almindelige mønstre til forsendelsesoversættelser: monorepos, ordlister, brugerdefinerede kategorier, prøvekørsler og tonekontrol.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Åbn en pull request efter hvert gennemløb"
+			},
+			"monorepo": {
+				"heading": "Monorepos: scope-oversættelse pr. pakke"
+			},
+			"glossary": {
+				"heading": "Ordliste for mærkenavne og produkttermer",
+				"intro": "Læg en {configPath} i repoet:",
+				"afterLabel": "Efter",
+				"body": "Ordlistetermer anvendes {after} oversættelse, så det maskinoversatte output bevarer dit foretrukne branding, selv når modellen har skiftet det ud med et synonym."
+			},
+			"customCategory": {
+				"heading": "Kategori for brugerdefineret oversætter (branche / domæne)",
+				"body": "Træn en Azure {customTranslatorLink}-kategori på et korpus, der fanger dit branchevokabular og tone (jura, medicin, marketing, intern ingeniørvidenskab osv.), og bestod dens ID via {categoryId}. Dette er den stærkeste tonehåndtag, Azure tilbyder."
+			},
+			"tone": {
+				"heading": "Tonekontrol + streng fallback",
+				"body": "Kombinér en brugerdefineret oversætter {categoryId} med {profanityAction} og {allowFallbackFalse} for at sikre en ensartet stemme og fejle arbejdsgangen, hvis den valgte kategori ikke har en udrulning til et af dine målsteder."
+			},
+			"dryRun": {
+				"heading": "Kør det grundigt, før du tænder for arbejdsgangen",
+				"body": "Handlingen udsender stadig resumé-output og et trinoversigt, men der skrives ingen filer. Kombiner med {failOnErrorFalse} for at fremhæve hvert problem som en advarsel, mens du itererer."
+			}
+		}
 	},
 	"faq": {
 		"title": "FAQ",
 		"eyebrow": "Hjælp",
 		"heroTitle": "Ofte stillede spørgsmål",
-		"lede": "Hurtige svar på de spørgsmål, der oftest opstår, når man tager handlingen i brug."
+		"lede": "Hurtige svar på de spørgsmål, der oftest opstår, når man tager handlingen i brug.",
+		"questions": {
+			"azure": {
+				"heading": "Hvordan kommunikerer handlingen med Azure?",
+				"body": "Gennem Microsofts officielle {azureSdkLink} SDK, lagt ovenpå {corePipelineLink}. Det giver dig automatiske genprøvelser på {statusCodes}, indtastede anmodnings- og svarmodeller samt godkendelsesheader-håndtering gratis — alt det, der tidligere var et håndrullet {axios}-opkald. Den offentlige handlingsflade (inputs, outputs, filoutputs) er uændret."
+			},
+			"tone": {
+				"heading": "Hvorfor er oversættelser nogle gange off-brand eller ude af tone?",
+				"body": "Maskinoversættelse er som standard en generel model. Tre knapper hjælper: en {glossaryLink} til hårde overstyringer, en {customTranslatorLink} til finjusterede modeller, der er trænet på din tone og dit ordforråd, og {profanityAction} til at slette eller markere bandeord.",
+				"glossaryLinkLabel": "Ordliste",
+				"customTranslatorLinkLabel": "Kategori for brugerdefineret oversætter"
+			},
+			"duplicateFiles": {
+				"heading": "Hvordan undgår jeg at oversætte den samme fil to gange?",
+				"body": "Udløs arbejdsgangen på {paths}, der kun matcher dine kilde-lokalitetsfiler, f.eks. {sourceGlob}. Handlingen inkluderer også sit eget filfilter per trigger, når {githubToken} er sat, hvilket indsnævrer arbejdet til filer i den seneste commit."
+			},
+			"offline": {
+				"heading": "Kan jeg køre handlingen offline?",
+				"body": "Ikke helt — Azure AI Translator er runtime-hjernen. Men du kan køre med {dryRunTrue} for at validere parsing og konfiguration uden at lave HTTP-anmodninger om oversættelse."
+			},
+			"node": {
+				"heading": "Hvilken Node-version kører handlingen på?",
+				"body": "v3 kører på GitHub Actions {nodeRuntime} runtime. Den medfølgende JavaScript er kompatibel med Node 20, 22 og 24, som CI tester."
+			},
+			"dist": {
+				"heading": "Hvor kommer den samlede {distDir} fra?",
+				"body": "GitHub JS-handlinger sender deres kompilerede JS i repositoriet. Den {distBuild} arbejdsgang genopbygger den efter hver merge for at {mainBranch}, om den ville drifte, og blokerer {distCheck} PR'er, der ville lande forældet output."
+			},
+			"formats": {
+				"heading": "Hvad med andre ressourceformater?",
+				"body": "I dag: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} hvis du har brug for en anden — parsergrænsefladen er lille (parse → kort → anvende oversættelser → format), og bidrag er velkomne.",
+				"issueLinkLabel": "Åbn et problem"
+			}
+		}
 	},
 	"translations": {
 		"title": "Oversættelser",
 		"eyebrow": "Fremvisning",
 		"heroTitle": "Hej på alle sprog",
-		"locales": "Lokaliteter",
-		"currentlyRendered": "Nuværende gengivet",
-		"complete": "Færdig!",
-		"pendingPrefix": "Afventer næste Translate-Docs-kørsel.",
+		"lede": "Denne side er oversat af Resource Translator selv, ved hvert push til main, til alle sprog, som Azure AI Translator understøtter.",
+		"localeCountLabel": "{count} lokaliteter",
+		"statusComplete": "{translatedCount} er i øjeblikket gengivet — komplet!",
+		"statusPending": "{translatedCount} renderet i øjeblikket — {pendingCount} venter på næste {workflowName} gennemspilning.",
 		"viewWorkflowRuns": "Se arbejdsgange kørende",
 		"filter": "Filter",
 		"filterPlaceholder": "Søg efter sprog, kode eller modersmål...",
 		"source": "Kilde",
 		"machineTranslations": "Maskinoversættelser",
-		"translationPending": "Oversættelse afventer — åbn et translate-docs-run.",
+		"translationPending": "Oversættelse afventer — åbn et {workflowName} run.",
 		"noLocales": "Ingen lokaliteter matcher det filter.",
-		"howItWorks": "Sådan fungerer det"
+		"howItWorks": {
+			"heading": "Sådan fungerer det",
+			"thisActionLabel": "netop denne handling",
+			"steps": {
+				"source": "Den engelske kildefil findes på {messagesPath}.",
+				"workflow": "Skubber der rører ved det, affyrer {workflowLink}, som løber {thisAction} mod sig selv.",
+				"fanOut": "Handlingen spredes ud til alle Azure AI Translator-understøttede lokaliteter (konfigureret i {configPath}) og skriver en søskende-{messagesLocaleJson} pr. mål.",
+				"pullRequest": "En pull request åbnes med de nye oversættelser. Når man slår den sammen, genudgives denne side med udfyldte kort."
+			}
+		},
+		"poweredBy": "Drevet af Resource Translator og Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Bidrag",
 		"eyebrow": "Open source",
-		"lede": "Fejlrapporter, funktionsanmodninger og pull requests er alle velkomne. Handlingen er lille nok til at være venlig over for førstegangsbidragydere."
+		"lede": "Fejlrapporter, funktionsanmodninger og pull requests er alle velkomne. Handlingen er lille nok til at være venlig over for førstegangsbidragydere.",
+		"localDevelopment": {
+			"heading": "Lokal udvikling"
+		},
+		"addingParser": {
+			"heading": "Tilføjelse af en parser",
+			"steps": {
+				"fixture": "Tilføj en lampe under {testDataDir}.",
+				"implement": "Implementér {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Registrer den i {factoryFile}.",
+				"extension": "Tilføj filendelsen til {translationFileSchemes} i {finderFile}.",
+				"tests": "Skriv rundrejsetests for parse → format og anvend Translations."
+			}
+		},
+		"coverage": {
+			"heading": "Dækningsgrænser",
+			"body": "Jest-konfigurationen håndhæver minimumsdækning. Ny kode skal holde udsagnene + linjers tærsklen over 78% og funktionerne over 90%. Tilføj armaturer og tests sammen med din ændring."
+		},
+		"docsSite": {
+			"heading": "Dokumentationsside",
+			"body": "{docsDir}-mappen er et Astro 6 + Tailwind v4-projekt. Kør {npmInstall} der én gang, og {npmRunDev} så for lokal forhåndsvisning. Den {pagesWorkflow} arbejdsgang sender dokumenter til GitHub Pages ved hver sammenfletning."
+		}
 	},
 	"changelog": {
 		"title": "Skifteliste",
 		"eyebrow": "Historie",
-		"lede": "Overordnet resumé af udgivelser. Den kanoniske, autoritative ændringslog findes i CHANGELOG.md i arkivet."
+		"lede": "Overordnet resumé af udgivelser. Den kanoniske, autoritative ændringslog findes i CHANGELOG.md i arkivet.",
+		"fullRecord": "Se {changelogLink} for hele protokollen.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "V3 (under udvikling)",
+			"labels": {
+				"breaking": "BRUD",
+				"resilience": "Robusthed:",
+				"placeholderProtection": "Pladsholderbeskyttelse:",
+				"perKeyOptOut": "Afmeld per nøgle:",
+				"docsAccessibility": "Docs tilgængelighed:",
+				"inlineCodeStyling": "Inline kode-styling:"
+			},
+			"issueLabels": {
+				"closes46": "Lukker #46.",
+				"tightens16": "Strammer #16.",
+				"closes35": "Lukker #35."
+			},
+			"items": {
+				"runtime": "Rykket op til {nodeRuntime} runtime ({breaking}).",
+				"newInputs": "Nye indgange: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError} samt avancerede oversætterknapper {textType}, {profanityAction}, {profanityMarker} og {allowFallback}.",
+				"sourceLocale": "Kildestedet bliver nu også videresendt til Oversætteren som {fromLocale}, så korte strenge ikke automatisk opdages.",
+				"resilience": "{label} automatisk genprøvning på transiente HTTP-svar ({statusCodes}), der respekterer Azures {retryAfter}-header — falder tilbage på jitteret eksponentiel backoff, når det mangler. Justerbar via {maxRetries} og {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} tokens som {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} og HTML-entiteter pakkes ind i sentinels før oversættelse og gendannes bagefter, så Oversætteren stopper med at forvanske i18next/Mustache/Handlebars/.NET/printf pladsholdere. Skift via {protectPlaceholders}; Udstræk med {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} nye {noTranslatePatterns} input dropper matchende nøgler helt fra oversætteranmodningen (bevarer kildeværdier for brandnavne, fejlkoder osv.). Matcher glob-mønstre mod parser-niveau nøgler (JSON prikket sti, RESX {resxName}, PO {poMsgid}, XLIFF enhed {xliffId}, INI/restext-nøgle). {issue}",
+				"repoConfig": "Repo-niveau konfiguration via {configPath}.",
+				"glossary": "Ordlistestøtte, trinoversigt via {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM-revision ren (0 sårbarheder).",
+				"docsSite": "Astro + Tailwind v4 dokumentationsside med visningsovergange og Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA-bestået. Logoglyffer konverteres til stier, så de ikke længere fejler farvekontrast mod gradientstop, den flydende {backToTop}-knap bruger {inert}, mens den er skjult (i stedet for en {ariaHidden} knap, der gjorde den tabable), {formatsAstro} sektioner kolliderer ikke længere med deres automatisk genererede overskrifts-ID'er, tre lokalkort viser nu BCP-47-gyldige {lang}-attributter ({nya}, {lug}, {run}), duplikerede {documentation} landemærker skilles mellem sidebjælke og footer,  og hver datatabel på {inputs}/{configuration} leveres med en skærmlæser-tekst.",
+				"inlineCode": "{label} Docs {codeElement} prosa bærer nu den varme/ravfarvede accent — adskilt fra brand→accentpaletten, der bruges til links og overskrifter.",
+				"automation": "Dependabot auto-merge, CodeQL-scanning, CI-matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Se git-historik."
+		}
 	}
 }

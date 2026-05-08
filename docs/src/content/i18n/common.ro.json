@@ -15,7 +15,13 @@
 		"searchPlaceholder": "Caută documentație...",
 		"toggleTheme": "Temă de comutare",
 		"githubRepository": "Depozitul GitHub",
-		"language": "Limbă"
+		"language": "Limbă",
+		"languageTitle": "Alege-ți limba",
+		"languageDescription": "Schimbă aceeași pagină într-o altă limbă.",
+		"languageSearch": "Limbaje de filtrare",
+		"languageSearchPlaceholder": "Caută limbi sau coduri locale...",
+		"languageNoResults": "Nicio limbă nu se potrivește cu acel filtru.",
+		"closeLanguage": "Selector de limbi apropiate"
 	},
 	"search": {
 		"title": "Documentația căutării",

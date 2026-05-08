@@ -18,18 +18,26 @@
 			"node": "Ẹ Máa Ṣe Iṣẹ́ Ìsìn Yín , 20 / 8 / 8",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "Gba ọrọ",
+			"json": "Oba T",
+			"ini": "{keyValue}",
+			"restext": "Ọrọ MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Awọn ọna kika faili mẹfa",
-				"body": "Awọn irin-ajo yika-.resx, .xliff, .po, .json, .ini, ati .restext pẹlu ọna kika iduroṣinṣin baiti."
+				"body": "Awọn irin-ajo yika-{resx}, {xliff}, {po}, {json}, {ini}, ati {restext} pẹlu ọna kika iduroṣinṣin baiti."
 			},
 			"config": {
 				"title": "Repo-ipele config",
-				"body": "Fi .github/resource-translator.yml silẹ fun pẹlu awọn globs, awọn glossaries, ati Awọn ẹka Onitumọ Aṣa."
+				"body": "Ju faili {configPath} silẹ fun pẹlu awọn globs, awọn glossaries, ati awọn ẹka onitumọ aṣa."
 			},
 			"glossary": {
 				"title": "Glossary-mọ",
-				"body": "Titiipa awọn orukọ iyasọtọ ati awọn ofin ọja pẹlu regex aala ọrọ ọlọgbọn ti o mu C ++, .NET, ati awọn ọrẹ."
+				"body": "Tii awọn orukọ iyasọtọ ati awọn ofin ọja pẹlu regex aala ọrọ ọlọgbọn ti o mu awọn {cpp}, {dotnet}, ati awọn ọrẹ."
 			},
 			"dryRun": {
 				"title": "Gbẹ-ṣiṣe + rirọ-kuna",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Awọn abajade ọrẹ PR",
-				"body": "summary-title, summary-details, and has-new-translations slot directly into create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails}, ati {hasNewTranslations} iho taara sinu ṣẹda-fa-ibeere."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "Itumọ ti lori @azure-rest / ai-translation-text + @azure / mojuto-isinmi-opo gigun — laifọwọyi retries on 408/429/5xx, ko si ọwọ-yiyi HTTP. esbuild-bundled, audit-clean."
+				"body": "Itumọ ti lori {azureSdk} + {corePipeline} — laifọwọyi retries lori {statusCodes}, ko si ọwọ-yiyi HTTP. {esbuild}-bundled, audit-clean."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Ṣiṣe-iṣẹ ṣiṣan",
+			"titlePrefix": "Daakọ. Lẹẹmọ.",
+			"titleAccent": "Itúmọ̀.",
+			"body": "Awọn aṣiri mẹta, awọn ila mẹrin, ati pe repo rẹ jẹ multilingual lori titari ti o tẹle.",
+			"setupLink": "Rin nipasẹ eto kikun"
+		},
+		"cta": {
+			"title": "Ṣetan lati ṣe agbekalẹ lori autopilot?",
+			"body": "Bọtini Onitumọ Azure AI kan, faili iṣan-iṣẹ kan. Onitumọ orisun n ṣakoso awọn iyokù.",
+			"button": "Bẹrẹ"
 		}
 	},
 	"getting-started": {
 		"title": "Bẹrẹ",
 		"eyebrow": "Ṣeto",
-		"lede": "Ṣafikun faili iṣan-iṣẹ kan, tọka si awọn iwe-ẹri Azure AI Translator rẹ, ati iṣe naa — ti a kọ lori SDK osise ti Microsoft @azure-rest / ai-translation-text — yoo ṣe ọlọjẹ repo fun awọn faili orisun-ede ati gbejade awọn arakunrin ti a tumọ si.",
+		"lede": "Ṣafikun faili iṣan-iṣẹ kan, tọka si awọn iwe-ẹri Azure AI Translator rẹ, ati pe iṣe naa yoo ṣe ọlọjẹ repo fun awọn faili orisun-ede ati gbejade awọn arakunrin ti a tumọ si.",
 		"steps": {
 			"provision": {
 				"title": "Pese ohun elo Azure AI Translator",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Ṣafikun iṣẹ naa",
-				"body": "Ṣẹda .github/workflows/translate.yml:"
+				"body": "Ṣẹda {workflowPath}:"
 			},
 			"resource": {
 				"title": "Ṣe faili orisun orisun kan",
-				"body": "Awọn faili orisun lo orukọ naa. <sourceLocale>. <ext> Apejọ. Fun apẹẹrẹ Greetings.en.resx di Greetings.fr.resx, Greetings.de.resx, ati bẹbẹ lọ lẹhin ṣiṣe."
+				"body": "Awọn faili orisun lo apejọ {namingConvention} naa. Fun apẹẹrẹ, {sourceFile} di {frFile}, {deFile}, ati bẹbẹ lọ lẹhin ṣiṣe."
 			},
 			"output": {
 				"title": "Ṣayẹwo awọn o wu",
-				"body": "Lọgan ti iṣan-iṣẹ ba pari, iṣe naa ṣafihan awọn abajade mẹta ti o le ṣe sinu apejuwe PR kan: akopọ-akọle, awọn alaye, ati awọn itumọ tuntun. O tun kọ akopọ Markdown sinu oju-iwe iṣẹ nipasẹ core.summary."
+				"body": "Lọgan ti iṣan-iṣẹ ba pari, iṣe naa ṣafihan awọn abajade mẹta ti o le ṣe sinu apejuwe PR kan: {summaryTitle}, {summaryDetails}, ati {hasNewTranslations}. O tun kọ akopọ Markdown sinu oju-iwe iṣẹ nipasẹ {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Awọn igbesẹ ti o tẹle",
-			"configuration": "Ṣe atunto awọn aiyipada ipele repo pẹlu .github/resource-translator.yml.",
+			"configuration": "Ṣe atunto awọn aiṣedeede ipele repo pẹlu {configPath}.",
 			"recipes": "Wo awọn ilana fun awọn monorepos, awọn glossaries aṣa, ati awọn ẹka Onitumọ Aṣa."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Iṣeto ni",
 		"eyebrow": "YAML",
 		"heroTitle": "Iṣeto ni ibi ipamọ",
-		"lede": "Ṣe afihan awọn aiyipada lẹẹkan ni .github/resource-translator.yml ki o jẹ ki gbogbo iṣẹ ṣiṣe jogun wọn. Awọn igbewọle igbese nigbagbogbo bori nigbati awọn mejeeji ba pese."
+		"lede": "Express defaults lẹẹkan ninu awọn ibi ipamọ config faili ki o si jẹ ki gbogbo workflow jogun wọn. Awọn igbewọle igbese nigbagbogbo bori nigbati awọn mejeeji ba pese.",
+		"intro": "Ṣe àgbékalẹ̀ ọ̀nà náà pẹ̀lú àtúnṣe {configPath} tí o bá nílò ààyè tí kì í ṣe àyípadà.",
+		"schemaHeading": "Sikematiki",
+		"fieldReference": {
+			"heading": "Itọkasi aaye",
+			"caption": "Itọkasi aaye iṣeto ni",
+			"columns": {
+				"field": "Aaye",
+				"type": "Iru",
+				"notes": "Awọn akọsilẹ"
+			},
+			"fields": {
+				"sourceLocale": "Ṣubu pada si {sourceLocale} titẹ sii ti o ko ba ṣeto. Pẹlupẹlu, o ti firanṣẹ si Onitumọ bi {fromLocale} nitorinaa awọn okun kukuru ko ṣe awari laifọwọyi.",
+				"toLocales": "Ti o ba ti",
+				"includeExclude": "Awọn ilana Glob ti a ṣe ayẹwo lodi si awọn ọna ibatan pipe ati aaye iṣẹ.",
+				"glossary": "Post-translation term overrides. Ọrọ-aala mọ (awọn ọwọ {cpp}, {dotnet}).",
+				"categoryId": "Ẹka {customTranslatorLink} Azure — ile-iṣẹ rẹ / bọtini ašẹ rẹ (ofin, iṣoogun, ohun orin titaja, ati bẹbẹ lọ). Ti a firanṣẹ bi {categoryQuery}.",
+				"textType": "Ìàêñèìàëüíûé ìàêñèìàëüíûé {plain}. Lo {html} nikan ti awọn iye orisun rẹ ba ni awọn ajẹkù HTML gidi.",
+				"profanityAction": "Bawo ni a ṣe le ṣe itumọ awọn itumọ ti o ni",
+				"profanityMarker": "Nikan ti o ni itumọ nigbati {profanityAction} {marked}.",
+				"allowFallback": "Ṣeto lati {false} lati kuna itumọ nigbati {categoryId} rẹ ko ni imuṣiṣẹ fun agbegbe ibi-afẹde dipo ki o ṣubu pada si awoṣe gbogbogbo.",
+				"apiVersion": "Onitumọ REST API version. Ìàêñèìàëüíûé ìàêñèìàëüíûé {version}.",
+				"maxRetries": "Awọn igbiyanju atunyẹwo ti o pọju lori awọn idahun HTTP ti o kọja ({statusCodes}). Ìàêñèìàëüíûé ìàêñèìàëüíûé {defaultRetries}. Lapapọ awọn ipe HTTP fun ibeere kọọkan jẹ {totalCalls}.",
+				"retryBackoffMs": "fìlà (ms) lórí gbogbo oorun ẹ̀yìn kan. Ìàêñèìàëüíûé ìàêñèìàëüíûé {defaultBackoff}. Akọle {retryAfter} Azure ni a bọwọ fun gangan nigbati o wa; bibẹkọ ti jittered exponential backoff ti wa ni lo, capped ni yi iye.",
+				"protectPlaceholders": "Ìàêñèìàëüíûé ìàêñèìàëüíûé {true}. Nigbati o ba wa lori, awọn ami bii {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ati awọn nkan HTML ni a rọpo pẹlu awọn ami sentinel ṣaaju itumọ ati mu pada lẹhinna. Pa nikan nigbati orisun ba ni awọn itumọ ọrọ ti o ni ilọsiwaju.",
+				"customPlaceholderPatterns": "Afikun regex elo (lai delimiters) fi kun si awọn aiyipada placeholder ṣeto, e.g. {angleToken} fun aṣa àmi sintasi. Awọn regexes ti ko wulo ni a foju silẹ.",
+				"noTranslatePatterns": "Awọn ilana Glob ti o baamu lodi si awọn bọtini ipele parser (ọna aami JSON, RESX {resxName}, PO {poMsgid}, XLIFF kuro {xliffId}, INI / bọtini restext). Awọn bọtini ti o baamu ni a fi silẹ lati ibeere naa ki o kọja pẹlu iye orisun wọn ti a fipamọ."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Loading ibere",
+			"steps": {
+				"actionInputs": "Iṣe naa ka awọn igbewọle ti o han gbangba lati iṣẹ ṣiṣe.",
+				"config": "O ṣe ikojọpọ YAML config lati {configPath}.",
+				"precedence": "Fun aaye kọọkan ti a pin, titẹ sii bori; bibẹkọ ti awọn YAML iye ti wa ni lo.",
+				"validation": "Awọn iye ti a dapọ ni a fọwọsi. Awọn enums ti ko wulo (fun apẹẹrẹ {invalidEnum}) fa iṣe naa kuna ni kiakia pẹlu ifiranṣẹ ti o han gbangba."
+			}
+		},
+		"tone": {
+			"heading": "Ohun orin ati ile-iṣẹ, ni awọn ofin ti o han gbangba",
+			"body": "Azure AI Translator v3 API ko ni bọtini ohun orin kan. Awọn eto meji papọ lati fun ọ ni ọpọlọpọ awọn iṣakoso kanna:",
+			"industryLabel": "Ile-iṣẹ / ašẹ:",
+			"industryBody": "Lo {categoryId} lati tọka si ẹka Azure {customTranslatorLink} ti o ni ikẹkọ lori corpus tirẹ — ofin, imọ-ẹrọ, iṣoogun, titaja, tabi ohunkohun miiran. Eyi ni lefa ti o lagbara julọ fun ohun orin, ohun iyasọtọ, ati fokabulari",
+			"surfaceLabel": "Ọrọ oju-aye:",
+			"surfaceBody": "Lo {glossaryLink} lati tii awọn orukọ iyasọtọ ati awọn ofin ọja ni otitọ, ati lo {profanityAction} lati fọ awọn ọrọ alailẹgbẹ nigbati o ba fojusi agbegbe fun awọn olugbo ọdọ.",
+			"glossaryLinkLabel": "Glossary"
+		}
 	},
 	"inputs": {
 		"title": "Awọn igbewọle ati awọn abajade",
 		"eyebrow": "Itọkasi",
-		"lede": "Gbogbo titẹ sii ni a tun gba ninu faili ayanfẹ repo. Nigbati awọn mejeeji ba ṣeto, igbese igbese naa bori."
+		"lede": "Gbogbo titẹ sii ni a tun gba ninu faili ayanfẹ repo. Nigbati awọn mejeeji ba ṣeto, igbese igbese naa bori.",
+		"configurationIntro": "Wo {configurationLink} fun eto YAML ati aṣẹ ikojọpọ.",
+		"configurationLinkLabel": "Iṣeto ni",
+		"columns": {
+			"name": "Orukọ",
+			"default": "Aiyipada",
+			"description": "Apejuwe"
+		},
+		"defaults": {
+			"none": "Ko si",
+			"allSupported": "Gbogbo wọn ni atilẹyin",
+			"translatorDefaultTrue": "otitọ (Onitumọ aiyipada)"
+		},
+		"requiredInputs": {
+			"heading": "Awọn igbewọle ti a beere",
+			"caption": "Awọn igbewọle ti a beere",
+			"items": {
+				"sourceLocale": "Orisun agbegbe (fun apẹẹrẹ {en}) ti a lo lati wa awọn faili orisun bii {sourceGlob}. Pẹlupẹlu, o ti wa ni ti o ti wa ni {fromLocale} ti o ti wa ni",
+				"subscriptionKey": "Bọtini ṣiṣe alabapin Azure AI Translator. Gba nipasẹ {secrets}.",
+				"endpoint": "URL opin onitumọ, fun apẹẹrẹ {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Awọn igbewọle aṣayan ti o wọpọ",
+			"caption": "Awọn igbewọle aṣayan ti o wọpọ",
+			"items": {
+				"region": "Onitumọ orisun agbegbe (omit fun awọn orisun agbaye).",
+				"toLocales": "Awọn agbegbe ti o yẹ ki o tumọ si. Gba JSON array ({jsonArray}) tabi awọn iye ti o ya sọtọ koma.",
+				"include": "Awọn ilana glob ti o ya sọtọ tuntun; Awọn faili ti o baamu nikan ni a tumọ si.",
+				"exclude": "Awọn ilana glob ti o ya sọtọ tuntun; Awọn faili ti o baamu ti wa ni fo (ti a lo lẹhin ti o fi sii).",
+				"configPath": "Ọna si faili atunto YAML (ibatan si gbongbo iṣẹ-iṣẹ).",
+				"dryRun": "Nígbà tí {true}, ṣe ìtumọ̀ kí o sì gbé àkópọ̀ jáde ṣùgbọ́n má ṣe kọ fáìlì.",
+				"failOnError": "Nigbati {true}, awọn aṣiṣe airotẹlẹ kuna iṣe naa; Â ýòîì {false} ìåäó ñîáîé."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Onitumọ beere awọn igbewọle",
+			"intro": "Awọn maapu wọnyi taara lori Azure AI Translator v3 ibeere sile. Gbogbo wọn jẹ aṣayan; awọn aiṣedeede Onitumọ waye nigbati o ba ko ṣeto.",
+			"caption": "Onitumọ beere awọn igbewọle",
+			"items": {
+				"categoryId": "Ẹka {customTranslatorLink} Azure — ile-iṣẹ / agbegbe / ohun orin bọtini. Ti o ba ti wa ni ti o ti wa ni ti o ti wa ni {categoryQuery} ti o ti wa ni ti o ti wa ni ti o ti wa ni",
+				"textType": "{plain} tabi {html}. Lo {html} nikan nigbati awọn ohun elo rẹ ba jẹ awọn ajẹkù HTML gidi.",
+				"profanityAction": "{noAction}, {marked}, tabi {deleted}. Ṣe afihan bi a ṣe le ṣe awọn itumọ ti o ni ibatan si awọn itumọ ti o ni ibatan si awọn itumọ ti o ni ibatan si awọn itumọ ti o ni ibatan si awọn i",
+				"profanityMarker": "{asterisk} tabi {tag}. Nikan ti o ba ti {profanityAction} ti wa ni {marked}.",
+				"allowFallback": "Nigbati o ba {false}, Onitumọ pada aṣiṣe dipo ki o ṣubu pada si eto gbogbogbo ti {categoryId} rẹ ko ba ni imuṣiṣẹ fun agbegbe ibi-afẹde kan.",
+				"apiVersion": "Onitumọ REST API version."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Resilience & placeholder Idaabobo",
+			"intro": "Awọn igbewọle wọnyi ṣakoso bi iṣe naa ṣe huwa nigbati Onitumọ ba fa ibeere rẹ ati bii o ṣe daabobo awọn ami ibi bi {mustache} tabi {indexZero} lati ni ipalara lakoko itumọ.",
+			"caption": "Resilience ati awọn igbewọle aabo placeholder",
+			"items": {
+				"maxRetries": "Awọn igbiyanju atunyẹwo ti o pọju lori awọn idahun HTTP ti o kọja ({statusCodes}). Lapapọ nọmba awọn ipe HTTP fun ibeere kọọkan jẹ {totalCalls}.",
+				"retryBackoffMs": "Fila (ni milliseconds) lori eyikeyi oorun ẹhin kan. Iṣe naa bọwọ fun akọle idahun {retryAfter} Azure gangan nigbati o wa; bibẹkọ ti o nlo jittered exponential backoff capped ni yi iye.",
+				"protectPlaceholders": "Nigbati o ba {true} (aiyipada), awọn aaye bii {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ati awọn nkan HTML ni a rọpo pẹlu awọn ami sentinel ṣaaju itumọ ati mu pada lẹhinna. Pa nikan nigbati orisun rẹ ba ni ọrọ ti o yẹ ki o tumọ si.",
+				"customPlaceholderPatterns": "Newline-sọtọ regexes (lai delimiters) fi kun si awọn aiyipada placeholder ṣeto, e.g. {angleToken} fun aṣa àmi sintasi.",
+				"noTranslatePatterns": "Awọn ilana glob ti o ya sọtọ tuntun ti o baamu lodi si awọn bọtini ipele parser (ọna aami JSON, RESX {resxName}, PO {poMsgid}, XLIFF kuro {xliffId}, INI / bọtini restext). Awọn bọtini ti o baamu ni a fi silẹ lati ibeere Onitumọ ati kọja pẹlu iye orisun wọn ti a fipamọ."
+			}
+		},
+		"outputs": {
+			"heading": "Awọn abajade",
+			"caption": "Awọn abajade",
+			"items": {
+				"summaryTitle": "Kukuru PR-akọle-ore akopọ, fun apẹẹrẹ {summaryExample}.",
+				"summaryDetails": "Markdown akopọ ti o dara fun ara PR tabi akopọ iṣẹ.",
+				"hasNewTranslations": "{trueString} nigbati ọkan tabi diẹ ẹ sii awọn itumọ titun ti wa ni ipilẹṣẹ."
+			}
+		}
 	},
 	"formats": {
 		"title": "Awọn ọna kika faili",
 		"eyebrow": "Itọkasi",
 		"heroTitle": "Awọn ọna kika faili ti o ni atilẹyin",
-		"lede": "Awọn ọna kika orisun iyipo-trippable mẹfa. Iṣe naa ka faili orisun-agbegbe kọọkan, tumọ awọn iye, ati kọ arakunrin kan fun agbegbe ibi-afẹde."
+		"lede": "Awọn ọna kika orisun iyipo-trippable mẹfa. Iṣe naa ka faili orisun-agbegbe kọọkan, tumọ awọn iye, ati kọ arakunrin kan fun agbegbe ibi-afẹde.",
+		"namingConvention": "Gbogbo awọn faili lo awọn {namingConvention} orukọ adehun.",
+		"learnMore": "Kọ́ ẹ̀kọ́ púpọ̀ síi",
+		"items": {
+			"resx": {
+				"blurb": "Awọn faili orisun .NET ti o da lori XML. Ṣe itumọ ọrọ inu ti apade {dataValue} kọọkan, fifipamọ awọn asọye ati metadata.",
+				"specLabel": "Microsoft Kọ ẹkọ — Awọn orisun ni awọn faili .resx"
+			},
+			"xliff": {
+				"blurb": "Awọn iwe aṣẹ OASIS XLIFF 2.0. Túmọ kọọkan {source} ki o si kọ awọn esi sinu awọn ti o baamu {target}, ṣeto {trgLang} fun awọn agbegbe.",
+				"specLabel": "OASIS XLIFF 2.0 sipesifikesonu"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object awọn faili. Túmọ kọọkan {msgid} / {msgidPlural} sinu {msgstr} / {msgstrPlural} fọọmu.",
+				"specLabel": "GNU gettext — PO file format"
+			},
+			"json": {
+				"blurb": "Awọn faili JSON lainidii. Nested ohun ti wa ni flattened pẹlu awọn {delimiter} delimiter fun itumọ, ki o si tun-nested lori o wu. Awọn bọtini aami ({dottedKey}) ti wa ni fipamọ verbatim.",
+				"specLabel": "JSON sipesifikesonu (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Awọn faili {keyValue} ti o rọrun (Win32-ara INI tabi eyikeyi alapin config). Awọn akọle apakan ati awọn asọye ti wa ni fipamọ.",
+				"specLabel": "Ọna kika faili INI lori Wikipedia"
+			},
+			"restext": {
+				"blurb": "Awọn orisun ọrọ Microsoft MUI — awọn orisii {keyValue} alapin ti a lo bi alabaṣiṣẹpọ ọrọ si {resx}.",
+				"specLabel": "Microsoft MUI akopọ"
+			}
+		},
+		"roundTrip": {
+			"heading": "Awọn iṣeduro irin-ajo yika-irin ajo",
+			"body": "Suite idanwo naa jẹrisi baiti-fun-baiti yika-tripping fun awọn aṣoju aṣoju ti gbogbo ọna kika. Ti o ba ti a kika quirk fọ yika-tripping ninu rẹ codebase, jọwọ {issueLink} pẹlu kan kekere ayẹwo.",
+			"issueLinkLabel": "Ṣii ọrọ kan"
+		}
 	},
 	"recipes": {
 		"title": "Awọn ilana",
 		"eyebrow": "Cookbook",
-		"lede": "Awọn ilana ti o wọpọ fun awọn itumọ gbigbe: awọn monorepos, awọn glossaries, awọn ẹka aṣa, awọn gbigbẹ, ati iṣakoso ohun orin."
+		"lede": "Awọn ilana ti o wọpọ fun awọn itumọ gbigbe: awọn monorepos, awọn glossaries, awọn ẹka aṣa, awọn gbigbẹ, ati iṣakoso ohun orin.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Ṣí ìbéèrè fà kan lẹ́yìn ìsáré kọ̀ọ̀kan"
+			},
+			"monorepo": {
+				"heading": "Monorepos: itumọ dopin fun package"
+			},
+			"glossary": {
+				"heading": "Glossary fun awọn orukọ iyasọtọ ati awọn ofin ọja",
+				"intro": "Fi {configPath} kan sinu repo:",
+				"afterLabel": "lẹhin",
+				"body": "Awọn ofin glossary ni a lo {after} itumọ, nitorinaa iṣelọpọ ti a tumọ ẹrọ n tọju ami iyasọtọ ayanfẹ rẹ paapaa nigbati awoṣe ba paarọ rẹ fun synonym kan."
+			},
+			"customCategory": {
+				"heading": "Aṣa Onitumọ ẹka (ile ise / ašẹ)",
+				"body": "Ṣe ikẹkọ ẹka {customTranslatorLink} Azure lori corpus kan ti o gba awọn gbolohun ọrọ ile-iṣẹ rẹ ati ohun orin (ofin, iṣoogun, titaja, imọ-ẹrọ inu, ati bẹbẹ lọ) ati kọja ID rẹ nipasẹ {categoryId}. Eyi ni ohun orin ti o lagbara julọ ti Azure nfunni."
+			},
+			"tone": {
+				"heading": "Ohun orin Iṣakoso + ti o muna fallback",
+				"body": "Darapọ {categoryId} onitumọ aṣa pẹlu {profanityAction} ati {allowFallbackFalse} lati fi ipa mu ohun ti o ni ibamu ati kuna iṣan-iṣẹ ti ẹka ti a yan ko ba ni imuṣiṣẹ fun ọkan ninu awọn agbegbe ibi-afẹde rẹ."
+			},
+			"dryRun": {
+				"heading": "Gbẹ ṣiṣe ṣaaju ki o to tan iṣẹ naa",
+				"body": "Ìgbésẹ̀ náà ṣì ń jáde ní àkópọ̀ àti àkópọ̀ ìgbésẹ̀ kan, ṣùgbọ́n kò sí fáìlì tí wọ́n kọ. Darapọ pẹlu {failOnErrorFalse} lati ṣafihan gbogbo ọrọ bi ikilọ lakoko ti o tẹle."
+			}
+		}
 	},
 	"faq": {
 		"title": "FAQ",
 		"eyebrow": "Ìrànlọ́wọ́",
 		"heroTitle": "Awọn ibeere ti a beere nigbagbogbo",
-		"lede": "Ìdáhùn kíákíá sí àwọn ìbéèrè tí ó máa ń wáyé ní ọ̀pọ̀lọpọ̀ ìgbà nígbà tí wọ́n bá ń ṣe ìgbésẹ̀ náà."
+		"lede": "Ìdáhùn kíákíá sí àwọn ìbéèrè tí ó máa ń wáyé ní ọ̀pọ̀lọpọ̀ ìgbà nígbà tí wọ́n bá ń ṣe ìgbésẹ̀ náà.",
+		"questions": {
+			"azure": {
+				"heading": "Bawo ni iṣe naa ṣe sọrọ si Azure?",
+				"body": "Nipasẹ Microsoft ká osise {azureSdkLink} SDK, fẹlẹfẹlẹ lori {corePipelineLink}. Iyẹn n gba ọ ni awọn atunyẹwo laifọwọyi lori {statusCodes}, ibeere ti a tẹ ati awọn awoṣe idahun, ati mimu akọsori ijẹrisi fun ọfẹ — ohun gbogbo ti o jẹ ipe {axios} ọwọ. Oju iṣe ti gbogbo eniyan (awọn igbewọle, awọn abajade, awọn abajade faili) ko yipada."
+			},
+			"tone": {
+				"heading": "Kini idi ti awọn itumọ nigbakan jẹ pipa-brand tabi pipa-ohun orin?",
+				"body": "Ïîýòîìó ýòîò ÷åëîâåê ìîåò áûòü íå ìåíåå ÷åì íà ýòîò ñ÷åò. Awọn bọtini mẹta ṣe iranlọwọ: {glossaryLink} fun awọn aiṣedeede igba lile, {customTranslatorLink} fun awọn awoṣe ti o dara julọ ti o ni ikẹkọ lori ohun orin ati fokabulari rẹ, ati {profanityAction} lati fọ tabi ṣe afihan awọn ọrọ alailẹgbẹ.",
+				"glossaryLinkLabel": "Glossary",
+				"customTranslatorLinkLabel": "Ẹ̀ka Onitumo Àṣà"
+			},
+			"duplicateFiles": {
+				"heading": "Báwo ni mo ṣe lè yẹra fún ìtúmọ̀ fáìlì kan náà lẹ́ẹ̀mejì?",
+				"body": "Ṣe okunkun iṣan-iṣẹ lori awọn {paths} ti o baamu awọn faili orisun-agbegbe rẹ nikan, fun apẹẹrẹ {sourceGlob}. Iṣe naa tun pẹlu àlẹmọ faili ti ara rẹ nigbati a ba ṣeto {githubToken}, dinku iṣẹ si awọn faili ni ipinnu tuntun."
+			},
+			"offline": {
+				"heading": "Ṣé mo lè ṣe ìgbésẹ̀ náà láìsí orí ayélujára?",
+				"body": "Kii ṣe gangan — Azure AI Translator jẹ ọpọlọ akoko. Ṣugbọn o le ṣiṣẹ pẹlu {dryRunTrue} lati jẹrisi parsing ati config laisi ṣiṣe eyikeyi awọn ibeere HTTP fun itumọ."
+			},
+			"node": {
+				"heading": "Ẹ̀yà Node wo ni ìgbésẹ̀ náà ń ṣiṣẹ́?",
+				"body": "v3 gbalaye lori GitHub Actions {nodeRuntime} runtime. JavaScript ti a kojọpọ ni ibamu pẹlu Node 20, 22, ati 24, eyiti o jẹ ohun ti awọn idanwo CI."
+			},
+			"dist": {
+				"heading": "Nibo ni awọn {distDir} ti o wa lati?",
+				"body": "Awọn iṣe GitHub JS firanṣẹ JS wọn ti a kojọpọ ni ibi ipamọ. Iṣan-iṣẹ {distBuild} ṣe atunkọ rẹ lẹhin gbogbo idapọ si {mainBranch} ti o ba jẹ pe yoo fise, ati pe o {distCheck} awọn bulọọki PR ti yoo de iṣelọpọ ti igba atijọ."
+			},
+			"formats": {
+				"heading": "Bawo ni nipa awọn ọna kika orisun miiran?",
+				"body": "Loni: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} ti o ba nilo miiran — wiwo parser jẹ kekere (parse → map → lo awọn itumọ → ọna kika) ati awọn ẹbun jẹ itẹwọgba.",
+				"issueLinkLabel": "Ṣí ọ̀rọ̀ kan"
+			}
+		}
 	},
 	"translations": {
 		"title": "Awọn itumọ",
 		"eyebrow": "Ifihan",
 		"heroTitle": "Bonjour à tous les langues",
-		"locales": "Awọn agbegbe",
-		"currentlyRendered": "Lọwọlọwọ ti a ṣe",
-		"complete": "Pari!",
-		"pendingPrefix": "Ti o ba ti o ba",
+		"lede": "Oju-iwe yii ni itumọ nipasẹ Onitumọ Orisun funrararẹ, lori gbogbo titari si akọkọ, si gbogbo ede ti Azure AI Translator ṣe atilẹyin.",
+		"localeCountLabel": "{count} awọn agbegbe",
+		"statusComplete": "{translatedCount} ti a ṣe lọwọlọwọ — pipe!",
+		"statusPending": "{translatedCount} lọwọlọwọ ti a ṣe — {pendingCount} titi de {workflowName} atẹle.",
 		"viewWorkflowRuns": "Wo ìṣiṣẹ́ ṣíṣẹ́",
 		"filter": "Àlẹmọ",
 		"filterPlaceholder": "Wa nipasẹ ede, koodu, tabi orukọ abinibi ...",
 		"source": "Orisun",
 		"machineTranslations": "Awọn itumọ ẹrọ",
-		"translationPending": "Translation pending — open a translate-docs run.",
+		"translationPending": "Translation duro — ṣii {workflowName} run.",
 		"noLocales": "Ko si awọn agbegbe ti o baamu àlẹmọ yẹn.",
-		"howItWorks": "Bawo ni eyi ṣe n ṣiṣẹ"
+		"howItWorks": {
+			"heading": "Bawo ni eyi ṣe n ṣiṣẹ",
+			"thisActionLabel": "Yi gan igbese",
+			"steps": {
+				"source": "Faili orisun Gẹẹsi n gbe ni {messagesPath}.",
+				"workflow": "Titari ifọwọkan yẹn tapa {workflowLink}, eyiti o nṣiṣẹ {thisAction} lodi si ara rẹ.",
+				"fanOut": "Iṣe naa jade si gbogbo agbegbe ti o ni atilẹyin Azure AI Translator (ti a tunto ni {configPath}) ati kọ arakunrin arakunrin kan {messagesLocaleJson} fun ibi-afẹde.",
+				"pullRequest": "A ṣe iṣeduro lati ṣe imudojuiwọn awọn itumọ tuntun ti o wa ni isalẹ. Didapọ rẹ tun ṣe atẹjade oju-iwe yii pẹlu awọn kaadi ti o kun."
+			}
+		},
+		"poweredBy": "Agbara nipasẹ Resource Translator ati Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Idasi",
 		"eyebrow": "Orisun ṣiṣi",
-		"lede": "Awọn ijabọ kokoro, awọn ibeere ẹya-ara, ati awọn ibeere fifa jẹ gbogbo itẹwọgba. Iṣe naa jẹ kekere to lati jẹ ọrẹ si awọn oluranlọwọ igba akọkọ."
+		"lede": "Awọn ijabọ kokoro, awọn ibeere ẹya-ara, ati awọn ibeere fifa jẹ gbogbo itẹwọgba. Iṣe naa jẹ kekere to lati jẹ ọrẹ si awọn oluranlọwọ igba akọkọ.",
+		"localDevelopment": {
+			"heading": "Idagbasoke agbegbe"
+		},
+		"addingParser": {
+			"heading": "Ṣafikun parser kan",
+			"steps": {
+				"fixture": "Ṣafikun imudojuiwọn kan labẹ {testDataDir}.",
+				"implement": "Ṣe {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Forukọsilẹ ni {factoryFile}.",
+				"extension": "Ṣafikun awọn faili itẹsiwaju lati {translationFileSchemes} ni {finderFile}.",
+				"tests": "Kọ yika-irin ajo igbeyewo fun parse → kika ki o si applyTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "Awọn ẹnu-ọna agbegbe",
+			"body": "Ïîýòîìó ýòîò ôèëüì íàõîäèëñÿ íà ýòîò ñ÷åò. Koodu tuntun gbọdọ tọju awọn alaye + awọn ila loke 78% ati awọn iṣẹ loke 90%. Ṣafikun awọn imudojuiwọn ati awọn idanwo lẹgbẹẹ iyipada rẹ."
+		},
+		"docsSite": {
+			"heading": "Aaye iwe aṣẹ",
+			"body": "Folda {docsDir} jẹ iṣẹ akanṣe Astro 6 + Tailwind v4. Ṣiṣe {npmInstall} nibẹ lẹẹkansi, lẹhinna {npmRunDev} fun awotẹlẹ agbegbe. Iṣẹ {pagesWorkflow} naa firanṣẹ awọn iwe aṣẹ si Awọn oju-iwe GitHub lori gbogbo idapọ."
+		}
 	},
 	"changelog": {
 		"title": "Awọn iyipada",
 		"eyebrow": "Itan-akọọlẹ",
-		"lede": "Akopọ ti o ga julọ ti awọn idasilẹ. Canonical, authoritative changelog ngbe ni CHANGELOG.md ninu ibi ipamọ."
+		"lede": "Akopọ ti o ga julọ ti awọn idasilẹ. Canonical, authoritative changelog ngbe ni CHANGELOG.md ninu ibi ipamọ.",
+		"fullRecord": "Wo {changelogLink} fun igbasilẹ kikun.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (ni idagbasoke)",
+			"labels": {
+				"breaking": "FIFỌ",
+				"resilience": "Resilience:",
+				"placeholderProtection": "Idaabobo Placeholder:",
+				"perKeyOptOut": "Per-bọtini ijade:",
+				"docsAccessibility": "Docs wiwọle:",
+				"inlineCodeStyling": "Apẹrẹ koodu inline:"
+			},
+			"issueLabels": {
+				"closes46": "Ñëàâà Áîãó # 46.",
+				"tightens16": "Tightens # 16.",
+				"closes35": "Ñëàâà Áîãó # 35."
+			},
+			"items": {
+				"runtime": "Îá ýòîì ñîîáùàåò ÑØÀ {nodeRuntime} ñî ññûëêîé íà {breaking}).",
+				"newInputs": "Awọn igbewọle tuntun: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, pẹlu awọn bọtini onitumọ to ti ni ilọsiwaju {textType}, {profanityAction}, {profanityMarker}, ati {allowFallback}.",
+				"sourceLocale": "Orisun agbegbe ti wa ni bayi tun firanṣẹ si Onitumọ bi {fromLocale} nitorinaa awọn okun kukuru ko ni idaniloju laifọwọyi.",
+				"resilience": "{label} atunyẹwo laifọwọyi lori awọn idahun HTTP ti o kọja ({statusCodes}) ti o bọwọ fun akọle {retryAfter} Azure — ṣubu pada si jittered exponential backoff nigbati ko si. Tunable nipasẹ {maxRetries} ati {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} àmi bi {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ati HTML nkankan ti wa ni ti a we ni sentinels ṣaaju ki o to translation ati ki o pada lẹhinna, ki Onitumọ duro mangling i18next / Mustache / Handlebars / .NET / printf placeholders. Toggle nipasẹ {protectPlaceholders}; Ñëàâà Áîãó {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} titun {noTranslatePatterns} input silė awọn bọtini ti o baamu lati ibeere Onitumọ patapata (tọju awọn iye orisun fun awọn orukọ iyasọtọ, awọn koodu aṣiṣe, ati bẹbẹ lọ). Baamu awọn ilana glob lodi si awọn bọtini ipele parser (ọna aami JSON, RESX {resxName}, PO {poMsgid}, XLIFF kuro {xliffId}, INI / bọtini restext). {issue}",
+				"repoConfig": "Repo-ipele config nipasẹ {configPath}.",
+				"glossary": "Glossary support, igbese akopọ nipasẹ {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "Îáúåì ïðîèçâîäñòâà ñîñòàâëÿåò 0 ìëðä ðóáëåé.",
+				"docsSite": "Astro + Tailwind v4 docs aaye pẹlu awọn iyipada wiwo ati koodu Expressive.",
+				"docsAccessibility": "{label} WCAG 2.1 AA kọja. Logo glyphs iyipada si ona ki nwọn ki o ko to gun kuna awọ-itansan lodi si gradient duro, awọn lilefoofo {backToTop} bọtini nlo {inert} nigba ti farapamọ (dipo ti ohun {ariaHidden} toggle ti o fi o tabbable), {formatsAstro} ruju ko si ohun to collide pẹlu wọn laifọwọyi-ti ipilẹṣẹ akọle IDs, mẹta agbegbe awọn kaadi bayi han BCP-47-wulo {lang} eroja ({nya}, {lug}, {run}), duplicate {documentation} enikeji akole ti wa ni disambiguated laarin sidebar ati footer,  ati gbogbo tabili data lori {inputs} / {configuration} awọn ọkọ oju omi pẹlu akọle oluka iboju.",
+				"inlineCode": "{label} Docs prose {codeElement} bayi wọ aami akori ti o gbona / amber — ti o yatọ si paleti ami iyasọtọ →ti a lo fun awọn ọna asopọ ati awọn akọle.",
+				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Wo itan Git."
+		}
 	}
 }

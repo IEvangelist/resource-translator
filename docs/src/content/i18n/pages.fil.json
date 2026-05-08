@@ -18,18 +18,26 @@
 			"node": "Node 20 / 22 / 24",
 			"sdk": "Opisyal na Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "Gettext",
+			"json": "Nest o flat",
+			"ini": "{keyValue}",
+			"restext": "Teksto ng MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Anim na format ng file",
-				"body": "Round-trip .resx, .xliff, .po, .json, .ini, at .restext na may byte-stable na pag-format."
+				"body": "Round-trip {resx}, {xliff}, {po}, {json}, {ini}, at {restext} na may byte-stable na pag-format."
 			},
 			"config": {
 				"title": "Config ng antas ng repo",
-				"body": "Mag-drop ng .github/resource-translator.yml para isama ang mga globs, talasalitaan, at mga kategorya ng Pasadyang Tagasalin."
+				"body": "Mag-drop ng isang {configPath} file para isama ang mga globs, talasalitaan, at mga kategorya ng Pasadyang Tagasalin."
 			},
 			"glossary": {
 				"title": "Talasalitaan-kamalayan",
-				"body": "I-lock ang mga pangalan ng tatak at mga tuntunin ng produkto gamit ang matalinong regex ng hangganan ng salita na humahawak sa C ++, .NET, at mga kaibigan."
+				"body": "I-lock ang mga pangalan ng tatak at mga tuntunin ng produkto gamit ang matalinong regex ng hangganan ng salita na humahawak sa {cpp}, {dotnet}, at mga kaibigan."
 			},
 			"dryRun": {
 				"title": "Dry-run + soft-fail",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Mga output na magiliw sa PR",
-				"body": "buod-title, buod-detalye, at has-new-translations slot nang direkta sa create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails}, at {hasNewTranslations} slot nang direkta sa create-pull-request."
 			},
 			"sdk": {
 				"title": "Opisyal na Azure SDK",
-				"body": "Binuo sa @azure-rest / ai-translation-text + @azure / core-rest-pipeline - awtomatikong muling sinusubukan sa 408/429/5xx, walang hand-rolled HTTP. esbuild-bundled, audit-clean."
+				"body": "Itinayo sa {azureSdk} + {corePipeline} - awtomatikong muling pagtatangka sa {statusCodes}, walang hand-rolled HTTP. {esbuild}-bundled, audit-clean."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Drop-in na daloy ng trabaho",
+			"titlePrefix": "Kopyahin. I-paste.",
+			"titleAccent": "Isalin.",
+			"body": "Tatlong lihim, apat na linya, at ang iyong repo ay multilingual sa susunod na push.",
+			"setupLink": "Maglakad sa buong setup"
+		},
+		"cta": {
+			"title": "Handa nang mag-localize sa autopilot?",
+			"body": "Isang susi ng Azure AI Translator, isang file ng daloy ng trabaho. Ang Resource Translator ang namamahala sa natitira.",
+			"button": "Email Address *"
 		}
 	},
 	"getting-started": {
 		"title": "Pagsisimula",
 		"eyebrow": "Pag-setup",
-		"lede": "Magdagdag ng isang file ng daloy ng trabaho, ituro ito sa iyong mga kredensyal ng Azure AI Translator, at ang pagkilos - na binuo sa opisyal na @azure-rest / ai-translation-text SDK ng Microsoft - ay i-scan ang repo para sa mga file ng mapagkukunan ng pinagmulan ng wika at maglabas ng mga isinalin na kapatid.",
+		"lede": "Magdagdag ng isang file ng daloy ng trabaho, ituro ito sa iyong mga kredensyal ng Azure AI Translator, at i-scan ng pagkilos ang repo para sa mga file ng mapagkukunan ng pinagmulan ng wika at maglabas ng mga isinalin na kapatid.",
 		"steps": {
 			"provision": {
 				"title": "Paglalaan ng mapagkukunan ng Azure AI Translator",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Idagdag ang daloy ng trabaho",
-				"body": "Lumikha ng .github/workflows/translate.yml:"
+				"body": "Lumikha ng {workflowPath}:"
 			},
 			"resource": {
 				"title": "Mag-commit ng source resource file",
-				"body": "Ginagamit ng mga file ng mapagkukunan ang Pangalan. <sourceLocale>. <ext> kombensyon. Halimbawa ang Greetings.en.resx ay nagiging Greetings.fr.resx, Greetings.de.resx, at iba pa pagkatapos ng isang run."
+				"body": "Ginagamit ng mga file ng mapagkukunan ang {namingConvention} convention. Halimbawa, {sourceFile} ay nagiging {frFile}, {deFile}, at iba pa pagkatapos ng isang pagtakbo."
 			},
 			"output": {
 				"title": "Inspeksyunin ang output",
-				"body": "Kapag natapos na ang daloy ng trabaho, inilalantad ng aksyon ang tatlong output na maaari mong i-wire sa isang paglalarawan ng PR: buod-pamagat, buod-detalye, at may-bagong-pagsasalin. Nagsusulat din ito ng buod ng Markdown sa pahina ng trabaho sa pamamagitan ng core.summary."
+				"body": "Kapag natapos na ang daloy ng trabaho, inilalantad ng pagkilos ang tatlong output na maaari mong i-wire sa isang paglalarawan ng PR: {summaryTitle}, {summaryDetails}, at {hasNewTranslations}. Nagsusulat din ito ng buod ng Markdown sa pahina ng trabaho sa pamamagitan ng {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Mga susunod na hakbang",
-			"configuration": "I-configure ang mga default na antas ng repo gamit ang .github / resource-translator.yml.",
+			"configuration": "I-configure ang mga default na antas ng repo gamit ang {configPath}.",
 			"recipes": "Tingnan ang mga recipe para sa mga monorepos, pasadyang talasalitaan, at mga kategorya ng Pasadyang Tagasalin."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Pagsasaayos",
 		"eyebrow": "YAML",
 		"heroTitle": "Pagsasaayos ng repositoryo",
-		"lede": "Ipahayag ang mga default nang isang beses sa .github / resource-translator.yml at hayaan ang bawat daloy ng trabaho na magmana ng mga ito. Ang mga input ng aksyon ay laging nanalo kapag parehong ibinigay."
+		"lede": "Ipahayag ang mga default nang isang beses sa repository config file at hayaan ang bawat daloy ng trabaho na magmana ng mga ito. Ang mga input ng aksyon ay laging nanalo kapag parehong ibinigay.",
+		"intro": "I-override ang landas gamit ang {configPath} input kung kailangan mo ng isang di-default na lokasyon.",
+		"schemaHeading": "Schema",
+		"fieldReference": {
+			"heading": "Sanggunian sa patlang",
+			"caption": "Sanggunian sa patlang ng pagsasaayos",
+			"columns": {
+				"field": "Larangan",
+				"type": "Uri",
+				"notes": "Mga Tala"
+			},
+			"fields": {
+				"sourceLocale": "Bumaba pabalik sa {sourceLocale} input kung hindi itinakda. Ipinasa din sa Translator bilang {fromLocale} kaya ang mga maiikling string ay hindi awtomatikong natukoy.",
+				"toLocales": "Alinman sa isang array o isang string na pinaghiwalay ng kuwit.",
+				"includeExclude": "Mga pattern ng Glob na sinuri laban sa ganap at mga landas na may kaugnayan sa workspace.",
+				"glossary": "Post-translation term overrides. Kamalayan sa hangganan ng salita (hawakan ang {cpp}, {dotnet}).",
+				"categoryId": "Kategorya ng {customTranslatorLink} ng Azure - ang iyong knob ng industriya / domain (legal, medikal, tono ng marketing, atbp.). Ipinadala bilang {categoryQuery}.",
+				"textType": "Default sa {plain}. Gamitin lamang ang {html} kung ang iyong mga halaga ng mapagkukunan ay naglalaman ng tunay na mga fragment ng HTML.",
+				"profanityAction": "Paano tratuhin ang mga bastos na termino sa isinalin na output.",
+				"profanityMarker": "Makabuluhan lamang kapag {profanityAction} ay {marked}.",
+				"allowFallback": "Itakda sa {false} na mabigo ang pagsasalin kapag ang iyong {categoryId} ay walang deployment para sa isang target na lokal sa halip na bumalik sa pangkalahatang modelo.",
+				"apiVersion": "Bersyon ng REST API ng tagasalin. Default sa {version}.",
+				"maxRetries": "Maximum na mga pagtatangka sa muling pagtatangka sa mga pansamantalang tugon ng HTTP ({statusCodes}). Default sa {defaultRetries}. Ang kabuuang mga tawag sa HTTP bawat kahilingan ay {totalCalls}.",
+				"retryBackoffMs": "Cap (ms) sa anumang solong backoff sleep. Default sa {defaultBackoff}. Ang header ng {retryAfter} ng Azure ay pinarangalan nang eksakto kapag naroroon; kung hindi man ay ginagamit ang jittered exponential backoff, na naka-cap sa halagang ito.",
+				"protectPlaceholders": "Default sa {true}. Kapag naka-on, ang mga token tulad ng {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} at HTML entity ay pinalitan ng mga sentinel token bago ang pagsasalin at naibalik pagkatapos. Huwag paganahin lamang kapag sinadya ng pinagmulan na naglalaman ng mga literal na hugis-placeholder.",
+				"customPlaceholderPatterns": "Dagdag na mga pattern ng regex (nang walang mga delimiter) na idinagdag sa default na hanay ng placeholder, hal. {angleToken} para sa pasadyang syntax ng token. Ang mga hindi wastong regex ay hindi pinansin.",
+				"noTranslatePatterns": "Ang mga pattern ng glob ay tumutugma laban sa mga susi sa antas ng parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext key). Ang mga pagtutugma ng mga susi ay bumaba mula sa kahilingan at dumadaan sa pamamagitan ng kanilang pinagmulan na halaga na napanatili."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Email Address *",
+			"steps": {
+				"actionInputs": "Binabasa ng aksyon ang mga malinaw na input mula sa daloy ng trabaho.",
+				"config": "Naglo-load ito ng YAML config mula sa {configPath}.",
+				"precedence": "Para sa bawat ibinahaging larangan, ang input ay nanalo; Kung hindi, ang halaga ng YAML ay ginagamit.",
+				"validation": "Ang mga pinagsamang halaga ay napatunayan. Ang mga hindi wastong enum (hal. {invalidEnum}) ay nagiging sanhi ng mabilis na pagkabigo ng pagkilos na may malinaw na mensahe."
+			}
+		},
+		"tone": {
+			"heading": "Tono at industriya, sa simpleng mga termino",
+			"body": "Ang Azure AI Translator v3 API ay walang isang solong tone knob. Pinagsasama ang dalawang setting upang mabigyan ka ng halos parehong kontrol:",
+			"industryLabel": "Industriya / domain:",
+			"industryBody": "gumamit ng {categoryId} upang ituro ang isang kategorya ng Azure {customTranslatorLink} na sinanay sa iyong sariling corpus - legal, teknikal, medikal, marketing, o anumang bagay. Ito ang pinakamalakas na pingga para sa tono, boses ng tatak, at bokabularyo.",
+			"surfaceLabel": "Teksto sa ibabaw:",
+			"surfaceBody": "gamitin ang {glossaryLink} upang i-lock ang mga pangalan ng tatak at mga termino ng produkto nang verbatim, at gamitin ang {profanityAction} upang i-scrub ang mga bastos na termino kapag nagta-target ng lokalisasyon para sa mga mas batang madla.",
+			"glossaryLinkLabel": "talasalitaan"
+		}
 	},
 	"inputs": {
 		"title": "Mga Input at Output",
 		"eyebrow": "Sanggunian",
-		"lede": "Ang bawat input ay tinatanggap din sa opsyonal na repo config file. Kapag pareho silang naka-set, ang input ng aksyon ang nanalo."
+		"lede": "Ang bawat input ay tinatanggap din sa opsyonal na repo config file. Kapag pareho silang naka-set, ang input ng aksyon ang nanalo.",
+		"configurationIntro": "Tingnan ang {configurationLink} para sa schema ng YAML at pagkakasunud-sunod ng paglo-load.",
+		"configurationLinkLabel": "Pagsasaayos",
+		"columns": {
+			"name": "Pangalan",
+			"default": "Default",
+			"description": "Paglalarawan"
+		},
+		"defaults": {
+			"none": "wala",
+			"allSupported": "Lahat ay suportado",
+			"translatorDefaultTrue": "true (Default ang tagasalin)"
+		},
+		"requiredInputs": {
+			"heading": "Mga kinakailangang input",
+			"caption": "Mga kinakailangang input",
+			"items": {
+				"sourceLocale": "Pinagmulan ng lokal (hal. {en}) na ginagamit upang makahanap ng mga file ng mapagkukunan tulad ng {sourceGlob}. Ipinasa rin sa Translator bilang {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator subscription key. Dumaan sa {secrets}.",
+				"endpoint": "URL ng endpoint ng tagasalin, hal. {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Karaniwang opsyonal na mga input",
+			"caption": "Karaniwang opsyonal na mga input",
+			"items": {
+				"region": "Rehiyon ng mapagkukunan ng tagasalin (hindi para sa mga pandaigdigang mapagkukunan).",
+				"toLocales": "Mga lugar na dapat isalin. Tumatanggap ng isang JSON array ({jsonArray}) o mga halaga na pinaghiwalay ng kuwit.",
+				"include": "Newline-pinaghiwalay glob pattern; Tanging mga file na tumutugma lamang ang isinalin.",
+				"exclude": "Newline-pinaghiwalay glob pattern; Ang pagtutugma ng mga file ay nilaktawan (inilalapat pagkatapos isama).",
+				"configPath": "Path sa YAML config file (na may kaugnayan sa root ng workspace).",
+				"dryRun": "Kapag {true}, patakbuhin ang mga pagsasalin at maglabas ng mga buod ngunit huwag magsulat ng mga file.",
+				"failOnError": "Kapag {true}, ang mga hindi inaasahang pagkakamali ay nabigo sa pagkilos; Kapag {false}, ang mga pagkakamali ay mga babala."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Mga input ng kahilingan ng tagasalin",
+			"intro": "Ang mga ito ay direktang nagma-map sa mga parameter ng query ng Azure AI Translator v3. Ang bawat isa ay opsyonal; ang mga default na tagasalin ay nalalapat kapag hindi naka-set.",
+			"caption": "Mga input ng kahilingan ng tagasalin",
+			"items": {
+				"categoryId": "Kategorya ng Azure {customTranslatorLink} - ang knob ng industriya / domain / tono. Ipinasa bilang {categoryQuery}.",
+				"textType": "{plain} o {html}. Gamitin lamang {html} kapag ang iyong mga halaga ng mapagkukunan ay tunay na mga fragment ng HTML.",
+				"profanityAction": "{noAction}, {marked}, o {deleted}. Kinokontrol kung paano inilalabas ang mga bastos na termino sa mga pagsasalin.",
+				"profanityMarker": "{asterisk} o {tag}. Makabuluhan lamang kapag {profanityAction} ay {marked}.",
+				"allowFallback": "Kapag {false}, nagbabalik ang Translator ng error sa halip na bumalik sa pangkalahatang system kung walang deployment ang iyong {categoryId} para sa target na lokal.",
+				"apiVersion": "Bersyon ng REST API ng tagasalin."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Katatagan at proteksyon ng placeholder",
+			"intro": "Kinokontrol ng mga input na ito kung paano kumikilos ang aksyon kapag pinuputol ng Translator ang iyong kahilingan at kung paano nito pinoprotektahan ang mga token ng placeholder tulad ng {mustache} o {indexZero} mula sa pagkasira sa panahon ng pagsasalin.",
+			"caption": "Mga input ng proteksyon ng katatagan at placeholder",
+			"items": {
+				"maxRetries": "Maximum na mga pagtatangka sa muling pagtatangka sa mga pansamantalang tugon ng HTTP ({statusCodes}). Ang kabuuang bilang ng mga tawag sa HTTP bawat kahilingan ay {totalCalls}.",
+				"retryBackoffMs": "Cap (sa milliseconds) sa anumang solong backoff sleep. Pinarangalan ng aksyon ang header ng {retryAfter} response ng Azure nang eksakto kapag naroroon; kung hindi man ay gumagamit ito ng jittered exponential backoff na naka-cap sa halagang ito.",
+				"protectPlaceholders": "Kapag {true} (default), ang mga placeholder tulad ng {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} at mga entity ng HTML ay pinalitan ng mga sentinel token bago ang pagsasalin at naibalik pagkatapos. Huwag paganahin lamang kapag sadyang naglalaman ang iyong pinagmulan ng literal na tekstong hugis-placeholder na dapat isalin.",
+				"customPlaceholderPatterns": "Newline-pinaghiwalay regexes (nang walang delimiters) idinagdag sa default na placeholder set, hal. {angleToken} para sa pasadyang token syntax.",
+				"noTranslatePatterns": "Ang mga pattern ng glob na pinaghiwalay ng Newline ay tumutugma laban sa mga susi sa antas ng parser (JSON tuldok na landas, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext key). Ang mga pagtutugma ng mga susi ay ibinaba mula sa kahilingan ng Tagasalin at ipinapasa sa pamamagitan ng kanilang pinagmulan na halaga na napanatili."
+			}
+		},
+		"outputs": {
+			"heading": "Mga Output",
+			"caption": "Mga Output",
+			"items": {
+				"summaryTitle": "Maikling buod ng PR-title-friendly, hal. {summaryExample}.",
+				"summaryDetails": "Buod ng markdown na angkop para sa isang PR body o buod ng trabaho.",
+				"hasNewTranslations": "{trueString} kapag ang isa o higit pang mga bagong pagsasalin ay nabuo."
+			}
+		}
 	},
 	"formats": {
 		"title": "Mga Format ng File",
 		"eyebrow": "Sanggunian",
 		"heroTitle": "Mga suportadong format ng file",
-		"lede": "Anim na round-trippable na mga format ng mapagkukunan. Binabasa ng pagkilos ang bawat file ng source-locale, isinasalin ang mga halaga, at nagsusulat ng isang kapatid sa bawat target na lokal."
+		"lede": "Anim na round-trippable na mga format ng mapagkukunan. Binabasa ng pagkilos ang bawat file ng source-locale, isinasalin ang mga halaga, at nagsusulat ng isang kapatid sa bawat target na lokal.",
+		"namingConvention": "Ang lahat ng mga file ay gumagamit ng {namingConvention} na kombensyon sa pagbibigay ng pangalan.",
+		"learnMore": "Email Address *",
+		"items": {
+			"resx": {
+				"blurb": "Mga file ng mapagkukunan ng .NET na nakabatay sa XML. Isinasalin ang panloob na teksto ng bawat {dataValue} node, pinapanatili ang mga komento at metadata.",
+				"specLabel": "Microsoft Learn — Mga mapagkukunan sa mga .resx file"
+			},
+			"xliff": {
+				"blurb": "Mga dokumento ng OASIS XLIFF 2.0. Isinasalin ang bawat {source} at isinusulat ang resulta sa kaukulang {target}, na nagtatakda ng {trgLang} para sa lokal.",
+				"specLabel": "OASIS XLIFF 2.0 pagtutukoy"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object files. Isinasalin ang bawat {msgid} / {msgidPlural} sa {msgstr} / {msgstrPlural} form.",
+				"specLabel": "GNU gettext — PO file format"
+			},
+			"json": {
+				"blurb": "Arbitraryong mga file ng JSON. Ang mga nested na bagay ay flattened gamit ang {delimiter} delimiter para sa pagsasalin, pagkatapos ay muling nested sa output. Ang mga tuldok na susi ({dottedKey}) ay napanatili nang salita.",
+				"specLabel": "Pagtutukoy ng JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Simpleng {keyValue} file (Win32-style INI o anumang flat config). Napanatili ang mga header ng seksyon at mga komento.",
+				"specLabel": "Format ng file ng INI sa Wikipedia"
+			},
+			"restext": {
+				"blurb": "Mga mapagkukunan ng teksto ng Microsoft MUI - mga pares ng flat {keyValue} na ginagamit bilang isang kasamang teksto sa {resx}.",
+				"specLabel": "Pangkalahatang-ideya ng Microsoft MUI"
+			}
+		},
+		"roundTrip": {
+			"heading": "Mga garantiya ng round-trip",
+			"body": "Ang test suite ay nagpapatunay ng byte-for-byte round-tripping para sa mga kinatawan ng mga fixture ng bawat format. Kung ang isang format quirk ay nakakasira sa pag-ikot sa iyong codebase, mangyaring {issueLink} na may kaunting sample.",
+			"issueLinkLabel": "Buksan ang isang isyu"
+		}
 	},
 	"recipes": {
 		"title": "Mga Recipe",
 		"eyebrow": "Cookbook",
-		"lede": "Mga karaniwang pattern para sa mga pagsasalin ng pagpapadala: monorepos, talasalitaan, pasadyang kategorya, dry run, at kontrol ng tono."
+		"lede": "Mga karaniwang pattern para sa mga pagsasalin ng pagpapadala: monorepos, talasalitaan, pasadyang kategorya, dry run, at kontrol ng tono.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Buksan ang isang kahilingan sa pull pagkatapos ng bawat run"
+			},
+			"monorepo": {
+				"heading": "Monorepos: pagsasalin ng saklaw sa bawat pakete"
+			},
+			"glossary": {
+				"heading": "Talasalitaan para sa mga pangalan ng tatak at mga tuntunin ng produkto",
+				"intro": "Mag-drop ng isang {configPath} sa repo:",
+				"afterLabel": "pagkatapos",
+				"body": "Ang mga termino ng talasalitaan ay inilalapat {after} pagsasalin, kaya pinapanatili ng output na isinalin ng makina ang iyong ginustong pagba-brand kahit na pinalitan ito ng modelo para sa isang kasingkahulugan."
+			},
+			"customCategory": {
+				"heading": "Kategorya ng Pasadyang Tagasalin (industriya / domain)",
+				"body": "Sanayin ang isang kategorya ng Azure {customTranslatorLink} sa isang corpus na kinukuha ang bokabularyo at tono ng iyong industriya (legal, medikal, marketing, panloob na engineering, atbp.) at ipasa ang ID nito sa pamamagitan ng {categoryId}. Ito ang pinakamalakas na tone lever na inaalok ng Azure."
+			},
+			"tone": {
+				"heading": "Kontrol sa tono + mahigpit na fallback",
+				"body": "Pagsamahin ang isang {categoryId} ng Pasadyang Tagasalin sa {profanityAction} at {allowFallbackFalse} upang ipatupad ang isang pare-pareho na boses at mabigo ang daloy ng trabaho kung ang napiling kategorya ay walang deployment para sa isa sa iyong mga target na lokasyon."
+			},
+			"dryRun": {
+				"heading": "Tuyong tumakbo bago i-on ang daloy ng trabaho",
+				"body": "Ang pagkilos ay naglalabas pa rin ng mga output ng buod at isang buod ng hakbang, ngunit walang mga file na nakasulat. Pagsamahin ang {failOnErrorFalse} upang ilabas ang bawat isyu bilang babala habang inuulit mo."
+			}
+		}
 	},
 	"faq": {
 		"title": "FAQ",
 		"eyebrow": "Tulong",
 		"heroTitle": "Mga Madalas Itanong",
-		"lede": "Mabilis na sagot sa mga katanungan na madalas na lumilitaw kapag pinagtibay ang pagkilos."
+		"lede": "Mabilis na sagot sa mga katanungan na madalas na lumilitaw kapag pinagtibay ang pagkilos.",
+		"questions": {
+			"azure": {
+				"heading": "Paano nakikipag-usap ang aksyon sa Azure?",
+				"body": "Sa pamamagitan ng opisyal na {azureSdkLink} SDK ng Microsoft, na naka-layer sa {corePipelineLink}. Makakakuha ka nito ng awtomatikong muling pagsubok sa {statusCodes}, na-type na mga modelo ng kahilingan at tugon, at paghawak ng header ng pagpapatunay nang libre - lahat ng bagay na ginamit upang maging isang hand-rolled {axios} call. Ang ibabaw ng pampublikong pagkilos (mga input, output, output ng file) ay hindi nagbabago."
+			},
+			"tone": {
+				"heading": "Bakit ang mga pagsasalin ay paminsan-minsan ay off-brand o off-tone?",
+				"body": "Ang pagsasalin ng makina ay default sa isang pangkalahatang layunin na modelo. Tatlong knobs ang tumutulong: isang {glossaryLink} para sa hard term overrides, isang {customTranslatorLink} para sa fine-tuned na mga modelo na sinanay sa iyong tono at bokabularyo, at {profanityAction} upang mag-scrub o i-flag ang mga bastos na termino.",
+				"glossaryLinkLabel": "talasalitaan",
+				"customTranslatorLinkLabel": "Kategorya ng Pasadyang Tagasalin"
+			},
+			"duplicateFiles": {
+				"heading": "Paano ko maiiwasan ang pagsasalin ng parehong file nang dalawang beses?",
+				"body": "I-trigger ang daloy ng trabaho sa mga {paths} na tumutugma lamang sa iyong mga file ng source-locale, hal. {sourceGlob}. Kasama rin sa pagkilos ang sarili nitong per-trigger file filter kapag nakatakda {githubToken}, na nagpapaliit ng trabaho sa mga file sa pinakabagong commit."
+			},
+			"offline": {
+				"heading": "Maaari ko bang patakbuhin ang aksyon nang offline?",
+				"body": "Hindi eksakto - ang Azure AI Translator ay ang utak ng runtime. Ngunit maaari kang tumakbo gamit ang {dryRunTrue} upang mapatunayan ang pag-parse at config nang hindi gumagawa ng anumang mga kahilingan sa HTTP para sa pagsasalin."
+			},
+			"node": {
+				"heading": "Anong bersyon ng Node ang tumatakbo sa aksyon?",
+				"body": "Ang v3 ay tumatakbo sa GitHub Actions {nodeRuntime} runtime. Ang naka-bundle na JavaScript ay katugma sa Node 20, 22, at 24, na kung saan ay kung ano ang sinusubukan ng CI."
+			},
+			"dist": {
+				"heading": "Saan nanggagaling ang naka-bundle na {distDir}?",
+				"body": "Ang mga aksyon ng GitHub JS ay nagpapadala ng kanilang pinagsama-samang JS sa repositoryo. Ang daloy ng trabaho ng {distBuild} ay muling itinatayo ito pagkatapos ng bawat pagsasanib upang {mainBranch} kung ito ay mag-aanod, at hinaharangan {distCheck} ang mga PR na maglapag ng hindi napapanahong output."
+			},
+			"formats": {
+				"heading": "Kumusta naman ang iba pang mga format ng mapagkukunan?",
+				"body": "Ngayon: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} kung kailangan mo ng isa pa - ang interface ng parser ay maliit (i-parse → mapa → ilapat ang mga pagsasalin → format) at ang mga kontribusyon ay malugod na tinatanggap.",
+				"issueLinkLabel": "Buksan ang isang isyu"
+			}
+		}
 	},
 	"translations": {
 		"title": "Mga Pagsasalin",
 		"eyebrow": "Ipakita",
 		"heroTitle": "Kamusta sa lahat ng wika",
-		"locales": "Mga Lugar",
-		"currentlyRendered": "kasalukuyang nai-render",
-		"complete": "kumpleto!",
-		"pendingPrefix": "Habang hinihintay ang susunod na pagtakbo ng Translate-Docs.",
+		"lede": "Ang pahinang ito ay isinalin mismo ng Resource Translator, sa bawat push sa pangunahing, sa bawat wika na sinusuportahan ng Azure AI Translator.",
+		"localeCountLabel": "{count} mga lugar",
+		"statusComplete": "{translatedCount} kasalukuyang nai-render - kumpleto!",
+		"statusPending": "{translatedCount} kasalukuyang nai-render - {pendingCount} nakabinbin ang susunod na {workflowName} run.",
 		"viewWorkflowRuns": "Tingnan ang mga pagpapatakbo ng daloy ng trabaho",
 		"filter": "I-filter",
 		"filterPlaceholder": "Hanapin ayon sa wika, code, o katutubong pangalan ...",
 		"source": "Pinagmulan",
 		"machineTranslations": "Mga pagsasalin ng makina",
-		"translationPending": "Nakabinbin ang pagsasalin — buksan ang isang translate-docs run.",
+		"translationPending": "Nakabinbin ang pagsasalin - buksan ang isang {workflowName} run.",
 		"noLocales": "Walang mga lokal na tumutugma sa filter na iyon.",
-		"howItWorks": "Paano ito gumagana"
+		"howItWorks": {
+			"heading": "Paano ito gumagana",
+			"thisActionLabel": "ang mismong pagkilos na ito",
+			"steps": {
+				"source": "Ang Ingles source file ay nakatira sa {messagesPath}.",
+				"workflow": "Itinulak ang touch na iyon at sinipa {workflowLink}, na tumatakbo {thisAction} laban sa sarili nito.",
+				"fanOut": "Ang pagkilos ay nag-aabang sa bawat lokal na suportado ng Azure AI Translator (naka-configure sa {configPath}) at nagsusulat ng isang kapatid na {messagesLocaleJson} bawat target.",
+				"pullRequest": "Binuksan ang isang pull request kasama ang mga bagong pagsasalin. Ang pagsasama nito ay muling nai-publish ang pahinang ito na may mga card na napunan."
+			}
+		},
+		"poweredBy": "Pinapagana ng Resource Translator at Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Nag-aambag",
 		"eyebrow": "Bukas na mapagkukunan",
-		"lede": "Ang mga ulat ng bug, mga kahilingan sa tampok, at mga kahilingan sa pull ay malugod na tinatanggap. Ang aksyon ay sapat na maliit upang maging palakaibigan sa mga unang beses na nag-ambag."
+		"lede": "Ang mga ulat ng bug, mga kahilingan sa tampok, at mga kahilingan sa pull ay malugod na tinatanggap. Ang aksyon ay sapat na maliit upang maging palakaibigan sa mga unang beses na nag-ambag.",
+		"localDevelopment": {
+			"heading": "Lokal na pag-unlad"
+		},
+		"addingParser": {
+			"heading": "Pagdaragdag ng parser",
+			"steps": {
+				"fixture": "Magdagdag ng isang fixture sa ilalim ng {testDataDir}.",
+				"implement": "Ipatupad ang {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Irehistro ito sa {factoryFile}.",
+				"extension": "Idagdag ang extension ng file sa {translationFileSchemes} sa {finderFile}.",
+				"tests": "Sumulat ng mga round-trip test para sa pag-parse → format at applyTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "Mga threshold ng saklaw",
+			"body": "Ipinatutupad ng Jest config ang minimum coverage. Ang bagong code ay dapat panatilihin ang mga pahayag + linya threshold sa itaas ng 78% at mga function sa itaas ng 90%. Magdagdag ng mga fixture at pagsubok kasama ang iyong pagbabago."
+		},
+		"docsSite": {
+			"heading": "Site ng dokumentasyon",
+			"body": "Ang folder ng {docsDir} ay isang proyekto ng Astro 6 + Tailwind v4. Tumakbo {npmInstall} doon nang isang beses, pagkatapos ay {npmRunDev} para sa lokal na preview. Ang daloy ng trabaho ng {pagesWorkflow} ay nagpapadala ng mga dokumento sa Mga Pahina ng GitHub sa bawat pagsasama."
+		}
 	},
 	"changelog": {
 		"title": "Changelog",
 		"eyebrow": "Kasaysayan",
-		"lede": "Mataas na antas ng buod ng mga release. Ang kanonikal, makapangyarihang changelog ay nakatira sa CHANGELOG.md sa repositoryo."
+		"lede": "Mataas na antas ng buod ng mga release. Ang kanonikal, makapangyarihang changelog ay nakatira sa CHANGELOG.md sa repositoryo.",
+		"fullRecord": "Tingnan {changelogLink} para sa buong talaan.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (sa pag-unlad)",
+			"labels": {
+				"breaking": "PAGLABAG",
+				"resilience": "Katatagan:",
+				"placeholderProtection": "Proteksyon ng placeholder:",
+				"perKeyOptOut": "Per-key opt-out:",
+				"docsAccessibility": "Pag-access sa Docs:",
+				"inlineCodeStyling": "Inline code styling:"
+			},
+			"issueLabels": {
+				"closes46": "Pagsasara # 46.",
+				"tightens16": "Higpitan ang # 16.",
+				"closes35": "Magsara # 35."
+			},
+			"items": {
+				"runtime": "Tumama sa {nodeRuntime} runtime ({breaking}).",
+				"newInputs": "Mga bagong input: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, kasama ang mga advanced na knob ng Translator {textType}, {profanityAction}, {profanityMarker}, at {allowFallback}.",
+				"sourceLocale": "Ang source locale ay ipinapasa din na ngayon sa Translator bilang {fromLocale} kaya ang mga maiikling string ay hindi awtomatikong natukoy.",
+				"resilience": "{label} awtomatikong muling pagsubok sa mga pansamantalang tugon ng HTTP ({statusCodes}) na nagpaparangal sa header ng {retryAfter} ng Azure - bumabalik sa jittered exponential backoff kapag wala. Tunable sa pamamagitan ng {maxRetries} at {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} mga token tulad ng {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} at HTML entity ay nakabalot sa mga sentinel bago ang pagsasalin at naibalik pagkatapos, kaya tumitigil ang Translator sa pag-mangling ng mga placeholder ng i18next/Mustache/Handlebars/.NET/printf. Toggle sa pamamagitan ng {protectPlaceholders}; Palawakin ang {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} bagong input ng {noTranslatePatterns} ay bumababa ang pagtutugma ng mga susi mula sa kahilingan ng Tagasalin nang buo (pinapanatili ang mga halaga ng pinagmulan para sa mga pangalan ng tatak, mga code ng error, atbp.). Tumutugma sa mga pattern ng glob laban sa mga susi sa antas ng parser (JSON tuldok na landas, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext key). {issue}",
+				"repoConfig": "Repo-level config sa pamamagitan ng {configPath}.",
+				"glossary": "Suporta sa talasalitaan, buod ng hakbang sa pamamagitan ng {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "malinis ang pag-audit ng npm (0 kahinaan).",
+				"docsSite": "Astro + Tailwind v4 docs site na may view transitions at Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. Ang mga glyph ng logo ay na-convert sa mga landas upang hindi na sila mabibigo sa kaibahan ng kulay laban sa mga gradient stop, ang lumulutang na pindutan ng {backToTop} ay gumagamit ng {inert} habang nakatago (sa halip na isang {ariaHidden} toggle na iniwan itong tabbable), {formatsAstro} mga seksyon ay hindi na bumangga sa kanilang mga awtomatikong nabuo na mga heading ID, tatlong locale card ngayon ang naglalantad ng mga katangian ng {lang} na may bisa sa BCP-47 ({nya}, {lug}, {run}), ang mga duplicate {documentation} mga label ng landmark ay na-disambiguated sa pagitan ng sidebar at footer,  at ang bawat talahanayan ng data sa {inputs} / {configuration} ay nagpapadala ng isang caption ng screen-reader.",
+				"inlineCode": "{label} docs prosa {codeElement} ngayon ay nagsusuot ng mainit-init / amber na accent ng tema - naiiba mula sa palette ng brand→accent na ginagamit para sa mga link at heading.",
+				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Tingnan ang kasaysayan ng git."
+		}
 	}
 }

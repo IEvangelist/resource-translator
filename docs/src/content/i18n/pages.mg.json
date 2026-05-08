@@ -18,18 +18,26 @@
 			"node": "Node 20 / 22 / 24",
 			"sdk": "Ofisialy Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "Gettext",
+			"json": "akany na fisaka",
+			"ini": "{keyValue}",
+			"restext": "Lahatsoratra MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Endrika rakitra enina",
-				"body": "Fiverenana .resx, .xliff, .po, .json, .ini, ary .restext miaraka amin'ny endrika byte-stable."
+				"body": "Fiverenana {resx}, {xliff}, {po}, {json}, {ini}, ary {restext} miaraka amin'ny endrika byte-stable."
 			},
 			"config": {
 				"title": "Config amin'ny ambaratonga repo",
-				"body": "Alefaso ny .github / resource-translator.yml ho an'ny sokajy globs, glossaries, ary Custom Translator."
+				"body": "Alefaso ny rakitra {configPath} ho an'ny sokajy globs, glossaries, ary Custom Translator."
 			},
 			"glossary": {
 				"title": "Rakibolana",
-				"body": "Manidy ny anaran'ny marika sy ny teny momba ny vokatra miaraka amin'ny regex manan-tsaina izay mitantana C ++, .NET, ary namana."
+				"body": "Manidy ny anaran'ny marika sy ny teny momba ny vokatra miaraka amin'ny regex manan-tsaina izay mitantana ny {cpp}, {dotnet} ary ny namana."
 			},
 			"dryRun": {
 				"title": "Maina + malefaka",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Vokatra azo avy amin'ny PR",
-				"body": "summary-title, summary-details, ary has-new-translations slot mivantana ao amin'ny create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails}, ary {hasNewTranslations} slot mivantana ao amin'ny mamorona-misintona-fangatahana."
 			},
 			"sdk": {
 				"title": "Ofisialy Azure SDK",
-				"body": "Miorina amin'ny @azure-rest/ai-translation-text + @azure/core-rest-pipeline - fanandramana mandeha ho azy amin'ny 408/429/5xx, tsy misy HTTP mihodina tanana. esbuild-bundled, audit-clean."
+				"body": "Miorina amin'ny {azureSdk} + {corePipeline} - fanandramana mandeha ho azy amin'ny {statusCodes}, tsy misy HTTP mihodina tanana. {esbuild}-bundled, audit-clean."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Workflow mitete",
+			"titlePrefix": "Kopia. Apetaho.",
+			"titleAccent": "Mandika teny.",
+			"body": "Tsiambaratelo telo, andalana efatra, ary ny repo dia fiteny maro amin'ny fanosehana manaraka.",
+			"setupLink": "Mandehana amin'ny alàlan'ny fametrahana feno"
+		},
+		"cta": {
+			"title": "Vonona ny hivezivezy amin'ny autopilot?",
+			"body": "Iray Azure AI Translator key, iray workflow file. Resource Translator no mitantana ny ambiny.",
+			"button": "Atombohy"
 		}
 	},
 	"getting-started": {
 		"title": "Manomboka",
 		"eyebrow": "Fanamboarana",
-		"lede": "Manampia rakitra workflow, manondro azy amin'ny fahazoan-dàlana Azure AI Translator, ary ny hetsika - miorina amin'ny SDK ofisialin'ny Microsoft @azure-rest / ai-translation-text - dia hizaha ny repo ho an'ny rakitra loharano amin'ny fiteny loharano ary hamoaka mpiray tampo voadika.",
+		"lede": "Manampia rakitra workflow, manondro azy amin'ny fahazoan-dàlana Azure AI Translator, ary ny hetsika dia hizaha ny repo ho an'ny loharanom-baovao amin'ny fiteny loharano ary hamoaka mpiray tampo voadika.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Ampidiro ny fizotran'ny asa",
-				"body": "Mamorona .github/workflows/translate.yml:"
+				"body": "Mamorona {workflowPath}:"
 			},
 			"resource": {
 				"title": "Manaova rakitra loharano loharano",
-				"body": "Mampiasa ny anarana ny rakitra loharanon-karena. <sourceLocale>. <ext> fivoriambe. Ohatra, ny Greetings.en.resx dia lasa Greetings.fr.resx, Greetings.de.resx, sy ny sisa aorian'ny hazakazaka."
+				"body": "Ny rakitra loharano dia mampiasa ny fivoriambe {namingConvention}. Ohatra, {sourceFile} lasa {frFile}, {deFile}, sy ny sisa aorian'ny hazakazaka."
 			},
 			"output": {
 				"title": "Jereo ny vokatra",
-				"body": "Raha vantany vao vita ny fizotran'ny asa, ny hetsika dia mampiseho vokatra telo azonao atao amin'ny famaritana PR: lohateny famintinana, famintinana ny antsipiriany, ary fandikan-teny vaovao. Izy io koa dia manoratra famintinana Markdown ao amin'ny pejin'ny asa amin'ny alàlan'ny core.summary."
+				"body": "Raha vantany vao vita ny fizotran'ny asa, ny hetsika dia mampiseho vokatra telo azonao atao amin'ny famaritana PR: {summaryTitle}, {summaryDetails}, ary {hasNewTranslations}. Izy io koa dia manoratra famintinana Markdown ao amin'ny pejin'ny asa amin'ny alàlan'ny {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Dingana manaraka",
-			"configuration": "Ampifanaraho amin'ny .github/resource-translator.yml ny defaults amin'ny ambaratonga repo.",
+			"configuration": "Ampifanaraho ny default amin'ny ambaratonga repo amin'ny {configPath}.",
 			"recipes": "Jereo ny fomba fahandro ho an'ny monorepos, rakibolana mahazatra, ary sokajy Custom Translator."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Fanamboarana",
 		"eyebrow": "YAML",
 		"heroTitle": "Fanahafana ny repository",
-		"lede": "Asehoy ny default indray mandeha ao amin'ny .github / resource-translator.yml ary avelao ny workflow rehetra handova azy ireo. Mandresy foana ny fandraisana anjara amin'ny hetsika rehefa omena izy roa."
+		"lede": "Asehoy ny default indray mandeha ao amin'ny rakitra config repository ary avelao ny workflow rehetra handova azy ireo. Mandresy foana ny fandraisana anjara amin'ny hetsika rehefa omena izy roa.",
+		"intro": "Ampidiro ny lalana amin'ny alàlan'ny fampidirana {configPath} raha mila toerana tsy misy default ianao.",
+		"schemaHeading": "Drafitra",
+		"fieldReference": {
+			"heading": "Referansa an-tsaha",
+			"caption": "Referansa momba ny saha fanahafana",
+			"columns": {
+				"field": "Saha",
+				"type": "Karazana",
+				"notes": "Fanamarihana"
+			},
+			"fields": {
+				"sourceLocale": "Miverina amin'ny fampidirana {sourceLocale} raha tsy apetraka. Nalefa tany amin'ny mpandika teny ihany koa {fromLocale} ka tsy hita ho azy ny kofehy fohy.",
+				"toLocales": "Na array na kofehy misaraka amin'ny koma.",
+				"includeExclude": "Glob lamina tombana amin'ny tanteraka sy ny toeram-piasana-havana lalana.",
+				"glossary": "Ny teny aorian'ny fandikan-teny. Teny sisin-tany (mitantana {cpp}, {dotnet}).",
+				"categoryId": "Sokajy Azure {customTranslatorLink} - ny bokotra indostria / sehatra (ara-dalàna, ara-pitsaboana, feo ara-barotra, sns.). Nalefa toy ny {categoryQuery}.",
+				"textType": "Default ho an'ny {plain}. Ampiasao {html} raha toa ka misy sombintsombiny HTML tena izy ny soatoavinao loharanon-karena.",
+				"profanityAction": "Ahoana ny fomba hitondrana ny teny ratsy amin'ny fandikan-teny.",
+				"profanityMarker": "Tsy misy dikany afa-tsy rehefa {marked} {profanityAction}.",
+				"allowFallback": "Ataovy {false} tsy hahomby amin'ny fandikan-teny rehefa tsy manana fametrahana ho an'ny toerana kendrena ny {categoryId} anao fa tsy miverina amin'ny modely ankapobeny.",
+				"apiVersion": "Translator REST API version. Default ho an'ny {version}.",
+				"maxRetries": "Ny fanandramana fanandramana ambony indrindra amin'ny valiny HTTP mandalo ({statusCodes}). Default ho an'ny {defaultRetries}. Ny fitambaran'ny antso HTTP isaky ny fangatahana dia {totalCalls}.",
+				"retryBackoffMs": "Cap (ms) amin'ny torimaso tokana. Default ho an'ny {defaultBackoff}. Ny lohan'ny {retryAfter} Azure dia omem-boninahitra amin'ny fotoana tena misy; raha tsy izany dia ampiasaina ny backoff exponential jittered, voafetra amin'io sanda io.",
+				"protectPlaceholders": "Default ho an'ny {true}. Rehefa mandeha ny famantarana toy ny {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ary HTML dia soloina amin'ny famantarana sentinel alohan'ny fandikana ary averina amin'ny laoniny aorian'izay. Esory raha tsy misy loharano minia ahitana ara-bakiteny miendrika placeholder.",
+				"customPlaceholderPatterns": "Ny lamina regex fanampiny (tsy misy delimiters) dia nampidirina tao amin'ny seta placeholder default, ohatra {angleToken} ho an'ny syntax custom token. Tsy noraharahiana ny regex tsy manan-kery.",
+				"noTranslatePatterns": "Ny lamina glob dia mifanaraka amin'ny fanalahidy parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext key). Ny fanalahidy mifanandrify dia alatsaka avy amin'ny fangatahana ary mandalo miaraka amin'ny sandan'ny loharano voatahiry."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Fandefasana baiko",
+			"steps": {
+				"actionInputs": "Ny hetsika dia mamaky ny fampidirana mazava avy amin'ny workflow.",
+				"config": "Izy io dia mampiditra ny config YAML avy amin'ny {configPath}.",
+				"precedence": "Ho an'ny saha iraisana rehetra, mandresy ny fampidirana; raha tsy izany dia ampiasaina ny sandan'ny YAML.",
+				"validation": "Voamarina ireo soatoavina natambatra. Ny enum tsy manan-kery (ohatra {invalidEnum}) dia mahatonga ny hetsika tsy hahomby haingana amin'ny hafatra mazava."
+			}
+		},
+		"tone": {
+			"heading": "Ny feo sy ny indostria, amin'ny teny tsotra",
+			"body": "Ny Azure AI Translator v3 API dia tsy manana bokotra feo tokana. Ny toe-javatra roa dia mitambatra mba hanomezana anao ny ankamaroan'ny fanaraha-maso mitovy:",
+			"industryLabel": "Indostria / sehatra:",
+			"industryBody": "ampiasao {categoryId} mba hanondro sokajy Azure {customTranslatorLink} voaofana amin'ny corpus anao manokana - ara-dalàna, ara-teknika, ara-pitsaboana, marketing, na zavatra hafa. Io no lever matanjaka indrindra ho an'ny feo, ny feon'ny marika ary ny voambolana.",
+			"surfaceLabel": "Lahatsoratra ambony:",
+			"surfaceBody": "Ampiasao ny {glossaryLink} mba hanidy ny anaran'ny marika sy ny teny momba ny vokatra am-bava, ary ampiasao {profanityAction} mba hanadiovana ireo teny ratsy rehefa mikendry ny toerana ho an'ny mpihaino tanora.",
+			"glossaryLinkLabel": "Rakibolana"
+		}
 	},
 	"inputs": {
 		"title": "Inputs sy outputs",
 		"eyebrow": "Andinin-tsoratra masina",
-		"lede": "Ny fampidirana rehetra dia ekena ihany koa ao amin'ny rakitra config repo tsy voatery. Rehefa samy napetraka izy roa ireo dia mandresy ny fampidirana ny hetsika."
+		"lede": "Ny fampidirana rehetra dia ekena ihany koa ao amin'ny rakitra config repo tsy voatery. Rehefa samy napetraka izy roa ireo dia mandresy ny fampidirana ny hetsika.",
+		"configurationIntro": "Jereo ny {configurationLink} ho an'ny drafitra YAML sy ny filaharan'ny fampidirana.",
+		"configurationLinkLabel": "Fanamboarana",
+		"columns": {
+			"name": "Anarana",
+			"default": "Default",
+			"description": "Famaritana"
+		},
+		"defaults": {
+			"none": "tsy misy",
+			"allSupported": "Tohanan'ny rehetra",
+			"translatorDefaultTrue": "marina (Mpandika teny default)"
+		},
+		"requiredInputs": {
+			"heading": "Fampidirana ilaina",
+			"caption": "Fampidirana ilaina",
+			"items": {
+				"sourceLocale": "Ny loharano (ohatra {en}) ampiasaina hitadiavana rakitra loharano toy ny {sourceGlob}. Nalefa tany amin'ny mpandika teny ihany koa ho {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator subscription key. Mandalo amin'ny {secrets}.",
+				"endpoint": "URL endpoint mpandika teny, ohatra {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Fampidirana mahazatra",
+			"caption": "Fampidirana mahazatra",
+			"items": {
+				"region": "Faritra loharanon-karena ho an'ny mpandika teny (tsy ho an'ny loharanon-karena manerantany).",
+				"toLocales": "Toerana handikana azy. Manaiky ny JSON array ({jsonArray}) na ny soatoavina misaraka amin'ny koma.",
+				"include": "Modely glob misaraka amin'ny tsipika vaovao; Ny antontan-taratasy mifanaraka amin'izany ihany no adika.",
+				"exclude": "Modely glob misaraka amin'ny tsipika vaovao; Ny rakitra mifanandrify dia tsy voafehy (ampiharina aorian'ny fampidirana).",
+				"configPath": "Lalana mankany amin'ny rakitra config YAML (mifandraika amin'ny fakan'ny sehatr'asa).",
+				"dryRun": "Rehefa {true} dia alefaso ny fandikan-teny ary mandefa famintinana fa aza manoratra rakitra.",
+				"failOnError": "Rehefa {true}, ny fahadisoana tsy ampoizina dia tsy mahomby amin'ny hetsika; Rehefa {false}, ny fahadisoana dia fampitandremana."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Fangatahan'ny mpandika teny",
+			"intro": "Ireo sarintany ireo dia mivantana amin'ny masontsivana fangatahana Azure AI Translator v3. Ny tsirairay dia tsy voatery; Ampiharina amin'ny fandikan-teny ny defaults Translator rehefa tsy voafaritra.",
+			"caption": "Fangatahan'ny mpandika teny",
+			"items": {
+				"categoryId": "Sokajy Azure {customTranslatorLink} - ny indostria / sehatra / feo knob. Nalefa toy ny {categoryQuery}.",
+				"textType": "{plain} na {html}. Ampiasao {html} raha tsy misy ny soatoavin'ny loharanon-karena dia sombintsombiny HTML tena izy.",
+				"profanityAction": "{noAction}, {marked}, na {deleted}. Mifehy ny fomba famoahana teny ratsy ao amin'ny fandikan-teny.",
+				"profanityMarker": "{asterisk} na {tag}. Tsy misy dikany afa-tsy rehefa {marked} {profanityAction}.",
+				"allowFallback": "Rehefa {false}, dia mamerina hadisoana ny Translator fa tsy miverina amin'ny rafitra ankapobeny raha toa ka tsy manana fametrahana ho an'ny toerana kendrena ny {categoryId} anao.",
+				"apiVersion": "Translator REST API version."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Faharetana sy fiarovana placeholder",
+			"intro": "Ireo fampidirana ireo dia mifehy ny fomba fitondran-tenan'ny hetsika rehefa manakana ny fangatahanao ny Translator ary ny fomba hiarovana ny mari-pamantarana placeholder toy ny {mustache} na {indexZero} tsy ho simba mandritra ny fandikan-teny.",
+			"caption": "Fampidirana ny faharetana sy ny fiarovana ny placeholder",
+			"items": {
+				"maxRetries": "Ny fanandramana fanandramana ambony indrindra amin'ny valiny HTTP mandalo ({statusCodes}). Ny isan'ny antso HTTP isaky ny fangatahana dia {totalCalls}.",
+				"retryBackoffMs": "Cap (amin'ny milliseconds) amin'ny torimaso tokana. Ny hetsika dia manome voninahitra ny lohan'ny valinteny {retryAfter} an'i Azure rehefa misy; raha tsy izany dia mampiasa backoff exponential mivaingana voafetra amin'ity sanda ity.",
+				"protectPlaceholders": "Rehefa {true} (default), placeholders toy ny {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ary HTML dia soloina amin'ny famantarana sentinel alohan'ny fandikana ary averina amin'ny laoniny aorian'izay. Esory raha tsy misy lahatsoratra miendrika placeholder ara-bakiteny izay tokony adika ny loharano.",
+				"customPlaceholderPatterns": "Ny regexes misaraka amin'ny tsipika vaovao (tsy misy delimiters) dia nampidirina tao amin'ny seta placeholder default, ohatra {angleToken} ho an'ny syntax famantarana mahazatra.",
+				"noTranslatePatterns": "Ny lamina glob misaraka amin'ny tsipika vaovao dia mifanaraka amin'ny fanalahidy parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext key). Ny fanalahidy mifanaraka dia alatsaka avy amin'ny fangatahan'ny mpandika teny ary mandalo miaraka amin'ny sandan'ny loharano voatahiry."
+			}
+		},
+		"outputs": {
+			"heading": "Vokatra",
+			"caption": "Vokatra",
+			"items": {
+				"summaryTitle": "Famintinana fohy momba ny lohateny PR, ohatra {summaryExample}.",
+				"summaryDetails": "Famintinana ny markdown mety ho an'ny vatana PR na famintinana asa.",
+				"hasNewTranslations": "{trueString} rehefa nisy fandikan-teny vaovao iray na maromaro noforonina."
+			}
+		}
 	},
 	"formats": {
 		"title": "Endrika rakitra",
 		"eyebrow": "Andinin-tsoratra masina",
 		"heroTitle": "Endrika rakitra tohanan'ny",
-		"lede": "Endrika loharano enina mihodina. Ny hetsika dia mamaky ny rakitra loharano-locale tsirairay, mandika ny soatoavina, ary manoratra mpiray tampo isaky ny toerana kendrena."
+		"lede": "Endrika loharano enina mihodina. Ny hetsika dia mamaky ny rakitra loharano-locale tsirairay, mandika ny soatoavina, ary manoratra mpiray tampo isaky ny toerana kendrena.",
+		"namingConvention": "Ny rakitra rehetra dia mampiasa ny fivoriambe {namingConvention} amin'ny fanomezana anarana.",
+		"learnMore": "Mianara bebe kokoa",
+		"items": {
+			"resx": {
+				"blurb": "Rakitra loharano .NET mifototra amin'ny XML. Mandika ny lahatsoratra anatiny amin'ny teboka {dataValue} tsirairay, mitahiry ny fanehoan-kevitra sy ny metadata.",
+				"specLabel": "Microsoft Learn - Loharano ao amin'ny rakitra .resx"
+			},
+			"xliff": {
+				"blurb": "Antontan-taratasy OASIS XLIFF 2.0. Mandika ny {source} tsirairay ary manoratra ny vokatra ao amin'ny {target} mifanaraka amin'izany, mametraka {trgLang} ho an'ny toerana.",
+				"specLabel": "Famaritana OASIS XLIFF 2.0"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object files. Mandika ny {msgid} / {msgidPlural} tsirairay amin'ny endrika {msgstr} / {msgstrPlural}.",
+				"specLabel": "GNU gettext — endrika rakitra PO"
+			},
+			"json": {
+				"blurb": "Rakitra JSON tsy misy dikany. Ny zavatra mifamatotra dia apetraka amin'ny {delimiter} delimiter ho an'ny fandikan-teny, avy eo averina amin'ny output. Ny fanalahidy misy teboka ({dottedKey}) dia voatahiry teny.",
+				"specLabel": "Famaritana JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Rakitra {keyValue} tsotra (Win32-style INI na config fisaka). Voatahiry ny lohatenin'ny fizarana sy ny fanehoan-kevitra.",
+				"specLabel": "Endrika rakitra INI ao amin'ny Wikipedia"
+			},
+			"restext": {
+				"blurb": "Loharanon-dahatsoratra Microsoft MUI - tsiroaroa {keyValue} fisaka ampiasaina ho mpiara-miombon'antoka amin'ny {resx}.",
+				"specLabel": "Microsoft MUI overview"
+			}
+		},
+		"roundTrip": {
+			"heading": "Fiantohana miverina",
+			"body": "Ny fitsapana dia manamarina ny byte-for-byte round-tripping ho an'ny solontenan'ny endrika rehetra. Raha misy endrika quirk manapaka ny fihodinana ao amin'ny codebase anao, azafady {issueLink} amin'ny santionany kely indrindra.",
+			"issueLinkLabel": "Sokafy ny olana"
+		}
 	},
 	"recipes": {
 		"title": "Fomba fahandro",
 		"eyebrow": "Boky fandrahoan-tsakafo",
-		"lede": "Lamina mahazatra amin'ny fandikan-teny fandefasana: monorepos, glossaries, sokajy mahazatra, fihazakazahana maina, ary fanaraha-maso ny feo."
+		"lede": "Lamina mahazatra amin'ny fandikan-teny fandefasana: monorepos, glossaries, sokajy mahazatra, fihazakazahana maina, ary fanaraha-maso ny feo.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Sokafy ny fangatahana misintona aorian'ny fihazakazahana tsirairay"
+			},
+			"monorepo": {
+				"heading": "Monorepos: fandikan-teny isaky ny fonosana"
+			},
+			"glossary": {
+				"heading": "Glossary ho an'ny marika sy ny teny momba ny vokatra",
+				"intro": "Asio {configPath} ao amin'ny repo:",
+				"afterLabel": "Taorian'ny",
+				"body": "Ny teny glossary dia ampiharina amin {after} ny fandikan-teny, noho izany ny vokatra voadika amin'ny milina dia mitazona ny marika tianao indrindra na dia nanakalo azy io ho mitovy hevitra aza ilay modely."
+			},
+			"customCategory": {
+				"heading": "Sokajin'ny mpandika teny manokana (indostria / sehatra)",
+				"body": "Ampiofano ny sokajy Azure {customTranslatorLink} amin'ny corpus izay misambotra ny voambolana sy ny feonao amin'ny indostria (ara-dalàna, fitsaboana, marketing, injeniera anatiny, sns.) ary ampitao amin'ny alàlan'ny {categoryId}. Ity no feo matanjaka indrindra atolotr'i Azure."
+			},
+			"tone": {
+				"heading": "Fanaraha-maso ny feo + fallback henjana",
+				"body": "Ampifandraiso amin'ny {categoryId} Custom Translator amin'ny {profanityAction} sy {allowFallbackFalse} mba hampiharana feo tsy miovaova ary tsy hahomby amin'ny fizotran'ny asa raha toa ka tsy manana fametrahana ho an'ny iray amin'ireo toerana kendrenao ilay sokajy voafidy."
+			},
+			"dryRun": {
+				"heading": "Mihazakazaka maina alohan'ny hametrahana ny fizotran'ny asa",
+				"body": "Ny hetsika dia mbola mamoaka famintinana sy famintinana dingana, saingy tsy misy rakitra voasoratra. Ampifandraiso amin'ny {failOnErrorFalse} mba hamoahana ny olana rehetra ho fampitandremana rehefa miverimberina ianao."
+			}
+		}
 	},
 	"faq": {
 		"title": "FAQ",
 		"eyebrow": "Fanampiana",
 		"heroTitle": "Fanontaniana napetraka matetika",
-		"lede": "Valiny haingana ho an'ireo fanontaniana izay miseho matetika rehefa mandray ny hetsika."
+		"lede": "Valiny haingana ho an'ireo fanontaniana izay miseho matetika rehefa mandray ny hetsika.",
+		"questions": {
+			"azure": {
+				"heading": "Ahoana no ifandraisan'ny hetsika amin'i Azure?",
+				"body": "Amin'ny alàlan'ny SDK {azureSdkLink} ofisialin'ny Microsoft, napetraka tamin'ny {corePipelineLink}. Izany dia manome anao fanandramana mandeha ho azy amin'ny {statusCodes}, modely fangatahana sy valiny, ary fikarakarana lohateny fanamarinana maimaim-poana - ny zava-drehetra izay taloha dia antso {axios} tanana. Ny sehatra hetsika ho an'ny daholobe (inputs, outputs, rakitra outputs) dia tsy miova."
+			},
+			"tone": {
+				"heading": "Nahoana ny fandikan-teny indraindray dia tsy misy marika na tsy misy feo?",
+				"body": "Ny fandikan-teny amin'ny milina dia default amin'ny modely ankapobeny. Ny bokotra telo dia manampy: {glossaryLink} ho an'ny fanodinana ny fe-potoana mafy, {customTranslatorLink} ho an'ny modely voaofana amin'ny feonao sy ny voambolanao, ary {profanityAction} ny manala na manamarika teny ratsy.",
+				"glossaryLinkLabel": "Rakibolana",
+				"customTranslatorLinkLabel": "Sokajin'ny mpandika teny manokana"
+			},
+			"duplicateFiles": {
+				"heading": "Ahoana no ahafahako misoroka ny fandikana indroa ny rakitra mitovy?",
+				"body": "Ampidiro ny fizotran'ny asa amin'ny {paths} izay mifanaraka amin'ny rakitra loharano ihany, ohatra {sourceGlob}. Ny hetsika koa dia ahitana ny sivana rakitra isaky ny trigger rehefa napetraka {githubToken}, mampihena ny asa amin'ny rakitra ao amin'ny fanoloran-tena farany."
+			},
+			"offline": {
+				"heading": "Azoko atao ve ny mandefa ny hetsika ivelan'ny aterineto?",
+				"body": "Tsy tena - Azure AI Translator no atidohan'ny runtime. Saingy azonao atao ny mihazakazaka miaraka amin'ny {dryRunTrue} mba hanamarinana ny famakafakana sy ny config nefa tsy manao fangatahana HTTP ho an'ny fandikan-teny."
+			},
+			"node": {
+				"heading": "Inona no dikan-teny Node izay mihazakazaka amin'ny hetsika?",
+				"body": "v3 dia mihazakazaka amin'ny GitHub Actions {nodeRuntime} runtime. Ny JavaScript natambatra dia mifanaraka amin'ny Node 20, 22, ary 24, izay fitsapana CI."
+			},
+			"dist": {
+				"heading": "Avy aiza ny {distDir} voafatotra?",
+				"body": "Ny hetsika GitHub JS dia mandefa ny JS natambatra tao amin'ny repository. Ny fizotran'ny {distBuild} dia manamboatra azy io aorian'ny fampifangaroana rehetra mba {mainBranch} raha toa ka hivezivezy, ary manakana ny PR {distCheck} izay mety hiteraka vokatra efa lany andro."
+			},
+			"formats": {
+				"heading": "Ahoana ny amin'ny endrika loharano hafa?",
+				"body": "Androany: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} raha mila iray hafa ianao - kely ny interface interface (parse → sarintany → mampihatra fandikan-teny → endrika) ary raisina an-tanan-droa ny fandraisana anjara.",
+				"issueLinkLabel": "Sokafy ny olana"
+			}
+		}
 	},
 	"translations": {
 		"title": "Fandikan-teny",
 		"eyebrow": "Fampisehoana",
 		"heroTitle": "Miarahaba amin'ny fiteny rehetra",
-		"locales": "toerana",
-		"currentlyRendered": "Amin'izao fotoana izao",
-		"complete": "feno!",
-		"pendingPrefix": "Miandry ny fandikan-teny manaraka.",
+		"lede": "Ity pejy ity dia nadikan'ny Resource Translator mihitsy, isaky ny manosika ny main, amin'ny fiteny rehetra tohanan'ny Azure AI Translator.",
+		"localeCountLabel": "{count} toerana",
+		"statusComplete": "{translatedCount} amin'izao fotoana izao - feno!",
+		"statusPending": "{translatedCount} amin'izao fotoana izao - {pendingCount} miandry ny fihazakazahana {workflowName} manaraka.",
 		"viewWorkflowRuns": "Jereo ny fizotran'ny asa",
 		"filter": "Sivana",
 		"filterPlaceholder": "Fikarohana amin'ny fiteny, kaody, na anarana teratany.",
 		"source": "Loharano",
 		"machineTranslations": "Fandikan-teny amin'ny milina",
-		"translationPending": "Fandikan-teny miandry - manokatra ny fandikan-teny fandikan-doko.",
+		"translationPending": "Fandikan-teny miandry - manokatra {workflowName} mihazakazaka.",
 		"noLocales": "Tsy misy toerana mifanaraka amin'io sivana io.",
-		"howItWorks": "Ahoana no fiasan'izany"
+		"howItWorks": {
+			"heading": "Ahoana no fiasan'izany",
+			"thisActionLabel": "ity hetsika ity",
+			"steps": {
+				"source": "Ny loharano amin'ny teny anglisy dia mipetraka ao amin'ny {messagesPath}.",
+				"workflow": "Manosika an'io mikasika io dia mandefa {workflowLink}, izay mihazakazaka {thisAction} amin'ny tenany.",
+				"fanOut": "Ny hetsika dia mivoaka amin'ny toerana tohanan'ny Azure AI Translator rehetra (namboarina tamin'ny {configPath}) ary manoratra {messagesLocaleJson} iray isaky ny lasibatra.",
+				"pullRequest": "Misokatra miaraka amin'ireo fandikan-teny vaovao ny fangatahana misintona. Ny fampifangaroana azy dia mamerina mamoaka ity pejy ity miaraka amin'ireo karatra feno."
+			}
+		},
+		"poweredBy": "Powered by Resource Translator sy Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Fandraisana anjara",
 		"eyebrow": "Loharano misokatra",
-		"lede": "Ny tatitra momba ny bibikely, ny fangatahana endri-javatra, ary ny fangatahana misintona dia raisina an-tanana. Kely ny hetsika mba ho sariaka amin'ireo mpandray anjara voalohany."
+		"lede": "Ny tatitra momba ny bibikely, ny fangatahana endri-javatra, ary ny fangatahana misintona dia raisina an-tanana. Kely ny hetsika mba ho sariaka amin'ireo mpandray anjara voalohany.",
+		"localDevelopment": {
+			"heading": "Fampandrosoana eo an-toerana"
+		},
+		"addingParser": {
+			"heading": "Manampy parser",
+			"steps": {
+				"fixture": "Manampia fitaovana eo ambanin'ny {testDataDir}.",
+				"implement": "Ampiharo {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Soraty ao amin'ny {factoryFile}.",
+				"extension": "Ampidiro ao amin'ny {finderFile} ny fanitarana ny rakitra ao amin'ny {translationFileSchemes}.",
+				"tests": "Manorata fitsapana miverina ho an'ny famakafakana → endrika ary ampiharinaTranslations."
+			}
+		},
+		"coverage": {
+			"heading": "Tokonam-baravarana fandrakofana",
+			"body": "Ny Jest config dia mampihatra ny fandrakofana farafahakeliny. Ny kaody vaovao dia tsy maintsy mitazona ny fanambarana + tsipika mihoatra ny 78% ary ny fiasa mihoatra ny 90%. Manampia fitaovana sy fitsapana miaraka amin'ny fiovanao."
+		},
+		"docsSite": {
+			"heading": "Tranonkala momba ny antontan-taratasy",
+			"body": "Ny lahatahiry {docsDir} dia tetikasa Astro 6 + Tailwind v4. Mihazakazaka {npmInstall} any indray mandeha, avy eo {npmRunDev} ho an'ny topi-maso eo an-toerana. Ny fizotran'ny {pagesWorkflow} dia mandefa antontan-taratasy any amin'ny GitHub Pages isaky ny mitambatra."
+		}
 	},
 	"changelog": {
 		"title": "Changelog",
 		"eyebrow": "Tantara",
-		"lede": "Famintinana avo lenta momba ny famotsorana Ny changelog kanonika sy manam-pahefana dia miaina ao amin'ny CHANGELOG.md ao amin'ny repository."
+		"lede": "Famintinana avo lenta momba ny famotsorana Ny changelog kanonika sy manam-pahefana dia miaina ao amin'ny CHANGELOG.md ao amin'ny repository.",
+		"fullRecord": "Jereo {changelogLink} ho an'ny firaketana feno.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "v3 (eo am-pampandrosoana)",
+			"labels": {
+				"breaking": "MANAPAKA",
+				"resilience": "Faharetana:",
+				"placeholderProtection": "Fiarovana placeholder:",
+				"perKeyOptOut": "Safidy isaky ny fanalahidy:",
+				"docsAccessibility": "Fidirana amin'ny dokam-doko:",
+				"inlineCodeStyling": "Inline code styling:"
+			},
+			"issueLabels": {
+				"closes46": "Mifarana # 46.",
+				"tightens16": "Manamafy ny # 16.",
+				"closes35": "Mifarana # 35."
+			},
+			"items": {
+				"runtime": "Nampidirina tamin'ny {nodeRuntime} fihazakazahana ({breaking}).",
+				"newInputs": "Fampidirana vaovao: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, miampy bokotra mpandika teny mandroso {textType}, {profanityAction}, {profanityMarker}, ary {allowFallback}.",
+				"sourceLocale": "Ny loharano dia alefa any amin'ny Translator ihany koa amin'izao fotoana izao satria {fromLocale} ka tsy hita ho azy ny laha-daza fohy.",
+				"resilience": "{label} fanandramana mandeha ho azy amin'ny valiny HTTP mandalo ({statusCodes}) manome voninahitra ny lohan'ny {retryAfter} an'i Azure - miverina amin'ny fihemorana exponential rehefa tsy misy. Tunable amin'ny alalan'ny {maxRetries} sy {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} famantarana toy ny {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ary HTML dia nofonosina tamin'ny sentinels alohan'ny fandikan-teny ary naverina tamin'ny laoniny aorian'izay, noho izany dia mijanona amin'ny fanilikilihana i18next / Mustache / Handlebars / .NET / printf placeholders ny Translator. Toggle amin'ny alàlan'ny {protectPlaceholders}; manitatra amin'ny {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} fampidirana {noTranslatePatterns} vaovao dia manala ny fanalahidy mifanaraka amin'ny fangatahana Translator tanteraka (mitahiry ny soatoavina loharano ho an'ny marika, kaody diso, sns.). Mifanaraka amin'ny lamina glob amin'ny fanalahidy parser-level (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext key). {issue}",
+				"repoConfig": "Repo-level config amin'ny alàlan'ny {configPath}.",
+				"glossary": "Fanohanana ny rakibolana, famintinana ny dingana amin'ny alàlan'ny {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "npm audit clean (0 vulnerabilities).",
+				"docsSite": "Astro + Tailwind v4 docs tranonkala miaraka amin'ny tetezamita sy ny Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. Ny glyphs logo dia niova ho lalana mba tsy hahomby intsony amin'ny fifanoherana amin'ny gradient, ny bokotra {backToTop} mitsingevana dia mampiasa {inert} raha miafina (fa tsy toggle {ariaHidden} izay namela azy ho azo tabilao), {formatsAstro} ny fizarana dia tsy mifandona amin'ny ID lohateny novokarina ho azy, karatra telo eo an-toerana izao dia mampiseho ny toetra {lang} manan-kery BCP-47 ({nya}, {lug}, {run}), ny dika mitovy {documentation} ny mari-pamantarana dia disambiguated eo anelanelan'ny sidebar sy ny footer,  ary ny latabatra data rehetra ao amin'ny sambo {inputs} / {configuration} miaraka amin'ny mari-pamantarana mpamaky efijery.",
+				"inlineCode": "{label} Docs prose {codeElement} ankehitriny dia mitafy ny lantom-peo mafana / amber - miavaka amin'ny paleta marika ampiasaina amin→'ny rohy sy lohateny.",
+				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "Jereo ny tantaran'ny git."
+		}
 	}
 }

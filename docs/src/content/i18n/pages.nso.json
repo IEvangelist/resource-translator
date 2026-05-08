@@ -18,18 +18,26 @@
 			"node": "Node 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
+		"formatNotes": {
+			"resx": "{dotnet} XML",
+			"xliff": "XLIFF 2.0",
+			"po": "gettext",
+			"json": "Koteswara To Koteswara",
+			"ini": "{keyValue}",
+			"restext": "Sengwalwa sa MUI"
+		},
 		"features": {
 			"formats": {
 				"title": "Difomete tše tshela tša faele",
-				"body": "Round-trips .resx, .xliff, .po, .json, .ini, and .restext with byte-stable formatting."
+				"body": "Round-trips {resx}, {xliff}, {po}, {json}, {ini}, and {restext} with byte-stable formatting."
 			},
 			"config": {
 				"title": "Repo-level config",
-				"body": "Drop a .github/resource-translator.yml for include globs, glossaries, and Custom Translator categories."
+				"body": "Drop a {configPath} file for include globs, glossaries, and Custom Translator categories."
 			},
 			"glossary": {
 				"title": "Glossary-aware",
-				"body": "Tswalela maina a ditšweletšwa le mantšu a setšweletšwa ka regex ya bohlale yeo e šomago ka C++, .NET, le bagwera."
+				"body": "Tswalela maina a ditšweletšwa le mantšu a setšweletšwa ka regex ye bohlale ya mellwane ya mantšu yeo e šomago ka {cpp}, {dotnet} le bagwera."
 			},
 			"dryRun": {
 				"title": "Go Go Gadget + Soft-Fail",
@@ -37,18 +45,30 @@
 			},
 			"outputs": {
 				"title": "Dipoelo tša PR",
-				"body": "summary-title, summary-details, and has-new-translations slot directly into create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails}, and {hasNewTranslations} slot directly into create-pull-request."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "Built on @azure-rest/ai-translation-text + @azure/core-rest-pipeline — automatic retries on 408/429/5xx, no hand-rolled HTTP. esbuild-bundled, audit-clean."
+				"body": "Built on {azureSdk} + {corePipeline} — automatic retries on {statusCodes}, no hand-rolled HTTP. {esbuild}-bundled, audit-clean."
 			}
+		},
+		"workflowPreview": {
+			"eyebrow": "Drop-in workflow",
+			"titlePrefix": "Kopi. Paste.",
+			"titleAccent": "Fetolela.",
+			"body": "Three secrets, four lines, and your repo is multilingual on the next push.",
+			"setupLink": "Go Go Gadget Full Set"
+		},
+		"cta": {
+			"title": "Ready to localize on autopilot?",
+			"body": "One Azure AI Translator key, one workflow file. Mofetoledi wa Resource o šoma ka dilo tše dingwe.",
+			"button": "Thoma"
 		}
 	},
 	"getting-started": {
 		"title": "Go thoma",
 		"eyebrow": "Tlhomo",
-		"lede": "Oketša faele ya tshepedišo, e šupe go Azure AI Translator ya gago, gomme tiro — yeo e agilwego godimo ga SDK ya semmušo ya Microsoft ya @azure-rest/ai-translation-text — e tla sekaseka repo ya difaele tša methopo ya polelo ya mothopo gomme ya ntšha bana babo rena bao ba fetoletšwego.",
+		"lede": "Add a workflow file, point it at your Azure AI Translator credentials, and the action will scan the repo for source-language resource files and emit translated siblings.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -59,20 +79,20 @@
 			},
 			"workflow": {
 				"title": "Add the workflow",
-				"body": "Create .github/workflows/translate.yml:"
+				"body": "Hlama {workflowPath}:"
 			},
 			"resource": {
 				"title": "Commit a source resource file",
-				"body": "Ditaodišosengwalo tša Sepedi di diriša leina. <sourceLocale>. <ext> kopano. Go fa mohlala, Greetings.en.resx e ba Greetings.fr.resx, Greetings.de.resx, bjalobjalo."
+				"body": "Ditaodišosengwalo tša Sepedi di diriša thulaganyo ya {namingConvention} Go fa mohlala, {sourceFile} ba {frFile}, {deFile}, bjalobjalo."
 			},
 			"output": {
 				"title": "Hlahloba setšweletšwa",
-				"body": "Ge mošomo o fedile, tiro e utolla ditšweletšwa tše tharo tšeo o ka di tsenelago ka tlhalošong ya PR: summary-title, summary-details, and has-new-translations. It also writes a Markdown summary into the job page via core.summary."
+				"body": "Ge mošomo o fedile, tiro e utolla ditšweletšwa tše tharo tšeo o ka di kgokaganyago ka tlhalošo ya PR: {summaryTitle}, {summaryDetails} le {hasNewTranslations}. Gape e ngwala kakaretšo ya Markdown mo letlakaleng la mošomo ka {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "Dikgato tše di latelago",
-			"configuration": "Rulaganya diphošo tša maemo a repo ka .github/resource-translator.yml.",
+			"configuration": "Configure repo-level defaults with {configPath}.",
 			"recipes": "See recipes for monorepos, custom glossaries, and Custom Translator categories."
 		}
 	},
@@ -80,55 +100,330 @@
 		"title": "Sebopego",
 		"eyebrow": "YAML",
 		"heroTitle": "Sebopego sa polokelo",
-		"lede": "Express defaults once in .github/resource-translator.yml and let every workflow inherit them. Action inputs always win when both are given."
+		"lede": "Express defaults once in the repository config file and let every workflow inherit them. Action inputs always win when both are given.",
+		"intro": "Kgonthiša gore o na le {configPath} ya go tsenya ge e le gore o hloka lefelo leo le sa fetogego.",
+		"schemaHeading": "Schema",
+		"fieldReference": {
+			"heading": "Tšhupetšo ya Tšhemo",
+			"caption": "Tšhupetšo ya tšhemo ya sebopego",
+			"columns": {
+				"field": "Tšhemo",
+				"type": "Mohuta",
+				"notes": "Dintlha"
+			},
+			"fields": {
+				"sourceLocale": "E tla boela morago go {sourceLocale} ge e le gore ga se ya beakanywa. Also forwarded to Translator as {fromLocale} so short strings are not autodetected.",
+				"toLocales": "goba bja boitlamo goba go tšweletša mangwalo;",
+				"includeExclude": "Glob patterns tested against absolute and workspace-relative paths.",
+				"glossary": "Post-translation term overrides. Word-boundary aware (handles {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} category — your industry/domain knob (legal, medical, marketing tone, etc.). Sent ya {categoryQuery}.",
+				"textType": "Refilwe {plain}. Use {html} only if your resource values contain real HTML fragments.",
+				"profanityAction": "Ka moo o ka šomišago ditaodišosengwalo tša Sepedi ka go fetolela?",
+				"profanityMarker": "E na le mohola fela ge {profanityAction} {marked}.",
+				"allowFallback": "Set to {false} to fail the translation when your {categoryId} has no deployment for a target locale instead of falling back to the general model.",
+				"apiVersion": "Translator REST API version. Refilwe {version}.",
+				"maxRetries": "Maximum retry attempts on transient HTTP responses ({statusCodes}). Refilwe {defaultRetries}. Palomoka ya megala ya HTTP ka kgopelo ke {totalCalls}.",
+				"retryBackoffMs": "Lebo Sekgobela - Lebo Sekgobela - Lebo Sekgobela Refilwe {defaultBackoff}. Hlogo ya {retryAfter} ya Azure e hlomphiwa gabotse ge e le gona; otherwise jittered exponential backoff is used, capped at this value.",
+				"protectPlaceholders": "Refilwe {true}. When on, tokens like {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} and HTML entities are replaced with sentinel tokens before translation and restored later. Disable only when source intentionally contains placeholder-shaped literals.",
+				"customPlaceholderPatterns": "Extra regex patterns (without delimiters) added to the default placeholder set, e.g. {angleToken} for custom token syntax. Melao ye e sego ya maleba e a hlokomologwa.",
+				"noTranslatePatterns": "Glob patterns matched against parser-level keys (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). Dinotlelo tša go swana di tlošwa go tšwa go kgopelo gomme di fetišetšwa ka boleng bja tšona bja mothopo bo bolokilwe."
+			}
+		},
+		"loadingOrder": {
+			"heading": "Loading order",
+			"steps": {
+				"actionInputs": "Mongwadi o bala ditaodišosengwalo tša Sepedi go tšwa go Kgoro ya Merero ya Selegae.",
+				"config": "It loads the YAML config from {configPath}.",
+				"precedence": "Mo tšhemong ye nngwe le ye nngwe ye e abelanwago, input e a fenya; go sego bjalo, boleng bja YAML bo a šomišwa.",
+				"validation": "Ditekanyetšo tše di kopantšwego di a tiišetšwa. Mantšu ao a sa amogelegego (mohlala, {invalidEnum}) a dira gore molaetša o se ke wa palelwa ka pela ka molaetša wo o kwagalago."
+			}
+		},
+		"tone": {
+			"heading": "Tone & Industry in plain terms",
+			"body": "Mp3 Mp3 Mp3 Mp3 Mp3 Mp3 Mp3 Mp3 Mp3 Mp3 Mp3 Mp3 Mp3 Mp3 Mp3 Ditefelo tše pedi di kopanya go go fa bontši bja taolo e swanago:",
+			"industryLabel": "Industry / domain:",
+			"industryBody": "diriša {categoryId} go šupa sehlopha sa Azure {customTranslatorLink} seo se hlahlilwego ka corpus ya gago — ya molao, ya sethekniki, ya kalafo, ya papatšo, goba se sengwe le se sengwe. Ye ke segalo se segolo sa segalo, segalo le tlotlontšu.",
+			"surfaceLabel": "Sengwalwa sa bokagodimo:",
+			"surfaceBody": "Use the {glossaryLink} to lock brand names and product terms verbatim, and use {profanityAction} to scrub profane terms when targeting localization for young audiences.",
+			"glossaryLinkLabel": "Glossary"
+		}
 	},
 	"inputs": {
 		"title": "Inputs & outputs",
 		"eyebrow": "Tšhupetšo",
-		"lede": "Every input is also accepted in the optional repo config file. Ge bobedi bja tšona di phethilwe, go na le dithulaganyo tše pedi tšeo di tšweleditšwego."
+		"lede": "Every input is also accepted in the optional repo config file. Ge bobedi bja tšona di phethilwe, go na le dithulaganyo tše pedi tšeo di tšweleditšwego.",
+		"configurationIntro": "See {configurationLink} for the YAML schema and loading order.",
+		"configurationLinkLabel": "Sebopego",
+		"columns": {
+			"name": "Leina",
+			"default": "Default",
+			"description": "Tlhalošo"
+		},
+		"defaults": {
+			"none": "Ga go na",
+			"allSupported": "Ka moka di thekgwa",
+			"translatorDefaultTrue": "True (Translator default)"
+		},
+		"requiredInputs": {
+			"heading": "Ditsenyo tše di nyakegago",
+			"caption": "Ditsenyo tše di nyakegago",
+			"items": {
+				"sourceLocale": "Lefelo la lefelo (mohlala, {en}) leo le šomišwago go hwetša difaele tša methopo tša go swana le {sourceGlob}. Gape o ile a romelwa go mofetoledi bjalo ka mofetoledi yo {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator subscription key. Go Pass {secrets}.",
+				"endpoint": "URL ya mafelelo ya mofetoledi, mohlala, {endpointUrl}."
+			}
+		},
+		"optionalInputs": {
+			"heading": "Common optional inputs",
+			"caption": "Common optional inputs",
+			"items": {
+				"region": "Translator resource region (omit for global resources).",
+				"toLocales": "Go Tradução Go E amogela dinomoro tša JSON array ({jsonArray}) goba dikholego tše di arogantšwego ke koma.",
+				"include": "Newline-separated glob patterns; Ke fela ditokomane tšeo di fetoletšwego go ya ka diphetolelo.",
+				"exclude": "Newline-separated glob patterns; Ditokumente tša go fapafapana di a tlošwa (di dirilwe ka morago ga go akaretšwa).",
+				"configPath": "Tsela ya go ya go YAML config file (mabapi le modu wa mošomo).",
+				"dryRun": "Ge {true}, ngwala diphetolelo le go ngwala dingwalwa tše dintši eupša o se ke wa ngwala dingwalwa.",
+				"failOnError": "Ge {true}, diphošo tšeo di sa letelwago di palelwa ke kgato; Ge {false}, diphošo di a lemošwa."
+			}
+		},
+		"translatorInputs": {
+			"heading": "Translator request inputs",
+			"intro": "These map directly into Azure AI Translator v3 query parameters. Ye nngwe le ye nngwe ke ya boikgethelo; Mofetoledi o palelwa ke go fetolela ge a sa šome.",
+			"caption": "Translator request inputs",
+			"items": {
+				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. E tšweleditšwe bjalo ka {categoryQuery}.",
+				"textType": "{plain} goba {html}. Use {html} only when your resource values are real HTML fragments.",
+				"profanityAction": "{noAction}, {marked} goba {deleted}. Lemoga ka moo diphetolelo di tšwelelago ka gona mo diphetolelong.",
+				"profanityMarker": "{asterisk} goba {tag}. E na le mohola fela ge {profanityAction} {marked}.",
+				"allowFallback": "Ge {false}, mofetoledi o bušetša phošo sebakeng sa go wela morago go tshepedišo ya kakaretšo ge {categoryId} ya gago e se na kabo ya lefelo leo le lebeletšwego.",
+				"apiVersion": "Translator REST API version."
+			}
+		},
+		"resilienceInputs": {
+			"heading": "Kgotlelelo le tšhireletšo ya placeholder",
+			"intro": "These inputs control how the action behaves when Translator throttles your request and how it shields placeholder tokens like {mustache} or {indexZero} from being mangled during translation.",
+			"caption": "Resilience and placeholder protection inputs",
+			"items": {
+				"maxRetries": "Maximum retry attempts on transient HTTP responses ({statusCodes}). Palomoka ya dikgopelo tša GEMS ka kgopelo ke {totalCalls}.",
+				"retryBackoffMs": "Cap (in milliseconds) on any single backoff sleep. Tiro e hlompha Azure's {retryAfter} response header exactly when present; otherwise it uses jittered exponential backoff capped at this value.",
+				"protectPlaceholders": "When {true} (default), placeholders such as {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} and HTML entities are replaced with sentinel tokens before translation and restored later. Disable only when your source intentionally contains literal placeholder-shaped text that should be translated.",
+				"customPlaceholderPatterns": "Newline-separated regexes (without delimiters) added to the default placeholder set, e.g. {angleToken} for custom token syntax.",
+				"noTranslatePatterns": "Newline-separated glob patterns matched against parser-level keys (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). Dinotlelo tša go sepelelana di tlošwa go tšwa go kgopelo ya Mofetoledi gomme di fetišetšwa ka boleng bja tšona bja mothopo bo bolokilwe."
+			}
+		},
+		"outputs": {
+			"heading": "Dipoelo",
+			"caption": "Dipoelo",
+			"items": {
+				"summaryTitle": "Short PR-title-friendly summary, e.g. {summaryExample}.",
+				"summaryDetails": "Markdown summary suitable for a PR body or job summary.",
+				"hasNewTranslations": "{trueString} ge e le gore phetolelo e tee goba tše pedi tše mpsha di tšweleditšwe."
+			}
+		}
 	},
 	"formats": {
 		"title": "Difomete tša faele",
 		"eyebrow": "Tšhupetšo",
 		"heroTitle": "Difomete tša faele tše di thekgwago",
-		"lede": "Difomete tše tshela tša methopo ya go dikologa. The action reads each source-locale file, translates the values, and writes a sibling per target locale."
+		"lede": "Difomete tše tshela tša methopo ya go dikologa. The action reads each source-locale file, translates the values, and writes a sibling per target locale.",
+		"namingConvention": "Direkoto ka moka di diriša leina la {namingConvention} le lengwe.",
+		"learnMore": "Ithute ka botlalo",
+		"items": {
+			"resx": {
+				"blurb": "XML-based .NET resource files. Fetolela sengwalwa sa ka gare sa node ye nngwe le ye nngwe ya {dataValue}, go boloka ditshwaotshwao le metadata.",
+				"specLabel": "Microsoft Learn — Resources in .resx files"
+			},
+			"xliff": {
+				"blurb": "OASIS XLIFF 2.0 documents. Fetolela {source} ye nngwe le ye nngwe gomme o ngwale dipoelo go {target} ya go sepelelana le yona, o bee {trgLang} ya lefelo.",
+				"specLabel": "OASIS XLIFF 2.0 specification"
+			},
+			"po": {
+				"blurb": "GNU gettext Portable Object files. Fetolela sebopego se sengwe le se sengwe sa {msgid} / {msgidPlural} go dibopego tša {msgstr} / {msgstrPlural}",
+				"specLabel": "GNU gettext — PO file format"
+			},
+			"json": {
+				"blurb": "Difaele tša JSON tše di sa tlwaelegago. Nested objects are flattened with the {delimiter} delimiter for translation, then re-nested on output. Dinotlelo tša maswaodikga ({dottedKey}) di bolokilwe ka mantšu.",
+				"specLabel": "Tlhalošo ya JSON (RFC 8259)"
+			},
+			"ini": {
+				"blurb": "Difaele tša {keyValue} tše bonolo (Win32-style INI or any flat config). Dihlogo tša dihlogo le ditshwaotshwao di bolokilwe.",
+				"specLabel": "Sebopego sa faele sa INI go Wikipedia"
+			},
+			"restext": {
+				"blurb": "Microsoft MUI text resources — flat {keyValue} pairs used as a textual companion to {resx}.",
+				"specLabel": "Microsoft MUI overview"
+			}
+		},
+		"roundTrip": {
+			"heading": "Ditiišetšo tša leeto la go ya go ile",
+			"body": "The test suite verifies byte-for-byte round-tripping for representative fixtures of every format. If a format quirk breaks round-tripping in your codebase, please {issueLink} with a minimal sample.",
+			"issueLinkLabel": "Bula Taba"
+		}
 	},
 	"recipes": {
 		"title": "Recipes",
 		"eyebrow": "Puku ya go apea",
-		"lede": "Common patterns for shipping translations: monorepos, glossaries, custom categories, dry runs, and tone control."
+		"lede": "Common patterns for shipping translations: monorepos, glossaries, custom categories, dry runs, and tone control.",
+		"sections": {
+			"pullRequest": {
+				"heading": "Bula foromo ya kgopelo ka morago ga go ngwala ka morago ga go ngwala"
+			},
+			"monorepo": {
+				"heading": "Monorepos: scope translation per package"
+			},
+			"glossary": {
+				"heading": "Glossary for brand names and product terms",
+				"intro": "Tsenya {configPath} ka gare ga repo:",
+				"afterLabel": "Ka morago ga",
+				"body": "Glossary terms are applied {after} translation, so the machine-translated output keeps your favourite branding even when the model swapped it for a synonym."
+			},
+			"customCategory": {
+				"heading": "Custom Translator category (industry / domain)",
+				"body": "Hlahla sehlopha sa Azure {customTranslatorLink} ka corpus yeo e swarago polelo le segalo sa intasteri ya gago (tša molao, tša kalafo, tša papatšo, tša ka gare, bj.bj.) gomme o fetiše ID ya yona ka {categoryId}. This is the strongest tone lever Azure offers."
+			},
+			"tone": {
+				"heading": "Tone control + strict fallback",
+				"body": "Kopanya Custom Translator {categoryId} le {profanityAction} le {allowFallbackFalse} go gapeletša lentšu le le sa fetogego le go palelwa ke tshepedišo ya mošomo ge e le gore sehlopha seo se kgethilwego ga se na kabo ya ye nngwe ya mafelo ao o a lebeletšego."
+			},
+			"dryRun": {
+				"heading": "Thoma go šoma pele ga ge o thoma go šoma",
+				"body": "Kgato e sa ntše e ntšha dipoelo tša kakaretšo le kakaretšo ya kgato, eupša ga go na difaele tše di ngwadilwego. Kopanya le {failOnErrorFalse} go tšweletša taba ye nngwe le ye nngwe bjalo ka temošo ge o boeletša."
+			}
+		}
 	},
 	"faq": {
 		"title": "Dipotšišo tša go botšišwa gantši",
 		"eyebrow": "Thušo",
 		"heroTitle": "Dipotšišo tšeo di botšišwago kgafetšakgafetša",
-		"lede": "Araba dipotšišo tše di botšišwago gantšintši ge o thoma go dira bjalo."
+		"lede": "Araba dipotšišo tše di botšišwago gantšintši ge o thoma go dira bjalo.",
+		"questions": {
+			"azure": {
+				"heading": "How does the action talk to Azure?",
+				"body": "Ka go diriša {azureSdkLink} SDK ya semmušo ya Microsoft, e beakantšwe ka {corePipelineLink}. That gets you automatic retries on {statusCodes}, typed request and response models, and authentication header handling for free — everything that used to be a hand-rolled {axios} call. Dipoelo tša ditšweletšwa (ditšweletšwa, ditšweletšwa, ditšweletšwa tša difaele) ga di fetoge."
+			},
+			"tone": {
+				"heading": "Ke ka lebaka la eng ka dinako tše dingwe diphetolelo di sa fetoge?",
+				"body": "Phetolelo ya motšhene e palelwa ke go fetolela ka kakaretšo. Three knobs help: a {glossaryLink} for hard term overrides, a {customTranslatorLink} for fine-tuned models trained on your tone and vocabulary, and {profanityAction} to scrub or flag profane terms.",
+				"glossaryLinkLabel": "Glossary",
+				"customTranslatorLinkLabel": "Custom Translator category"
+			},
+			"duplicateFiles": {
+				"heading": "Nka efoga bjang go fetolela faele e tee gabedi?",
+				"body": "Hlohleletša tshepedišo ya mošomo go {paths} tšeo di sepelelanago le difaele tša gago tša mothopo-locale fela, mohlala, {sourceGlob}. Tiro gape e akaretša filtara ya yona ya faele ya per-trigger ge {githubToken} e beilwe, go fokotša mošomo go difaele tša commit ya moragorago."
+			},
+			"offline": {
+				"heading": "Na nka dira tiro ya ka ntle ga inthanete?",
+				"body": "Not exactly — Azure AI Translator is the runtime brain. Eupša o ka šoma le {dryRunTrue} go kgonthišiša parsing le config ntle le go dira dikgopelo tša HTTP tša phetolelo."
+			},
+			"node": {
+				"heading": "What Node version does the action run on?",
+				"body": "v3 Go Go Gadget Actions {nodeRuntime} Runtime JavaScript e sepelelana le Node 20, 22 le 24, e lego seo CI e se lekago."
+			},
+			"dist": {
+				"heading": "O tšwa kae {distDir} tše di tletšego?",
+				"body": "GitHub JS actions ship their compiled JS in the repository. The {distBuild} workflow rebuilds it after every merge to {mainBranch} if it would drift, and {distCheck} blocks PRs that would land out-of-date output."
+			},
+			"formats": {
+				"heading": "Go thwe'ng ka difomete tše dingwe tša methopo?",
+				"body": "Lehono: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} if you need another — the parser interface is small (parse → map → apply translations → format) and contributions are welcome.",
+				"issueLinkLabel": "Bula taba"
+			}
+		}
 	},
 	"translations": {
 		"title": "Diphetolelo",
 		"eyebrow": "Pontšho",
 		"heroTitle": "Goodbye Moka",
-		"locales": "Mafelo",
-		"currentlyRendered": "Bjale e fetotšwe",
-		"complete": "E feletše!",
-		"pendingPrefix": "Pending the next translate-docs run.",
+		"lede": "This page is translated by Resource Translator itself, on every push to main, into every language Azure AI Translators supports.",
+		"localeCountLabel": "{count} Locales",
+		"statusComplete": "{translatedCount} ga bjale e fetoletšwe — e feletše!",
+		"statusPending": "{translatedCount} currently rendered — {pendingCount} pending the next {workflowName} run.",
 		"viewWorkflowRuns": "View workflow runs",
 		"filter": "Filter",
 		"filterPlaceholder": "Ngwala ka polelo, leina la setšo goba leina la setšo.",
 		"source": "Mothopo",
 		"machineTranslations": "Diphetolelo tša metšhene",
-		"translationPending": "Translation pending — open a translate-docs run.",
+		"translationPending": "Translation pending — open a {workflowName} run.",
 		"noLocales": "No locales match that filter.",
-		"howItWorks": "Ka moo se se šomago ka gona"
+		"howItWorks": {
+			"heading": "Ka moo se se šomago ka gona",
+			"thisActionLabel": "Kgato ye e",
+			"steps": {
+				"source": "Seisimane se dula ka {messagesPath}.",
+				"workflow": "Pushes that touch it kick off {workflowLink}, which runs {thisAction} against itself.",
+				"fanOut": "Tiragalo ye e sepelelana le lefelo le lengwe le le lengwe leo le thekgwago ke mofetoledi wa Azure AI (le rulagantšwe ka {configPath}) gomme le ngwala {messagesLocaleJson} ya ngwanabo rena ka nepo.",
+				"pullRequest": "Diphetolelo tše mpsha di a hwetšagala ka go diriša diphetolelo tše mpsha. Go e kopanya go gatiša gape letlakala le ka dikarata tše di tladitšwego."
+			}
+		},
+		"poweredBy": "Powered by Resource Translator and Azure AI Translator."
 	},
 	"contributing": {
 		"title": "Go tsenya letsogo",
 		"eyebrow": "Mothopo wo o bulegilego",
-		"lede": "Dipego tša diphošo, dikgopelo tša dikarolwana le dikgopelo tša go goga ka moka di a amogelwa. Tiragalo ye ke ye nnyane go lekana go ba le segwera go bao ba kgathago tema la mathomo."
+		"lede": "Dipego tša diphošo, dikgopelo tša dikarolwana le dikgopelo tša go goga ka moka di a amogelwa. Tiragalo ye ke ye nnyane go lekana go ba le segwera go bao ba kgathago tema la mathomo.",
+		"localDevelopment": {
+			"heading": "Tlhabollo ya Tikologo"
+		},
+		"addingParser": {
+			"heading": "Adding a parser",
+			"steps": {
+				"fixture": "Ngwala sengwalwa ka fase ga {testDataDir}.",
+				"implement": "Diriša {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
+				"register": "Ngwala ka {factoryFile}.",
+				"extension": "Add the file extension to {translationFileSchemes} in {finderFile}.",
+				"tests": "Ngwala diteko tša go ya go ile-→ ka sebopego sa"
+			}
+		},
+		"coverage": {
+			"heading": "Coverage thresholds",
+			"body": "Tshepedišo ya JEST e gapeletša tšhireletšo ya bonnyane bja tšhireletšo. New code must keep the statements + lines threshold above 78% and functions above 90%. Add fixtures and tests along your change."
+		},
+		"docsSite": {
+			"heading": "Documentation site",
+			"body": "The {docsDir} folder is an Astro 6 + Tailwind v4 project. Run {npmInstall} there once, then {npmRunDev} for local preview. The {pagesWorkflow} workflow ships docs to GitHub Pages on every merge."
+		}
 	},
 	"changelog": {
 		"title": "Changelog",
 		"eyebrow": "Histori",
-		"lede": "Kakaretšo ya ditaodišosengwalo tša Sepedi. The canonical, authoritative changelog lives in CHANGELOG.md in the repository."
+		"lede": "Kakaretšo ya ditaodišosengwalo tša Sepedi. The canonical, authoritative changelog lives in CHANGELOG.md in the repository.",
+		"fullRecord": "Lebelela {changelogLink} go hwetša rekoto ka botlalo.",
+		"fullRecordLinkLabel": "CHANGELOG.md",
+		"v3": {
+			"heading": "V3 (in development)",
+			"labels": {
+				"breaking": "GO ROBA",
+				"resilience": "Kgotlelelo:",
+				"placeholderProtection": "Placeholder protection:",
+				"perKeyOptOut": "Per-key opt-out:",
+				"docsAccessibility": "Phihlelelo ya Docs:",
+				"inlineCodeStyling": "Setaele sa khoutu ya inline:"
+			},
+			"issueLabels": {
+				"closes46": "Tswalela # 46.",
+				"tightens16": "Tightens #16.",
+				"closes35": "Tswalela # 35."
+			},
+			"items": {
+				"runtime": "Go Go {nodeRuntime} Runtime ({breaking})",
+				"newInputs": "Ditsenyo tše mpsha: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, gammogo le dikonopo tša Phetolelo tše di tšwetšego pele {textType}, {profanityAction}, {profanityMarker} le {allowFallback}.",
+				"sourceLocale": "Source locale is now also forwarded to Translator as {fromLocale} so short strings are not autodetected.",
+				"resilience": "{label} automatic retry on transient HTTP responses ({statusCodes}) honoring Azure's {retryAfter} header — falls back to jittered exponential backoff when absent. Tunable via {maxRetries} and {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} tokens like {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} and HTML entities are wrapped in sentinels before translation and restored later, so Translator stops mangling i18next/Mustache/Handlebars/.NET/printf placeholders. Toggle via {protectPlaceholders}; Go Go Gadget {customPlaceholderPatterns} {issue}",
+				"perKeyOptOut": "{label} new {noTranslatePatterns} input drops matching keys from the Translator request completely (preserves source values for brand names, error codes, etc.). Matches glob patterns against parser-level keys (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). {issue}",
+				"repoConfig": "Repo-level config via {configPath}.",
+				"glossary": "Glossary support, step summary via {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
+				"audit": "NPM audit Clean (0 vulnerabilities).",
+				"docsSite": "Astro + Tailwind v4 docs site with view transitions and Expressive Code.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. Logo glyphs converted to paths so they no longer fail color-contrast against gradient stops, the floating {backToTop} button uses {inert} while hidden (instead of an {ariaHidden} toggle that left it tabbable), {formatsAstro} sections no longer collide with their auto-generated heading IDs, three locale cards now expose BCP-47-valid {lang} attributes ({nya}, {lug}, {run}), duplicate {documentation} landmark labels are disambiguated between sidebar and footer,  gomme tafola ye nngwe le ye nngwe ya data go {inputs}/{configuration} e na le seswantšho sa sekirini.",
+				"inlineCode": "{label} docs prose {codeElement} now wears the warm/amber theme accent — distinct from the brand→accent palette used for links and headings.",
+				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
+			}
+		},
+		"v2": {
+			"heading": "v2.x",
+			"gitHistory": "See git history."
+		}
 	}
 }

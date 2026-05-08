@@ -15,7 +15,13 @@
 		"searchPlaceholder": "Otsingudokumentatsioon...",
 		"toggleTheme": "Lülitusteema",
 		"githubRepository": "GitHub repository",
-		"language": "Keel"
+		"language": "Keel",
+		"languageTitle": "Vali oma keel",
+		"languageDescription": "Lülitu samale lehele teises keeles.",
+		"languageSearch": "Filtrikeeled",
+		"languageSearchPlaceholder": "Otsingukeeled või kohakoodid...",
+		"languageNoResults": "Ükski keel ei vasta sellele filtrile.",
+		"closeLanguage": "Suletud keelevalija"
 	},
 	"search": {
 		"title": "Otsingudokumentatsioon",
