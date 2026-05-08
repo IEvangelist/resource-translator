@@ -44,7 +44,6 @@ const out = await page.evaluate((inputs) => {
   return inputs.map((c) => {
     t.style.color = c;
     const computed = getComputedStyle(t).color;
-    ctx.fillStyle = "#000";
     ctx.fillStyle = computed;
     ctx.fillRect(0, 0, 1, 1);
     const d = ctx.getImageData(0, 0, 1, 1).data;

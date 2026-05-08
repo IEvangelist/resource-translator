@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import type { CommonMessages } from "../i18n/messages";
+import { defaultLocale, targetLocaleCodes } from "../i18n/locales";
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const pagefindBase = base || "";
@@ -8,9 +9,11 @@ const pagefindScript = `${pagefindBase}/pagefind/pagefind.js`;
 
 interface Props {
   search?: CommonMessages["search"];
+  locale?: string;
 }
 
-const { search } = Astro.props;
+const { search, locale = defaultLocale } = Astro.props;
+const localeCodes = targetLocaleCodes;
 const idleHelpTokens = (
   search?.idleHelp ??
   "Find articles by topic, file format, configuration option, or recipe. Use {up} {down} to navigate, {enter} to open."
@@ -127,7 +130,10 @@ const keyLabels: Record<string, string> = {
   </div>
 </div>
 
-<script is:inline define:vars={{ pagefindScript, base }}>
+<script
+  is:inline
+  define:vars={{ pagefindScript, base, activeLocale: locale, localeCodes }}
+>
   (function () {
     const SECTION_ICONS = [
       { test: /\/getting-started/i, icon: "rocket" },
@@ -188,6 +194,22 @@ const keyLabels: Record<string, string> = {
     function svg(name, cls) {
       const d = ICON_PATHS[name] || ICON_PATHS["file-text"];
       return `<svg class="${cls}" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+    }
+
+    const targetLocales = new Set(localeCodes);
+    const searchOptions = { filters: { locale: activeLocale } };
+
+    function localeFromUrl(rawUrl) {
+      const url = new URL(rawUrl || "/", window.location.origin);
+      let path = url.pathname;
+      if (base && path === base) path = "/";
+      else if (base && path.startsWith(`${base}/`)) path = path.slice(base.length);
+      const firstSegment = path.split("/").filter(Boolean)[0];
+      return targetLocales.has(firstSegment) ? firstSegment : "en";
+    }
+
+    function matchesActiveLocale(result) {
+      return localeFromUrl(result?.url) === activeLocale;
     }
 
     let pagefind = null;
@@ -339,7 +361,7 @@ const keyLabels: Record<string, string> = {
         return;
       }
       setState("loading");
-      const result = await pf.search(q);
+      const result = await pf.search(q, searchOptions);
       const list = result?.results || [];
       if (!list.length) {
         clearGroups();
@@ -348,7 +370,15 @@ const keyLabels: Record<string, string> = {
         activeIndex = -1;
         return;
       }
-      const top = await Promise.all(list.slice(0, 8).map((r) => r.data()));
+      const data = await Promise.all(list.slice(0, 24).map((r) => r.data()));
+      const top = data.filter(matchesActiveLocale).slice(0, 8);
+      if (!top.length) {
+        clearGroups();
+        setState("empty");
+        items = [];
+        activeIndex = -1;
+        return;
+      }
       renderResults(top);
     }
 
