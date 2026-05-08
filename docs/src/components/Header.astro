@@ -255,6 +255,11 @@ const closeLanguage = header?.closeLanguage ?? "Close language picker";
 <SearchOverlay search={common?.search} />
 
 <style is:global>
+  .rt-language-dialog {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+  }
   .rt-language-dialog::backdrop {
     background: rgba(11, 12, 26, 0.76);
     backdrop-filter: blur(6px);
