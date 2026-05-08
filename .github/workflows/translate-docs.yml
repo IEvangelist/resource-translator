@@ -138,4 +138,4 @@ jobs:
             docs
             automated
           add-paths: |
-            docs/src/content/i18n/**/*.json
+            docs/src/content/i18n/*.json
