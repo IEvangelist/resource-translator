@@ -96,8 +96,14 @@
     --fg: #f0f1f9;            /* oklch(96% 0.01 280) */
     --fg-muted: #b3b6cb;      /* oklch(78% 0.03 280) */
     --border: #2f3147;        /* oklch(32% 0.04 280) */
-    --link: #a7adff;          /* --color-brand-300 */
-    --link-hover: #fd8ff4;    /* --color-accent-300 */
+    /* Use brand-200 instead of brand-300 in dark mode so links read as
+       "obviously light" rather than a darker indigo on the dark surface.
+       brand-200 (#c9cfff) gives 13.8:1 against --bg and 12.4:1 against
+       --bg-elevated — comfortably above WCAG AAA, and well past the
+       threshold where any contrast tool (no matter how it parses var()
+       chains) can plausibly mis-flag the result. */
+    --link: #c9cfff;          /* --color-brand-200 */
+    --link-hover: #ffb1fa;    /* --color-accent-200 */
     --hero-grad-a: rgba(37, 0, 125, 0.60); /* oklch(28% 0.18 280 / 0.6) */
     --hero-grad-b: rgba(90, 0, 90, 0.50);  /* oklch(28% 0.22 330 / 0.5) */
     --hero-grad-c: rgba(0, 58, 72, 0.50);  /* oklch(28% 0.16 200 / 0.5) */
@@ -239,8 +245,10 @@
  * for users with custom stylesheets, forced colors, and high-contrast
  * modes — we render the accent word as a solid color that already passes
  * AA on the page background:
- *   light: brand-700 (#4635bc) on paper → 8.15:1 ✓
- *   dark : brand-300 on `--bg`         → ≥4.7:1 ✓
+ *   light: brand-700 (#4635bc) on paper       →  8.15:1 ✓
+ *   dark : brand-200 (#c9cfff) on `--bg`      → 13.8:1   ✓
+ * Bumped from brand-300 → brand-200 in dark mode so AT vendors that mis-
+ * resolve our dark-mode CSS variables still see body-text-level contrast.
  * The class name is preserved so existing markup keeps working.
  */
 @utility text-gradient {
@@ -248,7 +256,7 @@
 }
 
 :root.dark .text-gradient {
-  color: var(--color-brand-300);
+  color: var(--color-brand-200);
 }
 
 @utility hero-mesh {

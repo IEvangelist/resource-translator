@@ -76,11 +76,13 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
           <a
             href="https://www.npmjs.com/package/@azure-rest/ai-translation-text"
             rel="noopener"
-            target="_blank">@azure-rest/ai-translation-text</a
+            target="_blank"
+            class="rt-foot-prose-link">@azure-rest/ai-translation-text</a
           > SDK from <a
             href="https://github.com/Azure/azure-sdk-for-js"
             rel="noopener"
-            target="_blank">Azure SDK for JavaScript</a
+            target="_blank"
+            class="rt-foot-prose-link">Azure SDK for JavaScript</a
           >.
         </p>
 
@@ -207,20 +209,21 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
           href="https://davidpine.dev"
           rel="noopener"
           target="_blank"
-          class="font-medium">David Pine 🤓</a
+          class="rt-foot-prose-link font-medium">David Pine 🤓</a
         >
         · Released under the
         <a
           href={`${repoUrl}/blob/main/LICENSE`}
           rel="noopener"
-          target="_blank">MIT License</a
+          target="_blank"
+          class="rt-foot-prose-link">MIT License</a
         >.
       </p>
       <p>
         Built with
-        <a href="https://astro.build" rel="noopener" target="_blank">Astro</a>
+        <a href="https://astro.build" rel="noopener" target="_blank" class="rt-foot-prose-link">Astro</a>
         &
-        <a href="https://tailwindcss.com" rel="noopener" target="_blank"
+        <a href="https://tailwindcss.com" rel="noopener" target="_blank" class="rt-foot-prose-link"
           >Tailwind CSS</a
         >.
       </p>
@@ -229,6 +232,25 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
 </footer>
 
 <style>
+  /* Footer chrome links: every prose-ish inline `<a>` in the footer
+     resolves to `--fg` instead of `--link` so it stays at body-text
+     contrast (>= 17:1 in dark, >= 14:1 in light) regardless of how a
+     contrast tool resolves nested var() chains. The underline (already
+     applied via the global `:where(p, li, ...) a` rule) carries the
+     link affordance. Hover lights up with the accent color so they
+     still feel interactive. */
+  .rt-foot-prose-link {
+    color: var(--fg);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color 150ms ease;
+  }
+  .rt-foot-prose-link:hover {
+    color: var(--link-hover);
+    text-decoration-thickness: 2px;
+  }
+
   .rt-foot-link {
     color: var(--fg-muted);
     text-decoration: none;
@@ -237,7 +259,7 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
       transform 150ms ease;
   }
   .rt-foot-link:hover {
-    color: var(--link);
+    color: var(--fg);
     transform: translateX(2px);
   }
   .rt-foot-link:focus-visible {
@@ -264,7 +286,7 @@ const isExternal = (href: string) => /^https?:\/\//.test(href);
       transform 150ms ease;
   }
   .rt-social:hover {
-    color: var(--link);
+    color: var(--fg);
     border-color: var(--color-brand-500);
     background: var(--bg);
     transform: translateY(-1px);
