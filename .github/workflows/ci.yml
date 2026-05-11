@@ -43,7 +43,7 @@ jobs:
       # collide on download.
       - name: Upload test + coverage artifacts
         if: always()
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: test-results-${{ matrix.os }}-node${{ matrix.node }}
           path: |
