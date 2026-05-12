@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "リソーストランスレーター",
-		"description": "任意のリポジトリ、任意のフォーマットでリソースファイルの機械翻訳プルリクエストを開いてください。",
+		"description": "Resource Translatorは、Azure AI Translatorによって機能する、あらゆるリポジトリ、形式でリソースファイルの機械翻訳プルリクエストを開きます。",
+		"socialTitle": "リソーストランスレーター — リソースファイルを自動翻訳します",
 		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
 		"headlinePrefix": "リポジトリをローカライズして",
 		"headlineAccent": "すべてのコミットです。",

@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "Prevodilac resursa",
-		"description": "Otvorite mašinski prevedene pull requestove za resource fajlove u bilo kojem repozitoriju, u bilo kojem formatu.",
+		"description": "Resource Translator otvara mašinski prevedene pull requestove za vaše resource fajlove u bilo kojem repozitoriju, u bilo kojem formatu — pokretan Azure AI Translatorom.",
+		"socialTitle": "Prevodilac resursa — automatski prevodi datoteke resursa",
 		"badge": "v3.0 — Node 24, konfiguracija repozitorijuma, rječnik, probni rad",
 		"headlinePrefix": "Lokalizuj svoj repozitorij na",
 		"headlineAccent": "Svaki commit.",

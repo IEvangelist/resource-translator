@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "Resurs terjimeçisi",
-		"description": "Islendik repoda, islendik formatda resurs faýllary üçin makina terjime edilen pull requestleri aç.",
+		"description": "Resource Translator Azure AI Translator tarapyndan işleýän islendik repoda we islendik formatda resurs faýllaryňyz üçin makina terjime edilen pull haýyşlaryny açýar.",
+		"socialTitle": "Resource Translator — resurs faýllaryny otomatik terjime et",
 		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
 		"headlinePrefix": "Repoňyzy ýerleşdiriň",
 		"headlineAccent": "her bir commit.",

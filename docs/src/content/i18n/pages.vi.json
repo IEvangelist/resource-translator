@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "Trình dịch tài nguyên",
-		"description": "Mở các yêu cầu kéo được dịch bằng máy cho các tệp tài nguyên ở bất kỳ kho lưu trữ nào, ở bất kỳ định dạng nào.",
+		"description": "Resource Translator mở các yêu cầu kéo được dịch bằng máy cho các tệp tài nguyên của bạn ở bất kỳ kho lưu trữ nào, ở bất kỳ định dạng nào — được cung cấp bởi Azure AI Translator.",
+		"socialTitle": "Resource Translator — dịch các tệp tài nguyên tự động",
 		"badge": "v3.0 — Nút 24, cấu hình repo, bảng thuật ngữ, chạy thử",
 		"headlinePrefix": "Bản địa hóa kho lưu trữ của bạn trên",
 		"headlineAccent": "mọi commit.",

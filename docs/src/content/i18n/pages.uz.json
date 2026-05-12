@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "Resurs tarjimon",
-		"description": "Har qanday repoda, istalgan formatda resurs fayllari uchun mashina tarjimasi orqali pull so'rovlarni oching.",
+		"description": "Resource Translator har qanday repoda, istalgan formatda resurs fayllaringiz uchun mashina tarjimasida pull so'rovlarni ochadi — Azure AI Translator tomonidan quvvatlanadi.",
+		"socialTitle": "Resource Translator — resurs fayllarini avtomatik tarjima qilish",
 		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
 		"headlinePrefix": "Reponi lokalizatsiya qiling",
 		"headlineAccent": "Har bir commit.",

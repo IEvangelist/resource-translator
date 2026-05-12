@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "Ressursitõlkija",
-		"description": "Ava masintõlgitud pull-päringud ressursifailide jaoks igas repos, igas formaadis.",
+		"description": "Resource Translator avab masintõlgitud tõmbetaotlused sinu ressursifailide jaoks igas repos, igas formaadis — Azure AI Translatori toel.",
+		"socialTitle": "Ressursitõlkija — tõlgi ressursifailid automaatselt",
 		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
 		"headlinePrefix": "Lokaliseeri oma repositsioon",
 		"headlineAccent": "Iga kohustus.",

@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "리소스 번역기",
-		"description": "어떤 저장소에서든, 어떤 형식이든 자원 파일에 대한 기계 변환 풀 요청을 열어보세요.",
+		"description": "리소스 트랜슬레이터는 Azure AI Translator가 지원하는 어떤 저장소든, 어떤 형식이든 리소스 파일에 대한 기계 번역 풀 요청을 엽니다.",
+		"socialTitle": "리소스 번역기 — 리소스 파일을 자동으로 변환합니다",
 		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
 		"headlinePrefix": "저장소를 현지화하세요",
 		"headlineAccent": "모든 커밋.",

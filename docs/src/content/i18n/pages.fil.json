@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "Tagasalin ng Mapagkukunan",
-		"description": "Buksan ang mga kahilingan sa pull na isinalin ng makina para sa mga file ng mapagkukunan sa anumang repo, sa anumang format.",
+		"description": "Binubuksan ng Resource Translator ang mga kahilingan sa pull na isinalin ng makina para sa iyong mga file ng mapagkukunan sa anumang repo, sa anumang format - pinapatakbo ng Azure AI Translator.",
+		"socialTitle": "Tagasalin ng Mapagkukunan - awtomatikong isalin ang mga file ng mapagkukunan",
 		"badge": "v3.0 - Node 24, repo config, talasalitaan, dry run",
 		"headlinePrefix": "I-localize ang iyong repo sa",
 		"headlineAccent": "bawat commit.",

@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "Resource Translator",
-		"description": "Opnaðu vélrænt þýddar pull requests fyrir auðlindaskrár í hvaða geymslu sem er, í hvaða sniði sem er.",
+		"description": "Resource Translator opnar vélrænt þýddar pull requests fyrir auðlindaskrárnar þínar í hvaða geymslu sem er, í hvaða sniði sem er — knúin áfram af Azure AI Translator.",
+		"socialTitle": "Auðlindaþýðandi — þýða auðlindaskrár sjálfkrafa",
 		"badge": "v3.0 — Node 24, repo config, orðalisti, dry run",
 		"headlinePrefix": "Staðfærðu geymsluna þína á",
 		"headlineAccent": "Hver skuldbinding.",

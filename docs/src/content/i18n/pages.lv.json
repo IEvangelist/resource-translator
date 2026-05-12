@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "Resursu tulkotājs",
-		"description": "Atveriet mašīntulkotus resursu failu izvilkšanas pieprasījumus jebkurā repo, jebkurā formātā.",
+		"description": "Resursu tulkotājs atver mašīntulkotus resursu failu izvilkšanas pieprasījumus jebkurā repo formātā, izmantojot Azure AI Translator.",
+		"socialTitle": "Resursu tulkotājs — automātiski tulkot resursu failus",
 		"badge": "v3.0 - 24. mezgls, repo konfigurācija, glosārijs, sausā darbība",
 		"headlinePrefix": "Lokalizējiet savu repo",
 		"headlineAccent": "katru apņemšanos.",

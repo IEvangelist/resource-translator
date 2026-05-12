@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "Tradutor de Recursos",
-		"description": "Abrir pull requests traduzidos por máquina para arquivos de recursos em qualquer repositório, em qualquer formato.",
+		"description": "O Resource Translator abre pull requests traduzidos por máquina para seus arquivos de recursos em qualquer repositório, em qualquer formato — alimentado pelo Azure AI Translator.",
+		"socialTitle": "Tradutor de Recursos — traduza arquivos de recursos automaticamente",
 		"badge": "v3.0 — Nó 24, configuração do repositório, glossário, ensaio",
 		"headlinePrefix": "Localize seu repositório em",
 		"headlineAccent": "Cada compromisso.",

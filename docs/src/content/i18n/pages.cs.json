@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "Překladač zdrojů",
-		"description": "Otevřete strojově přeložené pull requesty pro resource soubory v jakémkoli repozitáři, v jakémkoli formátu.",
+		"description": "Resource Translator otevírá strojově přeložené pull requesty pro vaše resource soubory v jakémkoli repozitáři, v jakémkoli formátu — poháněn Azure AI Translatorem.",
+		"socialTitle": "Resource Translator — automaticky překládá soubory zdrojů",
 		"badge": "v3.0 — Node 24, konfigurace repozitáře, slovníček, suchý běh",
 		"headlinePrefix": "Lokalizujte svůj repozitář na",
 		"headlineAccent": "Každý závazek.",

@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "Penerjemah Sumber Daya",
-		"description": "Buka permintaan pull terjemahan mesin untuk file resource di repositori apa pun, dalam format apa pun.",
+		"description": "Penerjemah Sumber Daya membuka permintaan pull terjemahan mesin untuk file sumber daya Anda dalam repositori apa pun, dalam format apa pun — didukung oleh Azure AI Translator.",
+		"socialTitle": "Penerjemah Sumber Daya — menerjemahkan file sumber daya secara otomatis",
 		"badge": "v3.0 — Node 24, konfigurasi repo, glosarium, dry run",
 		"headlinePrefix": "Melokalkan repositori Anda di",
 		"headlineAccent": "setiap komitmen.",

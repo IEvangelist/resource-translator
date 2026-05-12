@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "Ressourceoversætter",
-		"description": "Åbn maskinoversatte pull requests for ressourcefiler i ethvert repo, i ethvert format.",
+		"description": "Resource Translator åbner maskinoversatte pull requests for dine ressourcefiler i ethvert repository, i ethvert format — drevet af Azure AI Translator.",
+		"socialTitle": "Ressourceoversætter — oversæt ressourcefiler automatisk",
 		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
 		"headlinePrefix": "Lokaliser dit repo på",
 		"headlineAccent": "hver forpligtelse.",

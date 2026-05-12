@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "Resource Translator",
-		"description": "Open machine-vertaalde pull requests voor resourcebestanden in elk repositorium, in elk formaat.",
+		"description": "Resource Translator opent machine-vertaalde pull requests voor je resourcebestanden in elk repository, in elk formaat — aangedreven door Azure AI Translator.",
+		"socialTitle": "Resource Translator — vertaal automatisch bronbestanden",
 		"badge": "v3.0 — Node 24, repo config, glossarium, dry run",
 		"headlinePrefix": "Lokaliseer je repo op",
 		"headlineAccent": "elke committ.",

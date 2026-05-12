@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "Traducător de resurse",
-		"description": "Deschide pull requests traduse automat pentru fișiere resurse în orice repo, în orice format.",
+		"description": "Resource Translator deschide pull request-uri traduse automat pentru fișierele tale de resurse în orice repo, în orice format — alimentat de Azure AI Translator.",
+		"socialTitle": "Translator de resurse — traduce automat fișierele de resurse",
 		"badge": "v3.0 — Node 24, configurarea repo-ului, glosarul, execuția la uscat",
 		"headlinePrefix": "Localizează-ți depozitul pe",
 		"headlineAccent": "Fiecare angajament.",
