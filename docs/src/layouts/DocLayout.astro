@@ -22,6 +22,8 @@ import { localizedHref, slugFromPath, type PageSlug } from "../i18n/routes";
 interface Props {
   title: string;
   description?: string;
+  socialTitle?: string;
+  socialDescription?: string;
   hideSidebar?: boolean;
   wide?: boolean;
   locale?: string;
@@ -31,6 +33,8 @@ interface Props {
 const {
   title,
   description,
+  socialTitle,
+  socialDescription,
   hideSidebar = false,
   wide = false,
   locale = defaultLocale,
@@ -43,6 +47,8 @@ const fullTitle = title === siteName ? title : `${title} · ${siteName}`;
 const desc =
   description ??
   common.site.defaultDescription;
+const ogTitle = socialTitle ?? fullTitle;
+const ogDescription = socialDescription ?? desc;
 const baseHref = import.meta.env.BASE_URL.replace(/\/$/, "");
 const faviconHref = `${baseHref}/favicon.svg`;
 const htmlLang = toHtmlLang(locale);
@@ -75,8 +81,8 @@ const alternates = allLocales.map((item) => ({
       content="#1a1530"
       media="(prefers-color-scheme: dark)"
     />
-    <meta property="og:title" content={fullTitle} />
-    <meta property="og:description" content={desc} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content={siteName} />
@@ -84,12 +90,12 @@ const alternates = allLocales.map((item) => ({
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:secure_url" content={ogImageUrl} />
     <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1280" />
-    <meta property="og:image:height" content="720" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={ogImageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={fullTitle} />
-    <meta name="twitter:description" content={desc} />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
     <meta name="twitter:image" content={ogImageUrl} />
     <meta name="twitter:image:alt" content={ogImageAlt} />
     <link rel="canonical" href={canonicalUrl} />
