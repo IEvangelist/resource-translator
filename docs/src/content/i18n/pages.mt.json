@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "Traduttur tar-Riżorsi",
-		"description": "Iftaħ pull requests tradotti bil-magna għal fajls ta' riżorsi f'kull repo, f'kull format.",
+		"description": "Resource Translator jiftaħ pull requests tradotti bil-magna għall-fajls tar-riżorsi tiegħek f'kull repo, f'kull format — imħaddem minn Azure AI Translator.",
+		"socialTitle": "Resource Translator — ittraduċi fajls ta' riżorsi awtomatikament",
 		"badge": "v3.0 — Node 24, konfigurazzjoni tar-repo, glossarju, dry run",
 		"headlinePrefix": "Lokalizza r-repo tiegħek fuq",
 		"headlineAccent": "kull impenju.",

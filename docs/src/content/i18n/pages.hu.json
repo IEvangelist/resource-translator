@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "Forrásfordító",
-		"description": "Nyisson gépi fordítású pull requesteket erőforrás fájlokra bármely repóban, bármilyen formátumban.",
+		"description": "A Resource Translator gépi fordítású pull requesteket nyit meg az erőforrás fájljaidhoz bármely repóban, bármilyen formátumban — Azure AI Translator által működtetve.",
+		"socialTitle": "Resource Translator — automatikusan fordítsd le az erőforrásfájlokat",
 		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
 		"headlinePrefix": "Lokalizáld a repo-dat",
 		"headlineAccent": "minden elköteleződést.",

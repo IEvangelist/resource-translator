@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "Resurssikääntäjä",
-		"description": "Avaa konekäännökset resurssitiedostoille missä tahansa reposito, missä tahansa muodossa.",
+		"description": "Resource Translator avaa konekäännetyt pullrequestit resurssitiedostoillesi missä tahansa reposito, missä tahansa muodossa — Azure AI Translatorin tukemana.",
+		"socialTitle": "Resource Translator — käännä resurssitiedostot automaattisesti",
 		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
 		"headlinePrefix": "Lokalisoi varastosi",
 		"headlineAccent": "jokaisen sitoutumisen.",

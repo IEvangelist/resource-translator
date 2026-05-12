@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "Prevodilac resursa",
-		"description": "Otvorite mašinski prevedene zahteve za spajanje za datoteke resursa u bilo kom repozitoriju, u bilo kom formatu.",
+		"description": "Resource Translator otvara mašinski prevedene zahteve za povlačenje za vaše datoteke resursa u bilo kom repozitoriju, u bilo kom formatu — koji pokreće Azure AI Translator.",
+		"socialTitle": "Resource Translator — automatski prevedi datoteke resursa",
 		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
 		"headlinePrefix": "Lokalizujte svoj repo na",
 		"headlineAccent": "svako urezivanje.",

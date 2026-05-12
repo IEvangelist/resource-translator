@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "Kaynak Çevirici",
-		"description": "Herhangi bir repoda, herhangi bir formatta kaynak dosyaları için makine çevirisi pull request'leri açın.",
+		"description": "Resource Translator, herhangi bir repoda, herhangi bir formatta kaynak dosyalarınız için makine çevirisi pull requests açar — Azure AI Translator tarafından desteklenir.",
+		"socialTitle": "Kaynak Çevirici — kaynak dosyalarını otomatik çevir",
 		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
 		"headlinePrefix": "Depoyu yerelleştirin",
 		"headlineAccent": "Her taahhüt.",

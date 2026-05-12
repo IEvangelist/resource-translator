@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "Relais de ressources",
-		"description": "Ouvrir les pull requests traduits automatiquement pour les fichiers ressources dans n’importe quel dépôt, dans n’importe quel format.",
+		"description": "Resource Translator ouvre des pull requests traduits automatiquement pour vos fichiers de ressources dans n’importe quel dépôt, dans n’importe quel format — propulsé par Azure AI Translator.",
+		"socialTitle": "Traducteur de ressources — traduit automatiquement les fichiers de ressources",
 		"badge": "v3.0 — Node 24, configuration du dépôt, glossaire, répétition à blanc",
 		"headlinePrefix": "Localisez votre dépôt sur",
 		"headlineAccent": "Chaque engagement.",

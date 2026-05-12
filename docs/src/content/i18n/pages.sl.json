@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "Prevajalnik virov",
-		"description": "Odprite strojno prevedene pull requeste za datoteke virov v kateremkoli repozitoriju, v kateremkoli formatu.",
+		"description": "Resource Translator odpira strojno prevedene pull requeste za vaše datoteke z viri v kateremkoli repozitoriju, v kateremkoli formatu — poganja ga Azure AI Translator.",
+		"socialTitle": "Prevajalnik virov — samodejno prevaja datoteke virov",
 		"badge": "v3.0 — Node 24, konfiguracija repozitorija, slovarček, suhi preizkus",
 		"headlinePrefix": "Lokalizirajte svoj repozitorij na",
 		"headlineAccent": "vsak commit.",

@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "Keldutýðari",
-		"description": "Opna maskinumsettar pull requests fyri resursufílur í hvørjum repo, í hvørjum formati.",
+		"description": "Resource Translator letur upp maskinumsettar pull requests fyri tínar resursufílur í hvørjum repo, í hvørjum formati — driven av Azure AI Translator.",
+		"socialTitle": "Resource Translator — umsetur sjálvvirkandi tilfeingisfílur",
 		"badge": "v3.0 — Node 24, repo config, orðalisti, turrkoyring",
 		"headlinePrefix": "Lokalisera títt repo á",
 		"headlineAccent": "Hvørja einastu áseting.",

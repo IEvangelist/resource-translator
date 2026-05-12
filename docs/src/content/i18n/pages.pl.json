@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "Translator zasobów",
-		"description": "Otwieraj maszynowo tłumaczone pull requesty dla plików zasobów w dowolnym repozytorium, w dowolnym formacie.",
+		"description": "Resource Translator otwiera maszynowo tłumaczone pull requesty dla Twoich plików zasobów w dowolnym repozytorium, w dowolnym formacie — dzięki Azure AI Translator.",
+		"socialTitle": "Resource Translator — automatycznie tłumaczy pliki zasobów",
 		"badge": "v3.0 — Node 24, konfiguracja repozytorium, słownik, próba próbna",
 		"headlinePrefix": "Zlokalizuj swoje repozytorium na",
 		"headlineAccent": "Każde zobowiązanie.",

@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "资源转换器",
-		"description": "在任何仓库、任何格式下，对资源文件进行机器翻译的拉取请求。",
+		"description": "Resource Translator可以在任何仓库、任何格式下为你的资源文件打开机器翻译的拉取请求——由Azure AI Translator驱动。",
+		"socialTitle": "资源翻译器——自动翻译资源文件",
 		"badge": "v3.0 — Node 24， repo config， glossary， dry run",
 		"headlinePrefix": "将你的仓库本地化",
 		"headlineAccent": "每一次提交。",

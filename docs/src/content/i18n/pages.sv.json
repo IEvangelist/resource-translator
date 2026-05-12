@@ -1,7 +1,8 @@
 {
 	"index": {
 		"title": "Resursöversättare",
-		"description": "Öppna maskinöversatta pull requests för resursfiler i vilket repo som helst, i vilket format som helst.",
+		"description": "Resource Translator öppnar maskinöversatta pull requests för dina resursfiler i vilket repo som helst, i vilket format som helst – drivet av Azure AI Translator.",
+		"socialTitle": "Resursöversättare — översätt resursfiler automatiskt",
 		"badge": "v3.0 — Node 24, repo-konfiguration, ordlista, provkörning",
 		"headlinePrefix": "Lokalisera ditt repo på",
 		"headlineAccent": "varje comit.",
