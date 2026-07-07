@@ -257,7 +257,7 @@
 		},
 		"roundTrip": {
 			"heading": "Gwarancje kursu w obie strony",
-			"body": "Zestaw testowy weryfikuje bajt po bajcie cykl okrągły dla reprezentatywnych zestawów każdego formatu. Jeśli jakiś format zakłóca przebieganie w twoim kodzie, {issueLink} z minimalną próbką.",
+			"body": "Zestaw testowy weryfikuje bajt po bajcie cykliczne wytrącenie dla reprezentatywnych zestawów każdego formatu. Jeśli jakiś format zakłóca przebieganie w twoim kodzie, {issueLink} z minimalną próbką.",
 			"issueLinkLabel": "otwórz sprawę"
 		}
 	},
@@ -322,7 +322,7 @@
 			},
 			"dist": {
 				"heading": "Skąd pochodzi {distDir} w zestawie?",
-				"body": "Akcje JS GitHub wysyłają skompilowany JS do repozytorium. Workflow {distBuild} odbudowuje go po każdym scaleniu, by {mainBranch}, czy będzie dryfować, a {distCheck} blokuje PR, które wydawałyby nieaktualne wyniki."
+				"body": "Akcje JS GitHub wysyłają skompilowany JS do repozytorium. Workflow {distBuild} odbudowuje go po każdym scaleniu, by {mainBranch}, czy nie będzie dryfować, i {distCheck} blokuje PR, które mogłyby wydać nieaktualne wyniki."
 			},
 			"formats": {
 				"heading": "A co z innymi formatami zasobów?",
@@ -344,7 +344,7 @@
 		"filterPlaceholder": "Wyszukaj według języka, kodu lub nazwy tubylczej...",
 		"source": "Źródło",
 		"machineTranslations": "Tłumaczenia maszynowe",
-		"translationPending": "Tłumaczenie w toku — otwórz {workflowName} run.",
+		"translationPending": "Tłumaczenie w trakcie — otwórz {workflowName} run.",
 		"noLocales": "Żadne lokalizacje nie dorównują temu filtrowi.",
 		"howItWorks": {
 			"heading": "Jak to działa",
@@ -415,7 +415,7 @@
 				"repoConfig": "Konfiguracja na poziomie repozytorium przez {configPath}.",
 				"glossary": "Wsparcie słownika, podsumowanie kroków {coreSummary}.",
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
-				"audit": "npm audit clean (0 luk).",
+				"audit": "npm audit clean (0 podatności).",
 				"docsSite": "Strona dokumentacji Astro + Tailwind v4 z przejściami widoków i kodem ekspresyjnym.",
 				"docsAccessibility": "{label} WCAG 2.1 AA pass. Glify logo przekształcone w ścieżki, dzięki czemu nie przestają zanikać kontrastu kolorów na gradientowych stopach, przycisk pływający {backToTop} używa {inert} podczas ukrycia (zamiast {ariaHidden} przełącznika, który pozwalał na zakładanie), {formatsAstro} sekcje nie kolidują już z automatycznie generowanymi identyfikatorami nagłówków, trzy karty lokalizacji udostępniają teraz atrybuty {lang} zgodne z BCP-47 ({nya}, {lug}, {run}), zduplikowane {documentation} znaczniki znaczników są rozróżnione między paskiem bocznym a stopką,  a każda tabela danych na {inputs}/{configuration} jest dostarczana z podpisem do czytnika ekranu.",
 				"inlineCode": "{label} proza {codeElement} dokumentów nosi teraz akcent ciepły/bursztynowy — odróżniający się od palety mark→akcent używanej do linków i nagłówków.",

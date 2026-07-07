@@ -43,7 +43,7 @@
 		"next": "Следно"
 	},
 	"backToTop": {
-		"label": "Скролувајте до врвот"
+		"label": "Скролувај до врвот"
 	},
 	"footer": {
 		"docs": "Документи",
@@ -53,9 +53,24 @@
 		"sourceAria": "Погледни извор на GitHub",
 		"marketplaceAria": "Поглед на GitHub Marketplace",
 		"authorAria": "Веб-страница на Дејвид Пајн",
+		"npmAria": "Погледнете го Azure Translator SDK на npm",
 		"taglinePrefix": "GitHub акција која автоматски ги преведува вашите ресурсни датотеки, изградена врз официјалниот",
 		"taglineMiddle": "SDK од",
 		"copyrightPrefix": "Објавено под",
-		"builtWith": "Изградено со"
+		"builtWith": "Изградено со",
+		"installLabel": "Додајте го во вашиот работен процес",
+		"copy": "Примено",
+		"copied": "Копирано!",
+		"copyAria": "Копирај го исечокот од инсталацијата на твојата табла за клипови.",
+		"marketplaceCta": "Преземете го на GitHub Marketplace",
+		"starCta": "Star на GitHub",
+		"starAria": "Star Resource Translator на GitHub",
+		"stargazersAria": "Број на GitHub набљудувачи на ѕвезди",
+		"versionLabel": "Верзија",
+		"whatsNew": "Што има ново",
+		"language": "Јазик",
+		"editPage": "Уреди ја оваа страница",
+		"editPageAria": "Уреди го изворот на оваа страница на GitHub",
+		"reportIssue": "Пријави проблем со оваа страница"
 	}
 }

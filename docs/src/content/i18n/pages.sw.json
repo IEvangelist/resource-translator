@@ -257,7 +257,7 @@
 		},
 		"roundTrip": {
 			"heading": "Dhamana ya kwenda na kurudi",
-			"body": "Kitengo cha majaribio huthibitisha kusafiri kwa mzunguko wa baiti kwa baiti kwa ratiba za uwakilishi wa kila umbizo. Ikiwa quirk ya umbizo itavunja kuzunguka kwa pande zote katika msingi wako wa msimbo, tafadhali {issueLink} na sampuli ndogo.",
+			"body": "Kitengo cha majaribio huthibitisha kusafiri kwa mzunguko wa baiti kwa baiti kwa ratiba wakilishi za kila umbizo. Ikiwa quirk ya umbizo itavunja kuzunguka kwa pande zote katika msingi wako wa msimbo, tafadhali {issueLink} na sampuli ndogo.",
 			"issueLinkLabel": "Fungua suala"
 		}
 	},
@@ -275,7 +275,7 @@
 			"glossary": {
 				"heading": "Kamusi ya majina ya chapa na masharti ya bidhaa",
 				"intro": "Dopa {configPath} kwenye repo:",
-				"afterLabel": "Baada ya",
+				"afterLabel": "baada ya",
 				"body": "Maneno ya faharasa hutumiwa {after} tafsiri, kwa hivyo matokeo yaliyotafsiriwa kwa mashine huweka chapa unayopendelea hata wakati modeli iliibadilisha kwa kisawe."
 			},
 			"customCategory": {
@@ -304,7 +304,7 @@
 			},
 			"tone": {
 				"heading": "Kwa nini tafsiri wakati mwingine hazina chapa au zisizo na sauti?",
-				"body": "Tafsiri ya mashine chaguo-msingi kwa mfano wa kusudi la jumla. Vifungo vitatu husaidia: {glossaryLink} ya kubatilisha kwa muda mgumu, {customTranslatorLink} ya mifano iliyopangwa vizuri iliyofunzwa juu ya sauti na msamiati wako, na {profanityAction} kusugua au kuripoti maneno macafu.",
+				"body": "Tafsiri ya mashine chaguo-msingi kwa mfano wa kusudi la jumla. Vifungo vitatu husaidia: {glossaryLink} ya kubatilisha kwa muda mgumu, {customTranslatorLink} kwa mifano iliyopangwa vizuri iliyofunzwa juu ya sauti na msamiati wako, na {profanityAction} kusugua au kuripoti maneno macafu.",
 				"glossaryLinkLabel": "Kamusi",
 				"customTranslatorLinkLabel": "Kategoria ya Mtafsiri Maalum"
 			},
@@ -417,7 +417,7 @@
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
 				"audit": "Ukaguzi wa NPM safi (udhaifu 0).",
 				"docsSite": "Tovuti ya hati za Astro + Tailwind v4 na mabadiliko ya mtazamo na Msimbo wa Kuelezea.",
-				"docsAccessibility": "{label} WCAG 2.1 AA kupita. Glyphs za nembo zilizobadilishwa kuwa njia ili zisishindwe tena utofautishaji wa rangi dhidi ya vituo vya gradient, kitufe cha {backToTop} kinachoelea hutumia {inert} wakati kimefichwa (badala ya kigeuzi cha {ariaHidden} ambacho kiliiacha iweze kuwezwa), sehemu {formatsAstro} hazigongani tena na vitambulisho vyao vya kichwa vinavyozalishwa kiotomatiki, kadi tatu za eneo sasa zinafichua sifa halali za {lang} za BCP-47 ({nya}, {lug}, {run}), nakala {documentation} lebo za alama za kihistoria zimetenganishwa kati ya upau wa kando na kijachini,  na kila jedwali la data kwenye {inputs}/{configuration} husafirishwa na maelezo mafupi ya msomaji wa skrini.",
+				"docsAccessibility": "{label} WCAG 2.1 AA kupita. Glyphs za nembo zilizobadilishwa kuwa njia ili zisishindwe tena utofautishaji wa rangi dhidi ya vituo vya gradient, kitufe cha {backToTop} kinachoelea hutumia {inert} wakati kimefichwa (badala ya kigeuzi cha {ariaHidden} kilichoiacha iweze kuwezwa), sehemu {formatsAstro} hazigongani tena na vitambulisho vyao vya kichwa vinavyozalishwa kiotomatiki, kadi tatu za eneo sasa zinafichua sifa halali za {lang} za BCP-47 ({nya}, {lug}, {run}), nakala {documentation} lebo za kihistoria hazijaeleweka kati ya upau wa kando na kijachini,  na kila jedwali la data kwenye {inputs}/{configuration} husafirishwa na maelezo mafupi ya msomaji wa skrini.",
 				"inlineCode": "{label} hati za nathari sasa {codeElement} huvaa lafudhi ya mandhari ya joto/kahawia - tofauti na palette →lafudhi ya chapa inayotumiwa kwa viungo na vichwa.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}

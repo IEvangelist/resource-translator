@@ -121,7 +121,7 @@
 				"textType": "Default ho an'ny {plain}. Ampiasao {html} raha toa ka misy sombintsombiny HTML tena izy ny soatoavinao loharanon-karena.",
 				"profanityAction": "Ahoana ny fomba hitondrana ny teny ratsy amin'ny fandikan-teny.",
 				"profanityMarker": "Tsy misy dikany afa-tsy rehefa {marked} {profanityAction}.",
-				"allowFallback": "Ataovy {false} tsy hahomby amin'ny fandikan-teny rehefa tsy manana fametrahana ho an'ny toerana kendrena ny {categoryId} anao fa tsy miverina amin'ny modely ankapobeny.",
+				"allowFallback": "Ataovy {false} tsy hahomby amin'ny fandikan-teny rehefa tsy manana fametrahana ho an'ny toerana kendrena ny {categoryId} fa tsy miverina amin'ny modely ankapobeny.",
 				"apiVersion": "Translator REST API version. Default ho an'ny {version}.",
 				"maxRetries": "Ny fanandramana fanandramana ambony indrindra amin'ny valiny HTTP mandalo ({statusCodes}). Default ho an'ny {defaultRetries}. Ny fitambaran'ny antso HTTP isaky ny fangatahana dia {totalCalls}.",
 				"retryBackoffMs": "Cap (ms) amin'ny torimaso tokana. Default ho an'ny {defaultBackoff}. Ny lohan'ny {retryAfter} Azure dia omem-boninahitra amin'ny fotoana tena misy; raha tsy izany dia ampiasaina ny backoff exponential jittered, voafetra amin'io sanda io.",

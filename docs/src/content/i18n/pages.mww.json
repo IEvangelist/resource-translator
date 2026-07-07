@@ -352,7 +352,7 @@
 			"steps": {
 				"source": "Cov ntaub ntawv Askiv qhov chaw nyob ntawm {messagesPath}.",
 				"workflow": "Thawb uas kov nws ncaws tawm {workflowLink}, uas khiav {thisAction} tawm tsam nws tus kheej.",
-				"fanOut": "Qhov kev ua kiv cua tawm mus rau txhua Azure AI Tus Neeg Txhais Lus-txhawb nqa locale (teeb tsa hauv {configPath}) thiab sau ib tus kwv tij {messagesLocaleJson} rau ib lub hom phiaj.",
+				"fanOut": "Qhov kev ua kiv cua tawm mus rau txhua Azure AI Txhais lus-txhawb nqa locale (configured nyob rau hauv {configPath}) thiab sau ib tug kwv tij {messagesLocaleJson} ib lub hom phiaj.",
 				"pullRequest": "Ib qho kev thov rub yog qhib nrog cov lus txhais tshiab. Kev sib koom ua ke nws rov luam tawm nplooj ntawv no nrog cov ntawv sau rau hauv."
 			}
 		},

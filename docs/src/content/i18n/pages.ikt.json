@@ -114,7 +114,7 @@
 			},
 			"fields": {
 				"sourceLocale": "Utiffaaqtuq {sourceLocale} iliuraqtaungitpat. Hivumuuqtitauyuqlu Numiktiriyimun {fromLocale} naittut naqitautit ilituriyaulimaitut.",
-				"toLocales": "Kituliqaa array uvaluniit virguunmik-avikhimayumik string-mik.",
+				"toLocales": "Kituliqaa array uvaluniit virguunmik avikhimayumik string-mik.",
 				"includeExclude": "Glob qanurinigit naunaiyaqtauyut tamainit havakviuyunilu pijutiqaqtunik apqutinik.",
 				"glossary": "Kinguani-numiktitirutit tainiit ihuatqiyauyut. Taijuhiq-kikligiyait qauyimaniq ({cpp}, {dotnet}).",
 				"categoryId": "Azure {customTranslatorLink} category — havagvingni/domain knob (maligatigut, munaqhiliqinikkut, niuvaanikkut tone, taimaalu.). Tuyuqtauyuq {categoryQuery}.",
@@ -145,7 +145,7 @@
 			"industryLabel": "Havagvik / havagvia:",
 			"industryBody": "atuqlugu {categoryId} tikkuariami Azure {customTranslatorLink} ilagiyanganik ayuirhaqhimayuq nanminiriyarnik timiqutigiyarnik — maligatigut, ayurnaqtunik, munarhiliqinikkut, niuvvaaviliqinikkut, hunanikluuniit. Una hakugitqijaujuq pidjutikhaq nipaanun, qanurittunun nipinun, tainiinnunlu.",
 			"surfaceLabel": "Qaangani titiraqhimayut:",
-			"surfaceBody": "Atuqlugu {glossaryLink} kiluuttariami piliuqhimayut atiit hunavaluillu tainiit tainiit, aturlugulu {profanityAction} piiyariami nakuungittumik tainiit pinahualirumi nunamut nukaqhiuyunut inungnut.",
+			"surfaceBody": "Atuqlugu {glossaryLink} kiluuttariami piliuqhimayut atiit hunavaluillu tainiit tainiit, aturlugulu {profanityAction} piiyariami nakuungittumik tainiit pinahualirumi nunamut nukaqhiuyunut.",
 			"glossaryLinkLabel": "Tukiliurutingit"
 		}
 	},
@@ -235,7 +235,7 @@
 				"specLabel": "Microsoft Learn — Atuqtakhat .resx tutquumaviinni"
 			},
 			"xliff": {
-				"blurb": "OASIS XLIFF 2.0 titiqqat. Numiktirlugit tamaita {source} titiraqhugillu qanuriniit ihuaqtumut {target}, ihuaqhaqhugit {trgLang} nunamut.",
+				"blurb": "OASIS XLIFF 2.0 titiqqat. Numiktirlugit tamaita {source} titiraqhugillu qanurinniit ihuaqtumut {target}, ihuaqhaqhugit {trgLang} nunamut.",
 				"specLabel": "OASIS XLIFF 2.0 specification"
 			},
 			"po": {
@@ -256,7 +256,7 @@
 			}
 		},
 		"roundTrip": {
-			"heading": "Utimut tingmidjutikhanut uqariiyautit",
+			"heading": "Utimut tingmidjutikhamut uqariiyautit",
 			"body": "Uuktuutit katitiqhimayut naunaiyaiyut byte-for-byte-mun utiqtaqtut kivgaqtungnikkut iliuraidjutit tamainun ihuaqhaidjutinun. Ihuaqhaidjutikkut ihuangitumik ahiguqqat utiqtarnirmun naunaitkutingni, {issueLink} mikiyumik uuktuutimik.",
 			"issueLinkLabel": "angmarlugu ihuiguhuut"
 		}
@@ -280,7 +280,7 @@
 			},
 			"customCategory": {
 				"heading": "Ihuaqhaqhimayut Numiktiriyiit qanuriniit (havagvikyuat / havagviit)",
-				"body": "Ayuqiqtuqlugu Azure {customTranslatorLink} katitiqvia corpus tapkua pidjutigiyaat havagvingni tainiit uvalu nipait (maligatigut, munaqhiliqinikkut, niuvaanikkut, iluani-hananikkut, taimaalu.) uvalu tunilugu naunaitkutaa {categoryId}. Una hakugitqiyauyuq nipaa Azure tuniyaa."
+				"body": "Ayuqiqtuqlugu Azure {customTranslatorLink} katitiqvia corpus tapkua pidjutigiyaat havagvingni tainiit uvalu idjuhiit (maligatigut, munaqhiliqinikkut, niuvaanikkut, iluani-hananikkut, taimaalu.) uvalu tunilugu naunaitkutaa {categoryId}. Una hakugitqiyauyuq nipaa Azure tuniyaa."
 			},
 			"tone": {
 				"heading": "Nipait munaridjutait + maliqattiarlugit",
@@ -288,7 +288,7 @@
 			},
 			"dryRun": {
 				"heading": "Paniupayumik aulapkaqlugu aulaqtinagu havauhiq",
-				"body": "Hulijakhaq tunihijuq naittumik piliuqhimajunik imaalu maliktakhat naittumik, kihimi titiraqhimajut titiraqhimajut. Ilaliutilugit {failOnErrorFalse} nuipkarlugit tamaita ajuqhautaujut qajagidjutikhamik uuktuffaaqtillutit."
+				"body": "Hulijakhaq tunihijuq naittumik titiraqhimajunik imaalu maliktakhat naittumik, kihimi titiraqhimajut titiraqhimajut. Ilaliutilugit {failOnErrorFalse} nuipkarlugit tamaita ajuqhautaujut qajagidjutikhamik uuktuffaaqtillutit."
 			}
 		}
 	},
@@ -304,7 +304,7 @@
 			},
 			"tone": {
 				"heading": "Huuq numiktitirutit ilaani ihuangitut?",
-				"body": "Qaritauyami numiktiriniq pilluaqtauyuq tamainnut piyuq uuktuutinga. Pingahut naqitautit ikayuutauyut: {glossaryLink} ayungnaqtunik tainiit ihuangitut, {customTranslatorLink} ihuaqhaqhimayut atugahat ilihaqhimayut nipaitigut uvalu tainiitigut, uvalu {profanityAction} halumaqtiqlugit uvaluuniin naunaitkuhiqlugit ihuangitumik tainiit.",
+				"body": "Qaritauyami numiktiriniq pilluaqtauyuq tamainnut piyuq uuktuutinga. Pingahut naqitautit ikayuutauyut: {glossaryLink} ayungnaqtunik tainiit ihuangitut, {customTranslatorLink} ihuaqhaqhimayut atugahat ayuiqhaqhimayut nipaitigut uvalu tainiitigut, uvalu {profanityAction} halumaqhinikkut uvaluuniin naunaitkutinik ihuangitumik taidjutinik.",
 				"glossaryLinkLabel": "Tukiliurutingit",
 				"customTranslatorLinkLabel": "Custom Translator katitirvia"
 			},
@@ -345,7 +345,7 @@
 		"source": "Pitaqvik",
 		"machineTranslations": "Qaritauyami numiktiriniq",
 		"translationPending": "Numiktitirniq utaqqijuq — angmarlugu {workflowName} run.",
-		"noLocales": "Nayugait aadjikkiingitut taaffumunga filtremun.",
+		"noLocales": "Nayugait aadjikkiingittut taaffumunga filtre-mut.",
 		"howItWorks": {
 			"heading": "Qanuq una havauhia",
 			"thisActionLabel": "una hulidjut",
@@ -386,7 +386,7 @@
 	},
 	"changelog": {
 		"title": "Aallannguqtirutit",
-		"eyebrow": "Ingilraaqnitait",
+		"eyebrow": "Ingilraanin",
 		"lede": "Anginiqhakkut naittut tuhaqtidjutit. Tamna canonical, atanniqtuidjutiqaqtuq aallannguqtirutinga ittuq CHANGELOG.md tutquumavingani.",
 		"fullRecord": "Takulugu {changelogLink} tamaat titiraqhimayuq.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
@@ -410,15 +410,15 @@
 				"newInputs": "Nutaat iliuraqtauyut: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, unalu hivutunirmik Numiktiriyi naqitautait {textType}, {profanityAction}, {profanityMarker}, unalu {allowFallback}.",
 				"sourceLocale": "Source locale tadja hivumuuqtitauyuq Numiktiriyimun {fromLocale} taimaali naittut naqitautit ilituriyaungitut.",
 				"resilience": "{label} inmikkut uuktuffaarniq tadjakaffuk HTTP kiudjutit ({statusCodes}) nan'ngariplugu Azure's {retryAfter} header — utiffaaqpaktuq nutqangalimaiqhuni nutqarvikhaa talvaniingitpat. Ihuaqhaqlugit {maxRetries} unalu {retryBackoffMs}. {issue}",
-				"placeholderProtection": "{label} tokens ukunatut {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} unalu HTML hunavaluit puuqhimayut sentinels-nut numiktiqtautinnagu utiqtitauplutiklu talvannga, taimaa Numiktiriyi nutqaqtitait i18next/Mustache/Handlebars/.NET/printf placeholders. Nuutlugu {protectPlaceholders}; uigulugu {customPlaceholderPatterns}. {issue}",
+				"placeholderProtection": "{label} tokens ukunatut {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} unalu HTML hunavaluit puuqhimayut sentinels-nut numiktiqtautinnagu utiqtitauplutiklu talvanga, taimaa Numiktiriyi nutqaqtitait i18next/Mustache/Handlebars/.NET/printf placeholders. Nuutlugu {protectPlaceholders}; uigulugu {customPlaceholderPatterns}. {issue}",
 				"perKeyOptOut": "{label} nutaaq {noTranslatePatterns} iliuraidjutaa piiqtaa aadjikutaanik kiluutainnik Numiktiriyip tukhiutaanit tamaat (tammaqtailiplugit pivikhat akikhait atiinut, ihuittumik naunaitkutait, taimaalu.). Aadjikkiiktut glob idjuhiit parser-level keys-nut (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). {issue}",
 				"repoConfig": "Repo-level config via {configPath}.",
 				"glossary": "Tukiliurutingit ikayuutit, talvannga piyakhaq {coreSummary}.",
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
 				"audit": "NPM Audit Clean (0 ihuilidjutauyut).",
 				"docsSite": "Astro + Tailwind v4 docs qaritauyaliqivik tautuktuumiyaaqhugit nuutirutit uvalu Expressive Code.",
-				"docsAccessibility": "{label} WCAG 2.1 AA pass. Naunaitkutinga glyphs aadlanguqtut apqutimut taimaa nakuuhuiriami kalangit aadlatqiiktut gradient nutqarvinganut, tamna puktaqtuq {backToTop} naqitaut atuqtuq {inert} iiqhimagaluaqtillugu (talvalluamit {ariaHidden} naqitautinga naqittaaqtaminik), {formatsAstro} ilangit ayurhautiyungnaiqtut inmikkut-piliurhimayuq naunaitkutanganik naunaitkutingit, pingahuuyut  piannat naunaipkaiyuq BCP-47-nakuuyuq {lang} naunaitkutingit ({nya}, {lug}, {run}), aadjikutariyait {documentation} naunaitkutat naunaitkutat naunaiqtitauyut haniraani makpiraap ataanilu,  tamaitalu naunaipkutit naunaipkutit {inputs}/{configuration} tuyuutauhimayut qaritauyami taiguarutimik titiraqhimayumik.",
-				"inlineCode": "{label} docs prose {codeElement} atuliqtuq uunavyaktumik/aupayaangayumik pidjutaa — aalangayuq naunaitkutinin→accent palette atuqtauyut atadjutinun uvalu taidjutainun.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. Naunaitkutinga glyphs aadlanguqtut apqutimut taimaa nakuuhuiriami kalangit aadlatqiiktut gradient nutqarvinganut, tamna puktaqtuq {backToTop} naqitaut atuqtuq {inert} iiqhimagaluaqtillugu (talvalluamit {ariaHidden} naqitautinga naqittaaqtaraluanga), {formatsAstro} ilangit ayurhautiyungnaiqtut inmikkut-piliurhimayuq naunaitkutanganik naunaitkutingit, pingahuuyut  piannat naunaipkaiyuq BCP-47-nakuuyuq {lang} naunaitkutingit ({nya}, {lug}, {run}), aadjikutariyait {documentation} naunaitkutat naunaitkutat naunaiqtitauyut haniraani makpiraap ataanilu,  tamaitalu naunaipkutit naunaipkutit {inputs}/{configuration} tuyuutauhimayut qaritauyami taiguarutimik titiraqhimayumik.",
+				"inlineCode": "{label} docs prose {codeElement} atuliqtuq uunavyaktumik/aupayaangayumik pidjutaa — aalangayuq qanurinia→accent atuqtauyuq atadjutinun uvalu taidjutainun.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
 		},

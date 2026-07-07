@@ -61,7 +61,7 @@
 			"setupLink": "Yendani pakukhazikitsa kwathunthu"
 		},
 		"cta": {
-			"title": "Takonzeka kukhazikitsa malo pa autopilot?",
+			"title": "Kodi mwakonzeka kukhazikitsa malo pa autopilot?",
 			"body": "Chinsinsi chimodzi cha Azure AI Translator, fayilo imodzi yogwirira ntchito. Womasulira Resource amasamalira zina zonse.",
 			"button": "Yambani"
 		}
@@ -125,7 +125,7 @@
 				"apiVersion": "Womasulira REST API version. Kusakhulupirika kwa {version}.",
 				"maxRetries": "Kuyesayesa kwakukulu pa mayankho osakhalitsa a HTTP ({statusCodes}). Kusakhulupirika kwa {defaultRetries}. Mafoni onse a HTTP pa pempho ndi {totalCalls}.",
 				"retryBackoffMs": "Kapu (ms) pa tulo tum'mbuyo kalikonse. Kusakhulupirika kwa {defaultBackoff}. Mutu wa {retryAfter} wa Azure umalemekezedwa ndendende pamene alipo; apo ayi jittered exponential backoff imagwiritsidwa ntchito, yotsekedwa pa mtengo uwu.",
-				"protectPlaceholders": "Kusakhulupirika kwa {true}. Pamene pa, zizindikiro monga {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ndi mabungwe a HTML amasinthidwa ndi zizindikiro za sentinel musanayambe kumasulira ndikubwezeretsedwa pambuyo pake. Lekani pokhapokha ngati gwero lili ndi mfundo zenizeni zowoneka ngati placeholder.",
+				"protectPlaceholders": "Kusakhulupirika kwa {true}. Pamene pa, zizindikiro monga {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ndi mabungwe a HTML amasinthidwa ndi zizindikiro za sentinel musanayambe kumasulira ndikubwezeretsedwa pambuyo pake. Lekani pokhapokha ngati gwero mwadala lili ndi mawonekedwe a placeholder.",
 				"customPlaceholderPatterns": "Zitsanzo zowonjezera za regex (popanda delimiters) zinawonjezeredwa ku malo osasinthika, mwachitsanzo {angleToken} kwa chizolowezi cha chizindikiro syntax. Ma regexes osagwira ntchito amanyalanyazidwa.",
 				"noTranslatePatterns": "Zojambula za Glob zikugwirizana ndi makiyi amtundu wa parser (njira ya JSON dontho, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext kiyi). Makiyi ofananira amagwetsedwa kuchokera ku pempholo ndikudutsa ndi mtengo wawo wa gwero wosungidwa."
 			}
@@ -239,7 +239,7 @@
 				"specLabel": "Mafotokozedwe a OASIS XLIFF 2.0"
 			},
 			"po": {
-				"blurb": "GNU gettext Portable Object files. Kumasulira {msgid} / {msgidPlural} lililonse kukhala mawonekedwe {msgstr} / {msgstrPlural}.",
+				"blurb": "GNU gettext Portable Object files. Kumasulira {msgid} / {msgidPlural} lililonse m'mawonekedwe {msgstr} / {msgstrPlural}.",
 				"specLabel": "GNU gettext - PO file format"
 			},
 			"json": {

@@ -53,9 +53,24 @@
 		"sourceAria": "GitHub ပေါ်တွင် အရင်းအမြစ်ကို ကြည့်ပါ",
 		"marketplaceAria": "GitHub ဈေးကွက်ပေါ်တွင် ရှုမြင်ပါ",
 		"authorAria": "ဒေးဗစ် ပင်း ၏ ဝက်ဘ်ဆိုက်",
+		"npmAria": "npm ပေါ်တွင် Azure Translator SDK ကိုကြည့်ပါ",
 		"taglinePrefix": "တရားဝင် ထိပ်ပေါ်တွင် တည်ဆောက်ထားသော သင့်အရင်းအမြစ်ဖိုင်များကို အလိုအလျောက် ဘာသာပြန်ပေးသည့် GitHub Action",
 		"taglineMiddle": "SDK မှ",
 		"copyrightPrefix": "အောက် တွင် ထုတ် လွှင့် ခဲ့ သည်",
-		"builtWith": "တည်ဆောက်"
+		"builtWith": "တည်ဆောက်",
+		"installLabel": "အလုပ်လုပ်စဉ်ထဲကို ပေါင်းထည့်ပါ",
+		"copy": "မိတ္တူကူး",
+		"copied": "မိတ္တူကူးပြီးပြီ!",
+		"copyAria": "သွင်းမှု အတိုကောက်ချက်ကို Clipboard ဆီ မိတ္တူကူးပါ",
+		"marketplaceCta": "GitHub ဈေးကွက်ပေါ်တွင် ရယူပါ",
+		"starCta": "GitHub ပေါ်မှ ကြယ်",
+		"starAria": "GitHub ပေါ်မှ Star Resource Translator",
+		"stargazersAria": "GitHub ကြယ်ကြည့်သူ အရေအတွက်",
+		"versionLabel": "ဗားရှင်း",
+		"whatsNew": "အသစ်အဆန်းများ",
+		"language": "ဘာသာစကား",
+		"editPage": "ဒီစာမျက်နှာကို တည်းဖြတ်ပါ",
+		"editPageAria": "GitHub ပေါ်မှာ ဒီစာမျက်နှာရဲ့ အရင်းအမြစ်ကို တည်းဖြတ်ပါ",
+		"reportIssue": "ဤစာမျက်နှာနှင့်ပတ်သက်သော ပြဿနာတစ်ခုကို အစီရင်ခံပါ"
 	}
 }

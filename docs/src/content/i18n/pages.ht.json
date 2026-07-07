@@ -181,7 +181,7 @@
 				"region": "Rejyon resous tradiktè (omèt resous mondyal)",
 				"toLocales": "Lokal yo tradui nan Aksepte yon etalaj JSON ({jsonArray}) oswa valè separe virgul.",
 				"include": "Newline-separe modèl glob; Se sèlman matche dosye yo tradwi.",
-				"exclude": "Newline-separe modèl glob; matche dosye yo sote (aplike apre gen ladan li).",
+				"exclude": "Newline-separe modèl glob; matche dosye yo sote (aplike apre gen ladan li)",
 				"configPath": "Chemen nan dosye konfigirasyon YAML (relatif nan rasin nan espas travay la)",
 				"dryRun": "Lè {true}, kouri tradiksyon ak emèt rezime, men se pa ekri dosye.",
 				"failOnError": "Lè {true}, erè inatandi echwe aksyon an; Lè {false}, erè yo se avètisman."
@@ -206,10 +206,10 @@
 			"caption": "Detèminasyon ak entrain pwoteksyon placeholder",
 			"items": {
 				"maxRetries": "Tantativ retan maksimòm sou repons HTTP pasajè ({statusCodes}) Kantite total apèl HTTP pou chak demann {totalCalls}.",
-				"retryBackoffMs": "Cap (nan milisgond) sou nenpòt ki dòmi bakoff sèl. Aksyon an onore {retryAfter} Header repons Azure egzakteman lè prezan; Sinon, li itilize jittered eksponansyèl rebak, bouche nan valè sa a.",
-				"protectPlaceholders": "Lè {true} (default), placeholder tankou {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ak antite HTML yo ranplase ak siy santinèl anvan tradiksyon ak retabli apre sa. Enfim sèlman lè sous ou a entansyonèlman gen literal plas ki gen fòm tèks ki ta dwe tradwi.",
+				"retryBackoffMs": "Cap (nan milisgond) sou nenpòt ki dòmi bakoff sèl. Aksyon an onore Header {retryAfter} repons Azure egzakteman lè prezan; Sinon, li itilize jittered eksponansyèl rebak, bouche nan valè sa a.",
+				"protectPlaceholders": "Lè {true} (default), placeholder tankou {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ak antite HTML yo ranplase ak jeton santinèl anvan tradiksyon ak retabli apre sa. Enfim sèlman lè sous ou a entansyonèlman gen literal plas ki gen fòm tèks ki ta dwe tradwi.",
 				"customPlaceholderPatterns": "Regexes Newline separe (san delimiteur) te ajoute nan seri a placeholder default, egzanp {angleToken} pou sentaks siy koutim.",
-				"noTranslatePatterns": "Newline-separe modèl glob matche ak kle parser-nivo (JSON pwen chimen, RESX {resxName}, PO {poMsgid}, XLIFF inite {xliffId}, INI / kle retext). Kle matche yo tonbe nan demann lan tradiktè epi yo pase nan ak valè sous yo konsève."
+				"noTranslatePatterns": "Newline-separe modèl glob matche ak kle parser-nivo (JSON pwen kou, RESX {resxName}, PO {poMsgid}, XLIFF inite {xliffId}, INI / kle retext). Kle matche yo tonbe nan demann lan tradiktè epi yo pase nan ak valè sous yo konsève."
 			}
 		},
 		"outputs": {
@@ -351,7 +351,7 @@
 			"thisActionLabel": "aksyon sa a menm",
 			"steps": {
 				"source": "Dosye sous angle a ap viv nan {messagesPath}",
-				"workflow": "Pouse ki manyen li kòmanse {workflowLink} ki kouri {thisAction} kont tèt li.",
+				"workflow": "pouse ki manyen li kòmanse {workflowLink} ki kouri {thisAction} kont tèt li.",
 				"fanOut": "Fanatik yo aksyon soti nan chak lokal Azure AI tradiktè sipòte (configuré nan {configPath}) epi ekri yon {messagesLocaleJson} frè ak sè pou chak sib.",
 				"pullRequest": "Yon demann rale louvri ak tradiksyon yo nouvo. Fusion li republishs paj sa a ak kat yo ranpli nan."
 			}
@@ -411,13 +411,13 @@
 				"sourceLocale": "Sous lokalite se kounye a tou voye nan tradiktè kòm {fromLocale} se konsa strings kout yo pa otodetekte.",
 				"resilience": "{label} reeseye otomatik sou repons HTTP pasajè ({statusCodes}) onore {retryAfter} Azure a — tonbe tounen nan jittered eksponansyèl dèyè lè absan. Tunable via {maxRetries} ak {retryBackoffMs} {issue}",
 				"placeholderProtection": "{label} siy tankou {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ak antite HTML yo vlope nan santinel anvan tradiksyon ak retabli apre sa, se konsa tradiktè sispann mangling i18next / moustache / gidon / .NET / printf placeholders. Vire via {protectPlaceholders}; Pwolonje ak {customPlaceholderPatterns} {issue}",
-				"perKeyOptOut": "{label} nouvo {noTranslatePatterns} opinyon gout matche kle ki soti nan demann lan tradiktè antyèman (prezève valè sous pou non mak, kòd erè, elatriye). Matche ak modèl glob kont kle parser-nivo (JSON pwen kou, RESX {resxName}, PO {poMsgid}, XLIFF inite {xliffId}, INI / kle retext). {issue}",
+				"perKeyOptOut": "{label} nouvo {noTranslatePatterns} opinyon gout matche kle soti nan demann lan tradiktè antyèman (prezève valè sous pou non mak, kòd erè, elatriye). Matche ak modèl glob kont kle parser-nivo (JSON pwen kou, RESX {resxName}, PO {poMsgid}, XLIFF inite {xliffId}, INI / kle retext). {issue}",
 				"repoConfig": "Repo-nivo config via {configPath}.",
 				"glossary": "Glosè sipò, rezime etap pa {coreSummary}",
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig",
 				"audit": "NPM odit pwòp (0 frajilite)",
 				"docsSite": "Astro + Tailwind v4 docs sit ak tranzisyon View ak Kòd Espresif",
-				"docsAccessibility": "{label} WCAG 2.1 AA pase Glyphs logo konvèti nan chemen pou yo pa fail koulè-kontras kont arè gradyan ankò, bouton an {backToTop} k ap flote itilize {inert} pandan y ap kache (olye pou yo yon {ariaHidden} toggle ki kite li tabbable), {formatsAstro} seksyon pa gen okenn ankò fè kolizyon ak ID oto-pwodwi yo, twa kat lokal kounye a ekspoze BCP-47-valab {lang} atribi ({nya}, {lug}, {run}), doub {documentation} etikèt bòn tè yo disambiguated ant ankadre ak footer,  ak chak tablo done sou {inputs} / {configuration} bato ak yon caption ekran-lektè.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pase Glyphs logo konvèti nan chemen pou yo pa fail koulè-kontras kont arè gradyan ankò, bouton an {backToTop} k ap flote itilize {inert} pandan y ap kache (olye pou yo yon {ariaHidden} toggle ki kite tabbable), {formatsAstro} seksyon pa gen okenn ankò fè kolizyon ak ID oto-pwodwi yo, twa kat lokal kounye a ekspoze BCP-47-valab {lang} atribi ({nya}, {lug}, {run}), doub {documentation} etikèt bòn tè yo disambiguated ant ankadre ak footer,  ak chak tablo done sou {inputs} / {configuration} bato ak yon caption ekran-lektè.",
 				"inlineCode": "{label} Docs {codeElement} kounye a mete aksan tèm cho / amber - diferan de palèt mak→aksan yo itilize pou lyen ak.",
 				"automation": "Dependabot oto-rantre , CodeQL eskane CI matris"
 			}

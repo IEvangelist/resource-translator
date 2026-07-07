@@ -206,7 +206,7 @@
 			"caption": "Të dhënat e elasticitetit dhe mbrojtjes së mbajtësve të vendeve",
 			"items": {
 				"maxRetries": "Përpjekjet maksimale të përsëritjes në përgjigjet kalimtare HTTP ({statusCodes}). Numri i përgjithshëm i thirrjeve HTTP për kërkesë është {totalCalls}.",
-				"retryBackoffMs": "Kapaku (në milisekonda) në çdo gjumë të vetëm prapa. Veprimi nderon kokën e përgjigjes së {retryAfter} të Azure pikërisht kur është i pranishëm; përndryshe përdor prapambetje eksponenciale të nervozuar të kufizuar në këtë vlerë.",
+				"retryBackoffMs": "Kapaku (në milisekonda) në çdo gjumë të vetëm prapa. Veprimi nderon kokën e përgjigjes së {retryAfter} të Azure pikërisht kur është e pranishme; përndryshe përdor prapambetje eksponenciale të nervozuar të kufizuar në këtë vlerë.",
 				"protectPlaceholders": "Kur {true} (parazgjedhje), mbajtësit e vendeve si {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} dhe HTML zëvendësohen me argumente sentinel përpara përkthimit dhe rikthehen më pas. Çaktivizoni vetëm kur burimi juaj përmban qëllimisht tekst fjalë për fjalë në formë vendmbajtësi që duhet të përkthehet.",
 				"customPlaceholderPatterns": "Regekset e ndara me rreshta të reja (pa kufizues) të shtuara në grupin e paracaktuar të mbajtësve të vendeve, p.sh. {angleToken} për sintaksën e tokenit të personalizuar.",
 				"noTranslatePatterns": "Modelet e globit të ndara me rreshta të reja përputheshin me çelësat e nivelit të analizuesit (rruga me pika JSON, RESX {resxName}, PO {poMsgid}, njësia XLIFF {xliffId}, çelësi INI/restext). Çelësat që përputhen hiqen nga kërkesa e përkthyesit dhe kalojnë me vlerën e tyre burimore të ruajtur."
@@ -322,7 +322,7 @@
 			},
 			"dist": {
 				"heading": "Nga vjen {distDir} e paketuar?",
-				"body": "Veprimet GitHub JS dërgojnë JS-në e tyre të përpiluar në depo. Rrjedha e punës {distBuild} e rindërton atë pas çdo bashkimi për të {mainBranch} nëse do të zhvendosej dhe {distCheck} bllokon PR-të që do të zbarkonin prodhimin e vjetëruar."
+				"body": "Veprimet GitHub JS dërgojnë JS-në e tyre të përpiluar në depo. Rrjedha e punës {distBuild} e rindërton atë pas çdo bashkimi për të {mainBranch} nëse do të zhvendosej dhe {distCheck} bllokon PR-të që do të zbardhnin në prodhim të vjetëruar."
 			},
 			"formats": {
 				"heading": "Po formatet e tjera të burimeve?",
@@ -418,7 +418,7 @@
 				"audit": "npm audit clean (0 dobësi).",
 				"docsSite": "Faqja e dokumenteve Astro + Tailwind v4 me tranzicione pamjeje dhe kod shprehës.",
 				"docsAccessibility": "{label} WCAG 2.1 AA kalim. Glifet e logos u konvertuan në shtigje në mënyrë që të mos dështojnë më në kontrastin e ngjyrave kundër ndalesave të gradientit, butoni lundrues i {backToTop} përdor {inert} ndërsa është i fshehur (në vend të një çelësi {ariaHidden} që e la atë të tabulueshëm), seksionet {formatsAstro} nuk përplasen më me ID-të e tyre të drejtave të gjeneruara automatikisht, tre karta lokalizimi tani ekspozojnë atributet e {lang} të vlefshme BCP-47 ({nya}, {lug}, {run}), etiketat e kopjuara {documentation} të monumenteve janë të paqarta midis shiritit anësor dhe fundit,  dhe çdo tabelë e të dhënave në {inputs}/{configuration} dërgohet me një mbishkrim të lexuesit të ekranit.",
-				"inlineCode": "{label} Docs Prose {codeElement} tani mban theksin e temës së ngrohtë/qelibar - të ndryshme nga paleta e markës→theksit të përdorur për lidhjet dhe titujt.",
+				"inlineCode": "{label} Docs Prose {codeElement} tani mban theksin e temës së ngrohtë/qelibar - të dallueshme nga paleta e markës→theksit të përdorur për lidhjet dhe titujt.",
 				"automation": "Bashkimi automatik i Dependabot, skanimi CodeQL, matrica CI."
 			}
 		},

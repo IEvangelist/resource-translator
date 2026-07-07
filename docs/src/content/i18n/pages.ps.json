@@ -1,7 +1,7 @@
 {
 	"index": {
 		"title": "سرچینې ژباړونکی",
-		"description": "Resource Translator ستاسو د سرچینې فایلونو لپاره په هر ریپو، هر فارمیټ کې د ماشین ژباړل شوی کش غوښتنې خلاصوی — چې د Azure AI Translator لخوا ځواکمن کیږی.",
+		"description": "Resource Translator ستاسو د سرچینې فایلونو لپاره په هر ریپو، په هر فورمټ کې د ماشین ژباړل شوی کش غوښتنې خلاصوی — چې د Azure AI Translator لخوا ځواکمن کیږی.",
 		"socialTitle": "د سرچینې ژباړونکی — د سرچینې فایلونه په اتومات ډول ژباړل",
 		"badge": "v3.0 — Node 24، د ریپو تنظیم، لغت، وچې اجرا",
 		"headlinePrefix": "خپل ریپو محلی کړئ",
@@ -88,13 +88,13 @@
 			},
 			"output": {
 				"title": "د محصول معاینه وکړئ",
-				"body": "کله چې کاری بهیر پای ته ورسېږی، عمل درې آوټپټونه ښکاره کوی چې تاسو یې د PR تشریح ته وصل کړئ: {summaryTitle}، {summaryDetails}، او {hasNewTranslations}. همداراز د Markdown لنډیز د دندې پاڼې ته د {coreSummary} له لارې لیکی."
+				"body": "کله چې کاری بهیر پای ته ورسېږی، عمل درې آوټپټونه ښکاره کوی چې تاسو یې د PR تشریح ته وصل کړئ: {summaryTitle}، {summaryDetails}، او {hasNewTranslations}. همدارنګه د Markdown لنډیز د دندې پاڼې ته د دندې له لارې {coreSummary}."
 			}
 		},
 		"nextSteps": {
 			"title": "راتلونکی ګامونه",
 			"configuration": "د ریپو کچې ډیفالټونه د {configPath} سره تنظیم کړئ.",
-			"recipes": "د مونوریپو، دودیز لغتونو، او د دودیز ژباړونکی کټګوریو ترکیبونه وګورئ."
+			"recipes": "د مونورېپو، دودیز لغتونو، او دودیز ژباړونکی کټګوریو ترکیبونه وګورئ."
 		}
 	},
 	"configuration": {
@@ -114,7 +114,7 @@
 			},
 			"fields": {
 				"sourceLocale": "که تنظیم نه وی، نو بیرته د {sourceLocale} ورودی ته راګرځی. همداراز Translator ته د دې لپاره {fromLocale} چې لنډې تارونه اتومات کشف نه شی.",
-				"toLocales": "یا یوه آرایه یا د کامه جلا شوې تار.",
+				"toLocales": "یا یوه آرایه یا د کاما جلا شوی تار.",
 				"includeExclude": "د ګلوب نمونې د مطلق او د کاری ځای اړوند لارو پر وړاندې ارزول کېږی.",
 				"glossary": "د ژباړې وروسته اصطلاح اووررایدونه. د کلمو سرحد ته خبر ({cpp}، {dotnet}).",
 				"categoryId": "Azure {customTranslatorLink} کټګوری — ستاسو صنعت/ډومېن نوب (قانونی، طبی، بازارموندنې لحن، او نور). د {categoryQuery} په توګه واستول شو.",
@@ -124,7 +124,7 @@
 				"allowFallback": "داسې تنظیم {false} چې ژباړه ناکامه شی کله چې ستاسو {categoryId} د هدف ځای لپاره ځای پر ځای د عمومی ماډل ته نه راګرځی.",
 				"apiVersion": "د REST API ژباړونکی نسخه. ډیفالټ ته {version}.",
 				"maxRetries": "په لنډمهاله HTTP ځوابونو کې اعظمی بیا هڅه ({statusCodes}). په ډیفالټ ډول {defaultRetries}. ټول HTTP زنګونه د هر غوښتنې لپاره {totalCalls}.",
-				"retryBackoffMs": "کپ (ms) د هر واحد شاتګ خوب لپاره. ډیفالټ ته {defaultBackoff}. د Azure {retryAfter} سر دقیقاً هغه وخت درناوی کیږی کله چې شتون ولری؛ که نه، د ګډوډ شوی نمایی شاتګ کارول کیږی، چې په دې ارزښت کې محدود شوی دی.",
+				"retryBackoffMs": "کپ (ms) د هر واحد شاتګ خوب لپاره. ډیفالټ ته {defaultBackoff}. د Azure {retryAfter} سر دقیقاً هغه وخت درناوی کېږی چې موجود وی؛ که نه، د ګډوډ شوی نمایی شاتګ کارول کیږی، چې په دې ارزښت کې محدود شوی دی.",
 				"protectPlaceholders": "ډیفالټ ته {true}. کله چې فعال وی، لکه {mustache}، {jsVar}، {indexZero}، {numberFormat}، {printf}، {positionalPrintf} او HTML موجودیتونه د ژباړې مخکې د Sentinel توکنونو سره بدلیږی او وروسته بیرته راګرځول کیږی. یوازې هغه وخت غیر فعال کوی چې سرچینه قصداً د ځای پر ځای شکل لرونکی لفظی تورنونه ولری.",
 				"customPlaceholderPatterns": "اضافی regex نمونې (بې له ډیلیمټرونو) د ډیفالټ placeholder سیټ ته اضافه شوې، لکه {angleToken} د custom token syntax لپاره. نامعتبر ریجیکسونه له پامه غورځول کیږی.",
 				"noTranslatePatterns": "د ګلوب نمونې د پارسر کچې کیلی (JSON نقطه لرونکی لاره، RESX {resxName}، PO {poMsgid}، XLIFF واحد {xliffId}، INI/restext کیلی) سره برابرې شوې. د مطابقت کیلی له غوښتنې څخه لرې کیږی او د سرچینې ارزښت سره انتقالیږی."
@@ -143,7 +143,7 @@
 			"heading": "لحن او صنعت، په ساده ژبه",
 			"body": "د Azure AI Translator v3 API یو واحد ټون نوب نه لری. دوه تنظیمات سره یو ځای کیږی چې تقریباً یو ډول کنټرول درکړی:",
 			"industryLabel": "صنعت / ساحه:",
-			"industryBody": "{categoryId} وکاروئ چې Azure {customTranslatorLink} کټګورۍ ته اشاره وکړئ چې ستاسو په خپل کورپس کې روزل شوی — قانونی، تخنیکی، طبی، بازارموندنه، یا هر بل څه. دا د ټون، برانډ غږ، او لغتونو لپاره تر ټولو قوی لیور دی.",
+			"industryBody": "{categoryId} وکاروئ چې Azure {customTranslatorLink} کټګورۍ ته اشاره وکړئ چې ستاسو په خپل کورپس کې روزل شوی — قانونی، تخنیکی، طبی، بازارموندنه، یا بل هر څه. دا د ټون، برانډ غږ، او لغتونو لپاره تر ټولو قوی لیور دی.",
 			"surfaceLabel": "سطحی متن:",
 			"surfaceBody": "د دې {glossaryLink} وکاروئ ترڅو د برانډ نومونه او محصول اصطلاحات لفظ په لفظ قفل کړئ، او {profanityAction} د ځوانانو لپاره د ځایی کولو لپاره د ناوړه اصطلاحاتو د پاکولو لپاره وکاروئ.",
 			"glossaryLinkLabel": "لغتنامه"
@@ -189,7 +189,7 @@
 		},
 		"translatorInputs": {
 			"heading": "د ټرانسلیټر غوښتنې داخلونه",
-			"intro": "دا مستقیماً د Azure AI Translator v3 پوښتنې پارامیټرونو ته نقشه کیږی. هر یو اختیاری دی؛ د ژباړونکی اصلی اصول هغه وخت تطبیقېږی چې تنظیم نه شی.",
+			"intro": "دا مستقیماً د Azure AI Translator v3 پوښتنې پارامیټرونو ته نقشه کیږی. هر یو اختیاری دی؛ د ټرانسلیټر ډیفالټونه هغه وخت تطبیقېږی چې غیر تنظیم شی.",
 			"caption": "د ټرانسلیټر غوښتنې داخلونه",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} کټګوری — صنعت/ډومېن/تون knob. د {categoryQuery} په توګه لیږل شوی.",
@@ -276,7 +276,7 @@
 				"heading": "د برانډ نومونو او محصولاتو اصطلاحاتو لغتنامه",
 				"intro": "یو {configPath} ریپو ته واچوئ:",
 				"afterLabel": "وروسته",
-				"body": "د لغت اصطلاحات د ژباړې {after} کې کارول کېږی، نو د ماشین ژباړل شوی محصول ستاسو خوښ شوی برانډ ساتی حتی که ماډل یې د مترادف سره بدل کړی وی."
+				"body": "د لغت اصطلاحات د ژباړې {after} کارول کېږی، نو د ماشین ژباړل شوی محصول ستاسو خوښ شوی برانډ ساتی حتی که ماډل یې د مترادف سره بدل کړی وی."
 			},
 			"customCategory": {
 				"heading": "د دودیز ټرانسلیټر کټګوری (صنعت / ډومین)",
@@ -304,7 +304,7 @@
 			},
 			"tone": {
 				"heading": "ولې ژباړې کله ناکله غیر معمولی یا بې ځایه وی؟",
-				"body": "د ماشین ژباړه په ډیفالټ ډول عمومی موډل ته ځی. درې نوبونه مرسته کوی: د سختو اصطلاحاتو {glossaryLink} لپاره، یو {customTranslatorLink} د هغو ماډلونو لپاره چې ستا په ټون او لغتونو روزل شوی وی، او {profanityAction} د سپکاوی اصطلاحاتو پاکولو یا نښه کولو لپاره.",
+				"body": "د ماشین ژباړه په ډیفالټ ډول عمومی موډل ته ځی. درې نوبونه مرسته کوی: د سختو اصطلاحاتو {glossaryLink} لپاره، یو {customTranslatorLink} د ښه تنظیم شویو ماډلونو لپاره چې ستاسو په ټون او لغتونو روزل شوی وی، او {profanityAction} د سپکاوی اصطلاحاتو پاکولو یا نښه کولو لپاره.",
 				"glossaryLinkLabel": "لغتنامه",
 				"customTranslatorLinkLabel": "د دودیز ټرانسلیټر کټګوری"
 			},
@@ -338,7 +338,7 @@
 		"lede": "دا پاڼه د Resource Translator له خوا خپله ژباړل کېږی، هر ځل چې اصلی ته فشار ورکړی، هرې ژبې ته چې Azure AI Translator ملاتړ کوی.",
 		"localeCountLabel": "{count} ځایونه",
 		"statusComplete": "{translatedCount} مهال رینډر شوی — بشپړ!",
-		"statusPending": "{translatedCount} اوس مهال رینډر شوی — {pendingCount} د راتلونکی ځل لپاره {workflowName} دی.",
+		"statusPending": "{translatedCount} اوس مهال رینډر شوی — {pendingCount} د راتلونکی {workflowName} چلولو پورې انتظار لری.",
 		"viewWorkflowRuns": "د workflow چلونه وګورئ",
 		"filter": "فلټر",
 		"filterPlaceholder": "د ژبې، کوډ، یا اصلی نوم له مخې ولټوئ...",
@@ -410,14 +410,14 @@
 				"newInputs": "نوې داخلونه: {include}، {exclude}، {configPath}، {categoryId}، {apiVersion}، {dryRun}، {failOnError}، سربېره پر دې پرمختللی ټرانسلیټر نوبونه {textType}، {profanityAction}، {profanityMarker}، او {allowFallback}.",
 				"sourceLocale": "د سرچینې ځای اوس ژباړونکی ته هم لیږدول کیږی ځکه {fromLocale} لنډ تارونه اتومات نه کشف کیږی.",
 				"resilience": "{label} اتوماتیک بیا هڅه په لنډمهاله HTTP ځوابونو ({statusCodes}) کې چې د Azure {retryAfter} هیډر ته درناوی کوی — کله چې نه وی، بیا د ګډوډ exponential backoff حالت ته راګرځی. د {maxRetries} او {retryBackoffMs}. {issue}",
-				"placeholderProtection": "{label} توکنونه لکه {mustache}، {jsVar}، {indexZero}، {numberFormat}، {printf}، {positionalPrintf} او HTML موجودیتونه د سنتینلونو په واسطه د ژباړې مخکې تاوېږی او وروسته بېرته راګرځول کېږی، نو ژباړونکی د i18next/Mustache/Handlebars/.NET/printf ځای پر ځای ځایونو ګډوډول بندوی. د {protectPlaceholders} له لارې ټوګل کړئ؛ له {customPlaceholderPatterns}. {issue}",
+				"placeholderProtection": "{label} ټوکنونه لکه {mustache}، {jsVar}، {indexZero}، {numberFormat}، {printf}، {positionalPrintf} او HTML موجودیتونه د سنتینلونو په واسطه د ژباړې مخکې تاوېږی او وروسته بېرته راګرځول کېږی، نو ژباړونکی د i18next/Mustache/Handlebars/.NET/printf ځای پر ځای ځایونو ګډوډول بندوی. د {protectPlaceholders} له لارې ټوګل کړئ؛ له {customPlaceholderPatterns}. {issue}",
 				"perKeyOptOut": "{label} نوی {noTranslatePatterns} ان پټ د ټرانسلیټر غوښتنې څخه سمون لرونکی کیلی په بشپړه توګه پرېږدی (د برانډ نومونو، تېروتنې کوډونو او نورو لپاره سرچینه ارزښتونه ساتی). د ګلوب نمونې د پارسر کچې کیلی (JSON نقطه لرونکی لاره، RESX {resxName}، PO {poMsgid}، XLIFF واحد {xliffId}، INI/restext کیلی) سره سمون لری. {issue}",
 				"repoConfig": "د ریپو کچې تنظیمات د {configPath} له لارې.",
 				"glossary": "د لغتنامه ملاتړ، د ګامونو لنډیز د {coreSummary}.",
 				"tooling": "esbuild bundler، ESLint 9 flat config، Prettier، EditorConfig.",
 				"audit": "NPM Audit پاکه (۰ زیان منونکی).",
 				"docsSite": "د Astro + Tailwind v4 مستند سایټ د لید انتقالونو او Expressive Code سره.",
-				"docsAccessibility": "{label} د WCAG 2.1 AA پاس. لوګو ګلیفونه چې لارې ته بدلیږی ترڅو نور د ګریډینټ سټاپ پر وړاندې د رنګ تضاد کې ناکام نه شی، د فلوټینګ {backToTop} تڼۍ {inert} پټوی کاروی (د {ariaHidden} ټوګل پر ځای چې ټب یې پرېښود)، {formatsAstro} برخې نور د دوی اتومات تولید شوی سرلیک ID سره ټکر نه کوی، درې محلی کارتونه اوس د BCP-47-معتبر {lang} ځانګړتیاوې ښکاره کوی ({nya}، {lug}، {run})، نقل {documentation} نښه لیبلونه د سایډبار او فوټر ترمنځ جلا شوی،  او د {inputs}/{configuration} هر ډیټا جدول د سکرین ریډر سرلیک لری.",
+				"docsAccessibility": "{label} WCAG 2.1 AA پاس. لوګو ګلیفونه چې لارې ته بدلیږی ترڅو نور د ګریډینټ سټاپ پر وړاندې د رنګ تضاد کې ناکام نه شی، د فلوټینګ {backToTop} تڼۍ {inert} پټوی کاروی (د {ariaHidden} ټوګل پر ځای چې ټب یې پرېښود)، {formatsAstro} برخې نور د دوی اتومات تولید شوی سرلیک ID سره ټکر نه کوی، درې محلی کارتونه اوس د BCP-47-معتبر {lang} ځانګړتیاوې ښکاره کوی ({nya}، {lug}، {run})، نقل {documentation} نښه لیبلونه د سایډبار او فوټر ترمنځ جلا شوی،  او د {inputs}/{configuration} هر ډیټا جدول د سکرین ریډر سرلیک لری.",
 				"inlineCode": "{label} Docs Prose {codeElement} اوس د تودوخ/عنبری موضوع ټینګار لری — چې د لینکونو او سرلیکونو لپاره د برانډ→لهجې پالیټ څخه توپیر لری.",
 				"automation": "Dependabot اتومات یوځای کول، CodeQL سکینګ، CI میټریکس."
 			}

@@ -42,7 +42,7 @@
 			},
 			"dryRun": {
 				"title": "Dry-run + soft-fail",
-				"body": "qimirruvaglugit tukiliuqtausimajut titiranngillutit titiqqanik, uvvaluunniit tammaqsimajulimaat saqqillugit iniqtirijjutaulutik taimailiuqpalliatillutit."
+				"body": "qimirruvaglugit tukiliuqtausimajut titiranngikkaluarlugit, uvvaluunniit tammaqsimajulimaat saqqillugit iniqtirijjutaulutik piliritillutit."
 			},
 			"outputs": {
 				"title": "kikkutuinnanut tusaumatittinirmut tunnganattiaqtut saqqippalliajut",
@@ -50,7 +50,7 @@
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "sanajausimajuq {azureSdk} + {corePipeline} — irngiinnaq uuktukkannirniq {statusCodes}, aggamut imusimajuq HTTP. {esbuild} katiqsuqsimajut, tammaqsimajuqsiuqtaujut."
+				"body": "sanajausimajuq {azureSdk} + {corePipeline} — irngiinnaq uuktukkannirniq {statusCodes}, aggamut ingirratitaunngittuq HTTP. {esbuild} katiqsuqsimajut, tammaqsimajuqsiuqtaujut."
 			}
 		},
 		"workflowPreview": {
@@ -101,7 +101,7 @@
 		"title": "aaqqiksimaninga",
 		"eyebrow": "YAML",
 		"heroTitle": "iliuqqaiviup aaqqiksimaninga",
-		"lede": "nalunairlugit défauts atausiarlutik tuqquqsisimavvingmut config file-mi amma tamarmik piliriniujut pijaujunnarlutik. qanuiliurnirmut iliuqqaqtaujut saalaqainnaujaqput tamarmik pititaugaangata.",
+		"lede": "nalunairlugit défauts atausiarlutik tuqquqsisimavvingmut config file-mi ammalu tamarmik piliriniujut pijaulirlutik. qanuiliurnirmut iliuqqaqtaujut saalaqainnaujaqput tamarmik pititaugaangata.",
 		"intro": "qaangirlugu aqquti {configPath} iliuqqaqtaujumut pijariaqaruvit inigijaunngittumik.",
 		"schemaHeading": "aaqqiksuqsimaninga",
 		"fieldReference": {
@@ -208,7 +208,7 @@
 				"maxRetries": "unulaakkut uuktukkannirasuktillugit HTTP−mut kiujjutaujut ({statusCodes}). katiłługit HTTP uqaluktut atausirmut tuksirautaujumut {totalCalls}.",
 				"retryBackoffMs": "matulugu (miliseconds-tigut) naliangnutuinnaq sinilaukangnirmut. qanuiliurniujuq upigusuttiaqtuq Azure's {retryAfter} kiujjutingata qulaani pitaqaqtillugu; asiagulli atusuunguvuq jittered exponential backoff isulittarvilingmik taassumunga qassiuninganut.",
 				"protectPlaceholders": "{true} (défaut), inangiijjutit suurlu {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} amma HTML entities inangiqtausuunguvut sentinel tokens−nut tukiliuqtaulaunnginninginnik utiqtitauvakłutiglu kinguniagut. aturunniiqtituinnarlugu pivvigijait pijaariluni iluliqaqpat titiraqsimajunik inangiqsijjutilingmik tukiliuqtaujarialingnik.",
-				"customPlaceholderPatterns": "Newline-separate regexes (kigliliuqsimanngiłłutik) ilajaullutik inigijauvagiiqtumut, suurlu {angleToken} custom token syntax.",
+				"customPlaceholderPatterns": "Newline-separate regexes (kigliliuqsimanngiłłutik) ilajaullutik inigijauvagiiqtumut, suurlu {angleToken} custom token syntax-mut.",
 				"noTranslatePatterns": "Newline-separated glob patterns ajjigiiktitaullutik parser-level keys-nut (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). ajjigiiktut naqittautiit piiqtauvakput tukiliurijiup tuksiraqtanganit kajusititauvakłutiglu nakinngaarningit papataullutik."
 			}
 		},
@@ -235,7 +235,7 @@
 				"specLabel": "Microsoft Learn — ikajuutiksat .resx tuqquqsimajuni"
 			},
 			"xliff": {
-				"blurb": "OASIS XLIFF 2.0 titiqqat. tukiliurivakpuq atunit {source} titiraqpakłunilu qanuilinganirijaujumik aktuaniqaqtumut {target}, aaqqiksimaliqtittivakłuni {trgLang} naniinnirijanganut.",
+				"blurb": "OASIS XLIFF 2.0 titiqqat. tukiliurivakpuq atunit {source} titiraqpakłunilu qanuilinganirijaujumik aktuaniqaqtumut {target}, {trgLang} inigijanganut.",
 				"specLabel": "OASIS XLIFF 2.0 atuqtaujarialiit"
 			},
 			"po": {
@@ -417,7 +417,7 @@
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
 				"audit": "NPM tammaqsimajuqsiurniq salumajuq (0 ulurianaqtut).",
 				"docsSite": "Astro + Tailwind v4 docs ikiaqqivik takujaksaqaqłuni asijjiqpalliajunik amma Expressive Code.",
-				"docsAccessibility": "{label} WCAG 2.1 AA pass. taqsat naqittautiit aqqutinnguqtitaullutik ajuliqattaqunagit taqsangit ajjigiinngitillugit gradient nuqqaqtarvingnut, {backToTop} naqittagaq atuqattaqtuq {inert} ijiqsimagaluaqtillugu ({ariaHidden} naqittagaksaunngingaaqłuni), {formatsAstro} ilangit apuutiqattarunniiqłutik irngiinnaq aulatanginnut nalunaikkutanut, pingasut naniinningit takuksautittiliqput BCP-47-aturunnaqtunik {lang} nalunaikkutanginnik ({nya}, {lug}, {run}), ajjingit {documentation} nalunaikkutat nalunarunniiqtitaullutik saniraani amma ataani,  titiqqalimaallu titiraqsimajut {inputs}/{configuration} naksiujjausuut igalaujakkut uqalimaarutimit uqaqsimajumit.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. taqsat naqittautiit aqqutinnguqtitaullutik ajuliqattaqunagit taqsangit ajjigiinnginninginnik gradient nuqqaqtarvingnut, {backToTop} naqittagaq atuqattaqtuq {inert} ijiqsimagaluaqtillugu ({ariaHidden} naqittagaksaunngingaaqłuni), {formatsAstro} ilangit apuutiqattarunniiqłutik irngiinnaq aulatanginnut nalunaikkutarnut, pingasut naniinningit takuksautittiliqput BCP-47-aturunnaqtunik {lang} nalunaikkutanginnik ({nya}, {lug}, {run}), ajjingit {documentation} nalunaikkutat nalunarunniiqtitaullutik saniraani amma ataani,  titiqqalimaallu titiraqsimajut {inputs}/{configuration} naksiujjausuut igalaujakkut uqalimaarutimit uqaqsimajumit.",
 				"inlineCode": "{label} Docs titirausingit {codeElement} maanna atuqput uqquujumik/aupajaaqtumik taqsaqaqłutik − ajjiginngimmagu →nalunaikkutangata taqsanga atuqtauvakłuni attatarviujunnaqtunut amma taijaujjusirnut.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}

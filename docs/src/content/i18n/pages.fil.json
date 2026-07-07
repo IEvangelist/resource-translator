@@ -116,7 +116,7 @@
 				"sourceLocale": "Bumaba pabalik sa {sourceLocale} input kung hindi itinakda. Ipinasa din sa Translator bilang {fromLocale} kaya ang mga maiikling string ay hindi awtomatikong natukoy.",
 				"toLocales": "Alinman sa isang array o isang string na pinaghiwalay ng kuwit.",
 				"includeExclude": "Mga pattern ng Glob na sinuri laban sa ganap at mga landas na may kaugnayan sa workspace.",
-				"glossary": "Post-translation term overrides. Kamalayan sa hangganan ng salita (hawakan ang {cpp}, {dotnet}).",
+				"glossary": "Post-translation term overrides. Kamalayan ng hangganan ng salita (humahawak ng {cpp}, {dotnet}).",
 				"categoryId": "Kategorya ng {customTranslatorLink} ng Azure - ang iyong knob ng industriya / domain (legal, medikal, tono ng marketing, atbp.). Ipinadala bilang {categoryQuery}.",
 				"textType": "Default sa {plain}. Gamitin lamang ang {html} kung ang iyong mga halaga ng mapagkukunan ay naglalaman ng tunay na mga fragment ng HTML.",
 				"profanityAction": "Paano tratuhin ang mga bastos na termino sa isinalin na output.",
@@ -418,7 +418,7 @@
 				"audit": "malinis ang pag-audit ng npm (0 kahinaan).",
 				"docsSite": "Astro + Tailwind v4 docs site na may view transitions at Expressive Code.",
 				"docsAccessibility": "{label} WCAG 2.1 AA pass. Ang mga glyph ng logo ay na-convert sa mga landas upang hindi na sila mabibigo sa kaibahan ng kulay laban sa mga gradient stop, ang lumulutang na pindutan ng {backToTop} ay gumagamit ng {inert} habang nakatago (sa halip na isang {ariaHidden} toggle na iniwan itong tabbable), {formatsAstro} mga seksyon ay hindi na bumangga sa kanilang mga awtomatikong nabuo na mga heading ID, tatlong locale card ngayon ang naglalantad ng mga katangian ng {lang} na may bisa sa BCP-47 ({nya}, {lug}, {run}), ang mga duplicate {documentation} mga label ng landmark ay na-disambiguated sa pagitan ng sidebar at footer,  at ang bawat talahanayan ng data sa {inputs} / {configuration} ay nagpapadala ng isang caption ng screen-reader.",
-				"inlineCode": "{label} docs prosa {codeElement} ngayon ay nagsusuot ng mainit-init / amber na accent ng tema - naiiba mula sa palette ng brand→accent na ginagamit para sa mga link at heading.",
+				"inlineCode": "{label} docs prose {codeElement} ngayon ay nagsusuot ng mainit-init / amber na accent ng tema - naiiba mula sa palette ng brand→accent na ginagamit para sa mga link at heading.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
 		},

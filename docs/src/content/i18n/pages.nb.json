@@ -84,7 +84,7 @@
 			},
 			"resource": {
 				"title": "Committer en kilderessursfil",
-				"body": "Ressursfiler bruker {namingConvention}-konvensjonen. For eksempel blir {sourceFile} til {frFile}, {deFile}, og så videre etter en runde."
+				"body": "Ressursfiler bruker {namingConvention}-konvensjonen. For eksempel blir {sourceFile} {frFile}, {deFile}, og så videre etter en runde."
 			},
 			"output": {
 				"title": "Inspiser utgangen",
@@ -121,11 +121,11 @@
 				"textType": "Som standard er {plain}. Bruk {html} kun hvis ressursverdiene dine inneholder ekte HTML-fragmenter.",
 				"profanityAction": "Hvordan behandle grove uttrykk i oversatt output.",
 				"profanityMarker": "Bare meningsfull når {profanityAction} er {marked}.",
-				"allowFallback": "Sett til {false} til å feile oversettelsen når {categoryId} ikke har distribusjon for et målområde, i stedet for å falle tilbake til den generelle modellen.",
+				"allowFallback": "Sett til {false} å feile oversettelsen når {categoryId} ikke har distribusjon for et målområde, i stedet for å falle tilbake til den generelle modellen.",
 				"apiVersion": "Oversetter REST API-versjon. Som standard er {version}.",
 				"maxRetries": "Maksimalt antall forsøk på midlertidig HTTP-respons ({statusCodes}). Går som standard til {defaultRetries}. Totalt antall HTTP-anrop per forespørsel er {totalCalls}.",
 				"retryBackoffMs": "Begrens (MS) på enhver enkelt backoff-søvn. Som standard er {defaultBackoff}. Azures {retryAfter} header blir respektert nøyaktig når den er til stede; ellers brukes jitteret eksponentiell backoff, begrenset til denne verdien.",
-				"protectPlaceholders": "Som standard er {true}. Når de er på, erstattes tokens som {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} og HTML-entiteter med sentinel-tokens før oversettelse og gjenopprettes etterpå. Deaktiver kun når kilden bevisst inneholder plassholderformede bokstaver.",
+				"protectPlaceholders": "Som standard er {true}. Når de er på, erstattes tokens som {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} og HTML-enheter med sentinel-tokens før oversettelse og gjenopprettes etterpå. Deaktiver kun når kilden bevisst inneholder plassholderformede bokstaver.",
 				"customPlaceholderPatterns": "Ekstra regex-mønstre (uten avgrensere) lagt til standard plassholder-settet, for eksempel {angleToken} for egendefinert token-syntaks. Ugyldige regexer ignoreres.",
 				"noTranslatePatterns": "Glob-mønstre matchet mot parser-nivå nøkler (JSON prikket sti, RESX {resxName}, PO {poMsgid}, XLIFF enhet {xliffId}, INI/restext-tast). Matchende nøkler fjernes fra forespørselen og sendes videre med kildeverdien bevart."
 			}
@@ -145,7 +145,7 @@
 			"industryLabel": "Bransje / område:",
 			"industryBody": "bruk {categoryId} til å peke på en Azure {customTranslatorLink}-kategori som er trent på ditt eget korpus — juridisk, teknisk, medisinsk, markedsføringsmessig eller noe annet. Dette er den sterkeste spaken for tone, merkevarestemme og vokabular.",
 			"surfaceLabel": "Overflatetekst:",
-			"surfaceBody": "Bruk {glossaryLink} til å låse merkenavn og produktbegreper ordrett, og bruk {profanityAction} til å fjerne grove uttrykk når du retter lokalisering mot yngre målgrupper.",
+			"surfaceBody": "Bruk {glossaryLink} for å låse merkenavn og produktbegreper ordrett, og bruk {profanityAction} for å fjerne grove uttrykk når du retter lokalisering mot yngre målgrupper.",
 			"glossaryLinkLabel": "Ordliste"
 		}
 	},
@@ -206,7 +206,7 @@
 			"caption": "Motstandsdyktighet og midlertidige beskyttelsesinnspill",
 			"items": {
 				"maxRetries": "Maksimalt antall forsøk på midlertidig HTTP-respons ({statusCodes}). Det totale antallet HTTP-kall per forespørsel er {totalCalls}.",
-				"retryBackoffMs": "Kondenser (i millisekunder) på enhver enkelt backoff-dvale. Handlingen respekterer Azures {retryAfter} responshode nøyaktig når den er til stede; ellers bruker den jitteret eksponentiell backoff med en grense på denne verdien.",
+				"retryBackoffMs": "Begrens (i millisekunder) på enhver enkelt backoff-dvale. Handlingen respekterer Azures {retryAfter} responshode nøyaktig når den er til stede; ellers bruker den jitteret eksponentiell backoff med en grense på denne verdien.",
 				"protectPlaceholders": "Når {true} (standard), erstattes plassholdere som {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} og HTML-entiteter med sentinel-tokens før oversettelse og gjenopprettes etterpå. Deaktiver kun når kilden din bevisst inneholder bokstavelig plassholderformet tekst som skal oversettes.",
 				"customPlaceholderPatterns": "Linjeavskilte regexer (uten avgrensere) lagt til standard plassholdersett, for eksempel {angleToken} for egendefinert tokensyntaks.",
 				"noTranslatePatterns": "Newline-separerte glob-mønstre matchet mot parser-nivå nøkler (JSON prikket sti, RESX {resxName}, PO {poMsgid}, XLIFF enhet {xliffId}, INI/restext-nøkkel). Matchende nøkler fjernes fra oversetterforespørselen og sendes gjennom med kildeverdien bevart."
@@ -216,7 +216,7 @@
 			"heading": "Utganger",
 			"caption": "Utganger",
 			"items": {
-				"summaryTitle": "Kort PR-tittelvennlig sammendrag, f.eks. {summaryExample}.",
+				"summaryTitle": "Kort PR-tittelvennlig oppsummering, f.eks. {summaryExample}.",
 				"summaryDetails": "Markdown-sammendrag egnet for et PR-organ eller stillingssammendrag.",
 				"hasNewTranslations": "{trueString} når en eller flere nye oversettelser ble generert."
 			}
@@ -322,7 +322,7 @@
 			},
 			"dist": {
 				"heading": "Hvor kommer den pakkede {distDir} fra?",
-				"body": "GitHub JS-handlinger leverer deres kompilerte JS i repositoriet. Den {distBuild} arbeidsflyten bygger den opp igjen etter hver sammenslåing for å {mainBranch} om den ville drifte, og {distCheck} blokkerer PR-er som ellers ville landet utdatert utdata."
+				"body": "GitHub JS-handlinger sender sin kompilerte JS i repositoriet. Den {distBuild} arbeidsflyten bygger den opp igjen etter hver sammenslåing for å {mainBranch} om den ville drifte, og {distCheck} blokkerer PR-er som ellers ville landet utdatert utdata."
 			},
 			"formats": {
 				"heading": "Hva med andre ressursformater?",

@@ -32,7 +32,7 @@
 		"idleHelp": "ዓንቀጻት ብርእሰ ነገር ቅርጺ ፋይል ኣማራጺ ኣሰራርሓ ወይ ኣሰራርሓ ርኸብ። ንምጕዓዝ {enter} ንምኽፋት {up} {down} ተጠቐም።",
 		"loading": "ምድላይ...",
 		"empty": "ዋላ ሓንቲ ፍረ የብሉን። ካልእ ቁልፍ ቃል ፈትን።",
-		"error": "ናይ ምንዳይ መሐበሪ ኣብ ዴቪ ኣይርከብን እዩ። ናይ ምህርቲ ህንጸት ኣካይዱ።"
+		"error": "ናይ ምንዳይ መሐበሪ ኣብ ዴቪዥን ኣይርከብን እዩ። ናይ ምህርቲ ህንጸት ኣካይዱ።"
 	},
 	"toc": {
 		"title": "ኣብዚ ገጽ"
@@ -53,9 +53,24 @@
 		"sourceAria": "ምንጪ ኣብ GitHub ርአ",
 		"marketplaceAria": "ኣብ GitHub Marketplace ርአ",
 		"authorAria": "ናይ ዴቪድ ፓይን ወብ ሳይት",
+		"npmAria": "View Azure Translator SDK on npm",
 		"taglinePrefix": "ኣብ ልዕሊ እቲ ወግዓዊ ሓበሬታ እተሃንጸ ናይ ምንጪ ፋይላትካ ብኡንብኡ ዚትርጕም GitHub ተግባር",
 		"taglineMiddle": "ኤስዲኬ ካብ",
 		"copyrightPrefix": "ኣብ ትሕቲ ሕጊ ተፈቲሑ",
-		"builtWith": "ብተሃኒጹ"
+		"builtWith": "ብተሃኒጹ",
+		"installLabel": "ናብ ስራሕካ ወሲኽዎ",
+		"copy": "ቅዳሕ",
+		"copied": "ተቐዲሑ!",
+		"copyAria": "ነቲ ናይ መጫኛ ቝርጽራጽ ናብ ክሊፕቦርድኻ ቐድሖ",
+		"marketplaceCta": "ኣብ GitHub Marketplace ርኸቦ",
+		"starCta": "ኰዀብ ኣብ GitHub",
+		"starAria": "ስታር ሪሶርስ ተርጓሚ ኣብ GitHub",
+		"stargazersAria": "GitHub ስታርጋዘርስ ይቝጸሩ",
+		"versionLabel": "ትርጕም",
+		"whatsNew": "እንታይ ሓድሽ ነገር ኣሎ",
+		"language": "ቋንቋ",
+		"editPage": "ነዚ ገጽ ኣዐርዮ",
+		"editPageAria": "ምንጪ ናይዚ ገጽ ኣብ GitHub ኣሰናድድ",
+		"reportIssue": "ኣብዚ ገጽ እዚ ብዛዕባ ሓደ ጸገም ጸብጻብ ሃብ"
 	}
 }

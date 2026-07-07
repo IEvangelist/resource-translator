@@ -145,7 +145,7 @@
 			"industryLabel": "行业 / 领域：",
 			"industryBody": "用{categoryId}指向用你自己语料库训练的Azure的{customTranslatorLink}类别——法律、技术、医疗、市场营销或其他任何领域。这是影响语气、品牌声音和词汇的最有力杠杆。",
 			"surfaceLabel": "表层文字：",
-			"surfaceBody": "用{glossaryLink}逐字锁定品牌名和产品术语，并在针对年轻受众的本地化时用{profanityAction}去除脏话。",
+			"surfaceBody": "用{glossaryLink}逐字锁定品牌名和产品术语，并在针对年轻受众的本地化时用 {profanityAction} 去除脏话。",
 			"glossaryLinkLabel": "词汇表"
 		}
 	},
@@ -408,7 +408,7 @@
 			"items": {
 				"runtime": "被推迟到{nodeRuntime}运行时间（{breaking}）。",
 				"newInputs": "新输入：{include}、{exclude}、{configPath}、{categoryId}、{apiVersion}、{dryRun}、{failOnError}，以及先进的翻译旋钮{textType}、{profanityAction}、{profanityMarker}和{allowFallback}。",
-				"sourceLocale": "源位置现在也会像 {fromLocale} 一样转发到 Translator，这样短字符串就不会被自动检测。",
+				"sourceLocale": "源位置现在也会像 {fromLocale} 一样转发给翻译器，这样短字符串就不会被自动检测。",
 				"resilience": "{label}对暂时HTTP响应（{statusCodes}）的自动重试，尊重Azure的{retryAfter}首部——缺席时会退回到抖动指数退缩。通过{maxRetries}和{retryBackoffMs}调节。{issue}",
 				"placeholderProtection": "{label}标记，比如{mustache}、{jsVar}、{indexZero}、{numberFormat}、{printf}、{positionalPrintf}和HTML实体，在翻译前被封装在哨兵中，翻译后恢复，所以翻译器停止了破坏i18next/Mustache/Handlebars/.NET/printf占位符。通过{protectPlaceholders}切换;与{customPlaceholderPatterns}相连。{issue}",
 				"perKeyOptOut": "{label}新的{noTranslatePatterns}输入会完全从翻译器请求中丢弃匹配的密钥（保留品牌名称、错误代码等的源值）。将球状模式与解析器级别的键（JSON点路径、RESX {resxName}、PO {poMsgid}、XLIFF单元{xliffId}、INI/restext键）匹配。{issue}",
@@ -417,7 +417,7 @@
 				"tooling": "esbuild bundler，ESLint 9 flat config，Prettier，EditorConfig.",
 				"audit": "NPM审计净化（0漏洞）。",
 				"docsSite": "Astro + Tailwind v4 文档网站，带有视图切换和表达代码。",
-				"docsAccessibility": "{label} WCAG 2.1 AA通行证。标志字形转换为路径，使其不再因渐变色块的颜色对比度失效，浮动{backToTop}按钮隐藏时使用{inert}（取代了{ariaHidden}切换时保持标签页），{formatsAstro}部分不再与自动生成的标题ID发生冲突，三张区域卡现在显示了BCP-47有效的{lang}属性（{nya}、{lug}、{run}），重复的{documentation}地标标签在侧边栏和页脚之间进行了消歧。 {inputs}/{configuration}上的每个数据表都配有屏幕阅读器字幕。",
+				"docsAccessibility": "{label} WCAG 2.1 AA通行证。标志字形转换为路径，使其不再因渐变色块而失色，浮动{backToTop}按钮隐藏时使用{inert}（取代了{ariaHidden}切换时保持标签页），{formatsAstro}部分不再与自动生成的标题ID发生冲突，三张区域卡现在显示了BCP-47有效的{lang}属性（{nya}、{lug}、{run}），重复的{documentation}地标标签在侧边栏和页脚之间进行了消歧。 {inputs}/{configuration}上的每个数据表都配有屏幕阅读器字幕。",
 				"inlineCode": "{label} Docs 的散文{codeElement}现在采用了温暖/琥珀色主题的口音——这与品牌的链接和标题用→口音调色板区分开来。",
 				"automation": "Dependabot 自动合并，CodeQL 扫描，CI 矩阵。"
 			}

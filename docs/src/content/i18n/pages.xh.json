@@ -83,7 +83,7 @@
 				"body": "Dala {workflowPath}:"
 			},
 			"resource": {
-				"title": "Yenza ifayili yovimba omthombo",
+				"title": "Yenza ifayili yovimba womthombo",
 				"body": "Iifayile zemithombo zisebenzisa ingqungquthela ye-{namingConvention}. Umzekelo, {sourceFile} iba {frFile}, {deFile}, njalo njalo emva kokubaleka."
 			},
 			"output": {
@@ -209,7 +209,7 @@
 				"retryBackoffMs": "Cap (kwi-milliseconds) kuyo nayiphi na i-backoff yokulala. Isenzo sihlonipha intloko yempendulo ye-Azure {retryAfter} ngokuchanekileyo xa ikhona; Ngaphandle koko, isebenzisa i-jittered exponential backoff efakwe kweli xabiso.",
 				"protectPlaceholders": "Xa {true} (okungagqibekanga), ii-placeholders ezinje nge-{mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} kunye ne-HTML zithathelwa indawo ngamathokheni e-sentinel ngaphambi kokuguqulelwa kwaye zibuyiselwe emva koko. Khubaza kuphela xa umthombo wakho uqulethe ngabom isicatshulwa esimile okwendawo ekufuneka siguqulelwe.",
 				"customPlaceholderPatterns": "Ii-regexes ezahlulwe ngumgca omtsha (ngaphandle kwemida) zongezwa kwiseti yendawo engagqibekanga, umz. {angleToken} ye-syntax yethokheni yesiko.",
-				"noTranslatePatterns": "Iipateni ze-glob ezahlulwe ngumgca omtsha ezihambelana nezitshixo zenqanaba le-parser (indlela yamachaphaza ye-JSON, i-RESX {resxName}, i-PO {poMsgid}, iyunithi ye-XLIFF {xliffId}, i-INI / isitshixo se-restext). Amaqhosha angqamanayo alahlwe kwisicelo soMguquleli aze adlule ngexabiso lawo lomthombo agcinwe."
+				"noTranslatePatterns": "Iipateni ze-glob ezahlulwe ngumgca omtsha ezihambelana nezitshixo zenqanaba le-parser (indlela yamachaphaza ye-JSON, i-RESX {resxName}, i-PO {poMsgid}, iyunithi ye-XLIFF {xliffId}, i-INI / isitshixo se-restext). Amaqhosha angqamanayo alahliwe kwisicelo soMguquleli aze adlule ngexabiso lawo lomthombo agcinwe."
 			}
 		},
 		"outputs": {

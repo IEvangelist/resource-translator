@@ -69,7 +69,7 @@
 	"getting-started": {
 		"title": "Alustamine",
 		"eyebrow": "Seadistus",
-		"lede": "Lisa töövoo fail, suuna see oma Azure AI Translatori mandaadi juurde ja tegevus skaneerib repositooriumist lähtekoodi ressursifaile ning saadab tõlgitud õdesid-vennasid.",
+		"lede": "Lisa töövoo fail, suuna see oma Azure AI Translatori mandaadi juurde ja tegevus skaneerib repositooriumist lähtekoodi ressursifaile ning väljastab tõlgitud õdesid-vennasid.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator ressurss",
@@ -121,7 +121,7 @@
 				"textType": "Vaikimisi {plain}. Kasuta {html} ainult siis, kui sinu ressursiväärtused sisaldavad päris HTML-fragmente.",
 				"profanityAction": "Kuidas käsitleda roppusid termineid tõlgitud väljundis.",
 				"profanityMarker": "Tähenduslik ainult siis, kui {profanityAction} on {marked}.",
-				"allowFallback": "Sea {false} tõlke ebaõnnestumiseks, kui su {categoryId} pole sihtkoha jaoks juurutatud, selle asemel et tagasi pöörduda üldise mudeli juurde.",
+				"allowFallback": "Seadke {false} tõlke ebaõnnestumiseks, kui teie {categoryId} pole sihtkoha jaoks juurutust, selle asemel et pöörduda tagasi üldise mudeli juurde.",
 				"apiVersion": "Tõlkija REST API versioon. Vaikimisi {version}.",
 				"maxRetries": "Maksimaalne korduskatse ajutiste HTTP vastuste puhul ({statusCodes}). Vaikimisi {defaultRetries}. Kogu HTTP kõnede arv ühe päringu kohta on {totalCalls}.",
 				"retryBackoffMs": "Piirang (ms) igale ühele tagasilöögiunele. Vaikimisi {defaultBackoff}. Azure'i {retryAfter} päist austatakse täpselt siis, kui see on olemas; muidu kasutatakse värisevat eksponentsiaalset tagasilööki, mis on selle väärtusega piiratud.",
@@ -143,7 +143,7 @@
 			"heading": "Toon ja tööstus, otsekoheselt",
 			"body": "Azure AI Translator v3 API-l ei ole ühte tooninuppu. Kaks seadet annavad sulle enam-vähem sama kontrolli:",
 			"industryLabel": "Tööstusharu / valdkond:",
-			"industryBody": "kasuta {categoryId}, et osutada Azure {customTranslatorLink} kategooriale, mis on treenitud sinu enda korpuses — juriidilised, tehnilised, meditsiinilised, turunduse või mis tahes muuga. See on tugevaim hoob tooni, brändi hääle ja sõnavara jaoks.",
+			"industryBody": "kasuta {categoryId}, et osutada Azure {customTranslatorLink} kategooriale, mis on treenitud sinu enda korpuses — juriidiline, tehniline, meditsiin, turundus või mis iganes muu. See on tugevaim hoob tooni, brändi hääle ja sõnavara jaoks.",
 			"surfaceLabel": "Pinnatekst:",
 			"surfaceBody": "Kasuta {glossaryLink} brändinimede ja tooteterminite lukustamiseks, ning kasuta {profanityAction}, et eemaldada roppusi noorematele sihtrühmadele.",
 			"glossaryLinkLabel": "Sõnastik"
@@ -175,8 +175,8 @@
 			}
 		},
 		"optionalInputs": {
-			"heading": "Levinud valikulised sisendid",
-			"caption": "Levinud valikulised sisendid",
+			"heading": "Levinumad valikulised sisendid",
+			"caption": "Levinumad valikulised sisendid",
 			"items": {
 				"region": "Tõlkija ressursipiirkond (globaalsete ressursside jaoks välja jäetud).",
 				"toLocales": "Kohad, kuhu tõlkida. Aktsepteerib JSON-massiivi ({jsonArray}) või komadega eraldatud väärtusi.",
@@ -226,7 +226,7 @@
 		"title": "Failivormingud",
 		"eyebrow": "Viide",
 		"heroTitle": "Toetatud failivormingud",
-		"lede": "Kuus ringreisi ressursiformaati. Tegevus loeb iga allika-koha faili, tõlgib väärtused ja kirjutab iga sihtkoha jaoks venna.",
+		"lede": "Kuus ringreisi ressursiformaati. Tegevus loeb iga allika-koha faili, tõlgib väärtused ja kirjutab iga sihtkoha jaoks õde-venda.",
 		"namingConvention": "Kõik failid kasutavad {namingConvention} nimetamise konventsiooni.",
 		"learnMore": "Loe lähemalt",
 		"items": {
@@ -322,7 +322,7 @@
 			},
 			"dist": {
 				"heading": "Kust pärineb komplekteeritud {distDir}?",
-				"body": "GitHub JS toimingud saadavad kompileeritud JS-i repositooriumis. {distBuild} töövoog ehitab selle uuesti üles pärast iga ühinemist, et {mainBranch} triivida, ning {distCheck} blokeerib PR-id, mis jõuavad aegunud väljundini."
+				"body": "GitHub JS toimingud saadavad kompileeritud JS-i repositooriumis. {distBuild} töövoog ehitab selle pärast iga ühendamist uuesti üles, et {mainBranch} triivida, ning {distCheck} blokeerib PR-id, mis jõuavad aegunud väljundini."
 			},
 			"formats": {
 				"heading": "Kuidas on lood teiste ressursiformaatidega?",

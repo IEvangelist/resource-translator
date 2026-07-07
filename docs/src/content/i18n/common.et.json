@@ -53,9 +53,24 @@
 		"sourceAria": "Vaata allikat GitHubis",
 		"marketplaceAria": "Vaata GitHub Marketplace'is",
 		"authorAria": "David Pine'i veebileht",
+		"npmAria": "Vaata Azure Translator SDK-d npm-is",
 		"taglinePrefix": "GitHubi tegevus, mis tõlgib sinu ressursifailid automaatselt, ehitatud ametlikule",
 		"taglineMiddle": "SDK allikast",
 		"copyrightPrefix": "Välja antud",
-		"builtWith": "Ehitatud"
+		"builtWith": "Ehitatud",
+		"installLabel": "Lisa see oma töövoogu",
+		"copy": "Kinnitan",
+		"copied": "Kopeeritud!",
+		"copyAria": "Kopeeri paigaldussnippet oma lõikelauale",
+		"marketplaceCta": "Hangi see GitHub Marketplace'ist",
+		"starCta": "Star GitHubis",
+		"starAria": "Star Resource Translator GitHubis",
+		"stargazersAria": "GitHubi tähevaatlejad loendavad",
+		"versionLabel": "Versioon",
+		"whatsNew": "Mis uut",
+		"language": "Keel",
+		"editPage": "Muuda seda lehte",
+		"editPageAria": "Muuda selle lehe allikat GitHubis",
+		"reportIssue": "Teata probleemist selle lehega"
 	}
 }

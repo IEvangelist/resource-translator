@@ -9,7 +9,7 @@
 		"lede": "Resource Translator wuxuu furaa codsiyada pull requests ee mashiinka lagu turjumay ee faylashaada kheyraadka iyadoo la adeegsanayo Azure AI Translator iyada oo loo marayo SDK-ga rasmiga ah — ma jiraan adeegyo dheeraad ah, kaliya hab socod ah.",
 		"primaryCta": "Bilow",
 		"secondaryCta": "Star on GitHub",
-		"supports": "Taageero",
+		"supports": "Taageerooyinka",
 		"builtForShipping": "Waxaa loo dhisay maraakiibta",
 		"workflowTitle": "Turjumaaddu waa shaqo shaqo ah, ma aha hawl culus.",
 		"workflowBody": "Ficilka ku tuur CI-gaaga hore, u jeedi Azure AI Translator, oo u daa repo-gaaga inuu hadlo luqad kasta oo aad bartilmaameedsato.",
@@ -46,7 +46,7 @@
 			},
 			"outputs": {
 				"title": "Wax soo saarka saaxiibtinimada PR-ka",
-				"body": "{summaryTitle}, {summaryDetails}, iyo {hasNewTranslations} si toos ah ugu dhex galaan create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails}, iyo {hasNewTranslations} si toos ah ugu xirmaan create-pull-request."
 			},
 			"sdk": {
 				"title": "Azure SDK Rasmiga ah",
@@ -69,7 +69,7 @@
 	"getting-started": {
 		"title": "Bilowga",
 		"eyebrow": "Dejinta",
-		"lede": "Ku dar fayl workflow ah, u jeedi aqoonsiga Azure AI Translator, falkaasna wuxuu baadhaa repo-ga faylasha kheyraadka luqadda ilaha wuxuuna sii deyn doonaa walaalo la turjumay.",
+		"lede": "Ku dar fayl workflow ah, u jeedi aqoonsiga Azure AI Translator, falkaasna wuxuu baadhaa repo-ga faylasha kheyraadka luqadda ilaha wuxuuna soo saari doonaa walaalo la turjumay.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -101,7 +101,7 @@
 		"title": "Qaabeynta",
 		"eyebrow": "YAML",
 		"heroTitle": "Qaabeynta kaydka",
-		"lede": "Express waxay mar hore ugu jirtaa faylka repository config file waxayna u ogolaataa dhammaan workflow-yada inay ka dhaxlaan. Input action had iyo jeer way guuleystaan marka labadaba la bixiyo.",
+		"lede": "Express waxay mar hore ugu jirtaa faylka repository config file-ka waxayna u oggolaanaysaa dhammaan workflow-yada inay ka dhaxlaan. Input action had iyo jeer way guuleystaan marka labadaba la bixiyo.",
 		"intro": "Ka dhaaf waddada adigoo isticmaalaya input-ka {configPath} haddii aad u baahan tahay meel aan default ahayn.",
 		"schemaHeading": "Qorshaha",
 		"fieldReference": {
@@ -121,7 +121,7 @@
 				"textType": "Default ahaan waa {plain}. Isticmaal {html} kaliya haddii qiimaha kheyraadkaaga ay ka kooban yihiin qaybo HTML dhab ah.",
 				"profanityAction": "Sida loo daaweeyo erayada aceliska ah ee wax soo saarka la turjumay.",
 				"profanityMarker": "Kaliya macno leh marka {profanityAction} ay {marked} tahay.",
-				"allowFallback": "U dejisay {false} si uu u fashilmo turjumaadda marka {categoryId}-gaagu uusan lahayn deployment goob bartilmaameed ah halkii aad ku laaban lahayd moodelka guud.",
+				"allowFallback": "U dejisay {false} si uu u fashilmo tarjumaadda marka {categoryId}-gaagu uusan lahayn deployment goob bartilmaameed ah halkii aad dib ugu laaban lahayd moodelka guud.",
 				"apiVersion": "Nooca turjumaadda REST API. Default ahaan waa {version}.",
 				"maxRetries": "Isku dayga ugu badan ee dib-u-eegista jawaabaha HTTP ee ku meel gaarka ah ({statusCodes}). Caadi ahaan {defaultRetries}. Wadarta wicitaannada HTTP ee codsi kasta waa {totalCalls}.",
 				"retryBackoffMs": "Cap (ms) hurdo kasta oo backoff ah. Default ahaan waa {defaultBackoff}. Madaxa {retryAfter} ee Azure si sax ah ayaa loo ixtiraamaa marka uu jiro; haddii kale jittered exponential backoff ayaa la isticmaalaa, oo lagu xaddiday qiimahan.",
@@ -201,7 +201,7 @@
 			}
 		},
 		"resilienceInputs": {
-			"heading": "Adkeysiga iyo ilaalinta meel ka hortagga",
+			"heading": "Adkeysiga iyo ilaalinta meelaha kala duwan",
 			"intro": "Inputs-kan waxay xakameeyaan sida falku u dhaqmo marka Translator uu xaddido codsigaaga iyo sida uu u ilaaliyo placeholder tokens sida {mustache} ama {indexZero} si aan loo dhaawacin inta lagu jiro turjumaadda.",
 			"caption": "Adkeysiga iyo gelinta ilaalinta meel kasta",
 			"items": {
@@ -279,12 +279,12 @@
 				"body": "Ereyada qaamuuska waxaa loo isticmaalaa {after} turjumaad, sidaas darteed natiijada mashiinka ayaa sii haysata sumadda aad jeceshahay xitaa marka moodelku beddelo magac la mid ah."
 			},
 			"customCategory": {
-				"heading": "Qaybta Turjubaan Gaar ah (warshad / domain)",
+				"heading": "Qaybta Turjubaan Gaar ah (warshadaha / domain)",
 				"body": "Tababar qayb Azure {customTranslatorLink} ah oo ku saabsan corpus qabta erayada iyo codka warshadahaaga (sharci, caafimaad, suuq-geyn, injineernimada gudaha, iwm.) oo aqoonsigeeda ku gudbi {categoryId}. Tani waa lever-ka codka ugu xooggan ee Azure bixiyo."
 			},
 			"tone": {
 				"heading": "Xakamaynta codka + dib u dhac adag",
-				"body": "Isku dar Custom Translator {categoryId} oo leh {profanityAction} iyo {allowFallbackFalse} si aad u xoojiso cod joogto ah oo aad ku guuldareysato shaqada shaqada haddii qaybta la doortay aysan lahayn deployment mid ka mid ah goobahaaga bartilmaameedka."
+				"body": "Isku dar {categoryId} Custom Translator iyo {profanityAction} iyo {allowFallbackFalse} si aad u xoojiso cod joogto ah oo aad ku guuldareysato shaqada shaqada haddii qaybta la doortay uusan lahayn hirgelin mid ka mid ah goobahaaga bartilmaameedka."
 			},
 			"dryRun": {
 				"heading": "Tijaabo ka hor inta aan la shidin habka shaqada",
@@ -304,7 +304,7 @@
 			},
 			"tone": {
 				"heading": "Maxay mararka qaar turjumaadu u yihiin kuwo aan lahayn sumcad ama aan lahayn codka?",
-				"body": "Turjumaadda mashiinka waxay si caadi ah u noqotaa moodel ujeeddo guud. Saddex badhanka ayaa caawiya: {glossaryLink} loogu talagalay xeerarka adag ee la dhaafo, {customTranslatorLink} loogu talagalay moodooyinka si fiican loo hagaajiyay oo lagu tababaray codkaaga iyo ereyada, iyo {profanityAction} lagu tirtiro ama calaamadeeyo erayada aceebka ah.",
+				"body": "Turjumaadda mashiinka waxay si caadi ah u noqotaa moodel ujeeddo guud. Saddex badhanka ayaa caawiya: {glossaryLink} loogu talagalay xeer-dhaafka waqtiyada adag, {customTranslatorLink} loogu talagalay moodooyinka si fiican loo hagaajiyay oo lagu tababaray codkaaga iyo ereyada, iyo {profanityAction} lagu tirtiro ama calaamadeeyo erayada aceebka ah.",
 				"glossaryLinkLabel": "Qaamuuska",
 				"customTranslatorLinkLabel": "Qaybta Custom Translator"
 			},
@@ -322,7 +322,7 @@
 			},
 			"dist": {
 				"heading": "Xaggee ka yimaadaan {distDir} la xiray?",
-				"body": "GitHub JS actions waxay ku soo diraan JS-kooda compiled gudaha kaydka. Workflow-ka {distBuild} wuxuu dib u dhisaa ka dib midoobid kasta si uu {mainBranch} haddii uu u leexdo, wuxuuna {distCheck} xannibaa PR-yada keena wax soo saarka duugoobay."
+				"body": "Ficillada GitHub JS waxay ku soo diraan JS-kooda la soo ururiyey gudaha kaydka. Workflow-ka {distBuild} wuxuu dib u dhisaa ka dib midoobid kasta si uu {mainBranch} haddii uu u leexdo, wuxuuna {distCheck} xannibaa PR-yada keena wax soo saarka duugoobay."
 			},
 			"formats": {
 				"heading": "Maxaa ku saabsan qaababka kale ee kheyraadka?",
@@ -352,7 +352,7 @@
 			"steps": {
 				"source": "Faylka ilaha Ingiriisiga wuxuu ku jiraa {messagesPath}.",
 				"workflow": "Wuxuu riixayaa taabashadaas, wuxuuna ka bilaabaa {workflowLink}, taasoo si {thisAction} uga soo horjeeda naftiisa.",
-				"fanOut": "Ficilku wuxuu ku fidsan yahay meel kasta oo ay taageerto Azure AI Translator (oo lagu habeeyay {configPath}) wuxuuna qoraa {messagesLocaleJson} walaal ah mid kasta oo bartilmaameed ah.",
+				"fanOut": "Ficilku wuxuu ku fidsan yahay meel kasta oo ay taageerto Azure AI Translator (oo lagu habeeyay {configPath}) wuxuuna qoraa {messagesLocaleJson} walaal ah bartilmaameed kasta.",
 				"pullRequest": "Codsi pull ah ayaa la furay iyadoo la raacayo tarjumaadaha cusub. Isku darka ayaa dib u daabacaya boggan iyadoo kaararka la buuxiyay."
 			}
 		},
@@ -410,7 +410,7 @@
 				"newInputs": "Gelin cusub: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, iyo badhamada tarjumaha horumarsan {textType}, {profanityAction}, {profanityMarker}, iyo {allowFallback}.",
 				"sourceLocale": "Source locale hadda sidoo kale waxaa loo gudbiyaa Translator as {fromLocale} si xargaha gaagaaban looma ogaanin si toos ah.",
 				"resilience": "{label} automatic retry on transient HTTP responses ({statusCodes}) oo sharaf u ah Azure's {retryAfter} header — waxay ku noqotaa jittered exponential backoff marka la maqto. Waxaa la hagaajin karaa iyada oo loo marayo {maxRetries} iyo {retryBackoffMs}. {issue}",
-				"placeholderProtection": "{label} calaamadaha sida {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} iyo HTML waxaa lagu duubaa sentinels ka hor turjumaadda kadibna dib ayaa loo soo celiyaa, sidaas darteed Turjubaanka wuxuu joojiyaa inuu burburiyo meelaha i18next/Mustache/Handlebars/.NET/printf. Toggle via {protectPlaceholders}; La soco {customPlaceholderPatterns}. {issue}",
+				"placeholderProtection": "{label} calaamadaha sida {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} iyo HTML ayaa lagu duubaa sentinels ka hor turjumaadda kadibna dib ayaa loo soo celiyaa, sidaas darteed Turjumaadku wuxuu joojiyaa inuu burburiyo meelaha i18next/Mustache/Handlebars/.NET/printf. Toggle via {protectPlaceholders}; La soco {customPlaceholderPatterns}. {issue}",
 				"perKeyOptOut": "{label} {noTranslatePatterns} cusub ee gelinta ayaa gebi ahaanba ka saartay furayaasha iswaafajinta codsiga Translator-ka (wuxuu ilaaliyaa qiimaha ilaha magacyada sumadda, koodhadhka khaladaadka, iwm). Waxay la jaanqaadaysaa qaababka glob ee furayaasha heerka parser-ka (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). {issue}",
 				"repoConfig": "Qaabeynta heerka repo-ga iyada oo loo marayo {configPath}.",
 				"glossary": "Taageerada qaamuuska, dulmar tallaabooyin oo loo marayo {coreSummary}.",

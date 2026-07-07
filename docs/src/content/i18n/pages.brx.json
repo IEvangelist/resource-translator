@@ -207,9 +207,9 @@
 			"items": {
 				"maxRetries": "क्षणिक HTTP फिनजाथाइफोराव बांसिनै नाजानाय नाजानाय ({statusCodes})। मोनफ्रोमबो खावलायनायनि थाखाय HTTP कलफोरनि गासै अनजिमाया {totalCalls}।",
 				"retryBackoffMs": "जायखि जाया मोनसे बेकअफ उन्दुनायाव केप (मिलिसेकेन्डाव)। बे खामानिआ Azure नि {retryAfter} फिन्नाय हेडरखौ थि समाव मान होयो; नङाब्ला बेयो बे बेसेनाव केप खालामजानाय जिटर्ड एक्सपोनेन्शियेल बेकअफखौ बाहायो।",
-				"protectPlaceholders": "जेब्ला {true} (default) जायो, अब्ला प्लेसहोल्डर जेरै {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} आरो HTML सिनायथिफोरखौ रावसोलायनायनि सिगां सेन्टिनेल टोकनजों सोलायनाय जायो आरो उनाव बानायफिननाय जायो। जेब्ला नोंथांनि फुंखायाव गोसोजानानै सोदोबारि प्लेसहोल्डर-महरनि टेक्स्ट थायो जायखौ रावसोलायनाय जानांगौ अब्लासो होबथा।",
+				"protectPlaceholders": "जेब्ला {true} (default) जायो, अब्ला प्लेसहोल्डर जेरै {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} आरो HTML सिनायथिफोरखौ रावसोलायनायनि सिगां सेन्टिनेल टोकनजों सोलायनाय जायो आरो उनाव बानायफिननाय जायो। जेब्ला नोंथांनि फुंखायाव गोसोजानानै सोदोबारि प्लेसहोल्डर-महरनि text थायो जायखौ रावसोलायनाय जानांगौ अब्लासो होबथा।",
 				"customPlaceholderPatterns": "newline-separated regexes (delimiters गैयालासे) default placeholder set आव दाजाबदेरबाय, जेरै custom token syntax नि थाखाय {angleToken}।",
-				"noTranslatePatterns": "गोदान लाइन-आलादा ग्लब महरफोरा पार्सर-थाखोनि keys (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF इउनिट {xliffId}, INI/restext key) जों गोरोबदोंमोन। गोरोबनाय keys फोरखौ रावसोलायगिरिनि खावलायनायनिफ्राय बोखारनाय जायो आरो बिसोरनि फुंखा मानखौ थिनानै दोननानै थाङो।"
+				"noTranslatePatterns": "गोदान लाइन-आलादा ग्लब महरफोरा पार्सर-थाखोनि keys (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF इउनिट {xliffId}, INI/restext key) जों गोरोबदोंमोन। गोरोबनाय key फोरखौ रावसोलायगिरि खावलायनायनिफ्राय बोखारनाय जायो आरो बिसोरनि फुंखा मानखौ थिनानै दोननानै थाङो।"
 			}
 		},
 		"outputs": {
@@ -372,7 +372,7 @@
 				"implement": "{parserInterface} बाहाय ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap})।",
 				"register": "बेखौ दानाव रेजिस्टार {factoryFile}।",
 				"extension": "बेयाव {translationFileSchemes} आव फाइल एक्सटेन्सन {finderFile}।",
-				"tests": "पार्स → फरमेटनि थाखाय राउन्ड-ट्रिप टेस्ट लिर आरो Applications Translations।"
+				"tests": "पार्स → फरमेटनि थाखाय राउन्ड-ट्रिप आन्जाद लिर आरो Applications Translations।"
 			}
 		},
 		"coverage": {
@@ -409,7 +409,7 @@
 				"runtime": "{nodeRuntime} रनटाइम ({breaking}) आव बाम्बार जादों।",
 				"newInputs": "गोदान इनपुटफोर: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, लोगोसे जौगा थाखोनि रावसोलायगिरि knobs {textType}, {profanityAction}, {profanityMarker} आरो {allowFallback}।",
 				"sourceLocale": "source locale आबो दायो Translator निसिम दैथायहर जायो मानोना {fromLocale} गुसुं strings आ गाव हारसिङैनो हमदांनो हाया।",
-				"resilience": "Azure नि {retryAfter} header खौ मान होनानै क्षणिक HTTP फिनजाथाय ({statusCodes}) आव {label} गाव हारसिङैनो फिन नाजानाय - गैयैयाव जिटर्ड एक्सपोनेन्शियेल बेकअफआव गोग्लैफिनो। {maxRetries} आरो {retryBackoffMs}। {issue}",
+				"resilience": "Azure नि {retryAfter} header खौ मान होनानै क्षणिक HTTP फिनजाथाइ ({statusCodes}) आव {label} गाव हारसिङैनो फिन नाजानाय - गैयैयाव जिटर्ड एक्सपोनेन्शियेल बेकअफआव गोग्लैफिनो। {maxRetries} आरो {retryBackoffMs}। {issue}",
 				"placeholderProtection": "{label} टोकन जेरै {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} आरो HTML सिनायथिफोरखौ रावसोलायनायनि सिगां सेन्टिनेलआव बोननाय जायो आरो उनाव फिन बानायफिननाय जायो, बेनिखायनो रावसोलायगिरिया i18next/Mustache/Handlebars/.NET/printf placeholders खौ होबथायो। {protectPlaceholders} गेजेरजों टगल खालाम; {customPlaceholderPatterns} बाराय। {issue}",
 				"perKeyOptOut": "{label} गोदान {noTranslatePatterns} इनपुटआ रावसोलायगिरि खावलायनायनिफ्राय गोरोबनाय key फोरखौ आबुङै ड्रप खालामो (ब्रान्ड मुं, गोरोन्थि कड बायदिनि थाखाय फुंखा मानफोरखौ रैखा खालामो)। पार्सर-लेभल keys (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF इउनिट {xliffId}, INI/restext key ) जों ग्लोब महरखौ गोरोबहोयो। {issue}",
 				"repoConfig": "{configPath} नि गेजेरजों रेप'-लेभेल कनफिग।",

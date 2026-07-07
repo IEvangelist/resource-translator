@@ -276,7 +276,7 @@
 				"heading": "ਬ੍ਰਾਂਡ ਦੇ ਨਾਮ ਅਤੇ ਉਤਪਾਦ ਦੀਆਂ ਸ਼ਰਤਾਂ ਲਈ ਸ਼ਬਦਾਵਲੀ",
 				"intro": "ਰੈਪੋ ਵਿੱਚ ਇੱਕ {configPath} ਸੁੱਟੋ:",
 				"afterLabel": "ਬਾਅਦ ਵਿੱਚ",
-				"body": "ਸ਼ਬਦਾਵਲੀ ਦੇ ਸ਼ਬਦ ਅਨੁਵਾਦ {after} ਲਾਗੂ ਕੀਤੇ ਜਾਂਦੇ ਹਨ, ਇਸ ਲਈ ਮਸ਼ੀਨ-ਅਨੁਵਾਦਿਤ ਆਉਟਪੁੱਟ ਤੁਹਾਡੀ ਪਸੰਦੀਦਾ ਬ੍ਰਾਂਡਿੰਗ ਨੂੰ ਰੱਖਦਾ ਹੈ ਭਾਵੇਂ ਮਾਡਲ ਨੇ ਇਸ ਨੂੰ ਸਮਾਨਾਰਥੀ ਲਈ ਬਦਲ ਦਿੱਤਾ."
+				"body": "ਸ਼ਬਦਾਵਲੀ ਦੇ ਸ਼ਬਦ ਅਨੁਵਾਦ {after} ਲਾਗੂ ਕੀਤੇ ਜਾਂਦੇ ਹਨ, ਇਸ ਲਈ ਮਸ਼ੀਨ-ਅਨੁਵਾਦਿਤ ਆਉਟਪੁੱਟ ਤੁਹਾਡੀ ਪਸੰਦੀਦਾ ਬ੍ਰਾਂਡਿੰਗ ਨੂੰ ਰੱਖਦਾ ਹੈ ਭਾਵੇਂ ਮਾਡਲ ਨੇ ਇਸ ਨੂੰ ਸਮਾਨਾਰਥੀ ਸ਼ਬਦ ਲਈ ਬਦਲ ਦਿੱਤਾ."
 			},
 			"customCategory": {
 				"heading": "ਕਸਟਮ ਅਨੁਵਾਦਕ ਸ਼੍ਰੇਣੀ (ਉਦਯੋਗ / ਡੋਮੇਨ)",
@@ -335,7 +335,7 @@
 		"title": "ਅਨੁਵਾਦ",
 		"eyebrow": "ਸ਼ੋਅਕੇਸ",
 		"heroTitle": "ਹਰ ਭਾਸ਼ਾ ਵਿੱਚ ਹੈਲੋ",
-		"lede": "ਇਸ ਪੰਨੇ ਦਾ ਅਨੁਵਾਦ ਸਰੋਤ ਅਨੁਵਾਦਕ ਦੁਆਰਾ ਖੁਦ ਕੀਤਾ ਗਿਆ ਹੈ, ਮੁੱਖ ਕਰਨ ਲਈ ਹਰ ਧੱਕਾ 'ਤੇ, ਹਰ ਭਾਸ਼ਾ ਵਿੱਚ Azure AI ਅਨੁਵਾਦਕ ਦਾ ਸਮਰਥਨ ਕਰਦਾ ਹੈ.",
+		"lede": "ਇਸ ਪੰਨੇ ਦਾ ਅਨੁਵਾਦ ਸਰੋਤ ਅਨੁਵਾਦਕ ਦੁਆਰਾ ਖੁਦ ਕੀਤਾ ਗਿਆ ਹੈ, ਮੁੱਖ ਕਰਨ ਲਈ ਹਰ ਧੱਕਾ 'ਤੇ, Azure AI ਅਨੁਵਾਦਕ ਦੁਆਰਾ ਸਮਰਥਨ ਕਰਨ ਵਾਲੀ ਹਰ ਭਾਸ਼ਾ ਵਿੱਚ.",
 		"localeCountLabel": "{count} ਸਥਾਨ",
 		"statusComplete": "{translatedCount} ਵਰਤਮਾਨ ਵਿੱਚ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ ਹੈ — ਸੰਪੂਰਨ!",
 		"statusPending": "{translatedCount} ਇਸ ਸਮੇਂ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ ਹੈ - {pendingCount} ਅਗਲੀ {workflowName} ਦੌੜ ਤੱਕ ਬਕਾਇਆ ਹੈ.",
@@ -408,7 +408,7 @@
 			"items": {
 				"runtime": "{nodeRuntime} ਰਨਟਾਈਮ ({breaking}) 'ਤੇ ਟੱਕਰ ਮਾਰਿਆ.",
 				"newInputs": "ਨਵੇਂ ਇਨਪੁੱਟ: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, ਨਾਲ ਹੀ ਉੱਨਤ ਅਨੁਵਾਦਕ ਨੌਬ {textType}, {profanityAction}, {profanityMarker}, ਅਤੇ {allowFallback}.",
-				"sourceLocale": "ਸਰੋਤ ਲੋਕਲ ਨੂੰ ਹੁਣ ਅਨੁਵਾਦਕ ਨੂੰ ਵੀ ਭੇਜਿਆ ਜਾਂਦਾ ਹੈ {fromLocale} ਇਸ ਲਈ ਛੋਟੀਆਂ ਸਤਰਾਂ ਸਵੈ-ਖੋਜ ਨਹੀਂ ਕੀਤੀਆਂ ਜਾਂਦੀਆਂ.",
+				"sourceLocale": "ਸਰੋਤ ਲੋਕਲ ਨੂੰ ਹੁਣ ਅਨੁਵਾਦਕ ਨੂੰ ਵੀ ਭੇਜਿਆ ਜਾਂਦਾ ਹੈ {fromLocale} ਇਸ ਲਈ ਛੋਟੀਆਂ ਸਤਰਾਂ ਨੂੰ ਸਵੈ-ਪਤਾ ਨਹੀਂ ਲਗਾਇਆ ਜਾਂਦਾ.",
 				"resilience": "ਅਜ਼ੂਰ ਦੇ {retryAfter} ਸਿਰਲੇਖ ਦਾ ਸਨਮਾਨ ਕਰਦੇ ਹੋਏ ਅਸਥਾਈ HTTP ਜਵਾਬਾਂ ({statusCodes}) 'ਤੇ {label} ਆਟੋਮੈਟਿਕ ਰੀਟਾਇਰ ਕਰਨਾ - ਗੈਰਹਾਜ਼ਰੀ ਵਿੱਚ ਵਾਪਸ ਆ ਜਾਂਦਾ ਹੈ. {maxRetries} ਅਤੇ {retryBackoffMs} ਰਾਹੀਂ ਟਿਊਨਯੋਗ ਹੈ। {issue}",
 				"placeholderProtection": "{label} ਟੋਕਨ ਜਿਵੇਂ ਕਿ {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ਅਤੇ HTML ਇਕਾਈਆਂ ਅਨੁਵਾਦ ਤੋਂ ਪਹਿਲਾਂ ਸੈਂਟੀਨੇਲਾਂ ਵਿੱਚ ਲਪੇਟੀਆਂ ਜਾਂਦੀਆਂ ਹਨ ਅਤੇ ਬਾਅਦ ਵਿੱਚ ਬਹਾਲ ਕੀਤੀਆਂ ਜਾਂਦੀਆਂ ਹਨ, ਇਸ ਲਈ ਅਨੁਵਾਦਕ i18next/ਮੁੱਛਾਂ/ਹੈਂਡਲਬਾਰਜ਼/.NET/printf ਪਲੇਸਹੋਲਡਰਜ਼ ਨੂੰ ਬੰਦ ਕਰ ਦਿੰਦਾ ਹੈ। {protectPlaceholders} ਦੁਆਰਾ ਟੌਗਲ ਕਰੋ; {customPlaceholderPatterns} ਦੇ ਨਾਲ ਵਧਾਓ. {issue}",
 				"perKeyOptOut": "{label} ਨਵਾਂ {noTranslatePatterns} ਇਨਪੁੱਟ ਅਨੁਵਾਦਕ ਬੇਨਤੀ ਤੋਂ ਮੇਲ ਖਾਂਦੀਆਂ ਕੁੰਜੀਆਂ ਨੂੰ ਪੂਰੀ ਤਰ੍ਹਾਂ ਛੱਡ ਦਿੰਦਾ ਹੈ (ਬ੍ਰਾਂਡ ਨਾਮ, ਗਲਤੀ ਕੋਡ, ਆਦਿ ਲਈ ਸਰੋਤ ਮੁੱਲਾਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਰੱਖਦਾ ਹੈ). ਪਾਰਸਰ-ਪੱਧਰ ਦੀਆਂ ਕੁੰਜੀਆਂ (JSON ਡੌਟਡ ਪਾਥ, RESX {resxName}, PO {poMsgid}, XLIFF ਯੂਨਿਟ {xliffId}, INI / restext ਕੁੰਜੀ) ਦੇ ਵਿਰੁੱਧ ਗਲੋਬ ਪੈਟਰਨ ਨਾਲ ਮੇਲ ਖਾਂਦਾ ਹੈ। {issue}",

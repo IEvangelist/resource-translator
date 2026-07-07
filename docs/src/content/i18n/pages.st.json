@@ -276,7 +276,7 @@
 				"heading": "Glossary bakeng sa mabitso a brand le mantsoe a sehlahisoa",
 				"intro": "Beha {configPath} ho repo:",
 				"afterLabel": "Ka mor'a",
-				"body": "Mantsoe a glossary a sebelisoa {after} phetolelo, ka hona tlhahiso e fetoletsoeng ka mochini e boloka letšoao leo u le ratang le ha mohlala o le fapanyetsana bakeng sa synonym."
+				"body": "Mantsoe a glossary a sebelisoa {after} phetolelo, ka hona tlhahiso e fetoletsoeng ka mochini e boloka letšoao leo u le ratang le ha mohlala o e fapanyetsana bakeng sa synonym."
 			},
 			"customCategory": {
 				"heading": "Sehlopha sa mofetoleli oa tloaelo (indasteri / domain)",
@@ -304,7 +304,7 @@
 			},
 			"tone": {
 				"heading": "Ke hobane'ng ha liphetolelo ka linako tse ling li sa sebetse kapa li sa sebetse?",
-				"body": "Phetolelo ea mochini ha e sebetse ka mokhoa o akaretsang. Likonopo tse tharo lia thusa: {glossaryLink} bakeng sa li-override tsa nako e thata, {customTranslatorLink} bakeng sa mehlala e hlophisitsoeng hantle e koetlisitsoeng ka molumo oa hau le mantsoe, le {profanityAction} ho hlakola kapa ho folakha mantsoe a litšila.",
+				"body": "Phetolelo ea mochini ha e sebetse ka mokhoa o akaretsang. Likonopo tse tharo lia thusa: {glossaryLink} bakeng sa ho fetisa mantsoe a thata, {customTranslatorLink} bakeng sa mehlala e hlophisitsoeng hantle e koetlisitsoeng ka molumo oa hau le mantsoe, le {profanityAction} ho hlakola kapa ho folakha mantsoe a litšila.",
 				"glossaryLinkLabel": "Glossary",
 				"customTranslatorLinkLabel": "Sehlopha sa mofetoleli oa tloaelo"
 			},

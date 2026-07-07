@@ -12,7 +12,7 @@
 	},
 	"header": {
 		"search": "Buscar documentación",
-		"searchPlaceholder": "Busca na documentación...",
+		"searchPlaceholder": "Busca documentación...",
 		"toggleTheme": "Alternar tema",
 		"githubRepository": "Repositorio de GitHub",
 		"language": "Lingua",
@@ -53,9 +53,24 @@
 		"sourceAria": "Ver o código en GitHub",
 		"marketplaceAria": "Ver en GitHub Marketplace",
 		"authorAria": "Sitio web de David Pine",
+		"npmAria": "Ver o SDK do tradutor de Azure en npm",
 		"taglinePrefix": "Unha acción de GitHub que traduce automaticamente os teus ficheiros de recursos, construída sobre o oficial",
 		"taglineMiddle": "SDK de",
 		"copyrightPrefix": "Lanzado baixo a",
-		"builtWith": "Construído con"
+		"builtWith": "Construído con",
+		"installLabel": "Engádeo ao teu fluxo de traballo",
+		"copy": "Copiado",
+		"copied": "Copiado!",
+		"copyAria": "Copia o fragmento de instalación ao teu portapapeis",
+		"marketplaceCta": "Pódeo en GitHub Marketplace",
+		"starCta": "Star en GitHub",
+		"starAria": "Star Resource Translator en GitHub",
+		"stargazersAria": "Os observadores de estrelas en GitHub contan",
+		"versionLabel": "Versión",
+		"whatsNew": "Que hai de novo",
+		"language": "Lingua",
+		"editPage": "Editar esta páxina",
+		"editPageAria": "Editar a fonte desta páxina en GitHub",
+		"reportIssue": "Reporta un problema nesta páxina"
 	}
 }

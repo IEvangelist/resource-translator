@@ -183,7 +183,7 @@
 				"include": "न्यूलाइन-अलग ग्लोब ढाँचाहरू; मिल्दो फाइलहरू मात्र अनुवाद गरिन्छन् ।",
 				"exclude": "न्यूलाइन-अलग ग्लोब ढाँचाहरू; मिल्दो फाइलहरू फड्किएका छन् (समावेश गरेपछि लागू) ।",
 				"configPath": "YAML कन्फिग फाइलमा मार्ग (कार्यस्थान मूलसँग सम्बन्धित) ।",
-				"dryRun": "{true} गर्दा, अनुवाद चलाउनुहोस् र सारांशहरू छोड्नुहोस् तर फाइलहरू नलेख्नुहोस्।",
+				"dryRun": "{true} गर्दा, अनुवाद चलाउनुहोस् र सारांश छोड्नुहोस् तर फाइलहरू नलेख्नुहोस्।",
 				"failOnError": "जब {true}, अप्रत्याशित त्रुटिहरू कार्य असफल हुन्छन्; {false} गर्दा, त्रुटिहरू चेतावनीहरू हुन्।"
 			}
 		},
@@ -202,7 +202,7 @@
 		},
 		"resilienceInputs": {
 			"heading": "लचिलोपन र प्लेसहोल्डर सुरक्षा",
-			"intro": "यी इनपुटहरूले नियन्त्रण गर्दछ कि कसरी कार्यले व्यवहार गर्दछ जब अनुवादकले तपाईंको अनुरोधलाई थ्रोटल गर्दछ र यसले कसरी प्लेसहोल्डर टोकनहरू जस्तै {mustache} वा {indexZero} लाई अनुवादको समयमा गडबड हुनबाट बचाउँछ।",
+			"intro": "यी इनपुटहरूले नियन्त्रण गर्दछ कि कसरी कार्यले व्यवहार गर्दछ जब अनुवादकले तपाईंको अनुरोधलाई थ्रोटल गर्दछ र यसले कसरी {mustache} वा {indexZero} जस्ता प्लेसहोल्डर टोकनहरूलाई अनुवादको समयमा बिग्रनबाट जोगाउँछ।",
 			"caption": "लचिलोपन र प्लेसहोल्डर सुरक्षा इनपुटहरू",
 			"items": {
 				"maxRetries": "क्षणिक एचटीटीपी प्रतिक्रियाहरूमा अधिकतम पुन: प्रयास प्रयास ({statusCodes}) । प्रति अनुरोध HTTP कलहरूको कुल संख्या {totalCalls} छ।",
@@ -369,7 +369,7 @@
 			"heading": "पद वर्णक थप्दै",
 			"steps": {
 				"fixture": "{testDataDir} अन्तर्गत फिक्स्चर थप्नुहोस्।",
-				"implement": "{parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}) लागू गर्नुहोस्।",
+				"implement": "{parserInterface} लागू गर्नुहोस् ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap})।",
 				"register": "यसलाई {factoryFile} मा दर्ता गर्नुहोस्।",
 				"extension": "{finderFile} भित्र फाइलको विस्तार {translationFileSchemes} थप्नुहोस् ।",
 				"tests": "→ ढाँचा पद वर्णन गर्न र अनुवाद लागू गर्नका लागि राउन्ड-ट्रिप परीक्षणहरू लेख्नुहोस्।"
@@ -381,7 +381,7 @@
 		},
 		"docsSite": {
 			"heading": "मिसिलीकरण साइट",
-			"body": "{docsDir} फोल्डर एस्ट्रो 6 + टेलविन्ड v4 प्रोजेक्ट हो। त्यहाँ एक पटक {npmInstall} चलाउनुहोस्, त्यसपछि स्थानीय पूर्वावलोकनको लागि {npmRunDev} गर्नुहोस्। {pagesWorkflow} कार्यप्रवाहले प्रत्येक मर्जमा GitHub पृष्ठहरूमा डक्सहरू पठाउँछ।"
+			"body": "{docsDir} फोल्डर एस्ट्रो 6 + टेलविन्ड v4 प्रोजेक्ट हो। त्यहाँ एक पटक {npmInstall} चलाउनुहोस्, त्यसपछि स्थानीय पूर्वावलोकनको लागि {npmRunDev} गर्नुहोस्। {pagesWorkflow} कार्यप्रवाहले प्रत्येक मर्जमा GitHub पृष्ठहरूमा कागजातहरू पठाउँछ।"
 		}
 	},
 	"changelog": {
@@ -410,7 +410,7 @@
 				"newInputs": "नयाँ इनपुटहरू: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, साथै उन्नत अनुवादक घुंडी {textType}, {profanityAction}, {profanityMarker}, र {allowFallback}।",
 				"sourceLocale": "स्रोत लोकेल अब अनुवादकलाई पनि पठाइएको छ किनकि {fromLocale} छोटो स्ट्रिङहरू स्वत: पत्ता लगाउँदैनन्।",
 				"resilience": "{label} क्षणिक HTTP प्रतिक्रियाहरूमा स्वचालित पुन: प्रयास ({statusCodes}) Azure को {retryAfter} हेडरको सम्मान गर्दछ - अनुपस्थित हुँदा जिटर एक्सपोनेन्शियल ब्याकअफमा फर्कन्छ। {maxRetries} र {retryBackoffMs} मार्फत ट्युन गर्न योग्य। {issue}",
-				"placeholderProtection": "{label} टोकनहरू जस्तै {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} र HTML संस्थाहरू अनुवाद गर्नु अघि सेन्टिनेलमा बेरिन्छ र पछि पुनर्स्थापित गरिन्छ, त्यसैले अनुवादकले i18next/Mustache/Handlebars/.NET/printf प्लेसहोल्डरहरू बन्द गर्दछ। {protectPlaceholders} मार्फत टगल गर्नुहोस्; {customPlaceholderPatterns} संग विस्तार गर्नुहोस्। {issue}",
+				"placeholderProtection": "{label} टोकनहरू जस्तै {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} र HTML संस्थाहरू अनुवाद गर्नु अघि सेन्टिनेलमा बेरिन्छ र पछि पुनर्स्थापित गरिन्छ, त्यसैले अनुवादकले i18next/Mustache/Handlebars/.NET/printf प्लेसहोल्डरहरू मर्मत गर्न रोक्छ। {protectPlaceholders} मार्फत टगल गर्नुहोस्; {customPlaceholderPatterns} संग विस्तार गर्नुहोस्। {issue}",
 				"perKeyOptOut": "{label} नयाँ {noTranslatePatterns} इनपुटले अनुवादक अनुरोधबाट मिल्दो कुञ्जीहरू पूर्ण रूपमा ड्रप गर्दछ (ब्रान्ड नामहरू, त्रुटि कोडहरू, आदिको लागि स्रोत मानहरू सुरक्षित गर्दछ)। पदरेखा स्तर कुञ्जीहरू (JSON थोप्ला मार्ग, RESX {resxName}, PO {poMsgid}, XLIFF एकाइ {xliffId}, INI/restext कुञ्जी) विरुद्ध ग्लोब बाँन्कीहरू मिल्दछ। {issue}",
 				"repoConfig": "{configPath} मार्फत रिपो-स्तर कन्फिगरेसन।",
 				"glossary": "शब्दावलीको समर्थन, {coreSummary} मार्फत चरण सारांश ।",

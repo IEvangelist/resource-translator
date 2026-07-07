@@ -88,7 +88,7 @@
 			},
 			"output": {
 				"title": "出力を点検してください",
-				"body": "ワークフローが終わると、アクションはPR説明に配線できる3つの出力を公開します:{summaryTitle}、{summaryDetails}、{hasNewTranslations}。また、{coreSummary}を通じて求人ページにMarkdownの要約も書き込んでくれます。"
+				"body": "ワークフローが終わると、アクションはPRの説明に配線できる3つの出力を公開します:{summaryTitle}、{summaryDetails}、{hasNewTranslations}。また、{coreSummary}を通じて求人ページにMarkdownの要約も書き込んでくれます。"
 			}
 		},
 		"nextSteps": {
@@ -300,7 +300,7 @@
 		"questions": {
 			"azure": {
 				"heading": "アクションはAzureとどのように通信しているのでしょうか?",
-				"body": "Microsoftの公式{azureSdkLink} SDKを通じて、{corePipelineLink}の上に重ねられています。これにより、{statusCodes}の自動リトライ、入力されたリクエストおよびレスポンスモデル、認証ヘッダー処理が無料で提供されます。これらはかつて手作業で行っていた{axios}コールでした。公開アクションサーフェス(入力、出力、ファイル出力)は変更されていません。"
+				"body": "Microsoftの公式{azureSdkLink} SDKを通じて、{corePipelineLink}の上に重ねられています。これにより、{statusCodes}の自動リトライ、入力されたリクエストおよびレスポンスモデル、認証ヘッダー処理が無料で提供されます。これらはかつて手作業で行う{axios}コールでした。公開アクションサーフェス(入力、出力、ファイル出力)は変更されていません。"
 			},
 			"tone": {
 				"heading": "なぜ翻訳は時にブランド外れだったり、トーンがずれていたりするのでしょうか?",
@@ -322,7 +322,7 @@
 			},
 			"dist": {
 				"heading": "バンドルド{distDir}はどこから来ているのでしょうか?",
-				"body": "GitHub JSアクションはコンパイル済みJSをリポジトリに提供します。{distBuild}ワークフローはマージごとにドリフトを解除する{mainBranch}に再構築し、{distCheck}古い出力が届くPRをブロックします。"
+				"body": "GitHub JSアクションはコンパイル済みJSをリポジトリに提供します。{distBuild}ワークフローはマージごとにドリフトを解除する{mainBranch}を再構築し、{distCheck}古い出力が届くPRをブロックします。"
 			},
 			"formats": {
 				"heading": "他のリソース形式はどうでしょうか?",
@@ -410,14 +410,14 @@
 				"newInputs": "新入力:{include}、{exclude}、{configPath}、{categoryId}、{apiVersion}、{dryRun}、{failOnError}に加え、高度な翻訳ノブ{textType}、{profanityAction}、{profanityMarker}、{allowFallback}。",
 				"sourceLocale": "ソースの所在地も{fromLocale}としてトランスレーターに転送されるため、短い文字列が自動検出されなくなります。",
 				"resilience": "{label} Azureの{retryAfter}ヘッダーを尊重する一時的なHTTP応答({statusCodes})に対する自動リトライは、不在時にはジッター指数的バックオフに戻されます。{maxRetries}と{retryBackoffMs}で調整可能です。{issue}",
-				"placeholderProtection": "{mustache}、{jsVar}、{indexZero}、{numberFormat}、{printf}、{positionalPrintf}、HTMLエンティティなどのトークン{label}、翻訳前にセンチネルでラップされ、翻訳後に復元されるため、翻訳者はi18next/Mustache/Handlebars/.NET/printfのプレースホルダーをめちゃくちゃにするのを止めます。{protectPlaceholders}経由で切り替え;{customPlaceholderPatterns}で拡張しましょう。{issue}",
+				"placeholderProtection": "{mustache}、{jsVar}、{indexZero}、{numberFormat}、{printf}、{positionalPrintf}、HTMLエンティティなどのトークン{label}、翻訳前にセンチネルでラップされ、翻訳後に復元されるため、翻訳者はi18next/Mustache/Handlebars/.NET/printfのプレースホルダーをめちゃくちゃにするのをやめます。{protectPlaceholders}経由で切り替え;{customPlaceholderPatterns}で拡張しましょう。{issue}",
 				"perKeyOptOut": "新しい{noTranslatePatterns}入力{label}トランスレーターリクエストから一致するキーを完全に除外します(ブランド名やエラーコードなどのソース値を保持します)。グロブパターンをパーサーレベルのキー(JSON点線パス、RESX {resxName}、PO {poMsgid}、XLIFFユニット{xliffId}、INI/restextキー)と照合します。{issue}",
 				"repoConfig": "{configPath}によるリポジトリレベルの設定。",
 				"glossary": "用語集のサポート、{coreSummary}によるステップサマリー。",
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
 				"audit": "NPM監査クリーン(脆弱性0)。",
 				"docsSite": "Astro + Tailwind v4のドキュメントサイトで、ビュートランジションと表現コードがあります。",
-				"docsAccessibility": "{label} WCAG 2.1 AAパス。ロゴグリフがパスに変換され、グラデーションストップに対する色コントラストが失敗しなくなり、浮動{backToTop}ボタンはタブ可能な{ariaHidden}トグルではなく隠れている状態で{inert}を使用し、セクションが自動生成の見出しIDと衝突しなくなった{formatsAstro}、3つのローカレカードがBCP-47有効な{lang}属性({nya}、{lug}、{run})を公開し、重複{documentation}ランドマークラベルはサイドバーとフッター間の曖昧さを解消される。 また、{inputs}/{configuration}のすべてのデータテーブルにはスクリーンリーダー用の字幕が付いています。",
+				"docsAccessibility": "{label} WCAG 2.1 AAパス。ロゴグリフがパスに変換され、グラデーションストップに対する色コントラストが失敗しなくなり、浮動{backToTop}ボタンはタブ可能な{ariaHidden}トグルではなく隠れている状態で{inert}を使用し、{formatsAstro}セクションは自動生成の見出しIDと衝突しなくなり、3つのローカレカードがBCP-47有効な{lang}属性({nya}、{lug}、{run})を露出し、重複した{documentation}ランドマークラベルはサイドバーとフッター間の曖昧さを解消します。 また、{inputs}/{configuration}のすべてのデータテーブルにはスクリーンリーダー用の字幕が付いています。",
 				"inlineCode": "{label} Docsの散文{codeElement}現在は暖色系/アンバー色のアクセントを採用しており、リンクや見出しに使われるブランドアクセントとは異なるもの→。",
 				"automation": "Dependabotの自動マージ、CodeQLスキャン、CIマトリックス。"
 			}

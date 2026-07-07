@@ -1,28 +1,28 @@
 {
 	"sections": {
 		"start": "由呢度開始",
-		"reference": "參考",
-		"showcase": "出櫃",
+		"reference": "參考資料",
+		"showcase": "展示",
 		"project": "項目"
 	},
 	"items": {
 		"overview": "概覽",
 		"gettingStarted": "開始",
-		"configuration": "組態",
-		"inputs": "輸入與輸出",
+		"configuration": "配置",
+		"inputs": "輸入同輸出",
 		"formats": "檔案格式",
 		"recipes": "食譜",
 		"faq": "常見問題",
 		"translations": "譯本",
 		"contributing": "貢獻",
-		"changelog": "變更日誌"
+		"changelog": "更新日誌"
 	},
 	"community": {
-		"reportBug": "報錯",
-		"requestFeature": "請求專題",
+		"reportBug": "報告一個錯誤",
+		"requestFeature": "請求功能",
 		"discussions": "討論",
-		"securityPolicy": "保安政策",
-		"codeOfConduct": "行為準則",
-		"license": "麻省理工學院牌照"
+		"securityPolicy": "安全政策",
+		"codeOfConduct": "行為守則",
+		"license": "麻省理工學院授權"
 	}
 }

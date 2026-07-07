@@ -53,9 +53,24 @@
 		"sourceAria": "Forrás megtekintése a GitHubon",
 		"marketplaceAria": "View on GitHub Marketplace",
 		"authorAria": "David Pine honlapja",
+		"npmAria": "View the Azure Translator SDK on npm",
 		"taglinePrefix": "Egy GitHub Akció, amely automatikusan lefordítja az erőforrás fájljaidat, a hivatalos rendszer tetejére építve",
 		"taglineMiddle": "SDK",
 		"copyrightPrefix": "Kiadás a",
-		"builtWith": "Építés"
+		"builtWith": "Építés",
+		"installLabel": "Tedd hozzá a munkafolyamatodhoz",
+		"copy": "Értettem",
+		"copied": "Másolva!",
+		"copyAria": "Másold le a telepítési részletet a clipboardodra",
+		"marketplaceCta": "Szerezd meg a GitHub Marketplace-en",
+		"starCta": "Star a GitHubon",
+		"starAria": "Star Resource Translator a GitHubon",
+		"stargazersAria": "GitHub csillagnézők száma",
+		"versionLabel": "Verzió",
+		"whatsNew": "Mi újság",
+		"language": "Nyelv",
+		"editPage": "Szerkesztés ezen az oldalon",
+		"editPageAria": "Szerkesztés az oldal forrását a GitHubon",
+		"reportIssue": "Jelents problémát ezen az oldalon"
 	}
 }

@@ -50,7 +50,7 @@
 			},
 			"sdk": {
 				"title": "SDK Azure Whaimana",
-				"body": "I hangaia ki runga i te {azureSdk} + {corePipeline} — ka ngana anō aunoa ki {statusCodes}, kāore he HTTP kua hurihia ā-ringa. {esbuild}-paiheretia, mā te arotaupū."
+				"body": "I hangaia ki runga i te {azureSdk} + {corePipeline} — ka ngana anō aunoa ki te {statusCodes}, kāore he HTTP ā-ringa. {esbuild}-paiheretia, mā te arotaupū."
 			}
 		},
 		"workflowPreview": {
@@ -120,7 +120,7 @@
 				"categoryId": "Kāwai {customTranslatorLink} Azure — tō pona umanga/rohe (ā-ture, rongoā, oro mākete, aha atu). I tukua hei {categoryQuery}.",
 				"textType": "Taunoa ai ki te {plain}. Whakamahia {html} anake mēnā he kongakonga HTML tūturu kei ō uara rauemi.",
 				"profanityAction": "Me pēhea te whakamahi i ngā kupu whakarihariha i roto i te huaputa kua whakamāoritia.",
-				"profanityMarker": "Whai tikanga anake ina {marked} {profanityAction}.",
+				"profanityMarker": "Whai tikanga anake ina {profanityAction} {marked}.",
 				"allowFallback": "Tautuhia ki te {false} kia rahua te whakawhitinga ina kore tō {categoryId} e tuku mō tētahi wāhi ūnga, kaua e hoki whakamuri ki te tauira ahuwhānui.",
 				"apiVersion": "Putanga REST API kaiwhakamāori. Taunoa ai ki te {version}.",
 				"maxRetries": "Ko te mōrahi o ngā nganatanga ngana anō i runga i ngā urupare HTTP rangitahi ({statusCodes}). Taunoa ai ki te {defaultRetries}. He {totalCalls} te tapeke o ngā waea HTTP mō ia tono.",
@@ -226,7 +226,7 @@
 		"title": "Ngā hōputu kōnae",
 		"eyebrow": "Tohutoro",
 		"heroTitle": "Ngā hōputu kōnae e tautokona ana",
-		"lede": "E ono ngā hōputu rauemi ka taea te haere. Ka pānui te hohenga i ia kōnae pūtake-rohe, ka whakamāori i ngā uara, ka tuhi hoki i tētahi teina mō ia wāhi ūnga.",
+		"lede": "E ono ngā hōputu rauemi ka taea te haere. Ka pānui te hohenga i ia kōnae pūtake-rohe, ka whakamāoritia ngā uara, ka tuhi hoki i tētahi teina mō ia wāhi ūnga.",
 		"namingConvention": "Ka whakamahi ngā kōnae katoa i te tikanga whakaingoa {namingConvention}.",
 		"learnMore": "Ako tonu",
 		"items": {
@@ -243,7 +243,7 @@
 				"specLabel": "GNU gettext — hōputu kōnae PO"
 			},
 			"json": {
-				"blurb": "Ngā kōnae JSON pokanoa. Ka papatahitia ngā ahanoa whakakōpaetia ki te kaiwehe {delimiter} mō te whakamāoritanga, kātahi ka whakakōpaetia anōtia ki te huaputa. Ka puritia ngā kī iraira ({dottedKey}) ki te kupu.",
+				"blurb": "Ngā kōnae JSON pokanoa. Ka papatahitia ngā ahanoa kōpaetia ki te kaiwehe {delimiter} mō te whakamāoritanga, kātahi ka whakakōpaetia anōtia ki te huaputa. Ka puritia ngā kī iraira ({dottedKey}) ki te kupu.",
 				"specLabel": "Whakapūtātanga JSON (RFC 8259)"
 			},
 			"ini": {

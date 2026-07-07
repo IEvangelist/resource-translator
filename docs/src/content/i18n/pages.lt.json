@@ -121,7 +121,7 @@
 				"textType": "Numatytoji reikšmė yra {plain}. Naudokite {html} tik tuo atveju, jei jūsų išteklių reikšmėse yra tikrų HTML fragmentų.",
 				"profanityAction": "Kaip elgtis su nešvankiais terminais išverstoje produkcijoje.",
 				"profanityMarker": "Prasminga tik tada, kai {profanityAction} yra {marked}.",
-				"allowFallback": "Nustatykite {false}, kad vertimo nepavyktų, kai jūsų {categoryId} nėra paskirties lokalės diegimo, o ne grįžti prie bendrojo modelio.",
+				"allowFallback": "Nustatykite {false}, kad vertimas nepavyktų, kai jūsų {categoryId} nėra paskirties lokalės diegimo, o ne grįžti prie bendrojo modelio.",
 				"apiVersion": "Vertėjo REST API versija. Numatytoji reikšmė yra {version}.",
 				"maxRetries": "Maksimalus bandymų pakartoti skaičių su trumpalaikiais HTTP atsakymais ({statusCodes}). Numatytoji reikšmė yra {defaultRetries}. Bendras HTTP iškvietimų skaičius vienoje užklausoje yra {totalCalls}.",
 				"retryBackoffMs": "Viršutinė riba (ms) bet kuriam atskiram atgaliniam miego režimui. Numatytoji reikšmė yra {defaultBackoff}. \"Azure\" {retryAfter} antraštė yra pagerbta tiksliai, kai yra; kitu atveju naudojamas drebantis eksponentinis atgalinis atsitraukimas, apribojamas šia verte.",
@@ -352,7 +352,7 @@
 			"steps": {
 				"source": "Angliškas šaltinio failas yra {messagesPath}.",
 				"workflow": "Stumia, kad prisilietimas jis pradeda {workflowLink}, kuris veikia {thisAction} prieš save.",
-				"fanOut": "Veiksmas nukreipiamas į kiekvieną \"Azure AI Translator\" palaikomą lokalę (sukonfigūruotą {configPath}) ir kiekvienam tikslui rašo {messagesLocaleJson}.",
+				"fanOut": "Veiksmas pereina į kiekvieną \"Azure AI Translator\" palaikomą lokalę (sukonfigūruotą {configPath}) ir rašo atitinkamą {messagesLocaleJson} kiekvienam tikslui.",
 				"pullRequest": "Atidaroma ištraukimo užklausa su naujais vertimais. Sujungus jį pakartotinai publikuojamas šis puslapis su užpildytomis kortelėmis."
 			}
 		},

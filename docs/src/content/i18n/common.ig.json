@@ -21,7 +21,7 @@
 		"languageSearch": "Asụsụ nzacha",
 		"languageSearchPlaceholder": "Chọọ asụsụ ma ọ bụ koodu mpaghara.",
 		"languageNoResults": "Enweghị asụsụ kwekọrọ na nzacha ahụ.",
-		"closeLanguage": "Mechie ọhọchi asụsụ"
+		"closeLanguage": "Mechie ọhọ asụsụ"
 	},
 	"search": {
 		"title": "Akwụkwọ ọchụchọ",
@@ -53,9 +53,24 @@
 		"sourceAria": "Lelee isi mmalite na GitHub",
 		"marketplaceAria": "Lelee na GitHub Marketplace",
 		"authorAria": "David Pine's Site",
+		"npmAria": "Lelee Azure Translator SDK na npm",
 		"taglinePrefix": "GitHub Action nke na-asụgharị faịlụ akụ gị na-akpaghị aka, wuru n'elu ukara",
 		"taglineMiddle": "SDK site na",
 		"copyrightPrefix": "A tọhapụrụ ya n'okpuru",
-		"builtWith": "E wuru ya na"
+		"builtWith": "E wuru ya na",
+		"installLabel": "Tinye ya na ọrụ gị.",
+		"copy": "Debata",
+		"copied": "Depụtaghachiri!",
+		"copyAria": "Detuo snippet wụnye na clipboard gị",
+		"marketplaceCta": "Nweta ya na GitHub Marketplace",
+		"starCta": "Kpakpando na GitHub",
+		"starAria": "Star Resource Translator on GitHub",
+		"stargazersAria": "GitHub kpakpando na-agụ",
+		"versionLabel": "Mbipute",
+		"whatsNew": "Ihe dị ọhụrụ",
+		"language": "Asụsụ",
+		"editPage": "Dezie peeji a",
+		"editPageAria": "Dezie isi iyi nke ibe a na GitHub",
+		"reportIssue": "Kọwaa nsogbu na peeji a."
 	}
 }

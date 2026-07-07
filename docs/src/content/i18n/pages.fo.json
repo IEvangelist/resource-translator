@@ -46,7 +46,7 @@
 			},
 			"outputs": {
 				"title": "PR-vinarlig úrslit",
-				"body": "{summaryTitle}, {summaryDetails} og {hasNewTranslations} beinleiðis í create-pull-request."
+				"body": "{summaryTitle}, {summaryDetails} og {hasNewTranslations} beinleiðis inn í create-pull-request."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
@@ -69,7 +69,7 @@
 	"getting-started": {
 		"title": "At byrja",
 		"eyebrow": "Uppseting",
-		"lede": "Legg eina workflow-fílu afturat, peika á tínar Azure AI Translator innritanir, og gerðin fer at skannar repo fyri keldumálsresursfílur og sendir týddar systkin.",
+		"lede": "Legg eina workflow-fílu afturat, peika á tínar Azure AI Translator innritanir, og henda gerðin fer at skannar repo fyri keldumálsresursfílur og sendir týddar systkin.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -125,7 +125,7 @@
 				"apiVersion": "Translator REST API útgáva. Sjálvvirkandi er {version}.",
 				"maxRetries": "Maksimum royndir við stuttvarandi HTTP-svarum ({statusCodes}). Sjálvvirkandi er {defaultRetries}. Tilsamans HTTP-kall pr. fyrispurning er {totalCalls}.",
 				"retryBackoffMs": "Tak (ms) á hvørjum einstøkum backoff-svevn. Sjálvvirkandi er {defaultBackoff}. Azure's {retryAfter} høvuð verður heiðrað júst tá hon er til staðar; annars verður jitterað eksponentiellt backoff brúkt, avmarkað til hetta virðið.",
-				"protectPlaceholders": "Sjálvvirkandi er {true}. Tá tey eru tendrað, verða token sum {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} og HTML eindir skiftar út við sentinel-token áðrenn umseting og síðani endurstovnað. Sløkk bert tá keldan við vilja inniheldur plásshaldar-líknandi literals.",
+				"protectPlaceholders": "Sjálvvirkandi er {true}. Tá tey eru tendrað, verða token sum {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} og HTML eindir skiftar út við sentinel-token áðrenn umseting og síðani endurstovnað. Sløkk bert tá keldan við vilja inniheldur plásshaldara-líknandi literals.",
 				"customPlaceholderPatterns": "Eyka regex-mynstur (uttan avmarkarar) vórðu lagdar afturat sjálvvalda plásshaldarasettinum, t.d. {angleToken} fyri egna token-syntaks. Ógild regex verða ikki tikin í álvara.",
 				"noTranslatePatterns": "Glob-mynstur samsvaraðu við parser-stigs lyklar (JSON punktaleið, RESX {resxName}, PO {poMsgid}, XLIFF eind {xliffId}, INI/restext lykil). Samsvarandi lyklar verða tiknir burtur úr umbønini og fara víðari við upprunavirðinum varðveittum."
 			}
@@ -145,7 +145,7 @@
 			"industryLabel": "Vinna / øki:",
 			"industryBody": "brúka {categoryId} til at vísa á ein Azure {customTranslatorLink} bólk, sum er venjdur á tínum egna korpus — løgfrøðiliga, tøkniliga, læknaliga, marknaðarførslu ella okkurt annað. Hetta er sterkasti spakin fyri tónalag, brand-rødd og orðaforða.",
 			"surfaceLabel": "Yvirflatutekstur:",
-			"surfaceBody": "Brúka The {glossaryLink} til at læsa vørunøvn og vøruorð orð fyri orð, og brúka {profanityAction} til at strika burtur grov orð, tá tú miðar lokalisering til yngri áhoyrarar.",
+			"surfaceBody": "Brúka The {glossaryLink} til at læsa vørunøvn og vøruorð orð fyri orð, og brúka {profanityAction} til at strika burtur grov orð, tá tú miðar lokalisering til yngri málbólkar.",
 			"glossaryLinkLabel": "Orðalisti"
 		}
 	},
@@ -183,8 +183,8 @@
 				"include": "nýlínu-skildar glob-mynstur; bert samsvarandi fílur verða týddar.",
 				"exclude": "nýlínu-skildar glob-mynstur; Samsvarandi fílur verða lopnar (lagdar afturat Include).",
 				"configPath": "Leið til YAML config-fíluna (í mun til workspace-rótina).",
-				"dryRun": "Tá {true}, koyr umsetingar og send samandráttir, men skriva ikki fílur.",
-				"failOnError": "Tá ið {true}, miseydnast óvæntaðar villur í virkseminum; Tá {false}, eru villur ávaringar."
+				"dryRun": "Tá {true}, koyr týðingar og send samandráttir, men skriva ikki fílur.",
+				"failOnError": "Tá ið {true}, miseydnast óvæntaðar villur í virknaðinum; Tá {false}, eru villur ávaringar."
 			}
 		},
 		"translatorInputs": {
@@ -300,7 +300,7 @@
 		"questions": {
 			"azure": {
 				"heading": "Hvussu samskiftir action við Azure?",
-				"body": "Gjøgnum Microsofts offisielu {azureSdkLink} SDK, lagdar á {corePipelineLink}. Tað gevur tær sjálvvirkandi royndir á {statusCodes}, innskrivaðar fyrispurningar og svarmodellir, og autentiseringshøvuðviðgerð ókeypis — alt tað, sum áður var ein handrullað {axios} samtala. Almennu handlingsflatan (inntøkur, úttøkur, fíluúttøkur) er óbroytt."
+				"body": "Gjøgnum Microsofts offisiella {azureSdkLink} SDK, lagd á {corePipelineLink}. Tað gevur tær sjálvvirkandi royndir á {statusCodes}, innskrivaðar fyrispurningar og svarmodellir, og autentiseringshøvuðviðgerð ókeypis — alt tað, sum áður var ein handrullað {axios} samtala. Almennu handlingsflatan (inntøkur, úttøkur, fíluúttøkur) er óbroytt."
 			},
 			"tone": {
 				"heading": "Hví eru týðingar stundum óviðkomandi ella óviðkomandi?",
@@ -338,7 +338,7 @@
 		"lede": "Henda síða er týdd av Resource Translator sjálvum, á hvørjum push-to-main, til øll mál, sum Azure AI Translator stuðlar.",
 		"localeCountLabel": "{count} staðir",
 		"statusComplete": "{translatedCount} í løtuni gjørd — liðug!",
-		"statusPending": "{translatedCount} nú renderað — {pendingCount} bíða næstu {workflowName} koyring.",
+		"statusPending": "{translatedCount} nú renderað — {pendingCount} bíða næstu {workflowName} roynd.",
 		"viewWorkflowRuns": "Sí arbeiðsgongdir",
 		"filter": "Filter",
 		"filterPlaceholder": "Leita eftir máli, kóða ella upprunaligum navni...",
@@ -351,7 +351,7 @@
 			"thisActionLabel": "júst henda gerðin",
 			"steps": {
 				"source": "Enska kelduskjalið liggur á {messagesPath}.",
-				"workflow": "Trýstir, sum snerta, sparkar hann {workflowLink}, sum rennur {thisAction} móti sær sjálvum.",
+				"workflow": "Trýstir, sum rørir við honum, sparkar hann {workflowLink}, sum rennur {thisAction} móti sær sjálvum.",
 				"fanOut": "Spælið breiðir seg út til øll Azure AI Translator-stuðlað øki (konfigurerað í {configPath}) og skrivar eina systur-{messagesLocaleJson} fyri hvørt mál.",
 				"pullRequest": "Ein pull request verður latin upp við nýggju týðingunum. At sameina hana gevur hesa síðuna út aftur við kortunum fyltum."
 			}
@@ -409,7 +409,7 @@
 				"runtime": "Flutt til {nodeRuntime} runtime ({breaking}).",
 				"newInputs": "Nýggjar inntøkur: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, umframt framkomnar Translator-knøttar {textType}, {profanityAction}, {profanityMarker} og {allowFallback}.",
 				"sourceLocale": "Upprunastaðurin verður nú eisini sendur víðari til Translator sum {fromLocale} so stuttir strengir ikki verða sjálvvirkandi funnir.",
-				"resilience": "{label} sjálvvirkandi endurroynd á fyribils HTTP-svar ({statusCodes}), sum virðir Azure's {retryAfter} header — fellur aftur til jittered exponential backoff, tá ið hon manglar. Stillbart við {maxRetries} og {retryBackoffMs}. {issue}",
+				"resilience": "{label} sjálvvirkandi roynd á fyribils HTTP-svar ({statusCodes}), sum virðir Azure's {retryAfter} header — fellur aftur til jittered exponential backoff, tá ið hon manglar. Stillbart við {maxRetries} og {retryBackoffMs}. {issue}",
 				"placeholderProtection": "{label} token sum {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} og HTML eindir verða pakkaðar inn í sentinels áðrenn týðing og endursettar aftaná, so Translator steðgar at broyta i18next/Mustache/Handlebars/.NET/printf plásshaldarar. Toggle via {protectPlaceholders}; Víðka við {customPlaceholderPatterns}. {issue}",
 				"perKeyOptOut": "{label} nýggja {noTranslatePatterns} inntak heilt burtur samsvarandi lyklar úr Translator-fyrispurninginum (varðveitir kelduvirði fyri vørumerki, villukóðar o.s.fr.). Samsvarar glob-mynstur við parser-stigs lyklar (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). {issue}",
 				"repoConfig": "Repo-støði konfiguratión gjøgnum {configPath}.",
@@ -417,7 +417,7 @@
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
 				"audit": "NPM Audit reinur (0 veikleikar).",
 				"docsSite": "Astro + Tailwind v4 dokumentatiónssíða við sjónarskiftum og Expressive Code.",
-				"docsAccessibility": "{label} WCAG 2.1 AA pass. Logo-glyfur eru umsettar til leiðir, so tær ikki longur missa litkontrast móti gradient-stoppum, flótandi {backToTop}-knøtturin brúkar {inert} meðan hann er falin (í staðin fyri ein {ariaHidden}-knapp, sum lat hann vera tabbaran), {formatsAstro} partar ikki longur kollidera við sjálvvirkandi yvirskriftar-ID, trý lokalkort vísa nú BCP-47-gildar {lang} eginleikar ({nya}, {lug}, {run}), dupult {documentation} kennimerkjamerki eru ógreinilig millum síðubjálkan og fótin,  Og hvør dátutalva á {inputs}/{configuration} fylgir við skermlesara teksti.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. Logo-glyfur eru umsettar til leiðir, so tær ikki longur missa litkontrast móti gradient-stoppum, flótandi {backToTop}-knøtturin brúkar {inert} meðan hann er falin (í staðin fyri ein {ariaHidden}-knapp, sum lat hann vera tabbaran), {formatsAstro} partar ikki longur kollidera við sjálvvirkandi yvirskriftar-ID, trý lokalkort vísa nú BCP-47-gildar {lang} eginleikar ({nya}, {lug}, {run}), dupult {documentation} kennitekn eru ógreinilig millum síðubjálka og fót,  Og hvør dátutalva á {inputs}/{configuration} fylgir við skermlesara teksti.",
 				"inlineCode": "{label} Docs prosa {codeElement} nú við heitum/amber tema-aksenti — øðrvísi enn brand→accent-palettin, sum verður brúkt til leinkjur og yvirskriftir.",
 				"automation": "Dependabot auto-merge, CodeQL-skanning, CI-matrix."
 			}

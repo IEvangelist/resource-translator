@@ -53,9 +53,24 @@
 		"sourceAria": "GitHubでソースを見る",
 		"marketplaceAria": "GitHubマーケットプレイスでご覧いただけます",
 		"authorAria": "デイヴィッド・パイン氏のウェブサイト",
+		"npmAria": "View the Azure Translator SDK on npm",
 		"taglinePrefix": "公式のリソースファイルを自動で翻訳するGitHubアクションです",
 		"taglineMiddle": "SDKからの",
 		"copyrightPrefix": "以下の",
-		"builtWith": "建造"
+		"builtWith": "建造",
+		"installLabel": "ワークフローに加えましょう",
+		"copy": "了解",
+		"copied": "コピーしました!",
+		"copyAria": "インストールスニペットをクリップボードにコピーしてください",
+		"marketplaceCta": "GitHubマーケットプレイスで入手できます",
+		"starCta": "GitHubのスター",
+		"starAria": "GitHubのStar Resource Translator(スターリソーストランスレーター)",
+		"stargazersAria": "GitHub stargazers count",
+		"versionLabel": "バージョン",
+		"whatsNew": "新しいこと",
+		"language": "言語",
+		"editPage": "このページを編集",
+		"editPageAria": "GitHubでこのページのソースを編集してください",
+		"reportIssue": "このページで問題を報告してください"
 	}
 }

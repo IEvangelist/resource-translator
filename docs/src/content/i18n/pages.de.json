@@ -101,7 +101,7 @@
 		"title": "Konfiguration",
 		"eyebrow": "YAML",
 		"heroTitle": "Repository-Konfiguration",
-		"lede": "Setze Standardwerte einmal in der Repository-Konfigurationsdatei aus und lass jeden Workflow sie übernehmen. Aktionseingaben gewinnen immer, wenn beide gegeben werden.",
+		"lede": "Setze die Standardwerte einmal in der Repository-Konfigurationsdatei aus und lass jeden Workflow sie übernehmen. Aktionseingaben gewinnen immer, wenn beide gegeben werden.",
 		"intro": "Überschreiben Sie den Pfad mit dem {configPath}-Eingang, wenn Sie einen nicht standardmäßigen Standort benötigen.",
 		"schemaHeading": "Schema",
 		"fieldReference": {
@@ -124,7 +124,7 @@
 				"allowFallback": "Stelle {false} ein, dass die Übersetzung fehlschlägt, wenn dein {categoryId} keine Bereitstellung für ein Zielgebiet hat, anstatt auf das allgemeine Modell zurückzufallen.",
 				"apiVersion": "Übersetzer REST API-Version. Standardmäßig {version}.",
 				"maxRetries": "Maximale Wiederholungsversuche bei transienten HTTP-Antworten ({statusCodes}). Standardmäßig {defaultRetries}. Die Gesamtzahl der HTTP-Anrufe pro Anfrage beträgt {totalCalls}.",
-				"retryBackoffMs": "Begrenzung (MS) für jeden einzelnen Backoff-Schlaf. Standardmäßig {defaultBackoff}. Azures {retryAfter} Header wird genau dann geehrt, wenn er vorhanden ist; ansonsten wird ein jitterer exponentieller Backoff verwendet, der auf diesen Wert begrenzt ist.",
+				"retryBackoffMs": "Begrenzung (MS) für jeden einzelnen Backoff-Schlaf. Standardmäßig {defaultBackoff}. Azures {retryAfter} Header wird genau dann geachtet, wenn er vorhanden ist; ansonsten wird ein jitterer exponentieller Backoff verwendet, der auf diesen Wert begrenzt ist.",
 				"protectPlaceholders": "Standardmäßig {true}. Wenn sie aktiviert sind, werden Token wie {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} und HTML-Entitäten vor der Übersetzung durch Sentinel-Tokens ersetzt und danach wiederhergestellt. Deaktivieren Sie nur, wenn der Quellcode absichtlich platzhalterförmige Literals enthält.",
 				"customPlaceholderPatterns": "Zusätzliche Regex-Muster (ohne Trennzeichen), die dem Standard-Platzhaltersatz hinzugefügt wurden, z. B. {angleToken} für benutzerdefinierte Token-Syntax. Ungültige Regexes werden ignoriert.",
 				"noTranslatePatterns": "Glob-Muster wurden mit Parser-Level-Tasten abgeglichener (JSON-Punktpfad, RESX {resxName}, PO {poMsgid}, XLIFF-Einheit {xliffId}, INI/Restext-Tast). Übereinstimmende Schlüssel werden aus der Anfrage entfernt und mit erhaltenem Quellwert weitergegeben."
@@ -143,7 +143,7 @@
 			"heading": "Ton und Branche, ganz klar",
 			"body": "Die Azure AI Translator v3 API besitzt keinen einzigen Tonknopf. Zwei Einstellungen vereinen sich, sodass man größtenteils die gleiche Kontrolle hat:",
 			"industryLabel": "Branche / Bereich:",
-			"industryBody": "Nutzen Sie {categoryId}, um auf eine Azure {customTranslatorLink} Kategorie zu verweisen, die auf Ihrem eigenen Korpus trainiert ist – rechtlich, technisch, medizinisch, Marketing oder sonst etwas. Das ist der stärkste Hebel für Tonfall, Markenstimme und Wortschatz.",
+			"industryBody": "Nutzen Sie {categoryId}, um auf eine Azure {customTranslatorLink} Kategorie zu verweisen, die auf Ihrem eigenen Korpus trainiert ist – rechtlich, technisch, medizinisch, Marketing oder sonst etwas. Das ist der stärkste Hebel für Ton, Markenstimme und Wortschatz.",
 			"surfaceLabel": "Oberflächentext:",
 			"surfaceBody": "Nutzen Sie das {glossaryLink}, um Markennamen und Produktbegriffe wortwörtlich zu versperren, und verwenden Sie {profanityAction}, um vulane Begriffe zu entfernen, wenn Sie auf Lokalisierungen für jüngere Zielgruppen abzielen.",
 			"glossaryLinkLabel": "Glossar"
@@ -207,7 +207,7 @@
 			"items": {
 				"maxRetries": "Maximale Wiederholungsversuche bei transienten HTTP-Antworten ({statusCodes}). Die Gesamtzahl der HTTP-Aufrufe pro Anfrage beträgt {totalCalls}.",
 				"retryBackoffMs": "Begrenzt (in Millisekunden) für jeden einzelnen Backoff-Schlaf. Die Aktion respektiert Azures {retryAfter} Response-Header genau, wenn er vorhanden ist; ansonsten verwendet es gejitterte, exponentielle Backoff-Effekte, begrenzt auf diesen Wert.",
-				"protectPlaceholders": "Wenn {true} (Standard), werden Platzhalter wie {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} und HTML-Entitäten vor der Übersetzung durch Sentinel-Token ersetzt und danach wiederhergestellt. Deaktiviere nur, wenn deine Quelle absichtlich wörtlich platzhalterförmigen Text enthält, der übersetzt werden sollte.",
+				"protectPlaceholders": "Wenn {true} (Standard), werden Platzhalter wie {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} und HTML-Entitäten vor der Übersetzung durch Sentinel-Tokens ersetzt und danach wiederhergestellt. Deaktiviere nur, wenn deine Quelle absichtlich wörtlich platzhalterförmigen Text enthält, der übersetzt werden sollte.",
 				"customPlaceholderPatterns": "Zeilen-getrennte Regexes (ohne Trennzeichen), die zum Standard-Platzhaltersatz hinzugefügt wurden, z. B. {angleToken} für benutzerdefinierte Token-Syntax.",
 				"noTranslatePatterns": "Newline-getrennte Glob-Muster, die mit Parser-Level-Schlüsseln abgeglichen werden (JSON-Punktpfad, RESX {resxName}, PO {poMsgid}, XLIFF-Einheit {xliffId}, INI/Restext-Tast). Passende Schlüssel werden aus der Übersetzeranfrage entfernt und mit erhaltenem Quellwert weitergeleitet."
 			}
@@ -280,7 +280,7 @@
 			},
 			"customCategory": {
 				"heading": "Kategorie benutzerdefinierter Übersetzer (Branche / Domäne)",
-				"body": "Trainiere eine Azure-{customTranslatorLink}-Kategorie auf einem Korpus, der deinen Branchenwortschatz und Ton (Recht, Medizin, Marketing, interne Ingenieurwesen usw.) abdeckt, und bestehe seine ID über {categoryId}. Das ist der stärkste Tonhebel, den Azure bietet."
+				"body": "Trainiere eine Azure-{customTranslatorLink}-Kategorie auf einem Korpus, der deinen Branchenwortschatz und Ton (Recht, Medizin, Marketing, interne Ingenieurwesen usw.) erfasst, und bestehe seine ID über {categoryId}. Das ist der stärkste Tonhebel, den Azure bietet."
 			},
 			"tone": {
 				"heading": "Tonregelung + strikter Rückfall",
@@ -296,7 +296,7 @@
 		"title": "FAQ",
 		"eyebrow": "Hilfe",
 		"heroTitle": "Häufig gestellte Fragen",
-		"lede": "Schnelle Antworten auf die Fragen, die beim Ergreifen der Aktion am häufigsten auftauchen.",
+		"lede": "Schnelle Antworten auf die Fragen, die beim Ergreifen der Handlung am häufigsten auftauchen.",
 		"questions": {
 			"azure": {
 				"heading": "Wie kommuniziert die Aktion mit Azure?",
@@ -370,7 +370,7 @@
 			"steps": {
 				"fixture": "Fügen Sie eine Leuchte unter {testDataDir} hinzu.",
 				"implement": "Implementiere {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
-				"register": "Melde es in {factoryFile} an.",
+				"register": "Melden Sie es in {factoryFile}.",
 				"extension": "Füge in {finderFile} die Dateiendung zu {translationFileSchemes} hinzu.",
 				"tests": "Schreiben Sie Hin- und Rückfahrtstests für Parse → Format und wenden Sie Übersetzungen an."
 			}
@@ -407,7 +407,7 @@
 			},
 			"items": {
 				"runtime": "Auf {nodeRuntime} Laufzeit ({breaking}).",
-				"newInputs": "Neue Eingänge: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError} sowie erweiterte Übersetzer-Regler {textType}, {profanityAction}, {profanityMarker} und {allowFallback}.",
+				"newInputs": "Neue Eingänge: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError} sowie die erweiterten Übersetzer-Regler {textType}, {profanityAction}, {profanityMarker} und {allowFallback}.",
 				"sourceLocale": "Der Quellort wird nun auch als {fromLocale} an den Übersetzer weitergeleitet, sodass kurze Zeichenketten nicht automatisch erkannt werden.",
 				"resilience": "{label} automatische Wiederholung bei transienten HTTP-Antworten ({statusCodes}), die Azures {retryAfter}-Header berücksichtigen – greift bei fehlendem Fehlen auf jitteres exponentielles Backoff zurück. Abstellbar über {maxRetries} und {retryBackoffMs}. {issue}",
 				"placeholderProtection": "{label} Token wie {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} und HTML-Entitäten werden vor der Übersetzung in Sentinels eingewickelt und danach wiederhergestellt, sodass der Übersetzer aufhört, i18next/Mustache/Handlebars/.NET/printf Platzhalter zu verzerren. Umschalten über {protectPlaceholders}; Erstrecke dich mit {customPlaceholderPatterns}. {issue}",
@@ -417,7 +417,7 @@
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
 				"audit": "NPM-Audit sauber (0 Schwachstellen).",
 				"docsSite": "Astro + Tailwind v4 Docs-Seite mit Ansichtsübergängen und Expressive Code.",
-				"docsAccessibility": "{label} WCAG 2.1 AA-Pass. Logo-Glyphen werden in Pfade umgewandelt, damit sie keinen Farbkontrast mehr gegen Farbverlaufsstopps haben, der Floating {backToTop}-Button verwendet {inert} während versteckt (statt eines {ariaHidden}-Schalters, der es tabbar ließ), {formatsAstro} Abschnitte kollidieren nicht mehr mit ihren automatisch generierten Überschrifts-IDs, drei Locale-Karten zeigen nun BCP-47-gültige {lang} Attribute ({nya}, {lug}, {run}), doppelte {documentation} Landmark-Labels werden zwischen Seitenleiste und Fuß eindeutig getrennt,  Und jede Datentabelle auf {inputs}/{configuration} wird mit einer Screenreader-Unterschrift ausgeliefert.",
+				"docsAccessibility": "{label} WCAG 2.1 AA-Pass. Logo-Glyphen werden in Pfade umgewandelt, damit sie keinen Farbkontrast mehr gegen Farbverlaufsstopps haben, der Floating {backToTop}-Button verwendet {inert} während versteckt (statt eines {ariaHidden}-Schalters, der sie tabbar ließ), {formatsAstro} Abschnitte kollidieren nicht mehr mit ihren automatisch generierten Überschrifts-IDs, drei Locale-Karten zeigen nun BCP-47-gültige {lang} Attribute ({nya}, {lug}, {run}), doppelte {documentation} Landmark-Labels werden zwischen Seitenleiste und Fuß eindeutig getrennt,  Und jede Datentabelle auf {inputs}/{configuration} wird mit einer Screenreader-Unterschrift ausgeliefert.",
 				"inlineCode": "{label} Docs {codeElement}→Prosa trägt nun den warmen/amberfarbenen Akzent – anders als die MarkenAkzentpalette, die für Links und Überschriften verwendet wird.",
 				"automation": "Dependabot Auto-Merge, CodeQL-Scanning, CI-Matrix."
 			}

@@ -58,7 +58,7 @@
 			"titlePrefix": "Kopéieren. Pechen.",
 			"titleAccent": "Iwwersetzen.",
 			"body": "Dräi Geheimnisser, véier Linnen, an däi Repo ass méi sproocheg beim nächste Push.",
-			"setupLink": "Gitt duerch d'ganz Opstellung"
+			"setupLink": "Gitt duerch d'ganzt Setup"
 		},
 		"cta": {
 			"title": "Bereet fir op Autopilot ze lokaliséieren?",
@@ -125,7 +125,7 @@
 				"apiVersion": "Translator REST API Versioun. Standardméisseg {version}.",
 				"maxRetries": "Maximal Retry-Versich op transient HTTP-Äntwerten ({statusCodes}). Standardméisseg {defaultRetries}. D'Zuel vun HTTP-Uruff pro Ufro ass {totalCalls}.",
 				"retryBackoffMs": "Cap (ms) op all eenzelen Backoff-Schlof. Standardméisseg {defaultBackoff}. Azure säi {retryAfter} Header gëtt genee dann respektéiert, wann en do ass; soss gëtt e jittered exponentiellen Backoff benotzt, deen op dësem Wäert limitéiert ass.",
-				"protectPlaceholders": "Standardméisseg {true}. Wann se op sinn, ginn Token wéi {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} an HTML Entitéiten virun der Iwwersetzung duerch Sentinel-Token ersat a spéider erëm restauréiert. Deaktivéiert nëmmen, wann d'Quell bewosst Plazhalter-ähnlech Literaler enthält.",
+				"protectPlaceholders": "Standardméisseg {true}. Wann se op sinn, ginn Token wéi {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} an HTML-Entitéiten virun der Iwwersetzung duerch Sentinel-Token ersat a spéider erëm restauréiert. Deaktivéiert nëmmen, wann d'Quell bewosst Plazhalter-ähnlech Literaler enthält.",
 				"customPlaceholderPatterns": "Zousätzlech Regex-Muster (ouni Delimiter), déi zum Standard-Platzhalter-Set derbäigesat goufen, z.B. {angleToken} fir personaliséiert Token-Syntax. Ongëlteg Regexen ginn ignoréiert.",
 				"noTranslatePatterns": "Glob-Mustere goufen mat Parser-Niveau Schlësselen ofgestëmmt (JSON gepunktete Wee, RESX {resxName}, PO {poMsgid}, XLIFF Eenheet {xliffId}, INI/restext Schlëssel). Passend Schlësselen ginn aus der Ufro erausgeholl a ginn duerch, mat hirem Quellwäert erhalen."
 			}
@@ -181,9 +181,9 @@
 				"region": "Translator-Ressourceregioun (fir global Ressourcen ewechgelooss).",
 				"toLocales": "Plazen fir ze iwwersetzen. Akzeptéiert e JSON-Array ({jsonArray}) oder Komma-getrennte Wäerter.",
 				"include": "Klo-Muster, déi duerch Newline getrennt sinn; nëmmen passend Dateien ginn iwwersat.",
-				"exclude": "Klo-Muster, déi duerch Newline getrennt sinn; Matchende Dateien ginn iwwersprongen (no Include ugewandt).",
+				"exclude": "Klo-Muster, déi duerch Newline getrennt sinn; Matching-Dateien ginn iwwersprongen (no Include ugewannt).",
 				"configPath": "Wee op d'YAML Konfiguratiounsdatei (relativ zum Workspace-Root).",
-				"dryRun": "Wann {true}, féiert Iwwersetzungen aus a generéiert Zesummefaassungen, awer schreift keng Dateien.",
+				"dryRun": "Wann {true}, féiert Iwwersetzungen aus a generéiert Zesummefaassungen, schreift awer keng Dateien.",
 				"failOnError": "Wann {true} onerwaart Feeler d'Aktioun feelen; wann {false}, sinn Feeler Warnungen."
 			}
 		},
@@ -208,7 +208,7 @@
 				"maxRetries": "Maximal Retry-Versich op transient HTTP-Äntwerten ({statusCodes}). D'Gesamtzuel vun HTTP-Uruff pro Ufro ass {totalCalls}.",
 				"retryBackoffMs": "Cap (an Millisekonnen) op all eenzelen Backoff-Schlof. D'Aktioun respektéiert Azure seng {retryAfter} Äntwert-Header genee wann se präsent ass; soss benotzt en jittered exponentiellen Backoff, deen op dëse Wäert limitéiert ass.",
 				"protectPlaceholders": "Wann {true} (Standard), ginn Plazhalter wéi {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} an HTML-Entitéiten virun der Iwwersetzung duerch Sentinel-Token ersat a spéider erëm restauréiert. Deaktivéiert nëmmen, wann Är Quell bewosst wörtlech Platzhalter-fërmegen Text enthält, deen iwwersat soll ginn.",
-				"customPlaceholderPatterns": "Zeilen-getrennte Regexen (ouni Delimiter), déi zum Standard-Platzhalter-Set derbäigesat goufen, z.B. {angleToken} fir personaliséiert Token-Syntax.",
+				"customPlaceholderPatterns": "Newline-getrennte Regexen (ouni Delimiter), déi zum Standard-Platzhalter-Set derbäigesat goufen, z.B. {angleToken} fir personaliséiert Token-Syntax.",
 				"noTranslatePatterns": "Newline-getrennte Glob-Muster, déi mat Parser-Niveau Schlësselen verglach ginn (JSON punktéierte Wee, RESX {resxName}, PO {poMsgid}, XLIFF Eenheet {xliffId}, INI/restext Schlëssel). Passend Schlësselen ginn aus der Translator-Ufro ewechgeholl a ginn duerch, mat hirem Quellwäert erhalen."
 			}
 		},
@@ -304,7 +304,7 @@
 			},
 			"tone": {
 				"heading": "Firwat sinn Iwwersetzungen heiansdo net am Off-Brand oder net am Toun?",
-				"body": "Maschinniwwersetzung benotzt standardméisseg e allgemengt Zweckmodell. Dräi Knäppercher hëllefen: e {glossaryLink} fir haart Term-Iwwerschreiwungen, e {customTranslatorLink} fir fein ofgestëmmte Modeller, déi op däi Toun a Vokabular trainéiert sinn, an {profanityAction} fir vulgär Begrëffer ze läschen oder ze markéieren.",
+				"body": "Maschinniwwersetzung benotzt standardméisseg e allgemengt Zweckmodell. Dräi Knäppercher hëllefen: e {glossaryLink} fir haart Term-Overrides, e {customTranslatorLink} fir fein ofgestëmmte Modeller, déi op däi Toun a Vokabular trainéiert sinn, an {profanityAction} fir vulgär Begrëffer ze läschen oder ze markéieren.",
 				"glossaryLinkLabel": "Glossar",
 				"customTranslatorLinkLabel": "Custom Translator Kategorie"
 			},
@@ -417,7 +417,7 @@
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
 				"audit": "NPM Audit propper (0 Schwachstellen).",
 				"docsSite": "Astro + Tailwind v4 Dokumentatiounssäit mat View-Iwwergäng an Expressive Code.",
-				"docsAccessibility": "{label} WCAG 2.1 AA Pass. Logo-Glyphen goufen an Weeër ëmgewandelt, sou datt se net méi am Faarfkontrast géint Gradient-Stops feelen, de Floating {backToTop}-Knäppchen benotzt {inert} während verstoppt (amplaz vun engem {ariaHidden}-Schalter, deen et tabbar gelooss huet), {formatsAstro} Sektiounen kollidéieren net méi mat hiren automatesch generéierte Head-IDs, dräi Locale-Kaarten weisen elo BCP-47-gülteg {lang} Attributer ({nya}, {lug}, {run}), duplizéiert {documentation} Landmark-Etiketten ginn tëscht Sidebar an Footer getrennt,  an all Datentabell op {inputs}/{configuration} gëtt mat engem Bildschierm-Reader-Ënnerschrëft geliwwert.",
+				"docsAccessibility": "{label} WCAG 2.1 AA Pass. Logo-Glyphen goufen an Weeër ëmgewandelt, sou datt se net méi am Faarfkontrast géint Gradient-Stoppen feelen, de Floating {backToTop}-Knäppchen benotzt {inert} während verstoppt (amplaz vun engem {ariaHidden}-Schalter, deen et tabbar gelooss huet), {formatsAstro} Sektiounen kollidéieren net méi mat hiren automatesch generéierte Head-IDs, dräi Locale-Kaarten weisen elo BCP-47-gülteg {lang} Attributer ({nya}, {lug}, {run}), duplizéiert {documentation} Landmark-Etiketten ginn tëscht Sidebar an Footer getrennt,  an all Datentabell op {inputs}/{configuration} gëtt mat engem Bildschierm-Reader-Ënnerschrëft geliwwert.",
 				"inlineCode": "{label} Docs Prosa {codeElement} dréit elo den waarme/amber Thema-Akzent – ënnerschiddlech vun der Mark→Akzentpalette, déi fir Linken a Iwwerschrëften benotzt gëtt.",
 				"automation": "Dependabot Auto-Merge, CodeQL Scanning, CI-Matrix."
 			}

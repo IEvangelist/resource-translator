@@ -1,61 +1,76 @@
 {
 	"site": {
 		"name": "Traductor recursos",
-		"defaultDescription": "Documentación pa ar nt'ot'e GitHub Resource Translator — traducción automática automatizada archivos recursos a través de Azure AI Translator.",
+		"defaultDescription": "Documentación pa ar nt'ot'e GitHub traductor recursos — traducción automática automática archivos recursos a través de Azure AI Translator.",
 		"homeLabel": "Traductor recursos — inicio"
 	},
 	"skipToContent": "Saltar ar contenido",
 	"drawer": {
-		"open": "Gi xoki ar navegación",
-		"close": "Cerrar navegación",
+		"open": "Navegación xi xogi",
+		"close": "Navegación cerrar",
 		"title": "Navegación"
 	},
 	"header": {
-		"search": "Documentación nthoni",
+		"search": "Honi documentación",
 		"searchPlaceholder": "Honi documentación...",
-		"toggleTheme": "Alternar tema",
-		"githubRepository": "GitHub repository",
+		"toggleTheme": "Tema ar interruptor",
+		"githubRepository": "Repositorio GitHub",
 		"language": "Ar hñä",
 		"languageTitle": "Gi jwahni ir hñä",
 		"languageDescription": "Mpa̲ti da xkagentho ar página jar ma'na ar hñä.",
-		"languageSearch": "Hñä ar filtro",
-		"languageSearchPlaceholder": "Hñä nthoni wa códigos locales ...",
-		"languageNoResults": "Otho ar hñä da 'yot'e ko Nunu̲ ar filtro.",
-		"closeLanguage": "Cerrar selector ar hñä"
+		"languageSearch": "Ya hñä filtro",
+		"languageSearchPlaceholder": "Ya hñä nthoni wa códigos locales...",
+		"languageNoResults": "Ningún hñä bí thogi ko ar filtro ar nts'o̲t'e",
+		"closeLanguage": "Cercano selector ar hñä"
 	},
 	"search": {
-		"title": "Documentación nthoni",
+		"title": "Honi documentación",
 		"results": "Resultados nthoni",
-		"placeholder": "Honi xeni Nthuts'i, secciones, recetas...",
+		"placeholder": "Nthoni xeni Nthuts'i, secciones, recetas...",
 		"close": "Cerrar nthoni",
 		"idleTitle": "Honi ya documentos",
-		"idleHelp": "Tingigi mbo xeni Nthuts'i ya mfeni, formato archivo, opción configuración wa ya recia. Utilice {up} {down} pa navegar, {enter} pa abrir.",
-		"loading": "Nthoni ...",
-		"empty": "'Ñotho ar resultados. Probar 'nar po̲ts'e clave diferente.",
+		"idleHelp": "Tingigi mbo jar xeni Nthuts'i ya tema, formato archivo, opción configuración wa ya receta. Utilice {up} {down} pa navegar, {enter} pa abrir.",
+		"loading": "Mí honi...",
+		"empty": "'Ñotho ar resultados. Pruebe 'nar po̲ts'e clave diferente.",
 		"error": "Índice nthoni hingi 'bu̲i disponible jar dev. Ejecutar 'nar nju̲ts'i producción."
 	},
 	"toc": {
 		"title": "Jar nuna ar página"
 	},
 	"pager": {
-		"ariaLabel": "Ar Nthuts'i",
-		"previous": "'Be̲t'o",
+		"ariaLabel": "Ar xeni Nthuts'i",
+		"previous": "Bí thogi",
 		"next": "Xtí"
 	},
 	"backToTop": {
-		"label": "Desplazar ar asta mañä"
+		"label": "Desplazar ar asta ar xeni mäs xi ngu"
 	},
 	"footer": {
-		"docs": "Ya documentos",
-		"project": "'Be̲fi",
-		"community": "Hnini",
+		"docs": "Docs",
+		"project": "'be̲fi",
+		"community": "Jar hnini",
 		"projectLinksAria": "Enlaces ar 'be̲fi",
 		"sourceAria": "Ga fuente jar GitHub",
-		"marketplaceAria": "Ga jar GitHub Marketplace",
+		"marketplaceAria": "Thandi jar GitHub Marketplace",
 		"authorAria": "Sitio web ar David Pine",
-		"taglinePrefix": "'Nar nt'ot'e GitHub da traduce yá archivos recursos automáticamente, construido maxo̲ts'e ar xidi mfädi",
-		"taglineMiddle": "SDK ndezu̲",
-		"copyrightPrefix": "Liberado jár ar",
-		"builtWith": "Construido ko"
+		"npmAria": "Ga ar Azure Translator SDK jar npm",
+		"taglinePrefix": "'Nar nt'ot'e GitHub da traduce ir archivos recursos automáticamente, construido maxo̲ts'e ar xidi mfädi",
+		"taglineMiddle": "SDK ar",
+		"copyrightPrefix": "Lanzado debajo de ar",
+		"builtWith": "Construido ko",
+		"installLabel": "Añadir nä'ä ja ir flujo ar 'be̲fi",
+		"copy": "Gi kopya",
+		"copied": "¡Koti!",
+		"copyAria": "Copiar ar fragmento instalación ja ár portapapeles",
+		"marketplaceCta": "Da hyoni jar GitHub Marketplace",
+		"starCta": "Estrella jar GitHub",
+		"starAria": "Star Resource Translator jar GitHub",
+		"stargazersAria": "GitHub Stargazers pede",
+		"versionLabel": "Versión",
+		"whatsNew": "Te ra 'ra'yo",
+		"language": "Ar hñä",
+		"editPage": "Editar nuna ar página",
+		"editPageAria": "Editar fuente nuna ar página jar GitHub",
+		"reportIssue": "Reporte 'nar hñäki nuna ar página"
 	}
 }

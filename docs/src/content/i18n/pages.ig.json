@@ -88,7 +88,7 @@
 			},
 			"output": {
 				"title": "Nyochaa mmepụta",
-				"body": "Ozugbo arụmọrụ ahụ gwụchara, ihe ahụ na-ekpughe ihe atọ ị nwere ike ịbanye na nkọwa PR: {summaryTitle}, {summaryDetails}, na {hasNewTranslations}. Ọ na-edekwa nchịkọta Markdown n'ime peeji nke ọrụ site na {coreSummary}."
+				"body": "Ozugbo arụmọrụ ahụ gwụchara, ihe ahụ na-ekpughe nsonaazụ atọ ị nwere ike ịbanye na nkọwa PR: {summaryTitle}, {summaryDetails}, na {hasNewTranslations}. Ọ na-edekwa nchịkọta Markdown n'ime peeji nke ọrụ site na {coreSummary}."
 			}
 		},
 		"nextSteps": {
@@ -207,7 +207,7 @@
 			"items": {
 				"maxRetries": "Kacha nnwale nnwale na nzaghachi HTTP na-adịgide adịgide ({statusCodes}). Ọnụ ọgụgụ zuru ezu nke oku HTTP kwa arịrịọ bụ {totalCalls}.",
 				"retryBackoffMs": "Cap (na milliseconds) na ihe ọ bụla backoff ụra. Ihe omume ahụ na-asọpụrụ nkụnye eji isi mee nzaghachi {retryAfter} nke Azure kpọmkwem mgbe ọ dị; ma ọ bụghị ya, ọ na-eji jittered exponential backoff capped na uru a.",
-				"protectPlaceholders": "Mgbe {true} (ndabara), ndị na-ejide ebe dị ka {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} na HTML na-eji akara ngosi sentinel tupu nsụgharị ma weghachite ya mgbe e mesịrị. Gbanyụọ naanị mgbe isi mmalite gị kpachaara anya nwere ederede ederede nke a ga-asụgharị.",
+				"protectPlaceholders": "Mgbe {true} (ndabara), ndị na-ejide ebe dị ka {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} na HTML na-eji akara ngosi sentinel tupu nsụgharị ma weghachite mgbe e mesịrị. Gbanyụọ naanị mgbe isi mmalite gị kpachaara anya nwere ederede ederede nke a ga-asụgharị.",
 				"customPlaceholderPatterns": "Newline-kewapụrụ regexes (na-enweghị delimiters) kwukwara na ndabara placeholder set, e.g. {angleToken} maka omenala token syntax.",
 				"noTranslatePatterns": "Newline-kewapụrụ glob ụkpụrụ kwekọrọ na parser-larịị igodo (JSON dotted ụzọ, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext igodo). A na-ahapụ igodo ndị kwekọrọ na arịrịọ Ntụgharị ma gafere na uru isi mmalite ha echekwara."
 			}
@@ -417,7 +417,7 @@
 				"tooling": "esbuild bundler, ESLint 9 ewepụghị config, Prettier, EditorConfig.",
 				"audit": "NPM Audit Clean (0 vulnerabilities).",
 				"docsSite": "Astro + Tailwind v4 docs saịtị na echiche mgbanwe na Expressive Code.",
-				"docsAccessibility": "{label} WCAG 2.1 AA ngafe. Logo glyphs gbanwere n'ụzọ ka ha wee ghara ịdaba na agba megide nkwụsị gradient, bọtịnụ {backToTop} na-ese n'elu mmiri na-eji {inert} mgbe zoro ezo (kama {ariaHidden} toggle nke hapụrụ ya tabbable), {formatsAstro} ngalaba anaghịzi adaba na ID isi ha na-akpaghị aka, kaadị mpaghara atọ ugbu a na-ekpughe njirimara {lang} BCP-47 ({nya}, {lug}, {run}), oyiri akara ngosi {documentation} akara ngosi na-disambiguated n'etiti sidebar na footer,  na tebụl data ọ bụla na {inputs} / {configuration} ụgbọ mmiri nwere nkọwa ihuenyo.",
+				"docsAccessibility": "{label} WCAG 2.1 AA ngafe. Logo glyphs gbanwere n'ụzọ ka ha wee ghara ịdaba na agba megide nkwụsị gradient, bọtịnụ {backToTop} na-ese n'elu mmiri na-eji {inert} mgbe zoro ezo (kama {ariaHidden} toggle nke hapụrụ ya tabbable), {formatsAstro} ngalaba anaghịzi adaba na njirimara isi ha na-akpaghị aka, kaadị mpaghara atọ ugbu a na-ekpughe njirimara {lang} BCP-47 ({nya}, {lug}, {run}), oyiri akara ngosi {documentation} akara ngosi na-disambiguated n'etiti sidebar na footer,  na tebụl data ọ bụla na {inputs} / {configuration} ụgbọ mmiri nwere nkọwa ihuenyo.",
 				"inlineCode": "{label} docs prose {codeElement} ugbu a na-eyi isiokwu na-ekpo ọkụ / amber — dị iche na palette →accent eji maka njikọ na isiokwu.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matriks."
 			}

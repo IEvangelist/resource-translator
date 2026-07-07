@@ -73,7 +73,7 @@
 		"steps": {
 			"provision": {
 				"title": "Provisionar un recurso Azure AI Translator",
-				"body": "Crea un recurso Azure AI Translator en el portal de Azure, y luego almacena los siguientes como secretos del repositorio de GitHub para que el flujo de trabajo pueda leerlos:",
+				"body": "Crea un recurso Azure AI Translator en el portal Azure y luego almacena los siguientes como secretos del repositorio de GitHub para que el flujo de trabajo pueda leerlos:",
 				"key": "La clave de suscripción para el recurso.",
 				"endpoint": "la URL regional del punto final.",
 				"region": "la región Azure del recurso."
@@ -195,7 +195,7 @@
 				"categoryId": "Azure {customTranslatorLink} category — el perillón industry/domain/tone. Reenviado como {categoryQuery}.",
 				"textType": "{plain} o {html}. Usa {html} solo cuando los valores de tus recursos sean fragmentos HTML reales.",
 				"profanityAction": "{noAction}, {marked} o {deleted}. Controla cómo se emiten los términos profanos en las traducciones.",
-				"profanityMarker": "{asterisk} o {tag}. Solo tiene sentido cuando {profanityAction} es {marked}.",
+				"profanityMarker": "{asterisk} o {tag}. Solo significa {profanityAction} es {marked}.",
 				"allowFallback": "Cuando {false}, el traductor devuelve un error en lugar de volver al sistema general si tu {categoryId} no tiene despliegue para una localización objetivo.",
 				"apiVersion": "Versión de la API REST del traductor."
 			}
@@ -410,7 +410,7 @@
 				"newInputs": "Nuevas entradas: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, además de perillas avanzadas del traductor {textType}, {profanityAction}, {profanityMarker} y {allowFallback}.",
 				"sourceLocale": "La localidad de origen ahora también se reenvía a Translator como {fromLocale} para que las cadenas cortas no se detecten automáticamente.",
 				"resilience": "{label} reintento automático en respuestas HTTP transitorias ({statusCodes}) que respeta la cabecera {retryAfter} de Azure — vuelve a un retroceso exponencial con jittered cuando está ausente. Ajustable mediante {maxRetries} y {retryBackoffMs}. {issue}",
-				"placeholderProtection": "{label} tokens como {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} y HTML se envuelven en centinelas antes de la traducción y se restauran después, así que el traductor deja de alterar los marcadores de posición i18next/Mustache/Handlebars/.NET/printf. Alternar mediante {protectPlaceholders}; Extiende con {customPlaceholderPatterns}. {issue}",
+				"placeholderProtection": "{label} tokens como {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} y HTML se envuelven en centinelas antes de la traducción y se restauran después, así que el traductor deja de manipular los marcadores de posición i18next/Mustache/Handlebars/.NET/printf. Alternar mediante {protectPlaceholders}; Extiende con {customPlaceholderPatterns}. {issue}",
 				"perKeyOptOut": "{label} nueva entrada de {noTranslatePatterns} elimina por completo las claves coincidentes de la solicitud del traductor (conserva los valores fuente de nombres de marcas, códigos de error, etc.). Compara patrones glob con claves a nivel de analizador (JSON doted path, RESX {resxName}, PO {poMsgid}, unidad XLIFF {xliffId}, clave INI/restext). {issue}",
 				"repoConfig": "Configuración a nivel de repositorio mediante {configPath}.",
 				"glossary": "Soporte para el glosario, resumen de pasos vía {coreSummary}.",

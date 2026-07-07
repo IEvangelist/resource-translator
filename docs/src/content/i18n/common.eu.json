@@ -1,49 +1,49 @@
 {
 	"site": {
-		"name": "Baliabideen itzultzailea",
-		"defaultDescription": "Resource Translator GitHub Action-en dokumentazioa - baliabide-fitxategien itzulpen automatikoa Azure AI Translator-en bidez.",
-		"homeLabel": "Baliabideen itzultzailea - Hasiera"
+		"name": "Baliabide itzultzailea",
+		"defaultDescription": "Resource Translator GitHub Ekintzarako dokumentazioa — baliabide fitxategien itzulpen automatikoa Azure AI Translator bidez.",
+		"homeLabel": "Baliabide Itzultzailea — hasiera"
 	},
-	"skipToContent": "Saltatu edukira",
+	"skipToContent": "Edukira salto egin",
 	"drawer": {
-		"open": "Ireki nabigazioa",
-		"close": "Itxi nabigazioa",
+		"open": "Nabigazio irekia",
+		"close": "Nabigazio hurbila",
 		"title": "Nabigazioa"
 	},
 	"header": {
-		"search": "Bilaketaren dokumentazioa",
-		"searchPlaceholder": "Bilaketaren dokumentazioa...",
-		"toggleTheme": "Txandakatu gaia",
-		"githubRepository": "GitHub-eko biltegia",
+		"search": "Bilatu dokumentazioa",
+		"searchPlaceholder": "Bilatu dokumentazioa...",
+		"toggleTheme": "Gaia aldakorra",
+		"githubRepository": "GitHub biltegia",
 		"language": "Hizkuntza",
 		"languageTitle": "Aukeratu zure hizkuntza",
-		"languageDescription": "Aldatu orrialde berera beste hizkuntza batean.",
-		"languageSearch": "Iragazki-hizkuntzak",
-		"languageSearchPlaceholder": "Bilatu hizkuntzak edo lokalen kodeak...",
-		"languageNoResults": "Hizkuntzarik ez dator bat iragazki horrekin.",
-		"closeLanguage": "Itxi hizkuntza-hautatzailea"
+		"languageDescription": "Beste hizkuntza batean orrialde berean aldatu.",
+		"languageSearch": "Iragazki hizkuntzak",
+		"languageSearchPlaceholder": "Bilatu hizkuntzak edo kode kodeak...",
+		"languageNoResults": "Ez hizkuntzarik iragazki horrekin bat datorrena.",
+		"closeLanguage": "Hizkuntza hautatzaile hurbila"
 	},
 	"search": {
-		"title": "Bilaketaren dokumentazioa",
-		"results": "Bilaketaren emaitzak",
+		"title": "Bilatu dokumentazioa",
+		"results": "Bilaketa emaitzak",
 		"placeholder": "Bilatu artikuluak, atalak, errezetak...",
-		"close": "Itxi bilaketa",
+		"close": "Bilaketa estua",
 		"idleTitle": "Bilatu dokumentuak",
-		"idleHelp": "Bilatu artikuluak gaiaren, fitxategi-formatuaren, konfigurazio-aukeraren edo errezeta arabera. Erabili {up} {down} nabigatzeko {enter} irekitzeko.",
+		"idleHelp": "Artikuluak gaiaren, fitxategi formatuaren, konfigurazio aukeraren edo errezetaren arabera bilatu. Erabili {up} {down} nabigatzeko, {enter} irekitzeko.",
 		"loading": "Bilatzen...",
-		"empty": "Emaitzarik ez. Saiatu beste hitz gako bat.",
-		"error": "Bilaketa-indizea ez erabilgarri garapen-en. Ekoizpen bat exekutatu."
+		"empty": "Ez emaitzarik. Saiatu beste gako-hitz batekin.",
+		"error": "Bilaketa-indizea ez eskuragarri garatzailean. Produkzio eraikuntza bat exekutatu."
 	},
 	"toc": {
 		"title": "Orrialde honetan"
 	},
 	"pager": {
 		"ariaLabel": "Artikulua",
-		"previous": "Aurrekoa",
+		"previous": "Aurrekoak",
 		"next": "Hurrengoa"
 	},
 	"backToTop": {
-		"label": "Korritu gorantz"
+		"label": "Goialdera iritsi"
 	},
 	"footer": {
 		"docs": "Dokumentuak",
@@ -51,11 +51,26 @@
 		"community": "Komunitatea",
 		"projectLinksAria": "Proiektuaren estekak",
 		"sourceAria": "Ikusi iturburua GitHub-en",
-		"marketplaceAria": "Ikusi GitHub Marketplace-en",
+		"marketplaceAria": "GitHub Marketplace-n ikuspegia",
 		"authorAria": "David Pine-ren webgunea",
-		"taglinePrefix": "Zure baliabide-fitxategiak automatikoki itzultzen dituen GitHub ekintza, ofizialaren gainean eraikia",
-		"taglineMiddle": "SDK hemendik",
-		"copyrightPrefix": "Askatasunaren azpian",
-		"builtWith": "Honekin eraikia"
+		"npmAria": "Ikusi Azure Translator SDK-a npm-n",
+		"taglinePrefix": "GitHub Ekintza bat, zure baliabide fitxategiak automatikoki itzultzen dituena, ofizialaren gainean eraikia",
+		"taglineMiddle": "SDK honetatik",
+		"copyrightPrefix": "Argitaratzea honen pean",
+		"builtWith": "Eraikia",
+		"installLabel": "Gehitu zure lan-fluxuan",
+		"copy": "Ulertu",
+		"copied": "Kopiatu!",
+		"copyAria": "Kopiatu instalazio zatia zure klipboardera",
+		"marketplaceCta": "Eskuratu GitHub Marketplace-n",
+		"starCta": "Star GitHub-en",
+		"starAria": "Star Resource Translator GitHub-en",
+		"stargazersAria": "GitHub-eko izar-behatzaileak zenbatzen dira",
+		"versionLabel": "Bertsioa",
+		"whatsNew": "Zer berri",
+		"language": "Hizkuntza",
+		"editPage": "Editatu orri hau",
+		"editPageAria": "Editatu orri honen iturria GitHub-en",
+		"reportIssue": "Orrialde honekin arazo bat jakinarazi"
 	}
 }

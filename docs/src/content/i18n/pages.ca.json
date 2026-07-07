@@ -264,7 +264,7 @@
 	"recipes": {
 		"title": "Receptes",
 		"eyebrow": "Llibre de cuina",
-		"lede": "Patrons habituals per a traduccions de llançament: monorepos, glossaris, categories personalitzades, ensagrats i control de to.",
+		"lede": "Patrons habituals per a traduccions de llançament: monorepos, glossaris, categories personalitzades, proves en blanc i control de to.",
 		"sections": {
 			"pullRequest": {
 				"heading": "Obre una sol·licitud de tirada després de cada partida"
@@ -284,7 +284,7 @@
 			},
 			"tone": {
 				"heading": "Control de to + alternativa estricta",
-				"body": "Combina un {categoryId} de traductor personalitzat amb {profanityAction} i {allowFallbackFalse} per fer complir una veu consistent i falla el flux de treball si la categoria escollida no té un desplegament per a una de les teves localitzacions objectiu."
+				"body": "Combina un {categoryId} de traductor personalitzat amb {profanityAction} i {allowFallbackFalse} per fer complir una veu coherent i falla el flux de treball si la categoria escollida no té un desplegament per a una de les teves localitzacions objectiu."
 			},
 			"dryRun": {
 				"heading": "Prova en sec abans d'activar el flux de treball",
@@ -372,7 +372,7 @@
 				"implement": "Implementa {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
 				"register": "Registra'l a {factoryFile}.",
 				"extension": "Afegeix l'extensió del fitxer a {translationFileSchemes} en {finderFile}.",
-				"tests": "Escriu proves d'anada i tornada per al format de parse → i applyTranslations."
+				"tests": "Escriu proves d'anada i tornada per al format de → de parse i applyTranslations."
 			}
 		},
 		"coverage": {

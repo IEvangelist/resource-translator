@@ -419,7 +419,7 @@
 				"docsSite": "Site de documentação Astro + Tailwind v4 com transições de visualização e Expressive Code.",
 				"docsAccessibility": "{label} WCAG 2.1 AA pass. Glifos de logo convertidos em caminhos para que não falhem mais no contraste de cor contra paradas de gradiente, o botão flutuante de {backToTop} usa {inert} enquanto está oculto (em vez de um botão de {ariaHidden} que deixava o item tabável), {formatsAstro} seções não colidem mais com seus IDs de cabeçalhos gerados automaticamente, três cartões de localidade agora expõem atributos de {lang} válidos para BCP-47 ({nya}, {lug}, {run}), rótulos duplicados {documentation} marcos são desambiguados entre a barra lateral e o rodapé,  e toda tabela de dados no {inputs}/{configuration} vem com uma legenda de leitor de tela.",
 				"inlineCode": "{label} prosa {codeElement} docs agora usa o tema quente/âmbar — diferente da paleta → marcassotaque usada para links e títulos.",
-				"automation": "Auto-merge dependente, varredura CodeQL, matriz CI."
+				"automation": "Auto-merge Dependabot, varredura CodeQL, matriz CI."
 			}
 		},
 		"v2": {

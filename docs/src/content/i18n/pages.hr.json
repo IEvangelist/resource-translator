@@ -3,7 +3,7 @@
 		"title": "Prevoditelj resursa",
 		"description": "Resource Translator otvara strojno prevedene pull requestove za vaše resource datoteke u bilo kojem repozitoriju, u bilo kojem formatu — pokretan Azure AI Translatorom.",
 		"socialTitle": "Prevoditelj resursa — automatski prevodi datoteke resursa",
-		"badge": "v3.0 — Node 24, konfiguracija repozitorija, rječnik, proba",
+		"badge": "v3.0 — Node 24, konfiguracija repozitorija, rječnik, probni rad",
 		"headlinePrefix": "Lokalizirajte svoj repozitorij na",
 		"headlineAccent": "Svaki commit.",
 		"lede": "Resource Translator otvara strojno prevedene pull requestove za vaše resource datoteke koristeći Azure AI Translator putem službenog SDK-a — bez dodatnih usluga, samo workflow.",
@@ -145,7 +145,7 @@
 			"industryLabel": "Industrija / domena:",
 			"industryBody": "Koristite {categoryId} da ukažete na Azure {customTranslatorLink} kategoriju treniranu na vašem vlastitom korpusu — pravnom, tehničkom, medicinskom, marketinškom ili bilo čemu drugom. To je najjača poluga za ton, glas brenda i vokabular.",
 			"surfaceLabel": "Površinski tekst:",
-			"surfaceBody": "Koristite {glossaryLink} za doslovno zaključavanje imena brendova i proizvoda te {profanityAction} za uklanjanje psovki prilikom ciljanja lokalizacije za mlađu publiku.",
+			"surfaceBody": "Koristite {glossaryLink} za doslovno zaključavanje imena brendova i proizvoda te koristite {profanityAction} za uklanjanje psovki prilikom ciljanja lokalizacije za mlađu publiku.",
 			"glossaryLinkLabel": "Rječnik"
 		}
 	},
@@ -207,7 +207,7 @@
 			"items": {
 				"maxRetries": "Maksimalni broj pokušaja ponovnog pokušaja na prolaznim HTTP odgovorima ({statusCodes}). Ukupan broj HTTP poziva po zahtjevu iznosi {totalCalls}.",
 				"retryBackoffMs": "Zaustavite (u milisekundama) na bilo kojem pojedinačnom backoff snu. Akcija poštuje Azureov {retryAfter} odgovor zaglavlje točno kad je prisutno; inače koristi jittered eksponencijalni backoff ograničen na tu vrijednost.",
-				"protectPlaceholders": "Kada {true} (zadano), zamjenski entiteti poput {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} i HTML entiteti zamjenjuju se sentinel tokenima prije prijevoda i vraćaju nakon toga. Onemogućite samo ako vaš izvor namjerno sadrži doslovni tekst u obliku privremenog mjesta koji treba prevesti.",
+				"protectPlaceholders": "Kada {true} (zadano), privremeni elementi poput {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} i HTML entiteti zamjenjuju se sentinel tokenima prije prijevoda i vraćaju nakon toga. Onemogućite samo ako vaš izvor namjerno sadrži doslovni tekst u obliku privremenog mjesta koji treba prevesti.",
 				"customPlaceholderPatterns": "Regexi odvojeni od novih redaka (bez razdjelnika) dodani su u zadani skup privremenih oznaka, npr. {angleToken} za sintaksu prilagođenih tokena.",
 				"noTranslatePatterns": "Obrasci globova odvojeni novim linijama podudarani s ključevima na razini parsera (JSON točkasti put, RESX {resxName}, PO {poMsgid}, XLIFF jedinica {xliffId}, INI/restext ključ). Odgovarajući ključevi se izbacuju iz zahtjeva prevoditelja i prolaze kroz njega s očuvanom izvornom vrijednošću."
 			}
@@ -243,7 +243,7 @@
 				"specLabel": "GNU gettext — PO format datoteke"
 			},
 			"json": {
-				"blurb": "Proizvoljne JSON datoteke. Ugniježđeni objekti se izravnavaju s {delimiter} delimiterom za translaciju, a zatim se ponovno ugnijezde na izlazu. Točkasti ključevi ({dottedKey}) sačuvani su doslovno.",
+				"blurb": "Proizvoljne JSON datoteke. Ugniježđeni objekti se izravnavaju s {delimiter} razdjelnikom za translaciju, a zatim se ponovno ugnijezde na izlazu. Točkasti ključevi ({dottedKey}) sačuvani su doslovno.",
 				"specLabel": "JSON specifikacija (RFC 8259)"
 			},
 			"ini": {
@@ -276,7 +276,7 @@
 				"heading": "Rječnik za nazive robnih marki i nazive proizvoda",
 				"intro": "Ubacite {configPath} u repozitorij:",
 				"afterLabel": "Nakon",
-				"body": "Pojmovi iz rječnika primjenjuju se {after} prijevod, tako da strojno prevedeni izlaz zadržava vaš preferirani brend čak i kad ga je model zamijenio sinonimom."
+				"body": "Pojmovi iz rječnika primjenjuju se {after} prijevod, tako da strojno prevedeni izlaz zadržava vaš preferirani brend čak i kada ga je model zamijenio sinonimom."
 			},
 			"customCategory": {
 				"heading": "Kategorija prilagođenih prevoditelja (industrija / domena)",
@@ -300,7 +300,7 @@
 		"questions": {
 			"azure": {
 				"heading": "Kako akcija komunicira s Azureom?",
-				"body": "Kroz Microsoftov službeni {azureSdkLink} SDK, složen na {corePipelineLink}. To vam omogućuje automatske ponovne pokušaje na {statusCodes}, modele tipiziranih zahtjeva i odgovora te besplatno upravljanje zaglavljima autentifikacije — sve što je prije bio ručno vođen {axios} poziv. Javna akcijska površina (ulazi, izlazi, izlazi datoteka) ostaje nepromijenjena."
+				"body": "Kroz Microsoftov službeni {azureSdkLink} SDK, složen na {corePipelineLink}. To vam omogućuje automatske ponovne pokušaje na {statusCodes}, modele tipiziranih zahtjeva i odgovora te besplatno rukovanje zaglavljima autentifikacije — sve što je prije bio ručno vođen {axios} poziv. Javna akcijska površina (ulazi, izlazi, izlazi datoteka) ostaje nepromijenjena."
 			},
 			"tone": {
 				"heading": "Zašto su prijevodi ponekad neprimjereni brendu ili tonu?",
@@ -344,7 +344,7 @@
 		"filterPlaceholder": "Pretražujte po jeziku, kodu ili izvornom imenu...",
 		"source": "Izvor",
 		"machineTranslations": "Strojni prijevodi",
-		"translationPending": "Prijevod na čekanju — otvorite {workflowName} run.",
+		"translationPending": "Prijevod na čekanju — otvori {workflowName} run.",
 		"noLocales": "Nijedna lokacija ne odgovara tom filteru.",
 		"howItWorks": {
 			"heading": "Kako to funkcionira",
@@ -387,7 +387,7 @@
 	"changelog": {
 		"title": "Popis promjena",
 		"eyebrow": "Povijest",
-		"lede": "Sažetak izdanja na visokoj razini. Kanonski, autoritativni dnevnik promjena nalazi se u CHANGELOG.md u spremištu.",
+		"lede": "Sažetak izdanja na visokoj razini. Kanonski, autoritativni dnevnik promjena nalazi se u CHANGELOG.md u repozitoriju.",
 		"fullRecord": "Pogledajte {changelogLink} za cijeli zapis.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
 		"v3": {
@@ -410,7 +410,7 @@
 				"newInputs": "Novi ulazi: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, plus napredni Translator gumbi {textType}, {profanityAction}, {profanityMarker} i {allowFallback}.",
 				"sourceLocale": "Izvorno mjesto sada se također prosljeđuje prevoditelju kao {fromLocale} tako da se kratki nizovi ne detektiraju automatski.",
 				"resilience": "{label} automatski ponovni pokušaj na prolaznim HTTP odgovorima ({statusCodes}) koji poštuju Azureov {retryAfter} zaglavlje — vraća se na treperenje eksponencijalnog povlačenja kad ih nema. Podesivo putem {maxRetries} i {retryBackoffMs}. {issue}",
-				"placeholderProtection": "{label} tokeni poput {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} i HTML entiteti su omotani u sentinele prije prijevoda i naknadno se obnavljaju, pa prevoditelj prestaje mijenjati i18next/Mustache/Handlebars/.NET/printf privremene oznake. Prebacivanje putem {protectPlaceholders}; Proširite s {customPlaceholderPatterns}. {issue}",
+				"placeholderProtection": "{label} tokeni poput {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} i HTML entiteti su omotani u sentinele prije prijevoda i naknadno se vraćaju, tako da Translator prestaje mijenjati i18next/Mustache/Handlebars/.NET/printf privremene oznake. Prebacivanje putem {protectPlaceholders}; Proširite s {customPlaceholderPatterns}. {issue}",
 				"perKeyOptOut": "{label} novi {noTranslatePatterns} ulaz u potpunosti uklanja odgovarajuće ključeve iz zahtjeva prevoditelja (čuva izvorne vrijednosti za brendove, kodove pogrešaka itd.). Uspoređuje glob obrasce s ključevima na razini parsera (JSON točkasti put, RESX {resxName}, PO {poMsgid}, XLIFF jedinica {xliffId}, INI/restext ključ). {issue}",
 				"repoConfig": "Konfiguracija na razini repozitorija putem {configPath}.",
 				"glossary": "Podrška za rječnik, sažetak koraka putem {coreSummary}.",

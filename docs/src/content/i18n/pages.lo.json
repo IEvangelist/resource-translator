@@ -50,11 +50,11 @@
 			},
 			"sdk": {
 				"title": "Azure SDK ທາງການ",
-				"body": "ສ້າງ ຂຶ້ນ ເທິງ {azureSdk} + {corePipeline} - ການ ທົດ ລອງ ໃຫມ່ ໂດຍ ອັດ ຕະ ໂນ ມັດ ໃນ {statusCodes}, ບໍ່ ມີ HTTP ທີ່ ໃຊ້ ມື. {esbuild} ຫໍ່, ສະອາດການກວດສອບ."
+				"body": "ສ້າງ ຂຶ້ນ ເທິງ {azureSdk} + {corePipeline} - ການ ທົດ ລອງ ໃຫມ່ ໂດຍ ອັດ ຕະ ໂນ ມັດ ໃນ {statusCodes}, ບໍ່ ມີ HTTP ທີ່ ໃຊ້ ມື. {esbuild} ຫໍ່, ສະອາດກວດສອບ."
 			}
 		},
 		"workflowPreview": {
-			"eyebrow": "Drop-in workflow",
+			"eyebrow": "ວຽກງານ Drop-in",
 			"titlePrefix": "Copy. Paste.",
 			"titleAccent": "ແປ.",
 			"body": "ຄວາມ ລັບ ສາມ ຢ່າງ, ສີ່ ແຖວ, ແລະ repo ຂອງ ທ່ານ ແມ່ນ ຫລາຍ ພາ ສາ ໃນ ການ ຊຸກ ຍູ້ ຕໍ່ ໄປ.",
@@ -118,7 +118,7 @@
 				"includeExclude": "ແບບ ແຜນ Glob ຖືກ ປະ ເມີນ ກັບ ເສັ້ນ ທາງ ທີ່ ສົມ ບູນ ແລະ ກ່ຽວ ພັນ ກັບ ບ່ອນ ທໍາ ງານ.",
 				"glossary": "ການປ່ຽນຄໍາສັບຫຼັງການແປ. Word-boundary aware (handles {cpp}, {dotnet}).",
 				"categoryId": "Azure {customTranslatorLink} category — ອຸດສາຫະກໍາ / domain knob ຂອງເຈົ້າ (ກົດຫມາຍ, ການແພດ, ນ້ໍາສຽງການຕະຫຼາດ, ແລະ ອື່ນໆ). ຖືກ ສົ່ງ ໄປ ເປັນ {categoryQuery}.",
-				"textType": "ມາດຕະຖານ {plain}. ໃຊ້ {html} ຖ້າຄ່າຊັບພະຍາກອນຂອງເຈົ້າມີຊິ້ນສ່ວນ HTML ແທ້ໆ.",
+				"textType": "ມາດຕະຖານ {plain}. ໃຊ້ {html} ພຽງ ແຕ່ ຖ້າ ຫາກ ຄ່າ ຊັບ ພະ ຍາ ກອນ ຂອງ ທ່ານ ມີ ສ່ວນ HTML ແທ້ໆ.",
 				"profanityAction": "ວິທີປະຕິບັດກັບຄໍາສັບທີ່ຫມິ່ນປະຫມາດໃນຜົນງານທີ່ແປ.",
 				"profanityMarker": "ມີ ຄວາມ ຫມາຍ ພຽງ ແຕ່ ເມື່ອ {profanityAction} ເປັນ {marked}.",
 				"allowFallback": "ຕັ້ງໄວ້ເປັນ {false} ເພື່ອບໍ່ສາມາດແປໄດ້ເມື່ອ {categoryId} ຂອງເຈົ້າບໍ່ມີການນໍາໃຊ້ສໍາລັບສະຖານທີ່ເປົ້າຫມາຍແທນທີ່ຈະກັບຄືນໄປຫາແບບຢ່າງທົ່ວໄປ.",
@@ -417,7 +417,7 @@
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
 				"audit": "npm audit clean (0 ຄວາມອ່ອນແອ).",
 				"docsSite": "ເວັບໄຊ Astro + Tailwind v4 docs ທີ່ມີການປ່ຽນແປງຮູບພາບ ແລະ Expressive Code.",
-				"docsAccessibility": "{label} WCAG 2.1 AA pass. ຕົວອັກສອນໂລໂກ້ຖືກປ່ຽນເປັນເສັ້ນທາງເພື່ອບໍ່ໃຫ້ຄວາມແຕກຕ່າງຂອງສີກັບການຢຸດຂອງລະດັບຄວາມແຕກຕ່າງອີກຕໍ່ໄປ, ປຸ່ມ floating {backToTop} ໃຊ້ {inert} ໃນຂະນະທີ່ເຊື່ອງຊ້ອນ (ແທນທີ່ຈະເປັນ {ariaHidden} toggle ທີ່ເຮັດໃຫ້ມັນສາມາດຕິດແທັບໄດ້), {formatsAstro} ພາກຕ່າງໆບໍ່ຂັດແຍ່ງກັບ ID ຫົວຂໍ້ທີ່ສ້າງຂຶ້ນໂດຍອັດຕະໂນມັດອີກຕໍ່ໄປ, ບັດສາມບ່ອນເປີດເຜີຍຄຸນສົມບັດ {lang} ທີ່ໃຊ້ໄດ້ BCP-47 ({nya}, {lug}, {run}), ລາຍຊື່ທີ່ຊ້ໍາກັນ {documentation} markmark ຖືກແກ້ໄຂລະຫວ່າງsidebar ແລະ footer,  ແລະ ທຸກໆ ຕາຕະລາງ ຂໍ້ ມູນ ໃນ {inputs} / {configuration} ຈະ ສົ່ງ ມາ ພ້ອມ ດ້ວຍ ຄໍາ ອະທິບາຍ ຂອງ ຜູ້ ອ່ານ ຈໍ.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. ຕົວອັກສອນໂລໂກ້ຖືກປ່ຽນເປັນເສັ້ນທາງເພື່ອບໍ່ໃຫ້ຄວາມແຕກຕ່າງຂອງສີກັບການຢຸດຂອງລະດັບຄວາມແຕກຕ່າງອີກຕໍ່ໄປ, ປຸ່ມ floating {backToTop} ໃຊ້ {inert} ໃນຂະນະທີ່ເຊື່ອງຊ້ອນ (ແທນທີ່ຈະໃຊ້ {ariaHidden} toggle ທີ່ເຮັດໃຫ້ມັນສາມາດແທັບໄດ້), {formatsAstro} ພາກຕ່າງໆບໍ່ຂັດແຍ່ງກັບ ID ຫົວຂໍ້ທີ່ສ້າງຂຶ້ນໂດຍອັດຕະໂນມັດອີກຕໍ່ໄປ, ບັດນີ້ບັດສາມບ່ອນເປີດເຜີຍຄຸນສົມບັດ {lang} ທີ່ໃຊ້ໄດ້ BCP-47 ({nya}, {lug}, {run}), ລາຍຊື່ທີ່ຊ້ໍາກັນ {documentation} markmark ຖືກແກ້ໄຂລະຫວ່າງsidebar ແລະ footer,  ແລະ ທຸກໆ ຕາຕະລາງ ຂໍ້ ມູນ ໃນ {inputs} / {configuration} ຈະ ສົ່ງ ມາ ພ້ອມ ດ້ວຍ ຄໍາ ອະທິບາຍ ຂອງ ຜູ້ ອ່ານ ຈໍ.",
 				"inlineCode": "{label} Docs prose {codeElement} ບັດ ນີ້ ນຸ່ງ ເຄື່ອງ ທີ່ ອົບ ອຸ່ນ / ສີ ເຫລືອງ - ແຕກ ຕ່າງ ຈາກ brand → palette ທີ່ ໃຊ້ ສໍາລັບ link ແລະ ຫົວ ຂໍ້.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}

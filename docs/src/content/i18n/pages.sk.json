@@ -124,7 +124,7 @@
 				"allowFallback": "Nastavte {false}, aby preklad zlyhal, keď váš {categoryId} nemá nasadenie pre cieľové miesto, namiesto toho, aby ste sa vrátili k všeobecnému modelu.",
 				"apiVersion": "Translator REST API verzia. Predvolene sa zobrazuje na {version}.",
 				"maxRetries": "Maximálny počet pokusov o opakované pokusy pri prechodných HTTP odpovediach ({statusCodes}). Predvolene {defaultRetries}. Celkový počet HTTP hovorov na požiadavku je {totalCalls}.",
-				"retryBackoffMs": "Obmedzte (ms) pri akomkoľvek jednorazovom spánku. Predvolene sa zobrazuje na {defaultBackoff}. Hlavička {retryAfter} v Azure je ctená presne vtedy, keď je prítomná; inak sa používa kolísaný exponenciálny spätný ústup, obmedzený na túto hodnotu.",
+				"retryBackoffMs": "Limit (ms) pri akomkoľvek jedinom ustúpení spánku. Predvolene sa zobrazuje na {defaultBackoff}. Hlavička {retryAfter} v Azure je ctená presne vtedy, keď je prítomná; inak sa používa kolísaný exponenciálny ústup, obmedzený na túto hodnotu.",
 				"protectPlaceholders": "Predvolene sa zobrazuje na {true}. Keď sú zapnuté, tokeny ako {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} a HTML entity sú pred prekladom nahradené sentinel tokenmi a obnovené po preklade. Vypnúť len vtedy, keď zdrojový kód zámerne obsahuje literály v tvare zástupcov.",
 				"customPlaceholderPatterns": "Dodatočné regex vzory (bez oddeľovačov) pridané do predvolenej sady zástupcov, napr. {angleToken} pre vlastnú syntax tokenov. Neplatné regexy sa ignorujú.",
 				"noTranslatePatterns": "Glob vzory sa zhodovali s kľúčmi na úrovni parsera (JSON bodkovaná cesta, RESX {resxName}, PO {poMsgid}, jednotka XLIFF {xliffId}, INI/restext kľúč). Zodpovedajúce kľúče sa z požiadavky vypustia a prejdú s zachovanou zdrojovou hodnotou."
@@ -145,7 +145,7 @@
 			"industryLabel": "Odvetvie / oblasť:",
 			"industryBody": "Použite {categoryId} na označenie kategórie Azure {customTranslatorLink} trénovanej na vašom vlastnom korpuse — právnej, technickej, lekárskej, marketingovej alebo akejkoľvek inej. Toto je najsilnejší nástroj pre tón, hlas značky a slovnú zásobu.",
 			"surfaceLabel": "Text na povrchu:",
-			"surfaceBody": "Použite {glossaryLink} na doslovné uzamknutie značiek a produktových termínov a použite {profanityAction} na odstránenie vulgárnych výrazov pri cielení na lokalizáciu pre mladšie publikum.",
+			"surfaceBody": "Použite {glossaryLink} na doslovné uzamknutie mien značiek a produktových termínov a použite {profanityAction} na odstránenie vulgárnych výrazov pri cielení na lokalizáciu pre mladšie publikum.",
 			"glossaryLinkLabel": "Slovník slovníka"
 		}
 	},
@@ -169,7 +169,7 @@
 			"heading": "Požadované vstupy",
 			"caption": "Požadované vstupy",
 			"items": {
-				"sourceLocale": "Zdrojová lokalita (napr. {en}) sa používa na vyhľadávanie zdrojových súborov, ako je {sourceGlob}. Tiež preposlané prekladateľovi ako {fromLocale}.",
+				"sourceLocale": "Zdrojová lokalita (napr. {en}) sa používa na vyhľadávanie zdrojových súborov, napríklad {sourceGlob}. Tiež preposlané prekladateľovi ako {fromLocale}.",
 				"subscriptionKey": "Azure AI Translator subscription key. Prejdite cez {secrets}.",
 				"endpoint": "URL endpointu prekladača, napr. {endpointUrl}."
 			}
@@ -209,7 +209,7 @@
 				"retryBackoffMs": "Obmedzte (v milisekundách) pri akomkoľvek jedinom spánku s odstupom. Akcia rešpektuje {retryAfter} odpoveď hlavičky Azure presne vtedy, keď je prítomná; inak používa kolísaný exponenciálny spätný ústup obmedzený na túto hodnotu.",
 				"protectPlaceholders": "Keď {true} (predvolené), zástupné entity ako {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} a HTML entity sú pred prekladom nahradené sentinel tokenmi a obnovené po preklade. Vypnite len vtedy, keď váš zdroj zámerne obsahuje doslovný text v tvare zástupcov, ktorý by mal byť preložený.",
 				"customPlaceholderPatterns": "Regexy oddelené od nových riadkov (bez oddeľovačov) boli pridané do predvolenej sady zástupcov, napr. {angleToken} pre vlastnú syntax tokenov.",
-				"noTranslatePatterns": "Vzory globov oddelené po novom riadku sa zhodovali s kľúčmi na úrovni parsera (JSON bodkovaná cesta, RESX {resxName}, PO {poMsgid}, jednotka XLIFF {xliffId}, INI/restext kľúč). Zodpovedajúce kľúče sa vyhadzujú z požiadavky Translator a prechádzajú s zachovanou zdrojovou hodnotou."
+				"noTranslatePatterns": "Vzory globov oddelené po novom riadku sa zhodovali s kľúčmi na úrovni parsera (JSON bodkovaná cesta, RESX {resxName}, PO {poMsgid}, jednotka XLIFF {xliffId}, INI/restext kľúč). Zodpovedajúce kľúče sa vyhadzujú z požiadavky prekladača a prechádzajú s zachovanou zdrojovou hodnotou."
 			}
 		},
 		"outputs": {
@@ -257,14 +257,14 @@
 		},
 		"roundTrip": {
 			"heading": "Záruky spiatočnej cesty",
-			"body": "Testovacia sada overuje bajt-po-bajt round-tripovanie pre reprezentatívne fixture každého formátu. Ak sa vo vašom kóde nejaká formátová zvláštnosť poruší round-tripping, prosím, {issueLink} s minimálnou vzorkou.",
+			"body": "Testovacia sada overuje bajt-po-bajt round-tripovanie pre reprezentatívne fixture každého formátu. Ak sa vo vašom kóde nejaká formátová zvláštnosť poruší okružné preplávanie, prosím, {issueLink} s minimálnou vzorkou.",
 			"issueLinkLabel": "otvoriť problém"
 		}
 	},
 	"recipes": {
 		"title": "Recepty",
 		"eyebrow": "Kuchárska kniha",
-		"lede": "Bežné vzory pri preprave prekladov: monorepo, glosáre, vlastné kategórie, skúšobné skúšky a kontrola tónu.",
+		"lede": "Bežné vzory pri preprave prekladov: monorepo, glosáre, vlastné kategórie, suché skúšky a ovládanie tónu.",
 		"sections": {
 			"pullRequest": {
 				"heading": "Po každom spustení otvorte pull request"
@@ -361,7 +361,7 @@
 	"contributing": {
 		"title": "Príspevky",
 		"eyebrow": "Open source",
-		"lede": "Hlásenia chýb, požiadavky na funkcie a pull requesty sú vítané. Akcia je dostatočne malá na to, aby bola priateľská pre nováčikov.",
+		"lede": "Hlásenia chýb, požiadavky na funkcie a pull requesty sú vítané. Akcia je dostatočne malá na to, aby bola priateľská aj pre nováčikov.",
 		"localDevelopment": {
 			"heading": "Miestny rozvoj"
 		},
@@ -409,7 +409,7 @@
 				"runtime": "Posunulo sa na {nodeRuntime} čas behu ({breaking}).",
 				"newInputs": "Nové vstupy: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, plus pokročilé gombíky prekladača {textType}, {profanityAction}, {profanityMarker} a {allowFallback}.",
 				"sourceLocale": "Zdrojové prostredie je teraz tiež preposielané do Translatoru ako {fromLocale} aby sa krátke reťazce nedetekovali automaticky.",
-				"resilience": "{label} automatické opakovanie pri prechodných HTTP odpovediach ({statusCodes}), ktoré rešpektuje {retryAfter} hlavičku Azure — keď chýba, sa vracia k trhanému exponenciálnemu cúvaniu. Nastaviteľné cez {maxRetries} a {retryBackoffMs}. {issue}",
+				"resilience": "{label} automatické opakovanie pri prechodných HTTP odpovediach ({statusCodes}), ktoré rešpektuje {retryAfter} hlavičku Azure — keď chýba, opäť sa vracia k trhanému exponenciálnemu ustupovaniu. Nastaviteľné cez {maxRetries} a {retryBackoffMs}. {issue}",
 				"placeholderProtection": "{label} tokeny ako {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} a HTML entity sú pred prekladom zabalené do sentinelov a potom obnovené, takže Translator prestane upravovať zástupce i18next/Mustache/Handlebars/.NET/printf. Prepínanie cez {protectPlaceholders}; Rozšírte s {customPlaceholderPatterns}. {issue}",
 				"perKeyOptOut": "{label} nový vstup {noTranslatePatterns} úplne vynecháva zodpovedajúce kľúče z požiadavky Translator (zachováva zdrojové hodnoty pre značky, chybové kódy a pod.). Porovnáva globové vzory s kľúčmi na úrovni parsera (JSON bodkovaná cesta, RESX {resxName}, PO {poMsgid}, XLIFF jednotka {xliffId}, INI/restext kľúč). {issue}",
 				"repoConfig": "Konfigurácia na úrovni repozitára cez {configPath}.",

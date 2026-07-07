@@ -53,9 +53,24 @@
 		"sourceAria": "GitHub에서 소스 보기",
 		"marketplaceAria": "GitHub 마켓플레이스에서 보기",
 		"authorAria": "데이비드 파인의 웹사이트",
+		"npmAria": "View the Azure Translator SDK on npm",
 		"taglinePrefix": "공식 위에 구축된 리소스 파일을 자동으로 변환해주는 GitHub Action입니다",
 		"taglineMiddle": "SDK 제공",
 		"copyrightPrefix": "하에 공개됨",
-		"builtWith": "건조"
+		"builtWith": "건조",
+		"installLabel": "워크플로우에 추가하세요",
+		"copy": "알겠습니다",
+		"copied": "복사했어요!",
+		"copyAria": "설치 스니펫을 클립보드에 복사하세요",
+		"marketplaceCta": "GitHub Marketplace에서 구매하세요",
+		"starCta": "GitHub의 별자리",
+		"starAria": "GitHub의 Star Resource Translator",
+		"stargazersAria": "GitHub stargazers count",
+		"versionLabel": "버전",
+		"whatsNew": "새로운 소식은 무엇인가요",
+		"language": "언어",
+		"editPage": "이 페이지를 편집하기",
+		"editPageAria": "GitHub에서 이 페이지의 소스 편집",
+		"reportIssue": "이 페이지에서 문제를 신고하세요"
 	}
 }

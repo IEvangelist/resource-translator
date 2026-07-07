@@ -55,7 +55,7 @@
 		},
 		"workflowPreview": {
 			"eyebrow": "Drop-in workflow",
-			"titlePrefix": "Kopi. Paste.",
+			"titlePrefix": "Kopi. Pate.",
 			"titleAccent": "Fetolela.",
 			"body": "Three secrets, four lines, and your repo is multilingual on the next push.",
 			"setupLink": "Go Go Gadget Full Set"
@@ -372,7 +372,7 @@
 				"implement": "Diriša {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
 				"register": "Ngwala ka {factoryFile}.",
 				"extension": "Add the file extension to {translationFileSchemes} in {finderFile}.",
-				"tests": "Ngwala diteko tša go ya go ile-→ ka sebopego sa"
+				"tests": "Ngwala diteko tša go ya go ile→ ka sebopego sa parse le go diriša diphetolelo."
 			}
 		},
 		"coverage": {
@@ -402,7 +402,7 @@
 			},
 			"issueLabels": {
 				"closes46": "Tswalela # 46.",
-				"tightens16": "Tightens #16.",
+				"tightens16": "Tightens # 16.",
 				"closes35": "Tswalela # 35."
 			},
 			"items": {

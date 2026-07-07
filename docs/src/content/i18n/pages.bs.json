@@ -101,8 +101,8 @@
 		"title": "Konfiguracija",
 		"eyebrow": "YAML",
 		"heroTitle": "Konfiguracija repozitorija",
-		"lede": "Express postavlja podrazumijevane postavke jednom u konfiguracijsku datoteku repozitorija i dozvoljava svakom workflowu da ih naslijedi. Akcijski unosi uvijek pobjeđuju kada su oba ponuđena.",
-		"intro": "Prepiši putanju pomoću {configPath} ulaza ako ti treba lokacija koja nije podrazumijevana.",
+		"lede": "Express postavlja podrazumijevane postavke jednom u konfiguracijskoj datoteci repozitorija i dozvoljava svakom workflowu da ih nasljeđuje. Akcijski unosi uvijek pobjeđuju kada su oba ponuđena.",
+		"intro": "Prepiši putanju {configPath} ulazom ako ti treba lokacija koja nije podrazumijevana.",
 		"schemaHeading": "Šema",
 		"fieldReference": {
 			"heading": "Referenca na terenu",
@@ -126,7 +126,7 @@
 				"maxRetries": "Maksimalan broj pokušaja ponovnog pokušaja na prolaznim HTTP odgovorima ({statusCodes}). Podrazumijevano {defaultRetries}. Ukupan broj HTTP poziva po zahtjevu je {totalCalls}.",
 				"retryBackoffMs": "Ograniči (ms) na bilo koji pojedinačni backoff san. Podrazumijevano {defaultBackoff}. Azure {retryAfter} zaglavlje se poštuje tačno kada je prisutno; u suprotnom se koristi jittered eksponencijalno povlačenje, ograničeno na ovu vrijednost.",
 				"protectPlaceholders": "Podrazumijevano {true}. Kada su uključeni, tokeni poput {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} i HTML entiteti se zamjenjuju sentinel tokenima prije prevoda i vraćaju nakon toga. Onemogućite samo kada izvorni izvor namjerno sadrži literale u obliku privremenog mjesta.",
-				"customPlaceholderPatterns": "Dodatni regex obrasci (bez razdjelnika) dodani su u zadani skup placeholdera, npr. {angleToken} za sintaksu prilagođenih tokena. Nevažeći regexovi se ignorišu.",
+				"customPlaceholderPatterns": "Dodatni regex obrasci (bez razdjelnika) dodani u zadani set placeholdera, npr. {angleToken} za prilagođenu sintaksu tokena. Nevažeći regexovi se ignorišu.",
 				"noTranslatePatterns": "Glob obrasci usklađeni sa ključevima na nivou parsera (JSON isprekidana putanja, RESX {resxName}, PO {poMsgid}, XLIFF jedinica {xliffId}, INI/restext ključ). Odgovarajući ključevi se izbacuju iz zahtjeva i prolaze kroz njega sa sačuvanom izvornom vrijednošću."
 			}
 		},
@@ -208,7 +208,7 @@
 				"maxRetries": "Maksimalan broj pokušaja ponovnog pokušaja na prolaznim HTTP odgovorima ({statusCodes}). Ukupan broj HTTP poziva po zahtjevu je {totalCalls}.",
 				"retryBackoffMs": "Zaustavite (u milisekundama) na bilo kojem pojedinačnom povlačenju sna. Akcija poštuje Azure-ov {retryAfter} odgovor zaglavlje tačno kada je prisutno; u suprotnom koristi jittered eksponencijalno povlačenje ograničeno na ovu vrijednost.",
 				"protectPlaceholders": "Kada {true} (podrazumijevano), privremeni elementi poput {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} i HTML entiteti se zamjenjuju sentinel tokenima prije prevoda i vraćaju nakon toga. Onemogući samo kada tvoj izvor namjerno sadrži doslovni tekst u obliku privremenog mjesta koji treba prevesti.",
-				"customPlaceholderPatterns": "Regexovi odvojeni od novih linija (bez razdjelnika) dodavani su u zadani skup privremenih tokena, npr. {angleToken} za sintaksu prilagođenih tokena.",
+				"customPlaceholderPatterns": "Regexovi odvojeni od novih linija (bez razdjelnika) dodani su u zadani skup privremenih tokena, npr. {angleToken} za sintaksu prilagođenih tokena.",
 				"noTranslatePatterns": "Obrasci globova razdvojeni novim linijama usklađeni sa ključevima na nivou parsera (JSON tačkasti put, RESX {resxName}, PO {poMsgid}, XLIFF jedinica {xliffId}, INI/restext ključ). Odgovarajući ključevi se izbacuju iz zahtjeva za prevodiocem i prolaze dalje sa sačuvanom izvornom vrijednošću."
 			}
 		},
@@ -239,7 +239,7 @@
 				"specLabel": "OASIS XLIFF 2.0 specifikacija"
 			},
 			"po": {
-				"blurb": "GNU gettext Portable Object fajlovi. Svaki {msgid} / {msgidPlural} prevodi u {msgstr} / {msgstrPlural} oblike.",
+				"blurb": "GNU gettext Portable Object fajlovi. Prevodi svaki {msgid} / {msgidPlural} u {msgstr} / {msgstrPlural} oblike.",
 				"specLabel": "GNU gettext — PO format datoteke"
 			},
 			"json": {
@@ -257,7 +257,7 @@
 		},
 		"roundTrip": {
 			"heading": "Garancije povratne vožnje",
-			"body": "Testni paket provjerava bajt po bajt roundtripping za reprezentativne fixture-ove svakog formata. Ako neka formatska neobičnost prekine kružno putovanje u vašoj kodnoj bazi, molimo vas da {issueLink} sa minimalnim uzorkom.",
+			"body": "Testni paket provjerava bajt po bajt roundtripping za reprezentativne fixture-e svakog formata. Ako neka formatska neobičnost prekine kružno putovanje u vašoj kodnoj bazi, molimo vas da {issueLink} sa minimalnim uzorkom.",
 			"issueLinkLabel": "Otvori pitanje"
 		}
 	},
@@ -410,7 +410,7 @@
 				"newInputs": "Novi ulazi: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, plus napredni Translator dugmiće {textType}, {profanityAction}, {profanityMarker} i {allowFallback}.",
 				"sourceLocale": "Izvorno mjesto se sada također prosljeđuje Translatoru kao {fromLocale} tako da se kratki nizovi ne detektuju automatski.",
 				"resilience": "{label} automatski ponovni pokušaj na prolaznim HTTP odgovorima ({statusCodes}) koji poštuju Azure-ovo {retryAfter} zaglavlje — vraća se na jittered eksponencijalno povlačenje kada ga nema. Podesivo putem {maxRetries} i {retryBackoffMs}. {issue}",
-				"placeholderProtection": "{label} tokeni poput {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} i HTML entiteti su umotani u sentinele prije prevoda i naknadno se obnavljaju, tako da Translator prestaje mijenjati i18next/Mustache/Handlebars/.NET/printf zamjena za i18next/Mustache/Handlebars/.NET/printf. Prebacivanje putem {protectPlaceholders}; proširite sa {customPlaceholderPatterns}. {issue}",
+				"placeholderProtection": "{label} tokeni poput {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} i HTML entiteti se umotavaju u sentinele prije prevoda i vraćaju poslije, tako da Translator prestaje mijenjati i18next/Mustache/Handlebars/.NET/printf privremene oznake. Prebacivanje putem {protectPlaceholders}; proširite sa {customPlaceholderPatterns}. {issue}",
 				"perKeyOptOut": "{label} novi ulaz {noTranslatePatterns} u potpunosti uklanja odgovarajuće ključeve iz zahtjeva Translatora (čuva izvorne vrijednosti za brendove, kodove grešaka itd.). Upoređuje glob obrasce sa ključevima na nivou parsera (JSON isprekidana putanja, RESX {resxName}, PO {poMsgid}, XLIFF jedinica {xliffId}, INI/restext ključ). {issue}",
 				"repoConfig": "Konfiguracija na nivou repozitorijuma putem {configPath}.",
 				"glossary": "Podrška za rječnik, sažetak koraka putem {coreSummary}.",

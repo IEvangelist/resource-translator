@@ -1,7 +1,7 @@
 {
 	"site": {
 		"name": "وەرگێڕی سەرچاوە",
-		"defaultDescription": "بەڵگەنامەکان بۆ وەرگێڕی سەرچاوە GitHub Action — وەرگێڕانی ئامێری خودکار فایلەکانی سەرچاوە لەڕێگەی Azure AI Translator.",
+		"defaultDescription": "بەڵگەنامەکان بۆ وەرگێڕی سەرچاوە GitHub Action — وەرگێڕانی ئامێری خودکار فایلەکانی سەرچاوە لە ڕێگەی Azure AI Translator.",
 		"homeLabel": "وەرگێڕی سەرچاوە — ماڵەوە"
 	},
 	"skipToContent": "بازدان بۆ ناوەڕۆک",
@@ -53,9 +53,24 @@
 		"sourceAria": "سەیری سەرچاوەکە بکە لە GitHub",
 		"marketplaceAria": "پێشاندان لە بازاڕی GitHub",
 		"authorAria": "ماڵپه ڕی دەیڤد پاین",
+		"npmAria": "پێشاندانی Azure Translator SDK لەسەر npm",
 		"taglinePrefix": "کردارێکی GitHub کە فایلەکانی سەرچاوەکەت بە شێوەیەکی ئۆتۆماتیکی وەردەگێڕێت، لەسەر بەرپرسەکە بنیات نراوە",
 		"taglineMiddle": "SDK لە",
 		"copyrightPrefix": "ئازاد کراوە لە ژێر",
-		"builtWith": "بنیاتنراوە بە"
+		"builtWith": "بنیاتنراوە بە",
+		"installLabel": "زیادکردنی بکە بۆ ۆرکفلۆی خۆت",
+		"copy": "کۆپی",
+		"copied": "کۆپی کرا!",
+		"copyAria": "کۆپیکردنی پارچەی دامەزراندن بۆ ڕوونووسگەکەت",
+		"marketplaceCta": "لە بازاڕی GitHub بەدەستی بهێنە",
+		"starCta": "ئەستێرە لە GitHub",
+		"starAria": "وەرگێڕی سەرچاوەی ئەستێرە لەسەر GitHub",
+		"stargazersAria": "ژمارەی سەیرکەرانی ئەستێرەکانی GitHub",
+		"versionLabel": "وەشان",
+		"whatsNew": "چی نوێ هەیە",
+		"language": "زمان",
+		"editPage": "بژارکردنی ئەم لاپەڕەیە",
+		"editPageAria": "بژارکردنی سەرچاوەی ئەم لاپەڕەیە لە GitHub",
+		"reportIssue": "ڕاپۆرتکردنی کێشەیەک لەگەڵ ئەم لاپەڕەیە"
 	}
 }

@@ -1,61 +1,76 @@
 {
 	"site": {
 		"name": "Traductor nu'ukulo'ob",
-		"defaultDescription": "Ju'uno'ob utia'al u Resource Translator GitHub Action — traducción automática automatizada u archivos nu'ukulo'ob yóol Azure AI Translator.",
-		"homeLabel": "Traductor nu'ukulo'ob — wotoch"
+		"defaultDescription": "Ju'uno'ob utia'al u Resource Translator GitHub Action — traducción automática u archivos nu'ukulo'ob yóol Azure AI Translator.",
+		"homeLabel": "Traductor nu'ukulo'ob — linki abas kaambal ku"
 	},
 	"skipToContent": "Máan le contenido",
 	"drawer": {
-		"open": "Je'e navegación",
-		"close": "Muts'ik ti' le navegación",
+		"open": "Navegación abierta",
+		"close": "Náats'al u navegación",
 		"title": "Navegación"
 	},
 	"header": {
-		"search": "Buscar ju'uno'ob",
-		"searchPlaceholder": "A kaxtik ju'uno'ob...",
-		"toggleTheme": "Alternar chun tuukulo'",
-		"githubRepository": "GitHub repository",
-		"language": "Le t'aano'",
-		"languageTitle": "Yéey a t'aano'",
-		"languageDescription": "K'ex ti' jump'éeli' kuchil-linki abas kaambal ti' uláak' t'aano'.",
+		"search": "Kaxant ju'uno'ob",
+		"searchPlaceholder": "Kaxtik ju'uno'ob...",
+		"toggleTheme": "Interruptor chun tuukulo'",
+		"githubRepository": "Repositorio GitHub",
+		"language": "T'aano'",
+		"languageTitle": "Téet a t'aano'",
+		"languageDescription": "K'ex u ti' jump'éelili' kuchil-linki abas kaambal ti' uláak' t'aano'.",
 		"languageSearch": "T'aano'ob filtro",
 		"languageSearchPlaceholder": "Kaxtik t'aano'ob wa códigos locales...",
-		"languageNoResults": "Mix jump'éel t'aano' ku yilik le filtro.",
-		"closeLanguage": "Muts'ik selector t'aano'"
+		"languageNoResults": "Mix t'aano' coincide yéetel le filtro'.",
+		"closeLanguage": "Selector t'aano' cercana"
 	},
 	"search": {
-		"title": "Buscar ju'uno'ob",
+		"title": "Kaxant ju'uno'ob",
 		"results": "Ya'ala'al máaxo'ob máano'ob",
-		"placeholder": "Kaxant artículos, secciones, recetas...",
-		"close": "Muts'ik ti' le xookilo'",
-		"idleTitle": "Kaxtik le documentos",
-		"idleHelp": "Kaxant artículos tumen chun tuukulo', formato archivo, opción configuración wa recia. Meyaj {up} {down} utia'al navegar {enter} Je'e.",
-		"loading": "Kaxtik ...",
-		"empty": "Mina'an ya'ala'al máaxo'ob máano' Pruebe jump'éel t'aano' clave yaanal.",
-		"error": "Índice xookilo' ma' táan disponible te' dev. Ejecutar jump'éel construcción producción."
+		"placeholder": "Xookilo'ob artículos, jaatso'ob, recetas...",
+		"close": "Cercana xookilo'",
+		"idleTitle": "Kaxtik le docs",
+		"idleHelp": "Kaxant artículos tumen chun tuukulo', formato archivo, opción configuración wa receta. Meyaj {up} {down} utia'al navegar, {enter} Je'e'.",
+		"loading": "Kaxant...",
+		"empty": "Mina'an ya'ala'al máaxo'ob máano' Prueba yéetel jump'éel t'aan clave jela'an.",
+		"error": "Índice xookilo' ma' táan disponible ti' dev. Ejecutar jump'éel construcción producción."
 	},
 	"toc": {
 		"title": "Ti' le linki abas kaambal"
 	},
 	"pager": {
 		"ariaLabel": "Artículo",
-		"previous": "ka'achij",
+		"previous": "Úuchben",
 		"next": "Uláak'"
 	},
 	"backToTop": {
-		"label": "Desplazar u tak ka'anal"
+		"label": "Desplazar u tak le nu'ukulil superior"
 	},
 	"footer": {
-		"docs": "Ku ts'áabal",
-		"project": "Úuchik",
-		"community": "Kaaj",
-		"projectLinksAria": "K'aanan tsol",
+		"docs": "Docs",
+		"project": "Tsol",
+		"community": "kaaj",
+		"projectLinksAria": "K'aanan úuchik",
 		"sourceAria": "Wil fuente ti' GitHub",
-		"marketplaceAria": "Wil ti' GitHub Marketplace",
+		"marketplaceAria": "Wil ti' GitHub Mercado",
 		"authorAria": "Ts'ono'oto' web u David Pine",
-		"taglinePrefix": "Juntúul asab GitHub ku traduce u archivos nu'ukulo'ob automáticamente, construido yóok'ol le way sijnáaleche'",
+		"npmAria": "Wil le Azure Translator SDK on npm",
+		"taglinePrefix": "Jump'éel asab GitHub u traduce u archivos nu'ukulo'ob automáticamente, construido yóok'ol le way sijnáaleche'",
 		"taglineMiddle": "SDK u",
 		"copyrightPrefix": "Liberado yáanal le",
-		"builtWith": "Construido yéetel"
+		"builtWith": "beta'al yéetel",
+		"installLabel": "Añadir le ti' u flujo meyaj",
+		"copy": "Ju'unil",
+		"copied": "¡Ti'!",
+		"copyAria": "Copiar le fragmento instalación ti' u portapapeles",
+		"marketplaceCta": "Kéen p'áatak ti' GitHub Marketplace",
+		"starCta": "Eek' ti' GitHub",
+		"starAria": "Traductor nu'ukulo'ob estrella ti' GitHub",
+		"stargazersAria": "GitHub stargazers yilaje'",
+		"versionLabel": "Versión",
+		"whatsNew": "Ba'ax túumben",
+		"language": "T'aano'",
+		"editPage": "Editar le linki abas kaambal",
+		"editPageAria": "Editar u fuente le linki abas kaambal ti' GitHub",
+		"reportIssue": "Reporte jump'éel talamil yéetel le linki abas kaambal"
 	}
 }

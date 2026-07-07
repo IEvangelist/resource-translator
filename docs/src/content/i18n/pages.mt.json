@@ -126,7 +126,7 @@
 				"maxRetries": "Tentattivi massimi ta' retry fuq risposti HTTP transitorji ({statusCodes}). Jiddependi għal {defaultRetries}. It-total ta' sejħiet HTTP għal kull talba huwa {totalCalls}.",
 				"retryBackoffMs": "Limit (ms) fuq kull waħda waħda ta' backoff. Jiddependi għal {defaultBackoff}. L-intestatura {retryAfter} ta' Azure tiġi onorata eżattament meta tkun preżenti; inkella jintuża jittered exponential backoff, limitat għal dan il-valur.",
 				"protectPlaceholders": "Jiddependi għal {true}. Meta jkunu attivi, tokens bħal {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} u entitajiet HTML jiġu sostitwiti b'tokens sentinel qabel it-traduzzjoni u jiġu restawrati wara. Idiżattivaw biss meta s-sors intenzjonalment fih letterali f'forma ta' placeholder.",
-				"customPlaceholderPatterns": "Mudelli regex żejda (mingħajr delimitaturi) miżjuda mas-sett default, eż. {angleToken} għal sintassi personalizzata ta' token. Ir-regex invalidi jiġu injorati.",
+				"customPlaceholderPatterns": "Mudelli regex żejda (mingħajr delimitaturi) miżjuda mas-sett default, eż. {angleToken} għal sintassi personalizzata ta' token. Regex invalidi jiġu injorati.",
 				"noTranslatePatterns": "Il-mudelli Glob kienu jaqblu ma' ċwievet ta' livell ta' parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, unità XLIFF {xliffId}, ċavetta INI/restext). Il-keys li jaqblu jitneħħew mit-talba u jgħaddu permezz tal-valur tas-sors tagħhom ippreservat."
 			}
 		},
@@ -145,7 +145,7 @@
 			"industryLabel": "Industrija / dominju:",
 			"industryBody": "uża {categoryId} biex tindika kategorija ta' Azure {customTranslatorLink} mħarrġa fuq il-korpus tiegħek stess — legali, tekniċi, mediċi, kummerċjali, jew xi ħaġa oħra. Dan huwa l-aktar lever b'saħħtu għat-ton, il-vuċi tal-marka, u l-vokabularju.",
 			"surfaceLabel": "Test tal-wiċċ:",
-			"surfaceBody": "Uża l-{glossaryLink} biex tgħaqqad ismijiet ta' marki u termini tal-prodott littera għal oħra, u uża {profanityAction} biex tneħħi t-termini profani meta tiffoka fuq il-lokalizzazzjoni għal udjenzi iżgħar.",
+			"surfaceBody": "Uża l-{glossaryLink} biex tgħaqqad ismijiet ta' marki u termini tal-prodott littera għal oħra, u uża {profanityAction} biex tneħħi t-termini profani meta tiffoka fuq lokalizzazzjoni għal udjenzi iżgħar.",
 			"glossaryLinkLabel": "Glossarju"
 		}
 	},
@@ -202,7 +202,7 @@
 		},
 		"resilienceInputs": {
 			"heading": "Reżiljenza u protezzjoni temporanja",
-			"intro": "Dawn l-inputs jikkontrollaw kif l-azzjoni taġixxi meta Translator jnaqqas it-talba tiegħek u kif jipproteġi tokens temporanji bħal {mustache} jew {indexZero} milli jiġu mħassra waqt it-traduzzjoni.",
+			"intro": "Dawn l-inputs jikkontrollaw kif l-azzjoni taġixxi meta t-Traduttur jnaqqas it-talba tiegħek u kif jipproteġi tokens temporanji bħal {mustache} jew {indexZero} milli jiġu mħassra waqt it-traduzzjoni.",
 			"caption": "Reżiljenza u inputs ta' protezzjoni temporanja",
 			"items": {
 				"maxRetries": "Tentattivi massimi ta' retry fuq risposti HTTP transitorji ({statusCodes}). In-numru totali ta' sejħiet HTTP għal kull talba huwa {totalCalls}.",
@@ -243,7 +243,7 @@
 				"specLabel": "GNU gettext — Format tal-fajl PO"
 			},
 			"json": {
-				"blurb": "Fajls JSON arbitrarji. L-oġġetti imdawwra jiġu appattati bid-delimitatur tal-{delimiter} għat-traslazzjoni, u mbagħad jerġgħu jiġu mniżżla fuq l-output. Ċwievet b'punti ({dottedKey}) huma ppreservati verbatim.",
+				"blurb": "Fajls JSON arbitrarji. L-oġġetti imdawra jiġu appattati bid-delimitatur tal-{delimiter} għat-traslazzjoni, u mbagħad jerġgħu jinħaffu fuq l-output. Ċwievet b'punti ({dottedKey}) huma ppreservati verbatim.",
 				"specLabel": "Speċifikazzjoni JSON (RFC 8259)"
 			},
 			"ini": {
@@ -417,7 +417,7 @@
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
 				"audit": "Npm Audit Nadif (0 vulnerabbiltajiet).",
 				"docsSite": "Sit ta' dokumentazzjoni ta' Astro + Tailwind v4 b'transizzjonijiet ta' veduta u Kodiċi Espressiv.",
-				"docsAccessibility": "{label} WCAG 2.1 pass AA. Il-glyphs tal-logo ġew konvertiti f'mogħdijiet sabiex ma jibqgħux jonqsu mill-kuntrast tal-kulur kontra l-waqfiet tal-gradjenti, il-buttuna tal-{backToTop} li tgħix tuża {inert} waqt li tkun moħbija (minflok toggle ta' {ariaHidden} li ħalliha tabableable), {formatsAstro}-sezzjonijiet ma jibqgħux jikkollidifikaw mal-IDs ta' intestatura ġenerati awtomatikament, tliet karti lokali issa jesponu attributi ta' {lang} validi għal BCP-47 ({nya}, {lug}, {run}), id-duplikati {documentation} it-tikketti tal-landmarks jiġu diżambiguizzati bejn sidebar u footer,  u kull tabella tad-dejta fuq {inputs}/{configuration} tiġi b'kaptan għall-qari tal-iskrin.",
+				"docsAccessibility": "{label} WCAG 2.1 pass AA. Il-glyphs tal-logo ġew konvertiti f'mogħdijiet sabiex ma jibqgħux jonqsu mill-kuntrast tal-kulur kontra l-waqfiet tal-gradjenti, il-buttuna tal-{backToTop} li tgħix tuża {inert} waqt li tkun moħbija (minflok toggle ta' {ariaHidden} li ħalliha tabableable), {formatsAstro}-sezzjonijiet ma jibqgħux jikkollidifikaw mal-IDs ta' intestatura awto-ġenerati tagħhom, tliet karti lokali issa juru attributi validi ta' BCP-47 {lang}({nya}, {lug}, {run}), id-duplikati {documentation} l-etiketti ta' landmarks huma diżambiguati bejn sidebar u footer,  u kull tabella tad-dejta fuq {inputs}/{configuration} tiġi b'kaptan għall-qari tal-iskrin.",
 				"inlineCode": "{label}-proża ta' dokumentarji {codeElement} issa jilbsu l-aċċent tat-tema sħuna/ambra — distint mill-paletta ta' marka→aċċent użata għall-links u t-titliet.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}

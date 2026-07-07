@@ -38,7 +38,7 @@
 			},
 			"glossary": {
 				"title": "Glosar-aware",
-				"body": "Zawrějće markowe mjena a produktowe zapřijeća z mudrym słowno-mjeznym regexom, kotryž {cpp}, {dotnet} a přećelow wobdźěła."
+				"body": "Zawrějće markowe mjena a produktowe zapřijeća z mudrym słowno-mjeznym regularnym ekseksom, kotryž {cpp}, {dotnet} a přećelow wobdźěła."
 			},
 			"dryRun": {
 				"title": "Dry-run + soft-fail",
@@ -121,11 +121,11 @@
 				"textType": "Zapłać so na {plain}. Wužiwajće {html} jenož potom, hdyž waše resursowe hódnoty woprawdźite HTML-fragmenty wobsahuja.",
 				"profanityAction": "Kak so z profanymi zapřijećemi w přełoženym outputźe wobchadźa.",
 				"profanityMarker": "Zmysłapołne jenož, hdyž je {profanityAction} {marked}.",
-				"allowFallback": "Nastaj na {false}, zo by přełožk zwrěšćił, hdyž waš {categoryId} žane zasadźenje za cilowu městnosć nima, město so zaso k powšitkownemu modelej wróćo přisydlił.",
+				"allowFallback": "Nastaj na {false}, zo by přełožk zwrěšćił, hdyž waš {categoryId} žane zasadźenje za cilowu městnosć nima, město so wróćo k powšitkownemu modelej wróćo wobroćił.",
 				"apiVersion": "Translator REST API version. Zapłać so na {version}.",
 				"maxRetries": "Maksimalne wopyty wospjetowanja při přechodnych HTTP wotmołwach ({statusCodes}). Zwaži so na {defaultRetries}. Cyłkowne HTTP wołanja na naprašowanje su {totalCalls}.",
 				"retryBackoffMs": "Čapku (ms) při kóždym jeničkim sparanju. Zapłać so na {defaultBackoff}. Azurowa {retryAfter} hłójčkowa hłójčka so dokładnje hódnoći, hdyž je přitomna; Hewak wužiwa so rozterkany eksponencialny backoff, wobmjezowany na tutu hódnotu.",
-				"protectPlaceholders": "Zapłać so na {true}. Při zapnjenju so tokeny kaž {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} a HTML-entity do přełožka přez sentinelowe tokeny narunaja a po tym zaso restawruja. Znjemóžniće jenož potom, hdyž žórło z wotpohladom městna stejace literale wobsahuje.",
+				"protectPlaceholders": "Zapłać so na {true}. Při zapnjenju so tokeny kaž {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} a HTML-entity do přełožka přez sentinelowe tokeny narunaja a po tym zaso restawruja. Znjemóžniće jenož potom, hdyž žórło wotpohladnje městna stejace literale wobsahuje.",
 				"customPlaceholderPatterns": "Ekstra regularne ekseksowe mustry (bjez wotmjezowakow) dodachu so k zakładnej sadźe za symbole, na př. {angleToken} za swójsku tokenowu syntaksu. Njepłaćiwe regularne ekseksy so ignoruja.",
 				"noTranslatePatterns": "Glob-patterny přirunane přećiwo tastinam na parserowej runinje (JSON spiknjena čara, RESX {resxName}, PO {poMsgid}, XLIFF-jednotka {xliffId}, INI/restext key). Přirunowace kluče so z naprašowanja wupadnu a přeńdu ze zdźeržanej hódnotu žórła."
 			}
@@ -209,7 +209,7 @@
 				"retryBackoffMs": "Čapku (w milisekundach) při kóždym jednotliwym wróćowym sparje. Akcija hódnoći {retryAfter} wotmołwowu hłowičku Azure dokładnje, hdyž tu je; Hewak wužiwa při tutej hódnoće wobmjezowany eksponencialny backoff.",
 				"protectPlaceholders": "Při {true} (standard) so městne symbole kaž {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} a HTML-entity do přełožka přez sentinelowe tokeny narunaja a po tym zaso restawruja. Znjemóžniće jenož potom, hdyž je we wašim žórle wotpohladnje posłowny tekst, kiž ma so přełožić.",
 				"customPlaceholderPatterns": "Přez nowu linku dźělene regularne ekseksy (bjez wotmjezowakow) dodachu so do standardneje sadźby symbolow, na př. {angleToken} za swójsku syntaksu tokena.",
-				"noTranslatePatterns": "Přez nowu liniju dźělene globowe mustry přirjadowane přećiwo tastinam na parserowej runinje (JSON spiktowana čara, RESX {resxName}, PO {poMsgid}, XLIFF-jednotka {xliffId}, INI/restext key). Přirunowace kluče so z naprašowanja přełožowarjow wupadnu a přeńdu při tym ze zdźeržanej hódnotu žórła."
+				"noTranslatePatterns": "Přez nowu liniju dźělene globowe mustry so přećiwo tastinam na runinje parsera přirjaduja (JSON spiktowana čara, RESX {resxName}, PO {poMsgid}, XLIFF-jednotka {xliffId}, INI/restextowa tasta). Přirunowace kluče so z naprašowanja přełožowarjow wupadnu a přeńdu při tym ze zdźeržanej hódnotu žórła."
 			}
 		},
 		"outputs": {
@@ -217,7 +217,7 @@
 			"caption": "Outputy",
 			"items": {
 				"summaryTitle": "Krótke PR-title-friendly zjimanje, na př. {summaryExample}.",
-				"summaryDetails": "Markdown-zjeće so hodźi za PR-gremij abo zjeće dźěłoweho městna.",
+				"summaryDetails": "Markdown-zjeće so hodźi za PR-ćěleso abo zjeće dźěłoweho městna.",
 				"hasNewTranslations": "{trueString}, hdyž so jedyn abo wjacore nowe přełožki wugenerowachu."
 			}
 		}
@@ -243,7 +243,7 @@
 				"specLabel": "GNU gettext — PO file format"
 			},
 			"json": {
-				"blurb": "Lubowólne JSON-dataje. Zahnězdźene objekty so z {delimiter} wotmjezowakom za přełožowanje spłonja, potom na wuchodźe znowa zahnězdźa. Dypkowane tasty ({dottedKey}) so dosłownje wobchowaja.",
+				"blurb": "Lubowólne JSON-dataje. Zakašćikowane objekty so z {delimiter} wotmjezowakom za přełožowanje spłonja, potom na wuchodźe znowa zahnězdźa. Dypkowane tasty ({dottedKey}) so dosłownje wobchowaja.",
 				"specLabel": "JSON specification (RFC 8259)"
 			},
 			"ini": {
@@ -257,7 +257,7 @@
 		},
 		"roundTrip": {
 			"heading": "Garantije za tam a sem",
-			"body": "Testowa pakta přepruwuje bajtowe koło-tripowanje za reprezentatiwne wuhotowanja kóždeho formata. Hdyž formatowa wašnička w twojej kodowej bazy koło-tripowanje łama, {issueLink} prošu z minimalnej probu.",
+			"body": "Testowa sada přepruwuje bajtowe koło-tripowanje za reprezentatiwne wuhotowanja kóždeho formata. Hdyž formatowa wašnička w twojej kodowej bazy koło-tripowanje łama, {issueLink} prošu z minimalnej probu.",
 			"issueLinkLabel": "Wočińće wudaće"
 		}
 	},
@@ -288,7 +288,7 @@
 			},
 			"dryRun": {
 				"heading": "Suchi běh, prjedy hač dźěłowy wotběh zapinje",
-				"body": "Akcija wusyła hišće zjimace wuslědki a kročelowe zjimanje, ale žane dataje so njespisuja. Kombinujće z {failOnErrorFalse}, zo byšće kóždu temu jako warnowanje na swětło pokazali, mjeztym zo iterujeće."
+				"body": "Akcija wusyła hišće zjimace wuslědki a kročelowe zjimanje, ale žane dataje so njepisaja. Kombinujće z {failOnErrorFalse}, zo byšće kóždu temu jako warnowanje na swětło pokazali, mjeztym zo iterěrujće."
 			}
 		}
 	},
@@ -300,7 +300,7 @@
 		"questions": {
 			"azure": {
 				"heading": "Kak rěči akcija z Azure?",
-				"body": "Přez oficialny {azureSdkLink} SDK wot Microsofta, na {corePipelineLink} naworštowany. Tak dóstanješ awtomatiske wospjetowanja na {statusCodes}, typěrowane žadanske a wotmołwowe modele a wobchad z awtentifikaciskej słóčku darmotnje - wšitko, štož bě prjedy z ruku kuleny {axios} wołanje. Zjawna akciska płonina (inputy, outputy, datajowe outputy) wostanje njezměnjena."
+				"body": "Přez oficialny {azureSdkLink} SDK wot Microsofta, na {corePipelineLink} naworštowany. Tak dóstanješ awtomatiske wospjetowanja na {statusCodes}, typěrowane žadanske a wotmołwne modele a wobchad z awtentifikaciskej słóčku darmotnje - wšo, štož bě prjedy z ruku kuleny {axios} wołanje. Zjawna akciska płonina (inputy, outputy, datajowe outputy) wostanje njezměnjena."
 			},
 			"tone": {
 				"heading": "Čehodla su přełožki druhdy off-brand abo off-tone?",
@@ -322,7 +322,7 @@
 			},
 			"dist": {
 				"heading": "Zwotkel přińdu zawalene {distDir}?",
-				"body": "GitHub JS-akcije roznošuja swój zestajeny JS do składźišća. Dźěłowy wotběh {distBuild} natwari jón po kóždym zjednoćenju znowa, zo {mainBranch}, hač by so wón wotbočił, a blokuje {distCheck} PR, kotrež bychu přestarjeny output."
+				"body": "GitHub JS-akcije roznošuja swój zestajeny JS do składźišća. Dźěłowy wotběh {distBuild} natwari jón po kóždym zjednoćenju znowa, zo {mainBranch}, hač by so wotbočił, a blokuje {distCheck} PR, kotrež bychu přestarjeny output."
 			},
 			"formats": {
 				"heading": "Kak wupada z druhimi formatami resursow?",
@@ -371,7 +371,7 @@
 				"fixture": "Přidaj pod {testDataDir} připrawu.",
 				"implement": "Přesadź {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
 				"register": "Přizjew to w {factoryFile}.",
-				"extension": "Přidaj {translationFileSchemes} do {finderFile} datajowu ekstenziju.",
+				"extension": "Přidaj {translationFileSchemes} w {finderFile} datajowu ekstenziju.",
 				"tests": "Napisajće tam a sem testy za parsěrowanje → format a appTranslations."
 			}
 		},
@@ -381,7 +381,7 @@
 		},
 		"docsSite": {
 			"heading": "Dokumentaciska městnosć",
-			"body": "{docsDir} mapa je projekt Astro 6 + Tailwind v4. Běž tam {npmInstall} raz, potom {npmRunDev} za lokalny předhlad. Dźěłowy wotběh {pagesWorkflow} dodawa při kóždym hromadźenju dokumenty na strony GitHub."
+			"body": "{docsDir} mapa je projekt Astro 6 + Tailwind v4. Běž tam {npmInstall} raz, potom {npmRunDev} za lokalny předhlad. Dźěłowy wotběh {pagesWorkflow} dodawa při kóždym hromadźenju docs na strony GitHub."
 		}
 	},
 	"changelog": {
@@ -409,7 +409,7 @@
 				"runtime": "Storčiće na {nodeRuntime} runtime ({breaking}).",
 				"newInputs": "Nowe inputy: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError} a dale wuwite přełožowarske knefle {textType}, {profanityAction}, {profanityMarker} a {allowFallback}.",
 				"sourceLocale": "Rěčna baza so nětko tež na Translator dale da, {fromLocale} tak so krótke truny awtomatisce njedetektuja.",
-				"resilience": "{label} awtomatiske wospjetowanje při přechodnych HTTP wotmołwach ({statusCodes}), kotrež respektuje {retryAfter} hłowu Azure — padnje, hdyž njepřitomny, wróćo k třěsatemu eksponencialnemu cofnjenju. Naměr přez {maxRetries} a {retryBackoffMs}. {issue}",
+				"resilience": "{label} awtomatiske postrowjenje při přechodnych HTTP wotmołwach ({statusCodes}), kotrež respektuje {retryAfter} hłowowu smužku Azure — padnje, hdyž faluje, wróćo k třěsatemu eksponencialnemu cofnjenju. Naměr přez {maxRetries} a {retryBackoffMs}. {issue}",
 				"placeholderProtection": "{label} tokeny kaž {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} a HTML-entitety so do přełožka do sentinelow zapakuja a po tym zaso restawruja, tak zo přełožowar přestanje i18next/Mustache/Handlebars/.NET/printf placeholdery komoleć. Přepławić přez {protectPlaceholders}; Podlěš z {customPlaceholderPatterns}. {issue}",
 				"perKeyOptOut": "{label} nowy {noTranslatePatterns} input wotpadnje cyle přirunowace kluče naprašowanja přełožowarja (wobchowa žórła hódnoty za markowe mjena, zmylkowe kody atd.). Přirjaduje glob-patterny k tastinam na runinje parsera (spiknjena čara JSON, RESX {resxName}, PO {poMsgid}, jednotka XLIFF {xliffId}, INI/restext key). {issue}",
 				"repoConfig": "Repo-level config via {configPath}.",
