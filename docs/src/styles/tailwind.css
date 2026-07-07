@@ -362,6 +362,19 @@
   .prose-rt th {
     @apply font-semibold;
   }
+  /* Inside table cells, keep inline code chips (input names, enum values,
+     defaults, config paths) on a single line. The global code rules apply
+     `overflow-wrap: anywhere` / `word-break: break-word`, which is right for
+     running prose on mobile but shreds short identifiers in the narrow Name
+     and Default columns — e.g. `sourceLocale` breaks to `sourceLocal` + `e`
+     and `.github/resource-translator.yml` splits at the hyphen. Tables
+     already scroll horizontally (display:block; overflow-x:auto), so long
+     tokens overflow into the scroll area instead of wrapping mid-token. */
+  .prose-rt :is(th, td) code:not(pre code) {
+    overflow-wrap: normal;
+    word-break: normal;
+    white-space: nowrap;
+  }
   .prose-rt :is(h2, h3) > a {
     color: inherit;
     text-decoration: none;

@@ -121,6 +121,7 @@ const closeLanguage = header?.closeLanguage ?? "Close language picker";
       <button
         type="button"
         id="language-toggle"
+        data-language-trigger
         class="inline-flex h-9 items-center gap-2 rounded-md border border-(--border) bg-(--bg-elevated) px-2.5 text-xs font-semibold text-(--fg-muted) hover:text-(--fg)"
         aria-label={languageLabel}
         aria-haspopup="dialog"
@@ -326,14 +327,15 @@ const closeLanguage = header?.closeLanguage ?? "Close language picker";
 
 <script>
   function bindLanguageDialog() {
-    const trigger = document.getElementById("language-toggle") as
-      | HTMLButtonElement
-      | null;
     const dialog = document.getElementById("language-dialog") as
       | HTMLDialogElement
       | null;
-    if (!trigger || !dialog || trigger.dataset.bound === "1") return;
-    trigger.dataset.bound = "1";
+    if (!dialog) return;
+
+    const triggers = Array.from(
+      document.querySelectorAll<HTMLButtonElement>("[data-language-trigger]"),
+    );
+    if (triggers.length === 0) return;
 
     const closeButton = document.getElementById("language-close");
     const filter = document.getElementById("language-filter") as
@@ -346,6 +348,8 @@ const closeLanguage = header?.closeLanguage ?? "Close language picker";
     const current = options.find(
       (option) => option.getAttribute("aria-current") === "true",
     );
+
+    let lastTrigger: HTMLElement | null = null;
 
     const filterOptions = () => {
       const query = filter?.value.trim().toLowerCase() ?? "";
@@ -361,23 +365,33 @@ const closeLanguage = header?.closeLanguage ?? "Close language picker";
 
     const close = (restoreFocus = true) => {
       if (dialog.open) dialog.close();
-      if (restoreFocus) trigger.focus();
+      if (restoreFocus) lastTrigger?.focus();
     };
 
-    trigger.addEventListener("click", () => {
-      filterOptions();
-      dialog.showModal();
-      window.requestAnimationFrame(() => {
-        filter?.focus();
-        current?.scrollIntoView({ block: "nearest" });
+    for (const trigger of triggers) {
+      if (trigger.dataset.bound === "1") continue;
+      trigger.dataset.bound = "1";
+      trigger.addEventListener("click", () => {
+        lastTrigger = trigger;
+        filterOptions();
+        dialog.showModal();
+        window.requestAnimationFrame(() => {
+          filter?.focus();
+          current?.scrollIntoView({ block: "nearest" });
+        });
       });
-    });
-    closeButton?.addEventListener("click", () => close());
-    filter?.addEventListener("input", filterOptions);
-    dialog.addEventListener("click", (event) => {
-      if (event.target === dialog) close();
-    });
-    dialog.addEventListener("cancel", () => close(false));
+    }
+
+    // Dialog-level listeners bind exactly once regardless of trigger count.
+    if (dialog.dataset.bound !== "1") {
+      dialog.dataset.bound = "1";
+      closeButton?.addEventListener("click", () => close());
+      filter?.addEventListener("input", filterOptions);
+      dialog.addEventListener("click", (event) => {
+        if (event.target === dialog) close();
+      });
+      dialog.addEventListener("cancel", () => close(false));
+    }
   }
   bindLanguageDialog();
   document.addEventListener("astro:page-load", bindLanguageDialog);
