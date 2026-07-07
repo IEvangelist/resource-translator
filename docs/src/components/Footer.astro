@@ -21,7 +21,7 @@ const { locale = defaultLocale, common, nav, slug = "index" } = Astro.props;
 
 const repoUrl = "https://github.com/IEvangelist/resource-translator";
 const marketplaceUrl =
-  "https://github.com/marketplace/actions/resource-translator";
+  "https://github.com/marketplace/actions/machine-translator";
 const npmUrl = "https://www.npmjs.com/package/@azure-rest/ai-translation-text";
 
 // Keep in lock-step with the `uses:` references across the docs pages.
@@ -193,79 +193,11 @@ const localeLabel = currentLocale?.nativeName ?? locale;
           </a>
         </div>
 
-        <!-- Socials + version + language -->
-        <div class="mt-6 flex flex-wrap items-center gap-2">
-          <ul
-            class="flex items-center gap-2"
-            aria-label={footer?.projectLinksAria ?? "Project links"}
-          >
-            <li>
-              <a
-                href={repoUrl}
-                rel="noopener"
-                target="_blank"
-                aria-label={footer?.sourceAria ?? "View source on GitHub"}
-                title="GitHub repository"
-                class="rt-social"
-              >
-                <Icon name="simple-icons:github" class="size-4" />
-              </a>
-            </li>
-            <li>
-              <a
-                href={npmUrl}
-                rel="noopener"
-                target="_blank"
-                aria-label={footer?.npmAria ?? "View the Azure Translator SDK on npm"}
-                title="npm"
-                class="rt-social"
-              >
-                <Icon name="simple-icons:npm" class="size-4" />
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://davidpine.dev"
-                rel="noopener"
-                target="_blank"
-                aria-label={footer?.authorAria ?? "David Pine's website"}
-                title="davidpine.dev"
-                class="rt-social"
-              >
-                <Icon name="lucide:globe" class="size-4" />
-              </a>
-            </li>
-          </ul>
-
-          <a
-            href={changelogHref}
-            class="rt-foot-pill"
-            title={footer?.whatsNew ?? "What's new"}
-          >
-            <Icon name="lucide:tag" class="size-3.5" aria-hidden="true" />
-            <span class="font-mono" dir="ltr">{actionVersion}</span>
-            <span class="text-(--fg-muted)">·</span>
-            <span>{footer?.whatsNew ?? "What's new"}</span>
-          </a>
-
-          <button
-            type="button"
-            data-language-trigger
-            class="rt-foot-pill"
-            aria-label={footer?.language ?? "Language"}
-            aria-haspopup="dialog"
-            aria-controls="language-dialog"
-          >
-            <Icon name="lucide:languages" class="size-3.5" aria-hidden="true" />
-            <span class="max-w-32 truncate">{localeLabel}</span>
-            <span class="font-mono uppercase text-(--fg-muted)" dir="ltr">{locale}</span>
-          </button>
-        </div>
       </div>
 
       <!-- Footer · Docs (sidebar already owns the primary "Documentation"
            landmark; rename here to keep landmarks unique per axe). -->
-      <nav class="lg:col-span-2" aria-label="Footer · Docs">
+      <nav class="lg:col-span-3" aria-label="Footer · Docs">
         <h2
           class="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-(--fg)"
         >
@@ -305,13 +237,13 @@ const localeLabel = currentLocale?.nativeName ?? locale;
       </nav>
 
       <!-- Community -->
-      <nav class="lg:col-span-4" aria-label="Footer · Community and support">
+      <nav class="lg:col-span-3" aria-label="Footer · Community and support">
         <h2
           class="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-(--fg)"
         >
           {footer?.community ?? "Community"}
         </h2>
-        <ul class="grid gap-2 sm:grid-cols-2">
+        <ul class="space-y-2">
           {
             communityLinks.map((l) => (
               <li>
@@ -337,51 +269,124 @@ const localeLabel = currentLocale?.nativeName ?? locale;
       </nav>
     </div>
 
-    <!-- Per-page contribution links (contextual to the current doc) -->
+    <!-- Utility strip: project socials (left) + version / language (right) -->
     <div
-      class="mt-10 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-(--border) pt-6 text-xs"
+      class="mt-12 flex flex-col gap-5 border-t border-(--border) pt-8 sm:flex-row sm:items-center sm:justify-between"
     >
-      <a
-        href={editUrl}
-        rel="noopener"
-        target="_blank"
-        class="rt-foot-page-link"
-        aria-label={footer?.editPageAria ?? "Edit this page's source on GitHub"}
+      <ul
+        class="flex items-center gap-2"
+        aria-label={footer?.projectLinksAria ?? "Project links"}
       >
-        <Icon name="lucide:pencil" class="size-3.5" aria-hidden="true" />
-        <span>{footer?.editPage ?? "Edit this page"}</span>
-      </a>
-      <a
-        href={reportIssueUrl}
-        rel="noopener"
-        target="_blank"
-        class="rt-foot-page-link"
-      >
-        <Icon name="lucide:flag" class="size-3.5" aria-hidden="true" />
-        <span>{footer?.reportIssue ?? "Report an issue with this page"}</span>
-      </a>
+        <li>
+          <a
+            href={repoUrl}
+            rel="noopener"
+            target="_blank"
+            aria-label={footer?.sourceAria ?? "View source on GitHub"}
+            title="GitHub repository"
+            class="rt-social"
+          >
+            <Icon name="simple-icons:github" class="size-4" />
+          </a>
+        </li>
+        <li>
+          <a
+            href={npmUrl}
+            rel="noopener"
+            target="_blank"
+            aria-label={footer?.npmAria ?? "View the Azure Translator SDK on npm"}
+            title="npm"
+            class="rt-social"
+          >
+            <Icon name="simple-icons:npm" class="size-4" />
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://davidpine.dev"
+            rel="noopener"
+            target="_blank"
+            aria-label={footer?.authorAria ?? "David Pine's website"}
+            title="davidpine.dev"
+            class="rt-social"
+          >
+            <Icon name="lucide:globe" class="size-4" />
+          </a>
+        </li>
+      </ul>
+
+      <div class="flex flex-wrap items-center gap-2">
+        <a
+          href={changelogHref}
+          class="rt-foot-pill"
+          title={footer?.whatsNew ?? "What's new"}
+        >
+          <Icon name="lucide:tag" class="size-3.5" aria-hidden="true" />
+          <span class="font-mono" dir="ltr">{actionVersion}</span>
+          <span class="text-(--fg-muted)">·</span>
+          <span>{footer?.whatsNew ?? "What's new"}</span>
+        </a>
+        <button
+          type="button"
+          data-language-trigger
+          class="rt-foot-pill"
+          aria-label={footer?.language ?? "Language"}
+          aria-haspopup="dialog"
+          aria-controls="language-dialog"
+        >
+          <Icon name="lucide:languages" class="size-3.5" aria-hidden="true" />
+          <span class="max-w-32 truncate">{localeLabel}</span>
+          <span class="font-mono uppercase text-(--fg-muted)" dir="ltr">{locale}</span>
+        </button>
+      </div>
     </div>
 
+    <!-- Legal strip: copyright + per-page links (left) · built-with (right).
+         `lg:pe-14` keeps the right column clear of the fixed BackToTop FAB,
+         which is pinned to the right edge of this same max-w-7xl column. -->
     <div
-      class="mt-6 flex flex-col items-center justify-between gap-3 text-xs sm:flex-row"
+      class="mt-8 flex flex-col gap-4 text-xs sm:flex-row sm:items-end sm:justify-between lg:pe-14"
     >
-      <p>
-        © {year}
-        <a
-          href="https://davidpine.dev"
-          rel="noopener"
-          target="_blank"
-          class="rt-foot-prose-link font-medium">David Pine 🤓</a
-        >
-        · {footer?.copyrightPrefix ?? "Released under the"}
-        <a
-          href={`${repoUrl}/blob/main/LICENSE`}
-          rel="noopener"
-          target="_blank"
-          class="rt-foot-prose-link">MIT License</a
-        >.
-      </p>
-      <p>
+      <div class="flex flex-col gap-2">
+        <p>
+          © {year}
+          <a
+            href="https://davidpine.dev"
+            rel="noopener"
+            target="_blank"
+            class="rt-foot-prose-link font-medium">David Pine 🤓</a
+          >
+          · {footer?.copyrightPrefix ?? "Released under the"}
+          <a
+            href={`${repoUrl}/blob/main/LICENSE`}
+            rel="noopener"
+            target="_blank"
+            class="rt-foot-prose-link">MIT License</a
+          >.
+        </p>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-(--fg-muted)">
+          <a
+            href={editUrl}
+            rel="noopener"
+            target="_blank"
+            class="rt-foot-page-link"
+            aria-label={footer?.editPageAria ?? "Edit this page's source on GitHub"}
+          >
+            <Icon name="lucide:pencil" class="size-3.5" aria-hidden="true" />
+            <span>{footer?.editPage ?? "Edit this page"}</span>
+          </a>
+          <a
+            href={reportIssueUrl}
+            rel="noopener"
+            target="_blank"
+            class="rt-foot-page-link"
+          >
+            <Icon name="lucide:flag" class="size-3.5" aria-hidden="true" />
+            <span>{footer?.reportIssue ?? "Report an issue with this page"}</span>
+          </a>
+        </div>
+      </div>
+      <p class="text-(--fg-muted)">
         {footer?.builtWith ?? "Built with"}
         <a href="https://astro.build" rel="noopener" target="_blank" class="rt-foot-prose-link">Astro</a>
         &
