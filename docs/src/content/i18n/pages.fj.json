@@ -227,7 +227,7 @@
 		"eyebrow": "iDusidusi",
 		"heroTitle": "Veitokoni ni ituvatuva ni faile",
 		"lede": "Ono na ituvatuva ni ivurevure e rawa ni veisautaki. Na cakacaka e wilika na faile yadua ni ivurevure-vanua, vakadewataka na yavunilewa, ka vola e dua na tacina ena dua na vanua takete.",
-		"namingConvention": "Na faile kece e vakayagataka na {namingConvention} na yacana ni yacana.",
+		"namingConvention": "Na faili kece e vakayagataka na {namingConvention} na yacana ni yacana.",
 		"learnMore": "Vulica eso tale na ka",
 		"items": {
 			"resx": {
@@ -276,7 +276,7 @@
 				"heading": "Glossary me baleta na yaca ni brand kei na vosa ni ivoli",
 				"intro": "Biuta e dua na {configPath} ki na repo:",
 				"afterLabel": "ni oti na",
-				"body": "Na vosa ni glossary e vakayagataki {after} na vakadewa, o koya gona na output vakadewataki vakamisini ena maroroya na nomu branding taleitaki ena gauna mada ga e veisautaka kina na ivakaraitaki me dua na ibalebale."
+				"body": "Na vosa ni glossary e vakayagataki {after} na vakadewa, o koya gona na output vakadewataki vakamisini e maroroya na nomu branding taleitaki ena gauna mada ga e veisautaka kina na ivakaraitaki me dua na ibalebale."
 			},
 			"customCategory": {
 				"heading": "iWasewase ni Dauvakadewa Tudei (cakacaka / vanua)",
@@ -314,7 +314,7 @@
 			},
 			"offline": {
 				"heading": "E rawa beka ni'u ciciva na cakacaka ena offline?",
-				"body": "Sega sara ga — Azure AI Translator na mona ni cicivaki. Ia e rawa ni o cici vata kei na {dryRunTrue} me vakadeitaka na parsing kei na config ka sega ni cakava e dua na kerekere HTTP me baleta na vakadewa."
+				"body": "Sega sara ga — Azure AI Translator na mona ni cicivaki. Ia e rawa ni o cici vata kei {dryRunTrue} me vakadeitaka na parsing kei na config ka sega ni cakava e dua na kerekere HTTP me baleta na vakadewa."
 			},
 			"node": {
 				"heading": "Na mataqali Node cava e cici kina na cakacaka?",
@@ -322,7 +322,7 @@
 			},
 			"dist": {
 				"heading": "E lako mai vei na {distDir} bundled?",
-				"body": "Na cakacaka ni GitHub JS e vakauta na nodra JS vakasokumuni ena repository. Na {distBuild} cakacaka e tarai cake tale ni oti na veisemati yadua me {mainBranch} kevaka e na kui, ka {distCheck} na tarova na PRs ka na yaco kina na output makawa."
+				"body": "Na cakacaka ni GitHub JS e vakauta na nodra JS vakasokumuni ena repository. Na cakacaka ni cakacaka ni {distBuild} e tarai cake tale ni oti na veisemati yadua me {mainBranch} kevaka e na kui, ka {distCheck} vakataotaka na PRs ka na yaco kina na output makawa."
 			},
 			"formats": {
 				"heading": "Vakacava na ituvatuva ni ivurevure tale eso?",
@@ -410,14 +410,14 @@
 				"newInputs": "Vakacurumi vou: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, vata kei na knobs ni Translator torocake {textType}, {profanityAction}, {profanityMarker}, kei na {allowFallback}.",
 				"sourceLocale": "Source locale is now also forwarded to Translator as {fromLocale} so short strings are not autodetected.",
 				"resilience": "{label} na tovo tale vakaikoya ena isau ni HTTP transient ({statusCodes}) doka na ulutaga ni {retryAfter} ni Azure — lutu lesu ki na jittered exponential backoff ni yali yani. Vakarorogo ena {maxRetries} kei na {retryBackoffMs}. {issue}",
-				"placeholderProtection": "{label} na ivakatakilakila me vaka na {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} kei na HTML entity era sa solegi ena sentinels ni bera na vakadewataki ka vakalesui mai ni oti, sa muduka kina na Dauvakadewa na mangling i18next/Mustache/Handlebars/.NET/printf placeholders. Toggle via {protectPlaceholders}; vakalevutaka vata kei na {customPlaceholderPatterns}. {issue}",
+				"placeholderProtection": "{label} na ivakatakilakila me vaka na {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} kei na HTML entity era sa solegi ena sentinels ni bera na vakadewataki ka vakalesui mai ni sa oti, sa muduka kina na Translator na mangling i18next/Mustache/Handlebars/.NET/printf placeholders. Toggle via {protectPlaceholders}; vakalevutaka vata kei na {customPlaceholderPatterns}. {issue}",
 				"perKeyOptOut": "{label} na vakacurumi vou ni {noTranslatePatterns} e vakalutuma taucoko na idola veisotari mai na kerekere ni Dauvakadewa (maroroya na yavunilewa ni ivurevure me baleta na yaca ni brand, nabavuni ni cala, kei na so tale). Veisotari na iwalewale ni glob vata kei na idola ni ivakatagedegede ni parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). {issue}",
 				"repoConfig": "Repo-level config via {configPath}.",
 				"glossary": "Veitokoni ni glossary, ivakaleka ni ikalawa mai na {coreSummary}.",
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
 				"audit": "Savasava ni dikevi fika ni npm (0 malumalumu).",
 				"docsSite": "Astro + Tailwind v4 docs site with view transitions and Expressive Code.",
-				"docsAccessibility": "{label} WCAG 2.1 AA pass. Sa veisautaki na glyphs ni ivakatakilakila ki na gaunisala me ra kakua tale ni leqa kina na veibasai ni roka mai na gradient stops, na bulukau ni {backToTop} e vakayagataka na {inert} ni vunitaki (ka sega ni dua na toggle ni {ariaHidden} ka biuta tu me tabbable), {formatsAstro} na iwasewase sa sega tale ni coqa vata kei na nodra ID ni ulutaga e vakavurea na auto, tolu na kadi ni vanua oqo e vakaraitaka na BCP-47-valid {lang} na ivakarau ni  ({nya}, {lug}, {run}), vakaruataki {documentation} ivakatakilakila ni ivakatakilakila sa disambiguated ena maliwa ni sidebar kei na footer,  kei na ituvatuva ni itukutuku kece ena {inputs}/{configuration} waqa vata kei na dua na ivakamacala ni wiliwili ni sikirini.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. Sa veisautaki na glyphs ni ivakatakilakila ki na gaunisala me ra kakua tale ni leqa kina na veibasai ni roka mai na gradient stops, na bulukau ni {backToTop} e vakayagataka na {inert} ni vunitaki (ka sega ni dua na toggle ni {ariaHidden} ka biuta tu me tabbable), {formatsAstro} na iwasewase sa sega tale ni coqa vata kei na nodra ID ni ulutaga auto-generated, tolu na kadi ni vanua oqo e vakaraitaka na BCP-47-valid {lang} attributs ({nya}, {lug}, {run}), duplicate {documentation} landmark labels are disambiguated between sidebar and footer,  kei na ituvatuva ni itukutuku kece ena {inputs}/{configuration} waqa vata kei na dua na ivakamacala ni wiliwili ni sikirini.",
 				"inlineCode": "{label} Docs Prose {codeElement} sa daramaka tu oqo na ivakatakilakila ni ulutaga katakata/amber — duidui mai na palette ni brand→accent e vakayagataki me baleta na isema kei na ulutaga.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}

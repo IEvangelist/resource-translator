@@ -93,7 +93,7 @@
 		},
 		"nextSteps": {
 			"title": "Sledeći koraci",
-			"configuration": "Konfigurišite podrazumevane vrednosti na nivou repo prostora sa {configPath}.",
+			"configuration": "Konfigurišite podrazumevane vrednosti na nivou repo sa {configPath}.",
 			"recipes": "Pogledajte recepte za monorepos, prilagođene glosare i kategorije prilagođenih prevodilaca."
 		}
 	},
@@ -120,7 +120,7 @@
 				"categoryId": "Azure {customTranslatorLink} kategorija — vaše dugme za industriju / domen (pravni, medicinski, marketinški ton, itd.). Poslato kao {categoryQuery}.",
 				"textType": "Podrazumevano je {plain}. Koristite {html} samo ako vaše vrednosti resursa sadrže stvarne HTML fragmente.",
 				"profanityAction": "Kako tretirati profane izraze u prevedenom izlazu.",
-				"profanityMarker": "Smisleno samo kada je {profanityAction} {marked}.",
+				"profanityMarker": "Smisleno samo kada {profanityAction} {marked}.",
 				"allowFallback": "Podesite na {false} da ne prevod kada vaš {categoryId} nema raspoređivanje za ciljni jezik umesto da se vrati na opšti model.",
 				"apiVersion": "Prevodilac REST API verzija. Podrazumevano je {version}.",
 				"maxRetries": "Maksimalni pokušaji ponovnog pokušaja na prolaznim HTTP odgovorima ({statusCodes}). Podrazumevano je {defaultRetries}. Ukupan HTTP poziv po zahtevu je {totalCalls}.",
@@ -189,7 +189,7 @@
 		},
 		"translatorInputs": {
 			"heading": "Prevodilaц zahtev ulazi",
-			"intro": "Oni se mapiraju direktno na Azure AI Translator v3 parametre upita. Svaki od njih nije obavezan; podrazumevane vrednosti prevodioca primenjuju se kada nisu podešene.",
+			"intro": "Oni se mapiraju direktno na Azure AI Translator vKSNUMKS parametre upita. Svaki od njih nije obavezan; podrazumevane vrednosti prevodioca primenjuju se kada nisu podešene.",
 			"caption": "Prevodilaц zahtev ulazi",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} kategorija — dugme za industriju/domen/ton. Prosleđeno kao {categoryQuery}.",
@@ -209,7 +209,7 @@
 				"retryBackoffMs": "Kapa (u milisekundama) na bilo kom pojedinačnom spavanju. Akcija poštuje Azure-ov {retryAfter} odgovor zaglavlje tačno kada je prisutan; u suprotnom koristi podrhtana eksponencijalna leđa ograničena na ovu vrednost.",
 				"protectPlaceholders": "Kada {true} (podrazumevano), držači mesta kao što su {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} i HTML entiteti se zamenjuju sa sentinel tokenima pre prevoda i vraćaju kasnije. Onemogućite samo kada vaš izvor namerno sadrži bukvalno tekst u obliku rezervnog mesta koji treba prevesti.",
 				"customPlaceholderPatterns": "Regeksi razdvojeni novom linijom (bez razdjelnika) dodani u podrazumevani skup, npr. {angleToken} za prilagođenu sintaksu tokena.",
-				"noTranslatePatterns": "Newline-separated glob patterns matched against parser-level keys (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). Odgovarajući ključevi su ispušteni iz zahteva prevodioca i prolaze sa sačuvanom izvornom vrednošću."
+				"noTranslatePatterns": "Newline-separated glob patterns matched against parser-level keys (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). Odgovarajući ključevi su ispušteni iz zahteva prevodilca i prolaze sa sačuvanom izvornom vrednošću."
 			}
 		},
 		"outputs": {
@@ -280,7 +280,7 @@
 			},
 			"customCategory": {
 				"heading": "Kategorija prilagođenog prevodilca (industrija / domen)",
-				"body": "Obučite Azure {customTranslatorLink} kategoriju na korpusu koji obuhvata vaš rečnik i ton u industriji (pravni, medicinski, marketinški, interni inženjering, itd.) I prenesite svoj ID preko {categoryId}. Ovo je najjača tonska poluga koju Azure nudi."
+				"body": "Obučite Azure {customTranslatorLink} kategoriju na korpusu koji obuhvata vaš rečnik i ton u industriji (pravni, medicinski, marketinški, interni inženjering, itd.) I prosledite svoj ID preko {categoryId}. Ovo je najjača tonska poluga koju Azure nudi."
 			},
 			"tone": {
 				"heading": "Kontrola tona + stroga rezerva",
@@ -417,8 +417,8 @@
 				"tooling": "esbuild bundler, ESLint 9 stan config, Lepši, EditorConfig.",
 				"audit": "NPM revizija čista (0 ranjivosti).",
 				"docsSite": "Astro + Tailvind vKSNUMKS docs sajt sa pogledom prelaza i ekspresivnog koda.",
-				"docsAccessibility": "{label} VCAG 2.1 AA prolaz. Logo glifovi pretvoreni u putanje tako da više ne uspevaju kontrast boja u odnosu na gradijent zaustavljanja, plutajuće dugme {backToTop} koristi {inert} dok je skriveno (umesto {ariaHidden} prekidača koji ga je ostavio tabable), {formatsAstro} sekcije se više ne sudaraju sa svojim automatski generisanim ID naslova, tri locale kartice sada izlažu BCP-47-validne {lang} atribute ({nya}, {lug}, {run}), duplikat {documentation} oznake orijentira su razdvojeni između bočne trake i podnožja,  i svaka tabela podataka na {inputs}/{configuration} isporučuje se sa natpisom čitača ekrana.",
-				"inlineCode": "{label} dokumentarni prozni {codeElement} sada nosi topli / ćilibarni akcent - različit od brend→akcentne palete koja se koristi za linkove i naslove.",
+				"docsAccessibility": "{label} VCAG 2.1 AA prolaz. Logo glifovi pretvoreni u putanje tako da više ne uspevaju kontrast boja u odnosu na gradijent zaustavljanja, plutajuće dugme {backToTop} koristi {inert} dok je skriveno (umesto {ariaHidden} prekidača koji ga je ostavio tabable), {formatsAstro} sekcije se više ne sudaraju sa svojim automatski generisanim ID-ovima naslova, tri locale kartice sada izlažu BCP-47-validne {lang} atribute ({nya}, {lug}, {run}), duplikat {documentation} oznake orijentira su razdvojeni između bočne trake i podnožja,  i svaka tabela podataka na {inputs}/{configuration} isporučuje se sa natpisom čitača ekrana.",
+				"inlineCode": "{label} dokumentarna proza {codeElement} sada nosi topli / ćilibarni akcent - različit od brend→akcentne palete koja se koristi za linkove i naslove.",
 				"automation": "Dependabot automatsko spajanje, CodeKL skeniranje, CI matrica."
 			}
 		},

@@ -53,9 +53,24 @@
 		"sourceAria": "Ver código fuente en GitHub",
 		"marketplaceAria": "Ver en GitHub Marketplace",
 		"authorAria": "Página web de David Pine",
+		"npmAria": "Consulta el SDK del traductor de Azure en npm",
 		"taglinePrefix": "Una acción de GitHub que traduce automáticamente tus archivos de recursos, construida sobre el oficial",
 		"taglineMiddle": "SDK de",
 		"copyrightPrefix": "Publicado bajo el",
-		"builtWith": "Construido con"
+		"builtWith": "Construido con",
+		"installLabel": "Añádelo a tu flujo de trabajo",
+		"copy": "Copiado",
+		"copied": "¡Copiado!",
+		"copyAria": "Copia el fragmento de instalación en tu portapapeles",
+		"marketplaceCta": "Consíguelo en GitHub Marketplace",
+		"starCta": "Estrella en GitHub",
+		"starAria": "Star Resource Translator en GitHub",
+		"stargazersAria": "Cuenta los stargazers en GitHub",
+		"versionLabel": "Versión",
+		"whatsNew": "Qué hay de nuevo",
+		"language": "Idioma",
+		"editPage": "Editar esta página",
+		"editPageAria": "Edita el código fuente de esta página en GitHub",
+		"reportIssue": "Reporta un problema con esta página"
 	}
 }

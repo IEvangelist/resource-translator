@@ -1,61 +1,76 @@
 {
 	"site": {
-		"name": "资源翻译",
-		"defaultDescription": "Documentation for the Resource Translator GitHub Action — 通過 Azure AI Translator 自動機器翻譯資源文件。",
-		"homeLabel": "资源翻译器 — 首页"
+		"name": "资源译器",
+		"defaultDescription": "资源翻译器GitHub Action文档——经Azure AI翻译器自动机器翻译资源文件。",
+		"homeLabel": "资源译者——首页"
 	},
-	"skipToContent": "跳到内容",
+	"skipToContent": "跳至正文",
 	"drawer": {
-		"open": "打开导航",
-		"close": "近导航",
-		"title": "导航"
+		"open": "開放導航",
+		"close": "近航",
+		"title": "航行"
 	},
 	"header": {
-		"search": "搜索文档",
-		"searchPlaceholder": "搜索文档...",
-		"toggleTheme": "切换主题",
-		"githubRepository": "GitHub 存储库",
-		"language": "语言",
-		"languageTitle": "选择你的语言",
-		"languageDescription": "以另一种语言切换到同一页面。",
+		"search": "检索文献",
+		"searchPlaceholder": "检索文献......",
+		"toggleTheme": "切換主題",
+		"githubRepository": "GitHub仓库",
+		"language": "語言",
+		"languageTitle": "择尔之言",
+		"languageDescription": "切换至他语同页。",
 		"languageSearch": "过滤语言",
-		"languageSearchPlaceholder": "搜索语言或区域代码......",
-		"languageNoResults": "没有语言可以匹配这个过滤器。",
-		"closeLanguage": "关闭语言选择器"
+		"languageSearchPlaceholder": "搜尋語言或地區代碼......",
+		"languageNoResults": "无一语言能与此筛选相符。",
+		"closeLanguage": "密語選擇器"
 	},
 	"search": {
-		"title": "搜索文档",
-		"results": "搜索结果",
-		"placeholder": "搜索文章、章节、食谱......",
-		"close": "近搜",
-		"idleTitle": "搜索文档",
-		"idleHelp": "按主题、文件格式、配置选项或食谱查找文章。 用{up} {down}导航,{enter}打开。",
-		"loading": "搜索......",
-		"empty": "没有结果。 尝试不同的关键字。",
-		"error": "搜索索引在 dev 中不可用。 运行生产构建。"
+		"title": "检索文献",
+		"results": "检索结果",
+		"placeholder": "搜寻文章、章节、食谱......",
+		"close": "近距搜寻",
+		"idleTitle": "檢閱文獻",
+		"idleHelp": "依主題、檔案格式、配置選項或食譜尋文。 用{up} {down}导航,开启{enter}。",
+		"loading": "搜寻中......",
+		"empty": "無所獲。 试换他关键词。",
+		"error": "开发中无搜索索引。 运行生产构建。"
 	},
 	"toc": {
-		"title": "本页内容"
+		"title": "於此頁"
 	},
 	"pager": {
 		"ariaLabel": "文章",
-		"previous": "上一篇",
-		"next": "下一页"
+		"previous": "前事",
+		"next": "次者"
 	},
 	"backToTop": {
-		"label": "滚动到顶部"
+		"label": "卷至顶端"
 	},
 	"footer": {
-		"docs": "文档",
-		"project": "项目",
-		"community": "社区",
+		"docs": "文献",
+		"project": "計劃",
+		"community": "社群",
 		"projectLinksAria": "项目链接",
-		"sourceAria": "在 GitHub 上查看源代码",
-		"marketplaceAria": "在 GitHub Marketplace 上查看",
-		"authorAria": "大卫·派恩的网站",
-		"taglinePrefix": "一个 GitHub Action,可以自动翻译您的资源文件,建立在官方",
-		"taglineMiddle": "SDK 来自",
-		"copyrightPrefix": "根据",
-		"builtWith": "内置"
+		"sourceAria": "於GitHub觀原始碼",
+		"marketplaceAria": "於GitHub市集閱覽",
+		"authorAria": "大卫·派恩官网",
+		"npmAria": "View the Azure Translator SDK on npm",
+		"taglinePrefix": "一GitHub Action,自动转译资源文件,建于官方之上",
+		"taglineMiddle": "SDK 出自",
+		"copyrightPrefix": "發行於",
+		"builtWith": "建造",
+		"installLabel": "纳入工作流程",
+		"copy": "收到",
+		"copied": "复制矣!",
+		"copyAria": "将安装片段复制至剪贴板",
+		"marketplaceCta": "可於GitHub市集購之",
+		"starCta": "GitHub之星",
+		"starAria": "GitHub 之星资源翻译器",
+		"stargazersAria": "GitHub stargazers count",
+		"versionLabel": "版本",
+		"whatsNew": "新事",
+		"language": "語言",
+		"editPage": "編輯此頁",
+		"editPageAria": "於GitHub編輯此頁源碼。",
+		"reportIssue": "此页举报问题"
 	}
 }

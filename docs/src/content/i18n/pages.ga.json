@@ -42,7 +42,7 @@
 			},
 			"dryRun": {
 				"title": "Rith tirim + bog-teip",
-				"body": "Réamhamharc ar aistriúcháin gan comhaid a scríobh, nó gach earráid a dhromchla mar rabhadh agus tú ag athrá."
+				"body": "Réamhamharc ar aistriúcháin gan comhaid a scríobh, nó dromchla gach earráid mar rabhadh agus tú ag athrá."
 			},
 			"outputs": {
 				"title": "Aschuir PR-chairdiúla",
@@ -352,7 +352,7 @@
 			"steps": {
 				"source": "Tá an comhad foinse Béarla ina chónaí ag {messagesPath}.",
 				"workflow": "Brúigh an teagmháil sin {workflowLink}, a ritheann {thisAction} ina choinne féin.",
-				"fanOut": "An gníomh lucht leanúna amach chuig gach áitiúil le tacaíocht ó Azure AI Translator (cumraithe i {configPath}) agus scríobhann sé {messagesLocaleJson} sibling in aghaidh an sprioc.",
+				"fanOut": "An gníomh lucht leanúna amach chuig gach áitiúil le tacaíocht ó Azure AI Translator (cumraithe i {configPath}) agus scríobhann sé {messagesLocaleJson} deirfiúr in aghaidh an sprioc.",
 				"pullRequest": "Osclaítear iarratas tarraingthe leis na haistriúcháin nua. Má dhéantar é a chumasc, athfhoilsítear an leathanach seo leis na cártaí líonta isteach."
 			}
 		},
@@ -410,7 +410,7 @@
 				"newInputs": "Ionchuir nua: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, chomh maith le knobs Aistritheoir chun cinn {textType}, {profanityAction}, {profanityMarker}, agus {allowFallback}.",
 				"sourceLocale": "Cuirtear logáil foinse ar aghaidh chuig an Aistritheoir anois freisin mar {fromLocale} ionas nach ndéantar teaghráin ghearra a bhrath go huathoibríoch.",
 				"resilience": "{label} aththriail uathoibríoch ar fhreagairtí HTTP neamhbhuana ({statusCodes}) a thugann onóir do cheanntásc {retryAfter} Azure - titeann sé ar ais go cúl easpónantúil jittered nuair a bhíonn sé as láthair. Inchoigeartaithe trí {maxRetries} agus {retryBackoffMs}. {issue}",
-				"placeholderProtection": "{label} comharthaí cosúil le {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} agus eintitis HTML fillte i sentinels sula ndéantar iad a aistriú agus a athchóiriú ina dhiaidh sin, mar sin stopann an tAistritheoir ionadshealbhóirí i18next / Mustache / Handlebars / .NET / printf a mangling. Scoránaigh trí {protectPlaceholders}; síneadh le {customPlaceholderPatterns}. {issue}",
+				"placeholderProtection": "{label} comharthaí cosúil le {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} agus eintitis HTML fillte i sentinels sula ndéantar iad a aistriú agus a athchóiriú ina dhiaidh sin, mar sin stopann Aistritheoir ionadshealbhóirí i18next/Mustache/Handlebars/.NET/printf a mangling. Scoránaigh trí {protectPlaceholders}; síneadh le {customPlaceholderPatterns}. {issue}",
 				"perKeyOptOut": "{label} ionchur nua {noTranslatePatterns} titeann eochracha meaitseála ón iarratas Aistritheoir go hiomlán (caomhnaíonn luachanna foinse d'ainmneacha branda, cóid earráide, srl.). Meaitseálann patrúin glob i gcoinne eochracha leibhéal parsálaí (cosán poncaithe JSON, RESX {resxName}, PO {poMsgid}, aonad XLIFF {xliffId}, eochair INI / restext). {issue}",
 				"repoConfig": "Cumraíocht leibhéal repo trí {configPath}.",
 				"glossary": "Tacaíocht gluais, achoimre céime trí {coreSummary}.",

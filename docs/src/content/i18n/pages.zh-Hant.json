@@ -126,8 +126,8 @@
 				"maxRetries": "暫時 HTTP 回應的最大重試次數（{statusCodes}）。預設是{defaultRetries}。每個請求的 HTTP 呼叫總數為 {totalCalls}。",
 				"retryBackoffMs": "任何單次退避睡眠都要用 cap（ms）。預設是{defaultBackoff}。Azure的{retryAfter}頭在出現時會被精確尊重;否則則使用抖動指數退縮，並限制在此值。",
 				"protectPlaceholders": "預設是{true}。啟用時，像 {mustache}、{jsVar}、{indexZero}、{numberFormat}、{printf}、{positionalPrintf} 和 HTML 等標記在轉換前會被哨兵標記取代，轉換後則恢復。只有當原始碼故意包含佔位符形狀的字面時才會停用。",
-				"customPlaceholderPatterns": "在預設佔位符集中加入了額外的正則表達式模式（不含分隔符），例如用於自訂標記語法的{angleToken}。無效的正則表達式會被忽略。",
-				"noTranslatePatterns": "球狀模式與解析器層級鍵（JSON 點線路徑、RESX {resxName}、PO {poMsgid}、XLIFF 單位 {xliffId}、INI/restext 鍵）相匹配。匹配的金鑰會從請求中被刪除，並保留其來源值通過。"
+				"customPlaceholderPatterns": "在預設佔位符集中加入了額外的正則表達式模式（不含分隔符），例如用於自訂標記語法的 {angleToken}。無效的正則表達式會被忽略。",
+				"noTranslatePatterns": "球狀模式與解析器層級鍵（JSON點路徑、RESX {resxName}、PO {poMsgid}、XLIFF 單位 {xliffId}、INI/restext 鍵）相匹配。匹配的金鑰會從請求中被刪除，並保留其來源值通過。"
 			}
 		},
 		"loadingOrder": {
@@ -371,7 +371,7 @@
 				"fixture": "在{testDataDir}下方加裝一個固定裝置。",
 				"implement": "實作{parserInterface}（{parse}、{format}、{applyTranslations}、{toTranslatableTextMap}）。",
 				"register": "{factoryFile}註冊。",
-				"extension": "在 {finderFile} 中加上檔案副檔名{translationFileSchemes}。",
+				"extension": "在 {finderFile} {translationFileSchemes} 加上副檔名。",
 				"tests": "寫來回測試，針對 parse → 格式並應用翻譯。"
 			}
 		},
@@ -387,7 +387,7 @@
 	"changelog": {
 		"title": "更新日誌",
 		"eyebrow": "歷史",
-		"lede": "發布的高層次摘要。正統且權威的變更日誌存放在倉庫的 CHANGELOG.md 中。",
+		"lede": "發布的高層次摘要。正統且權威的變更日誌存放在倉庫 CHANGELOG.md 中。",
 		"fullRecord": "完整紀錄請參見{changelogLink}。",
 		"fullRecordLinkLabel": "CHANGELOG.md",
 		"v3": {
@@ -418,7 +418,7 @@
 				"audit": "NPM 審計清潔（0 漏洞）。",
 				"docsSite": "Astro + Tailwind v4 文件網站，附有視圖轉換和表達式程式碼。",
 				"docsAccessibility": "{label} WCAG 2.1 AA 通行證。標誌字形轉換為路徑，使其不再因漸層阻擋而失色，浮動{backToTop}按鈕隱藏時使用{inert}（取代{ariaHidden}切換，保持分頁），{formatsAstro}區塊不再與自動產生的標題 ID 碰撞，三張區域卡顯示符合 BCP-47 的 {lang} 屬性（{nya}、{lug}、{run}），重複的{documentation}地標標籤在側邊欄與頁尾間進行消歧， {inputs}/{configuration} 上的每個資料表都附有螢幕閱讀器說明。",
-				"inlineCode": "{label} Docs 的散文{codeElement}現在採用溫暖/琥珀色主題的強調——與品牌→強調連結和標題的口音調色不同。",
+				"inlineCode": "{label} Docs 的散文{codeElement}現在採用溫暖/琥珀色主題的強調——與品牌→用於連結和標題的口音調色不同。",
 				"automation": "Dependabot 自動合併、CodeQL 掃描、CI 矩陣。"
 			}
 		},

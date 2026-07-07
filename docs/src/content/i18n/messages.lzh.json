@@ -1,32 +1,32 @@
 {
-	"tagline": "在每次提交时本地化您的存储库。",
+	"tagline": "每次提交皆本地化仓库。",
 	"hero": {
 		"eyebrow": "展示",
-		"title": "每种语言的你好",
-		"lede": "此頁面由 Resource Translator 本身翻譯成 Azure AI Translator 支持的每種語言。"
+		"title": "諸語皆問安",
+		"lede": "此页由资源翻译器自译,每次推送至主线,皆译为Azure AI Translator所支持之诸语言。"
 	},
 	"phrases": {
-		"greeting": "你好,世界!",
-		"welcome": "欢迎使用 Resource Translator。",
-		"machine_translated": "由 Azure AI Translator 机器翻译。",
-		"open_pull_request": "用新翻译打开一个拉取请求。",
-		"ship_anywhere": "将您的软件运送到地球上的任何地方。",
-		"thank_you": "感谢您尝试 Resource Translator。"
+		"greeting": "天地安否!",
+		"welcome": "歡迎蒞臨資源譯者。",
+		"machine_translated": "由Azure AI Translator機器翻譯。",
+		"open_pull_request": "开拉取请求,附新译文。",
+		"ship_anywhere": "软件可运至天下任一处。",
+		"thank_you": "谢君尝试资源翻译器。"
 	},
 	"ctas": {
-		"view_source": "查看源代码",
-		"translate_now": "翻译我的存储库",
-		"read_the_docs": "阅读文档",
-		"contribute": "在 GitHub 上做出贡献"
+		"view_source": "览源",
+		"translate_now": "译吾仓库",
+		"read_the_docs": "详读文献",
+		"contribute": "請於GitHub貢獻"
 	},
 	"features": {
-		"fast": "在几秒钟内翻译资源。",
-		"reliable": "往返源文件的每个字节。",
-		"configurable": "语气、行业、词汇表、亵渎——都可以配置。",
-		"ci_native": "專為 GitHub Actions 和拉取請求工作流程而設計。"
+		"fast": "数秒内译资源。",
+		"reliable": "往返汝源文件之每一字节。",
+		"configurable": "语气、行业、词汇表、粗言秽语,皆可配置。",
+		"ci_native": "专为GitHub Actions及pull-request工作流而设。"
 	},
 	"footer": {
-		"powered_by": "由 Resource Translator 和 Azure AI Translator 提供支持。",
-		"view_translation_pr": "查看最新的翻译拉取请求。"
+		"powered_by": "由资源翻译器与Azure AI翻译器驱动。",
+		"view_translation_pr": "覽最新譯文拉取請求。"
 	}
 }

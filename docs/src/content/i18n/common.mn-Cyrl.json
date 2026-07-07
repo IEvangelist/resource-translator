@@ -1,7 +1,7 @@
 {
 	"site": {
 		"name": "Нөөцийн орчуулагч",
-		"defaultDescription": "Resource Translator GitHub Action-ийн баримт бичиг — Azure AI Translator-ээр ашиглан нөөцийн файлуудыг автоматжуулсан машин орчуулга.",
+		"defaultDescription": "Resource Translator GitHub Action-ийн баримт бичиг — Azure AI Translator-ээр нөөцийн файлуудыг автоматжуулсан машин орчуулга.",
 		"homeLabel": "Нөөц орчуулагч — нүүр хуудас"
 	},
 	"skipToContent": "Агуулга руу шилжих",
@@ -53,9 +53,24 @@
 		"sourceAria": "GitHub дээрх эх сурвалжийг үзэх",
 		"marketplaceAria": "GitHub Marketplace дээрх үзэмж",
 		"authorAria": "Дэвид Пайны вэбсайт",
+		"npmAria": "Azure Translator SDK-г npm дээр үзнэ үү",
 		"taglinePrefix": "Таны нөөцийн файлуудыг автоматаар орчуулдаг GitHub үйлдэл бөгөөд албан ёсны файлын дээр суурилсан",
 		"taglineMiddle": "SDK нь",
 		"copyrightPrefix": "Гарсан:",
-		"builtWith": "Баригдсан"
+		"builtWith": "Баригдсан",
+		"installLabel": "Үүнийг ажлын урсгалдаа нэмээрэй",
+		"copy": "Хүлээн авлаа",
+		"copied": "Хуулбарлалаа!",
+		"copyAria": "Суулгалтын хэсгийг өөрийн клипборд хуулж аваарай",
+		"marketplaceCta": "GitHub Marketplace-аас аваарай",
+		"starCta": "GitHub дээр Star",
+		"starAria": "GitHub дээрх Star Resource Translator",
+		"stargazersAria": "GitHub од ажиглагчдын тоо",
+		"versionLabel": "Хувилбар",
+		"whatsNew": "Шинэ мэдээлэл",
+		"language": "Хэл",
+		"editPage": "Энэ хуудсыг засварлах",
+		"editPageAria": "Энэ хуудасны эх сурвалжийг GitHub дээр засварлах",
+		"reportIssue": "Энэ хуудсанд асуудал гарсан тухай мэдээлэл өгнө"
 	}
 }

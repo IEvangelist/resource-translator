@@ -145,7 +145,7 @@
 			"industryLabel": "Industrie / domeniu:",
 			"industryBody": "folosește {categoryId} pentru a indica o categorie Azure {customTranslatorLink} antrenată pe propriul tău corpus — juridic, tehnic, medical, de marketing sau orice altceva. Aceasta este cea mai puternică pârghie pentru ton, vocea brandului și vocabular.",
 			"surfaceLabel": "Textul de la suprafață:",
-			"surfaceBody": "Folosește {glossaryLink} pentru a bloca numele de mărci și termenii de produs cuvânt cu cuvânt și folosește {profanityAction} pentru a elimina termenii vulgari atunci când vizezi localizarea către publicul mai tânăr.",
+			"surfaceBody": "Folosește {glossaryLink} pentru a bloca numele mărcilor și termenii de produs cuvânt cu cuvânt și folosește {profanityAction} pentru a elimina termenii vulgari atunci când vizezi localizarea către publicul mai tânăr.",
 			"glossaryLinkLabel": "Glosar"
 		}
 	},
@@ -196,7 +196,7 @@
 				"textType": "{plain} sau {html}. Folosește {html} doar când valorile resurselor tale sunt fragmente HTML reale.",
 				"profanityAction": "{noAction}, {marked} sau {deleted}. Controlează modul în care termenii profani sunt emși în traduceri.",
 				"profanityMarker": "{asterisk} sau {tag}. Are sens doar când {profanityAction} este {marked}.",
-				"allowFallback": "Când {false}, traducătorul returnează o eroare în loc să revină la sistemul general dacă {categoryId} ta nu are implementare pentru o locație țintă.",
+				"allowFallback": "Când {false}, Translator returnează o eroare în loc să revină la sistemul general dacă {categoryId} ta nu are implementare pentru o locație țintă.",
 				"apiVersion": "Versiunea API REST a traducătorului."
 			}
 		},
@@ -287,7 +287,7 @@
 				"body": "Combină un {categoryId} Custom Translator cu {profanityAction} și {allowFallbackFalse} pentru a impune o voce consecventă și eșuează fluxul de lucru dacă categoria aleasă nu are o implementare pentru una dintre locațiile țintă."
 			},
 			"dryRun": {
-				"heading": "Verifică înainte de a porni fluxul de lucru",
+				"heading": "Testare generală înainte de a porni fluxul de lucru",
 				"body": "Acțiunea emite în continuare rezultate sumare și un rezumat al pașilor, dar nu se scriu fișiere. Combină cu {failOnErrorFalse} pentru a evidenția fiecare problemă ca avertisment în timp ce iterezi."
 			}
 		}
@@ -304,7 +304,7 @@
 			},
 			"tone": {
 				"heading": "De ce traducerile sunt uneori necaracteristice sau netonale?",
-				"body": "Traducerea automată folosește implicit un model cu scop general. Trei butoane ajută: un {glossaryLink} pentru suprascrieri de termeni rigidi, un {customTranslatorLink} pentru modele reglate fin antrenate pe tonul și vocabularul tău și {profanityAction} pentru a șterge sau semnala termeni profani.",
+				"body": "Traducerea automată folosește implicit un model cu scop general. Trei butoane ajută: un {glossaryLink} pentru suprascrieri de termeni rigidi, un {customTranslatorLink} pentru modele fin reglate antrenate pe tonul și vocabularul tău și {profanityAction} pentru a șterge sau semnala termeni profani.",
 				"glossaryLinkLabel": "Glosar",
 				"customTranslatorLinkLabel": "Categoria traducătoare personalizate"
 			},
@@ -322,7 +322,7 @@
 			},
 			"dist": {
 				"heading": "De unde provine pachetul {distDir}?",
-				"body": "Acțiunile GitHub JS livrează JS-ul compilat în depozit. Fluxul de {distBuild} îl reconstruiește după fiecare merge pentru a {mainBranch} dacă va deriva și {distCheck} blochează PR-urile care ar genera ieșiri învechite."
+				"body": "Acțiunile GitHub JS livrează JS-ul compilat în depozit. Fluxul {distBuild} îl reconstruiește după fiecare merge pentru a {mainBranch} dacă va deriva și {distCheck} blochează PR-urile care ar genera ieșiri depășite."
 			},
 			"formats": {
 				"heading": "Dar ce se întâmplă cu alte formate de resurse?",
@@ -351,7 +351,7 @@
 			"thisActionLabel": "Chiar această acțiune",
 			"steps": {
 				"source": "Fișierul sursă în limba engleză se află la {messagesPath}.",
-				"workflow": "Împinge acea atingere {workflowLink} lovitură, care {thisAction} se lovește de ea însăși.",
+				"workflow": "Împinge acea atingere {workflowLink} lovitură, care se lovește {thisAction} de sine însăși.",
 				"fanOut": "Acțiunea se răspândește în fiecare locație susținută de Azure AI Translator (configurată în {configPath}) și scrie un {messagesLocaleJson} frate pentru fiecare țintă.",
 				"pullRequest": "Se deschide o pull request cu noile traduceri. Îmbinarea ei republică această pagină cu cardurile completate."
 			}
@@ -417,7 +417,7 @@
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
 				"audit": "Audit NPM curat (0 vulnerabilități).",
 				"docsSite": "Site de documentație Astro + Tailwind v4 cu tranziții de vizualizare și Expressive Code.",
-				"docsAccessibility": "{label} WCAG 2.1 AA Pass. Glifele logo-ului au fost convertite în căi astfel încât să nu mai eșueze contrastul de culoare cu opririle de gradient, butonul de {backToTop} plutitor folosește {inert} când sunt ascunse (în loc de un comutator {ariaHidden} care îl făcea tababil), {formatsAstro} secțiuni nu mai intră în coliziune cu ID-urile de titlu generate automat, trei carduri de localizare expun acum atribute de {lang} valide BCP-47 ({nya}, {lug}, {run}), etichetele duplicate {documentation} repere sunt dezambiguizate între bara laterală și subsol,  iar fiecare tabel de date de pe {inputs}/{configuration} vine cu o legendă de cititor de ecran.",
+				"docsAccessibility": "{label} WCAG 2.1 AA Pass. Glifele logo-ului au fost convertite în căi astfel încât să nu mai eșueze contrastul de culoare cu opririle de gradient, butonul de {backToTop} plutitor folosește {inert} când sunt ascunse (în loc de un comutator {ariaHidden} care îl lăsa tababil), {formatsAstro} secțiuni nu mai intră în coliziune cu ID-urile de titluri generate automat, trei carduri de localizare expun acum atribute de {lang} valide BCP-47 ({nya}, {lug}, {run}), etichetele duplicate {documentation} repere sunt dezambiguizate între bara laterală și subsol,  iar fiecare tabel de date de pe {inputs}/{configuration} vine cu o legendă de cititor de ecran.",
 				"inlineCode": "Proza {label} documentară {codeElement} poartă acum accentul tematic cald/chihlimbar — distinct de paleta → accente de brand folosită pentru linkuri și titluri.",
 				"automation": "Dependabot auto-merge, scanare CodeQL, matrice CI."
 			}

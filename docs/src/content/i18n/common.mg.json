@@ -29,7 +29,7 @@
 		"placeholder": "Fikarohana lahatsoratra, fizarana, fomba fahandro ...",
 		"close": "Fikarohana akaiky",
 		"idleTitle": "Tadiavo ny antontan-taratasy",
-		"idleHelp": "Mitadiava lahatsoratra amin'ny lohahevitra, endrika rakitra, safidy fanamboarana, na fomba fanamboarana. Ampiasao {up} {down} hivezivezy, {enter} hanokafana.",
+		"idleHelp": "Mitadiava lahatsoratra amin'ny lohahevitra, endrika rakitra, safidy fanamboarana, na fomba fanamboarana. Ampiasao {up} {down} mba hivezivezy, {enter} hanokafana.",
 		"loading": "Ny fikarohana...",
 		"empty": "Tsy misy vokatra. Andramo ny teny fanalahidy hafa.",
 		"error": "Ny index fikarohana dia tsy hita ao amin'ny dev. Manaova fananganana famokarana."
@@ -53,9 +53,24 @@
 		"sourceAria": "Jereo ny loharano ao amin'ny GitHub",
 		"marketplaceAria": "Jereo ao amin'ny GitHub Marketplace",
 		"authorAria": "Tranonkalan'i David Pine",
+		"npmAria": "Jereo ny Azure Translator SDK ao amin'ny npm",
 		"taglinePrefix": "Hetsika GitHub izay mandika ny rakitra loharanon-karena ho azy, natsangana teo an-tampon'ny ofisialy",
 		"taglineMiddle": "SDK avy amin'ny",
 		"copyrightPrefix": "Navotsotra teo ambanin'ny",
-		"builtWith": "Namboarina tamin'ny"
+		"builtWith": "Namboarina tamin'ny",
+		"installLabel": "Ampidiro ao amin'ny fizotran'ny asanao izany",
+		"copy": "Kopia",
+		"copied": "Nadika!",
+		"copyAria": "Adikao ao amin'ny clipboard ny sombin-tsoratra fametrahana",
+		"marketplaceCta": "Raiso ao amin'ny GitHub Marketplace",
+		"starCta": "Kintana ao amin'ny GitHub",
+		"starAria": "Star Resource Translator ao amin'ny GitHub",
+		"stargazersAria": "Ny isan'ny mpijery kintana GitHub",
+		"versionLabel": "Dikan-teny",
+		"whatsNew": "Inona no vaovao",
+		"language": "Fiteny",
+		"editPage": "Hanova ity pejy ity",
+		"editPageAria": "Ovao ny loharanon'ity pejy ity ao amin'ny GitHub",
+		"reportIssue": "Mitatitra olana amin'ity pejy ity"
 	}
 }

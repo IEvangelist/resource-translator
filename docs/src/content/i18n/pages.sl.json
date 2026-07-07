@@ -1,12 +1,12 @@
 {
 	"index": {
 		"title": "Prevajalnik virov",
-		"description": "Resource Translator odpira strojno prevedene pull requeste za vaše datoteke z viri v kateremkoli repozitoriju, v kateremkoli formatu — poganja ga Azure AI Translator.",
+		"description": "Resource Translator odpira strojno prevedene pull requeste za vaše resource datoteke v kateremkoli repozitoriju, v kateremkoli formatu — poganja ga Azure AI Translator.",
 		"socialTitle": "Prevajalnik virov — samodejno prevaja datoteke virov",
 		"badge": "v3.0 — Node 24, konfiguracija repozitorija, slovarček, suhi preizkus",
 		"headlinePrefix": "Lokalizirajte svoj repozitorij na",
 		"headlineAccent": "vsak commit.",
-		"lede": "Resource Translator odpira strojno prevedene pull requeste za vaše resource datoteke z uporabo Azure AI Translatorja preko uradnega SDK — brez dodatnih storitev, le delovni tok.",
+		"lede": "Resource Translator odpira strojno prevedene pull requeste za vaše resource datoteke z uporabo Azure AI Translatorja prek uradnega SDK — brez dodatnih storitev, le delovni tok.",
 		"primaryCta": "Začnite",
 		"secondaryCta": "Zvezda na GitHubu",
 		"supports": "Podpore",
@@ -30,7 +30,7 @@
 		"features": {
 			"formats": {
 				"title": "Šest formatov datotek",
-				"body": "Povratne poti {resx}, {xliff}, {po}, {json}, {ini} in {restext} z bajtno stabilnim oblikovanjem."
+				"body": "Povratne poti {resx}, {xliff}, {po}, {json}, {ini} in {restext} z bajtno stabilnim formatiranjem."
 			},
 			"config": {
 				"title": "Konfiguracija na ravni repozitorija",
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Ste pripravljeni na lokalizacijo na avtopilotu?",
-			"body": "En ključ Azure AI Translator, ena datoteka delovnega toka. Prevajalnik virov skrbi za ostalo.",
+			"body": "En ključ Azure AI Translator, ena datoteka delovnega toka. Prevajalnik virov poskrbi za ostalo.",
 			"button": "Začnite"
 		}
 	},
@@ -134,7 +134,7 @@
 			"heading": "Vrstni red nalaganja",
 			"steps": {
 				"actionInputs": "Akcija bere eksplicitne vhode iz delovnega toka.",
-				"config": "Iz {configPath} naloži YAML konfiguracijo.",
+				"config": "Naloži YAML konfiguracijo iz {configPath}.",
 				"precedence": "Za vsako skupno polje zmaga vhod; v nasprotnem primeru se uporablja vrednost YAML.",
 				"validation": "Združene vrednosti so potrjene. Neveljavni enumi (npr. {invalidEnum}) povzročijo, da dejanje hitro spodleti, če je jasno sporočilo."
 			}
@@ -202,7 +202,7 @@
 		},
 		"resilienceInputs": {
 			"heading": "Odpornost in zaščita nadomestkov",
-			"intro": "Ti vnosi nadzorujejo, kako se dejanje obnaša, ko prevajalnik omeji vašo zahtevo, in kako ščiti začasne žetone, kot sta {mustache} ali {indexZero}, pred pokvarjenimi med prevajanjem.",
+			"intro": "Ti vnosi nadzorujejo, kako se dejanje obnaša, ko prevajalnik omeji vašo zahtevo, in kako ščiti začasne žetone, kot sta {mustache} ali {indexZero}, pred pokvarjenostjo med prevajanjem.",
 			"caption": "Vhodni podatki za odpornost in začasno zaščito",
 			"items": {
 				"maxRetries": "Največ poskusov ponovnega poskusa pri prehodnih HTTP odgovorih ({statusCodes}). Skupno število HTTP klicev na zahtevo je {totalCalls}.",
@@ -276,7 +276,7 @@
 				"heading": "Slovar za blagovne znamke in izdelke",
 				"intro": "Položite {configPath} v repozitorij:",
 				"afterLabel": "Po",
-				"body": "Izrazi iz slovarja se uporabljajo {after} prevod, tako da strojno prevedeni izhod ohranja vašo želeno blagovno znamko, tudi ko jo je model zamenjal za sopomenko."
+				"body": "Slovarčki se uporabljajo {after} prevodu, tako da strojno prevedeni izhod ohranja vašo želeno blagovno znamko, tudi ko jo je model zamenjal za sopomenko."
 			},
 			"customCategory": {
 				"heading": "Kategorija prilagojenih prevajalnikov (industrija / področje)",
@@ -395,7 +395,7 @@
 			"labels": {
 				"breaking": "PRELOM",
 				"resilience": "Odpornost:",
-				"placeholderProtection": "Zaščita kot nadomestek:",
+				"placeholderProtection": "Zaščita kot začasna zaščita:",
 				"perKeyOptOut": "Odjava po ključu:",
 				"docsAccessibility": "Dostopnost dokumentov:",
 				"inlineCodeStyling": "Inline kodiranje kode:"
@@ -409,7 +409,7 @@
 				"runtime": "Premaknjeno na {nodeRuntime} čas izvajanja ({breaking}).",
 				"newInputs": "Novi vhodi: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, poleg naprednih gumbov prevajalnika {textType}, {profanityAction}, {profanityMarker} in {allowFallback}.",
 				"sourceLocale": "Izvorna lokacija je zdaj prav tako posredovana prevajalniku kot {fromLocale} tako da kratki nizi niso samodejno zaznani.",
-				"resilience": "{label} samodejni ponovni poskus pri prehodnih HTTP odgovorih ({statusCodes}), ki spoštuje Azurejevo {retryAfter} glavo — ko ni prisotna, se vrne k tresečemu eksponentnemu umikanju. Nastavljivo preko {maxRetries} in {retryBackoffMs}. {issue}",
+				"resilience": "{label} samodejni ponovni poskus pri prehodnih HTTP odgovorih ({statusCodes}), ki spoštuje {retryAfter} glavo Azureja — se ob odsotnosti vrne k tresečemu eksponentnemu umikanju. Nastavljivo preko {maxRetries} in {retryBackoffMs}. {issue}",
 				"placeholderProtection": "{label} žetoni, kot so {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} in HTML entitete, so pred prevodom zavite v sentinele in kasneje obnovljene, zato Translator preneha spreminjati i18next/Mustache/Handlebars/.NET/printf. Preklop preko {protectPlaceholders}; Podaljšajte z {customPlaceholderPatterns}. {issue}",
 				"perKeyOptOut": "{label} novi {noTranslatePatterns} vhodni ključi popolnoma izločijo ujemajoče se ključe iz zahteve prevajalnika (ohrani izvorne vrednosti za blagovne znamke, kode napak itd.). Primerja vzorce glob s ključi na ravni parserja (JSON pikčasta pot, RESX {resxName}, PO {poMsgid}, XLIFF enota {xliffId}, INI/restext ključ). {issue}",
 				"repoConfig": "Konfiguracija na ravni repozitorija preko {configPath}.",
@@ -417,7 +417,7 @@
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
 				"audit": "NPM revizija čista (0 ranljivosti).",
 				"docsSite": "Astro + Tailwind v4 dokumentacija s prehodi med pogledi in Expressive kodo.",
-				"docsAccessibility": "{label} WCAG 2.1 AA pass. Glifi logotipov so bili pretvorjeni v poti, tako da ne bi več odpovedali barvnemu kontrastu proti gradientnim zaporam, lebdeči gumb {backToTop} uporablja {inert} med skritim (namesto {ariaHidden} preklopnika, ki bi ga pustil zavihčenega), {formatsAstro} odseki ne trčijo več z avtomatsko ustvarjenimi ID-ji naslovov, tri kartice lokacije zdaj razkrivajo BCP-47-veljavne {lang} atribute ({nya}, {lug}, {run}), podvojene {documentation} oznake znamenitosti so razločene med stransko vrstico in stopalo,  in vsaka podatkovna tabela na {inputs}/{configuration} je priložena z napisom na bralniku zaslona.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. Glifi logotipov so bili pretvorjeni v poti, tako da ne bi več odpovedali barvnemu kontrastu proti gradientnim zaporam, lebdeči gumb {backToTop} uporablja {inert} med skritim (namesto {ariaHidden} stikala, ki bi ga pustil zavihčenega), {formatsAstro} odseki ne trčijo več z avtomatsko ustvarjenimi ID-ji naslovov, tri kartice lokacije zdaj razkrivajo BCP-47-veljavne {lang} atribute ({nya}, {lug}, {run}), podvojene {documentation} oznake znamenitosti so razločene med stransko vrstico in stopalo,  in vsaka podatkovna tabela na {inputs}/{configuration} je priložena z napisom na bralniku zaslona.",
 				"inlineCode": "{label} dokumentarna proza {codeElement} zdaj nosi topel/jantarni poudarek — drugačen od palete znamk→naglas, ki se uporablja za povezave in naslove.",
 				"automation": "Dependabot samodejno združevanje, CodeQL skeniranje, CI matrika."
 			}

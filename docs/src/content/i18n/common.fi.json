@@ -53,9 +53,24 @@
 		"sourceAria": "Katso lähdekoodi GitHubissa",
 		"marketplaceAria": "Katso GitHub Marketplacessa",
 		"authorAria": "David Pinen verkkosivusto",
+		"npmAria": "Katso Azure Translator SDK npm:ssä",
 		"taglinePrefix": "GitHub-toiminto, joka kääntää resurssitiedostosi automaattisesti, rakennettu virallisen tiedoston päälle",
 		"taglineMiddle": "SDK lähteestä",
 		"copyrightPrefix": "Julkaistu nimellä",
-		"builtWith": "Rakennettu"
+		"builtWith": "Rakennettu",
+		"installLabel": "Lisää se työskentelyyn",
+		"copy": "Selvä",
+		"copied": "Kopioitu!",
+		"copyAria": "Kopioi asennuspätkä leikepöydällesi",
+		"marketplaceCta": "Hanki se GitHub Marketplacesta",
+		"starCta": "Star GitHubissa",
+		"starAria": "Star Resource Translator GitHubissa",
+		"stargazersAria": "GitHubin tähtitarkkailijat lasketaan",
+		"versionLabel": "Versio",
+		"whatsNew": "Mitä uutta",
+		"language": "Kieli",
+		"editPage": "Muokkaa tätä sivua",
+		"editPageAria": "Muokkaa tämän sivun lähdekoodia GitHubissa",
+		"reportIssue": "Ilmoita ongelmasta tällä sivulla"
 	}
 }

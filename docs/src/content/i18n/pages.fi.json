@@ -194,7 +194,7 @@
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — industry/domain/tone nnob. Lähetetty {categoryQuery}.",
 				"textType": "{plain} tai {html}. Käytä {html} vain silloin, kun resurssiarvosi ovat oikeita HTML-fragmentteja.",
-				"profanityAction": "{noAction}, {marked} tai {deleted}. Säätelee, miten kirosanoja esitetään käännöksissä.",
+				"profanityAction": "{noAction}, {marked} tai {deleted}. Se säätelee, miten kirosanoja esitetään käännöksissä.",
 				"profanityMarker": "{asterisk} tai {tag}. Merkityksellinen vain silloin, kun {profanityAction} on {marked}.",
 				"allowFallback": "Kun {false}, kääntäjä palauttaa virheen sen sijaan, että palaisi yleiseen järjestelmään, jos {categoryId} ei ole lainkaan käyttöönottoa kohdealueelle.",
 				"apiVersion": "Kääntäjä REST API -versio."
@@ -284,7 +284,7 @@
 			},
 			"tone": {
 				"heading": "Sävynhallinta + tiukka varasuunnitelma",
-				"body": "Yhdistä Custom Translator {categoryId} {profanityAction} ja {allowFallbackFalse} saadaksesi yhtenäisen äänen ja epäonnistuaksesi työnkulussa, jos valitulla kategorialla ei ole käyttöönottoa jollekin kohdepaikoistasi."
+				"body": "Yhdistä Custom Translator {categoryId} {profanityAction} ja {allowFallbackFalse} saadaksesi yhtenäisen äänen ja epäonnistuaksesi työnkulussa, jos valitulla kategorialla ei ole käyttöönottoa jollekin kohdealueistasi."
 			},
 			"dryRun": {
 				"heading": "Kokeile ennen työnkulun käynnistämistä",
@@ -304,7 +304,7 @@
 			},
 			"tone": {
 				"heading": "Miksi käännökset ovat joskus epätyypillisiä tai epätyypillisiä?",
-				"body": "Konekäännös on oletuksena yleiskäyttöinen malli. Kolme nuppia auttaa: {glossaryLink} kovien termien ohittamiseen, {customTranslatorLink} hienosäädettyihin malleihin, jotka on koulutettu äänen ja sanaston mukaan, sekä {profanityAction} kirosanojen poistamiseen tai merkitsemiseen.",
+				"body": "Konekäännös on oletuksena yleiskäyttöinen malli. Kolme nuppia auttaa: {glossaryLink} kovien termien ohituksiin, {customTranslatorLink} hienosäädetyille malleille, jotka on koulutettu äänen ja sanaston mukaan, sekä {profanityAction} kirosanojen poistamiseen tai merkitsemiseen.",
 				"glossaryLinkLabel": "sanasto",
 				"customTranslatorLinkLabel": "Custom Translator -kategoria"
 			},
@@ -314,7 +314,7 @@
 			},
 			"offline": {
 				"heading": "Voinko ajaa toiminnon offline-tilassa?",
-				"body": "Ei aivan — Azure AI Translator on ajonaikainen aivo. Mutta voit ajaa {dryRunTrue}:n kanssa jäsentämisen ja konfiguroinnin validointiin ilman HTTP-pyyntöjä käännöstä varten."
+				"body": "Ei aivan — Azure AI Translator on ajonaikainen aivo. Mutta voit ajaa {dryRunTrue}:n kanssa jäsentämisen ja konfiguroinnin validointiin ilman HTTP-pyyntöjä käännöspyynnöille."
 			},
 			"node": {
 				"heading": "Millä Node-versiolla toiminto pyörii?",
@@ -417,8 +417,8 @@
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
 				"audit": "NPM:n auditointi puhdas (0 haavoittuvuutta).",
 				"docsSite": "Astro + Tailwind v4 -dokumentaatiosivusto, jossa on näkymäsiirtymät ja Expressive Code.",
-				"docsAccessibility": "{label} WCAG 2.1 AA -heitto. Logon glyfit on muunnettu poluiksi, jotta ne eivät enää epäonnistu värikontrastissa liukuvärin pysäytyksiä vastaan, kelluva {backToTop}-painike käyttää {inert} piilossa (sen sijaan, että {ariaHidden}-kytkin jättäisi sen välikohtaiseksi), {formatsAstro} osiot eivät enää törmää automaattisesti luotujen otsikkotunnisteiden kanssa, kolme paikkakorttia paljastaa nyt BCP-47-pätevät {lang}-attribuutit ({nya}, {lug}, {run}), duplikaatit {documentation} maamerkkitunnisteet on erotettu sivupalkin ja alatunnisteen välillä,  ja jokainen {inputs}/{configuration}:n datataulukko toimitetaan ruudunlukijan kuvatekstin kanssa.",
-				"inlineCode": "{label} Docs Prose {codeElement} käyttää nyt lämpimän/meripihkan väristä teemaa — eroaa linkkeihin ja otsikoihin käytetystä brändi→aksenttipaletista.",
+				"docsAccessibility": "{label} WCAG 2.1 AA -heitto. Logoglyfit on muunnettu poluiksi, jotta ne eivät enää epäonnistu värikontrastissa liukuvärin pysäytyksiä vastaan, kelluva {backToTop}-painike käyttää {inert} piilotettuna (sen sijaan, että se olisi ollut {ariaHidden}-kytkin, joka jätti sen välimuistiin), {formatsAstro} osiot eivät enää törmää automaattisesti luotuihin otsikkotunnisteisiin, kolme paikkakorttia paljastaa nyt BCP-47-pätevät {lang}-attribuutit ({nya}, {lug}, {run}), duplikaatit {documentation} maamerkkitunnisteet on erotettu sivupalkin ja alatunnisteen välillä,  ja jokainen {inputs}/{configuration}:n datataulukko toimitetaan ruudunlukijan kuvatekstin kanssa.",
+				"inlineCode": "{label} Docs Prose {codeElement} käyttää nyt lämpimän/meripihkan väristä teemaa — eroaa linkkien ja otsikoiden brändi→aksenttipaletista.",
 				"automation": "Dependabot automaattinen yhdistäminen, CodeQL-skannaus, CI-matriisi."
 			}
 		},

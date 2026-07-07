@@ -42,7 +42,7 @@
 			},
 			"dryRun": {
 				"title": "Dry-run + soft-fail",
-				"body": "Faýl ýazman terjimeleri öňünden görüň ýa-da her bir ýalňyşlygy duýduryş hökmünde ýüze çykaryň."
+				"body": "Faýllary ýazman terjimeleri öňünden görüň ýa-da her bir ýalňyşlygy duýduryş hökmünde ýüze çykaryň."
 			},
 			"outputs": {
 				"title": "PR-dostlukly çykyşlar",
@@ -284,7 +284,7 @@
 			},
 			"tone": {
 				"heading": "Äheňe gözegçilik + berk yza çekilme",
-				"body": "Custom Translator {categoryId} {profanityAction} we {allowFallbackFalse} bilen birleşdirip, yzygiderli sesi mejbur ediň we saýlanan kategoriýaňyzda nyşan ýerleriňiziň biri üçin ýerleşdirilmedik ýagdaýynda iş akışyny şowsuzlyga uçraň."
+				"body": "Custom Translator {categoryId} {profanityAction} we {allowFallbackFalse} bilen birleşdirip, yzygiderli sesi mejbur ediň we saýlanan kategoriýaňyzda nyşan ýerleriňiziň biri üçin ýerleşdirilmedik bolsa, iş akışyny şowsuzlyga uçraň."
 			},
 			"dryRun": {
 				"heading": "Iş akışyny açmazdan öň gurak ylgaň",
@@ -338,7 +338,7 @@
 		"lede": "Bu sahypa Resource Translator tarapyndan Azure AI Translatoryň goldaýan her diline terjime edilýär.",
 		"localeCountLabel": "{count} ýerleri",
 		"statusComplete": "{translatedCount} şu wagt render edilýär — tamamlandy!",
-		"statusPending": "{translatedCount} häzirki wagtda render edilýär - {pendingCount} indiki {workflowName} garaşýar.",
+		"statusPending": "{translatedCount} şu wagt render edilýär - {pendingCount} indiki {workflowName} garaşýar.",
 		"viewWorkflowRuns": "Workflow işleýşini gör",
 		"filter": "Filtr",
 		"filterPlaceholder": "Dil, kod ýa-da ýerli at boýunça gözle...",
@@ -370,7 +370,7 @@
 			"steps": {
 				"fixture": "Aşakda fikstür goş {testDataDir}.",
 				"implement": "Ýerine {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
-				"register": "Ony hasaba {factoryFile}.",
+				"register": "Ony {factoryFile}.",
 				"extension": "Faýl giňeltmesini {translationFileSchemes} içinde {finderFile}.",
 				"tests": "Parse → format we applyTranslations üçin round-trip testlerini ýaz."
 			}
@@ -411,7 +411,7 @@
 				"sourceLocale": "Source locale indi Translatora hem iberilýär {fromLocale} şonuň üçin gysga stringler otomatik anyklanylmaýar.",
 				"resilience": "{label} wagtlaýyn HTTP jogaplarynda ({statusCodes}) otomatik gaýtadan synanyşmak Azure-yň {retryAfter} başlygyna hormat goýýar - ýok wagty jittered exponential backoffa gaýdyp gelýär. Programma arkaly {maxRetries} we {retryBackoffMs}. {issue}",
 				"placeholderProtection": "{label} {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} we HTML obýektleri terjime edilmezden öň sentinellere dolanýar we soň dikeldilýär, şonuň üçin Translator i18next/Mustache/Handlebars/.NET/printf ýerleşdirijilerini mangling etmegini bes edýär. Toggle arkaly {protectPlaceholders}; uzaltmak {customPlaceholderPatterns}. {issue}",
-				"perKeyOptOut": "{label} täze {noTranslatePatterns} girişi Translator haýyşyndan gabat gelýän açarlary bütinleý düşürýär (marka atlarynyň, hata kodlarynyň we ş.m. üçin çeşme gymmatlyklaryny saklaýar). Glob nusgalaryny parser derejeli açarlara (JSON nokta ýoly, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key) bilen deňeşdirýär. {issue}",
+				"perKeyOptOut": "{label} täze {noTranslatePatterns} girişi Translator haýyşyndan gabat gelýän açarlary bütinleý düşürýär (marka atlarynyň, hata kodlarynyň we ş.m. üçin çeşme gymmatlyklaryny saklaýar). Glob nusgalaryny parser derejeli açarlara (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key) bilen deňeşdirýär. {issue}",
 				"repoConfig": "Repo derejeli konfigurasiýa arkaly {configPath}.",
 				"glossary": "Sözlük goldawy, ädim gysgaça {coreSummary}.",
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",

@@ -194,7 +194,7 @@
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} categorie — de industrie/domein/toonknop. Doorgestuurd als {categoryQuery}.",
 				"textType": "{plain} of {html}. Gebruik {html} alleen wanneer je resourcewaarden echte HTML-fragmenten zijn.",
-				"profanityAction": "{noAction}, {marked} of {deleted}. Bepaalt hoe grove termen worden uitgesproken in vertalingen.",
+				"profanityAction": "{noAction}, {marked} of {deleted}. Bepaalt hoe grove termen worden gebruikt in vertalingen.",
 				"profanityMarker": "{asterisk} of {tag}. Alleen betekenisvol als {profanityAction} {marked} is.",
 				"allowFallback": "Wanneer {false}, geeft Translator een foutmelding in plaats van terug te vallen op het algemene systeem als je {categoryId} geen deployment voor een doellocatie heeft.",
 				"apiVersion": "Translator REST API-versie."

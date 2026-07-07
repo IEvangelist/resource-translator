@@ -121,11 +121,11 @@
 				"textType": "به طور پیش فرض به {plain} می رود. فقط زمانی از {html} استفاده کنید که مقادیر منابع شما شامل قطعات واقعی HTML باشد.",
 				"profanityAction": "چگونه با واژه های رکیک در خروجی ترجمه شده برخورد کنیم.",
 				"profanityMarker": "فقط زمانی معنی دار است که {profanityAction} {marked} باشد.",
-				"allowFallback": "روی {false} تنظیم کنید که ترجمه زمانی شکست بخورد که {categoryId} شما هیچ استقرار برای یک مکان هدف ندارد، به جای اینکه به مدل کلی برگردد.",
+				"allowFallback": "روی {false} تنظیم کنید که ترجمه زمانی شکست بخورد که {categoryId} شما برای یک محل هدف استقرار ندارد، به جای اینکه به مدل کلی برگردد.",
 				"apiVersion": "نسخه API مترجم REST. به طور پیش فرض به {version} می رود.",
 				"maxRetries": "حداکثر تلاش برای تلاش مجدد برای پاسخ های گذرا HTTP ({statusCodes}). به طور پیش فرض به {defaultRetries} می رود. مجموع فراخوان های HTTP در هر درخواست {totalCalls} است.",
 				"retryBackoffMs": "کپ (ms) در هر خواب تک بازگشتی. به طور پیش فرض به {defaultBackoff} می رود. سر {retryAfter} آزور دقیقاً زمانی که حضور دارد محترم شمرده می شود؛ در غیر این صورت، بازگشت نمایی نوسان دار استفاده می شود که در این مقدار محدود می شود.",
-				"protectPlaceholders": "به طور پیش فرض به {true} می رود. وقتی فعال هستند، توکن هایی مانند {mustache}، {jsVar}، {indexZero}، {numberFormat}، {printf}، {positionalPrintf} و HTML قبل از ترجمه با توکن های سنتینل جایگزین شده و سپس بازیابی می شوند. فقط زمانی غیرفعال کن که منبع عمداً شامل عبارات موقتی باشد.",
+				"protectPlaceholders": "به طور پیش فرض به {true} می رود. وقتی فعال هستند، توکن هایی مانند {mustache}، {jsVar}، {indexZero}، {numberFormat}، {printf}، {positionalPrintf} و HTML قبل از ترجمه با توکن های سنتینل جایگزین شده و سپس بازیابی می شوند. فقط زمانی غیرفعال کن که منبع عمداً شامل عبارات جایگزین باشد.",
 				"customPlaceholderPatterns": "الگوهای اضافی regex (بدون جداکننده ها) به مجموعه جایگزین پیش فرض اضافه شدند، مثلاً {angleToken} برای نحو توکن سفارشی. regexهای نامعتبر نادیده گرفته می شوند.",
 				"noTranslatePatterns": "الگوهای گلوب با کلیدهای سطح پارسر (مسیر نقطه دار JSON، {resxName} RESX، {poMsgid} PO، {xliffId} واحد XLIFF، کلید INI/restext) مطابقت داشتند. کلیدهای تطبیقی از درخواست حذف شده و با مقدار منبع حفظ شده عبور داده می شوند."
 			}
@@ -300,7 +300,7 @@
 		"questions": {
 			"azure": {
 				"heading": "اکشن چگونه با Azure ارتباط برقرار می کند؟",
-				"body": "از طریق SDK رسمی {azureSdkLink} مایکروسافت، که روی {corePipelineLink} لایه گذاری شده است. این کار شما را به شما اجازه می دهد که به طور خودکار تلاش های مجدد روی {statusCodes}، مدل های درخواست و پاسخ تایپ شده و مدیریت هدر تأیید هویت را به صورت رایگان انجام دهید — همه چیزهایی که قبلاً یک تماس دستی {axios} بود. سطح اقدام عمومی (ورودی ها، خروجی ها، خروجی های فایل) بدون تغییر باقی می ماند."
+				"body": "از طریق SDK رسمی {azureSdkLink} مایکروسافت، که روی {corePipelineLink} لایه گذاری شده است. این کار شما را به شما اجازه می دهد که به طور خودکار تلاش های مجدد روی {statusCodes}، مدل های درخواست و پاسخ تایپ شده و مدیریت هدر احراز هویت را به صورت رایگان انجام دهید — همه چیزهایی که قبلاً یک تماس دستی {axios} بود. سطح اقدام عمومی (ورودی ها، خروجی ها، خروجی های فایل) بدون تغییر باقی می ماند."
 			},
 			"tone": {
 				"heading": "چرا ترجمه ها گاهی خارج از برند یا خارج از لحن هستند؟",
@@ -372,7 +372,7 @@
 				"implement": "پیاده سازی {parserInterface} ({parse}، {format}، {applyTranslations}، {toTranslatableTextMap}).",
 				"register": "آن را در {factoryFile} ثبت کنید.",
 				"extension": "پسوند فایل را به {translationFileSchemes} در {finderFile} اضافه کنید.",
-				"tests": "تست های رفت و برگشت برای فرمت → تجزیه و تطبیق بنویسید."
+				"tests": "تست های رفت و برگشت برای فرمت تجزیه → و applicationTranslations بنویسید."
 			}
 		},
 		"coverage": {
@@ -407,9 +407,9 @@
 			},
 			"items": {
 				"runtime": "به مدت زمان {nodeRuntime} منتقل شد ({breaking}).",
-				"newInputs": "ورودی های جدید: {include}، {exclude}، {configPath}، {categoryId}، {apiVersion}، {dryRun}، {failOnError}، به علاوه پیچ های پیشرفته ترجمه کننده {textType}، {profanityAction}، {profanityMarker} و {allowFallback}.",
+				"newInputs": "ورودی های جدید: {include}، {exclude}، {configPath}، {categoryId}، {apiVersion}، {dryRun}، {failOnError}، به علاوه دکمه های پیشرفته ترجمه کننده {textType}، {profanityAction}، {profanityMarker} و {allowFallback}.",
 				"sourceLocale": "محل منبع اکنون به عنوان {fromLocale} به Translator نیز ارسال می شود، بنابراین رشته های کوتاه به طور خودکار شناسایی نمی شوند.",
-				"resilience": "{label} تلاش مجدد خودکار در پاسخ های HTTP گذرا ({statusCodes}) که هدر {retryAfter} Azure را رعایت می کند — در صورت عدم وجود به عقب نشینی نمایی نوسان دار بازمی گردد. از طریق {maxRetries} و {retryBackoffMs} قابل تنظیم است. {issue}",
+				"resilience": "{label} تلاش مجدد خودکار پاسخ های HTTP گذرا ({statusCodes}) که به هدر {retryAfter} Azure احترام می گذارد — در غیاب به عقب نشینی نمایی نوسان دار بازمی گردد. از طریق {maxRetries} و {retryBackoffMs} قابل تنظیم است. {issue}",
 				"placeholderProtection": "توکن های {label} مانند {mustache}، {jsVar}، {indexZero}، {numberFormat}، {printf}، {positionalPrintf} و HTML قبل از ترجمه در سنتینل ها پیچیده شده و سپس بازیابی می شوند، بنابراین مترجم دیگر جای نگهدارنده های i18next/Mustache/Handlebars/.NET/printf را خراب نمی کند. تغییر از طریق {protectPlaceholders}؛ با {customPlaceholderPatterns} گسترش دهید. {issue}",
 				"perKeyOptOut": "{label} ورودی جدید {noTranslatePatterns} کلیدهای مطابقت یافته را کاملاً از درخواست مترجم حذف می کند (مقادیر منبع برای نام های برند، کدهای خطا و غیره را حفظ می کند). الگوهای گلوب را با کلیدهای سطح پارسر (مسیر نقطه دار JSON، {resxName} مسیر نقطه دار RESX، {poMsgid} ، واحد XLIFF {xliffId}، کلید INI/restext) مطابقت می دهد. {issue}",
 				"repoConfig": "پیکربندی سطح مخزن از طریق {configPath}.",
@@ -417,7 +417,7 @@
 				"tooling": "esbuild bundler، ESLint 9 flat config، Prettier، EditorConfig.",
 				"audit": "ممیزی NPM پاک (۰ آسیب پذیری).",
 				"docsSite": "سایت مستندات Astro + Tailwind v4 با انتقال نما و کد بیانی.",
-				"docsAccessibility": "{label} پاس WCAG 2.1 AA. گلیف های لوگو به مسیر تبدیل شده اند تا دیگر در برابر توقف های گرادیان تضاد رنگی نداشته باشند، دکمه {backToTop} شناور {inert} را در حالت مخفی استفاده می کند (به جای یک کلید {ariaHidden} که آن را قابل تب می کرد)، {formatsAstro} بخش ها دیگر با شناسه های عنوان خودکار خود برخورد نمی کنند، سه کارت محلی اکنون ویژگی های {lang} معتبر BCP-47 را نشان می دهند ({nya}، {lug}، {run})، برچسب های تکراری {documentation} نشانه بین نوار کناری و پاورقی جدا شده اند،  و هر جدول داده در {inputs}/{configuration} با زیرنویس صفحه خوان عرضه می شود.",
+				"docsAccessibility": "{label} پاس WCAG 2.1 AA. گلیف های لوگو به مسیر تبدیل شده اند تا دیگر در برابر توقف های گرادیان تضاد رنگی نداشته باشند، دکمه {backToTop} شناور {inert} را در حالت مخفی استفاده می کند (به جای یک کلید {ariaHidden} که آن را قابل تب می کرد)، {formatsAstro} بخش ها دیگر با شناسه های عنوان خودکار خود برخورد نمی کنند، سه کارت محلی اکنون ویژگی های {lang} معتبر BCP-47 ({nya}، {lug}، {run}) را نشان می دهند، برچسب های تکراری {documentation} نشانه بین نوار کناری و پاورقی جدا شده اند،  و هر جدول داده در {inputs}/{configuration} با زیرنویس صفحه خوان عرضه می شود.",
 				"inlineCode": "{codeElement} نثر مستندهای {label} اکنون لهجه تم گرم/کهربایی را دارد — که با پالت برند→لهجه ای که برای لینک ها و عناوین استفاده می شود متفاوت است.",
 				"automation": "ادغام خودکار Dependabot، اسکن CodeQL، ماتریس CI."
 			}

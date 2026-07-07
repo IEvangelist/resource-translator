@@ -76,7 +76,7 @@
 				"body": "በ Azure ፖርታል ውስጥ የ Azure AI ተርጓሚ ምንጭ ይፍጠሩ እና የስራ ፍሰቱ እንዲያነባቸው የሚከተሉትን እንደ GitHub ማከማቻ ሚስጥሮች ያከማቹ",
 				"key": "ለሀብቱ የደንበኝነት ምዝገባ ቁልፍ።",
 				"endpoint": "የክልል የመጨረሻ ነጥብ ዩአርኤል.",
-				"region": "የሀብቱ አዙሬ ክልል።"
+				"region": "የሀብቱ አዙር ክልል።"
 			},
 			"workflow": {
 				"title": "የስራ ሂደቱን ያክሉ",
@@ -125,7 +125,7 @@
 				"apiVersion": "ተርጓሚ REST API ሥሪት። ወደ {version} ነባሪዎች።",
 				"maxRetries": "በጊዜያዊ የኤችቲቲፒ ምላሾች ላይ ከፍተኛው የድጋሚ ሙከራ ሙከራዎች ({statusCodes})። ወደ {defaultRetries} ነባሪዎች። ጠቅላላ የኤችቲቲፒ ጥሪዎች በአንድ ጥያቄ {totalCalls} ነው።",
 				"retryBackoffMs": "ካፕ (ms) በማንኛውም ነጠላ የኋላ እንቅልፍ ላይ። ወደ {defaultBackoff} ነባሪዎች። የ Azure {retryAfter} ራስጌ በሚገኝበት ጊዜ በትክክል ይከበራል; . አለበለዚያ የተደናገጠ ገላጭ ጀርባ ጥቅም ላይ ይውላል፣ በዚህ እሴት ተሸፍኗል።",
-				"protectPlaceholders": "ወደ {true} ነባሪዎች። ሲበራ እንደ {mustache}፣ {jsVar}፣ {indexZero}፣ {numberFormat}፣ {printf}፣ {positionalPrintf} እና ኤችቲኤምኤል አካላት ያሉ ቶከኖች ከመተርጎማቸው በፊት በሴንቲነል ቶከኖች ይተካሉ እና ከዚያ በኋላ ይመለሳሉ። ምንጩ ሆን ብሎ የቦታ ያዥ ቅርጽ ያላቸውን ቃል በቃል ሲይዝ ብቻ አሰናክል።",
+				"protectPlaceholders": "ወደ {true} ነባሪዎች። ሲበራ እንደ {mustache}፣ {jsVar}፣ {indexZero}፣ {numberFormat}፣ {printf}፣ {positionalPrintf} እና ኤችቲኤምኤል አካላት ያሉ ቶከኖች ከመተርጎማቸው በፊት በሴንቲነል ቶከኖች ይተካሉ እና ከዚያ በኋላ ይመለሳሉ። ምንጩ ሆን ብሎ የቦታ ያዥ ቅርጽ ያላቸውን ቃል በቃል ሲይዝ ብቻ አሰናክሏል።",
 				"customPlaceholderPatterns": "ተጨማሪ የ regex ቅጦች (ያለ ገደቢዎች) ወደ ነባሪው የቦታ ያዥ ስብስብ ታክለዋል፣ ለምሳሌ {angleToken} ለብጁ ማስመሰያ አገባብ። ልክ ያልሆኑ regexs ችላ ተብሏል።",
 				"noTranslatePatterns": "የግሎብ ቅጦች ከትንተና-ደረጃ ቁልፎች ጋር ይዛመዳሉ (JSON ነጥብ ያለው መንገድ፣ RESX {resxName}፣ PO {poMsgid}፣ XLIFF አሃድ {xliffId}፣ INI/restext ቁልፍ)። ተዛማጅ ቁልፎች ከጥያቄው ይጣላሉ እና የምንጭ እሴታቸው ተጠብቆ ያልፋሉ።"
 			}
@@ -208,7 +208,7 @@
 				"maxRetries": "በጊዜያዊ የኤችቲቲፒ ምላሾች ላይ ከፍተኛው የድጋሚ ሙከራ ሙከራዎች ({statusCodes})። በአንድ ጥያቄ አጠቃላይ የኤችቲቲፒ ጥሪዎች ብዛት {totalCalls} ነው።",
 				"retryBackoffMs": "በማንኛውም ነጠላ የኋላ እንቅልፍ ላይ ካፕ (በሚሊሰከንዶች)። ድርጊቱ የ Azure {retryAfter} ምላሽ ራስጌን በትክክል በሚገኝበት ጊዜ ያከብራል; . ያለበለዚያ በዚህ እሴት ላይ የተያዘ የተንቆጠቆጠ ገላጭ ጀርባ ይጠቀማል።",
 				"protectPlaceholders": "{true} (ነባሪ) እንደ {mustache}፣ {jsVar}፣ {indexZero}፣ {numberFormat}፣ {printf}፣ {positionalPrintf} እና ኤችቲኤምኤል አካላት ያሉ ቦታ ያዢዎች ከመተርጎማቸው በፊት በሴንቲነል ቶከኖች ይተካሉ እና ከዚያ በኋላ ይመለሳሉ። ያሰናክሉት ምንጭዎ ሆን ብሎ መተርጎም ያለበት ቃል በቃል የቦታ ያዥ ቅርጽ ያለው ጽሑፍ ሲይዝ ብቻ ነው።",
-				"customPlaceholderPatterns": "በአዲስ መስመር የተለዩ regexes (ያለ ገደቢዎች) ወደ ነባሪው የቦታ ያዥ ስብስብ ታክሏል፣ ለምሳሌ {angleToken} ለብጁ ማስመሰያ አገባብ።",
+				"customPlaceholderPatterns": "በአዲስ መስመር የተለዩ regexes (ያለ ገደቦች) ወደ ነባሪው የቦታ ያዥ ስብስብ ታክሏል፣ ለምሳሌ {angleToken} ለብጁ ማስመሰያ አገባብ።",
 				"noTranslatePatterns": "በአዲስ መስመር የተለዩ የግሎብ ቅጦች ከትንተና-ደረጃ ቁልፎች ጋር ይዛመዳሉ (JSON ነጥብ ያለው መንገድ፣ RESX {resxName}፣ PO {poMsgid}፣ XLIFF አሃድ {xliffId}፣ INI/restext ቁልፍ)። ተዛማጅ ቁልፎች ከተርጓሚ ጥያቄ ይጣላሉ እና የምንጭ እሴታቸው ተጠብቆ ያልፋሉ።"
 			}
 		},
@@ -326,7 +326,7 @@
 			},
 			"formats": {
 				"heading": "ስለ ሌሎች የመርጃ ቅርጸቶችስ?",
-				"body": "ዛሬ {resx}፣ {xliff}፣ {po}፣ {json}፣ {ini}፣ {restext}። ሌላ ከፈለጉ {issueLink} - የ ተንታኝ በይነገጽ ትንሽ ነው (ተንተነባቢ → ካርታ → ቅርጸት  ትርጉሞች → ቅርጸት ይተግብሩ) እና መዋጮዎች አቀባበል ናቸው.",
+				"body": "ዛሬ {resx}፣ {xliff}፣ {po}፣ {json}፣ {ini}፣ {restext}። {issueLink} ሌላ ከፈለጉ - የ ተንታኝ በይነገጽ ትንሽ ነው (ተንተነባቢ → ካርታ → ቅርጸት → ቅርጸት ትርጉሞችን ይተግብሩ) እና መዋጮዎች አቀባበል ናቸው.",
 				"issueLinkLabel": "ጉዳይ ይክፈቱ"
 			}
 		}
@@ -414,10 +414,10 @@
 				"perKeyOptOut": "{label} አዲስ {noTranslatePatterns} ግብዓት ከተርጓሚ ጥያቄ ሙሉ በሙሉ የሚዛመዱ ቁልፎችን ይጥላል (ለብራንድ ስሞች፣ የስህተት ኮዶች፣ ወዘተ የምንጭ እሴቶችን ይጠብቃል)። የግሎብ ቅጦችን ከትንተና-ደረጃ ቁልፎች ጋር ያዛምዳል (JSON ነጥብ ያለው መንገድ፣ RESX {resxName}፣ PO {poMsgid}፣ XLIFF አሃድ {xliffId}፣ INI/restext ቁልፍ)። {issue}",
 				"repoConfig": "የሪፖ-ደረጃ ውቅር በ {configPath} በኩል።",
 				"glossary": "የቃላት መፍቻ ድጋፍ፣ የደረጃ ማጠቃለያ በ {coreSummary} በኩል።",
-				"tooling": "esbuild bundler፣ ESLint 9 ጠፍጣፋ ውቅረት፣ Prettier፣ EditorConfig።",
+				"tooling": "esbuild bundler፣ ESLint 9 flat config፣ Prettier፣ EditorConfig።",
 				"audit": "የ NPM ኦዲት ንፁህ (0 ተጋላጭነቶች)።",
 				"docsSite": "Astro + Tailwind v4 ሰነዶች ጣቢያ ከእይታ ሽግግሮች እና ገላጭ ኮድ ጋር።",
-				"docsAccessibility": "{label} WCAG 2.1 AA ማለፊያ። የአርማ ግሊፍስ ወደ ዱካዎች ተቀይሯል ስለዚህ ከአሁን በኋላ የቀለም-ንፅፅር ከግራዲየንት ማቆሚያዎች ጋር እንዳይወድቁ፣ ተንሳፋፊው {backToTop} ቁልፍ ተደብቆ {inert} ይጠቀማል (ከ {ariaHidden} መቀያየር ይልቅ) {formatsAstro} ክፍሎች ከአሁን በኋላ በራስ-ከሚመነጩ የርዕስ መታወቂያዎቻቸው ጋር አይጋጩም፣ ሶስት የአካባቢ ካርዶች አሁን BCP-47-የሚሰራ {lang} ባህሪያትን ያጋልጣሉ ({nya}፣ {lug}፣ {run})፣ የተባዙ {documentation} የመሬት ምልክት መለያዎች በጎን አሞሌ እና ግርጌ መካከል ተለያይተዋል።  እና በ {inputs}/{configuration} ላይ ያለው እያንዳንዱ የውሂብ ሠንጠረዥ በስክሪን-አንባቢ መግለጫ ፅሁፍ ይላካል።",
+				"docsAccessibility": "{label} WCAG 2.1 AA ማለፊያ። የአርማ ግሊፍስ ወደ ዱካዎች ተቀይሯል ስለዚህ ከአሁን በኋላ የቀለም-ንፅፅር ከግራዲየንት ማቆሚያዎች ጋር እንዳይወድቁ፣ ተንሳፋፊው {backToTop} ቁልፍ ተደብቆ {inert} ይጠቀማል (ከ {ariaHidden} መቀያየሪያ ይልቅ) {formatsAstro} ክፍሎች ከአሁን በኋላ በራስ-ከሚመነጩ የርዕስ መታወቂያዎቻቸው ጋር አይጋጩም፣ ሶስት የአካባቢ ካርዶች አሁን BCP-47-የሚሰራ {lang} ባህሪያትን ያጋልጣሉ ({nya}፣ {lug}፣ {run})፣ የተባዙ {documentation} የመሬት ምልክት መለያዎች በጎን አሞሌ እና ግርጌ መካከል ተለያይተዋል።  እና በ {inputs}/{configuration} ላይ ያለው እያንዳንዱ የውሂብ ሠንጠረዥ በስክሪን-አንባቢ መግለጫ ፅሁፍ ይላካል።",
 				"inlineCode": "{label} ሰነዶች ፕሮሴስ {codeElement} አሁን ሞቅ ያለ/አምበር ጭብጥ ዘዬ ለብሷል - ለአገናኞች እና አርእስቶች ጥቅም ላይ ከሚውለው የምርት ስም→አነጋገር ቤተ-ስዕል የተለየ።",
 				"automation": "Dependabot ራስ-ማዋሃድ፣ CodeQL ቅኝት፣ CI ማትሪክስ።"
 			}

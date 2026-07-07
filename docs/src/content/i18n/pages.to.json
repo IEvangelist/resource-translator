@@ -120,7 +120,7 @@
 				"categoryId": "Azure {customTranslatorLink} kulupu — hoʻo ngaueʻanga/domain knob (fakalao, fakafaitoʻo, fakamaketi, etc.). ʻAve ko e {categoryQuery}.",
 				"textType": "ʻOku default ki he {plain}. Fakaʻaongaʻi pe ʻ{html} kapau ʻoku ʻi ai ha ngaahi kongokonga HTML moʻoni ʻi hoʻo ngaahi maʻuʻanga tokoni.",
 				"profanityAction": "How to treat profane words in translated output.",
-				"profanityMarker": "ʻOku toki mahuʻingamalie pe ʻi he taimi ʻoku {profanityAction} {marked} ai.",
+				"profanityMarker": "ʻOku toki mahuʻingamalie pe ʻi he taimi ʻoku {profanityAction} ai ʻa e {marked}.",
 				"allowFallback": "Seti ke {false} ke ʻikai lava ʻa e liliu ʻi he taimi ʻoku ʻikai ke ʻi ai ha deployment ʻi hoʻo {categoryId} ki ha feituʻu ʻoku fakataumuʻa ki ai kae ʻikai foki ki he sipinga fakalukufua.",
 				"apiVersion": "Liliu lea REST API version. ʻOku default ki he {version}.",
 				"maxRetries": "Lahi taha ʻo e ngaahi feinga ke toe feinga ʻi he ngaahi tali HTTP fakataimi ({statusCodes}). Default ki he {defaultRetries}. Ko e fakakatoa ʻo e ngaahi telefoni HTTP ki he kole ʻoku {totalCalls}.",
@@ -135,7 +135,7 @@
 			"steps": {
 				"actionInputs": "ʻOku lau ʻe he ngaue ʻa e ngaahi fakamatala mahino mei he founga ngaue.",
 				"config": "ʻOku ne load ʻa e config ʻo e YAML mei he {configPath}.",
-				"precedence": "ʻI he malaʻe kotoa pe ʻoku vahevahe, ʻoku ikuna ʻa e input; ka ʻikai, ʻoku fakaʻaongaʻi ʻa e tuʻunga ʻulungaanga mahuʻinga ʻo e YAML.",
+				"precedence": "ʻOku ikuna ʻa e input ki he konga kotoa pe ʻoku nau fevahevaheʻaki; ka ʻikai, ʻoku fakaʻaongaʻi ʻa e tuʻunga ʻulungaanga mahuʻinga ʻo e YAML.",
 				"validation": "ʻOku fakapapauʻi ʻa e ngaahi tuʻunga ʻulungaanga mahuʻinga kuo fakatahaʻi. ʻOku fakatupu ʻe he ngaahi ʻenum taʻeʻaonga (e.g. {invalidEnum}) ke ʻikai ola lelei ʻa e ngaue ʻaki ha popoaki mahino."
 			}
 		},
@@ -194,7 +194,7 @@
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} kulupu — ko e ngaueʻanga/domain/tone knob. ʻAve ko e {categoryQuery}.",
 				"textType": "{plain} pe {html}. Fakaʻaongaʻi pe ʻ{html} ʻi he taimi ʻoku hoko ai hoʻo ngaahi maʻuʻanga tokoni ko ha ngaahi kongokonga HTML moʻoni.",
-				"profanityAction": "{noAction}, {marked} pe {deleted}. Puleʻi ʻa e founga ʻoku tuku atu ai ʻa e ngaahi lea kapekape ʻi he ngaahi liliu.",
+				"profanityAction": "{noAction}, {marked}, pe {deleted}. Puleʻi ʻa e founga ʻoku tuku atu ai ʻa e ngaahi lea kapekape ʻi he ngaahi liliu.",
 				"profanityMarker": "{asterisk} pe {tag}. ʻOku toki mahuʻingamalie pe ʻi he taimi ʻoku {marked} ai {profanityAction}.",
 				"allowFallback": "ʻI he taimi ʻoku {false} ai, ʻoku fakafoki mai ʻe he Translator ha fehalaaki kae ʻikai foki ki he polokalama fakalukufua kapau ʻoku ʻikai ke ʻi ai ha deployment ʻi hoʻo {categoryId} ki ha feituʻu ʻoku fakataumuʻa ki ai.",
 				"apiVersion": "Liliu lea REST API version."
@@ -417,7 +417,7 @@
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
 				"audit": "NPM Audit Clean (0 vulnerabilities).",
 				"docsSite": "Astro + Tailwind v4 docs site with view transitions and Expressive Code.",
-				"docsAccessibility": "{label} WCAG 2.1 AA pass. Naʻe liliu ʻa e glyphs ʻo e fakaʻilonga ki he ngaahi hala koeʻuhi ke ʻoua naʻa toe ʻikai ke nau lava ʻo fakafaikehekeheʻi ʻa e lanu ki he gradient stops, ʻoku fakaʻaongaʻi ʻe he meʻa lomi ʻo e {backToTop} ʻoku tete ʻa e {inert} lolotonga ʻoku fufuuʻi (kae ʻikai ko ha toggle ʻo e {ariaHidden} naʻe tuku ke tabbable), ʻoku ʻikai ke toe fepaki ʻa e ngaahi konga mo ʻenau ngaahi ID ʻuluʻi tohi ʻoku faʻu ʻe he {formatsAstro}, ʻoku fakaʻaliʻali ʻe he kaati ʻe tolu ʻa e BCP-47-valid {lang} attributes ({nya}, {lug}, {run}), ʻoku disambiguated ʻa e ngaahi fakaʻilonga ʻo {documentation} e ngaahi fakaʻilonga ʻi he vahaʻa ʻo e sidebar mo e footer,  pea ko e tepile fakamatala kotoa pe ʻi he {inputs}/{configuration} ʻoku ʻi ai ha fakamatala ʻi he screen-reader.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. Naʻe liliu ʻa e glyphs ʻo e fakaʻilonga ki he ngaahi hala koeʻuhi ke ʻoua naʻa toe ʻikai ke nau lava ʻo fakafaikehekeheʻi ʻa e lanu ki he gradient stops, ʻoku fakaʻaongaʻi ʻe he meʻa lomi ʻo e {backToTop} ʻoku tete ʻa e {inert} lolotonga ʻoku fufuuʻi (kae ʻikai ko ha toggle ʻo e {ariaHidden} naʻe tuku ke tabbable), ʻoku ʻikai ke toe fepaki ʻa e ngaahi konga mo ʻenau ID ʻuluʻi tohi ʻoku faʻu ʻe he {formatsAstro}, ʻoku fakaʻaliʻali ʻe he kaati ʻe tolu ʻa e BCP-47-valid {lang} attributes ({nya}, {lug}, {run}), ʻoku disambiguated ʻa e ngaahi fakaʻilonga ʻo {documentation} e ngaahi fakaʻilonga ʻi he vahaʻa ʻo e sidebar mo e footer,  pea ko e tepile fakamatala kotoa pe ʻi he {inputs}/{configuration} ʻoku ʻi ai ha fakamatala ʻi he screen-reader.",
 				"inlineCode": "ʻ{label} {codeElement} ʻoku ne tui he taimi ni ʻa e accent ʻo e kaveinga mafana/ʻamipa — kehe mei he palette ʻo e brand→accent ʻoku fakaʻaongaʻi ki he ngaahi fehokotakiʻanga mo e ngaahi ʻuluʻi tohi.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}

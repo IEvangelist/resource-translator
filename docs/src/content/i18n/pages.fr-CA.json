@@ -152,7 +152,7 @@
 	"inputs": {
 		"title": "Entrées et sorties",
 		"eyebrow": "Référence",
-		"lede": "Chaque entrée est également acceptée dans le fichier de configuration optionnel du dépôt. Lorsque les deux sont réglés, l’entrée d’action gagne.",
+		"lede": "Chaque entrée est aussi acceptée dans le fichier de configuration optionnel du dépôt. Lorsque les deux sont réglés, l’entrée d’action gagne.",
 		"configurationIntro": "Voir {configurationLink} pour le schéma YAML et l’ordre de chargement.",
 		"configurationLinkLabel": "Configuration",
 		"columns": {
@@ -410,7 +410,7 @@
 				"newInputs": "Nouvelles entrées : {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, ainsi que les boutons avancés du traducteur {textType}, {profanityAction}, {profanityMarker} et {allowFallback}.",
 				"sourceLocale": "La localisation source est maintenant aussi transférée vers le traducteur {fromLocale} donc les courtes chaînes ne sont pas détectées automatiquement.",
 				"resilience": "{label} réessai automatique sur les réponses HTTP transitoires ({statusCodes}) honorant l’en-tête {retryAfter} d’Azure — revient à un retour exponentiel par jitter lorsqu’il est absent. Ajustable via {maxRetries} et {retryBackoffMs}. {issue}",
-				"placeholderProtection": "{label} jetons comme {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} et HTML sont enveloppés dans des sentinelles avant la traduction et restaurés ensuite, donc Traducteur arrête de déformer i18next/Mustache/Handlebars/.NET/printf des placeholders. Basculez via {protectPlaceholders}; Prolonge-toi avec {customPlaceholderPatterns}. {issue}",
+				"placeholderProtection": "{label} des jetons comme {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} et HTML sont enveloppés dans des sentinelles avant la traduction et restaurés ensuite, donc Traducteur arrête de déformer i18next/Mustache/Handlebars/.NET/printf. Basculez via {protectPlaceholders}; Prolonge-toi avec {customPlaceholderPatterns}. {issue}",
 				"perKeyOptOut": "{label} nouvelle entrée {noTranslatePatterns} supprime complètement les clés correspondantes de la requête Traducteur (préserve les valeurs sources des noms de marques, codes d’erreur, etc.). Compare les motifs glob avec les clés de niveau analyseur (chemin pointillé JSON, {resxName} RESX, {poMsgid} PO, {xliffId} unité XLIFF, clé INI/restext). {issue}",
 				"repoConfig": "Configuration au niveau du dépôt via {configPath}.",
 				"glossary": "Soutien au glossaire, résumé des étapes via {coreSummary}.",

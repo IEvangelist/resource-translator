@@ -169,7 +169,7 @@
 			"heading": "Požadované vstupy",
 			"caption": "Požadované vstupy",
 			"items": {
-				"sourceLocale": "Zdrojové místo (např. {en}) používané k nalezení souborů zdrojů, jako je {sourceGlob}. Také přesměrováno překladateli jako {fromLocale}.",
+				"sourceLocale": "Zdrojové místo (např. {en}) používané k nalezení souborů zdrojů, například {sourceGlob}. Také přesměrováno překladateli jako {fromLocale}.",
 				"subscriptionKey": "Azure AI Translator subscription key. Přejděte přes {secrets}.",
 				"endpoint": "URL překladačského endpointu, např. {endpointUrl}."
 			}
@@ -351,7 +351,7 @@
 			"thisActionLabel": "Tento samotný čin",
 			"steps": {
 				"source": "Anglický zdrojový soubor se nachází na {messagesPath}.",
-				"workflow": "Tlačí na to, že se ho dotkne, odkopne {workflowLink}, který {thisAction} sám proti sobě.",
+				"workflow": "Tlačí na to, co se ho dotkne, odkopne {workflowLink}, který {thisAction} sám proti sobě.",
 				"fanOut": "Akce se rozšiřuje do všech lokalit podporovaných Azure AI Translatorem (nakonfigurovaných v {configPath}) a zapíše sourozenecký {messagesLocaleJson} na každý cíl.",
 				"pullRequest": "Otevře se pull request s novými překlady. Jejich sloučením se tato stránka znovu zveřejní s vyplněnými kartami."
 			}

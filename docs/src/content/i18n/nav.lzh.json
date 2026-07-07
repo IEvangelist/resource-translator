@@ -1,28 +1,28 @@
 {
 	"sections": {
-		"start": "从这里开始",
-		"reference": "参考资料",
+		"start": "自此始",
+		"reference": "參考文獻",
 		"showcase": "展示",
-		"project": "项目"
+		"project": "計劃"
 	},
 	"items": {
 		"overview": "概述",
-		"gettingStarted": "入门",
+		"gettingStarted": "始作俑",
 		"configuration": "配置",
 		"inputs": "输入与输出",
-		"formats": "文件格式",
+		"formats": "檔案格式",
 		"recipes": "食谱",
-		"faq": "常见问题",
-		"translations": "译文",
+		"faq": "常见问答",
+		"translations": "譯本",
 		"contributing": "贡献",
-		"changelog": "更新日志"
+		"changelog": "变更日志"
 	},
 	"community": {
-		"reportBug": "报告错误",
-		"requestFeature": "请求功能",
+		"reportBug": "報告錯誤",
+		"requestFeature": "請求功能",
 		"discussions": "讨论",
 		"securityPolicy": "安全政策",
 		"codeOfConduct": "行为准则",
-		"license": "麻省理工学院执照"
+		"license": "麻省理工執照"
 	}
 }

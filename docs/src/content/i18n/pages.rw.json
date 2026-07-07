@@ -196,7 +196,7 @@
 				"textType": "{plain} cyangwa {html}. Use {html} only when your resource values are real HTML fragments.",
 				"profanityAction": "{noAction}, {marked}, cyangwa {deleted}. Genzura uburyo amagambo y'urukozasoni akoreshwa mu buhinduzi.",
 				"profanityMarker": "{asterisk} cyangwa {tag}. Only significant when {profanityAction} is {marked}.",
-				"allowFallback": "Mu gihe {false}, umusemuzi asubiza ikosa aho gusubira muri sisitemu rusange niba {categoryId} yawe idafite aho igenewe.",
+				"allowFallback": "Iyo {false}, umusemuzi asubiza ikosa aho gusubira muri sisitemu rusange niba {categoryId} yawe idafite aho igenewe.",
 				"apiVersion": "Translator REST API version."
 			}
 		},
@@ -310,7 +310,7 @@
 			},
 			"duplicateFiles": {
 				"heading": "Ni gute nakwirinda gusemura dosiye imwe inshuro ebyiri?",
-				"body": "Kora igenzura ry'imikoreshereze {sourceGlob} {paths} y'ibicuruzwa by The action also includes its own per-trigger file filter when {githubToken} is set, narrowing work to files in the latest commit."
+				"body": "Kora igenzura ry'imikoreshereze y'ibicuruzwa by'ibicuruzwa by'{paths} by'umwihariko ibicuruzwa byawe, urugero nk'{sourceGlob}. The action also includes its own per-trigger file filter when {githubToken} is set, narrowing work to files in the latest commit."
 			},
 			"offline": {
 				"heading": "Nshobora gukora ibikorwa hanze ya interineti?",

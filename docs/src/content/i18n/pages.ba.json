@@ -6,7 +6,7 @@
 		"badge": "v3.0 — Node 24, репозиторийҙы көйләү, глоссарий, ҡоро эш",
 		"headlinePrefix": "Репозиторийҙы локализациялағыҙ",
 		"headlineAccent": "Һәр йөкләмә.",
-		"lede": "Resource Translator рәсми SDK аша Azure AI Translator ярҙамында ресурс файлдары өсөн машинаға тәржемә ителгән pull request-тарҙы аса — өҫтәмә хеҙмәттәр юҡ, тик эш ағымы ғына.",
+		"lede": "Resource Translator рәсми SDK аша Azure AI Translator ярҙамында ресурс файлдары өсөн машинаға тәржемә ителгән pull request-тар аса — өҫтәмә хеҙмәттәр юҡ, тик эш ағымы ғына.",
 		"primaryCta": "Башлағыҙ",
 		"secondaryCta": "GitHub-та Star",
 		"supports": "Ярҙамсылар",
@@ -16,7 +16,7 @@
 		"stats": {
 			"audit": "0 NPM-аудит мәсьәләләре",
 			"tests": "150 тест",
-			"node": "20 / 22 / 24 узел",
+			"node": "20 / 22 / 24 төйөн",
 			"sdk": "Official Azure SDK"
 		},
 		"formatNotes": {
@@ -61,7 +61,7 @@
 			"setupLink": "Тулы комплектты ҡарап сығығыҙ"
 		},
 		"cta": {
-			"title": "Автоматик режимда локализацияларға әҙерме?",
+			"title": "Автоматик рәүештә локализацияларға әҙерме?",
 			"body": "Бер Azure AI Translator асҡысы, бер workflow файлы. Ҡалғанын Resource Translator башҡара.",
 			"button": "Башлағыҙ"
 		}
@@ -124,7 +124,7 @@
 				"allowFallback": "{false} итеп ҡуйығыҙ, {categoryId} маҡсатлы урын өсөн деплоймент булмаһа, тәржемә уңышһыҙ булһын өсөн, дөйөм модельгә кире ҡайтырға кәрәк.",
 				"apiVersion": "Тәржемәсе REST API версияһы. Стандарт рәүештә {version}.",
 				"maxRetries": "Транзиент HTTP яуаптары өсөн максималь ҡабаттан тырышыуҙар ({statusCodes}). Стандарт рәүештә {defaultRetries}. Бер һорауға дөйөм HTTP саҡырыуҙары {totalCalls}.",
-				"retryBackoffMs": "Һәр бер артҡа йоҡо режимында сик (ms). Стандарт рәүештә {defaultBackoff}. Azure-ҙың {retryAfter} башы тап ошо ваҡытта хөрмәтләнә; башҡа осраҡта, был ҡиммәт менән сикләнгән джиттерлы экспоненциаль кире ҡайтарыу ҡулланыла.",
+				"retryBackoffMs": "Һәр бер артҡа йоҡо режимында сик (ms). Стандарт рәүештә {defaultBackoff}. Azure-ҙың {retryAfter} башы тап ошо ваҡытта хөрмәтләнә; башҡа осраҡта, был ҡиммәт менән сикләнгән джиттерлы экспоненциаль артҡа тартылыу ҡулланыла.",
 				"protectPlaceholders": "Стандарт рәүештә {true}. {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} һәм HTML объекттары кеүек токендар тәржемә алдынан сентинел токендары менән алмаштырыла һәм һуңынан тергеҙелә. Сығанаҡта махсус рәүештә ваҡытлы литералдар булғанда ғына һүндерегеҙ.",
 				"customPlaceholderPatterns": "Өҫтәмә regex паттерндары (делимитерһыҙ) стандарт placeholder set-ҡа өҫтәлде, мәҫәлән, {angleToken} махсус токен синтаксисы өсөн. Дөрөҫ булмаған регекстар иҫәпкә алынмай.",
 				"noTranslatePatterns": "Глоб үрнәктәре парсер кимәлендәге асҡыстарға (JSON нөктәле юл, RESX {resxName}, PO {poMsgid}, XLIFF берәмеге {xliffId}, INI/restext асҡысы) тап килде. Тап килгән асҡыстар һорауҙан төшөрөлә һәм сығанаҡ ҡиммәте һаҡланып үтә."
@@ -193,7 +193,7 @@
 			"caption": "Транслятор һорауҙары инпуттары",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — industry/domain/tone knob. Ебәрелде {categoryQuery}.",
-				"textType": "{plain} йәки {html}. {html} ресурс ҡиммәттәре ысын HTML фрагменттары булғанда ғына ҡулланығыҙ.",
+				"textType": "{plain} йәки {html}. Ресурс ҡиммәттәре ысын HTML фрагменттары булғанда ғына {html} ҡулланығыҙ.",
 				"profanityAction": "{noAction}, {marked}, йәки {deleted}. Тәржемәләрҙә оятһыҙ һүҙҙәрҙең нисек таралыуын контролләй.",
 				"profanityMarker": "{asterisk} йәки {tag}. Мәғәнәле {profanityAction} ғына {marked}.",
 				"allowFallback": "{false} эшләгәндә, Translator хата ҡайтара, әгәр {categoryId} маҡсатлы урын өсөн деплойт булмаһа, дөйөм системаға кире ҡайта.",
@@ -202,7 +202,7 @@
 		},
 		"resilienceInputs": {
 			"heading": "Сыҙамлылыҡ һәм ваҡытлыса һаҡлау",
-			"intro": "Был инпуттар Translator һорауҙы сикләгәндә хәрәкәттең нисек эшләүен һәм {mustache} йәки {indexZero} кеүек ваҡытлы токендарҙы тәржемә ваҡытында боҙолоуҙан нисек һаҡлай.",
+			"intro": "Был инпуттар Translator һорауҙы сикләгәндә хәрәкәттең нисек эшләүен һәм {mustache} йәки {indexZero} кеүек ваҡытлы токендарҙы тәржемә ваҡытында боҙолоуҙан һаҡлай.",
 			"caption": "Сыҙамлылыҡ һәм ваҡытлы һаҡлау инпуттары",
 			"items": {
 				"maxRetries": "Транзиент HTTP яуаптары өсөн максималь ҡабаттан тырышыуҙар ({statusCodes}). Бер һорауға HTTP шылтыратыуҙарының дөйөм һаны {totalCalls}.",
@@ -226,7 +226,7 @@
 		"title": "Файл форматтары",
 		"eyebrow": "Әҙәбиәт",
 		"heroTitle": "Ҡулланылған файл форматтары",
-		"lede": "Алты тапҡыр әйләнеп сыға торған ресурс форматы. Хәрәкәт һәр сығанаҡ-локаль файлды уҡый, ҡиммәттәрҙе тәржемәләй һәм маҡсатлы урын өсөн туған яҙа.",
+		"lede": "Алты тапҡыр әйләнеп сыға торған ресурс форматы. Эш һәр сығанаҡ-локаль файлды уҡый, ҡиммәттәрҙе тәржемәләй һәм маҡсатлы урын өсөн туған яҙа.",
 		"namingConvention": "Бөтә файлдар {namingConvention} исемләү ҡағиҙәһен ҡуллана.",
 		"learnMore": "Күберәк өйрән",
 		"items": {
@@ -322,7 +322,7 @@
 			},
 			"dist": {
 				"heading": "Йыйылған {distDir} ҡайҙан килә?",
-				"body": "GitHub JS эшмәкәрлеге компиляцияланған JS-ты репозиторийға ебәрә. {distBuild} эш процесы һәр берләштереүҙән һуң уны яңынан төҙөй, {mainBranch} дрейфта булыуын {distCheck} һәм иҫкергән сығышлы PR-ҙарҙы блоклай."
+				"body": "GitHub JS эшмәкәрлеге компиляцияланған JS-ты репозиторийға ебәрә. {distBuild} эш процесы һәр берләштереүҙән һуң уны яңынан төҙөй, {mainBranch} дрейфҡа күсер тип {distCheck} һәм иҫкергән сығыштар килеп еткән PR-ҙарҙы блоклай."
 			},
 			"formats": {
 				"heading": "Башҡа ресурс форматтары тураһында ни әйтерһегеҙ?",
@@ -351,7 +351,7 @@
 			"thisActionLabel": "тап ошо эш",
 			"steps": {
 				"source": "Инглиз сығанаҡ файлы {messagesPath} адресында һаҡлана.",
-				"workflow": "Ул ҡағыу менән баҫа, {workflowLink} үҙе {thisAction} менән йүгерә.",
+				"workflow": "Ул ҡағыу менән баҫа, {workflowLink} үҙе {thisAction} йүгерә.",
 				"fanOut": "Уйын һәр Azure AI Translator ярҙамындағы урындарға ({configPath} конфигурацияланған) тарала һәм һәр маҡсатҡа туған {messagesLocaleJson} яҙа.",
 				"pullRequest": "Яңы тәржемәләр менән pull request асыла. Уны берләштергәндә, был бит тултырылған карточкалар менән ҡабаттан баҫыла."
 			}
@@ -410,14 +410,14 @@
 				"newInputs": "Яңы инпуттар: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, шулай уҡ {textType}, {profanityAction}, {profanityMarker} һәм {allowFallback} алдынғы тәржемәсе төймәләре.",
 				"sourceLocale": "Source locale хәҙер Translator-ға {fromLocale} итеп ебәрелә, шуға ҡыҫҡа юлдар автоматик рәүештә танылмай.",
 				"resilience": "{label} Azure-ҙың {retryAfter} башын иҫәпкә алып, ваҡытлы HTTP яуаптары ({statusCodes}) автоматик рәүештә ҡабатлау — булмаһа, экспоненциаль кире ҡағыуға кире ҡайта. {maxRetries} һәм {retryBackoffMs} аша көйләнә ала. {issue}",
-				"placeholderProtection": "{label} {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} һәм HTML объекттары тәржемә алдынан sentinel-дарға уралған һәм һуңынан тергеҙелә, шуға күрә Translator i18next/Mustache/Handlebars/.NET/printf урынлаштырыусыларҙы боҙоуҙы туҡтата. {protectPlaceholders} аша күсерегеҙ; {customPlaceholderPatterns} менән киңәйтелә. {issue}",
+				"placeholderProtection": "{label} {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} һәм HTML объекттары тәржемә алдынан сентинелдарға уралған һәм һуңынан тергеҙелә, шуға күрә Translator i18next/Mustache/Handlebars/.NET/printf урынлаштырыусыларҙы боҙоуҙы туҡтата. {protectPlaceholders} аша күсерегеҙ; {customPlaceholderPatterns} менән киңәйтелә. {issue}",
 				"perKeyOptOut": "{label} яңы {noTranslatePatterns} индереү Translator һорауынан тап килгән асҡыстарҙы бөтөнләй алып ташлай (бренд исемдәре, хата кодтары һ.б. өсөн сығанаҡ ҡиммәттәрен һаҡлай). Глоб үрнәктәрен парсер кимәлендәге асҡыстар (JSON нөктәле юл, RESX {resxName}, PO {poMsgid}, XLIFF берәмеге {xliffId}, INI/restext асҡысы) менән сағыштыра. {issue}",
 				"repoConfig": "Репозитория кимәлендәге конфигурацияны {configPath} аша.",
 				"glossary": "Глоссарий ярҙамы, аҙымдар йыйынтығы {coreSummary} аша.",
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
 				"audit": "NPM аудиты таҙа (0 осаллыҡ).",
 				"docsSite": "Astro + Tailwind v4 документтар сайты ҡарау күсеүҙәре һәм Expressive Code менән.",
-				"docsAccessibility": "{label} WCAG 2.1 AA пассы. Логотип глифтары юлдарға әйләндерелде, шуға күрә улар градиент туҡталыштарында төҫ контрастын юғалтмаҫҡа тейеш, йөҙөүсе {backToTop} төймәһе йәшерен саҡта {inert} ҡуллана ({ariaHidden} переключатель урынына), {formatsAstro} бүлектәр автоматик рәүештә барлыҡҡа килгән башлыҡ идентификаторҙары менән бәрелешә алмай, өс локаль карта хәҙер BCP-47-гә яраҡлы {lang} атрибуттарын ({nya}, {lug}, {run}) күрһәтә, дубликат {documentation} landmark билдәләре яҡ панель менән аҫҡы өлөш араһында айырыла,  {inputs}/{configuration} мәғлүмәт таблицалары экран уҡыусы яҙмаһы менән килә.",
+				"docsAccessibility": "{label} WCAG 2.1 AA пассы. Логотип глифтары юлдарға әйләндерелгән, шуға күрә улар градиент туҡталыштарында төҫ контрастын юғалтмай, йөҙөүсе {backToTop} төймәһе йәшерен саҡта {inert} ҡуллана ({ariaHidden} переключатель урынына), {formatsAstro} бүлектәр автоматик рәүештә барлыҡҡа килгән башлыҡ идентификаторҙары менән бәрелешмәй, хәҙер өс локаль карта BCP-47-гә яраҡлы {lang} атрибуттарын ({nya}, {lug}, {run}) күрһәтә, дубликат {documentation} landmark билдәләре sidebar менән footer араһында айырыла,  {inputs}/{configuration} мәғлүмәт таблицалары экран уҡыусы яҙмаһы менән килә.",
 				"inlineCode": "{label} docs проза {codeElement} хәҙер йылы/янтарь темалы акцент кейә — был бренд→акцент палитраһы һылтанмалар һәм башлыҡтар өсөн ҡулланыла.",
 				"automation": "Dependabot автоматик берләштереү, CodeQL сканерлау, CI матрицаһы."
 			}

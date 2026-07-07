@@ -209,7 +209,7 @@
 				"retryBackoffMs": "Li ser xewa paşveçûnê (bi milisaniyeyan) kap bikin. Çalakî dema ku heyî sernavê bersiva {retryAfter} ya Azure-ê rûmetdar dike; Wekî din, ew paşveçûna berbiçav a ku di vê nirxê de hatî girtin bikar tîne.",
 				"protectPlaceholders": "Dema ku {true} (xwerû), cihên wekî {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} û HTML berî wergerê bi nîşanên sentinel têne guhertin û paşê têne sererastkirin. Tenê dema ku çavkaniya we bi zanebûn nivîsa rasterast a ku divê were wergerandin hebe, neçalak bikin.",
 				"customPlaceholderPatterns": "Regexên nû yên veqetandî (bêyî sînordar) li seta cîhê xwerû zêde kirin, mînak {angleToken} ji bo hevoksaziya tokenê ya xwerû.",
-				"noTranslatePatterns": "Şêwazên glob ên ku ji nû ve hatine veqetandin li dijî mifteyên asta parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext key). Mifteyên lihevhatinê ji daxwaza Wergêr têne avêtin û bi nirxa çavkaniya xwe re derbas dibin."
+				"noTranslatePatterns": "Modelên glob ên ku ji nû ve hatine veqetandin li dijî mifteyên asta parser (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI / restext key). Mifteyên lihevhatinê ji daxwaza Wergêr têne avêtin û bi nirxa çavkaniya xwe re derbas dibin."
 			}
 		},
 		"outputs": {
@@ -226,7 +226,7 @@
 		"title": "Formatên pelan",
 		"eyebrow": "Referans",
 		"heroTitle": "Formatên pelê yên piştgirî",
-		"lede": "Şeş formatên çavkaniya dorpêçkirî. Çalakî her pelê çavkanî-herêmî dixwîne, nirxan werdigerîne, û ji bo her herêmek armanc bira dinivîse.",
+		"lede": "Şeş formatên çavkaniya dorpêçkirî. Çalakî her pelê çavkanî-herêmî dixwîne, nirxan werdigerîne û her herêmek armanc bira dinivîse.",
 		"namingConvention": "Hemû pel peymana navlêkirinê ya {namingConvention} bikar tînin.",
 		"learnMore": "Zêdetîr hîn bibe",
 		"items": {
@@ -310,11 +310,11 @@
 			},
 			"duplicateFiles": {
 				"heading": "Ez çawa dikarim ji wergerandina heman dosyayê du caran dûr bisekinim?",
-				"body": "Li ser {paths} ku tenê bi pelên we yên çavkanî-herêmî re lihevhatî ne, wek mînak {sourceGlob}. Çalakî di heman demê de dema ku {githubToken} tê saz kirin, parzûna pelê xwe ya per-trigger jî dihewîne, xebatê li pelên di peymana herî dawî de teng dike."
+				"body": "Li ser {paths} ku tenê bi pelên we yên çavkanî-herêmî re lihevhatî ne, wek mînak {sourceGlob}. Çalakî di heman demê de dema ku {githubToken} hate saz kirin, parzûna pelê xwe ya per-trigger jî dihewîne, xebatê li pelên di peymana herî dawî de teng dike."
 			},
 			"offline": {
 				"heading": "Gelo ez dikarim çalakîyê offline bimeşînim?",
-				"body": "Ne tam - Azure AI Translator mêjiyê runtime ye. Lê hûn dikarin bi {dryRunTrue} re bixebitînin da ku parsing û mîhengê piştrast bikin bêyî ku ji bo wergerê daxwazên HTTP bikin."
+				"body": "Ne tam - Azure AI Translator mêjiyê runtime ye. Lê hûn dikarin bi {dryRunTrue} re bixebitînin da ku parsing û vesazkirinê piştrast bikin bêyî ku daxwazên HTTP ji bo wergerandinê bikin."
 			},
 			"node": {
 				"heading": "Çalakî li ser kîjan guhertoya Node dixebite?",
@@ -322,7 +322,7 @@
 			},
 			"dist": {
 				"heading": "Pêvekên pakêtê {distDir} ji ku tên?",
-				"body": "Çalakiyên GitHub JS JS-ya xwe ya berhevkirî di depoyê de dişînin. Herikîna {distBuild} piştî her yekbûnê wê ji nû ve ava dike da ku {mainBranch} ka ew ê bikişîne an na, û {distCheck} PR-ên ku dê hilberîna kevn bigirin asteng dike."
+				"body": "Çalakiyên GitHub JS JS-ya xwe ya berhevkirî di depoyê de dişînin. Herikîna {distBuild} piştî her yekbûnê wê ji nû ve ava dike da ku {mainBranch} ka ew ê bikişîne an na, û {distCheck} PR-ên ku dê hilberîna kevn dakêşin asteng dike."
 			},
 			"formats": {
 				"heading": "Li ser formatên çavkaniyên din çi dibêjin?",
@@ -417,7 +417,7 @@
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
 				"audit": "NPM Audit Clean (0 qelsbûn).",
 				"docsSite": "Malpera belgeyên Astro + Tailwind v4 bi veguhastinên dîtinê û Koda Expressive.",
-				"docsAccessibility": "{label} WCAG 2.1 AA derbas dibe. Glyphên logoyê veguherandine rêyan da ku ew êdî li dijî rawestgehên gradient reng-kontrast têk neçin, bişkoka {backToTop} ya float {inert} bikar tîne dema ku veşartî ye (li şûna guhertoyek {ariaHidden} ku ew hiştiye), {formatsAstro} beşên êdî bi nasnameyên sernavên otomatîk ên hilberîner re nakevin hev, sê kartên herêmî niha taybetmendiyên {lang} yên BCP-47-derbasdar ({nya}, {lug}, {run}), dubare {documentation} nîşanên nîşanê di navbera kêlekê û jêrzemînê de têne veqetandin.  û her tabloya daneyê li ser {inputs}/{configuration} bi sernivîsa ekran-xwendevan re tê şandin.",
+				"docsAccessibility": "{label} WCAG 2.1 AA derbas dibe. Glyphên logoyê veguherandine rêyan da ku ew êdî li dijî rawestgehên gradient reng-kontrast têk neçin, bişkoka {backToTop} ya float {inert} bikar tîne dema ku veşartî ye (li şûna guhertoyek {ariaHidden} ku ew hişt), {formatsAstro} beşan êdî bi nasnameyên sernavên otomatîk ên hilberîner re nakevin hev, sê kartên herêmî niha taybetmendiyên {lang} yên BCP-47-derbasdar ({nya}, {lug}, {run}) derdixin holê, dubare {documentation} nîşanên nîşanê di navbera kêlekê û jêrzemînê de têne veqetandin.  û her tabloya daneyê li ser {inputs}/{configuration} bi sernivîsa ekran-xwendevan re tê şandin.",
 				"inlineCode": "{label} Docs Prose {codeElement} niha devoka mijara germ / amber li xwe dike - ji paleta marqeyê→devokê ku ji bo girêdan û sernavan tê bikar anîn.",
 				"automation": "Hevgirtina otomatîk a Dependabot, CodeQL scanning, matrix CI."
 			}

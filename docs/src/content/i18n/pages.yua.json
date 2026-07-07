@@ -1,425 +1,425 @@
 {
 	"index": {
 		"title": "Traductor nu'ukulo'ob",
-		"description": "Traductor nu'ukulo'ob Jaap solicitudes pull traducidas máquina utia'al u archivos nu'ukulo'ob ti' je'el repositorio, ti' je'el ba'ax formato — impulsado tumen Azure AI Translator.",
-		"socialTitle": "Traductor nu'ukulo'ob — traducir archivos recursos automáticamente",
-		"badge": "v3.0 — Nodo 24, repo config, glosario, tikin funcionamiento",
+		"description": "Resource Translator Jaap solicitudes pull traducidas tumen máquina utia'al u archivos nu'ukulo'ob ti' je'el repositorio, ti' je'el ba'ax formato — Powered by Azure AI Translator.",
+		"socialTitle": "Traductor nu'ukulo'ob — traducir archivos nu'ukulo'ob automáticamente",
+		"badge": "v3.0 — Nodo 24, configuración repositorio, glosario, corrida tikin",
 		"headlinePrefix": "Localizar u repositorio ti'",
-		"headlineAccent": "Amal omoj.",
-		"lede": "Traductor nu'ukulo'ob Jaap solicitudes pull traducidas máquina utia'al u archivos nu'ukulo'ob usando Azure AI Translator yóol le SDK way sijnáaleche' — Ma' áantajo'ob adicionales, chéen jump'éel flujo meyaj.",
-		"primaryCta": "Káajsik",
-		"secondaryCta": "Estrella ti' GitHub",
+		"headlineAccent": "Amal túulal u síij.",
+		"lede": "Translator nu'ukulo'ob Jaap solicitudes pullpull-translated tumen máquina utia'al u archivos nu'ukulo'ob utilizando Azure AI Translator yóol le SDK way sijnáaleche' — Ma' yéetel extra, chéen jump'éel flujo meyaj.",
+		"primaryCta": "Káaj",
+		"secondaryCta": "Eek' ti' GitHub",
 		"supports": "Apoyos",
-		"builtForShipping": "Beta'an utia'al u envío",
-		"workflowTitle": "Traducción bey flujo meyaj ma' jump'éel meyaj meyaj beetik.",
-		"workflowBody": "Suelte le molayil ti' u CI existente, Puntejar ti' Azure AI Translator, ka Cha' u repositorio t'aan Amal t'aano' ku ts'áabal.",
+		"builtForShipping": "Construido utia'al u envío",
+		"workflowTitle": "Traducción bey flujo meyaj, ma' jump'éel meyaj.",
+		"workflowBody": "Coloque le molayil ti' u CI existente, apuntar tu Azure AI Translator yéetel cha'ik u repositorio t'aan Amal t'aano' ku ts'áabal u kaxtik.",
 		"stats": {
-			"audit": "0 npm-auditoría toop",
+			"audit": "0 talamilo'ob NPM-auditoría",
 			"tests": "150 pruebas",
-			"node": "Nodo 20 leti' 22 leti' 24",
+			"node": "Nodo 20 / 22 / 24",
 			"sdk": "Official Azure SDK"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
 			"xliff": "XLIFF 2.0",
-			"po": "GetText",
-			"json": "anidado wa plano",
+			"po": "gettext",
+			"json": "anidado wa táats' che'",
 			"ini": "{keyValue}",
-			"restext": "MUI analte'o'"
+			"restext": "Analte'o' MUI"
 		},
 		"features": {
 			"formats": {
 				"title": "Seis formatos archivo",
-				"body": "Viajes u ida u vuelta {resx}, {xliff}, {po}, {json}, {ini} yéetel {restext} yéetel formato estable ti' bytes."
+				"body": "Náachil ida u {resx}, {xliff}, {po}, {json}, {ini} yéetel {restext} yéetel formato u byte-estable."
 			},
 			"config": {
-				"title": "Configuración nivel repositorio",
-				"body": "Coloque jump'éel archivo {configPath} utia'al incluir globos, glosarios yéetel categorías traductor personalizado."
+				"title": "Configuración a nivel repo-",
+				"body": "Suelte jump'éel archivo {configPath} utia'al u incluyen glóbulos, glosarios yéetel categorías Custom Translator."
 			},
 			"glossary": {
 				"title": "Consciente ti' le glosario",
-				"body": "Bloquear marcas yéetel términos producto yéetel regex na'atja'an t'aano'-límite u maneja {cpp}, {dotnet} yéetel etailo'ob."
+				"body": "Bloquear k'aaba'obo' marcas yéetel términos producto yéetel regex na'atja'an t'aano'-límite u maneja {cpp}, {dotnet} yéetel etailo'ob."
 			},
 			"dryRun": {
-				"title": "Funcionamiento ti' tikin + O'olkij-fail",
-				"body": "Sáasil previa traducciones xma' ts'íib archivos, wa u surgir Amal ba'alo' bey juntúul advertencia ka' jo'op' u iteran."
+				"title": "Prueba ti' yaan + falla sus-",
+				"body": "Sáasil previa traducciones xma' ts'íibtik archivos, wa superficie Amal ba'alo' bey advertencia ka' jo'op' iteras."
 			},
 			"outputs": {
-				"title": "salidas amigables yéetel le PR",
-				"body": "{summaryTitle}, {summaryDetails} yéetel ranura {hasNewTranslations} Jun ti' crear-ch'ujul-j-na'akij."
+				"title": "Salidas amigables u PR",
+				"body": "{summaryTitle}, {summaryDetails} yéetel {hasNewTranslations} Jun u crear-ch'a'ak-ch'a'akij."
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "Construido ti' {azureSdk} + {corePipeline} — reintentos automáticos ti' {statusCodes}, ma' HTTP enrollado k'ab. {esbuild}-bundled, auditoría-cho'oik."
+				"body": "Construido yóok'ol {azureSdk} + {corePipeline} — reintentos automáticos ti' {statusCodes}, ma' HTTP enrollado k'ab. {esbuild}-agrupado, audit-clean."
 			}
 		},
 		"workflowPreview": {
-			"eyebrow": "Flujo meyaj Drop-in",
-			"titlePrefix": "Ju'unil ti'. Juuch'.",
-			"titleAccent": "Traducir.",
-			"body": "Óoxp'éel secretos, Kanp'éel líneas, ka u repo le multilingüe ti' le uláak' empujón.",
+			"eyebrow": "flujo meyaj directo",
+			"titlePrefix": "Copiar. Jats'ats'ik.",
+			"titleAccent": "Tsoltik u múuch'tik.",
+			"body": "Óoxp'éel secretos, Kanp'éel líneas, yéetel u repo le multilingüe ti' le uláak' empuje.",
 			"setupLink": "Xíimbal tumen le configuración completa"
 		},
 		"cta": {
-			"title": "Ba'ax listo utia'al localizar ti' piloto automático.",
-			"body": "Jump'éel clave Azure AI Translator, jump'éel archivo flujo meyaj. Traductor nu'ukulo'ob maneja u yala'ab.",
-			"button": "Káajsik"
+			"title": "Listos utia'al localizar ti' piloto automático.",
+			"body": "Jump'éel clave Azure AI Translator, jump'éel archivo flujo meyaj. Resource Translator maneja u yala'ab.",
+			"button": "Káaj"
 		}
 	},
 	"getting-started": {
 		"title": "Chúunul",
 		"eyebrow": "Configuración",
-		"lede": "Añadir jump'éel archivo flujo meyaj, puntejar ti' u credenciales Azure AI Translator, yéetel le asab analizará le repositorio utia'al archivos u recursos t'aano' k'aaba' yéetel emitir láak'o'ob traducidos.",
+		"lede": "Añadir jump'éel archivo flujo meyaj ku apuntar ti' u credenciales Azure AI Translator, ka le molayil escaneará le repositorio utia'al archivos nu'ukulo'ob tin t'aano' k'aaba' yéetel emitirá láak'o'ob traducidos.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
-				"body": "Crear jump'éel nu'ukulo'ob Azure AI Translator ti' le portal Azure, ts'o'okole' almacenar le je'ela' bey secretos repositorio GitHub utia'al u flujo meyaj je'el u páajtal u xook:",
+				"body": "Crear jump'éel recurso Azure AI Translator ti' le portal Azure, ts'o'okole' almacenar le je'ela' bey secretos repositorio GitHub utia'al u flujo meyaj je'el u páajtal u xook le:",
 				"key": "le clave suscripción utia'al u recurso.",
-				"endpoint": "le URL u extremo regional.",
-				"region": "le petenil Azure ti' le recurso."
+				"endpoint": "le URL endpoint regional.",
+				"region": "región Azure le recurso."
 			},
 			"workflow": {
 				"title": "Añadir le flujo meyaj",
 				"body": "Crear {workflowPath}:"
 			},
 			"resource": {
-				"title": "Comprometer jump'éel archivo recurso k'aaba'",
-				"body": "Archivos nu'ukulo'ob utilizan le convención {namingConvention}. Je'ebix, {sourceFile} ku p'áatal {frFile}, {deFile}, ka bey sucesivamente ka' jump'éel run."
+				"title": "Comprometer jump'éel archivo nu'ukulo'ob k'aaba'",
+				"body": "Archivos nu'ukulo'ob utilizan le convención {namingConvention}. Je'ebix {sourceFile} ku p'áatal ti' {frFile}, {deFile}, ka bey sucesivamente ka' jump'éel xook."
 			},
 			"output": {
-				"title": "Inspeccionar tíip'ik",
-				"body": "Juntéene' ts'o'oks le flujo meyaj, le asab ye'esajil óoxp'éel salidas je'el u páajtal u cablear ti' jump'éel tsoolil PR: {summaryTitle}, {summaryDetails} yéetel {hasNewTranslations}. Xan ts'íibtik jump'éel resumen Markdown ti' u linki abas kaambal ti' le meyaj yóol {coreSummary}."
+				"title": "Inspeccione u tíip'ik",
+				"body": "Una pakteche' kin ts'o'okok le flujo meyaj asab ye'esik óoxp'éel salidas ku páajtal cablear ti' jump'éel tsoolil PR: {summaryTitle}, {summaryDetails} ka {hasNewTranslations}. Xan ts'íib jump'éel resumen Markdown ti' u linki abas kaambal meyaj yóol {coreSummary}."
 			}
 		},
 		"nextSteps": {
-			"title": "Próximos wook",
-			"configuration": "Configurar valores predeterminados a nivel repositorio yéetel {configPath}.",
-			"recipes": "Wil recetas utia'al u monorepos, glosarios personalizados yéetel categorías Custom Translator."
+			"title": "Wook uláak'",
+			"configuration": "Configurar valores predeterminados nivel repositorio yéetel {configPath}.",
+			"recipes": "Wil recetas utia'al monorepos, glosarios personalizados yéetel categorías Custom Translator."
 		}
 	},
 	"configuration": {
 		"title": "Configuración",
 		"eyebrow": "YAML",
 		"heroTitle": "Configuración le repositorio",
-		"lede": "Expresar valores predeterminados juntéene' ti' le archivo configuración le repositorio yéetel Cha' Amal flujo meyaj le hereden. Entradas asab Mantats' náajaltik ken xan u proporcionan.",
-		"intro": "Anular u bejil yéetel le yaan {configPath} wa k'abéet jump'éel tu'ux ku yaantal ma' predeterminada.",
+		"lede": "Expresar tumen defecto juntéene' ti' le archivo configuración repositorio yéetel Cha' u Amal flujo meyaj hereden le. Le entradas asab Mantats' náajalo'ob ken xan u proporcionan.",
+		"intro": "Anule le bejil yéetel le {configPath} yaan wa k'abéet jump'éel tu'ux ku yaantal ma' predeterminada.",
 		"schemaHeading": "Esquema",
 		"fieldReference": {
 			"heading": "K'a'ana'an jach yáax",
-			"caption": "K'a'ana'an jach yáax configuración",
+			"caption": "K'a'ana'an u jach yáax configuración",
 			"columns": {
-				"field": "Jach yáax",
+				"field": "U jach yáax",
 				"type": "Bin yano'ob",
 				"notes": "Notas"
 			},
 			"fields": {
-				"sourceLocale": "Ku k'a'ab ti' le {sourceLocale} yaan wa ma' ajusta. Xan reenviado ti' le traductor bey {fromLocale} jach le cadenas cortas ma' u detectan automáticamente.",
+				"sourceLocale": "Ku ka'a ti' le {sourceLocale} yaan wa ma' u configurado. Xan reenviado u Translator bey {fromLocale} tumen ku ma' u autodetectan cadenas cortas.",
 				"toLocales": "Ts'o'ok bixake' jump'éel matriz wa jump'éel cadena separada tumen coma.",
-				"includeExclude": "Patrones glob evaluados tu xu'ullsa'al bejo'ob absolutos yéetel relativos ti' le kúuchilo' kúuchil.",
-				"glossary": "Anulaciones término posterior ti' le traducción. T'aano'-límite consciente (maneja {cpp}, {dotnet}).",
-				"categoryId": "Categoría {customTranslatorLink} Azure — u mando industria leti' dominio (legal, médico, tono marketing, etc.). Túuxta'ab bey {categoryQuery}.",
-				"textType": "Por defecto u {plain}. Utilizar {html} chéen wa u uts' k'ajóolilo'obo' nu'ukulo'ob ya'alik fragmentos HTML reales.",
-				"profanityAction": "Bix k'aax términos profanos ti' salida traducido.",
-				"profanityMarker": "Chéen u k'áat u ya'al ken {profanityAction} {marked}.",
-				"allowFallback": "Establezca {false} utia'al fallar le traducción ken u {categoryId} mina'an u despliegue utia'al jump'éel lu'umil locales destino en vez de k'a'ab le bix tuláakal.",
-				"apiVersion": "Traductor versión API REST. Por defecto u {version}.",
-				"maxRetries": "Intentos máximos reintentos ti' respuestas HTTP transitorias ({statusCodes}). Tumen defecto u {defaultRetries}. Total llamadas HTTP tumen j-na'akij {totalCalls}.",
-				"retryBackoffMs": "Cap (ms) ti' je'el tin juunal backoff weenel. Por defecto u {defaultBackoff}. Le {retryAfter} cabecera u Azure jach honrada exactamente ken si'ipil; U tu contrario u ku meyajtiko'ob jumptered exponencial retroceso, limitado ti' le je'o'.",
-				"protectPlaceholders": "Por defecto u {true}. Le ken táan activado, fichas bey {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} yéetel HTML ku reemplazan yéetel fichas centinela bey ma' le traducción yéetel restauradas ts'o'okole'. Deshabilitar chéen ken le fuente ku taasik intencionalmente literales ti' bix u marcador u posición.",
-				"customPlaceholderPatterns": "Patrones regex adicionales (ma' delimitadores) añadidos ti' le nu'ukulo'ob marcador u posición tumen defecto, je'ebix, {angleToken} utia'al u sintaxis le ficha personalizada. Ku ignoran regex ma' válidos.",
-				"noTranslatePatterns": "Patrones glob emparejados xu'ullsa'al wach'ebo'obo' nivel analizador (bejil punteado JSON, RESX {resxName}, PO {poMsgid}, XLIFF unidad {xliffId}, clave INI leti' restext). Claves coincidentes ku eliminan ti' le solicitud yéetel ku yúuchul yéetel u ku k'aaba' conservado."
+				"includeExclude": "Patrones globo evaluados xu'ullsa'al le bejo' absoluto yéetel relativo u kúuchil meyajo'ob.",
+				"glossary": "Anulaciones términos post-traducción. Consciente ti' le límite t'aano' (maneja {cpp}, {dotnet}).",
+				"categoryId": "Azure {customTranslatorLink} categoría — u perilla industria/dominio (legal, médico, tono marketing, etc.). Túuxta'ab {categoryQuery}.",
+				"textType": "Tuméen defecto ti' {plain}. Meyaj {html} chéen wa u uts' k'ajóolilo'obo' nu'ukulo'ob ya'alik fragmentos HTML reales.",
+				"profanityAction": "Bix k'aax términos profanos ti' salida traducida.",
+				"profanityMarker": "Chéen ba'ax {profanityAction} {marked}.",
+				"allowFallback": "Configurar ti' {false} fallar le traducción ken u {categoryId} mina'an u despliegue utia'al jump'éel kúuchil destino kúuchil k'a' k'a'atik le bix tuláakal.",
+				"apiVersion": "Versión API REST u traductor. Tuméen defecto ti' {version}.",
+				"maxRetries": "Máximo intentos reintento ti' respuestas HTTP transitorias ({statusCodes}). Tuméen defecto ti' {defaultRetries}. Total llamadas HTTP tumen j-na'akij jach {totalCalls}.",
+				"retryBackoffMs": "Tapón (ms) ti' je'el chéen retroceso weenel. Tuméen defecto ti' {defaultBackoff}. Le encabezado {retryAfter} Azure jach honrado exactamente ka táan presente; U contrario ku meyajtiko'ob jumptered jumptered Exponencial backoff, u límite ti' le je'o'.",
+				"protectPlaceholders": "Tuméen defecto ti' {true}. Le ken activado, le fichas bey {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} yéetel HTML ku reemplazan tumen fichas centinela bey ma' le traducción yéetel restauradas ts'o'okole'. Desactivar chéen ken le fuente intencionadamente ku taasik literales bix u marcador lugar.",
+				"customPlaceholderPatterns": "Patrones regex adicionales (xma' delimitadores) añadidos ti' le nu'ukulo'ob marcador predeterminado, je'ebix, {angleToken} utia'al u sintaxis token personalizado. Le regex válidos ku ignoran.",
+				"noTranslatePatterns": "Patrones globo emparejados xu'ullsa'al teclas nivel analizador (JSON bejo' punteado, RESX {resxName}, PO {poMsgid}, unidad XLIFF {xliffId}, clave INI leti' restext). Le claves coincidentes ku sueltan ti' le j-na'akij yéetel ku yúuchul yéetel u ku fuente preservado."
 			}
 		},
 		"loadingOrder": {
 			"heading": "Orden kuuch",
 			"steps": {
-				"actionInputs": "Le asab xook entradas explícitas tak le flujo meyaj.",
-				"config": "Kuuch le configuración YAML {configPath}.",
-				"precedence": "Utia'al Amal jach yáax compartido, le yaan náajal; U tu contrario ku meyajtiko'ob le je'o' YAML.",
-				"validation": "Le uts' k'ajóolilo'obo' combinados u validan. Enumeraciones ma' válidas (je'ebix, {invalidEnum}) ku beetik u le asab falle séeba'an yéetel juntúul k'uuben t'aano' xane'."
+				"actionInputs": "Le molayil xook entradas explícitas ti' le flujo meyaj.",
+				"config": "Carga le configuración YAML tak {configPath}.",
+				"precedence": "Utia'al Amal jach yáax compartido, ku náajaltik le yaan; u contrario ku meyajtiko'ob le je'o' YAML.",
+				"validation": "Le uts' k'ajóolilo'obo' fusionados ku validan. Enums ma' válidos (je'ebix, {invalidEnum}) ku beetik u le molayil falle séeba'an yéetel juntúul t'aan jul t'aano'."
 			}
 		},
 		"tone": {
-			"heading": "Tono ka industria, ti' términos sencillos",
-			"body": "Le API Azure AI Translator v3 mina'an jump'éel chéen botón tono. Ka'atúul ajustes ku combinan utia'al u ts'aik ti' asab ti' le k'iino' je'el xano' kaambalil yo'osal:",
+			"heading": "Tono yéetel industria, ti' términos llanos",
+			"body": "Le API Azure AI Translator v3 mina'an ti' jump'éel chéen perilla tono. Ka'ap'éel ajustes combinan utia'al u ts'aik teech óol tuláakal le máasewáalo'obo' ti' le wéet kaambalil yo'osal:",
 			"industryLabel": "Industria leti' dominio:",
-			"industryBody": "Utilizar {categoryId} utia'al señalar jump'éel categoría Azure {customTranslatorLink} entrenada ti' u leti'ob corpus — legal, técnico, ts'aako', marketing wa uláak' ba'ala'. Lela' le palanca asab k'a'am yo'osal tono, t'aan marca yéetel vocabulario.",
+			"industryBody": "utilizar {categoryId} utia'al apuntar ti' jump'éel categoría Azure {customTranslatorLink} entrenada ti' u leti'ob corpus — legal, técnico, ts'aako'ob, marketing, jump'éel uláak' ba'ala'. Lela' le palanca asab k'a'am utia'al tono, t'aan marca yéetel vocabulario.",
 			"surfaceLabel": "Analte'o' superficial:",
-			"surfaceBody": "Meyaj le {glossaryLink} utia'al u bloquear u marcas yéetel términos le producto textual, ka meyaj {profanityAction} utia'al frotar términos profanos ken ku ts'áabal localización utia'al u audiencias asab jóoken.",
+			"surfaceBody": "Meyaj le {glossaryLink} utia'al bloquear k'aaba'obo' marca yéetel términos producto palabra tumen {profanityAction}, ka utilizar  utia'al u fregar términos profanos ti' le ku ts'áabal localización utia'al u audiencias asab jóeno'ob.",
 			"glossaryLinkLabel": "Glosario"
 		}
 	},
 	"inputs": {
-		"title": "Entradas & salidas",
+		"title": "Entradas yéetel salidas",
 		"eyebrow": "K'a'ana'an",
-		"lede": "Amal yaan xan jach aceptada ti' le archivo configuración repositorio opcional. Le ken xan u ajustan, le yaan asab náajal.",
-		"configurationIntro": "Wil {configurationLink} utia'al u esquema YAML yéetel le orden kuuch.",
+		"lede": "Amal yokol xan ku acepta ti' le archivo configuración repositorio opcional. Le ken je'el táan establecidos, ku náajaltik le yokol asab.",
+		"configurationIntro": "Wil {configurationLink} le esquema YAML yéetel le orden kuuch.",
 		"configurationLinkLabel": "Configuración",
 		"columns": {
 			"name": "K'aaba'",
-			"default": "Tumen defecto",
-			"description": "U tsoolil"
+			"default": "Predeterminado",
+			"description": "Descripción"
 		},
 		"defaults": {
-			"none": "mix jump'éel",
-			"allSupported": "Tuláakal apoyado",
-			"translatorDefaultTrue": "verdadero (predeterminado le Traductor)"
+			"none": "Mixba'al",
+			"allSupported": "tuláakal soportados",
+			"translatorDefaultTrue": "verdadero (Traductor tumen defecto)"
 		},
 		"requiredInputs": {
-			"heading": "Entradas k'a'abeto'ob",
-			"caption": "Entradas k'a'abeto'ob",
+			"heading": "Entradas requeridas",
+			"caption": "Entradas requeridas",
 			"items": {
-				"sourceLocale": "Configuración u beetik u k'aaba' (je'ebix, {en}) utilizado utia'al u kaxtik archivos recursos bey {sourceGlob}. Xan reenviado u Translator bey {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator clave suscripción. Máan tumen {secrets}.",
-				"endpoint": "URL u extremo le traductor, je'ebix, {endpointUrl}."
+				"sourceLocale": "Entorno u k'aaba' (je'ebix, {en}) utilizado utia'al u kaxtik archivos nu'ukulo'ob bey {sourceGlob}. Xan reenviado ti' Translator bey {fromLocale}.",
+				"subscriptionKey": "Azure AI Translator clave suscripción. Máanen {secrets}.",
+				"endpoint": "URL u endpoint le traductor, je'ebix, {endpointUrl}."
 			}
 		},
 		"optionalInputs": {
 			"heading": "Entradas opcionales náats'al",
 			"caption": "Entradas opcionales náats'al",
 			"items": {
-				"region": "Región nu'ukulo'ob traductor (omitir utia'al nu'ukulo'ob globales).",
-				"toLocales": "U kúuchil tu'ux ku xu'ullsa'al. Acepta jump'éel matriz JSON ({jsonArray}) wa uts' k'ajóolilo'obo' separados tumen coma.",
-				"include": "Patrones globo separados tumen Nueva línea; Chéen le archivos coincidentes ku traducen.",
-				"exclude": "Patrones globo separados tumen Nueva línea; Le archivos coincidentes ku omiten (aplicados ka' incluir).",
-				"configPath": "Bejil ti' le archivo configuración YAML (relativo ti' u mootsil le kúuchil u pa'al).",
-				"dryRun": "Le ken {true}, ejecutar traducciones yéetel emitir resúmenes Ba'ale' ma' ts'íib archivos.",
-				"failOnError": "Le {true}, errores inesperados fallan le asab; Le ken {false}, errores ku advertencias."
+				"region": "Petenil nu'ukulo'ob traductores (omitir utia'al u nu'ukulo'ob globales).",
+				"toLocales": "Kúuchilo'ob utia'al traducir. K'aam jump'éel matriz JSON ({jsonArray}) wa uts' k'ajóolilo'obo' separados tumen coma.",
+				"include": "Patrones globo separado tumen Newline; Chéen le archivos coincidentes ku traducen.",
+				"exclude": "Patrones globo separado tumen Newline; Le archivos coincidentes ku omiten (aplicado ka' incluir).",
+				"configPath": "Bejil ti' le archivo configuración YAML (relativo u mootsil le kúuchil meyajo'ob).",
+				"dryRun": "Le ken {true}, ejecutar traducciones yéetel emitir resúmenes Ba'ale' ma' escriba archivos.",
+				"failOnError": "Le ken {true}, errores inesperados fallan le asab; Le ken {false}, errores ku advertencias."
 			}
 		},
 		"translatorInputs": {
-			"heading": "Entradas solicitud u traductor",
-			"intro": "lelo'oba' ma' Jun ti' le parámetros consulta Azure AI Translator v3. Jujuntúulal jach opcional; le predeterminados Translator ku aplican ken unset.",
-			"caption": "Entradas solicitud u traductor",
+			"heading": "Entradas j-na'akij traductor",
+			"intro": "lelo'oba' mapas Jun ti' le parámetros consulta Azure AI Translator v3. Láaj le opcional; le Traductor tumen defecto ku aplican ken u desestablecidos.",
+			"caption": "Entradas j-na'akij traductor",
 			"items": {
-				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. Tu túuxtaj bey {categoryQuery}.",
-				"textType": "{plain} wa {html}. Utilizar {html} chéen ken u uts' k'ajóolilo'obo' nu'ukulo'ob ku fragmentos HTML reales.",
-				"profanityAction": "{noAction}, {marked} wa {deleted}. Controla bix u emiten términos profanos ti' le traducciones.",
-				"profanityMarker": "{asterisk} wa {tag}. Chéen u k'áat u ya'al ken {profanityAction} {marked}.",
-				"allowFallback": "Le ken {false}, Translator ku jump'éel ba'alo' kúuchil k'a'abet u t.u.m tuláakal wa u {categoryId} mina'an implementación utia'al jump'éel localización destino.",
-				"apiVersion": "Traductor versión API REST."
+				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. Ts'a'abal {categoryQuery}.",
+				"textType": "{plain} wa {html}. Meyaj {html} chéen ken u uts' k'ajóolilo'obo' nu'ukulo'ob ku fragmentos HTML reales.",
+				"profanityAction": "{noAction}, {marked} wa {deleted}. Controla bix u emiten términos profanos ti' traducciones.",
+				"profanityMarker": "{asterisk} wa {tag}. Chéen ba'ax {profanityAction} {marked}.",
+				"allowFallback": "Le ken {false}, Traductor ku jump'éel ba'alo' kúuchil k'a'atik le yaan tuláakal wa u {categoryId} mina'an despliegue utia'al jump'éel kúuchil destino.",
+				"apiVersion": "Versión API REST u traductor."
 			}
 		},
 		"resilienceInputs": {
-			"heading": "Resiliencia & protección marcador posición",
-			"intro": "Táan a entradas controlan bix u comporta le asab ken Translator limita u solicitud yéetel bix protege fichas marcador posición bey {mustache} wa {indexZero} u destrozar ichil le traducción.",
-			"caption": "Entradas ti' protección le resiliencia yéetel marcador posición",
+			"heading": "Resiliencia & Protección le marcador kúuchil",
+			"intro": "Táan a entradas controlan bix u comporta le molayil ken Translator limita u solicitud yéetel bix protege le fichas marcadores bey {mustache} wa {indexZero} utia'al u destrozado ichil le traducción.",
+			"caption": "Entradas ti' protección u resistencia yéetel u marcador",
 			"items": {
-				"maxRetries": "Intentos máximos reintentos ti' respuestas HTTP transitorias ({statusCodes}). Le meyaj ku total u llamadas HTTP tumen j-na'akij jach {totalCalls}.",
-				"retryBackoffMs": "Tapón (ti' milisegundos) ti' je'el tin juunal backoff weenel. Le molayil respeta le {retryAfter} u núukik u  u Azure exactamente ken u presente; U tu contrario meyajtiko'ob jumptered retroceso exponencial limitado ti' le je'o'.",
-				"protectPlaceholders": "Le ken {true} (tumen defecto), le marcadores u posición bey {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} yéetel HTML ku reemplazan yéetel fichas centinela bey ma' le traducción yéetel restaurados ts'o'okole'. Desactive chéen ken u fuente ku taasik intencionalmente analte'o' literal ti' bix u marcador u posición k'a'ana'an u traducido.",
-				"customPlaceholderPatterns": "Regex separados tumen túumben líneas (ma' delimitadores) añadidos ti' le nu'ukulo'ob marcador u posición tumen defecto, je'ebix, {angleToken} utia'al u sintaxis le ficha personalizada.",
-				"noTranslatePatterns": "Patrones glob separados tumen nueva internet ichil coinciden yéetel wach'ebo'obo' nivel analizador (bejil punteado JSON, RESX {resxName}, PO {poMsgid}, XLIFF unidad {xliffId}, clave INI leti' restext). Claves coincidentes ku eliminan tak le solicitud Translator yéetel ku yúuchul yéetel u ku k'aaba' preservado."
+				"maxRetries": "Máximo intentos reintento ti' respuestas HTTP transitorias ({statusCodes}). Le meyaj ku total u llamadas HTTP tumen j-na'akij jach {totalCalls}.",
+				"retryBackoffMs": "Tapón (ti' milisegundos) ti' je'el ba'ax chéen backoff weenel. Le molayil honra le {retryAfter} pool núukik Azure exactamente ka presente; Ti' contrario meyajtiko'ob jump'éel retiro exponencial jittered limitado ti' le je'o'.",
+				"protectPlaceholders": "Le ken {true} (predeterminado), le marcadores u posición bey {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} yéetel HTML ku reemplazan tumen fichas centinela bey ma' u traducción yéetel restauradas ts'o'okole'. Desactivar chéen ken u fuente intencionadamente ku taasik analte'o' literal bix u marcador lugar ba'ax k'a'ana'an traducir.",
+				"customPlaceholderPatterns": "Regexes separados tumen Newline (xma' delimitadores) añadidos ti' le conjunto marcador posición predeterminado, je'ebix, {angleToken} utia'al u sintaxis token personalizada.",
+				"noTranslatePatterns": "Patrones globo separado tumen Newline coincidieron xu'ullsa'al teclas nivel analizador (bejil punteado JSON, {resxName} RESX, {poMsgid} PO, unidad XLIFF {xliffId}, clave INI leti' restext). Le claves coincidentes ku sueltan ti' le solicitud Traductor yéetel yúuchul yéetel u je'o' fuente preservada."
 			}
 		},
 		"outputs": {
-			"heading": "salidas",
-			"caption": "salidas",
+			"heading": "Salidas",
+			"caption": "Salidas",
 			"items": {
-				"summaryTitle": "Resumen corto PR-título amigable, je'ebix, {summaryExample}.",
-				"summaryDetails": "Resumen Markdown conveniente utia'al jump'éel wíinkilal PR wa resumen meyaj.",
-				"hasNewTranslations": "{trueString} ken u generaron jump'éel wa asab traducciones túumben."
+				"summaryTitle": "Breve resumen u k'o'ojo'ob le PR, je'ebix, {summaryExample}.",
+				"summaryDetails": "Resumen Markdown adecuado utia'al jump'éel wíinkilal PR wa resumen meyaj.",
+				"hasNewTranslations": "{trueString} ka ku generaron jump'éel wa asab túumben traducciones."
 			}
 		}
 	},
 	"formats": {
 		"title": "Formatos archivo",
 		"eyebrow": "K'a'ana'an",
-		"heroTitle": "Formatos u archivo compatibles",
-		"lede": "Seis formatos u nu'ukulo'ob u vuelta u viajables. Le molayil xok Amal archivo k'aaba'-lokalización, traduce le uts' k'ajóolilo'obo' yéetel ts'íibtik jump'éel láak'o'ob tumen localización destino.",
-		"namingConvention": "Tuláakal le archivos utilizan le {namingConvention} convención u nomenclatura.",
-		"learnMore": "Aprenda asab",
+		"heroTitle": "Formatos archivo compatibles",
+		"lede": "Seis formatos nu'ukulo'ob redondecibles. Le molayil máax xokik Amal archivo fuente-localidad, traduce le uts' k'ajóolilo'obo' yéetel ts'íib jump'éel suku'un tumen kúuchil destino.",
+		"namingConvention": "Tuláakal le archivos utilizan le convención denominación {namingConvention}.",
+		"learnMore": "A wojeltik",
 		"items": {
 			"resx": {
-				"blurb": "Archivos u recursos .NET basados ti' XML. Traduce le analte'o' meyajo'ob Amal nodo {dataValue}, preservando comentarios yéetel metadatos.",
+				"blurb": "Archivos nu'ukulo'ob .NET basados ti' XML. Traduce le analte'o' interno Amal nodo {dataValue}, preservando comentarios yéetel metadatos.",
 				"specLabel": "Microsoft Learn — Nu'ukulo'ob ti' archivos.resx"
 			},
 			"xliff": {
-				"blurb": "OASIS XLIFF 2.0 ju'uno'ob. Traduce Amal {source} yéetel ts'íib le resultado ti' le {target} correspondiente, estableciendo {trgLang} utia'al u localización.",
+				"blurb": "Ju'uno'ob OASIS XLIFF 2.0. Traduce Amal {source} yéetel ts'íib le resultado ti' le {target} correspondiente, estableciendo {trgLang} utia'al u kúuchil tu'ux.",
 				"specLabel": "Especificación OASIS XLIFF 2.0"
 			},
 			"po": {
-				"blurb": "GNU gettext Portable Object archivos. Traduce Amal {msgid} / {msgidPlural} {msgstr} / {msgstrPlural} formas.",
-				"specLabel": "GNU gettext — formato archivo PO"
+				"blurb": "GNU gettext archivos portátiles objetos. Traduce Amal {msgid} {msgidPlural} ti' {msgstr} {msgstrPlural} formularios.",
+				"specLabel": "GNU gettext — PO formato archivo"
 			},
 			"json": {
-				"blurb": "Archivos JSON arbitrarios. Meentiko'ob anidados ku aplanan yéetel le delimitador {delimiter} utia'al u traducción, ts'o'okole' ku k'a' anidar ti' tíip'ik. Le wach'ebo'obo' ({dottedKey}) ku conservan u t'aan u tojol.",
+				"blurb": "Archivos JSON arbitrarios. Meentiko'ob anidados ku aplanan yéetel le delimitador {delimiter} utia'al u traducción, ts'o'okole' k'a' anidan ti' tíip'ik. Le wach'ebo'obo' yéetel puntos ({dottedKey}) ku preservan tin tuukul tu'ux.",
 				"specLabel": "Especificación JSON (RFC 8259)"
 			},
 			"ini": {
-				"blurb": "Simple {keyValue} archivos (INI estilo Win32 wa je'el configuración táats' che'). Le encabezados sección yéetel le comentarios ku conservan.",
+				"blurb": "Sencillos archivos {keyValue} (estilo Win32 u INI wa je'el ba'ax táats' che' configuración). Ku preservan le encabezados yéetel comentarios jaatso'ob.",
 				"specLabel": "Formato archivo INI ti' Wikipedia"
 			},
 			"restext": {
-				"blurb": "Nu'ukulo'ob le analte'o' Microsoft MUI — pares {keyValue} táats' che' utilizados bey juntúul wéet textual ti' {resx}.",
-				"specLabel": "Resumen Microsoft MUI"
+				"blurb": "Nu'ukulo'ob analte'o' Microsoft MUI — planos {keyValue} pares utilizados bey juntúul láak' textual ti' {resx}.",
+				"specLabel": "Resumen u Microsoft MUI"
 			}
 		},
 		"roundTrip": {
-			"heading": "Garantías u vuelta u vuelta",
-			"body": "Le nu'ukulo'ob pruebas verifica byte tumen byte u vuelta utia'al accesorios representativos Amal formato. Wa jump'éel peculiaridad formato jaat u vuelta ti' u codebase, Béet {issueLink} yéetel juntúul muestra mínima.",
+			"heading": "Garantías náachil ida u lada",
+			"body": "Le conjunto pruebas verifica byte-for-byte round-tripping utia'al u accesorios representativos Amal formato. Wa jump'éel quirk formato paat u round-tripping ti' u base código, Béet {issueLink} yéetel juntúul muestra mínima.",
 			"issueLinkLabel": "Je'e jump'éel wa"
 		}
 	},
 	"recipes": {
 		"title": "Recetas",
-		"eyebrow": "Áanalte' k'óoben",
-		"lede": "Patrones náats'al utia'al u envío traducciones: monorepos, glosarios, categorías personalizadas, tiradas tikin yéetel kanik tonal.",
+		"eyebrow": "Áanalte' u k'óoben",
+		"lede": "Patrones náats'al utia'al u traducciones envío: monorepos, glosarios, categorías personalizadas, ensayos ti' yéetel kaambalil yo'osal tono.",
 		"sections": {
 			"pullRequest": {
-				"heading": "Je'e jump'éel solicitud ch'u'uj ka' Amal carrera"
+				"heading": "Je'e jump'éel ch'a'akij ch'a'akij ka' Amal eje"
 			},
 			"monorepo": {
 				"heading": "Monorepos: traducción alcance tumen paquete"
 			},
 			"glossary": {
-				"heading": "Glosario utia'al u marcas yéetel términos producto",
-				"intro": "Coloque jump'éel {configPath} le repositorio:",
+				"heading": "Glosario utia'al u k'aaba'obo' marca yéetel términos producto",
+				"intro": "Coloque jump'éel {configPath} ti' le repo:",
 				"afterLabel": "ka'",
-				"body": "Términos glosario ku aplican {after} traducción, yo'olal tíip'ik traducido máquina mantiene u marca preferida páajtal ken u bix le cambió tumen juntúul sinónimo."
+				"body": "U aplican términos le glosario {after} traducción, yo'olal tíip'ik traducida tumen máquina mantiene u marca preferida páajtal ken u bix tu k'eexpajal tumen jump'éel sinónimo."
 			},
 			"customCategory": {
-				"heading": "Categoría Traductor personalizado (industria leti' dominio)",
-				"body": "Entrenar jump'éel categoría Azure {customTranslatorLink} ti' jump'éel corpus capta u vocabulario yéetel tono le industria (legal, ts'aako'ob, marketing, interna-ingeniería, etc.) ka máan u ID yóol {categoryId}. Lela' le palanca tono asab k'a'am Azure k'u'ubul."
+				"heading": "Categoría u Traductor personalizado (industria leti' dominio)",
+				"body": "Entrenar jump'éel categoría Azure {customTranslatorLink} ti' jump'éel corpus captura u vocabulario yéetel tono industria (legal, ts'aak, marketing, interna-ingeniería, etc.) yéetel máan u ID yóol {categoryId}. Lela' le palanca tono asab k'a'am Azure."
 			},
 			"tone": {
-				"heading": "Kaambalil yo'osal tono + estricto respaldo",
-				"body": "Combinar jump'éel {categoryId} traductor personalizado yéetel {profanityAction} ka {allowFallbackFalse} utia'al u beetik u jump'éel t'aan consistente yéetel fallar le flujo meyaj wa le categoría elegida mina'an ti' jump'éel implementación utia'al juntúul u locales destino."
+				"heading": "Kaambalil yo'osal tono + respaldo estricto",
+				"body": "Combinar jump'éel {categoryId} Traductor personalizado yéetel {profanityAction} ka {allowFallbackFalse} utia'al u imponer jump'éel t'aan consistente yéetel fallar le flujo meyaj wa le categoría elegida mina'an ti' jump'éel despliegue utia'al juntúul u locales destino."
 			},
 			"dryRun": {
-				"heading": "Funcionamiento ti' tikin bey ma' activar le flujo meyaj",
-				"body": "Le asab láayli' emite salidas resumen yéetel juntúul resumen paso, ba'ale' ma' ku ts'íibta'al archivos. Combinar yéetel {failOnErrorFalse} utia'al u chíikpajal Amal chun tuukulo' bey juntúul advertencia ka' jo'op' u itere."
+				"heading": "Prueba ti' síinaj bey ma' activar le flujo meyaj",
+				"body": "Le molayil láayli' emite salidas resumen yéetel jump'éel resumen paso, ba'ale' ma' u escriben archivos. Combinar yéetel {failOnErrorFalse} utia'al u superficie Amal chun tuukulo' bey advertencia ka' jo'op' iteras."
 			}
 		}
 	},
 	"faq": {
-		"title": "Preguntas frecuentes",
+		"title": "FAQ",
 		"eyebrow": "Áantaj",
 		"heroTitle": "K'áat chi'oba' frecuentes",
-		"lede": "Respuestas rápidas ti' le k'áat chi'oba' ku surgen yéetel asab frecuencia ti' le máatik le asab.",
+		"lede": "Respuestas rápidas ti' le k'áat chi'oba' ku aparecen asab frecuentemente ti' le máatik le asab.",
 		"questions": {
 			"azure": {
-				"heading": "Bix t'aan le molayil yéetel Azure.",
-				"body": "Yo'osal le SDK way sijnáaleche' u {azureSdkLink} Microsoft, capas ti' {corePipelineLink}. Lelo' ti' obtiene reintentos automáticos ti' le {statusCodes}, modelos u solicitud yéetel núukik escritos, yéetel u ch'a'iko'ob le encabezado autenticación gratis — tuláakal le ku solía u jump'éel t'aano' {axios} enrollada k'ab. Le superficie meyajo'ob máako'ob (entradas, salidas, salidas archivo) ma' u cambios."
+				"heading": "Bix u t'aan le molayil yéetel Azure.",
+				"body": "Yo'osal le SDK {azureSdkLink} way sijnáaleche' u Microsoft, ti' capas yóok'ol {corePipelineLink}. Lelo' ti' consigue reintentos automáticos ti' {statusCodes}, modelos j-na'akij yéetel núukik tekno'ob, ka ch'a'iko'ob yo'olal le encabezado autenticación gratis — tuláakal ba'ax solía u jump'éel t'aano' {axios} k'ab rodada. Le superficie asab pública (entradas, salidas, salidas archivo) ma' le cambios."
 			},
 			"tone": {
-				"heading": "Ba'ax ten le traducciones Yaan k'iine' le off-brand wa off-ton.",
-				"body": "Traducción automática predeterminada ti' jump'éel bix u propósito general. Óoxp'éel perillas paklan: jump'éel {glossaryLink} utia'al anulaciones término duro, jump'éel {customTranslatorLink} modelos afinados entrenados ti' u tono yéetel vocabulario, ka {profanityAction} fregar wa marcar términos profanos.",
+				"heading": "Ba'ax ten le traducciones yaan k'iine' paach marca wa paach tono",
+				"body": "Le traducción automática ku predeterminada ti' jump'éel bix u búukinta'al general. Óoxp'éel perillas ku yáantik: jump'éel {glossaryLink} utia'al u anulaciones plazos duros, jump'éel {customTranslatorLink} utia'al u modelos afinados entrenados ti' u tono yéetel vocabulario, ka {profanityAction} utia'al u fregar wa marcar términos profanos.",
 				"glossaryLinkLabel": "Glosario",
 				"customTranslatorLinkLabel": "Categoría Traductor personalizado"
 			},
 			"duplicateFiles": {
-				"heading": "Bix jech traducir le wéet archivo ka'atéen.",
-				"body": "Activar le flujo meyaj ti' {paths} coincidan yéetel u archivos fuente-locales chéen, je'ebix, {sourceGlob}. Le molayil xan analte'obo' yaan u leti'ob filtro archivo tumen disparador ken {githubToken} je'ets', estrechando meyaj ti' archivos ti' le ts'ook compromiso."
+				"heading": "Bix je'el in Jech traducir le k'iino' je'el xano' archivo ka'atéen.",
+				"body": "Activar le flujo meyaj ti' {paths} coincidan yéetel u archivos k'aaba'-localidad chéen, je'ebix, {sourceGlob}. Le molayil xan analte'obo' yaan u leti'ob filtro archivo tumen disparador ken u establezca {githubToken}, estrechando le meyaj ti' archivos ti' le ts'ook compromiso."
 			},
 			"offline": {
-				"heading": "Ba'ax je'el in ejecutar le molayil offline",
-				"body": "Ma' exactamente — Azure AI Translator leti' u ts'o'omej le k'iin meyaj. Ba'ale' je'el ejecutar yéetel {dryRunTrue} utia'al validar le análisis yéetel le configuración xma' meentik mix solicitud HTTP utia'al u traducción."
+				"heading": "Je'el u páajtal in ejecutar le molayil paach internet ichil.",
+				"body": "Ma' exactamente — Azure AI Translator jach u ts'o'omej u k'iinil meyajta'ale'. Ba'ale' je'el ejecutar yéetel {dryRunTrue} utia'al validar análisis yéetel configuración xma' meentik mix jump'éel solicitud HTTP traducción."
 			},
 			"node": {
-				"heading": "Ba'ax versión Nodo ku ejecuta le asab.",
-				"body": "v3 ku ejecuta ti' le GitHub Actions {nodeRuntime} tu k'iinil meyaj. Le JavaScript incluido le compatible yéetel Nodo 20, 22 yéetel 24, Lela' ku CI pruebas."
+				"heading": "Ba'ax versión Node ku ejecuta le asab.",
+				"body": "v3 ku ejecuta ti' le GitHub meyajo'ob {nodeRuntime}'éenaje'. Le JavaScript empaquetado jach compatible yéetel Nodo 20, 22 yéetel 24, ba'ax ku prueba CI."
 			},
 			"dist": {
-				"heading": "Tu'ux u tal le {distDir} paax.",
-				"body": "GitHub JS meyajo'ob envían u JS compilado ti' le repositorio. Le flujo meyaj {distBuild} le reconstruye ka' Amal fusión ti' {mainBranch} wa u derivaría, ka {distCheck} bloquea PR u aterrizarían salida desactualizada."
+				"heading": "Tu'ux u taal le múuch' {distDir}",
+				"body": "Meyajo'ob GitHub JS túuxtik u JS compilado ti' le repositorio. Le flujo meyaj {distBuild} ku reconstruye ka' Amal fusión u {mainBranch} wa derivaría, ka {distCheck} bloquea PRs ku aterrizarían salida paach k'ooko'."
 			},
 			"formats": {
-				"heading": "Ba'ax ku yúuchul ti' uláak' formatos nu'ukulo'ob.",
-				"body": "Bejla'e': {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} wa tech K'abéet uláak' — le interfaz analizador le chan (analizar → → aplicar traducciones → formato) yéetel le contribuciones ku bienvenidas.",
-				"issueLinkLabel": "Je'e jump'éel emisión"
+				"heading": "Ba'ax ka tu yo'olal uláak' formatos nu'ukulo'ob.",
+				"body": "Bejla'e’: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} wa tech K'abéet uláak' — le interfaz analizador le chan (analizar → ma' → aplicar traducciones → formato) yéetel le contribuciones ku bienvenidas.",
+				"issueLinkLabel": "Je'e jump'éel wa"
 			}
 		}
 	},
 	"translations": {
 		"title": "Traducciones",
 		"eyebrow": "Escaparate",
-		"heroTitle": "Hola tumen tuláakal t'aan",
-		"lede": "Le linki abas kaambal táan traducida tumen Traductor nu'ukulo'ob yan wéet, Ti' Amal empuje le noj bejo', Ti' Amal t'aano' Azure AI Translator compatibles.",
-		"localeCountLabel": "{count} lu'umo'ob",
-		"statusComplete": "{translatedCount} bejla'e' renderizado - chukbesaj!",
-		"statusPending": "{translatedCount} bejla'e' renderizado — {pendingCount} kanan u láak' {workflowName} ejecutar.",
-		"viewWorkflowRuns": "Wil meyajta'ale' flujo meyaj",
+		"heroTitle": "Hola ti' Amal t'aano'",
+		"lede": "Le linki abas kaambal jach traducida tumen Resource Translator yan wéet, ti' Amal empuje ti' le noj bejo', ti' Amal t'aano' soporta Azure AI Translator.",
+		"localeCountLabel": "{count} locales",
+		"statusComplete": "{translatedCount}'éel renderizado bejla'e' — completo!",
+		"statusPending": "{translatedCount} renderizado bejla'e' — {pendingCount} kanan le uláak' {workflowName} ejecución.",
+		"viewWorkflowRuns": "Wil ejecuciones flujo meyaj",
 		"filter": "Filtro",
 		"filterPlaceholder": "Kaxtik tumen t'aano', código wa k'aaba' nativo...",
 		"source": "Fuente",
-		"machineTranslations": "Traducciones automáticas",
-		"translationPending": "Kanan traducción — Je'e jump'éel {workflowName} run.",
-		"noLocales": "Ba'axe' locales coincide yéetel le filtro.",
+		"machineTranslations": "Traducciones u máquinas",
+		"translationPending": "Traducción kanan — Je'e jump'éel {workflowName} meyajta.",
+		"noLocales": "Mix kúuchilo'ob coinciden yéetel le filtro.",
 		"howItWorks": {
-			"heading": "Bix u meyaj le je'ela'",
-			"thisActionLabel": "Le je'el je'el ba'ax",
+			"heading": "Bix u meyaj le ba'ala'",
+			"thisActionLabel": "Le je'ela' jach ba'ax",
 			"steps": {
 				"source": "Le archivo k'aaba' inglés ku yaantal ti' {messagesPath}.",
-				"workflow": "Ku ch'íintik le paax u ch'a'ik {workflowLink}, ku yáalkab {thisAction} tu xu'ull.",
-				"fanOut": "Le asab ku aba'ana'al Amal lu'umil locales apoyado tumen Azure AI Translator (configurado ti' {configPath}) yéetel ts'íib jump'éel láak'o'ob {messagesLocaleJson} tumen ba'ax ku kax.",
-				"pullRequest": "Jaap jump'éel solicitud pull yéetel le túumben traducciones. Fusionar tu k'a' publicar le linki abas kaambal yéetel le tarjetas rellenadas."
+				"workflow": "Túulik le paache ti' {workflowLink}, ku yáalkab {thisAction} xu'ullsa'al yan wéet.",
+				"fanOut": "Le molayil ku extiende Amal kúuchil compatible yéetel Azure AI Translator (configurado ti' {configPath}) yéetel ts'íib jump'éel suku'un {messagesLocaleJson} tumen objetivo.",
+				"pullRequest": "Jump'éel ch'a'akij ch'a'akij ku Jaap yéetel le túumben traducciones. Fusionar u republica le linki abas kaambal yéetel le tarjetas rellenadas."
 			}
 		},
-		"poweredBy": "Desarrollado tumen Traductor nu'ukulo'ob yéetel Azure AI Translator."
+		"poweredBy": "Impulsado tumen Resource Translator yéetel Azure AI Translator."
 	},
 	"contributing": {
-		"title": "Contribución",
+		"title": "Táakpajal",
 		"eyebrow": "Código abierto",
-		"lede": "Informes errores ti', solicitudes función yéetel solicitudes ch'úubul ku tuláakal bienvenidos. Le asab le píibo' chan bey utia'al amigable yéetel le máaxo'ob colaboradores yáax ka'atéen.",
+		"lede": "Informes errores ti', solicitudes yáantajo'ob yéetel ch'áanuktik ch'áanuk Ch'íin tuláakal le bienvenidas. Le molayil le tu píibo' chichan utia'al u amigable yéetel le contribuyentes u yáax k'iin.",
 		"localDevelopment": {
-			"heading": "Le ma'alo'ob ku"
+			"heading": "Ma'alo'ob ku"
 		},
 		"addingParser": {
-			"heading": "Añadir jump'éel analizador",
+			"heading": "Añadir jump'éel analizador analizador",
 			"steps": {
 				"fixture": "Añadir jump'éel accesorio yáanal {testDataDir}.",
 				"implement": "Implementar {parserInterface} ({parse}, {format}, {applyTranslations}, {toTranslatableTextMap}).",
-				"register": "Registrar ti' {factoryFile}.",
-				"extension": "Añadir p'isik archivo ti' {translationFileSchemes} ti' {finderFile}.",
-				"tests": "Ts'íibtik pruebas ti' ida u vuelta utia'al u análisis → formato yéetel applyTranslations."
+				"register": "Ku registrar ti' {factoryFile}.",
+				"extension": "Añadir le p'isik archivo ti' {translationFileSchemes} ti' {finderFile}.",
+				"tests": "Ts'íibtik pruebas náachil ida u na'a utia'al u formato parse → yéetel applyTranslations."
 			}
 		},
 		"coverage": {
-			"heading": "Umbrales u cobertura",
-			"body": "Le configuración Jest aplica le cobertura mínima. Le túumben código k'a'ana'an mantener le declaraciones + líneas umbral por encima del 78 ti chúumuk yéetel le noj por encima del 90 ti chúumuk. Añadir accesorios ka pruebas junto a k'eexpajal."
+			"heading": "Umbrales cobertura",
+			"body": "Le configuración Jest impone le cobertura mínima. Túumben código k'a'ana'an mantener le declaraciones + umbral líneas por encima del 78 ti chúumuk yéetel noj superiores ti' le 90 ti chúumuk. Añadir accesorios yéetel pruebas yiknal a k'eexpajal."
 		},
 		"docsSite": {
-			"heading": "Ts'ono'oto' ju'uno'ob",
-			"body": "Le carpeta {docsDir} jach jump'éel tsol Astro 6 + Tailwind v4. Áalkab {npmInstall} te'elo', ts'o'okole' {npmRunDev} utia'al jump'éel sáasil u páajtal. Le flujo meyaj {pagesWorkflow} túuxtik documentos ti' GitHub Pages ti' Amal combinación."
+			"heading": "Ts'ono'oto' u ju'uno'ob",
+			"body": "Le carpeta {docsDir} jach jump'éel tsol Astro 6 + Tailwind v4. Ejecuta {npmInstall} te'elo' juntéene', ts'o'okole' {npmRunDev} utia'al u sáasil previa ku. Le flujo meyaj {pagesWorkflow} ku túuxta'al documentos u GitHub Pages Amal fusión."
 		}
 	},
 	"changelog": {
-		"title": "Registro k'eexpajal",
+		"title": "Registro cambios",
 		"eyebrow": "K'ajláayo'",
-		"lede": "Resumen ka'anal nivel liberaciones. Le canónico, registro cambios autorizado ku yaantal ti' CHANGELOG.md ti' le repositorio.",
-		"fullRecord": "Wilik {changelogLink} utia'al u registro completo.",
+		"lede": "Resumen ka'anal nivel u lanzamientos. Le registro cambios canónico, autorizado ku yaantal ti' CHANGELOG.md ti' le repositorio.",
+		"fullRecord": "Wil {changelogLink}'éel uchik k'iini'.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
 		"v3": {
 			"heading": "v3 (ti' ma'alo'ob)",
 			"labels": {
-				"breaking": "JA'ATAL",
-				"resilience": "Resiliencia:",
-				"placeholderProtection": "Protección marcador posición:",
-				"perKeyOptOut": "Exclusión tumen tecla:",
-				"docsAccessibility": "Bejo' bix u yotocho'ob:",
-				"inlineCodeStyling": "Código ti' internet ichil:"
+				"breaking": "JAATIK",
+				"resilience": "Resistencia:",
+				"placeholderProtection": "Protección u marcador:",
+				"perKeyOptOut": "Opt-out tumen clave:",
+				"docsAccessibility": "Docs accesibilidad:",
+				"inlineCodeStyling": "Estilo código ti' internet ichil:"
 			},
 			"issueLabels": {
-				"closes46": "Muts'ik #46.",
-				"tightens16": "Apriete #16.",
-				"closes35": "Muts'ik #35."
+				"closes46": "Ku muts'ik #46.",
+				"tightens16": "Aprieta #16.",
+				"closes35": "Ku muts'ik #35."
 			},
 			"items": {
-				"runtime": "Golpeado {nodeRuntime} u k'iinil funcionamiento ({breaking}).",
-				"newInputs": "Túumben entradas: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, beyxan ti' kaambalilo'ob avanzadas perillas Translator {textType}, {profanityAction}, {profanityMarker} yéetel {allowFallback}.",
-				"sourceLocale": "Configuración kajnáalo'ob k'aaba' ku bejla'e' xan u reenvía Translator bey {fromLocale} yo'olal le cadenas cortas ma' u detectan automáticamente.",
-				"resilience": "{label} reintento automático ti' respuestas HTTP transitorias ({statusCodes}) respetando le {retryAfter} u encabezado Azure — ku kuuch ti' jump'éel retroceso exponencial agitado ken u ausente. Ajustable yo'osal {maxRetries} yéetel {retryBackoffMs}. {issue}",
-				"placeholderProtection": "{label} fichas bey {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} yéetel HTML ku envueltos ti' centinelas bey ma' le traducción yéetel restauradas ts'o'okole', yo'olal Translator p'atik u destrozar marcadores u posición i18next leti' Mustache leti' Handlebars leti'.NET leti' printf. Alternar yóol {protectPlaceholders}; Jaats'ik yéetel {customPlaceholderPatterns}. {issue}",
-				"perKeyOptOut": "{label} túumben yaan {noTranslatePatterns} jalk'at clave coincidencia tak le solicitud Translator jaatsatako'ob (conserva le k'ajóolilo'obo' fuente utia'al u k'aaba'obo' marcas, códigos ba'alo', etc.). Coincide yéetel patrones glob xu'ullsa'al teclas nivel analizador (JSON bejil punteado, RESX {resxName}, PO {poMsgid}, XLIFF unidad {xliffId}, clave INI leti' restext). {issue}",
-				"repoConfig": "Configuración a nivel repositorio yóol {configPath}.",
-				"glossary": "Áantaj le glosario, resumen le paso yóol {coreSummary}.",
-				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
-				"audit": "Limpieza auditoría npm (0 vulnerabilidades).",
-				"docsSite": "Astro + Tailwind v4 ts'ono'oto' documentos yéetel transiciones u sáasil yéetel Código expresivo.",
-				"docsAccessibility": "{label} WCAG 2.1 AA pas. Glifos logotipo convertidos ti' bejil utia'al u ts'o'ok ma' fallan boonil-contraste xu'ullsa'al le paradas degradado, le botón {backToTop} flotante meyajtiko'ob {inert} ka' jo'op' u oculta (kúuchil jump'éel {ariaHidden} palanca tu p'ataj tabulable), {formatsAstro} le jaatso'ob ts'o'ok ma' chocan yéetel u ID Béet generados kiis, óoxp'éel tarjetas locales bejla'e' exponen BCP-47-válido {lang} atributos ({nya}, {lug}, {run}), etiquetas {documentation} retención duplicadas u desambiguan ichil barra lateral yéetel u pi paachil,  yéetel Amal tabla datos ti' {inputs} leti' {configuration} envía yéetel jump'éel leyenda lector pantalla.",
-				"inlineCode": "{label} le {codeElement} prosa ku bisik bejla'e' le acento chun tuukulo' cálido leti' ámbar — distinto ti' le paleta marca→acento utilizado utia'al u K'aanan yéetel encabezados.",
-				"automation": "Dependabot auto-merge ti', CodeQL scanning, CI matrix."
+				"runtime": "Bumped ti' {nodeRuntime} k'iinil u funcionamiento ({breaking}).",
+				"newInputs": "Entradas túumben: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, beyxan ti' kaambalilo'ob perillas Translator avanzadas {textType}, {profanityAction}, {profanityMarker} ka {allowFallback}.",
+				"sourceLocale": "Le localidad u k'aaba' bejla'e' xan u reenvía u Translator bey {fromLocale} yo'olal le cadenas kóomtak ma' u detectan automáticamente.",
+				"resilience": "{label}'éel reintento automático ti' respuestas HTTP transitorias ({statusCodes}) honrando le {retryAfter} pool Azure — ku ka'a ti' jumptered exponencial backoff ken u ausente. Sintonizable yóol {maxRetries} yéetel {retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} le fichas bey {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} yéetel HTML táan envueltos ti' centinelas bey ma' le traducción yéetel restauradas ts'o'okole', yo'olal le Traductor ku ch'a' destrozar i18next leti'e' me'ex'..NET leti' printf marcadores. Alternar yóol {protectPlaceholders}; Jaayaj yéetel {customPlaceholderPatterns}. {issue}",
+				"perKeyOptOut": "{label} túumben {noTranslatePatterns} yaan suelta claves coincidentes ti' le solicitud Traductor jaatsatako'ob (preserva le uts' k'ajóolilo'obo' fuente utia'al u k'aaba'obo' marca, códigos ba'alo', etc.). Coincide yéetel patrones glob xu'ullsa'al claves nivel analizador (JSON u yóol u puntos, RESX {resxName}, PO {poMsgid}, XLIFF unidad {xliffId}, clave INI leti' restext). {issue}",
+				"repoConfig": "Configuración nivel repo-nivel yóol {configPath}.",
+				"glossary": "Áantaj le glosario, resumen wook yóol {coreSummary}.",
+				"tooling": "esbuild bundler, ESLint 9 táats' che' config, Pretier, EditorConfig.",
+				"audit": "NPM auditoría Limpio (0 vulnerabilidades).",
+				"docsSite": "Astro + Tailwind v4 ts'ono'oto' docs yéetel transiciones sáasil yéetel código expresivo.",
+				"docsAccessibility": "{label} Máan WCAG 2.1 AA. Glifos le logo convertidos u bejo'ob tumen ku ts'o'ok ma' fallan boonil-contraste xu'ullsa'al paradas degradado, le botón {backToTop} flotante meyajtiko'ob {inert} ka' jo'op' u oculta (kúuchil jump'éel {ariaHidden} palanca tu p'ataj tabable), {formatsAstro} secciones ts'o'ok ma' chocan yéetel u ID Béet generados ti' kiis, óoxp'éel tarjetas locales bejla'e' exponen BCP-47-válidos {lang} atributos ({nya}, {lug}, {run}), duplicar etiquetas {documentation} monumentos ku desambiguan ichil barra lateral yéetel wook,  ka Amal tabla datos ti' {inputs} leti' {configuration} ku túuxtik yéetel jump'éel leyenda lector pantalla.",
+				"inlineCode": "{label} docs prosa bejla'e' {codeElement} le acento chun tuukulo' cálido leti' ámbar — jela'an ti' le paleta acento marca→ utilizada utia'al u K'aanan yéetel títulos.",
+				"automation": "Dependabot auto-fusión, escaneo CodeQL, matriz CI."
 			}
 		},
 		"v2": {

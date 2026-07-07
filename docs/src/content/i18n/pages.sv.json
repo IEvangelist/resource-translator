@@ -143,7 +143,7 @@
 			"heading": "Ton och industri, i klara termer",
 			"body": "Azure AI Translator v3 API har inte en enda tonratt. Två inställningar kombineras för att ge dig nästan samma kontroll:",
 			"industryLabel": "Bransch / område:",
-			"industryBody": "använd {categoryId} för att peka på en Azure {customTranslatorLink}-kategori som tränas på din egen korpus — juridisk, teknisk, medicinsk, marknadsföring eller något annat. Detta är den starkaste hävstången för ton, varumärkesröst och ordförråd.",
+			"industryBody": "använd {categoryId} för att peka på en Azure {customTranslatorLink}-kategori som tränas på ditt eget korpus — juridisk, teknisk, medicinsk, marknadsförande eller något annat. Detta är den starkaste hävstången för ton, varumärkesröst och ordförråd.",
 			"surfaceLabel": "Yttext:",
 			"surfaceBody": "Använd {glossaryLink} för att låsa varumärken och produkttermer ordagrant, och använd {profanityAction} för att rensa bort grova termer när du riktar lokalisering till yngre målgrupper.",
 			"glossaryLinkLabel": "Ordlista"
@@ -203,7 +203,7 @@
 		"resilienceInputs": {
 			"heading": "Motståndskraft och ersättningsskydd",
 			"intro": "Dessa inmatningar styr hur handlingen beter sig när Translator stryper din begäran och hur den skyddar platshållartokens som {mustache} eller {indexZero} från att bli förstörda under översättningen.",
-			"caption": "Motståndskraft och platshållarskyddsinsatser",
+			"caption": "Motståndskraft och tillfälligt skydd",
 			"items": {
 				"maxRetries": "Maximala försök på tillfälliga HTTP-svar ({statusCodes}). Det totala antalet HTTP-anrop per förfrågan är {totalCalls}.",
 				"retryBackoffMs": "Kondensator (i millisekunder) på vilken enskild backoff-viloläge som helst. Åtgärden hedrar Azures {retryAfter} svarshuvud exakt när det finns; annars använder den jitterad exponentiell backoff med ett tak på detta värde.",
@@ -411,7 +411,7 @@
 				"sourceLocale": "Källplatsen vidarebefordras nu också till Translator som {fromLocale} så att korta strängar inte automatiskt upptäcks.",
 				"resilience": "{label} automatisk omprövning på transienta HTTP-svar ({statusCodes}) som respekterar Azures {retryAfter}-header — faller tillbaka på jitterad exponentiell backoff när den saknas. Justerbar via {maxRetries} och {retryBackoffMs}. {issue}",
 				"placeholderProtection": "{label} tokens som {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} och HTML-entiteter paketeras i sentinels före översättning och återställs efteråt, så Translator slutar förstöra i18next/Mustache/Handlebars/.NET/printf platshållare. Växla via {protectPlaceholders}; Förläng med {customPlaceholderPatterns}. {issue}",
-				"perKeyOptOut": "{label} nya {noTranslatePatterns} inmatning tar helt bort matchande nycklar från översättarens förfrågan (bevarar källvärden för varumärken, felkoder etc.). Matchar globmönster mot parser-nivånycklar (JSON prickad path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext-tangent). {issue}",
+				"perKeyOptOut": "{label} nya {noTranslatePatterns} inmatning tar helt bort matchande nycklar från översättarens förfrågan (bevarar källvärden för varumärken, felkoder etc.). Matchar globmönster mot parser-nivånycklar (JSON prickad väg, RESX {resxName}, PO {poMsgid}, XLIFF-enhet {xliffId}, INI/restext-tangent). {issue}",
 				"repoConfig": "Repo-nivåkonfiguration via {configPath}.",
 				"glossary": "Ordlistastöd, stegsammanfattning via {coreSummary}.",
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",

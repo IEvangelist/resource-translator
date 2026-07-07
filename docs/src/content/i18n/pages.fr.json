@@ -8,7 +8,7 @@
 		"headlineAccent": "Chaque engagement.",
 		"lede": "Resource Translator ouvre les pull requests traduits automatiquement pour vos fichiers de ressources via Azure AI Translator via le SDK officiel — pas de services supplémentaires, juste un flux de travail.",
 		"primaryCta": "Commencez",
-		"secondaryCta": "Étoile sur GitHub",
+		"secondaryCta": "Star sur GitHub",
 		"supports": "Supports",
 		"builtForShipping": "Construit pour la navigation",
 		"workflowTitle": "La traduction est un flux de travail, pas une corvée.",
@@ -101,7 +101,7 @@
 		"title": "Configuration",
 		"eyebrow": "YAML",
 		"heroTitle": "Configuration du dépôt",
-		"lede": "Express prend par défaut une fois dans le fichier de configuration du dépôt et laisse chaque workflow les hériter. Les entrées d’action gagnent toujours lorsque les deux sont fournies.",
+		"lede": "Express prend par défaut une fois dans le fichier de configuration du dépôt et laisse chaque workflow les hériter. Les entrées d’action l’emportent toujours lorsque les deux sont fournies.",
 		"intro": "Écrase le chemin avec l’entrée {configPath} si tu as besoin d’un emplacement non par défaut.",
 		"schemaHeading": "Schéma",
 		"fieldReference": {
@@ -124,7 +124,7 @@
 				"allowFallback": "Réglez sur {false} pour échouer la traduction lorsque votre {categoryId} n’a pas de déploiement pour un lieu cible au lieu de revenir au modèle général.",
 				"apiVersion": "Version de l’API REST du traducteur. Par défaut, c’est {version}.",
 				"maxRetries": "Tentatives maximales sur les réponses HTTP transitoires ({statusCodes}). Par défaut, c’est {defaultRetries}. Le nombre total d’appels HTTP par requête est {totalCalls}.",
-				"retryBackoffMs": "Limite (ms) pour tout sommeil de recul. Par défaut, c’est {defaultBackoff}. L’en-tête {retryAfter} d’Azure est honoré exactement lorsqu’il est présent ; sinon, un backoff exponentiel avec gigues est utilisé, plafonné à cette valeur.",
+				"retryBackoffMs": "Limite (ms) pour chaque sommeil de recul. Par défaut, c’est {defaultBackoff}. L’en-tête {retryAfter} d’Azure est honoré exactement lorsqu’il est présent ; sinon, un backoff exponentiel avec gigues est utilisé, plafonné à cette valeur.",
 				"protectPlaceholders": "Par défaut, c’est {true}. Une fois activés, des jetons comme {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} et HTML sont remplacés par des jetons sentinelle avant la traduction et restaurés ensuite. Désactiver uniquement lorsque la source contient intentionnellement des littéraux en forme de placeholder.",
 				"customPlaceholderPatterns": "Des motifs réguliers supplémentaires (sans délimiteurs) ajoutés au jeu de substituts par défaut, par exemple {angleToken} pour une syntaxe personnalisée des jetons. Les regex invalides sont ignorés.",
 				"noTranslatePatterns": "Les motifs glob correspondaient aux clés de niveau analyseur (chemin pointé JSON, {resxName} RESX, {poMsgid} PO, {xliffId} unité XLIFF, clé INI/restext). Les clés correspondantes sont supprimées de la requête et transmises en conservant leur valeur source."
@@ -300,7 +300,7 @@
 		"questions": {
 			"azure": {
 				"heading": "Comment l’action communique-t-elle avec Azure ?",
-				"body": "Grâce au SDK officiel {azureSdkLink} de Microsoft, avec une couche de {corePipelineLink}. Cela vous permet de reprendre automatiquement les {statusCodes}, de les modèles de requêtes et de réponses saisies, ainsi que de gérer gratuitement les en-têtes d’authentification — tout ce qui était autrefois un appel {axios} roulé à la main. La surface d’action publique (entrées, sorties, sorties de fichiers) reste inchangée."
+				"body": "Grâce au SDK officiel {azureSdkLink} de Microsoft, avec une couche de {corePipelineLink}. Cela vous permet de reprendre automatiquement les {statusCodes}, de s’envoyer des modèles de requêtes et de réponses saisies, ainsi que de gérer gratuitement les en-têtes d’authentification — tout ce qui était autrefois un appel {axios} roulé à la main. La surface d’action publique (entrées, sorties, sorties de fichiers) reste inchangée."
 			},
 			"tone": {
 				"heading": "Pourquoi les traductions sont-elles parfois non marquées ou mal en ton ?",

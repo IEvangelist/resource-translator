@@ -195,7 +195,7 @@
 				"categoryId": "Azure {customTranslatorLink} category — o botão industry/domain/tone knob. Encaminhado como {categoryQuery}.",
 				"textType": "{plain} ou {html}. Usa-{html} apenas quando os teus valores de recursos forem fragmentos HTML reais.",
 				"profanityAction": "{noAction}, {marked} ou {deleted}. Controla como os termos profanos são emitidos nas traduções.",
-				"profanityMarker": "{asterisk} ou {tag}. Só significa quando {profanityAction} é {marked}.",
+				"profanityMarker": "{asterisk} ou {tag}. Só é significativo quando {profanityAction} é {marked}.",
 				"allowFallback": "Quando {false}, o Tradutor devolve um erro em vez de recorrer ao sistema geral se o seu {categoryId} não tiver deployment para um local alvo.",
 				"apiVersion": "Tradutor versão da API REST."
 			}
@@ -226,7 +226,7 @@
 		"title": "Formatos de ficheiro",
 		"eyebrow": "Referência",
 		"heroTitle": "Formatos de ficheiro suportados",
-		"lede": "Seis formatos de recursos que podem ser repartidos. A ação lê cada ficheiro source-local, traduz os valores e escreve um irmão por local de destino.",
+		"lede": "Seis formatos de recursos que podem ser repartidos. A ação lê cada ficheiro source-locale, traduz os valores e escreve um irmão por local de destino.",
 		"namingConvention": "Todos os ficheiros utilizam a convenção de nomes {namingConvention}.",
 		"learnMore": "Saiba mais",
 		"items": {
@@ -240,7 +240,7 @@
 			},
 			"po": {
 				"blurb": "Ficheiros GNU gettext Portable Object. Traduz cada {msgid} / {msgidPlural} para {msgstr} / {msgstrPlural} formas.",
-				"specLabel": "GNU gettext — Formato de ficheiro PO"
+				"specLabel": "GNU gettext — formato de ficheiro PO"
 			},
 			"json": {
 				"blurb": "Ficheiros JSON arbitrários. Os objetos aninhados são achatados com o delimitador {delimiter} para translação, e depois reaninhados na saída. As teclas pontilhadas ({dottedKey}) são preservadas literalmente.",
@@ -304,7 +304,7 @@
 			},
 			"tone": {
 				"heading": "Porque é que as traduções por vezes são fora de marca ou fora de tom?",
-				"body": "A tradução automática utiliza por defeito um modelo de uso geral. Três botões ajudam: um {glossaryLink} para sobreposições de termos rígidos, um {customTranslatorLink} para modelos afinados treinados no seu tom e vocabulário, e {profanityAction} para eliminar ou sinalizar termos profanos.",
+				"body": "A tradução automática utiliza por defeito um modelo de uso geral. Três botões ajudam: um {glossaryLink} para sobreposições rígidas de termos, um {customTranslatorLink} para modelos afinados treinados no seu tom e vocabulário, e {profanityAction} para eliminar ou sinalizar termos profanos.",
 				"glossaryLinkLabel": "Glossário",
 				"customTranslatorLinkLabel": "Categoria de tradutores personalizados"
 			},

@@ -231,7 +231,7 @@
 		"learnMore": "Yiga nnyo",
 		"items": {
 			"resx": {
-				"blurb": "XML-based .NET resource files. Okuvvuunula ebiwandiiko eby'omunda ebya buli {dataValue} node, okukuuma ebirowoozo n'ebifaananyi.",
+				"blurb": "XML-based .NET resource files. Okuvvuunula ebiwandiiko eby'omunda ebya buli {dataValue} node, okukuuma ebirowoozo ne metadata.",
 				"specLabel": "Microsoft Learn — Resources in .resx files"
 			},
 			"xliff": {
@@ -280,7 +280,7 @@
 			},
 			"customCategory": {
 				"heading": "Custom Translator category (industry / domain)",
-				"body": "Tendeka ekitongole kya Azure {customTranslatorLink} ku corpus ekwata ebigambo by'ekitongole kyo (amateeka, eby'obujjanjabi, eby'obusuubuzi, n'ebirala) era n'okuyita mu {categoryId}. This is the strongest tone lever Azure offers."
+				"body": "Tendeka ekitongole kya Azure {customTranslatorLink} ku corpus ekwata ebigambo by'ekitongole kyo (amateeka, eby'obujjanjabi, eby'obusuubuzi, n'ebirala) era oyise ID yakyo okuyita mu {categoryId}. This is the strongest tone lever Azure offers."
 			},
 			"tone": {
 				"heading": "Tone control + strict fallback",

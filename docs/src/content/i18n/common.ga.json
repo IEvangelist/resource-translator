@@ -31,7 +31,7 @@
 		"idleTitle": "Cuardaigh na doiciméid",
 		"idleHelp": "Aimsigh ailt de réir topaic, formáid comhaid, rogha cumraíochta, nó oideas. Bain úsáid as {up} {down} chun nascleanúint a dhéanamh, {enter} a oscailt.",
 		"loading": "Á Chuardach...",
-		"empty": "Gan aon torthaí. Bain triail as eochairfhocal difriúil.",
+		"empty": "Gan aon torthaí. Bain triail as eochairfhocal eile.",
 		"error": "Níl an t-innéacs cuardaigh ar fáil i dev. Reáchtáil tógáil táirgeachta."
 	},
 	"toc": {
@@ -53,9 +53,24 @@
 		"sourceAria": "Féach ar an bhfoinse ar GitHub",
 		"marketplaceAria": "Féach ar Mhargadh GitHub",
 		"authorAria": "Suíomh Gréasáin David Pine",
+		"npmAria": "Féach ar an Azure Translator SDK ar npm",
 		"taglinePrefix": "Gníomh GitHub a aistríonn do chuid comhad acmhainne go huathoibríoch, tógtha ar bharr an oifigiúil",
 		"taglineMiddle": "SDK ó",
 		"copyrightPrefix": "Scaoileadh faoin",
-		"builtWith": "Tógtha le"
+		"builtWith": "Tógtha le",
+		"installLabel": "Cuir é le do shreabhadh oibre",
+		"copy": "Cóipeáil",
+		"copied": "Cóipeáilte!",
+		"copyAria": "Cóipeáil an snippet suiteála chuig do ghearrthaisce",
+		"marketplaceCta": "Faigh é ar GitHub Marketplace",
+		"starCta": "Réalta ar GitHub",
+		"starAria": "Aistritheoir Acmhainne Réalta ar GitHub",
+		"stargazersAria": "Comhaireamh stargazers GitHub",
+		"versionLabel": "Leagan",
+		"whatsNew": "Cad atá nua",
+		"language": "Teanga",
+		"editPage": "Cuir an leathanach seo in eagar",
+		"editPageAria": "Cuir foinse an leathanaigh seo in eagar ar GitHub",
+		"reportIssue": "Tuairiscigh saincheist leis an leathanach seo"
 	}
 }

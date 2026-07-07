@@ -88,7 +88,7 @@
 			},
 			"output": {
 				"title": "Pārbaudiet izeju",
-				"body": "Kad darbplūsma ir pabeigta, darbība atklāj trīs izvades, kuras varat savienot ar PR aprakstu: {summaryTitle}, {summaryDetails} un {hasNewTranslations}. Tas arī ieraksta Markdown kopsavilkumu darba lapā, izmantojot {coreSummary}."
+				"body": "Kad darbplūsma ir pabeigta, darbība atklāj trīs izejas, kuras varat savienot ar PR aprakstu: {summaryTitle}, {summaryDetails} un {hasNewTranslations}. Tas arī ieraksta Markdown kopsavilkumu darba lapā, izmantojot {coreSummary}."
 			}
 		},
 		"nextSteps": {
@@ -270,7 +270,7 @@
 				"heading": "Pull pieprasījuma atvēršana pēc katras izpildes"
 			},
 			"monorepo": {
-				"heading": "Monorepos: apjoma tulkojums paketē"
+				"heading": "Monorepos: tvēruma tulkojums pa paketēm"
 			},
 			"glossary": {
 				"heading": "Zīmolu nosaukumu un produktu terminu glosārijs",
@@ -304,7 +304,7 @@
 			},
 			"tone": {
 				"heading": "Kāpēc tulkojumi dažkārt ir ārpus zīmola vai neatbilstoša?",
-				"body": "Mašīntulkošana pēc noklusējuma ir universāls modelis. Trīs pogas palīdz: {glossaryLink} smagu termiņu ignorēšanai, {customTranslatorLink} precīzi noregulētiem modeļiem, kas apmācīti jūsu tonī un vārdu krājumā, un {profanityAction} skrubēt vai atzīmēt rupjus terminus.",
+				"body": "Mašīntulkošana pēc noklusējuma ir universāls modelis. Trīs pogas palīdz: {glossaryLink} smagu termiņu ignorēšanai, {customTranslatorLink} precīzi noregulētiem modeļiem, kas apmācīti jūsu tonī un vārdu krājumā, un {profanityAction}, lai notīrītu vai atzīmētu rupjus terminus.",
 				"glossaryLinkLabel": "glosārijs",
 				"customTranslatorLinkLabel": "Kategorija Pielāgots tulkotājs"
 			},
@@ -417,7 +417,7 @@
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
 				"audit": "npm audits tīrs (0 ievainojamības).",
 				"docsSite": "Astro + Tailwind v4 dokumentu vietne ar skatu pārejām un izteiksmīgu kodu.",
-				"docsAccessibility": "{label} WCAG 2.1 AA caurlaide. Logotipa glifi pārvērsti par ceļiem, lai tie vairs neizdodas krāsu kontrasts pret gradienta pieturām, peldošā {backToTop} poga izmanto {inert}, kamēr tā ir paslēpta (nevis {ariaHidden} pārslēdzis, kas atstāja to tabible), {formatsAstro} sadaļas vairs nesaduras ar automātiski ģenerētajiem virsrakstu ID, trīs lokalizācijas kartītes tagad atklāj BCP-47 derīgus {lang} atribūtus ({nya}, {lug}, {run}), dublikātu {documentation} orientieru etiķetes ir atdalītas starp sānjoslu un kājeni,  un katra datu tabula {inputs}/{configuration} tiek piegādāta ar ekrāna lasītāja parakstu.",
+				"docsAccessibility": "{label} WCAG 2.1 AA caurlaide. Logotipa glifi pārvērsti par ceļiem, lai tie vairs neizdodas krāsu kontrasts pret gradienta pieturām, peldošā {backToTop} poga izmanto {inert}, kamēr tā ir paslēpta (nevis {ariaHidden} pārslēdzis, kas atstāja to tabible), {formatsAstro} sadaļas vairs nesaduras ar automātiski ģenerētiem virsrakstu ID, trīs lokalizācijas kartītes tagad atklāj BCP-47 derīgus {lang} atribūtus ({nya}, {lug}, {run}), dublikātu {documentation} orientieru etiķetes ir atdalītas starp sānjoslu un kājeni,  un katra datu tabula {inputs}/{configuration} tiek piegādāta ar ekrāna lasītāja parakstu.",
 				"inlineCode": "{label} dokumentu prozā {codeElement} tagad nēsā siltu/dzintara tēmas akcentu, kas atšķiras no zīmola→akcenta paletes, ko izmanto saitēm un virsrakstiem.",
 				"automation": "Atkarīgā automātiskā apvienošana, CodeQL skenēšana, CI matrica."
 			}

@@ -32,7 +32,7 @@
 		"idleHelp": "Su'e tusiga e ala i autu, fa'atulagaga o faila, filifiliga fa'atulagaina, po'o le fua. Fa'aaoga {up} {down} e fa'atautaia ai, {enter} tatalaina.",
 		"loading": "Su'esu'ega...",
 		"empty": "Leai ni taunuuga. Taumafai se isi upu autu.",
-		"error": "E le mafai ona maua le search index i le dev. Fa'atautaia se gaosiga fausiaina."
+		"error": "E le o maua le search index i le dev. Fa'atautaia se gaosiga fausiaina."
 	},
 	"toc": {
 		"title": "I luga o lenei itulau"
@@ -53,9 +53,24 @@
 		"sourceAria": "Va'ai punaoa i luga o GitHub",
 		"marketplaceAria": "Va'ai i luga o le GitHub Marketplace",
 		"authorAria": "Upega tafa'ilagi a David Pine",
+		"npmAria": "Va'ai i le Azure Translator SDK i le npm",
 		"taglinePrefix": "O se GitHub Action e fa'aliliuina ai au faila punaoa otometi, fausia i luga o le aloaia",
 		"taglineMiddle": "SDK mai",
 		"copyrightPrefix": "Fa'asa'olotoina i lalo o le",
-		"builtWith": "Fausia ma"
+		"builtWith": "Fausia ma",
+		"installLabel": "Fa'aopopo i lau fa'agaioiga",
+		"copy": "Kopi",
+		"copied": "Kopiina!",
+		"copyAria": "Kopi le vaega o le faapipiiina i lau laupapa kilipa",
+		"marketplaceCta": "Fa'atau i luga o le GitHub Marketplace",
+		"starCta": "Fetu i luga o GitHub",
+		"starAria": "Star Resource Translator i luga o GitHub",
+		"stargazersAria": "GitHub stargazers faitau",
+		"versionLabel": "Lomiga",
+		"whatsNew": "O le a le mea fou",
+		"language": "Gagana",
+		"editPage": "Fa'asa'o lenei itulau",
+		"editPageAria": "Fa'asa'o le punavai o lenei itulau i luga o GitHub",
+		"reportIssue": "Lipoti se faafitauli i lenei itulau"
 	}
 }

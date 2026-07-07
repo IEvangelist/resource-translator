@@ -4,7 +4,7 @@
 		"description": "A Resource Translator gépi fordítású pull requesteket nyit meg az erőforrás fájljaidhoz bármely repóban, bármilyen formátumban — Azure AI Translator által működtetve.",
 		"socialTitle": "Resource Translator — automatikusan fordítsd le az erőforrásfájlokat",
 		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
-		"headlinePrefix": "Lokalizáld a repo-dat",
+		"headlinePrefix": "Lokalizáld a repo-t",
 		"headlineAccent": "minden elköteleződést.",
 		"lede": "A Resource Translator Azure AI Translator segítségével nyitja meg a gépi fordítású pull requesteket az erőforrás fájljaidhoz az hivatalos SDK-n keresztül — nincs plusz szolgáltatás, csak egy munkafolyamat.",
 		"primaryCta": "Kezdj el",
@@ -34,7 +34,7 @@
 			},
 			"config": {
 				"title": "Repo szintű konfiguráció",
-				"body": "Dobj ki egy {configPath} fájlt a Include Globs, Szószótáriak és Egyedi Fordító kategóriák használatához."
+				"body": "Dobj ki egy {configPath} fájlt a Include Globs, Szószótáriak és Egyedi Fordító kategóriák számára."
 			},
 			"glossary": {
 				"title": "Szószedethez kapcsolódó",
@@ -126,7 +126,7 @@
 				"maxRetries": "Maximális újrapróbálkozási kísérletek átmeneti HTTP válaszokra ({statusCodes}). Alapértelmezett {defaultRetries}. A HTTP hívások összesített száma kérésenként {totalCalls}.",
 				"retryBackoffMs": "Korlát (ms) bármely egyes visszaállásos alvásnál. Alapértelmezett {defaultBackoff}. Az Azure {retryAfter} fejlécét pontosan tiszteli, amikor jelen van; egyébként remegett exponenciális visszavonulást alkalmazunk, amely ezzel az értékkel van lezárva.",
 				"protectPlaceholders": "Alapértelmezett {true}. Kapcsolva a tokenek, mint az {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} és HTML entitások cserébe kerülnek sentinel tokenekre fordítás előtt, majd utána visszaállítják őket. Csak akkor kapcsold ki, ha a forrás szándékosan helykitöltő alakú literálisokat tartalmaz.",
-				"customPlaceholderPatterns": "További regex minták (határmeghatározók nélkül) adtak hozzá az alapértelmezett helymeghatározó halmazhoz, például {angleToken} egyedi token szintaxishoz. Az érvénytelen regexeket figyelmen kívül hagyjuk.",
+				"customPlaceholderPatterns": "További regex minták (határmeghatározók nélkül) kerültek hozzá az alapértelmezett helymeghatározó halmazhoz, például {angleToken} egyedi token szintaxishoz. Az érvénytelen regexeket figyelmen kívül hagyjuk.",
 				"noTranslatePatterns": "A glob minták párosítva a parser-szintű kulcsokhoz (JSON pontozott út, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext kulcs). A megfelelő kulcsokat a kérésből eltávolítják, és forrásértékük megőrzve kerülnek tovább."
 			}
 		},
@@ -169,7 +169,7 @@
 			"heading": "Szükséges bemenetek",
 			"caption": "Szükséges bemenetek",
 			"items": {
-				"sourceLocale": "Forráshely (pl. {en}), amelyet erőforrás fájlok, például {sourceGlob} megtalálására használnak. Továbbítva a Translatorhoz is {fromLocale}.",
+				"sourceLocale": "Forráshely (pl. {en}), amelyet erőforrás fájlok, például {sourceGlob} megtalálására használnak. Továbbítva a Translatornak is {fromLocale}.",
 				"subscriptionKey": "Azure AI Translator subscription key. Átmenj {secrets}-n.",
 				"endpoint": "Fordító végpont URL, pl. {endpointUrl}."
 			}
@@ -276,7 +276,7 @@
 				"heading": "Márkanevek és termékkifejezések szószedet",
 				"intro": "Dobj egy {configPath} a repóba:",
 				"afterLabel": "utána",
-				"body": "Szószedet kifejezéseket {after} fordítást alkalmaznak, így a gépi fordítás megtartja a kedvenc márkádat, még akkor is, ha a modell szinonimára cserélte."
+				"body": "Szószedet kifejezéseket {after} fordításban alkalmazzák, így a gépi fordítás megtartja a kedvenc márkádat, még akkor is, ha a modell szinonimára cserélte."
 			},
 			"customCategory": {
 				"heading": "Egyedi fordító kategória (iparág / domain)",

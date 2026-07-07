@@ -69,7 +69,7 @@
 	"getting-started": {
 		"title": "Amata",
 		"eyebrow": "Fa'atulagaina",
-		"lede": "Fa'aopopo se faila fa'asolosolo, fa'asino i lau Azure AI Translator credentials, ma o le gaioiga o le a fa'ata'ita'ia le repo mo punaoa punaoa ma fa'asalalau uso ua fa'aliliuina.",
+		"lede": "Fa'aopopo se faila fa'asologa, fa'asino i lau Azure AI Translator credentials, ma o le gaioiga o le a fa'ata'ita'ia le repo mo punaoa punaoa ma fa'asalalau uso ua fa'aliliuina.",
 		"steps": {
 			"provision": {
 				"title": "Provision an Azure AI Translator resource",
@@ -207,7 +207,7 @@
 			"items": {
 				"maxRetries": "Fa'ateleina taumafaiga toe taumafai i luga o tali HTTP le tumau ({statusCodes}). O le aofa'i atoa o vala'au HTTP i le talosaga e {totalCalls}.",
 				"retryBackoffMs": "Pulou (i milliseconds) i luga o so'o se moe e tasi. O le gaioiga e fa'aaloalo ai i le ulutala o le tali a le {retryAfter} a Azure pe a i ai; a leai, e fa'aaogaina le jittered exponential backoff fa'atapula'aina i lenei taua.",
-				"protectPlaceholders": "A {true} (faaletonu), placeholders e pei o {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ma HTML fa'alapotopotoga ua suia i sentinel fa'ailoga a'o le'i fa'aliliuina ma toe fa'afo'i mulimuli ane. Fa'aleaogaina pe a fai o lau punaoa o lo'o i ai ma le loto i ai ni tusitusiga e tatau ona fa'aliliuina.",
+				"protectPlaceholders": "A {true} (faaletonu), placeholders e pei o {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ma HTML fa'alapotopotoga ua suia i sentinel fa'ailoga a'o le'i fa'aliliuina ma toe fa'afo'i mulimuli ane. Fa'aleaogaina pe a fai o lau punaoa o lo'o i ai ma le loto i ai ni tusiga moni e tatau ona fa'aliliuina.",
 				"customPlaceholderPatterns": "Newline-vavae'ese regexes (e aunoa ma le fa'atapula'aina) fa'aopopo i le seti placeholder faaletonu, mo se fa'ata'ita'iga {angleToken} mo le syntax fa'ailoga masani.",
 				"noTranslatePatterns": "Newline-vavae'ese glob mamanu fetaui ma parser-tulaga ki (JSON togitogi auala, RESX {resxName}, PO {poMsgid}, XLIFF iunite {xliffId}, INI / restext ki). O ki e fetaui e lafoina mai le talosaga a le Faaliliu ma pasi atu faatasi ai ma le faasaoina o lo latou taua o le punavai."
 			}
@@ -280,7 +280,7 @@
 			},
 			"customCategory": {
 				"heading": "Vaega o le Fa'aliliuga Fa'apitoa (alamanuia / vaega)",
-				"body": "A'oa'o se vaega o le Azure {customTranslatorLink} i luga o se corpus e pu'eina ai lau alamanuia upu ma leo (fa'aletulafono, fa'afoma'i, maketiina, inisinia i totonu, ma isi) ma pasi lona ID e ala i {categoryId}. O le leo sili lea ona malosi o lo'o ofoina mai e Azure."
+				"body": "A'oa'o se vaega o le Azure {customTranslatorLink} i luga o se corpus e pu'eina ai lau alamanuia vaogagana ma leo (fa'aletulafono, fa'afoma'i, maketiina, inisinia i totonu, ma isi) ma pasi lona ID e ala i le {categoryId}. O le leo sili lea ona malosi o lo'o ofoina mai e Azure."
 			},
 			"tone": {
 				"heading": "Leo fa'atonutonu + fa'amalosia fallback",
@@ -288,7 +288,7 @@
 			},
 			"dryRun": {
 				"heading": "Fa'apipi'i le fa'amamaina a'o le'i fa'apipi'iina le fa'agaioiga",
-				"body": "O le gaioiga o lo'o fa'aalia pea le aotelega o galuega faatino ma se aotelega o laasaga, ae leai ni faila o lo'o tusia. Tu'ufa'atasia ma {failOnErrorFalse} e fa'aalia ai mataupu uma o se lapataiga a'o e fa'ata'ita'ia."
+				"body": "O le gaioiga o lo'o fa'aalia pea le aotelega o galuega faatino ma se aotelega o laasaga, ae leai ni faila ua tusia. Tu'ufa'atasia ma {failOnErrorFalse} e fa'aalia ai mataupu uma o se lapataiga a'o e fa'ata'ita'ia."
 			}
 		}
 	},
@@ -326,7 +326,7 @@
 			},
 			"formats": {
 				"heading": "Ae fa'apefea isi fa'atulagaga o punaoa?",
-				"body": "Aso nei: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} afai e te mana'omia se isi — o le fa'afanua e la'ititi (fa'afanua → fa'afanua → fa'aaoga fa'aliliuga → le fa'atulagaga) ma e talia saofaga.",
+				"body": "Aso nei: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} pe afai e te mana'omia se isi — o le fa'ata'ita'iga o le fa'afanua e la'ititi (fa'ata'ita'i → fa'afanua → fa'aaoga fa'aliliuga → fa'atulagaga) ma saofaga e taliaina.",
 				"issueLinkLabel": "Tatala se lomiga"
 			}
 		}

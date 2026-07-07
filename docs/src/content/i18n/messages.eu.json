@@ -1,32 +1,32 @@
 {
-	"tagline": "Lokalizatu zure repositorioa commit bakoitzean.",
+	"tagline": "Lokalizatu zure biltegia commit bakoitzean.",
 	"hero": {
 		"eyebrow": "Erakusleihoa",
 		"title": "Kaixo hizkuntza guztietan",
-		"lede": "Orrialde hau Resource Translator-ek berak itzultzen du, bultzada bakoitzean, Azure AI Translator-ek onartzen dituen hizkuntza guztietara."
+		"lede": "Orrialde hau Resource Translator-ek berak itzultzen du, main-era bultzatzen den bakoitzean, Azure AI Translator-ek onartzen dituen hizkuntza guztietara."
 	},
 	"phrases": {
-		"greeting": "Kaixo mundua!",
-		"welcome": "Ongi etorri itzultzaile baliabidera.",
-		"machine_translated": "Itzulpen automatikoa: Azure AI Translator.",
-		"open_pull_request": "Ireki pull eskaera itzulpen berriekin.",
+		"greeting": "Kaixo, mundua!",
+		"welcome": "Ongi etorri Baliabide Itzultzailera.",
+		"machine_translated": "Azure AI Itzultzaileak makina bidez itzulia.",
+		"open_pull_request": "Ireki pull request bat itzulpen freskoekin.",
 		"ship_anywhere": "Bidali zure softwarea Lurreko edozein lekutan.",
-		"thank_you": "Eskerrik asko baliabide itzultzailea probatzeagatik."
+		"thank_you": "Eskerrik asko Resource Translator saiatzeagatik."
 	},
 	"ctas": {
-		"view_source": "Ikusi iturburua",
+		"view_source": "Iturburua ikusi",
 		"translate_now": "Itzuli nire biltegia",
 		"read_the_docs": "Irakurri dokumentuak",
-		"contribute": "Lagundu GitHub-en"
+		"contribute": "Ekarpena egin GitHub-en"
 	},
 	"features": {
-		"fast": "Baliabideak segundotan itzultzen ditu.",
-		"reliable": "Iturburu-fitxategien byte bakoitza joan-etorri egiten du.",
-		"configurable": "Tonua, industria, glosarioa, profanitatea - dena konfiguragarria.",
-		"ci_native": "GitHub ekintzetarako eta pull-request workflowetarako diseinatua."
+		"fast": "Baliabideak segundo gutxitan itzultzen ditu.",
+		"reliable": "Zure iturburu fitxategien byte bakoitza itzultzen du.",
+		"configurable": "Tonua, industria, hiztegia, zakarrak — denak konfiguragarriak.",
+		"ci_native": "GitHub Actions eta pull-request lan-fluxuetarako diseinatua."
 	},
 	"footer": {
-		"powered_by": "Powered by Resource Translator eta Azure AI Translator.",
-		"view_translation_pr": "Ikusi itzulpenaren azken pull eskaera."
+		"powered_by": "Resource Translator eta Azure AI Translator erabiliz.",
+		"view_translation_pr": "Ikusi azken itzulpen pull request-a."
 	}
 }

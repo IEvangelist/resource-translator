@@ -207,7 +207,7 @@
 			"items": {
 				"maxRetries": "Vaqtinchalik HTTP javoblarida maksimal qayta urinishlar ({statusCodes}). Har bir so'rov uchun umumiy HTTP qo'ng'iroqlari soni {totalCalls}.",
 				"retryBackoffMs": "Har qanday orqaga qaytish uyqusini (millisekundlarda) cheklang. Harakat Azure'ning {retryAfter} javob sarlavhasini aynan mavjud bo'lganda hurmat qiladi; aks holda, bu qiymat bilan cheklangan jittered eksponensial orqaga qaytishdan foydalanadi.",
-				"protectPlaceholders": "{true} (standart) bo'lganda, {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} va HTML elementlari tarjima qilinishidan oldin sentinel tokenlar bilan almashtiriladi va keyin tiklanadi. Faqat manbangiz ataylab tarjima qilinishi kerak bo'lgan so'zma-so'z almashtirish shaklidagi matn bo'lsa o'chirib qo'ying.",
+				"protectPlaceholders": "{true} (standart) bo'lganda, {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} va HTML entitetlari tarjima qilishdan oldin sentinel tokenlar bilan almashtiriladi va keyin tiklanadi. Faqat manbangiz ataylab tarjima qilinishi kerak bo'lgan so'zma-so'z almashtirish shaklidagi matn bo'lsa o'chirib qo'ying.",
 				"customPlaceholderPatterns": "Yangi qator bo'yicha ajratilgan regexlar (ajratgichsiz) standart joy tutuvchi to'plamga qo'shilgan, masalan, maxsus token sintaksisi uchun {angleToken}.",
 				"noTranslatePatterns": "Yangi chiziqli ajratilgan glob naqshlari parser darajasidagi kalitlarga (JSON nuqtali yo'l, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext kaliti) mos keladi. Mos keluvchi kalitlar Tarjimon so'rovidan olib tashlanadi va ularning manba qiymati saqlanib qoladi."
 			}
@@ -264,7 +264,7 @@
 	"recipes": {
 		"title": "Retseptlar",
 		"eyebrow": "Oshxona kitobi",
-		"lede": "Tarjimalarni jo'natishda keng tarqalgan naqshlar: monorepolar, lug'atlar, maxsus kategoriyalar, quruq yurishlar va ton nazorati.",
+		"lede": "Tarjimalarni yuborish uchun keng tarqalgan naqshlar: monorepolar, lug'atlar, maxsus kategoriyalar, quruq yurishlar va ton nazorati.",
 		"sections": {
 			"pullRequest": {
 				"heading": "Har bir yurishdan so'ng pull so'rovini oching"
@@ -350,7 +350,7 @@
 			"heading": "Bu qanday ishlaydi",
 			"thisActionLabel": "aynan shu harakat",
 			"steps": {
-				"source": "Inglizcha manba fayli {messagesPath} manzilida joylashgan.",
+				"source": "Inglizcha manba fayli {messagesPath} manzilida mavjud.",
 				"workflow": "O'sha tegishni itaradi, {workflowLink} o'ziga qarshi {thisAction} qiladi.",
 				"fanOut": "Harakat har bir Azure AI Translator tomonidan qo'llab-quvvatlanadigan joyga ({configPath} da sozlangan) tarqaladi va har bir maqsad uchun aka-uka {messagesLocaleJson} yozadi.",
 				"pullRequest": "Yangi tarjimalar bilan pull so'rovi ochiladi. Uni birlashtirish natijasida ushbu sahifa kartalar to'ldirilgan holda qayta nashr etiladi."
@@ -418,7 +418,7 @@
 				"audit": "NPM audit toza (0 zaiflik).",
 				"docsSite": "Astro + Tailwind v4 hujjatlar sayti, ko'rinish o'tishlari va ifodali kod bilan.",
 				"docsAccessibility": "{label} WCAG 2.1 AA pas. Logotip gliflari yo'llarga aylantirilib, endi gradient to'xtash joylariga qarshi rang-kontrastni buzmaydi, suzuvchi {backToTop} tugmasi yashirin holatda {inert} ishlatadi (o'rniga {ariaHidden} tugmasi o'rniga, u o'z o'rniga), {formatsAstro} bo'limlar avtomatik yaratilgan sarlavha identifikatorlari bilan to'qnashmaydi, uchta joy kartasi endi BCP-47 uchun mos {lang} atributlarini ({nya}, {lug}, {run}) ko'rsatadi, takroriy {documentation} landmark yorliqlari yon panel va footer orasida aniqlanadi,  va {inputs}/{configuration} dagi har bir ma'lumot jadvali ekranni o'qiydigan sarlavha bilan birga keladi.",
-				"inlineCode": "{label} Docs Prose {codeElement} endi iliq/sarg'ish mavzu aksentini →kiyadi — bu brend va sarlavhalar uchun ishlatiladigan aksent palitrasidan farq qiladi.",
+				"inlineCode": "{label} Docs Prose {codeElement} endi issiq/ambra rangli aksentda — bu →brend va sarlavhalar uchun ishlatiladigan aksent palitrasidan farq qiladi.",
 				"automation": "Dependabot avtomatik birlashtirish, CodeQL skanerlash, CI matritsa."
 			}
 		},

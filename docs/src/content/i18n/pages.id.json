@@ -113,7 +113,7 @@
 				"notes": "Catatan"
 			},
 			"fields": {
-				"sourceLocale": "Kembali ke input {sourceLocale} jika tidak diatur. Juga diteruskan ke Penerjemah karena {fromLocale} sehingga string pendek tidak terdeteksi secara otomatis.",
+				"sourceLocale": "Kembali ke input {sourceLocale} jika tidak disetel. Juga diteruskan ke Penerjemah karena {fromLocale} sehingga string pendek tidak terdeteksi secara otomatis.",
 				"toLocales": "Baik array atau string yang dipisahkan koma.",
 				"includeExclude": "Pola glob dievaluasi terhadap jalur absolut dan relatif ruang kerja.",
 				"glossary": "Penggantian istilah pasca-terjemahan. Sadar batas kata (menangani {cpp}, {dotnet}).",

@@ -88,7 +88,7 @@
 			},
 			"output": {
 				"title": "Tala ndenge biloko ebimi",
-				"body": "Soki mosala esili, action ekobimisa makambo misato oyo okoki kotia na description ya PR: {summaryTitle}, {summaryDetails}, na {hasNewTranslations}. Ekomaka mpe na mokuse na lokasa ya mosala na nzela ya {coreSummary}."
+				"body": "Soki mosala esili, action ekobimisa makambo misato oyo okoki kotia na description ya PR: {summaryTitle}, {summaryDetails}, mpe {hasNewTranslations}. Ekomaka mpe na mokuse na lokasa ya mosala na nzela ya {coreSummary}."
 			}
 		},
 		"nextSteps": {
@@ -121,7 +121,7 @@
 				"textType": "Kosaka {plain} Salela {html} kaka soki ba valeurs ya ressource na yo ezali na biteni ya HTML ya solo.",
 				"profanityAction": "Ndenge nini tokoki kosalela maloba ya bosoto na mikanda oyo ebongolami na Lingala?",
 				"profanityMarker": "Ezali na ntina kaka soki {profanityAction} ezali {marked}.",
-				"allowFallback": "Sala {false} mpo na kokweya na libongoli soki {categoryId} na yo ezali na déploiement te mpo na esika ya kokweya na modele général.",
+				"allowFallback": "Sala {false} mpo na kokweya na libongoli soki {categoryId} na yo ezali te na esika ya kokende na esika ya kosalela yango.",
 				"apiVersion": "Translator REST API version. Kosaka {version}",
 				"maxRetries": "Maximum retry attempts on transient HTTP responses ({statusCodes}). Kosaka {defaultRetries} Total HTTP calls per request is {totalCalls}.",
 				"retryBackoffMs": "Cap (ms) na mbeto nyonso ya backoff. Kosaka {defaultBackoff} Mutu ya {retryAfter} ya Azure epesami lokumu exactement soki ezali; soki ezali bongo te, basalelaka yango na ndenge ya malamu mpenza.",
@@ -183,7 +183,7 @@
 				"include": "Mitindo ya glob oyo ekabwani na ligne ya sika; Kaka mikanda oyo ebongolamaka nde ebongolamaka.",
 				"exclude": "Mitindo ya glob oyo ekabwani na ligne ya sika; Ba fichiers oyo ekokani na yango elongolamaka (esalemi na sima ya kobakisama).",
 				"configPath": "Sɔ́kí mɔ̌kɔ́",
-				"dryRun": "Soki {true}, tyá bavɛrsɛ oyo ezali na bavɛrsɛ ya Biblia mpe tyá yango na mokuse te.",
+				"dryRun": "Soki {true}, tyá bavɛrsɛ oyo ezali na vɛrsɛ moko te, kasi tyá yango na mokuse te.",
 				"failOnError": "Soki {true}, mabunga oyo ekanami te elongi te; Soki {false}, mabunga ezali likebisi."
 			}
 		},
@@ -284,7 +284,7 @@
 			},
 			"tone": {
 				"heading": "Contrôle de ton + fallback stricte",
-				"body": "Sangisa {categoryId} ya traducteur personnalisé na {profanityAction} mpe {allowFallbackFalse} mpo na kopusa mongongo ya malamu mpe kokweya na mosala soki catégorie oyo oponi ezali te na déploiement mpo na moko ya bisika oyo ozali koluka."
+				"body": "Sangisa {categoryId} ya traducteur personnalisé na {profanityAction} mpe {allowFallbackFalse} mpo na kopusa mongongo ya malamu mpe kokweya na mosala soki catégorie oyo oponi ezali te na déploiement na moko ya bisika oyo ozali koluka."
 			},
 			"dryRun": {
 				"heading": "Kokausa liboso ya kofungola mosala",
@@ -408,16 +408,16 @@
 			"items": {
 				"runtime": "ya pas {nodeRuntime} temps ({breaking}).",
 				"newInputs": "Ba entrées ya sika: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, plus bouton ya bobongoli ya liboso {textType}, {profanityAction}, {profanityMarker}, mpe {allowFallback}.",
-				"sourceLocale": "Esika ya source etindamaka mpe na Translator mpo {fromLocale} yango wana bansinga ya mikuse emonanaka te na automatique.",
+				"sourceLocale": "Esika ya source etindamaka mpe na Translator mpo na {fromLocale} yango wana bansinga ya mikuse emonanaka na automatique te.",
 				"resilience": "{label} komeka automatique na biyano ya HTTP ya ntango mokuse ({statusCodes}) oyo ezali kokumisa mutu ya {retryAfter} ya Azure — ezongaka na bozongi nsima soki ezali te. Tunable via {maxRetries} and {retryBackoffMs}. {issue}",
 				"placeholderProtection": "{label} ba tokens lokola {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} mpe ba entités HTML ekangami na ba sentinelles liboso ya kobongola mpe kozongisama na sima, yango wana Translator atika kobebisa ba placeholders i18next/Mustache/Handlebars/.NET/printf. Toggle via {protectPlaceholders}; Kende na {customPlaceholderPatterns}. {issue}",
-				"perKeyOptOut": "{label} ya sika ya {noTranslatePatterns} ebwakaka bafungola oyo ekokani na bosengi ya Translator mobimba (ebombaka ba valeurs ya source ya bankombo ya marque, ba code ya erreur, etc.). Matching glob patterns against parser-level keys (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). {issue}",
+				"perKeyOptOut": "{label} ya sika ya {noTranslatePatterns} ebwakaka bafungola oyo ekokani na bosengi ya Translator (ebombaka ba valeurs ya source ya bankombo ya marque, ba code ya erreur, etc.). Matching glob patterns against parser-level keys (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). {issue}",
 				"repoConfig": "Repo-level config via {configPath}.",
 				"glossary": "Glossaire support, step summary via {coreSummary}.",
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
 				"audit": "NPM audit clean (0 vulnérabilités).",
 				"docsSite": "Astro + Tailwind v4 docs site with view transitions and Expressive Code.",
-				"docsAccessibility": "{label} WCAG 2.1 AA pass. Ba glyphes ya logo ebongwani na banzela mpo ete ebeba lisusu te na bokeseni ya langi na ba arrêts ya gradient, bouton ya {backToTop} oyo ezali kotepatepa esalelaka {inert} ntango ebombami (na esika ya bouton ya {ariaHidden} oyo etikaki yango tabbable), biteni {formatsAstro} etutanaka lisusu te na ID ya batitre na yango oyo esalemi na auto-généré, bakarte misato ya locale emonisaka sikoyo ba attributs ya {lang} ya BCP-47 ({nya}, {lug}, {run}), ba étiquette ya {documentation} ya bilembo ezali disambigué na kati ya barre latérale na footer,  mpe tablo nyonso ya bansango ya {inputs}/{configuration} ezali na maloba ya botangi ya écran.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. Ba glyphes ya logo ebongwani na banzela mpo ete ebeba lisusu te na bokeseni ya langi na ba arrêts ya gradient, bouton ya {backToTop} oyo ezali kopepa esalelaka {inert} ntango ebombami (na esika ya bouton ya {ariaHidden} oyo etikaki yango tabbable), biteni {formatsAstro} etutanaka lisusu te na ID ya batitre na yango oyo esalemi na auto-généré, bakarte misato ya locale emonisaka sikoyo ba attributs ya {lang} ya BCP-47 ({nya}, {lug}, {run}), ba étiquette ya {documentation} ya bilembo ezali disambigué na kati ya barre latérale na footer,  mpe tablo nyonso ya bansango ya {inputs}/{configuration} ezali na maloba ya botangi ya écran.",
 				"inlineCode": "{label} Docs prose {codeElement} sikoyo alati accent ya thème ya molunge/ambre — ekeseni na palette ya accent ya marque→accent oyo esalelamaka mpo na ba liens mpe mitó ya mikanda.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}

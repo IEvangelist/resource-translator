@@ -235,7 +235,7 @@
 				"specLabel": "Microsoft Learn — .resx файлдарындагы ресурстар"
 			},
 			"xliff": {
-				"blurb": "OASIS XLIFF 2.0 документтери. Ар бир {source} которуп, натыйжаны тиешелүү {target} жазып, локал үчүн {trgLang} түзөт.",
+				"blurb": "OASIS XLIFF 2.0 документтери. Ар бир {source} которуп, натыйжаны тиешелүү {target} жазат, локал үчүн {trgLang} түзөт.",
 				"specLabel": "OASIS XLIFF 2.0 спецификациясы"
 			},
 			"po": {
@@ -270,7 +270,7 @@
 				"heading": "Ар бир иштетүүдөн кийин pull request ачыңыз"
 			},
 			"monorepo": {
-				"heading": "Monorepos: пакет боюнча масштабды которуу"
+				"heading": "Monorepos: ар бир пакет боюнча масштабды которуу"
 			},
 			"glossary": {
 				"heading": "Бренд аттары жана продукт терминдери үчүн сөздүк",
@@ -318,7 +318,7 @@
 			},
 			"node": {
 				"heading": "Action кайсы Node версиясында иштейт?",
-				"body": "v3 GitHub Actions {nodeRuntime} иштөө чөйрөсүндө иштейт. Кошулган JavaScript Node 20, 22 жана 24 менен шайкеш, CI тесттейт."
+				"body": "v3 GitHub Actions {nodeRuntime} иштөө чөйрөсүндө иштейт. Кошулган JavaScript CI тесттейт Node 20, 22 жана 24 менен шайкеш."
 			},
 			"dist": {
 				"heading": "Топтолгон {distDir} кайдан келет?",
@@ -381,13 +381,13 @@
 		},
 		"docsSite": {
 			"heading": "Документация сайты",
-			"body": "{docsDir} папкасы Astro 6 + Tailwind v4 долбоору. Бир {npmInstall} барып, анан жергиликтүү алдын ала көрүү үчүн {npmRunDev}. {pagesWorkflow} иш процесси ар бир бириктирүүдө документтерди GitHub барактарына жөнөтөт."
+			"body": "{docsDir} папкасы Astro 6 + Tailwind v4 долбоору. Бир {npmInstall} барып, анан жергиликтүү алдын ала көрүү үчүн {npmRunDev}. {pagesWorkflow} иш процесси ар бир бириктирүүдө документтерди GitHub Pagesке жөнөтөт."
 		}
 	},
 	"changelog": {
 		"title": "Changelog",
 		"eyebrow": "Тарыхы",
-		"lede": "Чыгарылыштардын жогорку деңгээлдеги кыскача мазмуну. Канондук, авторитеттүү өзгөртүү журналы репозиторийде CHANGELOG.md жашайт.",
+		"lede": "Чыгарылыштардын жогорку деңгээлдеги кыскача мазмуну. Канондук, авторитеттүү өзгөртүү журналы CHANGELOG.md репозиторийде жашайт.",
 		"fullRecord": "Толук маалыматты {changelogLink} караңыз.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
 		"v3": {
@@ -411,7 +411,7 @@
 				"sourceLocale": "Source locale азыр Translator'га {fromLocale} катары жөнөтүлөт, ошондуктан кыска саптар автоматтык түрдө аныкталбайт.",
 				"resilience": "{label} Azure'дын {retryAfter} башын урматтоо менен убактылуу HTTP жоопторунда ({statusCodes}) автоматтык түрдө кайра аракет кылуу — жок болгондо экспоненциалдык титирөө менен артка чегинүүгө кайтып келет. {maxRetries} жана {retryBackoffMs} аркылуу жөнгө салынат. {issue}",
 				"placeholderProtection": "{label} токендер {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} жана HTML объекттери которуудан мурун сентинелдерге оролуп, андан кийин калыбына келтирилет, ошондуктан Translator i18next/Mustache/Handlebars/.NET/printf орун бошотууну токтотот. {protectPlaceholders} аркылуу которуңуз; Узартылып {customPlaceholderPatterns}. {issue}",
-				"perKeyOptOut": "{label} жаңы {noTranslatePatterns} киргизүү Translator суроосунан дал келген ачкычтарды толугу менен алып салат (бренд аттары, ката коддору ж.б. үчүн булак маанилери сакталат). Глоб үлгүлөрүн парсер деңгээлиндеги ачкычтар менен (JSON пунктичтүү жол, RESX {resxName}, PO {poMsgid}, XLIFF бирдиги {xliffId}, INI/restext ачкычы) дал келтирет. {issue}",
+				"perKeyOptOut": "{label} жаңы {noTranslatePatterns} киргизүү Translator суроосунан дал келген ачкычтарды толугу менен алып салат (бренд аттары, ката коддору ж.б. үчүн булак маанилери сакталат). Глоб үлгүлөрүн парсер деңгээлиндеги ачкычтар менен (JSON чекиттүү жол, RESX {resxName}, PO {poMsgid}, XLIFF бирдиги {xliffId}, INI/restext ачкычы) дал келтирет. {issue}",
 				"repoConfig": "Репо деңгээлиндеги конфигурация {configPath} аркылуу.",
 				"glossary": "Глоссарийди колдоо, кадамдардын кыскача мазмуну {coreSummary}.",
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",

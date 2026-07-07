@@ -117,7 +117,7 @@
 				"toLocales": "או מערך או מחרוזת מופרדת בפסיק.",
 				"includeExclude": "דפוסי גלוב הוערכו מול מסלולים אבסולוטיים ויחסיים למרחבי עבודה.",
 				"glossary": "מונחים לאחר התרגום עוקפים. מודע לגבולות מילים (מטפל ב-{cpp}, {dotnet}).",
-				"categoryId": "קטגוריית Azure {customTranslatorLink} — תחום התעשייה/הדומיין שלך (משפטי, רפואי, שיווקי וכו'). נשלח כ-{categoryQuery}.",
+				"categoryId": "קטגוריית Azure {customTranslatorLink} — הידית שלך בתעשייה/דומיין (משפטי, רפואי, שיווקי וכו'). נשלח כ-{categoryQuery}.",
 				"textType": "ברירת המחדל היא {plain}. השתמש {html} רק אם ערכי המשאבים שלך מכילים פרגמנטים אמיתיים של HTML.",
 				"profanityAction": "איך להתייחס למונחים גסים בתוצרים מתורגמים.",
 				"profanityMarker": "רק כש {profanityAction} {marked}.",
@@ -208,7 +208,7 @@
 				"maxRetries": "ניסיונות ניסיון חוזרים מרביים על תגובות HTTP חולפות ({statusCodes}). המספר הכולל של שיחות HTTP לכל בקשה הוא {totalCalls}.",
 				"retryBackoffMs": "הגבלה (במילישניות) בכל שינה. הפעולה מכבדת את כותרת התגובה {retryAfter} של Azure בדיוק כאשר היא קיימת; אחרת הוא משתמש בחזרה אקספוננציאלית מתנדנדת שמוגבלת לערך הזה.",
 				"protectPlaceholders": "כאשר {true} (ברירת מחדל), ישויות כמו {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ו-HTML מוחלפות באסימוני סנטינל לפני התרגום ומשוחזרים לאחר מכן. בטל רק כאשר המקור שלך מכיל בכוונה טקסט בצורת מרווח זמני שראוי לתרגם אותו.",
-				"customPlaceholderPatterns": "רגקסים מופרדים בקווים חדשים (ללא מגבלים) נוספו לקבוצת המשאבים הבסיסיים, למשל {angleToken} עבור תחביר טוקנים מותאם אישית.",
+				"customPlaceholderPatterns": "רגקסים מופרדים בקווים חדשים (ללא מגבילים) נוספו לקבוצת המחזירים הבסיסיים, למשל {angleToken} עבור תחביר טוקנים מותאם אישית.",
 				"noTranslatePatterns": "דפוסי גלוב מופרדים בקווים חדשים התאימו למפתחות ברמת המנתח (JSON Dotted Path, RESX {resxName}, PO {poMsgid}, יחידת XLIFF {xliffId}, מפתח INI/restext). מפתחות תואמים נשלטים מבקשת המתרגם ועוברים עם ערך המקור שלהם נשמר."
 			}
 		},
@@ -264,7 +264,7 @@
 	"recipes": {
 		"title": "מתכונים",
 		"eyebrow": "ספר בישול",
-		"lede": "דפוסים נפוצים לתרגומי משלוחים: מונורפואים, מילונים, קטגוריות מותאמות אישית, בדיקות יבשות ובקרת טון.",
+		"lede": "דפוסים נפוצים לתרגומי משלוחים: מונורפואים, מילונים מונחים, קטגוריות מותאמות אישית, בדיקות יבשות ובקרת טון.",
 		"sections": {
 			"pullRequest": {
 				"heading": "פתח בקשת משיכה אחרי כל ריצה"
@@ -284,7 +284,7 @@
 			},
 			"tone": {
 				"heading": "בקרת טון + גיבוי מחמיר",
-				"body": "שלבו {categoryId} מתרגם מותאם אישית עם {profanityAction} ו-{allowFallbackFalse} כדי לאכוף קול עקבי ולהיכשל בזרימת העבודה אם לקטגוריה הנבחרת אין פריסה לאחד מהאתרים היעד שלכם."
+				"body": "שלבו {categoryId} מתרגם מותאם אישית עם {profanityAction} ו-{allowFallbackFalse} כדי לאכוף קול עקבי ולהיכשל בזרימת העבודה אם לקטגוריה הנבחרת אין פריסה לאחד מהמיקומים היעד שלכם."
 			},
 			"dryRun": {
 				"heading": "התחלה לפני הפעלת זרימת העבודה",
@@ -353,7 +353,7 @@
 				"source": "קובץ המקור באנגלית נמצא ב-{messagesPath}.",
 				"workflow": "הוא דוחף את המגע הזה והוא מבעיט {workflowLink}, שרץ {thisAction} נגד עצמו.",
 				"fanOut": "הפעולה מתפשטת לכל מיקום הנתמך על ידי Azure AI Translator (מוגדר ב-{configPath}) וכותבת {messagesLocaleJson} אח לכל יעד.",
-				"pullRequest": "נפתחת בקשת משיכה עם התרגומים החדשים. מיזוג זה מפרסם מחדש את הדף הזה עם הכרטיסים שמולאו."
+				"pullRequest": "נפתחת בקשת משיכה עם התרגומים החדשים. מיזוג זה מפרסם מחדש את הדף הזה עם הקלפים שמולאו."
 			}
 		},
 		"poweredBy": "מופעל על ידי Resource Translator ו-Azure AI Translator."
@@ -409,15 +409,15 @@
 				"runtime": "הועבר ל-{nodeRuntime} זמן ריצה ({breaking}).",
 				"newInputs": "קלטים חדשים: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, בנוסף לכפתורי מתורגמים מתקדמים {textType}, {profanityAction}, {profanityMarker} ו-{allowFallback}.",
 				"sourceLocale": "מיקום המקור מועבר כעת גם למתרגם כ {fromLocale} כך שמחרוזות קצרות לא מזוהות אוטומטית.",
-				"resilience": "{label} ניסיון אוטומטי על תגובות HTTP חולפות ({statusCodes}) שמכבדות את כותרת ה-{retryAfter} של Azure — נופלת לנסיגה אקספוננציאלית מתנדנדת כשהיא נעדרת. ניתן לכוונן דרך {maxRetries} ו-{retryBackoffMs}. {issue}",
-				"placeholderProtection": "{label} אסימונים כמו {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ו-HTML עטופים בסנטינלים לפני התרגום ומשוחזרים לאחר מכן, ולכן המתרגם מפסיק לעוות את ה-i18next/Mustache/Handlebars/.NET/printf. החלף דרך {protectPlaceholders}; להרחיב עם {customPlaceholderPatterns}. {issue}",
+				"resilience": "{label} ניסיון אוטומטי על תגובות HTTP חולפות ({statusCodes}) שמכבדות את כותרת ה-{retryAfter} של Azure — חוזרות לנסיגה אקספוננציאלית מתנדנדת כשהן נעדרות. ניתן לכוונן דרך {maxRetries} ו-{retryBackoffMs}. {issue}",
+				"placeholderProtection": "{label} אסימונים כמו {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} ו-HTML עטופים בסנטינלים לפני התרגום ומשוחזרים לאחר מכן, ולכן המתרגם מפסיק לעוות את מחזיקי i18next/Mustache/Handlebars/.NET/printf. החלף דרך {protectPlaceholders}; להרחיב עם {customPlaceholderPatterns}. {issue}",
 				"perKeyOptOut": "{label} קלט {noTranslatePatterns} חדש משחרר מפתחות תואמים מבקשת המתרגם לחלוטין (שומר על ערכי מקור לשמות מותגים, קודי שגיאה וכו'). מתאים תבניות גלוב למפתחות ברמת המנתח (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, מפתח INI/restext). {issue}",
 				"repoConfig": "קונפיגורציה ברמת ריפו דרך {configPath}.",
 				"glossary": "תמיכה במילון מונחים, סיכום שלבים דרך {coreSummary}.",
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
 				"audit": "בדיקת NPM נקייה (0 פגיעויות).",
 				"docsSite": "אתר תיעוד Astro + Tailwind v4 עם מעברי תצוגה וקוד אקספרסיבי.",
-				"docsAccessibility": "{label} WCAG 2.1 AA pass. גליפים של לוגואים הומרו לנתיבים כך שלא ייכשלו בניגודיות צבע מול עצירות גרדיאנט, כפתור {backToTop} הצף משתמש {inert} כשהוא מוסתר (במקום מתג {ariaHidden} שהשאיר אותו ניתן ללשוניות), {formatsAstro} קטעים כבר לא מתנגשים עם מזהי הכותרות שנוצרו אוטומטית, שלושה כרטיסי לוקאל חושפים כעת תכונות {lang} תקפות BCP-47 ({nya}, {lug}, {run}), תוויות {documentation} נקודות ציון מופרדות בין סרגל הצד לתחתית,  וכל טבלת נתונים ב-{inputs}/{configuration} מגיעה עם כיתוב קורא מסך.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. גליפים של לוגואים הומרו לנתיבים כך שלא ייכשלו בניגודיות צבע מול עצירות גרדיאנט, כפתור {backToTop} הצף משתמש {inert} כשהוא מוסתר (במקום מתג {ariaHidden} שהשאיר אותו ניתן ללשוניות), {formatsAstro} קטעים כבר לא מתנגשים עם מזהי הכותרות האוטומטיים שלהם, שלושה כרטיסי לוקאל חושפים כעת תכונות {lang} תקפות BCP-47 ({nya}, {lug}, {run}), תוויות כפילויות {documentation} סימן מובחנות בין סרגל הצד לתחתית,  וכל טבלת נתונים ב-{inputs}/{configuration} מגיעה עם כיתוב קורא מסך.",
 				"inlineCode": "{label} הפרוזה {codeElement} הדוקטורית משתמשת כעת במבטא חמים/ענברי — שונה מפלטת המותג→הדגשים המשמשת לקישורים ולכותרות.",
 				"automation": "מיזוג אוטומטי של Dependabot, סריקת CodeQL, מטריצת CI."
 			}

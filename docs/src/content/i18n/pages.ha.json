@@ -23,7 +23,7 @@
 			"resx": "{dotnet} XML",
 			"xliff": "XLIFF 2.0",
 			"po": "Gettext",
-			"json": "Need ko lebur",
+			"json": "Ba tare da wata matsala ba ko kuma mai tsabta",
 			"ini": "{keyValue}",
 			"restext": "Rubutun MUI"
 		},
@@ -69,7 +69,7 @@
 	"getting-started": {
 		"title": "Farawa",
 		"eyebrow": "Saitin",
-		"lede": "Ƙara fayil ɗin aiki, nuna shi a takardun shaidar mai fassarar Azure AI, kuma aikin zai bincika repo don fayilolin albarkatun harshe na tushe kuma ya fitar da 'yan uwan da aka fassara.",
+		"lede": "Ƙara fayil ɗin aiki, nuna shi a takaddun shaidar mai fassarar Azure AI, kuma aikin zai bincika repo don fayilolin albarkatun harshe na tushe kuma ya fitar da 'yan uwan da aka fassara.",
 		"steps": {
 			"provision": {
 				"title": "Samar da kayan aikin Azure AI Translator",
@@ -152,7 +152,7 @@
 	"inputs": {
 		"title": "Abubuwan shigarwa da fitarwa",
 		"eyebrow": "Reference",
-		"lede": "Hakanan ana karɓar kowane shigarwa a cikin fayil ɗin repo na zaɓi. Lokacin da aka saita duka biyun, shigar da aikin ya ci nasara.",
+		"lede": "Hakanan ana karɓar kowane shigarwa a cikin fayil ɗin zaɓi na repo. Lokacin da aka saita duka biyun, shigar da aikin ya ci nasara.",
 		"configurationIntro": "Duba {configurationLink} don tsarin YAML da umarnin lodawa.",
 		"configurationLinkLabel": "Daidaitawa",
 		"columns": {
@@ -235,7 +235,7 @@
 				"specLabel": "Microsoft Learn — Resources in .resx files"
 			},
 			"xliff": {
-				"blurb": "OASIS XLIFF 2.0 takardu. Fassara kowane {source} kuma rubuta sakamakon a cikin {target} da ya dace, saita {trgLang} don yankin.",
+				"blurb": "OASIS XLIFF 2.0 takardu. Fassara kowane {source} kuma rubuta sakamako a cikin {target} da ta dace, saita {trgLang} don yankin.",
 				"specLabel": "OASIS XLIFF 2.0 bayani dalla-dalla"
 			},
 			"po": {
@@ -300,7 +300,7 @@
 		"questions": {
 			"azure": {
 				"heading": "Ta yaya aikin yake magana da Azure?",
-				"body": "Ta hanyar Microsoft ta hukuma {azureSdkLink} SDK, layered a kan {corePipelineLink}. Wannan yana ba ku sake gwadawa ta atomatik akan {statusCodes}, rubutun buƙata da samfuran amsawa, da sarrafa kanun kai na tabbatarwa kyauta - duk abin da ya kasance kiran {axios} da hannu. Yanayin aikin jama'a (shigarwa, fitarwa, fitarwa na fayil) ba a canza ba."
+				"body": "Ta hanyar Microsoft ta hukuma {azureSdkLink} SDK, layered a kan {corePipelineLink}. Wannan yana ba ku sake gwadawa ta atomatik akan {statusCodes}, ƙididdigar buƙata da samfuran amsawa, da sarrafa rubutun tabbatarwa kyauta - duk abin da ya kasance kiran {axios} da hannu. Yanayin aikin jama'a (shigarwa, fitarwa, fitarwa na fayil) ba a canza ba."
 			},
 			"tone": {
 				"heading": "Me yasa wasu lokuta fassarar ba ta da alama ko kashewa?",
@@ -318,7 +318,7 @@
 			},
 			"node": {
 				"heading": "Wace sigar Node aikin ke gudana?",
-				"body": "V3 yana gudana akan Ayyukan GitHub {nodeRuntime} lokaci. JavaScript ɗin da aka haɗa ya dace da Node 20, 22, da 24, wanda shine abin da CI ke gwadawa."
+				"body": "V3 yana gudana a kan GitHub Ayyuka {nodeRuntime} gudu. JavaScript ɗin da aka haɗa ya dace da Node 20, 22, da 24, wanda shine abin da CI ke gwadawa."
 			},
 			"dist": {
 				"heading": "Daga ina {distDir} da aka haɗa suka fito?",
@@ -377,7 +377,7 @@
 		},
 		"coverage": {
 			"heading": "Ƙofofin ɗaukar hoto",
-			"body": "Tsarin Jest yana tilasta mafi ƙarancin ɗaukar hoto. Sabon lambar dole ne ya kiyaye maganganun + layin sama da 78% kuma yana aiki sama da 90%. Ƙara gwaje-gwaje da gwaje-gwaje tare da canjin ku."
+			"body": "Tsarin Jest yana tilasta mafi ƙarancin ɗaukar hoto. Sabon lambar dole ne ya kiyaye maganganun + layi sama da 78% kuma ayyuka sama da 90%. Ƙara gwaje-gwaje da gwaje-gwaje tare da canjin ku."
 		},
 		"docsSite": {
 			"heading": "Shafin takardu",

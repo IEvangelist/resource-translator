@@ -207,7 +207,7 @@
 			"items": {
 				"maxRetries": "Máximo de intentos de reintento en respostas HTTP transitorias ({statusCodes}). O número total de chamadas HTTP por solicitude é {totalCalls}.",
 				"retryBackoffMs": "Limita (en milisegundos) calquera sono de retroceso individual. A acción honra o encabezado de resposta {retryAfter} de Azure exactamente cando está presente; se non, usa un retroceso exponencial con titter limitado a este valor.",
-				"protectPlaceholders": "Cando {true} (por defecto), os marcadores de posición como {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} e entidades HTML substitúense por tokens centinela antes da tradución e restauranse despois. Desactiva só cando a túa fonte conteña intencionadamente texto literal en forma de marcador que debería traducirse.",
+				"protectPlaceholders": "Cando {true} (por defecto), os marcadores de posición como {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} e entidades HTML substitúense por tokens centinela antes da tradución e restauranse despois. Desactiva só cando a túa fonte conteña intencionadamente texto literal en forma de marcador de posición que debería traducirse.",
 				"customPlaceholderPatterns": "Regex separados por liñas novas (sen delimitadores) engadidos ao conxunto predeterminado de marcadores de posición, por exemplo, {angleToken} para sintaxe personalizada de tokens.",
 				"noTranslatePatterns": "Os patróns de globos separados por liñas novas coincidían con claves a nivel de analizador (camiño punteado JSON, {resxName} RESX, {poMsgid} PO, unidade XLIFF {xliffId}, clave INI/restext). As claves coincidentes son eliminadas da solicitude do tradutor e pasan mantendo o seu valor fonte."
 			}
@@ -280,7 +280,7 @@
 			},
 			"customCategory": {
 				"heading": "Categoría de tradutor personalizado (industria / dominio)",
-				"body": "Adestra unha categoría de Azure {customTranslatorLink} nun corpus que capture o vocabulario e ton da túa industria (legal, médico, marketing, enxeñaría interna, etc.) e aproba o seu ID a través de {categoryId}. Esta é a palanca de ton máis potente que ofrece Azure."
+				"body": "Adestra unha categoría de Azure {customTranslatorLink} nun corpus que capture o vocabulario e o ton da túa industria (legal, médico, marketing, enxeñaría interna, etc.) e aproba o seu ID a través de {categoryId}. Esta é a palanca de ton máis potente que ofrece Azure."
 			},
 			"tone": {
 				"heading": "Control de ton + respaldo estrito",
@@ -300,10 +300,10 @@
 		"questions": {
 			"azure": {
 				"heading": "Como comunica a acción con Azure?",
-				"body": "A través do SDK oficial de {azureSdkLink} de Microsoft, superposto {corePipelineLink}. Isto dáche intentos automáticos en {statusCodes}, modelos de petición e resposta escritos, e manexo de cabeceiras de autenticación de balde — todo o que antes era unha chamada {axios} feita a man. A superficie pública de acción (entradas, saídas, saídas de ficheiros) permanece sen cambios."
+				"body": "A través do SDK oficial de {azureSdkLink} de Microsoft, superposto {corePipelineLink}. Isto dáche intentos automáticos en {statusCodes}, modelos de petición e resposta escritos, e xestión de cabeceiras de autenticación de balde — todo o que antes era unha chamada {axios} feita a man. A superficie pública de acción (entradas, saídas, saídas de ficheiros) permanece sen cambios."
 			},
 			"tone": {
-				"heading": "Por que as traducións ás veces son de marca ou de ton incorrecto?",
+				"heading": "Por que as traducións ás veces son de marca ou de mal ton?",
 				"body": "A tradución automática opta por defecto nun modelo de propósito xeral. Tres botóns axudan: un {glossaryLink} para sobreescrituras de termos duros, un {customTranslatorLink} para modelos afinados adestrados no ton e vocabulario, e {profanityAction} para eliminar ou sinalar termos profanos.",
 				"glossaryLinkLabel": "Glosario",
 				"customTranslatorLinkLabel": "Categoría de tradutor personalizado"
@@ -409,7 +409,7 @@
 				"runtime": "Subín a {nodeRuntime} duración ({breaking}).",
 				"newInputs": "Novas entradas: {include}, {exclude}, {configPath}, {categoryId}, {apiVersion}, {dryRun}, {failOnError}, ademais de perillas avanzadas do tradutor {textType}, {profanityAction}, {profanityMarker} e {allowFallback}.",
 				"sourceLocale": "A localización de orixe agora tamén se reenvía a Tradutor como {fromLocale} para que as cadeas curtas non se detecten automaticamente.",
-				"resilience": "{label} reintento automático nas respostas HTTP transitorias ({statusCodes}) que respecta o encabezado {retryAfter} de Azure — volve a un retroceso exponencial con jitter cando está ausente. Axustable a través de {maxRetries} e {retryBackoffMs}. {issue}",
+				"resilience": "{label} reintento automático nas respostas HTTP transitorias ({statusCodes}) que respecta o encabezado {retryAfter} de Azure — volve a un retroceso exponencial con titter cando está ausente. Axustable a través de {maxRetries} e {retryBackoffMs}. {issue}",
 				"placeholderProtection": "{label} tokens como {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} e HTML están envolvidos en centinelas antes da tradución e restaurados despois, polo que Tradutor deixa de deformar os marcadores i18next/Mustache/Handlebars/.NET/printf. Alternar mediante {protectPlaceholders}; Amplía con {customPlaceholderPatterns}. {issue}",
 				"perKeyOptOut": "{label} nova entrada de {noTranslatePatterns} elimina completamente as claves coincidentes da solicitude do tradutor (preserva os valores fonte dos nomes de marca, códigos de erro, etc.). Coincide cos patróns glob con claves a nivel de analizador (camiño punteado JSON, {resxName} RESX, {poMsgid} PO, {xliffId} unidade XLIFF, clave INI/restext). {issue}",
 				"repoConfig": "Configuración a nivel de repositorio vía {configPath}.",

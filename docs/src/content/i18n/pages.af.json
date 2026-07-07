@@ -310,7 +310,7 @@
 			},
 			"duplicateFiles": {
 				"heading": "Hoe vermy ek om dieselfde lêer twee keer te vertaal?",
-				"body": "Aktiveer die werkvloei op {paths} wat net by jou bron-ligging lêers pas, bv. {sourceGlob}. Die aksie sluit ook sy eie per-trigger lêerfilter in wanneer {githubToken} gestel is, wat werk beperk tot lêers in die nuutste commit."
+				"body": "Aktiveer die werkvloei op {paths} wat net by jou bron-lokaal lêers pas, bv. {sourceGlob}. Die aksie sluit ook sy eie per-trigger lêerfilter in wanneer {githubToken} gestel is, wat werk beperk tot lêers in die nuutste commit."
 			},
 			"offline": {
 				"heading": "Kan ek die aksie vanlyn laat loop?",
@@ -338,7 +338,7 @@
 		"lede": "Hierdie bladsy word deur Resource Translator self vertaal, by elke skuif na hoof, in elke taal wat Azure AI Translator ondersteun.",
 		"localeCountLabel": "{count} plekke",
 		"statusComplete": "{translatedCount} tans gerender — voltooi!",
-		"statusPending": "{translatedCount} tans gerender — {pendingCount} wag op die volgende {workflowName} lopie.",
+		"statusPending": "{translatedCount} tans gerender — {pendingCount} wag op die volgende {workflowName} loop.",
 		"viewWorkflowRuns": "Kyk na werkvloei-uitvoerings",
 		"filter": "Filter",
 		"filterPlaceholder": "Soek volgens taal, kode of inheemse naam...",
@@ -417,7 +417,7 @@
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
 				"audit": "NPM-oudit skoon (0 kwesbaarhede).",
 				"docsSite": "Astro + Tailwind v4 dokumentasie-webwerf met kyk-oorgange en Expressive Code.",
-				"docsAccessibility": "{label} WCAG 2.1 AA-slaag. Logo-glywe word na paaie omgeskakel sodat hulle nie meer kleurkontras teen gradiëntstoppe faal nie, die drywende {backToTop}-knoppie gebruik {inert} terwyl dit versteek is (in plaas van 'n {ariaHidden}-skakelaar wat dit tabbabel gelaat het), {formatsAstro} afdelings bots nie meer met hul outomaties-gegenereerde kop-ID's nie, drie lokaalkaarte wys nou BCP-47-geldige {lang}-eienskappe ({nya}, {lug}, {run}), duplikaat {documentation} landmerketikette word tussen sybalk en voetskrif onderskei,  en elke datatabel op {inputs}/{configuration} word met 'n skermleser-onderskrif versend.",
+				"docsAccessibility": "{label} WCAG 2.1 AA-slaag. Logo-glywe word na paaie omgeskakel sodat hulle nie meer kleurkontras teen gradiëntstoppe faal nie, die drywende {backToTop}-knoppie gebruik {inert} terwyl dit versteek is (in plaas van 'n {ariaHidden}-skakelaar wat dit tabbabel gelaat het), {formatsAstro} afdelings bots nie meer met hul outomaties-gegenereerde kop-ID's nie, drie lokasiekaarte wys nou BCP-47-geldige {lang}-eienskappe ({nya}, {lug}, {run}), duplikaat {documentation} landmerketikette word tussen sybalk en voetskrif onderskei,  en elke datatabel op {inputs}/{configuration} word met 'n skermleser-onderskrif versend.",
 				"inlineCode": "{label} docs prosa dra nou {codeElement} die warm/amber tema aksent — onderskeibaar van die handelsmerk→aksentpalet wat vir skakels en opskrifte gebruik word.",
 				"automation": "Dependabot outomatiese samevoeging, CodeQL-skandering, CI-matriks."
 			}

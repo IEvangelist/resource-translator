@@ -38,7 +38,7 @@
 			},
 			"glossary": {
 				"title": "Glossary-aware",
-				"body": "Funga amazina y'ibicuruzwa hamwe n'amajambo y'ibicuruzwa ukoresheje regex y'umupaka w'ijambo rigenga {cpp}, {dotnet}, hamwe n'abagenzi."
+				"body": "Funga amazina y'ibicuruzwa hamwe n'amajambo y'ibicuruzwa ukoresheje regex y'umupaka w'ijambo rigenga {cpp}, {dotnet} n'abagenzi."
 			},
 			"dryRun": {
 				"title": "Swimwear + Swimwear",
@@ -183,7 +183,7 @@
 				"include": "Newline-separated glob patterns; Ibiharuro bihuza gusa ni vyo bihindurwa.",
 				"exclude": "Newline-separated glob patterns; matching files are skipped (applied after include).",
 				"configPath": "Inzira ya YAML config file (ijanye n'umuzi w'akazi).",
-				"dryRun": "Mu gihe {true}, nuce uhindura ivyiyumviro vyawe n'ivyiyumviro vyawe, ariko ntuze wandike amadosiye.",
+				"dryRun": "Mu gihe {true}, nuce uhindura ivyiyumviro vyawe n'ivyiyumviro vyawe, ariko ntugire ico wanditse.",
 				"failOnError": "Mu gihe {true} amakosa atari yitezwe; Mu gihe {false}, amakosa aba ari ingabisho."
 			}
 		},
@@ -202,10 +202,10 @@
 		},
 		"resilienceInputs": {
 			"heading": "Resilience & placeholder protection",
-			"intro": "Ivyo vyinjizwa bigenzura ingene igikorwa gikora igihe Umuhinduzi ahagarika ubusabe bwawe n'ingene akingira ibimenyetso vy'ikibanza nka {mustache} canke {indexZero} kugira ngo ntibibe mu gihe c'ubuhinduzi.",
+			"intro": "Ivyo vyinjizwa bigenzura ingene igikorwa gikora igihe Umuhinduzi ahagarika ubusabe bwawe n'ingene akingira ibimenyetso vy'ikibanza nka {mustache} canke {indexZero} kugira ngo ntibibe vyoroshe mu gihe c'ubuhinduzi.",
 			"caption": "Resilience and placeholder protection inputs",
 			"items": {
-				"maxRetries": "Maximum retry attempts on transient HTTP responses ({statusCodes}). Igitigiri c'abahamagara HTTP kuri buri musaba ni {totalCalls}.",
+				"maxRetries": "Maximum retry attempts on transient HTTP responses ({statusCodes}). Igitigiri c'abahamagara HTTP kuri buri sabwa ni {totalCalls}.",
 				"retryBackoffMs": "Cap (in milliseconds) on any single backoff sleep. Ico gikorwa giha icubahiro umutwe w'inyishu ya {retryAfter} wa Azure mu gihe kiriho; otherwise it uses jittered exponential backoff capped at this value.",
 				"protectPlaceholders": "Mu gihe {true} (default), placeholders nka {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} na HTML zisubirizwa n'ibimenyetso vya sentinel imbere yo guhindurwa hanyuma bigasubizwa nyuma. Disable only when your source intentionally contains literal placeholder-shaped text that should be translated.",
 				"customPlaceholderPatterns": "Newline-separated regexes (without delimiters) yongerewe kuri placeholder set, nk'akarorero {angleToken} ya syntaxe y'ibimenyetso bisanzwe.",
@@ -296,11 +296,11 @@
 		"title": "Ibibazo bikunze kubazwa",
 		"eyebrow": "Imfashanyo",
 		"heroTitle": "Ibibazo bikunze kubazwa",
-		"lede": "Inyishu zihuta z'ibibazo bikunze kwibazwa igihe umaze gufata inyishu.",
+		"lede": "Inyishu zihuta z'ibibazo bikunze kwishura igihe umuntu yipfuza gukora ico gikorwa.",
 		"questions": {
 			"azure": {
 				"heading": "Ni gute igikorwa kivugana na Azure?",
-				"body": "Biciye ku {azureSdkLink} SDK ya Microsoft, yashizwe ku {corePipelineLink}. Ivyo biguha uburyo bwo kugerageza {statusCodes}, uburyo bwo gusaba no kwishura, hamwe no kugenzura umutwe ku buntu - ibintu vyose vyahora ari ukuhamagara {axios} n'intoki. Ibiharuro vy'ibiharuro (ibisohokayandikiro, ibisohokayandikiro, ibisohokayandikishije) ntibihinduka."
+				"body": "Biciye ku {azureSdkLink} SDK ya Microsoft, yashizwe ku {corePipelineLink}. Ivyo biguha uburyo bwo kugerageza {statusCodes}, uburyo bwo gusaba no kwishura, hamwe no kugenzura umutwe ku buntu - ibintu vyose vyahora ari ukuhamagara {axios} n'ukuboko. Ibiharuro vy'ibiharuro (ibisohokayandikiro, ibisohokayandikiro, ibisohokayandikishije) ntibihinduka."
 			},
 			"tone": {
 				"heading": "Ni kubera iki rimwe na rimwe Bibiliya ihindura ivyiyumviro bidasanzwe canke bitagira ishingiro?",

@@ -1,28 +1,28 @@
 {
 	"sections": {
-		"start": "Hasi hemen",
+		"start": "Hemen hasi",
 		"reference": "Erreferentzia",
 		"showcase": "Erakusleihoa",
 		"project": "Proiektua"
 	},
 	"items": {
-		"overview": "Ikuspegi orokorra",
-		"gettingStarted": "Erabiltzen hastea",
+		"overview": "Laburpena",
+		"gettingStarted": "Hasiera",
 		"configuration": "Konfigurazioa",
 		"inputs": "Sarrerak eta irteerak",
-		"formats": "Fitxategi-formatuak",
+		"formats": "Fitxategi formatuak",
 		"recipes": "Errezetak",
-		"faq": "FAQ",
+		"faq": "FAQak",
 		"translations": "Itzulpenak",
 		"contributing": "Ekarpenak",
 		"changelog": "Aldaketa-egunkaria"
 	},
 	"community": {
-		"reportBug": "Akats baten berri eman",
+		"reportBug": "Jakinarazi akats bat",
 		"requestFeature": "Eskatu ezaugarri bat",
 		"discussions": "Eztabaidak",
 		"securityPolicy": "Segurtasun politika",
 		"codeOfConduct": "Jokabide kodea",
-		"license": "MIT lizentzia"
+		"license": "MIT Lizentzia"
 	}
 }

@@ -50,7 +50,7 @@
 			},
 			"sdk": {
 				"title": "Official Azure SDK",
-				"body": "Natwarjone na {azureSdk} + {corePipeline} - awtomatiske wóspjetowanje na {statusCodes}, žeden z ruku walcony HTTP . {esbuild}-bundled, audit-clean."
+				"body": "Natwarjone na {azureSdk} + {corePipeline} - awtomatiski wóspjetowanje na {statusCodes}, žeden z ruku walcony HTTP . {esbuild}-bundled, audit-clean."
 			}
 		},
 		"workflowPreview": {
@@ -69,7 +69,7 @@
 	"getting-started": {
 		"title": "Zachopjeńk",
 		"eyebrow": "Zarědowanje",
-		"lede": "Pśidajśo dataju źěłowego wótběga, pokazujśo ju na swóje pśizjawjenja za Azure AI Translator a akcija pśeglědujo repozytorik za resursowymi datajami žrědłoweje rěcy a wusćełajo pśełožone bratšy a sotšy.",
+		"lede": "Pśidajśo dataju źěłowego wótběga, pokazujśo ju na swóje pśizjawjenja za Azure AI Translator a akcija pśepytujo repozytorik za resursowymi datajami žrědłoweje rěcy a wusćełajo pśełožone bratšy a sotšy.",
 		"steps": {
 			"provision": {
 				"title": "Provisioněrowanje resursy Azure AI Translator",
@@ -127,7 +127,7 @@
 				"retryBackoffMs": "Sajź (ms) na kužde jadnučke spanje. Pó standardnem stawje jo {defaultBackoff}. {retryAfter} głowowe smužki Azure se dokradnje honorěruju, gaž jo prezentne; Howac wužywa se rozwólny eksponencialny backoff, wobgranicowany na toś tu gódnotu.",
 				"protectPlaceholders": "Pó standardnem stawje jo {true}. Gaž jo zapnuty, se tokeny ako {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} a HTML entity pśed pśełožkom pśez Sentinel-tokeny wuměnjaju a pó tom zasej wótnowiju. Znjemóžniśo jano, gaž žrědło z wótglědom wopśimujo pismiki w formje městnego symbola.",
 				"customPlaceholderPatterns": "Pśidatne regularne wurazowe mustry (bźez wótgranickow) su se standardnemu sajźbje pśidały, na pś. {angleToken} za swójsku syntaksu tokena. Njepłaśiwe regularne eksekse se ignorěruju.",
-				"noTranslatePatterns": "Globowe mustry su pśirownali pśeśiwo tastkam na rowninje parsera (smužkowana droga JSON, RESX {resxName}, PO {poMsgid}, jednotka XLIFF {xliffId}, INI/restextowy tast). Wótpowědujuce kluce se z napšašowanja wótwónoźiju a pśejdu z zachowaneju žrědłoweju gódnotu."
+				"noTranslatePatterns": "Glob-mustry su pśirownali pśeśiwo tastkam na rowninje parsera (smužkowana droga JSON, RESX {resxName}, PO {poMsgid}, jednotka XLIFF {xliffId}, INI/restextowy tast). Wótpowědujuce kluce se z napšašowanja wótwónoźiju a pśejdu z zachowaneju žrědłoweju gódnotu."
 			}
 		},
 		"loadingOrder": {
@@ -202,13 +202,13 @@
 		},
 		"resilienceInputs": {
 			"heading": "Odpornosć & šćit za placeholdery",
-			"intro": "Toś te inputy kontrolěruju, kak se akcija zaźaržujo, gaž pśełožowaŕ wašo napšašowanje pómjeńšyjo a kak šćita placeholderowe tokeny ako {mustache} abo {indexZero} pśed znjerěšenim pśi pśełožku.",
+			"intro": "Toś te inputy kontrolěruju, kak se akcija zaźaržujo, gaž pśełožowaŕ wašo napšašowanje pómjeńšyjo a kak šćita placeholderowe tokeny ako {mustache} abo {indexZero} pśed tym, až su se pśi pśełožowanju znjemóžnili.",
 			"caption": "Póstupowańske a šćitne inputy za šćit městna",
 			"items": {
 				"maxRetries": "Maksimalne wopyty pśi pśechodnych wótegronach HTTP ({statusCodes}). Cełkowna licba HTTP-wołanjow na napšašowanje jo {totalCalls}.",
 				"retryBackoffMs": "Mejk (w milisekundach) pśi kuždem jadnučkem spanju. Akcija gódnośi głowowu smužku {retryAfter} wótegrona Azure dokradnje, gaž jo prezentna; Howac wužywa na toś tu gódnotu wobgranicowany eksponencialny backoff.",
-				"protectPlaceholders": "Gaž {true} (standard), se městnowe symbole ako {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} a HTML entitety pśed pśełožkom pśez Sentinelowe tokeny wuměnjaju a pó tom zasej wótnowiju. Znjemóžniśo jano, gaž waš žrědło wótglědanje wopśimujo tekst w formje rědnego symbola, kótaryž ma se pśełožyś.",
-				"customPlaceholderPatterns": "Nowosmužki źělone regularne ekseksa (bźez wótgranicowakow) su wordowali k standardnej sajźbje znamuškowych symbolow pśidane, na pś. {angleToken} za swójsku syntaksu tokena.",
+				"protectPlaceholders": "Gaž {true} (standard), se městnowe symbole ako {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} a HTML entitety pśed pśełožkom pśez Sentinelowe tokeny wuměnjaju a pó tom zasej wótnowiju. Znjemóžniśo jano pótom, gaž waš žrědło wótglědanje wopśimujo tekst w formje rědnego symbola, kótaryž ma se pśełožyś.",
+				"customPlaceholderPatterns": "Nowosmužki źělone regularne ekseksa (bźez wótgranicowakow) su wordowali k standardnej sajźbje symbolow pśidane, na pś. {angleToken} za swójsku syntaksu tokena.",
 				"noTranslatePatterns": "Pśez nowu liniju źělone globowe mustry su pśirownali k tastkam na rowninje parsera (smužkowana droga JSON, RESX {resxName}, PO {poMsgid}, jednotka XLIFF {xliffId}, INI/restextowy tast). Wótpowědujuce kluce se z napšašowanja pśełožowarja wótwónoźiju a pśejdu z zachowaneju žrědłoweju gódnotu."
 			}
 		},
@@ -300,7 +300,7 @@
 		"questions": {
 			"azure": {
 				"heading": "Kak jadnanje powěda z Azure?",
-				"body": "Pśez oficielny {azureSdkLink} SDK wót Microsofta, na {corePipelineLink} naworštowany. Z tym dostanjośo awtomatiske pósejźenja na {statusCodes}, zapódane pominańske a wótegronowe modele a wobźěłanje głowoweje smužki za awtentifikaciju dermotnje - wšykno, což jo było pjerwjej z ruku wjerśone {axios} wołanje. Zjawna akciska płonina (inputy, outputy, dataje) wóstanjo njezměnjena."
+				"body": "Pśez oficielny {azureSdkLink} SDK wót Microsofta, na {corePipelineLink} naworštowany. Z tym dostanjośo awtomatiske wóspjetowanje na {statusCodes}, zapódane pominańske a wótegronowe modele a wobźěłanje głowoweje smužki za awtentifikaciju dermotnje - wšykno, což jo było pjerwjej z ruku wjerśone {axios} wołanje. Zjawna akciska płonina (inputy, outputy, dataje) wóstanjo njezměnjena."
 			},
 			"tone": {
 				"heading": "Cogodla su pśełožki wótergi off-brand abo off-tone?",
@@ -310,7 +310,7 @@
 			},
 			"duplicateFiles": {
 				"heading": "Kak mógu se wobejś, samsku dataju dwójcy pśełožyś?",
-				"body": "Wuwabśo źěłowy wótběg na {paths}, kótarež jano k wašym source-locale-datajam wótpowěduju, na pś. {sourceGlob}. Akcija wopśimujo teke swójski filetowy filtr za wuwołanje, gaž jo {githubToken} nastajony, pśez což źěło na dataje w nejnowšem commitśe zwužycyjo."
+				"body": "Wuwabśo źěłowy wótběg na {paths}, kótarež jano k wašym source-locale-datajam wótpowěduju, na pś. {sourceGlob}. Akcija wopśimujo teke swójski filetowy filtr za wuwołanje, gaž jo {githubToken} nastajony, a źěło na dataje w nejnowšem commitśe zwužycyjo."
 			},
 			"offline": {
 				"heading": "Mógu akciju offline pśewjasć?",
@@ -326,7 +326,7 @@
 			},
 			"formats": {
 				"heading": "Co jo z drugimi formatami surowiznow?",
-				"body": "Źinsa: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} jo-lic drugi trjebaśo – pówjerch parsera jo mały (źěliś → kartu → pśełožk → formata nałožowaś) a pśinoski su witane.",
+				"body": "Źinsa: {resx}, {xliff}, {po}, {json}, {ini}, {restext}. {issueLink} jo-lic drugi trjebaśo – pówjerch parsera jo mały (źěliś → kórtu → pśełožki → formaśe nałožowaś) a pśinoski su witane.",
 				"issueLinkLabel": "Wócyńśo numer"
 			}
 		}
@@ -411,13 +411,13 @@
 				"sourceLocale": "Region žrědłow se něnto teke pśełožowarjeju dalej pósrědnja, {fromLocale} tak se krotke nitki awtomatiski njedetekěruju.",
 				"resilience": "{label} awtomatiski wopyt pśi pśechodnych wótegronach HTTP ({statusCodes}), kótarež respektěrujo {retryAfter} głowowu smužku Azure – padnjo slědk k tśěskotanemu eksponencialnemu spótom, gaž njejo pśibytny. Wótměr pśez {maxRetries} a {retryBackoffMs}. {issue}",
 				"placeholderProtection": "{label} tokeny ako {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} a HTML-entitety se pśed pśełožkom do stražnikow zapakuju a pótom zasej wótnowiju, tak až pśełožowaŕ njepśestanjo i18next/Mustache/Handlebars/.NET/printf městnowe symbole pśesajźiś. Pśešaltowaś pśez {protectPlaceholders}; Pódlej z {customPlaceholderPatterns}. {issue}",
-				"perKeyOptOut": "{label} nowy {noTranslatePatterns} input wótpadnjo se pśipowědujucych klucow dopołnje wót pśełožowaŕskego napšašowanja (zdźaržyjo žrědła za markowe mění, zmólkowe kody atd.). Pśirědujo globowe mustry pśeśiwo tastkam na rowninje parsera (smužkowa droga JSON, RESX {resxName}, PO {poMsgid}, jednotka XLIFF {xliffId}, INI/restextowa tasta). {issue}",
+				"perKeyOptOut": "{label} nowy {noTranslatePatterns} input wótpadnjo se pśipowědujucych klucow dopołnje wót pśełožowaŕskego napšašowanja (wobchowajo žrědłańske gódnoty za markowe mjenja, zmólkowe kody atd.). Pśirědujo globowe mustry pśeśiwo tastkam na rowninje parsera (smužkowa droga JSON, RESX {resxName}, PO {poMsgid}, jednotka XLIFF {xliffId}, INI/restextowa tasta). {issue}",
 				"repoConfig": "Repo-level config via {configPath}.",
 				"glossary": "Glosar pódpěra, kšacowe zespominanje pśez {coreSummary}.",
 				"tooling": "esbuild bundler, ESLint 9 flat config, Prettier, EditorConfig.",
 				"audit": "npm audit clean (0 zranitelnosti).",
 				"docsSite": "Astro + Tailwind v4-docasny bok z pśechodami naglěda a ekspresiwnym kodom.",
-				"docsAccessibility": "{label} WCAG 2.1 AA pass. Logo-glify su pśetwórili na drogi, aby wěcej njepśepadnuli barwny kontrast pśeśiwo gradientowym stopam, znosowajucy tłocašk {backToTop} wužywa {inert}, gaž jo schowany (město {ariaHidden} pśešalt, kótaryž jo wóznamjenił rejk), {formatsAstro} wótrězki njekoliděruju wěcej ze swójimi awtomatiskimi nadpismowymi ID-ami, tśi wizelne kórty wótkšywaju něnto atributy {lang} ({nya}, {lug}, {run}), dwójne {documentation} pódaśa orientaciskich markow su mjazy bocnicu a pódnožku rozdźělne,  A kužda datowa tabulka na {inputs} / {configuration} se pódajo z pśedpismom za cytanje wobrazow.",
+				"docsAccessibility": "{label} WCAG 2.1 AA pass. Logo-glify su pśetwórili na drogi, aby wěcej njepśepadnuli barwny kontrast pśeśiwo gradientowym stopam, znosujucy tłocašk {backToTop} wužywa {inert}, gaž jo schowany (město {ariaHidden} pśešalt, kótaryž jo wóznamjeniwny pśez kśicku), {formatsAstro} wótrězki njekoliděruju wěcej ze swójimi awtomatiskimi nadpismowymi ID-ami, tśi wizelne kórty wótkšywaju něnto atributy {lang} ({nya}, {lug}, {run}), dwójne {documentation} pópisanja orientaciskich markow su mjazy bocnicu a pódnožku rozdźělne,  A kužda datowa tabulka na {inputs} / {configuration} pśišaltujo se z wobrazowym pśedpismom.",
 				"inlineCode": "{label} docs proza {codeElement} nosy něnto śopły / jantarowy akcent – rozeznawajucy se wót markowej→akcentoweje palety, kótaraž se za linki a nadpisma wužywa.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}

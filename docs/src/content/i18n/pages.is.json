@@ -6,13 +6,13 @@
 		"badge": "v3.0 — Node 24, repo config, orðalisti, dry run",
 		"headlinePrefix": "Staðfærðu geymsluna þína á",
 		"headlineAccent": "Hver skuldbinding.",
-		"lede": "Resource Translator opnar vélrænt þýddar pull requests fyrir auðlindaskrár þínar með Azure AI Translator í gegnum opinbera SDK-ið — engar auka þjónustur, bara vinnuflæði.",
+		"lede": "Resource Translator opnar vélrænt þýddar pull requests fyrir auðlindaskrárnar þínar með Azure AI Translator í gegnum opinbera SDK-ið — engar auka þjónustur, bara vinnuflæði.",
 		"primaryCta": "Byrjaðu",
 		"secondaryCta": "Star á GitHub",
 		"supports": "Stuðningur",
 		"builtForShipping": "Smíðað fyrir skipaflutninga",
 		"workflowTitle": "Þýðing sem vinnuflæði, ekki kvöð.",
-		"workflowBody": "Settu aðgerðina inn í núverandi CI, bentu henni á Azure AI Translator og leyfðu geymslunni þinni að tala öll tungumál sem þú miðar á.",
+		"workflowBody": "Settu aðgerðina inn í núverandi CI þitt, beindu henni á Azure AI Translator og leyfðu geymslunni þinni að tala öll tungumál sem þú miðar á.",
 		"stats": {
 			"audit": "0 npm-endurskoðunarvandamál",
 			"tests": "150 próf",
@@ -34,7 +34,7 @@
 			},
 			"config": {
 				"title": "Repo-level stillingar",
-				"body": "Settu inn {configPath} skrá sem inniheldur klúta, orðalista og flokka sérsniðinna þýðenda."
+				"body": "Settu inn {configPath} skrá sem inniheldur klúta, orðalista og flokka sérsniðinna þýðanda."
 			},
 			"glossary": {
 				"title": "Orðalistameðvitaður",
@@ -116,7 +116,7 @@
 				"sourceLocale": "Fellur aftur í {sourceLocale} inntak ef það er ekki stillt. Einnig sent til þýðanda sem {fromLocale} svo stuttir strengir séu ekki sjálfkrafa greindir.",
 				"toLocales": "Annað hvort fylki eða kommuaðskilinn strengur.",
 				"includeExclude": "Glob-mynstur metin út frá algildum og vinnusvæðum hlutfallslegum leiðum.",
-				"glossary": "Yfirskriftir eftir þýðingu. Orðmörk meðvituð (meðhöndlar {cpp}, {dotnet}).",
+				"glossary": "Yfirskriftir eftir þýðingu. Meðvitaður um orðmörk (meðhöndlar {cpp}, {dotnet}).",
 				"categoryId": "Azure {customTranslatorLink} flokkur — iðnaðar-/sviðshnappurinn þinn (lögfræðilegur, læknisfræðilegur, markaðstónn o.s.frv.). Sent sem {categoryQuery}.",
 				"textType": "Sjálfgefið {plain}. Notaðu {html} aðeins ef auðlindagildin þín innihalda raunveruleg HTML-brot.",
 				"profanityAction": "Hvernig á að meðhöndla blótsyrði í þýddum texta.",
@@ -136,7 +136,7 @@
 				"actionInputs": "Aðgerðin les skýrar inntök úr vinnuflæðinu.",
 				"config": "Það hleður YAML stillingunni frá {configPath}.",
 				"precedence": "Fyrir hvern sameiginlegan reit, vinnur inntakið; annars er YAML-gildið notað.",
-				"validation": "Sameinuðu gildin eru staðfest. Ógild enumum (t.d. {invalidEnum}) valda því að aðgerðin mistekst hratt með skýru skilaboði."
+				"validation": "Sameinuðu gildin eru staðfest. Ógild enums (t.d. {invalidEnum}) valda því að aðgerðin mistekst hratt með skýru skilaboði."
 			}
 		},
 		"tone": {
@@ -206,8 +206,8 @@
 			"caption": "Þol og staðgengilsvörn",
 			"items": {
 				"maxRetries": "Hámarks tilraunir til endurtekninga á tímabundnum HTTP-svörum ({statusCodes}). Heildarfjöldi HTTP-símtala á hverja beiðni er {totalCalls}.",
-				"retryBackoffMs": "Takmörkun (í millisekúndum) á hvaða einstöku afturvirku svefni sem er. Aðgerðin virðir Azure {retryAfter} svarhausinn nákvæmlega þegar hann er til staðar; Annars notar það jitterað, veldisvaxandi bakslag sem er takmarkað við þetta gildi.",
-				"protectPlaceholders": "Þegar {true} (sjálfgefið) eru staðgengilar eins og {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} og HTML einingar skipt út fyrir sentinel-tákn fyrir þýðingu og endurheimtar eftir á. Slökktu aðeins á þegar heimildin þín inniheldur viljandi bókstaflegan staðgengilstexta sem ætti að þýða.",
+				"retryBackoffMs": "Takmörkun (í millisekúndum) á hvaða einstöku bakflæði sem er. Aðgerðin virðir Azure {retryAfter} svarhausinn nákvæmlega þegar hann er til staðar; Annars notar það jitterað, veldisvaxandi bakslag sem er takmarkað við þetta gildi.",
+				"protectPlaceholders": "Þegar {true} (sjálfgefið) eru staðgönguhlutar eins og {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} og HTML einingar skipt út fyrir sentinel-tákn áður en þýðing er gerð og endurheimt eftir á. Slökktu aðeins á þegar heimildin þín inniheldur viljandi bókstaflegan staðgengilstexta sem á að þýða.",
 				"customPlaceholderPatterns": "Nýlínuaðskildir regexar (án skilamarka) bætt við sjálfgefna staðsetningarsettið, t.d. {angleToken} fyrir sérsniðna táknasetningu.",
 				"noTranslatePatterns": "Newline-aðskilin glob-mynstur pöruð við greiningarlykla (JSON punktaleið, RESX {resxName}, PO {poMsgid}, XLIFF eining {xliffId}, INI/restext lykill). Samsvarandi lyklar eru felldir úr þýðandabeiðninni og sendir áfram með upprunagildi þeirra varðveitt."
 			}
@@ -251,7 +251,7 @@
 				"specLabel": "INI skráarsnið á Wikipedia"
 			},
 			"restext": {
-				"blurb": "Microsoft MUI textaauðlindir — flatar {keyValue} pör sem notuð eru sem textafylgi við {resx}.",
+				"blurb": "Microsoft MUI textaauðlindir — flatar {keyValue} pör sem notuð eru sem textafélagi við {resx}.",
 				"specLabel": "Yfirlit Microsoft MUI"
 			}
 		},
@@ -264,7 +264,7 @@
 	"recipes": {
 		"title": "Uppskriftir",
 		"eyebrow": "Matreiðslubók",
-		"lede": "Algeng mynstur fyrir sendingarþýðingar: monorepos, orðalistar, sérsniðnir flokkar, prufukeyrslur og tónstýring.",
+		"lede": "Algeng mynstur fyrir sendingarþýðingar: monorepos, orðalistar, sérsniðnir flokkar, prufupróf og tónstýring.",
 		"sections": {
 			"pullRequest": {
 				"heading": "Opnaðu pull request eftir hverja keyrslu"
@@ -284,7 +284,7 @@
 			},
 			"tone": {
 				"heading": "Tónstýring + strangt bakslag",
-				"body": "Sameinaðu sérsniðinn þýðanda {categoryId} með {profanityAction} og {allowFallbackFalse} til að tryggja samræmda rödd og mistakast í vinnuflæðinu ef valinn flokkur hefur ekki uppsetningu fyrir eitt af marksvæðum þínum."
+				"body": "Sameinaðu sérsniðinn þýðanda {categoryId} við {profanityAction} og {allowFallbackFalse} til að tryggja samræmda rödd og mistakast í vinnuflæðinu ef valinn flokkur hefur ekki uppsetningu fyrir eitt af marksvæðum þínum."
 			},
 			"dryRun": {
 				"heading": "Prófaðu áður en þú kveikir á vinnuflæðinu",
@@ -300,17 +300,17 @@
 		"questions": {
 			"azure": {
 				"heading": "Hvernig talar aðgerðin við Azure?",
-				"body": "Í gegnum opinbera {azureSdkLink} SDK Microsoft, ofan á {corePipelineLink}. Það gefur þér sjálfvirkar endurtilraunir á {statusCodes}, innsláttar beiðnir og svörunarlíkön, og meðhöndlun auðkenningarhausa án endurgjalds — allt sem áður var handskrifað {axios} símtal. Opinberi aðgerðarflöturinn (inntak, úttak, skráarúttak) er óbreyttur."
+				"body": "Í gegnum opinbera {azureSdkLink} SDK Microsoft, ofan á {corePipelineLink}. Það gefur þér sjálfvirkar endurtilraunir á {statusCodes}, innritaðar beiðnir og svörunarlíkön, og meðhöndlun auðkenningarhausa ókeypis — allt sem áður var handskrifað {axios} símtal. Opinberi aðgerðarflöturinn (inntak, úttak, skráarúttak) er óbreyttur."
 			},
 			"tone": {
-				"heading": "Af hverju eru þýðingar stundum ekki í samræmi við vörumerkið eða ekki í réttum tón?",
+				"heading": "Af hverju eru þýðingar stundum ekki í samræmi við vörumerkið eða ekki í samræmi við tón?",
 				"body": "Vélþýðing notar sjálfgefið almennt líkan. Þrír takkar hjálpa: {glossaryLink} fyrir harðar yfirskriftir, {customTranslatorLink} fyrir fínstillt líkön sem eru þjálfuð á tóni og orðaforða, og {profanityAction} til að hreinsa eða merkja blótsyrði.",
 				"glossaryLinkLabel": "Orðalisti",
 				"customTranslatorLinkLabel": "Flokkur sérsniðinna þýðanda"
 			},
 			"duplicateFiles": {
 				"heading": "Hvernig forðast ég að þýða sömu skrá tvisvar?",
-				"body": "Kveiktu á vinnuflæði á {paths} sem passa aðeins við upprunalegu skrárnar þínar, t.d. {sourceGlob}. Aðgerðin inniheldur einnig sinn eigin skráarsíu fyrir hvern kveikju þegar {githubToken} er stillt, sem þrengir vinnuna að skrám í nýjustu commitinu."
+				"body": "Kveiktu á vinnuflæði á {paths} sem passa aðeins við upprunalegu skrárnar þínar, t.d. {sourceGlob}. Aðgerðin inniheldur einnig sinn eigin skráarsíu fyrir hvern kveikju þegar {githubToken} er stillt, sem þrengir vinnuna að skrám í nýjasta commitinu."
 			},
 			"offline": {
 				"heading": "Get ég keyrt aðgerðina án nettengingar?",
@@ -345,7 +345,7 @@
 		"source": "Heimild",
 		"machineTranslations": "Vélþýðingar",
 		"translationPending": "Þýðing í bið — opnaðu {workflowName} run.",
-		"noLocales": "Engar staðsetningar passa við þá síu.",
+		"noLocales": "Engir staðir passa við þann síu.",
 		"howItWorks": {
 			"heading": "Hvernig þetta virkar",
 			"thisActionLabel": "einmitt þessi aðgerð",
