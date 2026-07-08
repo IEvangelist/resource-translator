@@ -2,7 +2,7 @@ import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
-import tailwindcss from "@tailwindcss/postcss";
+import tailwindcss from "@tailwindcss/vite";
 
 const site = process.env.SITE_URL ?? "https://ievangelist.github.io";
 const base = process.env.BASE_PATH ?? "/resource-translator";
@@ -67,11 +67,7 @@ export default defineConfig({
     sitemap(),
   ],
   vite: {
-    css: {
-      postcss: {
-        plugins: [tailwindcss()],
-      },
-    },
+    plugins: [tailwindcss()],
   },
   build: {
     format: "directory",

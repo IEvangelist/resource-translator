@@ -1,7 +1,10 @@
 import { debug, setFailed } from "@actions/core";
 import { randomUUID } from "node:crypto";
 import createClient, { isUnexpected } from "@azure-rest/ai-translation-text";
-import type { TextTranslationClient } from "@azure-rest/ai-translation-text";
+import type {
+  TextTranslationClient,
+  TranslateBody,
+} from "@azure-rest/ai-translation-text";
 import { AvailableTranslations } from "../abstractions/available-translations";
 import {
   TranslationResult,
@@ -181,8 +184,11 @@ export const translate = async (
         // is intentionally serialized when explicitly false so the
         // Translator default (true) can be turned off.
         // Multiple `to` values are accepted as a comma-separated list by
-        // the Translator REST API; this is the form used by the
-        // ai-translation-text-rest 1.0.x sample suite.
+        // the Translator v3.0 REST API. The v2 SDK models a structured
+        // `{ inputs, targets }` body, but we intentionally keep pinning
+        // `apiVersion=3.0` and forwarding target locales + options as query
+        // parameters (incl. Custom Translator `category`), so the on-the-wire
+        // behavior is byte-compatible with the previous major.
         const queryParameters = {
           to: locales.join(","),
           ...(translatorResource.sourceLocale && {
@@ -209,7 +215,13 @@ export const translate = async (
         const response = await retryablePost(
           () =>
             client.path("/translate").post({
-              body: dataBatch,
+              // v2 requires the payload wrapped as `{ inputs }` (was a bare
+              // array in v1). Its types further model a forward-looking API
+              // where each input carries its own `targets`; we intentionally
+              // keep the v3.0 wire contract instead — target locales and
+              // options ride along as query parameters (see above) — so we
+              // assert the shape the pinned `apiVersion=3.0` endpoint expects.
+              body: { inputs: dataBatch } as unknown as TranslateBody,
               headers,
               queryParameters,
             }),

@@ -19,8 +19,8 @@
     "@fontsource-variable/inter": "^5.2.8",
     "@iconify-json/lucide": "^1.2.116",
     "@iconify-json/simple-icons": "^1.2.89",
-    "@tailwindcss/postcss": "^4.3.2",
-    "astro": "^6.4.8",
+    "@tailwindcss/vite": "^4.3.2",
+    "astro": "^7.0.6",
     "astro-expressive-code": "^0.44.0",
     "astro-icon": "^1.1.5",
     "pagefind": "^1.5.2",
@@ -28,7 +28,9 @@
     "typescript": "^6.0.3"
   },
   "overrides": {
-    "yaml": "^2.8.4"
+    "yaml": "^2.8.4",
+    "tar": "^7.5.16",
+    "ws": "^8.21.0"
   },
   "devDependencies": {
     "http-server": "^14.1.1",
