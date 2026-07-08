@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [3.0.0] - 2026-07-08
+
 ### Changed
 
 - **Translator client now uses the official Azure SDK.** Replaced the
@@ -65,9 +67,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Migrated to ESLint 9 flat config + Prettier + EditorConfig.
 - Bumped `eslint` and `@eslint/js` to v10, `globals` to v17, docs
   `typescript` to v6 to match root, and the workflow GitHub Actions
-  `actions/checkout@v6`, `actions/upload-pages-artifact@v5`,
+  `actions/checkout@v7`, `actions/upload-pages-artifact@v5`,
   `peter-evans/create-pull-request@v8`, `softprops/action-gh-release@v3`,
   `dependabot/fetch-metadata@v3`.
+- Modernised major dependencies: `@azure-rest/ai-translation-text` v2,
+  `js-yaml` v5, `@types/node` v26 (root); `astro` v7 wired through the
+  first-party `@tailwindcss/vite` plugin, plus `tar`, `vite`, `esbuild`,
+  and `ws` security bumps (docs). Clears every outstanding Dependabot
+  update.
 - Refreshed the docs landing page with a custom translation logo, a
   vibrant indigo→fuchsia→amber palette, Lucide icons, view transitions,
   Expressive Code-rendered code samples, and a self-hosted Inter font.
@@ -104,11 +111,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Security
 
-- Resolved all `npm audit` advisories (now 0 vulnerabilities).
+- Resolved all outstanding Dependabot security alerts across the root and
+  docs lockfiles (`js-yaml`, `@babel/core`, `tar`, `vite`, `esbuild`, `ws`);
+  `npm audit` now reports 0 vulnerabilities in both workspaces.
 
 ## [2.0.6]
 
 See git history for releases prior to v3.
 
-[Unreleased]: https://github.com/IEvangelist/resource-translator/compare/v2.0.6...HEAD
+[Unreleased]: https://github.com/IEvangelist/resource-translator/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/IEvangelist/resource-translator/compare/v2.0.6...v3.0.0
 [2.0.6]: https://github.com/IEvangelist/resource-translator/releases/tag/v2.0.6
