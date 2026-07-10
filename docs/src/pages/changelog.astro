@@ -5,6 +5,7 @@ import PageHero from "../components/PageHero.astro";
 import { defaultLocale } from "../i18n/locales";
 import { getPageMessages } from "../i18n/messages";
 import { code, em, link, strong, type LocalizedReplacements } from "../i18n/rich-text";
+import { releaseHistory } from "../data/release-history";
 
 const { locale = defaultLocale } = Astro.props;
 const copy = getPageMessages(locale, "changelog");
@@ -14,8 +15,19 @@ type ChangelogItem = {
   values?: LocalizedReplacements;
 };
 
+type ReleaseSection = {
+  version: string;
+  date: string;
+  /** Rich, localized bullets (recent releases). */
+  localizedItems?: ChangelogItem[];
+  /** Plain-text bullets (historical releases). */
+  plainItems?: readonly string[];
+};
+
 const changelogUrl =
   "https://github.com/IEvangelist/resource-translator/blob/main/CHANGELOG.md";
+
+const fixedLabel = strong(copy.fixedLabel);
 
 const commonValues = {
   include: code("include"),
@@ -47,7 +59,7 @@ const commonValues = {
   coreSummary: code("core.summary"),
 };
 
-const v3Items: ChangelogItem[] = [
+const v300Items: ChangelogItem[] = [
   {
     text: copy.v3.items.runtime,
     values: {
@@ -119,6 +131,50 @@ const v3Items: ChangelogItem[] = [
   },
   { text: copy.v3.items.automation },
 ];
+
+const releases: ReleaseSection[] = [
+  {
+    version: "3.0.2",
+    date: "2026-07-10",
+    localizedItems: [
+      {
+        text: copy.releases.v302,
+        values: {
+          label: fixedLabel,
+          apiVersion: code("api-version=3.0"),
+          translate: code("/translate"),
+          languages: code("/languages"),
+          code: code("400074"),
+        },
+      },
+    ],
+  },
+  {
+    version: "3.0.1",
+    date: "2026-07-10",
+    localizedItems: [
+      {
+        text: copy.releases.v301,
+        values: {
+          label: fixedLabel,
+          translate: code("/translate"),
+          textItem: code("{ text }"),
+          inputs: code("{ inputs }"),
+        },
+      },
+    ],
+  },
+  {
+    version: "3.0.0",
+    date: "2026-07-08",
+    localizedItems: v300Items,
+  },
+  ...releaseHistory.map((release) => ({
+    version: release.version,
+    date: release.date,
+    plainItems: release.changes,
+  })),
+];
 ---
 
 <DocLayout title={copy.title} locale={locale} slug="changelog">
@@ -140,19 +196,25 @@ const v3Items: ChangelogItem[] = [
     />
   </p>
 
-  <h2>{copy.v3.heading}</h2>
-  <ul>
-    {
-      v3Items.map((item) => (
-        <li>
-          <LocalizedText text={item.text} values={item.values} />
-        </li>
-      ))
-    }
-  </ul>
-
-  <h2>{copy.v2.heading}</h2>
-  <ul>
-    <li>{copy.v2.gitHistory}</li>
-  </ul>
+  <h2>{copy.releasesHeading}</h2>
+  {
+    releases.map((release) => (
+      <section>
+        <h3>
+          {release.version} —{" "}
+          <time datetime={release.date}>{release.date}</time>
+        </h3>
+        <ul>
+          {release.localizedItems?.map((item) => (
+            <li>
+              <LocalizedText text={item.text} values={item.values} />
+            </li>
+          ))}
+          {release.plainItems?.map((change) => (
+            <li>{change}</li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
 </DocLayout>

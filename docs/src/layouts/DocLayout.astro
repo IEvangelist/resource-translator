@@ -50,7 +50,9 @@ const desc =
 const ogTitle = socialTitle ?? fullTitle;
 const ogDescription = socialDescription ?? desc;
 const baseHref = import.meta.env.BASE_URL.replace(/\/$/, "");
-const faviconHref = `${baseHref}/favicon.svg`;
+const faviconSvgHref = `${baseHref}/favicon.svg`;
+const faviconIcoHref = `${baseHref}/favicon.ico`;
+const appleTouchIconHref = `${baseHref}/apple-touch-icon.png`;
 const htmlLang = toHtmlLang(locale);
 const dir = toTextDirection(locale);
 const siteUrl = Astro.site ?? new URL(Astro.url.origin);
@@ -113,7 +115,9 @@ const alternates = allLocales.map((item) => ({
       hreflang="x-default"
       href={new URL(localizedHref(defaultLocale, slug), siteUrl).toString()}
     />
-    <link rel="icon" type="image/svg+xml" href={faviconHref} />
+    <link rel="icon" href={faviconIcoHref} sizes="any" />
+    <link rel="icon" type="image/svg+xml" href={faviconSvgHref} />
+    <link rel="apple-touch-icon" href={appleTouchIconHref} />
     <title>{fullTitle}</title>
     <ClientRouter />
     <slot name="head" />
