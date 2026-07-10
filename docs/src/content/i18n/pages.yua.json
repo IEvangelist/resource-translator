@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Traductor nu'ukulo'ob",
-		"description": "Resource Translator Jaap solicitudes pull traducidas tumen máquina utia'al u archivos nu'ukulo'ob ti' je'el repositorio, ti' je'el ba'ax formato — Powered by Azure AI Translator.",
+		"description": "Resource Translator Jaap solicitudes pull traducidas tumen máquina utia'al u archivos nu'ukulo'ob ti' je'el repositorio, ti' je'el ba'ax formato — impulsado tumen Azure AI Translator, AWS Translate, wa Google Cloud Translation.",
 		"socialTitle": "Traductor nu'ukulo'ob — traducir archivos nu'ukulo'ob automáticamente",
-		"badge": "v3.0 — Nodo 24, configuración repositorio, glosario, corrida tikin",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Localizar u repositorio ti'",
 		"headlineAccent": "Amal túulal u síij.",
-		"lede": "Translator nu'ukulo'ob Jaap solicitudes pullpull-translated tumen máquina utia'al u archivos nu'ukulo'ob utilizando Azure AI Translator yóol le SDK way sijnáaleche' — Ma' yéetel extra, chéen jump'éel flujo meyaj.",
+		"lede": "Resource Translator Jaap solicitudes pullpulls traducidas tumen máquina utia'al u archivos nu'ukulo'ob utilizando Azure, AWS wa Google — jump'éel asab unificada, jump'éel proveedor tumen ejecutar, SDK way sijnáaleche' yáanal le capó.",
 		"primaryCta": "Káaj",
 		"secondaryCta": "Eek' ti' GitHub",
 		"supports": "Apoyos",
 		"builtForShipping": "Construido utia'al u envío",
 		"workflowTitle": "Traducción bey flujo meyaj, ma' jump'éel meyaj.",
-		"workflowBody": "Coloque le molayil ti' u CI existente, apuntar tu Azure AI Translator yéetel cha'ik u repositorio t'aan Amal t'aano' ku ts'áabal u kaxtik.",
+		"workflowBody": "Coloque le molayil ti' u CI existente, apuntar ti' Azure, AWS wa Google, ka cha'ik u repositorio t'aan Amal t'aano' ku ts'áabal u kaxtik.",
 		"stats": {
 			"audit": "0 talamilo'ob NPM-auditoría",
-			"tests": "150 pruebas",
+			"tests": "240+ pruebas",
 			"node": "Nodo 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} yéetel {hasNewTranslations} Jun u crear-ch'a'ak-ch'a'akij."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Construido yóok'ol {azureSdk} + {corePipeline} — reintentos automáticos ti' {statusCodes}, ma' HTTP enrollado k'ab. {esbuild}-agrupado, audit-clean."
+				"title": "Azure, AWS & Google",
+				"body": "Elegir jump'éel proveedor tumen corrida. Jujuntúulal jach impulsado tumen u SDK way sijnáaleche' ({azureSdk}, {awsSdk}, {googleSdk}) yéetel reintentos automáticos ti' {statusCodes} — xma' HTTP enrollado k'ab. {esbuild}-agrupado, auditoría-cho'oik."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Listos utia'al localizar ti' piloto automático.",
-			"body": "Jump'éel clave Azure AI Translator, jump'éel archivo flujo meyaj. Resource Translator maneja u yala'ab.",
+			"body": "Jump'éel clave proveedor — Azure, AWS wa Google — yéetel juntúul archivo flujo meyaj . Resource Translator maneja u yala'ab.",
 			"button": "Káaj"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Wook uláak'",
 			"configuration": "Configurar valores predeterminados nivel repositorio yéetel {configPath}.",
 			"recipes": "Wil recetas utia'al monorepos, glosarios personalizados yéetel categorías Custom Translator."
+		}
+	},
+	"providers": {
+		"title": "Ku Páaybe'en u traducción",
+		"eyebrow": "K'a'ana'an",
+		"lede": "Elija jump'éel proveedor traducción tumen corrida — Azure AI Translator, AWS Translate, wa Google Cloud Translation — paach jump'éel tin juunal superficie API unificada. Le traductor ku comporta idénticamente xma' importar le proveedor; Chéen le credenciales difieren.",
+		"backwardCompatible": "Jaatsatako'ob tak paachil: {provider} predeterminada ti' {azure}, yo'olal le flujos meyaj existentes u Azure siguen funcionando xma' cambios — Xma' necesidad ediciones.",
+		"selecting": {
+			"title": "Selección jump'éel proveedor",
+			"body": "Configurar le {provider} yaan tu {azure} (tumen defecto), {aws} wa {google}, ts'o'okole' suministrar credenciales le proveedor. Chéen jump'éel proveedor ku meyajtiko'ob tumen t'aano' asab; le molayil delega determinísticamente ti' le SDK coincidencia paach jump'éel fábrica."
+		},
+		"comparison": {
+			"title": "Comparación le proveedor",
+			"caption": "Comparación proveedor u traducción",
+			"columns": {
+				"provider": "Proveedor",
+				"value": "Ku proveedor",
+				"sdk": "SDK",
+				"credentials": "Credenciales"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (default)",
+				"credentials": "subscriptionKey, endpoint, region (opcional)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "aws",
+				"credentials": "OIDC / tsolokbal tumen defecto, wa awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Traducción u múuyal u Google",
+				"value": "Google",
+				"credentials": "googleApiKey WA googleCredentials (mayaj - yilaje' JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Le proveedor tumen defecto. Provisionar jump'éel recurso Azure AI Translator yéetel máan {subscriptionKey}, {endpoint}, ka opcionalmente {region}. Lela' le ti' jump'éeli' kuchil-configuración le flujos meyaj existentes ts'o'ok utilizan."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Ku meyaj {sdk}. Prefiere OIDC yóol {configureAwsCredentials} utia'al u ma' u almacenan secretos chowak kuxtal — le molayil xok le tsolokbal credenciales predeterminada SDK AWS. Alternativamente, máan {awsAccessKeyId} ka {awsSecretAccessKey} explícitamente. Mantats' k'a'abet jump'éel petenil ti' {awsRegion} wa le variable jeets' {awsRegionEnv}.",
+			"oidcTitle": "OIDC (recomendado)",
+			"keysNote": "Utia'al u utilizar wach'ebo'obo' estáticas kúuchil OIDC, ja'at le paso {configureAwsCredentials} ka máan {awsAccessKeyId} {awsSecretAccessKey} (yóol {secrets}) {awsRegion}."
+		},
+		"google": {
+			"title": "Traducción u múuyal u Google",
+			"body": "Meyajtiko'ob {sdk} (v2). Autenticar yéetel jump'éel clave API ({googleApiKey}) wa jump'éel credencial JSON ({googleCredentials}). Suministrar exactamente juntúule'; Juntúul {googleProjectId} opcional ku infiere ti' le credencial ken u omit."
+		},
+		"mapping": {
+			"title": "Mapeado u especificador intención",
+			"body": "Le especificadores específicos ti' le proveedor ku mapean tu'ux yaan jump'éel equivalente. Tuláakal le demás ku ka'a ti' predeterminados sensatos yo'olal le comportamiento ku mantiene constante.",
+			"caption": "Mapeado u especificador intención ichil le Ku Meyaj",
+			"columns": {
+				"input": "Entrada",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Apoyado",
+			"ignored": "Ku ch'a'abal",
+			"rows": {
+				"textType": {
+					"azure": "textType (llano leti' html)",
+					"aws": "Ignorado (xma' alternar)",
+					"google": "Formato (analte'o' leti' html)"
+				},
+				"profanityAction": {
+					"azure": "Apoyo k'iini'",
+					"aws": "Marcado / Eliminado → enmascaramiento",
+					"google": "Ku ch'a'abal"
+				},
+				"categoryId": {
+					"azure": "Traductor personalizado",
+					"aws": "Ku ch'a'abal",
+					"google": "Ku ch'a'abal"
+				},
+				"allowFallback": {
+					"azure": "Apoyado",
+					"aws": "Ku ch'a'abal",
+					"google": "Ku ch'a'abal"
+				}
+			}
+		},
+		"locales": {
+			"title": "Le códigos locales difieren tumen proveedor",
+			"body": "Amal proveedor meyajtiko'ob u leti'ob códigos locales (je'ebix, chino simplificado jach {azureCode} ti' Azure, {awsCode} ti' AWS yéetel {googleCode} ti' Google). Le códigos ku yúuchul tumen tal bix yéetel ku impulsan le k'aaba'obo' archivo salida, bey u elija {toLocales} uts' k'ajóolilo'obo' u seleccionado u proveedor ti'."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Entradas requeridas",
 			"caption": "Entradas requeridas",
 			"items": {
-				"sourceLocale": "Entorno u k'aaba' (je'ebix, {en}) utilizado utia'al u kaxtik archivos nu'ukulo'ob bey {sourceGlob}. Xan reenviado ti' Translator bey {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator clave suscripción. Máanen {secrets}.",
-				"endpoint": "URL u endpoint le traductor, je'ebix, {endpointUrl}."
+				"sourceLocale": "Entorno u k'aaba' (je'ebix, {en}) utilizado utia'al u kaxtik archivos nu'ukulo'ob bey {sourceGlob}. Xan reenviado ti' le proveedor bey {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Selección proveedor & credenciales",
+			"caption": "Selección le proveedor yéetel credenciales tumen proveedor",
+			"intro": "Elija jump'éel proveedor tumen corrida yéetel {provider}. Suministre chéen le credenciales ti' le proveedor seleccionado — Wil le náakake' u yaak'il {providersLink} utia'al u configuración completa.",
+			"items": {
+				"provider": "Proveedor traducción: {azure} (tumen defecto), {aws} wa {google}. Chéen jump'éel proveedor ku meyajtiko'ob tumen t'aano' asab.",
+				"subscriptionKey": "Azure AI Translator clave suscripción. K'a'abet utia'al {azure}. Máanen tumen {secrets}.",
+				"endpoint": "URL endpoint Azure Translator, je'ebix {endpointUrl}. K'a'abet utia'al {azure}.",
+				"awsAccessKeyId": "Id clave muuk' AWS. Opcional — obet (yéetel {awsSecretAccessKey}) utia'al u utilizar le tsolokbal credenciales predeterminada AWS / OIDC. Máanen tumen {secrets}.",
+				"awsSecretAccessKey": "Clave muuk' secreta AWS. K'a'ana'an u suministrado yéetel {awsAccessKeyId}. Máanen tumen {secrets}.",
+				"awsSessionToken": "Token xoknáalo'obo' AWS opcional utia'al u credenciales temporales. Máanen {secrets}.",
+				"awsRegion": "Región AWS utia'al u mayaj Translate (je'ebix, {regionExample}). K'a'abet utia'al {aws} a menos {awsRegionEnv} establezca ti' le jeets'.",
+				"googleApiKey": "Google Cloud API clave. Ts'aik le je'ela' {googleCredentials} {google}. Máanen {secrets}.",
+				"googleCredentials": "Google Cloud mayaj - clave yilaje' bey juntúul cadena JSON. Ts'aik le je'ela' {googleApiKey} {google}. Máanen {secrets}.",
+				"googleProjectId": "Id úuchik u Google Cloud opcional. Ba'axten lo general infiero ti' le credencial ti' le mayaj - yilaje'."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Entradas j-na'akij traductor",
-			"intro": "lelo'oba' mapas Jun ti' le parámetros consulta Azure AI Translator v3. Láaj le opcional; le Traductor tumen defecto ku aplican ken u desestablecidos.",
-			"caption": "Entradas j-na'akij traductor",
+			"heading": "Azure Translator request inputs",
+			"intro": "Táan a mapas Jun ti' le parámetros consulta Azure AI Translator v3 yéetel aplicar ti' le proveedor Azure. textType yéetel profanityAction xan mapeados ti' AWS leti' Google tu'ux yaan jump'éel equivalente (wil le náakake' u yaak'il ti' le Proveers); u yala'ab chéen Azure. Láaj le opcional; le Traductor tumen defecto ku aplican ken u desestablecidos.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. Ts'a'abal {categoryQuery}.",
 				"textType": "{plain} wa {html}. Meyaj {html} chéen ken u uts' k'ajóolilo'obo' nu'ukulo'ob ku fragmentos HTML reales.",

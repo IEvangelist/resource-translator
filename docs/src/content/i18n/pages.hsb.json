@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Přełožowar resursow",
-		"description": "Resursowy přełožowar wotewri mašinelnje přełožene sćehnjenske žadanja za waše resursowe dataje w kóždym repo, w kóždym formaće – ćěrjeny přez Azure AI Translator.",
+		"description": "Resource Translator wotewri mašinelnje přełožene sćehnjenske žadanja za waše resursowe dataje w kóždym repo, w kóždym formaće – ćěri so přez Azure AI Translator, AWS Translate abo Google Cloud Translation.",
 		"socialTitle": "Resource Translator — awtomatisce resursowe dataje přełožić",
-		"badge": "v3.0 — Node 24, repo config, glosar, suchy běh",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Lokalizuj swój repozytorium na",
 		"headlineAccent": "Kóždemu zawjazkej.",
-		"lede": "Resource Translator wotewri mašinelnje přełožene sćehnjenske naprašowanja za waše resursowe dataje z pomocu Azure AI Translator přez oficialny SDK - žane přidatne słužby, jenož dźěłowy wotběh.",
+		"lede": "Resource Translator wotewri mašinelnje přełožene sćehnjenske žadanja za waše resursowe dataje z pomocu Azure, AWS abo Google - jedna jednotna akcija, jedyn poskićer na běh, oficialne SDK pod hawbu.",
 		"primaryCta": "Započinajće",
 		"secondaryCta": "Star na GitHub",
 		"supports": "podpěra",
 		"builtForShipping": "Twarjene za łódźnistwo",
 		"workflowTitle": "Přełožk jako dźěłowy wotběh, žadyn dźěło.",
-		"workflowBody": "Wotpołožće jednanje do swojeje eksistowaceje CI, posměrće ju na Azure AI Translator a dajće swojemu repozytoriku kóždu rěč, na kotruž so měriće, rěčeć.",
+		"workflowBody": "Wotpołožće akciju do swojeje eksistowaceje CI, wusměrće ju na Azure, AWS abo Google a dajće swojemu repozistoriku kóždu rěč, na kotruž so nasměrujete, rěčeć.",
 		"stats": {
 			"audit": "0 npm-audit issues",
-			"tests": "150 testow",
+			"tests": "240+ testow",
 			"node": "Node 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} a {hasNewTranslations} hraja direktnje do create-pull-request."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Natwarjene na {azureSdk} + {corePipeline} - awtomatiske wospjetowanje na {statusCodes}, žadyn z ruku wobroćeny HTTP {esbuild}-zwalčene, audit-čiste."
+				"title": "Azure, AWS & Google",
+				"body": "Wuzwol sej jednoho poskićerja na běh. Kóžda so wot swojeho oficialneho SDK ({azureSdk}, {awsSdk}, {googleSdk}) z awtomatiskimi wospjetowanjemi na {statusCodes} – žadyn z ruku wjerćeny HTTP njehodźi. {esbuild}-zwalčene, audit-čiste."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Zwólniwy k lokalizaciji na awtopilotźe?",
-			"body": "One Azure AI Translator key, one workflow file. Resource Translator přewozmje zbytk.",
+			"body": "Jedyn dodawarski kluč – Azure, AWS abo Google – a jedna dataja dźěłoweho postupa. Resource Translator přewozmje zbytk.",
 			"button": "Započinajće"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Dalše kroki",
 			"configuration": "Konfigurujće predvolene hódnoty na poziomie repo-level z {configPath}.",
 			"recipes": "Wobhladaj sej recepty za monorepo, swójske glosary a kategorije swójskeho přełožowarja."
+		}
+	},
+	"providers": {
+		"title": "Přełožowarjo",
+		"eyebrow": "Złožk",
+		"lede": "Wuzwolće jednoho přełožowanskeho poskićerja na běh – Azure AI Translator, AWS translate abo Google Cloud Translation – za jeničkim, jednotnym API-płoninu. Přełožowar zadźerži so njewotwisnje wot poskićerja identisce; Jenož připisma so rozeznawaja.",
+		"backwardCompatible": "Dospołnje wróćo kompatibelne: {provider} je po defaultje {azure}, tak zo wobstejace Azure dźěłowe wotběhi njezměnjene funguja – žane wobdźěłanja trěbne.",
+		"selecting": {
+			"title": "Wuzwolenje poskićerja",
+			"body": "Nastaj {provider} input na {azure} (standard), {aws} abo {google} a zapodadź potom přiznačenja tutoho poskićerja. Na akciske wołanje wužiwa so jenož jedyn poskićer; Akcija deleguje so deterministisce na so hodźacy SDK zady twornje."
+		},
+		"comparison": {
+			"title": "Přirunanje poskićowarjow",
+			"caption": "Přirunanje přełožowanskich poskićerjow",
+			"columns": {
+				"provider": "Poskićer",
+				"value": "Hódnota poskićowarja",
+				"sdk": "SDK",
+				"credentials": "Přiznamjenja"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (default)",
+				"credentials": "subscriptionKey, endpoint, region (optional)"
+			},
+			"aws": {
+				"name": "AWS přełožować",
+				"value": "aws",
+				"credentials": "OIDC / default chain abo awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud Translation",
+				"value": "Google",
+				"credentials": "googleApiKey OR googleCredentials (service-account JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Standardny poskićer. Alokěrujće resursu Azure AI Translator a podajće {subscriptionKey}, {endpoint} a opcionalnje {region}. To je samsna konfiguracija, kotruž hižo wobstejace dźěłowe wotběhi wužiwaja."
+		},
+		"aws": {
+			"title": "AWS přełožować",
+			"body": "Wužiwa {sdk}. Preferuj OIDC přez {configureAwsCredentials}, zo so žane dołho žiwe potajnstwa njeskładuja – akcija čita standardny rjećaz přidawanskich přidaćow AWS SDK. Alternatiwnje dajće {awsAccessKeyId} a {awsSecretAccessKey} eksplicitnje. Trěbny je přeco jedyn region, přez {awsRegion} abo {awsRegionEnv} wobswětowu wariablu.",
+			"oidcTitle": "OIDC (doporučene)",
+			"keysNote": "Zo byšće město OIDC statiske tasty wužiwali, pušćiće {configureAwsCredentials} step a přeńdźće {awsAccessKeyId} / {awsSecretAccessKey} (přez {secrets}) plus {awsRegion}."
+		},
+		"google": {
+			"title": "Google Cloud Translation",
+			"body": "Wužiwa {sdk} (v2). Awtentifikacija z API-klučom ({googleApiKey}) abo Service-Account JSON credential ({googleCredentials}). Dypkownje jednoho zastarać; Fakultatiwny {googleProjectId} wotwodźuje, hdyž so wuwostaji."
+		},
+		"mapping": {
+			"title": "Intent-specifier mapping",
+			"body": "Na poskićowarjow specifiske specifika so kartěruja, hdźež ekwiwalent eksistuje. Wšo druhe padnje wróćo k zmysłapołnym standardam, tak zo zadźerženje konsekwentne wostanje.",
+			"caption": "Inint-specifier mapěrowanje napřećiwo poskićowarjam",
+			"columns": {
+				"input": "Zapodaće",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Podpěrane",
+			"ignored": "Ignorowane",
+			"rows": {
+				"textType": {
+					"azure": "textType (plain / html)",
+					"aws": "Ignorowane (žane přepaćenje)",
+					"google": "Format (tekst / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Połna podpěra",
+					"aws": "Woznamjenjene / wotstronjene → maskowanju",
+					"google": "Ignorowane"
+				},
+				"categoryId": {
+					"azure": "Swójski přełožowar",
+					"aws": "Ignorowane",
+					"google": "Ignorowane"
+				},
+				"allowFallback": {
+					"azure": "Podpěrane",
+					"aws": "Ignorowane",
+					"google": "Ignorowane"
+				}
+			}
+		},
+		"locales": {
+			"title": "Regionalne kody so po poskićerju rozeznawaja",
+			"body": "Kóždy poskićer wužiwa swójske regionalne kody (na přikład zjednorjena chinšćina so {azureCode} na Azure, {awsCode} na AWS a {googleCode} na Google). Kody přeńdu tak, kaž su, a ćěrja mjena outputowych datajow, tohodla wolće {toLocales} hódnoty, kotrež waš wuzwoleny poskićer podpěruje."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Trěbne inputy",
 			"caption": "Trěbne inputy",
 			"items": {
-				"sourceLocale": "Bazowa lokalizacija (na př. {en}) wužiwa so za namakanje resursowych datajow kaž {sourceGlob}. Tež jako {fromLocale} přełožowarjej dale pósłane.",
-				"subscriptionKey": "Azure AI Translator subscription key. Přeńdź přez {secrets}.",
-				"endpoint": "URL kónčneho dypka přełožowarja, na př. {endpointUrl}."
+				"sourceLocale": "Bazowa lokalizacija (na př. {en}) wužiwa so za namakanje resursowych datajow kaž {sourceGlob}. Tež jako {fromLocale} na nošerja dale pósłane."
+			}
+		},
+		"providerInputs": {
+			"heading": "Wybór providera & credentials",
+			"caption": "Wuběr poskićerja a přiznamjenja na dodawarjow",
+			"intro": "Wuzwolće jednoho poskićerja na běh z {provider}. Zapodajće jenož přiznanja wuzwoleneho poskićerja – hlej {providersLink} nawod za dospołne zarjadowanje.",
+			"items": {
+				"provider": "Přełožowanski poskićer: {azure} (předstaw), {aws} abo {google}. Na akciske wołanje wužiwa so jenož jedyn poskićer.",
+				"subscriptionKey": "Azure AI Translator subscription key. Trěbne za {azure}. Přeńdź přez {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, npr. {endpointUrl}. Trěbne za {azure}.",
+				"awsAccessKeyId": "Přistupny kluč AWS. Opcionalnje — wuwostajće (z {awsSecretAccessKey}), zo by so AWS-standardny přidawanski rjećaz / OIDC wužiwał. Přeńdź přez {secrets}.",
+				"awsSecretAccessKey": "AWS-tajny přistupny kluč. Dyrbi so zhromadnje z {awsAccessKeyId} dodawać. Přeńdź přez {secrets}.",
+				"awsSessionToken": "Opcionalny AWS-session-token za nachwilne připokazanja. Přeńdź přez {secrets}.",
+				"awsRegion": "AWS-region za přełožowansku słužbu (na př. {regionExample}). Trěbne za {aws}, hdyž njeje {awsRegionEnv} we wobswěće nastajene.",
+				"googleApiKey": "Google Cloud API-key. Tutu abo {googleCredentials} za {google} podać. Přeńdź přez {secrets}.",
+				"googleCredentials": "Google Cloud service-account key jako JSON string. Tutu abo {googleApiKey} za {google} podać. Přeńdź přez {secrets}.",
+				"googleProjectId": "Opcionalny Google Cloud projektowy id. Zwjetša wotwodźene z přiznanka słužbneho konta."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Próstwy přełožowarjow",
-			"intro": "Tute přiměrjeja so direktnje na parametry naprašowanja Azure AI Translator v3. Kóždy je fakultatiwny; Při njenastajenju płaća standardy přełožowarja.",
-			"caption": "Próstwy přełožowarjow",
+			"heading": "Azure Translator request inputs",
+			"intro": "Tute připokazaja so direktnje na parametry naprašowanja Azure AI Translator v3 a nałožuja so na poskićerja Azure. textType a profanityAction so tež na AWS/Google mapujetaj, hdźež wotpowědnik eksistuje (hlej poradźowarku poskićowarjow); Zbytk je jenož azurowy. Kóždy je fakultatiwny; Při njenastajenju płaća standardy přełožowarja.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. Dale kaž {categoryQuery}.",
 				"textType": "{plain} abo {html}. Wužiwajće {html} jenož potom, hdyž su waše resursowe hódnoty woprawdźite HTML-fragmenty.",

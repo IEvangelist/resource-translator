@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Umhumushi Wezinsizakusebenza",
-		"description": "I-Resource Translator ivula izicelo zokudonsa ezihunyushwe ngomshini zamafayela akho emithombo kunoma iyiphi i-repo, kunoma iyiphi ifomethi - inikwe amandla yi-Azure AI Translator.",
+		"description": "I-Resource Translator ivula izicelo zokudonsa ezihunyushwe ngomshini zamafayela akho emithombo kunoma iyiphi i-repo, kunoma iyiphi ifomethi - inikwe amandla yi-Azure AI Translator, i-AWS Translate, noma i-Google Cloud Translation.",
 		"socialTitle": "Umhumushi Wezinsizakusebenza - humusha amafayela omthombo ngokuzenzakalelayo",
-		"badge": "v3.0 - Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 - Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Beka indawo yakho ye-repo ku",
 		"headlineAccent": "Ukuzibophezela ngakunye.",
-		"lede": "I-Resource Translator ivula izicelo zokudonsa ezihunyushwe ngomshini zamafayela akho emithombo usebenzisa i-Azure AI Translator nge-SDK esemthethweni - azikho izinsizakalo ezengeziwe, nje ukuhamba komsebenzi.",
+		"lede": "Umhumushi wemithombo uvula izicelo zokudonsa ezihunyushwe ngomshini zamafayela akho emithombo usebenzisa i-Azure, i-AWS, noma i-Google - isenzo esisodwa esihlangene, umhlinzeki oyedwa ngokugijima ngakunye, ama-SDK asemthethweni ngaphansi kwe-hood.",
 		"primaryCta": "Qala",
 		"secondaryCta": "Inkanyezi kuGitHub",
 		"supports": "Ukusekela",
 		"builtForShipping": "Yakhelwe ukuthunyelwa",
 		"workflowTitle": "Ukuhumusha njengomsebenzi wokusebenza, hhayi umsebenzi womsebenzi.",
-		"workflowBody": "Phonsa isenzo ku-CI yakho ekhona, uyikhombe ku-Azure AI Translator, futhi uvumele i-repo yakho ikhulume zonke izilimi ozihlosile.",
+		"workflowBody": "Phonsa isenzo ku-CI yakho ekhona, uyikhombe ku-Azure, AWS, noma ku-Google, bese uvumele i-repo yakho ikhulume zonke izilimi ozihlosile.",
 		"stats": {
 			"audit": "0 npm-audit issues",
-			"tests": "Izivivinyo ezingu-150",
+			"tests": "Izivivinyo ezingama-240 +",
 			"node": "I-Node 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · I-Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails}, ne-{hasNewTranslations} slot ngqo ku-create-pull-request."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Yakhelwe ku-{azureSdk} + {corePipeline} - ukuzama kabusha okuzenzakalelayo ku-{statusCodes}, akukho HTTP esongwe ngesandla. {esbuild}-bundled, audit-clean."
+				"title": "I-Azure, i-AWS ne-Google",
+				"body": "Khetha umhlinzeki oyedwa ngokugijima ngakunye. Ngayinye iqhutshwa yi-SDK yayo esemthethweni ({azureSdk}, {awsSdk}, {googleSdk}) ngokuzama kabusha okuzenzakalelayo ku-{statusCodes} - ayikho i-HTTP esongwe ngesandla. {esbuild}-bundled, audit-clean."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Ukulungele ukungena endaweni ku-autopilot?",
-			"body": "Ukhiye owodwa we-Azure AI Translator, ifayela elilodwa lokuhamba komsebenzi. Umhumushi wemithombo uphatha okusele.",
+			"body": "Ukhiye owodwa womhlinzeki - i-Azure, i-AWS, noma i-Google - nefayela elilodwa lokuhamba komsebenzi. Umhumushi wemithombo uphatha okusele.",
 			"button": "Qala"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Izinyathelo ezilandelayo",
 			"configuration": "Misa okumisiwe kwezinga le-repo nge-{configPath}.",
 			"recipes": "Bheka izindlela zokupheka zama-monorepos, ama-glossaries angokwezifiso, nezigaba ze-Custom Translator."
+		}
+	},
+	"providers": {
+		"title": "Abahlinzeki bokuhumusha",
+		"eyebrow": "Inkomba",
+		"lede": "Khetha umhlinzeki oyedwa wokuhumusha nge-run ngayinye - i-Azure AI Translator, i-AWS Translate, noma i-Google Cloud Translation - ngemuva kwendawo eyodwa, ehlanganisiwe ye-API. Umhumushi uziphatha ngendlela efanayo kungakhathalekile ukuthi umhlinzeki; Iziqinisekiso kuphela ziyahlukahlaka.",
+		"backwardCompatible": "Ukuhambisana ngokuphelele: {provider} okuzenzakalelayo ku-{azure}, ngakho-ke ukuhamba komsebenzi okukhona kwe-Azure kuyaqhubeka kusebenza kungashintshiwe - akukho ukuhlelwa okudingekayo.",
+		"selecting": {
+			"title": "Ukukhetha umhlinzeki",
+			"body": "Hlela okokufaka {provider} ku-{azure} (okumisiwe), {aws}, noma {google}, bese unikeze iziqinisekiso zalowo mnikezeli. Umhlinzeki oyedwa kuphela osetshenziswa ngocingo ngalunye lwesenzo; isenzo sidlulisela ngokucacile ku-SDK ehambisanayo ngemuva kwefektri."
+		},
+		"comparison": {
+			"title": "Ukuqhathaniswa komhlinzeki",
+			"caption": "Ukuqhathaniswa komhlinzeki wokuhumusha",
+			"columns": {
+				"provider": "Umhlinzeki",
+				"value": "Inani lomhlinzeki",
+				"sdk": "I-SDK",
+				"credentials": "Iziqinisekiso"
+			},
+			"azure": {
+				"name": "Umhumushi we-Azure AI",
+				"value": "Azure (okuzenzakalelayo)",
+				"credentials": "subscriptionKey, endpoint, region (optional)"
+			},
+			"aws": {
+				"name": "Ukuhumusha kwe-AWS",
+				"value": "I-aws",
+				"credentials": "I-OIDC / uchungechunge oluzenzakalelayo, noma i-awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Ukuhumusha kwe-Google Cloud",
+				"value": "I-Google",
+				"credentials": "googleApiKey OR googleCredentials (i-akhawunti yesevisi i-JSON)"
+			}
+		},
+		"azure": {
+			"title": "Umhumushi we-Azure AI (okuzenzakalelayo)",
+			"body": "Umhlinzeki ozenzakalelayo. Hlinzeka ngomthombo we-Azure AI Translator bese udlulisa {subscriptionKey}, {endpoint}, futhi ngokuzikhethela {region}. Lesi yisimo esifanayo esivele sisetshenziswa yi-Excel."
+		},
+		"aws": {
+			"title": "Ukuhumusha kwe-AWS",
+			"body": "Sebenzisa {sdk}. Khetha i-OIDC nge-{configureAwsCredentials} ukuze kungabikho zimfihlo ezihlala isikhathi eside ezigcinwayo - isenzo sifunda uchungechunge lweziqinisekiso ezizenzakalelayo ze-AWS SDK. Ngenye indlela, dlulisa {awsAccessKeyId} bese {awsSecretAccessKey} ngokucacile. Isifunda ngaso sonke isikhathi siyadingeka, nge-{awsRegion} noma {awsRegionEnv} imvelo eguquguqukayo.",
+			"oidcTitle": "I-OIDC (Kunconyiwe)",
+			"keysNote": "Ukusebenzisa okhiye be-static esikhundleni se-OIDC, yehlisa isinyathelo {configureAwsCredentials} bese udlulisa {awsAccessKeyId} / {awsSecretAccessKey} (nge-{secrets}) kanye ne-{awsRegion}."
+		},
+		"google": {
+			"title": "Ukuhumusha kwe-Google Cloud",
+			"body": "Sebenzisa {sdk} (v2). Qinisekisa ngokhiye we-API ({googleApiKey}) noma isitifiketi se-akhawunti yesevisi ye-JSON ({googleCredentials}). Nikeza eyodwa ngqo; I-{googleProjectId} yokuzikhethela ithathwa kusuka ku-credential uma ishiyiwe."
+		},
+		"mapping": {
+			"title": "Imephu ye-Intent-specifier",
+			"body": "Ama-specifiers aqondene nomhlinzeki akhiqizwa lapho kukhona khona okulingana nakho. Konke okunye kubuyela emuva kokuphazamiseka okunengqondo ukuze ukuziphatha kuhlala kungaguquguquki.",
+			"caption": "Imephu ye-Intent-specifier kuwo wonke abahlinzeki",
+			"columns": {
+				"input": "Okokufaka",
+				"azure": "Azure",
+				"aws": "I-AWS",
+				"google": "I-Google"
+			},
+			"supported": "Kusekelwa",
+			"ignored": "Ukunganakwa",
+			"rows": {
+				"textType": {
+					"azure": "textType (plain / html)",
+					"aws": "Ukunganakwa (akukho toggle)",
+					"google": "ifomethi (umbhalo / html)"
+				},
+				"profanityAction": {
+					"azure": "Ukusekelwa okugcwele",
+					"aws": "Imakiwe/isusiwe → imaski",
+					"google": "Ukunganakwa"
+				},
+				"categoryId": {
+					"azure": "Umhumushi Ngokwezifiso",
+					"aws": "Ukunganakwa",
+					"google": "Ukunganakwa"
+				},
+				"allowFallback": {
+					"azure": "Kusekelwa",
+					"aws": "Ukunganakwa",
+					"google": "Ukunganakwa"
+				}
+			}
+		},
+		"locales": {
+			"title": "Amakhodi endawo ahlukile kumnikezeli ngamunye",
+			"body": "Umhlinzeki ngamunye usebenzisa amakhodi akhe endawo (isibonelo isiShayina esenziwe lula {azureCode} ku-Azure, {awsCode} ku-AWS, ne-{googleCode} ku-Google). Amakhodi adlula njengoba enjalo futhi ashayela amagama amafayela okukhiphayo, ngakho-ke khetha amanani {toLocales} umhlinzeki wakho okhethiwe asekela."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Okokufaka okudingekayo",
 			"caption": "Okokufaka okudingekayo",
 			"items": {
-				"sourceLocale": "Indawo yomthombo (isib. {en}) esetshenziselwa ukuthola amafayela omnyombo afana {sourceGlob}. Ngaphezu kwalokho, umhumushi udluliselwe ku-{fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. Dlula nge-{secrets}.",
-				"endpoint": "I-URL yesiphetho somhumushi, isib. {endpointUrl}."
+				"sourceLocale": "Indawo yomthombo (isib. {en}) esetshenziselwa ukuthola amafayela omnyombo afana {sourceGlob}. Ngaphezu kwalokho, idluliselwa kumhlinzeki njengoba {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Ukukhethwa komnikezeli kanye nezifakazelo",
+			"caption": "Ukukhethwa komnikezeli kanye nezifakazelo zomthengisi ngamunye",
+			"intro": "Khetha umhlinzeki oyedwa ngokugijima {provider}. Nikeza kuphela iziqinisekiso zomhlinzeki okhethiwe - bheka umhlahlandlela we-{providersLink} wokuhlela okuphelele.",
+			"items": {
+				"provider": "Umhlinzeki wokuhumusha: {azure} (okuzenzakalelayo), {aws}, noma {google}. Umhlinzeki oyedwa kuphela osetshenziswa ngocingo lwesenzo.",
+				"subscriptionKey": "Azure AI Translator subscription key. Kuyadingeka {azure}. Dlula nge-{secrets}.",
+				"endpoint": "I-Azure Translator endpoint URL, isib. {endpointUrl}. Kuyadingeka {azure}.",
+				"awsAccessKeyId": "I-ID yokhiye wokufinyelela we-AWS. Okukhethwa kukho - shiya (nge-{awsSecretAccessKey}) ukusebenzisa uchungechunge lweziqinisekiso ezizenzakalelayo ze-AWS / OIDC. Dlula nge-{secrets}.",
+				"awsSecretAccessKey": "Ukhiye wokufinyelela oyimfihlo we-AWS. Kufanele ihlanganiswe kanye {awsAccessKeyId}. Dlula nge-{secrets}.",
+				"awsSessionToken": "Ithokheni yeseshini ye-AWS yokuzikhethela yeziqinisekiso zesikhashana. Dlula nge-{secrets}.",
+				"awsRegion": "Isifunda se-AWS sensizakalo yokuhumusha (isib. {regionExample}). Kuyadingeka {aws} ngaphandle kokuthi {awsRegionEnv} ibekwe emvelweni.",
+				"googleApiKey": "Ukhiye we-Google Cloud API. Nikeza lokhu NOMA {googleCredentials} {google}. Dlula nge-{secrets}.",
+				"googleCredentials": "Ukhiye we-akhawunti yesevisi ye-Google Cloud njengentambo ye-JSON. Nikeza lokhu NOMA {googleApiKey} {google}. Dlula nge-{secrets}.",
+				"googleProjectId": "I-ID yephrojekthi ye-Google Cloud yokuzikhethela. Ngokuvamile, i-akhawunti ye"
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Okufakiwe kwesicelo somhumushi",
-			"intro": "Lezi zibalazwe ngqo kumapharamitha wombuzo we-Azure AI Translator v3. Ngayinye iyazikhethela; Umhumushi ozenzakalelayo usebenza uma ungasekwanga.",
-			"caption": "Okufakiwe kwesicelo somhumushi",
+			"heading": "Azure Translator request inputs",
+			"intro": "Lezi zibalazwe ngqo kumapharamitha wombuzo we-Azure AI Translator v3 futhi zisebenza kumhlinzeki we-azure. textType kanye nokuhlambalaza nakho kumephu ku-AWS / Google lapho kukhona okulingana khona (bheka umhlahlandlela wabahlinzeki); ezinye ziyi-Azure kuphela. Ngayinye iyazikhethela; Umhumushi ozenzakalelayo usebenza uma ungasekwanga.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. Zithunyelwe njenge-{categoryQuery}.",
 				"textType": "{plain} noma {html}. Sebenzisa {html} kuphela uma amanani emithombo yakho eyizingcezu zangempela ze-HTML.",

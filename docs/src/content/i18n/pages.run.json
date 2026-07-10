@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Umusemuzi w'Ibikoresho",
-		"description": "Resource Translator opens machine-translated pull requests for your resource files in any repo, in any format — powered by Azure AI Translator.",
+		"description": "Resource Translator opens machine-translated pull requests for your resource files in any repo, in any format — powered by Azure AI Translator, AWS Translate, or Google Cloud Translation.",
 		"socialTitle": "Resource Translator — translate resource files automatically",
-		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Localize your repo on",
 		"headlineAccent": "buri kwiyemeza.",
-		"lede": "Resource Translator opens machine-translated pull requests for your resource files using Azure AI Translator via the official SDK — no extra services, just a workflow.",
+		"lede": "Resource Translator opens machine-translated pull requests for your resource files using Azure, AWS, or Google — one unified action, one provider per run, official SDKs under the hood.",
 		"primaryCta": "Gutangura",
 		"secondaryCta": "Inyenyeri kuri GitHub",
 		"supports": "Gushigikira",
 		"builtForShipping": "Vyubatswe ku bw'ubwato",
 		"workflowTitle": "Guhindura ni igikorwa c'akazi, si igikorwa c'ubuvuzi.",
-		"workflowBody": "Shira igikorwa muri CI yawe isanzwe, uyiyerekeze kuri Azure AI Translator, hanyuma ureke repo yawe ivuge ururimi rwose wipfuza.",
+		"workflowBody": "Shira ico gikorwa muri CI yawe isanzwe, uyiyereke kuri Azure, AWS, canke Google, hanyuma ureke repo yawe ivuge ururimi rwose wifuza.",
 		"stats": {
 			"audit": "0 npm-audit issues",
-			"tests": "Ibipimo 150",
+			"tests": "Ibipimo 240+",
 			"node": "Node 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails}, na {hasNewTranslations} zishika mu buryo butaziguye muri create-pull-request."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Built on {azureSdk} + {corePipeline} — automatic retries on {statusCodes}, no hand-rolled HTTP. {esbuild}-bundled, audit-clean."
+				"title": "Azure, AWS & Google",
+				"body": "Hitamwo umukinyi umwe kuri buri run. Imwe yose ikoreshwa na SDK yayo yemewe ({azureSdk}, {awsSdk}, {googleSdk}) hamwe n'igerageza ryikora kuri {statusCodes} - nta HTTP izunguruka n'intoki. {esbuild}-bundled, audit-clean."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Woba witeguriye kwiyandikisha kuri autopilot?",
-			"body": "One Azure AI Translator key, one workflow file. Umuhinduzi w'ivyiyumviro ni we atunganya ibisigaye.",
+			"body": "Urufunguzo rumwe rw'abatanga - Azure, AWS, canke Google - hamwe na dosiye imwe y'akazi. Umuhinduzi w'ivyiyumviro ni we atunganya ibisigaye.",
 			"button": "Gutangura"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Intambwe zikurikira",
 			"configuration": "Configure repo-level defaults with {configPath}.",
 			"recipes": "See recipes for monorepos, custom glossaries, and Custom Translator categories."
+		}
+	},
+	"providers": {
+		"title": "Abatanga ubuhinduzi",
+		"eyebrow": "Référencement",
+		"lede": "Choose one translation provider per run - Azure AI Translator, AWS Translate, or Google Cloud Translation - behind a single, unified API surface. Umuhinduzi yigenza kimwe; Ibiharuro gusa biratandukanye.",
+		"backwardCompatible": "Fully backward compatible: {provider} defaults to {azure}, so existing Azure workflows keep working unchanged — no edits required.",
+		"selecting": {
+			"title": "Guhitamwo umutanga",
+			"body": "Gushiraho {provider} input kuri {azure} (default), {aws}, canke {google}, hanyuma uce utanga impapuro z'uwo mutangabuhamya. Only one provider is used per action call; the action deterministically delegates to the matching SDK behind a factory."
+		},
+		"comparison": {
+			"title": "Ugereranije n'abatanga serivisi",
+			"caption": "Ugereranije n'abatanga ubuhinduzi",
+			"columns": {
+				"provider": "Umutanga",
+				"value": "Agaciro k'abatanga",
+				"sdk": "SDK",
+				"credentials": "Impamyabushobozi"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (default)",
+				"credentials": "subscriptionKey, endpoint, region (optional)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "aws",
+				"credentials": "OIDC / default chain, or awsAccessKeyId + awsSecretAccessKeyKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud Translation",
+				"value": "Google",
+				"credentials": "googleApiKey OR googleCredentials (service-account JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Uwutanga amakosa. Tanga ibikoresho vy'ubuhinduzi bwa Azure AI hanyuma ukore {subscriptionKey}, {endpoint}, kandi ku bw'{region}. Ayo ni amwe mu mashirahamwe asanzwe akoresha mu bijanye n'imigenderanire n'ayandi makungu."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Koresha {sdk}. Hitamwo OIDC ukoresheje {configureAwsCredentials} kugira ngo ntihagire ibanga rimara igihe kirekire ribikwa - igikorwa gisoma umuyoboro w'indangamuntu wa AWS SDK. Ku rundi ruhande, rekisa {awsAccessKeyId} {awsSecretAccessKey} mu buryo butomoye. A region is always needed, via {awsRegion} or the {awsRegionEnv} environment variable.",
+			"oidcTitle": "OIDC (recommended)",
+			"keysNote": "Kugira ngo ukoreshe imfunguzo za statique aho gukoresha OIDC, manuka intambwe ya {configureAwsCredentials} hanyuma uce {awsAccessKeyId} / {awsSecretAccessKey} (via {secrets}) wongeyeko {awsRegion}."
+		},
+		"google": {
+			"title": "Google Cloud Translation",
+			"body": "Koresha {sdk} (v2). Authenticate with either an API key ({googleApiKey}) or a service-account JSON credential ({googleCredentials}). Tanga imwe; An optional {googleProjectId} is inferred from the credential when omitted."
+		},
+		"mapping": {
+			"title": "Intent-specifier mapping",
+			"body": "Ibiharuro vy'ibiharuro vy'ibiharuro biboneka aho bingana n'ivyo bihari. Ibindi vyose bisubira ku makosa yumvikana, ku buryo inyifato iguma ihindagurika.",
+			"caption": "Intent-specifier mapping across providers",
+			"columns": {
+				"input": "Input",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Yashigikiwe",
+			"ignored": "Kwirengagiza",
+			"rows": {
+				"textType": {
+					"azure": "textType (plain / html)",
+					"aws": "Ignored (no toggle)",
+					"google": "Format (text / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Gushigikira byuzuye",
+					"aws": "Marked / Deleted → masking",
+					"google": "Kwirengagiza"
+				},
+				"categoryId": {
+					"azure": "Umuhinduzi w'umwimerere",
+					"aws": "Kwirengagiza",
+					"google": "Kwirengagiza"
+				},
+				"allowFallback": {
+					"azure": "Yashigikiwe",
+					"aws": "Kwirengagiza",
+					"google": "Kwirengagiza"
+				}
+			}
+		},
+		"locales": {
+			"title": "Locale codes differ per provider",
+			"body": "Buri mutanga ukoresha kode zayo bwite (nk'akarorero igishinwa coroshe {azureCode} kuri Azure, {awsCode} kuri AWS, na {googleCode} kuri Google). Codes zica muri as-is kandi zitwara amazina y'amadosiye y'ibisohokayandikiro, rero hitamwo ibiciro {toLocales} umutanga watoye."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Ibikoresho bikenewe",
 			"caption": "Ibikoresho bikenewe",
 			"items": {
-				"sourceLocale": "Source locale (e.g. {en}) used to find resource files such as {sourceGlob}. Yararungitswe kandi n'umuhinduzi nk'{fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. Pass via {secrets}.",
-				"endpoint": "URL y'iherezo ry'umuhinduzi, nk'akarorero {endpointUrl}."
+				"sourceLocale": "Source locale (e.g. {en}) used to find resource files such as {sourceGlob}. Urwo rubanza narwo rukaba rwarungitswe n'umushikiranganji w'intwaro yo hagati mu gihugu nk'uko {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Provider selection & credentials",
+			"caption": "Provider selection and per-vendor credentials",
+			"intro": "Choose one provider per run with {provider}. Tanga gusa impapuro z'umutanga watowe - raba {providersLink} guide for full setup.",
+			"items": {
+				"provider": "Traduction: {azure} (default), {aws}, or {google}. Umwe gusa ni we akoresha imbuga ngurukanabumenyi.",
+				"subscriptionKey": "Azure AI Translator subscription key. Bisaba {azure}. Pass via {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, e.g. {endpointUrl}. Bikenewe kugira ngo {azure}.",
+				"awsAccessKeyId": "Ikebukuro Ikebukuro Key ID Optional — omit (with {awsSecretAccessKey}) to use the AWS default credential chain / OIDC. Pass via {secrets}.",
+				"awsSecretAccessKey": "Ibanga ry'ibanga rya AWS Ategerezwa gutangwa hamwe n'{awsAccessKeyId}. Pass via {secrets}.",
+				"awsSessionToken": "Optional AWS session token for temporary credentials. Pass via {secrets}.",
+				"awsRegion": "Akarere ka Rusizi mu Murenge wa Busasamana mu Karere ka Nyarugenge ({regionExample} Ifoto/Umurengezi R) Birakenewe {aws} kiretse {awsRegionEnv} bitegekanijwe mu bidukikije.",
+				"googleApiKey": "Google Cloud API key. Tanga iyi OR {googleCredentials} {google}. Pass via {secrets}.",
+				"googleCredentials": "Google Cloud service-account key as a JSON string. Tanga iyi OR {googleApiKey} {google}. Pass via {secrets}.",
+				"googleProjectId": "Optional Google Cloud project id. Usually inferred from the service-account credential."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Translator request inputs",
-			"intro": "These map directly into Azure AI Translator v3 query parameters. Umwe wese ni we yihitiyemwo; the Translator defaults apply when unset.",
-			"caption": "Translator request inputs",
+			"heading": "Azure Translator request inputs",
+			"intro": "These map directly into Azure AI Translator v3 query parameters and apply to the azure provider. textType and profanityAction are also mapped to AWS/Google where an equivalent exists (see the providers guide); Izindi zose ni Azure-only. Umwe wese ni we yihitiyemwo; the Translator defaults apply when unset.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. Yoherejwe nk'uko {categoryQuery}.",
 				"textType": "{plain} canke {html}. Use {html} only when your resource values are real HTML fragments.",

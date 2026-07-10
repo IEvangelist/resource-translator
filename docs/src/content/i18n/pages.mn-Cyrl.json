@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Нөөцийн орчуулагч",
-		"description": "Resource Translator нь таны нөөцийн файлуудын машин орчуулсан pull хүсэлтүүдийг ямар ч репо, ямар ч форматаар нээдэг — Azure AI Translator-ээр ажилладаг.",
+		"description": "Resource Translator нь таны нөөцийн файлуудын машин орчуулсан pull хүсэлтүүдийг Azure AI Translator, AWS Translate, эсвэл Google Cloud Translation-ээр ажилладаг аливаа репо, ямар ч форматаар нээдэг.",
 		"socialTitle": "Resource Translator — нөөцийн файлуудыг автоматаар орчуулна",
-		"badge": "v3.0 — Node 24, репо тохиргоо, толь бичиг, хуурай гүйцэтгэл",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Репогоо локализацтай",
 		"headlineAccent": "Бүх амлалт.",
-		"lede": "Resource Translator нь Azure AI Translator ашиглан таны нөөцийн файлуудын машин орчуулсан pull request-ийг албан ёсны SDK-ээр нээдэг — нэмэлт үйлчилгээ байхгүй, зөвхөн ажлын урсгал.",
+		"lede": "Resource Translator нь таны нөөцийн файлуудыг Azure, AWS эсвэл Google ашиглан машин орчуулсан pull request нээдэг — нэг нэгдсэн үйлдэл, нэг гүйцэтгэл бүрт нэг үйлчилгээ, албан ёсны SDK-ууд.",
 		"primaryCta": "Эхлүүлээрэй",
 		"secondaryCta": "GitHub дээр Star",
 		"supports": "Дэмжлэгүүд",
 		"builtForShipping": "Тээвэрт зориулан баригдсан",
 		"workflowTitle": "Орчуулга нь ажлын урсгал, ажил биш.",
-		"workflowBody": "Үйлдлийг одоо байгаа CI-д оруулж, Azure AI Translator руу чиглүүлээд, репогоо таны чиглэсэн хэл бүрийг ярьж болно.",
+		"workflowBody": "Үйлдлийг одоо байгаа CI-д оруулж, Azure, AWS, эсвэл Google руу чиглүүлж, репогоо чиглэсэн бүх хэлээ ярьж болно.",
 		"stats": {
 			"audit": "0 npm-аудитын асуудал",
-			"tests": "150 туршилт",
+			"tests": "240+ туршилт",
 			"node": "Node 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails}, ба {hasNewTranslations} нь шууд create-pull-request руу ордог."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "{azureSdk} + {corePipeline} дээр суурилсан — {statusCodes} дээр автоматаар дахин оролдох боломжтой, гар аргаар HTTP байхгүй. {esbuild} багцлуулсан, аудитын цэвэрхэн."
+				"title": "Azure, AWS ба Google",
+				"body": "Гүйцэтгэл бүрт нэг үйлчилгээ үзүүлэгч сонгоорой. Тус бүр нь албан ёсны SDK ({azureSdk}, {awsSdk}, {googleSdk})-ээр ажилладаг бөгөөд автоматаар дахин оролдох {statusCodes} дээр ажилладаг — гараар шиддэг HTTP байхгүй. {esbuild} багцлуулсан, аудитын цэвэрхэн."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Автомат жолоодлогоор байршилжуулахад бэлэн үү?",
-			"body": "Нэг Azure AI Translator түлхүүр, нэг workflow файл. Resource Translator үлдсэнийг хариуцдаг.",
+			"body": "Нэг провайдерийн түлхүүр — Azure, AWS эсвэл Google — ба нэг workflow файл. Resource Translator үлдсэнийг хариуцдаг.",
 			"button": "Эхлүүлээрэй"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Дараагийн алхмууд",
 			"configuration": "Репо түвшний анхдагч тохиргоог {configPath}.",
 			"recipes": "Монорепо, өөрийн толь бичиг, Custom Translator ангиллын жоруудыг үзнэ үү."
+		}
+	},
+	"providers": {
+		"title": "Орчуулгын үйлчилгээ үзүүлэгчид",
+		"eyebrow": "Эшлэл",
+		"lede": "Нэг гүйцэтгэл бүрт нэг орчуулгын үйлчилгээ үзүүлэгчийг сонгоно — Azure AI Translator, AWS Translate, эсвэл Google Cloud Translation — нэг, нэгдсэн API гадаргуугийн цаана. Дамжуулагч нь үйлчилгээ үзүүлэгчээс үл хамааран ижил авиртай; зөвхөн мэргэжлийн үнэмлэх нь ялгаатай.",
+		"backwardCompatible": "Бүрэн буцаан нийцтэй: {provider} анхдагч {azure} дээр ажилладаг тул одоо байгаа Azure ажлын урсгалууд өөрчлөгдөөгүй ажилласаар байна — засвар шаардлагагүй.",
+		"selecting": {
+			"title": "Үйлчилгээ үзүүлэгч сонгох",
+			"body": "{provider} оролтыг {azure} (анхдагч), {aws} эсвэл {google} болгож, дараа нь тухайн үйлчилгээний кодлогчийг оруулна. Үйлдлийн дуудлага бүрт зөвхөн нэг үйлчилгээ үзүүлэгч ашиглагддаг; үйлдэл нь үйлдвэрийн ард тохирох SDK-д тодорхой үүрэг гүйцэтгэдэг."
+		},
+		"comparison": {
+			"title": "Үйлчилгээ үзүүлэгчийн харьцуулалт",
+			"caption": "Орчуулгын үйлчилгээ үзүүлэгчийн харьцуулалт",
+			"columns": {
+				"provider": "Үйлчилгээ үзүүлэгч",
+				"value": "Үйлчилгээ үзүүлэгчийн үнэ цэн",
+				"sdk": "SDK",
+				"credentials": "Мэргэжлийн албан тушаал"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (default)",
+				"credentials": "subscriptionТүлхүүр, төгсгөл, бүс (сонголттой)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "AWS",
+				"credentials": "OIDC / анхдагч гинж, эсвэл awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud орчуулга",
+				"value": "Google",
+				"credentials": "googleApiKey эсвэл googleCredentials (үйлчилгээний аккаунт JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Үндсэн үйлчилгээ үзүүлэгч. Azure AI Translator нөөцийг хангаж, {subscriptionKey}, {endpoint}, мөн сонголтоор {region}. Энэ нь одоогийн ажлын урсгалууд ашигладаг ижил тохиргоо юм."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Хэрэглэдэг {sdk}. OIDC-г {configureAwsCredentials} аргаар илүүд үздэг бөгөөд ингэснээр удаан хугацааны нууц хадгалахгүй — үйлдэл нь AWS SDK-ийн анхдагч итгэмжийн гинжийг уншдаг. Эсвэл {awsAccessKeyId} өгч, {awsSecretAccessKey} илэрхий. Бүс нутаг үргэлж шаардлагатай, {awsRegion} эсвэл {awsRegionEnv} орчны хувьсагчаар дамжин.",
+			"oidcTitle": "OIDC (зөвлөмжлөгдсөн)",
+			"keysNote": "OIDC-ийн оронд статик түлхүүр ашиглахын тулд {configureAwsCredentials} алхмыг хасаж, {awsAccessKeyId} / {awsSecretAccessKey} ({secrets}-аар дамжуулна) {awsRegion}."
+		},
+		"google": {
+			"title": "Google Cloud орчуулга",
+			"body": "Ашигладаг {sdk} (v2). API түлхүүр ({googleApiKey}) эсвэл үйлчилгээний дансны JSON кодлого ({googleCredentials}) ашиглан баталгаажуулна. Яг нэгийг нийлүүл; Хэрэв ашиглагдаагүй бол итгэмжлэлээс сонголттой {googleProjectId} таамаглаж болно."
+		},
+		"mapping": {
+			"title": "Зорилго-тодорхойлогч зураглал",
+			"body": "Үйлчилгээний онцлог тодорхойлогчдыг эквивалент байгаа газарт зурагладаг. Бусад бүх зүйл ухаалаг анхдагч байдалд шилжиж, зан байдал тогтвортой байдаг.",
+			"caption": "Үйлчилгээ үзүүлэгчдийн хооронд зорилго-тодорхойлогчийн зураглал",
+			"columns": {
+				"input": "Оролт",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Дэмжигдсэн",
+			"ignored": "Үл тоомсорлогдсон",
+			"rows": {
+				"textType": {
+					"azure": "textType (энгийн / html)",
+					"aws": "Үл тоомсорлогдсон (унтраалгахгүй)",
+					"google": "Формат (текст / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Бүрэн дэмжлэг",
+					"aws": "Тэмдэглэгдсэн / Устгасан → маск",
+					"google": "Үл тоомсорлогдсон"
+				},
+				"categoryId": {
+					"azure": "Захиалгат дамжуулагч",
+					"aws": "Үл тоомсорлогдсон",
+					"google": "Үл тоомсорлогдсон"
+				},
+				"allowFallback": {
+					"azure": "Дэмжигдсэн",
+					"aws": "Үл тоомсорлогдсон",
+					"google": "Үл тоомсорлогдсон"
+				}
+			}
+		},
+		"locales": {
+			"title": "Орон нутгийн кодууд үйлчилгээ үзүүлэгчээс ялгаатай",
+			"body": "Үйлчилгээ үзүүлэгч бүр өөрийн байршилын кодыг ашигладаг (жишээ нь Azure-д Simplified Chinese {azureCode}, AWS дээр {awsCode}, Google-д {googleCode} байдаг). Кодууд яг байгаа байдлаар дамжин гаралттай файлын нэрийг удирддаг тул сонгосон үйлчилгээ үзүүлэгчийн дэмждэг {toLocales} утгыг сонгоорой."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Шаардлагатай оролтууд",
 			"caption": "Шаардлагатай оролтууд",
 			"items": {
-				"sourceLocale": "Эх сурвалжийн байршил (жишээ нь {en}) нь {sourceGlob} зэрэг нөөцийн файлуудыг олоход ашиглагддаг. Мөн орчуулагч руу шилжүүлсэн нь {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. Дамжин {secrets}.",
-				"endpoint": "Орчуулагчийн төгсгөлийн URL, жишээ нь {endpointUrl}."
+				"sourceLocale": "Эх сурвалжийн байршил (жишээ нь {en}) нь {sourceGlob} зэрэг нөөцийн файлуудыг олоход ашиглагддаг. Мөн үйлчилгээ үзүүлэгчдэд шилжүүлсэн {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Үйлчилгээ үзүүлэгчийн сонголт ба мэргэжлийн бичиг баримт",
+			"caption": "Үйлчилгээ үзүүлэгчийн сонголт болон нийлүүлэгчээр бүрдүүлсэн мэдээлэл",
+			"intro": "Гүйцэтгэл бүрт нэг үйлчилгээ үзүүлэгчийг сонгоно {provider}. Зөвхөн сонгосон үйлчилгээ үзүүлэгчийн үнэмлэхийг өгнө — бүрэн тохиргоог {providersLink} гарын авлагыг үзнэ үү.",
+			"items": {
+				"provider": "Орчуулгын үйлчилгээ үзүүлэгч: {azure} (анхдагч), {aws}, эсвэл {google}. Үйлдлийн дуудлага бүрт зөвхөн нэг үйлчилгээ үзүүлэгч ашиглагддаг.",
+				"subscriptionKey": "Azure AI Translator subscription key. Шаардлагатай {azure}. Дамжин {secrets}.",
+				"endpoint": "Azure Translator-ийн төгсгөлийн цэгийн URL, жишээ нь {endpointUrl}. Шаардлагатай {azure}.",
+				"awsAccessKeyId": "AWS хандалтын түлхүүрийн ID. Сонголттой — AWS-ийн анхдагч итгэмжлэлийн сүлжээ / OIDC-г ашиглахыг ({awsSecretAccessKey} үсэгтэй) орхих. Дамжин {secrets}.",
+				"awsSecretAccessKey": "AWS-ийн нууц нэвтрэх түлхүүр. Нийлүүлэлттэй хамт нийлүүлэх {awsAccessKeyId}. Дамжин {secrets}.",
+				"awsSessionToken": "Түр итгэмжлэлд зориулсан сонголттой AWS сессийн токен. Дамжин {secrets}.",
+				"awsRegion": "Translate үйлчилгээний AWS бүс (жишээ нь {regionExample}). Хэрэв {aws} орчинд тохируулахгүй бол {awsRegionEnv} шаардлагатай.",
+				"googleApiKey": "Google Cloud API түлхүүр. Энэ мэс заслын {googleCredentials} {google}. Дамжин өнгөрөх {secrets}.",
+				"googleCredentials": "Google Cloud үйлчилгээний дансны түлхүүр JSON мөр хэлбэрээр. Энэ мэс заслын {googleApiKey} {google}. Дамжин өнгөрөх {secrets}.",
+				"googleProjectId": "Сонголтоор Google Cloud төслийн ID. Ихэвчлэн үйлчилгээний дансны эрхтнээс таамаглагддаг."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Дамжуулагчийн хүсэлтийн оролтууд",
-			"intro": "Эдгээр нь Azure AI Translator v3 асуулгын параметрүүдтэй шууд холбогддог. Бүгд сонголттой; Translator-ийн анхдагч нь тохируулаагүй үед хэрэгждэг.",
-			"caption": "Дамжуулагчийн хүсэлтийн оролтууд",
+			"heading": "Azure Translator request inputs",
+			"intro": "Эдгээр нь Azure AI Translator v3 асуулгын параметрүүдтэй шууд холбогдож, Azure үйлчилгээ үзүүлэгчдэд хэрэглэгддэг. textType болон profanityAction нь мөн AWS/Google-д тэнцүү байдаг тохиолдолд (үйлчилгээ үзүүлэгчийн гарын авлагаг үзнэ үү); бусад нь зөвхөн Azure форматтай. Бүгд сонголттой; Translator-ийн анхдагч нь тохируулаагүй үед хэрэгждэг.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — industry/domain/tone knob. Шилжүүлэв {categoryQuery}.",
 				"textType": "{plain} эсвэл {html}. Зөвхөн {html} нөөцийн утга бодит HTML хэсгүүд байвал ашигла.",

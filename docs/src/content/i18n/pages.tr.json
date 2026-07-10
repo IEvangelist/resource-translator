@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Kaynak Çevirici",
-		"description": "Resource Translator, herhangi bir repoda, herhangi bir formatta kaynak dosyalarınız için makine çevirisi pull requests açar — Azure AI Translator tarafından desteklenir.",
+		"description": "Resource Translator, kaynak dosyalarınız için herhangi bir repoda, herhangi bir formatta makine çevirisi pull requests açar — Azure AI Translator, AWS Translate veya Google Cloud Translation ile desteklenir.",
 		"socialTitle": "Kaynak Çevirici — kaynak dosyalarını otomatik çevir",
-		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Depoyu yerelleştirin",
 		"headlineAccent": "Her taahhüt.",
-		"lede": "Resource Translator, resmi SDK üzerinden Azure AI Translator kullanarak kaynak dosyalarınız için makine çevirisi pull request'leri açar — ekstra hizmet yok, sadece bir iş akışı var.",
+		"lede": "Resource Translator, Azure, AWS veya Google kullanarak kaynak dosyalarınız için makine çevirisi pull requestleri açar — tek bir birleşik işlem, her çalışma başına bir sağlayıcı, resmi SDK'lar altında.",
 		"primaryCta": "Başla",
 		"secondaryCta": "GitHub'da yıldız",
 		"supports": "Destekler",
 		"builtForShipping": "Nakliye için inşa edildi",
 		"workflowTitle": "Çeviri bir iş akışı olarak değil, bir yük olarak değil.",
-		"workflowBody": "Eylemi mevcut CI'nize bırakın, Azure AI Translator'a yönlendirin ve depo adresinizin hedeflediğiniz her dili konuşmasına izin verin.",
+		"workflowBody": "Eylemi mevcut CI'nize bırakın, Azure, AWS veya Google'a yönlendirin ve deponuzun hedeflediğiniz her dili konuşmasına izin verin.",
 		"stats": {
 			"audit": "0 NPM-denetim sorunları",
-			"tests": "150 test",
+			"tests": "240+ test",
 			"node": "Node 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} ve {hasNewTranslations} doğrudan create-pull-request sistemine yerleşir."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "{azureSdk} + {corePipeline} üzerine inşa edilmiş — {statusCodes}'de otomatik tekrar denemeler, el ile hazırlanmış HTTP yok. {esbuild} paketli, denetim temizliğinde."
+				"title": "Azure, AWS & Google",
+				"body": "Her koşu için bir sağlayıcı seçin. Her biri resmi SDK'sı ({azureSdk}, {awsSdk}, {googleSdk}) tarafından yönetilir ve {statusCodes}'de otomatik tekrar denemeler yapılır — el ile rulo HTTP yoktur. {esbuild} paketli, denetim temizliğinde."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Otomatik pilotta lokalize etmeye hazır mısınız?",
-			"body": "Bir Azure AI Translator anahtarı, bir iş akışı dosyası. Geri kalanını Kaynak Çevirici halleder.",
+			"body": "Bir sağlayıcı anahtarı — Azure, AWS veya Google — ve bir iş akışı dosyası. Geri kalanını Kaynak Çevirici halleder.",
 			"button": "Başla"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Sonraki adımlar",
 			"configuration": "Repo seviyesi varsayılanları {configPath} ile yapılandırın.",
 			"recipes": "Monorepo, özel sözlükler ve Özel Çevirici kategorileri için tariflere bakınız."
+		}
+	},
+	"providers": {
+		"title": "Çeviri sağlayıcıları",
+		"eyebrow": "Referans",
+		"lede": "Her çalışma için tek bir birleşik API yüzeyi arkasında bir çeviri sağlayıcısı — Azure AI Translator, AWS Translate veya Google Cloud Translation — seçin. Çevirmen, sağlayıcı ne olursa olsun aynı şekilde davranır; Sadece kimlik bilgileri farklıdır.",
+		"backwardCompatible": "Tamamen geriye dönük uyumluluk: {provider} varsayılan olarak {azure} kullanıyor, böylece mevcut Azure iş akışları değişmeden çalışmaya devam ediyor — düzenleme gerektirmiyor.",
+		"selecting": {
+			"title": "Sağlayıcı Seçimi",
+			"body": "{provider} girdisini {azure} (varsayılan), {aws} veya {google} olarak ayarlayın, ardından o sağlayıcının kimlik bilgilerini verin. Her eylem çağrısı için yalnızca bir sağlayıcı kullanılır; eylem, bir fabrikanın arkasındaki eşleşen SDK'ya deterministik olarak devreder."
+		},
+		"comparison": {
+			"title": "Sağlayıcı karşılaştırması",
+			"caption": "Çeviri sağlayıcı karşılaştırması",
+			"columns": {
+				"provider": "Sağlayıcı",
+				"value": "Sağlayıcı değeri",
+				"sdk": "SDK",
+				"credentials": "Belgeler"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (default)",
+				"credentials": "subscriptionKey, endpoint, region (isteğe bağlı)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "aws",
+				"credentials": "OIDC / default chain, ya da awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Bulut Çevirisi",
+				"value": "Google",
+				"credentials": "googleApiKey VEYA googleCredentials (hizmet hesabı JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Varsayılan sağlayıcı. Bir Azure AI Çevirici kaynağı sağlayıp {subscriptionKey}, {endpoint} ve isteğe bağlı olarak {region} geçirin. Bu, mevcut iş akışlarının zaten kullandığı konfigürasyondur."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Kullanıyor {sdk}. OIDC'yi {configureAwsCredentials} üzerinden tercih edin ki uzun ömürlü sırlar saklanmasın — eylem AWS SDK varsayılan kimlik zincirini okuyor. Alternatif olarak, {awsAccessKeyId} ve açıkça {awsSecretAccessKey} yapın. Her zaman bir bölge gereklidir; {awsRegion} veya {awsRegionEnv} ortam değişkeni aracılığıyla.",
+			"oidcTitle": "OIDC (önerilir)",
+			"keysNote": "OIDC yerine statik tuşlar kullanmak için {configureAwsCredentials} adımını bırakıp {awsAccessKeyId} / {awsSecretAccessKey} ({secrets} aracılığıyla) ve {awsRegion} ile geçin."
+		},
+		"google": {
+			"title": "Google Bulut Çevirisi",
+			"body": "{sdk} (v2) kullanır. Ya API anahtarı ({googleApiKey}) ya da hizmet hesabı JSON credential ({googleCredentials}) ile kimlik doğrulama yapın. Tam olarak bir tane verin; Belge çıkarıldığında isteğe bağlı bir {googleProjectId} çıkarılır."
+		},
+		"mapping": {
+			"title": "Intent-specifier mapping",
+			"body": "Sağlayıcıya özgü belirticiler, eşdeğer bir şeyin bulunduğu yerlerde eşlenmiştir. Diğer her şey mantıklı varsayılan durumlara geri dönüyor, böylece davranış tutarlı kalır.",
+			"caption": "Sağlayıcılar arasında niyet-belirtici eşlemesi",
+			"columns": {
+				"input": "Giriş",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Destekleniyor",
+			"ignored": "Görmezden gelindi",
+			"rows": {
+				"textType": {
+					"azure": "textType (sade / html)",
+					"aws": "Görmezden geldi (geçiş yok)",
+					"google": "Format (metin / html)"
+				},
+				"profanityAction": {
+					"azure": "Tam destek",
+					"aws": "Maskeleme → işaretlendi / silindi",
+					"google": "Görmezden gelindi"
+				},
+				"categoryId": {
+					"azure": "Özel Çevirici",
+					"aws": "Görmezden gelindi",
+					"google": "Görmezden gelindi"
+				},
+				"allowFallback": {
+					"azure": "Destekleniyor",
+					"aws": "Görmezden gelindi",
+					"google": "Görmezden gelindi"
+				}
+			}
+		},
+		"locales": {
+			"title": "Yerel kodlar sağlayıcıya göre farklılık gösterir",
+			"body": "Her sağlayıcı kendi yerel kodlarını kullanır (örneğin Simplified Chinese Azure'da {azureCode}, AWS'de {awsCode} ve Google'da {googleCode}). Kodlar olduğu gibi geçer ve çıkış dosya isimlerini yönlendirir, bu yüzden seçtiğiniz sağlayıcının desteklediği {toLocales} değerleri seçin."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Gerekli girdiler",
 			"caption": "Gerekli girdiler",
 			"items": {
-				"sourceLocale": "Kaynak dosyalarını bulmak için kullanılan kaynak yerel (örneğin {en}), örneğin {sourceGlob}. Ayrıca Translator'a {fromLocale} olarak iletildi.",
-				"subscriptionKey": "Azure AI Translator subscription key. {secrets} üzerinden geçin.",
-				"endpoint": "Çevirici uç nokta URL'si, örneğin {endpointUrl}."
+				"sourceLocale": "Kaynak dosyalarını bulmak için kullanılan kaynak yerel (örneğin {en}), örneğin {sourceGlob}. Ayrıca sağlayıcıya {fromLocale} olarak iletildi."
+			}
+		},
+		"providerInputs": {
+			"heading": "Sağlayıcı seçimi ve credentials",
+			"caption": "Sağlayıcı seçimi ve tedarikçi başına kimlik bilgileri",
+			"intro": "Her koşu için {provider} bir sağlayıcı seçin. Sadece seçilen sağlayıcının kimlik bilgilerini verin—tam kurulum için {providersLink} rehberine bakınız.",
+			"items": {
+				"provider": "Çeviri sağlayıcısı: {azure} (varsayılan), {aws} veya {google}. Her eylem çağrısı için sadece bir sağlayıcı kullanılır.",
+				"subscriptionKey": "Azure AI Translator subscription key. {azure} için zorunlu. {secrets}'dan geç.",
+				"endpoint": "Azure Translator endpoint URL, örneğin {endpointUrl}. {azure} için zorunlu.",
+				"awsAccessKeyId": "AWS erişim anahtarı kimliği. Isteğe bağlı — AWS varsayılan credential zinciri / OIDC'yi kullanmak için ({awsSecretAccessKey} ile) atlayın. {secrets}'dan geç.",
+				"awsSecretAccessKey": "AWS gizli erişim anahtarı. Birlikte {awsAccessKeyId} ile birlikte verilmelidir. {secrets}'dan geç.",
+				"awsSessionToken": "Geçici kimlik bilgileri için isteğe bağlı AWS oturum tokenosu. {secrets} üzerinden geçin.",
+				"awsRegion": "Translate servisi için AWS bölgesi (örneğin {regionExample}). {aws} için zorunludur, {awsRegionEnv} ortamda belirlenmedikçe.",
+				"googleApiKey": "Google Cloud API anahtarı. Bu ameliyat {googleCredentials} {google} için verin. {secrets} üzerinden geç.",
+				"googleCredentials": "Google Cloud servis-account anahtarı JSON dizisi olarak. Bu ameliyat {googleApiKey} {google} için verin. {secrets} üzerinden geç.",
+				"googleProjectId": "İsteğe bağlı Google Cloud proje kimliği. Genellikle hizmet hesabı kimliğinden çıkarılır."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Çevirici isteği girişleri",
-			"intro": "Bunlar doğrudan Azure AI Translator v3 sorgu parametrelerine eşlenir. Her biri isteğe bağlıdır; Translator varsayılan ayarları ayarlanmadığında geçerlidir.",
-			"caption": "Çevirici isteği girişleri",
+			"heading": "Azure Translator request inputs",
+			"intro": "Bunlar doğrudan Azure AI Translator v3 sorgu parametrelerine eşlenir ve Azure sağlayıcısına uygulanır. textType ve küfürlüAction ayrıca bir eşdeğeri olan AWS/Google ile eşleştirilir (sağlayıcı rehberine bakınız); geri kalanlar ise sadece Azure'da. Her biri isteğe bağlıdır; Translator varsayılan ayarları ayarlanmadığında geçerlidir.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — industry/domain/tone knob. {categoryQuery} olarak iletildi.",
 				"textType": "{plain} ya da {html}. {html} sadece kaynak değerleriniz gerçek HTML parçaları olduğunda kullanın.",

@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Mpandika teny loharano",
-		"description": "Resource Translator dia manokatra fangatahana misintona amin'ny milina ho an'ny rakitra loharanon-karena amin'ny repo rehetra, amin'ny endrika rehetra - Powered by Azure AI Translator.",
+		"description": "Resource Translator dia manokatra fangatahana misintona amin'ny milina ho an'ny rakitra loharanon-karena amin'ny repo rehetra, amin'ny endrika rehetra - Powered by Azure AI Translator, AWS Translate, na Google Cloud Translation.",
 		"socialTitle": "Resource Translator - mandika ho azy ireo rakitra loharano",
-		"badge": "v3.0 - Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 - Azure, AWS & Google mpamatsy, Node 24, repo config",
 		"headlinePrefix": "Ampidiro ao amin'ny repo anao",
 		"headlineAccent": "Ny fanoloran-tena rehetra.",
-		"lede": "Resource Translator dia manokatra fangatahana misintona amin'ny milina ho an'ny rakitra loharanon-karena amin'ny alàlan'ny Azure AI Translator amin'ny alàlan'ny SDK ofisialy - tsy misy serivisy fanampiny, fizotran'ny asa fotsiny.",
+		"lede": "Resource Translator dia manokatra fangatahana misintona amin'ny milina ho an'ny rakitra loharanon-karena amin'ny alàlan'ny Azure, AWS, na Google - hetsika iray iraisana, mpamatsy iray isaky ny mihazakazaka, SDK ofisialy eo ambanin'ny hood.",
 		"primaryCta": "Atombohy",
 		"secondaryCta": "Kintana ao amin'ny GitHub",
 		"supports": "Manohana",
 		"builtForShipping": "Namboarina ho an'ny fandefasana",
 		"workflowTitle": "Ny fandikan-teny ho toy ny fizotran'ny asa, fa tsy asa.",
-		"workflowBody": "Apetraho ao amin'ny CI misy anao ny hetsika, manondro azy ao amin'ny Azure AI Translator, ary avelao ny repo hiteny ny fiteny rehetra kendrenao.",
+		"workflowBody": "Apetraho ao amin'ny CI efa misy anao ny hetsika, manondro azy ao amin'ny Azure, AWS, na Google, ary avelao ny repo hiteny ny fiteny rehetra kendrenao.",
 		"stats": {
 			"audit": "0 npm-audit olana",
-			"tests": "Fitsapana 150",
+			"tests": "Fitsapana 240+",
 			"node": "Node 20 / 22 / 24",
-			"sdk": "Ofisialy Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails}, ary {hasNewTranslations} slot mivantana ao amin'ny mamorona-misintona-fangatahana."
 			},
 			"sdk": {
-				"title": "Ofisialy Azure SDK",
-				"body": "Miorina amin'ny {azureSdk} + {corePipeline} - fanandramana mandeha ho azy amin'ny {statusCodes}, tsy misy HTTP mihodina tanana. {esbuild}-bundled, audit-clean."
+				"title": "Azure, AWS & Google",
+				"body": "Misafidiana mpamatsy iray isaky ny mihazakazaka. Ny tsirairay dia entin'ny SDK ofisialy ({azureSdk}, {awsSdk}, {googleSdk}) miaraka amin'ny fanandramana mandeha ho azy amin'ny {statusCodes} - tsy misy HTTP mihodina tanana. {esbuild}-bundled, audit-clean."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Vonona ny hivezivezy amin'ny autopilot?",
-			"body": "Iray Azure AI Translator key, iray workflow file. Resource Translator no mitantana ny ambiny.",
+			"body": "Fanalahidin'ny mpamatsy iray - Azure, AWS, na Google - ary rakitra workflow iray. Resource Translator no mitantana ny ambiny.",
 			"button": "Atombohy"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Dingana manaraka",
 			"configuration": "Ampifanaraho ny default amin'ny ambaratonga repo amin'ny {configPath}.",
 			"recipes": "Jereo ny fomba fahandro ho an'ny monorepos, rakibolana mahazatra, ary sokajy Custom Translator."
+		}
+	},
+	"providers": {
+		"title": "Mpanome fandikan-teny",
+		"eyebrow": "Andinin-tsoratra masina",
+		"lede": "Misafidiana mpamatsy fandikan-teny iray isaky ny mihazakazaka - Azure AI Translator, AWS Translate, na Google Cloud Translation - ao ambadiky ny API tokana sy mitambatra. Ny mpandika teny dia mitondra tena mitovy na inona na inona mpamatsy; ny fahazoan-dàlana ihany no tsy mitovy.",
+		"backwardCompatible": "Mifanaraka tanteraka amin'ny laoniny: {provider} default amin'ny {azure}, noho izany dia miasa tsy miova ny fizotran'ny Azure efa misy - tsy ilaina ny fanovana.",
+		"selecting": {
+			"title": "Mifidy mpamatsy",
+			"body": "Apetraho amin'ny {azure} (default), {aws}, na {google} ny fampidirana {provider}, avy eo omeo ny fahazoan-dàlana an'io mpamatsy io. Mpamatsy iray ihany no ampiasaina isaky ny antso an-tariby; ny hetsika dia misolo tena amin'ny SDK mifanaraka ao ambadiky ny orinasa."
+		},
+		"comparison": {
+			"title": "Fampitahana mpamatsy",
+			"caption": "Fampitahana mpamatsy fandikan-teny",
+			"columns": {
+				"provider": "Mpamatsy",
+				"value": "Ny lanjan'ny mpamatsy",
+				"sdk": "SDK",
+				"credentials": "Fahazoan-dàlana"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (default)",
+				"credentials": "subscriptionKey, endpoint, region (tsy voatery)"
+			},
+			"aws": {
+				"name": "Fandikan-teny AWS",
+				"value": "aws",
+				"credentials": "OIDC / rojo default, na awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Fandikan-teny Google Cloud",
+				"value": "Google",
+				"credentials": "googleApiKey NA googleCredentials (JSON kaonty serivisy)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Ny mpamatsy default. Omeo loharanon-karena Azure AI Translator ary mandalo {subscriptionKey}, {endpoint}, ary {region}. Io no fanamboarana mitovy amin'ny fizotran'ny asa efa ampiasaina."
+		},
+		"aws": {
+			"title": "Fandikan-teny AWS",
+			"body": "Mampiasa {sdk}. Aleo ny OIDC amin'ny alàlan'ny {configureAwsCredentials} ka tsy misy tsiambaratelo maharitra voatahiry - ny hetsika dia mamaky ny rojom-pandrefesana AWS SDK. Na izany aza, mandalo {awsAccessKeyId} ary {awsSecretAccessKey} mazava. Ny faritra iray dia takiana foana, amin'ny alàlan'ny {awsRegion} na ny {awsRegionEnv} tontolo iainana.",
+			"oidcTitle": "OIDC (soso-kevitra)",
+			"keysNote": "Mba hampiasana fanalahidy static fa tsy OIDC, apetraho ny dingana {configureAwsCredentials} ary mandalo {awsAccessKeyId} / {awsSecretAccessKey} (amin'ny alàlan'ny {secrets}) miampy {awsRegion}."
+		},
+		"google": {
+			"title": "Fandikan-teny Google Cloud",
+			"body": "Mampiasa {sdk} (v2). Manamarina amin'ny alàlan'ny fanalahidy API ({googleApiKey}) na fahazoan-dàlana JSON amin'ny kaonty serivisy ({googleCredentials}). Omeo iray marina; Ny {googleProjectId} tsy azo atao dia tsoahina avy amin'ny fahazoan-dàlana rehefa tsy voafehy."
+		},
+		"mapping": {
+			"title": "Sarintany famaritana fikasana",
+			"body": "Ny mpamatsy manokana dia apetraka amin'ny sarintany izay misy mitovy. Ny zavatra hafa rehetra dia miverina amin'ny tsy fanarahan-dalàna ka ny fitondran-tena dia mijanona ho tsy miovaova.",
+			"caption": "Sarintany fikasana manerana ny mpamatsy",
+			"columns": {
+				"input": "Fampidirana",
+				"azure": "Azure",
+				"aws": "Ny AWS",
+				"google": "Google"
+			},
+			"supported": "Tohanan'ny",
+			"ignored": "Tsy noraharahiana",
+			"rows": {
+				"textType": {
+					"azure": "textType (tsotra / html)",
+					"aws": "Tsy noraharahiana (tsy misy toggle)",
+					"google": "Format (Text / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Fanohanana feno",
+					"aws": "Voamarika / voafafa → saron-tava",
+					"google": "Tsy noraharahiana"
+				},
+				"categoryId": {
+					"azure": "Mpandika teny manokana",
+					"aws": "Tsy noraharahiana",
+					"google": "Tsy noraharahiana"
+				},
+				"allowFallback": {
+					"azure": "Tohanan'ny",
+					"aws": "Tsy noraharahiana",
+					"google": "Tsy noraharahiana"
+				}
+			}
+		},
+		"locales": {
+			"title": "Ny kaody eo an-toerana dia samy hafa isaky ny mpamatsy",
+			"body": "Ny mpamatsy tsirairay dia mampiasa ny kaody eo an-toerana (ohatra ny teny sinoa notsorina dia {azureCode} ao amin'ny Azure, {awsCode} ao amin'ny AWS, ary {googleCode} ao amin'ny Google). Ny kaody dia mandalo amin'ny maha-izy azy ary mitondra ny anaran'ny rakitra output, koa safidio {toLocales} soatoavina nofantenan'ny mpamatsy voafidy."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Fampidirana ilaina",
 			"caption": "Fampidirana ilaina",
 			"items": {
-				"sourceLocale": "Ny loharano (ohatra {en}) ampiasaina hitadiavana rakitra loharano toy ny {sourceGlob}. Nalefa tany amin'ny mpandika teny ihany koa ho {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. Mandalo amin'ny {secrets}.",
-				"endpoint": "URL endpoint mpandika teny, ohatra {endpointUrl}."
+				"sourceLocale": "Ny loharano (ohatra {en}) ampiasaina hitadiavana rakitra loharano toy ny {sourceGlob}. Nalefa tany amin'ny mpamatsy ihany koa izy {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Fifantenana mpamatsy sy fahazoan-dàlana",
+			"caption": "Fifantenana mpamatsy sy fahazoan-dàlana isaky ny mpivarotra",
+			"intro": "Misafidiana mpamatsy iray isaky ny mihazakazaka miaraka amin'{provider}. Omeo ny fahazoan-dàlana an'ny mpamatsy voafantina ihany - jereo ny torolàlana {providersLink} ho an'ny fametrahana feno.",
+			"items": {
+				"provider": "Mpanome fandikan-teny: {azure} (default), {aws}, na {google}. Mpamatsy iray ihany no ampiasaina isaky ny antso an-tariby.",
+				"subscriptionKey": "Azure AI Translator subscription key. Ilaina amin'ny {azure}. Mandalo amin'ny {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, e.g. {endpointUrl}. Ilaina amin'ny {azure}.",
+				"awsAccessKeyId": "AWS access key id. Safidy - manadino (miaraka amin'ny {awsSecretAccessKey}) hampiasa ny rojom-pandrefesana AWS / OIDC. Mandalo amin'ny {secrets}.",
+				"awsSecretAccessKey": "Fanalahidy fidirana miafina AWS. Tsy maintsy omena miaraka amin'ny {awsAccessKeyId}. Mandalo amin'ny {secrets}.",
+				"awsSessionToken": "Famantarana ny fivoriana AWS ho an'ny fahazoan-dàlana vonjimaika. Mandalo amin'ny {secrets}.",
+				"awsRegion": "Faritra AWS ho an'ny serivisy fandikan-teny (ohatra {regionExample}). Ilaina amin'ny {aws} raha tsy hoe napetraka ao amin'ny tontolo iainana ny {awsRegionEnv}.",
+				"googleApiKey": "Fanalahidy Google Cloud API. Omeo ity OR {googleCredentials} ity ho an'ny {google}. Mandalo amin'ny {secrets}.",
+				"googleCredentials": "Ny fanalahidin'ny kaonty serivisy Google Cloud ho toy ny kofehy JSON. Omeo ity OR {googleApiKey} ity ho an'ny {google}. Mandalo amin'ny {secrets}.",
+				"googleProjectId": "ID tetikasa Google Cloud tsy voatery. Matetika no voatsoaka avy amin'ny fahazoan-dàlana amin'ny kaonty serivisy."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Fangatahan'ny mpandika teny",
-			"intro": "Ireo sarintany ireo dia mivantana amin'ny masontsivana fangatahana Azure AI Translator v3. Ny tsirairay dia tsy voatery; Ampiharina amin'ny fandikan-teny ny defaults Translator rehefa tsy voafaritra.",
-			"caption": "Fangatahan'ny mpandika teny",
+			"heading": "Azure Translator request inputs",
+			"intro": "Ireo sarintany ireo dia mivantana amin'ny masontsivana fangatahana Azure AI Translator v3 ary ampiharina amin'ny mpamatsy Azure. textType sy profanityAction dia apetraka amin'ny AWS / Google ihany koa izay misy mitovy amin'izany (jereo ny torolàlana momba ny mpamatsy); ny ambiny dia Azure ihany. Ny tsirairay dia tsy voatery; Ampiharina amin'ny fandikan-teny ny defaults Translator rehefa tsy voafaritra.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Sokajy Azure {customTranslatorLink} - ny indostria / sehatra / feo knob. Nalefa toy ny {categoryQuery}.",
 				"textType": "{plain} na {html}. Ampiasao {html} raha tsy misy ny soatoavin'ny loharanon-karena dia sombintsombiny HTML tena izy.",

@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "ᠡᠬᠢ ᠪᠠᠶᠠᠯᠢᠭ ᠤᠨ ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ",
-		"description": "ᠡᠬᠢ ᠰᠤᠷᠪᠤᠯᠵᠢ ᠶᠢᠨ ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ ᠶᠠᠮᠠᠷ ᠴᠤ ᠬᠡᠯᠪᠡᠷᠢ ᠪᠡᠷ ᠲᠠ ᠨᠠᠷ ᠤᠨ ᠡᠬᠢ ᠪᠠᠶᠠᠯᠢᠭ ᠤᠨ ᠪᠢᠴᠢᠭ᠌ ᠮᠠᠲ᠋ᠧᠷᠢᠶᠠᠯ ᠢ ᠮᠠᠰᠢᠨ ᠢᠶᠠᠷ ᠬᠦᠯᠢᠶᠡᠨ ᠠᠪᠬᠤ ᠭᠤᠶᠤᠴᠢᠯᠠᠯ ᠢ ᠶᠠᠮᠠᠷᠪᠠ ᠬᠡᠯᠪᠡᠷᠢ ᠪᠡᠷ ᠨᠡᠭᠡᠭᠡᠨ᠎ᠡ ᠂ ᠶᠠᠮᠠᠷ ᠴᠤ ᠬᠡᠯᠪᠡᠷᠢ ᠮᠧᠲ᠋ᠷ ᠢᠶᠡᠷ Azure AI ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ ᠠᠰᠢᠭᠯᠠᠵᠠᠢ ᠃",
+		"description": "ᠡᠬᠢ ᠪᠠᠶᠠᠯᠢᠭ ᠤᠨ ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ ᠶᠠᠮᠠᠷ ᠴᠤ ᠬᠡᠯᠪᠡᠷᠢ ᠪᠡᠷ ᠲᠠᠨ ᠤ ᠡᠬᠢ ᠪᠠᠶᠠᠯᠢᠭ ᠤᠨ ᠪᠢᠴᠢᠭ᠌ ᠮᠠᠲ᠋ᠧᠷᠢᠶᠠᠯ ᠢ ᠮᠠᠰᠢᠨ ᠢᠶᠠᠷ ᠠᠪᠴᠢᠷᠠᠵᠤ ᠨᠡᠭᠡᠭᠡᠨ᠎ᠡ ᠂ ᠶᠠᠮᠠᠷ ᠴᠤ ᠬᠡᠯᠪᠡᠷᠢ ᠮᠧᠲ᠋ᠷ ᠢᠶᠡᠷ Azure AI ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ ᠂ AWS Translate ᠪᠤᠶᠤ Google Cloud ᠣᠷᠴᠢᠭᠤᠯᠭ᠎ᠠ ᠶᠢᠨ ᠠᠵᠢᠯᠯᠠᠭ᠎ᠠ ᠶᠢᠨ ᠳᠡᠮᠵᠢᠯᠭᠡ ᠶᠢ ᠠᠰᠢᠭᠯᠠᠵᠠᠢ ᠃",
 		"socialTitle": "ᠡᠬᠢ ᠪᠠᠶᠠᠯᠢᠭ ᠤᠨ ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ ︱ ᠡᠬᠢ ᠪᠠᠶᠠᠯᠢᠭ ᠤᠨ ᠪᠢᠴᠢᠭ᠌ ᠮᠠᠲ᠋ᠧᠷᠢᠶᠠᠯ ᠢ ᠣᠷᠴᠢᠭᠤᠯᠳᠠᠭ",
-		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "ᠣᠷᠤᠬᠤ ᠲᠡᠮᠳᠡᠭ ᠦᠨ ᠭᠠᠵᠠᠷ ᠲᠤ ᠣᠷᠤᠭᠤᠯᠬᠤ",
 		"headlineAccent": "ᠠᠮᠠᠯᠠᠬᠤ ᠪᠥᠷᠢ",
-		"lede": "ᠡᠬᠢ ᠪᠠᠶᠠᠯᠢᠭ ᠤᠨ ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ 《 Azure AI Translator》 ᠢ ᠵᠢᠩᠬᠢᠨᠢ SDK ᠪᠡᠷ ᠳᠠᠮᠵᠢᠵᠤ ᠰᠲ᠋ᠧᠷ ᠢᠶᠡᠷ ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠰᠠᠨ ᠲᠠᠨ ᠤ ᠡᠬᠢ ᠪᠠᠶᠠᠯᠢᠭ ᠤᠨ ᠪᠢᠴᠢᠭ᠌ ᠮᠠᠲ᠋ᠧᠷᠢᠶᠠᠯ ᠢ ᠲᠠᠲᠠᠬᠤ ᠭᠤᠶᠤᠴᠢᠯᠠᠯ ᠢ ᠨᠡᠭᠡᠭᠡᠨ᠎ᠡ — ᠢᠯᠡᠭᠦᠴᠡ ᠦᠢᠯᠡᠴᠢᠯᠡᠭᠡ ᠦᠭᠡᠢ ᠂ ᠠᠵᠢᠯ ᠤᠨ ᠭᠢᠯᠪᠤᠷᠠᠯ ᠲᠡᠳᠦᠢ ᠃",
+		"lede": "ᠡᠬᠢ ᠪᠠᠶᠠᠯᠢᠭ ᠤᠨ ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ Azure ᠂ AWS ᠪᠤᠶᠤ Google  ᠶᠢ ᠠᠰᠢᠭᠯᠠᠵᠤ ᠂ ᠨᠢᠭᠡ ᠵᠦᠢᠯ ᠦᠨ ᠨᠢᠭᠡᠳᠦᠯᠲᠦ ᠠᠵᠢᠯᠯᠠᠭ᠎ᠠ ᠶᠢ ᠨᠢᠭᠡ ᠬᠠᠩᠭᠠᠭᠴᠢ ᠂ ᠨᠢᠭᠡ ᠤᠳᠠᠭ᠎ᠠ ᠳᠤ ᠨᠢᠭᠡ ᠬᠠᠩᠭ᠋ᠠᠭᠴᠢ ᠂ ᠠᠯᠪᠠᠨ ᠤ ᠴᠢᠨᠠᠷᠲᠠᠢ SDK ᠶᠢ ᠠᠰᠢᠭᠯᠠᠨ ᠣᠷᠴᠢᠭᠤᠯᠤᠨ ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠰᠠᠨ ᠲᠠᠨ ᠤ ᠡᠬᠢ ᠪᠠᠶᠠᠯᠢᠭ ᠤᠨ ᠪᠢᠴᠢᠭ᠌ ᠮᠠᠲ᠋ᠧᠷᠢᠶᠠᠯ ᠢ ᠲᠠᠲᠠᠵᠤ ᠭᠠᠷᠭᠠᠬᠤ ᠭᠤᠶᠤᠴᠢᠯᠠᠯ ᠢ ᠨᠡᠭᠡᠭᠡᠨ᠎ᠡ ᠃",
 		"primaryCta": "ᠡᠬᠢᠯᠡᠬᠦ",
 		"secondaryCta": "GitHub ᠳᠡᠭᠡᠷᠡᠬᠢ ផ្កាយ",
 		"supports": "ᠳᠡᠮᠵᠢᠬᠦ",
 		"builtForShipping": "ᠣᠩᠭᠣᠴᠠᠨ ᠳᠤ ᠬᠡᠦᠬᠡᠨ ᠢᠶᠡᠷ ᠤᠭᠰᠠᠷᠠᠭᠰᠠᠨ",
 		"workflowTitle": "ᠣᠷᠴᠢᠭᠤᠯᠭ᠎ᠠ ᠶᠢ ᠠᠵᠢᠯ ᠤᠨ ᠶᠠᠪᠤᠴᠠ ᠶᠢᠨ ᠬᠤᠪᠢ ᠳᠤ ᠠᠵᠢᠯ ᠬᠢᠵᠦ ᠪᠠᠶᠢᠭ᠎ᠠ ᠪᠢᠰᠢ ᠃",
-		"workflowBody": "ᠦᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭ᠎ᠠ ᠪᠠᠨ ᠲᠠᠨ ᠤ ᠣᠳᠣ CI ᠳᠡᠭᠡᠷ᠎ᠡ ᠪᠡᠨ ᠣᠷᠣᠭᠤᠯ ᠂ Azure AI ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ ᠤᠷᠤᠭᠤ ᠵᠢᠭᠠᠵᠤ ᠂ ᠳᠠᠩᠰᠠᠯᠠᠬᠤ ᠲᠡᠮᠳᠡᠭ᠍ᠯᠡᠯ ᠪᠣᠯᠭᠠᠨ ᠢᠶᠠᠨ ᠥᠪᠡᠷ ᠦᠨ ᠲᠣᠭᠲᠠᠭᠠᠳᠠᠭ ᠦᠭᠡ ᠪᠣᠯᠭᠠᠨ ᠢᠶᠠᠨ ᠶᠠᠷᠢᠭᠤᠯᠤᠨ᠎ᠠ ᠃",
+		"workflowBody": "ᠠᠵᠢᠯᠯᠠᠭ᠎ᠠ ᠪᠠᠨ ᠲᠠᠨ ᠤ ᠣᠳᠣ ᠶᠢᠨ CI ᠳᠡᠭᠡᠷ᠎ᠡ ᠪᠡᠨ ᠣᠷᠣᠭᠤᠯ ᠂ azure, AWS ᠪᠤᠶᠤ Google ᠤᠷᠤᠭᠤ ᠵᠢᠭᠠᠭᠠᠳ ᠂ ᠲᠠᠨ ᠤ ᠲᠡᠮᠳᠡᠭ᠍ᠯᠡᠯ ᠪᠣᠯᠭᠠᠨ ᠳᠠᠭᠠᠨ ᠬᠡᠯᠡ ᠪᠣᠯᠭᠠᠨ ᠢᠶᠠᠨ ᠶᠠᠷᠢᠭᠤᠯᠤᠨ᠎ᠠ ᠃",
 		"stats": {
 			"audit": "0 npm-audit issues",
-			"tests": "150 test",
+			"tests": "240+ tests",
 			"node": "Node 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle} ᠂ {summaryDetails} ᠂ {hasNewTranslations} ᠢ ᠰᠢᠭᠤᠳ tạo - ᠲᠠᠲᠠᠬᠤ - ᠱᠠᠭᠠᠷᠳᠠᠯᠭ᠎ᠠ ᠳᠤ ᠣᠷᠣᠭᠤᠯᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠶ ᠃"
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "{azureSdk} + {corePipeline} ᠳᠤ ᠪᠠᠶᠢᠭᠤᠯᠤᠭᠰᠠᠨ ︱ {statusCodes} ᠳᠤ ᠠᠦᠢᠲ᠋ᠣ᠋ ᠳᠠᠬᠢᠨ ᠲᠤᠷᠰᠢᠵᠤ ᠂ ᠭᠠᠷ ᠲᠤ ᠬᠡᠪᠲᠡᠬᠦ U＄） ᠦᠭᠡᠢ᠃ {esbuild} ᠶᠢ ᠳᠠᠭᠠᠯᠳᠤᠭᠤᠯᠤᠨ ᠂ ᠬᠢᠨᠠᠨ ᠪᠣᠳᠣᠯᠲᠠ ᠴᠡᠪᠡᠷ ᠃"
+				"title": "Azure, AWS & Google",
+				"body": "ᠨᠢᠭᠡ ᠤᠳᠠᠭ᠎ᠠ ᠪᠦᠷᠢ ᠳᠦ ᠨᠢᠭᠡ ᠬᠠᠩᠭᠠᠭᠴᠢ ᠰᠤᠩᠭ᠋ᠤᠨ᠎ᠠ ᠃ ᠤᠳᠠᠭ᠎ᠠ ᠪᠦᠷᠢ ᠶᠢ ᠨᠢ ᠠᠯᠪᠠᠨ ᠤ SDK ( {azureSdk} ᠂ {awsSdk} ᠂ {googleSdk} ) ᠢᠶᠠᠷ ᠵᠢᠯᠣᠭᠣᠳᠴᠤ ᠂ {statusCodes} ᠳᠤ ᠠᠦᠢᠲ᠋ᠣ᠋ ᠳᠠᠬᠢᠨ ᠲᠤᠷᠰᠢᠵᠤ ᠂ ᠭᠠᠷ ᠤᠲᠠᠰᠤ ᠪᠠᠷ HTTP ᠦᠭᠡᠶ ᠃ {esbuild} ᠶᠢ ᠳᠠᠭᠠᠯᠳᠤᠭᠤᠯᠤᠨ ᠂ ᠬᠢᠨᠠᠨ ᠪᠣᠳᠣᠯᠲᠠ ᠴᠡᠪᠡᠷ ᠃"
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "ᠠᠶᠠᠯᠠᠯ ᠤᠨ ᠠᠶᠠᠯᠠᠯ ᠢ ᠦᠨᠳᠦᠰᠦᠯᠡᠨ ᠭᠠᠵᠠᠷ ᠣᠷᠣᠨ ᠳᠤ ᠤᠴᠢᠷᠯᠠᠬᠤ ᠪᠠᠷ ᠪᠡᠯᠡᠳᠬᠡᠭ᠍ᠰᠡᠨ ᠦᠦ ?",
-			"body": "One Azure AI Translator key, one workflow file. ᠡᠬᠢ ᠰᠤᠷᠪᠤᠯᠵᠢ ᠶᠢᠨ ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ ᠪᠤᠰᠤ ᠶᠢ ᠰᠢᠢᠳᠪᠦᠷᠢᠯᠡᠨ᠎ᠡ ᠃",
+			"body": "ᠨᠢᠭᠡ ᠬᠠᠩᠭᠠᠭᠴᠢ ᠶᠢᠨ ᠬᠥᠮᠥᠷᠭᠡ ︱ azure, awᠰ ᠪᠤᠶᠤ google ᠂ ᠨᠢᠭᠡ ᠠᠵᠢᠯ ᠤᠨ ᠰᠤᠷᠲᠠᠯ ᠤᠨ ᠳᠠᠩᠰᠠ ᠡᠪᠬᠡᠮᠡᠯ ᠢ ᠬᠠᠷᠢᠭᠤᠴᠠᠨ᠎ᠠ ᠃ ᠡᠬᠢ ᠰᠤᠷᠪᠤᠯᠵᠢ ᠶᠢᠨ ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ ᠪᠤᠰᠤ ᠶᠢ ᠰᠢᠢᠳᠪᠦᠷᠢᠯᠡᠨ᠎ᠡ ᠃",
 			"button": "ᠡᠬᠢᠯᠡᠬᠦ"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "ᠳᠠᠷᠠᠭ᠎ᠠ ᠠᠯᠬᠤᠮ ᠤᠨ ᠠᠷᠭ᠎ᠠ ᠬᠡᠮᠵᠢᠶ᠎ᠡ",
 			"configuration": "repo ᠳᠡᠰ ᠦᠨ ᠪᠠᠷᠢᠯᠭ᠎ᠠ ᠶᠢ {configPath}",
 			"recipes": "ᠳᠠᠩ ᠨᠣᠮ ᠤᠨ ᠳᠡᠪᠲᠡᠷ ᠂ ᠵᠠᠬᠢᠶᠠᠯᠠᠭᠰᠠᠨ ᠨᠡᠷ᠎ᠡ ᠪᠢᠴᠢᠭ᠌ ᠦᠨ ᠨᠡᠷ᠎ᠡ ᠵᠢᠴᠢ ᠣᠨᠴᠠᠯᠢᠭ ᠲᠠᠢ ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ ᠶᠢᠨ ᠲᠣᠭ᠎ᠠ ᠶᠢ ᠦᠵᠡᠨ᠎ᠡ ᠃"
+		}
+	},
+	"providers": {
+		"title": "ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ",
+		"eyebrow": "Reference",
+		"lede": "ᠨᠢᠭᠡ ᠤᠳᠠᠭ᠎ᠠ ᠶᠢᠨ ᠨᠢᠭᠡᠳᠦᠯᠲᠡᠶ API ᠨᠡᠶᠢᠳᠡᠮ ᠵᠠᠬ᠎ᠠ ᠶᠢᠨ ᠠᠷᠤ ᠳᠤ ᠨᠢᠭᠡ ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ — Azure AI ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ ᠂ AWS ᠣᠷᠴᠢᠭᠤᠯᠬᠤ ᠪᠤᠶᠤ Google Cloud ᠣᠷᠴᠢᠭᠤᠯᠭ᠎ᠠ ᠶᠢᠨ ᠨᠢᠭᠡ ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ — ᠨᠢᠭᠡᠯᠡ ᠤᠳᠠᠭ᠎ᠠ ᠶᠢᠨ ᠨᠢᠭᠡᠳᠦᠯᠲᠡᠢ API ᠬᠦᠷᠢᠶ᠎ᠡ ᠶᠢᠨ ᠠᠷᠤ ᠳᠤ ᠯᠠ ᠠᠪᠴᠤ ᠣᠷᠴᠢᠭᠤᠯᠬᠤ ᠶᠢ ᠠᠪᠤᠨ᠎ᠠ ᠃ ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ ᠨᠢ ᠬᠠᠩᠭᠠᠭᠰᠠᠨ ᠶᠠᠭᠤᠨ ᠴᠤ ᠢᠯᠭᠠᠯ ᠦᠭᠡᠢ ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ ᠶᠢᠨ ᠢᠯᠡᠷᠡᠯ ᠠᠳᠠᠯᠢᠬᠠᠨ ᠪᠠᠶᠢᠳᠠᠭ ᠵᠦᠪᠬᠡᠨ ᠭᠡᠷᠡᠴᠢ ᠦᠨᠡᠮᠯᠡᠯ ᠨᠢ ᠠᠳᠠᠯᠢ ᠦᠭᠡᠢ᠃",
+		"backwardCompatible": "ᠪᠦᠬᠦ ᠬᠣᠴᠣᠷᠤᠩᠭᠤᠢ ᠶᠢ ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠤᠭᠰᠠᠨ ᠄ {provider} ᠶᠢ {azure} ᠳᠡᠭᠡᠷ᠎ᠡ ᠲᠣᠭᠲᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ ᠂ ᠡᠳᠦᠢ ᠲᠡᠳᠦᠢ ᠠᠩᠬᠠᠨ ᠤ ᠦᠭᠡ ᠶᠢᠨ ᠠᠵᠢᠯ ᠤᠨ ᠴᠤᠪᠤᠷᠠᠯ ᠢᠶᠠᠨ ᠬᠤᠪᠢᠷᠠᠭᠤᠯᠬᠤ ᠦᠭᠡᠢ ᠪᠡᠷ ᠠᠵᠢᠯᠯᠠᠭᠤᠯᠬᠤ ᠦᠭᠡᠢ ᠂ ᠵᠠᠰᠠᠬᠤ ᠬᠡᠷᠡᠭ ᠦᠭᠡᠢ ᠃",
+		"selecting": {
+			"title": "ᠬᠠᠩᠭᠠᠭᠴᠢ ᠰᠣᠩᠭᠣᠬᠤ",
+			"body": "{provider} ᠣᠷᠣᠭᠤᠯᠤᠯᠲᠠ ᠶᠢ {azure} （ ᠲᠣᠭ᠎ᠠ ᠶᠢᠨ ᠳᠠᠷᠠᠭᠠᠬᠢ ） ᠂ {aws} ᠪᠤᠶᠤ {google} ᠳᠤ ᠲᠠᠯᠪᠢᠭᠠᠳ ᠂ ᠳᠠᠷᠠᠭ᠎ᠠ ᠳᠤᠨᠢ ᠲᠡᠷᠡ ᠬᠠᠩᠭᠠᠭᠴᠢ ᠶᠢᠨ ᠦᠨᠡᠮᠯᠡᠯ ᠢ ᠬᠠᠩᠭᠠᠬᠤ ᠪᠣᠯᠣᠨ᠎ᠠ ᠃ ᠠᠵᠢᠯᠯᠠᠭ᠎ᠠ ᠶᠢ ခေါ် ᠪᠣᠯᠭᠠᠨ ᠨᠢᠭᠡ ᠯᠡ ᠬᠠᠩᠭ᠋ᠠᠭᠴᠢ ᠶᠢ ᠬᠡᠷᠡᠭᠯᠡᠨ᠎ᠡ ᠃ ᠠᠵᠢᠯᠯᠠᠭ᠎ᠠ ᠨᠢ ᠨᠢᠭᠡ ᠦᠢᠯᠡᠳᠪᠦᠷᠢ ᠶᠢᠨ ᠠᠷᠤ ᠲᠠᠯ᠎ᠠ ᠶᠢᠨ ᠵᠣᠬᠢᠴᠠᠯᠳᠤᠬᠤ SDK ᠳᠤ ᠨᠠᠢ᠌ᠳᠠᠯᠭ᠎ᠠ ᠬᠢᠨ᠎ᠡ ᠃"
+		},
+		"comparison": {
+			"title": "ᠬᠠᠩᠭᠠᠭᠴᠢ ᠡᠲᠡᠭᠡᠳ ᠦᠨ ᠠᠳᠠᠯᠢᠳᠬᠠᠯ",
+			"caption": "ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ ᠲᠠᠯ᠎ᠠ ᠶᠢᠨ ᠬᠢᠨ ᠤ ᠠᠳᠠᠯᠢᠳᠬᠠᠯ",
+			"columns": {
+				"provider": "Provider",
+				"value": "provider value",
+				"sdk": "SDK",
+				"credentials": "Credentials"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (default)",
+				"credentials": "subscriptionKey, endpoint, region ( ᠡᠷᠬᠡᠪᠡᠰᠢ )"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "aws",
+				"credentials": "OIDC / default chain, or awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google ᠡᠭᠦᠯᠡᠨ ᠣᠷᠴᠢᠭᠤᠯᠭ᠎ᠠ",
+				"value": "Google",
+				"credentials": "googleApiKey OR googleCredentials (service-account JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "ᠪᠠᠷᠢᠮᠵᠢᠶ᠎ᠠ ᠬᠠᠩᠭ᠋ᠠᠭᠴᠢ Azure AI ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ ᠶᠢᠨ ᠡᠬᠢ ᠪᠠᠶᠠᠯᠢᠭ ᠢ ᠬᠠᠩᠭᠠᠬᠤ ᠶᠢᠨ ᠬᠠᠮᠲᠤ {subscriptionKey} ᠂ {endpoint} ᠵᠢᠴᠢ ᠰᠣᠩᠭᠣᠯᠲᠠ ᠶᠢᠨ ᠲᠠᠯ᠎ᠠ ᠪᠠᠷ {region} ᠡᠨᠡ ᠪᠣᠯ ᠣᠳᠣᠬᠠᠨ ᠤ ᠠᠵᠢᠯ ᠤᠨ ᠴᠤᠪᠤᠷᠠᠯ ᠳᠤ ᠨᠢᠭᠡᠨᠲᠡ ᠬᠡᠷᠡᠭ᠍ᠯᠡᠵᠦ ᠪᠠᠢ᠌ᠭ᠎ᠠ ᠠᠳᠠᠯᠢᠬᠠᠨ ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠤᠯᠲᠠ ᠮᠥᠨ ᠃"
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "{sdk} ᠢ ᠬᠡᠷᠡᠭᠯᠡᠬᠦ OIDC ᠶᠢ {configureAwsCredentials} ᠲᠠᠯᠪᠢᠪᠠᠯ ᠤᠷᠲᠤ ᠬᠤᠭᠤᠴᠠᠭ᠎ᠠ ᠪᠠᠷ ᠨᠢᠭᠤᠴᠠ ᠶᠢ ᠬᠠᠳᠠᠭᠠᠯᠠᠬᠤ ᠦᠭᠡᠢ — ᠠᠵᠢᠯᠯᠠᠭ᠎ᠠ ᠨᠢ AWS SDK default ᠭᠡᠷᠡᠴᠢᠯᠡᠯ ᠦᠨ ᠬᠡᠯᠬᠢᠶᠡᠨ ᠢ ᠤᠩᠰᠢᠨ᠎ᠠ ᠃ ᠡᠰᠡᠬᠦᠯ᠎ᠡ {awsAccessKeyId} {awsSecretAccessKey} ᠢ ᠢᠯᠡ ᠲᠣᠳᠣ ᠶᠠᠪᠤᠭᠤᠯᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠶ᠃ ᠣᠷᠣᠨ ᠪᠦᠰᠡ ᠶᠢ ᠱᠠᠭᠠᠷᠳᠠᠨ᠎ᠠ ᠂ {awsRegion} ᠪᠤᠶᠤ {awsRegionEnv} ᠣᠷᠴᠢᠨ ᠲᠣᠭᠣᠷᠢᠨ ᠤ ᠬᠣᠪᠢᠰ ᠢᠶᠠᠷ ᠳᠠᠮᠵᠢᠨ ᠱᠠᠭᠠᠷᠳᠠᠭᠳᠠᠬᠤ ᠶᠤᠮ ᠃",
+			"oidcTitle": "OIDC ( အကြံပြု ထား )",
+			"keysNote": "ᠢᠯᠭᠤᠮ ᠪᠠᠶᠢᠯᠭᠠᠬᠤ ᠳᠠᠷᠤᠭ᠎ᠠ ᠶᠢ ᠣᠷᠣᠯᠠᠭᠤᠯᠬᠤ ᠳᠤ ᠂ {configureAwsCredentials} ᠠᠯᠬᠤᠮ ᠳᠠᠷᠠᠭ᠎ᠠ ᠂ {awsAccessKeyId} （ {awsSecretAccessKey} {secrets} ） ᠳᠡᠭᠡᠷ᠎ᠡ {awsRegion}  （  ） ᠳᠡᠭᠡᠷ᠎ᠡ ᠨᠡᠮᠡᠵᠦ  ᠃"
+		},
+		"google": {
+			"title": "Google ᠡᠭᠦᠯᠡᠨ ᠣᠷᠴᠢᠭᠤᠯᠭ᠎ᠠ",
+			"body": "Uses {sdk} (v2) ᠃ API （ {googleApiKey} ） ᠪᠤᠶᠤ ᠦᠢᠯᠡᠴᠢᠯᠡᠭᠡᠨ ᠦ ᠳᠠᠩᠰᠠᠨ ᠤ ᠵᡁᠣᠨ ᠤ ᠭᠡᠷᠡᠴᠢ ᠦᠨᠡᠮᠯᠡᠯ （ {googleCredentials} ） ᠢᠶᠠᠷ ᠬᠢᠨᠠᠨ ᠬᠠᠷᠭᠤᠭᠤᠯᠤᠯᠲᠠ ᠬᠢᠬᠦ ᠃ ᠶᠠᠭ ᠨᠢᠭᠡ ᠵᠦᠢᠯ ᠢ ᠨᠢ ᠬᠠᠩᠭᠠᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠶ᠃ ᠨᠢᠭᠡ ᠬᠤᠪᠢᠨ ᠢ ᠰᠤᠩᠭ᠋ᠤᠭᠰᠠᠨ {googleProjectId} ᠦᠨᠡᠮᠯᠡᠯ ᠡᠴᠡ ᠰᠢᠯᠵᠢᠭᠦᠯᠬᠦ ᠳᠤ ᠦᠨᠡᠮᠯᠡᠯ ᠡᠴᠡ ᠬᠠᠷᠢᠴᠠᠨ ᠲᠣᠭᠲᠠᠨ᠎ᠠ᠃"
+		},
+		"mapping": {
+			"title": "Intent-specifier mapping",
+			"body": "ᠬᠠᠩᠭ᠋ᠠᠭᠴᠢ ᠶᠢᠨ ᠲᠤᠰᠬᠠᠢ ᠲᠣᠭᠲᠠᠭᠰᠠᠨ ᠲᠡᠮᠳᠡᠭ᠍ ᠢ ᠲᠡᠩᠴᠡᠭᠦᠦ ᠨᠡᠷ᠎ᠡ ᠲᠡᠢ ᠭᠠᠵᠠᠷ ᠲᠤ ᠵᠢᠷᠤᠭᠯᠠᠨ ᠦᠵᠡᠨ᠎ᠡ ᠃ ᠥᠭᠡᠷ᠎ᠡ ᠪᠦᠬᠦᠨ ᠪᠦᠷ ᠵᠦᠪ ᠶᠣᠰᠤ ᠲᠠᠢ ᠪᠣᠯᠵᠣᠭ᠎ᠠ ᠳᠡᠭᠡᠷ᠎ᠡ ᠪᠡᠨ ᠪᠠᠶᠢᠬᠤ ᠡᠶᠢᠮᠦ ᠡᠴᠡ ᠦᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭ᠎ᠠ ᠪᠠᠨ ᠶᠡᠷᠦᠨᠢ ᠲᠦᠯᠬᠢᠭᠰᠡᠭᠡᠷ ᠪᠠᠶᠢᠨ᠎ᠠ ᠃",
+			"caption": "Intent-specifier mapping across provider",
+			"columns": {
+				"input": "Input",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "ᠳᠡᠮᠵᠢᠯᠭᠡ ᠦᠵᠡᠭᠦᠯᠪᠡ",
+			"ignored": "ᠣᠢ᠌ᠰᠢᠶᠠᠬᠤ ᠦᠭᠡᠢ",
+			"rows": {
+				"textType": {
+					"azure": "textType ( plain / html)",
+					"aws": "7 ᠲᠠᠲᠠᠵᠤ ᠠᠪᠬᠤ ᠦᠭᠡᠢ （ ᠨᠡᠭᠡᠭᠡᠵᠦ ᠪᠣᠯᠬᠤ ᠦᠭᠡᠢ ）",
+					"google": "format （ អត្ថបទ / html）"
+				},
+				"profanityAction": {
+					"azure": "ᠪᠦᠬᠦ ᠬᠦᠴᠦᠨ ᠢ ᠳᠡᠮᠵᠢᠬᠦ",
+					"aws": "ᠲᠡᠮᠳᠡᠭ᠍ ᠦᠨ ᠨᠡᠷ᠎ᠡ ᠪᠡᠷ ᠢᠶᠡᠨ ᠬᠠᠰᠤᠵᠤ → ᠨᠠᠭᠠᠬᠤ",
+					"google": "ᠣᠢ᠌ᠰᠢᠶᠠᠬᠤ ᠦᠭᠡᠢ"
+				},
+				"categoryId": {
+					"azure": "custom ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ",
+					"aws": "ᠣᠢ᠌ᠰᠢᠶᠠᠬᠤ ᠦᠭᠡᠢ",
+					"google": "ᠣᠢ᠌ᠰᠢᠶᠠᠬᠤ ᠦᠭᠡᠢ"
+				},
+				"allowFallback": {
+					"azure": "ᠳᠡᠮᠵᠢᠯᠭᠡ ᠦᠵᠡᠭᠦᠯᠪᠡ",
+					"aws": "ᠣᠢ᠌ᠰᠢᠶᠠᠬᠤ ᠦᠭᠡᠢ",
+					"google": "ᠣᠢ᠌ᠰᠢᠶᠠᠬᠤ ᠦᠭᠡᠢ"
+				}
+			}
+		},
+		"locales": {
+			"title": "ᠬᠠᠩᠭ᠋ᠠᠭᠴᠢ ᠶᠢᠨ ᠭᠠᠵᠠᠷ ᠤᠨ ᠺᠣᠳ᠋ ᠠᠳᠠᠯᠢ ᠦᠭᠡᠢ",
+			"body": "ᠡᠯ᠎ᠡ ᠬᠠᠩᠭᠠᠭᠴᠢ ᠲᠤᠰ ᠲᠤᠰ ᠤᠨ ᠭᠠᠵᠠᠷ ᠤᠨ ᠣᠷᠣᠨ ᠤ ᠺᠣᠳ᠋ ᠢ ᠬᠡᠷᠡᠭ᠍ᠯᠡᠨ᠎ᠡ ( ᠵᠢᠱᠢᠶᠡᠯᠡᠪᠡᠯ ᠬᠢᠲᠠᠳ ᠦᠰᠦᠭ᠍ ᠤᠳᠭ᠋᠎ᠠ ᠶᠢ Azure ᠳᠡᠭᠡᠷ᠎ᠡ {azureCode} ᠂ ᠠᠽᠢ ᠳᠦ {awsCode} ᠶᠢ AWS ᠂ Google {googleCode} ᠳᠤ ᠬᠡᠷᠡᠭ᠍ᠯᠡᠬᠦ ） ᠃ ᠺᠣᠳ᠋ ᠨᠢ ᠣᠳᠣ ᠶᠢᠨ ᠪᠠᠶᠢᠳᠠᠯ ᠢᠶᠠᠷ ᠳᠠᠮᠵᠢᠭᠤᠯᠵᠤ ᠭᠠᠷᠭᠠᠬᠤ ᠮᠠᠲᠧᠷᠢᠶᠠᠯ ᠤᠨ ᠨᠡᠷ᠎ᠡ ᠶᠢ ᠭᠠᠷᠭᠠᠨ᠎ᠠ ᠂ ᠲᠡᠢ᠌ᠮᠦ ᠡᠴᠡ ᠲᠠᠨ ᠤ ᠰᠤᠩᠭ᠋ᠤᠭᠰᠠᠨ ᠬᠠᠩᠭᠠᠭᠴᠢ ᠲᠠᠨ ᠤ ᠳᠡᠮᠵᠢᠭ᠍ᠰᠡᠨ {toLocales} ᠶᠢᠨ ᠦᠨ᠎ᠡ ᠮᠥᠩᠭᠥ ᠶᠢ ᠰᠤᠩᠭ᠋ᠤ ᠃"
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "ᠬᠡᠷᠡᠭᠴᠡᠭᠡᠲᠦ ᠣᠷᠣᠭᠤᠯᠤᠯᠲᠠ ᠶᠢᠨ ᠵᠦᠢᠯ",
 			"caption": "ᠬᠡᠷᠡᠭᠴᠡᠭᠡᠲᠦ ᠣᠷᠣᠭᠤᠯᠤᠯᠲᠠ ᠶᠢᠨ ᠵᠦᠢᠯ",
 			"items": {
-				"sourceLocale": "ᠡᠬᠢ ᠰᠤᠷᠪᠤᠯᠵᠢ ᠶᠢᠨ ᠭᠠᠵᠠᠷ ᠤᠨ （ ᠡᠳᠡᠭᠡᠷ ᠦᠨ {en} ） ᠵᠡᠷᠭᠡ ᠡᠬᠢ ᠪᠠᠶᠠᠯᠢᠭ ᠤᠨ ᠳᠠᠩᠰᠠ ᠡᠪᠬᠡᠮᠡᠯ ᠢ ᠡᠷᠢᠬᠦ ᠳᠦ ᠬᠡᠷᠡᠭᠯᠡᠳᠡᠭ {sourceGlob} ᠃ ᠡᠭᠦᠨ ᠢ ᠪᠠᠰᠠ ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ ᠳᠤ ᠲᠠᠮᠵᠢᠭᠤᠯᠤᠨ {fromLocale}᠃",
-				"subscriptionKey": "Azure AI Translator subscription key. ᠭᠠᠷᠬᠤ {secrets} ᠃",
-				"endpoint": "ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ ᠲᠡᠭᠦᠰᠭᠡᠯ ᠦᠨ ᠴᠡᠭ URL ᠂ ᠵᠢᠱᠢᠶᠡᠯᠡᠪᠡᠯ {endpointUrl}"
+				"sourceLocale": "ᠡᠬᠢ ᠰᠤᠷᠪᠤᠯᠵᠢ ᠶᠢᠨ ᠭᠠᠵᠠᠷ ᠤᠨ （ ᠡᠳᠡᠭᠡᠷ ᠦᠨ {en} ） ᠵᠡᠷᠭᠡ ᠡᠬᠢ ᠪᠠᠶᠠᠯᠢᠭ ᠤᠨ ᠳᠠᠩᠰᠠ ᠡᠪᠬᠡᠮᠡᠯ ᠢ ᠡᠷᠢᠬᠦ ᠳᠦ ᠬᠡᠷᠡᠭᠯᠡᠳᠡᠭ {sourceGlob} ᠃ ᠬᠠᠩᠭᠠᠭᠴᠢ ᠳᠤ {fromLocale} ᠢᠶᠠᠷ ᠬᠦᠷᠭᠡᠶ᠎ᠡ᠃"
+			}
+		},
+		"providerInputs": {
+			"heading": "Provider selection & credentials",
+			"caption": "Provider selection and per-vendor credentials",
+			"intro": "ᠨᠢᠭᠡ ᠤᠳᠠᠭ᠎ᠠ ᠳᠤ ᠨᠢᠭᠡ ᠬᠠᠩᠭᠠᠯᠭ᠎ᠠ ᠶᠢᠨ ᠬᠤᠳᠠᠯᠳᠤᠭᠠᠴᠢᠨ ᠰᠣᠩᠭᠣᠵᠤ {provider} ᠃ ᠵᠥᠪᠬᠡᠨ ᠰᠣᠩᠭᠣᠭᠳᠠᠭᠰᠠᠨ ᠬᠠᠩᠭᠠᠭᠴᠢ ᠶᠢᠨ ᠦᠨᠡᠮᠯᠡᠯ ᠢ ᠬᠠᠩᠭᠠᠬᠤ — {providersLink} ᠦ ᠵᠦᠭᠯᠡᠭᠦᠷ ᠲᠦ ᠪᠦᠬᠦ ᠲᠠᠯ᠎ᠠ ᠪᠠᠷ  ᠃",
+			"items": {
+				"provider": "ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ ᠄ {azure} （ ᠯᠠᠪᠯᠠᠯᠭ᠎ᠠ ᠦᠭᠡᠢ ） ᠂ {aws} ᠪᠤᠶᠤ {google} ᠠᠵᠢᠯᠯᠠᠭ᠎ᠠ ᠤᠲᠠᠰᠤᠷᠠᠭᠤᠯᠬᠤ ᠪᠦᠷᠢ ᠨᠢᠭᠡ ᠯᠡ ᠬᠠᠩᠭ᠋ᠠᠭᠴᠢ ᠬᠠᠩᠭ᠋ᠠᠭᠳᠠᠵᠤ ᠪᠠᠢᠢᠨ᠌‍ᠠ᠌ ᠃",
+				"subscriptionKey": "Azure AI Translator subscription key. （ ᠳᠥᠷᠪᠡ ） {azure} {secrets} ᠭᠠᠷᠤᠨ᠎ᠠ ᠃",
+				"endpoint": "Azure Translator endpoint URL, e.g. {endpointUrl}. ᠬᠡᠷᠡᠭ ᠲᠡᠶ {azure}",
+				"awsAccessKeyId": "AWS access key id. Optional — omit (with {awsSecretAccessKey}) AWSIS default credential chain / OIDC. {secrets} ᠭᠠᠷᠤᠨ᠎ᠠ ᠃",
+				"awsSecretAccessKey": "AWS secret access key. ᠡᠷᠬᠡᠪᠰᠢ {awsAccessKeyId} ᠬᠠᠮᠲᠤ ᠳᠤᠨᠢ ᠬᠠᠩᠭᠠᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠶ᠃ {secrets} ᠭᠠᠷᠤᠨ᠎ᠠ ᠃",
+				"awsSessionToken": "Optional AWS session token for temporary credentials. ᠭᠠᠷᠬᠤ {secrets} ᠃",
+				"awsRegion": "AWS Translate ᠦᠢᠯᠡᠴᠢᠯᠡᠭᠡᠨ ᠦ ᠭᠠᠵᠠᠷ ᠣᠷᠣᠨ ( ᠡᠳᠡᠭᠡᠷ {regionExample} ) ᠃ ᠣᠷᠴᠢᠨ ᠲᠣᠭᠣᠷᠢᠨ ᠳᠤ {aws}  ᠢ ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠬᠤ ᠠᠴᠠ {awsRegionEnv} ᠭᠡᠳ ᠱᠠᠭᠠᠷᠳᠠᠭᠳᠠᠬᠤ",
+				"googleApiKey": "Google Cloud API key ᠃ ᠡᠭᠦᠨ ᠢ ᠪᠤᠶᠤ {googleCredentials} {google} ᠠᠭᠠᠷ ᠭᠠᠷᠤᠨ᠎ᠠ {secrets} ᠃",
+				"googleCredentials": "Google Cloud service-account key as JSON string ᠃ ᠡᠭᠦᠨ ᠢ ᠪᠤᠶᠤ {googleApiKey} {google} ᠠᠭᠠᠷ ᠭᠠᠷᠤᠨ᠎ᠠ {secrets} ᠃",
+				"googleProjectId": "Google Cloud project ᠳ᠋ᠠᠩ ᠤᠨ ᠳᠠᠩ ᠳ᠋ᠤᠭᠠᠷ ᠢ ᠰᠤᠩᠭᠤᠬᠤ᠃ ᠶᠡᠷᠦᠳᠡᠭᠡᠨ ᠦᠢᠯᠡᠴᠢᠯᠡᠬᠦ ᠳᠠᠩᠰᠠᠨ ᠡᠷᠦᠬᠡ ᠶᠢᠨ ᠦᠨᠡᠮᠯᠡᠯ ᠡᠴᠡ ᠵᠦᠶᠢᠯ ᠡᠴᠡ ᠭᠠᠷᠤᠭᠰᠠᠨ ᠶᠤᠮ ᠃"
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ ᠱᠠᠭᠠᠷᠳᠠᠯᠭ᠎ᠠ ᠲᠠᠢ ᠪᠠᠷᠠᠭ᠎ᠠ",
-			"intro": "ᠡᠳᠡᠭᠡᠷ ᠵᠢᠷᠤᠭ ᠢ ᠪᠣᠯ Azure AI Translator v3 query ᠪᠤᠯᠵᠤᠷᠪᠤᠰ ᠲᠤ ᠰᠢᠭᠤᠳ ᠬᠦᠷᠭᠡᠨ᠎ᠡ ᠃ ᠬᠥᠮᠥᠨ ᠪᠣᠯᠭᠠᠨ ᠢ ᠰᠤᠯᠢᠵᠤ ᠪᠣᠯᠣᠨ᠎ᠠ ᠃ ᠤᠳᠤᠷᠢᠳᠤᠯᠭ᠎ᠠ ᠶᠢᠨ ᠪᠠᠷᠢᠮᠵᠢᠶ᠎ᠠ ᠶᠢ ᠲᠣᠭᠲᠠᠭᠠᠬᠤ ᠠᠴᠠ ᠭᠠᠳᠠᠭᠤᠷ ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ ᠶᠢ ᠲᠣᠬᠢᠷᠠᠨ᠎ᠠ ᠃",
-			"caption": "ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ ᠱᠠᠭᠠᠷᠳᠠᠯᠭ᠎ᠠ ᠲᠠᠢ ᠪᠠᠷᠠᠭ᠎ᠠ",
+			"heading": "Azure Translator request inputs",
+			"intro": "ᠡᠳᠡᠭᠡᠷ ᠵᠢᠷᠤᠭ ᠢ ᠰᠢᠭᠤᠳ Azure AI ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ v3 queryᠬᠤ ᠪᠤᠯᠵᠤᠯ ᠳᠤ ᠰᠢᠭᠤᠳ ᠲᠠᠯᠪᠢᠵᠤ᠂ Azure ᠬᠠᠩᠭᠠᠭᠴᠢ ᠳᠤ ᠬᠡᠷᠡᠭ᠍ᠯᠡᠨ᠎ᠡ ᠃ textType ᠪᠠ ᠰᠠᠮᠠᠭᠤᠷᠠᠯ ᠦᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭ᠎ᠠ ᠲᠠᠢ ᠲᠡᠩᠴᠡᠭᠦᠦ ᠨᠢ ᠪᠠᠰᠠ AWS/Google ᠳᠤ ᠬᠣᠯᠪᠣᠨ ᠭᠠᠷᠠᠭᠠᠨ᠎ᠠ ( ᠬᠠᠩᠭᠠᠭᠴᠢᠳ ᠤᠨ ᠵᠢᠭᠠᠪᠤᠷᠢ ᠵᠢ ᠦᠵᠡ ) ᠦᠯᠡᠳᠡᠭᠰᠡᠨ ᠨᠢ ᠵᠥᠪᠬᠡᠨ ᠬᠥᠬᠡ ᠥᠩᠭᠡ ᠲᠡᠢ ᠃ ᠬᠥᠮᠥᠨ ᠪᠣᠯᠭᠠᠨ ᠢ ᠰᠤᠯᠢᠵᠤ ᠪᠣᠯᠣᠨ᠎ᠠ ᠃ ᠤᠳᠤᠷᠢᠳᠤᠯᠭ᠎ᠠ ᠶᠢᠨ ᠪᠠᠷᠢᠮᠵᠢᠶ᠎ᠠ ᠶᠢ ᠲᠣᠭᠲᠠᠭᠠᠬᠤ ᠠᠴᠠ ᠭᠠᠳᠠᠭᠤᠷ ᠣᠷᠴᠢᠭᠤᠯᠤᠭᠴᠢ ᠶᠢ ᠲᠣᠬᠢᠷᠠᠨ᠎ᠠ ᠃",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. {categoryQuery} ᠪᠠᠷ ᠲᠠᠮᠵᠢᠭᠤᠯᠬᠤ",
 				"textType": "{plain} ᠪᠤᠶᠤ {html} {html} ᠤᠨ ᠬᠡᠮᠵᠢᠭᠳᠡᠯ ᠨᠢ ᠵᠢᠩᠬᠢᠨᠢ HTML ᠵᠤᠷᠪᠤᠰ ᠪᠣᠯᠬᠤ ᠦᠶᠡᠰ ᠰᠠᠶᠢ ᠬᠡᠷᠡᠭ᠍ᠯᠡ ᠃",

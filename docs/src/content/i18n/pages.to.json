@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Maʻuʻanga Tokoni Liliu lea",
-		"description": "ʻOku fakaava ʻe he Resource Translator ʻa e ngaahi kole ke toʻo hoʻo ngaahi faile maʻuʻanga tokoni ʻi ha faʻahinga repo, ʻi ha faʻahinga founga pe — ʻoku fakalele ʻe he Azure AI Translator.",
+		"description": "ʻOku fakaava ʻe he Resource Translator ʻa e ngaahi kole toʻotoʻo ki hoʻo ngaahi faile maʻuʻanga tokoni ʻi ha faʻahinga repo pe, ʻi ha faʻahinga founga pe — ʻoku fakalele ʻe he Azure AI Translator, AWS Translate, pe Google Cloud Translation.",
 		"socialTitle": "Resource Translator — liliu ʻa e ngaahi faile maʻuʻanga tokoni he taimi pe ko ia",
-		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Fakafeituʻu hoʻo repo ʻi he",
 		"headlineAccent": "tukupa kotoa pe.",
-		"lede": "ʻOku fakaava ʻe he Resource Translator ʻa e ngaahi kole ke toʻo hoʻo ngaahi faile maʻuʻanga tokoni ʻo fakaʻaongaʻi ʻa e Azure AI Translator ʻo fakafou ʻi he SDK fakaʻofisiale — ʻikai ha toe ngaahi ngaue kehe, ko ha founga ngaue pe.",
+		"lede": "ʻOku fakaava ʻe he Resource Translator ʻa e ngaahi kole toʻotoʻo kuo liliu fakamisini ki hoʻo ngaahi faile maʻuʻanga tokoni ʻo fakaʻaongaʻi ʻa e Azure, AWS, pe Google — ngaue fakatahataha ʻe taha, kautaha ʻe taha ʻi he lele, SDKs fakaʻofisiale ʻi lalo ʻi he hood.",
 		"primaryCta": "Kamata",
 		"secondaryCta": "Fetuʻu ʻi he GitHub",
 		"supports": "Ngaahi Poupou",
 		"builtForShipping": "Langa ki he uta",
 		"workflowTitle": "Ko e liliu lea ko ha founga ngaue, kae ʻikai ko ha ngaue.",
-		"workflowBody": "Tuku ʻa e ngaue ki hoʻo CI lolotonga, tuhu ki he Azure AI Translator, pea tuku ke lea ʻaki ʻe hoʻo repo ʻa e lea fakafonua kotoa pe ʻoku ke fakataumuʻa ki ai.",
+		"workflowBody": "Tuku ʻa e ngaue ki hoʻo CI lolotonga, tuhu ki he Azure, AWS, pe Google, pea tuku ke lea ʻaki ʻe hoʻo repo ʻa e lea fakafonua kotoa pe ʻoku ke fakataumuʻa ki ai.",
 		"stats": {
 			"audit": "0 Ngaahi palopalema ʻo e ʻaotita npm",
-			"tests": "Ngaahi sivi ʻe 150",
+			"tests": "240+ ngaahi sivi",
 			"node": "Node 20 / 22 / 24",
-			"sdk": "Azure SDK fakaʻofisiale"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails}, mo e {hasNewTranslations} ʻoku fakahu fakahangatonu ia ki he create-pull-request."
 			},
 			"sdk": {
-				"title": "Azure SDK fakaʻofisiale",
-				"body": "Langa ʻi he {azureSdk} + {corePipeline} — automatic retries on {statusCodes}, no hand-rolled HTTP. {esbuild}-fakatahatahaʻi, ʻaotita-maʻa."
+				"title": "Azure, AWS & Google",
+				"body": "Fili ha kautaha ʻe taha ʻi he lele takitaha. ʻOku fakalele ʻe heʻene SDK fakaʻofisiale ({azureSdk}, {awsSdk}, {googleSdk}) mo e ngaahi feinga fakahangatonu ʻi he {statusCodes} — ʻikai ha HTTP ʻoku takai nima. {esbuild}-fakatahatahaʻi, ʻaotita-maʻa."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Mateuteu ke localize ʻi he autopilot?",
-			"body": "Ki ʻe taha ʻo e Azure AI Translator, faile workflow ʻe taha. ʻOku tokangaʻi ʻe he Resource Translator ʻa e toenga.",
+			"body": "Ko e ki ʻe taha ʻo e kautaha — Azure, AWS, pe Google — mo e faile workflow ʻe taha. ʻOku tokangaʻi ʻe he Resource Translator ʻa e toenga.",
 			"button": "Kamata"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Sitepu hoko",
 			"configuration": "Configure ʻa e ngaahi default ʻi he tuʻunga ʻo e repo ʻaki ʻa e {configPath}.",
 			"recipes": "Vakai ki he ngaahi founga feimeʻatokoni ki he monorepos, custom glossaries, mo e Custom Translator categories."
+		}
+	},
+	"providers": {
+		"title": "Kau maʻu liliu lea",
+		"eyebrow": "Maʻuʻanga Fakamatala",
+		"lede": "Fili ha kautaha liliu lea ʻe taha ʻi he lele — Azure AI Translator, AWS Translate, pe Google Cloud Translation — ʻi mui ʻi ha API ʻe taha. ʻOku tatau pe ʻa e ʻulungaanga ʻo e tokotaha liliu lea ʻo tatau ai pe pe ko e tokotaha ʻoku ne ʻomai; ko e ngaahi tohi fakamoʻoni pe ʻoku faikehekehe.",
+		"backwardCompatible": "Kakato ʻa e fenapasi ki mui: ʻ{provider} default ki he {azure}, ko ia ʻoku kei ngaue pe ʻa e Azure workflows lolotonga ʻo ʻikai liliu — ʻikai fie maʻu ha liliu.",
+		"selecting": {
+			"title": "Ko hono fili ʻo ha kautaha",
+			"body": "Fokotuʻu ʻa e {provider} input ki he {azure} (default), {aws}, pe {google}, pea ʻomi leva ʻa e ngaahi tohi fakamoʻoni ʻa e kautaha ko ia. Ko e kautaha pe ʻe taha ʻoku fakaʻaongaʻi ʻi he uiuiʻi ngaue; ʻoku fakapapauʻi ʻe he ngaue ki he SDK tatau ʻi mui ʻi ha fale ngaue."
+		},
+		"comparison": {
+			"title": "Fakafehoanaki ʻo e kautaha",
+			"caption": "Fakafehoanaki ʻo e kautaha liliu lea",
+			"columns": {
+				"provider": "Tokotaha Foaki",
+				"value": "mahuʻinga ʻo e tokotaha ʻoku ne ma",
+				"sdk": "SDK",
+				"credentials": "Ngaahi tohi fakamoʻoni"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "azure (default)",
+				"credentials": "subscriptionKey, endpoint, region (fili pe)"
+			},
+			"aws": {
+				"name": "Liliu ʻa e AWS",
+				"value": "AWS",
+				"credentials": "OIDC / seini default, pe awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud Translation",
+				"value": "Google",
+				"credentials": "googleApiKey PE googleCredentials (service-account JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Ko e tokotaha ʻoku ʻomai ʻe he kautaha ʻoku ʻikai ke ʻOmi ha maʻuʻanga tokoni ʻa e Azure AI Translator pea paasi ʻa e {subscriptionKey}, {endpoint}, mo e fili ke {region}. Ko e fokotuʻutuʻu tatau pe ʻeni kuo ʻosi fakaʻaongaʻi ʻe he ngaahi founga ngaue lolotonga."
+		},
+		"aws": {
+			"title": "Liliu ʻa e AWS",
+			"body": "Fakaʻaongaʻi {sdk}. Saiʻia ange ʻi he OIDC ʻo fakafou ʻi he {configureAwsCredentials} koeʻuhi ke ʻoua naʻa tauhi ha ngaahi fakapulipuli fuoloa — ʻoku lau ʻe he ngaue ʻa e seini fakamoʻoni ʻo e AWS SDK. ʻE taha, paasi {awsAccessKeyId} pea {awsSecretAccessKey} mahino. ʻOku fie maʻu maʻu pe ha feituʻu, ʻo fakafou ʻi he {awsRegion} pe ko e {awsRegionEnv} ʻatakai feliliuaki.",
+			"oidcTitle": "OIDC (fokotuʻu atu)",
+			"keysNote": "Ke fakaʻaongaʻi ʻa e ngaahi ki static kae ʻikai ko e OIDC, tukuange ʻa e sitepu {configureAwsCredentials} pea paasi ʻa e {awsAccessKeyId} / {awsSecretAccessKey} (ʻo fakafou ʻi he {secrets}) mo e {awsRegion}."
+		},
+		"google": {
+			"title": "Google Cloud Translation",
+			"body": "Fakaʻaongaʻi ʻa e {sdk} (v2). Fakapapauʻi ʻaki ha ki API ({googleApiKey}) pe ko ha tohi fakamoʻoni JSON ʻakauni ngaue ({googleCredentials}). ʻOmai ʻa e taha; ʻoku ʻi ai ha {googleProjectId} fili mei he tohi fakamoʻoni ʻi he taimi ʻoku toʻo ai."
+		},
+		"mapping": {
+			"title": "Mape ʻo e taumuʻa-specifier",
+			"body": "ʻOku mape ʻa e specifiers pau ʻa e kautaha ʻi he feituʻu ʻoku ʻi ai ha meʻa tatau. ʻOku foki ʻa e meʻa kotoa pe ki he ngaahi meʻa ʻoku ʻikai ke fai lelei koeʻuhi ke tuʻu maʻu pe ʻa e ʻulungaanga.",
+			"caption": "Mape ʻo e intent-specifier ʻi he ngaahi kautaha",
+			"columns": {
+				"input": "Fakahu",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Poupouʻi",
+			"ignored": "Tukunoaʻi",
+			"rows": {
+				"textType": {
+					"azure": "textType (plain / html)",
+					"aws": "Tukunoaʻi (ʻikai ha toggle)",
+					"google": "Format (text / html)"
+				},
+				"profanityAction": {
+					"azure": "Poupou kakato",
+					"aws": "Fakaʻilongaʻi / Tamateʻi ʻa e → masking",
+					"google": "Tukunoaʻi"
+				},
+				"categoryId": {
+					"azure": "Tokotaha Liliu Lea Angamaheni",
+					"aws": "Tukunoaʻi",
+					"google": "Tukunoaʻi"
+				},
+				"allowFallback": {
+					"azure": "Poupouʻi",
+					"aws": "Tukunoaʻi",
+					"google": "Tukunoaʻi"
+				}
+			}
+		},
+		"locales": {
+			"title": "ʻOku kehekehe ʻa e ngaahi kouti fakalotofonua ʻi he kautaha ʻoku nau ʻomai",
+			"body": "ʻOku fakaʻaongaʻi ʻe he kautaha takitaha ʻa e ngaahi kouti fakalotofonua pe ʻanautolu (hange ko ʻeni, ʻoku {azureCode} ʻa e lea faka-Siaina Faingofua ʻi he Azure, {awsCode} ʻi he AWS, mo e {googleCode} ʻi he Google). ʻOku hu atu ʻa e ngaahi kouti ʻi he tuʻunga ʻoku ʻi ai pea fakalele ʻa e ngaahi hingoa ʻo e faile output, ko ia fili {toLocales}ʻa e ngaahi tuʻunga ʻulungaanga mahuʻinga ʻoku poupouʻi ʻe hoʻo kautaha kuo fili."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Ngaahi meʻa ʻoku fie maʻu",
 			"caption": "Ngaahi meʻa ʻoku fie maʻu",
 			"items": {
-				"sourceLocale": "ʻOku fakaʻaongaʻi ʻa e feituʻu maʻuʻanga tokoni (e.g. {en}) ke kumi ʻa e ngaahi faile ʻo e maʻuʻanga tokoni hange ko e {sourceGlob}. Naʻe toe ʻave foki ki he Translator ko e {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. Paasi ʻi he {secrets}.",
-				"endpoint": "URL ʻo e endpoint ʻo e tokotaha liliu lea, e.g. {endpointUrl}."
+				"sourceLocale": "ʻOku fakaʻaongaʻi ʻa e feituʻu maʻuʻanga tokoni (e.g. {en}) ke kumi ʻa e ngaahi faile ʻo e maʻuʻanga tokoni hange ko e {sourceGlob}. Naʻe toe ʻave foki ki he kautaha ko e {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Fili ʻo e kautaha mo e ngaahi tohi fakamoʻoni",
+			"caption": "Fili ʻo e kautaha mo e ngaahi tohi fakamoʻoni ʻa e tokotaha fakatau koloa",
+			"intro": "Fili ha kautaha ʻe taha ʻi he lele ʻa e {provider}. ʻOatu pe ʻa e ngaahi tohi fakamoʻoni ʻa e kautaha kuo fili — vakai ki he fakahinohino ki he {providersLink} ki hono fokotuʻutuʻu kakato.",
+			"items": {
+				"provider": "Tokotaha ʻoku nau maʻu ʻa e liliu: {azure} (default), {aws}, pe {google}. Ko e kautaha pe ʻe taha ʻoku fakaʻaongaʻi ʻi he uiuiʻi ngaue.",
+				"subscriptionKey": "Azure AI Translator subscription key. Fie maʻu ki he {azure}. Fou atu ʻi he {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, e.g. {endpointUrl}. Fiemaʻu ki he {azure}.",
+				"awsAccessKeyId": "AWS access key id. Fili — toʻo (mo e {awsSecretAccessKey}) ke fakaʻaongaʻi ʻa e AWS default credential chain / OIDC. Fou atu ʻi he {secrets}.",
+				"awsSecretAccessKey": "AWS secret access key. Kuo pau ke ʻomai fakataha mo e {awsAccessKeyId}. Fou atu ʻi he {secrets}.",
+				"awsSessionToken": "Fili ʻa e AWS session token ki he ngaahi tohi fakamoʻoni fakataimi. Paasi ʻi he {secrets}.",
+				"awsRegion": "Vahefonua AWS ki he ngaue Liliu (e.g. {regionExample}). Fie maʻu ki he {aws} tukukehe kapau ʻoku fokotuʻu {awsRegionEnv} ʻi he ʻatakai.",
+				"googleApiKey": "Google Cloud API key. ʻOange ʻa e {googleCredentials} PE ko ʻeni ki he {google}. Fou atu ʻi he {secrets}.",
+				"googleCredentials": "Google Cloud service-account key as a JSON string. ʻOange ʻa e {googleApiKey} PE ko ʻeni ki he {google}. Fou atu ʻi he {secrets}.",
+				"googleProjectId": "Fili pe ʻa e Google Cloud project id. ʻOku faʻa fakaʻaongaʻi ia mei he tohi fakamoʻoni ʻo e ʻakauni ngaue."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Kole ʻa e tokotaha liliu lea ke fakahu mai",
-			"intro": "ʻOku mape fakahangatonu ʻeni ki he Azure AI Translator v3 query parameters. ʻOku fili pe ʻa e meʻa kotoa pe; ʻoku fakaʻaongaʻi ʻa e default ʻa e Translator ʻi he taimi ʻoku ʻikai seti ai.",
-			"caption": "Kole ʻa e tokotaha liliu lea ke fakahu mai",
+			"heading": "Azure Translator request inputs",
+			"intro": "ʻOku mape fakahangatonu ʻeni ki he Azure AI Translator v3 query parameters pea fakaʻaongaʻi ki he azure provider. ʻOku toe mape foki ʻa e textType mo e kapekapeʻi ki he AWS/Google ʻi he feituʻu ʻoku ʻi ai ha tatau (vakai ki he fakahinohino ʻa e ngaahi kautaha tokoni); ko e toenga ko e Azure pe. ʻOku fili pe ʻa e meʻa kotoa pe; ʻoku fakaʻaongaʻi ʻa e default ʻa e Translator ʻi he taimi ʻoku ʻikai seti ai.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} kulupu — ko e ngaueʻanga/domain/tone knob. ʻAve ko e {categoryQuery}.",
 				"textType": "{plain} pe {html}. Fakaʻaongaʻi pe ʻ{html} ʻi he taimi ʻoku hoko ai hoʻo ngaahi maʻuʻanga tokoni ko ha ngaahi kongokonga HTML moʻoni.",

@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Hulpbronvertaler",
-		"description": "Resource Translator open masjien-vertaalde pull requests vir jou hulpbronlêers in enige reposiasie, in enige formaat — aangedryf deur Azure AI Translator.",
+		"description": "Resource Translator maak masjien-vertaalde pull requests vir jou hulpbronlêers oop in enige bewaarplek, in enige formaat — aangedryf deur Azure AI Translator, AWS Translate, of Google Cloud Translation.",
 		"socialTitle": "Hulpbronvertaler — vertaal hulpbronlêers outomaties",
-		"badge": "v3.0 — Node 24, repo-konfigurasie, woordelys, droë loop",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Lokaliseer jou repo op",
 		"headlineAccent": "elke toewyding.",
-		"lede": "Resource Translator maak masjien-vertaalde pull requests vir jou hulpbronlêers oop met Azure AI Translator via die amptelike SDK — geen ekstra dienste nie, net 'n werkvloei.",
+		"lede": "Resource Translator open masjienvertaalde pull requests vir jou hulpbronlêers met behulp van Azure, AWS of Google — een verenigde aksie, een verskaffer per lopie, amptelike SDK's onder die enjinkap.",
 		"primaryCta": "Begin",
 		"secondaryCta": "Star op GitHub",
 		"supports": "Ondersteunings",
 		"builtForShipping": "Gebou vir skeepsvaart",
 		"workflowTitle": "Vertaling as 'n werkvloei, nie 'n las nie.",
-		"workflowBody": "Plaas die aksie in jou bestaande CI, wys dit na Azure AI Translator, en laat jou repo elke taal praat wat jy teiken.",
+		"workflowBody": "Plaas die aksie in jou bestaande CI, wys dit na Azure, AWS of Google, en laat jou repo elke taal praat wat jy teiken.",
 		"stats": {
 			"audit": "0 npm-ouditkwessies",
-			"tests": "150 toetse",
+			"tests": "240+ toetse",
 			"node": "Node 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} en {hasNewTranslations} direk in skep-trek-versoek ingepas."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Gebou op {azureSdk} + {corePipeline} — outomatiese herpogings op {statusCodes}, geen handgerolde HTTP nie. {esbuild} gebundel, oudit-skoon."
+				"title": "Azure, AWS & Google",
+				"body": "Kies een verskaffer per lopie. Elkeen word aangedryf deur sy amptelike SDK ({azureSdk}, {awsSdk}, {googleSdk}) met outomatiese herpogings op {statusCodes} — geen handgerolde HTTP nie. {esbuild}-gebundel, oudit-skoon."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Gereed om op outopilot te lokaliseer?",
-			"body": "Een Azure AI Translator-sleutel, een workflow-lêer. Resource Translator hanteer die res.",
+			"body": "Een verskaffersleutel — Azure, AWS of Google — en een werkvloeilêer. Resource Translator hanteer die res.",
 			"button": "Begin"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Volgende stappe",
 			"configuration": "Konfigureer repo-vlak verstekinstellings met {configPath}.",
 			"recipes": "Sien resepte vir monorepos, pasgemaakte woordelys, en Pasgemaakte Vertaler-kategorieë."
+		}
+	},
+	"providers": {
+		"title": "Vertaalverskaffers",
+		"eyebrow": "Verwysing",
+		"lede": "Kies een vertaalverskaffer per loop — Azure AI Translator, AWS Translate, of Google Cloud Translation — agter 'n enkele, verenigde API-oppervlak. Die vertaler tree identies op ongeag die verskaffer; Slegs die kwalifikasies verskil.",
+		"backwardCompatible": "Volledig agtertoe versoenbaar: {provider} standaard op {azure}, sodat bestaande Azure-werkvloeie onveranderd bly werk — geen wysigings nodig nie.",
+		"selecting": {
+			"title": "Keuse van 'n verskaffer",
+			"body": "Stel die {provider} inset op {azure} (standaard), {aws} of {google}, en verskaf dan daardie verskaffer se geloofsbriewe daar. Slegs een verskaffer word per aksieoproep gebruik; die aksie delegeer deterministies aan die ooreenstemmende SDK agter 'n fabriek."
+		},
+		"comparison": {
+			"title": "Verskaffervergelyking",
+			"caption": "Vergelyking van vertaalverskaffers",
+			"columns": {
+				"provider": "Verskaffer",
+				"value": "Verskafferwaarde",
+				"sdk": "SDK",
+				"credentials": "Kwalifikasies"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (standaard)",
+				"credentials": "intekeningSleutel, eindpunt, streek (opsioneel)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "aws",
+				"credentials": "OIDC / standaardketting, of awsAccessKeyId + awsSecretAccessKey; awsStreek"
+			},
+			"google": {
+				"name": "Google Cloud Translation",
+				"value": "Google",
+				"credentials": "googleApiKey OF googleCredentials (diensrekening JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Die standaardverskaffer. Voorsien 'n Azure KI-vertalerhulpbron en slaag {subscriptionKey}, {endpoint}, en opsioneel {region}. Dit is dieselfde konfigurasie wat bestaande werkvloeie reeds gebruik."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Gebruik {sdk}. Verkies OIDC via {configureAwsCredentials} sodat geen langlewende geheime gestoor word nie — die aksie lees die AWS SDK se standaard geloofsbriewe ketting. Alternatiewelik, slaag {awsAccessKeyId} en {awsSecretAccessKey} uitdruklik. 'n Gebied is altyd nodig, via {awsRegion} of die {awsRegionEnv} omgewingsveranderlike.",
+			"oidcTitle": "OIDC (aanbeveel)",
+			"keysNote": "Om statiese sleutels in plaas van OIDC te gebruik, los die {configureAwsCredentials} stap en gee {awsAccessKeyId} / {awsSecretAccessKey} (via {secrets}) plus {awsRegion} deur."
+		},
+		"google": {
+			"title": "Google Cloud Translation",
+			"body": "Gebruik {sdk} (v2). Verifieer met óf 'n API-sleutel ({googleApiKey}) óf 'n diensrekening JSON-akkreditasie ({googleCredentials}). Voorsien presies een; 'n Opsionele {googleProjectId} word uit die kwalifikasie afgelei wanneer dit weggelaat word."
+		},
+		"mapping": {
+			"title": "Intent-spesifiseerder afbeelding",
+			"body": "Verskaffer-spesifieke spesifiseerders word gekarteer waar 'n ekwivalent bestaan. Alles anders val terug op sinvolle standaarde sodat gedrag konsekwent bly.",
+			"caption": "Intent-spesifiseerder-kartering oor verskaffers heen",
+			"columns": {
+				"input": "Insette",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Ondersteun",
+			"ignored": "Geïgnoreer",
+			"rows": {
+				"textType": {
+					"azure": "textType (plain / html)",
+					"aws": "Geïgnoreer (geen skakelaar nie)",
+					"google": "Formaat (teks / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Volle ondersteuning",
+					"aws": "Gemerk / Verwyder → maskering",
+					"google": "Geïgnoreer"
+				},
+				"categoryId": {
+					"azure": "Pasgemaakte Vertaler",
+					"aws": "Geïgnoreer",
+					"google": "Geïgnoreer"
+				},
+				"allowFallback": {
+					"azure": "Ondersteun",
+					"aws": "Geïgnoreer",
+					"google": "Geïgnoreer"
+				}
+			}
+		},
+		"locales": {
+			"title": "Lokaliteitskodes verskil per verskaffer",
+			"body": "Elke verskaffer gebruik sy eie lokasiekodes (byvoorbeeld Vereenvoudigde Chinees is {azureCode} op Azure, {awsCode} op AWS, en {googleCode} op Google). Kodes gaan deur soos dit is en dryf die uitsetlêername, so kies {toLocales} waardes wat jou gekose verskaffer ondersteun."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Vereiste insette",
 			"caption": "Vereiste insette",
 			"items": {
-				"sourceLocale": "Bronligging (bv. {en}) wat gebruik word om hulpbronlêers soos {sourceGlob} te vind. Ook deurgestuur na Vertaler as {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. Gaan via {secrets}.",
-				"endpoint": "Vertaler-eindpunt URL, bv. {endpointUrl}."
+				"sourceLocale": "Bronligging (bv. {en}) wat gebruik word om hulpbronlêers soos {sourceGlob} te vind. Dit is ook as {fromLocale} aan die verskaffer deurgestuur."
+			}
+		},
+		"providerInputs": {
+			"heading": "Verskafferkeuse en geloofsbriewe",
+			"caption": "Verskafferkeuse en per-verskaffer geloofsbriewe",
+			"intro": "Kies een verskaffer per lopie met {provider}. Verskaf slegs die gekose verskaffer se geloofsbriewe — sien die {providersLink} gids vir volledige opstelling.",
+			"items": {
+				"provider": "Vertaalverskaffer: {azure} (standaard), {aws}, of {google}. Slegs een verskaffer word per aksieoproep gebruik.",
+				"subscriptionKey": "Azure AI Translator subscription key. Vereis vir {azure}. Gaan via {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, bv. {endpointUrl}. Vereis vir {azure}.",
+				"awsAccessKeyId": "AWS toegangssleutel-ID. Opsioneel — laat (met {awsSecretAccessKey}) die gebruik van die AWS standaard geloofsbewysketting / OIDC uit. Gaan via {secrets}.",
+				"awsSecretAccessKey": "AWS geheime toegangssleutel. Dit moet saam met {awsAccessKeyId} voorsien word. Gaan via {secrets}.",
+				"awsSessionToken": "Opsionele AWS-sessietoken vir tydelike geloofsbriewe. Gaan via {secrets}.",
+				"awsRegion": "AWS-streek vir die Translate-diens (bv. {regionExample}). Vereis vir {aws} tensy {awsRegionEnv} in die omgewing afspeel.",
+				"googleApiKey": "Google Cloud API-sleutel. Verskaf hierdie OF {googleCredentials} vir {google}. Gaan deur {secrets}.",
+				"googleCredentials": "Google Cloud diens-rekening sleutel as 'n JSON-string. Verskaf hierdie OF {googleApiKey} vir {google}. Gaan deur {secrets}.",
+				"googleProjectId": "Opsionele Google Cloud projek-ID. Gewoonlik afgelei uit die diensrekening-geloofsbriewe."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Vertalerversoek-insette",
-			"intro": "Hierdie kaart direk na Azure AI Translator v3-navraagparameters. Elkeen is opsioneel; die verstekinstellings van Vertaler geld wanneer dit ontstel word.",
-			"caption": "Vertalerversoek-insette",
+			"heading": "Azure Translator request inputs",
+			"intro": "Hierdie koppel direk aan Azure AI Translator v3 navraagparameters en pas toe op die Azure-verskaffer. textType en vloekaksie word ook aan AWS/Google gekoppel waar 'n ekwivalent bestaan (sien die verskaffersgids); die res is slegs Azure. Elkeen is opsioneel; die verstekinstellings van Vertaler geld wanneer dit ontstel word.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} kategorie — die bedryf/domein/toonknoppie. Gestuur soos {categoryQuery}.",
 				"textType": "{plain} of {html}. Gebruik {html} net wanneer jou hulpbronwaardes regte HTML-fragmente is.",

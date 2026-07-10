@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Traducător de resurse",
-		"description": "Resource Translator deschide pull request-uri traduse automat pentru fișierele tale de resurse în orice repo, în orice format — alimentat de Azure AI Translator.",
+		"description": "Resource Translator deschide pull request-uri traduse automat pentru fișierele tale de resurse în orice repo, în orice format — alimentat de Azure AI Translator, AWS Translate sau Google Cloud Translation.",
 		"socialTitle": "Translator de resurse — traduce automat fișierele de resurse",
-		"badge": "v3.0 — Node 24, configurarea repo-ului, glosarul, execuția la uscat",
+		"badge": "v3.0 — Azure, furnizori AWS & Google, Node 24, repo config",
 		"headlinePrefix": "Localizează-ți depozitul pe",
 		"headlineAccent": "Fiecare angajament.",
-		"lede": "Resource Translator deschide pull request-uri traduse automat pentru fișierele tale de resurse folosind Azure AI Translator prin SDK-ul oficial — fără servicii suplimentare, doar un flux de lucru.",
+		"lede": "Resource Translator deschide pull request-uri traduse automat pentru fișierele tale de resurse folosind Azure, AWS sau Google — o acțiune unificată, un furnizor pe rulare, SDK-uri oficiale în interior.",
 		"primaryCta": "Începe",
 		"secondaryCta": "Star pe GitHub",
 		"supports": "Suporturi",
 		"builtForShipping": "Construit pentru transport",
 		"workflowTitle": "Traducerea ca un flux de lucru, nu o corvoadă.",
-		"workflowBody": "Introdu acțiunea în CI-ul tău existent, îndreaptă spre Azure AI Translator și lasă repository-ul să vorbească toate limbile pe care le vizezi.",
+		"workflowBody": "Introdu acțiunea în CI-ul tău existent, îndreaptă spre Azure, AWS sau Google și lasă repository-ul să vorbească toate limbile vizate.",
 		"stats": {
 			"audit": "0 probleme de audit NPM",
-			"tests": "150 de teste",
+			"tests": "240+ teste",
 			"node": "Nodul 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} și {hasNewTranslations} se integrează direct în create-pull-request."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Construit pe {azureSdk} + {corePipeline} — încercări automate pe {statusCodes}, fără HTTP rulat manual. {esbuild} în pachet, curat-audit."
+				"title": "Azure, AWS & Google",
+				"body": "Alege un furnizor pe fiecare rundă. Fiecare este controlat de SDK-ul său oficial ({azureSdk}, {awsSdk}, {googleSdk}) cu reîncercări automate pe {statusCodes} — fără HTTP rulat manual. {esbuild} împachetate, curate la audit."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Ești gata să localizezi pe pilot automat?",
-			"body": "O cheie Azure AI Translator, un fișier de workflow. Traducătorul de resurse se ocupă de restul.",
+			"body": "O cheie de furnizor — Azure, AWS sau Google — și un fișier de flux de lucru. Traducătorul de resurse se ocupă de restul.",
 			"button": "Începe"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Pașii următori",
 			"configuration": "Configurează setările implicite la nivel de depozit cu {configPath}.",
 			"recipes": "Vezi rețete pentru monorepos, glosare personalizate și categorii de traducători personalizate."
+		}
+	},
+	"providers": {
+		"title": "Furnizori de traduceri",
+		"eyebrow": "Referință",
+		"lede": "Alegeți un singur furnizor de traduceri pe fiecare rulare — Azure AI Translator, AWS Translate sau Google Cloud Translation — în spatele unei singure superfețe API unificate. Traducătorul se comportă identic indiferent de furnizor; Doar acreditările diferă.",
+		"backwardCompatible": "Complet compatibil cu versiunile înapoi: {provider} implicit pe {azure}, astfel încât fluxurile de lucru existente din Azure continuă să funcționeze neschimbate — fără modificări necesare.",
+		"selecting": {
+			"title": "Alegerea unui furnizor",
+			"body": "Setează intrarea {provider} la {azure} (implicit), {aws} sau {google}, apoi furnizează datele de autentificare ale acelui furnizor. Se folosește un singur furnizor pentru fiecare apel de acțiune; acțiunea delegă determinist către SDK-ul corespunzător din spatele unei fabrici."
+		},
+		"comparison": {
+			"title": "Comparație furnizori",
+			"caption": "Comparație furnizori de traduceri",
+			"columns": {
+				"provider": "Furnizor",
+				"value": "Valoarea furnizorului",
+				"sdk": "SDK",
+				"credentials": "Acreditări"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (implicit)",
+				"credentials": "subscriptionKey, endpoint, regiune (opțional)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "aws",
+				"credentials": "OIDC / lanț implicit, sau awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Traducerea Google Cloud",
+				"value": "Google",
+				"credentials": "googleApiKey SAU googleCredentials (JSON al contului de serviciu)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (implicit)",
+			"body": "Furnizorul implicit. Asigură o resursă Azure AI Translator și trece {subscriptionKey}, {endpoint} și opțional {region}. Aceasta este aceeași configurație pe care deja o folosesc fluxurile de lucru existente."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Folosește {sdk}. Preferă OIDC prin {configureAwsCredentials} astfel încât să nu fie stocate secrete de lungă durată — acțiunea citește lanțul implicit de credențiale AWS SDK. Alternativ, transmite {awsAccessKeyId} și {awsSecretAccessKey} explicit. Este întotdeauna necesară o regiune, prin {awsRegion} sau variabila de mediu {awsRegionEnv}.",
+			"oidcTitle": "OIDC (recomandat)",
+			"keysNote": "Pentru a folosi chei statice în loc de OIDC, elimină pasul {configureAwsCredentials} și treci {awsAccessKeyId} / {awsSecretAccessKey} (prin {secrets}) plus {awsRegion}."
+		},
+		"google": {
+			"title": "Traducerea Google Cloud",
+			"body": "Folosește {sdk} (v2). Autentificați-vă fie cu o cheie API ({googleApiKey}), fie cu o credențială JSON a contului de serviciu ({googleCredentials}). Furnizează exact unul; un {googleProjectId} opțional este dedus din acreditare când este omis."
+		},
+		"mapping": {
+			"title": "Maparea specificatorului de intenție",
+			"body": "Specificatorii specifici furnizorului sunt mapați acolo unde există un echivalent. Tot restul se întoarce la valori implicite rezonabile, astfel încât comportamentul rămâne consecvent.",
+			"caption": "Cartografierea specificatorilor de intenție între furnizori",
+			"columns": {
+				"input": "Intrare",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Susținut",
+			"ignored": "Ignorat",
+			"rows": {
+				"textType": {
+					"azure": "textType (simplu / html)",
+					"aws": "Ignorat (fără comutare)",
+					"google": "Format (text / html)"
+				},
+				"profanityAction": {
+					"azure": "Sprijin total",
+					"aws": "Marcat / Șters → mascare",
+					"google": "Ignorat"
+				},
+				"categoryId": {
+					"azure": "Traducător personalizat",
+					"aws": "Ignorat",
+					"google": "Ignorat"
+				},
+				"allowFallback": {
+					"azure": "Susținut",
+					"aws": "Ignorat",
+					"google": "Ignorat"
+				}
+			}
+		},
+		"locales": {
+			"title": "Codurile locale diferă de la un furnizor la altul",
+			"body": "Fiecare furnizor folosește propriile coduri locale (de exemplu, Chineza simplificată este {azureCode} pe Azure, {awsCode} pe AWS și {googleCode} pe Google). Codurile trec așa cum sunt și controlează numele fișierelor de ieșire, așa că alege {toLocales} valori pe care furnizorul selectat le suportă."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Intrări necesare",
 			"caption": "Intrări necesare",
 			"items": {
-				"sourceLocale": "Localitatea sursă (de exemplu {en}) folosită pentru a găsi fișiere de resurse precum {sourceGlob}. De asemenea, redirecționat către Translator ca {fromLocale}.",
-				"subscriptionKey": "Cheia de abonament Azure AI Translator. Treci prin {secrets}.",
-				"endpoint": "URL-ul de endpoint al traducătorului, de exemplu {endpointUrl}."
+				"sourceLocale": "Localitatea sursă (de exemplu {en}) folosită pentru a găsi fișiere de resurse precum {sourceGlob}. De asemenea, a fost redirecționat către furnizor ca {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Selecția furnizorului și acreditările",
+			"caption": "Selecția furnizorului și acreditările pentru fiecare furnizor",
+			"intro": "Alege un furnizor pentru fiecare cursă cu {provider}. Furnizați doar acreditările furnizorului selectat — consultați ghidul {providersLink} pentru configurarea completă.",
+			"items": {
+				"provider": "Furnizor de traduceri: {azure} (implicit), {aws} sau {google}. Se folosește un singur furnizor pe apel de acțiune.",
+				"subscriptionKey": "Cheia de abonament Azure AI Translator. Obligatoriu pentru {azure}. Treci prin {secrets}.",
+				"endpoint": "URL-ul endpoint-ului Azure Translator, de exemplu {endpointUrl}. Obligatoriu pentru {azure}.",
+				"awsAccessKeyId": "ID-ul cheii de acces AWS. Opțional — omiterea (cu {awsSecretAccessKey}) de a folosi lanțul implicit de acreditări AWS / OIDC. Treci prin {secrets}.",
+				"awsSecretAccessKey": "Cheia secretă de acces AWS. Trebuie furnizat împreună cu {awsAccessKeyId}. Treci prin {secrets}.",
+				"awsSessionToken": "Token opțional de sesiune AWS pentru acreditări temporare. Treci prin {secrets}.",
+				"awsRegion": "Regiunea AWS pentru serviciul Translate (de exemplu, {regionExample}). Obligatoriu pentru {aws} decât dacă {awsRegionEnv} este plasat în mediul respectiv.",
+				"googleApiKey": "Cheia API Google Cloud. Oferă acest {googleCredentials} de sala de operație pentru {google}. Treci prin {secrets}.",
+				"googleCredentials": "Cheia contului de serviciu Google Cloud ca șir JSON. Oferă acest {googleApiKey} de sala de operație pentru {google}. Treci prin {secrets}.",
+				"googleProjectId": "ID de proiect Google Cloud opțional. De obicei se deduce din acreditarea contului de serviciu."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Intrări de cerere de traducător",
-			"intro": "Acestea se mapează direct către parametrii interogării Azure AI Translator v3. Fiecare este opțional; implicitele Traducătorului se aplică când nu este setată.",
-			"caption": "Intrări de cerere de traducător",
+			"heading": "Intrări de cerere Azure Translator",
+			"intro": "Acestea se mapează direct pe parametrii interogării Azure AI Translator v3 și se aplică furnizorului Azure. textType și profanityAction sunt de asemenea mapate către AWS/Google acolo unde există un echivalent (vezi ghidul furnizorilor); restul sunt doar Azure. Fiecare este opțional; implicitele Traducătorului se aplică când nu este setată.",
+			"caption": "Intrări de cerere Azure Translator",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — butonul industry/domain/ton. Redirecționat ca {categoryQuery}.",
 				"textType": "{plain} sau {html}. Folosește {html} doar când valorile resurselor tale sunt fragmente HTML reale.",

@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Baliabide itzultzailea",
-		"description": "Resource Translator-ek zure baliabide fitxategietarako makina itzulitako pull request-ak irekitzen ditu edozein biltegitan, edozein formatutan — Azure AI Translator-ek bultzatuta.",
+		"description": "Resource Translator-ek zure baliabide fitxategietarako makina itzulitako pull request-ak irekitzen ditu edozein biltegitan, edozein formatutan — Azure AI Translator, AWS Translate edo Google Cloud Translation-ek bultzatuta.",
 		"socialTitle": "Baliabideen Itzultzailea — baliabide fitxategiak automatikoki itzuli",
-		"badge": "v3.0 — 24. nodoa, biltegiaren konfigurazioa, glosarioa, saiakera lehorra",
+		"badge": "v3.0 — Azure, AWS & Google hornitzaileak, Node 24, repo config",
 		"headlinePrefix": "Lokalizatu zure biltegia",
 		"headlineAccent": "konpromiso bakoitzean.",
-		"lede": "Resource Translator-ek zure baliabide fitxategietarako makina itzulpeneko pull request-ak irekitzen ditu Azure AI Translator erabiliz SDK ofizialaren bidez — zerbitzu gehigarririk gabe, lan-fluxu bat besterik ez.",
+		"lede": "Resource Translator-ek zure baliabide fitxategietarako makina itzulpeneko pull request-ak irekitzen ditu Azure, AWS edo Google erabiliz — ekintza bateratu bat, hornitzaile bat exekuzio bakoitzeko, SDK ofizialak azpian.",
 		"primaryCta": "Hasi",
 		"secondaryCta": "Star GitHub-en",
 		"supports": "Euskarriak",
 		"builtForShipping": "Itsas garraiorako eraikia",
 		"workflowTitle": "Itzulpena lan-fluxu gisa, ez lan neketsu bat.",
-		"workflowBody": "Sartu ekintza zure CI existentzian, zuzendu Azure AI Itzultzailera, eta utzi zure biltegiak helburu dituzun hizkuntza guztiak hitz egiten.",
+		"workflowBody": "Sartu ekintza zure CI egunera, zuzendu Azure, AWS edo Google-ra, eta utzi zure biltegiak helburu duzun hizkuntza guztiak hitz egiten.",
 		"stats": {
 			"audit": "0 npm-auditoria arazoak",
-			"tests": "150 proba",
+			"tests": "240+ proba",
 			"node": "20 / 22 / 24 nodoa",
-			"sdk": "Azure SDK ofiziala"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} eta {hasNewTranslations} zuzenean create-pull-request-en sartzen dira."
 			},
 			"sdk": {
-				"title": "Azure SDK ofiziala",
-				"body": "{azureSdk} + {corePipeline} oinarrian eraikia — {statusCodes} automatikoki saiatzen da, ez eskuz biribildutako HTTP-ik. {esbuild}-multzoa, auditoretza-garbia."
+				"title": "Azure, AWS eta Google",
+				"body": "Aukeratu hornitzaile bat saio bakoitzeko. Bakoitza bere SDK ofizialak ({azureSdk}, {awsSdk}, {googleSdk}) gidatzen du, automatikoki saiatzen {statusCodes} — ez eskuz biratutako HTTP-ik. {esbuild} paketeak, auditoretza-garbiak."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Autopilot bidez lokalizatzeko prest?",
-			"body": "Azure AI Itzultzaile giltza bat, lan-fluxu fitxategi bat. Resource Translator-ek gainerakoa kudeatzen du.",
+			"body": "Hornitzaile giltza bat — Azure, AWS edo Google — eta workflow fitxategi bat. Resource Translator-ek gainerakoa kudeatzen du.",
 			"button": "Hasi"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Hurrengo pausoak",
 			"configuration": "Konfiguratu repo-mailako lehenetsiak {configPath}.",
 			"recipes": "Ikusi monorepos, glosario pertsonalizatuen eta Itzultzaile Pertsonalizatuen kategorien errezetak."
+		}
+	},
+	"providers": {
+		"title": "Itzulpen hornitzaileak",
+		"eyebrow": "Erreferentzia",
+		"lede": "Aukeratu itzulpen hornitzaile bat exekuzio bakoitzean — Azure AI Translator, AWS Translate edo Google Cloud Translation — API bakar eta bateratu baten atzean. Itzultzaileak berdin jokatzen du hornitzailearen arabera; Ziurtagiriak bakarrik aldatzen dira.",
+		"backwardCompatible": "Erabat atzera bateragarria: {provider} lehenetsita {azure}, beraz, Azure lan-fluxuak aldatu gabe jarraitzen dute — ez da aldaketarik behar.",
+		"selecting": {
+			"title": "Hornitzaile bat aukeratzea",
+			"body": "Ezarri {provider} sarrera {azure} (lehenetsia), {aws} edo {google}, eta hornitzaile horren kredentzialak eman. Ekintza dei bakoitzeko hornitzaile bakarra erabiltzen da; ekintza determinististak fabrika baten atzean dagoen SDK-ra delegatu egiten du."
+		},
+		"comparison": {
+			"title": "Hornitzaileen konparazioa",
+			"caption": "Itzulpen hornitzaileen konparaketa",
+			"columns": {
+				"provider": "Hornitzailea",
+				"value": "Hornitzailearen balioa",
+				"sdk": "SDK",
+				"credentials": "Ziurtagiriak"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (lehenetsia)",
+				"credentials": "subscriptionKey, endpoint, eskualdea (aukerakoa)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "aws",
+				"credentials": "OIDC / kate lehenetsia, edo awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud Itzulpena",
+				"value": "Google",
+				"credentials": "googleApiKey EDO googleCredentials (zerbitzu-kontu JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Itzultzailea (lehenetsia)",
+			"body": "Hornitzaile lehenetsia. Azure AI Itzultzaile baliabide bat hornitu eta {subscriptionKey}, {endpoint} eta aukeraz {region}. Konfigurazio bera da dagoeneko dauden lan-fluxuek erabiltzen dutena."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Erabiltzen {sdk}. OIDC nahiago {configureAwsCredentials} bidez, sekretu iraunkorrak ez gordetzeko — ekintzak AWS SDK lehenetsitako kredentzialen katea irakurtzen du. Bestela, {awsAccessKeyId} eta {awsSecretAccessKey} esplizituki. Eskualde bat beti behar da, {awsRegion} edo ingurune aldagai {awsRegionEnv} bidez.",
+			"oidcTitle": "OIDC (gomendatua)",
+			"keysNote": "OIDC ordez giltza estatikoak erabiltzeko, {configureAwsCredentials} pausoa kendu eta pasatu {awsAccessKeyId} / {awsSecretAccessKey} ({secrets} bidez) gehi {awsRegion}."
+		},
+		"google": {
+			"title": "Google Cloud Itzulpena",
+			"body": "{sdk} (v2) erabiltzen du. API gako ({googleApiKey}) edo zerbitzu-kontu JSON kredentzial ({googleCredentials}) erabiliz autentifikatu. Eman hornidura bat zehazki; Aukerazko {googleProjectId} bat ateratzen da ziurtagiritik kanpo geratzen denean."
+		},
+		"mapping": {
+			"title": "Asmo-zehaztatzailearen mapaketa",
+			"body": "Hornitzaile espezifikoak baliokide bat dagoenean mapatzen dira. Gainerako guztia lehenetsitako zentzudunetara itzultzen da, portaera koherentea izan dadin.",
+			"caption": "Asmo-zehaztatzaile mapaketa hornitzaileen artean",
+			"columns": {
+				"input": "Sarrera",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Babestua",
+			"ignored": "Baztertua",
+			"rows": {
+				"textType": {
+					"azure": "textType (argi eta garbi / html)",
+					"aws": "Ez da kontuan hartu (ez etengailurik)",
+					"google": "Formatua (testua / html)"
+				},
+				"profanityAction": {
+					"azure": "Babes osoa",
+					"aws": "Markatu / Ezabatu → maskaratzearekin",
+					"google": "Baztertua"
+				},
+				"categoryId": {
+					"azure": "Itzultzaile pertsonalizatua",
+					"aws": "Baztertua",
+					"google": "Baztertua"
+				},
+				"allowFallback": {
+					"azure": "Babestua",
+					"aws": "Baztertua",
+					"google": "Baztertua"
+				}
+			}
+		},
+		"locales": {
+			"title": "Tokiko kodeak hornitzailearen arabera desberdinak dira",
+			"body": "Hornitzaile bakoitzak bere kode lokal propioak erabiltzen ditu (adibidez, Txinera Sinplifikatua Azure-n {azureCode}, AWSn {awsCode} eta Google-n {googleCode}). Kodeak horrela pasatzen dira eta irteerako fitxategi izenak gidatzen dituzte, beraz, aukeratu zure hautatutako hornitzaileak onartzen dituen balio {toLocales}."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Sarrera beharrezkoak",
 			"caption": "Sarrera beharrezkoak",
 			"items": {
-				"sourceLocale": "Iturri kokapena (adibidez, {en}) baliabide fitxategiak aurkitzeko erabiltzen da, hala nola {sourceGlob}. Era berean, itzultzailera bidali {fromLocale}.",
-				"subscriptionKey": "Azure AI Itzultzailearen harpidetza gakoa. Pasatu {secrets}.",
-				"endpoint": "Itzultzailearen amaierako URLa, adibidez, {endpointUrl}."
+				"sourceLocale": "Iturri kokapena (adibidez, {en}) baliabide fitxategiak aurkitzeko erabiltzen da, hala nola {sourceGlob}. Era berean, hornitzaileari bidali {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Hornitzaileen hautaketa eta ziurtagiriak",
+			"caption": "Hornitzailearen hautaketa eta hornitzaile bakoitzeko ziurtagiriak",
+			"intro": "Aukeratu hornitzaile bakoitzeko {provider}. Eman soilik hautatutako hornitzailearen ziurtagiriak — ikusi {providersLink} gida osoa konfiguratzeko.",
+			"items": {
+				"provider": "Itzulpen hornitzailea: {azure} (lehenetsia), {aws} edo {google}. Ekintza dei bakoitzeko hornitzaile bakarra erabiltzen da.",
+				"subscriptionKey": "Azure AI Itzultzailearen harpidetza gakoa. Beharrezkoa {azure}. Pasatu {secrets}.",
+				"endpoint": "Azure Translator endpoint URL-a, adibidez, {endpointUrl}. Beharrezkoa {azure}.",
+				"awsAccessKeyId": "AWS sarbide giltza id-a. Aukerakoa — AWSren lehenetsitako ziurtagiri kate / OIDC erabiltzea ({awsSecretAccessKey}) ez erabiltzea. Pasatu {secrets}.",
+				"awsSecretAccessKey": "AWS sarbide sekretuko gakoa. Eta {awsAccessKeyId} batera hornitu behar dira. Pasatu {secrets}.",
+				"awsSessionToken": "AWS saio-token aukerakoa aldi baterako kredentzialentzat. Pasatu {secrets}.",
+				"awsRegion": "AWS eskualdea Translate zerbitzurako (adibidez, {regionExample}). Beharrezkoa {aws} ingurunean kokatuta {awsRegionEnv} ez badago.",
+				"googleApiKey": "Google Cloud API gakoa. Eman {googleCredentials} hau {google}. Pasatu {secrets}.",
+				"googleCredentials": "Google Cloud zerbitzu-kontu gakoa JSON kate gisa. Eman {googleApiKey} hau {google}. Pasatu {secrets}.",
+				"googleProjectId": "Aukerako Google Cloud proiektu id-a. Normalean zerbitzu-kontuaren ziurtagiritik ondorioztatzen da."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Itzultzailearen eskaera sarrerak",
-			"intro": "Hauek zuzenean Azure AI Translator v3 kontsulta parametroekin bat egiten dute. Bakoitza aukerakoa da; Itzultzaile lehenetsiak aplikatzen dira ezkutatuta dagoenean.",
-			"caption": "Itzultzailearen eskaera sarrerak",
+			"heading": "Azure Translator eskaera sarrerak",
+			"intro": "Hauek zuzenean Azure AI Translator v3 kontsulta parametroetara bideratzen dira eta Azure hornitzaileari aplikatzen zaizkio. textType eta profanityAction AWS/Google-ra ere mapatzen dira, non baliokide bat dagoen (ikus hornitzaileen gida); gainerakoak Azure-rako bakarrik dira. Bakoitza aukerakoa da; Itzultzaile lehenetsiak aplikatzen dira ezkutatuta dagoenean.",
+			"caption": "Azure Translator eskaera sarrerak",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} kategoria — industria/domeinua/tone knob-a. Aurreratu {categoryQuery}.",
 				"textType": "{plain} edo {html}. Erabili {html} zure baliabide balioak benetako HTML zatiak direnean.",

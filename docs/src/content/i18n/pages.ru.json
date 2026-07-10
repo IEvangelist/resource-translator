@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Переводчик ресурсов",
-		"description": "Resource Translator открывает машинно-переведённые pull requests для ваших ресурсных файлов в любом репозитории и в любом формате — на базе Azure AI Translator.",
+		"description": "Resource Translator открывает машинные переведённые pull запросы на ваши ресурсные файлы в любом репозиториуме, в любом формате — на базе Azure AI Translator, AWS Translate или Google Cloud Translation.",
 		"socialTitle": "Resource Translator — автоматический перевод файлов ресурсов",
-		"badge": "v3.0 — Узел 24, конфигурация репозитория, глоссарий, пробный запуск",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Локализируйте репозиторий на",
 		"headlineAccent": "каждое обязательство.",
-		"lede": "Resource Translator открывает машинно переведённые pull-запросы на ваши файлы ресурсов через Azure AI Translator через официальный SDK — никаких дополнительных сервисов, только рабочий процесс.",
+		"lede": "Resource Translator открывает машинно переведённые pull-запросы на ваши файлы ресурсов с помощью Azure, AWS или Google — одно единое действие, один провайдер на запуск, официальные SDK под капотом.",
 		"primaryCta": "Начинайте",
 		"secondaryCta": "Star на GitHub",
 		"supports": "Поддержка",
 		"builtForShipping": "Построен для судоходства",
 		"workflowTitle": "Перевод — это рабочий процесс, а не рутина.",
-		"workflowBody": "Переведите действие в ваш существующий CI, направьте его на Azure AI Translator и пусть репозиторий говорит на всех языках, которые вы выбрали.",
+		"workflowBody": "Перенесите действие в ваш существующий CI, направьте его на Azure, AWS или Google и пусть репозиторий говорит на любом языке, который вы выбрали.",
 		"stats": {
 			"audit": "0 проблем с аудитом npm",
-			"tests": "150 тестов",
+			"tests": "240+ тестов",
 			"node": "Узел 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} и {hasNewTranslations} напрямую вставляются в create-pull-request."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Построен на {azureSdk} + {corePipeline} — автоматические повторные попытки на {statusCodes}, без ручного HTTP. {esbuild} упаковано, чисто по аудиту."
+				"title": "Azure, AWS и Google",
+				"body": "Выбирайте одного провайдера на пробег. Каждый из них управляется официальным SDK ({azureSdk}, {awsSdk}, {googleSdk}) с автоматическими повторными попытками на {statusCodes} — без ручного HTTP. {esbuild} упаковано, чисто по аудиту."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Готовы локализировать на автопилоте?",
-			"body": "Один ключ Azure AI Translator, один файл рабочего процесса. Остальное занимается Resource Translator.",
+			"body": "Один ключ провайдера — Azure, AWS или Google — и один файл рабочего процесса. Остальное занимается Resource Translator.",
 			"button": "Начинайте"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Следующие шаги",
 			"configuration": "Настройте стандартные настройки на уровне репозитория с помощью {configPath}.",
 			"recipes": "Смотрите рецепты монорепозиторий, пользовательских глоссариев и категорий пользовательских переводчиков."
+		}
+	},
+	"providers": {
+		"title": "Поставщики переводов",
+		"eyebrow": "Ссылка",
+		"lede": "Выбирайте одного провайдера перевода на каждый запуск — Azure AI Translator, AWS Translate или Google Cloud Translation — за единой единой API-поверхностью. Переводчик ведёт себя одинаково независимо от поставщика; Различаются только квалификации.",
+		"backwardCompatible": "Полностью обратная совместимость: {provider} по умолчанию установлена {azure}, поэтому существующие рабочие процессы Azure продолжают работать без изменений — никаких изменений не требуется.",
+		"selecting": {
+			"title": "Выбор поставщика",
+			"body": "Установите {provider} вход на {azure} (по умолчанию), {aws} или {google}, затем введите учетные данные этого провайдера. На каждый вызов с действием используется только один провайдер; действие детерминированно делегирует соответствующий SDK за фабрикой."
+		},
+		"comparison": {
+			"title": "Сравнение поставщиков",
+			"caption": "Сравнение поставщиков переводов",
+			"columns": {
+				"provider": "Поставщик",
+				"value": "Ценность поставщика",
+				"sdk": "SDK",
+				"credentials": "Квалификации"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (по умолчанию)",
+				"credentials": "подпискаКлюч, конечная точка, регион (по желанию)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "AWS",
+				"credentials": "OIDC / по умолчанию или awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud Translation",
+				"value": "Погугли",
+				"credentials": "googleApiKey ИЛИ googleCredentials (сервис-аккаунт JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (по умолчанию)",
+			"body": "Провайдер по умолчанию. Предоставьте ресурс Azure AI Translator и пропустите {subscriptionKey}, {endpoint} и, по желанию, {region}. Это та же конфигурация, что уже используется в существующих рабочих процессах."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Использует {sdk}. Предпочитаю OIDC через {configureAwsCredentials}, чтобы не хранились долговременные секреты — действие считывает цепочку учетных данных AWS SDK по умолчанию. Или пропустите {awsAccessKeyId} и {awsSecretAccessKey} явно. Регион всегда необходим через {awsRegion} или {awsRegionEnv} переменную среды.",
+			"oidcTitle": "OIDC (рекомендую)",
+			"keysNote": "Чтобы использовать статические клавиши вместо OIDC, отбросьте {configureAwsCredentials} шаг и передайте {awsAccessKeyId} / {awsSecretAccessKey} (через {secrets}) плюс {awsRegion}."
+		},
+		"google": {
+			"title": "Google Cloud Translation",
+			"body": "Использует {sdk} (v2). Аутентифицироваться либо с помощью API-ключа ({googleApiKey}), либо JSON-учетной записи сервиса ({googleCredentials}). Поставьте ровно одного; Необязательный {googleProjectId} выводится из удостоверения при опускении."
+		},
+		"mapping": {
+			"title": "Отображение спецификатора намерения",
+			"body": "Специфические спецификаторы поставщика отображаются там, где существует эквивалент. Всё остальное сводится к разумным стандартам, чтобы поведение оставалось постоянным.",
+			"caption": "Отображение спецификаторов намерений между поставщиками",
+			"columns": {
+				"input": "Вход",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Поддерживается",
+			"ignored": "Игнорируется",
+			"rows": {
+				"textType": {
+					"azure": "textType (простой / html)",
+					"aws": "Игнорируется (без переключателя)",
+					"google": "Формат (текст / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Полная поддержка",
+					"aws": "Отмечено / Удалено → маскировка",
+					"google": "Игнорируется"
+				},
+				"categoryId": {
+					"azure": "Индивидуальный переводчик",
+					"aws": "Игнорируется",
+					"google": "Игнорируется"
+				},
+				"allowFallback": {
+					"azure": "Поддерживается",
+					"aws": "Игнорируется",
+					"google": "Игнорируется"
+				}
+			}
+		},
+		"locales": {
+			"title": "Коды локализации различаются в зависимости от провайдера",
+			"body": "Каждый провайдер использует свои коды локализации (например, упрощённый китайский {azureCode} на Azure, {awsCode} на AWS и {googleCode} в Google). Коды проходят как есть и управляют имёнами выходных файлов, поэтому выбирайте {toLocales} значения, которые поддерживает выбранный вами провайдер."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Требуемые входные данные",
 			"caption": "Требуемые входные данные",
 			"items": {
-				"sourceLocale": "Исходный код (например, {en}), используемый для поиска ресурсных файлов, таких как {sourceGlob}. Также пересылано в Translator как {fromLocale}.",
-				"subscriptionKey": "Ключ подписки Azure AI Translator. Проезжай через {secrets}.",
-				"endpoint": "URL конечной точки переводчика, например, {endpointUrl}."
+				"sourceLocale": "Исходный код (например, {en}), используемый для поиска ресурсных файлов, таких как {sourceGlob}. Также переслано провайдеру как {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Выбор поставщика и квалификация",
+			"caption": "Выбор поставщика и данные по поставщикам",
+			"intro": "Выбирайте одного провайдера на один заезд с {provider}. Указывайте только данные выбранного провайдера — смотрите {providersLink} руководство для полной настройки.",
+			"items": {
+				"provider": "Поставщик перевода: {azure} (по умолчанию), {aws} или {google}. Используется только один провайдер для каждого вызова действия.",
+				"subscriptionKey": "Ключ подписки Azure AI Translator. Требуется для {azure}. Проезжай через {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, например, {endpointUrl}. Требуется для {azure}.",
+				"awsAccessKeyId": "Идентификатор ключа доступа AWS. Опционально — опустить (с {awsSecretAccessKey}) использование стандартной цепочки учетных данных AWS / OIDC. Проезжай через {secrets}.",
+				"awsSecretAccessKey": "Секретный ключ доступа AWS. Необходимо поставлять вместе с {awsAccessKeyId}. Проезжай через {secrets}.",
+				"awsSessionToken": "Опциональный токен сессии AWS для временных учетных данных. Проезжай через {secrets}.",
+				"awsRegion": "Регион AWS для сервиса Translate (например, {regionExample}). Требуется для {aws}, если {awsRegionEnv} не установлен в среде.",
+				"googleApiKey": "Ключ Google Cloud API. Предоставьте этот OR {googleCredentials} для {google}. Проходите через {secrets}.",
+				"googleCredentials": "Ключ сервиса Google Cloud в виде строки JSON. Предоставьте этот OR {googleApiKey} для {google}. Проходите через {secrets}.",
+				"googleProjectId": "Опциональный идентификатор проекта Google Cloud. Обычно это выводится по учётной записи сервисного аккаунта."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Входные запросы транслятора",
-			"intro": "Они напрямую соотносятся с параметрами запроса Azure AI Translator v3. Каждая из них необязательна; по умолчанию применяются настройки Translator, когда не установлены.",
-			"caption": "Входные запросы транслятора",
+			"heading": "Azure Translator request inputs",
+			"intro": "Они напрямую соотносятся с параметрами запроса Azure AI Translator v3 и применяются к провайдеру Azure. textType и profanityAction также сопоставляются с AWS/Google, где существует эквивалент (см. руководство по провайдеру); остальные — только Azure. Каждая из них необязательна; по умолчанию применяются настройки Translator, когда не установлены.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — ручка industry/domain/tone. Переслано как {categoryQuery}.",
 				"textType": "{plain} или {html}. Используйте {html} только тогда, когда ваши значения ресурсов — настоящие HTML-фрагменты.",

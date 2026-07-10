@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Turjubaan Kheyraad",
-		"description": "Resource Translator wuxuu furaa codsiyada pull ee mashiinka lagu turjumay ee faylashaada kheyraadka ee repo kasta, qaab kasta — oo ay ku shaqeyso Azure AI Translator.",
+		"description": "Resource Translator wuxuu furaa codsiyada pull ee mashiinka lagu turjumay ee faylasha kheyraadkaaga ee repo kasta, qaab kasta — oo ay ku shaqeyso Azure AI Translator, AWS Translate, ama Google Cloud Translation.",
 		"socialTitle": "Resource Translator — si toos ah u turjuma faylasha kheyraadka",
-		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Ku bogso repo-gaaga",
 		"headlineAccent": "go'aan kasta.",
-		"lede": "Resource Translator wuxuu furaa codsiyada pull requests ee mashiinka lagu turjumay ee faylashaada kheyraadka iyadoo la adeegsanayo Azure AI Translator iyada oo loo marayo SDK-ga rasmiga ah — ma jiraan adeegyo dheeraad ah, kaliya hab socod ah.",
+		"lede": "Resource Translator wuxuu furaa codsiyada pull requests ee mashiinka lagu turjumay ee faylashaada kheyraadka iyadoo la adeegsanayo Azure, AWS, ama Google — hal ficil mideysan, hal bixiye orod kasta, SDK-yada rasmiga ah ee hoos yimaada.",
 		"primaryCta": "Bilow",
 		"secondaryCta": "Star on GitHub",
 		"supports": "Taageerooyinka",
 		"builtForShipping": "Waxaa loo dhisay maraakiibta",
 		"workflowTitle": "Turjumaaddu waa shaqo shaqo ah, ma aha hawl culus.",
-		"workflowBody": "Ficilka ku tuur CI-gaaga hore, u jeedi Azure AI Translator, oo u daa repo-gaaga inuu hadlo luqad kasta oo aad bartilmaameedsato.",
+		"workflowBody": "Ficilka ku rid CI-gaaga hadda jira, u jeedi Azure, AWS, ama Google, oo u daa repo-gaaga inuu hadlo luqad kasta oo aad bartilmaameedsato.",
 		"stats": {
 			"audit": "0 Dhibaatooyinka kormeerka NPM-ka",
-			"tests": "150 tijaabo",
+			"tests": "240+ tijaabo",
 			"node": "Node 20 / 22 / 24",
-			"sdk": "Azure SDK Rasmiga ah"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails}, iyo {hasNewTranslations} si toos ah ugu xirmaan create-pull-request."
 			},
 			"sdk": {
-				"title": "Azure SDK Rasmiga ah",
-				"body": "Waxaa lagu dhisay {azureSdk} + {corePipeline} — isku dayo toos ah oo {statusCodes} ah, HTTP gacanta lagu duubo ma jiro. {esbuild} la xiray, nadiif kormeer."
+				"title": "Azure, AWS & Google",
+				"body": "Xulo hal bixiye orod kasta. Mid kasta waxaa maamula SDK-giisa rasmiga ah ({azureSdk}, {awsSdk}, {googleSdk}) oo leh dib-u-celin otomaatig ah {statusCodes} — ma jirto HTTP gacanta lagu duubo. {esbuild} la xiray, nadiif kormeer."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Diyaar ma u tahay inaad ku degto autopilot?",
-			"body": "Hal furaha Azure AI Translator, hal fayl workflow. Resource Translator ayaa gacanta ku haya inta kale.",
+			"body": "Hal furaha bixiyaha — Azure, AWS, ama Google — iyo hal fayl workflow ah. Resource Translator ayaa gacanta ku haya inta kale.",
 			"button": "Bilow"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Tallaabooyinka xiga",
 			"configuration": "Qaabee default heerka repo-ga adigoo {configPath}.",
 			"recipes": "Eeg cuntooyinka monorepos, lumaha gaarka ah, iyo qaybaha Turjumaadda Gaarka ah."
+		}
+	},
+	"providers": {
+		"title": "Bixiyeyaasha turjumaadda",
+		"eyebrow": "Tixraac",
+		"lede": "Dooro hal bixiye turjumaad ah mid kasta — Azure AI Translator, AWS Translate, ama Google Cloud Translation — oo ka dambeeya hal API oo mideysan. Turjubaanku wuxuu u dhaqmaa si isku mid ah iyadoon loo eegin bixiyaha shirkadda; Kaliya aqoonsiga ayaa kala duwan yahay.",
+		"backwardCompatible": "Si buuxda dib ula jaanqaadi kara: {provider} si caadi ah ugu shaqeeyaa {azure}, sidaas darteed habka Azure ee jira ayaa si aan isbeddelin u shaqeynaya — wax ka beddel looma baahna.",
+		"selecting": {
+			"title": "Xulashada bixiye",
+			"body": "Deji gelinta {provider} {azure} (default), {aws}, ama {google}, kadibna bixi aqoonsiga bixiyahaas. Kaliya hal bixiye ayaa la isticmaalaa wicitaan kasta oo action ah; falkaas si go'aan ah ayuu u wareejiyaa SDK-ga la jaanqaadaya ee ka dambeeya warshad."
+		},
+		"comparison": {
+			"title": "Isbarbardhigga bixiyeyaasha",
+			"caption": "Isbarbardhigga bixiyaha turjumaadda",
+			"columns": {
+				"provider": "Bixiyaha",
+				"value": "Qiimaha bixiyaha",
+				"sdk": "SDK",
+				"credentials": "Aqoonsiga"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (default)",
+				"credentials": "subscriptionKey, endpoint, region (ikhtiyaari)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "AWS",
+				"credentials": "OIDC / silsiladda caadiga ah, ama awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Tarjumaadda Google Cloud",
+				"value": "Google",
+				"credentials": "googleApiKey AMA googleCredentials (akoonka adeegga JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Bixiyaha asalka ah. Keen kheyraad Azure AI Translator ah oo gudbi {subscriptionKey}, {endpoint}, iyo ikhtiyaari ahaan {region}. Tani waa isla qaabeynta ay horey u isticmaalaan hab-socodka hore."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Wuxuu isticmaalaa {sdk}. Doorbid OIDC adigoo adeegsanaya {configureAwsCredentials} si aan loo keydinin siraha waqti dheer dheer — falku wuxuu akhriyaa silsiladda aqoonsiga asalka ah ee AWS SDK. Sidoo kale, si {awsAccessKeyId} ah u gudbi oo si cad {awsSecretAccessKey}. Gobol mar walba waa loo baahan yahay, iyada oo loo marayo {awsRegion} ama beddelka deegaanka {awsRegionEnv}.",
+			"oidcTitle": "OIDC (lagu talinay)",
+			"keysNote": "Si aad u isticmaasho furayaasha static halkii laga isticmaali lahaa OIDC, ka tag talaabada {configureAwsCredentials} oo sii {awsAccessKeyId} / {awsSecretAccessKey} (iyada oo loo marayo {secrets}) iyo {awsRegion}."
+		},
+		"google": {
+			"title": "Tarjumaadda Google Cloud",
+			"body": "Wuxuu isticmaalaa {sdk} (v2). Xaqiiji adigoo adeegsanaya furaha API ({googleApiKey}) ama aqoonsiga JSON ee akoonka adeegga ({googleCredentials}). Keen hal sax ah; {googleProjectId} ikhtiyaari ah ayaa laga soo saaraa aqoonsiga marka laga saaro."
+		},
+		"mapping": {
+			"title": "Mapping intent-specifier",
+			"body": "Specifiers gaar ah oo bixiyaha ah ayaa lagu khariideeyaa meesha ay jirto mid la mid ah. Wax kasta oo kale waxay ku noqdaan default macquul ah si dhaqanka uu joogto u ahaado.",
+			"caption": "Khariidaynta ujeedada-specifier ee bixiyeyaasha",
+			"columns": {
+				"input": "Gelin",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Taageero",
+			"ignored": "La iska indhatiray",
+			"rows": {
+				"textType": {
+					"azure": "textType (caadi / html)",
+					"aws": "La iska indhatiray (ma jiro beddel)",
+					"google": "Qaabka (qoraal / html)"
+				},
+				"profanityAction": {
+					"azure": "Taageero buuxda",
+					"aws": "Waxaa la calaamadeeyay / la tirtiray → masking",
+					"google": "La iska indhatiray"
+				},
+				"categoryId": {
+					"azure": "Turjubaan Gaar ah",
+					"aws": "La iska indhatiray",
+					"google": "La iska indhatiray"
+				},
+				"allowFallback": {
+					"azure": "Taageero",
+					"aws": "La iska indhatiray",
+					"google": "La iska indhatiray"
+				}
+			}
+		},
+		"locales": {
+			"title": "Koodhadhka deegaanka way kala duwan yihiin bixiye kasta",
+			"body": "Bixiye kasta wuxuu isticmaalaa koodhadhkiisa deegaanka (tusaale ahaan Simplified Chinese waa {azureCode} Azure, {awsCode} AWS, iyo {googleCode} Google). Koodhadhku waxay maraan sida ay yihiin waxayna wadaan magacyada faylalka wax soo saarka, markaa dooro {toLocales} uu taageero bixiyaha aad dooratay."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Gelinta loo baahnaa",
 			"caption": "Gelinta loo baahnaa",
 			"items": {
-				"sourceLocale": "Goobta isha (tusaale ahaan {en}) ayaa loo isticmaalaa in lagu helo faylasha kheyraadka sida {sourceGlob}. Sidoo kale waxaa loo diray Translator sida {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. Ka gudub {secrets}.",
-				"endpoint": "URL-ka dhammaadka turjumaadda, tusaale ahaan {endpointUrl}."
+				"sourceLocale": "Goobta isha (tusaale ahaan {en}) ayaa loo isticmaalaa in lagu helo faylasha kheyraadka sida {sourceGlob}. Sidoo kale waxaa loo diray bixiyaha sida {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Xulashada bixiyeyaasha iyo aqoonsiga",
+			"caption": "Xulashada bixiyaha iyo aqoonsiga shirkadda kasta",
+			"intro": "Xulo hal bixiye mar kasta oo {provider}. Kaliya bixi aqoonsiga bixiyaha la doortay — eeg hagaha {providersLink} si aad u hesho dejin buuxda.",
+			"items": {
+				"provider": "Bixiyaha turjumaadda: {azure} (default), {aws}, ama {google}. Hal bixiye ayaa la isticmaalaa wicitaan kasta oo action ah.",
+				"subscriptionKey": "Azure AI Translator subscription key. Waxaa loo baahan yahay {azure}. Ka gudub {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, tusaale {endpointUrl}. Waxaa loo baahan yahay {azure}.",
+				"awsAccessKeyId": "AWS access key id. Ikhtiyaari — ka saar (iyadoo {awsSecretAccessKey}) si loo isticmaalo silsiladda aqoonsiga AWS / OIDC. Ka gudub {secrets}.",
+				"awsSecretAccessKey": "Furaha gelitaanka qarsoon ee AWS. Waa in la siiyaa {awsAccessKeyId}. Ka gudub {secrets}.",
+				"awsSessionToken": "Ikhtiyaar ahaan AWS session token oo loogu talagalay aqoonsiga ku meel gaarka ah. Ka gudub {secrets}.",
+				"awsRegion": "Gobolka AWS ee adeegga Translate (tusaale {regionExample}). Waxaa loo baahan yahay {aws} ilaa {awsRegionEnv} lagu dejin deegaanka.",
+				"googleApiKey": "Furaha API Google Cloud. Sii {googleCredentials} qalliinkan {google}. Ka gudub {secrets}.",
+				"googleCredentials": "Google Cloud service-account key sida silsilad JSON ah. Sii {googleApiKey} qalliinkan {google}. Ka gudub {secrets}.",
+				"googleProjectId": "Ikhtiyaari aqoonsiga mashruuca Google Cloud. Badanaa waxaa laga soo saaraa aqoonsiga akoonka adeegga."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Gelinta codsiyada turjumaadda",
-			"intro": "Kuwani si toos ah ayay ugu xirmaan Azure AI Translator v3 query parameters. Mid kasta waa ikhtiyaari; Translator-ka default ayaa khuseeya marka la joojiyo.",
-			"caption": "Gelinta codsiyada turjumaadda",
+			"heading": "Azure Translator request inputs",
+			"intro": "Kuwani waxay si toos ah ugu xirmaan Azure AI Translator v3 parameters-ka su'aalaha waxayna khuseeyaan bixiyaha azure. textType iyo profanityAction sidoo kale waxaa lagu khariideeyaa AWS/Google halkaas oo ay jirto mid la mid ah (eeg hagaha bixiyeyaasha); inta kale waa Azure-ka oo kaliya. Mid kasta waa ikhtiyaari; Translator-ka default ayaa khuseeya marka la joojiyo.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. Waxaa loo diray {categoryQuery}.",
 				"textType": "{plain} ama {html}. Isticmaal {html} kaliya marka qiimaha kheyraadkaaga ay yihiin qaybo HTML dhab ah.",

@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "资源译器",
-		"description": "资源翻译器可于任一仓库、任意格式中,开启机器翻译之资源文件拉取请求,由Azure AI翻译器驱动。",
+		"description": "资源翻译器可于任一仓库、任意格式中,开启机器翻译之资源文件拉取请求,由Azure AI Translator、AWS Translate或Google Cloud Translation驱动。",
 		"socialTitle": "资源译者——自动翻译资源文件",
-		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "将仓库本地化于",
 		"headlineAccent": "每一提交皆然。",
-		"lede": "Resource Translator以Azure AI Translator,經官方SDK開啟機器翻譯之資源檔案拉取請求,無額外服務,僅為工作流程。",
+		"lede": "Resource Translator以Azure、AWS或Google開啟機器翻譯之資源檔案拉取請求——一統一操作,每次一供應者,內部有官方SDK。",
 		"primaryCta": "即刻启程",
 		"secondaryCta": "GitHub之星",
 		"supports": "支援",
 		"builtForShipping": "為航運而建",
 		"workflowTitle": "译为工作流程,非劳役也。",
-		"workflowBody": "将动作置于既有CI,指向Azure AI翻译器,令仓库通行所欲语言。",
+		"workflowBody": "将动作置于既有配置项,指向Azure、AWS或Google,令仓库通达所欲语言。",
 		"stats": {
 			"audit": "无NPM审计问题",
-			"tests": "一百五十场测试赛",
+			"tests": "二百四十+測試",
 			"node": "节点二十 / 二十二 / 二十四",
-			"sdk": "官方Azure SDK"
+			"sdk": "Azure · AWS · 谷歌"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}、{summaryDetails}、{hasNewTranslations} 皆直入 create-pull-request。"
 			},
 			"sdk": {
-				"title": "官方Azure SDK",
-				"body": "基于{azureSdk}+{corePipeline}——{statusCodes}自动重试,无手卷HTTP。 {esbuild}捆绑,审计洁净。"
+				"title": "Azure、AWS 與 Google",
+				"body": "每行择一医者。 各由官方SDK({azureSdk}、{awsSdk}、{googleSdk})驱动,{statusCodes}自动重试,非手卷HTTP。 {esbuild}捆,审计洁净。"
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "可自动本地化乎?",
-			"body": "一Azure AI译者密钥,一工作流文件。 餘者由資源翻譯器處理。",
+			"body": "一供應商密鑰——Azure、AWS或Google——及一工作流文件。 餘者由資源翻譯器處理。",
 			"button": "即刻启程"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "后续步骤",
 			"configuration": "设仓库级默认,{configPath}。",
 			"recipes": "详见monorepos、自定义词汇表及自定义译者类别之配方。"
+		}
+	},
+	"providers": {
+		"title": "譯者",
+		"eyebrow": "參考文獻",
+		"lede": "每次运行可选一翻译供应商——Azure AI Translator、AWS Translate或Google Cloud Translation——于统一API表面之下。 轉播器行為無異,無論供應者為何; 唯资历异耳。",
+		"backwardCompatible": "完全向后兼容:{provider}默认为{azure},故既有Azure工作流程不变,无需更改。",
+		"selecting": {
+			"title": "選擇供應者",
+			"body": "设{provider}输入为{azure}(默认)、{aws}或{google},继而提供该供应商之凭证。 每次操作调用仅用一提供者; 此動作決定性地委派予工廠後之匹配SDK。"
+		},
+		"comparison": {
+			"title": "提供者比較",
+			"caption": "譯者比較",
+			"columns": {
+				"provider": "供應者",
+				"value": "提供者价值",
+				"sdk": "SDK",
+				"credentials": "资历"
+			},
+			"azure": {
+				"name": "Azure AI 译者",
+				"value": "Azure(默认)",
+				"credentials": "subscriptionKey, endpoint, region(可选)"
+			},
+			"aws": {
+				"name": "AWS翻譯",
+				"value": "AWS",
+				"credentials": "OIDC / 默认链,或 awsAccessKeyID + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "谷歌云译",
+				"value": "谷歌",
+				"credentials": "googleApiKey 或 googleCredentials(service-account JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI 翻译器(默认)",
+			"body": "預設供應者。 设Azure AI翻译资源,转{subscriptionKey}、{endpoint}及可选{region}。 此配置與現有工作流程相同。"
+		},
+		"aws": {
+			"title": "AWS翻譯",
+			"body": "用{sdk}。 宜以{configureAwsCredentials}方式启用OIDC,以免长存秘密——动作读取AWS SDK默认凭证链。 或可{awsAccessKeyId}明示{awsSecretAccessKey}。 區域必由{awsRegion}或{awsRegionEnv}環境變數而定。",
+			"oidcTitle": "OIDC(荐)",
+			"keysNote": "欲用静态键代OIDC,去{configureAwsCredentials}步,传{awsAccessKeyId}/{awsSecretAccessKey}(经{secrets})加{awsRegion}。"
+		},
+		"google": {
+			"title": "谷歌云译",
+			"body": "用{sdk}(v2)。 以API密钥({googleApiKey})或服务账户JSON凭证({googleCredentials})认证。 仅供一枚; 若遺漏憑證,則可推斷可選{googleProjectId}。"
+		},
+		"mapping": {
+			"title": "意图-指定映射",
+			"body": "提供者专属之指定符,映射于有等价者处。 余皆归于合理默认,故行为恒一。",
+			"caption": "跨提供者之意图-指定映射",
+			"columns": {
+				"input": "输入",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "谷歌"
+			},
+			"supported": "支持者",
+			"ignored": "被忽视",
+			"rows": {
+				"textType": {
+					"azure": "textType(純/html)",
+					"aws": "忽略(无开关)",
+					"google": "格式(文本/HTML)"
+				},
+				"profanityAction": {
+					"azure": "全力支持",
+					"aws": "标记/删除→掩蔽",
+					"google": "被忽视"
+				},
+				"categoryId": {
+					"azure": "定制译者",
+					"aws": "被忽视",
+					"google": "被忽视"
+				},
+				"allowFallback": {
+					"azure": "支持者",
+					"aws": "被忽视",
+					"google": "被忽视"
+				}
+			}
+		},
+		"locales": {
+			"title": "各地代碼因供應商而異",
+			"body": "各供应商用其本地码(如简体中文Azure {azureCode},AWS {awsCode},Google {googleCode})。 代码依原样传递,驱动输出文件名,故择所选供应商支持之{toLocales}值。"
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "所需输入",
 			"caption": "所需输入",
 			"items": {
-				"sourceLocale": "源地(如{en})用以尋資源檔,如{sourceGlob}。 亦转至译者,{fromLocale}。",
-				"subscriptionKey": "Azure AI Translator 订阅密钥。 由{secrets}通行。",
-				"endpoint": "译者端点网址,如 {endpointUrl}。"
+				"sourceLocale": "源地(如{en})用以尋資源檔,如{sourceGlob}。 亦转发于{fromLocale}。"
+			}
+		},
+		"providerInputs": {
+			"heading": "提供者選擇與資格",
+			"caption": "供應商選擇與各廠商資格",
+			"intro": "每次{provider}择一医者。 仅供所选供应商之凭证,详见 {providersLink} 指南以备全设。",
+			"items": {
+				"provider": "译者:{azure}(默认)、{aws}、{google}。 每次行動呼叫僅用一供應者。",
+				"subscriptionKey": "Azure AI Translator 订阅密钥。 {azure}必备。 由{secrets}通行。",
+				"endpoint": "Azure Translator 端點網址,如 {endpointUrl}。 {azure}必备。",
+				"awsAccessKeyId": "AWS访问密钥ID。 可选者,{awsSecretAccessKey}省略AWS默认凭证链/OIDC。 由{secrets}通行。",
+				"awsSecretAccessKey": "AWS秘密访问密钥。 必與 {awsAccessKeyId} 一同供應。 由{secrets}通行。",
+				"awsSessionToken": "可选AWS会话令牌以暂时凭证。 由{secrets}通行。",
+				"awsRegion": "AWS區域為翻譯服務(如{regionExample})。 除非{awsRegionEnv}設於環境中,否則{aws}必備。",
+				"googleApiKey": "谷歌云API密钥。 请提供此手术室{googleCredentials}以供{google}。 由{secrets}通行。",
+				"googleCredentials": "谷歌云服务账户密钥为JSON字符串。 请提供此手术室{googleApiKey}以供{google}。 由{secrets}通行。",
+				"googleProjectId": "可选谷歌云项目编号。 常由服务账户凭证推断。"
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "译者请求输入",
-			"intro": "此等参数直映Azure AI Translator v3查询参数。 皆可選; 譯者預設不變時適用。",
-			"caption": "译者请求输入",
+			"heading": "Azure Translator request inputs",
+			"intro": "此等参数直映于Azure AI Translator v3查询参数,适用于Azure供应者。 textType与profanityAction亦映射至AWS/Google,彼处有对应者(详见提供者指南); 餘者僅屬Azure。 皆可選; 譯者預設不變時適用。",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. 转发为{categoryQuery}。",
 				"textType": "{plain}或{html}。 唯资源值为真实HTML片段时方用{html}。",

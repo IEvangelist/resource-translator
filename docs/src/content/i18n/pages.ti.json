@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "ምንጪ ተርጓሚ",
-		"description": "Resource Translator ብማሽን እተተርጐመ ናይ ምንጪ ፋይላትካ ኣብ ዝዀነ ይኹን ሪፖ ብዝዀነ ይኹን ቅርጺ ይኸፍት — ብAzure AI Translator እተደገፈ።",
+		"description": "Resource Translator ብማሽን እተተርጐመ ናይ ምንጪ ፋይላትካ ኣብ ዝዀነ ይኹን ሪፖ ብዝዀነ ይኹን ቅርጺ ይኸፍት — ብAzure AI Translator AWS Translate ወይ Google Cloud Translation ይምራሕ።",
 		"socialTitle": "Resource Translator — ናይ ምንጪ ፋይላት ብቐጥታ ተርጕሙ",
-		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "ሪፖ ኣብ ከባቢኻ ግበር",
 		"headlineAccent": "ነፍሲ ወከፍ ቃል ኪዳን ።",
-		"lede": "Resource Translator ብወግዓዊ ኤስዲኬ ኣቢልካ Azure AI Translator ተጠቒሙ ብማሽን እተተርጐመ ናይ ምንጪ ፋይላትካ ዚስሕብ ሕቶ ይኸፍት — ተወሳኺ ኣገልግሎታት የለን ናይ ስራሕ መስርሕ ጥራይ እዩ።",
+		"lede": "Resource Translator ብማሽን እተተርጐመ ናይ ምንጪ ፋይላትካ ብAzure፣ AWS ወይ Google ተጠቒሙ ይኸፍት — ሓደ ሓድነት ዘለዎ ስጕምቲ፣ ሓደ ኣቕራቢ ኣብ ነፍሲ ወከፍ ጕያ፣ ወግዓዊ ኤስዲኬታት ኣብ ትሕቲ ኮፍያ።",
 		"primaryCta": "ጀምር",
 		"secondaryCta": "ኰዀብ ኣብ GitHub",
 		"supports": "ደገፍ",
 		"builtForShipping": "ንመራኽብ ተባሂሉ እተሃንጸ",
 		"workflowTitle": "ምትርጓም ከም ስራሕ እምበር ከም ስራሕ ኣይኰነን።",
-		"workflowBody": "ነቲ ተግባር ናብቲ ህሉው CI ደርብዮ ናብ Azure AI Translator ኣመልክት እሞ ሪፖኻ ንዅሉ እቲ እትደልዮ ቛንቋ ኸም ዚዛረብ ፍቐደሉ።",
+		"workflowBody": "ነቲ ተግባር ናብቲ ዘሎ CI ደርብዮ ናብ Azure AWS ወይ Google ኣመልክት እሞ ሪፖኻ ንዅሉ እቲ እትደልዮ ቛንቋ ኸም ዚዛረብ ፍቐደሉ።",
 		"stats": {
 			"audit": "0 npm-audit ጕዳያት",
-			"tests": "150 ፈተናታት",
+			"tests": "240+ ፈተናታት",
 			"node": "መስቀለኛ መንገድ 20 / 22 / 24",
-			"sdk": "ወግዓዊ Azure SDK"
+			"sdk": "Azure · AWS · ጉግል"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} ኤክስኤምኤል",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle} {summaryDetails} ከምኡውን {hasNewTranslations} ብቐጥታ ናብ ፍጥረት-ፑት-ሕቶ።"
 			},
 			"sdk": {
-				"title": "ወግዓዊ Azure SDK",
-				"body": "ኣብ {azureSdk} + {corePipeline} እተሃንጸ — ኣብ {statusCodes} ብኡንብኡ ዳግመ-ፈተነ ብኢድ እተጠቕለለ HTTP የልቦን። {esbuild} እተጠቕለለ ጽሩይ ኦዲት"
+				"title": "Azure, AWS & Google",
+				"body": "ኣብ ነፍሲ ወከፍ ጕያ ሓደ ወሃቢ ምረጽ። ነፍሲ ወከፎም በቲ ወግዓዊ ኤስዲኬ ({azureSdk}, {awsSdk}, {googleSdk} {statusCodes}) ዝምራሕ ኢዩ - ብኢድ እተጠቕለለ HTTP የለን ። {esbuild} እተጠቕለለ ጽሩይ ኦዲት"
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "ኣብ ኣውቶፒሎት ንኽትከይድ ድሉው ዲኻ?",
-			"body": "ሓደ መፍትሕ Azure AI ተርጓሚ፣ ሓደ ናይ ስራሕ ፋይል። ተርጓሚ ምንጪ ነቲ ዝተረፈ ይፈትሖ።",
+			"body": "ሓደ መፍትሕ ኣቕራቢ — Azure AWS ወይ Google — ከምኡውን ሓደ ናይ ስራሕ መስርሕ ፋይል። ተርጓሚ ምንጪ ነቲ ዝተረፈ ይፈትሖ።",
 			"button": "ጀምር"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "ቀጺሉ ዘሎ ስጕምትታት",
 			"configuration": "ናይ ሪፖ-ደረጃ ጉድለታት ምስ {configPath} ኣቀራረብ።",
 			"recipes": "ንሞኖሬፖ፣ ብጁ መዝገበ-ቃላትን ብጁ ተርጓሚ ምድባትን ዚኸውን ኣሰራርሓ ርአ።"
+		}
+	},
+	"providers": {
+		"title": "ኣቕረብቲ ትርጕም",
+		"eyebrow": "መወከሲ",
+		"lede": "ኣብ ነፍሲ ወከፍ ጕያ ሓደ ኣቕራቢ ትርጕም ምረጽ — Azure AI Translator AWS Translate ወይ Google Cloud Translation — ብድሕሪ ሓደ ሓድነት ዘለዎ ገጽ ኤፒአይ ምረጽ። እቲ ተርጓሚ ኣወሃሃዲ ብዘየገድስ ሓደ ዓይነት ጠባይ እዩ ዘለዎ። እቲ መረጋገጺ ጥራይ እዩ ዚፈላለ።",
+		"backwardCompatible": "ምሉእ ብምሉእ ንድሕሪት ዚሰማማዕ፦ {provider} ናብ {azure} እዩ ዚኸይድ፣ ስለዚ ህሉው ኣሰራርሓ Azure ከይተቐየረ ይዓዪ — ምትዕርራይ ኣየድልን እዩ።",
+		"selecting": {
+			"title": "ወሃቢ ምምራጽ",
+			"body": "ነቲ {provider} መእተዊ ናብ {azure} (ነባሪ) {aws} ወይ {google} ኣቐምጦ ድሕሪኡ ነቲ ኣቕራቢ ምስክር ወረቓቕቲ ኣቕርቦ። ኣብ ነፍሲ ወከፍ ናይ ተግባር ጻውዒት ሓደ ኣቕራቢ ጥራይ እዩ ዚጥቀመሉ። እቲ ተግባር ነቲ ብድሕሪ ሓደ ፋብሪካ ዘሎ ዝሰማማዕ ኤስዲኬ ብቘራጽነት የመሓላልፍ።"
+		},
+		"comparison": {
+			"title": "ንጽጽር ኣቕረብቲ",
+			"caption": "ንጽጽር ኣቕረብቲ ትርጕም",
+			"columns": {
+				"provider": "ወሃቢ",
+				"value": "ዋጋ ኣቕራቢ",
+				"sdk": "ኤስዲኬ",
+				"credentials": "ምስክርነት"
+			},
+			"azure": {
+				"name": "Azure AI ተርጓሚ",
+				"value": "Azure (ነባሪ)",
+				"credentials": "subscriptionKey, endpoint, region (optional)"
+			},
+			"aws": {
+				"name": "AWS ተርጓሚ",
+				"value": "AWS",
+				"credentials": "OIDC / default chain, or awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "ጉግል ክላውድ ተርጓሜ",
+				"value": "ጉግል",
+				"credentials": "googleApiKey OR googleCredentials (service-account JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (ነባሪ)",
+			"body": "እቲ ጉድለት ወሃቢ። Azure AI Translator ምንጪ ኣዳሉ እሞ {subscriptionKey} {endpoint} ከምኡውን ብኣማራጺ {region} ኣመሓላልፍ። እዚ ሕጂ ዘሎ ኣሰራርሓ ድሮ ዝጥቀሙሉ ኣሰራርሓ ኢዩ።"
+		},
+		"aws": {
+			"title": "AWS ተርጓሚ",
+			"body": "{sdk} ይጥቀም። ንነዊሕ እዋን ዝጸንሐ ምስጢራት ምእንቲ ኸይዕቀብ OIDC ብ {configureAwsCredentials} ምረጽ — እቲ ተግባር ነቲ AWS SDK ነባሪ ናይ ምስክር ወረቐት ሰንሰለት የንብብ። ብኻልእ ኣማራጺ {awsAccessKeyId} ብግልጺ {awsSecretAccessKey} ኣመሓላልፍ። ሓደ ዞባ ኵሉ ሳዕ ብ {awsRegion} ወይ ብ {awsRegionEnv} ኣከባቢ ተለዋዋጢ የድሊ።",
+			"oidcTitle": "OIDC (እተመኽረ)",
+			"keysNote": "ኣብ ክንዲ OIDC ዘይንቀሳቐስ መፍትሕ ንምጥቃም ነቲ {configureAwsCredentials} ደረጃ ደርብዩ {awsAccessKeyId} / {awsSecretAccessKey} (ብ {secrets}) {awsRegion} ሕለፍ።"
+		},
+		"google": {
+			"title": "ጉግል ክላውድ ተርጓሜ",
+			"body": "{sdk} ተጠቒሙ (2)። ብኤፒአይ መብራህቲ ({googleApiKey}) ወይ ብሰርቪስ-ሕሳብ JSON ምስክር ወረቐት ({googleCredentials}) ኣረጋግጽ። ብልክዕ ሓደ ኣቕረብ፣ ኣማራጺ {googleProjectId} ምስ ተወድአ ካብ መረጋገጺ ይውሰድ።"
+		},
+		"mapping": {
+			"title": "ዕላማ-መለለዪ ካርታ",
+			"body": "ኣወሃሃድቲ ፍሉይ መለለዪታት ተመሳሳሊ ነገር ኣብ ዘለዎ ቦታ እዩ ዚቐርብ። ኵሉ እቲ ዝተረፈ ነገር ናብ ርትዓዊ ጕድለታት ይምለስ ስለዚ ጠባይ ቀዋሚ ይኸውን።",
+			"caption": "ኣብ መንጎ ኣቕረብቲ ናይ ዕላማ ዝርዝር ካርታ",
+			"columns": {
+				"input": "መእተዊ",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "ጉግል"
+			},
+			"supported": "እተደገፈ",
+			"ignored": "ዕሽሽ ተባሂሉ",
+			"rows": {
+				"textType": {
+					"azure": "textType (ተራ / html)",
+					"aws": "ዕሽሽ ተባሂሉ (ብዘይ መቀያየር)",
+					"google": "ቅርጺ (ጽሑፍ / html)"
+				},
+				"profanityAction": {
+					"azure": "ምሉእ ደገፍ",
+					"aws": "መሸፈኒ ኣፍን ኣፍንጫን / መሸፈኒ ኣፍን ኣፍንጫን →",
+					"google": "ዕሽሽ ተባሂሉ"
+				},
+				"categoryId": {
+					"azure": "ብጁ ተርጓሚ",
+					"aws": "ዕሽሽ ተባሂሉ",
+					"google": "ዕሽሽ ተባሂሉ"
+				},
+				"allowFallback": {
+					"azure": "እተደገፈ",
+					"aws": "ዕሽሽ ተባሂሉ",
+					"google": "ዕሽሽ ተባሂሉ"
+				}
+			}
+		},
+		"locales": {
+			"title": "ናይ ከባቢ ኮድ ኣብ ነፍሲ ወከፍ ወሃቢ ይፈላለ እዩ",
+			"body": "ነፍሲ ወከፍ ኣቕሓ ናይ ገዛእ ርእሱ ኮድ ቋንቋ እዩ ዚጥቀም (ንኣብነት Simpl Chinese {azureCode} ኣብ Azure፣ {awsCode} ኣብ AWS ከምኡውን {googleCode} ኣብ Google)። ኮድታት ከም ከም ዝዀነ ይሓልፍ እሞ ነቲ ናይ ውፅኢት ፋይላት ኣስማት ይመርሖ፣ ስለዚ እቲ ዝመረጽካዮ ኣቕራቢ ዚድግፎ {toLocales} ዋጋታት ምረጽ።"
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "ኣድላዪ ኣገባባት",
 			"caption": "ኣድላዪ ኣገባባት",
 			"items": {
-				"sourceLocale": "ምንጪ ቦታ (ንኣብነት {en}) ከም {sourceGlob} ዝኣመሰሉ ምንጪ ፋይላት ንምርካብ የገልግል። ከም {fromLocale} ተርጓሚ እውን ተላእከ።",
-				"subscriptionKey": "Azure AI Translator subscription key። ብ {secrets} ሓለፍ።",
-				"endpoint": "ተርጓሚ ናይ መወዳእታ ነጥብ URL ንኣብነት {endpointUrl}"
+				"sourceLocale": "ምንጪ ቦታ (ንኣብነት {en}) ከም {sourceGlob} ዝኣመሰሉ ምንጪ ፋይላት ንምርካብ የገልግል። ከም {fromLocale} ናብ ኣወሃሃዲ እውን ተላእከ።"
+			}
+		},
+		"providerInputs": {
+			"heading": "ኣወሃሃዲ ምምራጽን መረጋገጺን",
+			"caption": "ናይ ኣወሃሃዲ ምርጫን ናይ ነፍሲ ወከፍ ሸያጢ መረጋገጺ",
+			"intro": "ኣብ ነፍሲ ወከፍ ጕያ ሓደ ወሃቢ ምስ {provider} ምረጽ። ነቲ እተመርጸ ኣቕራቢ ምስክር ወረቓቕቲ ጥራይ ኣቕርብ — ምሉእ ምድላው ንምርካብ ኣብ መምርሒ {providersLink} ርአ።",
+			"items": {
+				"provider": "ኣወሃሃዲ ተርጓሚ፦ {azure} (ነባሪ) {aws} ወይ {google}። ኣብ ነፍሲ ወከፍ ናይ ተግባር ጻውዒት ሓደ ኣቕሓ ጥራይ እዩ ዝጥቀመሉ።",
+				"subscriptionKey": "Azure AI Translator subscription key። {azure} የድሊ። ብ {secrets} ሓለፍ።",
+				"endpoint": "Azure Translator Endpoint URL ንኣብነት {endpointUrl} ኣድላዪ {azure}።",
+				"awsAccessKeyId": "AWS access key id። ኣማራጺ — ነቲ AWS default credential chain / OIDC ንምጥቃም (ምስ {awsSecretAccessKey}) ሕደግ። ብ {secrets} ሓለፍ።",
+				"awsSecretAccessKey": "AWS ምስጢራዊ መእተዊ መኽፈቲ። ምስ {awsAccessKeyId} ብሓባር ክቐርብ ኣለዎ። ብ {secrets} ሓለፍ።",
+				"awsSessionToken": "ኣማራጺ AWS ክፍለ ግዜ ቶከን ግዝያዊ ምስክርነት። ብ {secrets} ሓለፍ።",
+				"awsRegion": "ናይ ምስሊ መግለጺ ናይ መራኸቢ ብዙሓን መራኸቢ ብዙሓን (ንኣብነት {regionExample}) ኣብ ከባቢ {awsRegionEnv} እንተ ዘይኰይኑ {aws} የድሊ።",
+				"googleApiKey": "ጉግል ክላውድ ኤፒአይ መኽፈቲ። ነዚ ወይ {googleCredentials} {google} ኣቕርቦ። ብ {secrets} ሓለፍ።",
+				"googleCredentials": "Google Cloud service-account key ከም JSON string። ነዚ ወይ {googleApiKey} {google} ኣቕርቦ። ብ {secrets} ሓለፍ።",
+				"googleProjectId": "ኣማራጺ ናይ ጉግል ክላውድ ፕሮጀክት መንነት። መብዛሕትኡ ግዜ ካብ ናይ ኣገልግሎት ሕሳብ መረጋገጺ ሓበሬታ እዩ ዚመጽእ።"
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "ናይ ተርጓሚ ሕቶ ሓሳባት",
-			"intro": "እዚ ካርታ እዚ ብቐጥታ ናብ Azure AI Translator v3 ናይ ሕቶ መዐቀኒታት የቕርብ። ነፍሲ ወከፎም ኣማራጺ እዮም፣ እቲ ተርጓሚ ምስ ዘይተዓወተ እዩ ዚዓዪ።",
-			"caption": "ናይ ተርጓሚ ሕቶ ሓሳባት",
+			"heading": "Azure Translator request inputs",
+			"intro": "እዚ ካርታ እዚ ብቐጥታ ናብ Azure AI Translator v3 ናይ ሕቶ መዐቀኒታት ይቐርብ ናብ ኣወሃሃዲ Azure ድማ ይምልከት። textType and profanityAction እውን ተመሳሳሊ ነገር ምስ ዘለዎ ናብ AWS/Google ካርታ ተዘርጊሑ ኣሎ (መምርሒ ኣቕረብቲ ርአ)። እቶም ዝተረፉ ድማ ኣዙር ጥራይ እዮም። ነፍሲ ወከፎም ኣማራጺ እዮም፣ እቲ ተርጓሚ ምስ ዘይተዓወተ እዩ ዚዓዪ።",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — ኢንዱስትሪ/ዶሜን/ቶን ኖብ። ከም {categoryQuery} ተላእከ።",
 				"textType": "{plain} ወይ {html}። {html} ናይ ምንጪ ዋጋታትካ ናይ ሓቂ ቍርጽራጽ HTML ምስ ዝኸውን ጥራይ ተጠቐመሉ።",

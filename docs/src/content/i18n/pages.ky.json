@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Ресурс которгуч",
-		"description": "Resource Translator сиздин ресурс файлдарыңыз үчүн машинадан которулган pull requestтерди каалаган репозицияда, каалаган форматта — Azure AI Translator аркылуу ачат.",
+		"description": "Resource Translator сиздин ресурс файлдарыңыз үчүн машиналык котормодон алынган pull requestтерди каалаган репозитордо жана каалаган форматта — Azure AI Translator, AWS Translate же Google Cloud Translation аркылуу иштейт.",
 		"socialTitle": "Resource Translator — ресурс файлдарын автоматтык түрдө которуу",
-		"badge": "v3.0 — Node 24, репо конфигурациясы, глоссарий, кургак иштетүү",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Репоңузду локалдаштырыңыз",
 		"headlineAccent": "ар бир милдеттенме.",
-		"lede": "Resource Translator расмий SDK аркылуу Azure AI Translator аркылуу ресурс файлдарыңыз үчүн машинадан которулган pull requestтерди ачат — кошумча кызматтар жок, жөн гана иш агымы.",
+		"lede": "Resource Translator сиздин ресурс файлдарыңыз үчүн машиналык котормодон алынган pull requestтерди Azure, AWS же Google аркылуу ачып берет — бир бирдиктүү аракет, ар бир иштетүү үчүн бир провайдер, расмий SDKлар капоттун астында.",
 		"primaryCta": "Башта",
 		"secondaryCta": "GitHub'да Star",
 		"supports": "Колдоолор",
 		"builtForShipping": "Кеме ташуу үчүн курулган",
 		"workflowTitle": "Котормо иш агымы катары, милдет эмес.",
-		"workflowBody": "Аракетти учурдагы CIге коюп, Azure AI Translator'га багыттаңыз жана репозиторуңузга каалаган тилдериңизди сүйлөтүңүз.",
+		"workflowBody": "Аракетти учурдагы CIге коюп, аны Azure, AWS же Google'га багыттаңыз, жана репозиторго багытталган ар бир тилде сүйлөөгө уруксат бериңиз.",
 		"stats": {
 			"audit": "0 npm-аудит маселелери",
-			"tests": "150 тест",
+			"tests": "240+ тест",
 			"node": "20 / 22 / 24 түйүн",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} жана {hasNewTranslations} түздөн-түз create-pull-request режимине киргизилет."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "{azureSdk} + {corePipeline} негизинде курулган — {statusCodes} автоматтык түрдө кайра сынап көрүү, кол менен айлантылган HTTP жок. {esbuild} топтолгон, аудит таза."
+				"title": "Azure, AWS жана Google",
+				"body": "Ар бир жолу бир провайдерди тандаңыз. Ар бири расмий SDK ({azureSdk}, {awsSdk}, {googleSdk}) менен башкарылат жана {statusCodes} автоматтык кайра кайталоо менен иштейт — кол менен жасалган HTTP жок. {esbuild}-топтолгон, аудит таза."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Автопилотто локализацияга даярсызбы?",
-			"body": "Бир Azure AI Translator ачкычы, бир workflow файлы. Resource Translator калганын аткарат.",
+			"body": "Бир провайдер ачкычы — Azure, AWS же Google — жана бир иш агымы файлы. Resource Translator калганын аткарат.",
 			"button": "Башта"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Кийинки кадамдар",
 			"configuration": "Репо деңгээлиндеги демейки параметрлерди {configPath} менен конфигурациялаңыз.",
 			"recipes": "Монорепо, өзгөчө глоссарийлер жана Custom Translator категорияларынын рецепттерин караңыз."
+		}
+	},
+	"providers": {
+		"title": "Котормо провайдерлери",
+		"eyebrow": "Библиография",
+		"lede": "Ар бир иштетүү үчүн бир котормо провайдерин тандаңыз — Azure AI Translator, AWS Translate же Google Cloud Translation — бирдиктүү, бирдиктүү API бетинин артында. Транслятор провайдерге карабастан бирдей иштейт; Тек гана квалификациялар айырмаланат.",
+		"backwardCompatible": "Толук артка шайкеш: {provider} демейки {azure} режиминде иштейт, ошондуктан Azure иш агымдары өзгөрүүсүз иштейт — түзөтүү талап кылынбайт.",
+		"selecting": {
+			"title": "Провайдерди тандоо",
+			"body": "{provider} киргизүүнү {azure} (демейки), {aws} же {google} кылып коюп, ошол провайдердин идентификациялык маалыматтарын бериңиз. Ар бир аракет чакыруу үчүн бир гана провайдер колдонулат; аракет детерминисттик түрдө заводдун артындагы дал келген SDKга делегат берет."
+		},
+		"comparison": {
+			"title": "Провайдерлерди салыштыруу",
+			"caption": "Котормо провайдерлерин салыштыруу",
+			"columns": {
+				"provider": "Провайдер",
+				"value": "Провайдердин баалуулугу",
+				"sdk": "SDK",
+				"credentials": "Квалификациялар"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (демейки)",
+				"credentials": "subscriptionАчкыч, чекити, аймак (милдеттүү эмес)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "AWS",
+				"credentials": "OIDC / демейки чынжыр, же awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Булут Котормо",
+				"value": "Google",
+				"credentials": "googleApiKey же googleCredentials (кызмат-аккаунт JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Демейки провайдер. Azure AI Translator ресурсун камсыздап, {subscriptionKey}, {endpoint} жана кошумча {region} өткөрүңүз. Бул учурдагы иш агымдары колдонгон конфигурация."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Колдонуу {sdk}. OIDCни {configureAwsCredentials} аркылуу артык көрөм, анткени узак мөөнөттүү сырлар сакталбайт — аракет AWS SDKнын демейки идентификация чынжырын окуйт. Же болбосо, {awsAccessKeyId} өткөрүп, {awsSecretAccessKey} ачык. Ар дайым аймак талап кылынат, {awsRegion} же {awsRegionEnv} чөйрө өзгөрмөсү аркылуу.",
+			"oidcTitle": "OIDC (сунушталат)",
+			"keysNote": "OIDC ордуна статикалык баскычтарды колдонуу үчүн {configureAwsCredentials} баскычты таштап, {awsAccessKeyId} / {awsSecretAccessKey} ({secrets} аркылуу) плюс {awsRegion} өткөрүңүз."
+		},
+		"google": {
+			"title": "Google Булут Котормо",
+			"body": "{sdk} (v2) колдонулат. API ачкычы ({googleApiKey}) же кызмат-аккаунттун JSON идентификациясы ({googleCredentials}) менен аутентификация жүргүзүңүз. Так бирөөнү камсыздаңыз; Эгерде каттоо белгиси жок болсо, кошумча {googleProjectId} аныкталат."
+		},
+		"mapping": {
+			"title": "Максат-спецификаторду чагылдыруу",
+			"body": "Провайдерге тиешелүү спецификаторлор эквивалент бар жерде картага түшүрүлөт. Калган нерселер акылга сыярлык демейки режимдерге кайтып келет, ошондуктан жүрүм-турум туруктуу бойдон калат.",
+			"caption": "Провайдерлер арасында максат-спецификаторду чагылдыруу",
+			"columns": {
+				"input": "Киргизүү",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Колдоого алынган",
+			"ignored": "Эске алынбайт",
+			"rows": {
+				"textType": {
+					"azure": "textType (жөнөкөй / html)",
+					"aws": "Игноририлген (которгуч жок)",
+					"google": "Формат (текст / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Толук колдоо",
+					"aws": "Белгиленген / Өчүрүлгөн → маскалоо",
+					"google": "Эске алынбайт"
+				},
+				"categoryId": {
+					"azure": "Кастомдук котормочу",
+					"aws": "Эске алынбайт",
+					"google": "Эске алынбайт"
+				},
+				"allowFallback": {
+					"azure": "Колдоого алынган",
+					"aws": "Эске алынбайт",
+					"google": "Эске алынбайт"
+				}
+			}
+		},
+		"locales": {
+			"title": "Жергиликтүү коддор ар бир провайдерге жараша айырмаланат",
+			"body": "Ар бир провайдер өзүнүн локал коддорун колдонот (мисалы, Azure'да Simplified Chinese {azureCode}, AWSте {awsCode} жана Google'да {googleCode} бар). Коддор ошол бойдон өтүп, чыккан файл аттарын жетектейт, ошондуктан тандаган провайдер колдогон {toLocales} маанилерди тандаңыз."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Талап кылынган киргизүүлөр",
 			"caption": "Талап кылынган киргизүүлөр",
 			"items": {
-				"sourceLocale": "Булак локализациясы (мисалы, {en}) {sourceGlob} сыяктуу ресурс файлдарын табуу үчүн колдонулат. Ошондой эле Translator бөлүмүнө {fromLocale} катары жөнөтүлгөн.",
-				"subscriptionKey": "Azure AI Translator subscription key. Өтүп {secrets}.",
-				"endpoint": "Котормочунун акыркы дареги URL, мисалы, {endpointUrl}."
+				"sourceLocale": "Булак локализациясы (мисалы, {en}) {sourceGlob} сыяктуу ресурс файлдарын табуу үчүн колдонулат. Ошондой эле провайдерге {fromLocale} катары жөнөтүлгөн."
+			}
+		},
+		"providerInputs": {
+			"heading": "Провайдерди тандоо жана квалификациялар",
+			"caption": "Провайдерди тандоо жана ар бир сатуучу боюнча идентификациялар",
+			"intro": "Ар бир жолу бир провайдерди тандаңыз {provider}. Тандалган провайдердин гана маалыматтарын бериңиз — толук орнотуу үчүн {providersLink} колдонмосун караңыз.",
+			"items": {
+				"provider": "Котормо провайдери: {azure} (демейки), {aws} же {google}. Ар бир аракет чакыруу үчүн бир гана провайдер колдонулат.",
+				"subscriptionKey": "Azure AI Translator subscription key. Талап {azure}. Өтүп {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, мисалы, {endpointUrl}. Талап {azure}.",
+				"awsAccessKeyId": "AWS кирүү ачкычынын идентификатору. Милдеттүү — AWSтин демейки идентификация чынжырын / OIDCни колдонуу үчүн ({awsSecretAccessKey} менен кошо) калтыруу. Өтүп {secrets}.",
+				"awsSecretAccessKey": "AWS жашыруун кирүү ачкычы. Алар менен бирге камсыздалуу {awsAccessKeyId}. Өтүп {secrets}.",
+				"awsSessionToken": "Убактылуу каттоо маалыматтары үчүн кошумча AWS сессия токени. Өтүп {secrets}.",
+				"awsRegion": "Translate кызматы үчүн AWS аймагы (мисалы, {regionExample}). Бул {aws} үчүн талап кылынат, эгерде {awsRegionEnv} чөйрөдө орнотулбаса.",
+				"googleApiKey": "Google Cloud API ачкычы. Бул операциялык бөлмөнү {googleCredentials} {google}. Өтүп {secrets}.",
+				"googleCredentials": "Google Cloud кызмат-аккаунт ачкычы JSON сап катары. Бул операциялык бөлмөнү {googleApiKey} {google}. Өтүп {secrets}.",
+				"googleProjectId": "Кошумча Google Cloud долбоорунун идентификатору. Адатта бул кызматтык аккаунттун идентификациясынан аныкталат."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Транслятордун сурамдары киргизүүлөрү",
-			"intro": "Булар түздөн-түз Azure AI Translator v3 суроо параметрлерине туура келет. Ар бири милдеттүү эмес; Транслятордун демейки параметрлери өчүрүлгөндө колдонулат.",
-			"caption": "Транслятордун сурамдары киргизүүлөрү",
+			"heading": "Azure Translator request inputs",
+			"intro": "Булар түздөн-түз Azure AI Translator v3 суроо параметрлерине дал келип, Azure провайдерине колдонулат. textType жана profanityAction да AWS/Google'га дал келет, анда эквивалент бар (провайдерлердин колдонмосун караңыз); калгандары Azure форматында гана. Ар бири милдеттүү эмес; Транслятордун демейки параметрлери өчүрүлгөндө колдонулат.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — industry/domain/tone knob. Жөнөтүлдү {categoryQuery}.",
 				"textType": "{plain} же {html}. {html} ресурс маанилери чыныгы HTML фрагменттери болгондо гана колдонуңуз.",

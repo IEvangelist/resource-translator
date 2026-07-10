@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Resursöversättare",
-		"description": "Resource Translator öppnar maskinöversatta pull requests för dina resursfiler i vilket repo som helst, i vilket format som helst – drivet av Azure AI Translator.",
+		"description": "Resource Translator öppnar maskinöversatta pull requests för dina resursfiler i vilket repo som helst, i vilket format som helst — drivet av Azure AI Translator, AWS Translate eller Google Cloud Translation.",
 		"socialTitle": "Resursöversättare — översätt resursfiler automatiskt",
-		"badge": "v3.0 — Node 24, repo-konfiguration, ordlista, provkörning",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Lokalisera ditt repo på",
 		"headlineAccent": "varje comit.",
-		"lede": "Resource Translator öppnar maskinöversatta pull requests för dina resursfiler med Azure AI Translator via det officiella SDK:t — inga extra tjänster, bara ett arbetsflöde.",
+		"lede": "Resource Translator öppnar maskinöversatta pull requests för dina resursfiler med hjälp av Azure, AWS eller Google — en enhetlig åtgärd, en leverantör per körning, officiella SDK:er under huven.",
 		"primaryCta": "Sätt igång",
 		"secondaryCta": "Star på GitHub",
 		"supports": "Stöd",
 		"builtForShipping": "Byggd för sjöfart",
 		"workflowTitle": "Översättning som ett arbetsflöde, inte som en syssla.",
-		"workflowBody": "Lägg in åtgärden i din befintliga CI, rikta den mot Azure AI Translator och låt ditt repo tala alla språk du siktar på.",
+		"workflowBody": "Lägg in åtgärden i ditt befintliga CI, rikta den mot Azure, AWS eller Google, och låt ditt repo tala alla språk du siktar på.",
 		"stats": {
 			"audit": "0 npm-revisionsproblem",
-			"tests": "150 tester",
+			"tests": "240+ tester",
 			"node": "Nod 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} och {hasNewTranslations} passar direkt in i create-pull-request."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Byggt på {azureSdk} + {corePipeline} — automatiska omförsök på {statusCodes}, ingen handrullad HTTP. {esbuild} paketerat, revisionsrent."
+				"title": "Azure, AWS & Google",
+				"body": "Välj en leverantör per runda. Varje SDK styrs av sitt officiella SDK ({azureSdk}, {awsSdk}, {googleSdk}) med automatiska omförsök på {statusCodes} — ingen handrullad HTTP. {esbuild} paketerat, revisionsrent."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Redo att lokalisera på autopilot?",
-			"body": "En Azure AI Translator-nyckel, en arbetsflödesfil. Resource Translator hanterar resten.",
+			"body": "En leverantörsnyckel — Azure, AWS eller Google — och en arbetsflödesfil. Resource Translator hanterar resten.",
 			"button": "Sätt igång"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Nästa steg",
 			"configuration": "Konfigurera repo-nivå-standardinställningar med {configPath}.",
 			"recipes": "Se recept för monorepos, anpassade ordlistor och kategorier för anpassade översättare."
+		}
+	},
+	"providers": {
+		"title": "Översättningsleverantörer",
+		"eyebrow": "Referens",
+		"lede": "Välj en översättningsleverantör per körning — Azure AI Translator, AWS Translate eller Google Cloud Translation — bakom en enda, enhetlig API-yta. Översättaren beter sig identiskt oavsett leverantör; Det är bara meriterna som skiljer sig åt.",
+		"backwardCompatible": "Fullt bakåtkompatibelt: {provider} är som standard {azure}, så befintliga Azure-arbetsflöden fortsätter att fungera oförändrade — inga redigeringar krävs.",
+		"selecting": {
+			"title": "Val av leverantör",
+			"body": "Ställ in {provider} inmatning till {azure} (standard), {aws} eller {google} och lämna sedan den leverantörens inloggningsuppgifter. Endast en leverantör används per åtgärdsanrop; åtgärden delegerar deterministiskt till den matchande SDK:n bakom en fabrik."
+		},
+		"comparison": {
+			"title": "Jämförelse av leverantörer",
+			"caption": "Jämförelse av översättningsleverantörer",
+			"columns": {
+				"provider": "Leverantör",
+				"value": "Leverantörsvärde",
+				"sdk": "SDK",
+				"credentials": "Meriter"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (standard)",
+				"credentials": "subscriptionKey, endpoint, region (valfritt)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "aws",
+				"credentials": "OIDC / standardkedja, eller awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud Translation",
+				"value": "Google",
+				"credentials": "googleApiKey ELLER googleCredentials (servicekonto-JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Standardleverantören. Tillhandahåll en Azure AI Translator-resurs och skicka {subscriptionKey}, {endpoint} och eventuellt {region}. Detta är samma konfiguration som befintliga arbetsflöden redan använder."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Använder {sdk}. Föredra OIDC via {configureAwsCredentials} så att inga långlivade hemligheter lagras — åtgärden läser AWS SDK:s standardbehörighetskedja. Alternativt, klara {awsAccessKeyId} och {awsSecretAccessKey} uttryckligen. En region krävs alltid, via {awsRegion} eller den {awsRegionEnv} miljövariabeln.",
+			"oidcTitle": "OIDC (rekommenderas)",
+			"keysNote": "För att använda statiska tangenter istället för OIDC, ta bort {configureAwsCredentials} steg och skicka {awsAccessKeyId} / {awsSecretAccessKey} (via {secrets}) plus {awsRegion}."
+		},
+		"google": {
+			"title": "Google Cloud Translation",
+			"body": "Använder {sdk} (v2). Autentisera med antingen en API-nyckel ({googleApiKey}) eller en servicekonto-JSON-legitimation ({googleCredentials}). Leverera exakt en; En frivillig {googleProjectId} härleds från legitimationen när den utelämnas."
+		},
+		"mapping": {
+			"title": "Avsiktsspecifikativ avbildning",
+			"body": "Provider-specifika specifierare mappas där en motsvarighet finns. Allt annat faller tillbaka på rimliga standardinställningar så att beteendet förblir konsekvent.",
+			"caption": "Avsiktsspecifierande kartläggning mellan leverantörer",
+			"columns": {
+				"input": "Indata",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Stödd",
+			"ignored": "Ignoreras",
+			"rows": {
+				"textType": {
+					"azure": "textType (ren / html)",
+					"aws": "Ignorerades (ingen växling)",
+					"google": "Format (text / html)"
+				},
+				"profanityAction": {
+					"azure": "Fullt stöd",
+					"aws": "Markerad / Borttagen → maskering",
+					"google": "Ignoreras"
+				},
+				"categoryId": {
+					"azure": "Anpassad översättare",
+					"aws": "Ignoreras",
+					"google": "Ignoreras"
+				},
+				"allowFallback": {
+					"azure": "Stödd",
+					"aws": "Ignoreras",
+					"google": "Ignoreras"
+				}
+			}
+		},
+		"locales": {
+			"title": "Lokalkoderna skiljer sig mellan leverantörer",
+			"body": "Varje leverantör använder sina egna lokalkoder (till exempel är förenklad kinesiska {azureCode} på Azure, {awsCode} på AWS och {googleCode} på Google). Koder passerar genom som de är och styr utdatafilnamnen, så välj {toLocales} värden som din valda leverantör stödjer."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Nödvändiga indata",
 			"caption": "Nödvändiga indata",
 			"items": {
-				"sourceLocale": "Källplats (t.ex. {en}) som används för att hitta resursfiler som {sourceGlob}. Vidarebefordrat till översättaren som {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. Passera via {secrets}.",
-				"endpoint": "Översättarens endpoint-URL, t.ex. {endpointUrl}."
+				"sourceLocale": "Källplats (t.ex. {en}) som används för att hitta resursfiler som {sourceGlob}. Vidarebefordrade även till vårdgivaren som {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Val av leverantör och meriter",
+			"caption": "Leverantörsval och leverantörsinloggningar",
+			"intro": "Välj en leverantör per runda med {provider}. Lämna endast den valda leverantörens inloggningsuppgifter – se {providersLink}-guiden för fullständig installation.",
+			"items": {
+				"provider": "Översättningsleverantör: {azure} (standard), {aws} eller {google}. Endast en leverantör används per åtgärdssamtal.",
+				"subscriptionKey": "Azure AI Translator subscription key. Obligatoriskt för {azure}. Passera via {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, t.ex. {endpointUrl}. Obligatoriskt för {azure}.",
+				"awsAccessKeyId": "AWS access key-id. Valfritt — utelämna (med {awsSecretAccessKey}) för att använda AWS standardbehörighetskedja / OIDC. Passera via {secrets}.",
+				"awsSecretAccessKey": "AWS hemlig åtkomstnyckel. Måste tillhandahållas tillsammans med {awsAccessKeyId}. Passera via {secrets}.",
+				"awsSessionToken": "Valfri AWS-sessionstoken för tillfälliga inloggningsuppgifter. Passera via {secrets}.",
+				"awsRegion": "AWS-region för Translate-tjänsten (t.ex. {regionExample}). Obligatoriskt för {aws} om inte {awsRegionEnv} utspelar sig i miljön.",
+				"googleApiKey": "Google Cloud API-nyckel. Tillhandahåll detta ELLER {googleCredentials} för {google}. Passera via {secrets}.",
+				"googleCredentials": "Google Cloud-tjänstekontonyckel som en JSON-sträng. Tillhandahåll detta ELLER {googleApiKey} för {google}. Passera via {secrets}.",
+				"googleProjectId": "Valfritt Google Cloud-projekt-id. Vanligtvis härleds det från tjänstekontots legitimation."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Translator-förfrågningsindata",
-			"intro": "Dessa mappas direkt till Azure AI Translator v3-frågeparametrar. Varje är valfri; översättarens standardinställningar gäller när de inte är inställda.",
-			"caption": "Translator-förfrågningsindata",
+			"heading": "Azure Translator request inputs",
+			"intro": "Dessa mappas direkt till Azure AI Translator v3-frågeparametrar och tillämpas på Azure-leverantören. textType och ProfanityAction mappas också till AWS/Google där en motsvarighet finns (se leverantörsguiden); resten är endast Azure. Varje är valfri; översättarens standardinställningar gäller när de inte är inställda.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} kategori — bransch-/domän-/tonratten. Vidarebefordrat som {categoryQuery}.",
 				"textType": "{plain} eller {html}. Använd {html} endast när dina resursvärden är riktiga HTML-fragment.",

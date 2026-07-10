@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Tagasalin ng Mapagkukunan",
-		"description": "Binubuksan ng Resource Translator ang mga kahilingan sa pull na isinalin ng makina para sa iyong mga file ng mapagkukunan sa anumang repo, sa anumang format - pinapatakbo ng Azure AI Translator.",
+		"description": "Binubuksan ng Resource Translator ang mga kahilingan sa pull na isinalin ng makina para sa iyong mga file ng mapagkukunan sa anumang repo, sa anumang format - pinapatakbo ng Azure AI Translator, AWS Translate, o Google Cloud Translation.",
 		"socialTitle": "Tagasalin ng Mapagkukunan - awtomatikong isalin ang mga file ng mapagkukunan",
-		"badge": "v3.0 - Node 24, repo config, talasalitaan, dry run",
+		"badge": "v3.0 - Azure, AWS & Google provider, Node 24, repo config",
 		"headlinePrefix": "I-localize ang iyong repo sa",
 		"headlineAccent": "bawat commit.",
-		"lede": "Binubuksan ng Resource Translator ang mga kahilingan sa pull na isinalin ng makina para sa iyong mga file ng mapagkukunan gamit ang Azure AI Translator sa pamamagitan ng opisyal na SDK - walang dagdag na serbisyo, isang daloy ng trabaho lamang.",
+		"lede": "Binubuksan ng Tagasalin ng Mapagkukunan ang mga kahilingan sa pull na isinalin ng makina para sa iyong mga file ng mapagkukunan gamit ang Azure, AWS, o Google - isang pinag-isang pagkilos, isang provider bawat pagtakbo, mga opisyal na SDK sa ilalim ng hood.",
 		"primaryCta": "Email Address *",
 		"secondaryCta": "Bituin sa GitHub",
 		"supports": "Mga Suporta",
 		"builtForShipping": "Itinayo para sa pagpapadala",
 		"workflowTitle": "Ang pagsasalin ay isang daloy ng trabaho, hindi isang gawain.",
-		"workflowBody": "I-drop ang aksyon sa iyong umiiral na CI, ituro ito sa Azure AI Translator, at hayaan ang iyong repo na magsalita ng bawat wika na iyong target.",
+		"workflowBody": "I-drop ang pagkilos sa iyong umiiral na CI, ituro ito sa Azure, AWS, o Google, at hayaan ang iyong repo na magsalita ng bawat wika na iyong target.",
 		"stats": {
 			"audit": "0 mga isyu sa pag-audit ng npm",
-			"tests": "150 mga pagsubok",
+			"tests": "240+ mga pagsubok",
 			"node": "Node 20 / 22 / 24",
-			"sdk": "Opisyal na Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails}, at {hasNewTranslations} slot nang direkta sa create-pull-request."
 			},
 			"sdk": {
-				"title": "Opisyal na Azure SDK",
-				"body": "Itinayo sa {azureSdk} + {corePipeline} - awtomatikong muling pagtatangka sa {statusCodes}, walang hand-rolled HTTP. {esbuild}-bundled, audit-clean."
+				"title": "Azure, AWS at Google",
+				"body": "Pumili ng isang provider sa bawat run. Ang bawat isa ay hinihimok ng opisyal na SDK ({azureSdk}, {awsSdk}, {googleSdk}) na may awtomatikong muling pagtatangka sa {statusCodes} - walang hand-rolled HTTP. {esbuild}-bundled, audit-clean."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Handa nang mag-localize sa autopilot?",
-			"body": "Isang susi ng Azure AI Translator, isang file ng daloy ng trabaho. Ang Resource Translator ang namamahala sa natitira.",
+			"body": "Isang provider key - Azure, AWS, o Google - at isang file ng daloy ng trabaho. Ang Resource Translator ang namamahala sa natitira.",
 			"button": "Email Address *"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Mga susunod na hakbang",
 			"configuration": "I-configure ang mga default na antas ng repo gamit ang {configPath}.",
 			"recipes": "Tingnan ang mga recipe para sa mga monorepos, pasadyang talasalitaan, at mga kategorya ng Pasadyang Tagasalin."
+		}
+	},
+	"providers": {
+		"title": "Mga tagapagbigay ng pagsasalin",
+		"eyebrow": "Sanggunian",
+		"lede": "Pumili ng isang tagapagbigay ng pagsasalin sa bawat run - Azure AI Translator, AWS Translate, o Google Cloud Translation - sa likod ng isang solong, pinag-isang ibabaw ng API. Ang tagasalin ay kumikilos nang magkapareho anuman ang provider; Ang mga kredensyal lamang ang naiiba.",
+		"backwardCompatible": "Ganap na pabalik na katugma: Ang {provider} ay default sa {azure}, kaya ang mga umiiral na mga daloy ng trabaho ng Azure ay patuloy na gumagana nang hindi nagbabago - walang kinakailangang mga pag-edit.",
+		"selecting": {
+			"title": "Pumili ng isang tagapagbigay ng serbisyo",
+			"body": "Itakda ang input ng {provider} sa {azure} (default), {aws}, o {google}, pagkatapos ay ibigay ang mga kredensyal ng provider na iyon. Isang provider lamang ang ginagamit sa bawat tawag sa pagkilos; ang aksyon deterministically delegado sa pagtutugma SDK sa likod ng isang pabrika."
+		},
+		"comparison": {
+			"title": "Paghahambing ng provider",
+			"caption": "Paghahambing ng provider ng pagsasalin",
+			"columns": {
+				"provider": "Tagapagbigay ng serbisyo",
+				"value": "Halaga ng Provider",
+				"sdk": "SDK",
+				"credentials": "Mga kredensyal"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "azure (default)",
+				"credentials": "subscriptionKey, endpoint, rehiyon (opsyonal)"
+			},
+			"aws": {
+				"name": "Email Address *",
+				"value": "aws",
+				"credentials": "OIDC / default chain, o awsAccessKeyId + awsSecretAccessKey; awsRehiyon"
+			},
+			"google": {
+				"name": "Pagsasalin ng Google Cloud",
+				"value": "Google",
+				"credentials": "googleApiKey O googleCredentials (JSON ng service-account)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Ang default na tagapagbigay ng serbisyo. Magbibigay ng isang mapagkukunan ng Azure AI Translator at ipasa ang {subscriptionKey}, {endpoint}, at opsyonal na {region}. Ito ang parehong configuration na ginagamit na ng mga umiiral na daloy ng trabaho."
+		},
+		"aws": {
+			"title": "Email Address *",
+			"body": "Gumagamit ng {sdk}. Mas gusto ang OIDC sa pamamagitan ng {configureAwsCredentials} upang walang pangmatagalang lihim na naka-imbak - binabasa ng aksyon ang default na kadena ng kredensyal ng AWS SDK. Bilang kahalili, ipasa ang {awsAccessKeyId} at {awsSecretAccessKey} nang malinaw. Ang isang rehiyon ay palaging kinakailangan, sa pamamagitan ng {awsRegion} o ang variable ng kapaligiran ng {awsRegionEnv}.",
+			"oidcTitle": "OIDC (inirerekomenda)",
+			"keysNote": "Upang magamit ang mga static key sa halip na OIDC, i-drop ang {configureAwsCredentials} hakbang at ipasa ang {awsAccessKeyId} / {awsSecretAccessKey} (sa pamamagitan ng {secrets}) at {awsRegion}."
+		},
+		"google": {
+			"title": "Pagsasalin ng Google Cloud",
+			"body": "Gamitin ang {sdk} (v2). Magpatunay gamit ang alinman sa isang API key ({googleApiKey}) o isang kredensyal ng JSON ng service-account ({googleCredentials}). Magbigay ng eksaktong isa; Ang isang opsyonal na {googleProjectId} ay hinuha mula sa kredensyal kapag tinanggal ito."
+		},
+		"mapping": {
+			"title": "Pagma-map ng intent-specifier",
+			"body": "Ang mga specifier na tukoy sa provider ay naka-map kung saan umiiral ang isang katumbas. Lahat ng iba pa ay bumabalik sa makatwirang mga default kaya ang pag-uugali ay nananatiling pare-pareho.",
+			"caption": "Pagma-map ng intent-specifier sa iba't ibang provider",
+			"columns": {
+				"input": "Input",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Suportado",
+			"ignored": "Hindi pinansin",
+			"rows": {
+				"textType": {
+					"azure": "textType (plain / html)",
+					"aws": "Hindi pinansin (walang toggle)",
+					"google": "Format (Teksto / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Buong suporta",
+					"aws": "Minarkahan / Tinanggal → masking",
+					"google": "Hindi pinansin"
+				},
+				"categoryId": {
+					"azure": "Pasadyang Tagasalin",
+					"aws": "Hindi pinansin",
+					"google": "Hindi pinansin"
+				},
+				"allowFallback": {
+					"azure": "Suportado",
+					"aws": "Hindi pinansin",
+					"google": "Hindi pinansin"
+				}
+			}
+		},
+		"locales": {
+			"title": "Ang mga lokal na code ay naiiba sa bawat provider",
+			"body": "Ang bawat provider ay gumagamit ng sarili nitong mga locale code (halimbawa, ang Pinasimpleng Tsino ay {azureCode} sa Azure, {awsCode} sa AWS, at {googleCode} sa Google). Ang mga code ay dumadaan sa as-is at hinimok ang mga pangalan ng output file, kaya piliin ang {toLocales} mga halaga na sinusuportahan ng iyong napiling provider."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Mga kinakailangang input",
 			"caption": "Mga kinakailangang input",
 			"items": {
-				"sourceLocale": "Pinagmulan ng lokal (hal. {en}) na ginagamit upang makahanap ng mga file ng mapagkukunan tulad ng {sourceGlob}. Ipinasa rin sa Translator bilang {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. Dumaan sa {secrets}.",
-				"endpoint": "URL ng endpoint ng tagasalin, hal. {endpointUrl}."
+				"sourceLocale": "Pinagmulan ng lokal (hal. {en}) na ginagamit upang makahanap ng mga file ng mapagkukunan tulad ng {sourceGlob}. Ipinasa din sa provider bilang {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Pagpili ng provider at mga kredensyal",
+			"caption": "Pagpili ng provider at mga kredensyal sa bawat vendor",
+			"intro": "Pumili ng isang provider sa bawat run na may {provider}. Ibigay lamang ang mga kredensyal ng napiling provider - tingnan ang gabay sa {providersLink} para sa buong pag-setup.",
+			"items": {
+				"provider": "Tagabigay ng pagsasalin: {azure} (default), {aws}, o {google}. Isang provider lamang ang ginagamit sa bawat tawag sa pagkilos.",
+				"subscriptionKey": "Azure AI Translator subscription key. Kinakailangan para sa {azure}. Dumaan sa {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, hal. {endpointUrl}. Kinakailangan para sa {azure}.",
+				"awsAccessKeyId": "AWS access key id. Opsyonal - alisin (na may {awsSecretAccessKey}) upang gamitin ang AWS default na kadena ng kredensyal / OIDC. Dumaan sa {secrets}.",
+				"awsSecretAccessKey": "AWS lihim na access key. Dapat itong ibigay kasama ang {awsAccessKeyId}. Dumaan sa {secrets}.",
+				"awsSessionToken": "Opsyonal na token ng sesyon ng AWS para sa pansamantalang mga kredensyal. Dumaan sa {secrets}.",
+				"awsRegion": "Rehiyon ng AWS para sa serbisyo ng Pagsasalin (hal. {regionExample}). Kinakailangan para sa {aws} maliban kung ang {awsRegionEnv} ay nakatakda sa kapaligiran.",
+				"googleApiKey": "Google Cloud API key. Ibigay ito o {googleCredentials} para sa {google}. Dumaan sa {secrets}.",
+				"googleCredentials": "Google Cloud service-account key bilang isang JSON string. Ibigay ito o {googleApiKey} para sa {google}. Dumaan sa {secrets}.",
+				"googleProjectId": "Opsyonal na ID ng proyekto ng Google Cloud. Karaniwan itong hinuha mula sa kredensyal ng service-account."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Mga input ng kahilingan ng tagasalin",
-			"intro": "Ang mga ito ay direktang nagma-map sa mga parameter ng query ng Azure AI Translator v3. Ang bawat isa ay opsyonal; ang mga default na tagasalin ay nalalapat kapag hindi naka-set.",
-			"caption": "Mga input ng kahilingan ng tagasalin",
+			"heading": "Mga input ng kahilingan ng Azure Translator",
+			"intro": "Ang mga ito ay direktang nagma-map sa mga parameter ng query ng Azure AI Translator v3 at nalalapat sa provider ng Azure. textType at bastos na Aksyon ay naka-map din sa AWS/Google kung saan umiiral ang katumbas (tingnan ang gabay ng provider); ang natitira ay Azure-lamang. Ang bawat isa ay opsyonal; ang mga default na tagasalin ay nalalapat kapag hindi naka-set.",
+			"caption": "Mga input ng kahilingan ng Azure Translator",
 			"items": {
 				"categoryId": "Kategorya ng Azure {customTranslatorLink} - ang knob ng industriya / domain / tono. Ipinasa bilang {categoryQuery}.",
 				"textType": "{plain} o {html}. Gamitin lamang {html} kapag ang iyong mga halaga ng mapagkukunan ay tunay na mga fragment ng HTML.",

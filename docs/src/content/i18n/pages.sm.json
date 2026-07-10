@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Punaoa Fa'aliliu",
-		"description": "Resource Translator tatalaina masini-fa'aliliuina talosaga toso mo au punaoa faila i so'o se repo, i so'o se fa'atulagaga - fa'amalosia e Azure AI Translator.",
+		"description": "O le Resource Translator e tatalaina ai talosaga fa'aliliuina masini mo au faila punaoa i so'o se repo, i so'o se fa'atulagaga - fa'amalosia e Azure AI Translator, AWS Translate, po'o Google Cloud Translation.",
 		"socialTitle": "Resource Translator — faaliliuina faila punaoa otometi",
-		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Fa'apipi'i lau repo i luga",
 		"headlineAccent": "tautinoga uma.",
-		"lede": "E tatalaina e le Resource Translator talosaga fa'aliliuina masini mo au faila punaoa e fa'aaoga ai le Azure AI Translator e ala i le SDK aloaia — leai se auaunaga fa'aopoopo, na'o se fa'agaioiga.",
+		"lede": "E tatalaina e le Resource Translator talosaga fa'aliliuina masini mo au faila punaoa e fa'aaoga ai Azure, AWS, po'o Google — tasi le gaioiga tu'ufa'atasia, tasi le kamupani e tu'uina atu i le tamo'e, aloaia SDKs i lalo o le pulou.",
 		"primaryCta": "Amata",
 		"secondaryCta": "Fetu i luga o GitHub",
 		"supports": "Lagolago",
 		"builtForShipping": "Fausia mo le va'a",
 		"workflowTitle": "O le faaliliuga o se galuega, ae le o se galuega.",
-		"workflowBody": "Tu'u le gaioiga i lau CI o lo'o i ai, fa'asino i le Azure AI Translator, ma fa'atagaina lau repo e tautala i gagana uma e te taula'i i ai.",
+		"workflowBody": "Tu'u le gaioiga i lau CI o lo'o i ai, fa'asino i Azure, AWS, po'o Google, ma fa'atagaina lau repo e tautala i gagana uma e te taula'i i ai.",
 		"stats": {
 			"audit": "0 npm-suegatusi mataupu",
-			"tests": "150 su'ega",
+			"tests": "240+ su'ega",
 			"node": "Node 20 / 22 / 24",
-			"sdk": "Aloaia Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails}, ma {hasNewTranslations} slot sa'o i le fausiaina-toso-talosaga."
 			},
 			"sdk": {
-				"title": "Aloaia Azure SDK",
-				"body": "Fausia i luga o {azureSdk} + {corePipeline} — otometi toe taumafai i {statusCodes}, leai se HTTP. {esbuild}-fusi, suegatusi-mama."
+				"title": "Azure, AWS ma Google",
+				"body": "Filifili se tasi e tu'uina atu i le tamo'e. Taitasi o loo tulia e lona aloaia SDK ({azureSdk}, {awsSdk}, {googleSdk}) ma otometi retries i {statusCodes} — leai se HTTP. {esbuild}-fusi, suegatusi-mama."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Sauni e fa'apipi'i i luga o le autopilot?",
-			"body": "Tasi le Azure AI Translator key, tasi le faila o le workflow. O le Resource Translator e taulimaina le vaega o totoe.",
+			"body": "Tasi le ki e tu'uina atu — Azure, AWS, po'o Google — ma le tasi faila o le workflow. O le Resource Translator e taulimaina le vaega o totoe.",
 			"button": "Amata"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Laasaga e sosoo ai",
 			"configuration": "Configure repo-level defaults with {configPath}.",
 			"recipes": "Tagai fua mo monorepos, glossaries masani, ma vaega o Custom Translator."
+		}
+	},
+	"providers": {
+		"title": "Tagata e tuuina atu faaliliuga",
+		"eyebrow": "Fa'amatalaga",
+		"lede": "Filifili se tasi e tu'uina atu fa'aliliuga i le tamo'e - Azure AI Translator, AWS Translate, po'o Google Cloud Translation - i tua atu o le tasi, tu'ufa'atasia API luga. E tutusa lava le amio a le tagata faaliliu e tusa lava po o le a le tagata e tuuina atu; na'o fa'amaoniga e ese'ese.",
+		"backwardCompatible": "Atoatoa i tua talafeagai: {provider} faaletonu i le {azure}, o lea o lo'o i ai nei Azure workflows fa'aauau pea ona galue e le suia — leai ni fa'asa'oga mana'omia.",
+		"selecting": {
+			"title": "Filifilia o se tagata e faaaogāina auaunaga",
+			"body": "Seti le sao {provider} i le {azure} (faaletonu), {aws}, po o le {google}, ona tuuina atu lea o faamaoniga a lena kamupani. E na'o le tasi le kamupani e fa'aaogaina i le vala'au gaioiga; o le gaioiga deterministically faamatuu atu i le fetaui SDK i tua o se fale gaosi."
+		},
+		"comparison": {
+			"title": "Fa'atusatusaga o tagata e tu'uina atu",
+			"caption": "Fa'atusatusaga fa'aliliuga",
+			"columns": {
+				"provider": "Tagata e tuuina atu",
+				"value": "Tuuina atu le taua",
+				"sdk": "SDK",
+				"credentials": "Fa'amaoniga"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (faaletonu)",
+				"credentials": "subscriptionKey, endpoint, region (faitalia)"
+			},
+			"aws": {
+				"name": "Fa'aliliuga a le AWS",
+				"value": "O le a le mea e sili ona lelei",
+				"credentials": "OIDC / filifili faaletonu, po'o le awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud Translation",
+				"value": "Google",
+				"credentials": "googleApiKey OR googleCredentials (service-account JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "O le tagata e tu'uina atu le fa'aletonu. Tu'uina atu se punaoa a le Azure AI Translator ma pasi le {subscriptionKey}, {endpoint}, ma le filifiliga {region}. O le fa'atulagaina lava lea e tasi o lo'o fa'aaogaina e workflows o lo'o i ai nei."
+		},
+		"aws": {
+			"title": "Fa'aliliuga a le AWS",
+			"body": "Fa'aaogaina {sdk}. Sili atu i le OIDC e ala i le {configureAwsCredentials} ina ia leai se mea lilo umi e teuina — o le gaioiga e faitau ai le AWS SDK default credential chain. A le o lea, pasi {awsAccessKeyId} ma {awsSecretAccessKey} manino. E mana'omia i taimi uma se itulagi, e ala i le {awsRegion} po'o le {awsRegionEnv} siosiomaga fesuia'iga.",
+			"oidcTitle": "OIDC (fautuaina)",
+			"keysNote": "Ina ia fa'aaogaina ki static nai lo le OIDC, pa'u le la'asaga {configureAwsCredentials} ma pasi {awsAccessKeyId} / {awsSecretAccessKey} (e ala i le {secrets}) fa'aopoopo {awsRegion}."
+		},
+		"google": {
+			"title": "Google Cloud Translation",
+			"body": "Fa'aaogaina {sdk} (f2). Fa'amaonia ma se API ki ({googleApiKey}) po'o se tautua-teuga tupe JSON fa'amaonia ({googleCredentials}). Tuuina atu tonu lava le tasi; O se fa'{googleProjectId} fa'apitoa e maua mai i le fa'amaoniga pe a aveesea."
+		},
+		"mapping": {
+			"title": "Fa'afanua fa'amoemoe-fa'apitoa",
+			"body": "O fa'amatalaga fa'apitoa e tu'uina atu e fa'afanua pe a fai o lo'o i ai se tutusa. O isi mea uma e pa'u i tua i le fa'aletonu talafeagai ina ia tumau ai le amio.",
+			"caption": "Fa'amoemoe-fa'apitoa fa'afanua i luga o kamupani e tu'uina atu",
+			"columns": {
+				"input": "Sao",
+				"azure": "Azure",
+				"aws": "O le AWS",
+				"google": "Google"
+			},
+			"supported": "Lagolagoina",
+			"ignored": "Le amana'iaina",
+			"rows": {
+				"textType": {
+					"azure": "textType (manino / html)",
+					"aws": "Le amana'iaina (leai se toggle)",
+					"google": "Fa'atulagaga (Tusitusiga / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Lagolago atoa",
+					"aws": "Fa'ailogaina / Ave'esea → masking",
+					"google": "Le amana'iaina"
+				},
+				"categoryId": {
+					"azure": "Fa'aliliu Masani",
+					"aws": "Le amana'iaina",
+					"google": "Le amana'iaina"
+				},
+				"allowFallback": {
+					"azure": "Lagolagoina",
+					"aws": "Le amana'iaina",
+					"google": "Le amana'iaina"
+				}
+			}
+		},
+		"locales": {
+			"title": "E eseese tulafono o le lotoifale i tagata e tuuina atu",
+			"body": "O kamupani ta'itasi e fa'aaogaina a latou lava tulafono fa'avae (mo se fa'ata'ita'iga, o le Saina Fa'afaigofieina e {azureCode} i Azure, {awsCode} i luga o le AWS, ma {googleCode} i Google). O tulafono laiti e pasi e pei ona i ai ma fa'atautaia igoa faila o galuega faatino, o lea ia filifili {toLocales} tulaga taua e lagolagoina e lau kamupani filifilia."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Fa'amatalaga mana'omia",
 			"caption": "Fa'amatalaga mana'omia",
 			"items": {
-				"sourceLocale": "Punaoa nofoaga (eg {en}) fa'aaogaina e su'e ai punaoa faila e pei o {sourceGlob}. Na auina atu foi i le faaliliu upu e pei o {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. Pasi e ala i {secrets}.",
-				"endpoint": "Fa'aliliuga fa'aiuga URL, fa'ata'ita'iga {endpointUrl}."
+				"sourceLocale": "Punaoa nofoaga (eg {en}) fa'aaogaina e su'e ai punaoa faila e pei o {sourceGlob}. Fa'apea foi ona tu'uina atu i le tagata fa'atau e pei ona {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Filifiliga o tagata e tu'uina atu ma fa'amaoniga",
+			"caption": "Filifiliga o tagata fa'atau ma fa'amaoniga ta'itasi",
+			"intro": "Filifili se tasi e tu'uina atu i le tamo'e ma {provider}. Tu'uina atu na'o fa'amaoniga a le kamupani filifilia — va'ai i le ta'iala {providersLink} mo le fa'atulagaina atoa.",
+			"items": {
+				"provider": "Fa'aliliuga: {azure} (faaletonu), {aws}, po'o le {google}. E na'o le tasi le kamupani e fa'aaogaina i le vala'au o gaioiga.",
+				"subscriptionKey": "Azure AI Translator subscription key. E mana'omia mo le {azure}. Pasi e ala i {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, eg {endpointUrl}. E mana'omia mo le {azure}.",
+				"awsAccessKeyId": "AWS Access Key ID. Filifiliga — aveese (ma le {awsSecretAccessKey}) e fa'aaoga ai le AWS default credential chain / OIDC. Pasi e ala i {secrets}.",
+				"awsSecretAccessKey": "O le ki faalilolilo a le AWS. E tatau ona tu'uina atu fa'atasi ma {awsAccessKeyId}. Pasi e ala i {secrets}.",
+				"awsSessionToken": "Filifiliga AWS sauniga fa'ailoga mo fa'amaoniga le tumau. Pasi e ala i {secrets}.",
+				"awsRegion": "O le fa'aliliuga o le fa'aliliuga o le fa'aliliuga (mo se fa'ata'ita'iga, {regionExample}). E mana'omia mo le {aws} se'i vagana ua fa'atulagaina {awsRegionEnv} i le siosiomaga.",
+				"googleApiKey": "Google Cloud API ki. Tu'uina atu lenei OR {googleCredentials} mo {google}. Pasi e ala i {secrets}.",
+				"googleCredentials": "Google Cloud service-account key o se manoa JSON. Tu'uina atu lenei OR {googleApiKey} mo {google}. Pasi e ala i {secrets}.",
+				"googleProjectId": "Filifiliga Google Cloud Project ID. E masani lava ona maua mai i le fa'amaoniga o le teuga tupe."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Talosaga a le tagata faaliliu sao",
-			"intro": "O nei fa'afanua sa'o i luga o Azure AI Translator v3 fesili fa'ata'ita'iga. O mea uma e filifilia; O le faaletonu o le Faaliliu e faatatau pe a le seti.",
-			"caption": "Talosaga a le tagata faaliliu sao",
+			"heading": "Azure Translator request inputs",
+			"intro": "O nei fa'afanua tuusao i luga o le Azure AI Translator v3 fesili fa'ata'ita'iga ma fa'aaoga i le Azure Provider. textType ma expanityAction o lo'o fa'afanua fo'i i le AWS / Google pe a iai se tutusa (va'ai i le ta'iala a le kamupani); o isi e na'o Azure. O mea uma e filifilia; O le faaletonu o le Faaliliu e faatatau pe a le seti.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} vaega — o le alamanuia / vaega / tone knob. Fa'alauiloaina e pei o {categoryQuery}.",
 				"textType": "{plain} po o {html}. Fa'aaoga {html} pe a fai o au punaoa taua o ni vaega HTML moni.",

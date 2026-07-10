@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Resource Translator",
-		"description": "Resource Translator inovhura muchina-wakashandurwa kudhonza zvikumbiro zvemafaera ako ezviwanikwa mune chero repo, mune chero fomati — inofambiswa neAzure AI Muturikiri.",
+		"description": "Resource Translator inovhura muchina-wakashandurwa kudhonza zvikumbiro zvemafaera ako ezviwanikwa mune chero repo, mune chero fomati — inofambiswa neAzure AI Muturikiri, AWS Dudzira, kana Google Cloud Dudziro.",
 		"socialTitle": "Resource Translator — translate resource files automatically",
-		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Localize your repo on",
 		"headlineAccent": "Kuzvipira kwega kwega.",
-		"lede": "Resource Translator inovhura muchina-wakashandurwa kudhonza zvikumbiro zvemafaera ako ekushandisa Azure AI Muturikiri kuburikidza neyepamutemo SDK — hapana mamwe masevhisi, ingori kufamba kwebasa.",
+		"lede": "Resource Translator inovhura muchina-wakashandurwa kudhonza zvikumbiro zvemafaera ako ekushandisa Azure, AWS, kana Google — chiito chimwe chakabatana, mupi mumwe pakumhanya, maSDK epamutemo pasi pehood.",
 		"primaryCta": "Tanga",
 		"secondaryCta": "Nyeredzi paGitHub",
 		"supports": "Rutsigiro",
 		"builtForShipping": "Yakagadzirirwa kutakura",
 		"workflowTitle": "Shanduro sebasa rebasa, kwete kuchema.",
-		"workflowBody": "Donhedza chiito muCI yako iripo, inongedzera kuAzure AI Muturikiri, uye rega repo yako itaure mutauro wega wega waunotarisa.",
+		"workflowBody": "Donhedza chiito muCI yako iripo, inongedzera kuAzure, AWS, kana Google, uye rega repo yako itaure mutauro wega wega waunotarisa.",
 		"stats": {
 			"audit": "0 npm-audit nyaya",
-			"tests": "150 bvunzo",
+			"tests": "240+ bvunzo",
 			"node": "Zvaungaita Kuti Zvive Nyore Kuti Uite Izvozvo / 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails}, uye {hasNewTranslations} slot zvakananga mukugadzira-dhonza-chikumbiro."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Yakavakirwa pa {azureSdk} + {corePipeline} — otomatiki kudzokorora pane {statusCodes}, hapana ruoko-rwakungurutswa HTTP. {esbuild}-bundled, audit-yakachena."
+				"title": "Azure, AWS uye Google",
+				"body": "Sarudza mupi mumwe chete pakumhanya. Imwe neimwe inotyairwa neyayo yepamutemo SDK ({azureSdk}, {awsSdk}, {googleSdk}) ine otomatiki kuedza pane {statusCodes} — hapana ruoko-rwakungurutswa HTTP. {esbuild}-bundled, audit-yakachena."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Wakagadzirira kumisikidza autopilot?",
-			"body": "Imwe Azure AI Muturikiri kiyi, imwe workflow faira. Mushanduri weResource anobata zvimwe zvese.",
+			"body": "Imwe kiyi yemupi - Azure, AWS, kana Google - uye imwe faira rebasa. Mushanduri weResource anobata zvimwe zvese.",
 			"button": "Tanga"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Matanho anotevera",
 			"configuration": "Gadzirisa repo-level defaults ne {configPath}.",
 			"recipes": "Ona mabikirwo emonorepos, tsika glossaries, uye Custom Translator zvikamu."
+		}
+	},
+	"providers": {
+		"title": "Vashanduri vanopa",
+		"eyebrow": "Reference",
+		"lede": "Sarudza mupi mumwe wekushandura pakumhanya - Azure AI Muturikiri, AWS Dudzira, kana Google Cloud Dudziro - kuseri kweimwechete, yakabatana API pamusoro. Muturikiri anozvibata zvakafanana zvisinei nemupi; Chete magwaro anosiyana.",
+		"backwardCompatible": "Yakazara kumashure inoenderana: {provider} defaults kune {azure}, saka iripo Azure workflows inoramba ichishanda isina kuchinjika — hapana zvigadziriso zvinodiwa.",
+		"selecting": {
+			"title": "Kusarudza mupi",
+			"body": "Isa {provider} yekuisa kune {azure} (default), {aws}, kana {google}, wobva wapa zvitupa zvemupi iyeye. Mupi mumwe chete anoshandiswa padanho rekufona; chiito chinopa deterministically kune inoenderana SDK kuseri kwefekitori."
+		},
+		"comparison": {
+			"title": "Kuenzanisa kwemupi",
+			"caption": "Translation provider comparison",
+			"columns": {
+				"provider": "Mupi",
+				"value": "Kukosha kwemupi",
+				"sdk": "SDK",
+				"credentials": "Credentials"
+			},
+			"azure": {
+				"name": "Azure AI Muturikiri",
+				"value": "Azure (default)",
+				"credentials": "subscriptionKey, endpoint, region (optional)"
+			},
+			"aws": {
+				"name": "Shanduro yeAWS",
+				"value": "Aws",
+				"credentials": "OIDC / default cheni, kana awsAccessKeyId + awsSecretAccessKeyKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud Translation",
+				"value": "Google",
+				"credentials": "googleApiKey OR googleCredentials (service-account JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Mupi wekukundikana. Ipa Azure AI Muturikiri sosi uye upfuure {subscriptionKey}, {endpoint}, uye nesarudzo {region}. Aya ndiwo maratidziro akafanana nemabasa aripo anoshandiswa kare."
+		},
+		"aws": {
+			"title": "Shanduro yeAWS",
+			"body": "Shandisa {sdk}. Sarudza OIDC kuburikidza {configureAwsCredentials} saka hapana zvakavanzika zvehupenyu hwakareba zvinochengetwa — chiito chinoverenga iyo AWS SDK default credential cheni. Neimwe nzira, pfuudza {awsAccessKeyId} uye {awsSecretAccessKey} zvakajeka. Dunhu rinogara richidiwa, kuburikidza {awsRegion} kana {awsRegionEnv} nharaunda inoshanduka.",
+			"oidcTitle": "OIDC (yakakurudzirwa)",
+			"keysNote": "Kuti ushandise static makiyi panzvimbo yeOIDC, donhedza nhanho {configureAwsCredentials} uye upfuure {awsAccessKeyId} / {awsSecretAccessKey} (kuburikidza {secrets}) pamwe {awsRegion}."
+		},
+		"google": {
+			"title": "Google Cloud Translation",
+			"body": "Shandisa {sdk} (v2). Inosimbisa nekiyi yeAPI ({googleApiKey}) kana sevhisi-account JSON credential ({googleCredentials}). Ipa chaizvo imwe; An optional {googleProjectId} is inferred from the credential when omitted."
+		},
+		"mapping": {
+			"title": "Intent-specifier mapping",
+			"body": "Zvirongwa zvemupi-zvakananga zvinoratidzwa apo zvakaenzana zviripo. Zvimwe zvese zvinodzokera kune zvine musoro kutadza saka maitiro anoramba achienderana.",
+			"caption": "Intent-specifier mapping across providers",
+			"columns": {
+				"input": "Input",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Yakatsigirwa",
+			"ignored": "Kufuratirwa",
+			"rows": {
+				"textType": {
+					"azure": "textType (plain / html)",
+					"aws": "Ignored (no toggle)",
+					"google": "Fomati (chinyorwa / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Tsigiro yakazara",
+					"aws": "Yakagadziridzwa / Yakabviswa → masking",
+					"google": "Kufuratirwa"
+				},
+				"categoryId": {
+					"azure": "Mushanduri wetsika",
+					"aws": "Kufuratirwa",
+					"google": "Kufuratirwa"
+				},
+				"allowFallback": {
+					"azure": "Yakatsigirwa",
+					"aws": "Kufuratirwa",
+					"google": "Kufuratirwa"
+				}
+			}
+		},
+		"locales": {
+			"title": "Locale kodhi inosiyana pamupi",
+			"body": "Mupi wega wega anoshandisa makodhi ayo emunharaunda (semuenzaniso Simplified Chinese {azureCode} paAzure, {awsCode} paAWS, uye {googleCode} paGoogle). Makodhi anopfuura nemuse-ari uye anotyaira mazita emafaira ekuburitsa, saka sarudza {toLocales} kukosha kwemupi wako akasarudzwa anotsigira."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Zvishandiso zvinodikanwa",
 			"caption": "Zvishandiso zvinodikanwa",
 			"items": {
-				"sourceLocale": "Source locale (semuenzaniso {en}) inoshandiswa kutsvaga mafaira ezviwanikwa senge {sourceGlob}. Yakatumirwawo kune mushanduri semushanduri {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. Pfuura kuburikidza {secrets}.",
-				"endpoint": "Mushanduri endpoint URL, semuenzaniso {endpointUrl}."
+				"sourceLocale": "Source locale (semuenzaniso {en}) inoshandiswa kutsvaga mafaira ezviwanikwa senge {sourceGlob}. Uyezve, yakatumirwa kune mutengesi {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Provider selection & credentials",
+			"caption": "Provider kusarudzwa uye per-mutengesi credentials",
+			"intro": "Sarudza mumwe mupi pakumhanya {provider}. Ipa chete zvitupa zvemupi akasarudzwa — ona iyo {providersLink} gwara rekumisikidza kuzere.",
+			"items": {
+				"provider": "Mupi wekushandura: {azure} (default), {aws}, kana {google}. Mupi mumwe chete anoshandiswa padanho rekuita.",
+				"subscriptionKey": "Azure AI Translator subscription key. Inodikanwa {azure}. Pfuura kuburikidza {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, semuenzaniso {endpointUrl}. Inodikanwa {azure}.",
+				"awsAccessKeyId": "AWS Access Key ID. Optional — omit (with {awsSecretAccessKey}) to use the AWS default credential chain / OIDC. Pfuura kuburikidza {secrets}.",
+				"awsSecretAccessKey": "AWS yakavanzika yekuwana kiyi Inofanira kupihwa pamwe chete {awsAccessKeyId}. Pfuura kuburikidza {secrets}.",
+				"awsSessionToken": "Optional AWS session token for temporary credentials. Pfuura kuburikidza {secrets}.",
+				"awsRegion": "Shanduro yebasa rekushandura (semuenzaniso {regionExample}). Izvo zvinodikanwa {aws} kunze kwekunge {awsRegionEnv} yakaiswa munharaunda.",
+				"googleApiKey": "Google Cloud API kiyi. Ipa izvi kana {googleCredentials} {google}. Pfuura kuburikidza {secrets}.",
+				"googleCredentials": "Google Cloud Service-account kiyi seJSON tambo. Ipa izvi kana {googleApiKey} {google}. Pfuura kuburikidza {secrets}.",
+				"googleProjectId": "Optional Google Cloud project id. Kazhinji inotorwa kubva kuaccount yebasa."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Translator request inputs",
-			"intro": "Aya mepu akananga kuAzure AI Muturikiri v3 mubvunzo parameter. Imwe neimwe inosarudzika; Zvikanganiso zvemushanduri zvinoshanda kana zvisina kugadziriswa.",
-			"caption": "Translator request inputs",
+			"heading": "Azure Translator request inputs",
+			"intro": "Aya mepu akananga kuAzure AI Muturikiri v3 mubvunzo parameter uye anoshanda kune mupi weazure. textType uye kutuka zvinoitwawo kuAWS / Google uko kwakaenzana kuripo (ona gwara revanopa); Zvimwe zvese ndezveAzure-chete. Imwe neimwe inosarudzika; Zvikanganiso zvemushanduri zvinoshanda kana zvisina kugadziriswa.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. Yakatumirwa seyakagadziridzwa {categoryQuery}.",
 				"textType": "{plain} kana {html}. Shandisa {html} chete kana zviwanikwa zvako zviwanikwa zviri zvechokwadi HTML zvidimbu.",

@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "リソーストランスレーター",
-		"description": "Resource Translatorは、Azure AI Translatorによって機能する、あらゆるリポジトリ、形式でリソースファイルの機械翻訳プルリクエストを開きます。",
+		"description": "Resource Translatorは、Azure AI Translator、AWS Translate、Google Cloud Translationによって機能する、あらゆるリポジトリ、形式でリソースファイルの機械翻訳プルリクエストを開きます。",
 		"socialTitle": "リソーストランスレーター — リソースファイルを自動翻訳します",
-		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "リポジトリをローカライズして",
 		"headlineAccent": "すべてのコミットです。",
-		"lede": "Resource Translatorは、公式SDKを通じてAzure AI Translatorを使ってリソースファイルの機械翻訳プルリクエストを開きます。追加のサービスはなく、単なるワークフローです。",
+		"lede": "Resource TranslatorはAzure、AWS、Googleを使ってリソースファイルの機械翻訳プルリクエストを開きます — 統一アクション1回、1回の実行で1つのプロバイダー、内部に公式SDKが搭載されています。",
 		"primaryCta": "始めましょう",
 		"secondaryCta": "GitHubのスター",
 		"supports": "サポート",
 		"builtForShipping": "船舶用に建造",
 		"workflowTitle": "翻訳は作業ではなくワークフローとして。",
-		"workflowBody": "既存のCIにアクションを入れ、Azure AI Translatorに向け、リポジトリでターゲットとなるすべての言語を話せるようにしましょう。",
+		"workflowBody": "既存のCIにアクションを入れ、Azure、AWS、Googleに向け、リポジトリでターゲットとするすべての言語を話させましょう。",
 		"stats": {
 			"audit": "NPM監査問題0件",
-			"tests": "150試合のテスト",
+			"tests": "240+テスト",
 			"node": "ノード20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure ·AWS ·グーグル"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}、{summaryDetails}、{hasNewTranslations}は直接create-pull-requestにスロットを入れます。"
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "{azureSdk} + {corePipeline}を基盤に構築されており、{statusCodes}での自動リトライ、手作業のHTTPはありません。{esbuild}束、監査クリーン。"
+				"title": "Azure、AWS & Google",
+				"body": "1回のランで1人の提供者を選びましょう。それぞれ公式のSDK({azureSdk}、{awsSdk}、{googleSdk})によって駆動され、{statusCodes}の自動リトライが使われています。手作業のHTTPはありません。{esbuild}バンドル、監査クリーン。"
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "自動操縦でローカライズの準備はできていますか?",
-			"body": "Azure AI翻訳キー1つ、ワークフローファイル1つ。残りはリソーストランスレーターが処理します。",
+			"body": "プロバイダーキーはAzure、AWS、またはGoogleで、ワークフローファイルは1つだけです。残りはリソーストランスレーターが処理します。",
 			"button": "始めましょう"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "今後のステップ",
 			"configuration": "リポジトリレベルのデフォルト設定を{configPath}で設定してください。",
 			"recipes": "モノリポジトリ、カスタム用語集、カスタム翻訳者カテゴリのレシピをご覧ください。"
+		}
+	},
+	"providers": {
+		"title": "翻訳提供者",
+		"eyebrow": "参考文献",
+		"lede": "1回の実行で、Azure AI Translator、AWS Translate、またはGoogle Cloud Translationのいずれかの翻訳プロバイダーを選び、単一の統一APIサーフェス上で利用してください。トランスレーターはプロバイダーに関係なく同じ動作をします。異なるのは資格だけです。",
+		"backwardCompatible": "完全後方互換性:{provider}デフォルトは{azure}で、既存のAzureワークフローは変更せずに動作し続け、編集は不要です。",
+		"selecting": {
+			"title": "提供者の選択",
+			"body": "{provider}入力を{azure}(デフォルト)、{aws}、または{google}に設定し、そのプロバイダーの認証情報を入力します。アクションコールごとに1つのプロバイダーのみが使用されます。このアクションは、工場の背後にある対応するSDKに決定論的に委任します。"
+		},
+		"comparison": {
+			"title": "提供者比較",
+			"caption": "翻訳提供者比較",
+			"columns": {
+				"provider": "提供者",
+				"value": "提供者価値",
+				"sdk": "SDK",
+				"credentials": "経歴"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure(デフォルト)",
+				"credentials": "subscriptionKey、エンドポイント、リージョン(任意)"
+			},
+			"aws": {
+				"name": "AWS 翻訳",
+				"value": "AWS",
+				"credentials": "OIDC / デフォルトチェーン、またはawsAccessKeyID + awsSecretAccessKey;awsリージョン"
+			},
+			"google": {
+				"name": "Google Cloud 翻訳",
+				"value": "Googleで調べてみてください",
+				"credentials": "googleApiKey または googleCredentials (service-account JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (デフォルト)",
+			"body": "デフォルトのプロバイダーです。Azure AI翻訳ツールのリソースをプロビジョニングし、{subscriptionKey}、{endpoint}、オプションで{region}を渡します。これは既存のワークフローがすでに使っているのと同じ構成です。"
+		},
+		"aws": {
+			"title": "AWS 翻訳",
+			"body": "{sdk}を使います。長期保存された秘密情報を保存しないため{configureAwsCredentials}を経由してOIDCを優先します。アクションはAWS SDKのデフォルト認証チェーンを読み込みます。あるいは、{awsAccessKeyId}を渡して明示的に{awsSecretAccessKey}するのも良いでしょう。リージョンは{awsRegion}または{awsRegionEnv}環境変数を通じて常に必要です。",
+			"oidcTitle": "OIDC(推奨)",
+			"keysNote": "OIDCの代わりに静的キーを使う場合は、{configureAwsCredentials}ステップを外して{awsAccessKeyId} / {awsSecretAccessKey}({secrets}経由)と{awsRegion}を渡します。"
+		},
+		"google": {
+			"title": "Google Cloud 翻訳",
+			"body": "{sdk}(v2)を使います。認証はAPIキー({googleApiKey})またはサービスアカウントのJSON認証({googleCredentials})で行います。正確に1つだけ供給してください;省略すると、資格情報から任意の{googleProjectId}が推定されます。"
+		},
+		"mapping": {
+			"title": "意図・指定子マッピング",
+			"body": "提供者固有のスペグリケーターは、同等のものが存在する場所にマッピングされます。それ以外はすべて合理的なデフォルトに戻され、行動は一貫しています。",
+			"caption": "提供者間での意図・指定子マッピング",
+			"columns": {
+				"input": "入力",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "グーグル"
+			},
+			"supported": "サポート",
+			"ignored": "無視",
+			"rows": {
+				"textType": {
+					"azure": "textType(プレーン/html)",
+					"aws": "無視(トグルなし)",
+					"google": "フォーマット(テキスト/HTML)"
+				},
+				"profanityAction": {
+					"azure": "全面的なサポート",
+					"aws": "マスキング→マーク/削除済み",
+					"google": "無視"
+				},
+				"categoryId": {
+					"azure": "カスタム翻訳機",
+					"aws": "無視",
+					"google": "無視"
+				},
+				"allowFallback": {
+					"azure": "サポート",
+					"aws": "無視",
+					"google": "無視"
+				}
+			}
+		},
+		"locales": {
+			"title": "地域コードはプロバイダーによって異なります",
+			"body": "各プロバイダーは独自のローカレコードを使用しています(例えば、簡体字中国語はAzureで{azureCode}、AWSでは{awsCode}、Googleでは{googleCode}です)。コードはAS-ISを通過し、出力ファイル名を駆動します。選択したプロバイダーがサポートする値{toLocales}選びましょう。"
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "必要な入力",
 			"caption": "必要な入力",
 			"items": {
-				"sourceLocale": "ソースロケート(例:{en})は、{sourceGlob}などのリソースファイルを見つけるために使われます。また、{fromLocale}としてトランスレーターにも転送されました。",
-				"subscriptionKey": "Azure AI Translator subscription key.{secrets}を通って。",
-				"endpoint": "トランスレーターエンドポイントURL(例:{endpointUrl})。"
+				"sourceLocale": "ソースロケート(例:{en})は、{sourceGlob}などのリソースファイルを見つけるために使われます。また、プロバイダーにも{fromLocale}として転送されました。"
+			}
+		},
+		"providerInputs": {
+			"heading": "提供者選定と資格",
+			"caption": "プロバイダー選択とベンダーごとの資格",
+			"intro": "{provider}では1回のランで1人の提供者を選びましょう。選択したプロバイダーの資格情報のみを提供してください — 完全なセットアップは{providersLink}ガイドをご覧ください。",
+			"items": {
+				"provider": "翻訳提供者:{azure}(デフォルト)、{aws}、または{google}。アクションコールごとに1つのプロバイダーのみが使用されます。",
+				"subscriptionKey": "Azure AI Translator subscription key.{azure}に必須です。{secrets}で通過してください。",
+				"endpoint": "Azure Translator endpoint URL、例:{endpointUrl}。{azure}に必須です。",
+				"awsAccessKeyId": "AWS アクセスキーID。オプションで、AWSのデフォルトの認証チェーン/OIDCの使用は省略({awsSecretAccessKey}と共に)。{secrets}で通過してください。",
+				"awsSecretAccessKey": "AWSのシークレットアクセスキー。{awsAccessKeyId}と一緒に供給する必要があります。{secrets}で通過してください。",
+				"awsSessionToken": "一時認証情報用のオプションAWSセッショントークン。{secrets}を通って。",
+				"awsRegion": "Translateサービス(例:{regionExample})はAWSリージョンです。環境に設定されていない限り{aws} {awsRegionEnv}必須です。",
+				"googleApiKey": "Google Cloud APIキー。このOR {googleCredentials}を{google}に提供してください。{secrets}を通って通れ。",
+				"googleCredentials": "Google Cloud ServiceアカウントキーをJSON文字列として使います。このOR {googleApiKey}を{google}に提供してください。{secrets}を通って通れ。",
+				"googleProjectId": "任意のGoogle CloudプロジェクトIDも用意してください。通常はサービスアカウントの認証情報から推測されます。"
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "トランスレーター要求入力",
-			"intro": "これらはAzure AI Translator v3のクエリパラメータに直接マッピングされます。すべては任意です。トランスレーターのデフォルトは設定されていないときに適用されます。",
-			"caption": "トランスレーター要求入力",
+			"heading": "Azure Translator request inputs",
+			"intro": "これらはAzure AI Translator v3のクエリパラメータに直接マッピングされ、Azureプロバイダーに適用されます。textTypeとprofanityActionはAWS/Googleにもマッピングされており、同等のものが存在する場合(プロバイダーガイド参照)、残りはアズールのみです。すべては任意です。トランスレーターのデフォルトは設定されていないときに適用されます。",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob.{categoryQuery}として転送されました。",
 				"textType": "{plain}か{html}。リソース値が実際のHTMLフラグメントである場合にのみ{html}を使ってください。",

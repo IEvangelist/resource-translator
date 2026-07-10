@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Resurs terjimeçisi",
-		"description": "Resource Translator Azure AI Translator tarapyndan işleýän islendik repoda we islendik formatda resurs faýllaryňyz üçin makina terjime edilen pull haýyşlaryny açýar.",
+		"description": "Resource Translator Azure AI Translator, AWS Translate ýa-da Google Cloud Translation arkaly işleýän islendik repoda we islendik formatda resurs faýllaryňyz üçin makina terjime edilen pull haýyşlaryny açýar.",
 		"socialTitle": "Resource Translator — resurs faýllaryny otomatik terjime et",
-		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Repoňyzy ýerleşdiriň",
 		"headlineAccent": "her bir commit.",
-		"lede": "Resource Translator resmi SDK arkaly Azure AI Translator arkaly resurs faýllaryňyz üçin makina terjime edilen pull haýyşlaryny açýar - goşmaça hyzmatlar ýok, diňe iş akışy.",
+		"lede": "Resource Translator Azure, AWS ýa-da Google arkaly resurs faýllaryňyz üçin makina terjime edilen pull haýyşlaryny açýar - bir birleşen hereket, her ylgawda bir üpjünçi, resmi SDK-lar.",
 		"primaryCta": "Başlaň",
 		"secondaryCta": "GitHub-da ýyldyz",
 		"supports": "Goldawlar",
 		"builtForShipping": "Gämi üçin guruldy",
 		"workflowTitle": "Terjime iş däl-de, iş prosesi.",
-		"workflowBody": "Bu hereketi bar bolan CI-ňize goýuň, Azure AI Translator-a görkeziň we repoňyza nyşana alnan her dilde geplemäge rugsat beriň.",
+		"workflowBody": "Bu hereketi bar bolan CI-ňize goýup, Azure, AWS ýa-da Google-a görkeziň we repoňyza nyşana alnan her dilde geplemäge rugsat beriň.",
 		"stats": {
 			"audit": "0 NPM-audit meseleleri",
-			"tests": "150 synag",
+			"tests": "240+ test",
 			"node": "Node 20 / 22 / 24",
-			"sdk": "Resmi Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} we {hasNewTranslations} göni create-pull-request içine girýärler."
 			},
 			"sdk": {
-				"title": "Resmi Azure SDK",
-				"body": "{azureSdk} + {corePipeline} esasynda guruldy — {statusCodes} awtomatik gaýtalamalar, el bilen rulonlanan HTTP ýok. {esbuild} paketlenen, audit-arassa."
+				"title": "Azure, AWS & Google",
+				"body": "Her ylgawda bir üpjünçini saýlaň. Olaryň her biri öz resmi SDK-sy ({azureSdk}, {awsSdk}, {googleSdk}) arkaly dolandyrylýar we {statusCodes}-de otomatik gaýtalamalar edilýär - el bilen rulonlanan HTTP ýok. {esbuild} paketlenen, audit-arassa."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Awtopilotda ýerleşdirmäge taýýarmysyňyz?",
-			"body": "Bir Azure AI Translator açary, bir iş akış faýly. Galanlaryny bolsa Resource Translator çözýär.",
+			"body": "Bir üpjünçiniň açary — Azure, AWS ýa-da Google — we bir iş akış faýly. Galanlaryny bolsa Resource Translator çözýär.",
 			"button": "Başlaň"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Indiki ädimler",
 			"configuration": "Repo derejesiniň öň bellenen görnüşlerini {configPath}.",
 			"recipes": "Monorepolaryň, ýörite sözlükleriň we Custom Translator kategoriýalarynyň taýýarlanyş usullaryna serediň."
+		}
+	},
+	"providers": {
+		"title": "Terjimeçiler",
+		"eyebrow": "Maglumat",
+		"lede": "Her bir işde ýeke-täk API meýdançasynyň arkasynda bir terjime üpjünçisini saýlaň — Azure AI Translator, AWS Translate ýa-da Google Cloud Translation. Terjimeçi özüni birmeňzeş alyp barýar; diňe ygtybarlylyk tapawutlanýar.",
+		"backwardCompatible": "Doly yza gabat gelýär: {provider} öň bellenilen {azure}, şonuň üçin bar bolan Azure iş akymlary üýtgemän işleýär — hiç hili düzediş gerek däl.",
+		"selecting": {
+			"title": "Üpjünçini saýlamak",
+			"body": "{provider} girişini {azure} (default), {aws} ýa-da {google} edip goýuň, soňra şol üpjünçiniň maglumatyny beriň. Her hereketli çagyryşda diňe bir üpjünçi ulanylýar; bu hereket deterministik taýdan fabrikanyň arkasyndaky gabat gelýän SDK-a tabşyrylýar."
+		},
+		"comparison": {
+			"title": "Üpjünçiniň deňeşdirmesi",
+			"caption": "Terjimeçi üpjünçisiniň deňeşdirmesi",
+			"columns": {
+				"provider": "Üpjünçi",
+				"value": "üpjünçiniň gymmaty",
+				"sdk": "SDK",
+				"credentials": "Ygtyýarnama"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (default)",
+				"credentials": "subscriptionKey, endpoint, region (optional)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "aws",
+				"credentials": "OIDC / default chain ýa-da awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud Translation",
+				"value": "google",
+				"credentials": "googleApiKey ÝA-da googleCredentials (hyzmat hasaby JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Öň bellenilen üpjünçi. Azure AI Translator resursyny üpjün ediň we {subscriptionKey}, {endpoint} we opsiyonel {region}. Bu konfigurasiýa bar bolan iş akışlarynyň ulanýan konfigurasiýasy."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Ulanylyşy {sdk}. OIDC-ni {configureAwsCredentials} arkaly saýlaň, şonda uzak ömürli syrlar saklanmaz — bu hereket AWS SDK-nyň öň bellenen kimlik zynjyryny okaýar. Şeýle-de {awsAccessKeyId} we {awsSecretAccessKey} açyk geçiriň. Bir region hemişe {awsRegion} ýa-da {awsRegionEnv} değişkeni arkaly talap edilýär.",
+			"oidcTitle": "OIDC (maslahat berilýär)",
+			"keysNote": "OIDC ýerine statik açarlary ulanmak üçin {configureAwsCredentials} ädimini aşak düşüriň we {awsAccessKeyId} / {awsSecretAccessKey} ({secrets} arkaly) we {awsRegion} geçiriň."
+		},
+		"google": {
+			"title": "Google Cloud Translation",
+			"body": "Ulanylyşy {sdk} (v2). API açary ({googleApiKey}) ýa-da hyzmat hasabynyň JSON maglumaty ({googleCredentials}) bilen tassyklaň. Diňe birini üpjün ediň; goşmaça {googleProjectId} çykarylan ýagdaýynda şahadatnamadan çykarylýar."
+		},
+		"mapping": {
+			"title": "Intent-specifier mapping",
+			"body": "Provider-specific specificifikatorlar ekvivalentiň bar ýerinde kartalaşdyrylýar. Beýleki zatlar paýhasly öňünden bellenilýär, şonuň üçin özüňi alyp barşyň üýtgemeýär.",
+			"caption": "Üpjünçileriň arasynda maksat kesgitleýji kartalaşdyrma",
+			"columns": {
+				"input": "Giriş",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Goldanylýar",
+			"ignored": "Üns berilmedi",
+			"rows": {
+				"textType": {
+					"azure": "textType (düz / html)",
+					"aws": "Göz öňünde tutulmady (toggle ýok)",
+					"google": "format (tekst / html)"
+				},
+				"profanityAction": {
+					"azure": "Doly goldaw",
+					"aws": "Maskeleme → bellenen / silindi",
+					"google": "Üns berilmedi"
+				},
+				"categoryId": {
+					"azure": "Custom Translator",
+					"aws": "Üns berilmedi",
+					"google": "Üns berilmedi"
+				},
+				"allowFallback": {
+					"azure": "Goldanylýar",
+					"aws": "Üns berilmedi",
+					"google": "Üns berilmedi"
+				}
+			}
+		},
+		"locales": {
+			"title": "Ýerli kodlar her üpjünçä tapawutlanýar",
+			"body": "Her üpjünçi öz ýerli kodlaryny ulanýar (mysal üçin, Simplified Chinese Azure-da {azureCode}, AWS-de {awsCode} we Google-da {googleCode}). Kodlar edil bolşy ýaly geçýär we çykyş faýllarynyň atlaryny dolandyrýar, şonuň üçin saýlan üpjünçiňiziň goldaýan {toLocales} gymmatlyklaryny saýlaň."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Gerekli girişler",
 			"caption": "Gerekli girişler",
 			"items": {
-				"sourceLocale": "Resurs faýllary tapmak üçin ulanylýan çeşme ýeri ({en}) {sourceGlob}. Şeýle-de Translatora iberilýär {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator abonentlik açary. Geçiň {secrets}.",
-				"endpoint": "Terjimeçi uç nokta URL, mysal {endpointUrl}."
+				"sourceLocale": "Resurs faýllary tapmak üçin ulanylýan çeşme ýeri ({en}) {sourceGlob}. Şeýle-de üpjünçä iberilýär {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Üpjünçiniň saýlanmagy we ygtybarlylygy",
+			"caption": "Üpjünçiniň saýlanmagy we her bir üpjünçiniň ygtybarlylygy",
+			"intro": "Her ylgawda bir üpjünçini {provider}. Diňe saýlanan üpjünçiniň maglumatlaryny beriň — doly gurnamak üçin {providersLink} görkezmä serediň.",
+			"items": {
+				"provider": "Terjimeçi: {azure} (default), {aws} ýa-da {google}. Her hereketli çagyryşda diňe bir üpjünçi ulanylýar.",
+				"subscriptionKey": "Azure AI Translator abonentlik açary. Talap {azure}. Geç {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, mysal {endpointUrl}. Talap {azure}.",
+				"awsAccessKeyId": "AWS access key id. Optional — AWS default credential chain / OIDC-ni ulanmak üçin ({awsSecretAccessKey} bilen) aýyryň. Geç {secrets}.",
+				"awsSecretAccessKey": "AWS gizlin giriş açary. Bilelikde üpjün edilmeli {awsAccessKeyId}. Geç {secrets}.",
+				"awsSessionToken": "Wagtlaýyn kimlik maglumaty üçin goşmaça AWS seans tokeni. Geçiň {secrets}.",
+				"awsRegion": "Translate hyzmaty üçin AWS regiony (mysal üçin {regionExample}). Daş-{aws} bolmasa, {awsRegionEnv} üçin talap edilýär.",
+				"googleApiKey": "Google Cloud API açary. Bu OR {googleCredentials} üçin {google}. Geç {secrets}.",
+				"googleCredentials": "Google Cloud hyzmat-account açary JSON string hökmünde. Bu OR {googleApiKey} üçin {google}. Geç {secrets}.",
+				"googleProjectId": "Optional Google Cloud project id. Adatça, hyzmat hasabynyň maglumatyndan çykarylýar."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Terjimeçi haýyş girişleri",
-			"intro": "Bular göni Azure AI Translator v3 sorag parametrlerine meňzedilýär. Olaryň hemmesi hökman däl; Terjimeçi öň bellenilen ýagdaýynda ulanylýar.",
-			"caption": "Terjimeçi haýyş girişleri",
+			"heading": "Azure Translator request inputs",
+			"intro": "Bular göni Azure AI Translator v3 sorag parametrlerine meňzedilýär we azure üpjünçisine degişlidir. textType we profanityAction hem AWS/Google bilen deňeşdirilýär (üpjünçileriň görkezmesine serediň); galanlary bolsa diňe Azure-da. Olaryň hemmesi hökman däl; Terjimeçi öň bellenilen ýagdaýynda ulanylýar.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} kategoriýasy — senagat/domain/ton düwmesi. Iberilen {categoryQuery}.",
 				"textType": "{plain} ýa-da {html}. Diňe {html} gymmatlyklaryňyz hakyky HTML bölekleri bolanda ulanyň.",

@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Ressource-Übersetzer",
-		"description": "Resource Translator öffnet maschinell iwwersat Pull Requests fir Är Ressourcedateien an all Repo, an all Format — ugedriwwen vun Azure AI Translator.",
+		"description": "Resource Translator öffnet maschinell iwwersat Pull Requests fir Är Ressourcedateien an all Repo, an all Format — ugedriwwen vun Azure AI Translator, AWS Translate oder Google Cloud Translation.",
 		"socialTitle": "Resource Translator — Ressourcedateien automatesch iwwersetzen",
-		"badge": "v3.0 — Node 24, Repo Config, Glossaire, Dry Run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Lokaliséier däi Repo op",
 		"headlineAccent": "All Engagement.",
-		"lede": "Resource Translator mécht maschinell iwwersat Pull Requests fir Är Ressourcedateien mat Azure AI Translator iwwer den offiziellen SDK op — keng zousätzlech Servicer, just e Workflow.",
+		"lede": "Resource Translator öffnet maschinell iwwersat Pull Requests fir Är Ressourcedateien mat Azure, AWS oder Google — eng eenheetlech Aktioun, ee Provider pro Laf, offiziell SDKs ënner der Haube.",
 		"primaryCta": "Fänkt un",
 		"secondaryCta": "Star op GitHub",
 		"supports": "Ënnerstëtzung",
 		"builtForShipping": "Gebaut fir d'Schëfffaart",
 		"workflowTitle": "Iwwersetzung als Workflow, net als Aarbecht.",
-		"workflowBody": "Setzt d'Aktioun an Äre bestehende CI, weist se op Azure AI Translator, a loosst Äre Repo all Sprooch schwätzen, déi Dir zielt.",
+		"workflowBody": "Setzt d'Aktioun an Äre bestehende CI, weist se op Azure, AWS oder Google, a loosst Äre Repo all Sprooch schwätzen, déi Dir zielt.",
 		"stats": {
 			"audit": "0 npm-Audit-Problemer",
-			"tests": "150 Tester",
+			"tests": "240+ Tester",
 			"node": "Node 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} an {hasNewTranslations} direkt an create-pull-request integréiert ginn."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Gebaut op {azureSdk} + {corePipeline} — automatesch Neiversich op {statusCodes}, kee manuell gerullten HTTP. {esbuild} verpackt, audit-propper."
+				"title": "Azure, AWS & Google",
+				"body": "Wielt ee Fournisseur pro Run. All eenzel gëtt vun sengem offiziellen SDK ({azureSdk}, {awsSdk}, {googleSdk}) ugedriwwen, mat automateschen Neiversich op {statusCodes} — kee handgerullte HTTP. {esbuild} verpackt, audit-propper."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Bereet fir op Autopilot ze lokaliséieren?",
-			"body": "Ee Azure AI Translator Schlëssel, eng Workflow-Datei. Resource Translator këmmert sech ëm de Rescht.",
+			"body": "Ee Provider-Schlëssel — Azure, AWS oder Google — an eng Workflow-Datei. Resource Translator këmmert sech ëm de Rescht.",
 			"button": "Fänkt un"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Nächst Schrëtt",
 			"configuration": "Konfiguréier Repo-Level Standarden mat {configPath}.",
 			"recipes": "Kuckt Rezepter fir Monorepos, personaliséiert Glossairen an Custom Translator Kategorien."
+		}
+	},
+	"providers": {
+		"title": "Iwwersetzungsservicer",
+		"eyebrow": "Referenz",
+		"lede": "Wielt pro Laf ee Iwwersetzungsprovider – Azure AI Translator, AWS Translate oder Google Cloud Translation – hannert enger eenzeger, eenheetlecher API-Uewerfläch. De Translator verhält sech identesch onofhängeg vum Provider; nëmmen d'Qualifikatiounen ënnerscheede sech.",
+		"backwardCompatible": "Voll zréckkompatibel: {provider} ass standardméisseg op {azure}, sou datt bestehend Azure Workflows onverännert bleiwen — keng Ännerungen néideg.",
+		"selecting": {
+			"title": "Auswiel vun engem Fournisseur",
+			"body": "Setzt den {provider} Input op {azure} (Standard), {aws} oder {google} a gitt dann d'Zougangsdaten vun deem Provider un. Pro Aktiounsufro gëtt nëmmen ee Provider benotzt; d'Aktioun determinéiert deterministesch un den entspriechenden SDK hannert enger Fabréck."
+		},
+		"comparison": {
+			"title": "Provider Verglach",
+			"caption": "Verglach mat Iwwersetzungsprovider",
+			"columns": {
+				"provider": "Fournisseur",
+				"value": "Provider Wäert",
+				"sdk": "SDK",
+				"credentials": "Qualifikatiounen"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (Standard)",
+				"credentials": "subscriptionKey, endpoint, region (optional)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "aws",
+				"credentials": "OIDC / Standardkette, oder awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud Iwwersetzung",
+				"value": "Google",
+				"credentials": "googleApiKey ODER googleCredentials (Service-Account JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "De Standard-Provider. Stellt eng Azure AI Translator Ressource zur Verfügung a gitt {subscriptionKey}, {endpoint} an optional {region}. Dat ass déi selwecht Konfiguratioun, déi déi bestehend Workflows schonn benotzen."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Benotzt {sdk}. Bevorzugt OIDC iwwer {configureAwsCredentials}, sou datt keng laangfristeg Geheimnisser gespäichert ginn — d'Aktioun liest d'AWS SDK Standard-Credential-Kette. Alternativ {awsAccessKeyId} passéieren an explizit {awsSecretAccessKey}. Eng Regioun ass ëmmer erfuerderlech, iwwer {awsRegion} oder d'{awsRegionEnv} Ëmweltvariabel.",
+			"oidcTitle": "OIDC (recommandéiert)",
+			"keysNote": "Fir statesch Tasten amplaz OIDC ze benotzen, léisst de {configureAwsCredentials} Schrëtt falen a gitt {awsAccessKeyId} / {awsSecretAccessKey} (iwwer {secrets}) plus {awsRegion} weider."
+		},
+		"google": {
+			"title": "Google Cloud Iwwersetzung",
+			"body": "Benotzt {sdk} (v2). Authentifizéiert Iech entweder mat engem API-Schlëssel ({googleApiKey}) oder engem JSON-Credential fir e Service-Kont ({googleCredentials}). Liwwert genee een; Eng optional {googleProjectId} gëtt aus der Qualifikatioun ofgeleet, wann se ausgelass gëtt."
+		},
+		"mapping": {
+			"title": "Intent-spezifizéierer Ofbildung",
+			"body": "Provider-spezifesch Spezifizéierer ginn ofgemappt, wou en Äquivalent existéiert. Alles anescht fällt op vernünfteg Standarden zréck, sou datt d'Verhalen konsequent bleift.",
+			"caption": "Intent-spezifizéiert Mapping iwwer Ubidder",
+			"columns": {
+				"input": "Input",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Ënnerstëtzt",
+			"ignored": "Ignoréiert",
+			"rows": {
+				"textType": {
+					"azure": "textType (plain / html)",
+					"aws": "Ignoréiert (kee Schalter)",
+					"google": "Format (Text / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Voll Ënnerstëtzung",
+					"aws": "Markéiert / geläscht → Maskéierung",
+					"google": "Ignoréiert"
+				},
+				"categoryId": {
+					"azure": "Custom Translator",
+					"aws": "Ignoréiert",
+					"google": "Ignoréiert"
+				},
+				"allowFallback": {
+					"azure": "Ënnerstëtzt",
+					"aws": "Ignoréiert",
+					"google": "Ignoréiert"
+				}
+			}
+		},
+		"locales": {
+			"title": "D'Lokalcoden ënnerscheede sech jee no Ubidder",
+			"body": "All Provider benotzt seng eege Lokalcoden (zum Beispill gëtt Vereinfacht Chinesesch op Azure {azureCode}, {awsCode} op AWS an {googleCode} op Google). Coden ginn duerch wéi se sinn a steieren d'Ausgabe-Dateinimm, also wielt {toLocales} Wäerter, déi Äre gewielte Provider ënnerstëtzt."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Erfuerderlech Inputen",
 			"caption": "Erfuerderlech Inputen",
 			"items": {
-				"sourceLocale": "Quellplaz (z.B. {en}), déi benotzt gëtt fir Ressourcedateien wéi {sourceGlob} ze fannen. Och un den Iwwersetzer als {fromLocale} weidergeleet.",
-				"subscriptionKey": "Azure AI Translator subscription key. Fuert iwwer {secrets}.",
-				"endpoint": "Translator-Endpunkt-URL, z.B. {endpointUrl}."
+				"sourceLocale": "Quellplaz (z.B. {en}), déi benotzt gëtt fir Ressourcedateien wéi {sourceGlob} ze fannen. Och als {fromLocale} un de Provider weidergeleet."
+			}
+		},
+		"providerInputs": {
+			"heading": "Provider-Auswiel a Qualifikatiounen",
+			"caption": "Provider-Auswiel a Referenzen pro Fournisseur",
+			"intro": "Wielt ee Provider pro Run mat {provider}. Gitt nëmmen d'Zougangsdaten vum ausgewielte Provider un — kuckt de {providersLink} Guide fir déi komplett Installatioun.",
+			"items": {
+				"provider": "Iwwersetzungsprovider: {azure} (Standard), {aws} oder {google}. Pro Aktiounsufro gëtt nëmmen ee Provider benotzt.",
+				"subscriptionKey": "Azure AI Translator subscription key. Erfuerderlech fir {azure}. Fuert iwwer {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, z.B. {endpointUrl}. Erfuerderlech fir {azure}.",
+				"awsAccessKeyId": "AWS Access Key ID. Optional — loosst (mat {awsSecretAccessKey}) d'AWS Standard Credential Chain / OIDC ewech. Fuert iwwer {secrets}.",
+				"awsSecretAccessKey": "AWS geheime Zougangsschlëssel. Muss zesumme mat {awsAccessKeyId} geliwwert ginn. Fuert iwwer {secrets}.",
+				"awsSessionToken": "Optional AWS Sessiounstoken fir temporär Zougangsdaten. Fuert iwwer {secrets}.",
+				"awsRegion": "AWS Regioun fir de Translate Service (z.B. {regionExample}). Erfuerderlech fir {aws}, ausser {awsRegionEnv} ass an der Ëmwelt agestallt.",
+				"googleApiKey": "Google Cloud API Schlëssel. Gitt dëst ODER {googleCredentials} fir {google}. Fuert iwwer {secrets}.",
+				"googleCredentials": "Google Cloud Service-Account Schlëssel als JSON-String. Gitt dëst ODER {googleApiKey} fir {google}. Fuert iwwer {secrets}.",
+				"googleProjectId": "Optional Google Cloud Projet-ID. Normalerweis ofgeleet aus dem Service-Kont-Credential."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Translator-Ufro-Inputen",
-			"intro": "Dës ginn direkt op Azure AI Translator v3 Ufroparameter ofgemappt. All eenzel ass fakultativ; d'Iwwersetzer-Standarden gëllen wann se net gesat ginn.",
-			"caption": "Translator-Ufro-Inputen",
+			"heading": "Azure Translator request inputs",
+			"intro": "Dës ginn direkt op Azure AI Translator v3 Ufroparameter ofgestëmmt a ginn op den Azure Provider ugewandt. textType an ProfanityAction ginn och op AWS/Google zougewisen, wou en Äquivalent existéiert (kuckt de Guide fir d'Provider); de Rescht ass nëmme fir Azure. All eenzel ass fakultativ; d'Iwwersetzer-Standarden gëllen wann se net gesat ginn.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} Kategorie — den Industrie-/Domain-/Toun-Knäppchen. Weidergeleet als {categoryQuery}.",
 				"textType": "{plain} oder {html}. Benotz {html} nëmmen, wann deng Ressourcewäerter richteg HTML-Fragmenter sinn.",

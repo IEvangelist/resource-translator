@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Forrásfordító",
-		"description": "A Resource Translator gépi fordítású pull requesteket nyit meg az erőforrás fájljaidhoz bármely repóban, bármilyen formátumban — Azure AI Translator által működtetve.",
+		"description": "A Resource Translator gépi fordítású pull requesteket nyit meg az erőforrás fájljaidhoz bármely repóban, bármilyen formátumban — Azure AI Translator, AWS Translate vagy Google Cloud Translation segítségével.",
 		"socialTitle": "Resource Translator — automatikusan fordítsd le az erőforrásfájlokat",
-		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Lokalizáld a repo-t",
 		"headlineAccent": "minden elköteleződést.",
-		"lede": "A Resource Translator Azure AI Translator segítségével nyitja meg a gépi fordítású pull requesteket az erőforrás fájljaidhoz az hivatalos SDK-n keresztül — nincs plusz szolgáltatás, csak egy munkafolyamat.",
+		"lede": "A Resource Translator gépi fordítású pull requesteket nyit meg az erőforrás fájljaidhoz Azure, AWS vagy Google segítségével — egy egységes akció, egy szolgáltató futásonként, hivatalos SDK-k a motorháztető alatt.",
 		"primaryCta": "Kezdj el",
 		"secondaryCta": "Star a GitHubon",
 		"supports": "Támogatások",
 		"builtForShipping": "Hajózásra építették",
 		"workflowTitle": "A fordítás munkafolyamat, nem teher.",
-		"workflowBody": "Dobd be az akciót a meglévő CI-dbe, irányítsd az Azure AI Translatorre, és hagyd, hogy a repód minden célzott nyelvet beszéljen.",
+		"workflowBody": "Dobd be az akciót a meglévő CI-dbe, irányítsd az Azure-ra, AWS-re vagy Google-ra, és hagyd, hogy a repó minden célzott nyelvet beszéljen.",
 		"stats": {
 			"audit": "0 NPM-audit problémák",
-			"tests": "150 teszt",
+			"tests": "240+ teszt",
 			"node": "Node 20 / 22 / 24",
-			"sdk": "Hivatalos Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} és {hasNewTranslations} közvetlenül a create-pull-request mappába helyezkednek el."
 			},
 			"sdk": {
-				"title": "Hivatalos Azure SDK",
-				"body": "{azureSdk} + {corePipeline} alapú — automatikus újrapróbálkozás {statusCodes}-en, nincs kézzel dobott HTTP. {esbuild} csomagolva, audit-tisztaságban."
+				"title": "Azure, AWS & Google",
+				"body": "Válassz egy szolgáltatót minden futásonként. Mindegyiket hivatalos SDK-juk ({azureSdk}, {awsSdk}, {googleSdk}) hajtja, {statusCodes}-en automatikus újrapróbálkozásokkal — kézzel tekert HTTP nélkül. {esbuild} csomagolva, audit-tiszta."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Készen állsz az autopilóta lokalizálásra?",
-			"body": "Egy Azure AI fordító kulcs, egy munkafolyamat-fájl. A többit a Resource Translator kezeli.",
+			"body": "Egy szolgáltatói kulcs — Azure, AWS vagy Google — és egy munkafolyamat-fájl. A többit a Resource Translator kezeli.",
 			"button": "Kezdj el"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Következő lépések",
 			"configuration": "Állítsd be a repo szintű alapértelmezetteket {configPath}-vel.",
 			"recipes": "Lásd a monorepók, egyedi szószótárok és egyedi fordító kategóriák receptjeit."
+		}
+	},
+	"providers": {
+		"title": "Fordítószolgáltatók",
+		"eyebrow": "Hivatkozás",
+		"lede": "Válassz egy fordítási szolgáltatót minden futásonként — Azure AI Translator, AWS Translate vagy Google Cloud Translation — egy egyetlen, egységes API felület mögött. A fordító szolgáltatótól függetlenül ugyanúgy viselkedik; Csak a képesítések eltérnek.",
+		"backwardCompatible": "Teljesen visszafelé kompatibilis: {provider} alapértelmezett {azure}-et használ, így a meglévő Azure munkafolyamatok változatlanul működnek — szerkesztés nélkül.",
+		"selecting": {
+			"title": "Szolgáltató kiválasztása",
+			"body": "Állítsd be a {provider} bemenetet {azure} (alapértelmezett), {aws} vagy {google}-re, majd add meg az adott szolgáltató hitelesítéseit. Műveleti hívás esetén csak egy szolgáltatót használnak; a cselekvés determinisztikusan delegálja a gyár mögötti megfelelő SDK-nak."
+		},
+		"comparison": {
+			"title": "Szolgáltatói összehasonlítás",
+			"caption": "Fordítószolgáltató összehasonlítása",
+			"columns": {
+				"provider": "Szolgáltató",
+				"value": "Szolgáltatói érték",
+				"sdk": "SDK",
+				"credentials": "Képesítések"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (default)",
+				"credentials": "subscriptionKey, endpoint, region (opcionális)"
+			},
+			"aws": {
+				"name": "AWS Fordító",
+				"value": "AWS",
+				"credentials": "OIDC / alapértelmezett lánc, vagy awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud Translation",
+				"value": "Google",
+				"credentials": "googleApiKey VAGY googleCredentials (szolgáltatásfiók JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Az alapértelmezett szolgáltató. Biztosíts egy Azure AI Fordító erőforrást, és passzolj {subscriptionKey}, {endpoint} és opcionálisan {region}. Ez ugyanaz a konfiguráció, amit a meglévő munkafolyamatok már használnak."
+		},
+		"aws": {
+			"title": "AWS Fordító",
+			"body": "Használja {sdk}. Az OIDC-t {configureAwsCredentials}-n keresztül preferáljuk, így nem tárolódnak hosszú életű titkok — a művelet az AWS SDK alapértelmezett credential láncát olvasza. Alternatívaként adj {awsAccessKeyId} és {awsSecretAccessKey} explicit. Mindig szükség van egy régióra, akár {awsRegion} vagy a {awsRegionEnv} környezeti változó segítségével.",
+			"oidcTitle": "OIDC (ajánlott)",
+			"keysNote": "Ha statikus billentyűket szeretnél használni az OIDC helyett, hagyd el a {configureAwsCredentials} lépést, és add át {awsAccessKeyId} / {awsSecretAccessKey}-et ({secrets}-on keresztül) plusz {awsRegion}."
+		},
+		"google": {
+			"title": "Google Cloud Translation",
+			"body": "Használja {sdk} (v2). Hitelesítés API kulccsal ({googleApiKey}) vagy szolgáltatási fiók JSON hitelesítéssel ({googleCredentials}). Adj pontosan egyet; A képesítésből kihagyva egy opcionális {googleProjectId} következtetést kap."
+		},
+		"mapping": {
+			"title": "Szándék-specifier leképezés",
+			"body": "A szolgáltató-specifikus specifikátorokat ott térképezzük, ahol létezik megfelelő. Minden más visszaesik az ésszerű alapértelmezésre, így a viselkedés következetes marad.",
+			"caption": "Szándék-specifier leképezés szolgáltatók között",
+			"columns": {
+				"input": "Bemenet",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Támogatott",
+			"ignored": "Figyelmen kívül hagyva",
+			"rows": {
+				"textType": {
+					"azure": "textType (egyszerű / html)",
+					"aws": "Figyelmen kívül hagyva (nincs kapcsoló)",
+					"google": "Formátum (szöveg / html)"
+				},
+				"profanityAction": {
+					"azure": "Teljes támogatás",
+					"aws": "Megjelölve / törölve → maszkolás",
+					"google": "Figyelmen kívül hagyva"
+				},
+				"categoryId": {
+					"azure": "Egyedi fordító",
+					"aws": "Figyelmen kívül hagyva",
+					"google": "Figyelmen kívül hagyva"
+				},
+				"allowFallback": {
+					"azure": "Támogatott",
+					"aws": "Figyelmen kívül hagyva",
+					"google": "Figyelmen kívül hagyva"
+				}
+			}
+		},
+		"locales": {
+			"title": "A helyi kódok szolgáltatónként eltérnek",
+			"body": "Minden szolgáltató saját helyi kódokat használ (például az egyszerűsített kínai az Azure-on {azureCode}, az AWS-en {awsCode}, a Google-on pedig {googleCode}). A kódok úgy haladnak át, ahogy vannak, és a kimeneti fájlneveket irányítják, ezért válaszd {toLocales} értékeket támogat a választott szolgáltatód."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Szükséges bemenetek",
 			"caption": "Szükséges bemenetek",
 			"items": {
-				"sourceLocale": "Forráshely (pl. {en}), amelyet erőforrás fájlok, például {sourceGlob} megtalálására használnak. Továbbítva a Translatornak is {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. Átmenj {secrets}-n.",
-				"endpoint": "Fordító végpont URL, pl. {endpointUrl}."
+				"sourceLocale": "Forráshely (pl. {en}), amelyet erőforrás fájlok, például {sourceGlob} megtalálására használnak. A szolgáltatónak is továbbítva {fromLocale}-ként."
+			}
+		},
+		"providerInputs": {
+			"heading": "Szolgáltató kiválasztása és képesítések",
+			"caption": "Szolgáltatóválasztás és gyártónkénti hitelességek",
+			"intro": "Válassz egy szolgáltatót minden futás során {provider}-vel. Csak a kiválasztott szolgáltató hitelesítéseit adja meg — a teljes beállításért lásd a {providersLink} útmutatót.",
+			"items": {
+				"provider": "Fordítószolgáltató: {azure} (alapértelmezett), {aws} vagy {google}. Minden akcióhívás után csak egy szolgáltatót használnak.",
+				"subscriptionKey": "Azure AI Translator subscription key. Kötelező {azure}. Átmenj {secrets}-n.",
+				"endpoint": "Azure Translator endpoint URL, például {endpointUrl}. Kötelező {azure}.",
+				"awsAccessKeyId": "AWS hozzáférési kulcsazonosító. Opcionális — hagyd ki ({awsSecretAccessKey}-vel) az AWS alapértelmezett credential chain / OIDC használatát. Átmenj {secrets}-n.",
+				"awsSecretAccessKey": "AWS titkos hozzáférési kulcs. A {awsAccessKeyId} együtt kell biztosítani. Átmenj {secrets}-n.",
+				"awsSessionToken": "Opcionális AWS session token ideiglenes hitelesítésekhez. Átmenj {secrets}-n.",
+				"awsRegion": "AWS régió a Fordító szolgáltatáshoz (pl. {regionExample}). Kötelező {aws}, hacsak {awsRegionEnv} környezetben nem van beállítva.",
+				"googleApiKey": "Google Cloud API kulcs. Add ezt a OR {googleCredentials} {google} miatt. Átmenj {secrets} át.",
+				"googleCredentials": "Google Cloud szolgáltatás-fiókkulcs JSON stringként. Add ezt a OR {googleApiKey} {google} miatt. Átmenj {secrets} át.",
+				"googleProjectId": "Opcionális Google Cloud projektazonosító. Általában a szolgáltatási fiók beosztásából következtetik ki."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Fordító kérés bemenetei",
-			"intro": "Ezek közvetlenül az Azure AI Translator v3 lekérdezési paraméterekre kerülnek. Mindegyik opcionális; a Fordító alapértelmezett beállításai akkor érvényesek, ha nem állítják be.",
-			"caption": "Fordító kérés bemenetei",
+			"heading": "Azure Translator request inputs",
+			"intro": "Ezek közvetlenül az Azure AI Translator v3 lekérdezési paramétereire kerülnek, és az azure szolgáltatóra vonatkoznak. textType és profanityAction az AWS/Google esetében is leképezve van (lásd a szolgáltatói útmutatót); a többi csak Azure-hoz tartozik. Mindegyik opcionális; a Fordító alapértelmezett beállításai akkor érvényesek, ha nem állítják be.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. Továbbítva {categoryQuery}-ként.",
 				"textType": "{plain} vagy {html}. Csak akkor használd {html}, ha az erőforrás-értékeid valódi HTML töredékek.",

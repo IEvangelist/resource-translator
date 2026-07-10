@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Resurs tarjimon",
-		"description": "Resource Translator har qanday repoda, istalgan formatda resurs fayllaringiz uchun mashina tarjimasida pull so'rovlarni ochadi — Azure AI Translator tomonidan quvvatlanadi.",
+		"description": "Resource Translator har qanday repoda, istalgan formatda — Azure AI Translator, AWS Translate yoki Google Cloud Translation yordamida — resurs fayllaringiz uchun mashina orqali tarjima qilingan pull so'rovlarni ochadi.",
 		"socialTitle": "Resource Translator — resurs fayllarini avtomatik tarjima qilish",
-		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Reponi lokalizatsiya qiling",
 		"headlineAccent": "Har bir commit.",
-		"lede": "Resource Translator rasmiy SDK orqali Azure AI Translator yordamida resurs fayllaringiz uchun mashina tarjimasi qilingan pull requestlarni ochadi — qo'shimcha xizmatlar yo'q, faqat ish jarayoni.",
+		"lede": "Resource Translator Azure, AWS yoki Google yordamida resurs fayllaringiz uchun mashina tarjimasi qilingan pull so'rovlarini ochadi — bitta yagona harakat, har bir ishga tushirish uchun bitta provayder, rasmiy SDKlar orqali.",
 		"primaryCta": "Boshlang",
 		"secondaryCta": "GitHub'da yulduz",
 		"supports": "Qo'llab-quvvatlashlar",
 		"builtForShipping": "Yuk tashish uchun qurilgan",
 		"workflowTitle": "Tarjima ish jarayoni sifatida, vazifa emas.",
-		"workflowBody": "Harakatni mavjud CIga tashlang, Azure AI Translator ga yo'naltiring va repongizga nishonga olgan har bir tilni gapirishga ruxsat bering.",
+		"workflowBody": "Harakatni mavjud CIga tashlang, uni Azure, AWS yoki Google'ga yo'naltiring va repongizga nishonga olgan har bir tilni gapirishga ruxsat bering.",
 		"stats": {
 			"audit": "0 NPM-audit muammolari",
-			"tests": "150 ta test",
+			"tests": "240+ test",
 			"node": "Node 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} va {hasNewTranslations} to'g'ridan-to'g'ri create-pull-request ga joylashtiriladi."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "{azureSdk} + {corePipeline} asosida qurilgan — {statusCodes} da avtomatik qayta urinishlar, qo'lda aylantiriladigan HTTP yo'q. {esbuild} to'plami, audit toza."
+				"title": "Azure, AWS & Google",
+				"body": "Har bir yugurishda bitta provayderni tanlang. Har biri rasmiy SDK ({azureSdk}, {awsSdk}, {googleSdk}) tomonidan boshqariladi va {statusCodes} da avtomatik qayta urinishlar amalga oshiriladi — qo'lda aylantiriladigan HTTP yo'q. {esbuild} to'plami, audit toza."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Avtopilotda lokalizatsiya qilishga tayyormisiz?",
-			"body": "Bitta Azure AI Translator kaliti, bitta ish jarayoni fayli. Qolgan ishlarni Resource Translator bajaradi.",
+			"body": "Bitta provayder kaliti — Azure, AWS yoki Google — va bitta ish jarayoni fayli. Qolgan ishlarni Resource Translator bajaradi.",
 			"button": "Boshlang"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Keyingi qadamlar",
 			"configuration": "Repo darajasidagi defaultlarni {configPath} bilan sozlang.",
 			"recipes": "Monorepolar, maxsus lug'atlar va Maxsus Tarjimon kategoriyalari uchun retseptlarni ko'ring."
+		}
+	},
+	"providers": {
+		"title": "Tarjima xizmatlari",
+		"eyebrow": "Manba",
+		"lede": "Har bir ish uchun bitta tarjima provayderini tanlang — Azure AI Translator, AWS Translate yoki Google Cloud Translation — yagona, yagona API yuzasi ortida. Tarjimon provayderdan qat'i nazar bir xil harakat qiladi; faqat malakalar farq qiladi.",
+		"backwardCompatible": "To'liq orqaga mos keladi: {provider} standart tarzda {azure} rejimiga o'tadi, shuning uchun mavjud Azure ish jarayonlari o'zgarmasdan ishlaydi — hech qanday tahrir talab qilinmaydi.",
+		"selecting": {
+			"title": "Provayder tanlash",
+			"body": "{provider} kirishini {azure} (standart), {aws} yoki {google} qilib belgilang, so'ngra o'sha provayderning ma'lumotlarini kiriting. Har bir harakat chaqiruvi uchun faqat bitta provayder ishlatiladi; harakat deterministik ravishda zavod ortidagi mos SDKga topshiriladi."
+		},
+		"comparison": {
+			"title": "Provayderlar taqqoslanishi",
+			"caption": "Tarjima provayderlari taqqoslanishi",
+			"columns": {
+				"provider": "Yetkazib beruvchi",
+				"value": "Provayder qiymati",
+				"sdk": "SDK",
+				"credentials": "Malaka"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (default)",
+				"credentials": "subscriptionKey, endpoint, region (ixtiyoriy)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "AWS",
+				"credentials": "OIDC / standart zanjir, yoki awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Bulut Tarjimasi",
+				"value": "Google",
+				"credentials": "googleApiKey YOKI googleCredentials (xizmat hisobi JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Standart provayder. Azure AI Translator resursini taqdim eting va {subscriptionKey}, {endpoint} va ixtiyoriy tarzda {region} o'ting. Bu mavjud ish jarayonlari allaqachon ishlatadigan konfiguratsiya."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Foydalanadi {sdk}. OIDCni {configureAwsCredentials} orqali afzal ko'ring, shunda uzoq muddatli sirlar saqlanmaydi — bu harakat AWS SDK standart credential zanjirini o'qiydi. Yoki, {awsAccessKeyId} o'tkazib, aniq {awsSecretAccessKey}. Har doim hudud talab qilinadi, bu {awsRegion} yoki {awsRegionEnv} muhit o'zgaruvchisi orqali.",
+			"oidcTitle": "OIDC (tavsiya etiladi)",
+			"keysNote": "OIDC o'rniga statik tugmalardan foydalanish uchun {configureAwsCredentials} bosqichini tashlab, {awsAccessKeyId} / {awsSecretAccessKey} ({secrets} orqali) ustiga {awsRegion} o'ting."
+		},
+		"google": {
+			"title": "Google Bulut Tarjimasi",
+			"body": "{sdk} (v2)dan foydalanadi. API kaliti ({googleApiKey}) yoki xizmat hisobidagi JSON credential ({googleCredentials}) bilan autentifikatsiya qiling. Aniq bitta ta'minlang; ixtiyoriy {googleProjectId} sertifikatdan chiqarib tashlanadi."
+		},
+		"mapping": {
+			"title": "Intent-specifier xaritalash",
+			"body": "Provayderga xos spetsifikatorlar ekvivalent mavjud bo'lgan joylarda xaritalanadi. Qolgan hamma narsa mantiqiy defaultlarga qaytadi, shunda xulq-atvor barqaror qoladi.",
+			"caption": "Provayderlar o'rtasida intent-specifier xaritalash",
+			"columns": {
+				"input": "Kiritish",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Qo'llab-quvvatlanadi",
+			"ignored": "E'tiborsiz qoldirildi",
+			"rows": {
+				"textType": {
+					"azure": "textType (oddiy / html)",
+					"aws": "E'tiborsiz qoldirildi (o'chirish yo'q)",
+					"google": "format (matn / html)"
+				},
+				"profanityAction": {
+					"azure": "To'liq qo'llab-quvvatlash",
+					"aws": "Maskalash → belgilandi / o'chirildi",
+					"google": "E'tiborsiz qoldirildi"
+				},
+				"categoryId": {
+					"azure": "Maxsus tarjimon",
+					"aws": "E'tiborsiz qoldirildi",
+					"google": "E'tiborsiz qoldirildi"
+				},
+				"allowFallback": {
+					"azure": "Qo'llab-quvvatlanadi",
+					"aws": "E'tiborsiz qoldirildi",
+					"google": "E'tiborsiz qoldirildi"
+				}
+			}
+		},
+		"locales": {
+			"title": "Mahalliy kodlar provayderga qarab farq qiladi",
+			"body": "Har bir provayder o'zining lokal kodlaridan foydalanadi (masalan, Simplified Chinese Azure'da {azureCode}, AWSda {awsCode}, Google'da {googleCode}). Kodlar o'z holicha o'tadi va chiqish fayl nomlarini boshqaradi, shuning uchun tanlangan provayderingiz qo {toLocales} llab-quvvatlaydigan qiymatlarni tanlang."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Kerakli kirishlar",
 			"caption": "Kerakli kirishlar",
 			"items": {
-				"sourceLocale": "Manba lokaali (masalan, {en}) resurs fayllarini topish uchun ishlatiladi, masalan, {sourceGlob}. Shuningdek, Translator'ga {fromLocale} sifatida yuborilgan.",
-				"subscriptionKey": "Azure AI Translator obuna kaliti. O'tib {secrets}.",
-				"endpoint": "Translator endpoint URL, masalan {endpointUrl}."
+				"sourceLocale": "Manba lokaali (masalan, {en}) resurs fayllarini topish uchun ishlatiladi, masalan, {sourceGlob}. Shuningdek, provayderga {fromLocale} sifatida yuborilgan."
+			}
+		},
+		"providerInputs": {
+			"heading": "Provayderlarni tanlash va malakalar",
+			"caption": "Provayderni tanlash va yetkazib beruvchi bo'yicha ma'lumotlar",
+			"intro": "Har bir yugurishda bitta provayderni tanlang {provider}. Faqat tanlangan provayderning ma'lumotlarini taqdim et — to'liq sozlash uchun {providersLink} qo'llanmasiga qarang.",
+			"items": {
+				"provider": "Tarjima provayderi: {azure} (standart), {aws} yoki {google}. Har bir harakat chaqiruvi uchun faqat bitta provayder ishlatiladi.",
+				"subscriptionKey": "Azure AI Translator obuna kaliti. Majburiy {azure}. O'tib {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, masalan {endpointUrl}. Majburiy {azure}.",
+				"awsAccessKeyId": "AWS kirish kaliti identifikatori. Ixtiyoriy — AWS standart credential zanjiri / OIDCdan foydalanishni ({awsSecretAccessKey} bilan birga) chiqarib tashlash. O'tib {secrets}.",
+				"awsSecretAccessKey": "AWS maxfiy kirish kaliti. Birga ta'minlanishi {awsAccessKeyId}. O'tib {secrets}.",
+				"awsSessionToken": "Vaqtinchalik credentiallar uchun ixtiyoriy AWS sessiya tokeni. O'tib {secrets}.",
+				"awsRegion": "Translate xizmati uchun AWS mintaqasi (masalan, {regionExample}). Agar {aws} muhitda o'rnatilmagan {awsRegionEnv} uchun talab qilinadi.",
+				"googleApiKey": "Google Cloud API kaliti. Bu OR {googleCredentials} uchun {google}. O'tib {secrets}.",
+				"googleCredentials": "Google Cloud service-account kaliti JSON string sifatida. Bu OR {googleApiKey} uchun {google}. O'tib {secrets}.",
+				"googleProjectId": "Ixtiyoriy Google Cloud loyihasi identifikatori. Odatda bu xizmat hisob ma'lumotlaridan aniqlanadi."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Tarjimon so'rovi kirishlari",
-			"intro": "Ular to'g'ridan-to'g'ri Azure AI Translator v3 so'rov parametrlariga xaritalanadi. Har biri ixtiyoriy; Translator standart funksiyalari o'rnatilmaganda qo'llaniladi.",
-			"caption": "Tarjimon so'rovi kirishlari",
+			"heading": "Azure Translator request inputs",
+			"intro": "Ular to'g'ridan-to'g'ri Azure AI Translator v3 so'rov parametrlariga xaritalanadi va azure provayderiga tatbiq etiladi. textType va haqoratli harakatlar ham AWS/Google ga moslashtirilgan bo'lsa, agar ekvivalent mavjud bo'lsa (provayderlar qo'llanmasiga qarang); qolganlari faqat Azure uchun mo'ljallangan. Har biri ixtiyoriy; Translator standart funksiyalari o'rnatilmaganda qo'llaniladi.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — industry/domain/tone knob. {categoryQuery} sifatida yuborilgan.",
 				"textType": "{plain} yoki {html}. {html} faqat resurs qiymatlaringiz haqiqiy HTML fragmentlari bo'lsa ishlating.",

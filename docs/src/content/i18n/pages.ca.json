@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Traductor de recursos",
-		"description": "Resource Translator obre les pull requests traduïdes per màquina per als teus fitxers de recursos en qualsevol repositori, en qualsevol format — impulsat per Azure AI Translator.",
+		"description": "Resource Translator obre les pull requests traduïdes per màquina per als teus fitxers de recursos en qualsevol repositori, en qualsevol format — impulsat per Azure AI Translator, AWS Translate o Google Cloud Translation.",
 		"socialTitle": "Traductor de recursos — tradueix automàticament els fitxers de recursos",
-		"badge": "v3.0 — Node 24, configuració del repositori, glossari, prova en sec",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repositori config",
 		"headlinePrefix": "Localitza el teu repositori",
 		"headlineAccent": "Cada compromís.",
-		"lede": "Resource Translator obre les pull requests traduïdes per màquina per als teus fitxers de recursos utilitzant Azure AI Translator a través de l'SDK oficial — sense serveis addicionals, només un flux de treball.",
+		"lede": "Resource Translator obre sol·licituds de tirada traduïdes per màquina per als teus fitxers de recursos utilitzant Azure, AWS o Google — una acció unificada, un proveïdor per execució, SDKs oficials sota el capó.",
 		"primaryCta": "Comença",
 		"secondaryCta": "Estrella a GitHub",
 		"supports": "Suports",
 		"builtForShipping": "Construït per a la navegació",
 		"workflowTitle": "La traducció és un flux de treball, no una tasca feixuga.",
-		"workflowBody": "Introdueix l'acció al teu CI existent, apunta-la a Azure AI Translator i deixa que el teu repositori parli tots els idiomes que vulguis.",
+		"workflowBody": "Introdueix l'acció al teu CI existent, apunta-la a Azure, AWS o Google, i deixa que el teu repositori parli tots els idiomes que vulguis.",
 		"stats": {
 			"audit": "Problemes d'auditoria de 0 npm",
-			"tests": "150 proves",
+			"tests": "240+ proves",
 			"node": "Node 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} i {hasNewTranslations} encaixen directament a crear-pull-request."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Construït sobre {azureSdk} + {corePipeline} — intents automàtics de {statusCodes}, sense HTTP manual. {esbuild} empaquetat, net com l'auditoria."
+				"title": "Azure, AWS i Google",
+				"body": "Tria un proveïdor per trajecte. Cada un està controlat pel seu SDK oficial ({azureSdk}, {awsSdk}, {googleSdk}) amb intents automàtics de {statusCodes} — sense HTTP rodat a mà. {esbuild} empaquetats, nets per auditoria."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Preparat per localitzar en pilot automàtic?",
-			"body": "Una clau d'Azure AI Translator, un fitxer de flux de treball. Resource Translator s'encarrega de la resta.",
+			"body": "Una clau de proveïdor — Azure, AWS o Google — i un fitxer de flux de treball. Resource Translator s'encarrega de la resta.",
 			"button": "Comença"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Següents passos",
 			"configuration": "Configura les configuracions per defecte a nivell de repositori amb {configPath}.",
 			"recipes": "Consulteu receptes per a monorepos, glossaris personalitzats i categories de Traductor Personalitzat."
+		}
+	},
+	"providers": {
+		"title": "Proveïdors de traducció",
+		"eyebrow": "Referència",
+		"lede": "Tria un proveïdor de traducció per execució — Azure AI Translator, AWS Translate o Google Cloud Translation — darrere d'una única superfície d'API unificada. El traductor es comporta de manera idèntica independentment del proveïdor; Només difereixen les credencials.",
+		"backwardCompatible": "Totalment retrocompatible: {provider} per defecte a {azure}, així que els fluxos de treball existents d'Azure continuen funcionant sense canvis — sense necessitat d'edicions.",
+		"selecting": {
+			"title": "Selecció d'un proveïdor",
+			"body": "Configura l'entrada {provider} a {azure} (per defecte), {aws} o {google}, i després proporciona les credencials d'aquest proveïdor. Només s'utilitza un proveïdor per trucada d'acció; l'acció delega determinísticament al SDK corresponent darrere d'una fàbrica."
+		},
+		"comparison": {
+			"title": "Comparació de proveïdors",
+			"caption": "Comparació de proveïdors de traducció",
+			"columns": {
+				"provider": "Proveïdor",
+				"value": "Valor del proveïdor",
+				"sdk": "SDK",
+				"credentials": "Credencials"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (per defecte)",
+				"credentials": "subscriptionKey, endpoint, region (opcional)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "aws",
+				"credentials": "OIDC / cadena per defecte, o awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Traducció de Google Cloud",
+				"value": "Google",
+				"credentials": "googleApiKey O googleCredentials (JSON de compte de servei)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (per defecte)",
+			"body": "El proveïdor per defecte. Provisiona un recurs Azure AI Translator i aprova {subscriptionKey}, {endpoint} i opcionalment {region}. Aquesta és la mateixa configuració que ja utilitzen els fluxos de treball existents."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Utilitza {sdk}. Prefereix OIDC via {configureAwsCredentials} perquè no s'emmagatzemin secrets de llarga durada — l'acció llegeix la cadena de credencials per defecte de l'AWS SDK. Alternativament, aprova {awsAccessKeyId} i {awsSecretAccessKey} explícitament. Sempre es requereix una regió, mitjançant {awsRegion} o la variable d'entorn {awsRegionEnv}.",
+			"oidcTitle": "OIDC (recomanat)",
+			"keysNote": "Per utilitzar tecles estàtiques en lloc d'OIDC, elimina el pas {configureAwsCredentials} i passa {awsAccessKeyId} / {awsSecretAccessKey} (via {secrets}) més {awsRegion}."
+		},
+		"google": {
+			"title": "Traducció de Google Cloud",
+			"body": "Utilitza {sdk} (v2). Autentica amb una clau API ({googleApiKey}) o amb una credencial JSON ({googleCredentials}) de compte de servei. Subministra exactament un; un {googleProjectId} opcional s'infereix de la credencial quan s'omet."
+		},
+		"mapping": {
+			"title": "Mapeig d'especificadors d'intenció",
+			"body": "Els especificadors específics del proveïdor es mapejen on existeix un equivalent. La resta torna a tenir predeterminacions raonables perquè el comportament es mantingui coherent.",
+			"caption": "Mapeig d'especificació d'intencions entre proveïdors",
+			"columns": {
+				"input": "Entrada",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Suport",
+			"ignored": "Ignorat",
+			"rows": {
+				"textType": {
+					"azure": "textType (pla / html)",
+					"aws": "Ignorat (sense desactivació)",
+					"google": "Format (Text / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Suport total",
+					"aws": "Marcat / Eliminat → enmascarament",
+					"google": "Ignorat"
+				},
+				"categoryId": {
+					"azure": "Traductor personalitzat",
+					"aws": "Ignorat",
+					"google": "Ignorat"
+				},
+				"allowFallback": {
+					"azure": "Suport",
+					"aws": "Ignorat",
+					"google": "Ignorat"
+				}
+			}
+		},
+		"locales": {
+			"title": "Els codis locals varien segons el proveïdor",
+			"body": "Cada proveïdor utilitza els seus propis codis locals (per exemple, el xinès simplificat es {azureCode} a Azure, {awsCode} a AWS i {googleCode} a Google). Els codis passen tal qual i controlen els noms dels fitxers de sortida, així que tria {toLocales} valors que el proveïdor seleccionat suporti."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Entrades necessàries",
 			"caption": "Entrades necessàries",
 			"items": {
-				"sourceLocale": "La localització d'origen (per exemple, {en}) s'utilitza per trobar fitxers de recursos com {sourceGlob}. També reenviat al Traductor com a {fromLocale}.",
-				"subscriptionKey": "Clau de subscripció Azure AI Translator. Passa per {secrets}.",
-				"endpoint": "URL del traductor, per exemple, {endpointUrl}."
+				"sourceLocale": "La localització d'origen (per exemple, {en}) s'utilitza per trobar fitxers de recursos com {sourceGlob}. També es va reenviar al proveïdor com a {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Selecció de proveïdors i credencials",
+			"caption": "Selecció de proveïdor i credencials per proveïdor",
+			"intro": "Tria un proveïdor per cada sessió amb {provider}. Proporciona només les credencials del proveïdor seleccionat — consulta la guia {providersLink} per a la configuració completa.",
+			"items": {
+				"provider": "Proveïdor de traducció: {azure} (per defecte), {aws} o {google}. Només s'utilitza un proveïdor per cada trucada d'acció.",
+				"subscriptionKey": "Clau de subscripció Azure AI Translator. És necessari per {azure}. Passa per {secrets}.",
+				"endpoint": "URL d'endpoint d'Azure Translator, per exemple, {endpointUrl}. És necessari per {azure}.",
+				"awsAccessKeyId": "ID de clau d'accés AWS. Opcional — ometre (amb {awsSecretAccessKey}) utilitzar la cadena de credencials per defecte d'AWS / OIDC. Passa per {secrets}.",
+				"awsSecretAccessKey": "Clau d'accés secret d'AWS. S'ha de subministrar juntament amb {awsAccessKeyId}. Passa per {secrets}.",
+				"awsSessionToken": "Token de sessió AWS opcional per a credencials temporals. Passa per {secrets}.",
+				"awsRegion": "AWS per al servei Translate (per exemple, {regionExample}). És necessari per {aws} tret que {awsRegionEnv} estigui ambientat en l'entorn.",
+				"googleApiKey": "Clau API de Google Cloud. Proporciona aquest {googleCredentials} d'OR per a {google}. Passa per {secrets}.",
+				"googleCredentials": "Clau de compte de servei de Google Cloud com a cadena JSON. Proporciona aquest {googleApiKey} d'OR per a {google}. Passa per {secrets}.",
+				"googleProjectId": "ID de projecte Google Cloud opcional. Normalment es dedueix de la credencial del compte de servei."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Entrades de sol·licitud del traductor",
-			"intro": "Aquests s'assignen directament als paràmetres de consulta d'Azure AI Translator v3. Tots són opcionals; els valors per defecte del traductor s'apliquen quan no es configuren.",
-			"caption": "Entrades de sol·licitud del traductor",
+			"heading": "Entrades de sol·licitud d'Azure Translator",
+			"intro": "Aquests s'assignen directament als paràmetres de consulta d'Azure AI Translator v3 i s'apliquen al proveïdor d'Azure. textType i profanityAction també estan assignats a AWS/Google on existeix un equivalent (vegeu la guia de proveïdors); la resta són només Azure. Tots són opcionals; els valors per defecte del traductor s'apliquen quan no es configuren.",
+			"caption": "Entrades de sol·licitud d'Azure Translator",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — el botó industry/domain/tone knob. Reenviat com {categoryQuery}.",
 				"textType": "{plain} o {html}. Utilitza {html} només quan els teus valors de recursos siguin fragments HTML reals.",

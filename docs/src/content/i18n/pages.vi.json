@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Trình dịch tài nguyên",
-		"description": "Resource Translator mở các yêu cầu kéo được dịch bằng máy cho các tệp tài nguyên của bạn ở bất kỳ kho lưu trữ nào, ở bất kỳ định dạng nào — được cung cấp bởi Azure AI Translator.",
+		"description": "Resource Translator mở các yêu cầu kéo được dịch bằng máy cho các tệp tài nguyên của bạn ở bất kỳ kho lưu trữ nào, ở bất kỳ định dạng nào — được hỗ trợ bởi Azure AI Translator, AWS Translate hoặc Google Cloud Translation.",
 		"socialTitle": "Resource Translator — dịch các tệp tài nguyên tự động",
-		"badge": "v3.0 — Nút 24, cấu hình repo, bảng thuật ngữ, chạy thử",
+		"badge": "phiên bản 3.0 — Nhà cung cấp Azure, AWS & Google, Node 24, cấu hình repo",
 		"headlinePrefix": "Bản địa hóa kho lưu trữ của bạn trên",
 		"headlineAccent": "mọi commit.",
-		"lede": "Resource Translator mở các yêu cầu kéo được dịch bằng máy cho các tệp tài nguyên của bạn bằng Azure AI Translator thông qua SDK chính thức — không có dịch vụ bổ sung, chỉ là quy trình làm việc.",
+		"lede": "Resource Translator mở các yêu cầu kéo được dịch bằng máy cho các tệp tài nguyên của bạn bằng Azure, AWS hoặc Google — một hành động thống nhất, một nhà cung cấp mỗi lần chạy, SDK chính thức.",
 		"primaryCta": "Bắt đầu",
 		"secondaryCta": "Ngôi sao trên GitHub",
 		"supports": "Hỗ trợ",
 		"builtForShipping": "Được xây dựng để vận chuyển",
 		"workflowTitle": "Dịch thuật như một quy trình làm việc, không phải là một việc vặt.",
-		"workflowBody": "Thả hành động vào CI hiện có của bạn, trỏ hành động đó vào Azure AI Translator và để kho lưu trữ của bạn nói mọi ngôn ngữ bạn nhắm mục tiêu.",
+		"workflowBody": "Thả hành động vào CI hiện có của bạn, trỏ nó vào Azure, AWS hoặc Google và để kho lưu trữ của bạn nói mọi ngôn ngữ bạn nhắm mục tiêu.",
 		"stats": {
 			"audit": "0 vấn đề về NPM-Audit",
-			"tests": "150 bài kiểm tra",
+			"tests": "240+ bài kiểm tra",
 			"node": "Nút 20 / 22 / 24",
-			"sdk": "Azure SDK chính thức"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} và {hasNewTranslations} vị trí trực tiếp vào create-pull-request."
 			},
 			"sdk": {
-				"title": "Azure SDK chính thức",
-				"body": "Được xây dựng trên {azureSdk} + {corePipeline} — tự động thử lại trên {statusCodes}, không có HTTP cuộn tay. {esbuild} gói, kiểm tra sạch sẽ."
+				"title": "Azure, AWS và Google",
+				"body": "Chọn một nhà cung cấp cho mỗi lần chạy. Mỗi SDK được điều khiển bởi SDK chính thức ({azureSdk}, {awsSdk}, {googleSdk}) với các lần thử lại tự động trên {statusCodes} - không có HTTP cuộn tay. {esbuild} gói, kiểm tra sạch sẽ."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Sẵn sàng bản địa hóa trên chế độ lái tự động?",
-			"body": "Một khóa Azure AI Translator, một tệp quy trình làm việc. Resource Translator xử lý phần còn lại.",
+			"body": "Một khóa nhà cung cấp — Azure, AWS hoặc Google — và một tệp quy trình làm việc. Resource Translator xử lý phần còn lại.",
 			"button": "Bắt đầu"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Các bước tiếp theo",
 			"configuration": "Định cấu hình mặc định cấp repo với {configPath}.",
 			"recipes": "Xem công thức nấu ăn cho monorepos, bảng thuật ngữ tùy chỉnh và danh mục Trình dịch tùy chỉnh."
+		}
+	},
+	"providers": {
+		"title": "Nhà cung cấp dịch thuật",
+		"eyebrow": "Tài liệu tham khảo",
+		"lede": "Chọn một nhà cung cấp dịch thuật cho mỗi lần chạy — Azure AI Translator, AWS Translate hoặc Google Cloud Translation — đằng sau một nền tảng API thống nhất duy nhất. Người dịch cư xử giống hệt nhau bất kể nhà cung cấp nào; Chỉ có thông tin đăng nhập khác nhau.",
+		"backwardCompatible": "Hoàn toàn tương thích ngược: {provider} mặc định là {azure}, vì vậy quy trình làm việc Azure hiện có tiếp tục hoạt động không thay đổi — không cần chỉnh sửa.",
+		"selecting": {
+			"title": "Chọn nhà cung cấp",
+			"body": "Đặt đầu vào {provider} thành {azure} (mặc định), {aws} hoặc {google}, sau đó cung cấp thông tin đăng nhập của nhà cung cấp đó. Chỉ một nhà cung cấp được sử dụng cho mỗi lệnh gọi hành động; hành động ủy quyền xác định cho SDK phù hợp phía sau nhà máy."
+		},
+		"comparison": {
+			"title": "So sánh nhà cung cấp",
+			"caption": "So sánh nhà cung cấp dịch thuật",
+			"columns": {
+				"provider": "Nhà cung cấp",
+				"value": "Giá trị của nhà cung cấp",
+				"sdk": "SDK",
+				"credentials": "Thông tin đăng nhập"
+			},
+			"azure": {
+				"name": "Trình dịch Azure AI",
+				"value": "Azure (mặc định)",
+				"credentials": "subscriptionKey, điểm cuối, khu vực (không bắt buộc)"
+			},
+			"aws": {
+				"name": "Dịch AWS",
+				"value": "AWS",
+				"credentials": "OIDC / chuỗi mặc định hoặc awsAccessKeyId + awsSecretAccessKey; Khu vực aws"
+			},
+			"google": {
+				"name": "Dịch thuật Google Cloud",
+				"value": "Google",
+				"credentials": "googleApiKey HOẶC googleCredentials (JSON tài khoản dịch vụ)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (mặc định)",
+			"body": "Nhà cung cấp mặc định. Cung cấp tài nguyên Azure AI Translator và chuyển {subscriptionKey}, {endpoint} và {region} tùy chọn. Đây là cấu hình tương tự mà quy trình làm việc hiện có đã sử dụng."
+		},
+		"aws": {
+			"title": "Dịch AWS",
+			"body": "Sử dụng {sdk}. Ưu tiên OIDC qua {configureAwsCredentials} để không lưu trữ bí mật tồn tại lâu dài — hành động đọc chuỗi thông tin xác thực mặc định của AWS SDK. Ngoài ra, hãy chuyển {awsAccessKeyId} và {awsSecretAccessKey} một cách rõ ràng. Một khu vực luôn được yêu cầu, thông qua {awsRegion} hoặc biến môi trường {awsRegionEnv}.",
+			"oidcTitle": "OIDC (khuyến nghị)",
+			"keysNote": "Để sử dụng phím tĩnh thay vì OIDC, hãy bỏ bước {configureAwsCredentials} và chuyển {awsAccessKeyId} / {awsSecretAccessKey} (qua {secrets}) cộng với {awsRegion}."
+		},
+		"google": {
+			"title": "Dịch thuật Google Cloud",
+			"body": "Sử dụng {sdk} (v2). Xác thực bằng khóa API ({googleApiKey}) hoặc thông tin xác thực JSON tài khoản dịch vụ ({googleCredentials}). Cung cấp chính xác một; Một {googleProjectId} tùy chọn được suy ra từ thông tin xác thực khi bị bỏ qua."
+		},
+		"mapping": {
+			"title": "Ánh xạ trình chỉ định ý định",
+			"body": "Bộ chỉ định dành riêng cho nhà cung cấp được ánh xạ ở nơi tồn tại một chỉ số tương đương. Mọi thứ khác đều quay trở lại mặc định hợp lý để hành vi vẫn nhất quán.",
+			"caption": "Ánh xạ trình chỉ định ý định giữa các nhà cung cấp",
+			"columns": {
+				"input": "Đầu vào",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Được hỗ trợ",
+			"ignored": "Bị bỏ qua",
+			"rows": {
+				"textType": {
+					"azure": "textType (thuần túy / html)",
+					"aws": "Bị bỏ qua (không chuyển đổi)",
+					"google": "Định dạng (văn bản / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Hỗ trợ đầy đủ",
+					"aws": "Đánh dấu / Đã xóa → mặt nạ",
+					"google": "Bị bỏ qua"
+				},
+				"categoryId": {
+					"azure": "Trình dịch tùy chỉnh",
+					"aws": "Bị bỏ qua",
+					"google": "Bị bỏ qua"
+				},
+				"allowFallback": {
+					"azure": "Được hỗ trợ",
+					"aws": "Bị bỏ qua",
+					"google": "Bị bỏ qua"
+				}
+			}
+		},
+		"locales": {
+			"title": "Mã ngôn ngữ khác nhau tùy theo nhà cung cấp",
+			"body": "Mỗi nhà cung cấp sử dụng mã ngôn ngữ riêng (ví dụ: Tiếng Trung giản thể được {azureCode} trên Azure, {awsCode} trên AWS và {googleCode} trên Google). Mã truyền qua nguyên trạng và điều khiển tên tệp đầu ra, vì vậy hãy chọn {toLocales} giá trị mà nhà cung cấp đã chọn của bạn hỗ trợ."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Đầu vào bắt buộc",
 			"caption": "Đầu vào bắt buộc",
 			"items": {
-				"sourceLocale": "Ngôn ngữ nguồn (ví dụ: {en}) được sử dụng để tìm các tệp tài nguyên như {sourceGlob}. Cũng được chuyển tiếp cho Translator dưới dạng {fromLocale}.",
-				"subscriptionKey": "Khóa đăng ký Azure AI Translator. Đi qua {secrets}.",
-				"endpoint": "URL điểm cuối của trình dịch, ví dụ: {endpointUrl}."
+				"sourceLocale": "Ngôn ngữ nguồn (ví dụ: {en}) được sử dụng để tìm các tệp tài nguyên như {sourceGlob}. Cũng được chuyển tiếp đến nhà cung cấp dưới dạng {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Lựa chọn nhà cung cấp và thông tin xác thực",
+			"caption": "Lựa chọn nhà cung cấp và thông tin xác thực cho mỗi nhà cung cấp",
+			"intro": "Chọn một nhà cung cấp cho mỗi lần chạy với {provider}. Chỉ cung cấp thông tin đăng nhập của nhà cung cấp đã chọn — xem hướng dẫn {providersLink} để biết thiết lập đầy đủ.",
+			"items": {
+				"provider": "Nhà cung cấp dịch thuật: {azure} (mặc định), {aws} hoặc {google}. Chỉ một nhà cung cấp được sử dụng cho mỗi lệnh gọi hành động.",
+				"subscriptionKey": "Khóa đăng ký Azure AI Translator. Bắt buộc để {azure}. Đi qua {secrets}.",
+				"endpoint": "URL điểm cuối Azure Translator, ví dụ: {endpointUrl}. Bắt buộc cho {azure}.",
+				"awsAccessKeyId": "ID khóa truy cập AWS. Tùy chọn — bỏ qua (với {awsSecretAccessKey}) để sử dụng chuỗi thông tin xác thực mặc định của AWS / OIDC. Đi qua {secrets}.",
+				"awsSecretAccessKey": "Khóa truy cập bí mật AWS. Phải được cung cấp cùng với {awsAccessKeyId}. Đi qua {secrets}.",
+				"awsSessionToken": "Mã thông báo phiên AWS tùy chọn cho thông tin xác thực tạm thời. Đi qua {secrets}.",
+				"awsRegion": "Khu vực AWS cho dịch vụ Dịch (ví dụ: {regionExample}). Bắt buộc đối với {aws} trừ khi {awsRegionEnv} được đặt trong môi trường.",
+				"googleApiKey": "Khóa API Google Cloud. Cung cấp {googleCredentials} HOẶC này cho {google}. Đi qua {secrets}.",
+				"googleCredentials": "Khóa tài khoản dịch vụ Google Cloud dưới dạng chuỗi JSON. Cung cấp {googleApiKey} HOẶC này cho {google}. Đi qua {secrets}.",
+				"googleProjectId": "Mã dự án Google Cloud tùy chọn. Thường được suy ra từ thông tin đăng nhập tài khoản dịch vụ."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Đầu vào yêu cầu dịch giả",
-			"intro": "Các thông số này ánh xạ trực tiếp vào các tham số truy vấn Azure AI Translator v3. Mỗi cái là tùy chọn; Giá trị mặc định của Trình dịch áp dụng khi không đặt.",
-			"caption": "Đầu vào yêu cầu dịch giả",
+			"heading": "Đầu vào yêu cầu Azure Translator",
+			"intro": "Các thông số này ánh xạ trực tiếp vào các tham số truy vấn Azure AI Translator v3 và áp dụng cho nhà cung cấp azure. textType và profanityAction cũng được ánh xạ đến AWS/Google nơi có một tệp tương đương (xem hướng dẫn dành cho nhà cung cấp); phần còn lại chỉ dành cho Azure. Mỗi cái là tùy chọn; Giá trị mặc định của Trình dịch áp dụng khi không đặt.",
+			"caption": "Đầu vào yêu cầu Azure Translator",
 			"items": {
 				"categoryId": "Danh mục Azure {customTranslatorLink} — núm ngành/miền/tông màu. Chuyển tiếp dưới dạng {categoryQuery}.",
 				"textType": "{plain} hoặc {html}. Chỉ sử dụng {html} khi giá trị tài nguyên của bạn là các đoạn HTML thực.",

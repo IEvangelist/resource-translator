@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Mobongoli ya ressource",
-		"description": "Resource Translator opens machine-translated pull requests for your resource files in any repo, in any format — powered by Azure AI Translator.",
+		"description": "Resource Translator efungolaka bosengi ya kobenda na machine mpo na ba fichier ya ressource na repo nyonso, na lolenge nyonso — esimbami na Azure AI Translator, AWS Translate, to Google Cloud Translation.",
 		"socialTitle": "Resource Translator — translate resource files automatically",
-		"badge": "v3.0 — Node 24, repo config, glossaire, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Localize your repo on",
 		"headlineAccent": "Komipesa nyonso.",
-		"lede": "Resource Translator opens machine-translated pull requests for your resource files using Azure AI Translator via the official SDK — no extra services, just a workflow.",
+		"lede": "Resource Translator efungolaka bosengi ya kobenda na masini mpo na ba fichiers ya ressource na yo na bosaleli ya Azure, AWS, to Google — action moko ya bomoko, mopesi moko na run, SDK officiel na nse ya capot.",
 		"primaryCta": "Bandá",
 		"secondaryCta": "Star on GitHub",
 		"supports": "Lisalisi",
 		"builtForShipping": "Etongami mpo na masuwa",
 		"workflowTitle": "Kobongola ezali mosala ya mosala, kasi ya kolela te.",
-		"workflowBody": "Bwaka action na CI na yo ya sika, lakisa yango na Azure AI Translator, mpe tika repo na yo eloba minoko nyonso oyo ozali koluka.",
+		"workflowBody": "Bwaka action na CI na yo ya sika, lakisa yango na Azure, AWS, to Google, mpe tika repo na yo eloba minoko nyonso oyo ozali koluka.",
 		"stats": {
 			"audit": "0 NPM-Audit Questions",
-			"tests": "150 tests",
+			"tests": "240+ ya pas de soucis",
 			"node": "Node 20 / 22 / 24",
-			"sdk": "SDK officiel Azure"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails}, mpe {hasNewTranslations} ekɔtaka mbala moko na lisengi ya bozalisi."
 			},
 			"sdk": {
-				"title": "SDK officiel Azure",
-				"body": "Etongami na {azureSdk} + {corePipeline} — ba retries automatiques na {statusCodes}, HTTP oyo esalemi na maboko te. {esbuild}-bundled, audit-clean."
+				"title": "Azure, AWS & Google",
+				"body": "Pona mosungi moko na moko. Moko na moko etambwisami na SDK na yango officiel ({azureSdk}, {awsSdk}, {googleSdk}) na ba essais automatiques na {statusCodes} — HTTP oyo esalemi na maboko te. {esbuild}-bundled, audit-clean."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Komibongisa mpo na localisation na pilote automatique?",
-			"body": "One Azure AI Translator key, one workflow file. Mobongoli ya ressource alandelaka makambo oyo etikali.",
+			"body": "Fungola moko ya fournisseur — Azure, AWS, to Google — mpe fichier moko ya workflow. Mobongoli ya ressource alandelaka makambo oyo etikali.",
 			"button": "Bandá"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Makambo oyo elandi",
 			"configuration": "Configurer ba défauts ya niveau ya repo na {configPath}.",
 			"recipes": "Tala ba recettes mpo na monorepos, glossaires personnalisées, mpe catégories ya traducteur personnalisé."
+		}
+	},
+	"providers": {
+		"title": "Basali ya babongoli",
+		"eyebrow": "Référence",
+		"lede": "Pona mopesi moko ya kobongola na nzela moko — Azure AI Translator, AWS Translate, to Google Cloud Translation — nsima ya surface moko ya API. Mobongoli asalaka makambo ndenge moko ata soki mopesi yango azali nani; Kaka ba diplômes nde ekeseni.",
+		"backwardCompatible": "Compatible: {provider} defaults to {azure}, so existing Azure workflows continue working unchanged — no edits required.",
+		"selecting": {
+			"title": "Kopona mosungi",
+			"body": "Koteyewi au sema:pikitise ipilise sita:latipa:{provider} {azure} {aws} to {google}. Kaka moto moko nde asaleli appel moko; Action déterminisme démonstrer na SDK oyo ekokani na sima ya usine."
+		},
+		"comparison": {
+			"title": "Comparaison ya ba fournisseur",
+			"caption": "Comparaison ya mopesi ya traduction",
+			"columns": {
+				"provider": "Mopesi",
+				"value": "Valeur ya mopesi",
+				"sdk": "SDK",
+				"credentials": "Ba diplômes"
+			},
+			"azure": {
+				"name": "Mobongoli ya Azure AI",
+				"value": "Azure (défaut)",
+				"credentials": "AbonnementKey, endpoint, region (optionnel)"
+			},
+			"aws": {
+				"name": "Traduction ya AWS",
+				"value": "AWS",
+				"credentials": "OIDC / chaine par défaut, ou awsAccessKeyId + awsSecretAccessKey; Région ya aws"
+			},
+			"google": {
+				"name": "Traduction ya Google Cloud",
+				"value": "Google",
+				"credentials": "googleApiKey OR googleCredentials (service-account JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (par défaut)",
+			"body": "Mopesi ya kozanga kokoka. Kopesa mobongoli Azure AI ressource mpe pass {subscriptionKey}, {endpoint}, mpe kopona {region}. Oyo ezali lolenge moko na ba workflows oyo bazali kosalela sikoyo."
+		},
+		"aws": {
+			"title": "Traduction ya AWS",
+			"body": "utilisée {sdk}. Pona OIDC na nzela ya {configureAwsCredentials} mpo ete basekele ya bomoi molai ebombama te — action etanga chaine ya identifiant ya défaut ya AWS SDK. To pe, kolekisa {awsAccessKeyId} mpe {awsSecretAccessKey} polele. Esengeli ntango nyonso kozala na esika moko, na nzela ya {awsRegion} to na {awsRegionEnv} ya environnement.",
+			"oidcTitle": "OIDC (recommandé)",
+			"keysNote": "Mpo na kosalela bafungola statique na esika ya OIDC, bɛtá lokolo ya {configureAwsCredentials} mpe lekisa {awsAccessKeyId} / {awsSecretAccessKey} (via {secrets}) mpe {awsRegion}."
+		},
+		"google": {
+			"title": "Traduction ya Google Cloud",
+			"body": "Salelá {sdk} (v2). Authenticer na fungola ya API ({googleApiKey}) to na compte ya service JSON ({googleCredentials}). Kopesa kaka moko; {googleProjectId} ya kopona ezwamaka na mokanda ya ndingisa soki balongoli yango."
+		},
+		"mapping": {
+			"title": "Mapping ya intention-specifier",
+			"body": "Ba spécifications spécifiques ya fournisseur etyamaka na karte soki ekokani na yango. Makambo mosusu nyonso ezongaka na mabunga ya bwanya, yango wana bizaleli na yango ebongwanaka te.",
+			"caption": "Mapping ya intention-specifier na ba fournisseurs",
+			"columns": {
+				"input": "Input",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Supporté",
+			"ignored": "Ignored",
+			"rows": {
+				"textType": {
+					"azure": "textType (plain / html)",
+					"aws": "Ignored (no toggle)",
+					"google": "Format (texte / html)"
+				},
+				"profanityAction": {
+					"azure": "Lisungi mobimba",
+					"aws": "Marqué / Supprimé → masque",
+					"google": "Ignored"
+				},
+				"categoryId": {
+					"azure": "Mobongoli ya Custom",
+					"aws": "Ignored",
+					"google": "Ignored"
+				},
+				"allowFallback": {
+					"azure": "Supporté",
+					"aws": "Ignored",
+					"google": "Ignored"
+				}
+			}
+		},
+		"locales": {
+			"title": "Bakode ya locale ekeseni na moto na moto",
+			"body": "Fournisseur moko na moko asalelaka bakode ya locale na ye (na ndakisa Chinois Simplifié ezali {azureCode} na Azure, {awsCode} na AWS, mpe {googleCode} na Google). Ba code elekaka ndenge ezali mpe etambwisaka bankombo ya ba fichier ya sortie, yango wana pona ba valeurs {toLocales} fournisseur oponi esungaka."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Makambo oyo esengeli",
 			"caption": "Makambo oyo esengeli",
 			"items": {
-				"sourceLocale": "Esika ya source (na ndakisa {en}) esalelamaka mpo na koluka ba fichiers ya ressource neti {sourceGlob}. Etindamaki mpe na mobongoli lokola {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. Koleka na {secrets}.",
-				"endpoint": "Translator endpoint URL, e.g. {endpointUrl}."
+				"sourceLocale": "Esika ya source (na ndakisa {en}) esalelamaka mpo na koluka ba fichiers ya ressource neti {sourceGlob}. Etindamaki mpe epai ya moto oyo azali kopesa {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Kopona ba fournisseur mpe ba diplômes",
+			"caption": "Kopona mopesi mpe diplome ya moteki",
+			"intro": "Pona mosungi moko na {provider}. Pesa kaka ba diplômes ya fournisseur oyo oponi — tala guide ya {providersLink} mpo na kobongisa mobimba.",
+			"items": {
+				"provider": "Traduction: {azure} (défaut), {aws}, to {google}. Kaka moto moko nde asaleli yango na ndenge ya kobenga.",
+				"subscriptionKey": "Azure AI Translator subscription key. Esengami mpo na {azure}. ya pas de {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, e.g. {endpointUrl}. Esengami mpo na {azure}.",
+				"awsAccessKeyId": "ID ya fungola ya accès ya AWS. Optionnel — omit (with {awsSecretAccessKey}) to use the AWS default credential chain / OIDC. ya pas de {secrets}.",
+				"awsSecretAccessKey": "Fungola ya accès secret ya AWS. Esengeli kopesa yango elongo na {awsAccessKeyId}. ya pas de {secrets}.",
+				"awsSessionToken": "Token ya session ya AWS pona ba credentials temporaires. Koleka na {secrets}.",
+				"awsRegion": "Mosala ya kobongola na Ndako ya Bokonzi[kokoma | kobɔngisa mosólo] ({regionExample}) Esengami mpo na {aws} longola kaka soki {awsRegionEnv} ezali na kati ya mboka.",
+				"googleApiKey": "Fungola ya Google Cloud API. Koteyewi au sema:pikitise {googleCredentials} {google}. ya pas de {secrets}.",
+				"googleCredentials": "Fungola ya compte ya Google Cloud lokola nsinga ya JSON. Koteyewi au sema:pikitise {googleApiKey} {google}. ya pas de {secrets}.",
+				"googleProjectId": "Optional Google Cloud project ID. Mbala mingi ezwamaka na mokanda ya compte ya service."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Translator request inputs",
-			"intro": "Oyo ezali na karte ya mbala moko na Azure AI Translator v3 paramètre ya requête. Moto na moto azali na likoki ya kopona; Mobongoli asalelaka yango te soki aboyi kobongola yango.",
-			"caption": "Translator request inputs",
+			"heading": "Azure Translator request inputs",
+			"intro": "Oyo ezali na karte ya mbala moko na Azure AI Translator v3 ba paramètre ya requête mpe esalelamaka na fournisseur ya azure. textType na maloba ya kofingaAction ezali mpe na karte ya AWS/Google esika ekokani na yango (tala guide ya ba fournisseurs); Oyo etikali ezali kaka ya Azure. Moto na moto azali na likoki ya kopona; Mobongoli asalelaka yango te soki aboyi kobongola yango.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Catégorie Azure {customTranslatorLink} — the industry/domain/tone knob. ya pas de {categoryQuery}.",
 				"textType": "{plain} to {html} Salela {html} kaka soki ba valeurs ya ressource na yo ezali ya solo ya HTML.",

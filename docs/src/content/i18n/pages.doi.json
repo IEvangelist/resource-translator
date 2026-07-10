@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "संसाधन अनुवादक",
-		"description": "संसाधन अनुवादक कुसै बी रेपो च, कुसै बी प्रारूप च — Azure AI Translator आसेआ संचालित, तुंʼदी संसाधन फाइलें लेई मशीन-अनूदित पुल अनुरोधें गी खोलदा ऐ।",
+		"description": "संसाधन अनुवादक कुसै बी रेपो च, कुसै बी प्रारूप च तुंʼदी संसाधन फाइलें लेई मशीन-अनूदित पुल अनुरोध खोलदा ऐ — Azure AI Translator, AWS Translate, जां Google Cloud Translation आसेआ संचालित।",
 		"socialTitle": "संसाधन अनुवादक — संसाधन फाइलें दा अपने आप अनुवाद करो",
-		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 — Azure, AWS ते Google प्रदाता, Node 24, repo config",
 		"headlinePrefix": "अपने रेपो गी स्थानीयकृत करो",
 		"headlineAccent": "हर कमिट।",
-		"lede": "संसाधन अनुवादक आधिकारिक एसडीके राहें Azure AI ट्रांसलेटर दी बरतून करियै तुंʼदी संसाधन फाइलें आस्तै मशीन-अनूदित पुल अनुरोध खोलदा ऐ - कोई बाद्धू सेवा नेईं, सिर्फ इक कार्यप्रवाह ऐ।",
+		"lede": "संसाधन अनुवादक Azure, AWS, जां Google दी बरतून करियै तुंʼदी संसाधन फाइलें आस्तै मशीन-अनूदित पुल अनुरोधें गी खोलदा ऐ — इक एकीकृत कार्रवाई, प्रति रन इक प्रदाता, हुड दे हेठ आधिकारिक एसडीके।",
 		"primaryCta": "शुरू करो",
 		"secondaryCta": "GitHub पर स्टार",
 		"supports": "समर्थन करदा ऐ",
 		"builtForShipping": "शिपिंग आस्तै बनाया गेआ",
 		"workflowTitle": "अनुवाद इक कार्यप्रवाह दे रूप च ऐ, कोई कम्म नेईं ।",
-		"workflowBody": "कार्रवाई गी अपने मजूदा CI च छोड़ो, इसगी Azure AI ट्रांसलेटर पर इंगित करो, ते अपने रेपो गी हर उस भाशा गी बोलन देओ जिसी तुस लक्षत करदे ओ।",
+		"workflowBody": "कार्रवाई गी अपने मजूदा CI च छोड़ो, इसगी Azure, AWS, जां Google पर इंगित करो, ते अपने रेपो गी हर उस भाशा गी बोलन देओ जिसी तुस लक्षत करदे ओ।",
 		"stats": {
 			"audit": "0 एन.पी.एम.-आडिट मुद्दे",
-			"tests": "150 टैस्ट",
+			"tests": "240+ टेस्ट",
 			"node": "नोड 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · गूगल"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} ते {hasNewTranslations} स्लॉट सिद्धे क्रिएट-पुल-रिक्वेस्ट च होंदे न।"
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "{azureSdk} + {corePipeline} पर बनाया गेआ — {statusCodes} पर अपने आप परतियै कोशिश करदा ऐ, कोई हत्थे कन्नै लुढ़का दा एचटीटीपी नेईं। {esbuild}-बंडल, आडिट-क्लीन।"
+				"title": "Azure, AWS ते Google",
+				"body": "हर रन च इक प्रदाता चुनो। हर इक अपने आधिकारिक एसडीके ({azureSdk}, {awsSdk}, {googleSdk}) आसेआ चलाया जंदा ऐ, जिस च {statusCodes} पर स्वचालित रीट्राइज़ होंदे न - कोई हैंड-रोल्ड एचटीटीपी नेईं। {esbuild}-बंडल, आडिट-क्लीन।"
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "ऑटोपायलट पर स्थानीयकरण करने आस्तै त्यार न?",
-			"body": "One Azure AI Translator key, one workflow file. संसाधन अनुवादक बाकी दा कम्म सम्हालदा ऐ।",
+			"body": "इक प्रदाता कुंजी - Azure, AWS, जां Google - ते इक वर्कफ़्लो फाइल। संसाधन अनुवादक बाकी दा कम्म सम्हालदा ऐ।",
 			"button": "शुरू करो"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "अगले चरण",
 			"configuration": "{configPath} दे कन्नै रेपो-स्तर दे डिफॉल्ट गी कॉन्फ़िगर करो।",
 			"recipes": "मोनोरेपो, कस्टम शब्दावली, ते कस्टम अनुवादक श्रेणियें आस्तै व्यंजनें गी दिक्खो।"
+		}
+	},
+	"providers": {
+		"title": "अनुवाद प्रदाता",
+		"eyebrow": "संदर्भ",
+		"lede": "हर रन इक अनुवाद प्रदाता चुनो — Azure AI Translator, AWS Translate, जां Google Cloud Translation—इक एकल, एकीकृत API सतह दे पिच्छें। अनुवादक प्रदाता दी परवाह कीते बगैर इक्कै चाल्ली दा बर्ताव करदा ऐ। छड़ा साख गै बक्ख-बक्ख ऐ।",
+		"backwardCompatible": "पूरी चाल्ली कन्नै पिछड़े दे संगत: {provider} डिफ़ॉल्ट रूप कन्नै {azure}, इस करियै मौजूदा Azure वर्कफ़्लो अपरिवर्तित कम्म करदे रौंह् दे न — कुसै संपादन दी लोड़ नेईं ऐ।",
+		"selecting": {
+			"title": "प्रदाता दा चनांऽ करना",
+			"body": "{provider} इनपुट गी {azure} (डिफॉल्ट), {aws} जां {google} पर सैट्ट करो, फ्ही उस प्रदाता दी क्रेडेंशियल्स दी आपूर्ति करो। प्रति एक्शन काल च सिर्फ इक प्रदाता दा इस्तेमाल कीता जंदा ऐ; कार्रवाई निर्धारक रूप कन्नै इक कारखाने दे पिच्छें मिलान करने आह् ले एसडीके गी सौंपदी ऐ।"
+		},
+		"comparison": {
+			"title": "प्रदाता तुलना",
+			"caption": "अनुवाद प्रदाता दी तुलना",
+			"columns": {
+				"provider": "प्रदाता",
+				"value": "प्रदाता दा मुल्ल",
+				"sdk": "SDK",
+				"credentials": "साख"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "azure (default)",
+				"credentials": "subscriptionKey, endpoint, region (वैकल्पिक)"
+			},
+			"aws": {
+				"name": "AWS अनुवाद",
+				"value": "उ'आं",
+				"credentials": "OIDC / डिफॉल्ट चेन, जां awsAccessKeyId + awsSecretAccessKey; awsregion"
+			},
+			"google": {
+				"name": "गूगल क्लाउड ट्रांसलेशन",
+				"value": "गूगल",
+				"credentials": "googleApiKey जां googleCredentials (service-account JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "डिफ़ॉल्ट प्रदाता। Azure AI अनुवादक संसाधन उपलब्ध करो, ते {subscriptionKey}, {endpoint} ते वैकल्पिक रूप कन्नै {region} पास करो। एह् उʼऐ विन्यास ऐ जेह् ड़ा मौजूदा कार्यप्रवाह पैह् लें थमां गै बरतेआ जंदा ऐ।"
+		},
+		"aws": {
+			"title": "AWS अनुवाद",
+			"body": "{sdk} दा इस्तेमाल करदा ऐ। {configureAwsCredentials} राहें OIDC गी तरजीह देओ तां जे कोई लम्मे समें तगर रौह् ने आह् ले रहस्य स्टोर नेईं होन - कार्रवाई AWS SDK डिफ़ॉल्ट क्रेडेंशियल चेन गी पढ़दी ऐ। वैकल्पिक रूप कन्नै, {awsAccessKeyId} पास करो ते स्पश्ट रूप {awsSecretAccessKey} करो। इक खेतर दी म्हेशा लोड़ होंदी ऐ, {awsRegion} जां {awsRegionEnv} पर्यावरण चर दे माध्यम कन्नै।",
+			"oidcTitle": "ओ.आई.डी.सी. (सफारश कीती गेई)",
+			"keysNote": "OIDC दे बजाए स्थैतिक कुंजियें दा इस्तेमाल करने लेई, {configureAwsCredentials} चरण गी छोड़ो ते {awsAccessKeyId} / {awsSecretAccessKey} ({secrets} दे माध्यम कन्नै) प्लस {awsRegion} पास करो।"
+		},
+		"google": {
+			"title": "गूगल क्लाउड ट्रांसलेशन",
+			"body": "{sdk} (v2) दा इस्तेमाल करदा ऐ। एपीआई कुंजी ({googleApiKey}) जां सेवा-खाता JSON क्रेडेंशियल ({googleCredentials}) कन्नै प्रमाणत करो। आपूर्ति ठीक इक ; छोड़े जाने पर इक वैकल्पिक {googleProjectId} दा अंदाज़ा क्रेडेंशियल थमां लाया जंदा ऐ।"
+		},
+		"mapping": {
+			"title": "इंटेंट-स्पेसिफायर मैपिंग",
+			"body": "प्रदाता-बशेश विनिर्देशकें गी मैप कीता जंदा ऐ जित्थै इक समतुल्य मजूद ऐ। बाकी सब किश समझदार डिफ़ॉल्ट पर वापस आई जंदा ऐ तां जे व्यवहार लगातार बने रौंह् दे न।",
+			"caption": "प्रदाताएं च इंटेंट-स्पेसिफायर मैपिंग",
+			"columns": {
+				"input": "इनपुट",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "गूगल"
+			},
+			"supported": "समर्थित",
+			"ignored": "नजरअंदाज कीता गेआ",
+			"rows": {
+				"textType": {
+					"azure": "टेक्स्ट टाइप (सादा / html)",
+					"aws": "नजरअंदाज कीता गेआ (कोई टॉगल नेईं)",
+					"google": "सरूप (पाठ / एचटीएमएल)"
+				},
+				"profanityAction": {
+					"azure": "पूरा समर्थन",
+					"aws": "मास्किंग → चि'न्नत / हटाई दित्ता गेआ",
+					"google": "नजरअंदाज कीता गेआ"
+				},
+				"categoryId": {
+					"azure": "मनपसंद अनुवादक",
+					"aws": "नजरअंदाज कीता गेआ",
+					"google": "नजरअंदाज कीता गेआ"
+				},
+				"allowFallback": {
+					"azure": "समर्थित",
+					"aws": "नजरअंदाज कीता गेआ",
+					"google": "नजरअंदाज कीता गेआ"
+				}
+			}
+		},
+		"locales": {
+			"title": "लोकेल कोड हर प्रदाता दे मताबक बक्खरे होंदे न",
+			"body": "हर इक प्रदाता अपने लोकेल कोड दा इस्तेमाल करदा ऐ (मसाल दे तौर पर सरलीकृत {azureCode} चीनी एज़्योर पर, {awsCode} एडब्ल्यूएस पर ते गूगल पर {googleCode} ऐ)। कोड जि'यां ऐ उ'यां गै गुजरदे न ते आउटपुट फाइल नांऽ गी चलांदे न, इस करियै तुंʼदे चुने गेदे प्रदाता आसेआ समर्थित {toLocales} मुल्लें गी चुनो।"
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "लोड़चदे इनपुट",
 			"caption": "लोड़चदे इनपुट",
 			"items": {
-				"sourceLocale": "स्रोत लोकेल (जिʼयां {en}) संसाधन फाइलें गी तुप्पने आस्तै बरतेआ जंदा ऐ जिʼयां {sourceGlob}। अनुवादक गी बी अग्रेषत कीता {fromLocale}।",
-				"subscriptionKey": "Azure AI Translator subscription key. {secrets} चा लंघना।",
-				"endpoint": "अनुवादक एंडपॉइंट यूआरएल, उदा {endpointUrl}।"
+				"sourceLocale": "स्रोत लोकेल (जिʼयां {en}) संसाधन फाइलें गी तुप्पने आस्तै बरतेआ जंदा ऐ जिʼयां {sourceGlob}। इसदे अलावा प्रदाता गी बी अग्रेषत कीता {fromLocale}।"
+			}
+		},
+		"providerInputs": {
+			"heading": "प्रदाता चनाऽ ते साख",
+			"caption": "प्रदाता चनाऽ ते प्रति-विक्रेता क्रेडेंशियल्स",
+			"intro": "{provider} कन्नै हर रन इक प्रदाता चुनो। सिर्फ चुने गेदे प्रदाता दे क्रेडेंशियल्स दी आपूर्ति करो — पूरे सेटअप आस्तै {providersLink} गाइड दिक्खो।",
+			"items": {
+				"provider": "अनुवाद प्रदाता: {azure} (डिफॉल्ट), {aws}, जां {google}। हर एक्शन काल च सिर्फ इक प्रदाता दा इस्तेमाल कीता जंदा ऐ।",
+				"subscriptionKey": "Azure AI Translator subscription key. {azure} लेई जरूरी ऐ। {secrets} चा लंघना।",
+				"endpoint": "Azure Translator endpoint URL, उदा. {endpointUrl}. एह्दे लेई जरूरी {azure}।",
+				"awsAccessKeyId": "AWS एक्सेस कुंजी आईडी। वैकल्पिक — AWS डिफॉल्ट क्रेडेंशियल चेन / OIDC दी बरतून करने आस्तै ({awsSecretAccessKey} दे कन्नै) छोड़ो। {secrets} चा लंघना।",
+				"awsSecretAccessKey": "AWS गुप्त एक्सेस कुंजी। इसदे कन्नै सप्लाई {awsAccessKeyId} । {secrets} चा लंघना।",
+				"awsSessionToken": "आरजी क्रेडेंशियल्स लेई वैकल्पिक AWS सत्र टोकन। {secrets} चा लंघना।",
+				"awsRegion": "अनुवाद सेवा लेई AWS खेतर (जिʼयां {regionExample})। {aws} आस्तै जरूरी ऐ जिसले तगर {awsRegionEnv} वातावरण च सेट नेईं कीता जंदा ।",
+				"googleApiKey": "गूगल क्लाउड एपीआई कुंजी। {google} लेई एह् जां {googleCredentials} प्रदान करो। {secrets} चा लंघना।",
+				"googleCredentials": "JSON स्ट्रिंग दे रूप च गूगल क्लाउड सर्विस-अकाउंट कुंजी। {google} लेई एह् जां {googleApiKey} प्रदान करो। {secrets} चा लंघना।",
+				"googleProjectId": "वैकल्पिक गूगल क्लाउड प्रोजेक्ट आईडी। आमतौर पर सेवा-खाता क्रेडेंशियल थमां अंदाज़ा लाया जंदा ऐ।"
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "अनुवादक अनुरोध इनपुट",
-			"intro": "एह् सिद्धे Azure AI Translator v3 क्वेरी पैरामीटरें पर मैप करदे न। हर इक वैकल्पिक ऐ; अनसेट होने पर अनुवादक डिफ़ॉल्ट लागू होंदा ऐ।",
-			"caption": "अनुवादक अनुरोध इनपुट",
+			"heading": "Azure Translator request inputs",
+			"intro": "एह् सिद्धे Azure AI Translator v3 क्वेरी पैरामीटरें पर मैप करदे न ते Azure प्रदाता पर लागू होंदे न। textType ते profanityAction गी AWS/Google पर बी मैप कीता जंदा ऐ जित्थै इक समतुल्य मजूद ऐ (प्रदाताएं दी मार्गदर्शिका दिक्खो); बाकी सिर्फ Azure न। हर इक वैकल्पिक ऐ; अनसेट होने पर अनुवादक डिफ़ॉल्ट लागू होंदा ऐ।",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} श्रेणी — उद्योग/डोमेन/टोन नॉब। अग्गें भेजेआ {categoryQuery}।",
 				"textType": "{plain} जां {html}। {html} दा इस्तेमाल सिर्फ उसलै करो जिसलै तुंʼदे संसाधन मुल्ल असल एचटीएमएल टुकड़े होन।",

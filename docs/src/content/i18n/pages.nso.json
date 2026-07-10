@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Resource Translator",
-		"description": "Resource Translator opens machine-translated pull requests for your resource files in any repo, in any format — powered by Azure AI Translator.",
+		"description": "Resource Translator opens machine-translated pull requests for your resource files in any repo, in any format — powered by Azure AI Translator, AWS Translate, or Google Cloud Translation.",
 		"socialTitle": "Resource Translator — translate resource files automatically",
-		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Localize your repo on",
 		"headlineAccent": "Boitlamo bjo bongwe le bjo bongwe.",
-		"lede": "Resource Translator opens machine-translated pull requests for your resource files using Azure AI Translator via the official SDK — no extra services, just a workflow.",
+		"lede": "Resource Translator opens machine-translated pull requests for your resource files using Azure, AWS, or Google — one unified action, one provider per run, official SDKs under the hood.",
 		"primaryCta": "Thoma",
 		"secondaryCta": "Naledi go GitHub",
 		"supports": "Thekgo",
 		"builtForShipping": "E agilwe bakeng sa dikepe",
 		"workflowTitle": "Phetolelo bjalo ka mošomo wa mošomo, e sego modumo.",
-		"workflowBody": "Drop the action into your existing CI, point it at Azure AI Translator, and let your repo speak every language you target.",
+		"workflowBody": "Drop the action into your existing CI, point it at Azure, AWS, or Google, and let your repo speak every language you target.",
 		"stats": {
 			"audit": "0 npm-audit issues",
-			"tests": "Diteko tše 150",
+			"tests": "240+ Tests",
 			"node": "Node 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails}, and {hasNewTranslations} slot directly into create-pull-request."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Built on {azureSdk} + {corePipeline} — automatic retries on {statusCodes}, no hand-rolled HTTP. {esbuild}-bundled, audit-clean."
+				"title": "Azure, AWS & Google",
+				"body": "Kgetha mofani o tee ka lebelo le lengwe le le lengwe. Ye nngwe le ye nngwe e laolwa ke SDK ya yona ya semmušo ({azureSdk}, {awsSdk}, {googleSdk}) ka {statusCodes} diteko tša go itiriša. {esbuild}-bundled, audit-clean."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Ready to localize on autopilot?",
-			"body": "One Azure AI Translator key, one workflow file. Mofetoledi wa Resource o šoma ka dilo tše dingwe.",
+			"body": "One provider key — Azure, AWS, or Google — and one workflow file. Mofetoledi wa Resource o šoma ka dilo tše dingwe.",
 			"button": "Thoma"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Dikgato tše di latelago",
 			"configuration": "Configure repo-level defaults with {configPath}.",
 			"recipes": "See recipes for monorepos, custom glossaries, and Custom Translator categories."
+		}
+	},
+	"providers": {
+		"title": "Bafetoledi",
+		"eyebrow": "Tšhupetšo",
+		"lede": "Choose one translation provider per run — Azure AI Translator, AWS Translate, or Google Cloud Translation — behind a single, unified API surface. Mofetoledi o itshwara ka go swana, go sa lebelelwe gore ke mofani ofe; ke fela ditaodišosengwalo tše di fapafapanego.",
+		"backwardCompatible": "Fully backward compatible: {provider} defaults to {azure}, so existing Azure workflows keep working unchanged — no edits required.",
+		"selecting": {
+			"title": "Kgetho Mofani",
+			"body": "Ngwala {provider} go {azure} (default), {aws}, {google}, gomme o fe moabi wa tshedimošo yeo. Only one provider is used per action call; the action deterministically delegates to the matching SDK behind a factory."
+		},
+		"comparison": {
+			"title": "Provider comparison",
+			"caption": "Translation provider comparison",
+			"columns": {
+				"provider": "Mofani",
+				"value": "Boleng bja mofani",
+				"sdk": "SDK",
+				"credentials": "Credentials"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (default)",
+				"credentials": "subscriptionKey, endpoint, region (optional)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "aws",
+				"credentials": "OIDC / default chain, or awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud Translation",
+				"value": "Google",
+				"credentials": "googleApiKey OR googleCredentials (service-account JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Mofani yo a fošagetšego. Provide an Azure AI Translator resource and pass {subscriptionKey}, {endpoint}, and optionally {region}. Ye ke mokgwa wo o swanago le wo o šetšego o šomišitšwe."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Diriša {sdk}. Prefer OIDC via {configureAwsCredentials} so no long-lasting secrets are stored — the action reads the AWS SDK default credential chain. Ka tsela ye nngwe, fetiša {awsAccessKeyId} gomme {awsSecretAccessKey} ka go kwagala. Ka mehla go nyakega selete, ka {awsRegion} goba ka tikologo ye e {awsRegionEnv}.",
+			"oidcTitle": "OIDC (e šišintšwe)",
+			"keysNote": "Go diriša dinotlelo tše di sa fetogego sebakeng sa OIDC, tlogela kgato ya {configureAwsCredentials} gomme o fete {awsAccessKeyId} / {awsSecretAccessKey} (ka {secrets}) le {awsRegion}."
+		},
+		"google": {
+			"title": "Google Cloud Translation",
+			"body": "Diriša {sdk} (v2). Netefatša ka senotlelo sa API ({googleApiKey}) goba setifikeiti sa JSON sa akhaonte ya tirelo ({googleCredentials}). Fana ka e tee fela; Setifikeiti sa boikgethelo se {googleProjectId} tšewa go tšwa go setifikeiti ge se tlogetšwe."
+		},
+		"mapping": {
+			"title": "Intent-specifier mapping",
+			"body": "Ditlhalošo tše di kgethegilego tša mofani di bewa moo go nago le sebopego sa go lekana. Dilo tše dingwe ka moka di wela morago go diphošo tše di kwagalago, ka fao maitshwaro a dula a sa fetoge.",
+			"caption": "Intent-specifier mapping across providers",
+			"columns": {
+				"input": "Input",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "E thekgwa",
+			"ignored": "Hlokomologwa",
+			"rows": {
+				"textType": {
+					"azure": "textType (plain / html)",
+					"aws": "Ignored (no toggle)",
+					"google": "Sebopego (sengwalwa / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Thekgo ye e tletšego",
+					"aws": "Marked / Deleted → masking",
+					"google": "Hlokomologwa"
+				},
+				"categoryId": {
+					"azure": "Mofetoledi wa Setlwaedi",
+					"aws": "Hlokomologwa",
+					"google": "Hlokomologwa"
+				},
+				"allowFallback": {
+					"azure": "E thekgwa",
+					"aws": "Hlokomologwa",
+					"google": "Hlokomologwa"
+				}
+			}
+		},
+		"locales": {
+			"title": "Locale codes differ per provider",
+			"body": "Moabi yo mongwe le yo mongwe o diriša dikhoutu tša gagwe tša selegae (mohlala, Simplified Chinese is {azureCode} on Azure, {awsCode} on AWS, and {googleCode} on Google). Dikhoutu di feta bjalo ka ge di le gomme di otlela maina a faele ya tšweletšo, ka fao kgetha boleng bjo {toLocales} moabi wa gago yo o kgethilwego a bo thekgago."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Ditsenyo tše di nyakegago",
 			"caption": "Ditsenyo tše di nyakegago",
 			"items": {
-				"sourceLocale": "Lefelo la lefelo (mohlala, {en}) leo le šomišwago go hwetša difaele tša methopo tša go swana le {sourceGlob}. Gape o ile a romelwa go mofetoledi bjalo ka mofetoledi yo {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. Go Pass {secrets}.",
-				"endpoint": "URL ya mafelelo ya mofetoledi, mohlala, {endpointUrl}."
+				"sourceLocale": "Lefelo la lefelo (mohlala, {en}) leo le šomišwago go hwetša difaele tša methopo tša go swana le {sourceGlob}. E romelwa gape go moabi wa ditirelo bjalo ka ge {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Provider selection & credentials",
+			"caption": "Provider selection and per-vendor credentials",
+			"intro": "Kgetha mofani ka {provider}. Fana fela ka mangwalo a boitsebišo a moabi yo a kgethilwego — bona tlhahli ya {providersLink} ya go hloma ka botlalo.",
+			"items": {
+				"provider": "Phetolelo: {azure} (default), {aws}, goba {google}. Ke moabi o tee fela yo a hwetšagalago go ya ka mogala wo mongwe le wo mongwe.",
+				"subscriptionKey": "Azure AI Translator subscription key. Se se nyakegago bakeng sa {azure}. Go Pass {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, mohlala, {endpointUrl}. Se se nyakegago bakeng sa {azure}.",
+				"awsAccessKeyId": "Lego Ninjago Key Id. Optional — omit (with {awsSecretAccessKey}) to use the AWS default credential chain / OIDC. Go Pass {secrets}.",
+				"awsSecretAccessKey": "Lego Nexo Knights Key E swanetše go romelwa gotee le {awsAccessKeyId}. Go Pass {secrets}.",
+				"awsSessionToken": "Optional AWS session token for temporary credentials. Go Pass {secrets}.",
+				"awsRegion": "Kgopelo ya phihlelelo ya Kgoro ya Merero ya Selegae (mohlala, {regionExample}). E swanetše go dirwa {aws} ka ntle le ge {awsRegionEnv} e beilwe ka gare ga tikologo.",
+				"googleApiKey": "Google Cloud API key. Fana ka se goba {googleCredentials} go {google}. Go Pass {secrets}.",
+				"googleCredentials": "Senotlelo sa akhaonte ya tirelo ya leru la Google bjalo ka thapo ya JSON. Fana ka se goba {googleApiKey} go {google}. Go Pass {secrets}.",
+				"googleProjectId": "Optional Google Cloud project id. Ka tlwaelo e hwetšwa go tšwa go setifikeiti sa akhaonte ya tirelo."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Translator request inputs",
-			"intro": "These map directly into Azure AI Translator v3 query parameters. Ye nngwe le ye nngwe ke ya boikgethelo; Mofetoledi o palelwa ke go fetolela ge a sa šome.",
-			"caption": "Translator request inputs",
+			"heading": "Azure Translator request inputs",
+			"intro": "These map directly into Azure AI Translator v3 query parameters and apply to the azure provider. textType and profanityAction are also mapped to AWS/Google where an equivalent exists (see the providers guide); tše dingwe ka moka ke tša Azure. Ye nngwe le ye nngwe ke ya boikgethelo; Mofetoledi o palelwa ke go fetolela ge a sa šome.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. E tšweleditšwe bjalo ka {categoryQuery}.",
 				"textType": "{plain} goba {html}. Use {html} only when your resource values are real HTML fragments.",

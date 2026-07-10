@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Resource Translator",
-		"description": "Resource Translator opnar vélrænt þýddar pull requests fyrir auðlindaskrárnar þínar í hvaða geymslu sem er, í hvaða sniði sem er — knúin áfram af Azure AI Translator.",
+		"description": "Resource Translator opnar vélrænt þýddar pull requests fyrir auðlindaskrár þínar í hvaða geymslu sem er, í hvaða sniði sem er — knúin áfram af Azure AI Translator, AWS Translate eða Google Cloud Translation.",
 		"socialTitle": "Auðlindaþýðandi — þýða auðlindaskrár sjálfkrafa",
-		"badge": "v3.0 — Node 24, repo config, orðalisti, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Staðfærðu geymsluna þína á",
 		"headlineAccent": "Hver skuldbinding.",
-		"lede": "Resource Translator opnar vélrænt þýddar pull requests fyrir auðlindaskrárnar þínar með Azure AI Translator í gegnum opinbera SDK-ið — engar auka þjónustur, bara vinnuflæði.",
+		"lede": "Resource Translator opnar vélrænt þýddar pull requests fyrir auðlindaskrárnar þínar með Azure, AWS eða Google — ein sameinuð aðgerð, einn veitandi á hverja keyrslu, opinber SDK undir húddinu.",
 		"primaryCta": "Byrjaðu",
 		"secondaryCta": "Star á GitHub",
 		"supports": "Stuðningur",
 		"builtForShipping": "Smíðað fyrir skipaflutninga",
 		"workflowTitle": "Þýðing sem vinnuflæði, ekki kvöð.",
-		"workflowBody": "Settu aðgerðina inn í núverandi CI þitt, beindu henni á Azure AI Translator og leyfðu geymslunni þinni að tala öll tungumál sem þú miðar á.",
+		"workflowBody": "Settu aðgerðina inn í núverandi CI þitt, beindu henni að Azure, AWS eða Google, og leyfðu geymslunni þinni að tala öll tungumálin sem þú miðar á.",
 		"stats": {
 			"audit": "0 npm-endurskoðunarvandamál",
-			"tests": "150 próf",
+			"tests": "240+ prófanir",
 			"node": "Hnútur 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} og {hasNewTranslations} beint inn í create-pull-request."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Byggt á {azureSdk} + {corePipeline} — sjálfvirkar endurraunir á {statusCodes}, engin handrúlluð HTTP. {esbuild} pakkað, hreint í endurskoðun."
+				"title": "Azure, AWS & Google",
+				"body": "Veldu einn þjónustuaðila í hverri keyrslu. Hver er knúin áfram af opinberu SDK sínu ({azureSdk}, {awsSdk}, {googleSdk}) með sjálfvirkum endurtilraunum á {statusCodes} — engin handkeyrð HTTP. {esbuild} pakkað, hreint og úttektarlaust."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Ertu tilbúinn að staðsetja á sjálfvirkri stýringu?",
-			"body": "Einn Azure AI þýðingarlykill, ein vinnuflæðisskrá. Resource Translator sér um restina.",
+			"body": "Einn þjónustulykill — Azure, AWS eða Google — og ein vinnuflæðisskrá. Resource Translator sér um restina.",
 			"button": "Byrjaðu"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Næstu skref",
 			"configuration": "Stilltu sjálfgefnar stillingar á repóstigi með {configPath}.",
 			"recipes": "Sjá uppskriftir fyrir monorepos, sérsniðna orðalista og flokka sérsniðinna þýðenda."
+		}
+	},
+	"providers": {
+		"title": "Þýðingaraðilar",
+		"eyebrow": "Heimild",
+		"lede": "Veldu einn þýðingaraðila í hverri keyrslu — Azure AI Translator, AWS Translate eða Google Cloud Translation — á bak við eitt samræmt API-yfirborð. Þýðandinn hagar sér eins óháð veitanda; aðeins vottorðin eru mismunandi.",
+		"backwardCompatible": "Fullkomlega afturvirkt samhæft: {provider} sjálfgefið á {azure}, svo núverandi Azure vinnuflæði halda áfram að virka óbreytt — engar breytingar nauðsynlegar.",
+		"selecting": {
+			"title": "Val á þjónustuaðila",
+			"body": "Stilltu {provider} inntakið á {azure} (sjálfgefið), {aws} eða {google} og gefðu svo upp auðkenni þess veitanda. Aðeins einn þjónustuaðili er notaður fyrir hvert aðgerðarkall; aðgerðin felur ákveðið í samsvarandi SDK fyrir aftan verksmiðju."
+		},
+		"comparison": {
+			"title": "Samanburður á þjónustuaðila",
+			"caption": "Samanburður á þýðingaraðila",
+			"columns": {
+				"provider": "Veitandi",
+				"value": "Gildi veitenda",
+				"sdk": "SDK",
+				"credentials": "Starfsréttindi"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (sjálfgefið)",
+				"credentials": "subscriptionKey, endpoint, region (valfrjálst)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "aws",
+				"credentials": "OIDC / sjálfgefin keðja, eða awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud þýðing",
+				"value": "Google-ið",
+				"credentials": "googleApiKey EÐA googleCredentials (þjónustureiknings-JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Sjálfgefinn þjónustuaðili. Útvega Azure AI þýðanda auðlind og láttu {subscriptionKey}, {endpoint} og valfrjálst {region}. Þetta er sama uppsetning og núverandi vinnuflæði nota nú þegar."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Notar {sdk}. Kjósið OIDC í gegnum {configureAwsCredentials} svo engar langlífar leyndarmál séu geymd — aðgerðin les sjálfgefna auðkenniskeðju AWS SDK. Eða að ljúka {awsAccessKeyId} og {awsSecretAccessKey} skýrt. Svæði er alltaf nauðsynlegt, með {awsRegion} eða {awsRegionEnv} umhverfisbreytunni.",
+			"oidcTitle": "OIDC (mælt með)",
+			"keysNote": "Til að nota kyrrstæða lykla í stað OIDC, slepptu {configureAwsCredentials} skrefinu og sendu {awsAccessKeyId} / {awsSecretAccessKey} (með {secrets}) auk {awsRegion}."
+		},
+		"google": {
+			"title": "Google Cloud þýðing",
+			"body": "Notar {sdk} (v2). Auðkenndu þig með annað hvort API-lykli ({googleApiKey}) eða þjónustureiknings JSON auðkenni ({googleCredentials}). Útvegaðu nákvæmlega einn; Valfrjáls {googleProjectId} er dregin af viðurkenningunni þegar hún er ekki tekin upp."
+		},
+		"mapping": {
+			"title": "Intent-specifier vörpun",
+			"body": "Sértækir skilgreiningaraðilar eru kortlagðir þar sem samsvarandi er til. Allt annað fellur aftur í skynsamlegar sjálfgefnar stillingar svo hegðun haldist stöðug.",
+			"caption": "Intent-specifier kortlagning milli veitenda",
+			"columns": {
+				"input": "Inntak",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Stuðningur",
+			"ignored": "Hunsað",
+			"rows": {
+				"textType": {
+					"azure": "textType (hreint / html)",
+					"aws": "Hunsað (enginn rofi)",
+					"google": "Snið (texti / html)"
+				},
+				"profanityAction": {
+					"azure": "Fullur stuðningur",
+					"aws": "Merkt / Eytt → að fela",
+					"google": "Hunsað"
+				},
+				"categoryId": {
+					"azure": "Sérsniðinn þýðandi",
+					"aws": "Hunsað",
+					"google": "Hunsað"
+				},
+				"allowFallback": {
+					"azure": "Stuðningur",
+					"aws": "Hunsað",
+					"google": "Hunsað"
+				}
+			}
+		},
+		"locales": {
+			"title": "Staðsetningarkóðar eru mismunandi eftir þjónustuaðilum",
+			"body": "Hver veitandi notar sín eigin staðbundin kóða (til dæmis er einfaldað kínverska {azureCode} á Azure, {awsCode} á AWS og {googleCode} á Google). Kóðarnir fara í gegnum eins og þeir eru og stjórna úttaksskránöfnum, svo veldu {toLocales} gildi sem valinn þjónustuaðili styður."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Nauðsynleg inntök",
 			"caption": "Nauðsynleg inntök",
 			"items": {
-				"sourceLocale": "Upprunastaður (t.d. {en}) sem notaður er til að finna auðlindaskrár eins og {sourceGlob}. Einnig sent áfram til þýðanda sem {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. Farðu í gegnum {secrets}.",
-				"endpoint": "Þýðandi endapunktsslóð, t.d. {endpointUrl}."
+				"sourceLocale": "Upprunastaður (t.d. {en}) sem notaður er til að finna auðlindaskrár eins og {sourceGlob}. Einnig sent áfram til þjónustuaðilans sem {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Val á þjónustuveitanda og vottorð",
+			"caption": "Val á þjónustuaðila og auðkenni fyrir hvern birgja",
+			"intro": "Veldu einn þjónustuaðila í hverri umferð með {provider}. Gefðu aðeins upp auðkenni valins veitanda — sjá leiðbeiningar {providersLink} fyrir fulla uppsetningu.",
+			"items": {
+				"provider": "Þýðingaraðili: {azure} (sjálfgefið), {aws} eða {google}. Aðeins einn þjónustuaðili er notaður í hverju aðgerðarkalli.",
+				"subscriptionKey": "Azure AI Translator subscription key. Nauðsynlegt fyrir {azure}. Farðu í gegnum {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, t.d. {endpointUrl}. Nauðsynlegt fyrir {azure}.",
+				"awsAccessKeyId": "AWS aðgangslykilauðkenni. Valfrjálst — sleppa (með {awsSecretAccessKey}) að nota AWS sjálfgefna auðkenniskeðju / OIDC. Farðu í gegnum {secrets}.",
+				"awsSecretAccessKey": "AWS leynilykill aðgangs. Þarf að fylgja með {awsAccessKeyId}. Farðu í gegnum {secrets}.",
+				"awsSessionToken": "Valfrjáls AWS session token fyrir tímabundin auðkenni. Farðu í gegnum {secrets}.",
+				"awsRegion": "AWS svæði fyrir Translate þjónustuna (t.d. {regionExample}). Nauðsynlegt fyrir {aws} nema {awsRegionEnv} sé staðsett í umhverfinu.",
+				"googleApiKey": "Google Cloud API-lykil. Leggðu fram þetta EÐA {googleCredentials} fyrir {google}. Farðu í gegnum {secrets}.",
+				"googleCredentials": "Google Cloud þjónustureikningslykill sem JSON-strengur. Leggðu fram þetta EÐA {googleApiKey} fyrir {google}. Farðu í gegnum {secrets}.",
+				"googleProjectId": "Valfrjáls Google Cloud verkefnaauðkenni. Venjulega dregið af þjónustureikningsgögnum."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Inntök þýðanda",
-			"intro": "Þessar tengjast beint Azure AI Translator v3 fyrirspurnarbreytum. Allar eru valkvæðar; þýðandi sjálfgefnar gildir þegar þeir eru ósettir.",
-			"caption": "Inntök þýðanda",
+			"heading": "Azure Translator request inputs",
+			"intro": "Þessar varpa beint á fyrirspurnarbreytur Azure AI Translator v3 og gilda á Azure Provider. textType og profanityAction eru einnig kortlagðar á AWS/Google þar sem samsvarandi aðferð er til (sjá leiðbeiningar þjónustuaðila); hin eru eingöngu fyrir Azure. Allar eru valkvæðar; þýðandi sjálfgefnar gildir þegar þeir eru ósettir.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} flokkurinn — iðnaðar-/léns-/tónhnappurinn. Framsent eins {categoryQuery}.",
 				"textType": "{plain} eða {html}. Notaðu {html} aðeins þegar auðlindagildin þín eru raunveruleg HTML-brot.",

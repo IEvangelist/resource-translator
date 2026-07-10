@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "資源翻譯器",
-		"description": "Resource Translator 可以喺任何倉庫、任何格式開啟機器翻譯嘅資源檔案拉取請求——由 Azure AI Translator 提供支援。",
+		"description": "Resource Translator 可以喺任何倉庫、任何格式開啟機器翻譯嘅資源檔案 pull request——由 Azure AI Translator、AWS Translate 或 Google Cloud Translation 驅動。",
 		"socialTitle": "資源翻譯器 — 自動翻譯資源檔案",
-		"badge": "v3.0 — Node 24， repo config， glossary， dry run",
+		"badge": "v3.0 — Azure， AWS & Google providers， Node 24， repo config",
 		"headlinePrefix": "將你嘅倉庫本地化喺",
 		"headlineAccent": "每一個提交。",
-		"lede": "Resource Translator 會用官方 SDK 用 Azure AI Translator 開啟機器翻譯嘅資源檔案 pull request——冇額外服務，只係一個工作流程。",
+		"lede": "Resource Translator 會用 Azure、AWS 或 Google 開啟機器翻譯嘅資源檔案 pull request——一個統一操作，每次執行一個供應商，底層有官方 SDK。",
 		"primaryCta": "開始",
 		"secondaryCta": "GitHub 星級",
 		"supports": "支援",
 		"builtForShipping": "為航運而建",
 		"workflowTitle": "翻譯係一個工作流程，而唔係苦差事。",
-		"workflowBody": "將動作放入你現有嘅 CI，指向 Azure AI Translator，然後你嘅 repo 可以講你目標嘅所有語言。",
+		"workflowBody": "將呢個動作放入你現有嘅CI，指向Azure、AWS或者Google，令你嘅倉庫可以同你目標嘅語言溝通。",
 		"stats": {
 			"audit": "0 NPM-審計問題",
-			"tests": "150場測試賽",
+			"tests": "240+ 測試",
 			"node": "節點20 / 22 / 24",
-			"sdk": "官方Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}、{summaryDetails} 同 {hasNewTranslations} 直接插入 create-pull-request。"
 			},
 			"sdk": {
-				"title": "官方Azure SDK",
-				"body": "基於{azureSdk} + {corePipeline} — {statusCodes} 自動重試，冇手捲 HTTP。 {esbuild}捆綁，審計乾淨。"
+				"title": "Azure、AWS 同 Google",
+				"body": "每次跑步揀一個供應商。 每個 SDK 都用官方 SDK（{azureSdk}、{awsSdk}、{googleSdk}）驅動，{statusCodes} 自動重試——冇手卷 HTTP。 {esbuild}捆綁，審計乾淨。"
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "準備好自動駕駛式本地化未？",
-			"body": "一個Azure AI Translator密鑰，一個工作流程檔案。 剩低嘅嘢就用資源翻譯器處理。",
+			"body": "一個供應商密鑰——Azure、AWS 或 Google——同一個工作流程檔案。 剩低嘅嘢就用資源翻譯器處理。",
 			"button": "開始"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "下一步",
 			"configuration": "用 {configPath} 設定倉庫層面嘅預設值。",
 			"recipes": "睇下 monorepos、自訂詞彙表同自訂翻譯器分類嘅食譜。"
+		}
+	},
+	"providers": {
+		"title": "翻譯供應商",
+		"eyebrow": "參考資料",
+		"lede": "每次運行揀一個翻譯供應商——Azure AI Translator、AWS Translate 或 Google Cloud Translation——喺單一統一嘅 API 表面下。 轉播器嘅行為無論供應商係邊個都一樣; 淨係資格唔同。",
+		"backwardCompatible": "完全向後兼容：{provider} 預設係 {azure}，所以現有嘅 Azure 工作流程繼續運作，唔使改動。",
+		"selecting": {
+			"title": "揀選供應商",
+			"body": "將{provider}輸入設定為{azure}（預設）、{aws}或者{google}，然後提供該供應商嘅憑證。 每個動作呼叫只會用一個提供者; 呢個動作會確定性咁委派畀工廠後面嘅匹配 SDK。"
+		},
+		"comparison": {
+			"title": "供應商比較",
+			"caption": "翻譯供應商比較",
+			"columns": {
+				"provider": "供應商",
+				"value": "提供者價值",
+				"sdk": "SDK",
+				"credentials": "資歷"
+			},
+			"azure": {
+				"name": "Azure AI 翻譯器",
+				"value": "Azure（預設）",
+				"credentials": "subscriptionKey， endpoint， region（可選）"
+			},
+			"aws": {
+				"name": "AWS 翻譯",
+				"value": "AWS",
+				"credentials": "OIDC / 預設鏈，或者 awsAccessKeyID + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google 雲端翻譯",
+				"value": "Google下",
+				"credentials": "googleApiKey 或 googleCredentials （service-account JSON）"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator （預設）",
+			"body": "預設供應商。 提供 Azure AI 翻譯器資源，{subscriptionKey}、{endpoint}，仲有可選擇性{region}。 呢個配置同現有工作流程已經用緊嘅一樣。"
+		},
+		"aws": {
+			"title": "AWS 翻譯",
+			"body": "用{sdk}。 優先用 OIDC 透過 {configureAwsCredentials}，咁就唔會儲存長期秘密 — 動作會讀取 AWS SDK 預設嘅憑證鏈。 或者，可以直接傳{awsAccessKeyId}同{awsSecretAccessKey}。 區域係必須嘅，透過{awsRegion}或者{awsRegionEnv}環境變數。",
+			"oidcTitle": "OIDC（推薦）",
+			"keysNote": "如果想用靜態鍵代替 OIDC，可以放低 {configureAwsCredentials} 步，然後通過 {awsAccessKeyId} / {awsSecretAccessKey}（經 {secrets}）加 {awsRegion}。"
+		},
+		"google": {
+			"title": "Google 雲端翻譯",
+			"body": "用{sdk}（v2）。 用API金鑰（{googleApiKey}）或者服務帳戶JSON憑證（{googleCredentials}）嚟認證。 只提供一個; 如果冇咗憑證，會推斷出一個可選{googleProjectId}。"
+		},
+		"mapping": {
+			"title": "意圖-指定符映射",
+			"body": "提供者專屬嘅指定詞會映射喺有等價物嘅地方。 其他嘢都會返去合理嘅預設，令行為保持一致。",
+			"caption": "供應商之間嘅意圖-指定符映射",
+			"columns": {
+				"input": "輸入",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "支援",
+			"ignored": "被忽視",
+			"rows": {
+				"textType": {
+					"azure": "textType（純 / html）",
+					"aws": "被忽略（冇開關）",
+					"google": "格式（文字 / HTML）"
+				},
+				"profanityAction": {
+					"azure": "全力支持",
+					"aws": "已標記/刪除→掩飾",
+					"google": "被忽視"
+				},
+				"categoryId": {
+					"azure": "自訂翻譯器",
+					"aws": "被忽視",
+					"google": "被忽視"
+				},
+				"allowFallback": {
+					"azure": "支援",
+					"aws": "被忽視",
+					"google": "被忽視"
+				}
+			}
+		},
+		"locales": {
+			"title": "地區代碼因供應商而異",
+			"body": "每個供應商用自己嘅地區代碼（例如簡體中文喺Azure {azureCode}，{awsCode}喺AWS用，{googleCode}喺Google用）。 代碼會按現狀通過，驅動輸出檔案名，所以揀你揀嘅供應商支持嘅{toLocales}值。"
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "所需輸入",
 			"caption": "所需輸入",
 			"items": {
-				"sourceLocale": "來源位置（例如 {en}）用嚟搵資源檔案，例如 {sourceGlob}。 亦轉發到 Translator 作為 {fromLocale}。",
-				"subscriptionKey": "Azure AI Translator subscription key. 經過{secrets}。",
-				"endpoint": "翻譯端點網址，例如 {endpointUrl}。"
+				"sourceLocale": "來源位置（例如 {en}）用嚟搵資源檔案，例如 {sourceGlob}。 亦都轉發畀供應商{fromLocale}。"
+			}
+		},
+		"providerInputs": {
+			"heading": "提供者選擇同資格",
+			"caption": "供應商選擇同按供應商認證",
+			"intro": "每次用{provider}揀一位醫護人員。 只提供所選供應商嘅憑證 — 完整設定詳情請參閱{providersLink}指南。",
+			"items": {
+				"provider": "翻譯供應商：{azure}（預設）、{aws}或者{google}。 每個行動呼叫只會用一個供應商。",
+				"subscriptionKey": "Azure AI Translator subscription key. 係{azure}嘅必需品。 經過{secrets}。",
+				"endpoint": "Azure Translator endpoint URL，例如 {endpointUrl}. 必須有{azure}。",
+				"awsAccessKeyId": "AWS 存取密鑰 ID。 可選嘅 — {awsSecretAccessKey}唔使用AWS預設憑證鏈/OIDC。 經過{secrets}。",
+				"awsSecretAccessKey": "AWS 秘密存取金鑰。 必須連同 {awsAccessKeyId} 一齊供應。 經過{secrets}。",
+				"awsSessionToken": "可選嘅 AWS 會話令牌用嚟臨時憑證。 經過{secrets}。",
+				"awsRegion": "Translate 服務嘅 AWS 區域（例如 {regionExample}）。 除非{awsRegionEnv}喺環境入面設定，否則{aws}係必需嘅。",
+				"googleApiKey": "Google Cloud API 金鑰。 提供呢個手術室{googleCredentials}畀{google}。 經過{secrets}。",
+				"googleCredentials": "Google Cloud 服務帳戶鍵係 JSON 字串。 提供呢個手術室{googleApiKey}畀{google}。 經過{secrets}。",
+				"googleProjectId": "可選嘅 Google Cloud 項目 ID。 通常係由服務帳戶憑證推斷出嚟。"
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "轉播器請求輸入",
-			"intro": "呢啲參數直接對應到 Azure AI Translator v3 嘅查詢參數。 每一個都係可選嘅; 當未設定時，翻譯器預設值會生效。",
-			"caption": "轉播器請求輸入",
+			"heading": "Azure Translator request inputs",
+			"intro": "呢啲參數會直接映射到 Azure AI Translator v3 嘅查詢參數，並應用喺 Azure 供應商。 textType 同 profanityAction 亦會映射到 AWS/Google，嗰度有相應嘅服務（見供應商指南）; 其餘嘅係淨係 Azure 版本。 每一個都係可選嘅; 當未設定時，翻譯器預設值會生效。",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. 轉發成{categoryQuery}。",
 				"textType": "{plain}或者{html}。 淨係喺資源值係真實 HTML 片段嘅時候先用 {html}。",

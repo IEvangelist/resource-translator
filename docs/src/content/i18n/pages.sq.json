@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Përkthyes i burimeve",
-		"description": "Resource Translator hap kërkesa tërheqjeje të përkthyera nga makina për skedarët tuaj të burimeve në çdo depo, në çdo format - mundësuar nga Azure AI Translator.",
+		"description": "Resource Translator hap kërkesat e tërheqjes së përkthyer me makinë për skedarët tuaj të burimeve në çdo depo, në çdo format - mundësuar nga Azure AI Translator, AWS Translate ose Google Cloud Translation.",
 		"socialTitle": "Përkthyesi i burimeve — përktheni skedarët e burimeve automatikisht",
-		"badge": "v3.0 — Nyja 24, konfigurimi i depove, fjalor, ekzekutimi i thatë",
+		"badge": "v3.0 — Azure, ofruesit e AWS dhe Google, Node 24, konfigurimi i depos",
 		"headlinePrefix": "Lokalizoni depon tuaj në",
 		"headlineAccent": "çdo angazhim.",
-		"lede": "Resource Translator hap kërkesa tërheqjeje të përkthyera nga makina për skedarët tuaj të burimeve duke përdorur Azure AI Translator përmes SDK-së zyrtare - pa shërbime shtesë, vetëm një rrjedhë pune.",
+		"lede": "Resource Translator hap kërkesat tërheqëse të përkthyera nga makina për skedarët tuaj të burimeve duke përdorur Azure, AWS ose Google - një veprim i unifikuar, një ofrues për ekzekutim, SDK zyrtare nën kapuç.",
 		"primaryCta": "Fillo",
 		"secondaryCta": "Yll në GitHub",
 		"supports": "Mbështet",
 		"builtForShipping": "Ndërtuar për transport",
 		"workflowTitle": "Përkthimi si një rrjedhë pune, jo një punë e përditshme.",
-		"workflowBody": "Hidhni veprimin në CI-në tuaj ekzistuese, drejtojeni atë te Azure AI Translator dhe lëreni depon tuaj të flasë çdo gjuhë që synoni.",
+		"workflowBody": "Hidhni veprimin në CI-në tuaj ekzistuese, drejtojeni atë në Azure, AWS ose Google dhe lëreni depon tuaj të flasë çdo gjuhë që synoni.",
 		"stats": {
 			"audit": "0 çështje të auditimit të npm",
-			"tests": "150 teste",
+			"tests": "240+ teste",
 			"node": "Nyja 20 / 22 / 24",
-			"sdk": "Azure SDK zyrtar"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} dhe {hasNewTranslations} futen direkt në krijim-tërheqje-kërkesë."
 			},
 			"sdk": {
-				"title": "Azure SDK zyrtar",
-				"body": "Ndërtuar në {azureSdk} + {corePipeline} - përsëritje automatike në {statusCodes}, pa HTTP të rrotulluar me dorë. {esbuild} të paketuara, të pastra me auditim."
+				"title": "Azure, AWS dhe Google",
+				"body": "Zgjidhni një ofrues për ekzekutim. Secili drejtohet nga SDK-ja e tij zyrtare ({azureSdk}, {awsSdk}, {googleSdk}) me përsëritje automatike në {statusCodes} - pa HTTP të rrotulluar me dorë. {esbuild}-bashkuar, audit-clean."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Gati për të lokalizuar në autopilot?",
-			"body": "Një çelës Azure AI Translator, një skedar i rrjedhës së punës. Përkthyesi i burimeve merret me pjesën tjetër.",
+			"body": "Një çelës ofruesi - Azure, AWS ose Google - dhe një skedar rrjedhe pune. Përkthyesi i burimeve merret me pjesën tjetër.",
 			"button": "Fillo"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Hapat e ardhshëm",
 			"configuration": "Konfiguroni parazgjedhjet e nivelit të depove me {configPath}.",
 			"recipes": "Shihni recetat për monorepos, fjalorët e personalizuar dhe kategoritë e përkthyesve të personalizuar."
+		}
+	},
+	"providers": {
+		"title": "Ofruesit e përkthimit",
+		"eyebrow": "Referencë",
+		"lede": "Zgjidhni një ofrues përkthimi për ekzekutim - Azure AI Translator, AWS Translate ose Google Cloud Translation - pas një sipërfaqeje të vetme, të unifikuar API. Përkthyesi sillet në mënyrë identike pavarësisht nga ofruesi; vetëm kredencialet ndryshojnë.",
+		"backwardCompatible": "Plotësisht i pajtueshëm me prapambetje: {provider} parazgjedhje në {azure}, kështu që rrjedhat ekzistuese të Azure vazhdojnë të punojnë të pandryshuara - nuk kërkohen modifikime.",
+		"selecting": {
+			"title": "Zgjedhja e një ofruesi",
+			"body": "Vendosni hyrjen {provider} në {azure} (parazgjedhje), {aws} ose {google}, më pas jepni kredencialet e atij ofruesi. Përdoret vetëm një ofrues për thirrje veprimi; veprimi delegohet në mënyrë deterministe në SDK-në që përputhet pas një fabrike."
+		},
+		"comparison": {
+			"title": "Krahasimi i ofruesve",
+			"caption": "Krahasimi i ofruesve të përkthimit",
+			"columns": {
+				"provider": "Ofruesi",
+				"value": "Vlera e ofruesit",
+				"sdk": "SDK",
+				"credentials": "Kredencialet"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (parazgjedhje)",
+				"credentials": "abonimiÇelësi, pika fundore, rajoni (opsionale)"
+			},
+			"aws": {
+				"name": "Përkthej AWS",
+				"value": "AWS",
+				"credentials": "OIDC / zinxhiri i paracaktuar, ose awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Përkthimi i Google Cloud",
+				"value": "Google",
+				"credentials": "googleApiKey OSE googleCredentials (JSON e llogarisë së shërbimit)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (parazgjedhje)",
+			"body": "Ofruesi i paracaktuar. Siguroni një burim Azure AI Translator dhe kaloni {subscriptionKey}, {endpoint} dhe opsionalisht {region}. Ky është i njëjti konfigurim që përdorin tashmë flukset ekzistuese të punës."
+		},
+		"aws": {
+			"title": "Përkthej AWS",
+			"body": "Përdor {sdk}. Preferoni OIDC përmes {configureAwsCredentials} në mënyrë që të mos ruhen sekrete jetëgjata - veprimi lexon zinxhirin e paracaktuar të kredencialeve AWS SDK. Përndryshe, kaloni {awsAccessKeyId} dhe {awsSecretAccessKey} në mënyrë eksplicite. Kërkohet gjithmonë një rajon, nëpërmjet {awsRegion} ose variablit {awsRegionEnv} të mjedisit.",
+			"oidcTitle": "OIDC (rekomandohet)",
+			"keysNote": "Për të përdorur çelësat statikë në vend të OIDC, hiqni hapin {configureAwsCredentials} dhe kaloni {awsAccessKeyId} / {awsSecretAccessKey} (nëpërmjet {secrets}) plus {awsRegion}."
+		},
+		"google": {
+			"title": "Përkthimi i Google Cloud",
+			"body": "Përdor {sdk} (v2). Autentifikoni me një çelës API ({googleApiKey}) ose një kredencial JSON të llogarisë së shërbimit ({googleCredentials}). Furnizoni saktësisht një; Një {googleProjectId} opsionale konkludohet nga kredenciali kur hiqet."
+		},
+		"mapping": {
+			"title": "Harta e specifikuesit të qëllimit",
+			"body": "Specifikuesit specifikë të ofruesit hartohen aty ku ekziston një ekuivalent. Gjithçka tjetër kthehet në parazgjedhje të arsyeshme në mënyrë që sjellja të mbetet e qëndrueshme.",
+			"caption": "Harta e specifikuesit të qëllimit midis ofruesve",
+			"columns": {
+				"input": "Hyrje",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Mbështetur",
+			"ignored": "Injoruar",
+			"rows": {
+				"textType": {
+					"azure": "textType (i thjeshtë / html)",
+					"aws": "Injoruar (pa çelës)",
+					"google": "Formati (tekst / html)"
+				},
+				"profanityAction": {
+					"azure": "Mbështetje e plotë",
+					"aws": "Shënuar / Fshirë → maskim",
+					"google": "Injoruar"
+				},
+				"categoryId": {
+					"azure": "Përkthyes i personalizuar",
+					"aws": "Injoruar",
+					"google": "Injoruar"
+				},
+				"allowFallback": {
+					"azure": "Mbështetur",
+					"aws": "Injoruar",
+					"google": "Injoruar"
+				}
+			}
+		},
+		"locales": {
+			"title": "Kodet e lokalizimit ndryshojnë sipas ofruesit",
+			"body": "Çdo ofrues përdor kodet e veta të lokalizimit (për shembull kinezishtja e thjeshtuar është {azureCode} në Azure, {awsCode} në AWS dhe {googleCode} në Google). Kodet kalojnë ashtu siç janë dhe drejtojnë emrat e skedarëve të daljes, kështu që zgjidhni {toLocales} vlerat që mbështet ofruesi juaj i zgjedhur."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Inputet e kërkuara",
 			"caption": "Inputet e kërkuara",
 			"items": {
-				"sourceLocale": "Lokaliteti burimor (p.sh. {en}) përdoret për të gjetur skedarë burimesh si {sourceGlob}. Gjithashtu i përcjellë Përkthyesit si {fromLocale}.",
-				"subscriptionKey": "Çelësi i abonimit Azure AI Translator. Kaloni përmes {secrets}.",
-				"endpoint": "URL-ja përfundimtare e përkthyesit, p.sh. {endpointUrl}."
+				"sourceLocale": "Lokaliteti burimor (p.sh. {en}) përdoret për të gjetur skedarë burimesh si {sourceGlob}. Gjithashtu i përcillet ofruesit si {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Përzgjedhja e ofruesit dhe kredencialet",
+			"caption": "Përzgjedhja e ofruesit dhe kredencialet për shitës",
+			"intro": "Zgjidhni një ofrues për ekzekutim me {provider}. Jepni vetëm kredencialet e ofruesit të zgjedhur - shihni udhëzuesin {providersLink} për konfigurimin e plotë.",
+			"items": {
+				"provider": "Ofruesi i përkthimit: {azure} (parazgjedhje), {aws} ose {google}. Përdoret vetëm një ofrues për thirrje veprimi.",
+				"subscriptionKey": "Çelësi i abonimit Azure AI Translator. Kërkohet për {azure}. Kaloni përmes {secrets}.",
+				"endpoint": "URL e fundit të Azure Translator, p.sh. {endpointUrl}. Kërkohet për {azure}.",
+				"awsAccessKeyId": "ID e çelësit të aksesit AWS. Opsionale - hiqni (me {awsSecretAccessKey}) për të përdorur zinxhirin e paracaktuar të kredencialeve AWS / OIDC. Kaloni përmes {secrets}.",
+				"awsSecretAccessKey": "Çelësi i aksesit sekret AWS. Duhet të furnizohet së bashku me {awsAccessKeyId}. Kaloni përmes {secrets}.",
+				"awsSessionToken": "Shenja opsionale e sesionit AWS për kredencialet e përkohshme. Kaloni përmes {secrets}.",
+				"awsRegion": "AWS për shërbimin Translate (p.sh. {regionExample}). Kërkohet për {aws} përveç nëse {awsRegionEnv} vendoset në mjedis.",
+				"googleApiKey": "Çelësi API i Google Cloud. Jepni këtë {googleCredentials} OR për {google}. Kaloni përmes {secrets}.",
+				"googleCredentials": "Çelësi i llogarisë së shërbimit Google Cloud si një varg JSON. Jepni këtë {googleApiKey} OR për {google}. Kaloni përmes {secrets}.",
+				"googleProjectId": "ID-ja opsionale e projektit Google Cloud. Zakonisht konkludohet nga kredencialet e llogarisë së shërbimit."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Hyrjet e kërkesave të përkthyesit",
-			"intro": "Këto hartojnë drejtpërdrejt në parametrat e pyetjeve Azure AI Translator v3. Secili është opsionale; parazgjedhjet e përkthyesit zbatohen kur nuk vendosen.",
-			"caption": "Hyrjet e kërkesave të përkthyesit",
+			"heading": "Azure Translator request inputs",
+			"intro": "Këto hartohen drejtpërdrejt në parametrat e pyetjeve të Azure AI Translator v3 dhe zbatohen për ofruesin Azure. textType dhe profanityAction janë gjithashtu të hartuara në AWS/Google ku ekziston një ekuivalent (shih udhëzuesin e ofruesve); pjesa tjetër janë vetëm Azure. Secili është opsionale; parazgjedhjet e përkthyesit zbatohen kur nuk vendosen.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Kategoria e Azure {customTranslatorLink} - çelësi i industrisë/domenit/tonit. Përcjellë si {categoryQuery}.",
 				"textType": "{plain} ose {html}. Përdorni {html} vetëm kur vlerat tuaja të burimeve janë fragmente të vërteta HTML.",
