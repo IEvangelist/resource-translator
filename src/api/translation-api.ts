@@ -37,11 +37,20 @@ export interface TranslateOptions {
 // resource. Pinning it here matches the previous axios call exactly.
 const PUBLIC_ENDPOINT = "https://api.cognitive.microsofttranslator.com";
 
-// Build a Text Translation REST client. We override `baseUrl` with the raw
-// configured endpoint so the SDK does NOT rewrite
-// `*.cognitiveservices.azure.com` hosts to `${endpoint}/translator/text/v3.0`
-// — the previous implementation never rewrote, and existing users almost
-// certainly hand-craft their endpoint to point at the v3 root already.
+// Build a Text Translation REST client.
+//
+// IMPORTANT: `@azure-rest/ai-translation-text` (v2) only applies the options
+// bag (`apiVersion`, `baseUrl`, ...) when a credential argument is passed to
+// `createClient`. We deliberately pass NO credential — authentication is
+// injected per-request (see `buildAuthHeaders`) to avoid the SDK's
+// `Ocp-Apim-Subscription-Region: undefined` bug for regionless resources —
+// so this options bag is silently ignored. In particular `apiVersion` would
+// otherwise fall back to the SDK's default preview version, whose
+// `/translate` contract rejects the v3.0 request body with HTTP 400 (code
+// 400074, "The body of the request is not valid JSON"). We therefore pin
+// `api-version=3.0` explicitly on every request's query string instead (see
+// the `queryParameters` in each call below); the SDK's `apiVersionPolicy`
+// leaves an already-present `api-version` untouched.
 const buildClient = (
   endpoint: string,
   apiVersion: string,
@@ -74,7 +83,9 @@ export const getAvailableTranslations = async (
 ): Promise<AvailableTranslations> => {
   const client = buildClient(PUBLIC_ENDPOINT, apiVersion);
   const response = await client.path("/languages").get({
-    queryParameters: { scope: "translation" },
+    // Pin api-version on the query string — the SDK ignores the client-level
+    // `apiVersion` option because no credential is supplied (see buildClient).
+    queryParameters: { "api-version": apiVersion, scope: "translation" },
   });
 
   if (isUnexpected(response)) {
@@ -179,17 +190,18 @@ export const translate = async (
           )}`,
         );
 
-        // Build the optional query-string segment. Each parameter is
-        // forwarded only when it has a meaningful value — `allowFallback`
-        // is intentionally serialized when explicitly false so the
-        // Translator default (true) can be turned off.
-        // Multiple `to` values are accepted as a comma-separated list by
-        // the Translator v3.0 REST API. The v2 SDK models a structured
-        // `{ inputs, targets }` body, but we intentionally keep pinning
-        // `apiVersion=3.0` and forwarding target locales + options as query
-        // parameters (incl. Custom Translator `category`), so the on-the-wire
-        // behavior is byte-compatible with the previous major.
+        // Build the query-string segment. `api-version` is pinned HERE (not
+        // via the client options, which the SDK ignores without a credential
+        // — see buildClient) so the request actually hits the v3.0
+        // `/translate` contract. Each optional parameter is forwarded only
+        // when it has a meaningful value — `allowFallback` is intentionally
+        // serialized when explicitly false so the Translator default (true)
+        // can be turned off. Multiple `to` values are accepted as a
+        // comma-separated list by the v3.0 REST API; target locales and
+        // options (incl. Custom Translator `category`) ride along as query
+        // parameters, matching the previous major's on-the-wire behavior.
         const queryParameters = {
+          "api-version": apiVersion,
           to: locales.join(","),
           ...(translatorResource.sourceLocale && {
             from: translatorResource.sourceLocale,
@@ -215,14 +227,14 @@ export const translate = async (
         const response = await retryablePost(
           () =>
             client.path("/translate").post({
-              // The pinned `apiVersion=3.0` REST endpoint expects the request
-              // body to be a BARE JSON array of `{ text }` items — target
-              // locales and options ride along as query parameters (see
-              // above). The SDK's `TranslateBody` type models the newer
-              // structured `{ inputs }` shape, but `@azure-rest` serializes
-              // `body` verbatim to JSON, so we pass the bare array and cast to
-              // satisfy the type. Wrapping it as `{ inputs }` makes Azure
-              // reject the call with HTTP 400 (code 400074, "not valid JSON").
+              // The v3.0 `/translate` endpoint (api-version pinned on the
+              // query string above) expects the request body to be a BARE
+              // JSON array of `{ text }` items. The SDK's `TranslateBody`
+              // type models the newer structured `{ inputs }` shape, but
+              // `@azure-rest` serializes `body` verbatim to JSON, so we pass
+              // the bare array and cast to satisfy the type. Wrapping it as
+              // `{ inputs }` makes Azure reject the call with HTTP 400 (code
+              // 400074, "The body of the request is not valid JSON").
               body: dataBatch as unknown as TranslateBody,
               headers,
               queryParameters,

@@ -204,7 +204,7 @@ test("API: get available translations resolves the public languages endpoint", a
     expect.objectContaining({ apiVersion: "3.0" }),
   );
   expect(mockGet).toHaveBeenCalledWith({
-    queryParameters: { scope: "translation" },
+    queryParameters: { "api-version": "3.0", scope: "translation" },
   });
   const locales = Object.keys(translations.translation);
   expect(
@@ -240,10 +240,10 @@ test("API: translate posts to the configured endpoint with the right headers", a
   );
 
   expect(result).toBeDefined();
-  // The SDK client is instantiated with the user-configured endpoint AND a
-  // matching `baseUrl` so we sidestep the SDK's automatic v3 path-rewriting
-  // for *.cognitiveservices.azure.com hosts (preserves byte-compat with the
-  // pre-migration axios behavior).
+  // The SDK client is instantiated with the user-configured endpoint. The
+  // options bag is passed for construction, but this SDK IGNORES it without a
+  // credential — the effective `api-version` is therefore pinned per-request
+  // on the query string instead (see the regression guard below).
   expect(mockedCreateClient).toHaveBeenCalledWith(
     "https://api.cognitive.microsofttranslator.com/",
     expect.objectContaining({
@@ -254,6 +254,12 @@ test("API: translate posts to the configured endpoint with the right headers", a
   expect(mockPost).toHaveBeenCalledTimes(1);
   const args = mockPost.mock.calls[0][0];
   expect(args.queryParameters.to).toBe("fr,es");
+  // Regression guard (v3.0.0/v3.0.1): the request MUST carry
+  // `api-version=3.0` on the query string. The SDK silently defaults to a
+  // preview api-version when the client-level option is ignored (no
+  // credential), and that preview `/translate` contract rejects the body with
+  // HTTP 400 (code 400074, "The body of the request is not valid JSON").
+  expect(args.queryParameters["api-version"]).toBe("3.0");
   expect(args.headers["Ocp-Apim-Subscription-Key"]).toBe("key-123");
   expect(args.headers["Ocp-Apim-Subscription-Region"]).toBe("westus");
   expect(args.headers["X-ClientTraceId"]).toMatch(/^[0-9a-f-]{36}$/i);

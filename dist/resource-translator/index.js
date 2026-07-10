@@ -43914,7 +43914,9 @@ var buildAuthHeaders = (translatorResource) => {
 var getAvailableTranslations = async (apiVersion = "3.0") => {
   const client = buildClient(PUBLIC_ENDPOINT, apiVersion);
   const response = await client.path("/languages").get({
-    queryParameters: { scope: "translation" }
+    // Pin api-version on the query string — the SDK ignores the client-level
+    // `apiVersion` option because no credential is supplied (see buildClient).
+    queryParameters: { "api-version": apiVersion, scope: "translation" }
   });
   if (isUnexpected(response)) {
     const errorMessage = response.body?.error?.message ?? `HTTP ${response.status}`;
@@ -43979,6 +43981,7 @@ var translate = async (translatorResource, toLocales, translatableText, filePath
           )}`
         );
         const queryParameters = {
+          "api-version": apiVersion,
           to: locales.join(","),
           ...translatorResource.sourceLocale && {
             from: translatorResource.sourceLocale
@@ -43999,14 +44002,14 @@ var translate = async (translatorResource, toLocales, translatableText, filePath
         };
         const response = await retryablePost(
           () => client.path("/translate").post({
-            // The pinned `apiVersion=3.0` REST endpoint expects the request
-            // body to be a BARE JSON array of `{ text }` items — target
-            // locales and options ride along as query parameters (see
-            // above). The SDK's `TranslateBody` type models the newer
-            // structured `{ inputs }` shape, but `@azure-rest` serializes
-            // `body` verbatim to JSON, so we pass the bare array and cast to
-            // satisfy the type. Wrapping it as `{ inputs }` makes Azure
-            // reject the call with HTTP 400 (code 400074, "not valid JSON").
+            // The v3.0 `/translate` endpoint (api-version pinned on the
+            // query string above) expects the request body to be a BARE
+            // JSON array of `{ text }` items. The SDK's `TranslateBody`
+            // type models the newer structured `{ inputs }` shape, but
+            // `@azure-rest` serializes `body` verbatim to JSON, so we pass
+            // the bare array and cast to satisfy the type. Wrapping it as
+            // `{ inputs }` makes Azure reject the call with HTTP 400 (code
+            // 400074, "The body of the request is not valid JSON").
             body: dataBatch,
             headers,
             queryParameters

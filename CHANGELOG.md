@@ -7,17 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [3.0.2] - 2026-07-10
+
+### Fixed
+
+- **Translator requests now actually pin `api-version=3.0` on the wire.** The
+  SDK (`@azure-rest/ai-translation-text` v2) only honors the client-level
+  `apiVersion` option when a credential argument is passed to `createClient`.
+  The action authenticates per-request via headers (no credential — to avoid
+  the SDK's `Ocp-Apim-Subscription-Region: undefined` bug for regionless
+  resources), so that option was silently dropped and every request defaulted
+  to a preview `api-version`. That preview `/translate` contract rejected the
+  request body with HTTP 400 (error code 400074, "The body of the request is
+  not valid JSON"), breaking all `@v3` consumers. The action now pins
+  `api-version=3.0` on the query string for both `/translate` and
+  `/languages`. This completes the fix started in 3.0.1 (which corrected the
+  request-body shape but did not, on its own, resolve the failure). Regression
+  introduced in 3.0.0 by the Azure AI Translator SDK migration.
+
 ## [3.0.1] - 2026-07-10
 
 ### Fixed
 
-- **Translator requests now send the correct v3.0 body.** The `POST
-  /translate` call was wrapping the payload as `{ inputs: [...] }`, which the
-  pinned `api-version=3.0` REST endpoint rejects with HTTP 400 (error code
-  400074, "The body of the request is not valid JSON"). The action now sends
-  the bare JSON array of `{ text }` items that the v3.0 contract requires, so
-  translations succeed again. Regression introduced in 3.0.0 by the Azure AI
-  Translator SDK migration.
+- **Translator `/translate` request body is now a bare JSON array.** The
+  `POST /translate` call was wrapping the payload as `{ inputs: [...] }`; the
+  v3.0 REST contract requires a bare array of `{ text }` items. On its own
+  this change did not restore translations — see 3.0.2 for the `api-version`
+  fix that actually resolves the HTTP 400 (error code 400074). Regression
+  introduced in 3.0.0 by the Azure AI Translator SDK migration.
 
 ## [3.0.0] - 2026-07-08
 
