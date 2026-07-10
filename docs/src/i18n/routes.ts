@@ -3,6 +3,7 @@ import { defaultLocale, isTargetLocale } from "./locales";
 export const pageSlugs = [
   "index",
   "getting-started",
+  "providers",
   "configuration",
   "inputs",
   "formats",
@@ -18,6 +19,7 @@ export type PageSlug = (typeof pageSlugs)[number];
 export type NavItemKey =
   | "overview"
   | "gettingStarted"
+  | "providers"
   | "configuration"
   | "inputs"
   | "formats"
@@ -48,6 +50,7 @@ export const navSections: NavSectionDefinition[] = [
     items: [
       { key: "overview", slug: "index", icon: "lucide:sparkles" },
       { key: "gettingStarted", slug: "getting-started", icon: "lucide:zap" },
+      { key: "providers", slug: "providers", icon: "lucide:globe" },
       { key: "configuration", slug: "configuration", icon: "lucide:settings-2" },
     ],
   },

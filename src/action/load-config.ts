@@ -5,8 +5,10 @@ import * as yaml from "js-yaml";
 import {
   PROFANITY_ACTIONS,
   PROFANITY_MARKERS,
+  PROVIDERS,
   ProfanityAction,
   ProfanityMarker,
+  Provider,
   RepoConfig,
   TEXT_TYPES,
   TextType,
@@ -89,6 +91,7 @@ const normalizeRepoConfig = (raw: RepoConfig): RepoConfig => {
   };
 
   return {
+    provider: enumOf<Provider>(raw.provider, PROVIDERS),
     sourceLocale:
       typeof raw.sourceLocale === "string" ? raw.sourceLocale : undefined,
     toLocales: stringList(raw.toLocales),
@@ -128,6 +131,7 @@ export const mergeInputsAndConfig = <T extends RepoConfig>(
 ): T => {
   const merged: T = { ...inputs };
   const keys: (keyof RepoConfig)[] = [
+    "provider",
     "sourceLocale",
     "toLocales",
     "include",

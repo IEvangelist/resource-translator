@@ -1,5 +1,5 @@
 name: 'Machine Translator'
-description: 'Automatically open machine-translated pull requests for resource files. Supports .resx, .restext, .ini, .xliff, .po, and .json.'
+description: 'Automatically open machine-translated pull requests for resource files using Azure, AWS, or Google translation providers. Supports .resx, .restext, .ini, .xliff, .po, and .json.'
 author: 'David Pine'
 branding:
   icon: flag
@@ -8,14 +8,42 @@ inputs:
   sourceLocale:
     description: "Source locale (e.g. 'en') used to find translation files (e.g. **/*.en.resx)."
     required: true
+  provider:
+    description: "Translation provider to use: 'azure' (default), 'aws', or 'google'. Only one provider is used per action call; supply that provider's credentials below."
+    required: false
+    default: 'azure'
+  # --- Azure AI Translator (provider: azure — the default) ---
   subscriptionKey:
-    description: 'Azure AI Translator resource subscription key. Pass via secrets.'
-    required: true
+    description: "Azure AI Translator resource subscription key. Required when provider is 'azure'. Pass via secrets."
+    required: false
   endpoint:
-    description: "Azure AI Translator resource endpoint (e.g. 'https://api.cognitive.microsofttranslator.com/')."
-    required: true
+    description: "Azure AI Translator resource endpoint (e.g. 'https://api.cognitive.microsofttranslator.com/'). Required when provider is 'azure'."
+    required: false
   region:
     description: 'Azure AI Translator resource region (optional for global resources).'
+    required: false
+  # --- AWS Translate (provider: aws) ---
+  awsAccessKeyId:
+    description: "AWS access key id. Optional — when omitted (along with awsSecretAccessKey) the AWS SDK default credential chain is used (recommended: OIDC via aws-actions/configure-aws-credentials). Pass via secrets."
+    required: false
+  awsSecretAccessKey:
+    description: 'AWS secret access key. Must be supplied together with awsAccessKeyId. Pass via secrets.'
+    required: false
+  awsSessionToken:
+    description: 'Optional AWS session token for temporary credentials. Pass via secrets.'
+    required: false
+  awsRegion:
+    description: "AWS region for the Translate service (e.g. 'us-east-1'). Required when provider is 'aws' unless AWS_REGION is set in the environment (e.g. by aws-actions/configure-aws-credentials)."
+    required: false
+  # --- Google Cloud Translation v2 (provider: google) ---
+  googleApiKey:
+    description: "Google Cloud API key. Provide this OR googleCredentials when provider is 'google'. Pass via secrets."
+    required: false
+  googleCredentials:
+    description: "Google Cloud service-account key as a JSON string. Provide this OR googleApiKey when provider is 'google'. Pass via secrets."
+    required: false
+  googleProjectId:
+    description: 'Optional Google Cloud project id. Usually inferred from the service-account credentials.'
     required: false
   toLocales:
     description: 'Optional locales to translate to. Accepts a JSON array (`["es","de","fr"]`) or comma-separated values (`es,de,fr`). When omitted, every supported locale is targeted.'
@@ -31,23 +59,23 @@ inputs:
     required: false
     default: '.github/resource-translator.yml'
   categoryId:
-    description: 'Optional Azure AI Translator Custom Translator category ID.'
+    description: 'Optional Azure AI Translator Custom Translator category ID. Azure-only; ignored by the aws and google providers.'
     required: false
   apiVersion:
-    description: "Translator API version. Defaults to '3.0'."
+    description: "Translator API version. Defaults to '3.0'. Azure-only; ignored by the aws and google providers."
     required: false
     default: '3.0'
   textType:
-    description: "Translator request text type — 'plain' (default) or 'html'. Use 'html' only when resource values contain real HTML fragments."
+    description: "Text type — 'plain' (default) or 'html'. Use 'html' only when resource values contain real HTML fragments. Mapped for azure (textType) and google (format); ignored by aws (no plain/html toggle)."
     required: false
   profanityAction:
-    description: "How to handle profanity in translations: 'NoAction' (default), 'Marked', or 'Deleted'."
+    description: "How to handle profanity in translations: 'NoAction' (default), 'Marked', or 'Deleted'. Azure honors all values; aws maps 'Marked'/'Deleted' to masking; google has no equivalent and ignores it."
     required: false
   profanityMarker:
-    description: "How to mark profanity when 'profanityAction' is 'Marked': 'Asterisk' (default) or 'Tag'."
+    description: "How to mark profanity when 'profanityAction' is 'Marked': 'Asterisk' (default) or 'Tag'. Azure-only."
     required: false
   allowFallback:
-    description: "When 'false', Translator returns an error instead of falling back to the general system if the chosen 'categoryId' has no deployment for a target locale. Defaults to the Translator default (true) when unset."
+    description: "When 'false', Translator returns an error instead of falling back to the general system if the chosen 'categoryId' has no deployment for a target locale. Defaults to the Translator default (true) when unset. Azure-only."
     required: false
   noTranslatePatterns:
     description: "Optional newline-separated glob patterns matched against parser key paths (resx 'name', po 'msgid', xliff unit 'id', '[--]'-joined paths for json, raw key for ini/restext). Matching keys are kept verbatim and never sent to Translator."

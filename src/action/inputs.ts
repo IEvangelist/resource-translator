@@ -1,3 +1,6 @@
+/** Supported translation vendors. One vendor is selected per action call. */
+export type Provider = "azure" | "aws" | "google";
+
 /** Translator request text type. */
 export type TextType = "plain" | "html";
 
@@ -13,6 +16,12 @@ export type ProfanityMarker = "Asterisk" | "Tag";
  * inputs always win when both are provided.
  */
 export interface RepoConfig {
+  /**
+   * Translation vendor to use for this run: "azure" (default), "aws", or
+   * "google". Exactly one vendor is used per action call. Can be set here or
+   * via the `provider` action input (the input wins).
+   */
+  provider?: Provider;
   /** Source locale (used as the glob discriminator in resource file names). */
   sourceLocale?: string;
   /** Locales to translate to. When omitted every supported locale is targeted. */
@@ -100,6 +109,12 @@ export interface RepoConfig {
   retryBackoffMs?: number;
 }
 
+/** Closed set of valid `provider` values for runtime validation. */
+export const PROVIDERS: readonly Provider[] = [
+  "azure",
+  "aws",
+  "google",
+] as const;
 /** Closed set of valid `textType` values for runtime validation. */
 export const TEXT_TYPES: readonly TextType[] = ["plain", "html"] as const;
 /** Closed set of valid `profanityAction` values for runtime validation. */
@@ -116,24 +131,76 @@ export const PROFANITY_MARKERS: readonly ProfanityMarker[] = [
 
 export interface Inputs extends RepoConfig {
   /**
-   * Azure AI Translator resource subscription key. Store as GitHub secret.
+   * Selected translation vendor. Always resolved to a concrete value
+   * ("azure" by default) by `getInputs()`. Optional on the type so callers
+   * constructing `Inputs` directly (e.g. tests) may omit it — the provider
+   * factory treats an absent value as "azure".
    */
-  subscriptionKey: string;
+  provider?: Provider;
 
   /**
-   * Azure AI Translator resource endpoint. Store as GitHub secret.
+   * Azure AI Translator resource subscription key (provider=azure).
+   * Store as a GitHub secret. Required when provider is "azure".
    */
-  endpoint: string;
+  subscriptionKey?: string;
 
   /**
-   * Source locale (required at runtime after input/config merge).
+   * Azure AI Translator resource endpoint (provider=azure). Store as a
+   * GitHub secret. Required when provider is "azure".
    */
-  sourceLocale: string;
+  endpoint?: string;
 
   /**
    * Azure AI Translator region (optional for global resources).
    */
   region?: string;
+
+  /**
+   * AWS access key id (provider=aws). Optional — when omitted the AWS SDK's
+   * default credential provider chain is used (e.g. OIDC via
+   * `aws-actions/configure-aws-credentials`, env vars, or an instance role).
+   */
+  awsAccessKeyId?: string;
+
+  /**
+   * AWS secret access key (provider=aws). Store as a GitHub secret. Optional;
+   * see {@link awsAccessKeyId}.
+   */
+  awsSecretAccessKey?: string;
+
+  /**
+   * AWS session token (provider=aws), for temporary credentials. Optional.
+   */
+  awsSessionToken?: string;
+
+  /**
+   * AWS region (provider=aws). Falls back to the `AWS_REGION` environment
+   * variable when unset.
+   */
+  awsRegion?: string;
+
+  /**
+   * Google Cloud API key (provider=google). Store as a GitHub secret. Provide
+   * either this or {@link googleCredentials}.
+   */
+  googleApiKey?: string;
+
+  /**
+   * Google Cloud service-account credentials as a JSON string (provider=google).
+   * Store as a GitHub secret. Provide either this or {@link googleApiKey}.
+   */
+  googleCredentials?: string;
+
+  /**
+   * Google Cloud project id (provider=google). Optional — inferred from the
+   * service-account credentials when those are supplied.
+   */
+  googleProjectId?: string;
+
+  /**
+   * Source locale (required at runtime after input/config merge).
+   */
+  sourceLocale: string;
 
   /**
    * Optional path to a YAML config file (relative to GITHUB_WORKSPACE).

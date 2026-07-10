@@ -10,9 +10,17 @@
 [![docs](https://img.shields.io/badge/docs-ievangelist.github.io%2Fresource--translator-1f3a8a)](https://ievangelist.github.io/resource-translator/)
 
 A GitHub Action that opens machine-translated pull requests for resource files
-in your repository, powered by **Azure AI Translator** via Microsoft's official
-[`@azure-rest/ai-translation-text`](https://www.npmjs.com/package/@azure-rest/ai-translation-text)
-SDK — built-in retry/throttling, no hand-rolled HTTP clients.
+in your repository. Choose one translation **provider** per run — **Azure AI
+Translator** (default), **AWS Translate**, or **Google Cloud Translation** — behind
+a single, unified API surface. Each provider is driven by its official SDK
+([`@azure-rest/ai-translation-text`](https://www.npmjs.com/package/@azure-rest/ai-translation-text),
+[`@aws-sdk/client-translate`](https://www.npmjs.com/package/@aws-sdk/client-translate),
+[`@google-cloud/translate`](https://www.npmjs.com/package/@google-cloud/translate)),
+with built-in retry/throttling — no hand-rolled HTTP clients.
+
+> [!NOTE]
+> **Fully backward compatible.** `provider` defaults to `azure`, so existing
+> workflows keep working unchanged — no edits required.
 
 Supported formats: `.resx`, `.xliff`, `.po`, `.json`, `.ini`, `.restext`.
 
@@ -22,6 +30,7 @@ Supported formats: `.resx`, `.xliff`, `.po`, `.json`, `.ini`, `.restext`.
 **[ievangelist.github.io/resource-translator](https://ievangelist.github.io/resource-translator/)**
 
 - 📘 [Getting started](https://ievangelist.github.io/resource-translator/getting-started)
+- 🌐 [Translation providers](https://ievangelist.github.io/resource-translator/providers) — Azure, AWS, and Google setup
 - ⚙️ [Configuration](https://ievangelist.github.io/resource-translator/configuration) — repo config, glossary, tone & industry
 - 🧾 [Inputs & outputs](https://ievangelist.github.io/resource-translator/inputs)
 - 📑 [File formats](https://ievangelist.github.io/resource-translator/formats)
@@ -70,6 +79,81 @@ jobs:
 
 For all inputs, repo config, glossary, tone/industry control, and recipes, see
 the **[full docs](https://ievangelist.github.io/resource-translator/)**.
+
+## 🌐 Translation providers
+
+Pick **one** provider per run via the `provider` input (defaults to `azure`).
+The translator behaves identically regardless of provider — only the credentials
+differ. See the [providers docs](https://ievangelist.github.io/resource-translator/providers)
+for the full setup and credential matrix.
+
+| Provider | `provider` value | SDK | Credentials |
+| --- | --- | --- | --- |
+| Azure AI Translator | `azure` (default) | `@azure-rest/ai-translation-text` | `subscriptionKey`, `endpoint`, `region?` |
+| AWS Translate | `aws` | `@aws-sdk/client-translate` | OIDC/default chain, or `awsAccessKeyId` + `awsSecretAccessKey`; `awsRegion` |
+| Google Cloud Translation | `google` | `@google-cloud/translate` | `googleApiKey` **or** `googleCredentials` (service-account JSON) |
+
+> [!IMPORTANT]
+> Locale codes differ per provider (e.g. Simplified Chinese is `zh-Hans` on
+> Azure, `zh` on AWS, `zh-CN` on Google). Codes pass through as-is and drive the
+> output file names, so pick `toLocales` values your chosen provider supports.
+
+### AWS Translate (OIDC — recommended)
+
+```yml
+permissions:
+  id-token: write # for aws-actions/configure-aws-credentials OIDC
+  contents: write
+  pull-requests: write
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::123456789012:role/gh-actions-translate
+          aws-region: us-east-1
+
+      - id: translator
+        uses: IEvangelist/resource-translator@v3
+        with:
+          provider: aws
+          sourceLocale: en
+          awsRegion: us-east-1 # or rely on AWS_REGION from the step above
+          toLocales: '["es","fr","de"]'
+```
+
+To use static keys instead of OIDC, drop the `configure-aws-credentials` step and
+pass `awsAccessKeyId` / `awsSecretAccessKey` (via secrets) plus `awsRegion`.
+
+### Google Cloud Translation
+
+```yml
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - id: translator
+        uses: IEvangelist/resource-translator@v3
+        with:
+          provider: google
+          sourceLocale: en
+          # Provide EITHER a service-account JSON credential...
+          googleCredentials: ${{ secrets.GCP_TRANSLATE_CREDENTIALS }}
+          # ...OR an API key:
+          # googleApiKey: ${{ secrets.GCP_TRANSLATE_API_KEY }}
+          toLocales: '["es","fr","de"]'
+```
+
+Provider-specific intent specifiers are mapped where an equivalent exists:
+`textType` → Google `format`; `profanityAction` (`Marked`/`Deleted`) → AWS
+profanity masking. `categoryId`, `apiVersion`, `profanityMarker`, and
+`allowFallback` are Azure-only and ignored by the other providers.
 
 ## 🔗 Project links
 

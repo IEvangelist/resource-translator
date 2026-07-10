@@ -192,4 +192,81 @@ describe("getInputs", () => {
     setInput("retryBackoffMs", "-5");
     expect(() => getInputs()).toThrow(/retryBackoffMs/);
   });
+
+  it("defaults provider to azure when unset", () => {
+    expect(getInputs().provider).toEqual("azure");
+  });
+});
+
+describe("getInputs provider validation", () => {
+  const savedRegion = {
+    AWS_REGION: process.env.AWS_REGION,
+    AWS_DEFAULT_REGION: process.env.AWS_DEFAULT_REGION,
+  };
+
+  beforeEach(() => {
+    clearInputs();
+    setInput("sourceLocale", "en");
+    setInput("toLocales", '["fr","de"]');
+    setInput("configPath", "non-existent-config-path.yml");
+    // Isolate AWS region resolution from the host environment.
+    delete process.env.AWS_REGION;
+    delete process.env.AWS_DEFAULT_REGION;
+  });
+
+  afterAll(() => {
+    if (savedRegion.AWS_REGION) process.env.AWS_REGION = savedRegion.AWS_REGION;
+    if (savedRegion.AWS_DEFAULT_REGION)
+      process.env.AWS_DEFAULT_REGION = savedRegion.AWS_DEFAULT_REGION;
+  });
+
+  it("rejects an unknown provider value", () => {
+    setInput("provider", "ibm");
+    expect(() => getInputs()).toThrow(/provider/);
+  });
+
+  it("does not require Azure credentials when provider is aws", () => {
+    setInput("provider", "aws");
+    setInput("awsRegion", "us-east-1");
+    const inputs = getInputs();
+    expect(inputs.provider).toEqual("aws");
+    expect(inputs.awsRegion).toEqual("us-east-1");
+  });
+
+  it("requires a region for provider=aws", () => {
+    setInput("provider", "aws");
+    expect(() => getInputs()).toThrow(/awsRegion|AWS_REGION/);
+  });
+
+  it("accepts AWS_REGION from the environment for provider=aws", () => {
+    setInput("provider", "aws");
+    process.env.AWS_REGION = "eu-west-1";
+    expect(() => getInputs()).not.toThrow();
+  });
+
+  it("rejects a lone AWS access key id without its secret", () => {
+    setInput("provider", "aws");
+    setInput("awsRegion", "us-east-1");
+    setInput("awsAccessKeyId", "AKIAEXAMPLE0000000000");
+    expect(() => getInputs()).toThrow(/awsSecretAccessKey|together/);
+  });
+
+  it("requires an API key or credentials for provider=google", () => {
+    setInput("provider", "google");
+    expect(() => getInputs()).toThrow(/googleApiKey|googleCredentials/);
+  });
+
+  it("accepts an API key for provider=google", () => {
+    setInput("provider", "google");
+    setInput("googleApiKey", "test-api-key");
+    const inputs = getInputs();
+    expect(inputs.provider).toEqual("google");
+    expect(inputs.googleApiKey).toEqual("test-api-key");
+  });
+
+  it("rejects malformed googleCredentials JSON", () => {
+    setInput("provider", "google");
+    setInput("googleCredentials", "{ not valid json");
+    expect(() => getInputs()).toThrow(/googleCredentials/);
+  });
 });

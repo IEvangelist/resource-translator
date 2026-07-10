@@ -55,7 +55,9 @@
     "@actions/core": "^2.0.3",
     "@actions/github": "^8.0.1",
     "@actions/glob": "^0.5.1",
+    "@aws-sdk/client-translate": "^3.1079.0",
     "@azure-rest/ai-translation-text": "^2.0.0",
+    "@google-cloud/translate": "^9.4.2",
     "js-yaml": "^5.2.1",
     "minimatch": "^10.2.5",
     "xml2js": "^0.6.2"

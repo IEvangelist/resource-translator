@@ -1,0 +1,257 @@
+---
+import { Code } from "astro-expressive-code/components";
+import DocLayout from "../layouts/DocLayout.astro";
+import LocalizedText from "../components/LocalizedText.astro";
+import PageHero from "../components/PageHero.astro";
+import { defaultLocale } from "../i18n/locales";
+import { getPageMessages } from "../i18n/messages";
+import { code, link } from "../i18n/rich-text";
+
+const { locale = defaultLocale } = Astro.props;
+const copy = getPageMessages(locale, "providers");
+
+const configureAwsCredentialsUrl =
+  "https://github.com/aws-actions/configure-aws-credentials";
+
+const awsWorkflow = `permissions:
+  id-token: write # for aws-actions/configure-aws-credentials OIDC
+  contents: write
+  pull-requests: write
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::123456789012:role/gh-actions-translate
+          aws-region: us-east-1
+
+      - id: translator
+        uses: IEvangelist/resource-translator@v3
+        with:
+          provider: aws
+          sourceLocale: en
+          awsRegion: us-east-1 # or rely on AWS_REGION from the step above
+          toLocales: '["es","fr","de"]'
+`;
+
+const googleWorkflow = `jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - id: translator
+        uses: IEvangelist/resource-translator@v3
+        with:
+          provider: google
+          sourceLocale: en
+          # Provide EITHER a service-account JSON credential...
+          googleCredentials: \${{ secrets.GCP_TRANSLATE_CREDENTIALS }}
+          # ...OR an API key:
+          # googleApiKey: \${{ secrets.GCP_TRANSLATE_API_KEY }}
+          toLocales: '["es","fr","de"]'
+`;
+
+const azureWorkflow = `jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - id: translator
+        uses: IEvangelist/resource-translator@v3
+        with:
+          # provider: azure  # default — may be omitted
+          sourceLocale: en
+          subscriptionKey: \${{ secrets.TRANSLATOR_KEY }}
+          endpoint: \${{ secrets.TRANSLATOR_ENDPOINT }}
+          region: \${{ secrets.TRANSLATOR_REGION }}
+          toLocales: '["es","fr","de"]'
+`;
+
+const comparisonRows = [
+  {
+    name: copy.comparison.azure.name,
+    value: copy.comparison.azure.value,
+    sdk: "@azure-rest/ai-translation-text",
+    credentials: copy.comparison.azure.credentials,
+  },
+  {
+    name: copy.comparison.aws.name,
+    value: copy.comparison.aws.value,
+    sdk: "@aws-sdk/client-translate",
+    credentials: copy.comparison.aws.credentials,
+  },
+  {
+    name: copy.comparison.google.name,
+    value: copy.comparison.google.value,
+    sdk: "@google-cloud/translate",
+    credentials: copy.comparison.google.credentials,
+  },
+];
+
+const mappingRows = [
+  { input: "textType", ...copy.mapping.rows.textType },
+  { input: "profanityAction", ...copy.mapping.rows.profanityAction },
+  { input: "categoryId", ...copy.mapping.rows.categoryId },
+  { input: "allowFallback", ...copy.mapping.rows.allowFallback },
+];
+---
+
+<DocLayout title={copy.title} locale={locale} slug="providers">
+  <PageHero
+    slot="hero"
+    eyebrow={copy.eyebrow}
+    title={copy.title}
+    icon="lucide:globe"
+    lede={copy.lede}
+  />
+
+  <p>
+    <LocalizedText
+      text={copy.backwardCompatible}
+      values={{ provider: code("provider"), azure: code("azure") }}
+    />
+  </p>
+
+  <h2>{copy.selecting.title}</h2>
+  <p>
+    <LocalizedText
+      text={copy.selecting.body}
+      values={{
+        provider: code("provider"),
+        azure: code("azure"),
+        aws: code("aws"),
+        google: code("google"),
+      }}
+    />
+  </p>
+
+  <h2>{copy.comparison.title}</h2>
+  <table>
+    <caption class="sr-only">{copy.comparison.caption}</caption>
+    <thead>
+      <tr>
+        <th>{copy.comparison.columns.provider}</th>
+        <th>{copy.comparison.columns.value}</th>
+        <th>{copy.comparison.columns.sdk}</th>
+        <th>{copy.comparison.columns.credentials}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        comparisonRows.map((row) => (
+          <tr>
+            <td>{row.name}</td>
+            <td><code>{row.value}</code></td>
+            <td><code>{row.sdk}</code></td>
+            <td>{row.credentials}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+
+  <h2>{copy.azure.title}</h2>
+  <p>
+    <LocalizedText
+      text={copy.azure.body}
+      values={{
+        subscriptionKey: code("subscriptionKey"),
+        endpoint: code("endpoint"),
+        region: code("region"),
+      }}
+    />
+  </p>
+  <Code code={azureWorkflow} lang="yaml" title=".github/workflows/translate.yml" />
+
+  <h2>{copy.aws.title}</h2>
+  <p>
+    <LocalizedText
+      text={copy.aws.body}
+      values={{
+        sdk: code("@aws-sdk/client-translate"),
+        configureAwsCredentials: link(
+          "aws-actions/configure-aws-credentials",
+          configureAwsCredentialsUrl,
+          { external: true },
+        ),
+        awsAccessKeyId: code("awsAccessKeyId"),
+        awsSecretAccessKey: code("awsSecretAccessKey"),
+        awsRegion: code("awsRegion"),
+        awsRegionEnv: code("AWS_REGION"),
+      }}
+    />
+  </p>
+  <h3>{copy.aws.oidcTitle}</h3>
+  <Code code={awsWorkflow} lang="yaml" title=".github/workflows/translate.yml" />
+  <p>
+    <LocalizedText
+      text={copy.aws.keysNote}
+      values={{
+        configureAwsCredentials: code("aws-actions/configure-aws-credentials"),
+        awsAccessKeyId: code("awsAccessKeyId"),
+        awsSecretAccessKey: code("awsSecretAccessKey"),
+        awsRegion: code("awsRegion"),
+        secrets: code("secrets"),
+      }}
+    />
+  </p>
+
+  <h2>{copy.google.title}</h2>
+  <p>
+    <LocalizedText
+      text={copy.google.body}
+      values={{
+        sdk: code("@google-cloud/translate"),
+        googleApiKey: code("googleApiKey"),
+        googleCredentials: code("googleCredentials"),
+        googleProjectId: code("googleProjectId"),
+      }}
+    />
+  </p>
+  <Code code={googleWorkflow} lang="yaml" title=".github/workflows/translate.yml" />
+
+  <h2>{copy.mapping.title}</h2>
+  <p>{copy.mapping.body}</p>
+  <table>
+    <caption class="sr-only">{copy.mapping.caption}</caption>
+    <thead>
+      <tr>
+        <th>{copy.mapping.columns.input}</th>
+        <th>{copy.mapping.columns.azure}</th>
+        <th>{copy.mapping.columns.aws}</th>
+        <th>{copy.mapping.columns.google}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        mappingRows.map((row) => (
+          <tr>
+            <td><code>{row.input}</code></td>
+            <td>{row.azure}</td>
+            <td>{row.aws}</td>
+            <td>{row.google}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+
+  <h2>{copy.locales.title}</h2>
+  <p>
+    <LocalizedText
+      text={copy.locales.body}
+      values={{
+        azureCode: code("zh-Hans"),
+        awsCode: code("zh"),
+        googleCode: code("zh-CN"),
+        toLocales: code("toLocales"),
+      }}
+    />
+  </p>
+</DocLayout>

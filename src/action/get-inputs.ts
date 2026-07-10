@@ -3,8 +3,10 @@ import {
   Inputs,
   PROFANITY_ACTIONS,
   PROFANITY_MARKERS,
+  PROVIDERS,
   ProfanityAction,
   ProfanityMarker,
+  Provider,
   RepoConfig,
   TEXT_TYPES,
   TextType,
@@ -12,11 +14,28 @@ import {
 import { loadRepoConfig, mergeInputsAndConfig } from "./load-config";
 
 export const getInputs = (): Inputs => {
+  // Resolve provider precedence explicitly (input > config > default) below,
+  // so capture the raw input value here rather than defaulting it early.
+  const providerInput = getOptionalEnum<Provider>("provider", PROVIDERS);
+
   const inputs: Inputs = {
-    subscriptionKey: getInput("subscriptionKey", { required: true }),
-    endpoint: getInput("endpoint", { required: true }),
-    sourceLocale: getInput("sourceLocale", { required: true }),
+    provider: providerInput ?? "azure",
+    // Azure credentials are only required when provider is "azure"; they are
+    // validated per-provider after the config merge (see validateProvider).
+    subscriptionKey: getInput("subscriptionKey") || undefined,
+    endpoint: getInput("endpoint") || undefined,
     region: getInput("region"),
+    // AWS credentials — all optional. When omitted, the AWS SDK's default
+    // credential provider chain (OIDC/env/instance role) is used.
+    awsAccessKeyId: getInput("awsAccessKeyId") || undefined,
+    awsSecretAccessKey: getInput("awsSecretAccessKey") || undefined,
+    awsSessionToken: getInput("awsSessionToken") || undefined,
+    awsRegion: getInput("awsRegion") || undefined,
+    // Google credentials — provide either an API key or service-account JSON.
+    googleApiKey: getInput("googleApiKey") || undefined,
+    googleCredentials: getInput("googleCredentials") || undefined,
+    googleProjectId: getInput("googleProjectId") || undefined,
+    sourceLocale: getInput("sourceLocale", { required: true }),
     toLocales: getQuestionableArray("toLocales"),
     include: getMultilineList("include"),
     exclude: getMultilineList("exclude"),
@@ -42,35 +61,19 @@ export const getInputs = (): Inputs => {
     failOnError: getOptionalBoolean("failOnError", true),
   };
 
-  validate(inputs);
-
   const config = loadRepoConfig(inputs.configPath);
   const merged = mergeInputsAndConfig(inputs, config);
+  // Provider precedence: explicit input wins, then repo config, then default.
+  merged.provider = providerInput ?? config.provider ?? "azure";
   validateMerged(merged);
   return merged;
-};
-
-const validate = (inputs: Inputs) => {
-  if (!inputs.endpoint || !/^https?:\/\//i.test(inputs.endpoint)) {
-    throw new Error(
-      `Input 'endpoint' must be a valid http(s) URL. Got: ${inputs.endpoint}`,
-    );
-  }
-  if (!inputs.subscriptionKey || inputs.subscriptionKey.length < 16) {
-    throw new Error(
-      `Input 'subscriptionKey' looks invalid (minimum 16 characters expected).`,
-    );
-  }
-  if (!inputs.sourceLocale) {
-    throw new Error(`Input 'sourceLocale' is required.`);
-  }
 };
 
 /**
  * Validations applied after action inputs and the YAML repo config have been
  * merged. These cover values that may originate from either source so a typo
  * in `.github/resource-translator.yml` fails fast instead of producing a
- * Translator 400 deep in a run.
+ * vendor 400 deep in a run.
  */
 const validateMerged = (inputs: Inputs) => {
   const oneOf = <T extends string>(
@@ -85,6 +88,7 @@ const validateMerged = (inputs: Inputs) => {
     }
   };
 
+  oneOf("provider", PROVIDERS);
   oneOf("textType", TEXT_TYPES);
   oneOf("profanityAction", PROFANITY_ACTIONS);
   oneOf("profanityMarker", PROFANITY_MARKERS);
@@ -95,6 +99,86 @@ const validateMerged = (inputs: Inputs) => {
         inputs.profanityAction ?? "undefined"
       }'.`,
     );
+  }
+
+  validateProvider(inputs);
+};
+
+/**
+ * Provider-aware credential validation. Only the selected vendor's inputs are
+ * required, so an Azure-only workflow keeps working unchanged while AWS/Google
+ * workflows fail fast when their credentials are missing or malformed.
+ */
+const validateProvider = (inputs: Inputs) => {
+  if (!inputs.sourceLocale) {
+    throw new Error(`Input 'sourceLocale' is required.`);
+  }
+
+  switch (inputs.provider) {
+    case "azure":
+      validateAzure(inputs);
+      break;
+    case "aws":
+      validateAws(inputs);
+      break;
+    case "google":
+      validateGoogle(inputs);
+      break;
+  }
+};
+
+const validateAzure = (inputs: Inputs) => {
+  if (!inputs.endpoint || !/^https?:\/\//i.test(inputs.endpoint)) {
+    throw new Error(
+      `Input 'endpoint' must be a valid http(s) URL when provider is 'azure'. Got: ${inputs.endpoint}`,
+    );
+  }
+  if (!inputs.subscriptionKey || inputs.subscriptionKey.length < 16) {
+    throw new Error(
+      `Input 'subscriptionKey' looks invalid (minimum 16 characters expected) for provider 'azure'.`,
+    );
+  }
+};
+
+const validateAws = (inputs: Inputs) => {
+  const region =
+    inputs.awsRegion ||
+    process.env.AWS_REGION ||
+    process.env.AWS_DEFAULT_REGION;
+  if (!region) {
+    throw new Error(
+      `Input 'awsRegion' is required when provider is 'aws' (or set the AWS_REGION environment variable, e.g. via aws-actions/configure-aws-credentials).`,
+    );
+  }
+  // Credentials are optional — omitting both explicit keys falls back to the
+  // AWS SDK default credential provider chain (OIDC role, env vars, instance
+  // profile). A lone key id without its secret (or vice-versa) is a
+  // misconfiguration worth failing fast on.
+  const hasId = !!inputs.awsAccessKeyId;
+  const hasSecret = !!inputs.awsSecretAccessKey;
+  if (hasId !== hasSecret) {
+    throw new Error(
+      `Both 'awsAccessKeyId' and 'awsSecretAccessKey' must be supplied together for provider 'aws' (or omit both to use the default AWS credential chain / OIDC).`,
+    );
+  }
+};
+
+const validateGoogle = (inputs: Inputs) => {
+  const hasApiKey = !!inputs.googleApiKey;
+  const hasCredentials = !!inputs.googleCredentials;
+  if (!hasApiKey && !hasCredentials) {
+    throw new Error(
+      `Provider 'google' requires either 'googleApiKey' or 'googleCredentials' (service-account JSON).`,
+    );
+  }
+  if (hasCredentials) {
+    try {
+      JSON.parse(inputs.googleCredentials as string);
+    } catch {
+      throw new Error(
+        `Input 'googleCredentials' must be valid JSON (a Google Cloud service-account key).`,
+      );
+    }
   }
 };
 

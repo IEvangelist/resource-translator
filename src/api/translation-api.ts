@@ -6,6 +6,7 @@ import type {
   TranslateBody,
 } from "@azure-rest/ai-translation-text";
 import { AvailableTranslations } from "../abstractions/available-translations";
+import { TranslateOptions } from "../abstractions/translate-options";
 import {
   TranslationResult,
   TranslationResults,
@@ -17,20 +18,10 @@ import { protect, restore } from "../helpers/placeholders";
 import { isTransientStatus, retryablePost } from "../helpers/retry";
 import { batch, chunk } from "../helpers/utils";
 
-/** Translate-time options that are NOT properties of the Translator
- *  resource itself (auth, region, category) — these belong to the action's
- *  per-call behavior (retries, placeholder protection, etc). Kept separate
- *  so the resource abstraction stays a pure config-of-Azure value. */
-export interface TranslateOptions {
-  /** Wrap placeholders in sentinels before sending to Translator. */
-  protectPlaceholders?: boolean;
-  /** Extra regex patterns appended to the placeholder protector. */
-  customPlaceholderPatterns?: readonly string[];
-  /** Max retry attempts on transient Translator failures. */
-  maxRetries?: number;
-  /** Cap (ms) on any single backoff sleep. */
-  retryBackoffMs?: number;
-}
+// `TranslateOptions` moved to a provider-neutral module so AWS/Google
+// providers can share it without importing the Azure SDK surface. Re-exported
+// here to preserve the original public import path (`api/translation-api`).
+export type { TranslateOptions } from "../abstractions/translate-options";
 
 // The Translator "languages" lookup is anonymous and lives on the global
 // Microsoft endpoint regardless of how the user has configured their

@@ -37,19 +37,100 @@ const requiredRows: InputRow[] = [
       },
     },
   },
+];
+
+const providerRows: InputRow[] = [
+  {
+    name: "provider",
+    default: { text: "{value}", values: { value: code("azure") } },
+    description: {
+      text: copy.providerInputs.items.provider,
+      values: { azure: code("azure"), aws: code("aws"), google: code("google") },
+    },
+  },
   {
     name: "subscriptionKey",
+    default: noneDefault,
     description: {
-      text: copy.requiredInputs.items.subscriptionKey,
-      values: { secrets: code("secrets") },
+      text: copy.providerInputs.items.subscriptionKey,
+      values: { azure: code("azure"), secrets: code("secrets") },
     },
   },
   {
     name: "endpoint",
+    default: noneDefault,
     description: {
-      text: copy.requiredInputs.items.endpoint,
-      values: { endpointUrl: code("https://api.cognitive.microsofttranslator.com/") },
+      text: copy.providerInputs.items.endpoint,
+      values: {
+        endpointUrl: code("https://api.cognitive.microsofttranslator.com/"),
+        azure: code("azure"),
+      },
     },
+  },
+  {
+    name: "awsAccessKeyId",
+    default: noneDefault,
+    description: {
+      text: copy.providerInputs.items.awsAccessKeyId,
+      values: { awsSecretAccessKey: code("awsSecretAccessKey"), secrets: code("secrets") },
+    },
+  },
+  {
+    name: "awsSecretAccessKey",
+    default: noneDefault,
+    description: {
+      text: copy.providerInputs.items.awsSecretAccessKey,
+      values: { awsAccessKeyId: code("awsAccessKeyId"), secrets: code("secrets") },
+    },
+  },
+  {
+    name: "awsSessionToken",
+    default: noneDefault,
+    description: {
+      text: copy.providerInputs.items.awsSessionToken,
+      values: { secrets: code("secrets") },
+    },
+  },
+  {
+    name: "awsRegion",
+    default: noneDefault,
+    description: {
+      text: copy.providerInputs.items.awsRegion,
+      values: {
+        aws: code("aws"),
+        regionExample: code("us-east-1"),
+        awsRegionEnv: code("AWS_REGION"),
+      },
+    },
+  },
+  {
+    name: "googleApiKey",
+    default: noneDefault,
+    description: {
+      text: copy.providerInputs.items.googleApiKey,
+      values: {
+        google: code("google"),
+        googleCredentials: code("googleCredentials"),
+        secrets: code("secrets"),
+      },
+    },
+  },
+  {
+    name: "googleCredentials",
+    default: noneDefault,
+    description: {
+      text: copy.providerInputs.items.googleCredentials,
+      values: {
+        google: code("google"),
+        googleApiKey: code("googleApiKey"),
+        secrets: code("secrets"),
+      },
+    },
+  },
+  {
+    name: "googleProjectId",
+    default: noneDefault,
+    description: { text: copy.providerInputs.items.googleProjectId },
   },
 ];
 
@@ -281,6 +362,47 @@ const outputRows: InputRow[] = [
         requiredRows.map((row) => (
           <tr>
             <td><code>{row.name}</code></td>
+            <td>
+              <LocalizedText
+                text={row.description.text}
+                values={row.description.values}
+              />
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+
+  <h2>{copy.providerInputs.heading}</h2>
+  <p>
+    <LocalizedText
+      text={copy.providerInputs.intro}
+      values={{
+        provider: code("provider"),
+        providersLink: link(copy.title, "./providers"),
+      }}
+    />
+  </p>
+  <table>
+    <caption class="sr-only">{copy.providerInputs.caption}</caption>
+    <thead>
+      <tr>
+        <th>{copy.columns.name}</th>
+        <th>{copy.columns.default}</th>
+        <th>{copy.columns.description}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        providerRows.map((row) => (
+          <tr>
+            <td><code>{row.name}</code></td>
+            <td>
+              {row.default && (
+                <LocalizedText text={row.default.text} values={row.default.values} />
+              )}
+            </td>
             <td>
               <LocalizedText
                 text={row.description.text}

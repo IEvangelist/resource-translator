@@ -11,8 +11,7 @@ import { minimatch } from "minimatch";
 import { Summary } from "./abstractions/summary";
 import { TranslationFileKind } from "./abstractions/translation-file-kind";
 import { Inputs } from "./action/inputs";
-import { TranslatorResource } from "./abstractions/translator-resource";
-import { getAvailableTranslations, translate } from "./api/translation-api";
+import { translationProviderFactory } from "./factories/translation-provider-factory";
 import { translationFileParserFactory } from "./factories/translation-file-parser-factory";
 import { applyGlossary } from "./helpers/glossary";
 import { summarize } from "./helpers/summarizer";
@@ -76,9 +75,10 @@ export async function start(inputs: Inputs) {
       reportError("Both a subscriptionKey and endpoint are required.");
       return;
     }
-    const availableTranslations = await getAvailableTranslations(
-      inputs.apiVersion,
-    );
+    const provider = translationProviderFactory(inputs);
+    info(`Using translation provider: ${provider.name}`);
+
+    const availableTranslations = await provider.getAvailableTranslations();
     if (!availableTranslations || !availableTranslations.translation) {
       reportError("Unable to get target translations.");
       return;
@@ -117,18 +117,6 @@ export async function start(inputs: Inputs) {
     }
 
     const summary = new Summary(sourceLocale, toLocales);
-    const translatorResource: TranslatorResource = {
-      endpoint: inputs.endpoint,
-      subscriptionKey: inputs.subscriptionKey,
-      region: inputs.region,
-      apiVersion: inputs.apiVersion,
-      categoryId: inputs.categoryId,
-      sourceLocale: inputs.sourceLocale,
-      textType: inputs.textType,
-      profanityAction: inputs.profanityAction,
-      profanityMarker: inputs.profanityMarker,
-      allowFallback: inputs.allowFallback,
-    };
 
     for (const key of Object.keys(translationFiles)) {
       debug(`Iterating translationFiles keys, key: ${key}`);
@@ -179,8 +167,7 @@ export async function start(inputs: Inputs) {
             continue;
           }
 
-          const resultSet = await translate(
-            translatorResource,
+          const resultSet = await provider.translate(
             toLocales,
             filtered,
             filePath,
