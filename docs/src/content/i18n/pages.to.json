@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Kamata",
 		"eyebrow": "Fokotuʻutuʻu",
-		"lede": "Tanaki atu ha faile ʻo e founga ngaue, tuhu ki hoʻo Azure AI Translator credentials, pea ʻe scan ʻe he ngaue ʻa e repo ki he ngaahi faile maʻuʻanga tokoni ʻi he lea fakafonua pea ʻoatu ʻa e ngaahi tokoua kuo liliu.",
+		"heroLede": "Tanaki atu ha faile ʻo e founga ngaue, fili hoʻo kautaha liliu lea — Azure, AWS, pe Google — pea ʻe scan ʻe he ngaue ʻa e repo ki he ngaahi faile maʻuʻanga tokoni ʻi he lea fakafonua pea tuku atu ʻa e ngaahi tokoua mo e tuongaʻane kuo liliu.",
 		"steps": {
-			"provision": {
-				"title": "Fokotuʻu ha maʻuʻanga tokoni Azure AI Translator",
-				"body": "Faʻu ha maʻuʻanga tokoni Azure AI Translator ʻi he Azure portal, pea tauhi ʻa e ngaahi meʻa ko ʻeni ko e ngaahi fakapulipuli ʻo e GitHub kae lava ke lau kinautolu ʻe he founga ngaue:",
-				"key": "ʻa e ki ʻo e totongi ki he maʻuʻanga tokoni.",
-				"endpoint": "ko e URL fakavahefonua ʻo e ngataʻanga.",
-				"region": "ʻa e feituʻu Azure ʻo e maʻuʻanga tokoni."
+			"provider": {
+				"title": "Fili ha kautaha liliu lea",
+				"body": "ʻOku ngaue ʻa e ngaue mo e {azure}, {aws}, mo e {google} ʻi mui ʻi ha funga API fakatahataha. Fili ha kautaha ʻe taha ʻi he lele ʻaki ʻa e input ʻo e {provider} — ʻoku tatau pe ʻa e founga ngaue ʻo tatau ai pe pe ko e ha ʻa e tokotaha ʻoku ne ʻomai; ko e ngaahi tohi fakamoʻoni pe ʻoku faikehekehe. Vakai ki he {providersLink} ki ha fakafehoanaki kakato.",
+				"azure": "Azure AI Translator",
+				"aws": "Liliu ʻa e AWS",
+				"google": "Google Cloud Translation",
+				"providersLinkLabel": "Kau maʻu liliu lea"
 			},
-			"workflow": {
-				"title": "Tanaki atu ʻa e founga ngaue",
-				"body": "Faʻu ha {workflowPath}:"
+			"configure": {
+				"title": "Tanaki atu ʻa e ngaahi tohi fakamoʻoni mo ha founga ngaue",
+				"body": "Tauhi ʻa e ngaahi fakamoʻoni ʻa hoʻo kautaha ko e ngaahi fakapulipuli ʻo e tauhiʻanga koloa ʻo e GitHub, pea faʻu {workflowPath}. Fili hoʻo kautaha ʻi lalo ki heʻene fokotuʻutuʻu pau — ʻoku tatau pe ʻa e toenga ʻo e founga ngaue.",
+				"secretsHeading": "Tauhi ʻeni ko ha ngaahi fakapulipuli ʻo e tauhiʻanga koloa",
+				"workflowHeading": "Tanaki atu ʻa e founga ngaue",
+				"azure": {
+					"note": "Ko e Azure ʻa e kautaha naʻe ʻosi seti ki ai, ko ia ʻe lava ke toʻo ʻ{provider} ia. ʻOmi ha maʻuʻanga tokoni Azure AI Translator ʻi he Azure portal, pea tauhi hono ngaahi tohi fakamoʻoni:",
+					"key": "ʻa e ki ʻo e totongi ki he maʻuʻanga tokoni.",
+					"endpoint": "ko e URL fakavahefonua ʻo e ngataʻanga.",
+					"region": "ʻa e feituʻu Azure ʻo e maʻuʻanga tokoni."
+				},
+				"aws": {
+					"note": "Seti ʻa e {provider} ki he {providerValue}. Saiʻia ange ʻi he OIDC ʻo fakafou ʻi he {configureAwsCredentials} koeʻuhi ke ʻoua naʻa tauhi ha ngaahi fakapulipuli fuoloa — ʻoku {awsRegionEnv} ʻa e sitepu export maʻau. Ke fakaʻaongaʻi ʻa e ngaahi ki ʻoku ʻikai ke ʻi ai ha meʻa, tokonaki ʻa e:",
+					"accessKeyId": "hoʻo ID ki he hu ki he AWS.",
+					"secretAccessKey": "hoʻo ki fakapulipuli ʻo e AWS.",
+					"regionNote": "ʻOku fie maʻu maʻu pe ha feituʻu — fokotuʻutuʻu ia ʻaki ʻa e {awsRegion} pe ko e {awsRegionEnv} ʻatakai feliliuaki."
+				},
+				"google": {
+					"note": "Seti ʻa e {provider} ki he {providerValue}. Fakapapauʻi ʻaki ha tohi fakamoʻoni JSON ʻi he ʻakauni ngaue pe ko ha ki API — ʻomai ha taha totonu:",
+					"credentials": "ko ha ki JSON ʻakauni ngaue (ko ha afo JSON).",
+					"apiKey": "pe ko ha Google Cloud API key.",
+					"projectNote": "ʻOku maʻu ha {googleProjectId} fili mei he tohi fakamoʻoni ʻi he taimi ʻoku toʻo ai."
+				}
 			},
 			"resource": {
 				"title": "Fakatukupaaʻi ha faile maʻuʻanga tokoni",
@@ -91,8 +112,15 @@
 				"body": "ʻI he ʻosi pe ʻa e founga ngaue, ʻoku fakahaaʻi ʻe he ngaue ʻa e output ʻe tolu te ke lava ʻo fakaʻaongaʻi ki ha fakamatala PR: {summaryTitle}, {summaryDetails}, mo e {hasNewTranslations}. ʻOku ne toe hiki foki ha fakamatala fakanounou ʻo e Markdown ki he peesi ngaue ʻo fakafou ʻi he {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Fili ha kautaha liliu lea"
+		},
 		"nextSteps": {
 			"title": "Sitepu hoko",
+			"providers": "Fakafehoanaki fakataha ʻa e kautaha kotoa pe mo hono ngaahi tohi fakamoʻoni.",
 			"configuration": "Configure ʻa e ngaahi default ʻi he tuʻunga ʻo e repo ʻaki ʻa e {configPath}.",
 			"recipes": "Vakai ki he ngaahi founga feimeʻatokoni ki he monorepos, custom glossaries, mo e Custom Translator categories."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} ʻOku fakapipiki ʻe he ngaahi kole ʻa e Translator he taimi ni ʻa e {apiVersion} ʻi he uaea ki he {translate} mo e {languages} fakatouʻosi. ʻOku toki fakaʻapaʻapaʻi pe ʻe he Azure SDK ʻa e fili ʻo e api-version ʻi he taimi ʻoku paasi ai ha tohi fakamoʻoni; ʻoku fakamoʻoniʻi ʻe he ngaue ʻa e kole ʻo fakafou ʻi he headers, ko ia naʻe tukuange fakalongolongo ʻa e fili ko ia pea default ʻa e ngaahi kole ki ha preview API-version {translate}ʻa ia naʻe fakafisingaʻi ʻe he aleapau ʻa e sino ʻaki ʻa e HTTP 400 (error code {code}). Fakakakato ʻa e fakaleleiʻi naʻe kamata ʻi he 3.0.1.",
 			"v301": "{label} Ko e sino ʻo e kole ʻa e {translate} ʻoku hoko ia he taimi ni ko ha fokotuʻutuʻu JSON ʻo e ngaahi meʻa ʻe {textItem} kae ʻikai ko ha meʻa ʻoku {inputs} kofukofuʻi, ʻo tatau mo e aleapau v3.0 REST. Naʻe ʻikai ke toe fakafoki mai ʻe he meʻa ni ʻiate ia pe ʻa e ngaahi liliu — vakai ki he 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Ngaahi tuʻuaki koloa kehekehe:",
+				"intentMapping": "Mape ʻo e taumuʻa-specifier:"
+			},
+			"items": {
+				"multiVendor": "{label} liliu ʻaki ʻa e {azure}, {aws}, pe {google} ʻi mui ʻi ha funga API fakatahataha. Fili ha kautaha ʻe taha ʻi he lele ʻaki ʻa e input foʻ{provider} foʻou; ʻoku vahe ʻe he ngaue ki he SDK tatau ʻi mui ʻi ha fale ngaue pea ʻoku tatau pe pe ko e ha ʻa e tokotaha fakatau koloa. ʻOku fenapasi kakato ki mui — ʻoku ʻikai ke ʻi ai ha {provider} ki he {azureValue}, ko ia ʻoku kei ngaue pe ʻa e Azure workflows lolotonga ʻo ʻikai liliu.",
+				"aws": "Kautaha foʻou ʻo e AWS Translate ({awsSdk}). Authenticate ʻaki ʻa e seini fakamoʻoni ʻa e AWS default (fokotuʻu atu: OIDC ʻo fakafou ʻi he {configureAwsCredentials}) pe mahino ʻa e {awsAccessKeyId} / {awsSecretAccessKey}; vahefonua ʻo fakafou ʻi he {awsRegion} pe {awsRegionEnv}.",
+				"google": "Kautaha foʻou ʻo e Google Cloud Translation ({googleSdk}, v2). Fakapapauʻi ʻaki ha tohi fakamoʻoni JSON ʻi he ʻakauni ngaue ({googleCredentials}) pe ko ha ki API ({googleApiKey}); fili {googleProjectId}.",
+				"inputs": "Ngaahi fakamatala foʻou: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} mape ki he {format} ʻa e Google mo e {profanityAction} mape ki he fakapuli ʻo e kapekape ʻa e AWS ʻi he feituʻu ʻoku ʻi ai ha meʻa tatau. ʻOku tukunoaʻi ʻe he niʻihi kehe ʻa e ngaahi kautaha kehe ʻi he Azure ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}).",
+				"azureRelaxed": "ʻOku ʻikai ke toe fakaʻilongaʻi ʻa e ngaahi input ʻo e kole Azure ({subscriptionKey}, {endpoint}, {region}) ʻoku fie maʻu ʻi he {actionYml} koeʻuhi ke lava ʻo fili ʻa e ngaahi kautaha kehe — ʻoku kei fakapapauʻi pe ʻi he runtime ʻi he taimi ʻoku {azureValue} ai ʻa e {provider}.",
+				"docs": "Peesi foʻou ʻo e ngaahi kautaha Liliu, tab ʻo e kautaha ʻi he Kamataʻanga, fili ʻo e kautaha ʻi he peesi Inputs, pea mo ha peesi ʻuluaki fakafoʻou ʻoku taki ʻaki ʻa e Azure, AWS, mo e Google."
+			}
 		},
 		"v3": {
 			"labels": {

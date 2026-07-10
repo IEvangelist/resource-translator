@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Ukuqala",
 		"eyebrow": "Ukuseta",
-		"lede": "Yongeza ifayile yokuhamba komsebenzi, ikhombe kwiziqinisekiso zakho ze-Azure AI Translator, kwaye isenzo siya kuskena i-repo yeefayile zemithombo yolwimi lomthombo kwaye ikhuphe abantakwabo abaguqulelweyo.",
+		"heroLede": "Yongeza ifayile yokuhamba komsebenzi, khetha umboneleli wakho wokuguqulela - i-Azure, i-AWS, okanye iGoogle - kwaye isenzo siskena i-repo yeefayile zezixhobo zolwimi lomthombo kwaye sikhuphe abantakwabo abaguqulelweyo.",
 		"steps": {
-			"provision": {
-				"title": "Ukubonelela ngesibonelelo se-Azure AI Translator",
-				"body": "Yenza umthombo we-Azure AI Translator kwi-portal ye-Azure, uze ugcine oku kulandelayo njengeemfihlo zokugcina i-GitHub ukuze ukuhamba komsebenzi kukwazi ukuzifunda:",
-				"key": "Isitshixo sobhaliso sezixhobo.",
-				"endpoint": "I-URL yesiphelo sommandla.",
-				"region": "Ummandla we-Azure we-Azure."
+			"provider": {
+				"title": "Khetha umnikezeli womguquleli",
+				"body": "Isenzo sisebenza nge-{azure}, i-{aws}, kunye ne-{google} ngasemva kwendawo enye ye-API edibeneyo. Khetha umboneleli omnye ngokubaleka ngegalelo le-{provider} - ukuhamba komsebenzi kuziphatha ngokufanayo kungakhathaliseki ukuba ngumboneleli; Kuphela iziqinisekiso ziyahluka. Jonga {providersLink} ukuze uthelekise ngokupheleleyo.",
+				"azure": "Umguquleli we-Azure AI",
+				"aws": "Ukuguqulela kwe-AWS",
+				"google": "Inguqulelo yelifu likaGoogle",
+				"providersLinkLabel": "Ababoneleli bokuguqulela"
 			},
-			"workflow": {
-				"title": "Yongeza umkhondo womsebenzi",
-				"body": "Dala {workflowPath}:"
+			"configure": {
+				"title": "Yongeza iziqinisekiso kunye nokuhamba komsebenzi",
+				"body": "Gcina iziqinisekiso zomboneleli wakho njengeemfihlo zeGitHub, emva koko wenze {workflowPath}. Khetha umboneleli wakho apha ngezantsi ukuseta kwakhe okuthile-yonke indlela yokuhamba komsebenzi iyafana.",
+				"secretsHeading": "Zigcine ezi njengendawo yokugcina izinto ezifihlakeleyo",
+				"workflowHeading": "Yongeza umkhondo womsebenzi",
+				"azure": {
+					"note": "I-Azure ngumboneleli ongagqibekanga, ngoko ke {provider} inokushiywa. Ukubonelela ngesibonelelo se-Azure AI Translator kwi-portal ye-Azure, emva koko ugcine iziqinisekiso zayo:",
+					"key": "Isitshixo sobhaliso sezixhobo.",
+					"endpoint": "I-URL yesiphelo sommandla.",
+					"region": "Ummandla we-Azure we-Azure."
+				},
+				"aws": {
+					"note": "Misela {provider} kwi-{providerValue}. Khetha i-OIDC nge-{configureAwsCredentials} ukuze kungabikho zimfihlo ezihlala ixesha elide zigcinwayo - ukuthunyelwa kwenyathelo {awsRegionEnv} kuwe. Ukusebenzisa izitshixo ezifikeleleka ngqo endaweni yoko, gcina:",
+					"accessKeyId": "I-ID yakho yesitshixo sokufikelela kwi-AWS",
+					"secretAccessKey": "Isitshixo sakho sokufikelela esifihlakeleyo se-AWS",
+					"regionNote": "Ummandla uhlala uyimfuneko — uyibeke nge-{awsRegion} okanye i-{awsRegionEnv} yokuguquguquka kwemeko-bume."
+				},
+				"google": {
+					"note": "Misela {provider} kwi-{providerValue}. Qinisekisa ngesiqinisekiso se-JSON se-akhawunti yenkonzo okanye isitshixo se-API - unikezele ngokuchanekileyo:",
+					"credentials": "Isitshixo se-JSON se-akhawunti yenkonzo (njengomtya we-JSON).",
+					"apiKey": "okanye isitshixo seGoogle Cloud API.",
+					"projectNote": "I-{googleProjectId} yokuzikhethela ithathwa kwisiqinisekiso xa ishiyiwe."
+				}
 			},
 			"resource": {
 				"title": "Yenza ifayili yovimba womthombo",
@@ -91,8 +112,15 @@
 				"body": "Nje ukuba ukuhamba komsebenzi kugqityiwe, isenzo siveza iziphumo ezintathu onokuzifaka kwinkcazo ye-PR: {summaryTitle}, {summaryDetails}, kunye ne-{hasNewTranslations}. Ikwabhala isishwankathelo seMarkdown kwiphepha lomsebenzi nge-{coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "I-AWS",
+			"google": "UGoogle",
+			"ariaLabel": "Khetha umnikezeli womguquleli"
+		},
 		"nextSteps": {
 			"title": "Amanyathelo alandelayo",
+			"providers": "Thelekisa bonke ababoneleli kunye neziqinisekiso zabo ecaleni.",
 			"configuration": "Misela imimiselo yomgangatho we-repo nge {configPath}.",
 			"recipes": "Jonga iiresiphi ze-monorepos, ii-glossaries zesiko, kunye neendidi zoMguquleli wesiko."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Izicelo zabaguquleli ngoku ziqhoboshela {apiVersion} kucingo kuzo zombini {translate} kunye {languages}. I-Azure SDK ihlonipha kuphela ukhetho lwe-api-version yenqanaba lomthengi xa isiqinisekiso sidlulisiwe; isenzo siqinisekisa ngesicelo ngasinye ngeentloko, ke olo khetho lwalahlwa ngokuthe cwaka kwaye izicelo zagqitywa kuhlobo lwe-API olunekhontrakthi {translate} yakhaba umzimba nge-HTTP 400 (ikhowudi yempazamo {code}). Igqibezela ukulungiswa kwaqala kwi-3.0.1.",
 			"v301": "{label} Umzimba wesicelo se-{translate} ngoku luluhlu olungenanto lwe-JSON lwezinto {textItem} endaweni yento {inputs} esongelweyo, ehambelana nekhontrakthi ye-v3.0 REST. Ngokwayo oku akuzange kubuyisele iinguqulelo — jonga 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Abathengisi abaninzi:",
+				"intentMapping": "Imephu yesichazi senjongo:"
+			},
+			"items": {
+				"multiVendor": "{label} ukuguqulela nge-{azure}, {aws}, okanye {google} emva kwendawo enye ye-API edibeneyo. Khetha umboneleli omnye ngegalelo elitsha le-{provider}; isenzo sidlulisela kwi-SDK ehambelanayo emva kwefektri kwaye iziphatha ngokufanayo nokuba yeyiphi na umthengisi. Ukubuyela umva ngokupheleleyo - {provider} okungagqibekanga kwi-{azureValue}, ke ukuhamba komsebenzi okukhoyo kwe-Azure kuhlala kusebenza kungatshintshanga.",
+				"aws": "Umnikezeli omtsha we-AWS Translate ({awsSdk}). Qinisekisa ngekhonkco leziqinisekiso ezingagqibekanga ze-AWS (kucetyiswa: i-OIDC nge-{configureAwsCredentials}) okanye i-{awsAccessKeyId} / {awsSecretAccessKey} ecacileyo; Kwingingqi {awsRegion} okanye {awsRegionEnv}.",
+				"google": "Umboneleli omtsha weGoogle Cloud Translation ({googleSdk}, v2). Qinisekisa nge-akhawunti ye-JSON ({googleCredentials}) okanye isitshixo se-API ({googleApiKey}); {googleProjectId} yokuzikhethela.",
+				"inputs": "Amagalelo amatsha: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} iimephu kwi-{format} kaGoogle kunye neemephu ze-{profanityAction} kwi-AWS ukugquma apho kukho into elinganayo. I-Azure kuphela (i-{categoryId}, i-{apiVersion}, i-{profanityMarker}, {allowFallback}) ayihoywa ngabanye ababoneleli.",
+				"azureRelaxed": "Amagalelo esicelo se-Azure (i-{subscriptionKey}, i-{endpoint}, i-{region}) ayisaphawulwa ukuba iyafuneka kwi-{actionYml} ukuze abanye ababoneleli bakhethwe-basaqinisekisiwe ngexesha lokusebenza xa {provider} {azureValue}.",
+				"docs": "Iphepha lababoneleli bokuguqulela abatsha, iithebhu zomboneleli kwi Ukuqalisa, ukhetho lomboneleli kwiphepha leNgeniso, kunye nephepha lasekhaya elihlaziyiweyo elikhokelela kwi-Azure, i-AWS, kunye neGoogle."
+			}
 		},
 		"v3": {
 			"labels": {

@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Kezdés",
 		"eyebrow": "Beállítás",
-		"lede": "Adj hozzá egy munkafolyamat-fájlt, irányítsd az Azure AI Fordító adataidra, és a művelet beszkenneli a repót forrásnyelvi erőforrás-fájlokra, és lefordított testvéreket bocsát ki.",
+		"heroLede": "Adj hozzá egy munkafolyamat-fájlt, válaszd ki a fordító szolgáltatódat — Azure, AWS vagy Google — és a művelet átvizsgálja a repót forrásnyelvi erőforrás-fájlok után, valamint lefordított testvéreket bocsát ki.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "Hozz létre egy Azure AI Fordító erőforrást az Azure portálban, majd tárold a következőket GitHub repository titkokként, hogy a munkafolyamat olvashassa őket:",
-				"key": "az előfizetési kulcs az erőforráshoz.",
-				"endpoint": "a regionális végpont URL-je.",
-				"region": "az erőforrás Azure régiója."
+			"provider": {
+				"title": "Válasszon fordítót",
+				"body": "A művelet egy egységes API felület mögött {azure}, {aws} és {google} segítségével működik. Válassz egy szolgáltatót minden futáson a {provider} bemenettel — a munkafolyamat minden szolgáltatótól függetlenül ugyanúgy viselkedik; Csak a képesítések eltérnek. Teljes összehasonlításért lásd {providersLink}.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Fordító",
+				"google": "Google Cloud Translation",
+				"providersLinkLabel": "Fordítószolgáltatók"
 			},
-			"workflow": {
-				"title": "Add hozzá a munkafolyamatot",
-				"body": "Készíts {workflowPath}:"
+			"configure": {
+				"title": "Hitelesítések és munkafolyamat hozzáadása",
+				"body": "Tárold a szolgáltatód hitelesítési adatait GitHub repository titkokként, majd hozd létre {workflowPath}. Válaszd ki a szolgáltatódat lent, hogy pontosan legyen a beállítása – a munkafolyamat többi része teljesen megegyezik.",
+				"secretsHeading": "Tárold ezeket rejtélytitkként",
+				"workflowHeading": "Add hozzá a munkafolyamatot",
+				"azure": {
+					"note": "Az Azure az alapértelmezett szolgáltató, így {provider} kihagyható. Biztosíts egy Azure AI Translator erőforrást az Azure portálban, majd tárold annak hitelesítő adatait:",
+					"key": "az előfizetési kulcs az erőforráshoz.",
+					"endpoint": "a regionális végpont URL-je.",
+					"region": "az erőforrás Azure régiója."
+				},
+				"aws": {
+					"note": "Állítsd {provider} {providerValue}-re. A OIDC-t {configureAwsCredentials}-n keresztül részesítsd előnyben, hogy ne tárolják a hosszú életű titkokat — a lépési exportok {awsRegionEnv} neked. Statikus kulcsok használatához tárold:",
+					"accessKeyId": "az AWS hozzáférési kulcsazonosítód.",
+					"secretAccessKey": "az AWS titkos hozzáférési kulcsod.",
+					"regionNote": "Mindig szükséges egy régió — állítsd be {awsRegion} vagy a {awsRegionEnv} környezeti változóval."
+				},
+				"google": {
+					"note": "Állítsd {provider} {providerValue}-re. Hitelesíts vagy egy szolgáltatási fiók JSON hitelesítéssel, vagy API kulmával — pontosan egyet adj meg:",
+					"credentials": "egy szolgáltatás-fiók JSON kulcs (JSON stringként).",
+					"apiKey": "vagy egy Google Cloud API kulcsot.",
+					"projectNote": "Ha kihagyják, egy opcionális {googleProjectId} következtethető a képesítésből."
+				}
 			},
 			"resource": {
 				"title": "Commit egy forráserőforrás fájl",
@@ -91,8 +112,15 @@
 				"body": "Miután a munkafolyamat véget ér, az akció három kimenetet mutat be, amit PR leírásba lehet bevezetni: {summaryTitle}, {summaryDetails} és {hasNewTranslations}. Emellett Markdown összefoglalót ír a munkakör oldalára {coreSummary}-n keresztül."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Válasszon fordítót"
+		},
 		"nextSteps": {
 			"title": "Következő lépések",
+			"providers": "Hasonlítsd össze az összes szolgáltatót és annak hitelességét egymás mellett.",
 			"configuration": "Állítsd be a repo szintű alapértelmezetteket {configPath}-vel.",
 			"recipes": "Lásd a monorepók, egyedi szószótárok és egyedi fordító kategóriák receptjeit."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Fordító kérések most már {apiVersion}-t rögzítenek a vezetékre mind a {translate}, mind a {languages} esetében. Az Azure SDK csak akkor tartja tiszteletben a kliensszintű API-verziós opciót, amikor egy hitelesítést átadnak; Az akció minden kérésenként hitelesítést ad fejléceken keresztül, így ezt az opciót csendben elhagyták, és a kérések alapértelmezett egy előzetes API verzióra váltak, amelynek {translate} szerződése elutasította a testet HTTP 400-mal (hibakód {code}). Befejezi a 3.0.1-ben indított javítást.",
 			"v301": "{label} A {translate} kéréstest most már egy puszta JSON tömb, {textItem} elemekből áll, nem pedig egy becsomagolt {inputs} objektum, amely megfelel a v3.0 REST szerződésnek. Ez önmagában nem állította vissza a fordításokat — lásd 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Többszolgáltató:",
+				"intentMapping": "Szándék-specifier leképezés:"
+			},
+			"items": {
+				"multiVendor": "{label} {azure}, {aws} vagy {google} egyetlen egységes API felület mögött fordíthatunk. Válassz egy szolgáltatót minden futáson az új {provider} bemenettel; az akció a gyár mögötti megfelelő SDK-ra delegálja, és minden gyártótól függetlenül ugyanúgy viselkedik. Teljesen visszafelé kompatibilis — {provider} alapértelmezett {azureValue}-et használ, így a meglévő Azure munkafolyamatok változatlanul működnek.",
+				"aws": "Új AWS Fordító szolgáltató ({awsSdk}). Az AWS alapértelmezett hitelesítési láncával (ajánlott: OIDC {configureAwsCredentials}-on keresztül) vagy explicit {awsAccessKeyId} / {awsSecretAccessKey} használatával; Régió {awsRegion} vagy {awsRegionEnv} révén.",
+				"google": "Új Google Cloud fordító szolgáltató ({googleSdk}, v2). Hitelesítés szolgáltatási fiók JSON hitelesítő levelével ({googleCredentials}) vagy API kulmilla ({googleApiKey}); opcionális {googleProjectId}.",
+				"inputs": "Új bemenetek: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} a Google {format}-jához {profanityAction} térképeket használ AWS káromkodás elfedésére, ahol létezik megfelelője. Az Azure-specifikátorokat ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) más szolgáltatók figyelmen kívül hagyják.",
+				"azureRelaxed": "Az Azure kérésbemenetek ({subscriptionKey}, {endpoint}, {region}) már nem jelölik szükségesnek {actionYml}-ben, így más szolgáltatókat is választhatnak — még futásidőben is ellenőrizve, amikor {provider} {azureValue}.",
+				"docs": "Új fordító szolgáltatók oldala, szolgáltató fülek a Kezdésről, szolgáltatóválasztás a Bemenetek oldalon, valamint egy frissített kezdőlap, amely Azure, AWS és Google vezet."
+			}
 		},
 		"v3": {
 			"labels": {

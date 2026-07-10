@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Begin",
 		"eyebrow": "Opstelling",
-		"lede": "Voeg 'n werkvloeilêer by, wys dit na jou Azure AI Vertaler-geloofsbriewe, en die aksie sal die repo skandeer vir brontaal-hulpbronlêers en vertaalde broers en susters uitstuur.",
+		"heroLede": "Voeg 'n werkvloeilêer by, kies jou vertaalverskaffer — Azure, AWS of Google — en die aksie skandeer die repo vir bron-taal hulpbronlêers en stuur vertaalde broers en susters uit.",
 		"steps": {
-			"provision": {
-				"title": "Voorsiening van 'n Azure AI Translator-hulpbron",
-				"body": "Skep 'n Azure KI-vertalerhulpbron in die Azure-portaal, en stoor dan die volgende as GitHub-bewaarplekgeheime sodat die werkvloei dit kan lees:",
-				"key": "Die intekensleutel vir die hulpbron.",
-				"endpoint": "die streek-eindpunt URL.",
-				"region": "die hulpbron se Azure-streek."
+			"provider": {
+				"title": "Kies 'n vertaalverskaffer",
+				"body": "Die aksie werk met {azure}, {aws} en {google} agter een verenigde API-oppervlak. Kies 'n enkele verskaffer per lopie met die {provider} inset — die werkvloei gedra hom identies ongeag die verskaffer; Slegs die kwalifikasies verskil. Sien {providersLink} vir 'n volledige vergelyking.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Google Cloud Translation",
+				"providersLinkLabel": "Vertaalverskaffers"
 			},
-			"workflow": {
-				"title": "Voeg die werkvloei by",
-				"body": "Skep {workflowPath}:"
+			"configure": {
+				"title": "Voeg geloofsbriewe en 'n werkvloei by",
+				"body": "Stoor jou verskaffer se geloofsbriewe as GitHub-bewaarplekgeheime, en skep dan {workflowPath}. Kies jou verskaffer hieronder vir sy spesifieke opstelling — die res van die werkvloei is identies.",
+				"secretsHeading": "Stoor hierdie as bewaarplekgeheime",
+				"workflowHeading": "Voeg die werkvloei by",
+				"azure": {
+					"note": "Azure is die verstekverskaffer, so {provider} kan weggelaat word. Voorsien 'n Azure AI Translator-hulpbron in die Azure-portaal, en stoor dan sy geloofsbriewe daarvan:",
+					"key": "Die intekensleutel vir die hulpbron.",
+					"endpoint": "die streek-eindpunt URL.",
+					"region": "die hulpbron se Azure-streek."
+				},
+				"aws": {
+					"note": "Stel {provider} op {providerValue}. Verkies OIDC via {configureAwsCredentials} sodat geen langlewende geheime gestoor word nie — die stap voer {awsRegionEnv} vir jou uit. Om eerder statiese sleutels te gebruik, stoor:",
+					"accessKeyId": "jou AWS-toegangssleutel-ID.",
+					"secretAccessKey": "jou AWS-geheime toegangssleutel.",
+					"regionNote": "'n Streek is altyd nodig — stel dit in met {awsRegion} of die {awsRegionEnv} omgewingsveranderlike."
+				},
+				"google": {
+					"note": "Stel {provider} op {providerValue}. Verifieer met óf 'n diensrekening-JSON-kwalifikasie óf 'n API-sleutel — voorsien presies een:",
+					"credentials": "'n diensrekening JSON-sleutel (as 'n JSON-string).",
+					"apiKey": "of 'n Google Cloud API-sleutel.",
+					"projectNote": "'n Opsionele {googleProjectId} word afgelei uit die kwalifikasie wanneer dit weggelaat word."
+				}
 			},
 			"resource": {
 				"title": "Commit 'n bronbronlêer",
@@ -91,8 +112,15 @@
 				"body": "Sodra die werkvloei klaar is, stel die aksie drie uitsette bloot wat jy in 'n PR-beskrywing kan bedra: {summaryTitle}, {summaryDetails} en {hasNewTranslations}. Dit skryf ook 'n Markdown-opsomming in die werkbladsy via {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Kies 'n vertaalverskaffer"
+		},
 		"nextSteps": {
 			"title": "Volgende stappe",
+			"providers": "Vergelyk elke verskaffer en sy geloofsbriewe langs mekaar.",
 			"configuration": "Konfigureer repo-vlak verstekinstellings met {configPath}.",
 			"recipes": "Sien resepte vir monorepos, pasgemaakte woordelys, en Pasgemaakte Vertaler-kategorieë."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Vertalerversoeke pen nou {apiVersion} op die draad vir beide {translate} en {languages}. Die Azure SDK eer slegs die kliëntvlak api-weergawe-opsie wanneer 'n geloofsbewys deurgegee word; die aksie verifieer per versoek via opskrifte, so daardie opsie is stilweg laat vaar en versoeke het standaard na 'n voorskou-API-weergawe gegaan waarvan die {translate} kontrak die liggaam met HTTP 400 (foutkode {code}) verwerp het. Voltooi die regstelling wat in 3.0.1 begin is.",
 			"v301": "{label} Die {translate} versoekliggaam is nou 'n kaal JSON-skikking van {textItem} items in plaas van 'n toegedraaide {inputs} objek, wat ooreenstem met die v3.0 REST-kontrak. Op sigself het dit nie vertalings herstel nie — sien 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Multi-verskaffer:",
+				"intentMapping": "Intent-spesifiseerder toewysing:"
+			},
+			"items": {
+				"multiVendor": "{label} vertaal met {azure}, {aws} of {google} agter een verenigde API-oppervlak. Kies 'n enkele verskaffer per lopie met die nuwe {provider} inset; die aksie delegeer aan die ooreenstemmende SDK agter 'n fabriek en tree identies op ongeag die verskaffer. Volledig agtertoe versoenbaar — {provider} is standaard op {azureValue}, sodat bestaande Azure-werkvloeie onveranderd bly werk.",
+				"aws": "Nuwe AWS Translate-verskaffer ({awsSdk}). Verifieer met die AWS se standaard geloofsbriefketting (aanbeveel: OIDC via {configureAwsCredentials}) of eksplisiete {awsAccessKeyId} / {awsSecretAccessKey}; streek via {awsRegion} of {awsRegionEnv}.",
+				"google": "Nuwe Google Cloud Translation-verskaffer ({googleSdk}, v2). Verifieer met 'n diensrekening JSON-akkreditasie ({googleCredentials}) of 'n API-sleutel ({googleApiKey}); opsionele {googleProjectId}.",
+				"inputs": "Nuwe insette: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} ooreenstem met Google se {format} en {profanityAction} na AWS-vloekmaskering waar 'n ekwivalent bestaan. Slegs Azure-spesifiseerders ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) word deur ander verskaffers geïgnoreer.",
+				"azureRelaxed": "Azure-versoekinsette ({subscriptionKey}, {endpoint}, {region}) word nie meer as vereis in {actionYml} gemerk nie, sodat ander verskaffers gekies kan word — steeds gevalideer tydens uitvoering wanneer {provider} {azureValue} is.",
+				"docs": "Nuwe Vertaalverskaffersbladsy, verskaffer-oortjies op Begin Kom, verskafferkeuse op die Insette-bladsy, en 'n verfrisde tuisblad wat met Azure, AWS en Google lei."
+			}
 		},
 		"v3": {
 			"labels": {

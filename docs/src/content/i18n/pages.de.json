@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Anfang",
 		"eyebrow": "Aufbau",
-		"lede": "Füge eine Workflow-Datei hinzu, verweise auf deine Azure AI Translator-Zugangsdaten, und die Aktion scannt das Repository nach Quellsprachen-Ressourcendateien und liefert übersetzte Geschwister.",
+		"heroLede": "Füge eine Workflow-Datei hinzu, wähle deinen Übersetzungsanbieter – Azure, AWS oder Google – und die Aktion durchsucht das Repository nach Quellsprachen-Ressourcendateien und übermittelt übersetzte Geschwister.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "Erstelle eine Azure AI Translator-Ressource im Azure-Portal und speichere dann die folgenden als GitHub-Repository-Geheimnisse, damit der Workflow sie lesen kann:",
-				"key": "Der Abonnementschlüssel für die Ressource.",
-				"endpoint": "die regionale Endpunkt-URL.",
-				"region": "die Azure-Region der Ressource."
+			"provider": {
+				"title": "Wählen Sie einen Übersetzungsdienstleister",
+				"body": "Die Aktion arbeitet mit {azure}, {aws} und {google} hinter einer einheitlichen API-Oberfläche. Wählen Sie pro Durchlauf mit der {provider} Eingabe einen einzelnen Anbieter aus – der Workflow verhält sich unabhängig vom Anbieter identisch; nur die Qualifikationen unterscheiden sich. Siehe {providersLink} für einen vollständigen Vergleich.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Google Cloud Translation",
+				"providersLinkLabel": "Übersetzungsanbieter"
 			},
-			"workflow": {
-				"title": "Fügen Sie den Workflow hinzu",
-				"body": "Erstellen Sie {workflowPath}:"
+			"configure": {
+				"title": "Fügen Sie Zugangsdaten und einen Workflow hinzu",
+				"body": "Speichere die Zugangsdaten deines Anbieters als GitHub-Repository-Geheimnisse und erstelle dann {workflowPath}. Wählen Sie unten Ihren Anbieter für die spezifische Einrichtung aus – der Rest des Arbeitsablaufs ist identisch.",
+				"secretsHeading": "Speichere diese als Repository-Geheimnisse",
+				"workflowHeading": "Fügen Sie den Workflow hinzu",
+				"azure": {
+					"note": "Azure ist der Standardanbieter, daher kann {provider} weggelassen werden. Bereite eine Azure AI Translator-Ressource im Azure-Portal bereit und speichere dann ihre Zugangsdaten:",
+					"key": "Der Abonnementschlüssel für die Ressource.",
+					"endpoint": "die regionale Endpunkt-URL.",
+					"region": "die Azure-Region der Ressource."
+				},
+				"aws": {
+					"note": "Stell {provider} auf {providerValue}. Bevorzuge OIDC über {configureAwsCredentials}, damit keine langjährigen Geheimnisse gespeichert werden – der Schritt-Export {awsRegionEnv} für dich. Um stattdessen statische Tasten zu verwenden, speichern Sie:",
+					"accessKeyId": "Ihre AWS-Zugangsschlüssel-ID.",
+					"secretAccessKey": "Ihr AWS-Geheimzugriffsschlüssel.",
+					"regionNote": "Eine Region ist immer erforderlich – setzen Sie sie mit {awsRegion} oder der {awsRegionEnv} Umgebungsvariable."
+				},
+				"google": {
+					"note": "Stell {provider} auf {providerValue}. Authentifizieren Sie sich entweder mit einer JSON-Zugangsdaten für ein Servicekonto oder einem API-Schlüssel – geben Sie genau einen einen:",
+					"credentials": "ein JSON-Schlüssel für ein Servicekonto (als JSON-String).",
+					"apiKey": "oder einen Google-Cloud-API-Schlüssel.",
+					"projectNote": "Eine optionale {googleProjectId} wird aus der Qualifikation abgeleitet, wenn sie weggelassen wird."
+				}
 			},
 			"resource": {
 				"title": "Committen einer Quellressourcendatei",
@@ -91,8 +112,15 @@
 				"body": "Sobald der Workflow abgeschlossen ist, gibt die Aktion drei Ausgaben frei, die du in eine PR-Beschreibung verdrahten kannst: {summaryTitle}, {summaryDetails} und {hasNewTranslations}. Es schreibt außerdem eine Markdown-Zusammenfassung über {coreSummary} auf die Jobseite."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Wählen Sie einen Übersetzungsdienstleister"
+		},
 		"nextSteps": {
 			"title": "Nächste Schritte",
+			"providers": "Vergleichen Sie jeden Anbieter und seine Qualifikationen nebeneinander.",
 			"configuration": "Konfigurieren Sie Repo-Level-Standardwerte mit {configPath}.",
 			"recipes": "Siehe Rezepte für Monorepos, benutzerdefinierte Glossare und benutzerdefinierte Übersetzerkategorien."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Übersetzer-Anfragen pinnen {apiVersion} nun sowohl für {translate} als auch für {languages} auf die Leitung. Das Azure SDK akzeptiert die Client-Level-API-Version nur, wenn eine Zugangsdaten weitergegeben wird; die Aktion authentifiziert sich pro Anfrage über Header, sodass diese Option stillschweigend verworfen wurde und Anfragen standardmäßig auf eine Vorschau-API-Version umgestellt wurden, deren {translate} Vertrag den Body mit HTTP 400 (Fehlercode {code}) ablehnte. Es ist abgeschlossen, der Fix startete in 3.0.1.",
 			"v301": "{label} Der {translate}-Anforderungskörper ist nun ein nacktes JSON-Array aus {textItem} Items statt eines gewrapten {inputs} Objekts, das dem v3.0 REST-Vertrag entspricht. Allein stellte dies die Übersetzungen nicht wieder her – siehe 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Multi-Anbieter:",
+				"intentMapping": "Intent-Specifier-Mapping:"
+			},
+			"items": {
+				"multiVendor": "{label} mit {azure}, {aws} oder {google} hinter einer einheitlichen API-Oberfläche übersetzen. Wähle pro Durchlauf einen einzelnen Anbieter mit dem neuen {provider} Input; die Aktion delegiert an das passende SDK hinter einer Fabrik und verhält sich unabhängig vom Anbieter identisch. Vollständig abwärtskompatibel – {provider} steht standardmäßig auf {azureValue}, sodass bestehende Azure-Workflows unverändert funktionieren.",
+				"aws": "Neuer AWS Translate-Anbieter ({awsSdk}). Authentifiziere dich mit der AWS-Standard-Credential-Kette (empfohlen: OIDC via {configureAwsCredentials}) oder explizit {awsAccessKeyId} / {awsSecretAccessKey}; Region über {awsRegion} oder {awsRegionEnv}.",
+				"google": "Neuer Google Cloud Translation-Anbieter ({googleSdk}, v2). Authentifizieren Sie sich mit einer JSON-Zugangsdaten für ein Servicekonto ({googleCredentials}) oder einem API-Schlüssel ({googleApiKey}); Optionale {googleProjectId}.",
+				"inputs": "Neue Eingaben: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} Maps zu Googles {format} und {profanityAction} zu AWS-Fluchmasking, wo ein Äquivalent existiert. Nur Azure-spezifische Spezifikationen ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) werden von anderen Anbietern ignoriert.",
+				"azureRelaxed": "Azure-Anforderungseingaben ({subscriptionKey}, {endpoint}, {region}) sind in {actionYml} nicht mehr als erforderlich markiert, sodass andere Anbieter ausgewählt werden können – sie werden zur Laufzeit weiterhin validiert, wenn {provider} {azureValue} ist.",
+				"docs": "Neue Übersetzungsanbieter-Seite, Reiter für Anbieter auf Starten, Anbieter auswählen auf der Eingabeseite und eine aktualisierte Startseite, die mit Azure, AWS und Google führt."
+			}
 		},
 		"v3": {
 			"labels": {

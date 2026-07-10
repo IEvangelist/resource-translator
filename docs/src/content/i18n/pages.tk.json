@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Başlangyç",
 		"eyebrow": "Düzüm",
-		"lede": "Workflow faýly goşuň, ony Azure AI Translator kimlik maglumatyňyza görkeziň, bu hereket repony çeşme dilindäki resurs faýllary üçin skan eder we terjime edilen dogan-uýalary emele getirer.",
+		"heroLede": "Workflow faýly goşuň, terjime üpjünçiňizi saýlaň — Azure, AWS ýa-da Google — we bu hereket repony çeşme dilindäki resurs faýllary üçin skan edýär we terjime edilen dogan-uýalary emele getirýär.",
 		"steps": {
-			"provision": {
-				"title": "Azure AI Translator resursyny üpjün et",
-				"body": "Azure portalynda Azure AI Translator resursyny dörediň, soňra aşakdakylary GitHub deposynyň syrlary hökmünde saklaň, şonda iş akışy olary okap biler:",
-				"key": "resurs üçin abonent açary.",
-				"endpoint": "regional endpoint URL.",
-				"region": "resursyň Azure regiony."
+			"provider": {
+				"title": "Terjimeçi saýlaň",
+				"body": "Bu hereket {azure}, {aws} we {google} bir API ýüzüniň arkasynda işleýär. Her ylgawda {provider} girişi bilen ýekeje üpjünçini saýlaň - iş akışy üpjünçä garamazdan birmeňzeş hereket edýär; diňe ygtybarlylyk tapawutlanýar. Doly deňeşdirme {providersLink} serediň.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Google Cloud Translation",
+				"providersLinkLabel": "Terjimeçiler"
 			},
-			"workflow": {
-				"title": "Iş akışyny goşuň",
-				"body": "Dörediň {workflowPath}:"
+			"configure": {
+				"title": "Kimlik maglumatlaryny we iş akışyny goşuň",
+				"body": "Üpjünçiňiziň maglumatlaryny GitHub deposynyň syrlary hökmünde saklaň, soňra {workflowPath}. Aşakda öz üpjünçiňizi saýlaň - galan iş akışy birmeňzeş.",
+				"secretsHeading": "Olary saklanylýan syrlar hökmünde saklaň",
+				"workflowHeading": "Iş akışyny goşuň",
+				"azure": {
+					"note": "Azure öň bellenilen üpjünçidir, şonuň üçin {provider} goýulmagy mümkin. Azure portalynda Azure AI Translator resursyny üpjün ediň, soňra onuň kimlik maglumatlaryny saklaň:",
+					"key": "resurs üçin abonent açary.",
+					"endpoint": "regional endpoint URL.",
+					"region": "resursyň Azure regiony."
+				},
+				"aws": {
+					"note": "Set {provider} to {providerValue}. OIDC-ni {configureAwsCredentials} gowy görseňiz, uzak möhletli syrlar saklanmaz - ädim eksporty siziň üçin {awsRegionEnv}. Statik açarlary ulanmak üçin:",
+					"accessKeyId": "AWS access key ID.",
+					"secretAccessKey": "AWS gizlin giriş açaryňyz.",
+					"regionNote": "Bir region hemişe talap edilýär — ony {awsRegion} ýa-da {awsRegionEnv} environment değişkeni bilen goýuň."
+				},
+				"google": {
+					"note": "Set {provider} to {providerValue}. Hyzmat hasabynyň JSON maglumaty ýa-da API açary bilen tassyklaň — birini anyk beriň:",
+					"credentials": "hyzmat hasabynyň JSON açary (JSON string hökmünde).",
+					"apiKey": "ýa-da Google Cloud API açary.",
+					"projectNote": "Goşmaça {googleProjectId} çykarylanda, şahadatnamadan çykarylýar."
+				}
 			},
 			"resource": {
 				"title": "Çeşme resurs faýly commit et",
@@ -91,8 +112,15 @@
 				"body": "Iş prosesi tamamlanandan soň, hereket PR düşündirişine birikdirip biljek üç sany çykyşy paş edýär: {summaryTitle}, {summaryDetails} we {hasNewTranslations}. Şeýle-de ol iş sahypasyna Markdown gysgaça maglumatyny {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Terjimeçi saýlaň"
+		},
 		"nextSteps": {
 			"title": "Indiki ädimler",
+			"providers": "Her bir üpjünçini we onuň ygtybarlylygyny deňeşdiriň.",
 			"configuration": "Repo derejesiniň öň bellenen görnüşlerini {configPath}.",
 			"recipes": "Monorepolaryň, ýörite sözlükleriň we Custom Translator kategoriýalarynyň taýýarlanyş usullaryna serediň."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} terjimeçi haýyşlary indi {apiVersion} üçin hem {translate}, hem {languages}. Azure SDK diňe kimlik maglumaty geçirilende müşderi derejesindäki API wersiýasyna hormat goýýar; hereket her haýyşyň başlyklary arkaly tassyklanýar, şonuň üçin bu seçenek sessiz düşürildi we haýyşlar HTTP 400 (hata kody {code}) bilen bedeni ret eden {translate} API wersiýasyna öňünden bellenildi. 3.0.1-de başlan düzedişi tamamlaýar.",
 			"v301": "{label} {translate} haýyş bedeni indi v3.0 REST şertnamasyna gabat gelýän {inputs} obýekt däl-de, {textItem} elementlerden ybarat JSON dizaýnyndan ybarat. Bu öz-özünden terjimeleri dikeldip bilmedi — 3.0.2 serediň."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Köp satyjy:",
+				"intentMapping": "Intent-specifier mapping:"
+			},
+			"items": {
+				"multiVendor": "{label} bir API ýüzüniň arkasynda {azure}, {aws} ýa-da {google} bilen terjime edýäris. Täze giriş bilen her ylgawda ýekeje üpjünçini {provider}; Bu hereket fabrikanyň arkasyndaky gabat gelýän SDK-a tabşyrylýar we satyjysyna garamazdan özüni birmeňzeş alyp barýar. Doly yza gabat gelýär - {provider} öň {azureValue} işleýär, şonuň üçin bar bolan Azure iş akymlary üýtgemän işleýär.",
+				"aws": "Täze AWS Translate üpjünçisi ({awsSdk}). AWS-niň öň bellenen kimlik zynjyry (maslahat berilýär: OIDC arkaly {configureAwsCredentials}) ýa-da açyk {awsAccessKeyId} / {awsSecretAccessKey}; Welaýat {awsRegion} ýa-da {awsRegionEnv}.",
+				"google": "Täze Google Cloud Translation üpjünçisi ({googleSdk}, v2). Hyzmat hasabynyň JSON kimlik karty ({googleCredentials}) ýa-da API açary ({googleApiKey}) bilen tassyklamak; goşmaça {googleProjectId}.",
+				"inputs": "Täze girişler: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} kartalary Google-yň {format} we {profanityAction} kartalary AWS-niň sögünç maskasy. Beýleki üpjünçiler diňe Azure-a degişli spesifikatorlar ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) tarapyndan göz öňünde tutulmaýar.",
+				"azureRelaxed": "Azure haýyş girişleri ({subscriptionKey}, {endpoint}, {region}) indi {actionYml}-da talap edilmeýär, şonuň üçin beýleki üpjünçileri saýlap bolýar - {provider} {azureValue}.",
+				"docs": "Täze terjimeçiler sahypasy, başlangyçda üpjünçi sekmeleri, Girişler sahypasynda üpjünçiniň saýlanmagy we Azure, AWS we Google bilen öňbaşçylyk edýän täzelenen baş sahypa."
+			}
 		},
 		"v3": {
 			"labels": {

@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "जागायजेन्नाय",
 		"eyebrow": "थि खालामनाय",
-		"lede": "मोनसे वर्कफ़्लो फाइल दाजाबदेर, बेखौ नोंथांनि Azure AI Translator क्रेडेन्शियल्सआव दिन्थि, आरो खामानिआ source-language फुंखा फाइलफोरनि थाखाय रेप'खौ स्केन खालामगोन आरो रावसोलायनाय बिदा-फंबायफोरखौ हगारगोन।",
+		"heroLede": "मोनसे वर्कफ़्लो फाइल दाजाबदेर, नोंथांनि रावसोलायनाय होग्राखौ सायख — Azure, AWS, एबा Google — आरो बे खामानिआ source-language फुंखा फाइलफोरनि थाखाय रेप'खौ स्केन खालामो आरो रावसोलायनाय बिदा-फंबायफोरखौ हगारो।",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "Azure पर्टेलाव मोनसे Azure AI रावसोलायगिरि फुंखा सोरजि, बेनि उनाव गाहायाव होनाय मुवाफोरखौ GitHub रिप'जिटरी सिक्रेट्स महरै दोनथुम जाहाथे वर्कफ्लोआ बेफोरखौ फरायनो हायो:",
-				"key": "फुंखानि थाखाय साब्सक्रिप्सन key (सब्सक्रिप्शन की)।",
-				"endpoint": "ओनसोलारि जोबथा बिन्दो URL ।",
-				"region": "फुंखानि Azure ओनसोल।"
+			"provider": {
+				"title": "रावसोलायनाय होग्राखौ सायख'",
+				"body": "बे खामानिआ मोनसे खौसे {azure}, {aws} आरो {google} एपिआइ बिखंनि उनथिं खामानि मावो। {provider} इनपुटजों मोनफ्रोमबो रानआव मोनसेल' होग्राखौ सायख' - वर्कफ्लोआ होग्राखौ लायालासे रोखोमसे आखु दिन्थियो; खालि फोरमान बिलाइफोराल' जुदा जायो। आबुं रुजुनायनि {providersLink} नाय।",
+				"azure": "Azure AI Translator",
+				"aws": "AWS रावसोलायनाय",
+				"google": "गुगोल क्लाउड रावसोलायनाय",
+				"providersLinkLabel": "रावसोलायनाय होग्राफोर"
 			},
-			"workflow": {
-				"title": "वर्कफ्लो दाजाबदेर",
-				"body": "सोरजि {workflowPath}:"
+			"configure": {
+				"title": "क्रेडेन्शियेल आरो मोनसे वर्कफ्लो दाजाबदेर",
+				"body": "नोंथांनि होग्रानि क्रेडेंशियलफोरखौ GitHub रिप'जिटरी सिक्रेट्स महरै दोन, बेनि उनाव {workflowPath} सोरजि। बेनि थि सेटअपनि थाखाय गाहायाव नोंथांनि होग्राखौ सायख' - आद्रा थानाय वर्कफ्लोआ रोखोमसे।",
+				"secretsHeading": "बेफोरखौ दोनथुमनानै दोन।",
+				"workflowHeading": "वर्कफ्लो दाजाबदेर",
+				"azure": {
+					"note": "Azure आ default provider बेनिखायनो {provider} एंगारनो हागौ। Azure पर्टेलाव मोनसे Azure AI Translator resource खौ Provision खालाम, बेनि क्रेडेंशियल्सखौ store खालाम:",
+					"key": "फुंखानि थाखाय साब्सक्रिप्सन key (सब्सक्रिप्शन की)।",
+					"endpoint": "ओनसोलारि जोबथा बिन्दो URL ।",
+					"region": "फुंखानि Azure ओनसोल।"
+				},
+				"aws": {
+					"note": "{provider} {providerValue}। {configureAwsCredentials} गेजेरजों OIDC खौ मोजां मोनो जाहाथे जेबो गोलाव समनि गुमुरखौ दोनथुमनाय जाया - आगानआ नोंथांनि थाखाय {awsRegionEnv} जायो। बेनि सोलायै static key बाहायनो थाखाय, store खालाम:",
+					"accessKeyId": "नोंथांनि AWS access key ID।",
+					"secretAccessKey": "नोंथांनि AWS सिक्रेट एक्सेस साबि।",
+					"regionNote": "मोनसे ओनसोला अरायबो नांगौ जायो - बेखौ {awsRegion} एबा {awsRegionEnv} आबहावा सोलायसोल'जों सेट खालाम।"
+				},
+				"google": {
+					"note": "{provider} {providerValue}। सिबिथाय-एकाउन्ट JSON क्रेडेन्शियेल एबा API key जों फोरमान खालाम — रोखायै मोनसे जगाय:",
+					"credentials": "मोनसे सिबिथाय-एकाउन्ट JSON key (JSON string महरै)।",
+					"apiKey": "एबा मोनसे Google Cloud API key ।",
+					"projectNote": "मोनसे सायखʼजानाय {googleProjectId} खौ नागारनाय समाव क्रेडेन्शियलनिफ्राय हमदांनो हायो।"
+				}
 			},
 			"resource": {
 				"title": "फुंखा फुंखा फाइलखौ कमिट खालाम",
@@ -91,8 +112,15 @@
 				"body": "खेबसे वर्कफ्लोआ जोबखांनायनि उनाव, एक्शनआ मोनथाम आउटपुटफोरखौ दिन्थियो जायखौ नोंथाङा PR बेखेवनायाव वायर खालामनो हायो: {summaryTitle}, {summaryDetails} आरो {hasNewTranslations}। बेयो साख्रिनि पेजाव मोनसे मार्कडाउन सुंद' फोरमायथिबो लिरो {coreSummary}।"
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "गुगल",
+			"ariaLabel": "रावसोलायनाय होग्राखौ सायख'"
+		},
 		"nextSteps": {
 			"title": "उननि राहाफोर",
+			"providers": "मोनफ्रोमबो होग्राफोर आरो बिनि सिनायथिफोरखौ लोगोसेयै रुजुना नाय।",
 			"configuration": "रेप'-लेभल दिफल्टफोरखौ कनफिगर खालाम आरो {configPath}।",
 			"recipes": "मोनोरेप'स, कस्टम सोदोब बाख्रि आरो कस्टम रावसोलायगिरि थाखोफोरनि थाखाय रेसिपिफोरखौ नाय।"
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} रावसोलायगिरिनि खावलायनाया दायो {apiVersion} आरो {translate} मोननैनिबो थाखाय तारआव पिन {languages}। Azure SDK आ क्लाइन्ट-थाखोनि api-version अपसनखौ मान होयो जेब्ला मोनसे क्रेडेन्शियेल पास जायो; खामानिआ headers नि गेजेरजों मोनफ्रोमबो खावलायनायखौ फोरमान खालामो, जाहाथे बे अपसनखौ सिरि सिरि हगारनाय जायो आरो खावलायनायफोरा मोनसे preview api-version आव default जायो जायनि {translate} रादाय खानायाव HTTP 400 (गोरोन्थि कड {code}) जों गाहाय बाहागोखौ नेवसिगारदोंमोन। 3.0.1 आव जागायनाय फिक्सखौ फोजोबो।",
 			"v301": "{label} {translate} खावलायनाय गाहाय बाहागोआ दायो v3.0 REST रादाय खाथायजों गोरोबनाय {inputs} बेसादनि सोलायै {textItem} मुवाफोरनि मोनसे लांदां JSON array जाबाय। गाव हारसिंनो बेयो रावसोलायनायखौ लाबोफिनाखै — नायदो 3.0.2 ।"
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "गोबां-फानग्रा:",
+				"intentMapping": "Intent-specifier mapping:"
+			},
+			"items": {
+				"multiVendor": "{label} मोनसे खौसे एपिआइ बिखंनि उनथिं {azure}, {aws} एबा {google} रावसोलायनाय जायो। गोदान इनपुटजों मोनफ्रोमबो रानआव मोनसेल' {provider} ला। खामानिआ मोनसे फेक्टरिनि उनथिं गोरोबनाय SDK आव थान्दै जायो आरो फानग्राखौ लायालासे रोखोमसे आखु दिन्थियो। आबुङै backward compatible - {provider} default to {azureValue}, बेनिखायनो थाखानाय Azure workflows आ सोलायाजासे खामानि मावबाय थायो।",
+				"aws": "गोदान AWS रावसोलायनाय जगायग्रा ({awsSdk})। AWS दिफल्ट क्रेडेन्शियेल चेनजों फोरमान खालाम (गनायजानाय : OIDC via {configureAwsCredentials}) एबा रोखा {awsAccessKeyId} / {awsSecretAccessKey}; {awsRegion} एबा {awsRegionEnv} गेजेरजों ओनसोल।",
+				"google": "गोदान गुगोल क्लाउड रावसोलायनाय जगायग्रा ({googleSdk}, v2)। सिबिथाय-एकाउन्ट JSON क्रेडेन्शियेल ({googleCredentials}) एबा API key ({googleApiKey}) जों फोरमान खालाम; सायख'जानाय {googleProjectId}।",
+				"inputs": "गोदान इनपुटफोर: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}।",
+				"intentMapping": "{label} {textType} गुगोलनि {format} आरो {profanityAction} मेपफोरखौ AWS गाज्रि आखुनि मास्किंगसिम मेप खालामो जेराव मोनसे समान दं। Azure-only specifiers ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) खौ गुबुन होग्राफोरा नेवसियो।",
+				"azureRelaxed": "Azure खावलायनाय इनपुटफोर ({subscriptionKey}, {endpoint}, {region}) आ दायो गोनांथि जानाय {actionYml} जाहाथे गुबुन होग्राफोरखौ सायख'नो हायो - अब्लाबो रानटाइमाव फोरमान जायो जेब्ला {provider} {azureValue}।",
+				"docs": "गोदान रावसोलायनाय होग्रानि पेज, जागायजेन्नायाव होग्रानि टेब, इनपुटस पेजाव होग्राखौ सायख'नाय आरो Azure, AWS आरो Google जों लोगोसे मोनसे रिफ्रेश खालामनाय हम पेज।"
+			}
 		},
 		"v3": {
 			"labels": {

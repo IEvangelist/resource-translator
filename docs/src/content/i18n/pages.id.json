@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Memulai",
 		"eyebrow": "Pengaturan",
-		"lede": "Tambahkan file alur kerja, arahkan ke kredensial Azure AI Translator Anda, dan tindakan akan memindai repositori untuk file sumber daya bahasa sumber dan memancarkan saudara yang diterjemahkan.",
+		"heroLede": "Tambahkan file alur kerja, pilih penyedia terjemahan Anda — Azure, AWS, atau Google — dan tindakan tersebut memindai repositori untuk file sumber daya bahasa sumber dan memancarkan saudara yang diterjemahkan.",
 		"steps": {
-			"provision": {
-				"title": "Menyediakan sumber daya Azure AI Translator",
-				"body": "Buat sumber daya Azure AI Translator di portal Microsoft Azure, lalu simpan yang berikut ini sebagai rahasia repositori GitHub sehingga alur kerja dapat membacanya:",
-				"key": "kunci langganan untuk sumber daya.",
-				"endpoint": "URL titik akhir regional.",
-				"region": "wilayah Azure sumber daya."
+			"provider": {
+				"title": "Pilih penyedia terjemahan",
+				"body": "Tindakan ini bekerja dengan {azure}, {aws}, dan {google} di balik satu permukaan API terpadu. Pilih satu penyedia per eksekusi dengan input {provider} — alur kerja berperilaku identik terlepas dari penyedianya; hanya kredensial yang berbeda. Lihat {providersLink} untuk perbandingan lengkap.",
+				"azure": "Penerjemah AI Azure",
+				"aws": "Terjemahan AWS",
+				"google": "Terjemahan Google Cloud",
+				"providersLinkLabel": "Penyedia terjemahan"
 			},
-			"workflow": {
-				"title": "Tambahkan alur kerja",
-				"body": "Buat {workflowPath}:"
+			"configure": {
+				"title": "Tambahkan kredensial dan alur kerja",
+				"body": "Simpan kredensial penyedia Anda sebagai rahasia repositori GitHub, lalu buat {workflowPath}. Pilih penyedia Anda di bawah ini untuk pengaturan spesifiknya — alur kerja lainnya identik.",
+				"secretsHeading": "Simpan ini sebagai rahasia repositori",
+				"workflowHeading": "Tambahkan alur kerja",
+				"azure": {
+					"note": "Azure adalah penyedia default, sehingga {provider} dapat dihilangkan. Menyediakan sumber daya Azure AI Translator di portal Microsoft Azure, lalu simpan kredensialnya:",
+					"key": "kunci langganan untuk sumber daya.",
+					"endpoint": "URL titik akhir regional.",
+					"region": "wilayah Azure sumber daya."
+				},
+				"aws": {
+					"note": "Atur {provider} ke {providerValue}. Lebih suka OIDC melalui {configureAwsCredentials} sehingga tidak ada rahasia berumur panjang yang disimpan — ekspor langkah {awsRegionEnv} untuk Anda. Untuk menggunakan kunci statis, simpan:",
+					"accessKeyId": "ID kunci akses AWS Anda.",
+					"secretAccessKey": "kunci akses rahasia AWS Anda.",
+					"regionNote": "Wilayah selalu diperlukan — atur dengan {awsRegion} atau variabel lingkungan {awsRegionEnv}."
+				},
+				"google": {
+					"note": "Atur {provider} ke {providerValue}. Autentikasi dengan kredensial JSON akun layanan atau kunci API — berikan satu persis:",
+					"credentials": "kunci JSON akun layanan (sebagai string JSON).",
+					"apiKey": "atau kunci API Google Cloud.",
+					"projectNote": "{googleProjectId} opsional disimpulkan dari kredensial saat dihilangkan."
+				}
 			},
 			"resource": {
 				"title": "Menerapkan file sumber daya",
@@ -91,8 +112,15 @@
 				"body": "Setelah alur kerja selesai, tindakan tersebut mengekspos tiga output yang dapat Anda sambungkan ke dalam deskripsi PR: {summaryTitle}, {summaryDetails}, dan {hasNewTranslations}. Ini juga menulis ringkasan Markdown ke halaman pekerjaan melalui {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Pilih penyedia terjemahan"
+		},
 		"nextSteps": {
 			"title": "Langkah berikutnya",
+			"providers": "Bandingkan setiap penyedia dan kredensialnya secara berdampingan.",
 			"configuration": "Konfigurasikan default tingkat repositori dengan {configPath}.",
 			"recipes": "Lihat resep untuk kategori monorepos, glosarium khusus, dan Penerjemah Kustom."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Permintaan Penerjemah sekarang menyematkan {apiVersion} pada kabel untuk {translate} dan {languages}. Azure SDK hanya menghormati opsi versi api tingkat klien saat kredensial diteruskan; tindakan mengautentikasi per permintaan melalui header, sehingga opsi itu diam-diam dihilangkan dan permintaan default ke versi API pratinjau yang kontrak {translate}-nya menolak isi dengan HTTP 400 (kode kesalahan {code}). Menyelesaikan perbaikan yang dimulai di 3.0.1.",
 			"v301": "{label} Isi permintaan {translate} sekarang menjadi array JSON kosong dari item {textItem}, bukan objek {inputs} yang dibungkus, cocok dengan kontrak REST v3.0. Dengan sendirinya ini tidak memulihkan terjemahan — lihat 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Multi-vendor:",
+				"intentMapping": "Pemetaan penentu maksud:"
+			},
+			"items": {
+				"multiVendor": "{label} menerjemahkan dengan {azure}, {aws}, atau {google} di balik satu permukaan API terpadu. Pilih satu penyedia per eksekusi dengan input {provider} baru; tindakan didelegasikan ke SDK yang cocok di belakang pabrik dan berperilaku identik terlepas dari vendornya. Sepenuhnya kompatibel dengan versi sebelumnya — {provider} default ke {azureValue}, sehingga alur kerja Azure yang ada tetap berfungsi tidak berubah.",
+				"aws": "Penyedia AWS Translate baru ({awsSdk}). Autentikasi dengan rantai kredensial default AWS (disarankan: OIDC melalui {configureAwsCredentials}) atau {awsAccessKeyId} / {awsSecretAccessKey} eksplisit; wilayah melalui {awsRegion} atau {awsRegionEnv}.",
+				"google": "Penyedia Google Cloud Translation baru ({googleSdk}, v2). Autentikasi dengan kredensial JSON akun layanan ({googleCredentials}) atau kunci API ({googleApiKey}); {googleProjectId} opsional.",
+				"inputs": "Input baru: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} memetakan ke {format} Google dan peta {profanityAction} ke penyamaran kata-kata kotor AWS di mana ada yang setara. Penentu khusus Azure ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) diabaikan oleh penyedia lain.",
+				"azureRelaxed": "Input permintaan Azure ({subscriptionKey}, {endpoint}, {region}) tidak lagi ditandai wajib dalam {actionYml} sehingga penyedia lain dapat dipilih — masih divalidasi saat runtime saat {provider} {azureValue}.",
+				"docs": "Halaman penyedia terjemahan baru, tab penyedia di Memulai, pemilihan penyedia di halaman Input, dan halaman beranda yang diperbarui yang mengarah dengan Azure, AWS, dan Google."
+			}
 		},
 		"v3": {
 			"labels": {

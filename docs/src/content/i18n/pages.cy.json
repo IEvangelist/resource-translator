@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Dechrau arni",
 		"eyebrow": "Gosod",
-		"lede": "Ychwanegwch ffeil llif gwaith, pwyntiwch at eich tystysgrifau Azure AI Translator, a bydd y weithred yn sganio'r repo am ffeiliau adnoddau iaith ffynhonnell ac yn allyrru brodyr a chwiorydd wedi'u cyfieithu.",
+		"heroLede": "Ychwanegwch ffeil llif gwaith, dewiswch eich darparwr cyfieithu - Azure, AWS, neu Google - ac mae'r weithred yn sganio'r repo am ffeiliau adnoddau iaith ffynhonnell ac yn allyrru brodyr a chwiorydd wedi'u cyfieithu.",
 		"steps": {
-			"provision": {
-				"title": "Darparu adnodd Azure AI Translator",
-				"body": "Creu adnodd Azure AI Translator yn y porth Azure, yna storio'r canlynol fel cyfrinachau ystorfa GitHub fel y gall y llif gwaith eu darllen:",
-				"key": "Allwedd tanysgrifio yr adnodd.",
-				"endpoint": "y URL terfynbwynt rhanbarthol.",
-				"region": "rhanbarth Azure yr adnodd."
+			"provider": {
+				"title": "Dewiswch ddarparwr cyfieithu",
+				"body": "Mae'r weithred yn gweithio gyda {azure}, {aws}, a {google} y tu ôl i un arwyneb API unedig. Dewiswch un darparwr fesul rhediad gyda'r mewnbwn {provider} - mae'r llif gwaith yn ymddwyn yr un fath waeth beth fo'r darparwr; dim ond y manylion cyflwyno sy'n wahanol. Gweler {providersLink} am gymhariaeth lawn.",
+				"azure": "Cyfieithydd Azure AI",
+				"aws": "AWS Cyfieithu",
+				"google": "Cyfieithu Cwmwl Google",
+				"providersLinkLabel": "Darparwyr cyfieithu"
 			},
-			"workflow": {
-				"title": "Ychwanegu'r llif gwaith",
-				"body": "Creu {workflowPath}:"
+			"configure": {
+				"title": "Ychwanegu manylion cyflwyno a llif gwaith",
+				"body": "Storiwch ddata eich darparwr fel cyfrinachau ystorfa GitHub, yna creu {workflowPath}. Dewiswch eich darparwr isod ar gyfer ei setup penodol - mae gweddill y llif gwaith yr un fath.",
+				"secretsHeading": "Storio'r rhain fel cyfrinachau ystorfa",
+				"workflowHeading": "Ychwanegu'r llif gwaith",
+				"azure": {
+					"note": "Azure yw'r darparwr diofyn, felly gellir hepgor {provider}. Darparwch adnodd Azure AI Translator yn y porth Azure, yna storiwch ei gymwysterau:",
+					"key": "Allwedd tanysgrifio yr adnodd.",
+					"endpoint": "y URL terfynbwynt rhanbarthol.",
+					"region": "rhanbarth Azure yr adnodd."
+				},
+				"aws": {
+					"note": "Gosod {provider} i {providerValue}. Mae'n well gennych OIDC trwy {configureAwsCredentials} fel nad oes cyfrinachau hirhoedlog yn cael eu storio - mae'r allforion cam yn {awsRegionEnv} i chi. I ddefnyddio allweddi statig yn lle hynny, storiwch:",
+					"accessKeyId": "eich ID allwedd mynediad AWS.",
+					"secretAccessKey": "eich allwedd mynediad cyfrinachol AWS.",
+					"regionNote": "Mae angen rhanbarth bob amser - gosodwch ef gyda {awsRegion} neu'r newidyn amgylchedd {awsRegionEnv}."
+				},
+				"google": {
+					"note": "Gosod {provider} i {providerValue}. Dilysu gyda naill ai credential JSON cyfrif gwasanaeth neu allwedd API - cyflenwch union un:",
+					"credentials": "allwedd JSON cyfrif gwasanaeth (fel llinyn JSON).",
+					"apiKey": "neu allwedd API Google Cloud.",
+					"projectNote": "Mae {googleProjectId} ddewisol yn cael ei gasglu o'r data cyflwyno pan gaiff ei hepgor."
+				}
 			},
 			"resource": {
 				"title": "Cyflawni ffeil adnoddau ffynhonnell",
@@ -91,8 +112,15 @@
 				"body": "Unwaith y bydd y llif gwaith yn gorffen, mae'r weithred yn datgelu tri allbwn y gallwch chi weirio i mewn i ddisgrifiad cysylltiadau cyhoeddus: {summaryTitle}, {summaryDetails}, a {hasNewTranslations}. Mae hefyd yn ysgrifennu crynodeb Markdown i'r dudalen swydd trwy {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Eiddo",
+			"aws": "Cartref",
+			"google": "Chwilio",
+			"ariaLabel": "Dewiswch ddarparwr cyfieithu"
+		},
 		"nextSteps": {
 			"title": "Camau nesaf",
+			"providers": "Cymharwch bob darparwr a'i gymwysterau ochr yn ochr.",
 			"configuration": "Ffurfweddu rhagosodiadau lefel repo gyda {configPath}.",
 			"recipes": "Gweler ryseitiau ar gyfer monorepos, geirfa arferol, a chategorïau Custom Translator."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Ceisiadau Cyfieithydd nawr pin {apiVersion} ar y wifren ar gyfer {translate} a {languages}. Mae'r Azure SDK ond yn anrhydeddu'r opsiwn api-version ar lefel cleient pan fydd credential yn cael ei basio; Mae'r weithred yn dilysu fesul cais trwy benawdau, felly cafodd yr opsiwn hwnnw ei ollwng yn dawel a cheisiadau yn ddiofyn i fersiwn API rhagolwg y gwrthododd ei gontract {translate} y corff gyda HTTP 400 (cod gwall {code}). Yn cwblhau'r atgyweiriad a ddechreuwyd yn 3.0.1.",
 			"v301": "{label} Mae'r corff cais {translate} bellach yn arae JSON noeth o eitemau {textItem} yn hytrach na gwrthrych {inputs} wedi'i lapio, sy'n cyfateb i'r contract REST v3.0. Ar ei ben ei hun nid oedd hyn yn adfer cyfieithiadau — gweler 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Aml-werthwr:",
+				"intentMapping": "Mapio penodwr bwriad:"
+			},
+			"items": {
+				"multiVendor": "{label} cyfieithu gyda {azure}, {aws}, neu {google} y tu ôl i un arwyneb API unedig. Dewiswch un darparwr fesul rhediad gyda'r mewnbwn {provider} newydd; mae'r weithred yn dirprwyo i'r SDK cyfatebol y tu ôl i ffatri ac yn ymddwyn yr un fath waeth beth fo'r gwerthwr. Yn gwbl ôl-gydnaws - {provider} yn ddiofyn i {azureValue}, felly mae llifoedd gwaith Azure presennol yn parhau i weithio heb ei newid.",
+				"aws": "Darparwr AWS Translate newydd ({awsSdk}). Dilysu gyda'r gadwyn credential diofyn AWS (argymhellir: OIDC trwy {configureAwsCredentials}) neu {awsAccessKeyId} / {awsSecretAccessKey} penodol; rhanbarth trwy {awsRegion} neu {awsRegionEnv}.",
+				"google": "Darparwr Cyfieithu Google Cloud newydd ({googleSdk}, v2). Dilysu gyda chymhwyster JSON cyfrif gwasanaeth ({googleCredentials}) neu allwedd API ({googleApiKey}); {googleProjectId} dewisol.",
+				"inputs": "Mewnbynnau newydd: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} mapiau i {format} Google a mapiau {profanityAction} i masgio profanity AWS lle mae cyfatebol yn bodoli. Mae dynodwyr Azure yn unig ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) yn cael eu hanwybyddu gan ddarparwyr eraill.",
+				"azureRelaxed": "Nid yw mewnbynnau cais Azure ({subscriptionKey}, {endpoint}, {region}) bellach wedi'u marcio yn ofynnol yn {actionYml} fel y gellir dewis darparwyr eraill - yn dal i gael eu dilysu ar amser rhedeg pan fydd {provider} yn {azureValue}.",
+				"docs": "Tudalen darparwyr Cyfieithu newydd, tabiau darparwr ar Dechrau arni, dewis darparwr ar y dudalen Mewnbynnau a thudalen gartref wedi'i hadnewyddu gydag Azure, AWS, a Google."
+			}
 		},
 		"v3": {
 			"labels": {

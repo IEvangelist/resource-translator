@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Kei te tīmata",
 		"eyebrow": "Tatūnga",
-		"lede": "Tāpirihia he kōnae rerengamahi, tohua ki ō taipitopito tuakiri Azure AI Translator, ā, mā te hohenga e karapa te repo mō ngā kōnae rauemi reo-pūtake, ā, ka whakaputa i ngā teina kua whakamāoritia.",
+		"heroLede": "Tāpirihia he kōnae rerengamahi, kōwhiria tō kaiwhakarato takatau — Azure, AWS, Google rānei — ā, ka karapa te hohenga i te repo mō ngā kōnae rauemi reo-pūtake, ā, ka whakaputa i ngā teina kua whakamāoritia.",
 		"steps": {
-			"provision": {
-				"title": "Whakarato rauemi Azure AI Translator",
-				"body": "Waihangatia tētahi rauemi Azure AI Translator ki te tomokanga Azure, kātahi ka penapena i ēnei e whai ake nei hei muna putunga GitHub kia taea ai e te rerengamahi te pānui:",
-				"key": "te kī ohaurunga mō te rauemi.",
-				"endpoint": "te URL tōpito ā-rohe.",
-				"region": "te rohe Azure o te rauemi."
+			"provider": {
+				"title": "Kōwhiria he kaituku takatau",
+				"body": "Ka mahi te hohenga me te {azure}, te {aws}, me te {google} i muri i tētahi mata API whakakotahi. Kōwhiria tētahi kaiwhakarato kotahi mō ia whakahaere me te tāuru {provider} — he ōrite te whanonga o te rerengamahi ahakoa te kaiwhakarato; ko ngā taipitopito tuakiri anake e rerekē ana. Tirohia {providersLink} mō tētahi tauritenga katoa.",
+				"azure": "Azure AI Translator",
+				"aws": "Whakamāori AWS",
+				"google": "Whakawhitinga Kapua Google",
+				"providersLinkLabel": "Ngā kaituku takatau"
 			},
-			"workflow": {
-				"title": "Tāpirihia te rerengamahi",
-				"body": "Waihanga {workflowPath}:"
+			"configure": {
+				"title": "Tāpirihia ngā taipitopito tuakiri me tētahi rerengamahi",
+				"body": "Rokiroki i ngā taipitopito tuakiri o tō kaiwhakarato hei muna putunga GitHub, kātahi ka waihanga {workflowPath}. Tīpakohia tō kaiwhakarato i raro nei mō tōna tatūnga motuhake - he ōrite te toenga o te rerengamahi.",
+				"secretsHeading": "Penapenatia ēnei hei muna putunga",
+				"workflowHeading": "Tāpirihia te rerengamahi",
+				"azure": {
+					"note": "Ko Azure te kaiwhakarato taunoa, nō reira ka aweretia pea {provider}. Whakaratohia tētahi rauemi Azure AI Translator ki te tomokanga Azure, kātahi ka penapena i ōna pūkenga:",
+					"key": "te kī ohaurunga mō te rauemi.",
+					"endpoint": "te URL tōpito ā-rohe.",
+					"region": "te rohe Azure o te rauemi."
+				},
+				"aws": {
+					"note": "Tautuhia {provider} ki {providerValue}. He pai ake ki te OIDC mā te {configureAwsCredentials} kia kore ai e penapenatia ngā mea ngaro roa - ka {awsRegionEnv} te kaweake hipanga māu. Hei whakamahi kē i ngā kī pateko, penapenatia:",
+					"accessKeyId": "tō ID kī uru AWS.",
+					"secretAccessKey": "tō kī uru muna AWS.",
+					"regionNote": "E hiahiatia ana tētahi rohe i ngā wā katoa — tautuhia ki te {awsRegion}, ki te taurangi taiao {awsRegionEnv} rānei."
+				},
+				"google": {
+					"note": "Tautuhia {provider} ki {providerValue}. Whakamotuhēhētia ki tētahi taipitopito tuakiri JSON pūkete ratonga, ki tētahi kī API rānei — homai kia kotahi:",
+					"credentials": "he kī JSON pūkete-ratonga (hei aho JSON).",
+					"apiKey": "tētahi kī Google Cloud API rānei.",
+					"projectNote": "Ina aweretia tētahi {googleProjectId} kōwhiringa mai i te taipitopito tuakiri."
+				}
 			},
 			"resource": {
 				"title": "Tukua he kōnae rauemi pūtake",
@@ -91,8 +112,15 @@
 				"body": "Ka mutu te rerengamahi, ka whakaaturia e te hohenga e toru ngā huaputa ka taea e koe te waea ki tētahi whakaahuatanga PR: {summaryTitle}, {summaryDetails}, me {hasNewTranslations}. Ka tuhi hoki i tētahi whakarāpopototanga Markdown ki te whārangi mahi mā te {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Kōwhiria he kaituku takatau"
+		},
 		"nextSteps": {
 			"title": "Ngā tūmahi panuku",
+			"providers": "Whakatauritea ia kaiwhakarato me ōna taipitopito tuakiri ki te taha.",
 			"configuration": "Whirihoratia ngā taunoa taumata-repo ki te {configPath}.",
 			"recipes": "Tirohia ngā tohutohu mō ngā monorepos, ngā papakupu ritenga, me ngā kāwai Kaiwhakamāori Ritenga."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Ngā tono Kaiwhakamāori ināianei kia pine {apiVersion} ki te waea mō ngā {translate} me ngā {languages}. Ka whakahonoretia anake e te Azure SDK te kōwhiringa putanga api-taumata-kiritaki ina tukuna he taipitopito tuakiri; ka whakamotuhēhētia te hohenga mō ia tono mā ngā pane, nā reira i whakataka puku taua kōwhiringa, ā, ka taunoa ngā tono ki tētahi putanga API arokite nāna te kirimana {translate} i whakakāhore i te tinana ki HTTP 400 (waehere hapa {code}). Ka whakaoti i te whakatika i tīmataria i te 3.0.1.",
 			"v301": "{label} Ko te tinana tono {translate} ināianei he huānga JSON noa iho o ngā tūemi {textItem}, kaua ko te ahanoa {inputs} kua takaia, e ōrite ana ki te kirimana REST v3.0. Kāore tēnei i whakaora i ngā whakamāoritanga — tirohia te 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Kaihoko-maha:",
+				"intentMapping": "Whakamaheretanga pūpūtā-ūnga:"
+			},
+			"items": {
+				"multiVendor": "{label} whakamāori mā te {azure}, te {aws}, te {google} rānei i muri i tētahi mata API whakakotahi. Kōwhiria tētahi kaiwhakarato kotahi mō ia whakahaere me te tāuru {provider} hōu; ka tautapa te hohenga ki te SDK ōrite i muri i tētahi wheketere, ā, he ōrite te whanonga ahakoa te kaihoko. He hototahi whakamuri katoa — {provider} taunoa ki te {azureValue}, nā reira ka mahi tonu ngā rerengamahi Azure tīariari.",
+				"aws": "Kaiwhakarato Whakamāori AWS hōu ({awsSdk}). Whakamotuhēhētia ki te mekameka taipitopito tuakiri taunoa AWS (e taunakitia ana: OIDC mā te {configureAwsCredentials}) {awsAccessKeyId} / {awsSecretAccessKey} mārama rānei; rohe mā te {awsRegion} {awsRegionEnv} rānei.",
+				"google": "Kaiwhakarato Whakawhitinga Kapua Google hōu ({googleSdk}, v2). Whakamotuhēhētia ki tētahi taipitopito tuakiri JSON pūkete ratonga ({googleCredentials}), ki tētahi kī API rānei ({googleApiKey}); kōwhiringa {googleProjectId}.",
+				"inputs": "Ngā tāurunga hōu: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} mahere ki ngā mahere {format} a Google me ngā mahere {profanityAction} ki te hīpoki whakarihariha AWS e tīari ana tētahi ōrite. Ka waihotia ngā pūpūtā Azure-anake ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) e ētahi atu kaiwhakarato.",
+				"azureRelaxed": "Kua kore ngā tāuru tono Azure ({subscriptionKey}, {endpoint}, {region}) e tohua kia hiahiatia i roto i te {actionYml} kia taea ai ētahi atu kaiwhakarato te tīpako — ka whakamanatia tonutia i te wā whakahaere ina {azureValue} {provider}.",
+				"docs": "Whārangi kaiwhakarato Whakawhitinga hōu, ripa kaiwhakarato i te Tīmatanga, tīpakonga kaiwhakarato i te whārangi Tāuru, me tētahi whārangi kāinga tāmata e ārahi ana ki Azure, AWS, me Google."
+			}
 		},
 		"v3": {
 			"labels": {

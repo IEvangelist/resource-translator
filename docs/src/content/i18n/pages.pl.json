@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Zaczynamy",
 		"eyebrow": "Przygotowanie",
-		"lede": "Dodaj plik workflow, skieruj go na swoje dane uwierzytelniające Azure AI Translator, a akcja przeskanuje repozytorium pod kątem plików zasobów języka źródłowego i wygeneruje przetłumaczone rodzeństwo.",
+		"heroLede": "Dodaj plik workflow, wybierz dostawcę tłumaczeń — Azure, AWS lub Google — a akcja skanuje repozytorium pod kątem plików zasobów w języku źródłowym i generuje przetłumaczone bratery.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "Stwórz zasób Azure AI Translator w portalu Azure, a następnie przechowuj następujące jako sekrety repozytorium GitHub, aby workflow mógł je odczytać:",
-				"key": "Klucz subskrypcyjny dla zasobu.",
-				"endpoint": "regionalny adres URL końcowy.",
-				"region": "region Azure."
+			"provider": {
+				"title": "Wybierz dostawcę tłumaczy",
+				"body": "Działanie działa z {azure}, {aws} i {google} za jedną zunifikowaną powierzchnią API. Wybierz jednego dostawcę na uruchomienie z {provider} wejściem — workflow zachowuje się identycznie niezależnie od dostawcy; Różnią się tylko kwalifikacje. Zobacz {providersLink} dla pełnego porównania.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Google Cloud Translation",
+				"providersLinkLabel": "Dostawcy tłumaczeń"
 			},
-			"workflow": {
-				"title": "Dodaj workflow",
-				"body": "Stwórz {workflowPath}:"
+			"configure": {
+				"title": "Dodaj dane uwierzytelniające i workflow",
+				"body": "Przechowuj dane uwierzytelniające swojego dostawcy jako sekrety repozytorium GitHub, a następnie utwórz {workflowPath}. Wybierz poniżej swojego dostawcę, aby uzyskać jego konkretną konfigurację — reszta procesu jest identyczna.",
+				"secretsHeading": "Przechowuj je jako tajemnice repozytorium",
+				"workflowHeading": "Dodaj workflow",
+				"azure": {
+					"note": "Azure jest domyślnym dostawcą, więc {provider} może zostać pominięty. Udostępnij zasób Azure AI Translator w portalu Azure, a następnie przechowuj jego dane uwierzytelniające:",
+					"key": "Klucz subskrypcyjny dla zasobu.",
+					"endpoint": "regionalny adres URL końcowy.",
+					"region": "region Azure."
+				},
+				"aws": {
+					"note": "Ustaw {provider} na {providerValue}. Wolej OIDC przez {configureAwsCredentials}, aby nie przechowywać długotrwałych sekretów — eksport etapu {awsRegionEnv} dla Ciebie. Aby zamiast tego używać kluczy statycznych, przechowuj:",
+					"accessKeyId": "Twój identyfikator klucza dostępu AWS.",
+					"secretAccessKey": "Twój tajny klucz dostępu do AWS.",
+					"regionNote": "Zawsze wymagany jest region — ustaw go {awsRegion} lub zmienną środowiskową {awsRegionEnv}."
+				},
+				"google": {
+					"note": "Ustaw {provider} na {providerValue}. Uwierzytelnij się za pomocą danych JSON do konta usługowego lub klucza API — podaj dokładnie jeden:",
+					"credentials": "klucz JSON na koncie serwisu (jako ciąg JSON).",
+					"apiKey": "lub klucz API Google Cloud.",
+					"projectNote": "Opcjonalny {googleProjectId} jest wywnioskowany z kwalifikacji, gdy zostanie pominięty."
+				}
 			},
 			"resource": {
 				"title": "Commituj plik zasobów źródłowych",
@@ -91,8 +112,15 @@
 				"body": "Po zakończeniu pracy akcja ujawnia trzy wyjścia, które możesz przełączyć do opisu PR: {summaryTitle}, {summaryDetails} i {hasNewTranslations}. Na stronie oferty pracy {coreSummary} zapisuje też podsumowanie Markdown."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Wybierz dostawcę tłumaczy"
+		},
 		"nextSteps": {
 			"title": "Kolejne kroki",
+			"providers": "Porównaj każdego dostawcę i jego dane uwierzytelniające obok siebie.",
 			"configuration": "Konfiguruj domyślne ustawienia na poziomie repozytorium {configPath}.",
 			"recipes": "Zobacz przepisy dotyczące monorepozycji, niestandardowych słowników oraz kategorii niestandardowych tłumaczy."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Translator prosi teraz przypięć {apiVersion} na przewód zarówno dla {translate}, jak i {languages}. Azure SDK respektuje opcję wersji API na poziomie klienta tylko wtedy, gdy dane uwierzytelniające zostaną przekazane; Akcja uwierzytelnia się na każde żądanie za pomocą nagłówków, więc ta opcja została cicho usunięta, a żądania domyślnie przechodziły do wersji API podglądowej, której {translate} kontrakt odrzucił treść z HTTP 400 (kod błędu {code}). Kończy poprawkę rozpoczętą w 3.0.1.",
 			"v301": "{label} Ciało żądań {translate} to teraz czysta tablica JSON {textItem} elementów zamiast opakowanego obiektu {inputs}, odpowiadająca kontraktowi REST z wersji 3.0. Samo w sobie nie przywróciło to tłumaczeń — zobacz 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Wielodostawcowie:",
+				"intentMapping": "Mapowanie intencji-specyfikatora:"
+			},
+			"items": {
+				"multiVendor": "{label} tłumaczyć {azure}, {aws} lub {google} za jedną zunifikowaną powierzchnią API. Wybierz jednego dostawcę na każdy uruchomienie z nowym {provider} wejściowym; akcja deleguje się do dopasowanego SDK za fabryką i zachowuje się identycznie, niezależnie od dostawcy. W pełni kompatybilny wstecznie — {provider} domyślnie {azureValue}, więc istniejące workflowy Azure działają bez zmian.",
+				"aws": "Nowy dostawca AWS Translate ({awsSdk}). Uwierzytelniaj się za pomocą domyślnego łańcucha poświadczeń AWS (zalecanego: OIDC przez {configureAwsCredentials}) lub jawnego {awsAccessKeyId} / {awsSecretAccessKey}; region przez {awsRegion} lub {awsRegionEnv}.",
+				"google": "Nowy dostawca tłumaczeń Google Cloud ({googleSdk}, wersja 2). Uwierzytelnianie za pomocą poświadczenia JSON do konta usługowego ({googleCredentials}) lub klucza API ({googleApiKey}); opcjonalne {googleProjectId}.",
+				"inputs": "Nowe wejścia: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} mapuje na {format} Google i {profanityAction} mapy na maskowanie przekleństw w AWS tam, gdzie istnieje odpowiednik. Specyfikatory dostępne wyłącznie w Azure ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) są ignorowane przez innych dostawców.",
+				"azureRelaxed": "Zgłoszenia żądań Azure ({subscriptionKey}, {endpoint}, {region}) nie są już oznaczane jako wymagane w {actionYml} więc można wybrać innych dostawców — nadal walidowane w czasie działania, gdy {provider} jest {azureValue}.",
+				"docs": "Nowa strona dostawców tłumaczy, zakładki dostawcy w trybie Rozpoczęcie, wybór dostawcy na stronie Inputs oraz odświeżona strona główna prowadząca z Azure, AWS i Google."
+			}
 		},
 		"v3": {
 			"labels": {

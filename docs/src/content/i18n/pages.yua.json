@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Chúunul",
 		"eyebrow": "Configuración",
-		"lede": "Añadir jump'éel archivo flujo meyaj ku apuntar ti' u credenciales Azure AI Translator, ka le molayil escaneará le repositorio utia'al archivos nu'ukulo'ob tin t'aano' k'aaba' yéetel emitirá láak'o'ob traducidos.",
+		"heroLede": "Añadir jump'éel archivo flujo meyaj, elegir u proveedor traducción — Azure, AWS wa Google — yéetel le asab escanea le repositorio utia'al u archivos nu'ukulo'ob t'aano' k'aaba' yéetel emite láak'o'ob traducidos.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "Crear jump'éel recurso Azure AI Translator ti' le portal Azure, ts'o'okole' almacenar le je'ela' bey secretos repositorio GitHub utia'al u flujo meyaj je'el u páajtal u xook le:",
-				"key": "le clave suscripción utia'al u recurso.",
-				"endpoint": "le URL endpoint regional.",
-				"region": "región Azure le recurso."
+			"provider": {
+				"title": "Elija jump'éel proveedor traducción",
+				"body": "Le molayil meyaj yéetel {azure}, {aws} ka {google} paach jump'éel superficie API unificada. Elegir jump'éel chéen proveedor tumen ejecutada yéetel le {provider} yaan — le flujo meyaj ku comporta idénticamente independientemente u proveedor; Chéen le credenciales difieren. Wil {providersLink} utia'al jump'éel comparación completa.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Traducción u múuyal u Google",
+				"providersLinkLabel": "Ku Páaybe'en u traducción"
 			},
-			"workflow": {
-				"title": "Añadir le flujo meyaj",
-				"body": "Crear {workflowPath}:"
+			"configure": {
+				"title": "Añadir credenciales yéetel juntúul flujo meyaj",
+				"body": "Almacenar le credenciales u proveedor bey secretos repositorio GitHub, ts'o'okole' crear {workflowPath}. Seleccione u proveedor in continuación utia'al u configuración específica — u yaalab le flujo meyaj jach idéntico.",
+				"secretsHeading": "Almacenar lelo'oba' bey secretos repositorio",
+				"workflowHeading": "Añadir le flujo meyaj",
+				"azure": {
+					"note": "Azure le proveedor tumen defecto, yo'olal {provider} ku páajtal omitir. Provisione jump'éel recurso Azure AI Translator ti' le portal Azure, ts'o'okole' almacenar u credenciales:",
+					"key": "le clave suscripción utia'al u recurso.",
+					"endpoint": "le URL endpoint regional.",
+					"region": "región Azure le recurso."
+				},
+				"aws": {
+					"note": "Ku ts'áaj {provider} {providerValue}. Prefiere OIDC yóol {configureAwsCredentials} yo'olal le ba'ax ma' u almacenan secretos chowakak kuxtal — le je'elo'oba' paso {awsRegionEnv} ti' tech. Utia'al u utilizar wach'ebo'obo' estáticas tu kúuchilo'ob, almacenar:",
+					"accessKeyId": "u ID clave muuk' AWS.",
+					"secretAccessKey": "u clave muuk' secreta AWS.",
+					"regionNote": "Mantats' k'a'abet jump'éel petenil — establecer yéetel {awsRegion} wa le variable jeets' {awsRegionEnv}."
+				},
+				"google": {
+					"note": "Ku ts'áaj {provider} {providerValue}. Autenticar ts'o'ok bixake' yéetel jump'éel mayaj - yilaje' JSON credencial wa jump'éel clave API — suministrar exactamente jump'éel:",
+					"credentials": "jump'éel clave JSON ti'-yilaje' (bey juntúul cadena JSON).",
+					"apiKey": "wa jump'éel clave API u Google Cloud.",
+					"projectNote": "Juntúul {googleProjectId} opcional u infiere ti' le credencial ken u omit."
+				}
 			},
 			"resource": {
 				"title": "Comprometer jump'éel archivo nu'ukulo'ob k'aaba'",
@@ -91,8 +112,15 @@
 				"body": "Una pakteche' kin ts'o'okok le flujo meyaj asab ye'esik óoxp'éel salidas ku páajtal cablear ti' jump'éel tsoolil PR: {summaryTitle}, {summaryDetails} ka {hasNewTranslations}. Xan ts'íib jump'éel resumen Markdown ti' u linki abas kaambal meyaj yóol {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Elija jump'éel proveedor traducción"
+		},
 		"nextSteps": {
 			"title": "Wook uláak'",
+			"providers": "Comparar Amal proveedor yéetel u credenciales tséel tu tséel.",
 			"configuration": "Configurar valores predeterminados nivel repositorio yéetel {configPath}.",
 			"recipes": "Wil recetas utia'al monorepos, glosarios personalizados yéetel categorías Custom Translator."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Traductor bejla'e' pin {apiVersion} ti' le cable utia'al u {translate} bey {languages}. Le SDK Azure chéen honra le opción api-version nivel cliente ken u yúuchul jump'éel credencial; le molayil autentica tumen j-na'akij yóol encabezados, yo'olal le opción ku k'uchul silenciosamente yéetel solicitudes tumen defecto ti' jump'éel versión previa API-versión cuyo {translate} contrato rechazó u wíinkilal yéetel HTTP 400 (código ba'alo' {code}). Kuuch le solución Káaj ti' 3.0.1.",
 			"v301": "{label} wíinkilal {translate} j-na'akij bejla'e' le jump'éel matriz JSON desnuda elementos {textItem} kúuchil jump'éel objeto {inputs} envuelto coincide yéetel le contrato v3.0 REST. Yan wéet le ba'ala' ma' restauró le traducciones — wil 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Multi-proveedor:",
+				"intentMapping": "Mapeado u especificador u intención:"
+			},
+			"items": {
+				"multiVendor": "{label} traducir yéetel {azure}, {aws} wa {google} paach jump'éel superficie API unificada. Elegir jump'éel chéen proveedor tumen ejecutada yéetel le túumben {provider} yaantal; le molayil delega le SDK coincidencia paach jump'éel fábrica yéetel ku comporta idénticamente independientemente ti' le proveedor. Jaatsatako'ob compatible tak tak paachil— {provider} predeterminada ti' {azureValue}, yo'olal le flujos meyaj existentes u Azure siguen funcionando xma' cambios.",
+				"aws": "Túumben proveedor AWS Translate ({awsSdk}). Autenticar yéetel le tsolokbal credenciales predeterminada AWS (recomendado: OIDC yóol {configureAwsCredentials}) wa explícita {awsAccessKeyId} leti' {awsSecretAccessKey}; U petenil {awsRegion} wa {awsRegionEnv}.",
+				"google": "Túumben proveedor traducción u Google Cloud ({googleSdk}, v2). Autenticar yéetel jump'éel credencial JSON ({googleCredentials}) wa jump'éel clave API ({googleApiKey}); opcional {googleProjectId}.",
+				"inputs": "Túumben entradas: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} mapas u {format} yéetel {profanityAction} mapas u mapas mapas u AWS mascaramiento lenguaje lenguaje tu'ux yaan jump'éel equivalente. Especificadores Azure-only ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) le ignorados tumen uláak' Páaybe'en.",
+				"azureRelaxed": "Le entradas solicitud Azure ({subscriptionKey}, {endpoint}, {region}) ts'o'ok ma' u marcan k'a'abet ti' {actionYml} yo'olal le ba'ax uláak' Páaybe'en páajtal u seleccionados — láayli' validados ti' k'iinil meyajta'ab ken {provider} {azureValue}.",
+				"docs": "Túumben linki abas kaambal Ku Ku Proveedor traducción, pestañas proveedor ti' Chúunul ti', selección proveedor ti' u linki abas kaambal u Entradas yéetel juntúul linki abas kaambal ku Chúunul actualizada yéetel Azure, AWS yéetel Google."
+			}
 		},
 		"v3": {
 			"labels": {

@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Te haamataraa",
 		"eyebrow": "Faanahoraa,",
-		"lede": "A tuu i te hoê putu'ite ohipa, a faatoro i te reira i ni'a i ta outou Azure AI Translator credentials, e na te ohipa e hi'opo'a i te repo no te imi i te mau pu'e parau no te mau rave'a no te reo tumu e e horo'a mai i te mau taea'e e te mau taea'e e te mau taea'e i hurihia.",
+		"heroLede": "A tuu i te hoê putu'ite ohipa, a ma'iti i ta outou faanahoraa iritiraa — Azure, AWS, e aore râ Google — e na te ohipa e hi'opo'a i te repo no te imi i te mau pu'e parau no te reo tumu e e horo'a mai i te mau taea'e e te mau taea'e i hurihia.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "A hamani i te hoê rave'a Azure AI Translator i roto i te Azure Portal, i muri iho a haaputu i te mau mea i muri nei ei mau parau huna no te haaputuraa GitHub ia nehenehe i te tereraa ohipa ia tai'o i te reira :",
-				"key": "te taviri tapa'oraa no te rave'a.",
-				"endpoint": "te URL hopea o te retioni.",
-				"region": "te tuhaa fenua Azure o te rave'a."
+			"provider": {
+				"title": "A ma'iti i te hoê taata iriti parau",
+				"body": "E ohipa teie ohipa i ni'a i te {azure}, te {aws} e te {google} i muri mai i te hoê API tahoê. A ma'iti i te hoê taata horo'a i te hororaa tata'itahi ma te faaohipa i te {provider} — hoê â huru ohipa noa'tu te taata horo'a ; e mea taa ê ana'e te mau parau faati'a. A hi'o {providersLink} no te hoê faaauraa taatoa.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Google Cloud Translation",
+				"providersLinkLabel": "Te mau taata iriti parau"
 			},
-			"workflow": {
-				"title": "A tuu i te tereraa ohipa",
-				"body": "A hamani i te {workflowPath} :"
+			"configure": {
+				"title": "A tuu i te mau parau faati'a e te hoê tereraa ohipa",
+				"body": "A haaputu i te mau parau huna a ta outou pûpû ei mau parau huna no te haaputuraa GitHub, i muri iho a hamani i te {workflowPath}. A ma'iti i ta outou faanahoraa i raro nei no ta'na faanahoraa taa ê — hoê â te toe'a o te tereraa ohipa.",
+				"secretsHeading": "A haaputu i te reira ei mau parau huna no te haaputuraa",
+				"workflowHeading": "A tuu i te tereraa ohipa",
+				"azure": {
+					"note": "O Azure te faanahoraa matauhia, no reira e nehenehe {provider} faaorehia. A horo'a i te hoê rave'a Azure AI Translator i roto i te Azure Portal, i muri iho a haaputu i to'na mau parau faati'a :",
+					"key": "te taviri tapa'oraa no te rave'a.",
+					"endpoint": "te URL hopea o te retioni.",
+					"region": "te tuhaa fenua Azure o te rave'a."
+				},
+				"aws": {
+					"note": "A tuu i te {provider} i ni'a i te {providerValue}. A ma'iti a'e i te OIDC na roto i te {configureAwsCredentials} ia ore te mau parau huna e haa {awsRegionEnv} putuhia. No te faaohipa i te mau taviri static, a haaputu :",
+					"accessKeyId": "ta outou ID no te taviri tomoraa AWS.",
+					"secretAccessKey": "ta outou taviri tomoraa huna AWS.",
+					"regionNote": "E titauhia te hoê tuhaa fenua i te mau taime atoa — a tuu i te reira i ni'a i te {awsRegion} e aore râ, te {awsRegionEnv} te vahi nohoraa."
+				},
+				"google": {
+					"note": "A tuu i te {provider} i ni'a i te {providerValue}. A haapapû na roto i te hoê parau faati'a JSON e aore râ te hoê API key — a horo'a i te hoê :",
+					"credentials": "te hoê taviri JSON (mai te hoê taura JSON).",
+					"apiKey": "e aore râ, te hoê taviri API Google Cloud.",
+					"projectNote": "E ravehia te hoê {googleProjectId} ma'itiraa mai roto mai i te parau faati'a ia faaorehia."
+				}
 			},
 			"resource": {
 				"title": "Commit a source resource file",
@@ -91,8 +112,15 @@
 				"body": "Ia oti ana'e te tereraa ohipa, e faaite mai te ohipa e toru ohipa ta outou e nehenehe e tu'ati i roto i te hoê faataaraa PR : {summaryTitle}, {summaryDetails}, e {hasNewTranslations}. E papa'i atoa te reira i te hoê haapotoraa no te Markdown i ni'a i te api ohipa na roto i te {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "A ma'iti i te hoê taata iriti parau"
+		},
 		"nextSteps": {
 			"title": "Te mau taahiraa i muri iho",
+			"providers": "A faaau i te mau pûpû atoa e ta'na mau parau faati'a.",
 			"configuration": "Configure repo-level defaults with {configPath}.",
 			"recipes": "A hi'o i te mau faanahoraa no te monorepos, te mau faahororaa parau taa ê, e te mau tuhaa no te iriti parau."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Te mau aniraa a te Translator i teie nei, e tuu {apiVersion} i ni'a i te niuniu no te {translate} e no te {languages}. E faatura noa te Azure SDK i te ma'itiraa api-version ia horo'ahia te hoê parau faati'a ; e haapapû te ohipa i te aniraa na roto i te mau upoo parau, no reira, ua faaru'e te reira ma'itiraa ma te muhu ore e ua tuuhia te mau aniraa i roto i te hoê {translate} hi'oraa API e ua pato'i te parau faaau i te tino na roto i te HTTP 400 (error code {code}). Faaoti i te faatitiaifaroraa tei haamata i te 3.0.1.",
 			"v301": "{label} I teie nei, ua riro te tino o te {translate} request ei faanahoraa JSON no te mau tao'a {textItem} eiaha râ te hoê tao'a puohu {inputs}, e tu'ati ra i te parau faaau REST v3.0. Aita te reira i faaho'i faahou mai i te mau huriraa — a hi'o 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "E rave rahi mau taata hoo :",
+				"intentMapping": "Hoho'a fenua no te haapapûraa i te opuaraa :"
+			},
+			"items": {
+				"multiVendor": "{label} e iriti na roto i te {azure}, te {aws}, e aore râ te {google} i muri mai i te hoê API tahoê. A ma'iti i te hoê pŭpŭ i roto i te hororaa tata'itahi e te {provider} apî ; e tuuhia te ohipa i roto i te SDK tu'ati i muri mai i te hoê fare hamaniraa tauihaa e hoê â huru noa'tu te taata hoo tauihaa. E tu'ati maitai i muri — {provider} te {azureValue}, no reira, e tere noa te mau tereraa ohipa Azure e vai ra ma te taui ore.",
+				"aws": "Faanahoraa apî no te iritiraa i te AWS ({awsSdk}). Haapapûraa na roto i te AWS default credential chain (faaitoitohia : OIDC via {configureAwsCredentials}) e aore râ, te {awsAccessKeyId} / {awsSecretAccessKey} ; na roto i te {awsRegion} e aore râ {awsRegionEnv}.",
+				"google": "Faanahoraa apî no te iritiraa i te Google Cloud ({googleSdk}, v2). Haapapû na roto i te hoê parau faati'a JSON ({googleCredentials}) e aore râ, te hoê API key ({googleApiKey}) ; ma'itiraa {googleProjectId}.",
+				"inputs": "Te mau parau apî : {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} te mau hoho'a fenua i ni'a i te {format} a Google e te {profanityAction} i te mau hoho'a fenua no te tapo'i i te mau parau faufau a te AWS mai te mea te vai ra te hoê tu'atiraa. Aita te tahi atu mau pûpû e tau'a nei i te mau faataaraa Azure ana'e ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}).",
+				"azureRelaxed": "Aita te mau aniraa Azure ({subscriptionKey}, {endpoint}, {region}) i tapa'o-faahou-hia i roto i te {actionYml} ia nehenehe te tahi atu mau pûpû e ma {azureValue} {provider}'itihia.",
+				"docs": "Te api apî no te mau taata horo'a iritiraa, te mau ripa no te feia horo'a i ni'a i te haamataraa, te ma'itiraa i te mau rave'a i ni'a i te api Inputs, e te hoê api matamua faaapîhia e Azure, AWS e Google."
+			}
 		},
 		"v3": {
 			"labels": {

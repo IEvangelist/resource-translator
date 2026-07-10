@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Pagsisimula",
 		"eyebrow": "Pag-setup",
-		"lede": "Magdagdag ng isang file ng daloy ng trabaho, ituro ito sa iyong mga kredensyal ng Azure AI Translator, at i-scan ng pagkilos ang repo para sa mga file ng mapagkukunan ng pinagmulan ng wika at maglabas ng mga isinalin na kapatid.",
+		"heroLede": "Magdagdag ng isang file ng daloy ng trabaho, piliin ang iyong provider ng pagsasalin - Azure, AWS, o Google - at ang pagkilos ay nag-scan ng repo para sa mga file ng mapagkukunan ng pinagmulan ng wika at naglalabas ng mga isinalin na kapatid.",
 		"steps": {
-			"provision": {
-				"title": "Paglalaan ng mapagkukunan ng Azure AI Translator",
-				"body": "Lumikha ng isang mapagkukunan ng Azure AI Translator sa Azure portal, pagkatapos ay mag-imbak ng mga sumusunod bilang mga lihim ng repositoryo ng GitHub upang mabasa ng daloy ng trabaho ang mga ito:",
-				"key": "Ang susi ng subscription para sa mapagkukunan.",
-				"endpoint": "Ang URL ng Endpoint ng Rehiyon.",
-				"region": "Ang rehiyon ng Azure ng mapagkukunan."
+			"provider": {
+				"title": "Pumili ng isang tagapagbigay ng pagsasalin",
+				"body": "Ang pagkilos ay gumagana sa {azure}, {aws}, at {google} sa likod ng isang pinag-isang API surface. Pumili ng isang solong provider sa bawat run gamit ang input ng {provider} - ang daloy ng trabaho ay kumikilos nang magkapareho anuman ang provider; Ang mga kredensyal lamang ang naiiba. Tingnan ang {providersLink} para sa isang kumpletong paghahambing.",
+				"azure": "Azure AI Translator",
+				"aws": "Email Address *",
+				"google": "Pagsasalin ng Google Cloud",
+				"providersLinkLabel": "Mga tagapagbigay ng pagsasalin"
 			},
-			"workflow": {
-				"title": "Idagdag ang daloy ng trabaho",
-				"body": "Lumikha ng {workflowPath}:"
+			"configure": {
+				"title": "Magdagdag ng mga kredensyal at isang daloy ng trabaho",
+				"body": "Mag-imbak ng mga kredensyal ng iyong provider bilang mga lihim ng repositoryo ng GitHub, pagkatapos ay lumikha ng {workflowPath}. Piliin ang iyong provider sa ibaba para sa tukoy na pag-setup nito - ang natitirang bahagi ng daloy ng trabaho ay magkapareho.",
+				"secretsHeading": "Itabi ang mga ito bilang mga lihim ng repositoryo",
+				"workflowHeading": "Idagdag ang daloy ng trabaho",
+				"azure": {
+					"note": "Ang Azure ay ang default na provider, kaya maaaring alisin {provider}. Maglalaan ng isang mapagkukunan ng Azure AI Translator sa Azure portal, pagkatapos ay mag-imbak ng mga kredensyal nito:",
+					"key": "Ang susi ng subscription para sa mapagkukunan.",
+					"endpoint": "Ang URL ng Endpoint ng Rehiyon.",
+					"region": "Ang rehiyon ng Azure ng mapagkukunan."
+				},
+				"aws": {
+					"note": "Itakda {provider} sa {providerValue}. Mas gusto ang OIDC sa pamamagitan ng {configureAwsCredentials} upang walang pangmatagalang lihim na naka-imbak - ang hakbang na pag-export ay {awsRegionEnv} para sa iyo. Upang magamit ang mga static key sa halip, mag-imbak:",
+					"accessKeyId": "ang iyong AWS access key ID.",
+					"secretAccessKey": "Ang iyong lihim na susi sa pag-access sa AWS.",
+					"regionNote": "Ang isang rehiyon ay palaging kinakailangan - itakda ito sa {awsRegion} o ang variable ng kapaligiran ng {awsRegionEnv}."
+				},
+				"google": {
+					"note": "Itakda {provider} sa {providerValue}. Magpatunay gamit ang alinman sa isang kredensyal ng JSON ng service-account o isang API key - magbigay ng eksaktong isa:",
+					"credentials": "isang service account JSON key (bilang isang string ng JSON).",
+					"apiKey": "o isang Google Cloud API key.",
+					"projectNote": "Ang isang opsyonal na {googleProjectId} ay hinuha mula sa kredensyal kapag tinanggal na."
+				}
 			},
 			"resource": {
 				"title": "Mag-commit ng source resource file",
@@ -91,8 +112,15 @@
 				"body": "Kapag natapos na ang daloy ng trabaho, inilalantad ng pagkilos ang tatlong output na maaari mong i-wire sa isang paglalarawan ng PR: {summaryTitle}, {summaryDetails}, at {hasNewTranslations}. Nagsusulat din ito ng buod ng Markdown sa pahina ng trabaho sa pamamagitan ng {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Pumili ng isang tagapagbigay ng pagsasalin"
+		},
 		"nextSteps": {
 			"title": "Mga susunod na hakbang",
+			"providers": "Ihambing ang bawat provider at ang mga kredensyal nito nang magkatabi.",
 			"configuration": "I-configure ang mga default na antas ng repo gamit ang {configPath}.",
 			"recipes": "Tingnan ang mga recipe para sa mga monorepos, pasadyang talasalitaan, at mga kategorya ng Pasadyang Tagasalin."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Ang mga kahilingan sa tagasalin ay i-pin na ngayon ang {apiVersion} sa wire para sa parehong {translate} at {languages}. Iginagalang lamang ng Azure SDK ang pagpipilian sa bersyon ng API sa antas ng kliyente kapag ipinasa ang isang kredensyal; ang pagkilos ay nagpapatunay sa bawat kahilingan sa pamamagitan ng mga header, kaya ang pagpipiliang iyon ay tahimik na nahulog at ang mga kahilingan ay default sa isang bersyon ng preview API na ang kontrata ng {translate} ay tinanggihan ang katawan gamit ang HTTP 400 (error code {code}). Kumpletuhin ang pag-aayos na nagsimula sa 3.0.1.",
 			"v301": "{label} Ang katawan ng kahilingan sa {translate} ay isang hubad na JSON array ng mga item ng {textItem} sa halip na isang nakabalot na {inputs} na bagay, na tumutugma sa v3.0 REST kontrata. Sa sarili nitong hindi nito naibalik ang mga pagsasalin - tingnan ang 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Multi-vendor:",
+				"intentMapping": "Pagmamapa ng layunin-specifier:"
+			},
+			"items": {
+				"multiVendor": "{label} isalin gamit ang {azure}, {aws}, o {google} sa likod ng isang pinag-isang ibabaw ng API. Pumili ng isang solong provider sa bawat run gamit ang bagong input ng {provider}; ang aksyon ay nagdedelega sa pagtutugma ng SDK sa likod ng isang pabrika at kumikilos nang magkapareho anuman ang vendor. Ganap na pabalik na katugma - {provider} default sa {azureValue}, kaya ang mga umiiral na daloy ng trabaho ng Azure ay patuloy na gumagana nang hindi nagbabago.",
+				"aws": "Bagong tagapagbigay ng AWS Translate ({awsSdk}). Magpatunay gamit ang default na kadena ng kredensyal ng AWS (inirerekomenda: OIDC sa pamamagitan ng {configureAwsCredentials}) o malinaw na {awsAccessKeyId} / {awsSecretAccessKey}; rehiyon sa pamamagitan ng {awsRegion} o {awsRegionEnv}.",
+				"google": "Bagong tagapagbigay ng Pagsasalin ng Google Cloud ({googleSdk}, v2). Magpatunay gamit ang isang kredensyal ng JSON ng service-account ({googleCredentials}) o isang API key ({googleApiKey}); opsyonal na {googleProjectId}.",
+				"inputs": "Mga bagong input: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} mga mapa sa {format} ng Google at {profanityAction} mapa sa AWS bastos na masking kung saan umiiral ang isang katumbas. Ang mga tumutukoy lamang sa Azure ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) ay hindi pinansin ng iba pang mga provider.",
+				"azureRelaxed": "Ang mga input ng kahilingan ng Azure ({subscriptionKey}, {endpoint}, {region}) ay hindi na minarkahan na kinakailangan sa {actionYml} upang mapili ang iba pang mga provider - napatunayan pa rin sa runtime kapag {azureValue} {provider}.",
+				"docs": "Bagong pahina ng mga provider ng pagsasalin, mga tab ng provider sa Pagsisimula, pagpili ng provider sa pahina ng Mga Input, at isang na-refresh na home page na nangunguna sa Azure, AWS, at Google."
+			}
 		},
 		"v3": {
 			"labels": {

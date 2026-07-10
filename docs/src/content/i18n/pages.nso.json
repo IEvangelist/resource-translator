@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Go thoma",
 		"eyebrow": "Tlhomo",
-		"lede": "Add a workflow file, point it at your Azure AI Translator credentials, and the action will scan the repo for source-language resource files and emit translated siblings.",
+		"heroLede": "Oketša faele ya mošomo, kgetha mofani wa gago wa phetolelo — Azure, AWS, goba Google — gomme tiro e sekaseka repo ya difaele tša methopo ya polelo ya mothopo gomme e ntšha bana babo rena bao ba fetoletšwego.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "Create an Azure AI Translator resource in the Azure portal, then store the following as GitHub repository secrets so the workflow can read them:",
-				"key": "Senotlelo sa sengwalwa sa sengwalwa.",
-				"endpoint": "Lego Ninjago Endpoint URL",
-				"region": "Selete sa Azure."
+			"provider": {
+				"title": "Kgetha mofetoledi",
+				"body": "The action works with {azure}, {aws}, and {google} behind one unified API surface. Pick a single provider per run with the {provider} input — the workflow behaves identically regardless of provider; ke fela ditaodišosengwalo tše di fapafapanego. Lebelela {providersLink} go bapetša ka botlalo.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Google Cloud Translation",
+				"providersLinkLabel": "Bafetoledi"
 			},
-			"workflow": {
-				"title": "Add the workflow",
-				"body": "Hlama {workflowPath}:"
+			"configure": {
+				"title": "Add credentials and a workflow",
+				"body": "Boloka boitsebišo bja mofani wa gago bjalo ka diphiri tša polokelo ya GitHub, gomme o hlame {workflowPath}. Select your provider below for its specific setup — the rest of the workflow is identical.",
+				"secretsHeading": "Boloka tše bjalo ka diphiri tša polokelo",
+				"workflowHeading": "Add the workflow",
+				"azure": {
+					"note": "Azure ke moabi yo a fošagetšego, ka fao {provider} ka tlogelwa. Fana ka mothopo wa Azure AI Translator ka gare ga portal ya Azure, gomme o boloke mangwalo a yona:",
+					"key": "Senotlelo sa sengwalwa sa sengwalwa.",
+					"endpoint": "Lego Ninjago Endpoint URL",
+					"region": "Selete sa Azure."
+				},
+				"aws": {
+					"note": "Go {provider} {providerValue}. Kgetha OIDC ka {configureAwsCredentials} gore go se be le diphiri tša lebaka le letelele tše di bolokwago — kgato ya diromelwantle e {awsRegionEnv} go wena. Go diriša dinotlelo tše di sa fetogego, boloka:",
+					"accessKeyId": "Your AWS Access Key ID.",
+					"secretAccessKey": "Your AWS Secret Access Key",
+					"regionNote": "A region is always required — set it with {awsRegion} or the {awsRegionEnv} environment variable."
+				},
+				"google": {
+					"note": "Go {provider} {providerValue}. Authenticate with either a service-account JSON credential or an API key — provide exactly one:",
+					"credentials": "Senotlelo sa JSON sa akhaonte ya tirelo (bjalo ka thapo ya JSON).",
+					"apiKey": "goba senotlelo sa Google Cloud API.",
+					"projectNote": "Setifikeiti sa boikgethelo se {googleProjectId} tšewa go tšwa go setifikeiti ge se tlogetšwe."
+				}
 			},
 			"resource": {
 				"title": "Commit a source resource file",
@@ -91,8 +112,15 @@
 				"body": "Ge mošomo o fedile, tiro e utolla ditšweletšwa tše tharo tšeo o ka di kgokaganyago ka tlhalošo ya PR: {summaryTitle}, {summaryDetails} le {hasNewTranslations}. Gape e ngwala kakaretšo ya Markdown mo letlakaleng la mošomo ka {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Kgetha mofetoledi"
+		},
 		"nextSteps": {
 			"title": "Dikgato tše di latelago",
+			"providers": "Bapetša motšweletši yo mongwe le yo mongwe le motšweletši yo mongwe le yo mongwe.",
 			"configuration": "Configure repo-level defaults with {configPath}.",
 			"recipes": "See recipes for monorepos, custom glossaries, and Custom Translator categories."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Translator requests now pin {apiVersion} on the wire for both {translate} and {languages}. Azure SDK e hlompha fela kgetho ya maemo a client api-version ge setifikeiti se fetile; Tiro e tiišetša kgopelo ka dihlogo, ka fao kgetho yeo e ile ya tlogelwa ka setu gomme dikgopelo di ile tša fetolwa go version ya API ya go lebelela yeo konteraka ya {translate} e gannego mmele ka HTTP 400 (khoutu ya phošo {code}). Completes the fix started in 3.0.1.",
 			"v301": "{label} The {translate} request body is now a bare JSON array of {textItem} items instead of a wrapped {inputs} object, matching the v3.0 REST contract. Ka boyona se ga se sa bušetša diphetolelo — bona 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Barekiši ba bantši:",
+				"intentMapping": "Intent-specifier mapping:"
+			},
+			"items": {
+				"multiVendor": "{label} fetolela ka {azure}, {aws}, goba {google} ka morago ga bokagodimo bjo bo kopantšwego bja API. Kgetha moabi o tee ka lebelo le lengwe le le lengwe ka ditsenyo tše mpsha tša {provider}; the action delegates to the matching SDK behind a factory and behaves identically regardless of vendor. Fully backward compatible — {provider} defaults to {azureValue}, so existing Azure workflows keep working unchanged.",
+				"aws": "Mofetoledi yo mofsa wa AWS ({awsSdk}). Netefatša ka ketane ya boitsebišo ya AWS (e šišintšwego: OIDC ka {configureAwsCredentials}) goba {awsAccessKeyId} / {awsSecretAccessKey}; Selete sa {awsRegion} goba {awsRegionEnv}.",
+				"google": "New Google Cloud Translation Provider ({googleSdk}, v2). Netefatša ka setifikeiti sa JSON sa akhaonte ya tirelo ({googleCredentials}) goba senotlelo sa API ({googleApiKey}); Boikgethelo {googleProjectId}",
+				"inputs": "Ditsenyo tše mpsha: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} maps to Google's {format} and {profanityAction} maps to AWS profanity masking where an equivalent exists. Ditlhalošo tša Azure fela ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) di hlokomologilwe ke baabi ba bangwe.",
+				"azureRelaxed": "Azure request inputs ({subscriptionKey}, {endpoint}, {region}) are no longer marked required in {actionYml} so other providers can be selected — still verified at runtime when {provider} is {azureValue}.",
+				"docs": "New Translation providers page, provider tabs on Getting started, provider selection on the Inputs, and a refreshed home page leading with Azure, AWS, and Google."
+			}
 		},
 		"v3": {
 			"labels": {

@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Okutandika",
 		"eyebrow": "Okuteekateeka",
-		"lede": "Add a workflow file, point it at your Azure AI Translator credentials, and the action will scan the repo for source-language resource files and emit translated siblings.",
+		"heroLede": "Add a workflow file, choose your translation provider — Azure, AWS, or Google — and the action scans the repo for source-language resource files and emits translated siblings.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "Create an Azure AI Translator resource in the Azure portal, then store the following as GitHub repository secrets so the workflow can read them:",
-				"key": "The subscription key for the resource.",
-				"endpoint": "the regional endpoint URL.",
-				"region": "Bye bye Azure region."
+			"provider": {
+				"title": "Londa omuvvuunuzi w'ebitabo",
+				"body": "Ekikolwa kino kikola ne {azure}, {aws}, ne {google} emabega w'ekizimbe ekimu ekya API. Pick a single provider per run with the {provider} input — the workflow behaves identically regardless of provider; Ebiwandiiko byokka byawukana. Laba {providersLink} okugeraageranya mu bujjuvu.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Google Cloud Translation",
+				"providersLinkLabel": "Abavvuunuzi"
 			},
-			"workflow": {
-				"title": "Add the workflow",
-				"body": "Create {workflowPath}:"
+			"configure": {
+				"title": "Add credentials and a workflow",
+				"body": "Tereka ebiwandiiko by'omuweereza wo ng'ebyama bya GitHub, oluvannyuma okole {workflowPath}. Select your provider below for its specific setup — the rest of the workflow is identical.",
+				"secretsHeading": "Zitereke ng'ebyama by'obukuumi",
+				"workflowHeading": "Add the workflow",
+				"azure": {
+					"note": "Mu ngeri y'emu, Ssekabaka Muteesa II y'omu ku bakyala abatalina mwasirizi, n'olwekyo {provider} ayinza okulemererwa okutuukiriza obuvunaanyizibwa bwe. Provide an Azure AI Translator resource in the Azure portal, then store its credentials:",
+					"key": "The subscription key for the resource.",
+					"endpoint": "the regional endpoint URL.",
+					"region": "Bye bye Azure region."
+				},
+				"aws": {
+					"note": "Set {provider} to {providerValue}. Prefer OIDC via {configureAwsCredentials} so no long-lived secrets are stored — the step exports {awsRegionEnv} for you. To use static keys instead, store:",
+					"accessKeyId": "Your AWS access key ID.",
+					"secretAccessKey": "Ekisumuluzo kyo eky'ekyama ekya AWS",
+					"regionNote": "A region is always required — set it with {awsRegion} or the {awsRegionEnv} environment variable."
+				},
+				"google": {
+					"note": "Set {provider} to {providerValue}. Authenticate with either a service-account JSON credential or an API key — provide exactly one:",
+					"credentials": "Ekisumuluzo kya JSON (nga JSON String).",
+					"apiKey": "Oba ekisumuluzo kya Google Cloud API.",
+					"projectNote": "An optional {googleProjectId} is inferred from the credential when omitted."
+				}
 			},
 			"resource": {
 				"title": "Commit a source resource file",
@@ -91,8 +112,15 @@
 				"body": "Ng'omulimu guwedde, ekikolwa kiraga ebivaamu bisatu by'osobola okukozesa mu kunnyonnyola PR: {summaryTitle}, {summaryDetails}, ne {hasNewTranslations}. It also writes a Markdown summary into the job page via {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Londa omuvvuunuzi w'ebitabo"
+		},
 		"nextSteps": {
 			"title": "Emitendera egiddako",
+			"providers": "Geraageranya buli kitongole n'ebiwandiiko byakyo ku ludda olulala.",
 			"configuration": "Configure repo-level defaults with {configPath}.",
 			"recipes": "See recipes for monorepos, custom glossaries, and Custom Translator categories."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Translator requests now pin {apiVersion} on the wire for both {translate} and {languages}. The Azure SDK only honors the client-level api-version option when a credential is passed; Ekikolwa kino kikakasa buli kusaba okuyita mu mitwe, n'olwekyo akakodyo kano kaggyibwawo mu kasirise era okusaba kwalemererwa okukyusibwa mu nkyukakyuka ya API eyagaana endagaano ya {translate} ne HTTP 400 (enkola y'ensobi {code}). Okutereeza kutandika mu 3.0.1.",
 			"v301": "{label} The {translate} request body is now a bare JSON array of {textItem} items instead of a wrapped {inputs} object, matching the v3.0 REST contract. Ku bwakyo kino tekyazzaawo kuvvuunula — laba 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Multi-vendor:",
+				"intentMapping": "Intent-specifier mapping:"
+			},
+			"items": {
+				"multiVendor": "{label} translate with {azure}, {aws}, or {google} behind one unified API surface. Pick a single provider per run with the new {provider} input; the action delegates to the matching SDK behind a factory and behaves identically regardless of vendor. Fully backward compatible — {provider} defaults to {azureValue}, so existing Azure workflows keep working unchanged.",
+				"aws": "New AWS Translate Provider ({awsSdk}). Authenticate with the AWS default credential chain (recommended: OIDC via {configureAwsCredentials}) or explicit {awsAccessKeyId} / {awsSecretAccessKey}; Mu kitundu {awsRegion} oba {awsRegionEnv}.",
+				"google": "New Google Cloud Translation provider ({googleSdk}, v2). Okukakasa ng'okozesa akawunti y'obuweereza JSON credential ({googleCredentials}) oba ekisumuluzo kya API ({googleApiKey}); Optional {googleProjectId}.",
+				"inputs": "New inputs: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} maps to Google's {format} and {profanityAction} maps to AWS profanity masking where an equivalent exists. Ebiwandiiko bya Azure byokka ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) tebikkirizibwa baweereza balala.",
+				"azureRelaxed": "Azure request inputs ({subscriptionKey}, {endpoint}, {region}) are not longer marked required in {actionYml} so other providers can be selected — still verified at runtime when {provider} is {azureValue}.",
+				"docs": "New Translation providers page, provider tabs on Getting started, provider selection on the Inputs page, and a refreshed home page leading with Azure, AWS, and Google."
+			}
 		},
 		"v3": {
 			"labels": {

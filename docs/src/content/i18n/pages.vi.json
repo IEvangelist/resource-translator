@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Bắt đầu",
 		"eyebrow": "Thành lập",
-		"lede": "Thêm tệp quy trình làm việc, trỏ tệp đó vào thông tin đăng nhập Azure AI Translator của bạn và hành động sẽ quét kho lưu trữ để tìm các tệp tài nguyên ngôn ngữ nguồn và phát ra các anh chị em đã dịch.",
+		"heroLede": "Thêm tệp quy trình làm việc, chọn nhà cung cấp dịch thuật của bạn — Azure, AWS hoặc Google — và hành động sẽ quét kho lưu trữ để tìm các tệp tài nguyên ngôn ngữ nguồn và phát ra các anh chị em đã dịch.",
 		"steps": {
-			"provision": {
-				"title": "Cung cấp tài nguyên Azure AI Translator",
-				"body": "Tạo tài nguyên Azure AI Translator trong cổng thông tin Azure, sau đó lưu trữ những thông tin sau dưới dạng bí mật kho lưu trữ GitHub để quy trình làm việc có thể đọc chúng:",
-				"key": "khóa đăng ký cho tài nguyên.",
-				"endpoint": "URL điểm cuối khu vực.",
-				"region": "khu vực Azure của tài nguyên."
+			"provider": {
+				"title": "Chọn nhà cung cấp dịch thuật",
+				"body": "Hành động này hoạt động với {azure}, {aws} và {google} đằng sau một nền tảng API hợp nhất. Chọn một nhà cung cấp duy nhất cho mỗi lần chạy với đầu vào {provider} — quy trình làm việc hoạt động giống hệt nhau bất kể nhà cung cấp nào; Chỉ có thông tin đăng nhập khác nhau. Xem {providersLink} để so sánh đầy đủ.",
+				"azure": "Trình dịch Azure AI",
+				"aws": "Dịch AWS",
+				"google": "Dịch thuật Google Cloud",
+				"providersLinkLabel": "Nhà cung cấp dịch thuật"
 			},
-			"workflow": {
-				"title": "Thêm quy trình làm việc",
-				"body": "Tạo {workflowPath}:"
+			"configure": {
+				"title": "Thêm thông tin đăng nhập và quy trình làm việc",
+				"body": "Lưu trữ thông tin đăng nhập của nhà cung cấp dưới dạng bí mật kho lưu trữ GitHub, sau đó tạo {workflowPath}. Chọn nhà cung cấp của bạn bên dưới để thiết lập cụ thể — phần còn lại của quy trình làm việc giống hệt nhau.",
+				"secretsHeading": "Lưu trữ chúng dưới dạng bí mật kho lưu trữ",
+				"workflowHeading": "Thêm quy trình làm việc",
+				"azure": {
+					"note": "Azure là nhà cung cấp mặc định, vì vậy {provider} có thể bị bỏ qua. Cung cấp tài nguyên Azure AI Translator trong cổng thông tin Azure, sau đó lưu trữ thông tin đăng nhập của tài nguyên đó:",
+					"key": "khóa đăng ký cho tài nguyên.",
+					"endpoint": "URL điểm cuối khu vực.",
+					"region": "khu vực Azure của tài nguyên."
+				},
+				"aws": {
+					"note": "Đặt {provider} thành {providerValue}. Ưu tiên OIDC qua {configureAwsCredentials} để không có bí mật tồn tại lâu dài nào được lưu trữ - bước xuất {awsRegionEnv} cho bạn. Để sử dụng khóa tĩnh, hãy lưu trữ:",
+					"accessKeyId": "ID khóa truy cập AWS của bạn.",
+					"secretAccessKey": "khóa truy cập bí mật AWS của bạn.",
+					"regionNote": "Một khu vực luôn được yêu cầu - đặt nó bằng {awsRegion} hoặc biến môi trường {awsRegionEnv}."
+				},
+				"google": {
+					"note": "Đặt {provider} thành {providerValue}. Xác thực bằng thông tin xác thực JSON tài khoản dịch vụ hoặc khóa API - cung cấp chính xác một:",
+					"credentials": "khóa JSON tài khoản dịch vụ (dưới dạng chuỗi JSON).",
+					"apiKey": "hoặc khoá API Google Cloud.",
+					"projectNote": "Một {googleProjectId} tùy chọn được suy ra từ thông tin xác thực khi bị bỏ qua."
+				}
 			},
 			"resource": {
 				"title": "Cam kết tệp tài nguyên nguồn",
@@ -91,8 +112,15 @@
 				"body": "Sau khi quy trình làm việc kết thúc, hành động sẽ hiển thị ba đầu ra mà bạn có thể kết nối vào mô tả PR: {summaryTitle}, {summaryDetails} và {hasNewTranslations}. Nó cũng viết một bản tóm tắt Markdown vào trang việc làm thông qua {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Chọn nhà cung cấp dịch thuật"
+		},
 		"nextSteps": {
 			"title": "Các bước tiếp theo",
+			"providers": "So sánh mọi nhà cung cấp và thông tin đăng nhập của nó cạnh nhau.",
 			"configuration": "Định cấu hình mặc định cấp repo với {configPath}.",
 			"recipes": "Xem công thức nấu ăn cho monorepos, bảng thuật ngữ tùy chỉnh và danh mục Trình dịch tùy chỉnh."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Yêu cầu Translator hiện ghim {apiVersion} trên dây cho cả {translate} và {languages}. Azure SDK chỉ tôn trọng tùy chọn phiên bản api cấp máy khách khi thông tin xác thực được chuyển đến; Hành động xác thực từng yêu cầu thông qua tiêu đề, do đó, tùy chọn đó đã bị loại bỏ một cách âm thầm và các yêu cầu được mặc định là phiên bản API xem trước có hợp đồng {translate} từ chối nội dung bằng HTTP 400 (mã lỗi {code}). Hoàn tất bản sửa lỗi bắt đầu trong phiên bản 3.0.1.",
 			"v301": "{label} Nội dung yêu cầu {translate} hiện là một mảng JSON trần gồm các mục {textItem} thay vì một đối tượng {inputs} được bọc, phù hợp với hợp đồng REST v3.0. Bản thân điều này không khôi phục được bản dịch — xem 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Nhiều nhà cung cấp:",
+				"intentMapping": "Ánh xạ bộ chỉ định ý định:"
+			},
+			"items": {
+				"multiVendor": "{label} dịch bằng {azure}, {aws} hoặc {google} đằng sau một nền tảng API hợp nhất. Chọn một nhà cung cấp duy nhất cho mỗi lần chạy với đầu vào {provider} mới; hành động ủy quyền cho SDK phù hợp đằng sau một nhà máy và hoạt động giống hệt nhau bất kể nhà cung cấp nào. Hoàn toàn tương thích ngược — {provider} mặc định là {azureValue}, vì vậy quy trình làm việc Azure hiện tại tiếp tục hoạt động không thay đổi.",
+				"aws": "Nhà cung cấp AWS Translate ({awsSdk}) mới. Xác thực bằng chuỗi thông tin xác thực mặc định của AWS (khuyến nghị: OIDC qua {configureAwsCredentials}) hoặc {awsAccessKeyId}/{awsSecretAccessKey} rõ ràng; khu vực thông qua {awsRegion} hoặc {awsRegionEnv}.",
+				"google": "Nhà cung cấp dịch thuật Google Cloud mới ({googleSdk}, v2). Xác thực bằng thông tin xác thực JSON tài khoản dịch vụ ({googleCredentials}) hoặc khóa API ({googleApiKey}); {googleProjectId} tùy chọn.",
+				"inputs": "Đầu vào mới: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} ánh xạ đến {format} của Google và ánh xạ {profanityAction} đến mặt nạ tục tĩu của AWS khi có ẩn thông tin tương đương. Các chỉ định chỉ dành cho Azure ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) bị các nhà cung cấp khác bỏ qua.",
+				"azureRelaxed": "Đầu vào yêu cầu Azure ({subscriptionKey}, {endpoint}, {region}) không còn được đánh dấu là bắt buộc trong {actionYml} để có thể chọn các nhà cung cấp khác — vẫn được xác thực trong thời gian chạy khi {provider} {azureValue}.",
+				"docs": "Trang nhà cung cấp dịch thuật mới, tab nhà cung cấp trên Bắt đầu, lựa chọn nhà cung cấp trên trang Đầu vào và trang chủ được làm mới dẫn đầu với Azure, AWS và Google."
+			}
 		},
 		"v3": {
 			"labels": {

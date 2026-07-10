@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "البدء",
 		"eyebrow": "الإعداد",
-		"lede": "أضف ملف سير العمل، وجهه إلى بيانات اعتماد Azure AI Translator، وسيقوم الإجراء بمسح المخزن بحثا عن ملفات موارد لغة المصدر وإرسال ملفات مترجمة.",
+		"heroLede": "أضف ملف سير العمل، واختر مزود الترجمة الخاص بك — Azure أو AWS أو Google — وستفحص الإجراء المستودع بحثا عن ملفات موارد بلغة المصدر ويرسل ملفات مترجمة.",
 		"steps": {
-			"provision": {
-				"title": "توفير مورد Azure AI Translator",
-				"body": "إنشاء مورد Azure AI Translator في بوابة Azure، ثم تخزين ما يلي كأسرار مستودعات GitHub حتى يتمكن سير العمل من قراءتها:",
-				"key": "مفتاح الاشتراك للمورد.",
-				"endpoint": "رابط نقطة النهاية الإقليمية.",
-				"region": "منطقة Azure الخاصة بالمصدر."
+			"provider": {
+				"title": "اختر مزود ترجمة",
+				"body": "يعمل الإجراء مع {azure} و {aws} و {google} خلف واجهة برمجة تطبيقات موحدة واحدة. اختر مزودا واحدا لكل تشغيل مع مدخل {provider} — حيث يتصرف سير العمل بشكل متطابق بغض النظر عن المزود؛ لكن المؤهلات تختلف. انظر {providersLink} للمقارنة الكاملة.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "ترجمة جوجل كلاود",
+				"providersLinkLabel": "مزودو الترجمة"
 			},
-			"workflow": {
-				"title": "أضف سير العمل",
-				"body": "أنشئ {workflowPath}:"
+			"configure": {
+				"title": "أضف بيانات الاعتماد وسير عمل",
+				"body": "قم بتخزين بيانات اعتماد مزود الخدمة كأسرار مستودعات GitHub، ثم أنشئ {workflowPath}. اختر مزودك أدناه لإعداد الإعداد الخاص به — بقية سير العمل متطابق.",
+				"secretsHeading": "احتفظ بهذه الأسرار كمستودع",
+				"workflowHeading": "أضف سير العمل",
+				"azure": {
+					"note": "Azure هو المزود الافتراضي، لذا قد يتم حذف {provider}. توفير مورد Azure AI Translator في بوابة Azure، ثم تخزين بيانات اعتماده:",
+					"key": "مفتاح الاشتراك للمورد.",
+					"endpoint": "رابط نقطة النهاية الإقليمية.",
+					"region": "منطقة Azure الخاصة بالمصدر."
+				},
+				"aws": {
+					"note": "اضبط {provider} على {providerValue}. أفضل OIDC عبر {configureAwsCredentials} حتى لا تخزن الأسرار الطويلة الأمد — {awsRegionEnv} التصدير لك. لاستخدام المفاتيح الثابتة بدلا من ذلك، خزن:",
+					"accessKeyId": "معرف مفتاح الوصول الخاص بك إلى AWS.",
+					"secretAccessKey": "مفتاح الوصول السري الخاص بك على AWS.",
+					"regionNote": "المنطقة مطلوبة دائما — إضبطها مع {awsRegion} أو متغير البيئة {awsRegionEnv}."
+				},
+				"google": {
+					"note": "اضبط {provider} على {providerValue}. قم بالتحقق إما باستخدام بيانات اعتماد JSON لحساب الخدمة أو مفتاح API — وفر واحدا فقط:",
+					"credentials": "مفتاح JSON لحساب الخدمة (كسلسلة JSON).",
+					"apiKey": "أو مفتاح Google Cloud API.",
+					"projectNote": "يتم استنتاج {googleProjectId} اختياري من الشهادة عند حذفها."
+				}
 			},
 			"resource": {
 				"title": "التزام ملف مورد المصدر",
@@ -91,8 +112,15 @@
 				"body": "بمجرد انتهاء سير العمل، يكشف الإجراء عن ثلاثة مخرجات يمكنك دمجها في وصف العلاقات العامة: {summaryTitle}، {summaryDetails}، و {hasNewTranslations}. كما يكتب ملخص ماركداون في صفحة الوظيفة عبر {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "جوجل",
+			"ariaLabel": "اختر مزود ترجمة"
+		},
 		"nextSteps": {
 			"title": "الخطوات التالية",
+			"providers": "قارن كل مزود ومؤهلاته جنبا إلى جنب.",
 			"configuration": "قم بتكوين الإعدادات الافتراضية على مستوى المستودع باستخدام {configPath}.",
 			"recipes": "راجع وصفات المونوريبوس، والقواميس المخصصة، وفئات المترجمين المخصصين."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "طلبات المترجم {label} الآن تثبت {apiVersion} على السلك لكل من {translate} {languages}. يحترم Azure SDK خيار إصدار API على مستوى العميل فقط عند تمرير بيانات الاعتماد؛ يقوم الإجراء بالتحقق من كل طلب عبر رؤوس، لذا تم إسقاط هذا الخيار بشكل صامت، وأصبحت الطلبات افتراضية إلى نسخة واجهة برمجة تطبيقات معاينة يرفض عقد {translate} النص الذي يحتوي على HTTP 400 (رمز خطأ {code}). يكمل الإصلاح الذي بدأ في الإصدار 3.0.1.",
 			"v301": "{label} أصبح جسم الطلب {translate} الآن مصفوفة JSON خالية من عناصر {textItem} بدلا من كائن {inputs} مغلف، يطابق عقد REST الإصدار 3.0. هذا وحده لم يعيد الترجمات — انظر 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "متعدد البائعين:",
+				"intentMapping": "تعيين محدد النية:"
+			},
+			"items": {
+				"multiVendor": "{label} الترجمة باستخدام {azure} أو {aws} أو {google} خلف واجهة برمجة تطبيقات موحدة واحدة. اختر مزودا واحدا لكل تشغيل مع مدخل {provider} الجديد؛ يتم تفويض الفعل إلى مجموعة تطوير التطوير المطابقة خلف المصنع ويتصرف بنفس الطريقة بغض النظر عن البائع. متوافق بالكامل مع الإصدارات السابقة — {provider} افتراضيا على {azureValue}، لذا تستمر سير العمل الحالي في Azure دون تغيير.",
+				"aws": "مزود جديد لترجمة AWS ({awsSdk}). المصادقة باستخدام سلسلة بيانات الاعتماد الافتراضية AWS (الموصى بها: OIDC عبر {configureAwsCredentials}) أو {awsAccessKeyId} / {awsSecretAccessKey} الصريحة؛ المنطقة عبر {awsRegion} أو {awsRegionEnv}.",
+				"google": "مزود ترجمة Google Cloud الجديد ({googleSdk}، v2). التحقق من المصادقة باستخدام بيانات اعتماد JSON لحساب الخدمة ({googleCredentials}) أو مفتاح API ({googleApiKey})؛ اختياري {googleProjectId}.",
+				"inputs": "المدخلات الجديدة: {provider}، {awsAccessKeyId}، {awsSecretAccessKey}، {awsRegion}، {googleApiKey}، {googleCredentials}، {googleProjectId}.",
+				"intentMapping": "{label} {textType} يتناسب مع {format} جوجل و {profanityAction} يتناسب مع إخفاء الألفاظ النابية على AWS حيث يوجد ما يعادلها. يتم تجاهل محددات Azure فقط ({categoryId}، {apiVersion}، {profanityMarker}، {allowFallback}) من قبل مزودين آخرين.",
+				"azureRelaxed": "لم تعد مدخلات طلبات Azure ({subscriptionKey}، {endpoint}، {region}) محددة بأنها مطلوبة في {actionYml} بحيث يمكن اختيار مزودين آخرين — ولا تزال تتحقق منه أثناء التشغيل عندما يكون {provider} {azureValue}.",
+				"docs": "صفحة مزودي الترجمة الجدد، تبويبات المزودين عند البدء، اختيار المزودين في صفحة المدخلات، والصفحة الرئيسية المحدثة التي تدعم Azure وAWS وGoogle."
+			}
 		},
 		"v3": {
 			"labels": {

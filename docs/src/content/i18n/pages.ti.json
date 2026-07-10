@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "ምጅማር",
 		"eyebrow": "ምድላው",
-		"lede": "ናይ ስራሕ መስርሕ ፋይል ወሲኽካ ናብ Azure AI Translator መረጋገጺኻ ኣመልክት እቲ ተግባር ድማ ነቲ ሪፖ ምንጪ ቛንቋ ምንጪ ፋይላት ስካን ይገብረሉ ከምኡውን እተተርጐመ ኣሕዋትን ኣሓትን የውጽእ።",
+		"heroLede": "ናይ ስራሕ ፋይል ወሲኽካ ኣወሃሃዲ ትርጕም — Azure AWS ወይ Google ምረጽ — እቲ ተግባር ድማ ነቲ ሪፖ ምንጪ ቛንቋ ምንጪ ፋይላት ይምርምሮ እሞ እተተርጐመ ኣሕዋትን ኣሓትን የውጽእ።",
 		"steps": {
-			"provision": {
-				"title": "Azure AI Translator ምንጪ ምድላው",
-				"body": "ኣብ Azure ፖርታል Azure AI Translator ምንጪ ፍጠር፣ ድሕሪኡ እቲ መስርሕ ምእንቲ ኼንብቦ ነዚ ዚስዕብ ከም ምስጢራት መኽዘን GitHub ኣቐምጦ፦",
-				"key": "እቲ መፍትሕ ናይ መኽፈቲ መኽሰብ።",
-				"endpoint": "ዞባዊ ናይ መወዳእታ ነጥቢ URL።",
-				"region": "እቲ ምንጪ ዞባ ኣዙሬ።"
+			"provider": {
+				"title": "ኣወሃሃዲ ትርጕም ምረጽ",
+				"body": "እቲ ተግባር ምስ {azure} {aws} ከምኡውን {google} ብድሕሪ ሓደ ሓድነት ዘለዎ ገጽ ኤፒአይ እዩ ዚዓዪ። ኣብ ነፍሲ ወከፍ ጕያ {provider} መእተዊ ዘለዎ ሓደ ኣቕራቢ ምረጽ — እቲ ኣወሃሃዲ ብዘየገድስ እቲ መስርሕ ተመሳሳሊ እዩ ዚመያየጥ፣ እቲ መረጋገጺ ጥራይ እዩ ዚፈላለ። ምሉእ ንጽጽር {providersLink} ርአ።",
+				"azure": "Azure AI ተርጓሚ",
+				"aws": "AWS ተርጓሚ",
+				"google": "ጉግል ክላውድ ተርጓሜ",
+				"providersLinkLabel": "ኣቕረብቲ ትርጕም"
 			},
-			"workflow": {
-				"title": "ነቲ መስርሕ ምውሳኽ",
-				"body": "ፍጠር {workflowPath}"
+			"configure": {
+				"title": "መረጋገጺ ወረቓቕትን ኣሰራርሓን ወሲኽካ",
+				"body": "ነቲ ናይ ኣቕራቢኻ ምስክር ወረቓቕቲ ከም ምስጢራት መኽዘን GitHub ኣቐምጦ፣ ድሕሪኡ {workflowPath} ፍጠር። ንፍሉይ ኣሰራርሓኡ ኣብ ታሕቲ ዘሎ ኣወሃሃዲኻ ምረጽ — እቲ ዝተረፈ መስርሕ ተመሳሳሊ እዩ።",
+				"secretsHeading": "ነዚ ምስጢራት እዚ ኸም መኽዘን ጌርካ ኣቐምጦ",
+				"workflowHeading": "ነቲ መስርሕ ምውሳኽ",
+				"azure": {
+					"note": "Azure ነባሪ ወሃቢ ስለ ዝዀነ {provider} ኪጠፍእ ይኽእል እዩ። ኣብ Azure ፖርታል ናይ Azure AI ተርጓሚ ምንጪ ኣዳሉ፣ ድሕሪኡ ነቲ መረጋገጺኡ ኣቐምጦ፦",
+					"key": "እቲ መፍትሕ ናይ መኽፈቲ መኽሰብ።",
+					"endpoint": "ዞባዊ ናይ መወዳእታ ነጥቢ URL።",
+					"region": "እቲ ምንጪ ዞባ ኣዙሬ።"
+				},
+				"aws": {
+					"note": "{provider} ናብ {providerValue} ኣቐምጥ። ንነዊሕ እዋን ዚጸንሕ ምስጢራት ምእንቲ ኸይዕቀብ OIDC ብ {configureAwsCredentials} ምረጽ — እቲ ናብ ወጻኢ ዚልእኽ ደረጃ ንዓኻ {awsRegionEnv} እዩ። ኣብ ክንዳኡስ ስታቲክ መፍትሕ ንምጥቃም ከምዚ ዚስዕብ ኣቐምጦ፦",
+					"accessKeyId": "ናይ AWS መእተዊ መፍትሕ መንነት።",
+					"secretAccessKey": "ናይ AWS ምስጢራዊ መእተዊ መኽፈቲ።",
+					"regionNote": "ሓደ ዞባ ኵሉ ሳዕ የድሊ — {awsRegion} ወይ {awsRegionEnv} ኣከባቢ ተለዋዋጢ ኣቐምጦ።"
+				},
+				"google": {
+					"note": "{provider} ናብ {providerValue} ኣቐምጥ። ብሰርቪስ-ሕሳብ JSON ምስክር ወረቐት ወይ ብኤፒአይ መፍትሒ ኣረጋግጽ — ልክዕ ሓደ ኣቕርብ፦",
+					"credentials": "ናይ ኣገልግሎት ሕሳብ JSON ቁልፍ (ከም ሕብረቁምፊ JSON)።",
+					"apiKey": "ወይ ናይ ጉግል ክላውድ ኤፒአይ መኽፈቲ።",
+					"projectNote": "ኣማራጺ {googleProjectId} ምስ ተወድአ ካብ መረጋገጺ ይውሰድ።"
+				}
 			},
 			"resource": {
 				"title": "ምንጪ ምንጪ ፋይል ምፍጻም",
@@ -91,8 +112,15 @@
 				"body": "እቲ መስርሕ ምስ ተወድአ እቲ ተግባር ኣብ ናይ PR መግለጺ ከተእትዎ እትኽእል ሰለስተ ውፅኢታት የቃልዕ - {summaryTitle} {summaryDetails} ከምኡውን {hasNewTranslations}። ብተወሳኺ'ውን ኣብ ናይ ስራሕ ገጽ ናይ {coreSummary} ጽማቝ ጽሑፍ ይጽሕፍ።"
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "ጉግል",
+			"ariaLabel": "ኣወሃሃዲ ትርጕም ምረጽ"
+		},
 		"nextSteps": {
 			"title": "ቀጺሉ ዘሎ ስጕምትታት",
+			"providers": "ንነፍሲ ወከፍ ኣቕረብትን ንመንነቱን ኣብ ጐድኒ",
 			"configuration": "ናይ ሪፖ-ደረጃ ጉድለታት ምስ {configPath} ኣቀራረብ።",
 			"recipes": "ንሞኖሬፖ፣ ብጁ መዝገበ-ቃላትን ብጁ ተርጓሚ ምድባትን ዚኸውን ኣሰራርሓ ርአ።"
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} ተርጓሚ ሕጂ ን {translate} ኰነ ን {languages} {apiVersion} ኣብ ገመድ ይሰቕሎ ኣሎ። Azure SDK ነቲ ናይ ዓማዊል ደረጃ api-version ኣማራጺ ምስክር ወረቓቕቲ ምስ ሓለፈ ጥራይ እዩ ዜኽብር። እቲ ተግባር ንነፍሲ ወከፍ ሕቶ ብኣርእስትታት ኣቢሉ የረጋግጽ፣ ስለዚ እቲ ኣማራጺ ብጸጥታ ተደርበየ እቲ {translate} ውዕል ነቲ ኣካል ምስ HTTP 400 (ናይ ጌጋ ኮድ {code}) ዝነጸጎ ቅድመ-እይታ ኤፒአይ-ቨርሽን ጠለብዎ። እቲ መአረምታ ኣብ 3.0.1 ዝጀመረ መአረምታ ዛዘመ።",
 			"v301": "{label} እቲ ናይ {translate} ሕቶ ኣካል ሕጂ ምስ v3.0 REST ውዕል ዚሰማማዕ ኣብ ክንዲ እተጠቕለለ {inputs} ነገር {textItem} ኣቝሑ ዝሓዘ ጥራዩ JSON እዩ። እዚ ንባዕሉ ነቲ ትርጕማት ኣይመለሰሉን — 3።0.2 ርአ።"
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "ብዙሕ-ሸቃይጣ፦",
+				"intentMapping": "ዕላማ-መለለዪ ካርታ፦"
+			},
+			"items": {
+				"multiVendor": "{label} {azure} {aws} ወይ {google} ብድሕሪ ሓደ ሓድነት ዘለዎ ገጽ ኤፒአይ ክትትርጐም ትኽእል ኢኻ። ምስ ሓድሽ {provider} መእተዊ ኣብ ነፍሲ ወከፍ ጕያ ሓደ ኣቕራቢ ምረጽ፣ እቲ ተግባር ነቲ ብድሕሪ ሓደ ፋብሪካ ዘሎ ዝሰማማዕ ኤስዲኬ ተወካሊ ሸያጢ ብዘየገድስ ድማ ተመሳሳሊ ጠባይ ኢዩ ዘለዎ። ምሉእ ብምሉእ ንድሕሪት ዚሰማማዕ — {provider} ናብ {azureValue} እዩ ዚኸይድ ስለዚ ህሉው መስርሕ Azure ከይተቐየረ ይዓዪ እዩ።",
+				"aws": "ሓድሽ ናይ AWS ተርጓሚ ኣቕራቢ ({awsSdk})። ብAWS ነባሪ ናይ ምስክር ወረቓቕቲ ሰንሰለት (ዚመከር፦ OIDC via {configureAwsCredentials}) ወይ ንጹር {awsAccessKeyId} / {awsSecretAccessKey} መረጋገጺ፣ ዞባ ብ {awsRegion} ወይ ብ {awsRegionEnv}",
+				"google": "ሓድሽ ናይ ጉግል ክላውድ ተርጓሚ ኣቕራቢ ({googleSdk} v2)። ብሰርቪስ-ሕሳብ JSON ምስክር ወረቐት ({googleCredentials}) ወይ መፍትሕ API ({googleApiKey}) መረጋገጺ ምግባር፤ ኣማራጺ {googleProjectId}።",
+				"inputs": "ሓደስቲ ኣገባባት፦ {provider} {awsAccessKeyId} {awsSecretAccessKey} {awsRegion} {googleApiKey} {googleCredentials} {googleProjectId}።",
+				"intentMapping": "{label} {textType} ካርታታት ናብ ናይ ጉግል {format} ካርታታት ከምኡውን {profanityAction} ካርታታት ናብ AWS ጽዩፍ ማስኬራ ኣብ ዝህልወሉ ቦታ። ኣዙር ጥራይ ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) ብኻልኦት ኣቕረብቲ ዕሽሽ ይብሉ።",
+				"azureRelaxed": "ናይ Azure ጠለብ መእተዊ ({subscriptionKey}, {endpoint}, {region}) ኣብ {actionYml} ምልክት ኣይግበረሉን ስለዚ ካልኦት ኣቕረብቲ ክምረጹ ይኽእሉ ኢዮም — {provider} {azureValue} ኣብ ዝዀነሉ እዋን እውን ይረጋገጽ።",
+				"docs": "ሓድሽ ኣቕረብቲ ትርጕም ገጽ ኣብ ምጅማር ናይ ኣቕረብቲ ታብለት ኣብ ገጽ መእተዊ ምርጫ ኣቕረብቲ ከምኡውን ምስ Azure፣ AWS ከምኡውን Google ዚመርሕ እተሓደሰ መበቈል ገጽ።"
+			}
 		},
 		"v3": {
 			"labels": {

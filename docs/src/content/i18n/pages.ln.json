@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Ebandeli",
 		"eyebrow": "Kobongisa",
-		"lede": "Kobakisa fichier ya workflow, lakisa yango na ba identifiants na yo ya mobongoli ya Azure AI, mpe action escanner repo mpo na ba fichiers ya ressource ya lokota ya source mpe ekobimisa bandeko oyo babongoli.",
+		"heroLede": "Kobakisa file ya workflow, pona mopesi na yo ya kobongola — Azure, AWS, to Google — mpe action ekotala repo mpo na ba fichiers ya ressource ya lokota ya source mpe ebimisi bandeko oyo babongoli.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "Bosala ressource ya mobongoli ya Azure AI na portail Azure, na nsima bomba makambo oyo elandi lokola basekele ya kobomba ya GitHub mpo ete workflow ekoka kotanga yango:",
-				"key": "Fungola ya lisungi mpo na lisungi ya",
-				"endpoint": "ya pas d'url de l'url.",
-				"region": "ya pas d'azur dans la région."
+			"provider": {
+				"title": "Poná mosaleli na yo ya mosala ya kobongola mikanda",
+				"body": "Action esalaka na {azure}, {aws}, mpe {google} nsima ya surface moko ya API moko. Pona fournisseur moko na run na input ya {provider} — workflow esalaka ndenge moko ata soki mopesi nini; Kaka ba diplômes nde ekeseni. Tala {providersLink} mpo na comparaison mobimba.",
+				"azure": "Mobongoli ya Azure AI",
+				"aws": "Traduction ya AWS",
+				"google": "Traduction ya Google Cloud",
+				"providersLinkLabel": "Basali ya babongoli"
 			},
-			"workflow": {
-				"title": "Bakisá mosala na yo",
-				"body": "Kosala {workflowPath}:"
+			"configure": {
+				"title": "Add credentials and a workflow",
+				"body": "Bomba ba identifiants ya fournisseur na yo lokola basekele ya GitHub, na nsima sala {workflowPath}. Pona mosungi na yo awa na nse mpo na kobongisa yango — mosala mosusu ezali ndenge moko.",
+				"secretsHeading": "Bomba yango lokola sekele",
+				"workflowHeading": "Bakisá mosala na yo",
+				"azure": {
+					"note": "Werrason azali mosungi ya Tshisekedi, yango wana akoki kolongola {provider} yango. Bongisa ressource ya mobongoli ya Azure AI na portail Azure, na nsima bomba ba identifiants na yango:",
+					"key": "Fungola ya lisungi mpo na lisungi ya",
+					"endpoint": "ya pas d'url de l'url.",
+					"region": "ya pas d'azur dans la région."
+				},
+				"aws": {
+					"note": "Tindá Tindá {provider} {providerValue}. Pona OIDC na nzela ya {configureAwsCredentials} mpo ete basekele ya ntango molai ebombama te — etambe ezali {awsRegionEnv} mpo na yo. Mpo na kosalela bafungola statique na esika na yango, kobomba:",
+					"accessKeyId": "Fungola ya accès na yo ya AWS.",
+					"secretAccessKey": "Fungola ya accès secret na yo ya AWS.",
+					"regionNote": "Esengeli ntango nyonso kozala na esika moko — kotya yango na {awsRegion} to na {awsRegionEnv} ya environnement."
+				},
+				"google": {
+					"note": "Tindá Tindá {provider} {providerValue}. Authenticer na identifiant ya JSON to na fungola ya API — pesa exactement moko:",
+					"credentials": "Fungola ya compte JSON (lokola nsinga ya JSON).",
+					"apiKey": "To fungola ya Google Cloud API.",
+					"projectNote": "{googleProjectId} ya kopona ezwamaka na mokanda ya ndingisa soki balongoli yango."
+				}
 			},
 			"resource": {
 				"title": "Commit a source resource file",
@@ -91,8 +112,15 @@
 				"body": "Soki mosala esili, action ekobimisa makambo misato oyo okoki kotia na description ya PR: {summaryTitle}, {summaryDetails}, mpe {hasNewTranslations}. Ekomaka mpe na mokuse na lokasa ya mosala na nzela ya {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Poná mosaleli na yo ya mosala ya kobongola mikanda"
+		},
 		"nextSteps": {
 			"title": "Makambo oyo elandi",
+			"providers": "Kokokanisa mosungi moko na moko na ba diplômes na ye esika moko.",
 			"configuration": "Configurer ba défauts ya niveau ya repo na {configPath}.",
 			"recipes": "Tala ba recettes mpo na monorepos, glossaires personnalisées, mpe catégories ya traducteur personnalisé."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Translator requests now pin {apiVersion} on the wire for both {translate} and {languages}. Azure SDK etosaka kaka option ya API ya niveau ya client soki identificatif eleki; Action ezali authentification na bosengi na nzela ya headers, yango wana option ebwakaki na kimya mpe bosengi ekendeki na API version ya preview oyo contrat na yango ya {translate} eboyaki nzoto na HTTP 400 (code ya libunga {code}). Kobongisa ebandaki na 3.0.1.",
 			"v301": "{label} Nzoto ya bosengi ya {translate} ekomi sikoyo liboke ya JSON ya biloko {textItem} na esika ya eloko ya {inputs} ekangamá, eyokani na contrat ya v3.0 REST. Yango moko ezongisaki babongoli te — tala 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Koteka mingi:",
+				"intentMapping": "Mapping ya intention-specifier:"
+			},
+			"items": {
+				"multiVendor": "{label} kobongola na {azure}, {aws}, to {google} nsima ya surface moko ya API. Pona mopesi moko na moko na nzela ya {provider} ya sika; Action etindaka SDK oyo ekokani na nsima ya usine mpe esalaka makambo ndenge moko ata soki moteki azali te. Compatiblement arrièrement compatible — {provider} défaut à {azureValue}, donc ba workflows ya Azure oyo ezali ezali kokoba kosala te.",
+				"aws": "Traduction ya sika ya AWS ({awsSdk}). Authenticer na chaine ya identifiant ya défaut ya AWS (recommandé: OIDC via {configureAwsCredentials}) to explicite {awsAccessKeyId} / {awsSecretAccessKey}; Na nzela ya {awsRegion} to {awsRegionEnv}.",
+				"google": "Fournisseur ya sika ya Google Cloud Translation ({googleSdk}, v2). Authenticer na compte ya service JSON credential ({googleCredentials}) to fungola ya API ({googleApiKey}); Kopona {googleProjectId}",
+				"inputs": "Entrées ya sika: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} bakarte ya {format} ya Google mpe bakarte ya {profanityAction} na masque ya maloba ya kofinga ya AWS soki ekokani na yango. Ba spécifications kaka ya Azure ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) eyebani te na ba fournisseur misusu.",
+				"azureRelaxed": "Input ya demande ya Azure ({subscriptionKey}, {endpoint}, {region}) ezali lisusu te elembo esengami na {actionYml} mpo ete ba fournisseur mosusu bakoki koponama — endimami kaka na ntango ya exécution ntango {provider} ezali {azureValue}.",
+				"docs": "Lokasa ya ba fournisseurs ya sika ya kobongola, ba onglets ya fournisseur na Kobanda, kopona ba fournisseur na lokasa ya Inputs, mpe lokasa ya ebandeli ya sika oyo ekambami na Azure, AWS, mpe Google."
+			}
 		},
 		"v3": {
 			"labels": {

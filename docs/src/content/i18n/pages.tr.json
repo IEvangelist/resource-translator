@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Başlamak",
 		"eyebrow": "Kurulum",
-		"lede": "Bir iş akışı dosyası ekleyin, Azure AI Translator kimlik bilgilerinize yönlendirin, işlem depoda kaynak dili kaynak dosyalarını tarar ve çevrilmiş kardeşler gönderir.",
+		"heroLede": "Bir iş akışı dosyası ekleyin, çeviri sağlayıcınızı seçin — Azure, AWS veya Google — ve bu işlem depoda kaynak dili kaynak dosyalarını tarar ve çevrilmiş kardeşler gönderir.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "Azure portalında bir Azure AI Translator kaynağı oluşturun, ardından aşağıdaki bilgileri GitHub depo sırları olarak depolayın ki iş akışı bunları okuyabilsin:",
-				"key": "Kaynağın abonelik anahtarı.",
-				"endpoint": "bölgesel uç nokta URL'si.",
-				"region": "kaynağın Azure bölgesi."
+			"provider": {
+				"title": "Bir çeviri sağlayıcısı seçin",
+				"body": "Bu işlem, {azure}, {aws} ve {google} tek bir birleşik API yüzeyi arkasında çalışır. Her çalışma için {provider} girdisi ile tek bir sağlayıcı seçin — iş akışı sağlayıcıdan bağımsız olarak aynı şekilde davranır; Sadece kimlik bilgileri farklıdır. Tam karşılaştırma için {providersLink} bakınız.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Google Bulut Çevirisi",
+				"providersLinkLabel": "Çeviri sağlayıcıları"
 			},
-			"workflow": {
-				"title": "İş akışını ekle",
-				"body": "Oluşturun {workflowPath}:"
+			"configure": {
+				"title": "Kimlik bilgileri ve iş akışı ekleyin",
+				"body": "Sağlayıcınızın kimlik bilgilerini GitHub deposu sırları olarak saklayıp {workflowPath} oluşturun. Aşağıda sağlayıcınızı seçin, özel kurulumu için — iş akışının geri kalanı aynıdır.",
+				"secretsHeading": "Bunları depo sırları olarak sakla",
+				"workflowHeading": "İş akışını ekle",
+				"azure": {
+					"note": "Azure varsayılan sağlayıcıdır, bu yüzden {provider} atlanabilir. Azure portalında bir Azure AI Translator kaynağı sağla, ardından kimlik bilgilerini sakla:",
+					"key": "Kaynağın abonelik anahtarı.",
+					"endpoint": "bölgesel uç nokta URL'si.",
+					"region": "kaynağın Azure bölgesi."
+				},
+				"aws": {
+					"note": "{provider} {providerValue} ayarlayın. OIDC'yi {configureAwsCredentials} üzerinden tercih edin ki uzun ömürlü sırlar saklanmaz — adım ihracat sizin için {awsRegionEnv}. Statik anahtarları kullanmak için şunları kaydedin:",
+					"accessKeyId": "AWS erişim anahtarı kimliğiniz.",
+					"secretAccessKey": "AWS gizli erişim anahtarınız.",
+					"regionNote": "Her zaman bir bölge gereklidir — onu {awsRegion} veya {awsRegionEnv} ortam değişkeniyle ayarlayın."
+				},
+				"google": {
+					"note": "{provider} {providerValue} ayarlayın. Hizmet hesabı JSON kimlik bilgisi veya API anahtarı ile kimlik doğrulama yapın — tam olarak birini verin:",
+					"credentials": "bir servis-hesap JSON anahtarı (JSON dizisi olarak).",
+					"apiKey": "veya Google Cloud API anahtarı olabilir.",
+					"projectNote": "Isteğe bağlı bir {googleProjectId}, belge çıkarıldığında çıkarılır."
+				}
 			},
 			"resource": {
 				"title": "Bir kaynak kaynak dosyası commit et",
@@ -91,8 +112,15 @@
 				"body": "İş akışı bittiğinde, eylem PR açıklamasına bağlayabileceğiniz üç çıktıyı ortaya çıkarır: {summaryTitle}, {summaryDetails} ve {hasNewTranslations}. Ayrıca iş sayfasına {coreSummary} aracılığıyla Markdown özeti yazıyor."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Bir çeviri sağlayıcısı seçin"
+		},
 		"nextSteps": {
 			"title": "Sonraki adımlar",
+			"providers": "Her sağlayıcıyı ve kimlik bilgilerini yan yana karşılaştırın.",
 			"configuration": "Repo seviyesi varsayılanları {configPath} ile yapılandırın.",
 			"recipes": "Monorepo, özel sözlükler ve Özel Çevirici kategorileri için tariflere bakınız."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Çevirici istekleri artık hem {translate} hem de {languages} için {apiVersion} kabloya sabitleniyor. Azure SDK, yalnızca bir kimlik doğrulaması geçtiğinde istemci düzeyindeki API sürüm seçeneğini kabul eder; Eylem, başlıklar aracılığıyla her isteğe kimlik doğrulama yapar, bu yüzden bu seçenek sessizce düşürüldü ve istekler varsayılan olarak HTTP 400 ile (hata kodu {code}) gövdeyi reddeden {translate} sözleşmesi olan bir önizleme API sürümüne geçti. 3.0.1'de başlatılan düzeltmeyi tamamlıyor.",
 			"v301": "{label} {translate} istek gövdesi artık sarılmış {inputs} nesnesi yerine {textItem} öğeden oluşan çıplak bir JSON dizisi haline gelmiştir ve v3.0 REST sözleşmesine uyulmaktadır. Tek başına bu çevirileri geri getirmedi — bkz. 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Çok tedarikçili:",
+				"intentMapping": "Niyet-belirtici eşleme:"
+			},
+			"items": {
+				"multiVendor": "{label} tek bir birleşik API yüzeyinin arkasında {azure}, {aws} veya {google} ile çevirebilir. Her çalışma için yeni {provider} girisiyle tek bir sağlayıcı seçin; eylem, fabrikanın arkasındaki eşleşen SDK'ya devredilir ve tedarikçi ne olursa olsun aynı şekilde davranır. Tamamen geriye doğru uyumlu — {provider} varsayılan olarak {azureValue} kullanıyor, böylece mevcut Azure iş akışları değişmeden çalışmaya devam ediyor.",
+				"aws": "Yeni AWS Translate sağlayıcısı ({awsSdk}). AWS varsayılan kimlik zinciri (önerilen: OIDC via {configureAwsCredentials}) veya açık {awsAccessKeyId} / {awsSecretAccessKey} ile kimlik doğrulama; {awsRegion} veya {awsRegionEnv} yoluyla bölge oluşturuyor.",
+				"google": "Yeni Google Bulut Çeviri sağlayıcısı ({googleSdk}, v2). Hizmet hesabı JSON kimliği ({googleCredentials}) veya API anahtarı ({googleApiKey}) ile kimlik doğrulama; isteğe bağlı {googleProjectId}.",
+				"inputs": "Yeni girdiler: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} haritalar Google'ın {format}'ine, eşdeğeri olan yerlerde ise AWS küfürleri maskeleme haritalarına {profanityAction} haritalar. Yalnızca Azure için olan belirticiler ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) diğer sağlayıcılar tarafından göz ardı edilir.",
+				"azureRelaxed": "Azure isteği girdileri ({subscriptionKey}, {endpoint}, {region}) artık {actionYml}'de gerekli olarak işaretlenmiyor, böylece diğer sağlayıcılar seçilebiliyor — yine de {provider} {azureValue} olduğunda çalışma zamanında doğrulanıyor.",
+				"docs": "Yeni Çeviri Sağlayıcıları sayfası, Başlangıç sayfasında sağlayıcı sekmeleri, Girişler sayfasında sağlayıcı seçimi ve Azure, AWS ile Google ile başta yenilenmiş ana sayfa."
+			}
 		},
 		"v3": {
 			"labels": {

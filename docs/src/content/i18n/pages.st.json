@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Ho qala",
 		"eyebrow": "Tlhophiso",
-		"lede": "Kenya faele ea ts'ebetso, e supe ho lifaele tsa hau tsa Azure AI Translator, 'me ketso e tla skena repo bakeng sa lifaele tsa mohloli oa mohloli le ho ntša banab'eso ba fetolelitsoeng.",
+		"heroLede": "Kenya faele ea ts'ebetso, khetha mofani oa hau oa phetolelo — Azure, AWS, kapa Google — 'me ketso e lekola repo bakeng sa lifaele tsa mohloli oa mohloli ebe e ntša banab'eso ba fetolelitsoeng.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "Theha mohloli oa Azure AI Translator ho portal ea Azure, ebe u boloka tse latelang e le liphiri tsa polokelo ea GitHub e le hore ts'ebetso e ka li bala:",
-				"key": "Senotlolo sa ho ngolisa bakeng sa sesebelisoa.",
-				"endpoint": "URL ea sebaka sa ho qetela",
-				"region": "Sebaka sa Azure sa Resource."
+			"provider": {
+				"title": "Khetha mofani oa phetolelo",
+				"body": "Ketso e sebetsa le {azure}, {aws} le {google} ka mor'a bokaholimo bo le bong bo kopaneng ba API. Khetha mofani a le mong ka ho matha ka ho kenya {provider} — ts'ebetso ea mosebetsi e itšoara ka mokhoa o ts'oanang ho sa tsotelehe mofani; Ke litlhaloso feela tse fapane. Sheba {providersLink} bakeng sa papiso e felletseng.",
+				"azure": "Azure AI Translator",
+				"aws": "Phetolelo ea AWS",
+				"google": "Phetolelo ea Google Cloud",
+				"providersLinkLabel": "Bafani ba phetolelo"
 			},
-			"workflow": {
-				"title": "Eketsa ts'ebetso ea ts'ebetso",
-				"body": "Theha {workflowPath}:"
+			"configure": {
+				"title": "Eketsa li-credentials le ts'ebetso ea mosebetsi",
+				"body": "Boloka mangolo a mofani oa hau e le liphiri tsa polokelo ea GitHub, ebe u theha {workflowPath}. Khetha mofani oa hau ka tlase bakeng sa tlhophiso ea eona e ikhethileng — ts'ebetso eohle ea ts'ebetso e ts'oana.",
+				"secretsHeading": "Boloka tsena e le liphiri tsa polokelo",
+				"workflowHeading": "Eketsa ts'ebetso ea ts'ebetso",
+				"azure": {
+					"note": "Azure ke mofani ea fosahetseng, ka hona {provider} ka tloheloa. Fana ka mohloli oa mofetoleli oa Azure AI ho portal ea Azure, ebe u boloka mangolo a eona:",
+					"key": "Senotlolo sa ho ngolisa bakeng sa sesebelisoa.",
+					"endpoint": "URL ea sebaka sa ho qetela",
+					"region": "Sebaka sa Azure sa Resource."
+				},
+				"aws": {
+					"note": "Beha {provider} ho {providerValue}. Khetha OIDC ka {configureAwsCredentials} e le hore ho se be liphiri tse phelang nako e telele tse bolokiloeng — mohato o romelloang kantle ho naha o {awsRegionEnv} oa hau. Ho sebelisa linotlolo tsa static ho e-na le hoo, boloka:",
+					"accessKeyId": "ID ea hau ea senotlolo sa AWS Access",
+					"secretAccessKey": "Senotlolo sa hau sa phihlello ea lekunutu sa AWS",
+					"regionNote": "Sebaka se lula se hlokahala — se behe ka {awsRegion} kapa {awsRegionEnv} tikoloho e fetohang."
+				},
+				"google": {
+					"note": "Beha {provider} ho {providerValue}. Netefatsa ka setifikeiti sa JSON sa ak'haonte ea ts'ebeletso kapa senotlolo sa API — fana ka e le 'ngoe:",
+					"credentials": "Senotlolo sa JSON sa ak'haonte ea ts'ebeletso (joalo ka khoele ea JSON).",
+					"apiKey": "Kapa senotlolo sa Google Cloud API.",
+					"projectNote": "{googleProjectId} ea boikhethelo e kenngoa ho tsoa ho setifikeiti ha e tlositsoe."
+				}
 			},
 			"resource": {
 				"title": "Etsa file ea mohloli oa mohloli",
@@ -91,8 +112,15 @@
 				"body": "Hang ha ts'ebetso e felile, ketso e pepesa liphetho tse tharo tseo u ka li hokahanyang le tlhaloso ea PR: {summaryTitle}, {summaryDetails} le {hasNewTranslations}. E boetse e ngola kakaretso ea Markdown leqepheng la mosebetsi ka {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Khetha mofani oa phetolelo"
+		},
 		"nextSteps": {
 			"title": "Mehato e latelang",
+			"providers": "Bapisa mofani e mong le e mong le lintlha tsa hae ka lehlakoreng le leng.",
 			"configuration": "Ho hlophisa liphoso tsa boemo ba repo ka {configPath}.",
 			"recipes": "Sheba lipe tsa li-monorepos, li-glossaries tsa moetlo, le lihlopha tsa mofetoleli oa tloaelo."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Likopo tsa mofetoleli joale li beha {apiVersion} ka terata bakeng sa {translate} le {languages}. Azure SDK e hlompha feela khetho ea mofuta oa API ea boemo ba moreki ha netefatso e fetisoa; ketso e netefatsa kopo ka lihlooho, ka hona khetho eo e ile ea lahloa ka khutso mme likopo li ile tsa fetoloa ho mofuta oa API oa ponelopele oo konteraka ea {translate} e hanneng 'mele ka HTTP 400 (khoutu ea phoso {code}). Ka mor'a moo, tokiso e qalile ho 3.0.1.",
 			"v301": "{label} 'Mele oa kopo ea {translate} joale ke JSON e se nang letho ea lintho tse {textItem} ho fapana le ntho ea {inputs} e phuthetsoeng, e lumellanang le konteraka ea v3.0 REST. Ka boeona sena ha sea ka sa khutlisa liphetolelo — bona 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Barekisi ba bangata:",
+				"intentMapping": "'Mapa oa Intention-Specifier:"
+			},
+			"items": {
+				"multiVendor": "{label} fetolela ka {azure}, {aws} kapa {google} ka mor'a bokaholimo bo le bong bo kopaneng ba API. Khetha mofani a le mong ka ho matha ka ho kenya {provider} e ncha; ketso e romella SDK e tsamaellanang ka mor'a fektheri mme e itšoara ka mokhoa o ts'oanang ho sa tsotelehe morekisi. E lumellana ka botlalo — {provider} e sa fetoheng ho {azureValue}, ka hona li-workflows tse teng tsa Azure li lula li sebetsa li sa fetohe.",
+				"aws": "Mofani e mocha oa Phetolelo ea AWS ({awsSdk}) Netefatsa ka ketane ea boits'oaro ea AWS (e khothalletsoang: OIDC ka {configureAwsCredentials}) kapa {awsAccessKeyId} / {awsSecretAccessKey} e hlakileng; Sebaka sa marang-rang ka {awsRegion} kapa {awsRegionEnv}.",
+				"google": "Mofani oa phetolelo e ncha ea Google Cloud ({googleSdk}, v2). Netefatsa ka setifikeiti sa JSON sa ak'haonte ea ts'ebeletso ({googleCredentials}) kapa senotlolo sa API ({googleApiKey}); Boikhethelo {googleProjectId}",
+				"inputs": "Lisebelisoa tse ncha: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} limmapa ho limmapa tsa {format} tsa Google le limmapa tsa {profanityAction} ho AWS ho koahela litšila moo ho lekanang ho leng teng. Litlhaloso tsa Azure feela ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) li hlokomolohuoa ke bafani ba bang.",
+				"azureRelaxed": "Lisebelisoa tsa kopo ea Azure ({subscriptionKey}, {endpoint}, {region}) ha li sa tšoauoa ho hlokahala ho {actionYml} kahoo bafani ba bang ba ka khethoa — ba ntse ba netefalitsoe ka nako ea ts'ebetso ha {provider} {azureValue}.",
+				"docs": "Leqephe le lecha la bafani ba phetolelo, li-tab tsa mofani ho Ho qala, khetho ea mofani leqepheng la Inputs, le leqephe la lehae le nchafalitsoeng le etellang pele ka Azure, AWS le Google."
+			}
 		},
 		"v3": {
 			"labels": {

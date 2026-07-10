@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Bidu",
 		"eyebrow": "Setup",
-		"lede": "Żid fajl ta' workflow, ippuntah lejn il-kredenzjali tiegħek ta' Azure AI Translator, u l-azzjoni tiskannja r-repo għal fajls ta' riżorsi fil-lingwa sors u toħroġ aħwa tradotti.",
+		"heroLede": "Żid fajl ta' workflow, agħżel il-fornitur tat-traduzzjoni tiegħek — Azure, AWS, jew Google — u l-azzjoni tiskannja r-repo għal fajls ta' riżorsi fil-lingwa sors u toħroġ aħwa tradotti.",
 		"steps": {
-			"provision": {
-				"title": "Provisiona riżorsa Azure AI Translator",
-				"body": "Oħloq riżorsa ta' Azure AI Translator fil-portal Azure, imbagħad ħażen dawn li ġejjin bħala sigrieti tar-repożitorju ta' GitHub sabiex il-fluss tax-xogħol ikun jista' jaqrahom:",
-				"key": "iċ-ċavetta tas-sottoskrizzjoni għar-riżorsa.",
-				"endpoint": "l-URL tal-punt finali reġjonali.",
-				"region": "ir-reġjun Azure tar-riżorsa."
+			"provider": {
+				"title": "Agħżel fornitur ta' traduzzjoni",
+				"body": "L-azzjoni taħdem ma' {azure}, {aws}, u {google} wara wiċċ wieħed ta' API unifikat. Agħżel fornitur wieħed għal kull run bl-input {provider} — il-fluss tax-xogħol jaġixxi bl-istess mod irrispettivament mill-fornitur; biss il-kredenzjali jvarjaw. Ara {providersLink} għal paragun sħiħ.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Traduzzjoni tal-Cloud ta' Google",
+				"providersLinkLabel": "Fornituri tat-traduzzjoni"
 			},
-			"workflow": {
-				"title": "Żid il-fluss tax-xogħol",
-				"body": "Oħloq {workflowPath}:"
+			"configure": {
+				"title": "Żid kredenzjali u fluss tax-xogħol",
+				"body": "Ħażen il-kredenzjali tal-fornitur tiegħek bħala sigrieti tar-repository ta' GitHub, imbagħad oħloq {workflowPath}. Agħżel il-fornitur tiegħek hawn taħt għall-setup speċifiku tiegħu — il-bqija tal-fluss tax-xogħol hija identika.",
+				"secretsHeading": "Ħażen dawn bħala sigrieti ta' repożitorju",
+				"workflowHeading": "Żid il-fluss tax-xogħol",
+				"azure": {
+					"note": "Azure huwa l-fornitur default, għalhekk jista' {provider} jitħalla barra. Ipprovdi riżorsa ta' Azure AI Translator fil-portal Azure, imbagħad ħażen il-kredenzjali tagħha:",
+					"key": "iċ-ċavetta tas-sottoskrizzjoni għar-riżorsa.",
+					"endpoint": "l-URL tal-punt finali reġjonali.",
+					"region": "ir-reġjun Azure tar-riżorsa."
+				},
+				"aws": {
+					"note": "Issettja {provider} għal {providerValue}. Ippreferi OIDC permezz ta' {configureAwsCredentials} sabiex ma jinħażnu l-ebda sigrieti li jdumu għal żmien twil — l-esportazzjonijiet tal-passi {awsRegionEnv} għalik. Biex tuża ċwievet statiċi minflok, ħażen:",
+					"accessKeyId": "l-ID tal-ċavetta ta' aċċess AWS tiegħek.",
+					"secretAccessKey": "iċ-ċavetta sigrieta ta' aċċess AWS tiegħek.",
+					"regionNote": "Reġjun dejjem huwa meħtieġ — issettjah b'{awsRegion} jew il-varjabbli {awsRegionEnv} tal-ambjent."
+				},
+				"google": {
+					"note": "Issettja {provider} għal {providerValue}. Awtentika b'kredenzjali JSON ta' kont tas-servizz jew b'ċavetta API — ipprovdi eżattament waħda:",
+					"credentials": "ċavetta JSON ta' kont tas-servizz (bħala stringa JSON).",
+					"apiKey": "jew ċavetta API ta' Google Cloud.",
+					"projectNote": "Jidher {googleProjectId} fakultattiv mill-kredenzjali meta jitħalla barra."
+				}
 			},
 			"resource": {
 				"title": "Commit ta' fajl ta' sors ta' riżorsa",
@@ -91,8 +112,15 @@
 				"body": "Ladarba l-fluss tax-xogħol jispiċċa, l-azzjoni turi tliet outputs li tista' tħaddem f'deskrizzjoni PR: {summaryTitle}, {summaryDetails}, u {hasNewTranslations}. Jikteb ukoll sommarju ta' Markdown fil-paġna tax-xogħol permezz ta' {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Agħżel fornitur ta' traduzzjoni"
+		},
 		"nextSteps": {
 			"title": "Il-passi li jmiss",
+			"providers": "Qabbil kull fornitur u l-kredenzjali tiegħu ħdejn xulxin.",
 			"configuration": "Ikkonfigura d-deċiżi tal-livell ta' repo-level b'{configPath}.",
 			"recipes": "Ara riċetti għal monorepos, glossarji personalizzati, u kategoriji ta' Traduttur Personalizzat."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "It-talbiet {label} Translator issa jpoġġu {apiVersion} fuq il-wajer kemm għal {translate} kif ukoll għal {languages}. L-Azure SDK jirrispetta biss l-għażla ta' verżjoni tal-API fil-livell tal-klijent meta kredenzjali tiġi mgħadda; l-azzjoni tawtentika kull talba permezz ta' headers, għalhekk dik l-għażla ġiet waqfet b'mod silenzjuż u t-talbiet kienu default għal verżjoni API ta' preview li l-kuntratt tal-{translate} tagħha rrifjuta l-korp b'HTTP 400 (kodiċi ta' żball {code}). Jtemm it-soluzzjoni li bdiet f'3.0.1.",
 			"v301": "{label} Il-ġisem tal-{translate} tal-talba issa huwa array JSON vojt ta' oġġetti ta' {textItem} minflok oġġett {inputs} mgħotti, li jaqbel mal-kuntratt REST v3.0. Waħdu dan ma rrestawrax it-traduzzjonijiet — ara 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Multi-bejjiegħ:",
+				"intentMapping": "Mappjar ta' speċifikazzjoni ta' intenzjoni:"
+			},
+			"items": {
+				"multiVendor": "{label} jittraduċu b'{azure}, {aws}, jew {google} wara wiċċ wieħed ta' API unifikat. Agħżel fornitur wieħed għal kull run bil-input {provider} ġdid; l-azzjoni tiddelega lill-SDK li jaqbel wara fabbrika u taġixxi bl-istess mod irrispettivament mill-bejjiegħ. Kompletament kompatibbli lura — {provider} default għal {azureValue}, għalhekk il-flussi tax-xogħol eżistenti ta' Azure jibqgħu jaħdmu bla bidla.",
+				"aws": "Fornitur ġdid ta' AWS Translate ({awsSdk}). Awtentika bil-katina default tal-kredenzjali AWS (rakkomandat: OIDC permezz ta' {configureAwsCredentials}) jew b'{awsAccessKeyId} espliċiti / {awsSecretAccessKey}; reġjun permezz ta' {awsRegion} jew {awsRegionEnv}.",
+				"google": "Fornitur ġdid ta' Traduzzjoni tal-Cloud ta' Google ({googleSdk}, v2). Awtentika b'kredenzjali JSON ta' kont tas-servizz ({googleCredentials}) jew ċavetta API ({googleApiKey}); fakultattiv {googleProjectId}.",
+				"inputs": "Inputs ġodda: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} mapep għall-{format} ta' Google u {profanityAction} mapep għall-maskra tal-ħsejjes ta' AWS fejn hemm ekwivalenti. Speċifikaturi esklussivi ta' Azure ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) jiġu injorati minn fornituri oħra.",
+				"azureRelaxed": "L-inputs ta' talbiet ta' Azure ({subscriptionKey}, {endpoint}, {region}) mhumiex aktar immarkati bħala meħtieġa f'{actionYml} sabiex jipprovdu fornituri oħra jiġu magħżula — għadhom ivvalidati waqt il-ħin ta' eżekuzzjoni meta {provider} tkun {azureValue}.",
+				"docs": "Paġna ġdida tal-fornituri tat-traduzzjoni, tabs tal-fornitur fuq Kif tibda, għażla tal-fornitur fuq il-paġna tal-Inputs, u paġna ewlenija aġġornata li tibqa' b'Azure, AWS, u Google."
+			}
 		},
 		"v3": {
 			"labels": {

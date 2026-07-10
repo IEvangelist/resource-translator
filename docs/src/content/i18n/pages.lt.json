@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Darbo pradžia",
 		"eyebrow": "Sąranka",
-		"lede": "Įtraukite darbo eigos failą, nukreipkite jį į savo \"Azure AI Translator\" kredencialus ir veiksmas nuskaitys saugyklą, ar nėra šaltinio kalbos išteklių failų, ir išleis išverstus brolius ir seseris.",
+		"heroLede": "Pridėkite darbo eigos failą, pasirinkite vertimo teikėją – \"Azure\", AWS arba \"Google\" – ir veiksmas nuskaitys saugyklą, ieškodama šaltinio kalbos išteklių failų, ir išleis išverstus brolius ir seseris.",
 		"steps": {
-			"provision": {
-				"title": "\"Azure AI Translator\" išteklių konfigūravimas",
-				"body": "Sukurkite \"Azure AI Translator\" išteklius \"Azure\" portale, tada išsaugokite šiuos duomenis kaip \"GitHub\" saugyklos paslaptis, kad darbo eiga galėtų jas perskaityti:",
-				"key": "Ištekliaus prenumeratos raktas.",
-				"endpoint": "regioninio galinio punkto URL.",
-				"region": "ištekliaus \"Azure\" regione."
+			"provider": {
+				"title": "Pasirinkite vertimo paslaugų teikėją",
+				"body": "Veiksmas veikia su {azure}, {aws} ir {google} už vieno vieningo API paviršiaus. Pasirinkite vieną teikėją vienam vykdymui su {provider} įvestimi – darbo eiga veikia identiškai, nepriklausomai nuo teikėjo; skiriasi tik kredencialai. Žiūrėkite {providersLink} išsamų palyginimą.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS vertimas",
+				"google": "\"Google\" debesies vertimas",
+				"providersLinkLabel": "Vertimo paslaugų teikėjai"
 			},
-			"workflow": {
-				"title": "Darbo eigos įtraukimas",
-				"body": "Kurti {workflowPath}:"
+			"configure": {
+				"title": "Kredencialų ir darbo eigos įtraukimas",
+				"body": "Saugokite teikėjo kredencialus kaip \"GitHub\" saugyklos paslaptis, tada sukurkite {workflowPath}. Toliau pasirinkite paslaugų teikėją pagal konkrečią sąranką – likusi darbo eigos dalis yra identiška.",
+				"secretsHeading": "Saugokite juos kaip saugyklos paslaptis",
+				"workflowHeading": "Darbo eigos įtraukimas",
+				"azure": {
+					"note": "\"Azure\" yra numatytasis teikėjas, todėl {provider} gali būti praleistas. Konfigūruokite \"Azure AI Translator\" išteklius \"Azure\" portale, tada išsaugokite jo kredencialus:",
+					"key": "Ištekliaus prenumeratos raktas.",
+					"endpoint": "regioninio galinio punkto URL.",
+					"region": "ištekliaus \"Azure\" regione."
+				},
+				"aws": {
+					"note": "Nustatykite {provider} į {providerValue}. Pirmenybę teikite OIDC per {configureAwsCredentials} kad nebūtų saugomos ilgaamžės paslaptys – žingsnis eksportas {awsRegionEnv} jums. Jei norite naudoti statinius raktus, saugokite:",
+					"accessKeyId": "jūsų AWS prieigos rakto ID.",
+					"secretAccessKey": "jūsų AWS slaptas prieigos raktas.",
+					"regionNote": "Regionas visada reikalingas – nustatykite jį naudodami {awsRegion} arba {awsRegionEnv} aplinkos kintamąjį."
+				},
+				"google": {
+					"note": "Nustatykite {provider} į {providerValue}. Autentifikuokite naudodami paslaugos paskyros JSON kredencialą arba API raktą – pateikite tiksliai vieną:",
+					"credentials": "paslaugos abonemento JSON raktas (kaip JSON eilutė).",
+					"apiKey": "arba \"Google Cloud API\" raktą.",
+					"projectNote": "Neprivalomas {googleProjectId} išvedamas iš kredencialų, kai jis praleidžiamas."
+				}
 			},
 			"resource": {
 				"title": "Šaltinio išteklių failo patvirtinimas",
@@ -91,8 +112,15 @@
 				"body": "Kai darbo eiga baigiasi, veiksmas atskleidžia tris išvestis, kurias galite prijungti prie PR aprašymo: {summaryTitle}, {summaryDetails} ir {hasNewTranslations}. Jis taip pat įrašo \"Markdown\" santrauką į darbo puslapį per {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Žydras",
+			"aws": "AWS",
+			"google": "\"Google\"",
+			"ariaLabel": "Pasirinkite vertimo paslaugų teikėją"
+		},
 		"nextSteps": {
 			"title": "Tolesni veiksmai",
+			"providers": "Palyginkite kiekvieną paslaugų teikėją ir jo kredencialus greta.",
 			"configuration": "Konfigūruokite numatytuosius saugyklos lygio nustatymus naudodami {configPath}.",
 			"recipes": "Peržiūrėkite monorepos, pasirinktinių žodynėlių ir pasirinktinių vertėjų kategorijų receptus."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Vertėjo užklausos dabar prisegti {apiVersion} ant laido tiek {translate}, tiek {languages}. \"Azure\" SDK atsižvelgia į kliento lygio API versijos parinktį tik tada, kai perduodami kredencialai; Veiksmas autentifikuojamas pagal užklausą per antraštes, todėl ši parinktis buvo tyliai atmesta, o užklausos pagal numatytuosius nustatymus buvo peržiūros API versija, kurios {translate} sutartis atmetė turinį su HTTP 400 (klaidos kodas {code}). Užbaigia 3.0.1 pradėtą taisymą.",
 			"v301": "{label} {translate} užklausos turinys dabar yra plikas JSON masyvas {textItem} elementų, o ne suvyniotas {inputs} objektas, atitinkantis v3.0 REST sutartį. Vien tai neatkūrė vertimų (žr. 3.0.2)."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Keli pardavėjai:",
+				"intentMapping": "Tikslo specifikatoriaus susiejimas:"
+			},
+			"items": {
+				"multiVendor": "{label} versti naudodami {azure}, {aws} arba {google} už vieno vieningo API paviršiaus. Pasirinkite vieną teikėją vienam paleidimui su nauja {provider} įvestimi; veiksmas perduodamas atitinkančiam SDK už gamyklos ir veikia identiškai, nepriklausomai nuo tiekėjo. Visiškai suderinamas su atgalinėmis versijomis – {provider} numatytoji {azureValue}, todėl esamos \"Azure\" darbo eigos veikia nepakitusios.",
+				"aws": "Naujas AWS vertėjo teikėjas ({awsSdk}). Autentifikuokite naudodami numatytąją AWS kredencialų grandinę (rekomenduojama: OIDC per {configureAwsCredentials}) arba aiškią {awsAccessKeyId} / {awsSecretAccessKey}; regione per {awsRegion} arba {awsRegionEnv}.",
+				"google": "Naujas \"Google\" debesies vertimo teikėjas ({googleSdk}, v2). Autentifikuokite naudodami paslaugos paskyros JSON kredencialą ({googleCredentials}) arba API raktą ({googleApiKey}); neprivalomas {googleProjectId}.",
+				"inputs": "Nauji įėjimai: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} žemėlapius į \"Google\" {format} ir {profanityAction} žemėlapius į AWS nešvankybių maskavimą, jei yra atitikmuo. Kiti teikėjai nepaiso tik \"Azure\" specifikatorių ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}).",
+				"azureRelaxed": "\"Azure\" užklausų įvestys ({subscriptionKey}, {endpoint}, {region}) nebėra pažymėtos kaip būtinos {actionYml} kad būtų galima pasirinkti kitus teikėjus – vis tiek tikrinamos vykdymo metu, kai {provider} {azureValue}.",
+				"docs": "Naujas vertimo paslaugų teikėjų puslapis, teikėjo skirtukai Darbo pradžia, teikėjo pasirinkimas įvesties puslapyje ir atnaujintas pagrindinis puslapis, vedantis su \"Azure\", AWS ir \"Google\"."
+			}
 		},
 		"v3": {
 			"labels": {

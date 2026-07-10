@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Comezando",
 		"eyebrow": "Configuración",
-		"lede": "Engade un ficheiro de fluxo de traballo, apúntao ás túas credenciais de Azure AI Translator, e a acción escaneará o repositorio en busca de arquivos de recursos en lingua de orixe e emitirá irmáns traducidos.",
+		"heroLede": "Engade un ficheiro de fluxo de traballo, escolle o teu provedor de tradución — Azure, AWS ou Google — e a acción escanea o repositorio en busca de ficheiros de recursos en lingua de orixe e emite irmáns traducidos.",
 		"steps": {
-			"provision": {
-				"title": "Provisionar un recurso Azure AI Translator",
-				"body": "Crea un recurso Azure AI Translator no portal Azure e logo almacena os seguintes como segredos do repositorio de GitHub para que o fluxo de traballo poida lelos:",
-				"key": "A clave de subscrición para o recurso.",
-				"endpoint": "a URL rexional do punto final.",
-				"region": "a rexión Azure do recurso."
+			"provider": {
+				"title": "Escolla un provedor de tradución",
+				"body": "A acción funciona con {azure}, {aws} e {google} detrás dunha superficie API unificada. Escolla un único provedor por execución coa entrada {provider} — o fluxo de traballo compórtase igual independentemente do provedor; Só difiren as credenciais. Consulta {providersLink} para unha comparación completa.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Tradución de Google Cloud",
+				"providersLinkLabel": "Provedores de tradución"
 			},
-			"workflow": {
-				"title": "Engade o fluxo de traballo",
-				"body": "Crea {workflowPath}:"
+			"configure": {
+				"title": "Engade credenciais e un fluxo de traballo",
+				"body": "Garda as credenciais do teu provedor como segredos do repositorio de GitHub e logo crea {workflowPath}. Selecciona o teu provedor a continuación para a súa configuración específica — o resto do fluxo de traballo é idéntico.",
+				"secretsHeading": "Almacénaos como segredos de repositorio",
+				"workflowHeading": "Engade o fluxo de traballo",
+				"azure": {
+					"note": "Azure é o provedor por defecto, así que {provider} pode ser omitido. Provisiona un recurso Azure AI Translator no portal Azure e logo almacena as súas credenciais:",
+					"key": "A clave de subscrición para o recurso.",
+					"endpoint": "a URL rexional do punto final.",
+					"region": "a rexión Azure do recurso."
+				},
+				"aws": {
+					"note": "Configura {provider} a {providerValue}. Prefire OIDC a través de {configureAwsCredentials} para que non se almacenen segredos duradeiros — as exportacións por pasos {awsRegionEnv} para ti. Para usar claves estáticas en vez diso, almacena:",
+					"accessKeyId": "o teu ID da clave de acceso AWS.",
+					"secretAccessKey": "a túa clave secreta de acceso AWS.",
+					"regionNote": "Sempre é necesaria unha rexión — configúraa con {awsRegion} ou coa variable de ambiente {awsRegionEnv}."
+				},
+				"google": {
+					"note": "Configura {provider} a {providerValue}. Autentifícate con unha credencial JSON da conta de servizo ou cunha clave API — proporciona exactamente unha:",
+					"credentials": "unha clave JSON de conta de servizo (como cadea JSON).",
+					"apiKey": "ou unha clave API de Google Cloud.",
+					"projectNote": "Un {googleProjectId} opcional infírese da credencial cando se omite."
+				}
 			},
 			"resource": {
 				"title": "Commit dun ficheiro de recurso fonte",
@@ -91,8 +112,15 @@
 				"body": "Unha vez rematado o fluxo de traballo, a acción expón tres saídas que podes conectar nunha descrición de PR: {summaryTitle}, {summaryDetails} e {hasNewTranslations}. Tamén escribe un resumo de Markdown na páxina de traballo a través de {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Escolla un provedor de tradución"
+		},
 		"nextSteps": {
 			"title": "Próximos pasos",
+			"providers": "Compara cada provedor e as súas credenciais lado a lado.",
 			"configuration": "Configura os valores predeterminados a nivel de repositorio con {configPath}.",
 			"recipes": "Consulta receitas para monorepos, glosarios personalizados e categorías de Tradutores Personalizados."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} solicitudes de tradutor agora fixan {apiVersion} na liña tanto para {translate} como para {languages}. O Azure SDK só respecta a opción de versión da API a nivel de cliente cando se pasa unha credencial; a acción autentica por solicitude mediante cabeceiras, polo que esa opción foi eliminada silenciosamente e as peticións pasaron por defecto a unha versión previa da API cuxo contrato de {translate} rexeitou o corpo con HTTP 400 (código de erro {code}). Completa a corrección comezada na 3.0.1.",
 			"v301": "{label} O corpo da petición {translate} agora é un array JSON sen {textItem} elementos en lugar dun obxecto {inputs} envolto, coincidindo co contrato REST v3.0. Por si soa, isto non restaurou as traducións — ver 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Multi-proveedor:",
+				"intentMapping": "Mapeo de especificadores de intención:"
+			},
+			"items": {
+				"multiVendor": "{label} traducir con {azure}, {aws} ou {google} detrás dunha superficie API unificada. Escolla un único provedor por execución coa nova {provider} entrada; a acción delega ao SDK correspondente detrás dunha fábrica e compórtase de forma idéntica independentemente do provedor. Totalmente compatible cara atrás — {provider} por defecto é {azureValue}, polo que os fluxos de traballo existentes de Azure seguen funcionando sen cambios.",
+				"aws": "Novo provedor de AWS Translate ({awsSdk}). Autenticar coa cadea de credenciais predeterminada de AWS (recomendado: OIDC vía {configureAwsCredentials}) ou {awsAccessKeyId} explícito / {awsSecretAccessKey}; rexión a través de {awsRegion} ou {awsRegionEnv}.",
+				"google": "Novo provedor de tradución en Google Cloud ({googleSdk}, v2). Autenticar cunha credencial JSON de conta de servizo ({googleCredentials}) ou unha clave API ({googleApiKey}); opcional {googleProjectId}.",
+				"inputs": "Novas entradas: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} mapea ao {format} de Google e {profanityAction} mapea ao enmascaramento de groserías de AWS onde existe un equivalente. Os especificadores só de Azure ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) son ignorados por outros provedores.",
+				"azureRelaxed": "As entradas de solicitude de Azure ({subscriptionKey}, {endpoint}, {region}) xa non se marcan como requiridas en {actionYml} para que se poidan seleccionar outros provedores — aínda validadas en tempo de execución cando {provider} está {azureValue}.",
+				"docs": "Nova páxina de provedores de tradución, pestanas de provedores en Comezar, selección de provedor na páxina de Entradas, e unha páxina de inicio actualizada que comeza con Azure, AWS e Google."
+			}
 		},
 		"v3": {
 			"labels": {

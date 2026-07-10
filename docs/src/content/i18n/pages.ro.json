@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Începerea",
 		"eyebrow": "Structură",
-		"lede": "Adaugă un fișier de workflow, îndreaptă către credențialele tale Azure AI Translator, iar acțiunea va scana depozitul pentru fișiere de resurse în limba sursă și va emite frații traduși.",
+		"heroLede": "Adaugă un fișier de workflow, alege furnizorul tău de traduceri — Azure, AWS sau Google — iar acțiunea scanează depozitul pentru fișiere de resurse în limba sursă și emite frații traduși.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "Creează o resursă Azure AI Translator în portalul Azure, apoi stochează următoarele ca secrete ale depozitului GitHub, astfel încât fluxul de lucru să le poată citi:",
-				"key": "Cheia de abonament pentru resursă.",
-				"endpoint": "URL-ul endpoint-ului regional.",
-				"region": "regiunea Azure a resursei."
+			"provider": {
+				"title": "Alege un furnizor de traduceri",
+				"body": "Acțiunea funcționează cu {azure}, {aws} și {google} în spatele unei singure suprafețe API unificate. Alege un singur furnizor la fiecare rulare cu intrarea {provider} — fluxul de lucru se comportă identic indiferent de furnizor; Doar acreditările diferă. Vezi {providersLink} pentru o comparație completă.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Traducerea Google Cloud",
+				"providersLinkLabel": "Furnizori de traduceri"
 			},
-			"workflow": {
-				"title": "Adaugă fluxul de lucru",
-				"body": "Creează {workflowPath}:"
+			"configure": {
+				"title": "Adaugă acreditări și un flux de lucru",
+				"body": "Stochează acreditările furnizorului tău ca secrete din depozitul GitHub, apoi creează {workflowPath}. Selectați furnizorul de mai jos pentru configurația sa specifică — restul fluxului de lucru este identic.",
+				"secretsHeading": "Stochează-le ca secrete ale depozitului",
+				"workflowHeading": "Adaugă fluxul de lucru",
+				"azure": {
+					"note": "Azure este furnizorul implicit, deci {provider} pot fi omise. Asigurați o resursă Azure AI Translator în portalul Azure, apoi stochați datele sale de credențiale:",
+					"key": "Cheia de abonament pentru resursă.",
+					"endpoint": "URL-ul endpoint-ului regional.",
+					"region": "regiunea Azure a resursei."
+				},
+				"aws": {
+					"note": "Setează {provider} pe {providerValue}. Preferă OIDC prin {configureAwsCredentials} astfel încât să nu fie stocate secrete de lungă durată — exporturile în pași {awsRegionEnv} pentru tine. Pentru a folosi chei statice în schimb, stocați:",
+					"accessKeyId": "ID-ul cheii de acces AWS.",
+					"secretAccessKey": "cheia ta secretă de acces AWS.",
+					"regionNote": "O regiune este întotdeauna necesară — setați-o cu {awsRegion} sau cu variabila de mediu {awsRegionEnv}."
+				},
+				"google": {
+					"note": "Setează {provider} pe {providerValue}. Autentifică fie cu o acreditare JSON de cont de serviciu, fie cu o cheie API — furnizează exact una:",
+					"credentials": "o cheie JSON de cont de serviciu (ca șir JSON).",
+					"apiKey": "sau o cheie API Google Cloud.",
+					"projectNote": "Un {googleProjectId} opțional este dedus din acreditare atunci când este omis."
+				}
 			},
 			"resource": {
 				"title": "Confirmă un fișier sursă de resurse",
@@ -91,8 +112,15 @@
 				"body": "Odată ce fluxul de lucru se termină, acțiunea expune trei ieșiri pe care le poți conecta într-o descriere PR: {summaryTitle}, {summaryDetails} și {hasNewTranslations}. De asemenea, scrie un rezumat Markdown pe pagina jobului prin {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Alege un furnizor de traduceri"
+		},
 		"nextSteps": {
 			"title": "Pașii următori",
+			"providers": "Compară fiecare furnizor și acreditările sale una lângă alta.",
 			"configuration": "Configurează setările implicite la nivel de depozit cu {configPath}.",
 			"recipes": "Vezi rețete pentru monorepos, glosare personalizate și categorii de traducători personalizate."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} cererile traducătorului fixează acum {apiVersion} pe fir atât pentru {translate}, cât și pentru {languages}. Azure SDK respectă opțiunea de versiune API la nivel de client doar atunci când o acreditare este transmisă; acțiunea se autentifică pentru fiecare cerere prin antete, astfel încât acea opțiune a fost abandonată în tăcere, iar cererile au trecut implicit la o versiune API de previzualizare al cărei contract de {translate} a respins corpul cu HTTP 400 (cod de eroare {code}). Finalizează corecția începută în 3.0.1.",
 			"v301": "{label} Corpul cererii {translate} este acum un array JSON gol de {textItem} elemente, în loc de un obiect {inputs} înfășurat, corespunzând contractului REST v3.0. De unul singur, acest lucru nu restaura traducerile — vezi 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Multi-furnizor:",
+				"intentMapping": "Maparea specificatorului de intenție:"
+			},
+			"items": {
+				"multiVendor": "{label} traduce cu {azure}, {aws} sau {google} în spatele unei singure suprafețe API unificate. Alege un singur furnizor pe fiecare rundă cu noua {provider} de intrare; acțiunea delegă către SDK-ul corespunzător din spatele unei fabrici și se comportă identic indiferent de furnizor. Complet compatibil înapoi — {provider} implicit pe {azureValue}, astfel încât fluxurile de lucru Azure existente continuă să funcționeze neschimbate.",
+				"aws": "Noul furnizor AWS Translate ({awsSdk}). Autentifică cu lanțul implicit de acreditări AWS (recomandat: OIDC prin {configureAwsCredentials}) sau cu {awsAccessKeyId} explicit / {awsSecretAccessKey}; prin {awsRegion} sau {awsRegionEnv}.",
+				"google": "Noul furnizor de traduceri Google Cloud ({googleSdk}, v2). Autentificare cu o acreditare JSON a contului de serviciu ({googleCredentials}) sau o cheie API ({googleApiKey}); opțional {googleProjectId}.",
+				"inputs": "Intrări noi: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} se mapează la {format} Google și {profanityAction} la mascarea limbajului vulgar AWS acolo unde există un echivalent. Specificatorii doar Azure ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) sunt ignorați de alți furnizori.",
+				"azureRelaxed": "Intrările de cerere Azure ({subscriptionKey}, {endpoint}, {region}) nu mai sunt marcate ca fiind obligatorii în {actionYml} astfel încât alți furnizori pot fi selectați — încă validate la rulare când {provider} este {azureValue}.",
+				"docs": "Pagina nouă de furnizori de traduceri, tab-uri pentru furnizori la Început, selecția furnizorului pe pagina Inputs și o pagină principală reîmprospătată care deschide cu Azure, AWS și Google."
+			}
 		},
 		"v3": {
 			"labels": {

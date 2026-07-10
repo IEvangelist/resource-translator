@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Početak",
 		"eyebrow": "Postavka",
-		"lede": "Dodajte datoteku radnog tijeka, usmjerite je na vaše Azure AI Translator vjerodajnice, a akcija će skenirati repozitorij za datoteke izvornog jezika i emitirati prevedene srodne datoteke.",
+		"heroLede": "Dodajte datoteku radnog tijeka, odaberite svog pružatelja prevođenja — Azure, AWS ili Google — i akcija skenira repozitorij za datoteke resursa izvornog jezika i prikazuje prevedene srodne datoteke.",
 		"steps": {
-			"provision": {
-				"title": "Provision a Azure AI Translator resource",
-				"body": "Kreirajte Azure AI Translator resurs u Azure portalu, zatim pohranite sljedeće kao GitHub tajne repozitorija kako bi ih workflow mogao pročitati:",
-				"key": "ključ pretplate za resurs.",
-				"endpoint": "regionalni URL krajnje točke.",
-				"region": "Azure regija resursa."
+			"provider": {
+				"title": "Odaberite pružatelja prevođenja",
+				"body": "Akcija radi s {azure}, {aws} i {google} iza jedne objedinjene API površine. Odaberite jednog pružatelja po pokretanju s {provider} ulazom — tijek rada se ponaša identično bez obzira na pružatelja; Samo se kvalifikacije razlikuju. Pogledajte {providersLink} za potpunu usporedbu.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Google Cloud prijevod",
+				"providersLinkLabel": "Pružatelji prevođenja"
 			},
-			"workflow": {
-				"title": "Dodaj tijek rada",
-				"body": "Kreirajte {workflowPath}:"
+			"configure": {
+				"title": "Dodajte vjerodajnice i tijek rada",
+				"body": "Pohranite vjerodajnice svog pružatelja kao GitHub tajne repozitorija, zatim kreirajte {workflowPath}. Odaberite svog pružatelja usluga u nastavku za njegovu specifičnu postavku — ostatak radnog procesa je identičan.",
+				"secretsHeading": "Pohranite ih kao tajne repozitorija",
+				"workflowHeading": "Dodaj tijek rada",
+				"azure": {
+					"note": "Azure je zadani pružatelj, pa {provider} može biti izostavljen. Provisionirajte Azure AI Translator resurs u Azure portalu, a zatim pohranite njegove vjerodajnice:",
+					"key": "ključ pretplate za resurs.",
+					"endpoint": "regionalni URL krajnje točke.",
+					"region": "Azure regija resursa."
+				},
+				"aws": {
+					"note": "Postavi {provider} na {providerValue}. Preferirajte OIDC putem {configureAwsCredentials} kako se ne bi pohranjivale dugotrajne tajne — korak izvozi {awsRegionEnv} za vas. Za korištenje statičkih ključeva umjesto toga, spremite:",
+					"accessKeyId": "Vaš AWS Access Key ID.",
+					"secretAccessKey": "vaš AWS tajni pristupni ključ.",
+					"regionNote": "Regija je uvijek potrebna — postavite je s {awsRegion} ili varijablom {awsRegionEnv} okoline."
+				},
+				"google": {
+					"note": "Postavi {provider} na {providerValue}. Autentificirajte se JSON vjerodajnicom servisnog računa ili API ključem — unesite točno jedan:",
+					"credentials": "JSON ključ servisnog računa (kao JSON string).",
+					"apiKey": "ili Google Cloud API ključ.",
+					"projectNote": "Opcionalni {googleProjectId} se izvodi iz akreditacije kada se izostavi."
+				}
 			},
 			"resource": {
 				"title": "Commite datoteku izvornog resursa",
@@ -91,8 +112,15 @@
 				"body": "Nakon završetka radnog procesa, akcija otkriva tri izlaza koja možete povezati u PR opis: {summaryTitle}, {summaryDetails} i {hasNewTranslations}. Također upisuje sažetak Markdowna na stranicu posla putem {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Odaberite pružatelja prevođenja"
+		},
 		"nextSteps": {
 			"title": "Sljedeći koraci",
+			"providers": "Usporedite svakog pružatelja usluga i njihove kvalifikacije jednu do druge.",
 			"configuration": "Konfigurirajte zadane postavke na razini repozitorija pomoću {configPath}.",
 			"recipes": "Pogledajte recepte za monorepo, prilagođene rječnike i kategorije prilagođenih prevoditelja."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Zahtjevi prevoditelja sada zakače {apiVersion} na žicu za {translate} i {languages}. Azure SDK poštuje opciju API-verzije na razini klijenta samo kada se prenese vjerodajnica; Akcija se autentificira po zahtjevu putem zaglavlja, pa je ta opcija tiho odbačena, a zahtjevi su se automatski prebacivali na preview API verziju čiji {translate} ugovor odbijao tijelo s HTTP 400 (kod pogreške {code}). Dovršava popravak započet u verziji 3.0.1.",
 			"v301": "{label} {translate} tijelo zahtjeva sada je goli JSON niz {textItem} stavki umjesto omotanog {inputs} objekta, što odgovara v3.0 REST ugovoru. Samo po sebi to nije vratilo prijevode — vidi 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Više dobavljača:",
+				"intentMapping": "Mapiranje namjere i specificera:"
+			},
+			"items": {
+				"multiVendor": "{label} prevoditi s {azure}, {aws} ili {google} iza jedne objedinjene API površine. Odaberite jednog pružatelja po pokretanju s novim {provider} ulazom; akcija delegira odgovarajućem SDK-u iza tvornice i ponaša se identično bez obzira na dobavljača. Potpuno kompatibilno unatrag — {provider} je zadano {azureValue}, pa postojeći Azure radni tokovi rade nepromijenjeno.",
+				"aws": "Novi AWS Translate pružatelj ({awsSdk}). Autentificirajte se s AWS zadanim lancem vjerodajnica (preporučeno: OIDC putem {configureAwsCredentials}) ili eksplicitnim {awsAccessKeyId} / {awsSecretAccessKey}; regiju preko {awsRegion} ili {awsRegionEnv}.",
+				"google": "Novi Google Cloud Translator pružatelj ({googleSdk}, v2). Autentificirajte se JSON vjerodajnicom servisnog računa ({googleCredentials}) ili API ključem ({googleApiKey}); opcionalni {googleProjectId}.",
+				"inputs": "Novi ulazi: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} mape na Googleov {format} i {profanityAction} na AWS maskiranje psovki gdje postoji ekvivalent. Specifičeri samo za Azure ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) ignoriraju se od strane drugih pružatelja.",
+				"azureRelaxed": "Azure ulazi za zahtjeve ({subscriptionKey}, {endpoint}, {region}) više nisu označeni kao obavezni u {actionYml} pa se mogu odabrati drugi pružatelji — i dalje se validiraju u vrijeme izvođenja kada je {provider} {azureValue}.",
+				"docs": "Nova stranica pružatelja prevođenja, kartice pružatelja na Početak, odabir pružatelja na stranici Inputs i osvježena početna stranica koja vodi s Azureom, AWS-om i Googleom."
+			}
 		},
 		"v3": {
 			"labels": {

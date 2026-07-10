@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Boshlanish",
 		"eyebrow": "Sozlama",
-		"lede": "Ish jarayoni faylini qo'shing, uni Azure AI Translator ma'lumotlaringizga yo'naltiring, va harakat repoda manba tilidagi resurs fayllarini skanerlab, tarjima qilingan aka-ukalar yuboradi.",
+		"heroLede": "Ish jarayoni faylini qo'shing, tarjima provayderingizni tanlang — Azure, AWS yoki Google — va bu harakat repoda manba tilidagi resurs fayllarini skanerlaydi hamda tarjima qilingan aka-uka fayllarini chiqaradi.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "Azure portalida Azure AI Translator resursini yarating, so'ng quyidagilarni GitHub ombori sirlari sifatida saqlang, shunda ish jarayoni ularni o'qiy oladi:",
-				"key": "resurs uchun obuna kaliti.",
-				"endpoint": "mintaqaviy endpoint URL.",
-				"region": "resursning Azure mintaqasi."
+			"provider": {
+				"title": "Tarjima provayderini tanlang",
+				"body": "Harakat {azure}, {aws} va {google} bitta yagona API yuzasi ortida ishlaydi. Har bir ishga kirishda bitta provayderni tanlang, {provider} kirish bilan — ish jarayoni provayderdan qat'i nazar bir xil ishlaydi; faqat malakalar farq qiladi. To'liq taqqoslash uchun {providersLink} qarang.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Google Bulut Tarjimasi",
+				"providersLinkLabel": "Tarjima xizmatlari"
 			},
-			"workflow": {
-				"title": "Ish jarayonini qo'shing",
-				"body": "Yarating {workflowPath}:"
+			"configure": {
+				"title": "Credentiallar va ish jarayonini qo'shish",
+				"body": "Provayderingizning ma'lumotlarini GitHub ombori sirlari sifatida saqlang, so'ng {workflowPath} yarating. Quyida provayderingizni tanlang — ish jarayonining qolgan qismi bir xil.",
+				"secretsHeading": "Bularni ombor sirlari sifatida saqlang",
+				"workflowHeading": "Ish jarayonini qo'shing",
+				"azure": {
+					"note": "Azure standart provayder bo'lgani uchun {provider} o'tkazib yuborilishi mumkin. Azure portalida Azure AI Translator resursini taqdim eting, so'ng uning ma'lumotlarini saqlang:",
+					"key": "resurs uchun obuna kaliti.",
+					"endpoint": "mintaqaviy endpoint URL.",
+					"region": "resursning Azure mintaqasi."
+				},
+				"aws": {
+					"note": "{provider} {providerValue} qilib qo'ying. OIDCni {configureAwsCredentials} orqali afzal ko'ring, shunda uzoq umr ko'radigan sirlar saqlanmaydi — siz uchun qadam eksportlari {awsRegionEnv}. Statik tugmalardan foydalanish uchun quyidagilarni saqlang:",
+					"accessKeyId": "AWS kirish kaliti IDsi.",
+					"secretAccessKey": "sizning AWS maxfiy kirish kalitingiz.",
+					"regionNote": "Har doim hudud talab qilinadi — uni {awsRegion} yoki {awsRegionEnv} muhit o'zgaruvchisi bilan belgilang."
+				},
+				"google": {
+					"note": "{provider} {providerValue} qilib qo'ying. Xizmat hisobidagi JSON ma'lumot ma'lumotlari yoki API kaliti bilan autentifikatsiya qiling — aynan bittasini taqdim eting:",
+					"credentials": "xizmat-hisob JSON kaliti (JSON satri sifatida).",
+					"apiKey": "yoki Google Cloud API kaliti.",
+					"projectNote": "Ixtiyoriy {googleProjectId} sertifikatdan chiqarib tashlanganda olinadi."
+				}
 			},
 			"resource": {
 				"title": "Manba resurs faylini commit qilish",
@@ -91,8 +112,15 @@
 				"body": "Ish jarayoni tugagach, harakat uchta chiqishni PR tavsifiga ulash imkonini beradi: {summaryTitle}, {summaryDetails} va {hasNewTranslations}. Shuningdek, u ish sahifasiga Markdown qisqacha mazmunini {coreSummary} orqali yozadi."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Tarjima provayderini tanlang"
+		},
 		"nextSteps": {
 			"title": "Keyingi qadamlar",
+			"providers": "Har bir provayder va uning ma'lumotlarini yonma-yon solishtiring.",
 			"configuration": "Repo darajasidagi defaultlarni {configPath} bilan sozlang.",
 			"recipes": "Monorepolar, maxsus lug'atlar va Maxsus Tarjimon kategoriyalari uchun retseptlarni ko'ring."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Tarjimon so'rovlari endi {translate} va {languages} uchun simda {apiVersion} pin qo'yishni so'ramoqda. Azure SDK faqat credential uzatilganda mijoz darajasidagi api-versiya opsiyasini qabul qiladi; harakat har bir so'rov uchun sarlavhalar orqali autentifikatsiya qilinadi, shuning uchun bu opsiya jimjit olib tashlangan va so'rovlar HTTP 400 (xato kodi {code}) bilan tanani rad etgan {translate} API versiyasiga o'tkazilgan. 3.0.1 da boshlangan tuzatishni yakunladi.",
 			"v301": "{label} {translate} so'rov tanasi endi {inputs} obyekt o'rniga {textItem} elementlardan iborat JSON massivi bo'lib, v3.0 REST kontraktiga mos keladi. Bu o'z-o'zidan tarjimalarni tiklamadi — qarang: 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Ko'p yetkazib beruvchi:",
+				"intentMapping": "Intent-specifier xaritalash:"
+			},
+			"items": {
+				"multiVendor": "{label} bitta yagona API yuzasi ortida {azure}, {aws} yoki {google} bilan tarjima qilinadi. Har bir ishga chiqishda yangi {provider} kirishi bilan bitta provayderni tanlang; harakat zavod orqasidagi mos SDKga topshiriladi va yetkazib beruvchidan qat'i nazar bir xil harakat qiladi. To'liq orqaga mos — {provider} {azureValue} standartda ishlaydi, shuning uchun mavjud Azure ish jarayonlari o'zgarmasdan ishlaydi.",
+				"aws": "Yangi AWS Translate provayderi ({awsSdk}). AWS standart credential zanjiri (tavsiya etiladi: OIDC orqali {configureAwsCredentials}) yoki aniq {awsAccessKeyId} / {awsSecretAccessKey} bilan autentifikatsiya qiling; mintaqa orqali {awsRegion} yoki {awsRegionEnv}.",
+				"google": "Yangi Google Cloud Translation provayderi ({googleSdk}, v2). Xizmat-hisob JSON ma'lumotlari ({googleCredentials}) yoki API kaliti ({googleApiKey}) bilan autentifikatsiya qiling; ixtiyoriy {googleProjectId}.",
+				"inputs": "Yangi kirishlar: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} Google'ning {format} xaritalarini, {profanityAction} esa AWS so'kinishlarni maskalash uchun xaritalarni o'zgartiradi, agar ekvivalent mavjud bo'lsa. Faqat Azure uchun mo'ljallangan spetsifikatorlar ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) boshqa provayderlar tomonidan e'tiborga olinmaydi.",
+				"azureRelaxed": "Azure so'rov kirishlari ({subscriptionKey}, {endpoint}, {region}) endi {actionYml}'da zarur deb belgilanmaydi, shuning uchun boshqa provayderlarni tanlash mumkin — {provider} {azureValue} bo'lsa-da, ish vaqtida tasdiqlanadi.",
+				"docs": "Yangi tarjima provayderlari sahifasi, provayder tablari Boshlash sahifasi, Kirishlar sahifasida provayder tanlovi va Azure, AWS hamda Google bilan yetakchi yangilangan bosh sahifa."
+			}
 		},
 		"v3": {
 			"labels": {

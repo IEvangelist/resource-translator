@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Bilowga",
 		"eyebrow": "Dejinta",
-		"lede": "Ku dar fayl workflow ah, u jeedi aqoonsiga Azure AI Translator, falkaasna wuxuu baadhaa repo-ga faylasha kheyraadka luqadda ilaha wuxuuna soo saari doonaa walaalo la turjumay.",
+		"heroLede": "Ku dar faylka workflow-ka, dooro bixiyahaaga turjumaadda — Azure, AWS, ama Google — falkaasna wuxuu baadhayaa repo-ga faylasha kheyraadka luqadda asalka ah wuxuuna sii daayaa walaalo turjumaad ah.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "Abuur resource Azure AI Translator ah portal-ka Azure, kadibna kaydi kuwa soo socda sida siraha kaydka GitHub si workflow-ku u akhriyo:",
-				"key": "furaha rukhsadda ee kheyraadka.",
-				"endpoint": "URL-ka dhamaadka gobolka.",
-				"region": "aagga Azure-ka ee kheyraadka."
+			"provider": {
+				"title": "Dooro bixiye turjumaad",
+				"body": "Ficilkan wuxuu la shaqeeyaa {azure}, {aws}, iyo {google} oo ka dambeeya hal API oo mideysan. Dooro hal bixiye mar kasta oo isticmaalaya gelinta {provider} — habka shaqadu wuu isku mid yahay iyadoon loo eegin bixiyaha; Kaliya aqoonsiga ayaa kala duwan yahay. Eeg {providersLink} si aad u hesho isbarbardhig buuxa.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Tarjumaadda Google Cloud",
+				"providersLinkLabel": "Bixiyeyaasha turjumaadda"
 			},
-			"workflow": {
-				"title": "Ku dar habka shaqada",
-				"body": "Abuur {workflowPath}:"
+			"configure": {
+				"title": "Ku dar aqoonsi iyo hab socod",
+				"body": "Kaydi aqoonsiga bixiyahaaga sida siraha kaydka GitHub, kadibna abuur {workflowPath}. Dooro bixiyahaaga hoose si aad u aragto qaab-dhismeedkiisa gaarka ah — inta kale ee workflow-ka waa isku mid.",
+				"secretsHeading": "Kaydi kuwani sida siraha kaydka",
+				"workflowHeading": "Ku dar habka shaqada",
+				"azure": {
+					"note": "Azure waa bixiyaha asalka ah, sidaas darteed {provider} laga saari karo. Soo bandhig kheyraad Azure AI Translator ah portal-ka Azure, kadibna kaydi aqoonsigiisa:",
+					"key": "furaha rukhsadda ee kheyraadka.",
+					"endpoint": "URL-ka dhamaadka gobolka.",
+					"region": "aagga Azure-ka ee kheyraadka."
+				},
+				"aws": {
+					"note": "U deji {provider} {providerValue}. Doorbid OIDC adigoo adeegsanaya {configureAwsCredentials} si aan siraha waqti dheer loo keydinin — talaabada dhoofinta {awsRegionEnv} adiga. Si aad u isticmaasho furayaasha static-ka beddelkeeda, kaydi:",
+					"accessKeyId": "aqoonsiga furaha gelitaanka AWS.",
+					"secretAccessKey": "furahaaga sirta ah ee AWS.",
+					"regionNote": "Gobol mar walba waa loo baahan yahay — ku deji {awsRegion} ama beddelka deegaanka {awsRegionEnv}."
+				},
+				"google": {
+					"note": "U deji {provider} {providerValue}. Xaqiiji adigoo isticmaalaya aqoonsi JSON oo akoonka adeegga ah ama furaha API — si sax ah u bixi mid sax ah:",
+					"credentials": "furaha JSON ee akoonka adeegga (sida xadhig JSON).",
+					"apiKey": "ama furaha Google Cloud API.",
+					"projectNote": "{googleProjectId} ikhtiyaari ah ayaa laga soo saaraa aqoonsiga marka la dhaafo."
+				}
 			},
 			"resource": {
 				"title": "Commit faylka kheyraadka ilaha",
@@ -91,8 +112,15 @@
 				"body": "Marka hawsha shaqada la dhammeeyo, falku wuxuu soo bandhigayaa saddex natiijo oo aad ku xiri karto sharaxaadda PR: {summaryTitle}, {summaryDetails}, iyo {hasNewTranslations}. Sidoo kale waxay ku qoraa dulmar Markdown bogga shaqada iyada oo loo marayo {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Dooro bixiye turjumaad"
+		},
 		"nextSteps": {
 			"title": "Tallaabooyinka xiga",
+			"providers": "Isbarbar dhig bixiye kasta iyo aqoonsigeeda midka kale.",
 			"configuration": "Qaabee default heerka repo-ga adigoo {configPath}.",
 			"recipes": "Eeg cuntooyinka monorepos, lumaha gaarka ah, iyo qaybaha Turjumaadda Gaarka ah."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Codsiyada Turjubaanka hadda ku dheji {apiVersion} fiilada labadaba {translate} iyo {languages}. Azure SDK waxay kaliya ixtiraamtaa ikhtiyaarka api-version ee heerka client-ka marka aqoonsi la gudbiyo; falku wuxuu xaqiijiyaa codsi kasta iyada oo loo marayo madaxyo, sidaas darteed ikhtiyaarkaas si aamusnaan ah ayaa loo joojiyay codsiyada oo loo beddelay nooca API-ga Preview oo heshiiska {translate} diiday jirka iyadoo la adeegsanayo HTTP 400 (koodhka khaladka {code}). Waxay dhameystirtaa hagaajinta bilowga 3.0.1.",
 			"v301": "{label} Jirka codsiga {translate} hadda waa array JSON oo {textItem} ah halkii uu ka ahaan lahaa walax {inputs} oo la duubay, taasoo la mid ah heshiiska v3.0 REST. Tani kaligeed ma soo celin turjumaadaha — eeg 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Iib-bixiyeyaal badan:",
+				"intentMapping": "Mapping intent-specifier (intent-specifier mapping):"
+			},
+			"items": {
+				"multiVendor": "{label} turjumi karaa iyadoo {azure}, {aws}, ama {google} ay ka dambeeyaan hal API oo mideysan. Xulo hal bixiye mar kasta oo isticmaalaya gelinta cusub ee {provider}; ficilku wuxuu u wareejiyaa SDK-ga iswaafaqsan ee ka dambeeya warshad wuxuuna u dhaqmaa si isku mid ah iyadoon loo eegin iibiyaha shirkadda. Si buuxda u la jaanqaadi kara backward — {provider} waxay u muuqataa {azureValue}, sidaas darteed habka Azure ee jira ayaa si aan isbeddel lahayn u shaqeynaya.",
+				"aws": "Bixiyaha cusub ee AWS Translate ({awsSdk}). Xaqiiji adigoo adeegsanaya silsiladda aqoonsiga AWS (lagu talinayaa: OIDC iyada oo loo marayo {configureAwsCredentials}) ama {awsAccessKeyId} / {awsSecretAccessKey} oo cad; gobol iyada oo loo marayo {awsRegion} ama {awsRegionEnv}.",
+				"google": "Bixiyaha cusub ee Tarjumaadda Google Cloud ({googleSdk}, v2). Xaqiiji adigoo adeegsanaya akoonka adeegga JSON ({googleCredentials}) ama furaha API ({googleApiKey}); ikhtiyaari {googleProjectId}.",
+				"inputs": "Xogaha cusub: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} wuxuu u isticmaalaa {format}-ga Google, {profanityAction}-na wuxuu u isticmaalaa daboolidda aflagaadada AWS halka ay jirto wax la mid ah. Specifiers-ka Azure-kaliya ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) waxaa iska indhatira bixiyeyaasha kale.",
+				"azureRelaxed": "Gelinta codsiyada Azure ({subscriptionKey}, {endpoint}, {region}) hadda looma calaamadeeyo lagama maarmaan {actionYml} si bixiyeyaasha kale loo doorto — weli waa la xaqiijiyaa waqtiga socodka marka {provider} {azureValue}.",
+				"docs": "Bogga bixiyeyaasha turjumaadda cusub, tabarka bixiyaha ee Getting start, xulashada bixiyaha bogga Inputs, iyo bog cusub oo cusub oo hormuud u ah Azure, AWS, iyo Google."
+			}
 		},
 		"v3": {
 			"labels": {

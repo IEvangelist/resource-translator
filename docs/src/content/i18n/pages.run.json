@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Gutangura",
 		"eyebrow": "Gushiraho",
-		"lede": "Ongeraho dosiye y'akazi, uyiyerekeze ku vyemezo vyawe vya Azure AI Translator, hanyuma igikorwa kizosuzumisha repo y'amadosiye y'ururimi rw'inkomoko hanyuma gisohore abavukanyi bahinduwe.",
+		"heroLede": "Ongeraho dosiye y'akazi, hitamwo uwuguha ubuhinduzi - Azure, AWS, canke Google - hanyuma igikorwa gisuzumye repo y'amadosiye y'ururimi rw'inkomoko hanyuma gisohora abavukanyi bahinduwe.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "Create an Azure AI Translator resource in the Azure portal, then store the following as GitHub repository secrets so the workflow can read them:",
-				"key": "Urufunguzo rw'ifatabuguzi rw'ibicuruzwa.",
-				"endpoint": "URL y'iherezo ry'akarere.",
-				"region": "Akarere ka Azure."
+			"provider": {
+				"title": "Hitamwo umuhinduzi",
+				"body": "Ico gikorwa gikorana na {azure}, {aws}, na {google} inyuma y'ubuso bumwe bwa API. Pick a single provider per run with the {provider} input — the workflow behaves identically regardless of provider; Ibiharuro gusa biratandukanye. Raba {providersLink} ugereranije n'ido n'ido n'ido ry'ido n'ido ry'ido n'i",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Google Cloud Translation",
+				"providersLinkLabel": "Abatanga ubuhinduzi"
 			},
-			"workflow": {
-				"title": "Add the workflow",
-				"body": "Gushiraho {workflowPath}:"
+			"configure": {
+				"title": "Add credentials and a workflow",
+				"body": "Kubika umwirondoro w'umutanga wawe nk'amabanga y'ububiko bwa GitHub, hanyuma ukore {workflowPath}. Hitamwo umutanga wawe hepfo kugira ngo ushobore gushiraho umwihariko wayo - igice gisigaye c'akazi ni kimwe.",
+				"secretsHeading": "Kubika nk'amabanga y'ububiko",
+				"workflowHeading": "Add the workflow",
+				"azure": {
+					"note": "Azure ni umutanga w'ikinyoma, rero {provider} gishobora gucibwamwo. Tanga ubutunzi bwa Azure AI Translator ku rubuga rwa Azure, hanyuma ubike impapuro zayo:",
+					"key": "Urufunguzo rw'ifatabuguzi rw'ibicuruzwa.",
+					"endpoint": "URL y'iherezo ry'akarere.",
+					"region": "Akarere ka Azure."
+				},
+				"aws": {
+					"note": "Shira {provider} kuri {providerValue}. Hitamwo OIDC biciye kuri {configureAwsCredentials} kugira ngo ntihagire amabanga y'igihe kirekire abikwa - intambwe yo kugurisha {awsRegionEnv} kuri wewe. Kugira ukoreshe imfunguzo za static, bika:",
+					"accessKeyId": "Your AWS Access Key ID.",
+					"secretAccessKey": "Your AWS Secret Access Key.",
+					"regionNote": "A region is always required — set it with {awsRegion} or the {awsRegionEnv} environment variable."
+				},
+				"google": {
+					"note": "Shira {provider} kuri {providerValue}. Authenticate with either a service-account JSON credential or an API key — provide exactly one:",
+					"credentials": "Urupapuro rwa JSON (nk'urupapuro rwa JSON).",
+					"apiKey": "canke urufunguzo rwa Google Cloud API.",
+					"projectNote": "An optional {googleProjectId} is inferred from the credential when omitted."
+				}
 			},
 			"resource": {
 				"title": "Commit a source resource file",
@@ -91,8 +112,15 @@
 				"body": "Iyo igikorwa kirangiye, igikorwa cerekana ibintu bitatu ushobora gushiraho mu bisobanuro vya PR: {summaryTitle}, {summaryDetails}, na {hasNewTranslations}. Yandika kandi incamake ya Markdown ku rupapuro rw'akazi biciye kuri {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Hitamwo umuhinduzi"
+		},
 		"nextSteps": {
 			"title": "Intambwe zikurikira",
+			"providers": "Gereranya buri mukozi hamwe n'ivyiyumviro vyiwe.",
 			"configuration": "Configure repo-level defaults with {configPath}.",
 			"recipes": "See recipes for monorepos, custom glossaries, and Custom Translator categories."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Translator requests now pin {apiVersion} on the wire for both {translate} and {languages}. Azure SDK yubaha gusa uburyo bwa api-version yo ku rwego rw'umukiriya igihe credential yemejwe; Ico gikorwa kigenzura ubusabe kuri buri busabe biciye ku mitwe y'imitwe, ku buryo ubwo buryo bwakuweho bucece, hanyuma ubusabe buhagarikwa kuri version ya API ya preview amasezerano y'{translate} yanse umubiri hamwe na HTTP 400 (code y'amakosa {code}). Kirangira ikosorwa ryatanguye muri 3.0.1.",
 			"v301": "{label} The {translate} request body is now a bare JSON array of {textItem} items instead of a wrapped {inputs} object, matching the v3.0 REST contract. Ubwayo ivyo ntivyasubije ubuhinduzi — raba 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Multi-vendor:",
+				"intentMapping": "Intent-specifier mapping:"
+			},
+			"items": {
+				"multiVendor": "{label} translate with {azure}, {aws}, or {google} behind one unified API surface. Hitamwo umutanga umwe kuri buri rundo ukoresheje {provider} nshasha ya input; the action delegates to the matching SDK behind a factory and behaves same regardless of vendor. Fully backward compatible — {provider} defaults to {azureValue}, so existing Azure workflows keep working unchanged.",
+				"aws": "New AWS Translate provider ({awsSdk}). Authenticate with the AWS default credential chain (recommended: OIDC via {configureAwsCredentials}) or explicit {awsAccessKeyId} / {awsSecretAccessKey}; Akarere ka {awsRegion} canke {awsRegionEnv}.",
+				"google": "New Google Cloud Translation provider ({googleSdk}, v2). Authenticate with a service-account JSON credential ({googleCredentials}) or an API key ({googleApiKey}); Optional {googleProjectId}.",
+				"inputs": "New inputs: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} amakarita y'{format} ya Google hamwe n'amakarita ya {profanityAction} ku makarita ya AWS y'ibitutsi aho bihuriyeko. Ibiharuro vya Azure gusa ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) birengagizwa n'abandi batanga amakuru.",
+				"azureRelaxed": "Azure request inputs ({subscriptionKey}, {endpoint}, {region}) ntibigikenewe mu {actionYml} kugira ngo abandi batanga serivisi bashobore gutorwa - babandanya kwemezwa mu gihe {provider} ari {azureValue}.",
+				"docs": "New Translation providers page, provider tabs on Getting started, provider selection on the Inputs page, and a refreshed home page leading with Azure, AWS, and Google."
+			}
 		},
 		"v3": {
 			"labels": {

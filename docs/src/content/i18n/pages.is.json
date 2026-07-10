@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Að byrja",
 		"eyebrow": "Uppsetning",
-		"lede": "Bættu við vinnuflæðisskrá, bendið henni á Azure AI þýðingarskrána þína, og aðgerðin mun skanna geymsluna eftir auðlindaskrám á upprunalegu tungumáli og senda út þýdd systkini.",
+		"heroLede": "Bættu við vinnuflæðisskrá, veldu þýðingaraðila — Azure, AWS eða Google — og aðgerðin skannar geymsluna eftir auðlindaskrám úr upprunalegu tungumáli og sendir út þýdd systkini.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "Búðu til Azure AI þýðanda auðlind í Azure portalinu og geymdu svo eftirfarandi sem leyndarmál í GitHub geymslu svo vinnuflæðið geti lesið þau:",
-				"key": "áskriftarlykillinn fyrir auðlindina.",
-				"endpoint": "svæðisbundna endapunktsslóðin.",
-				"region": "auðlindin er Azure-svæðið."
+			"provider": {
+				"title": "Veldu þýðingaraðila",
+				"body": "Aðgerðin vinnur með {azure}, {aws} og {google} bak við eitt samræmt API-yfirborð. Veldu einn veitanda á hverja keyrslu með {provider} inntaki — vinnuflæðið hagar sér eins óháð veitanda; aðeins vottorðin eru mismunandi. Sjáðu {providersLink} fyrir fulla samanburð.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Google Cloud þýðing",
+				"providersLinkLabel": "Þýðingaraðilar"
 			},
-			"workflow": {
-				"title": "Bættu við vinnuflæðinu",
-				"body": "Búðu til {workflowPath}:"
+			"configure": {
+				"title": "Bættu við aðgangsupplýsingum og vinnuflæði",
+				"body": "Geymdu auðkenni þjónustuaðilans sem leyndarmál í GitHub-geymslu og búðu svo til {workflowPath}. Veldu þjónustuaðilann þinn hér að neðan fyrir nákvæma uppsetningu — restin af vinnuflæðinu er eins.",
+				"secretsHeading": "Geymdu þetta sem leyndarmál í geymslu",
+				"workflowHeading": "Bættu við vinnuflæðinu",
+				"azure": {
+					"note": "Azure er sjálfgefinn þjónustuaðili, svo {provider} gæti verið sleppt. Útvega Azure AI þýðanda auðlind í Azure portalinu og geyma síðan auðkenni hennar:",
+					"key": "áskriftarlykillinn fyrir auðlindina.",
+					"endpoint": "svæðisbundna endapunktsslóðin.",
+					"region": "auðlindin er Azure-svæðið."
+				},
+				"aws": {
+					"note": "Stilltu {provider} á {providerValue}. Kjósðu OIDC í gegnum {configureAwsCredentials} svo engar langlífar leyndarmál séu geymd — skrefaútflutningurinn {awsRegionEnv} fyrir þig. Til að nota kyrrstæða lykla í staðinn, geymdu:",
+					"accessKeyId": "AWS aðgangslykilauðkennið þitt.",
+					"secretAccessKey": "AWS leynilykill þinn.",
+					"regionNote": "Svæði er alltaf nauðsynlegt — stilltu það með {awsRegion} eða {awsRegionEnv} umhverfisbreytunni."
+				},
+				"google": {
+					"note": "Stilltu {provider} á {providerValue}. Auðkenndu þig annað hvort með þjónustureiknings JSON auðkenningu eða API-lykli — gefðu nákvæmlega einn:",
+					"credentials": "þjónustureiknings JSON lykill (sem JSON strengur).",
+					"apiKey": "eða Google Cloud API lykil.",
+					"projectNote": "Valfrjáls {googleProjectId} er dregin af vottuninni þegar hún er ekki tekin upp."
+				}
 			},
 			"resource": {
 				"title": "Setja inn upprunalega auðlindaskrá",
@@ -91,8 +112,15 @@
 				"body": "Þegar vinnuflæðinu lýkur birtir aðgerðin þrjá úttak sem þú getur tengt í PR-lýsingu: {summaryTitle}, {summaryDetails} og {hasNewTranslations}. Það skrifar einnig Markdown-samantekt inn á starfssíðuna með {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Veldu þýðingaraðila"
+		},
 		"nextSteps": {
 			"title": "Næstu skref",
+			"providers": "Berðu saman alla þjónustuaðila og réttindi þeirra hlið við hlið.",
 			"configuration": "Stilltu sjálfgefnar stillingar á repóstigi með {configPath}.",
 			"recipes": "Sjá uppskriftir fyrir monorepos, sérsniðna orðalista og flokka sérsniðinna þýðenda."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} þýðingarbeiðnir festa nú {apiVersion} á vírinn fyrir bæði {translate} og {languages}. Azure SDK virðir aðeins API-útgáfuvalkostinn á viðskiptavinastigi þegar auðkenni er afhent; aðgerðin auðkennir sig fyrir hverja beiðni með hausum, þannig að sá valkostur var þögull felldur niður og beiðnir sjálfgefnar í forskoðunarútgáfu API-útgáfu þar sem {translate} samningurinn hafnaði líkamanum með HTTP 400 (villukóði {code}). Klárar lagfæringuna sem byrjaði í 3.0.1.",
 			"v301": "{label} Beiðnilíkami {translate} er nú ber JSON-fylki af {textItem} hlutum í stað þess að vera vafinn {inputs} hlutur, sem passar við v3.0 REST samninginn. Þetta eitt og sér endurheimti ekki þýðingar — sjá 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Fjölframleiðandi:",
+				"intentMapping": "Intent-specifier kortlagning:"
+			},
+			"items": {
+				"multiVendor": "{label} þýða með {azure}, {aws} eða {google} bak við eitt sameinað API yfirborð. Veldu einn þjónustuaðila í hverri keyrslu með nýju {provider} inntaki; aðgerðin felst í samsvarandi SDK fyrir aftan verksmiðju og hegðar sér eins óháð birgja. Fullkomlega afturvirkt samhæft — {provider} sjálfgefið {azureValue}, svo núverandi Azure vinnuflæði halda áfram að virka óbreytt.",
+				"aws": "Nýr AWS Translate veitandi ({awsSdk}). Auðkenndu þig með sjálfgefna auðkenningarkeðju AWS (mælt með: OIDC í gegnum {configureAwsCredentials}) eða skýrt {awsAccessKeyId} / {awsSecretAccessKey}; svæði um {awsRegion} eða {awsRegionEnv}.",
+				"google": "Nýr Google Cloud þýðingaraðili ({googleSdk}, v2). Auðkenndu með þjónustureiknings JSON auðkenni ({googleCredentials}) eða API-lykli ({googleApiKey}); Valfrjáls {googleProjectId}.",
+				"inputs": "Ný inntak: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} kort í Google {format} og {profanityAction} í AWS blótsyrði þar sem samsvarandi er til. Aðeins Azure-skilgreiningar ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) eru hunsaðar af öðrum veitendum.",
+				"azureRelaxed": "Azure-beiðniinntak ({subscriptionKey}, {endpoint}, {region}) eru ekki lengur merkt sem nauðsynleg í {actionYml} svo hægt er að velja aðra þjónustuaðila — samt staðfest við keyrslu þegar {provider} er {azureValue}.",
+				"docs": "Nýr þýðingaraðilasíða, flipar fyrir þjónustuaðila á Byrjun, val á þjónustuaðila á inntakssíðunni og uppfærð forsíða sem leiðir Azure, AWS og Google."
+			}
 		},
 		"v3": {
 			"labels": {

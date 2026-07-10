@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Beginnen",
 		"eyebrow": "Opstelling",
-		"lede": "Voeg een workflowbestand toe, wijs het naar je Azure AI Translator-credentials, en de actie scant het repo op brontaalbronbestanden en genereert vertaalde broers en zussen uit.",
+		"heroLede": "Voeg een workflowbestand toe, kies je vertaalprovider — Azure, AWS of Google — en de actie scant de repo op brontaalbronbestanden en genereert vertaalde broers en zussen uit.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "Maak een Azure AI Translator-resource aan in het Azure-portaal en sla vervolgens de volgende op als GitHub-repositorygeheimen zodat de workflow ze kan lezen:",
-				"key": "De abonnementssleutel voor de bron.",
-				"endpoint": "de regionale eindpunt-URL.",
-				"region": "de Azure-regio van de bron."
+			"provider": {
+				"title": "Kies een vertaaldienst",
+				"body": "De actie werkt met {azure}, {aws} en {google} achter één uniform API-oppervlak. Kies per run één provider met de {provider} input — de workflow werkt identiek, ongeacht de provider; alleen de kwalificaties verschillen. Zie {providersLink} voor een volledige vergelijking.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Google Cloud Vertaling",
+				"providersLinkLabel": "Vertaalaanbieders"
 			},
-			"workflow": {
-				"title": "Voeg de workflow toe",
-				"body": "Maak {workflowPath}:"
+			"configure": {
+				"title": "Voeg inloggegevens en een workflow toe",
+				"body": "Sla de inloggegevens van je provider op als geheimen van de GitHub-repository en maak {workflowPath} aan. Selecteer hieronder je zorgverlener voor de specifieke opstelling — de rest van de workflow is identiek.",
+				"secretsHeading": "Sla deze op als repository-geheimen",
+				"workflowHeading": "Voeg de workflow toe",
+				"azure": {
+					"note": "Azure is de standaardprovider, dus {provider} kan worden weggelaten. Bereid een Azure AI Translator-resource in het Azure-portaal in en sla vervolgens de inloggegevens op:",
+					"key": "De abonnementssleutel voor de bron.",
+					"endpoint": "de regionale eindpunt-URL.",
+					"region": "de Azure-regio van de bron."
+				},
+				"aws": {
+					"note": "Zet {provider} op {providerValue}. Geef de voorkeur aan OIDC via {configureAwsCredentials} zodat er geen langlopende geheimen worden opgeslagen — de STEP-exporten {awsRegionEnv} voor jou. Om statische toetsen te gebruiken, sla dan op:",
+					"accessKeyId": "je AWS-toegangssleutel-ID.",
+					"secretAccessKey": "je AWS-geheime toegangssleutel.",
+					"regionNote": "Een regio is altijd vereist — stel deze in met {awsRegion} of de {awsRegionEnv} omgevingsvariabele."
+				},
+				"google": {
+					"note": "Zet {provider} op {providerValue}. Authenticeer met een service-account JSON-credential of een API-sleutel — geef er precies één:",
+					"credentials": "een service-account JSON-sleutel (als een JSON-string).",
+					"apiKey": "of een Google Cloud API-sleutel.",
+					"projectNote": "Een optionele {googleProjectId} wordt afgeleid uit de kwalificatie wanneer deze wordt weggelaten."
+				}
 			},
 			"resource": {
 				"title": "Commit een bronbronbestand",
@@ -91,8 +112,15 @@
 				"body": "Zodra de workflow is afgerond, wordt er drie uitvoeren blootgesteld die je kunt begeleiden in een PR-beschrijving: {summaryTitle}, {summaryDetails} en {hasNewTranslations}. Het schrijft ook een Markdown-samenvatting op de vacaturepagina via {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Kies een vertaaldienst"
+		},
 		"nextSteps": {
 			"title": "Volgende stappen",
+			"providers": "Vergelijk elke aanbieder en hun referenties naast elkaar.",
 			"configuration": "Configureer repositoriaal-standaardinstellingen met {configPath}.",
 			"recipes": "Zie recepten voor monorepos, aangepaste glossaria en Custom Translator-categorieën."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} vertalerverzoeken pinnen nu {apiVersion} op de draad voor zowel {translate} als {languages}. De Azure SDK kent alleen de client-level api-versieoptie wanneer een credential wordt doorgegeven; de actie authenticeert per verzoek via headers, waardoor die optie stilletjes werd verwijderd en verzoeken standaard een preview-API-versie werden gebruikt waarvan het {translate} contract de body met HTTP 400 (foutcode {code}) afwees. Voltooit de fix die begon in 3.0.1.",
 			"v301": "{label} De {translate} request body is nu een kale JSON-array van {textItem} items in plaats van een wrapped {inputs} object, passend bij het v3.0 REST-contract. Op zichzelf herstelde dit de vertalingen niet — zie 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Multi-vendor:",
+				"intentMapping": "Intent-specifier mapping:"
+			},
+			"items": {
+				"multiVendor": "{label} vertalen met {azure}, {aws} of {google} achter één uniform API-oppervlak. Kies per run één aanbieder met de nieuwe {provider} input; de actie delegeert aan de bijpassende SDK achter een fabriek en gedraagt zich identiek, ongeacht de leverancier. Volledig achterwaarts compatibel — {provider} staat standaard op {azureValue}, zodat bestaande Azure-workflows ongewijzigd blijven werken.",
+				"aws": "Nieuwe AWS Translate-provider ({awsSdk}). Authenticeer met de AWS standaard credential chain (aanbevolen: OIDC via {configureAwsCredentials}) of expliciete {awsAccessKeyId} / {awsSecretAccessKey}; regio via {awsRegion} of {awsRegionEnv}.",
+				"google": "Nieuwe Google Cloud Translation-provider ({googleSdk}, v2). Authenticeren met een service-account JSON-credential ({googleCredentials}) of een API-sleutel ({googleApiKey}); optionele {googleProjectId}.",
+				"inputs": "Nieuwe inputs: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} past bij Google's {format} en {profanityAction} op AWS-vloekmaskering waar een equivalent bestaat. Azure-only specificatoren ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) worden genegeerd door andere providers.",
+				"azureRelaxed": "Azure-verzoekinvoer ({subscriptionKey}, {endpoint}, {region}) is niet langer verplicht in {actionYml} zodat andere providers kunnen worden geselecteerd — nog steeds gevalideerd tijdens runtime wanneer {provider} {azureValue} is.",
+				"docs": "Nieuwe vertaalaanbiederspagina, leverancierstabbladen op Aan de slag, aanbiederselectie op de Inputs-pagina, en een vernieuwde startpagina met Azure, AWS en Google."
+			}
 		},
 		"v3": {
 			"labels": {

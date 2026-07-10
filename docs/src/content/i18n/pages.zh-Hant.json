@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "開始",
 		"eyebrow": "設定",
-		"lede": "新增一個工作流程檔案，指向你的 Azure AI 翻譯器憑證，動作會掃描倉庫中的原始語言資源檔案並輸出翻譯的兄弟檔案。",
+		"heroLede": "新增工作流程檔案，選擇你的翻譯提供者——Azure、AWS 或 Google——動作會掃描倉庫中的原始語言資源檔案，並發出翻譯的兄弟檔。",
 		"steps": {
-			"provision": {
-				"title": "Provision a Azure AI Translator 資源",
-				"body": "在 Azure 入口網站建立一個 Azure AI 翻譯器資源，然後將以下資料存為 GitHub 倉庫的秘密，讓工作流程能讀取：",
-				"key": "資源的訂閱金鑰。",
-				"endpoint": "區域端點網址。",
-				"region": "該資源位於 Azure 區域。"
+			"provider": {
+				"title": "選擇翻譯供應商",
+				"body": "該動作在統一的 API 表面下，與 {azure}、{aws} 和 {google}運作。每次執行選擇單一提供者並使用{provider}輸入——工作流程無論提供者為何，行為相同;只有資歷不同。完整比較請參見{providersLink}。",
+				"azure": "Azure AI 翻譯器",
+				"aws": "AWS 翻譯",
+				"google": "Google 雲端翻譯",
+				"providersLinkLabel": "翻譯提供者"
 			},
-			"workflow": {
-				"title": "新增工作流程",
-				"body": "創建{workflowPath}："
+			"configure": {
+				"title": "新增憑證和工作流程",
+				"body": "先把你的服務提供者憑證存為 GitHub 倉庫的秘密，然後建立{workflowPath}。請在下方選擇您的服務提供者，查看其具體設定——其餘工作流程完全相同。",
+				"secretsHeading": "將這些儲存庫秘密儲存",
+				"workflowHeading": "新增工作流程",
+				"azure": {
+					"note": "Azure 是預設的提供者，因此{provider}可能會省略。在 Azure 入口網站中配置 Azure AI 翻譯器資源，然後儲存其憑證：",
+					"key": "資源的訂閱金鑰。",
+					"endpoint": "區域端點網址。",
+					"region": "該資源位於 Azure 區域。"
+				},
+				"aws": {
+					"note": "將{provider}設為{providerValue}。偏好 OIDC 透過 {configureAwsCredentials}，這樣就不會儲存長期機密——步驟會自動{awsRegionEnv}。若要使用靜態金鑰，請儲存：",
+					"accessKeyId": "你的 AWS 存取金鑰 ID。",
+					"secretAccessKey": "你的 AWS 秘密存取金鑰。",
+					"regionNote": "區域是必須的——用 {awsRegion} 或 {awsRegionEnv} 環境變數設定。"
+				},
+				"google": {
+					"note": "將{provider}設為{providerValue}。使用服務帳號 JSON 憑證或 API 金鑰進行驗證——只提供一個：",
+					"credentials": "一個服務帳號 JSON 金鑰（以 JSON 字串形式）。",
+					"apiKey": "或是 Google Cloud API 金鑰。",
+					"projectNote": "若遺漏憑證，則可從憑證推斷出可選{googleProjectId}。"
+				}
 			},
 			"resource": {
 				"title": "提交原始資源檔案",
@@ -91,8 +112,15 @@
 				"body": "工作流程結束後，動作會顯示三個輸出，你可以接入 PR 描述：{summaryTitle}、{summaryDetails} 和 {hasNewTranslations}。它還會透過 {coreSummary} 在職缺頁面寫入 Markdown 摘要。"
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "選擇翻譯供應商"
+		},
 		"nextSteps": {
 			"title": "下一步",
+			"providers": "並排比較每家供應商及其資歷。",
 			"configuration": "用 {configPath} 設定倉庫層級的預設值。",
 			"recipes": "請參閱 monorepo 的配方、自訂詞彙表和自訂翻譯器分類。"
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label}轉播器請求現在會同時在線路上{translate}和{languages}都用 {apiVersion} 針腳。Azure SDK 只有在傳遞憑證時才會尊重用戶端層級的 API 版本選項;該動作透過標頭為每個請求進行認證，因此該選項被悄悄放棄，請求預設為預覽版 API 版本，該 {translate} 契約以 HTTP 400（錯誤代碼 {code}）拒絕了該正文。完成了從 3.0.1 開始的修正。",
 			"v301": "{label} {translate}請求主體現在是一個裸 JSON 陣列，包含 {textItem} 項目，而非一個包裹的 {inputs} 物件，與 v3.0 REST 合約相符。單獨此功能無法恢復翻譯——詳見 3.0.2。"
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "多供應商：",
+				"intentMapping": "意圖-指定符映射："
+			},
+			"items": {
+				"multiVendor": "{label}透過{azure}、{aws}或{google}在統一的 API 表面下進行轉換。每次執行選擇一位提供者，使用新的{provider}輸入;這個動作會委派給工廠後方的相符 SDK，且無論廠商為何，行為都相同。完全向下相容——{provider}預設為 {azureValue}，因此現有的 Azure 工作流程能保持不變。",
+				"aws": "新的 AWS 翻譯供應商（{awsSdk}）。使用 AWS 預設憑證鏈（建議：透過 {configureAwsCredentials} OIDC）或明確的 {awsAccessKeyId}/{awsSecretAccessKey} 來驗證;區域可透過{awsRegion}或{awsRegionEnv}。",
+				"google": "新的 Google Cloud 翻譯服務提供者（{googleSdk}，v2）。使用服務帳號 JSON 憑證（{googleCredentials}）或 API 金鑰（{googleApiKey}）進行驗證;可選{googleProjectId}。",
+				"inputs": "新輸入：{provider}、{awsAccessKeyId}、{awsSecretAccessKey}、{awsRegion}、{googleApiKey}、{googleCredentials}、{googleProjectId}。",
+				"intentMapping": "{label} {textType}對應到 Google 的{format}，{profanityAction}對應到 AWS 的髒話遮蔽，因為那裡有類似的保護。僅 Azure 的指定符（{categoryId}、{apiVersion}、{profanityMarker}、{allowFallback}）則被其他提供者忽略。",
+				"azureRelaxed": "Azure 請求輸入（{subscriptionKey}、{endpoint}、{region}）在 {actionYml} 中不再標記為「必需」，因此可以選擇其他提供者——當{provider} {azureValue}時，仍會被驗證。",
+				"docs": "新增翻譯服務提供者頁面、開始服務分頁、輸入頁面的提供者選擇，以及以 Azure、AWS 和 Google 為首的全新首頁。"
+			}
 		},
 		"v3": {
 			"labels": {

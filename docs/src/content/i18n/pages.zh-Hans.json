@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "入门",
 		"eyebrow": "设置",
-		"lede": "添加一个工作流文件，指向你的Azure AI翻译器凭证，操作会扫描仓库中的源语言资源文件并发送翻译后的兄弟文件。",
+		"heroLede": "添加一个工作流文件，选择你的翻译提供商——Azure、AWS或Google——操作会扫描仓库中的源语言资源文件，并输出翻译后的兄弟文件。",
 		"steps": {
-			"provision": {
-				"title": "Provision a Azure AI Translator 资源",
-				"body": "在 Azure 门户创建一个 Azure AI 翻译器资源，然后将以下内容作为 GitHub 仓库秘密存储，以便工作流程读取：",
-				"key": "资源的订阅密钥。",
-				"endpoint": "区域端点URL。",
-				"region": "该资源的Azure区域。"
+			"provider": {
+				"title": "选择翻译提供商",
+				"body": "该动作在统一的API表面下，使用{azure}、{aws}和{google}。每次运行选择一个提供者并使用{provider}输入——无论哪个提供者，工作流程的行为都相同;只是资历不同。完整比较请参见{providersLink}。",
+				"azure": "Azure AI 翻译器",
+				"aws": "AWS 翻译",
+				"google": "谷歌云翻译",
+				"providersLinkLabel": "翻译提供商"
 			},
-			"workflow": {
-				"title": "添加工作流程",
-				"body": "创建{workflowPath}："
+			"configure": {
+				"title": "添加凭证和工作流程",
+				"body": "先把你的服务商凭证存为GitHub仓库的密钥，然后创建{workflowPath}。请在下方选择您的服务提供商，查看具体设置——其余工作流程完全相同。",
+				"secretsHeading": "将这些存储作为仓库秘密存储",
+				"workflowHeading": "添加工作流程",
+				"azure": {
+					"note": "Azure 是默认的提供者，所以{provider}可以省略。在 Azure 门户中配置 Azure AI 翻译器资源，然后存储其凭证：",
+					"key": "资源的订阅密钥。",
+					"endpoint": "区域端点URL。",
+					"region": "该资源的Azure区域。"
+				},
+				"aws": {
+					"note": "将{provider}设置为{providerValue}。优先通过{configureAwsCredentials}进行OIDC，这样就不会存储长期秘密——步骤会自动导出，导出{awsRegionEnv}。要使用静态密钥，请存储：",
+					"accessKeyId": "你的 AWS 访问密钥 ID。",
+					"secretAccessKey": "你的AWS秘密访问密钥。",
+					"regionNote": "必须有一个区域——用{awsRegion}或{awsRegionEnv}环境变量设置。"
+				},
+				"google": {
+					"note": "将{provider}设置为{providerValue}。用服务账户的JSON凭据或API密钥进行认证——只提供一个：",
+					"credentials": "一个服务账户 JSON 密钥（作为 JSON 字符串）。",
+					"apiKey": "或者 Google Cloud API 密钥。",
+					"projectNote": "当省略凭证时，会推断出可选{googleProjectId}。"
+				}
 			},
 			"resource": {
 				"title": "提交源资源文件",
@@ -91,8 +112,15 @@
 				"body": "工作流程结束后，动作会显示三个输出，你可以连接到PR描述中：{summaryTitle}、{summaryDetails}和{hasNewTranslations}。它还会通过{coreSummary}在职位页面写入Markdown摘要。"
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "谷歌",
+			"ariaLabel": "选择翻译提供商"
+		},
 		"nextSteps": {
 			"title": "下一步",
+			"providers": "将所有服务商及其资质进行并排比较。",
 			"configuration": "用{configPath}配置仓库级默认值。",
 			"recipes": "查看 monorepo 的配方、自定义词汇表和自定义翻译器类别。"
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label}转播器请求现在会在线路上同时为{translate}和 {languages} 都固定{apiVersion}。Azure SDK 仅在通过凭证传递时才支持客户端级 API 版本选项;该动作通过头部为每个请求进行认证，因此该选项被悄然放弃，请求默认使用预览版 API 版本，其 {translate} 契约拒绝了带有 HTTP 400 的正文（错误代码 {code}）。完成了从3.0.1开始的修复。",
 			"v301": "{label} {translate}请求体现在是一个裸的 JSON 数组，包含 {textItem} 项，而不是一个封装的 {inputs} 对象，符合 v3.0 REST 契约。单独这并不能恢复翻译——参见3.0.2。"
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "多供应商：",
+				"intentMapping": "意图-指定符映射："
+			},
+			"items": {
+				"multiVendor": "{label}通过{azure}、{aws}或{google}在统一的API表面进行转换。每次运行选择一个新的{provider}输入的提供者;该动作委派给工厂后面的匹配 SDK，且无论供应商如何，行为都相同。完全向后兼容——{provider}默认为{azureValue}，因此现有的Azure工作流程保持不变。",
+				"aws": "新的 AWS 翻译服务提供商（{awsSdk}）。使用AWS默认凭证链（推荐：通过{configureAwsCredentials} OIDC）或显式{awsAccessKeyId}/{awsSecretAccessKey}进行认证;通过{awsRegion}或{awsRegionEnv}地区。",
+				"google": "新的 Google Cloud 翻译提供商（{googleSdk}，v2）。使用服务账户JSON凭据（{googleCredentials}）或API密钥（{googleApiKey}）进行认证;可选{googleProjectId}。",
+				"inputs": "新输入：{provider}、{awsAccessKeyId}、{awsSecretAccessKey}、{awsRegion}、{googleApiKey}、{googleCredentials}、{googleProjectId}。",
+				"intentMapping": "{label} {textType}映射到谷歌的{format}，{profanityAction}映射到AWS的脏话掩蔽，存在相应的保护。仅 Azure 的指定符（{categoryId}、{apiVersion}、{profanityMarker}、{allowFallback}）被其他提供者忽略。",
+				"azureRelaxed": "Azure 请求输入（{subscriptionKey}、{endpoint}、{region}）在 {actionYml} 中不再标记为必需，因此可以选择其他提供者——当{provider} {azureValue}时，仍然会被验证。",
+				"docs": "新增翻译提供商页面，“入门”的提供者标签，输入页面的提供者选择，以及以Azure、AWS和Google为首的刷新主页。"
+			}
 		},
 		"v3": {
 			"labels": {

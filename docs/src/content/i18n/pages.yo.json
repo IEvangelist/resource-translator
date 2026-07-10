@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Bẹrẹ",
 		"eyebrow": "Ṣeto",
-		"lede": "Ṣafikun faili iṣan-iṣẹ kan, tọka si awọn iwe-ẹri Azure AI Translator rẹ, ati pe iṣe naa yoo ṣe ọlọjẹ repo fun awọn faili orisun-ede ati gbejade awọn arakunrin ti a tumọ si.",
+		"heroLede": "Ṣafikun faili iṣan-iṣẹ kan, yan olupese itumọ rẹ — Azure, AWS, tabi Google — ati pe iṣe naa ṣe ọlọjẹ repo fun awọn faili orisun-ede ati gbejade awọn arakunrin ti a tumọ si.",
 		"steps": {
-			"provision": {
-				"title": "Pese ohun elo Azure AI Translator",
-				"body": "Ṣẹda ohun elo Onitumọ Azure AI ni ẹnu-ọna Azure, lẹhinna tọju atẹle bi awọn aṣiri ibi ipamọ GitHub ki iṣan-iṣẹ le ka wọn:",
-				"key": "Bọtini Bọtini Bọ",
-				"endpoint": "Öåíû íà ýòîò ñ÷åò ñîñòàâëÿåò UR.",
-				"region": "Agbegbe Azure ti o wa ni ayika agbaye."
+			"provider": {
+				"title": "Yan olupese itumọ kan",
+				"body": "Iṣe naa n ṣiṣẹ pẹlu {azure}, {aws}, ati {google} lẹhin oju API ti iṣọkan kan. Yan olupese kan ṣoṣo fun ṣiṣe pẹlu titẹ sii {provider} — iṣan-iṣẹ naa huwa bakanna laibikita olupese; Awọn iwe-ẹri nikan yatọ. Wo {providersLink} fun ifiwera kikun.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Itumọ",
+				"google": "Itumọ awọsanma Google",
+				"providersLinkLabel": "Awọn olupese itumọ"
 			},
-			"workflow": {
-				"title": "Ṣafikun iṣẹ naa",
-				"body": "Ṣẹda {workflowPath}:"
+			"configure": {
+				"title": "Ṣafikun awọn iwe-ẹri ati iṣẹ ṣiṣe kan",
+				"body": "Fipamọ awọn iwe-ẹri olupese rẹ bi awọn aṣiri ibi ipamọ GitHub, lẹhinna ṣẹda {workflowPath}. Yan olupese rẹ ni isalẹ fun iṣeto rẹ pato — iyoku iṣan-iṣẹ jẹ kanna.",
+				"secretsHeading": "Fipamọ awọn wọnyi bi awọn aṣiri ibi ipamọ",
+				"workflowHeading": "Ṣafikun iṣẹ naa",
+				"azure": {
+					"note": "Íà ýòîò ñ÷ ̧ò ýòîò ÷åëîâåê, {provider} ÷åëîâåê. Pese ohun elo Onitumọ Azure AI ni ẹnu-ọna Azure, lẹhinna tọju awọn iwe-ẹri rẹ:",
+					"key": "Bọtini Bọtini Bọ",
+					"endpoint": "Öåíû íà ýòîò ñ÷åò ñîñòàâëÿåò UR.",
+					"region": "Agbegbe Azure ti o wa ni ayika agbaye."
+				},
+				"aws": {
+					"note": "Ṣeto {provider} si {providerValue}. Fẹ OIDC nipasẹ {configureAwsCredentials} ki ko si awọn aṣiri ti o pẹ ti o wa ni fipamọ — awọn okeere igbesẹ {awsRegionEnv} fun ọ. Lati lo awọn bọtini aimi dipo, fipamọ:",
+					"accessKeyId": "ID bọtini wiwọle AWS rẹ",
+					"secretAccessKey": "Bọtini Wiwọle Asiri AWS rẹ",
+					"regionNote": "A nilo agbegbe nigbagbogbo — ṣeto rẹ pẹlu {awsRegion} tabi iyipada ayika {awsRegionEnv}."
+				},
+				"google": {
+					"note": "Ṣeto {provider} si {providerValue}. Jẹrisi pẹlu boya iwe-ẹri JSON akọọlẹ iṣẹ tabi bọtini API — pese gangan ọkan:",
+					"credentials": "Bọtini JSON akọọlẹ iṣẹ kan (bi okun JSON).",
+					"apiKey": "Tabi bọtini Google Cloud API.",
+					"projectNote": "A {googleProjectId} aṣayan lati inu iwe-ẹri nigbati o ba fi silẹ."
+				}
 			},
 			"resource": {
 				"title": "Ṣe faili orisun orisun kan",
@@ -91,8 +112,15 @@
 				"body": "Lọgan ti iṣan-iṣẹ ba pari, iṣe naa ṣafihan awọn abajade mẹta ti o le ṣe sinu apejuwe PR kan: {summaryTitle}, {summaryDetails}, ati {hasNewTranslations}. O tun kọ akopọ Markdown sinu oju-iwe iṣẹ nipasẹ {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Yan olupese itumọ kan"
+		},
 		"nextSteps": {
 			"title": "Awọn igbesẹ ti o tẹle",
+			"providers": "Ṣe afiwe gbogbo awọn olupese ati awọn iwe-ẹri rẹ lẹgbẹẹ ẹgbẹ.",
 			"configuration": "Ṣe atunto awọn aiṣedeede ipele repo pẹlu {configPath}.",
 			"recipes": "Wo awọn ilana fun awọn monorepos, awọn glossaries aṣa, ati awọn ẹka Onitumọ Aṣa."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Onitumọ beere bayi pin {apiVersion} lori waya fun mejeeji {translate} ati {languages}. Azure SDK nikan bu ọla fun aṣayan ẹya api-ipele alabara nigbati iwe-ẹri kan ba kọja; Iṣe naa jẹrisi fun ibeere nipasẹ awọn akọle, nitorinaa aṣayan naa ni idakẹjẹ ati awọn ibeere ti yipada si ẹya API awotẹlẹ ti adehun {translate} kọ ara pẹlu HTTP 400 (koodu aṣiṣe {code}). O ti wa ni ti o",
 			"v301": "{label} Ara ibeere {translate} jẹ bayi akopọ JSON ti awọn ohun {textItem} dipo nkan {inputs} ti a we, ti o baamu adehun v3.0 REST. Lori ara rẹ eyi ko mu awọn itumọ pada — wo 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Awọn olutaja ọpọlọpọ:",
+				"intentMapping": "Maapu ti o ni ilọsiwaju:"
+			},
+			"items": {
+				"multiVendor": "{label} tumọ pẹlu {azure}, {aws}, tabi {google} lẹhin oju API ti iṣọkan kan. Yan olupese kan ṣoṣo fun ṣiṣe pẹlu titẹ sii {provider} tuntun; iṣe naa ṣe aṣoju si SDK ti o baamu lẹhin ile-iṣẹ kan ati ihuwasi kanna laibikita olutaja. Ni kikun sẹhin ibaramu — {provider} aiyipada si {azureValue}, nitorinaa awọn iṣan-iṣẹ Azure ti o wa tẹlẹ tẹsiwaju lati ṣiṣẹ laisi iyipada.",
+				"aws": "Olupese itumọ AWS tuntun ({awsSdk}). Jẹrisi pẹlu pq iwe-ẹri aiyipada AWS (iṣeduro: OIDC nipasẹ {configureAwsCredentials}) tabi {awsAccessKeyId} / {awsSecretAccessKey} ti o han gbangba; Agbegbe nipasẹ {awsRegion} tabi {awsRegionEnv}.",
+				"google": "Olupese itumọ awọsanma Google tuntun ({googleSdk}, v2). Jẹrisi pẹlu iwe-ẹri JSON akọọlẹ iṣẹ ({googleCredentials}) tabi bọtini API ({googleApiKey}); Awọn iyan {googleProjectId}.",
+				"inputs": "Awọn igbewọle tuntun: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} awọn maapu si awọn {format} Google ati awọn maapu {profanityAction} si iboju asọtẹlẹ AWS nibiti deede wa. Àwọn àpèjúwe Azure-nìkan ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) ni wọ́n ń fojú kọ àwọn olùpèsè mìíràn.",
+				"azureRelaxed": "Awọn igbewọle ibeere Azure ({subscriptionKey}, {endpoint}, {region}) ko ni samisi pataki ni {actionYml} ki a le yan awọn olupese miiran — ṣi ni idaniloju ni akoko ṣiṣe nigbati {provider} {azureValue}.",
+				"docs": "Oju-iwe Awọn olupese Itumọ tuntun, awọn taabu olupese lori Bẹrẹ, yiyan olupese lori oju-iwe Awọn igbewọle, ati oju-iwe ile ti o ni isọdọtun ti o yori pẹlu Azure, AWS, ati Google."
+			}
 		},
 		"v3": {
 			"labels": {

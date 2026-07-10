@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Ufänken",
 		"eyebrow": "Opbau",
-		"lede": "Füügt eng Workflow-Datei derbäi, weist se op Är Azure AI Translator-Credentials, an d'Aktioun scannt de Repo no Quellsprooch-Ressourcedateien a schéckt iwwersate Geschwëster aus.",
+		"heroLede": "Füügt eng Workflow-Datei derbäi, wielt Ären Iwwersetzungsprovider — Azure, AWS oder Google — an d'Aktioun scannt de Repo no Quellsprooch-Ressourcedateien a schéckt iwwersate Geschwëster eraus.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "Erstellt eng Azure AI Translator Ressource am Azure Portal, da späichert déi folgend als GitHub-Repository-Geheimnisser, sou datt de Workflow se liese kann:",
-				"key": "de Abonnementschlëssel fir d'Ressource.",
-				"endpoint": "d'regional Endpunkt-URL.",
-				"region": "d'Ressource ass d'Azure-Regioun."
+			"provider": {
+				"title": "Wielt e Iwwersetzungsprovider",
+				"body": "D'Aktioun funktionéiert mat {azure}, {aws} an {google} hannert enger eenheetlecher API-Uewerfläch. Wielt pro Laf e eenzege Provider mat der {provider} Input — de Workflow funktionéiert identesch onofhängeg vum Provider; nëmmen d'Qualifikatiounen ënnerscheede sech. Kuckt {providersLink} fir e komplette Verglach.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Google Cloud Iwwersetzung",
+				"providersLinkLabel": "Iwwersetzungsservicer"
 			},
-			"workflow": {
-				"title": "Füügt de Workflow derbäi",
-				"body": "Erstellt {workflowPath}:"
+			"configure": {
+				"title": "Füügt Zougangsdaten an e Workflow derbäi",
+				"body": "Späichert d'Zougangsdaten vun Ärem Provider als GitHub-Repository-Geheimnisser a erstellt {workflowPath}. Wielt Äre Provider hei drënner fir seng spezifesch Opstellung — de Rescht vum Workflow ass identesch.",
+				"secretsHeading": "Späichert dës als Repository-Geheimnisser",
+				"workflowHeading": "Füügt de Workflow derbäi",
+				"azure": {
+					"note": "Azure ass de Standardprovider, dofir kann {provider} ausgelass ginn. Bereet eng Azure AI Translator Ressource am Azure Portal zur Verfügung a späichert dann hir Credentials:",
+					"key": "de Abonnementschlëssel fir d'Ressource.",
+					"endpoint": "d'regional Endpunkt-URL.",
+					"region": "d'Ressource ass d'Azure-Regioun."
+				},
+				"aws": {
+					"note": "Setz {provider} op {providerValue}. Bevorzugt OIDC iwwer {configureAwsCredentials}, sou datt keng laangfristeg Geheimnisser gespäichert ginn — d'Schrëtt Exporten {awsRegionEnv} fir Iech. Fir amplaz statesch Tasten ze benotzen, späichert:",
+					"accessKeyId": "Är AWS Access Key ID.",
+					"secretAccessKey": "Ären AWS-Geheimzougangsschlëssel.",
+					"regionNote": "Eng Regioun ass ëmmer erfuerderlech — setzt se mat {awsRegion} oder der {awsRegionEnv} Ëmweltvariabel."
+				},
+				"google": {
+					"note": "Setz {provider} op {providerValue}. Authentifizéiert Iech entweder mat engem Service-Kont JSON-Credential oder engem API-Schlëssel — liwwert genee een:",
+					"credentials": "e Service-Kont JSON-Schlëssel (als JSON-String).",
+					"apiKey": "oder e Google Cloud API-Schlëssel.",
+					"projectNote": "Eng optional {googleProjectId} gëtt aus der Qualifikatioun ofgeleet, wann se net ernimmt gëtt."
+				}
 			},
 			"resource": {
 				"title": "Commit eng Quellressourcedatei",
@@ -91,8 +112,15 @@
 				"body": "Wann de Workflow fäerdeg ass, weist d'Aktioun dräi Outputen, déi s de an eng PR-Beschreiwung verbannen kanns: {summaryTitle}, {summaryDetails} an {hasNewTranslations}. Et schreift och eng Markdown-Zesummefaassung iwwer {coreSummary} op d'Job-Säit."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Wielt e Iwwersetzungsprovider"
+		},
 		"nextSteps": {
 			"title": "Nächst Schrëtt",
+			"providers": "Vergläicht all Provider an seng Zougangsdaten niefteneen.",
 			"configuration": "Konfiguréier Repo-Level Standarden mat {configPath}.",
 			"recipes": "Kuckt Rezepter fir Monorepos, personaliséiert Glossairen an Custom Translator Kategorien."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Translator-Ufroen pinnen elo {apiVersion} op d'Drot fir béid {translate} an {languages}. De Azure SDK respektéiert nëmmen d'Client-Level API-Versiounsoptioun wann eng Credential weiderginn gëtt; d'Aktioun authentifizéiert sech pro Ufro iwwer Headeren, sou datt dës Optioun roueg ofgeschaaft gouf an d'Ufroen standardméisseg op eng Preview-API-Versioun gesat, deenen hiren {translate} Kontrakt de Kierper mat HTTP 400 (Feelercode {code}) refuséiert huet. Fäerdeg mat der Reparatur, déi an 3.0.1 ugefaangen huet.",
 			"v301": "{label} De Kierper {translate} Ufro ass elo eng nackt JSON-Array vu {textItem} Elementer amplaz vun engem verpackten {inputs} Objet, wat mam v3.0 REST Kontrakt entsprécht. Dëst eleng huet d'Iwwersetzungen net restauréiert — kuckt 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Multi-Fournisseur:",
+				"intentMapping": "Intent-spezifizéiert Ofbildung:"
+			},
+			"items": {
+				"multiVendor": "{label} iwwersetzen mat {azure}, {aws} oder {google} hannert enger eenheetlecher API-Uewerfläch. Wielt pro Laf e eenzege Provider mat der neier {provider} Input; d'Aktioun delegéiert un den entspriechenden SDK hannert enger Fabréck a verhält sech identesch onofhängeg vum Fournisseur. Vollstänneg rückwärtskompatibel — {provider} ass standardméisseg op {azureValue}, sou datt déi existéierend Azure-Workflows onverännert weider funktionéieren.",
+				"aws": "Neien AWS Translate Provider ({awsSdk}). Authentifizéiert Iech mat der AWS Standard-Credential-Kette (recommandéiert: OIDC via {configureAwsCredentials}) oder explizit {awsAccessKeyId} / {awsSecretAccessKey}; Regioun iwwer {awsRegion} oder {awsRegionEnv}.",
+				"google": "Neie Google Cloud Iwwersetzungsprovider ({googleSdk}, v2). Authentifizéieren mat engem Service-Kont JSON Credential ({googleCredentials}) oder engem API-Schlëssel ({googleApiKey}); optional {googleProjectId}.",
+				"inputs": "Nei Inputen: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} Maps op Googles {format} an {profanityAction} op AWS Schimpfwuertmaskéierung, wou eng Äquivalent existéiert. Azure-only Spezifizéierer ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) ginn vun anere Fournisseuren ignoréiert.",
+				"azureRelaxed": "Azure Ufro-Inputen ({subscriptionKey}, {endpoint}, {region}) sinn net méi als néideg an {actionYml} markéiert, sou datt aner Provider ausgewielt kënne ginn – nach ëmmer validéiert beim Lafzäit, wann {provider} {azureValue} ass.",
+				"docs": "Nei Iwwersetzungsprovider-Säit, Provider-Tabs op Getting Start, Provider-Auswiel op der Inputs-Säit, an eng aktualiséiert Startsäit mat Azure, AWS a Google."
+			}
 		},
 		"v3": {
 			"labels": {

@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Tekivu",
 		"eyebrow": "Vakaduri",
-		"lede": "Vakuria e dua na faile ni cakacaka, dusia ki na nomu Azure AI Translator credentials, ka na vakadikeva na cakacaka na repo me baleta na faili ni ivurevure ni ivurevure ni vosa ka solia na veitacini vakadewataki.",
+		"heroLede": "Kuria e dua na faile ni cakacaka, digitaka na nomu dauvakadewa — Azure, AWS, se Google — ka na vakadikeva na repo me baleta na faili ni ivurevure ni ivurevure ni vosa ka emits na veitacini vakadewataki.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "Tauyavutaka e dua na ivurevure ni Azure AI Translator ena Azure portal, qai maroroya na veika oqo me vaka na veika vuni ni repository ni GitHub me rawa ni wilika na cakacaka:",
-				"key": "na idola ni sausaumi me baleta na ivurevure.",
-				"endpoint": "na URL ni icavacava ni iwasewase.",
-				"region": "na iwasewase ni Azure ni ivurevure."
+			"provider": {
+				"title": "Digitaka e dua na dauvakadewa",
+				"body": "Na cakacaka e cakacaka vata kei na {azure}, {aws}, kei na {google} ena daku ni dua na dela ni API cokovata Digitaka e dua na dauveiqaravi ena dua na cici vata kei na vakacurumi ni {provider} — na cakacaka e tautauvata ga veitalia na dauveiqaravi; e duidui ga na ivakatakilakila. Raica na {providersLink} me baleta e dua na veivakatauvatani taucoko.",
+				"azure": "Azure AI Translator",
+				"aws": "Vakadewa ni AWS",
+				"google": "iVakadewa ni O ni Google",
+				"providersLinkLabel": "Dauvakadewa"
 			},
-			"workflow": {
-				"title": "Kuria na cakacaka ni cakacaka",
-				"body": "Bulia na {workflowPath}:"
+			"configure": {
+				"title": "Kuria na ivakatakilakila kei na dua na cakacaka",
+				"body": "Maroroya na ivakatakilakila ni nomu dauveiqaravi me vaka na GitHub repository vuni, qai tauyavutaka {workflowPath}. Digitaka na nomu dauveiqaravi e ra me baleta na kena ituvatuva vakatabakidua — na vo ni cakacaka e tautauvata.",
+				"secretsHeading": "Maroroya oqo me ka vuni ni repository",
+				"workflowHeading": "Kuria na cakacaka ni cakacaka",
+				"azure": {
+					"note": "Azure sa ikoya na dausoli lalai, {provider} rawa ni kau laivi. Vakarautaka e dua na ivurevure ni Azure AI Translator ena Azure portal, qai maroroya na kena ivakatakilakila:",
+					"key": "na idola ni sausaumi me baleta na ivurevure.",
+					"endpoint": "na URL ni icavacava ni iwasewase.",
+					"region": "na iwasewase ni Azure ni ivurevure."
+				},
+				"aws": {
+					"note": "Tuvanaka {provider} ki na {providerValue}. Taleitaka na OIDC mai na {configureAwsCredentials} me kakua kina ni maroroi na veika vuni balavu — na ikalawa ni vakau {awsRegionEnv} me baleti iko. Me vakayagataki na idola static, maroroya na:",
+					"accessKeyId": "nomu ID ni idola ni curu ki na AWS.",
+					"secretAccessKey": "nomu idola vuni ni curu ki na AWS.",
+					"regionNote": "E dau gadrevi e dua na iwasewase — tuvanaka vata kei na {awsRegion} se na {awsRegionEnv} environment variable."
+				},
+				"google": {
+					"note": "Tuvanaka {provider} ki na {providerValue}. Authenticate vata kei na dua na ivakatakilakila ni JSON ni akaude ni veiqaravi se dua na idola ni API — vakarautaka sara ga e dua:",
+					"credentials": "e dua na idola ni JSON ni akaude ni veiqaravi (me vaka e dua na string ni JSON).",
+					"apiKey": "se dua na idola ni Google Cloud API.",
+					"projectNote": "E dua na {googleProjectId} digitaki e inferred mai na credential ni sa sega ni vakayagataki."
+				}
 			},
 			"resource": {
 				"title": "Vakadeitaka e dua na faile ni ivurevure ni ivurevure",
@@ -91,8 +112,15 @@
 				"body": "Ni sa oti na cakacaka, na cakacaka e vakaraitaka e tolu na outputs e rawa ni o vakauqeta ki na dua na ivakamacala ni PR: {summaryTitle}, {summaryDetails}, kei na {hasNewTranslations}. E vola talega e dua na ivakaleka ni Markdown ki na tabana ni cakacaka ena {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "Na AWS",
+			"google": "Google",
+			"ariaLabel": "Digitaka e dua na dauvakadewa"
+		},
 		"nextSteps": {
 			"title": "Na ikalawa e tarava",
+			"providers": "Veidutaitaka vata na dauveiqaravi yadua kei na kena ivakatakilakila.",
 			"configuration": "Configure repo-level defaults with {configPath}.",
 			"recipes": "Raica na icakacaka ni monorepos, custom glossaries, kei na iwasewase ni Custom Translator."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Na kerekere ni dauvakadewa ena gauna oqo e vakapini {apiVersion} ena livaliva me baleta ruarua na {translate} kei na {languages}. Na Azure SDK e doka ga na digidigi ni api-version ni ivakatagedegede ni kasitama ni sa pasi e dua na credential; na cakacaka authenticates ena dua na kerekere mai na headers, ka sa vakalutu galugalu na digidigi oya ka defaulted na kerekere ki na dua na mataqali API preview ka sega ni vakadonuya na konitaraki ni {translate} na yago vata kei na HTTP 400 (nabavuni ni cala {code}). Vakacavara na vakavinakataki tekivu ena 3.0.1.",
 			"v301": "{label} Na yago ni kerekere ni {translate} sa ikoya oqo e dua na iyaya ni {textItem} ni JSON ka sega ni dua na iyaya ni {inputs} vivigi, veisotari kei na konitaraki ni v3.0 REST. E sega ni vakalesuya mai na vakadewa — raica na 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Veimataqali volivolitaki:",
+				"intentMapping": "Mape ni inaki-specifier:"
+			},
+			"items": {
+				"multiVendor": "{label} vakadewataka ena {azure}, {aws}, se {google} ena daku ni dua na dela ni API cokovata Digitaka e dua na dauveiqaravi ena dua na cici vata kei na vakacurumi vou ni {provider}; na cakacaka e lesi ki na SDK veisotari ena daku ni dua na vale ni cakacaka ka tautauvata na nona itovo veitalia na dauvolivolitaki. Taucoko na veiraurau vakamuri — {provider} defaults ki na {azureValue}, ka sa cakacaka tikoga na cakacaka ni Azure ka sega ni veisau.",
+				"aws": "Dauveiqaravi vou ni AWS Translate ({awsSdk}). Authenticate vata kei na sinucodo ni credential lalai ni AWS (vakaturi na: OIDC via {configureAwsCredentials}) se matata {awsAccessKeyId} / {awsSecretAccessKey}; ena {awsRegion} se {awsRegionEnv}.",
+				"google": "Dauveiqaravi vou ni Google Cloud Translation ({googleSdk}, v2). Authenticate vata kei na dua na ivakatakilakila ni JSON ni akaude ni veiqaravi ({googleCredentials}) se dua na idola ni API ({googleApiKey}); digitaki {googleProjectId}.",
+				"inputs": "Vakacurumi vou: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} na mape ki na {format} ni Google kei na {profanityAction} na mape ki na iubi ni vosa ca ni AWS ena vanua e tiko kina e dua na tautauvata. Azure-only specifiers ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) are ignored by other providers.",
+				"azureRelaxed": "Na vakacurumi ni kerekere ni Azure ({subscriptionKey}, {endpoint}, {region}) sa sega tale ni makataki ni gadrevi ena {actionYml} me rawa ni ra digitaki kina eso tale na dauveiqaravi — se vakadeitaki tikoga ena gauna ni cicivaki ni {provider} {azureValue}.",
+				"docs": "Tabana vou ni dauveiqaravi ni vakadewa, tabana ni dauveiqaravi ena Tekivu, digitaki ni dauveiqaravi ena tabana ni Inputs, kei na dua na tabana ni itikotiko vakavoui ka liutaka na Azure, AWS, kei na Google."
+			}
 		},
 		"v3": {
 			"labels": {

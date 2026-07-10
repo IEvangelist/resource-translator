@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Alustamine",
 		"eyebrow": "Seadistus",
-		"lede": "Lisa töövoo fail, suuna see oma Azure AI Translatori mandaadi juurde ja tegevus skaneerib repositooriumist lähtekoodi ressursifaile ning väljastab tõlgitud õdesid-vennasid.",
+		"heroLede": "Lisa töövoo fail, vali oma tõlketeenuse pakkuja — Azure, AWS või Google — ja tegevus skaneerib repot lähtekoodi ressursifailide suhtes ning saadab tõlgitud õdesid-vennasid.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator ressurss",
-				"body": "Loo Azure AI Translatori ressurss Azure portaalis ja salvesta järgmised GitHubi hoidla saladustena, et töövoog saaks neid lugeda:",
-				"key": "Tellimusvõti ressursile.",
-				"endpoint": "piirkondliku lõpp-punkti URL.",
-				"region": "ressursi Azure piirkond."
+			"provider": {
+				"title": "Vali tõlketeenuse pakkuja",
+				"body": "Tegevus töötab {azure}, {aws} ja {google} ühe ühtse API pinna taga. Vali iga jooksu kohta üks teenusepakkuja koos {provider} sisendiga — töövoog käitub identselt sõltumata teenusepakkujast; ainult kvalifikatsioonid erinevad. Vaata {providersLink} täielikku võrdlust.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Google Cloud Translation",
+				"providersLinkLabel": "Tõlketeenuse pakkujad"
 			},
-			"workflow": {
-				"title": "Lisa töövoog",
-				"body": "Loo {workflowPath}:"
+			"configure": {
+				"title": "Lisa mandaadid ja töövoog",
+				"body": "Salvesta oma teenusepakkuja mandaadid GitHubi hoidla saladustena ja loo {workflowPath}. Vali allpool oma teenusepakkuja selle konkreetse seadistuse jaoks — ülejäänud töövoog on identne.",
+				"secretsHeading": "Hoia neid hoidla saladustena",
+				"workflowHeading": "Lisa töövoog",
+				"azure": {
+					"note": "Azure on vaikimisi teenusepakkuja, seega {provider} võib välja jätta. Loo Azure AI Translator ressurss Azure portaalis ja salvesta selle mandaadid:",
+					"key": "Tellimusvõti ressursile.",
+					"endpoint": "piirkondliku lõpp-punkti URL.",
+					"region": "ressursi Azure piirkond."
+				},
+				"aws": {
+					"note": "Sea {provider} {providerValue}. Eelista OIDC-d {configureAwsCredentials} kaudu, et pikaajalisi saladusi ei salvestataks — samm-eksportid {awsRegionEnv} sinu jaoks. Staatiliste võtmete kasutamiseks salvesta:",
+					"accessKeyId": "sinu AWS ligipääsuvõtme ID.",
+					"secretAccessKey": "sinu AWS salajase juurdepääsu võti.",
+					"regionNote": "Regioon on alati vajalik — määra see {awsRegion} või {awsRegionEnv} keskkonnamuutuja."
+				},
+				"google": {
+					"note": "Sea {provider} {providerValue}. Autentimine kas teenusekonto JSON-mandaadi või API võtmega — esita täpselt üks:",
+					"credentials": "teenusekonto JSON-võti (JSON-stringina).",
+					"apiKey": "või Google Cloud API võti.",
+					"projectNote": "Vabatahtlik {googleProjectId} tuletatakse tunnistusest, kui see välja jäetakse."
+				}
 			},
 			"resource": {
 				"title": "Commit lähteressursifail",
@@ -91,8 +112,15 @@
 				"body": "Kui töövoog on lõppenud, avab tegevus kolm väljundit, mida saad PR-kirjeldusse ühendada: {summaryTitle}, {summaryDetails} ja {hasNewTranslations}. Samuti kirjutab see töölehele Markdowni kokkuvõtte {coreSummary} kaudu."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Vali tõlketeenuse pakkuja"
+		},
 		"nextSteps": {
 			"title": "Järgmised sammud",
+			"providers": "Võrdle iga teenusepakkujat ja nende kvalifikatsioone kõrvuti.",
 			"configuration": "Seadista repo-taseme vaikeseaded {configPath}.",
 			"recipes": "Vaata retsepte monorepode, kohandatud sõnastuse ja kohandatud tõlkijate kategooriate jaoks."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Translatori päringud kinnitavad nüüd {apiVersion} juhtmele nii {translate} kui ka {languages} jaoks. Azure SDK tunnustab kliendi tasemel API-versiooni valikut ainult siis, kui mandaat on väljastatud; tegevus autentib iga päringu kohta päiste kaudu, mistõttu see valik jäeti vaikimisi välja ja päringud läksid vaikimisi eelvaate API versiooniks, mille {translate} leping lükkas kere tagasi HTTP 400-ga (veakood {code}). Lõpetab paranduse, mis algas versioonis 3.0.1.",
 			"v301": "{label} {translate} päringu keha on nüüd paljas JSON-massiv {textItem} elementidest, mitte mähitud {inputs} objekt, mis vastab v3.0 REST lepingule. See iseenesest ei taastanud tõlkeid — vt 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Mitme teenusepakkujaga:",
+				"intentMapping": "Intent-specifier mapping:"
+			},
+			"items": {
+				"multiVendor": "{label} tõlkida {azure}, {aws} või {google} ühe ühtse API pinna taga. Vali iga jooksu kohta üks pakkuja uue {provider} sisendiga; tegevus delegeeritakse tehase taga olevale sobitavale SDK-le ja käitub identselt sõltumata müüjast. Täielikult tagurpidi ühilduv — {provider} vaikimisi kasutab {azureValue}, nii et olemasolevad Azure'i töövood töötavad muutumatuna.",
+				"aws": "Uus AWS Translate pakkuja ({awsSdk}). Autentimine AWS vaikimisi volituste ahelaga (soovitatav: OIDC {configureAwsCredentials} kaudu) või eksplicitse {awsAccessKeyId} / {awsSecretAccessKey} abil; piirkond läbi {awsRegion} või {awsRegionEnv}.",
+				"google": "Uus Google Cloud Translatori pakkuja ({googleSdk}, v2). Autentimine teenusekonto JSON mandaadiga ({googleCredentials}) või API võtmega ({googleApiKey}); Valikuline {googleProjectId}.",
+				"inputs": "Uued sisendid: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} kaardid Google'i {format} ja {profanityAction} kaardid AWS-i roppuste maskeerimisele, kus eksisteerib ekvivalent. Ainult Azure'i spetsifikaatorid ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) jäetakse teiste pakkujate poolt tähelepanuta.",
+				"azureRelaxed": "Azure'i päringusisendid ({subscriptionKey}, {endpoint}, {region}) ei ole enam märgitud kohustuslikuks {actionYml}-s, et valida teisi pakkujaid — neid valideeritakse endiselt käitusajal, kui {provider} on {azureValue}.",
+				"docs": "Uute tõlketeenuse pakkujate leht, teenusepakkuja vahekaardid Alustades, teenusepakkuja valik Sisestuste lehel ning värskendatud avaleht, mis juhib Azure'i, AWS-i ja Google'iga."
+			}
 		},
 		"v3": {
 			"labels": {
