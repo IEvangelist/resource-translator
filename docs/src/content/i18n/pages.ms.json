@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Bermula",
 		"eyebrow": "Persediaan",
-		"lede": "Tambah fail aliran kerja, halakannya pada kelayakan Azure AI Translator anda dan tindakan akan mengimbas repositori untuk fail sumber bahasa sumber dan memancarkan adik-beradik yang diterjemahkan.",
+		"heroLede": "Tambahkan fail aliran kerja, pilih pembekal terjemahan anda — Azure, AWS atau Google — dan tindakan itu mengimbas repositori untuk fail sumber bahasa sumber dan memancarkan adik-beradik yang diterjemahkan.",
 		"steps": {
-			"provision": {
-				"title": "Memperuntukkan sumber Azure AI Translator",
-				"body": "Cipta sumber Azure AI Translator dalam portal Microsoft Azure, kemudian simpan yang berikut sebagai rahsia repositori GitHub supaya aliran kerja boleh membacanya:",
-				"key": "kunci langganan untuk sumber.",
-				"endpoint": "URL titik akhir serantau.",
-				"region": "rantau Azure sumber."
+			"provider": {
+				"title": "Pilih pembekal terjemahan",
+				"body": "Tindakan ini berfungsi dengan {azure}, {aws} dan {google} di sebalik satu permukaan API bersatu. Pilih satu pembekal setiap larian dengan input {provider} — aliran kerja berkelakuan sama tanpa mengira pembekal; hanya kelayakan yang berbeza. Lihat {providersLink} untuk perbandingan penuh.",
+				"azure": "Penterjemah Azure AI",
+				"aws": "Terjemahan AWS",
+				"google": "Terjemahan Awan Google",
+				"providersLinkLabel": "Pembekal terjemahan"
 			},
-			"workflow": {
-				"title": "Tambah aliran kerja",
-				"body": "Buat {workflowPath}:"
+			"configure": {
+				"title": "Tambah kelayakan dan aliran kerja",
+				"body": "Simpan kelayakan pembekal anda sebagai rahsia repositori GitHub, kemudian buat {workflowPath}. Pilih pembekal anda di bawah untuk persediaan khususnya — aliran kerja yang lain adalah sama.",
+				"secretsHeading": "Simpan ini sebagai rahsia repositori",
+				"workflowHeading": "Tambah aliran kerja",
+				"azure": {
+					"note": "Azure ialah pembekal lalai, jadi {provider} mungkin ditinggalkan. Peruntukkan sumber Azure AI Translator dalam portal Microsoft Azure, kemudian simpan kelayakannya:",
+					"key": "kunci langganan untuk sumber.",
+					"endpoint": "URL titik akhir serantau.",
+					"region": "rantau Azure sumber."
+				},
+				"aws": {
+					"note": "Tetapkan {provider} kepada {providerValue}. Lebih suka OIDC melalui {configureAwsCredentials} supaya tiada rahsia jangka panjang disimpan — {awsRegionEnv} eksport langkah untuk anda. Untuk menggunakan kunci statik, simpan:",
+					"accessKeyId": "ID kunci akses AWS anda.",
+					"secretAccessKey": "kunci akses rahsia AWS anda.",
+					"regionNote": "Rantau sentiasa diperlukan — tetapkannya dengan {awsRegion} atau pembolehubah persekitaran {awsRegionEnv}."
+				},
+				"google": {
+					"note": "Tetapkan {provider} kepada {providerValue}. Sahkan sama ada dengan kelayakan JSON akaun perkhidmatan atau kunci API — bekalkan tepat satu:",
+					"credentials": "kunci JSON akaun perkhidmatan (sebagai rentetan JSON).",
+					"apiKey": "atau kunci API Google Cloud.",
+					"projectNote": "{googleProjectId} pilihan disimpulkan daripada kelayakan apabila ditinggalkan."
+				}
 			},
 			"resource": {
 				"title": "Commit fail sumber sumber",
@@ -91,8 +112,15 @@
 				"body": "Setelah aliran kerja selesai, tindakan itu mendedahkan tiga output yang boleh anda sambungkan ke dalam perihalan PR: {summaryTitle}, {summaryDetails} dan {hasNewTranslations}. Ia juga menulis ringkasan Markdown ke dalam halaman kerja melalui {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Pilih pembekal terjemahan"
+		},
 		"nextSteps": {
 			"title": "Langkah seterusnya",
+			"providers": "Bandingkan setiap pembekal dan kelayakannya bersebelahan.",
 			"configuration": "Konfigurasikan lalai peringkat repo dengan {configPath}.",
 			"recipes": "Lihat resipi untuk monorepos, glosari tersuai dan kategori Penterjemah Tersuai."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Permintaan penterjemah kini menyematkan {apiVersion} pada wayar untuk kedua-dua {translate} dan {languages}. Azure SDK hanya menghormati opsyen versi api peringkat klien apabila kelayakan diluluskan; tindakan mengesahkan setiap permintaan melalui pengepala, jadi pilihan itu digugurkan secara senyap dan permintaan lalai kepada versi API pratonton yang kontrak {translate} menolak badan dengan HTTP 400 (kod ralat {code}). Melengkapkan pembetulan bermula pada 3.0.1.",
 			"v301": "{label} Isi permintaan {translate} kini merupakan tatasusunan JSON kosong item {textItem} dan bukannya objek {inputs} yang dibungkus, sepadan dengan kontrak REST v3.0. Dengan sendirinya ini tidak memulihkan terjemahan — lihat 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Pelbagai vendor:",
+				"intentMapping": "Pemetaan penentu niat:"
+			},
+			"items": {
+				"multiVendor": "{label} menterjemah dengan {azure}, {aws} atau {google} di sebalik satu permukaan API bersatu. Pilih satu pembekal setiap larian dengan input {provider} baharu; tindakan itu mewakilkan kepada SDK yang sepadan di belakang kilang dan berkelakuan sama tanpa mengira vendor. Serasi ke belakang sepenuhnya — {provider} lalai kepada {azureValue}, jadi aliran kerja Azure sedia ada terus berfungsi tanpa perubahan.",
+				"aws": "Pembekal AWS Translate baharu ({awsSdk}). Sahkan dengan rantaian kelayakan lalai AWS (disyorkan: OIDC melalui {configureAwsCredentials}) atau {awsAccessKeyId} / {awsSecretAccessKey} eksplisit; wilayah melalui {awsRegion} atau {awsRegionEnv}.",
+				"google": "Pembekal Terjemahan Awan Google baharu ({googleSdk}, v2). Sahkan dengan kelayakan JSON akaun perkhidmatan ({googleCredentials}) atau kunci API ({googleApiKey}); {googleProjectId} pilihan.",
+				"inputs": "Input baharu: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} peta ke {format} Google dan peta {profanityAction} kepada topeng kata-kata kesat AWS di mana yang setara wujud. Penentu Azure sahaja ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) diabaikan oleh pembekal lain.",
+				"azureRelaxed": "Input permintaan Azure ({subscriptionKey}, {endpoint}, {region}) tidak lagi ditandakan diperlukan dalam {actionYml} supaya pembekal lain boleh dipilih — masih disahkan pada masa jalan apabila {provider} {azureValue}.",
+				"docs": "Halaman penyedia terjemahan baharu, tab pembekal pada Bermula, pemilihan pembekal pada halaman Input dan halaman utama yang disegarkan yang mendahului Azure, AWS dan Google."
+			}
 		},
 		"v3": {
 			"labels": {

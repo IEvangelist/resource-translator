@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Aullaqtiutikhanut",
 		"eyebrow": "Ihuarhaininnga",
-		"lede": "Ilaliutilugu workflow tutquumavik, tikkuarlugu Azure AI Translator naunaitkutainut, qanuriliurutikhaq aadjiliurniaqtaa tutquumavik pivikhanik uqauhikkut atuqtakhanik tutquumaviit imaalu tujurlugit numiktitiqhimajut.",
+		"heroLede": "Ilaliutilugu havauhikhanut tutquumavik, pilugu numiktirijikhat — Azure, AWS, imaaluuniit Google — imaalu qanuriliurutikhaq aadjiliurlugu tutquumavikhaq pivikhanik uqauhikkut atuqtakhanik tutquumaviit imaalu tujuutauluni numiktitiqhimajunik nuuptiqhimajunik.",
 		"steps": {
-			"provision": {
-				"title": "Pivikhaqaqtittilutik Azure AI Numiktiriyimut ikayuutiqhamik",
-				"body": "Piliurlutit Azure AI Translator atuqtakhanik Azure portal-mi, ahiit tutqurlugit hapkuat imaatut GitHub repository aallanut uqaqtailiniit workflow taigurianginni:",
-				"key": "Tuyuqtaunikkut kiluutaq ikayuutinun.",
-				"endpoint": "avikturhimayumi kiklinga URL.",
-				"region": "ikayuutip Azure aviktungniani."
+			"provider": {
+				"title": "Tikkuaqhilutit numiktirijikhamik",
+				"body": "Qanuriliurutikhaq havakpaktuq {azure}, {aws}, imaalu {google} atauhirmut API qaangani. Pilutit atauhiinnarmik pivikhamik atauhirmut havaktaujumut {provider} iliuraidjutainut — havaktaunikhaa idjuhiqaqtuq aadjikkiiktumik humiitkaluaqtitlugu tunihijuq; taapkuanginnait ilitaridjutingit aallangajut. Takulugu {providersLink} naunaiyariami.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Google Cloud Numiktiriniq",
+				"providersLinkLabel": "Numiktirijit"
 			},
-			"workflow": {
-				"title": "Ilaliutilugu havauhikhaq",
-				"body": "Havaklugit {workflowPath}:"
+			"configure": {
+				"title": "Iliurailutit naunaitkutikhanik imaalu havauhikhanik",
+				"body": "Tutquqhimalugit tunihiyit naunaitkutait imaa GitHub tutquumaviit aallanut uqaqtailiniit, ahiit piliurlutit {workflowPath}. Tikkuarlugu tuniqhaiyat hamna ataani ihuaqtumut ihuarhaininnganut — ilangit havaanga aadjikutariyaa.",
+				"secretsHeading": "Tutquumalugit hapkuat tutquumavingmut aallanut uqaqtakhaungittut",
+				"workflowHeading": "Ilaliutilugu havauhikhaq",
+				"azure": {
+					"note": "Azure-guyuq atuqtauluaqtuq pipkaiyi, {provider} ahivaqtaulaaqtuq. Tunilugu Azure AI Translator resource in the Azure portal, ahiit tutqurlugit naunaitkutait:",
+					"key": "Tuyuqtaunikkut kiluutaq ikayuutinun.",
+					"endpoint": "avikturhimayumi kiklinga URL.",
+					"region": "ikayuutip Azure aviktungniani."
+				},
+				"aws": {
+					"note": "Ihuaqhaqlugu {provider} {providerValue}. Pilluarumagungni OIDC {configureAwsCredentials} taimaa akuniraaluk aallanut uqaqtailiniit tutquumangittanginni — talvannga piyakhaq {awsRegionEnv} iliknut. Aturiami statique kiluutat, tutqurlugu:",
+					"accessKeyId": "ilvit AWS access key ID.",
+					"secretAccessKey": "ilvit AWS aallanut uqaqtailinikkut kiluutaq.",
+					"regionNote": "Aviktuqhimaniq ihariagiyaunginnaqtuq — iliurarlugu {awsRegion} unaluuniit {awsRegionEnv} avatinga aadlanguqtaaqtuq."
+				},
+				"google": {
+					"note": "Ihuaqhaqlugu {provider} {providerValue}. Tutqighaqlugit kivgaqtuutikkut-naunaitkutait JSON naunaitkutait uvaluuniin API kiluutaa — tunihilutit attauhiqmik:",
+					"credentials": "a service-account JSON key (as a JSON string).",
+					"apiKey": "unaluuniit Google Cloud API kiluutaq.",
+					"projectNote": "Piumagumik {googleProjectId} naunaiqtauyuq naunaitkutanganit piiqtaugumi."
+				}
 			},
 			"resource": {
 				"title": "Commit a source resource file",
@@ -91,8 +112,15 @@
 				"body": "Havauhiq iniqqat, hulidjut tautuktitiyuq pingahunik outputnik iliugaqtaaqtatit PRmun naunaiyautainun: {summaryTitle}, {summaryDetails}, uvalu {hasNewTranslations}. Titiraqhunilu Markdown naittumik havaap makpirvianun {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Tikkuaqhilutit numiktirijikhamik"
+		},
 		"nextSteps": {
 			"title": "Tukliit Havaktauniaqtun",
+			"providers": "Naunaiyarlugit tamaita tuniqhaiyut naunaitkutangillu haniliriiklugit.",
 			"configuration": "Ihuaqharlugu repo-level defaults with {configPath}.",
 			"recipes": "Takulugit igadjutikhat monorepos-mut, custom glossaries, unalu Custom Translator katitirviit."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Numiktiriyi tukhiutait {apiVersion} alruyami tamangnun {translate} {languages}. Azure SDK nan'ngariyait ikayuqtauyumayunut api-version piyakhaq taimaa naunaitkutaq angiqtaukpat; Qanuriliurutinga naunaiqtitaa atauhiqmut apirhuutimut naunaitkutanganut, taimaa piyakhaq nipaittumik piiqtauyuq apirhuutingillu iliuraqtauyuq uumunnga Preview API-version talvani {translate} kaantrak qin'ngiyaa timiqutigiyaa HTTP 400 (Error Code {code}). Iniqtiqtaa ihuarhainiq aullaqtiqtuq 3.0.1-mi.",
 			"v301": "{label} Tamna {translate} tukhiut timia piqangittuq JSON array of {textItem} items imuhimaittumik {inputs} object, aadjikkutariyaa v3.0 REST kaantrak. Inmikkut una ihuaqhingitaa numiktirhimayut — takulugu 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Amihunik-niuvvaaviit:",
+				"intentMapping": "Intent-specifier nunauyiurniq:"
+			},
+			"items": {
+				"multiVendor": "{label} numiktirilutik {azure}, {aws}, uvaluuniin {google} tunuani attauhirmun atayumun API qaangani. Pilutit atauhiinnarmik tuniuqhaijikhamik atauhirmun pidjutaanun nutaamun {provider} iliuraidjutimun; tamna hanaqidjutikhaq aulatitivakhimayuq aadjikiiktumik SDKnik tunuani havagvikyuangit aulahimaanginaqtunlu aadjikiiktumik talvuuna niuvailiqiyunik. Tamaat kingumut ihuaqtuq — {provider} {azureValue}, taimaali atuqtauyut Azure workflows havakhimmaaqtut aalanguqhimaitumik.",
+				"aws": "Nutaaq AWS Translate provider ({awsSdk}). Tutqighaqlugit haffumunga AWS default credential chain (pitquyauyuq: OIDC via {configureAwsCredentials}) uvaluuniin naunaiyattiaqhimayut {awsAccessKeyId} / {awsSecretAccessKey}; aviktungniitigut {awsRegion} uvaluuniin {awsRegionEnv}.",
+				"google": "Nutaaq Google Cloud Numiktirinikkut tunihiyuq ({googleSdk}, v2). Tutqighaqlugu kivgaqtuutikkut-naunaitkutaa JSON naunaitkutaa ({googleCredentials}) uvaluuniin API kiluutaq ({googleApiKey}); Piumagumik {googleProjectId}.",
+				"inputs": "Nutaat uqautauyut: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} nunauyat Google's {format} uvalu {profanityAction} nunauyat hapkununga AWS uqamalungnikkut ivyarutinik humi aadjikiiktumik atuqtauyuq. Azure-avaliituq specifiers ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) hugiyaungitut aalanin tunihiyunin.",
+				"azureRelaxed": "Azure request inputs ({subscriptionKey}, {endpoint}, {region}) naunaiyaqtauhuiqtut piyariaqaqtut {actionYml} taimaali aalat tunihiyut tikuaqtauyaangini — tutqighaqtauhimaaqtuq auladjutaani {provider} {azureValue}.",
+				"docs": "Nutaaq Numiktirinikkut tunihiyut makpiraq, tunihiyut naqitautait Aullaqtirutikhanut, tuniuqhaiyut pukuktaulutik Inputs makpirangani, nutannguqtiqhimayuqlu qaritauyakkuurutaa hivulliqtiuyuq Azure-mut, AWS-mut, Google-mullu."
+			}
 		},
 		"v3": {
 			"labels": {

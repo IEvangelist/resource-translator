@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Prvi koraci",
 		"eyebrow": "Pretraga",
-		"lede": "Dodajte datoteku toka posla, usmerite je na Azure AI Translator akreditive, a akcija će skenirati repozitorij za datoteke resursa izvornog jezika i emitovati prevedenu braću i sestre.",
+		"heroLede": "Dodajte datoteku toka posla, izaberite svog provajdera prevoda — Azure, AVS ili Google — i akcija skenira repozitorij za datoteke resursa izvornog jezika i emituje prevedenu braću i sestre.",
 		"steps": {
-			"provision": {
-				"title": "Obezbeđivanje resursa Azure AI Translator",
-				"body": "Kreirajte Azure AI Translator resurs na Azure portalu, a zatim sačuvajte sledeće kao tajne GitHub spremišta kako bi ih tok posla mogao pročitati:",
-				"key": "ključ pretplate za resurs.",
-				"endpoint": "URL regionalne krajnje tačke.",
-				"region": "Azure region resursa."
+			"provider": {
+				"title": "Izaberite provajdera prevoda",
+				"body": "Akcija radi sa {azure}, {aws} i {google} iza jedne jedinstvene API površine. Izaberite jednog provajdera po pokretu sa {provider} ulazom — tok posla se ponaša identično bez obzira na provajdera; samo se akreditivi razlikuju. Pogledajte {providersLink} za potpuno poređenje.",
+				"azure": "Azure AI prevodilac",
+				"aws": "AVS Prevedi",
+				"google": "Google Cloud Prevod",
+				"providersLinkLabel": "Prevodilački provajderi"
 			},
-			"workflow": {
-				"title": "Dodajte tok posla",
-				"body": "Kreirajte {workflowPath}:"
+			"configure": {
+				"title": "Dodajte akreditive i tok posla",
+				"body": "Sačuvajte akreditive vašeg provajdera kao tajne GitHub spremišta, a zatim kreirajte {workflowPath}. Izaberite svog provajdera ispod za njegovo specifično podešavanje — ostatak toka posla je identičan.",
+				"secretsHeading": "Čuvajte ovo kao tajne spremišta",
+				"workflowHeading": "Dodajte tok posla",
+				"azure": {
+					"note": "Azure je podrazumevani provajder, tako da {provider} može biti izostavljen. Obezbedite resurs Azure AI Translator na Azure portalu, a zatim sačuvajte njegove akreditive:",
+					"key": "ključ pretplate za resurs.",
+					"endpoint": "URL regionalne krajnje tačke.",
+					"region": "Azure region resursa."
+				},
+				"aws": {
+					"note": "Podesite {provider} na {providerValue}. Preferirajte OIDC preko {configureAwsCredentials} tako da se ne čuvaju dugotrajne tajne - korak izvoza {awsRegionEnv} za vas. Da biste umesto toga koristili statičke ključeve, čuvajte:",
+					"accessKeyId": "vaš AVS pristupni ključ ID.",
+					"secretAccessKey": "vaš AVS tajni pristupni ključ.",
+					"regionNote": "Region je uvek potreban — podesite ga sa {awsRegion} ili {awsRegionEnv} promenljivom okruženja."
+				},
+				"google": {
+					"note": "Podesite {provider} na {providerValue}. Autentifikujte se sa JSON akreditivom servisnog naloga ili API ključem — dostavite tačno jedan:",
+					"credentials": "JSON ključ servisnog naloga (kao JSON string).",
+					"apiKey": "ili Google Cloud API ključ.",
+					"projectNote": "Opcioni {googleProjectId} se zaključuje iz akreditiva kada je izostavljen."
+				}
 			},
 			"resource": {
 				"title": "Urezivanje izvornog fajla resursa",
@@ -91,8 +112,15 @@
 				"body": "Kada se radni tok završi, akcija izlaže tri izlaza koja možete spojiti u PR opis: {summaryTitle}, {summaryDetails} i {hasNewTranslations}. Takođe piše rezime Markdovn-a na stranicu posla preko {coreSummary}-a."
 			}
 		},
+		"tabs": {
+			"azure": "Bilten",
+			"aws": "OMILjENO",
+			"google": "Gugl",
+			"ariaLabel": "Izaberite provajdera prevoda"
+		},
 		"nextSteps": {
 			"title": "Sledeći koraci",
+			"providers": "Uporedite svakog provajdera i njegove akreditive rame uz rame.",
 			"configuration": "Konfigurišite podrazumevane vrednosti na nivou repo sa {configPath}.",
 			"recipes": "Pogledajte recepte za monorepos, prilagođene glosare i kategorije prilagođenih prevodilaca."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Zahtevi prevodilaca sada prikačite {apiVersion} na žicu i za {translate} i za {languages}. Azure SDK poštuje samo opciju api-verzije na nivou klijenta kada se prođe akreditiv; Akcija se autentifikuje po zahtevu preko zaglavlja, tako da je ta opcija tiho odbačena i zahtevi su podrazumevani za pregled API-verzije čiji je ugovor {translate} odbacio telo sa HTTP 400 (kod greške {code}). Završava popravku započetu u 3.0.1.",
 			"v301": "{label} Telo zahteva za {translate} je sada goli JSON niz {textItem} stavki umesto umotanog {inputs} objekta, koji odgovara v3.0 REST ugovoru. To samo po sebi nije vratilo prevode — vidi 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Multi-prodavac:",
+				"intentMapping": "Mapiranje namena-specifikacija:"
+			},
+			"items": {
+				"multiVendor": "{label} prevesti sa {azure}, {aws} ili {google} iza jedne jedinstvene API površine. Izaberite jednog provajdera po pokretu sa novim {provider} ulazom; akcija delegira na odgovarajući SDK iza fabrike i ponaša se identično bez obzira na prodavca. Potpuno kompatibilan sa prethodnim verzijama — {provider} podrazumevano {azureValue}, tako da postojeći Azure tokovi posla nastavljaju da rade nepromenjeni.",
+				"aws": "Novi AVS Translate provajder ({awsSdk}). Autentifikujte sa AVS podrazumevanim lancem akreditiva (preporučeno: OIDC preko {configureAwsCredentials}) ili eksplicitnim {awsAccessKeyId} / {awsSecretAccessKey}; region preko {awsRegion} ili {awsRegionEnv}.",
+				"google": "Novi Google Cloud Prevod provajder ({googleSdk}, v2). Autentifikujte sa JSON akreditivom servisnog računa ({googleCredentials}) ili API ključem ({googleApiKey}); Opciono {googleProjectId}.",
+				"inputs": "Novi ulazi: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} mape na Google-ove {format} i {profanityAction} mape na AVS maskiranje psovki tamo gde postoji ekvivalent. Specificeri samo za Azure ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) su ignorisani od strane drugih provajdera.",
+				"azureRelaxed": "Azure ulazi zahteva ({subscriptionKey}, {endpoint}, {region}) više nisu označeni kao obavezni u {actionYml} tako da drugi provajderi mogu biti izabrani — i dalje potvrđeni u vreme izvođenja kada je {provider} {azureValue}.",
+				"docs": "Nova stranica provajdera prevođenja, kartice provajdera na Početak, izbor provajdera na stranici Inputs i osvežena početna stranica koja vodi sa Azure, AVS i Google."
+			}
 		},
 		"v3": {
 			"labels": {

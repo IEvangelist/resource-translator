@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Začiatky",
 		"eyebrow": "Príprava",
-		"lede": "Pridajte workflow súbor, nasmerujte ho na vaše Azure AI Translator prihlasovacie údaje a akcia prehľadá repozitár na zdrojové súbory zdrojov a vygeneruje preložené súrodencov.",
+		"heroLede": "Pridajte workflow súbor, vyberte svojho poskytovateľa prekladu — Azure, AWS alebo Google — a akcia prehľadá repozitár na zdrojové súbory v zdrojovom jazyku a vygeneruje preložené súrodencov.",
 		"steps": {
-			"provision": {
-				"title": "Provisioning a Azure AI Translator resource",
-				"body": "Vytvorte v Azure portáli zdroj Azure AI Translator a potom uložte nasledujúce ako GitHub repozitárne tajomstvá, aby ich workflow mohol prečítať:",
-				"key": "predplatný kľúč pre zdroj.",
-				"endpoint": "regionálnu URL koncového bodu.",
-				"region": "Azure región zdroja."
+			"provider": {
+				"title": "Vyberte si poskytovateľa prekladu",
+				"body": "Akcia funguje s {azure}, {aws} a {google} za jedným jednotným API povrchom. Vyberte jedného poskytovateľa na každý beh s {provider} vstupom — pracovný tok sa správa rovnako bez ohľadu na poskytovateľa; Líšia sa len kvalifikácie. Pozri {providersLink} pre úplné porovnanie.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Google Cloud preklad",
+				"providersLinkLabel": "Poskytovatelia prekladu"
 			},
-			"workflow": {
-				"title": "Pridajte workflow",
-				"body": "Vytvorte {workflowPath}:"
+			"configure": {
+				"title": "Pridajte prihlasovacie údaje a workflow",
+				"body": "Uložte prihlasovacie údaje poskytovateľa ako tajomstvá GitHub repozitára a potom vytvorte {workflowPath}. Vyberte si svojho poskytovateľa nižšie podľa jeho konkrétneho nastavenia — zvyšok pracovného postupu je identický.",
+				"secretsHeading": "Ukladajte ich ako tajomstvá repozitára",
+				"workflowHeading": "Pridajte workflow",
+				"azure": {
+					"note": "Azure je predvolený poskytovateľ, takže {provider} môže byť vynechané. Zriaďte zdroj Azure AI Translator v Azure portáli a potom uložte jeho prihlasovacie údaje:",
+					"key": "predplatný kľúč pre zdroj.",
+					"endpoint": "regionálnu URL koncového bodu.",
+					"region": "Azure región zdroja."
+				},
+				"aws": {
+					"note": "Nastav {provider} na {providerValue}. Uprednostňujte OIDC cez {configureAwsCredentials}, aby sa neukladali dlhotrvajúce tajomstvá — krok exportuje {awsRegionEnv} za vás. Ak chcete použiť statické kľúče, uložte:",
+					"accessKeyId": "Váš AWS prístupový kľúč ID.",
+					"secretAccessKey": "váš tajný prístupový kľúč AWS.",
+					"regionNote": "Vždy je potrebná oblasť — nastavte ju pomocou {awsRegion} alebo premennej {awsRegionEnv} prostredia."
+				},
+				"google": {
+					"note": "Nastav {provider} na {providerValue}. Autentifikujte sa buď pomocou JSON prihlasovacích údajov servisného účtu alebo API kľúča — zadajte presne jeden:",
+					"credentials": "kľúč JSON účtu služby (ako reťazec JSON).",
+					"apiKey": "alebo kľúč Google Cloud API.",
+					"projectNote": "Voliteľný {googleProjectId} sa odvodí z osvedčenia, ak je vynechaný."
+				}
 			},
 			"resource": {
 				"title": "Commitujte zdrojový resource súbor",
@@ -91,8 +112,15 @@
 				"body": "Keď workflow skončí, akcia odhalí tri výstupy, ktoré môžete zapojiť do PR popisu: {summaryTitle}, {summaryDetails} a {hasNewTranslations}. Tiež zapíše zhrnutie Markdownu na stránku práce cez {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Vyberte si poskytovateľa prekladu"
+		},
 		"nextSteps": {
 			"title": "Ďalšie kroky",
+			"providers": "Porovnajte každého poskytovateľa a jeho kvalifikácie vedľa seba.",
 			"configuration": "Nastavte predvolené nastavenia na úrovni repozitára pomocou {configPath}.",
 			"recipes": "Pozrite si recepty na monorepo, vlastné slovníky a kategórie vlastných prekladateľov."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Request Translator teraz pripne {apiVersion} na drôt pre {translate} aj {languages}. Azure SDK rešpektuje možnosť verzie API na úrovni klienta len vtedy, keď je odovzdané prihlasovacie údaje; Akcia sa autentifikuje podľa požiadavky cez hlavičky, takže táto možnosť bola ticho zrušená a požiadavky sa predvolene prešli na preview verziu API, ktorej {translate} kontrakt odmietol telo s HTTP 400 (chybový kód {code}). Dokončí opravu začatú v 3.0.1.",
 			"v301": "{label} Telo požiadaviek {translate} je teraz holé JSON pole {textItem} položiek namiesto zabaleného {inputs} objektu, čo zodpovedá kontraktu REST verzie 3.0. Samo o sebe to neobnovilo preklady — pozri 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Viacero dodávateľov:",
+				"intentMapping": "Mapovanie zámeru-špecifikátora:"
+			},
+			"items": {
+				"multiVendor": "{label} prekladať pomocou {azure}, {aws} alebo {google} za jedným jednotným API povrchom. Vyberte jedného poskytovateľa na každý beh s novým {provider} vstupom; akcia deleguje na zodpovedajúceho SDK za továrňou a správa sa rovnako bez ohľadu na dodávateľa. Plne spätne kompatibilné — {provider} predvolene {azureValue}, takže existujúce Azure pracovné postupy fungujú nezmenené.",
+				"aws": "Nový poskytovateľ AWS Translate ({awsSdk}). Autentifikujte sa pomocou predvoleného reťazca prihlasovacích údajov AWS (odporúčané: OIDC cez {configureAwsCredentials}) alebo explicitného {awsAccessKeyId} / {awsSecretAccessKey}; región cez {awsRegion} alebo {awsRegionEnv}.",
+				"google": "Nový poskytovateľ Google Cloud Translation ({googleSdk}, v2). Autentifikujte sa pomocou JSON prihlasovacieho kódu ({googleCredentials}) alebo API kľúča ({googleApiKey}); voliteľné {googleProjectId}.",
+				"inputs": "Nové vstupy: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} mapy na Google {format} a {profanityAction} mapy na AWS maskovanie nadávok tam, kde existuje ekvivalent. Špecifické pre Azure ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) sú inými poskytovateľmi ignorované.",
+				"azureRelaxed": "Vstupy požiadaviek Azure ({subscriptionKey}, {endpoint}, {region}) už nie sú v {actionYml} označené ako povinné, takže je možné vybrať iných poskytovateľov — stále validované za behu, keď je {provider} {azureValue}.",
+				"docs": "Nová stránka poskytovateľov prekladu, záložky poskytovateľov v sekcii Začiatok, výber poskytovateľa na stránke Vstupy a obnovená domovská stránka vedúca s Azure, AWS a Google."
+			}
 		},
 		"v3": {
 			"labels": {

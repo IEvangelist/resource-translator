@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Pou kòmanse",
 		"eyebrow": "Konfigirasyon",
-		"lede": "Ajoute yon dosye workflow, lonje dwèt sou kalifikasyon Azure AI tradiktè ou epi aksyon an pral eskane repo a pou dosye resous lang sous ak emèt frè ak sè tradui.",
+		"heroLede": "Ajoute yon dosye workflow, chwazi founisè tradiksyon ou an - Azure, AWS, oswa Google - ak aksyon an eskane repo a pou dosye resous lang sous ak emèt frè ak sè tradui.",
 		"steps": {
-			"provision": {
-				"title": "Pwovizyon yon resous Azure AI Translator",
-				"body": "Kreye yon resous Azure AI tradiktè nan Azure Portal, Lè sa a, estoke sa ki annapre yo kòm sekrè depo GitHub pou workflow la ka li yo:",
-				"key": "kle abònman nan resous la.",
-				"endpoint": "URL ekstremite rejyonal la.",
-				"region": "Resous la rejyon Azure."
+			"provider": {
+				"title": "Chwazi yon founisè tradiksyon",
+				"body": "Aksyon an travay ak {azure}, {aws} ak {google} dèyè yon sèl sifas API inifye. Chwazi yon founisè sèl pou chak kouri ak opinyon an {provider} - workflow la konpòte yo menm jan kèlkeswa founisè a; Se sèlman kalifikasyon yo diferan. Gade {providersLink} pou yon konparezon konplè.",
+				"azure": "Azure AI tradiktè",
+				"aws": "AWS Tradui",
+				"google": "Google Cloud Tradiksyon",
+				"providersLinkLabel": "Founisè tradiksyon yo"
 			},
-			"workflow": {
-				"title": "Ajoute workflow la",
-				"body": "Kreye {workflowPath}:"
+			"configure": {
+				"title": "Ajoute kalifikasyon ak yon workflow",
+				"body": "Sere kalifikasyon founisè ou kòm sekrè depo GitHub, Lè sa a, kreye {workflowPath}. Chwazi founisè ou anba a pou konfigirasyon espesifik li yo - rès la nan workflow la idantik.",
+				"secretsHeading": "Sere sa yo kòm sekrè depo",
+				"workflowHeading": "Ajoute workflow la",
+				"azure": {
+					"note": "Azure se founisè a default, kidonk {provider} ka omisyon. Pwovizyone yon resous Azure AI Translator nan Azure Portal, Lè sa a, magazen kalifikasyon li yo:",
+					"key": "kle abònman nan resous la.",
+					"endpoint": "URL ekstremite rejyonal la.",
+					"region": "Resous la rejyon Azure."
+				},
+				"aws": {
+					"note": "Mete {provider} {providerValue} Pito OIDC via {configureAwsCredentials} se konsa pa gen sekrè ki viv lontan ki estoke — ekspòtasyon etap la {awsRegionEnv} pou ou. Pou itilize kle estatik olye, magazen an:",
+					"accessKeyId": "ID kle aksè AWS ou.",
+					"secretAccessKey": "kle aksè sekrè AWS ou a.",
+					"regionNote": "Yon rejyon se toujou obligatwa — mete li ak {awsRegion} oswa varyab anviwònman an {awsRegionEnv}."
+				},
+				"google": {
+					"note": "Mete {provider} {providerValue} Otantifye ak swa yon sèvis kont JSON kalifikasyon oswa yon kle API — bay egzakteman yon sèl:",
+					"credentials": "yon sèvis-kont JSON kle (kòm yon JSON string).",
+					"apiKey": "oswa yon kle API Google Cloud",
+					"projectNote": "Yon {googleProjectId} si ou vle dedwi soti nan kalifikasyon an lè li omite."
+				}
 			},
 			"resource": {
 				"title": "Komèt yon dosye resous sous",
@@ -91,8 +112,15 @@
 				"body": "Yon fwa workflow la fini, aksyon an ekspoze twa pwodiksyon ou ka fil nan yon deskripsyon PR: {summaryTitle}, {summaryDetails}, ak {hasNewTranslations}. Li ekri tou yon rezime Markdown nan paj travay la atravè {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Chwazi yon founisè tradiksyon"
+		},
 		"nextSteps": {
 			"title": "Pwochen etap yo",
+			"providers": "Konpare chak founisè ak kalifikasyon li yo kòt a kòt.",
 			"configuration": "Konfigirasyon defo-nivo repo ak {configPath}",
 			"recipes": "Gade resèt pou monorepos, glosè koutim, ak kategori tradiktè Custom"
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Tradiktè mande kounye a pine {apiVersion} sou fil pou tou de {translate} ak {languages}. Azure SDK la sèlman onore opsyon api-version nivo kliyan an lè yon kalifikasyon pase; Aksyon an otantifye pou chak demann atravè Headers, se konsa ke opsyon te silans lage ak demann default nan yon preview API-vèsyon ki gen kontra {translate} rejte kò a ak HTTP 400 (kòd erè {code}). Konplete ranje a te kòmanse nan 3.0.1",
 			"v301": "{label} Kò a demann {translate} se kounye a yon etalaj JSON toutouni nan atik {textItem} olye pou yo vlope {inputs} objè, matche ak kontra a v3.0 REST. Pou kont li, sa pa t restore tradiksyon — gade 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Multi-machann:",
+				"intentMapping": "Entansyon espesifikasyon kat:"
+			},
+			"items": {
+				"multiVendor": "{label} tradui ak {azure}, {aws}, oswa {google} dèyè yon sèl sifas API inifye. Chwazi yon founisè sèl pou chak kouri ak opinyon nan nouvo {provider}; aksyon delege a matche SDK dèyè yon faktori ak konpòte yo menm jan kèlkeswa machann. Konplètman bak konpatib — {provider} default {azureValue}, se konsa ki deja egziste Azure workflows kontinye ap travay san chanjman.",
+				"aws": "Nouvo founisè AWS Translate ({awsSdk}) Otantifye ak AWS default chèn kalifikasyon (rekòmande: OIDC via {configureAwsCredentials}) oswa eksplisit {awsAccessKeyId} / {awsSecretAccessKey}; Rejyon via {awsRegion} oswa {awsRegionEnv}",
+				"google": "Nouvo founisè Google Cloud Tradiksyon ({googleSdk}, v2) Otantifye ak yon sèvis-kont JSON kalifikasyon ({googleCredentials}) oswa yon kle API ({googleApiKey}); Si ou vle {googleProjectId}",
+				"inputs": "Nouvo antre: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} kat nan {format} Google la ak kat {profanityAction} nan mask pwofanite AWS kote yon ekivalan egziste. Azure sèlman spécificateurs ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) yo inyore pa lòt founisè yo.",
+				"azureRelaxed": "Entrain demann Azure ({subscriptionKey}, {endpoint}, {region}) yo pa make obligatwa nan {actionYml} pou lòt founisè yo ka chwazi — toujou valide nan runtime lè {provider} {azureValue}.",
+				"docs": "Nouvo paj founisè tradiksyon, onglè founisè sou Kòmanse, seleksyon founisè sou paj la Entrain, ak yon paj lakay rafrechi ki mennen ak Azure, AWS, ak Google."
+			}
 		},
 		"v3": {
 			"labels": {

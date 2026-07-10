@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "ການ ເລີ່ມຕົ້ນ",
 		"eyebrow": "ການຈັດຕັ້ງ",
-		"lede": "ເພີ່ມແຟ້ມ workflow, ຊີ້ໄປທີ່ຂໍ້ມູນ Azure AI Translator ຂອງທ່ານ, ແລະການກະທໍາຈະກວດ repo ສໍາລັບແຟ້ມຊັບພະຍາກອນທີ່ເປັນພາສາແຫຼ່ງ ແລະ ສົ່ງອ້າຍເອື້ອຍນ້ອງທີ່ແປ.",
+		"heroLede": "ເພີ່ມແຟ້ມ workflow, ເລືອກຜູ້ໃຫ້ການແປຂອງທ່ານ - Azure, AWS ຫຼື Google - ແລະ ການກະທໍາຈະກວດສອບ repo ສໍາລັບແຟ້ມຊັບພະຍາກອນທີ່ເປັນພາສາແຫຼ່ງ ແລະ ສົ່ງອ້າຍເອື້ອຍນ້ອງທີ່ແປ.",
 		"steps": {
-			"provision": {
-				"title": "ຈັດຕຽມຊັບພະຍາກອນ Azure AI Translator",
-				"body": "ສ້າງຊັບພະຍາກອນ Azure AI Translator ໃນເວັບໄຊ Azure, ຈາກນັ້ນເກັບຂໍ້ມູນຕໍ່ໄປນີ້ເປັນຄວາມລັບຂອງທີ່ເກັບຂໍ້ມູນ GitHub ເພື່ອໃຫ້ຂະບວນການສາມາດອ່ານໄດ້:",
-				"key": "ຂໍ ກະ ແຈ ການ ຈົດ ຈໍາ ສໍາ ລັບ ແຫລ່ງ ຊ່ວຍ ເຫລືອ.",
-				"endpoint": "URL endpoint ພາກພື້ນ.",
-				"region": "ພາກພື້ນ Azure ຂອງຊັບພະຍາກອນ."
+			"provider": {
+				"title": "ເລືອກຜູ້ໃຫ້ການແປ",
+				"body": "ການ ກະທໍາ ນີ້ ທໍາ ງານ ກັບ {azure}, {aws} ແລະ {google} ຢູ່ ຂ້າງ ຫລັງ ຂອງ API ທີ່ ເປັນ ຫນຶ່ງ ດຽວ ກັນ. ເລືອກ ຜູ້ ຈັດ ຫາ ຄົນ ດຽວ ຕໍ່ ການ ແລ່ນ ດ້ວຍ ຂໍ້ ມູນ {provider} - ວຽກ ງານ ຈະ ປະພຶດ ແບບ ດຽວ ກັນ ບໍ່ ວ່າ ຜູ້ ຈັດ ຫາ ຈະ ເປັນ ແນວ ໃດ ກໍ ຕາມ; ພຽງ ແຕ່ ຂໍ້ ມູນ ທີ່ ແຕກ ຕ່າງ ກັນ. ເບິ່ງ {providersLink} ສໍາ ລັບ ການ ປຽບ ທຽບ ຢ່າງ ຄົບ ຖ້ວນ.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS ແປ",
+				"google": "ການແປ Google Cloud",
+				"providersLinkLabel": "ຜູ້ໃຫ້ການແປ"
 			},
-			"workflow": {
-				"title": "ເພີ່ມຂະບວນການເຮັດວຽກ",
-				"body": "ສ້າງ ຂໍ້ {workflowPath}:"
+			"configure": {
+				"title": "ເພີ່ມຂໍ້ມູນແລະລະບົບການເຮັດວຽກ",
+				"body": "ເກັບ ຂໍ້ ມູນ ຂອງ ຜູ້ ຈັດ ຫາ ຂອງ ທ່ານ ເປັນ ຄວາມ ລັບ ຂອງ GitHub, ແລ້ວ ສ້າງ {workflowPath}. ເລືອກຜູ້ໃຫ້ບໍລິການຂອງທ່ານທາງລຸ່ມນີ້ສໍາລັບການຕັ້ງຄ່າສະເພາະເຈາະຈົງ - ສ່ວນທີ່ເຫຼືອຂອງວຽກງານກໍຄືກັນ.",
+				"secretsHeading": "ເກັບຂໍ້ມູນເຫຼົ່ານີ້ໄວ້ເປັນຄວາມລັບຂອງເກັບຂໍ້ມູນ",
+				"workflowHeading": "ເພີ່ມຂະບວນການເຮັດວຽກ",
+				"azure": {
+					"note": "Azure ເປັນຜູ້ໃຫ້ບໍລິການມາດຕະຖານ, ດັ່ງນັ້ນ {provider} ອາດຈະຖືກຕັດອອກ. ຈັດຕຽມຊັບພະຍາກອນ Azure AI Translator ໃນເວັບໄຊ Azure, ຈາກນັ້ນເກັບຂໍ້ມູນຂໍ້ມູນຂອງມັນໄວ້:",
+					"key": "ຂໍ ກະ ແຈ ການ ຈົດ ຈໍາ ສໍາ ລັບ ແຫລ່ງ ຊ່ວຍ ເຫລືອ.",
+					"endpoint": "URL endpoint ພາກພື້ນ.",
+					"region": "ພາກພື້ນ Azure ຂອງຊັບພະຍາກອນ."
+				},
+				"aws": {
+					"note": "ຕັ້ງ {provider} ເປັນ {providerValue}. ເລືອກ OIDC ຜ່ານ {configureAwsCredentials} ເພື່ອ ວ່າ ຈະ ບໍ່ ມີ ຄວາມ ລັບ ທີ່ ຍາວ ນານ - ຂັ້ນ ຕອນ ທີ່ ສົ່ງ ອອກ {awsRegionEnv} ໃຫ້ ທ່ານ. ເພື່ອໃຊ້ກະແຈສະຖິຕິແທນ, ໃຫ້ເກັບໄວ້:",
+					"accessKeyId": "ID ກະແຈການເຂົ້າເຖິງ AWS ຂອງທ່ານ.",
+					"secretAccessKey": "ກະແຈການເຂົ້າເຖິງຄວາມລັບ AWS ຂອງທ່ານ.",
+					"regionNote": "ຈໍາເປັນ ຕ້ອງ ມີ ພາກ ພື້ນ ສະ ເຫມີ - ຕັ້ງ ມັນ ດ້ວຍ {awsRegion} ຫລື {awsRegionEnv} ປ່ຽນ ສະພາບ ແວດ ລ້ອມ."
+				},
+				"google": {
+					"note": "ຕັ້ງ {provider} ເປັນ {providerValue}. ຢືນຢັນດ້ວຍຂໍ້ມູນ JSON ຂອງບັນຊີການບໍລິການ ຫຼື API key - ໃຫ້ພຽງຢ່າງດຽວ:",
+					"credentials": "ກະແຈ JSON ຂອງບັນຊີການບໍລິການ (ເປັນຂໍ້ມູນ JSON).",
+					"apiKey": "ຫຼືກະແຈ Google Cloud API.",
+					"projectNote": "ການ {googleProjectId} ທາງ ເລືອກ ຈະ ຖືກ ສະຫລຸບ ຈາກ ໃບ ຢັ້ງຢືນ ເມື່ອ ຖືກ ຕັດ ອອກ."
+				}
 			},
 			"resource": {
 				"title": "ມອບແຟ້ມຊັບພະຍາກອນແຫຼ່ງ",
@@ -91,8 +112,15 @@
 				"body": "ເມື່ອຂະບວນການສໍາເລັດແລ້ວ, ການກະທໍາຈະເປີດເຜີຍສາມຜົນອອກທີ່ເຈົ້າສາມາດເຊື່ອມຕໍ່ໃນຄໍາອະທິບາຍຂອງ PR: {summaryTitle}, {summaryDetails} ແລະ {hasNewTranslations}. ມັນ ຍັງ ຂຽນ ຂໍ້ ສະຫລຸບ ຂອງ Markdown ໃນ ຫນ້າ ວຽກ ງານ ຜ່ານ ທາງ {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "ເລືອກຜູ້ໃຫ້ການແປ"
+		},
 		"nextSteps": {
 			"title": "ຂັ້ນຕອນຕໍ່ໄປ",
+			"providers": "ສົມທຽບຜູ້ໃຫ້ບໍລິການທຸກໆຄົນແລະຂໍ້ມູນຂອງມັນຄຽງຂ້າງກັນ.",
 			"configuration": "ຕັ້ງຄ່າມາດຕະຖານລະດັບ repo ດ້ວຍ {configPath}.",
 			"recipes": "ເບິ່ງ recipes for monorepos, custom glossaries ແລະ Custom Translator categories."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} ຄໍາ ຂໍ ຮ້ອງ ຂອງ ຜູ້ ແປ ບັດ ນີ້ ຕິດ {apiVersion} ຢູ່ ໃນ ສາຍ ສໍາ ລັບ ທັງ {translate} ແລະ {languages}. Azure SDK ໃຫ້ກຽດທາງເລືອກ api-version ລະດັບລູກຄ້າເທົ່ານັ້ນເມື່ອຜ່ານຂໍ້ມູນ; ການກະທໍາຢືນຢັນຕໍ່ຄໍາຮ້ອງຂໍຜ່ານຫົວຂໍ້, ດັ່ງນັ້ນທາງເລືອກນັ້ນຈຶ່ງຖືກຖິ້ມຢ່າງງຽບໆ ແລະ ຄໍາຮ້ອງຂໍມາດຕະຖານເປັນລຸ້ນ Preview API ທີ່ສັນຍາ {translate} ປະຕິເສດເນື້ອໃນທີ່ມີ HTTP 400 (ລະຫັດຜິດພາດ {code}). ສໍາເລັດການແກ້ໄຂທີ່ເລີ່ມຕົ້ນໃນ 3.0.1.",
 			"v301": "{label} ຮ່າງກາຍຄໍາຮ້ອງຂໍ {translate} ຕອນນີ້ເປັນແຖວ JSON ເປົ່າຂອງລາຍການ {textItem} ແທນທີ່ຈະເປັນວັດຖຸ {inputs} ທີ່ຫຸ້ມຫໍ່, ສອດຄ່ອງກັບສັນຍາ REST v3.0. ມັນ ບໍ່ ໄດ້ ຟື້ນ ຟູ ການ ແປ ຄືນ ມາ ໃຫມ່ - ເບິ່ງ 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "ຜູ້ຂາຍຫຼາຍຄົນ:",
+				"intentMapping": "Intent-specifier mapping:"
+			},
+			"items": {
+				"multiVendor": "{label} ແປ ດ້ວຍ {azure}, {aws} ຫລື ການ {google} ຢູ່ ຂ້າງ ຫລັງ ຂອງ API ທີ່ ເປັນ ຫນຶ່ງ ດຽວ ກັນ. ເລືອກຜູ້ໃຫ້ບໍລິການຄົນດຽວຕໍ່ການແລ່ນດ້ວຍຂໍ້ມູນໃຫມ່ {provider}; ການ ກະ ທໍາ ມອບ ຫມາຍ ໃຫ້ SDK ທີ່ ສອດ ຄ່ອງ ຢູ່ ຂ້າງ ຫລັງ ຂອງ ໂຮງງານ ແລະ ປະ ພຶດ ແບບ ດຽວ ກັນ ບໍ່ ວ່າ ຜູ້ ຈັດ ຫາ ຈະ ເປັນ ແນວ ໃດ ກໍ ຕາມ. ເຂົ້າກັນໄດ້ກັບຫຼັງຢ່າງເຕັມທີ - {provider} ມາດຕະຖານເປັນ {azureValue}, ດັ່ງນັ້ນ ວຽກງານ Azure ທີ່ມີຢູ່ຈະເຮັດວຽກຕໍ່ໄປໂດຍບໍ່ປ່ຽນແປງ.",
+				"aws": "ຜູ້ໃຫ້ບໍລິການ AWS Translate ໃຫມ່ ({awsSdk}). ຢືນຢັນດ້ວຍສາຍໂສ້ຂໍ້ມູນມາດຕະຖານຂອງ AWS (ແນະນໍາ: OIDC ຜ່ານ {configureAwsCredentials}) ຫຼື {awsAccessKeyId} / {awsSecretAccessKey} ທີ່ຊັດເຈນ; ພາກພື້ນ ຜ່ານ {awsRegion} ຫລື {awsRegionEnv}.",
+				"google": "ຜູ້ໃຫ້ການແປ Google Cloud ໃຫມ່ ({googleSdk}, v2). ຢືນຢັນດ້ວຍຂໍ້ມູນ JSON ຂອງບັນຊີການບໍລິການ ({googleCredentials}) ຫຼື API key ({googleApiKey}); ທາງ ເລືອກ {googleProjectId}.",
+				"inputs": "ຂໍ້ມູນໃຫມ່: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} maps to Google's {format} and {profanityAction} maps to AWS profanity masking ບ່ອນທີ່ມີຄໍາຫມິ່ນປະຫມາດ. ຜູ້ໃຫ້ບໍລິການອື່ນໆບໍ່ເອົາໃຈໃສ່ຜູ້ລະບຸສະເພາະພຽງ Azure ເທົ່ານັ້ນ ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}).",
+				"azureRelaxed": "ຂໍ້ ມູນ ໃນ ຄໍາ ຂໍ ຮ້ອງ ຂອງ Azure ({subscriptionKey}, {endpoint}, {region}) ຈະ ບໍ່ ຖືກ ຫມາຍ ວ່າ ຈໍາເປັນ ໃນ {actionYml} ອີກ ຕໍ່ ໄປ ເພື່ອ ວ່າ ຜູ້ ຈັດ ຫາ ຄົນ ອື່ນ ຈະ ສາມາດ ເລືອກ ໄດ້ - ຍັງ ຖືກ ຢືນຢັນ ໃນ ເວລາ ທີ່ {provider} {azureValue}.",
+				"docs": "ຫນ້າຜູ້ໃຫ້ການແປໃຫມ່, ແທັບ Provider on Getting started, ການເລືອກຜູ້ໃຫ້ບໍລິການໃນຫນ້າ Inputs ແລະ ຫນ້າບ້ານໃຫມ່ທີ່ນໍາໄປ ດ້ວຍ Azure, AWS ແລະ Google."
+			}
 		},
 		"v3": {
 			"labels": {

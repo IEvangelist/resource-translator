@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "መጀመር",
 		"eyebrow": "አዘገጃጀት",
-		"lede": "የስራ ፍሰት ፋይል ያክሉ፣ ወደ Azure AI ተርጓሚ ምስክርነቶችዎ ይጠቁሙት፣ እና ድርጊቱ ሪፖውን የምንጭ-ቋንቋ መገልገያ ፋይሎችን ይቃኛል እና የተተረጎሙ ወንድሞችና እህቶችን ያወጣል።",
+		"heroLede": "የስራ ፍሰት ፋይል ያክሉ፣ የትርጉም አቅራቢዎን ይምረጡ - Azure፣ AWS ወይም Google - እና ድርጊቱ ሪፖውን የምንጭ-ቋንቋ መገልገያ ፋይሎችን ይቃኛል እና የተተረጎሙ ወንድሞችና እህቶችን ያመነጫል።",
 		"steps": {
-			"provision": {
-				"title": "የ Azure AI ተርጓሚ መገልገያ ያቅርቡ",
-				"body": "በ Azure ፖርታል ውስጥ የ Azure AI ተርጓሚ ምንጭ ይፍጠሩ እና የስራ ፍሰቱ እንዲያነባቸው የሚከተሉትን እንደ GitHub ማከማቻ ሚስጥሮች ያከማቹ",
-				"key": "ለሀብቱ የደንበኝነት ምዝገባ ቁልፍ።",
-				"endpoint": "የክልል የመጨረሻ ነጥብ ዩአርኤል.",
-				"region": "የሀብቱ አዙር ክልል።"
+			"provider": {
+				"title": "የትርጉም አቅራቢ ይምረጡ",
+				"body": "ድርጊቱ ከአንድ የተዋሃደ የኤፒአይ ወለል ጀርባ {azure}፣ {aws} እና {google} ይሰራል። {provider} ግብዓት ጋር በአንድ ሩጫ አንድ ነጠላ አቅራቢ ይምረጡ - የስራ ፍሰቱ አቅራቢው ምንም ይሁን ምን ተመሳሳይ ባህሪ አለው; ምስክርነቶቹ ብቻ ይለያያሉ። ለሙሉ ንፅፅር {providersLink} ይመልከቱ።",
+				"azure": "Azure AI ተርጓሚ",
+				"aws": "AWS ትርጉም",
+				"google": "የጉግል ክላውድ ትርጉም",
+				"providersLinkLabel": "የትርጉም አቅራቢዎች"
 			},
-			"workflow": {
-				"title": "የስራ ሂደቱን ያክሉ",
-				"body": "{workflowPath} ይፍጠሩ"
+			"configure": {
+				"title": "ምስክርነቶችን እና የስራ ፍሰት ያክሉ",
+				"body": "የአቅራቢዎን ምስክርነቶች እንደ GitHub ማከማቻ ሚስጥሮች ያከማቹ እና ከዚያ {workflowPath} ይፍጠሩ። ለተለየ ማዋቀር አቅራቢዎን ከዚህ በታች ይምረጡ - የተቀረው የስራ ሂደት ተመሳሳይ ነው።",
+				"secretsHeading": "እነዚህን እንደ ማከማቻ ሚስጥሮች ያከማቹ",
+				"workflowHeading": "የስራ ሂደቱን ያክሉ",
+				"azure": {
+					"note": "Azure ነባሪ አቅራቢ ነው፣ ስለዚህ {provider} ሊተው ይችላል። በ Azure ፖርታል ውስጥ የ Azure AI ተርጓሚ ምንጭ ያቅርቡ እና ምስክርነቶቹን ያከማቹ -",
+					"key": "ለሀብቱ የደንበኝነት ምዝገባ ቁልፍ።",
+					"endpoint": "የክልል የመጨረሻ ነጥብ ዩአርኤል.",
+					"region": "የሀብቱ አዙር ክልል።"
+				},
+				"aws": {
+					"note": "{provider} ወደ {providerValue} ያቀናብሩ። ለረጅም ጊዜ የሚቆዩ ሚስጥሮች እንዳይቀመጡ OIDCን በ {configureAwsCredentials} በኩል ይምረጡ - ደረጃው ወደ ውጭ የሚላከው ለእርስዎ {awsRegionEnv}። በምትኩ የማይንቀሳቀሱ ቁልፎችን ለመጠቀም የሚከተሉትን ያከማቹ",
+					"accessKeyId": "የእርስዎ AWS መዳረሻ ቁልፍ መታወቂያ።",
+					"secretAccessKey": "የእርስዎ AWS ሚስጥራዊ መዳረሻ ቁልፍ።",
+					"regionNote": "ክልል ሁል ጊዜ ያስፈልጋል - በ {awsRegion} ወይም በ {awsRegionEnv} አካባቢ ተለዋዋጭ ያዘጋጁት።"
+				},
+				"google": {
+					"note": "{provider} ወደ {providerValue} ያቀናብሩ። በአገልግሎት-መለያ JSON ምስክርነት ወይም በኤፒአይ ቁልፍ ያረጋግጡ - በትክክል አንድ ያቅርቡ -",
+					"credentials": "የአገልግሎት-መለያ JSON ቁልፍ (እንደ JSON ሕብረቁምፊ)።",
+					"apiKey": "ወይም የGoogle ክላውድ ኤፒአይ ቁልፍ።",
+					"projectNote": "አማራጭ {googleProjectId} ሲቀር ከምስክርነቱ ይገመታል።"
+				}
 			},
 			"resource": {
 				"title": "የምንጭ ምንጭ ፋይል ይፈጽሙ",
@@ -91,8 +112,15 @@
 				"body": "የስራ ፍሰቱ ካለቀ በኋላ ድርጊቱ ወደ PR መግለጫ ሽቦ ማድረግ የሚችሏቸውን ሶስት ውጤቶች ያጋልጣል {summaryTitle}፣ {summaryDetails} እና {hasNewTranslations}። እንዲሁም በ {coreSummary} በኩል በስራ ገጹ ላይ የማርክዳውን ማጠቃለያ ይጽፋል።"
 			}
 		},
+		"tabs": {
+			"azure": "አዙር",
+			"aws": "AWS",
+			"google": "ጉግል",
+			"ariaLabel": "የትርጉም አቅራቢ ይምረጡ"
+		},
 		"nextSteps": {
 			"title": "ቀጣይ እርምጃዎች",
+			"providers": "እያንዳንዱን አቅራቢ እና ምስክርነቶቹን ጎን ለጎን ያወዳድሩ።",
 			"configuration": "የሪፖ-ደረጃ ነባሪዎችን በ {configPath} ያዋቅሩ።",
 			"recipes": "ለሞኖሬፖስ፣ ብጁ መዝገበ ቃላት እና ብጁ ተርጓሚ ምድቦች የምግብ አዘገጃጀት መመሪያዎችን ይመልከቱ።"
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} ተርጓሚ ይጠይቃል አሁን ለሁለቱም {translate} እና {languages} {apiVersion} በሽቦው ላይ ይሰኩት። Azure ኤስዲኬ የደንበኛ ደረጃ የኤፒአይ-ስሪት አማራጭን የሚያከብረው ምስክርነት ሲተላለፍ ብቻ ነው። ድርጊቱ በአንድ ጥያቄ በራዕሶች በኩል ያረጋግጣል፣ ስለዚህ ያ አማራጭ በጸጥታ ተጥሏል እና ጥያቄዎች ወደ ቅድመ እይታ ኤፒአይ-ስሪት ነባሪ ሆነዋል {translate} ኮንትራቱ በኤችቲቲፒ 400 (የስህተት ኮድ {code}) ውድቅ አድርጓል። በ 3.0.1 የተጀመረውን ጥገና ያጠናቅቃል.",
 			"v301": "{label} {translate} የጥያቄ አካል አሁን ከ v3.0 REST ውል ጋር የሚዛመድ ከተጠቀለለ {inputs} ነገር ይልቅ ባዶ የJSON ድርድር {textItem} እቃዎች ነው። በራሱ ይህ ትርጉሞችን ወደነበረበት አልመለሰም - 3.0.2 ይመልከቱ።"
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "ባለብዙ ሻጭ",
+				"intentMapping": "የዓላማ-ገላጭ ካርታ -"
+			},
+			"items": {
+				"multiVendor": "{label} ከአንድ የተዋሃደ የኤፒአይ ወለል ጀርባ {azure}፣ {aws} ወይም {google} መተርጎም ይችላሉ። በአዲሱ {provider} ግብዓት በአንድ ሩጫ አንድ ነጠላ አቅራቢ ይምረጡ; ድርጊቱ ከፋብሪካ ጀርባ ላለው ተዛማጅ ኤስዲኬ ውክልና ይሰጣል እና ሻጭ ምንም ይሁን ምን ተመሳሳይ ባህሪ አለው። ሙሉ በሙሉ ወደ ኋላ ተኳሃኝ - {provider} ነባሪ {azureValue} ነው፣ ስለዚህ ነባር የ Azure የስራ ፍሰቶች ሳይለወጡ መስራታቸውን ይቀጥላሉ።",
+				"aws": "አዲስ AWS Translate አቅራቢ ({awsSdk})። በAWS ነባሪ ምስክርነት ሰንሰለት (የሚመከር OIDC በ {configureAwsCredentials}) ወይም ግልጽ {awsAccessKeyId}/{awsSecretAccessKey} ያረጋግጡ። ክልል በ {awsRegion} ወይም {awsRegionEnv} በኩል.",
+				"google": "አዲስ የጉግል ክላውድ ትርጉም አቅራቢ ({googleSdk}፣ v2)። በአገልግሎት-መለያ JSON ምስክርነት ({googleCredentials}) ወይም በኤፒአይ ቁልፍ ({googleApiKey}) ያረጋግጡ። አማራጭ {googleProjectId}.",
+				"inputs": "አዲስ ግብዓቶች {provider}፣ {awsAccessKeyId}፣ {awsSecretAccessKey}፣ {awsRegion}፣ {googleApiKey}፣ {googleCredentials}፣ {googleProjectId}።",
+				"intentMapping": "{label} {textType} ካርታዎችን ወደ ጎግል {format} እና {profanityAction} ካርታዎች ወደ AWS ጸያፍ ጭንብል አቻ ባለበት ቦታ። የ Azure-ብቻ ገላጮች ({categoryId}፣ {apiVersion}፣ {profanityMarker}፣ {allowFallback}) በሌሎች አቅራቢዎች ችላ ይባላሉ።",
+				"azureRelaxed": "የ Azure ጥያቄ ግብዓቶች ({subscriptionKey}፣ {endpoint}፣ {region}) ከአሁን በኋላ በ {actionYml} ውስጥ ምልክት አይደረግባቸውም ስለዚህ ሌሎች አቅራቢዎች ሊመረጡ ይችላሉ - አሁንም {provider} {azureValue} በሚሆንበት ጊዜ የተረጋገጠ ነው።",
+				"docs": "አዲስ የትርጉም አቅራቢዎች ገጽ፣ በመጀመር ላይ የአቅራቢ ትሮች፣ በግብዓቶች ገጽ ላይ የአቅራቢ ምርጫ እና በAzure፣ AWS እና Google የሚመራ የታደሰ መነሻ ገጽ።"
+			}
 		},
 		"v3": {
 			"labels": {

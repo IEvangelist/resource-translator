@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Kuyamba",
 		"eyebrow": "Kukhazikitsa",
-		"lede": "Onjezerani fayilo ya ntchito, lozani pa zidziwitso zanu za Azure AI Translator, ndipo zochitikazo zidzafufuza repo ya mafayilo a chinenero cha gwero ndikutulutsa abale omasulidwa.",
+		"heroLede": "Onjezerani fayilo ya ntchito, sankhani wopereka kumasulira kwanu - Azure, AWS, kapena Google - ndipo zochitikazo zimayang'ana repo ya mafayilo a chinenero cha gwero ndikutulutsa abale omasulidwa.",
 		"steps": {
-			"provision": {
-				"title": "Perekani chuma cha Azure AI Translator",
-				"body": "Pangani chuma cha Azure AI Translator mu portal ya Azure, kenako sungani zotsatirazi monga zinsinsi za GitHub kuti ntchitoyo ithe kuwawerenga:",
-				"key": "kiyi yolembetsa ya chumacho.",
-				"endpoint": "URL yotsiriza ya dera.",
-				"region": "dera la Azure la chuma."
+			"provider": {
+				"title": "Sankhani wopereka kumasulira",
+				"body": "Mchitidwewu umagwira ntchito ndi {azure}, {aws}, ndi {google} kumbuyo kwa malo amodzi ogwirizana a API. Sankhani wopereka m'modzi pa kuthamanga ndi {provider} - ntchitoyi imakhala yofanana mosasamala kanthu za wopereka; Zidziwitso zokha ndizosiyana. Onani {providersLink} kuti muyerekeze kwathunthu.",
+				"azure": "Womasulira wa Azure AI",
+				"aws": "Kumasulira kwa AWS",
+				"google": "Kutanthauzira kwa Mtambo wa Google",
+				"providersLinkLabel": "Othandizira omasulira"
 			},
-			"workflow": {
-				"title": "Onjezani kayendedwe ka ntchito",
-				"body": "Pangani {workflowPath}:"
+			"configure": {
+				"title": "Onjezani zidziwitso ndi ntchito",
+				"body": "Sungani zidziwitso za wopereka wanu ngati zinsinsi zosungira GitHub, kenako pangani {workflowPath}. Sankhani wothandizira wanu pansipa chifukwa cha kukhazikitsidwa kwake kwapadera - ntchito yonse ya ntchito ndi yofanana.",
+				"secretsHeading": "Sungani izi ngati zinsinsi zosungira",
+				"workflowHeading": "Onjezani kayendedwe ka ntchito",
+				"azure": {
+					"note": "Azure ndi wopereka kusakhulupirika, kotero {provider} akhoza kusiyidwa. Perekani chuma cha Azure AI Translator mu portal ya Azure, kenako sungani zidziwitso zake:",
+					"key": "kiyi yolembetsa ya chumacho.",
+					"endpoint": "URL yotsiriza ya dera.",
+					"region": "dera la Azure la chuma."
+				},
+				"aws": {
+					"note": "Ikani {provider} ku {providerValue}. Kusankha OIDC kudzera pa {configureAwsCredentials} kotero palibe zinsinsi zokhala ndi moyo wautali zomwe zimasungidwa - sitepe yotumiza kunja {awsRegionEnv} kwa inu. Kuti mugwiritse ntchito makiyi amodzi m'malo mwake, sungani:",
+					"accessKeyId": "ID yanu yofikira AWS yofikira.",
+					"secretAccessKey": "kiyi yanu yofikira chinsinsi cha AWS.",
+					"regionNote": "Dera limafunikira nthawi zonse - ikani ndi {awsRegion} kapena {awsRegionEnv} chilengedwe chosinthika."
+				},
+				"google": {
+					"note": "Ikani {provider} ku {providerValue}. Tsimikizirani ndi chizindikiritso cha JSON kapena kiyi ya API - perekani ndendende imodzi:",
+					"credentials": "kiyi ya JSON ya akaunti yautumiki (monga chingwe cha JSON).",
+					"apiKey": "kapena kiyi ya Google Cloud API.",
+					"projectNote": "{googleProjectId} yosankha imatengedwa kuchokera ku chizindikiritso pamene yasiyidwa."
+				}
 			},
 			"resource": {
 				"title": "Chitani fayilo ya source resource",
@@ -91,8 +112,15 @@
 				"body": "Ntchitoyi ikatha, zochitikazo zimavumbula zotuluka zitatu zomwe mungathe kuzigwiritsa ntchito mu mafotokozedwe a PR: {summaryTitle}, {summaryDetails}, ndi {hasNewTranslations}. Imalemba chidule cha Markdown patsamba la ntchito kudzera pa {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Sankhani wopereka kumasulira"
+		},
 		"nextSteps": {
 			"title": "Masitepe otsatira",
+			"providers": "Yerekezerani wopereka aliyense ndi zidziwitso zake pambali.",
 			"configuration": "Konzani kusakhulupirika kwa repo-level ndi {configPath}.",
 			"recipes": "Onani maphikidwe a monorepos, ma glossaries achizolowezi, ndi magulu a Custom Translator."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Zopempha Womasulira tsopano pini {apiVersion} pa waya onse {translate} ndi {languages}. Azure SDK imangolemekeza njira ya kasitomala ya api-version pamene chizindikiritso chikuperekedwa; Mchitidwewu umatsimikizira pempho lililonse kudzera pamitu, kotero kuti njirayo idagwetsedwa mwakachetechete ndipo zopempha zidalephera kuwonetseratu mtundu wa API womwe mgwirizano wake wa {translate} udakana thupi ndi HTTP 400 (code yolakwika {code}). Amamaliza kukonza anayamba mu 3.0.1.",
 			"v301": "{label} Thupi la pempho la {translate} tsopano ndi JSON yopanda kanthu ya zinthu {textItem} m'malo mwa chinthu {inputs} chokulungidwa, chofanana ndi mgwirizano wa v3.0 REST. Pazokha izi sizinabwezeretse matembenuzidwe - onani 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Ogulitsa ambiri:",
+				"intentMapping": "Mapu ofotokozera cholinga:"
+			},
+			"items": {
+				"multiVendor": "{label} kumasulira ndi {azure}, {aws}, kapena {google} kumbuyo kwa malo amodzi ogwirizana a API. Sankhani wopereka m'modzi pa kuthamanga ndi {provider} yatsopano yolowetsa; zochitazo zimatumizidwa ku SDK yofananira kumbuyo kwa fakitale ndipo amachita chimodzimodzi mosasamala kanthu za wogulitsa. Kwathunthu kumbuyo kogwirizana - {provider} kusakhulupirika kwa {azureValue}, kotero ntchito zomwe zilipo za Azure zimapitiriza kugwira ntchito mosasinthika.",
+				"aws": "Wopereka Watsopano wa AWS Translate ({awsSdk}). Tsimikizirani ndi unyolo wovomerezeka wa AWS (akulimbikitsidwa: OIDC kudzera pa {configureAwsCredentials}) kapena {awsAccessKeyId} / {awsSecretAccessKey} momveka bwino; dera kudzera {awsRegion} kapena {awsRegionEnv}.",
+				"google": "Wopereka Womasulira Watsopano wa Google Cloud ({googleSdk}, v2). Tsimikizirani ndi chizindikiritso cha JSON cha akaunti ya utumiki ({googleCredentials}) kapena kiyi ya API ({googleApiKey}); {googleProjectId} yosankha.",
+				"inputs": "Zolowetsa zatsopano: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} mapu ku {format} a Google ndi mapu a {profanityAction} ku AWS masking masking komwe kuli zofanana. Zolemba za Azure zokhazokha ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) zimanyalanyazidwa ndi ena opereka.",
+				"azureRelaxed": "Zolowetsa zopempha za Azure ({subscriptionKey}, {endpoint}, {region}) sizikulembedwanso zofunikira mu {actionYml} kotero ena opereka akhoza kusankhidwa - adakali otsimikiziridwa pa nthawi yothamanga pamene {provider} ali {azureValue}.",
+				"docs": "Tsamba latsopano la opereka Matembenuzidwe, ma tabu opereka pa Kuyamba, kusankha kwa opereka patsamba la Zolowetsa, ndi tsamba loyamba lotsitsimutsa lomwe likutsogolera ndi Azure, AWS, ndi Google."
+			}
 		},
 		"v3": {
 			"labels": {

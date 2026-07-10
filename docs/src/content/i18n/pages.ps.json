@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "پیل کول",
 		"eyebrow": "ترتیب",
-		"lede": "یو workflow فایل اضافه کړئ، خپل Azure AI Translator اسناد ته یې اشاره کړئ، او عمل به ریپو د سرچینې ژبې سرچینې فایلونو لپاره سکین کړی او ژباړل شوی وروڼه به خپاره کړی.",
+		"heroLede": "د workflow فایل اضافه کړئ، خپل ژباړې چمتو کوونکی — Azure، AWS، یا Google — انتخاب کړئ، او عمل د سرچینې ژبې سرچینې فایلونو لپاره ریپو سکین کوی او ژباړل شوی وروڼه خپروی.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "د Azure AI ژباړونکی سرچینه په Azure پورټل کې جوړه کړئ، بیا لاندې معلومات د GitHub د ذخیره رازونو په توګه ذخیره کړئ څو workflow یې ولولی:",
-				"key": "د سرچینې د ګډون کیلی.",
-				"endpoint": "سیمه ایز پای ټکی URL.",
-				"region": "د سرچینې Azure سیمه."
+			"provider": {
+				"title": "د ژباړې چمتو کوونکی انتخاب کړئ",
+				"body": "عمل د {azure}، {aws}، او {google} سره د یو متحد API سطحې تر شا کار کوی. په هر ځل کې یو واحد عرضه کوونکی د {provider} ورودی سره انتخاب کړئ — د workflow بهیر پرته له عرضه کوونکی سره یو شان عمل کوی؛ یوازې اسناد توپیر لری. د بشپړ پرتله {providersLink} وګورئ.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "د ګوګل کلاوډ ژباړه",
+				"providersLinkLabel": "د ژباړې چمتو کوونکی"
 			},
-			"workflow": {
-				"title": "د workflow اضافه کول",
-				"body": "Create {workflowPath}:"
+			"configure": {
+				"title": "اسناد او کاری بهیر اضافه کړئ",
+				"body": "د خپل عرضه کوونکی اسناد د GitHub د زیرمه رازونو په توګه ذخیره کړئ، بیا {workflowPath}. لاندې خپل عرضه کوونکی د ځانګړی تنظیم لپاره وټاکئ — د بهیر پاتې برخه هم یو شان ده.",
+				"secretsHeading": "دا د زیرمې رازونو په توګه ذخیره کړئ",
+				"workflowHeading": "د workflow اضافه کول",
+				"azure": {
+					"note": "Azure اصلی عرضه کوونکی دی، نو {provider} له پامه غورځول کېدای شی. د Azure AI Translator سرچینه په Azure پورټل کې فراهم کړئ، بیا یې اسناد ذخیره کړئ:",
+					"key": "د سرچینې د ګډون کیلی.",
+					"endpoint": "سیمه ایز پای ټکی URL.",
+					"region": "د سرچینې Azure سیمه."
+				},
+				"aws": {
+					"note": "{provider} ته {providerValue}. ترجیح ورکوم چې OIDC د {configureAwsCredentials} له لارې وی ترڅو هیڅ اوږدمهاله رازونه ونه ساتل شی — د صادراتو {awsRegionEnv} ګام ستاسو لپاره ګټور دی. د سټیټیک کیلی کارولو لپاره، ذخیره کړئ:",
+					"accessKeyId": "ستاسو د AWS لاسرسی کیلی ID.",
+					"secretAccessKey": "ستاسو د AWS پټ لاسرسی کیلی.",
+					"regionNote": "یوه سیمه تل اړینه ده — دا د {awsRegion} یا د {awsRegionEnv} چاپیریال متغیر سره تنظیم کړه."
+				},
+				"google": {
+					"note": "{provider} ته {providerValue}. د خدمت حساب JSON اعتبار یا API کیلی سره تصدیق وکړئ — دقیقاً یو یې ورکړئ:",
+					"credentials": "یو خدمت-حساب JSON کیلی (د JSON تار په توګه).",
+					"apiKey": "یا د Google Cloud API کیلی.",
+					"projectNote": "اختیاری {googleProjectId} له اسنادو څخه اخیستل کېږی کله چې حذف شی."
+				}
 			},
 			"resource": {
 				"title": "د سرچینې سرچینې فایل ژمنه کړئ",
@@ -91,8 +112,15 @@
 				"body": "کله چې کاری بهیر پای ته ورسېږی، عمل درې آوټپټونه ښکاره کوی چې تاسو یې د PR تشریح ته وصل کړئ: {summaryTitle}، {summaryDetails}، او {hasNewTranslations}. همدارنګه د Markdown لنډیز د دندې پاڼې ته د دندې له لارې {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "ګوګل",
+			"ariaLabel": "د ژباړې چمتو کوونکی انتخاب کړئ"
+		},
 		"nextSteps": {
 			"title": "راتلونکی ګامونه",
+			"providers": "هر عرضه کوونکی او د هغه اسناد سره پرتله کړئ.",
 			"configuration": "د ریپو کچې ډیفالټونه د {configPath} سره تنظیم کړئ.",
 			"recipes": "د مونورېپو، دودیز لغتونو، او دودیز ژباړونکی کټګوریو ترکیبونه وګورئ."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} ټرانسلیټر اوس غوښتنه {apiVersion} په تار کې د دواړو {translate} او {languages}. Azure SDK یوازې هغه وخت د کلاینټ کچې api-version اختیار ته درناوی کوی کله چې تصدیق ورکړل شی؛ دغه عمل د هر غوښتنه تصدیق د سرلیکونو له لارې کوی، نو دا اختیار په خاموشۍ سره پرېښودل شو او غوښتنې د مخکتنې API نسخې ته لاړل چې {translate} قرارداد یې د HTTP 400 (تېروتنې کوډ {code}) سره رد کړی و. د 3.0.1 څخه پیل شوی اصلاح بشپړوی.",
 			"v301": "{label} د {translate} غوښتنې بدنه اوس د {textItem} توکو یوه ساده JSON مجموعه ده، نه د پوښل شوی شی {inputs}، چې د v3.0 REST قرارداد سره سمون لری. دا پخپله ژباړې بېرته نه دی بحال کړې — 3.0.2 وګورئ."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "څو پلورونکی:",
+				"intentMapping": "Intent-Specifier نقشه جوړونه:"
+			},
+			"items": {
+				"multiVendor": "{label} د {azure}، {aws}، یا {google} سره د یو متحد API سطحې تر شا ژباړه کولی شی. د هر ځل لپاره یو واحد چمتو کوونکی د نوی {provider} ورودی سره انتخاب کړئ؛ عمل د فابریکې شاته ورته SDK ته سپارل کېږی او پرته له عرضه کوونکی یو شان چلند کوی. په بشپړه توګه شاته مطابقت لری — {provider} ډیفالټ {azureValue} ته ځی، نو اوسنی Azure کاری بهیر بې بدلې کار کوی.",
+				"aws": "نوی AWS Translate چمتو کوونکی ({awsSdk}). د AWS د ډیفالټ اعتباری زنځیر (سپارښتنه: OIDC د {configureAwsCredentials} له لارې) یا څرګند {awsAccessKeyId} / {awsSecretAccessKey} سره تصدیق کول؛ Region via {awsRegion} یا {awsRegionEnv}.",
+				"google": "د ګوګل کلاوډ ژباړې نوی عرضه کوونکی ({googleSdk}, v2). د خدمت-حساب JSON اعتبار ({googleCredentials}) یا API کیلی ({googleApiKey}) سره تصدیق کول؛ اختیاری {googleProjectId}.",
+				"inputs": "نوې داخلونه: {provider}، {awsAccessKeyId}، {awsSecretAccessKey}، {awsRegion}، {googleApiKey}، {googleCredentials}، {googleProjectId}.",
+				"intentMapping": "{label} {textType} د ګوګل د {format} او {profanityAction} د AWS د سپکاوی پټولو سره تړاو لری چیرې چې ورته ورته وی. یوازې Azure مشخصونکی ({categoryId}، {apiVersion}، {profanityMarker}، {allowFallback}) د نورو چمتو کوونکو لخوا له پامه غورځول کیږی.",
+				"azureRelaxed": "د Azure غوښتنې داخلونه ({subscriptionKey}، {endpoint}، {region}) نور په {actionYml} کې اړین نه دی نښه شوی، نو نور چمتو کوونکی انتخاب کېدای شی — خو لا هم د اجرا پر مهال تایید کېږی کله چې {provider} {azureValue} وی.",
+				"docs": "د نوې ژباړې چمتو کوونکو پاڼه، د پیل لپاره د چمتو کوونکی ټبونه، د Inputs پاڼې کې د عرضه کوونکی انتخاب، او د Azure ، AWS، او Google سره تازه شوی کور پاڼه چې مشری کوی."
+			}
 		},
 		"v3": {
 			"labels": {

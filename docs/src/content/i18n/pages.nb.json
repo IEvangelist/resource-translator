@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Å komme i gang",
 		"eyebrow": "Oppsett",
-		"lede": "Legg til en arbeidsflytfil, pek den mot Azure AI Translator-legitimasjonen din, og handlingen vil skanne repoet etter kildespråksressursfiler og sende ut oversatte søsken.",
+		"heroLede": "Legg til en arbeidsflytfil, velg oversettelsesleverandør — Azure, AWS eller Google — og handlingen skanner repoet etter kildespråksressursfiler og sender ut oversatte søsken.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "Opprett en Azure AI Translator-ressurs i Azure-portalen, og lagre deretter følgende som GitHub-repositorier-hemmeligheter slik at arbeidsflyten kan lese dem:",
-				"key": "abonnementnøkkelen for ressursen.",
-				"endpoint": "den regionale endepunkts-URL-en.",
-				"region": "ressursens Azure-region."
+			"provider": {
+				"title": "Velg en oversettelsesleverandør",
+				"body": "Handlingen fungerer med {azure}, {aws} og {google} bak én samlet API-overflate. Velg én leverandør per kjøring med {provider} input — arbeidsflyten oppfører seg identisk uansett leverandør; Bare kvalifikasjonene skiller seg. Se {providersLink} for en fullstendig sammenligning.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Google Sky-oversettelse",
+				"providersLinkLabel": "Oversettelsesleverandører"
 			},
-			"workflow": {
-				"title": "Legg til arbeidsflyten",
-				"body": "Lag {workflowPath}:"
+			"configure": {
+				"title": "Legg til legitimasjoner og arbeidsflyt",
+				"body": "Lagre leverandørens legitimasjon som hemmeligheter i GitHub-arkivet, og opprett deretter {workflowPath}. Velg leverandøren din nedenfor for dens spesifikke oppsett — resten av arbeidsflyten er identisk.",
+				"secretsHeading": "Lagre disse som repository-hemmeligheter",
+				"workflowHeading": "Legg til arbeidsflyten",
+				"azure": {
+					"note": "Azure er standardleverandøren, så {provider} kan være utelatt. Projiser en Azure AI Translator-ressurs i Azure-portalen, og lagre deretter dens legitimasjon:",
+					"key": "abonnementnøkkelen for ressursen.",
+					"endpoint": "den regionale endepunkts-URL-en.",
+					"region": "ressursens Azure-region."
+				},
+				"aws": {
+					"note": "Sett {provider} på {providerValue}. Foretrekk OIDC via {configureAwsCredentials} slik at ingen langvarige hemmeligheter lagres — trinneksportene {awsRegionEnv} for deg. For å bruke statiske nøkler i stedet, lagre:",
+					"accessKeyId": "din AWS-tilgangsnøkkel-ID.",
+					"secretAccessKey": "din AWS-hemmelige tilgangsnøkkel.",
+					"regionNote": "En region er alltid nødvendig — sett den med {awsRegion} eller {awsRegionEnv} miljøvariabel."
+				},
+				"google": {
+					"note": "Sett {provider} på {providerValue}. Autentiser med enten en tjenestekonto-JSON-legitimasjon eller en API-nøkkel — oppgi nøyaktig én:",
+					"credentials": "en tjenestekonto-JSON-nøkkel (som en JSON-streng).",
+					"apiKey": "eller en Google Cloud API-nøkkel.",
+					"projectNote": "En valgfri {googleProjectId} utledes fra kvalifikasjonen når den utelates."
+				}
 			},
 			"resource": {
 				"title": "Committer en kilderessursfil",
@@ -91,8 +112,15 @@
 				"body": "Når arbeidsflyten er ferdig, eksponerer handlingen tre utganger du kan koble inn i en PR-beskrivelse: {summaryTitle}, {summaryDetails} og {hasNewTranslations}. Den skriver også et Markdown-sammendrag inn på stillingssiden via {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Velg en oversettelsesleverandør"
+		},
 		"nextSteps": {
 			"title": "Neste steg",
+			"providers": "Sammenlign hver leverandør og deres kvalifikasjoner side om side.",
 			"configuration": "Konfigurer repo-nivå standardinnstillinger med {configPath}.",
 			"recipes": "Se oppskrifter for monorepos, egendefinerte ordlister og Custom Translator-kategorier."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Oversetterforespørsler fester nå {apiVersion} på ledningen for både {translate} og {languages}. Azure SDK hedrer kun klientnivå API-versjonsalternativet når en legitimasjon er sendt; handlingen autentiseres per forespørsel via headers, så det alternativet ble stille droppet og forespørslene gikk som standard til en forhåndsvisnings-API-versjon hvor {translate}-kontrakten avviste kroppen med HTTP 400 (feilkode {code}). Fullfører fiksen startet i 3.0.1.",
 			"v301": "{label} Den {translate} forespørselskroppen er nå et rent JSON-array av {textItem} elementer i stedet for et innpakket {inputs}-objekt, som samsvarer med v3.0 REST-kontrakten. Alene gjenopprettet ikke dette oversettelsene — se 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Multileverandør:",
+				"intentMapping": "Intent-spesifiserende kartlegging:"
+			},
+			"items": {
+				"multiVendor": "{label} oversette med {azure}, {aws} eller {google} bak én samlet API-overflate. Velg én leverandør per kjøring med den nye {provider} input; handlingen delegeres til den matchende SDK-en bak en fabrikk og oppfører seg identisk uavhengig av leverandør. Fullt bakoverkompatibel — {provider} er som standard {azureValue}, så eksisterende Azure-arbeidsflyter fortsetter å fungere uendret.",
+				"aws": "Ny AWS Translate-leverandør ({awsSdk}). Autentiser deg med AWS' standard legitimasjonskjede (anbefalt: OIDC via {configureAwsCredentials}) eller eksplisitt {awsAccessKeyId} / {awsSecretAccessKey}; region via {awsRegion} eller {awsRegionEnv}.",
+				"google": "Ny Google Cloud Translation-leverandør ({googleSdk}, v2). Autentisere med en tjenestekonto-JSON-legitimasjon ({googleCredentials}) eller en API-nøkkel ({googleApiKey}); valgfrie {googleProjectId}.",
+				"inputs": "Nye innganger: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} maps til Googles {format} og {profanityAction} maps til AWS-banneordsmaskering der det finnes en ekvivalent. Azure-only spesifisatorer ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) ignoreres av andre leverandører.",
+				"azureRelaxed": "Azure-forespørselsinput ({subscriptionKey}, {endpoint}, {region}) er ikke lenger merket som påkrevd i {actionYml} slik at andre leverandører kan velges — de valideres fortsatt under kjøring når {provider} er {azureValue}.",
+				"docs": "Ny side for oversettelsesleverandører, leverandørfaner på Kom i gang, leverandørvalg på Inputs-siden, og en oppdatert startside med Azure, AWS og Google."
+			}
 		},
 		"v3": {
 			"labels": {

@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Aloitus",
 		"eyebrow": "Asetelma",
-		"lede": "Lisää työnkulkutiedosto, osoita se Azure AI Translator -tunnuksiisi, ja toiminto skannaa reposta lähdekielen resurssitiedostoja ja lähettää käännetyt sisarukset.",
+		"heroLede": "Lisää työnkulkutiedosto, valitse käännöspalveluntarjoajasi — Azure, AWS tai Google — ja toiminto skannaa repon lähdekielen resurssitiedostojen varalta ja lähettää käännettyjä sisaruksia.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "Luo Azure AI Translator -resurssi Azure-portaalissa ja tallenna seuraavat GitHub-repositorion salaisuuksina, jotta työnkulku voi lukea ne:",
-				"key": "Resurssin tilausavain.",
-				"endpoint": "alueellisen päätepisteen URL-osoitteen.",
-				"region": "resurssin Azure-alue."
+			"provider": {
+				"title": "Valitse käännöspalveluntarjoaja",
+				"body": "Toiminto toimii {azure}, {aws} ja {google} kanssa yhden yhtenäisen API-pinnan takana. Valitse yksi palveluntarjoaja per ajokerta {provider} syötteellä — työnkulku toimii identtisesti riippumatta palveluntarjoajasta; vain pätevyydet eroavat. Katso {providersLink} täydellinen vertailu.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Google Cloud Translation",
+				"providersLinkLabel": "Käännöspalveluntarjoajat"
 			},
-			"workflow": {
-				"title": "Lisää työnkulku",
-				"body": "Luo {workflowPath}:"
+			"configure": {
+				"title": "Lisää tunnistetiedot ja työnkulku",
+				"body": "Tallenna palveluntarjoajasi tunnukset GitHub-varaston salaisuuksina ja luo {workflowPath}. Valitse alta oleva palveluntarjoajasi sen erityisjärjestelyn vuoksi — muu työnkulku on identtinen.",
+				"secretsHeading": "Säilytä nämä arkiston salaisuuksina",
+				"workflowHeading": "Lisää työnkulku",
+				"azure": {
+					"note": "Azure on oletuspalveluntarjoaja, joten {provider} voidaan jättää pois. Luo Azure AI Translator -resurssi Azure-portaalissa ja tallenna sen tunnistetiedot:",
+					"key": "Resurssin tilausavain.",
+					"endpoint": "alueellisen päätepisteen URL-osoitteen.",
+					"region": "resurssin Azure-alue."
+				},
+				"aws": {
+					"note": "Aseta {provider} {providerValue}. Valitse OIDC {configureAwsCredentials}:n kautta, jotta pitkäkestoisia salaisuuksia ei tallenneta — askelvienti {awsRegionEnv} sinulle. Jos haluat käyttää staattisia näppäimiä, tallenna:",
+					"accessKeyId": "AWS:n pääsyavaimen ID.",
+					"secretAccessKey": "AWS:n salainen pääsyavain.",
+					"regionNote": "Alue vaaditaan aina — aseta se {awsRegion} tai {awsRegionEnv} ympäristömuuttuja."
+				},
+				"google": {
+					"note": "Aseta {provider} {providerValue}. Tunnista joko palvelutilin JSON-tunnisteella tai API-avaimella — anna täsmälleen yksi:",
+					"credentials": "palvelutilin JSON-avain (JSON-merkkijonona).",
+					"apiKey": "tai Google Cloud API -avain.",
+					"projectNote": "Valinnainen {googleProjectId} päättelee pätevyydestä, kun se jätetään pois."
+				}
 			},
 			"resource": {
 				"title": "Commit lähderesurssitiedosto",
@@ -91,8 +112,15 @@
 				"body": "Kun työnkulku on valmis, toiminto paljastaa kolme ulostuloa, jotka voit yhdistää PR-kuvaukseen: {summaryTitle}, {summaryDetails} ja {hasNewTranslations}. Se kirjoittaa myös Markdown-yhteenvedon työpaikkasivulle {coreSummary}:n kautta."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Valitse käännöspalveluntarjoaja"
+		},
 		"nextSteps": {
 			"title": "Seuraavat askeleet",
+			"providers": "Vertaa jokaista palveluntarjoajaa ja sen pätevyyksiä rinnakkain.",
 			"configuration": "Määritä repo-tason oletusasetukset {configPath}.",
 			"recipes": "Katso reseptejä monorepoille, mukautetuille sanastoksille ja Custom Translator -kategorioille."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Translator-pyynnöt kiinnittävät nyt {apiVersion} johtoon sekä {translate} että {languages}. Azure SDK hyväksyy asiakastason API-version vaihtoehdon vain, kun tunniste on siirretty; toiminto autentikoituu per pyyntö otsikoiden kautta, joten tämä vaihtoehto hylättiin hiljaisesti ja pyynnöt siirtyivät oletusarvoisesti esikatselu-API-versioon, jonka {translate}-sopimus hylkäsi HTTP 400:n rungon (virhekoodi {code}). Viimeistelee korjauksen, joka alkoi versiossa 3.0.1.",
 			"v301": "{label} {translate}-pyyntörunko on nyt pelkkä JSON-taulukko, jossa on {textItem} alkioita, eikä käärettyjä {inputs}-objekteja, jotka vastaavat v3.0 REST-sopimusta. Yksinään tämä ei palauttanut käännöksiä — katso 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Monitoimittaja:",
+				"intentMapping": "Intent-specifier -kuvaus:"
+			},
+			"items": {
+				"multiVendor": "{label} kääntää {azure}, {aws} tai {google} yhden yhtenäisen API-pinnan takana. Valitse yksi palveluntarjoaja per käyttökerta uudella {provider}-syötteellä; toiminto delegoidaan tehtaan takana olevalle vastaavalle SDK:lle ja käyttäytyy samalla tavalla riippumatta toimittajasta. Täysin taaksepäin yhteensopiva — {provider} oletuksena {azureValue}, joten olemassa olevat Azure-työnkulut toimivat ennallaan.",
+				"aws": "Uusi AWS Translate -palveluntarjoaja ({awsSdk}). Tunnistaudu AWS:n oletustunnistusketjulla (suositeltava: OIDC kautta {configureAwsCredentials}) tai eksplisiittisellä {awsAccessKeyId} / {awsSecretAccessKey}; alue {awsRegion} tai {awsRegionEnv} kautta.",
+				"google": "Uusi Google Cloud Translation -palveluntarjoaja ({googleSdk}, v2). Tunnista palvelutilin JSON-tunnisteella ({googleCredentials}) tai API-avaimella ({googleApiKey}); Valinnainen {googleProjectId}.",
+				"inputs": "Uudet syötteet: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} kartoittaa Googlen {format} ja {profanityAction} AWS:n kirosanojen peittämiseen, jos vastaava on olemassa. Vain Azure-määrittelyt ({categoryId}, {apiVersion}, {profanityMarker} {allowFallback}) jätetään muiden palveluntarjoajien toimesta huomiotta.",
+				"azureRelaxed": "Azure-pyyntösyötteitä ({subscriptionKey}, {endpoint}, {region}) ei enää merkitä vaadituksi {actionYml}:ssa, jotta muut palveluntarjoajat voidaan valita — ja ne validoidaan edelleen ajonaikana, kun {provider} on {azureValue}.",
+				"docs": "Uudet käännöspalvelut -sivu, palveluntarjoajan välilehdet Aloitussivulla, palveluntarjoajan valinta Syötte-sivulla sekä päivitetty etusivu, joka johtaa Azuren, AWS:n ja Googlen kanssa."
+			}
 		},
 		"v3": {
 			"labels": {

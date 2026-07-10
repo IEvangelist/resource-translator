@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "At byrja",
 		"eyebrow": "Uppseting",
-		"lede": "Legg eina workflow-fílu afturat, peika á tínar Azure AI Translator innritanir, og henda gerðin fer at skannar repo fyri keldumálsresursfílur og sendir týddar systkin.",
+		"heroLede": "Legg eina arbeiðsgongdarfílu afturat, vel tín týðingarveitara — Azure, AWS ella Google — og handlingin skannar repo fyri keldutilfarsfílur og sendir týddar systkin.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "Ger eina Azure AI Translator keldu í Azure portalinum, og goym síðani hesar sum GitHub repository loyndarmál, so arbeiðsgongdin kann lesa tær:",
-				"key": "Limaskapslykilin til tilfeingið.",
-				"endpoint": "tann regionala endapunkts-URL.",
-				"region": "tilfeingið er Azure-økið."
+			"provider": {
+				"title": "Vel ein týðingarveitara",
+				"body": "Tiltakið virkar við {azure}, {aws} og {google} aftanfyri eina samanhangandi API-flatu. Vel ein einstakan veitara fyri hvørja koyring við {provider} inntøku — arbeiðsgongdin virkar eins, óansæð veitara; Bara prógvini eru ymisk. Sí {providersLink} fyri eina fulla samanbering.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Google Cloud Týðing",
+				"providersLinkLabel": "Týðingarveitarar"
 			},
-			"workflow": {
-				"title": "Legg arbeiðsgongdina afturat",
-				"body": "Skapa {workflowPath}:"
+			"configure": {
+				"title": "Legg afturat prógv og arbeiðsgongd",
+				"body": "Goym upplýsingarnar hjá veitaranum sum loyndarmál í GitHub-goymsluni, og stovna {workflowPath}. Vel tín veitara niðanfyri fyri hansara serliga uppseting — restin av arbeiðsgongdini er tann sama.",
+				"secretsHeading": "Goym hesi sum goymslu-loyndarmál",
+				"workflowHeading": "Legg arbeiðsgongdina afturat",
+				"azure": {
+					"note": "Azure er sjálvvirkandi veitari, so {provider} kann verða tikin burtur. Útvega eina Azure AI Translator-resursu í Azure-portalinum, og goym síðani innritanirnar:",
+					"key": "Limaskapslykilin til tilfeingið.",
+					"endpoint": "tann regionala endapunkts-URL.",
+					"region": "tilfeingið er Azure-økið."
+				},
+				"aws": {
+					"note": "Set {provider} á {providerValue}. Fyrimun OIDC gjøgnum {configureAwsCredentials} so ongar langlivdar loyndir verða goymdar — step-útflutningurin {awsRegionEnv} fyri teg. Fyri at brúka statiskar lyklar í staðin, goym:",
+					"accessKeyId": "títt AWS access key ID.",
+					"secretAccessKey": "tín AWS loyniliga atgongdarlykil.",
+					"regionNote": "Eitt øki er altíð neyðugt — set tað við {awsRegion} ella {awsRegionEnv} umhvørvisvariablinum."
+				},
+				"google": {
+					"note": "Set {provider} á {providerValue}. Vátta við annaðhvørt einum JSON-innskráningarkorti til tænastukontu ella einum API-lykli — gev júst ein:",
+					"credentials": "ein JSON-lykil til tænastukontu (sum ein JSON-strengur).",
+					"apiKey": "ella ein Google Cloud API-lykil.",
+					"projectNote": "Ein valfrí {googleProjectId} verður drigin úr prógvinum, tá hon ikki er nevnd."
+				}
 			},
 			"resource": {
 				"title": "Commita eina keldufílu",
@@ -91,8 +112,15 @@
 				"body": "Tá arbeiðsgongdin er liðug, gevur átakið tríggjar úttøkur, sum tú kanst leggja inn í eina PR-lýsing: {summaryTitle}, {summaryDetails} og {hasNewTranslations}. Hon skrivar eisini eina Markdown-samandrátt inn á starvssíðuna við {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Vel ein týðingarveitara"
+		},
 		"nextSteps": {
 			"title": "Næstu stig",
+			"providers": "Samanber hvønn veitara og teirra prógv lið um lið.",
 			"configuration": "Stilla repo-level defaults við {configPath}.",
 			"recipes": "Sí uppskriftir til monorepos, serstakar orðalistar og Custom Translator bólkar."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} umsetaraumbønir festa nú {apiVersion} á vírinum fyri bæði {translate} og {languages}. Azure SDK virðir bert client-level api-útgávu valmøguleikan, tá ein legitimatión verður givin; Gerðin autentiserar hvørja fyrispurning við høvuðunum, so tann møguleikin varð stillisliga sleptur og fyrispurningar sjálvvirkandi til eina forsmaks-API-útgávu, har {translate} sáttmálin avvísti kroppin við HTTP 400 (feilkoda {code}). Ger liðugt, rættingin byrjaði í 3.0.1.",
 			"v301": "{label} {translate} request-kroppurin er nú ein berur JSON-array av {textItem} lutum í staðin fyri eitt wrapped {inputs} objekt, sum samsvarar við v3.0 REST-sáttmálan. Av sær sjálvum endurvísti hetta ikki týðingarnar — sí 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Fleiri veitarar:",
+				"intentMapping": "Intent-specifier kortlegging:"
+			},
+			"items": {
+				"multiVendor": "{label} umseta við {azure}, {aws} ella {google} aftanfyri eina samanhangandi API-flatu. Vel ein veitara fyri hvørja ferð við nýggja {provider} inntakinum; henda gerð verður latin samsvarandi SDK aftanfyri verksmiðjuna og virkar eins, óansæð veitara. Fult afturkompatibul — {provider} er sjálvvirkandi til {azureValue}, so verandi Azure-arbeiðsgongdir virka óbroyttar.",
+				"aws": "Nýggjur AWS Translate-veitari ({awsSdk}). Vátta við AWS standard credential chain (mælt verður til: OIDC via {configureAwsCredentials}) ella beinleiðis {awsAccessKeyId} / {awsSecretAccessKey}; øki gjøgnum {awsRegion} ella {awsRegionEnv}.",
+				"google": "Nýggjur veitari av Google Cloud Translation ({googleSdk}, v2). Vátta við einum JSON-innskráningarprógvi ({googleCredentials}) ella API-lykli ({googleApiKey}); Valfrítt {googleProjectId}.",
+				"inputs": "Nýggjar inntøkur: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} kort til Google's {format} og {profanityAction} til AWS svórsmasking, har ein samsvarandi loysn finst. Bert Azure-specificifikatiónir ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) verða ignoreraðir av øðrum veitarum.",
+				"azureRelaxed": "Azure-fyrispurningar ({subscriptionKey}, {endpoint}, {region}) eru ikki longur merktir sum kravdir í {actionYml}, so aðrir veitarar kunnu veljast — og verða framvegis váttaðir undir koyring, tá {provider} er {azureValue}.",
+				"docs": "Nýggj Týðingarveitarasíðu, veitaraflipar á At koma í gongd, veitaraval á Inputs-síðuni, og ein endurnýggjað heimasíða, sum leiðir Azure, AWS og Google."
+			}
 		},
 		"v3": {
 			"labels": {

@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Fillimi",
 		"eyebrow": "Konfigurimi",
-		"lede": "Shtoni një skedar të rrjedhës së punës, drejtojeni atë në kredencialet tuaja të Azure AI Translator dhe veprimi do të skanojë depon për skedarët e burimeve në gjuhën burimore dhe do të lëshojë vëllezërit e motrat e përkthyer.",
+		"heroLede": "Shtoni një skedar të rrjedhës së punës, zgjidhni ofruesin tuaj të përkthimit - Azure, AWS ose Google - dhe veprimi skanon depon për skedarët e burimeve në gjuhën burimore dhe lëshon vëllezërit e motrat e përkthyer.",
 		"steps": {
-			"provision": {
-				"title": "Siguroni një burim Azure AI Translator",
-				"body": "Krijoni një burim Azure AI Translator në portalin Azure, më pas ruani sa vijon si sekretet e depove GitHub në mënyrë që rrjedha e punës t'i lexojë ato:",
-				"key": "çelësi i abonimit për burimin.",
-				"endpoint": "URL-ja e pikës përfundimtare rajonale.",
-				"region": "rajoni Azure i burimit."
+			"provider": {
+				"title": "Zgjidhni një ofrues përkthimi",
+				"body": "Veprimi funksionon me {azure}, {aws} dhe {google} pas një sipërfaqeje të unifikuar API. Zgjidhni një ofrues të vetëm për ekzekutim me hyrjen {provider} - rrjedha e punës sillet në mënyrë identike pavarësisht nga ofruesi; vetëm kredencialet ndryshojnë. Shih {providersLink} për një krahasim të plotë.",
+				"azure": "Azure AI Translator",
+				"aws": "Përkthej AWS",
+				"google": "Përkthimi i Google Cloud",
+				"providersLinkLabel": "Ofruesit e përkthimit"
 			},
-			"workflow": {
-				"title": "Shtoni rrjedhën e punës",
-				"body": "Krijoni {workflowPath}:"
+			"configure": {
+				"title": "Shtoni kredencialet dhe një rrjedhë pune",
+				"body": "Ruani kredencialet e ofruesit tuaj si sekrete të depove GitHub, më pas krijoni {workflowPath}. Zgjidhni ofruesin tuaj më poshtë për konfigurimin e tij specifik - pjesa tjetër e rrjedhës së punës është identike.",
+				"secretsHeading": "Ruani këto si sekrete depoje",
+				"workflowHeading": "Shtoni rrjedhën e punës",
+				"azure": {
+					"note": "Azure është ofruesi i paracaktuar, kështu që {provider} mund të hiqet. Siguroni një burim Azure AI Translator në portalin Azure, më pas ruani kredencialet e tij:",
+					"key": "çelësi i abonimit për burimin.",
+					"endpoint": "URL-ja e pikës përfundimtare rajonale.",
+					"region": "rajoni Azure i burimit."
+				},
+				"aws": {
+					"note": "Vendosni {provider} në {providerValue}. Preferoni OIDC përmes {configureAwsCredentials} në mënyrë që të mos ruhen sekrete jetëgjata - eksportet e hapit {awsRegionEnv} për ju. Për të përdorur çelësat statikë në vend të kësaj, ruani:",
+					"accessKeyId": "ID-ja juaj e çelësit të aksesit AWS.",
+					"secretAccessKey": "çelësi juaj sekret i aksesit AWS.",
+					"regionNote": "Kërkohet gjithmonë një rajon - vendoseni atë me {awsRegion} ose variablin e mjedisit {awsRegionEnv}."
+				},
+				"google": {
+					"note": "Vendosni {provider} në {providerValue}. Autentifikoni ose me një kredencial JSON të llogarisë së shërbimit ose një çelës API - jepni saktësisht një:",
+					"credentials": "një çelës JSON të llogarisë së shërbimit (si një varg JSON).",
+					"apiKey": "ose një çelës API të Google Cloud.",
+					"projectNote": "Një {googleProjectId} opsionale konkludohet nga kredencialet kur hiqet."
+				}
 			},
 			"resource": {
 				"title": "Kryeni një skedar burimi burimor",
@@ -91,8 +112,15 @@
 				"body": "Pasi të përfundojë rrjedha e punës, veprimi ekspozon tre dalje që mund t'i lidhni në një përshkrim PR: {summaryTitle}, {summaryDetails} dhe {hasNewTranslations}. Ai gjithashtu shkruan një përmbledhje Markdown në faqen e punës përmes {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Zgjidhni një ofrues përkthimi"
+		},
 		"nextSteps": {
 			"title": "Hapat e ardhshëm",
+			"providers": "Krahasoni çdo ofrues dhe kredencialet e tij krah për krah.",
 			"configuration": "Konfiguroni parazgjedhjet e nivelit të depove me {configPath}.",
 			"recipes": "Shihni recetat për monorepos, fjalorët e personalizuar dhe kategoritë e përkthyesve të personalizuar."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Kërkesat e përkthyesit tani vendosni {apiVersion} në tel si për {translate} ashtu edhe për {languages}. Azure SDK respekton opsionin e versionit të api-së në nivel klienti vetëm kur kalohet një kredencial; Veprimi vërtetohet për kërkesë përmes titujve, kështu që opsioni u hoq në heshtje dhe kërkesat u paralajmëruan në një version API paraprak, kontrata e {translate} e të cilit refuzoi trupin me HTTP 400 (kodi i gabimit {code}). Përfundon rregullimin e filluar në 3.0.1.",
 			"v301": "{label} Trupi i kërkesës {translate} tani është një grup i zhveshur JSON i artikujve të {textItem} në vend të një objekti {inputs} të mbështjellë, që përputhet me kontratën v3.0 REST. Më vete kjo nuk i riktheu përkthimet — shih 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Shumë shitës:",
+				"intentMapping": "Harta e specifikuesit të qëllimit:"
+			},
+			"items": {
+				"multiVendor": "{label} përkthejnë me {azure}, {aws} ose {google} pas një sipërfaqeje të unifikuar API. Zgjidhni një ofrues të vetëm për ekzekutim me hyrjen e re {provider}; veprimi delegohet në SDK-në që përputhet pas një fabrike dhe sillet në mënyrë identike pavarësisht nga shitësi. Plotësisht i pajtueshëm me prapambetje - {provider} parazgjedhje në {azureValue}, kështu që rrjedhat ekzistuese të Azure vazhdojnë të punojnë të pandryshuara.",
+				"aws": "Ofruesi i ri AWS Translate ({awsSdk}). Autentifikoni me zinxhirin e paracaktuar të kredencialeve AWS (rekomandohet: OIDC përmes {configureAwsCredentials}) ose {awsAccessKeyId} / {awsSecretAccessKey} eksplicit; rajon përmes {awsRegion} ose {awsRegionEnv}.",
+				"google": "Ofruesi i ri i përkthimit të Google Cloud ({googleSdk}, v2). Autentifikoni me një kredencial JSON të llogarisë së shërbimit ({googleCredentials}) ose një çelës API ({googleApiKey}); {googleProjectId} opsionale.",
+				"inputs": "Hyrje të reja: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} hartat në {format} të Google dhe hartat e {profanityAction} në maskimin e shpifjeve AWS aty ku ekziston një ekuivalent. Specifikuesit vetëm për Azure ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) injorohen nga ofruesit e tjerë.",
+				"azureRelaxed": "Hyrjet e kërkesave Azure ({subscriptionKey}, {endpoint}, {region}) nuk shënohen më të kërkuara në {actionYml} në mënyrë që ofruesit e tjerë të mund të zgjidhen - ende të vërtetuara në kohën e ekzekutimit kur {provider} është {azureValue}.",
+				"docs": "Faqja e re e ofruesve të përkthimit, skedat e ofruesve në fillim, përzgjedhja e ofruesit në faqen e hyrjeve dhe një faqe kryesore e rifreskuar që çon me Azure, AWS dhe Google."
+			}
 		},
 		"v3": {
 			"labels": {

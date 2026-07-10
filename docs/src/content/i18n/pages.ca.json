@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Començant",
 		"eyebrow": "Configuració",
-		"lede": "Afegeix un fitxer de flux de treball, apunta'l cap a les teves credencials d'Azure AI Translator, i l'acció escanejarà el repositori per buscar fitxers de recursos en llengua font i emetrà els germans traduïts.",
+		"heroLede": "Afegeix un fitxer de flux de treball, tria el teu proveïdor de traducció — Azure, AWS o Google — i l'acció escaneja el repositori per buscar fitxers de recursos en llengua font i emet els germans traduïts.",
 		"steps": {
-			"provision": {
-				"title": "Provisiona un recurs Azure AI Translator",
-				"body": "Crea un recurs Azure AI Translator al portal Azure, i després emmagatzema els següents secrets del repositori de GitHub perquè el flux de treball els pugui llegir:",
-				"key": "La clau de subscripció del recurs.",
-				"endpoint": "l'URL regional de l'endpoint.",
-				"region": "la regió Azure del recurs."
+			"provider": {
+				"title": "Tria un proveïdor de traducció",
+				"body": "L'acció funciona amb {azure}, {aws} i {google} darrere d'una sola superfície d'API unificada. Tria un únic proveïdor per execució amb l'entrada {provider} — el flux de treball es comporta igual independentment del proveïdor; Només difereixen les credencials. Vegeu {providersLink} per a una comparació completa.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Traducció de Google Cloud",
+				"providersLinkLabel": "Proveïdors de traducció"
 			},
-			"workflow": {
-				"title": "Afegeix el flux de treball",
-				"body": "Crea {workflowPath}:"
+			"configure": {
+				"title": "Afegeix credencials i un flux de treball",
+				"body": "Desa les credencials del teu proveïdor com a secrets del repositori de GitHub i després crea {workflowPath}. Selecciona el teu proveïdor a continuació per a la seva configuració específica — la resta del flux de treball és idèntic.",
+				"secretsHeading": "Emmagatzemeu-los com a secrets de repositori",
+				"workflowHeading": "Afegeix el flux de treball",
+				"azure": {
+					"note": "Azure és el proveïdor per defecte, així que {provider} pot ser omès. Provisiona un recurs Azure AI Translator al portal Azure i després desa les seves credencials:",
+					"key": "La clau de subscripció del recurs.",
+					"endpoint": "l'URL regional de l'endpoint.",
+					"region": "la regió Azure del recurs."
+				},
+				"aws": {
+					"note": "Configura {provider} a {providerValue}. Prefereix l'OIDC via {configureAwsCredentials} així no s'emmagatzemen secrets de llarga durada — les exportacions de pas {awsRegionEnv} per a tu. Per utilitzar claus estàtiques en canvi, deseu:",
+					"accessKeyId": "el teu ID de clau d'accés AWS.",
+					"secretAccessKey": "la teva clau d'accés secret d'AWS.",
+					"regionNote": "Sempre cal una regió — configura-la amb {awsRegion} o la variable d'entorn {awsRegionEnv}."
+				},
+				"google": {
+					"note": "Configura {provider} a {providerValue}. Autentica amb una credencial JSON de compte de servei o una clau API — proporciona exactament una:",
+					"credentials": "una clau JSON de compte de servei (com a cadena JSON).",
+					"apiKey": "o una clau API de Google Cloud.",
+					"projectNote": "Un {googleProjectId} opcional s'infereix de la credencial quan s'omet."
+				}
 			},
 			"resource": {
 				"title": "Commit d'un fitxer de recurs font",
@@ -91,8 +112,15 @@
 				"body": "Un cop acabat el flux de treball, l'acció exposa tres sortides que pots connectar en una descripció de PR: {summaryTitle}, {summaryDetails} i {hasNewTranslations}. També escriu un resum de Markdown a la pàgina de feina a través de {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Tria un proveïdor de traducció"
+		},
 		"nextSteps": {
 			"title": "Següents passos",
+			"providers": "Compara cada proveïdor i les seves credencials costat a costat.",
 			"configuration": "Configura les configuracions per defecte a nivell de repositori amb {configPath}.",
 			"recipes": "Consulteu receptes per a monorepos, glossaris personalitzats i categories de Traductor Personalitzat."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Sol·licituds del traductor ara fixen {apiVersion} al cable tant per a {translate} com per a {languages}. L'Azure SDK només respecta l'opció de versió de l'API a nivell de client quan es passa una credencial; l'acció autentica per petició mitjançant capçaleres, així que aquesta opció es va eliminar silenciosament i les sol·licituds van passar per defecte a una versió de previsualització de l'API el contracte de la qual {translate} rebutjava el cos amb HTTP 400 (codi d'error {code}). Completa la correcció que va començar a la 3.0.1.",
 			"v301": "{label} El cos de la petició {translate} ara és una matriu JSON nua de {textItem} elements en lloc d'un objecte {inputs} embolcallat, que coincideix amb el contracte REST v3.0. Per si sol, això no restaurava les traduccions — vegeu 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Multi-venedor:",
+				"intentMapping": "Mapeig d'especificació d'intenció:"
+			},
+			"items": {
+				"multiVendor": "{label} tradueixen amb {azure}, {aws} o {google} darrere d'una sola superfície d'API unificada. Tria un únic proveïdor per partida amb la nova entrada {provider}; l'acció delega al SDK corresponent darrere d'una fàbrica i es comporta de manera idèntica independentment del proveïdor. Totalment compatible amb versions anteriors — {provider} per defecte a {azureValue}, així que els fluxos de treball existents d'Azure continuen funcionant sense canvis.",
+				"aws": "Nou proveïdor AWS Translate ({awsSdk}). Autentica amb la cadena de credencials per defecte d'AWS (recomanada: OIDC via {configureAwsCredentials}) o amb {awsAccessKeyId} explícit / {awsSecretAccessKey}; a través de {awsRegion} o {awsRegionEnv}.",
+				"google": "Nou proveïdor de traducció al núvol de Google ({googleSdk}, v2). Autenticar amb una credencial JSON de compte de servei ({googleCredentials}) o una clau API ({googleApiKey}); opcional {googleProjectId}.",
+				"inputs": "Noves entrades: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} mapes al {format} de Google i {profanityAction} mapes a l'enmascarament de paraulotes d'AWS on existeix un equivalent. Els especificadors només d'Azure ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) són ignorats per altres proveïdors.",
+				"azureRelaxed": "Les entrades de sol·licitud d'Azure ({subscriptionKey}, {endpoint}, {region}) ja no es marquen com a requerides en {actionYml} perquè es puguin seleccionar altres proveïdors — encara validades en temps d'execució quan {provider} està {azureValue}.",
+				"docs": "Nova pàgina de proveïdors de traducció, pestanyes de proveïdors a Com començar, selecció de proveïdors a la pàgina d'Entrades, i una pàgina d'inici actualitzada que comença amb Azure, AWS i Google."
+			}
 		},
 		"v3": {
 			"labels": {

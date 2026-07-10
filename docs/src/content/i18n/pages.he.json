@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "התחלה",
 		"eyebrow": "הכנה",
-		"lede": "הוסף קובץ זרימת עבודה, כוון אותו לאישורי Azure AI Translator שלך, והפעולה תסרוק את המאגר לקבצי משאבים בשפת המקור ותשחרר אחים מתורגמים.",
+		"heroLede": "הוסף קובץ זרימת עבודה, בחר ספק התרגום שלך — Azure, AWS או Google — והפעולה סורקת את המאגר אחר קבצי משאבים בשפת המקור ומשדרת אחים מתורגמים.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "צור משאב Azure AI Translator בפורטל Azure, ואז שמור את הדברים הבאים כסודות מאגר GitHub כדי שזרימת העבודה תוכל לקרוא אותם:",
-				"key": "מפתח המנוי למשאב.",
-				"endpoint": "כתובת ה-URL של נקודת קצה אזורית.",
-				"region": "אזור Azure של המשאב."
+			"provider": {
+				"title": "בחר ספק תרגום",
+				"body": "הפעולה פועלת עם {azure}, {aws} ו-{google} מאחורי משטח API מאוחד אחד. בחר ספק יחיד בכל ריצה עם קלט {provider} — זרימת העבודה מתנהגת זהה ללא קשר לספק; רק ההסמכות שונות. ראו {providersLink} להשוואה מלאה.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS תרגום",
+				"google": "תרגום ענן של גוגל",
+				"providersLinkLabel": "ספקי תרגום"
 			},
-			"workflow": {
-				"title": "הוסף את זרימת העבודה",
-				"body": "צור {workflowPath}:"
+			"configure": {
+				"title": "הוסף אישורים וזרימת עבודה",
+				"body": "שמור את פרטי האישור של הספק שלך כסודי מאגר GitHub, ואז צור {workflowPath}. בחר את הספק שלך למטה לפי ההגדרה הספציפית שלו — שאר תהליך העבודה זהה.",
+				"secretsHeading": "אחסן אותם כסודות מאגר",
+				"workflowHeading": "הוסף את זרימת העבודה",
+				"azure": {
+					"note": "Azure הוא הספק ברירת המחדל, ולכן ייתכן {provider} לא כלול. הקצה משאב Azure AI Translator בפורטל Azure, ואז שמור את האישורים שלו:",
+					"key": "מפתח המנוי למשאב.",
+					"endpoint": "כתובת ה-URL של נקודת קצה אזורית.",
+					"region": "אזור Azure של המשאב."
+				},
+				"aws": {
+					"note": "הגדר {provider} {providerValue}. עדיף OIDC דרך {configureAwsCredentials} כדי שלא יישמר סודות ארוכי חיים — ה-step import {awsRegionEnv} בשבילך. כדי להשתמש במפתחות סטטיים במקום, אחסן:",
+					"accessKeyId": "מזהה מפתח הגישה שלך ל-AWS.",
+					"secretAccessKey": "מפתח הגישה הסודי שלך ל-AWS.",
+					"regionNote": "תמיד נדרש אזור — הגדר אותו עם {awsRegion} או משתנה סביבה {awsRegionEnv}."
+				},
+				"google": {
+					"note": "הגדר {provider} {providerValue}. אימות באמצעות אישור JSON של חשבון שירות או מפתח API — ספק בדיוק אחד:",
+					"credentials": "מפתח JSON של חשבון שירות (כמחרוזת JSON).",
+					"apiKey": "או מפתח API של Google Cloud.",
+					"projectNote": "{googleProjectId} אופציונלי נלקח מהאישור כאשר הוא מושמט."
+				}
 			},
 			"resource": {
 				"title": "commit קובץ משאב מקור",
@@ -91,8 +112,15 @@
 				"body": "לאחר סיום תהליך העבודה, הפעולה חושפת שלושה פלטים שניתן לחבר לתיאור PR: {summaryTitle}, {summaryDetails} ו-{hasNewTranslations}. הוא גם כותב סיכום Markdown בדף המשרות דרך {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "גוגל",
+			"ariaLabel": "בחר ספק תרגום"
+		},
 		"nextSteps": {
 			"title": "הצעדים הבאים",
+			"providers": "השוו כל ספק ואת האישורים שלו זה לצד זה.",
 			"configuration": "הגדר ברירת מחדל ברמת ריפו עם {configPath}.",
 			"recipes": "ראו מתכונים למונורפואים, מילונים מותאמים אישית וקטגוריות מתרגמים מותאמים אישית."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} בקשות מתרגם כעת להצמיד {apiVersion} לחוט גם ל-{translate} וגם {languages}. Azure SDK מכבד את אפשרות גרסת ה-API ברמת הלקוח רק כאשר מועבר אישור; הפעולה מאמתת לכל בקשה דרך כותרות, ולכן האפשרות הזו בוטלה בשקט והבקשות עברו כברירת מחדל לגרסת API תצוגה מקדימה שחוזה {translate} שלה דחה את הגוף עם HTTP 400 (קוד שגיאה {code}). הפתרון שהתחיל בגרסה 3.0.1 משלים.",
 			"v301": "{label} גוף הבקשה {translate} הוא כעת מערך JSON חשוף של פריטי {textItem} במקום אובייקט {inputs} עטוף, התואם לחוזה REST של v3.0. דבר זה בפני עצמו לא שיחזר את התרגומים — ראו 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "רב-ספקית:",
+				"intentMapping": "מיפוי מגדיר כוונה:"
+			},
+			"items": {
+				"multiVendor": "{label} לתרגם עם {azure}, {aws} או {google} מאחורי משטח API מאוחד אחד. בחר ספק יחיד בכל ריצה עם קלט {provider} חדש; הפעולה מועברת ל-SDK התואם מאחורי מפעל ומתנהגת באופן זהה ללא קשר לספק. תואם לאחור לחלוטין — {provider} מוגדר כברירת מחדל ל-{azureValue}, כך שזרימות העבודה הקיימות של Azure ממשיכות לפעול ללא שינוי.",
+				"aws": "ספק AWS Translate חדש ({awsSdk}). אימות עם שרשרת האישורים ברירת המחדל של AWS (מומלץ: OIDC דרך {configureAwsCredentials}) או עם {awsAccessKeyId} / {awsSecretAccessKey} מפורש; אזור דרך {awsRegion} או {awsRegionEnv}.",
+				"google": "ספק התרגום החדש של Google Cloud ({googleSdk}, v2). אימות באמצעות אישור JSON של חשבון שירות ({googleCredentials}) או מפתח API ({googleApiKey}); {googleProjectId} אופציונלי.",
+				"inputs": "קלטים חדשים: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} ממפה ל-{format} של גוגל ו-{profanityAction} ממפה להסתרת קללות ב-AWS במקום שבו קיימת מקבילה. ספקים אחרים מתעלמים ממנה רק של Azure ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}).",
+				"azureRelaxed": "קלטי בקשות Azure ({subscriptionKey}, {endpoint}, {region}) כבר לא מסומנים ב-{actionYml} כך שניתן לבחור ספקים אחרים — ועדיין מאומתים בזמן ריצה כאשר {provider} {azureValue}.",
+				"docs": "דף ספקי תרגום חדשים, לשוניות של ספקים בתהליך התחלה, בחירת ספק בדף הקלטים, ודף בית מרענן עם Azure, AWS וגוגל."
+			}
 		},
 		"v3": {
 			"labels": {

@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Darba sākšana",
 		"eyebrow": "Iestatīšana",
-		"lede": "Pievienojiet darbplūsmas failu, norādiet to uz saviem Azure AI Translator akreditācijas datiem, un darbība skenēs repo avota valodas resursu failus un izstaros tulkotos brāļus un māsas.",
+		"heroLede": "Pievienojiet darbplūsmas failu, izvēlieties tulkošanas pakalpojumu sniedzēju - Azure, AWS vai Google - un darbība skenē repo avota valodas resursu failus un izdala tulkotos brāļus un māsas.",
 		"steps": {
-			"provision": {
-				"title": "Azure AI tulkotāja resursa nodrošināšana",
-				"body": "Azure portālā izveidojiet Azure AI tulkotāja resursu, pēc tam saglabājiet tālāk norādītos datus kā GitHub repozitorija noslēpumus, lai darbplūsma tos varētu nolasīt.",
-				"key": "Resursa abonēšanas atslēga.",
-				"endpoint": "reģionālā galapunkta URL.",
-				"region": "resursa Azure reģions."
+			"provider": {
+				"title": "Izvēlieties tulkošanas pakalpojumu sniedzēju",
+				"body": "Darbība darbojas ar {azure}, {aws} un {google} aiz vienas vienotas API virsmas. Izvēlieties vienu pakalpojumu sniedzēju katrā izpildījumā ar {provider} ievadi — darbplūsma darbojas identiski neatkarīgi no nodrošinātāja; atšķiras tikai akreditācijas dati. Pilnu salīdzinājumu skatiet {providersLink}.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS tulkotājs",
+				"google": "Google mākoņa tulkojums",
+				"providersLinkLabel": "Tulkošanas pakalpojumu sniedzēji"
 			},
-			"workflow": {
-				"title": "Darbplūsmas pievienošana",
-				"body": "Izveidot {workflowPath}:"
+			"configure": {
+				"title": "Akreditācijas datu un darbplūsmas pievienošana",
+				"body": "Saglabājiet sava pakalpojumu sniedzēja akreditācijas datus kā GitHub repozitorija noslēpumus, pēc tam izveidojiet {workflowPath}. Tālāk atlasiet pakalpojumu sniedzēju konkrētajam iestatījumam — pārējā darbplūsma ir identiska.",
+				"secretsHeading": "Glabājiet tos kā repozitorija noslēpumus",
+				"workflowHeading": "Darbplūsmas pievienošana",
+				"azure": {
+					"note": "Azure ir noklusējuma nodrošinātājs, tāpēc {provider} var tikt izlaists. Nodrošiniet Azure AI tulkotāja resursu Azure portālā un pēc tam saglabājiet tā akreditācijas datus:",
+					"key": "Resursa abonēšanas atslēga.",
+					"endpoint": "reģionālā galapunkta URL.",
+					"region": "resursa Azure reģions."
+				},
+				"aws": {
+					"note": "Iestatiet {provider} uz {providerValue}. Dod priekšroku OIDC, izmantojot {configureAwsCredentials}, lai netiktu glabāti ilgmūžīgi noslēpumi - solis eksports {awsRegionEnv} jums. Lai tā vietā izmantotu statiskās atslēgas, saglabājiet:",
+					"accessKeyId": "jūsu AWS piekļuves atslēgas ID.",
+					"secretAccessKey": "jūsu AWS slepenās piekļuves atslēga.",
+					"regionNote": "Reģions vienmēr ir nepieciešams — iestatiet to ar {awsRegion} vai {awsRegionEnv} vides mainīgo."
+				},
+				"google": {
+					"note": "Iestatiet {provider} uz {providerValue}. Autentificējieties, izmantojot pakalpojuma konta JSON akreditācijas datus vai API atslēgu — norādiet tieši vienu:",
+					"credentials": "pakalpojuma konta JSON atslēga (kā JSON virkne).",
+					"apiKey": "vai Google Cloud API atslēgu.",
+					"projectNote": "Neobligāta {googleProjectId} tiek izsecināta no akreditācijas datiem, ja tā ir izlaista."
+				}
 			},
 			"resource": {
 				"title": "Avota resursu faila apstiprināšana",
@@ -91,8 +112,15 @@
 				"body": "Kad darbplūsma ir pabeigta, darbība atklāj trīs izejas, kuras varat savienot ar PR aprakstu: {summaryTitle}, {summaryDetails} un {hasNewTranslations}. Tas arī ieraksta Markdown kopsavilkumu darba lapā, izmantojot {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Zils",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Izvēlieties tulkošanas pakalpojumu sniedzēju"
+		},
 		"nextSteps": {
 			"title": "Turpmākie pasākumi",
+			"providers": "Salīdziniet katru pakalpojumu sniedzēju un tā akreditācijas datus blakus.",
 			"configuration": "Konfigurējiet repo līmeņa noklusējuma iestatījumus, izmantojot {configPath}.",
 			"recipes": "Skatiet monorepo, pielāgoto glosāriju un pielāgoto tulkotāju kategoriju receptes."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Tulkotājs tagad piespraust {apiVersion} vadam gan {translate}, gan {languages}. Azure SDK ievēro klienta līmeņa API versijas opciju tikai tad, kad tiek nodoti akreditācijas dati; Darbība autentificējas katram pieprasījumam, izmantojot galvenes, tāpēc šī opcija tika klusi atmesta, un pieprasījumi pēc noklusējuma tika noklusēti uz priekšskatījuma API versiju, kuras {translate} līgums noraidīja pamattekstu ar HTTP 400 (kļūdas kods {code}). Pabeidz labojumu, kas sākts 3.0.1.",
 			"v301": "{label} {translate} pieprasījuma ķermenis tagad ir tukšs JSON masīvs no {textItem} vienumiem, nevis iesaiņots {inputs} objekts, kas atbilst v3.0 REST līgumam. Tas pats par sevi neatjaunoja tulkojumus (sk. 3.0.2. punktu)."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Vairāki piegādātāji:",
+				"intentMapping": "Nolūka apzīmētāja kartēšana:"
+			},
+			"items": {
+				"multiVendor": "{label} tulkot ar {azure}, {aws} vai {google} aiz vienas vienotas API virsmas. Izvēlieties vienu pakalpojumu sniedzēju katram izpildījumam ar jauno {provider} ievadi; darbība tiek deleģēta atbilstošajam SDK aiz rūpnīcas un darbojas identiski neatkarīgi no piegādātāja. Pilnībā saderīgs ar atpakaļejošu versiju — {provider} noklusējuma ir {azureValue}, tāpēc esošās Azure darbplūsmas turpina darboties nemainīgi.",
+				"aws": "Jauns AWS tulkotāja pakalpojumu sniedzējs ({awsSdk}). Autentificējieties, izmantojot AWS noklusējuma akreditācijas datu ķēdi (ieteicams: OIDC, izmantojot {configureAwsCredentials}) vai skaidru {awsAccessKeyId} / {awsSecretAccessKey}; reģionā caur {awsRegion} vai {awsRegionEnv}.",
+				"google": "Jauns Google mākoņtulkošanas pakalpojumu sniedzējs ({googleSdk}, v2). Autentificēties ar pakalpojuma konta JSON akreditācijas datiem ({googleCredentials}) vai API atslēgu ({googleApiKey}); fakultatīvais {googleProjectId}.",
+				"inputs": "Jaunas ieejas: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} kartes uz Google {format} un {profanityAction} kartes uz AWS rupjības maskēšanu, ja ir ekvivalents. Citi pakalpojumu sniedzēji ignorē tikai Azure apzīmētājus ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}).",
+				"azureRelaxed": "Azure pieprasījumu ievades ({subscriptionKey}, {endpoint}, {region}) vairs nav atzīmētas kā nepieciešamas {actionYml}, lai varētu atlasīt citus pakalpojumu sniedzējus — joprojām tiek validēti izpildlaikā, kad {provider} ir {azureValue}.",
+				"docs": "Jauna tulkošanas pakalpojumu sniedzēju lapa, pakalpojumu sniedzēju cilnes sadaļā Darba sākšana, pakalpojumu sniedzēja izvēle ievades lapā un atsvaidzināta sākumlapa, kas ved uz Azure, AWS un Google."
+			}
 		},
 		"v3": {
 			"labels": {

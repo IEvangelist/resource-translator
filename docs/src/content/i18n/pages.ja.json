@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "始める",
 		"eyebrow": "セットアップ",
-		"lede": "ワークフローファイルを追加し、Azure AI Translatorの認証情報を指すと、そのアクションでリポジトリ内のソース言語リソースファイルをスキャンし、翻訳された兄弟ファイルを送信します。",
+		"heroLede": "ワークフローファイルを追加し、翻訳プロバイダー(Azure、AWS、Google)を選択すると、このアクションでリポジトリ内のソース言語リソースファイルをスキャンし、翻訳された兄弟ファイルを発行します。",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator リソース",
-				"body": "AzureポータルにAzure AIトランスレーターリソースを作成し、以下の情報をGitHubリポジトリの秘密として保存してワークフローが読み取れるようにしてください:",
-				"key": "リソースのサブスクリプションキーです。",
-				"endpoint": "地域エンドポイントURLです。",
-				"region": "リソースのAzureリージョンです。"
+			"provider": {
+				"title": "翻訳提供者を選びましょう",
+				"body": "このアクションは、{azure}、{aws}、{google}が一つの統一APIサーフェスで動作します。{provider}入力で1回の実行につき1つのプロバイダーを選ぶと、プロダクターに関係なくワークフローは同じように動作します。異なるのは資格だけです。詳細な比較については{providersLink}を参照してください。",
+				"azure": "Azure AI Translator",
+				"aws": "AWS 翻訳",
+				"google": "Google Cloud 翻訳",
+				"providersLinkLabel": "翻訳提供者"
 			},
-			"workflow": {
-				"title": "ワークフローを追加してください",
-				"body": "作成{workflowPath}:"
+			"configure": {
+				"title": "認証情報とワークフローを追加",
+				"body": "プロバイダーの認証情報をGitHubリポジトリのシークレットとして保存し、{workflowPath}を作成します。下記のプロバイダーの具体的な設定を選択してください。その他のワークフローは同じです。",
+				"secretsHeading": "これらはリポジトリの秘密として保存します",
+				"workflowHeading": "ワークフローを追加してください",
+				"azure": {
+					"note": "Azureがデフォルトのプロバイダーなので、{provider}は省略しても構いません。AzureポータルにAzure AIトランスレーターリソースをプロビジョニングし、その認証情報を保存します:",
+					"key": "リソースのサブスクリプションキーです。",
+					"endpoint": "地域エンドポイントURLです。",
+					"region": "リソースのAzureリージョンです。"
+				},
+				"aws": {
+					"note": "{provider}を{providerValue}に設定してください。OIDCを優先して{configureAwsCredentials}長期間秘密が保存されないようにし、ステップが{awsRegionEnv}エクスポートしてくれます。静的鍵を使うには、以下を保存してください:",
+					"accessKeyId": "あなたのAWSアクセスキーIDです。",
+					"secretAccessKey": "あなたのAWSのシークレットアクセスキー。",
+					"regionNote": "リージョンは常に必要で、{awsRegion}または{awsRegionEnv}環境変数で設定してください。"
+				},
+				"google": {
+					"note": "{provider}を{providerValue}に設定してください。サービスアカウントのJSON認証情報またはAPIキーのいずれかで認証してください — 正確に1つだけ提供してください:",
+					"credentials": "サービスアカウントのJSONキー(JSON文字列として)です。",
+					"apiKey": "またはGoogle Cloud APIキーなどです。",
+					"projectNote": "省略された場合、資格情報から任意の{googleProjectId}が推定されます。"
+				}
 			},
 			"resource": {
 				"title": "ソースリソースファイルをコミットする",
@@ -91,8 +112,15 @@
 				"body": "ワークフローが終わると、アクションはPRの説明に配線できる3つの出力を公開します:{summaryTitle}、{summaryDetails}、{hasNewTranslations}。また、{coreSummary}を通じて求人ページにMarkdownの要約も書き込んでくれます。"
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "グーグル",
+			"ariaLabel": "翻訳提供者を選びましょう"
+		},
 		"nextSteps": {
 			"title": "今後のステップ",
+			"providers": "すべての提供者とその資格を並べて比較しましょう。",
 			"configuration": "リポジトリレベルのデフォルト設定を{configPath}で設定してください。",
 			"recipes": "モノリポジトリ、カスタム用語集、カスタム翻訳者カテゴリのレシピをご覧ください。"
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label}トランスレーターのリクエストは、{translate}と{languages}の両方の線に{apiVersion}ピンで固定されます。Azure SDKは認証情報が渡された場合にのみクライアントレベルのAPIバージョンオプションを尊重します。アクションはリクエストごとにヘッダーで認証されるため、そのオプションは静かに削除され、リクエストはプレビューAPIバージョンにデフォルト化され、{translate}契約がHTTP 400(エラーコード{code})でボディを拒否しました。3.0.1から始まった修正を完了します。",
 			"v301": "{label} {translate}リクエストボディは、ラップされた{inputs}オブジェクトではなく、v3.0 REST コントラクトに準拠した{textItem}アイテムの素きJSON配列になっています。これだけでは翻訳を復元するものではありません — 3.0.2を参照してください。"
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "マルチベンダー:",
+				"intentMapping": "意図・指定子マッピング:"
+			},
+			"items": {
+				"multiVendor": "{label} {azure}、{aws}、または{google}で統一されたAPIサーフェスを一つにして翻訳します。新しい{provider}入力で1回の実行ごとに1つのプロバイダーを選択します。このアクションはファクトリーの背後にある対応するSDKに委任され、ベンダーに関係なく同じ動作をします。完全に後方互換性があり、{provider}デフォルトは{azureValue}で、既存のAzureワークフローは変更せずに動作します。",
+				"aws": "新しいAWS Translateプロバイダー({awsSdk})。認証はAWSのデフォルト認証チェーン(推奨:{configureAwsCredentials}経由のOIDC)または明示的な{awsAccessKeyId}/{awsSecretAccessKey}で認証してください。地域は{awsRegion}または{awsRegionEnv}で分類できます。",
+				"google": "新しいGoogle Cloud Translationプロバイダー({googleSdk}、v2)。サービスアカウントのJSON認証({googleCredentials})またはAPIキー({googleApiKey})で認証します。任意{googleProjectId}。",
+				"inputs": "新しい入力:{provider}、{awsAccessKeyId}、{awsSecretAccessKey}、{awsRegion}、{googleApiKey}、{googleCredentials}、{googleProjectId}。",
+				"intentMapping": "{label} {textType} Googleの{format}に、{profanityAction}はAWSの罵り言葉マスキングに相当するものにマッピングされます。Azureのみの仕様子({categoryId}、{apiVersion}、{profanityMarker}、{allowFallback})は他のプロバイダーによって無視されます。",
+				"azureRelaxed": "Azureのリクエスト入力({subscriptionKey}、{endpoint}、{region})は{actionYml}で必須とマークされなくなり、他のプロバイダーを選択できるようになっています。{provider}が{azureValue}された際には実行時に検証されます。",
+				"docs": "新しい翻訳プロバイダーページ、Getting Startedのプロバイダータブ、Inputsページのプロバイダー選択、そしてAzure、AWS、Googleでリードするリフレッシュされたホームページが登場します。"
+			}
 		},
 		"v3": {
 			"labels": {

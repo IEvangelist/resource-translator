@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Ịmalite",
 		"eyebrow": "Ntọala",
-		"lede": "Tinye faịlụ arụmọrụ, tụọ ya na nzere Azure AI Translator gị, ihe ahụ ga-enyocha repo maka faịlụ akụ asụsụ isi mmalite ma wepụta ụmụnne ndị a sụgharịrị sụgharịrị.",
+		"heroLede": "Tinye faịlụ arụmọrụ, họrọ onye na-eweta ntụgharị gị — Azure, AWS, ma ọ bụ Google — na ihe ahụ na-enyocha repo maka faịlụ akụ asụsụ isi mmalite ma wepụta ụmụnne ndị a sụgharịrị sụgharịrị.",
 		"steps": {
-			"provision": {
-				"title": "Inye ihe Azure AI Translator resource",
-				"body": "Mepụta ihe ntụgharị ntụgharị Azure AI na ọnụ ụzọ Azure, wee chekwaa ihe ndị a dị ka ihe nzuzo nchekwa GitHub ka ọrụ ahụ wee nwee ike ịgụ ha:",
-				"key": "Pịa igodo ndebanye aha maka ihe onwunwe ahụ.",
-				"endpoint": "Mpaghara Endpoint URL",
-				"region": "Mpaghara Azure."
+			"provider": {
+				"title": "Họrọ onye na-emepụta nsụgharị",
+				"body": "Ihe omume ahụ na-arụ ọrụ na {azure}, {aws}, na {google} n'azụ otu API dị n'otu. Họrọ otu onye na-eweta ọrụ kwa ọsọ na ntinye {provider} — arụmọrụ ahụ na-akpa àgwà n'otu ụzọ ahụ n'agbanyeghị onye na-eweta ya; Naanị nzere dị iche. Lee {providersLink} maka ntụnyere zuru ezu.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Sụgharịa",
+				"google": "Google Cloud Translation",
+				"providersLinkLabel": "Ndị na-enye ntụgharị"
 			},
-			"workflow": {
-				"title": "Tinye workflow",
-				"body": "Mepụta {workflowPath}:"
+			"configure": {
+				"title": "Tinye nzere na ọrụ",
+				"body": "Chekwaa nzere nke onye na-eweta gị dị ka ihe nzuzo nchekwa GitHub, wee mepụta {workflowPath}. Họrọ onye na-eweta gị n'okpuru maka nhazi ya a kapịrị ọnụ — ọrụ ndị ọzọ bụ otu.",
+				"secretsHeading": "Chekwaa ihe ndị a dị ka ihe nzuzo nchekwa",
+				"workflowHeading": "Tinye workflow",
+				"azure": {
+					"note": "Azure bụ onye na-eweta ndabara, n'ihi ya, {provider} nwere ike ịhapụ ya. Nye ihe Azure AI Translator akụ na Azure portal, wee chekwaa nzere ya:",
+					"key": "Pịa igodo ndebanye aha maka ihe onwunwe ahụ.",
+					"endpoint": "Mpaghara Endpoint URL",
+					"region": "Mpaghara Azure."
+				},
+				"aws": {
+					"note": "Debe {provider} na {providerValue}. Họrọ OIDC site na {configureAwsCredentials} ka a ghara ịchekwa ihe nzuzo ogologo oge — mbupụ nzọụkwụ {awsRegionEnv} maka gị. Iji jiri igodo static kama, chekwaa:",
+					"accessKeyId": "Gị AWS Access Key ID.",
+					"secretAccessKey": "Igodo Nzuzo Nzuzo Gị",
+					"regionNote": "A na-achọ mpaghara mgbe niile — debe ya na {awsRegion} ma ọ bụ {awsRegionEnv} gburugburu ebe obibi."
+				},
+				"google": {
+					"note": "Debe {provider} na {providerValue}. Nyochaa na nzere JSON ọrụ ma ọ bụ igodo API — nye kpọmkwem otu:",
+					"credentials": "Igodo JSON (dị ka eriri JSON).",
+					"apiKey": "Ma ọ bụ igodo Google Cloud API.",
+					"projectNote": "A na-ewepụta {googleProjectId} nhọrọ site na nzere mgbe ewepụrụ ya."
+				}
 			},
 			"resource": {
 				"title": "Tinye faịlụ isi iyi",
@@ -91,8 +112,15 @@
 				"body": "Ozugbo arụmọrụ ahụ gwụchara, ihe ahụ na-ekpughe nsonaazụ atọ ị nwere ike ịbanye na nkọwa PR: {summaryTitle}, {summaryDetails}, na {hasNewTranslations}. Ọ na-edekwa nchịkọta Markdown n'ime peeji nke ọrụ site na {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Họrọ onye na-emepụta nsụgharị"
+		},
 		"nextSteps": {
 			"title": "Nzọụkwụ ndị ọzọ",
+			"providers": "Tụnyere onye ọ bụla na-eweta ọrụ na nzere ya n'akụkụ n'akụkụ.",
 			"configuration": "Rụnyụọ ọdịda repo-level ya na {configPath}.",
 			"recipes": "Lee ntụziaka maka monorepos, omenala glossaries, na Omenala Translator edemede."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Translator arịrịọ ugbu a pin {apiVersion} na waya maka ma {translate} na {languages}. Azure SDK na-asọpụrụ nhọrọ api-version nke onye ahịa mgbe a gafere nzere; Ihe omume ahụ na-ekwenye na arịrịọ ọ bụla site na nkụnye eji isi mee, yabụ nhọrọ ahụ na-agbachi nkịtị na arịrịọ na-adaba na nsụgharị API nke nkwekọrịta {translate} jụrụ ahụ na HTTP 400 (koodu njehie {code}). Mezue ndozi ahụ malitere na 3.0.1.",
 			"v301": "{label} Ahụ arịrịọ {translate} ugbu a bụ usoro JSON nke ihe {textItem} kama ihe {inputs} kechie, nke kwekọrọ na nkwekọrịta v3.0 REST. N'onwe ya, nke a eweghachighị nsụgharị — lee 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Ọtụtụ ndị na-ere ahịa:",
+				"intentMapping": "Ebumnuche-nkọwapụta mapping:"
+			},
+			"items": {
+				"multiVendor": "{label} sụgharịa na {azure}, {aws}, ma ọ bụ {google} n'azụ otu API dị n'otu. Họrọ otu onye na-eweta ọrụ kwa ọsọ na ntinye {provider} ọhụrụ; ihe omume ahụ na-anọchite anya SDK kwekọrọ na ya n'azụ ụlọ ọrụ mmepụta ihe ma na-akpa àgwà n'otu ụzọ ahụ n'agbanyeghị onye na-ere ahịa. Dakọtara azụ zuru oke — {provider} ndabara na {azureValue}, yabụ arụmọrụ Azure dị ugbu a na-arụ ọrụ na-agbanwe agbanwe.",
+				"aws": "New AWS Translate Onye na-eweta ({awsSdk}). Nyochaa na AWS ndabara nzere yinye (akwadoro: OIDC site na {configureAwsCredentials}) ma ọ bụ doro anya {awsAccessKeyId} / {awsSecretAccessKey}; Mpaghara site na {awsRegion} ma ọ bụ {awsRegionEnv}.",
+				"google": "Onye na-eweta nsụgharị igwe ojii ọhụrụ ({googleSdk}, v2). Nyochaa na nzere JSON nke akaụntụ ọrụ ({googleCredentials}) ma ọ bụ igodo API ({googleApiKey}); Nhọrọ {googleProjectId}",
+				"inputs": "Ntinye ọhụrụ: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} maapụ na {format} Google na {profanityAction} maapụ na AWS na-ekpuchi ebe ihe yiri ya. A na-eleghara ndị na-eweta ọrụ ndị ọzọ anya ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) anya.",
+				"azureRelaxed": "Ntinye arịrịọ Azure ({subscriptionKey}, {endpoint}, {region}) anaghịzi akara achọrọ na {actionYml} ka enwere ike ịhọrọ ndị ọzọ na-eweta ọrụ — ka na-akwado n'oge na-agba ọsọ mgbe {provider} {azureValue}.",
+				"docs": "Peeji nke ndị na-eweta nsụgharị ọhụrụ, taabụ ndị na-eweta ọrụ na Ịmalite, nhọrọ ndị na-eweta ọrụ na ibe ntinye, na ibe obibi ọhụrụ na-eduga na Azure, AWS, na Google."
+			}
 		},
 		"v3": {
 			"labels": {

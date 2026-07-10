@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Destpêkirin",
 		"eyebrow": "Sazkirin",
-		"lede": "Pelê herikîna xebatê lê zêde bikin, wê li ser nasnameyên xwe yên Azure AI Translator nîşan bidin, û çalakî dê repoyê ji bo pelên çavkaniya zimanê çavkaniyê skan bike û xwişk û birayên wergerandî belav bike.",
+		"heroLede": "Pelê herikîna xebatê lê zêde bikin, dabînkerê wergera xwe hilbijêrin - Azure, AWS, an Google - û çalakî ji bo pelên çavkaniya çavkaniya zimanê çavkaniyê repoyê skan dike û xwişk û birayên wergerandî belav dike.",
 		"steps": {
-			"provision": {
-				"title": "Supply an Azure AI Translator resource",
-				"body": "Di portala Azure de çavkaniyek Azure AI Translator biafirînin, paşê jêrîn wekî razên depoya GitHub hilînin da ku herikîna kar bikaribe wan bixwîne:",
-				"key": "mifteya abonetiyê ji bo çavkaniyê.",
-				"endpoint": "URL-ya xala dawîn a herêmî.",
-				"region": "Herêma Azure ya çavkaniyê."
+			"provider": {
+				"title": "Pêşkêşvanek wergerê hilbijêrin",
+				"body": "Çalakî bi {azure}, {aws} û {google} li pişt yek rûyê API-yê yê yekbûyî dixebite. Her xebatê bi têketina {provider} yek dabînkerê hilbijêrin - herikîna kar bêyî ku dabînker be heman tevdigere; Tenê bawername cuda ne. Ji bo berhevdana tevahî li {providersLink} binêrin.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Wergere",
+				"google": "Wergera Google Cloud",
+				"providersLinkLabel": "Pêşkêşvanên wergerê"
 			},
-			"workflow": {
-				"title": "Workflow lê zêde bikin",
-				"body": "Afirandina {workflowPath}:"
+			"configure": {
+				"title": "Nasnameyan û herikîna kar lê zêde bikin",
+				"body": "Nasnameyên dabînkerê xwe wekî razên depoya GitHub hilînin, dûv re {workflowPath} biafirînin. Ji bo sazkirina wê ya taybetî dabînkerê xwe li jêr hilbijêrin - herikîna mayî heman e.",
+				"secretsHeading": "Van wekî razên depoyê hilînin",
+				"workflowHeading": "Workflow lê zêde bikin",
+				"azure": {
+					"note": "Azure dabînkerê xwerû ye, ji ber vê yekê {provider} dibe ku were jêbirin. Çavkaniyek Azure AI Translator di portala Azure de peyda bikin, paşê nasnameyên wê hilînin:",
+					"key": "mifteya abonetiyê ji bo çavkaniyê.",
+					"endpoint": "URL-ya xala dawîn a herêmî.",
+					"region": "Herêma Azure ya çavkaniyê."
+				},
+				"aws": {
+					"note": "Li {provider} saz {providerValue}. OIDC-ê bi rêya {configureAwsCredentials} tercîh bikin da ku razên demdirêj neyên veşartin - hinardekirina gav ji bo we {awsRegionEnv}. Ji bo ku hûn bişkokên statîk bikar bînin, hilînin:",
+					"accessKeyId": "Nasnameya we ya mifteya gihîştina AWS.",
+					"secretAccessKey": "mifteya we ya gihîştina veşartî ya AWS.",
+					"regionNote": "Herêmek her dem hewce ye - wê bi guhêrbarên hawîrdorê {awsRegion} an {awsRegionEnv} saz bikin."
+				},
+				"google": {
+					"note": "Li {provider} saz {providerValue}. Bi nasnameya JSON an mifteya API-yê ya karûbarê nasnameyê piştrast bikin - tam yekê peyda bikin:",
+					"credentials": "mifteya JSON-ê ya karûbar-hesabê (wekî rêzika JSON).",
+					"apiKey": "an mifteya Google Cloud API.",
+					"projectNote": "Dema ku {googleProjectId} were derxistin ji bawernameyê vebijarkek vebijarkî tê derxistin."
+				}
 			},
 			"resource": {
 				"title": "Pelê çavkaniya çavkaniyê pêk bînin",
@@ -91,8 +112,15 @@
 				"body": "Dema ku herikîna kar bi dawî dibe, çalakî sê hilberên ku hûn dikarin di nav danasîna PR-ê de girêbidin derdixe holê: {summaryTitle}, {summaryDetails} û {hasNewTranslations}. Di heman demê de ew bi navgîniya navnîşanê kurteyek Markdown di rûpela kar de dinivîse {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Pêşkêşvanek wergerê hilbijêrin"
+		},
 		"nextSteps": {
 			"title": "Gavên din",
+			"providers": "Her peydaker û nasnameyên wê li kêleka hev bidin ber hev.",
 			"configuration": "Xwerû asta repo-yê bi {configPath} vesaz bikin.",
 			"recipes": "Li reçeteyên ji bo monorepo, ferhengên xwerû û kategoriyên Wergêra Taybet binêrin."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Daxwazên wergêr êdî hem ji bo {translate} û hem jî ji bo {apiVersion} li ser têlê {languages}. Azure SDK tenê dema ku nasnameyek derbas dibe vebijarka guhertoya api-asta xerîdar rûmetê dide; Çalakî her daxwazê bi navgîniya sernavan piştrast dike, ji ber vê yekê vebijark bi bêdengî hate avêtin û daxwazên pêşdîtina API-guhertoya ku peymana {translate} laş bi HTTP 400 (koda xeletiyê {code}) red kir. Sererastkirina ku di 3.0.1 de dest pê kir temam dike.",
 			"v301": "{label} Laşê daxwazê {translate} niha li şûna tiştê {inputs} pêçandî ya JSON-ê ya {textItem} ye, ku bi peymana v3.0 REST re lihevhatî ye. Ev bi tena serê xwe wergeran sererast nekir - li 3.0.2 binêrin."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Pir-firoşkar:",
+				"intentMapping": "Nexşeya armanc-taybetmendiyê:"
+			},
+			"items": {
+				"multiVendor": "{label} bi {azure}, {aws} an {google} li pişt yek rûyê API-yê yê yekbûyî wergerînin. Bi têketina nû ya {provider} her bezê yek dabînker hilbijêrin; çalakî ji SDK-ya lihevhatî ya li pişt kargehê re vediguheze û bêyî ku firoşkar be heman tevdigere. Bi tevahî paşve lihevhatî ye - {provider} ji bo {azureValue} xwerû ye, ji ber vê yekê herikîna heyî ya Azure-ê bê guhertin berdewam dike.",
+				"aws": "Pêşkêşkerê nû yê AWS Translate ({awsSdk}). Bi zincîra nasnameya xwerû ya AWS (pêşniyar kirin: OIDC bi rêya {configureAwsCredentials}) an {awsAccessKeyId} / {awsSecretAccessKey} eşkere bikin; herêm bi rêya {awsRegion} an {awsRegionEnv}.",
+				"google": "Pêşkêşkerê nû yê Wergera Google Cloud ({googleSdk}, v2) Bi nasnameya JSON ({googleCredentials}) an mifteya API-yê ({googleApiKey}) piştrast bikin; Vebijarkî {googleProjectId}.",
+				"inputs": "Têketinên nû: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} nexşeyên {format} yên Google-ê û nexşeyên {profanityAction} ji bo maskekirina neheqiyê ya AWS-ê ku wekheviyek heye. Taybetmendiyên Azure-tenê ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) ji hêla pêşkêşvanên din ve têne paşguh kirin.",
+				"azureRelaxed": "Têketinên daxwazên Azure ({subscriptionKey}, {endpoint}, {region}) êdî di {actionYml} de hewce nayên nîşankirin da ku peydakirên din werin hilbijartin - hîn jî dema ku {provider} {azureValue} tê pejirandin.",
+				"docs": "Rûpela pêşkêşvanên Wergera Nû, tabên dabînker ên li ser Destpêkê, hilbijartina dabînker li ser rûpela Inputs, û rûpela sereke ya nûvekirî ku bi Azure, AWS û Google re pêşeng e."
+			}
 		},
 		"v3": {
 			"labels": {

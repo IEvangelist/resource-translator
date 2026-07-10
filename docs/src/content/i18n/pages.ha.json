@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Farawa",
 		"eyebrow": "Saitin",
-		"lede": "Ƙara fayil ɗin aiki, nuna shi a takaddun shaidar mai fassarar Azure AI, kuma aikin zai bincika repo don fayilolin albarkatun harshe na tushe kuma ya fitar da 'yan uwan da aka fassara.",
+		"heroLede": "Ƙara fayil ɗin aiki, zaɓi mai ba da fassarar ku - Azure, AWS, ko Google - kuma aikin yana bincika repo don fayilolin albarkatun harshe kuma yana fitar da 'yan uwan da aka fassara.",
 		"steps": {
-			"provision": {
-				"title": "Samar da kayan aikin Azure AI Translator",
-				"body": "Ƙirƙirar albarkatun mai fassara na Azure AI a cikin tashar Azure, sannan adana waɗannan azaman asirin ajiyar GitHub don aikin zai iya karanta su:",
-				"key": "Maɓallin Biyan kuɗi don Kayan T",
-				"endpoint": "Ƙarshen Ƙarshen Yankin Ƙarshen Yankin",
-				"region": "Yankin Azure na Resource."
+			"provider": {
+				"title": "Zaɓi mai ba da sabis na fassara",
+				"body": "Aikin yana aiki tare da {azure}, {aws}, da {google} a bayan farfajiyar API guda ɗaya. Zaɓi mai ba da sabis guda ɗaya a kowane gudu tare da shigarwar {provider} — aikin aiki yana aiki iri ɗaya ba tare da la'akari da mai ba da sabis ba; kawai takardun shaida sun bambanta. Duba {providersLink} don cikakken kwatantawa.",
+				"azure": "Azure AI Translator",
+				"aws": "Fassarar AWS",
+				"google": "Fassarar Google Cloud",
+				"providersLinkLabel": "Masu ba da fassara"
 			},
-			"workflow": {
-				"title": "Ƙara aikin aiki",
-				"body": "Ƙirƙirar {workflowPath}:"
+			"configure": {
+				"title": "Ƙara takaddun shaida da aiki",
+				"body": "Adana takardun shaidar mai ba da sabis ɗinku azaman asirin ajiyar GitHub, sannan ƙirƙirar {workflowPath}. Zaɓi mai ba da sabis ɗin ku a ƙasa don takamaiman saitin sa - sauran aikin iri ɗaya ne.",
+				"secretsHeading": "Ajiye waɗannan a matsayin asirin ajiya",
+				"workflowHeading": "Ƙara aikin aiki",
+				"azure": {
+					"note": "Azure shine mai ba da sabis na asali, don haka {provider} iya watsi da shi. Samar da kayan aikin mai fassara na Azure AI a cikin tashar Azure, sannan adana takardun shaidarsa:",
+					"key": "Maɓallin Biyan kuɗi don Kayan T",
+					"endpoint": "Ƙarshen Ƙarshen Yankin Ƙarshen Yankin",
+					"region": "Yankin Azure na Resource."
+				},
+				"aws": {
+					"note": "Saita {provider} zuwa {providerValue}. Zaɓi OIDC ta hanyar {configureAwsCredentials} don haka ba a adana sirri na dogon lokaci ba - matakin fitarwa {awsRegionEnv} gare ku. Don amfani da maɓallan tsayayye maimakon, adana:",
+					"accessKeyId": "ID ɗinku na maɓallin keɓaɓɓen maɓall",
+					"secretAccessKey": "Maɓallin Samun Sirri na AWS",
+					"regionNote": "Ana buƙatar yanki koyaushe - saita shi tare da {awsRegion} ko {awsRegionEnv} yanayin yanayi."
+				},
+				"google": {
+					"note": "Saita {provider} zuwa {providerValue}. Tabbatar da ko dai takardar shaidar JSON ta asusun sabis ko maɓallin API - samar da daidaito ɗaya:",
+					"credentials": "Maɓallin JSON na asusun sabis (a matsayin kirtani na JSON).",
+					"apiKey": "Ko maɓallin Google Cloud API.",
+					"projectNote": "An cire zaɓi {googleProjectId} daga takardun shaida idan an cire shi."
+				}
 			},
 			"resource": {
 				"title": "Shigar da fayil ɗin tushen tushen",
@@ -91,8 +112,15 @@
 				"body": "Da zarar aikin ya ƙare, aikin ya fallasa fitarwa guda uku da zaku iya waya a cikin bayanin PR: {summaryTitle}, {summaryDetails}, da {hasNewTranslations}. Har ila yau, yana rubuta taƙaitaccen bayani a cikin shafin aikin ta hanyar {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Zaɓi mai ba da sabis na fassara"
+		},
 		"nextSteps": {
 			"title": "Matakai na gaba",
+			"providers": "Kwatanta kowane mai ba da sabis da takardun shaidarsa gefe da gefe.",
 			"configuration": "Saita kuskuren matakin repo tare da {configPath}.",
 			"recipes": "Duba girke-girke don monorepos, ƙamus na al'ada, da nau'ikan masu fassara na al'ada."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Translator buƙatun yanzu pin {apiVersion} a kan waya don duka {translate} da {languages}. Azure SDK kawai yana girmama zaɓi na abokin ciniki lokacin da aka wuce takardun shaida; Aikin yana tabbatar da buƙata ta hanyar kanun labarai, don haka an sauke wannan zaɓin a hankali kuma buƙatun sun ƙi zuwa sigar API ta samfoti wanda kwangilar ta {translate} ta ƙi jiki tare da HTTP 400 (lambar kuskure {code}). An kammala gyaran da aka fara a cikin 3.0.1.",
 			"v301": "{label} Jikin buƙata na {translate} yanzu shine jerin JSON na abubuwa {textItem} maimakon abin da aka nannade {inputs}, wanda ya dace da kwangilar v3.0 REST. A kan kansa wannan bai dawo da fassarar ba — duba 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Multi-sayarwa:",
+				"intentMapping": "Taswirar taswirar niyya:"
+			},
+			"items": {
+				"multiVendor": "{label} fassara tare da {azure}, {aws}, ko {google} a bayan farfajiyar API guda ɗaya. Zaɓi mai ba da sabis guda ɗaya a kowane gudu tare da sabon shigarwar {provider}; aikin yana ba da gudummawa ga SDK mai dacewa a bayan masana'anta kuma yana nuna hali iri ɗaya ba tare da la'akari da mai siyarwa ba. Cikakkiyar jituwa ta baya - {provider} tsoho zuwa {azureValue}, don haka ayyukan Azure na yanzu suna ci gaba da aiki ba tare da canzawa ba.",
+				"aws": "Sabon mai ba da sabis na fassara na AWS ({awsSdk}). Tabbatar da sarkar takardun shaida ta AWS (an ba da shawarar: OIDC ta hanyar {configureAwsCredentials}) ko bayyananniyar {awsAccessKeyId} / {awsSecretAccessKey}; Yankin ta hanyar {awsRegion} ko {awsRegionEnv}.",
+				"google": "Sabon mai ba da sabis na Google Cloud Translation ({googleSdk}, v2). Tabbatar da bayanan JSON na asusun sabis ({googleCredentials}) ko maɓallin API ({googleApiKey}); Zaɓuɓɓukan {googleProjectId}",
+				"inputs": "Sabbin shigarwa: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} taswirar zuwa {format} na Google da taswirar {profanityAction} zuwa AWS ɓoye ɓarna inda kwatankwacin ya kasance. Masu ƙayyadaddun Azure kawai ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) wasu masu samarwa sun yi watsi da su.",
+				"azureRelaxed": "Shigar da buƙatun Azure ({subscriptionKey}, {endpoint}, {region}) ba a ƙara yiwa alama a cikin {actionYml} don haka za a iya zaɓar sauran masu samarwa - har yanzu an tabbatar da su a lokacin gudanarwa lokacin da {provider} {azureValue}.",
+				"docs": "Sabbin shafi na masu samar da fassara, shafukan masu ba da sabis akan farawa, zaɓin mai ba da sabis akan shafin shigarwa, da kuma shafi na gida mai sabuntawa wanda ke jagorantar Azure, AWS, da Google."
+			}
 		},
 		"v3": {
 			"labels": {

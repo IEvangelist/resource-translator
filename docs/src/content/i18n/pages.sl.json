@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Začetek",
 		"eyebrow": "Postavitev",
-		"lede": "Dodajte datoteko delovnega toka, jo usmerite na vaše Azure AI Translator poverilnice in akcija bo pregledala repozitorij za datoteke virov v izvornem jeziku ter izdala prevedene sorodne datoteke.",
+		"heroLede": "Dodajte datoteko z delovnim tokom, izberite svojega ponudnika prevajanja — Azure, AWS ali Google — in akcija pregleda repozitorij za datoteke virov v izvornem jeziku ter prikaže prevedene sorodne datoteke.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "Ustvarite vir Azure AI Translator v Azure portalu, nato pa shranite naslednje kot skrivnosti GitHub repozitorija, da jih lahko delovni tok prebere:",
-				"key": "naročniški ključ za vir.",
-				"endpoint": "regionalni URL končne točke.",
-				"region": "azure regija vira."
+			"provider": {
+				"title": "Izberite ponudnika prevajanja",
+				"body": "Akcija deluje z {azure}, {aws} in {google} za eno enotno površino API-ja. Izberite enega ponudnika na zagon z {provider} vhodom — potek dela se obnaša enako ne glede na ponudnika; razlikujejo se le kvalifikacije. Za popolno primerjavo glejte {providersLink}.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Google Cloud prevajalnik",
+				"providersLinkLabel": "Prevajalski ponudniki"
 			},
-			"workflow": {
-				"title": "Dodajte delovni proces",
-				"body": "Ustvarite {workflowPath}:"
+			"configure": {
+				"title": "Dodajte poverilnice in potek dela",
+				"body": "Shranite poverilnice svojega ponudnika kot skrivnosti GitHub repozitorija, nato ustvarite {workflowPath}. Izberite svojega ponudnika spodaj glede na njegovo specifično nastavitev — preostali delovni proces je enak.",
+				"secretsHeading": "Te shranite kot skrivnosti repozitorija",
+				"workflowHeading": "Dodajte delovni proces",
+				"azure": {
+					"note": "Azure je privzeti ponudnik, zato se {provider} lahko izpusti. Vzpostavite vir Azure AI Translator v Azure portalu in nato shranite njegove poverilnice:",
+					"key": "naročniški ključ za vir.",
+					"endpoint": "regionalni URL končne točke.",
+					"region": "azure regija vira."
+				},
+				"aws": {
+					"note": "Nastavi {provider} na {providerValue}. Raje izberite OIDC preko {configureAwsCredentials}, da se ne shranjujejo dolgotrajne skrivnosti — korak izvoza {awsRegionEnv} za vas. Za uporabo statičnih ključev namesto tega shranite:",
+					"accessKeyId": "vaš AWS access key ID.",
+					"secretAccessKey": "vaš AWS tajni dostopni ključ.",
+					"regionNote": "Regija je vedno potrebna — nastavite jo z {awsRegion} ali {awsRegionEnv} okoljske spremenljivke."
+				},
+				"google": {
+					"note": "Nastavi {provider} na {providerValue}. Avtentikirajte z JSON poverilnico storitvenega računa ali API ključem — vnesite natanko enega:",
+					"credentials": "JSON ključ storitvenega računa (kot JSON niz).",
+					"apiKey": "ali Google Cloud API ključ.",
+					"projectNote": "Neobvezno {googleProjectId} se sklepa iz poverilnice, če je izpuščena."
+				}
 			},
 			"resource": {
 				"title": "Potrdite datoteko izvornega vira",
@@ -91,8 +112,15 @@
 				"body": "Ko potek dela konča, akcija razkrije tri izhode, ki jih lahko povežete v PR opis: {summaryTitle}, {summaryDetails} in {hasNewTranslations}. Prav tako zapiše povzetek Markdown na stran delovnega mesta preko {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Izberite ponudnika prevajanja"
+		},
 		"nextSteps": {
 			"title": "Naslednji koraki",
+			"providers": "Primerjajte vsakega ponudnika in njegove poverilnice drug ob drugem.",
 			"configuration": "Nastavite privzete nastavitve na ravni repozitorija s {configPath}.",
 			"recipes": "Oglejte si recepte za monorepo, prilagojene slovarje in kategorije Custom Translator."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Prevajalci zdaj zahtevajo {apiVersion} na žico tako za {translate} kot {languages}. Azure SDK upošteva možnost API različice na ravni odjemalca le, ko je poverilnica prenesena; Dejanje se avtentikira za vsako zahtevo preko glav, zato je bila ta možnost tiho opuščena in zahteve so bile privzeto preklopljene na predogledno API-različico, katere {translate} pogodba je zavrnila telo s HTTP 400 (koda napake {code}). Dokonča popravek, ki se je začel v 3.0.1.",
 			"v301": "{label} Telo zahteve {translate} je zdaj gola JSON polje {textItem} elementov namesto ovitega {inputs} objekta, kar ustreza pogodbi v3.0 REST. Samo po sebi to ni obnovilo prevodov — glej 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Večponudnik:",
+				"intentMapping": "Preslikava namena in specifikatorja:"
+			},
+			"items": {
+				"multiVendor": "{label} prevajate z {azure}, {aws} ali {google} za eno enotno površino API-ja. Izberite enega ponudnika na zagon z novim {provider} vhodom; dejanje delegira ustreznemu SDK za tovarno in se obnaša enako ne glede na prodajalca. Popolnoma združljiv za nazaj — {provider} privzeto uporablja {azureValue}, zato obstoječi Azure poteki dela nespremenjeni.",
+				"aws": "Nov ponudnik AWS Translate ({awsSdk}). Avtentikirajte z AWS privzeto verigo poverilnic (priporočeno: OIDC preko {configureAwsCredentials}) ali eksplicitno {awsAccessKeyId} / {awsSecretAccessKey}; regije preko {awsRegion} ali {awsRegionEnv}.",
+				"google": "Nov ponudnik Google Cloud Translation ({googleSdk}, v2). Avtentikacija z JSON poverilnico storitvenega računa ({googleCredentials}) ali API ključem ({googleApiKey}); neobvezno {googleProjectId}.",
+				"inputs": "Novi vhodi: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} preslikava na Googlov {format} in {profanityAction} na AWS maskiranje kletvic, kjer obstaja ekvivalent. Specifikatorji, ki uporabljajo samo Azure ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}), drugi ponudniki ignorirajo.",
+				"azureRelaxed": "Azure vhodi za zahteve ({subscriptionKey}, {endpoint}, {region}) v {actionYml} niso več označeni kot obvezni, zato je mogoče izbrati druge ponudnike — še vedno so preverjeni med izvajanjem, ko je {provider} {azureValue}.",
+				"docs": "Nova stran ponudnikov prevajanja, zavihki ponudnikov na Začetku, izbira ponudnikov na strani Vhodni podatki in osvežena domača stran, ki vodi z Azure, AWS in Googlom."
+			}
 		},
 		"v3": {
 			"labels": {
