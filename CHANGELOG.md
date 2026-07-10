@@ -144,10 +144,168 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   docs lockfiles (`js-yaml`, `@babel/core`, `tar`, `vite`, `esbuild`, `ws`);
   `npm audit` now reports 0 vulnerabilities in both workspaces.
 
-## [2.0.6]
+## [2.2.1] - 2024-01-05
 
-See git history for releases prior to v3.
+### Security
 
-[Unreleased]: https://github.com/IEvangelist/resource-translator/compare/v3.0.0...HEAD
-[3.0.0]: https://github.com/IEvangelist/resource-translator/compare/v2.0.6...v3.0.0
-[2.0.6]: https://github.com/IEvangelist/resource-translator/releases/tag/v2.0.6
+- Dependency maintenance: bumped `axios` (1.4.0 → 1.6.0), `@babel/traverse`,
+  `semver`, and `tough-cookie`/`@azure/ms-rest-js` to clear Dependabot alerts.
+
+## [2.2.0] - 2023-07-05
+
+### Changed
+
+- Maintenance release (dependency and `dist` refresh).
+
+## [2.1.9] - 2023-04-11
+
+### Changed
+
+- Dependency upgrades (including `xml2js` 0.4.23 → 0.5.0) and a refreshed
+  `dist` build.
+
+## [2.1.8] - 2023-01-02
+
+### Security
+
+- Bumped vulnerable dependencies: `follow-redirects`, `node-fetch`,
+  `decode-uri-component`, `minimist`, `ansi-regex`, `jsdom`, `json5`,
+  `minimatch`, and `@actions/core` (1.2.6 → 1.9.1).
+
+## [2.1.7] - 2021-12-09
+
+### Changed
+
+- Use a different delimiter when building the translation map so keys
+  containing the previous separator are handled correctly (#36).
+
+### Fixed
+
+- Fixes #32.
+
+## [2.1.6] - 2021-08-04
+
+### Fixed
+
+- Assorted bug fixes and improved logging.
+
+## [2.1.5] - 2021-07-28
+
+### Fixed
+
+- Fix an issue with file names containing four segments.
+
+## [2.1.4] - 2021-05-20
+
+### Added
+
+- JSON parser and `.json` file support.
+
+### Fixed
+
+- Fix batching bug (#18).
+
+## [2.1.3] - 2021-02-22
+
+### Changed
+
+- Maintenance release.
+
+## [2.1.2] - 2021-02-18
+
+### Fixed
+
+- Fixes #15.
+
+## [2.1.1] - 2020-12-02
+
+### Fixed
+
+- Fix the generated step summary.
+
+## [2.1.0] - 2020-12-01
+
+### Added
+
+- Support for additional resource file formats beyond `.resx`: `.ini`,
+  `.po`, `.restext`, and `.xliff`.
+
+## [2.0.4] - 2020-11-17
+
+### Changed
+
+- Maintenance release.
+
+## [2.0.3] - 2020-11-15
+
+### Fixed
+
+- Fixes a batching bug and other related issues.
+
+## [2.0.2] - 2020-11-12
+
+### Added
+
+- File filtering to limit excessive translations.
+- Batching of the translate API call to avoid rate limiting.
+
+## [2.0.1] - 2020-11-12
+
+### Added
+
+- New action outputs: `has-new-translations`, `summary-title`, and
+  `summary-details`.
+
+### Fixed
+
+- Fix a bug where an `error` was logged but the action failure was not set.
+
+## [2.0.0] - 2020-11-06
+
+### Added
+
+- First official, fully functional and verified release.
+
+## [1.0.1] - 2020-11-05
+
+### Changed
+
+- Build release.
+
+## [1.0.0] - 2020-11-05
+
+### Added
+
+- Initial release of the Azure AI Translator resource action (`.resx`
+  support).
+
+## [0.0.x] - 2020-10-31
+
+### Added
+
+- Initial prototype pre-releases (tags `0.01`–`0.09`).
+
+[Unreleased]: https://github.com/IEvangelist/resource-translator/compare/v3.0.2...HEAD
+[3.0.2]: https://github.com/IEvangelist/resource-translator/compare/v3.0.1...v3.0.2
+[3.0.1]: https://github.com/IEvangelist/resource-translator/compare/v3.0.0...v3.0.1
+[3.0.0]: https://github.com/IEvangelist/resource-translator/compare/v2.2.1...v3.0.0
+[2.2.1]: https://github.com/IEvangelist/resource-translator/compare/v2.2.0...v2.2.1
+[2.2.0]: https://github.com/IEvangelist/resource-translator/compare/v2.1.9...v2.2.0
+[2.1.9]: https://github.com/IEvangelist/resource-translator/compare/v2.1.8...v2.1.9
+[2.1.8]: https://github.com/IEvangelist/resource-translator/compare/v2.1.7...v2.1.8
+[2.1.7]: https://github.com/IEvangelist/resource-translator/compare/v2.1.6...v2.1.7
+[2.1.6]: https://github.com/IEvangelist/resource-translator/compare/v2.1.5...v2.1.6
+[2.1.5]: https://github.com/IEvangelist/resource-translator/compare/v2.1.4...v2.1.5
+[2.1.4]: https://github.com/IEvangelist/resource-translator/compare/v2.1.3...v2.1.4
+[2.1.3]: https://github.com/IEvangelist/resource-translator/compare/v2.1.2...v2.1.3
+[2.1.2]: https://github.com/IEvangelist/resource-translator/compare/v2.1.1...v2.1.2
+[2.1.1]: https://github.com/IEvangelist/resource-translator/compare/v2.1.0...v2.1.1
+[2.1.0]: https://github.com/IEvangelist/resource-translator/compare/v2.0.4...v2.1.0
+[2.0.4]: https://github.com/IEvangelist/resource-translator/compare/v2.0.3...v2.0.4
+[2.0.3]: https://github.com/IEvangelist/resource-translator/compare/v2.0.2...v2.0.3
+[2.0.2]: https://github.com/IEvangelist/resource-translator/compare/v2.0.1...v2.0.2
+[2.0.1]: https://github.com/IEvangelist/resource-translator/compare/v2...v2.0.1
+[2.0.0]: https://github.com/IEvangelist/resource-translator/compare/v1.0.1...v2
+[1.0.1]: https://github.com/IEvangelist/resource-translator/compare/v1...v1.0.1
+[1.0.0]: https://github.com/IEvangelist/resource-translator/compare/0.09...v1
+[0.0.x]: https://github.com/IEvangelist/resource-translator/releases/tag/0.01
