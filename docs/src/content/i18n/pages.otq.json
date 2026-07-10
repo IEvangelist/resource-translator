@@ -390,8 +390,13 @@
 		"lede": "Resumen mar hñets'i za̲ ár nthe̲ ya lanzamientos. Ar registro cambios canónico, autorizado 'bu̲i jar CHANGELOG.md ja ar repositorio.",
 		"fullRecord": "Ga {changelogLink} pa ar registro completo.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Lanzamientos",
+		"fixedLabel": "Fijo:",
+		"releases": {
+			"v302": "{label} Traductor solicita nu'bya {apiVersion} ja ar cable tanto pa {translate} ne {languages}. Ar SDK Azure ho̲ntho honra ar opción ar API — versión a nivel cliente nu'bu̲ bí thogi 'nar credencial; Ar nt'ot'e autentica ya petición a través de encabezados, nja'bu da do opción bí caído silenciosamente ne ya solicitudes ya defecto 'nar previsualización API — versión 'mu̲i contrato {translate} rechazó komongu ko HTTP 400 (código error {code}). Completa ar reparación iniciada jar 3.0.1.",
+			"v301": "{label} komongu petición {translate} nu'bya ge 'nar matriz JSON desnuda xeni Nthuts'i {textItem} en lugar de 'nar nt'ot'e envuelto {inputs}, coincidiendo ko ar contrato REST v3.0. 'Bu̲ ár nt'ot'ise̲ 'me̲hna hingi restauró ya traducciones — consulte 3.0.2."
+		},
 		"v3": {
-			"heading": "V3 (jar nte)",
 			"labels": {
 				"breaking": "JÁR XE̲TI",
 				"resilience": "Resistencia:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} {codeElement} Docs prosa nu'bya gi japu̲'be̲fi ar acento tema cálido yá ámbar — 'na'ño ar paleta acento marca→ utilizada pa enlaces ne encabezados.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Ga 'bede mahä'mu̲ git."
 		}
 	}
 }

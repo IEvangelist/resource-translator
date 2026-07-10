@@ -390,8 +390,13 @@
 		"lede": "출시 요약. 정통적이고 권위 있는 변경 로그는 저장소 CHANGELOG.md 에 저장되어 있습니다.",
 		"fullRecord": "전체 기록은 {changelogLink} 참조.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "발매",
+		"fixedLabel": "수정:",
+		"releases": {
+			"v302": "{label} 번역기 요청은 이제 {translate}와 {languages} 모두에 대해 {apiVersion} 핀을 선에 붙입니다. Azure SDK는 자격 증명이 전달될 때만 클라이언트 수준의 API 버전 옵션을 존중합니다; 이 동작은 헤더를 통해 요청별로 인증하기 때문에 해당 옵션은 조용히 폐기되었고, 요청은 기본적으로 HTTP 400(오류 코드 {code})으로 본문을 거부하는 {translate} API 버전으로 전환되었습니다. 3.0.1에서 시작된 수정을 완료했습니다.",
+			"v301": "{label} {translate} 요청 본문은 이제 랩된 {inputs} 객체 대신 {textItem} 항목으로 이루어진 단순한 JSON 배열이 되었으며, 이는 v3.0 REST 계약과 일치합니다. 이 자체로는 번역을 복원하지 못했습니다 — 3.0.2 참조."
+		},
 		"v3": {
-			"heading": "V3 (개발 중)",
 			"labels": {
 				"breaking": "브레이크",
 				"resilience": "회복력:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs 산문 {codeElement} 이제 링크와 제목에 사용되는 브랜드 악센트와 구별되는 따뜻하고 호박색 테마 → 어센트를 사용합니다.",
 				"automation": "Dependabot 자동 병합, CodeQL 스캔, CI 매트릭스."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "git 역사를 참고하세요."
 		}
 	}
 }

@@ -390,8 +390,13 @@
 		"lede": "Wysokorjadne zjimanje wozjewjenjow. Kanoniski, awtoritatiwny changelog bydli w CHANGELOG.md w składźe.",
 		"fullRecord": "Hlej {changelogLink} za dospołny zapis.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Wozjewjenja",
+		"fixedLabel": "Naprawjene:",
+		"releases": {
+			"v302": "{label} Přełožowar prosy nětko {apiVersion} na grót za {translate} a {languages} přityknyć. Azure SDK respektuje opciju API wersije na klientskim poziomie jenož potom, hdyž so přidawanske informacije schwala; Akcija awtentifikuje so na naprašowanje přez hłowowe smužki, tak zo bu tuta opcija bjez zwuka wotsadźena a naprašowanja su po standardźe na Preview API-wersiju, kotrejež {translate} zrěčenje ćěło z HTTP 400 (zmylkowy kod {code}) wotpokazało. Dokónči w 3.0.1 započatu naprawu.",
+			"v301": "{label} Ćěło {translate} naprašowanja je nětko nahi JSON-array z {textItem} artiklemi město zawaleneho {inputs} objekta, kiž wotpowěduje REST-zrěčenju v3.0. Sam wot so njeje to přełožki restawrowało – hlej 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (we wuwiću)",
 			"labels": {
 				"breaking": "ŁAMANJE",
 				"resilience": "Resilienca:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} docs proza {codeElement} nosy mjeztym ćopły/jantarowy akcent – rozeznawacy so wot marko→akcentoweje palety, kotraž so za wójmiznama a nadpisma wužiwa.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Hlej stawizny gita."
 		}
 	}
 }

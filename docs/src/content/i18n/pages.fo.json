@@ -390,8 +390,13 @@
 		"lede": "Yvirlit yvir útgávur á hægsta stigi. Tann kanoniska, álítandi broytingarloggurin livir í CHANGELOG.md í goymsluni.",
 		"fullRecord": "Sí {changelogLink} fyri fulla skráseting.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Útgávur",
+		"fixedLabel": "Rættað:",
+		"releases": {
+			"v302": "{label} umsetaraumbønir festa nú {apiVersion} á vírinum fyri bæði {translate} og {languages}. Azure SDK virðir bert client-level api-útgávu valmøguleikan, tá ein legitimatión verður givin; Gerðin autentiserar hvørja fyrispurning við høvuðunum, so tann møguleikin varð stillisliga sleptur og fyrispurningar sjálvvirkandi til eina forsmaks-API-útgávu, har {translate} sáttmálin avvísti kroppin við HTTP 400 (feilkoda {code}). Ger liðugt, rættingin byrjaði í 3.0.1.",
+			"v301": "{label} {translate} request-kroppurin er nú ein berur JSON-array av {textItem} lutum í staðin fyri eitt wrapped {inputs} objekt, sum samsvarar við v3.0 REST-sáttmálan. Av sær sjálvum endurvísti hetta ikki týðingarnar — sí 3.0.2."
+		},
 		"v3": {
-			"heading": "V3 (í menning)",
 			"labels": {
 				"breaking": "BROT",
 				"resilience": "Styrki:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs prosa {codeElement} nú við heitum/amber tema-aksenti — øðrvísi enn brand→accent-palettin, sum verður brúkt til leinkjur og yvirskriftir.",
 				"automation": "Dependabot auto-merge, CodeQL-skanning, CI-matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Sí git-søgu."
 		}
 	}
 }

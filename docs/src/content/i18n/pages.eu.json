@@ -390,8 +390,13 @@
 		"lede": "Argitalpenen laburpen goi-mailakoa. Aldaketa-log kanoniko eta autoritarioa CHANGELOG.md gordailuan.",
 		"fullRecord": "Ikusi {changelogLink} osoa ikusteko.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Argitalpenak",
+		"fixedLabel": "Konpondua:",
+		"releases": {
+			"v302": "{label} Itzultzailearen eskaerak orain {apiVersion} jarri {translate} eta {languages}. Azure SDK-ak bezero mailako api-bertsio aukera soilik onartzen du ziurtagiri bat pasatzen denean; ekintzak eskaera bakoitza goiburuen bidez autentikatzen du, beraz, aukera hori isilpean baztertu zen eta eskaerak API bertsio batera pasatzen ziren, non {translate} kontratuak HTTP 400 (errore kodea {code}) gorputza baztertu zuen. 3.0.1ean hasi zen konponbidea osatzen du.",
+			"v301": "{label} {translate} eskaeraren gorputza orain JSON array huts bat da, {textItem} elementu bildu ordez, {inputs} objektu bildu baten ordez, v3.0 REST kontratuarekin bat datorrena. Honek bakarrik ez zuen itzulpenak berreskuratzen — ikus 3.0.2."
+		},
 		"v3": {
-			"heading": "V3 (garapenean)",
 			"labels": {
 				"breaking": "BREAK-A",
 				"resilience": "Erresilientzia:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} dokumentalen prosa {codeElement} orain gai bero/ambar koloreko azentua daramatza — esteka eta izenburuetarako erabiltzen den marka→azentuaren paletatik bereizita.",
 				"automation": "Dependentabot auto-merge, CodeQL eskaneatzea, CI matrizea."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Ikusi git historia."
 		}
 	}
 }

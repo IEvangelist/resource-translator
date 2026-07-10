@@ -390,8 +390,13 @@
 		"lede": "Resumo geral dos lançamentos. O changelog canónico e autoritativo vive em CHANGELOG.md no repositório.",
 		"fullRecord": "Veja {changelogLink} para o registo completo.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Lançamentos",
+		"fixedLabel": "Corrigido:",
+		"releases": {
+			"v302": "{label} Solicitações do tradutor agora colocam {apiVersion} na linha tanto para {translate} como para {languages}. O Azure SDK só honra a opção de versão da API ao nível do cliente quando uma credencial é passada; a ação autentica-se por pedido através de cabeçalhos, pelo que essa opção foi silenciosamente abandonada e os pedidos passaram por defeito a uma versão API de pré-visualização cujo contrato de {translate} rejeitou o corpo com HTTP 400 (código de erro {code}). Conclui a correção iniciada na 3.0.1.",
+			"v301": "{label} O corpo do pedido {translate} é agora um array JSON nu de itens {textItem} em vez de um objeto {inputs} wrapped, correspondendo ao contrato REST v3.0. Por si só, isto não restaurava as traduções — ver 3.0.2."
+		},
 		"v3": {
-			"heading": "V3 (em desenvolvimento)",
 			"labels": {
 				"breaking": "BREAKING",
 				"resilience": "Resiliência:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} prosa documental {codeElement} agora usa o tema quente/âmbar — distinto da paleta → marcassotaque usada para links e títulos.",
 				"automation": "Fusão automática Dependabot, varredura CodeQL, matriz CI."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Vê o histórico git."
 		}
 	}
 }

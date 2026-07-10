@@ -390,8 +390,13 @@
 		"lede": "Zespominanje wudaśow na wusokem niwowowem niwowje. Kanoniski, awtoritatiwny protokol změnow bydli w CHANGELOG.md w składowem kašćiku.",
 		"fullRecord": "Glej {changelogLink} za dopołny rekord.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Wózjawjenja",
+		"fixedLabel": "Póstajone:",
+		"releases": {
+			"v302": "{label} pśełožowarje pšosy něnto pśityknuś {apiVersion} na drośe za {translate} a {languages}. Azure SDK gódnośi api-wersijowu opciju na klientowem nivou jano potom, gaž se pśidawanje pśidawa; Akcija se na napšašowanje pśez głowowe smužki awentifikěrujo, tak až jo se toś ta opcija bźez zuka wótpołožyła a napšašowanje jo pó standardźe na wersiju API Preview zachyśiło, kótarejež {translate} dojadnanje jo śěło z HTTP 400 (zmólkowy kod {code}). Dokóńcyjo pórěźenje, kótarež jo se w 3.0.1 zachopiło.",
+			"v301": "{label} Śěło {translate} napšašowanja jo něnto nagi JSON-array {textItem} elementow město zapakowanego {inputs} objekta, kótaryž wótpowědujo REST-dogronoju v3.0. Wót samego njejo to pśełožki wótnowiło – glej 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (we wuwiśu)",
 			"labels": {
 				"breaking": "ŁAMOWANJE",
 				"resilience": "Resilience:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} docs proza {codeElement} nosy něnto śopły / jantarowy akcent – rozeznawajucy se wót markowej→akcentoweje palety, kótaraž se za linki a nadpisma wužywa.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Glědaj na git-historiju."
 		}
 	}
 }

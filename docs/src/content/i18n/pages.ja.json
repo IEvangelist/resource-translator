@@ -390,8 +390,13 @@
 		"lede": "リリースの概要。正統で権威ある変更ログはリポジトリの CHANGELOG.md に存在します。",
 		"fullRecord": "全文は{changelogLink}を参照してください。",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "リリース",
+		"fixedLabel": "修正:",
+		"releases": {
+			"v302": "{label}トランスレーターのリクエストは、{translate}と{languages}の両方の線に{apiVersion}ピンで固定されます。Azure SDKは認証情報が渡された場合にのみクライアントレベルのAPIバージョンオプションを尊重します。アクションはリクエストごとにヘッダーで認証されるため、そのオプションは静かに削除され、リクエストはプレビューAPIバージョンにデフォルト化され、{translate}契約がHTTP 400(エラーコード{code})でボディを拒否しました。3.0.1から始まった修正を完了します。",
+			"v301": "{label} {translate}リクエストボディは、ラップされた{inputs}オブジェクトではなく、v3.0 REST コントラクトに準拠した{textItem}アイテムの素きJSON配列になっています。これだけでは翻訳を復元するものではありません — 3.0.2を参照してください。"
+		},
 		"v3": {
-			"heading": "v3(開発中)",
 			"labels": {
 				"breaking": "ブレイキング",
 				"resilience": "レジリエンス:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docsの散文{codeElement}現在は暖色系/アンバー色のアクセントを採用しており、リンクや見出しに使われるブランドアクセントとは異なるもの→。",
 				"automation": "Dependabotの自動マージ、CodeQLスキャン、CIマトリックス。"
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "gitの履歴を参照してください。"
 		}
 	}
 }

@@ -390,8 +390,13 @@
 		"lede": "Cov ntsiab lus qib siab ntawm kev tso tawm. Lub canonical, authoritative changelog nyob rau hauv CHANGELOG.md nyob rau hauv lub repository.",
 		"fullRecord": "Saib {changelogLink} rau tag nrho cov ntaub ntawv.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Tso tawm",
+		"fixedLabel": "Tsau:",
+		"releases": {
+			"v302": "{label} Tus neeg txhais lus thov tam sim no pin {apiVersion} rau ntawm cov xov hlau rau ob qho tib si {translate} thiab {languages}. Azure SDK tsuas yog hwm tus neeg siv khoom qib api-version kev xaiv thaum daim ntawv pov thawj dhau los; qhov kev txiav txim siab authenticates ib qho kev thov los ntawm cov headers, yog li qhov kev xaiv ntawd tau poob ntsiag to thiab thov defaulted rau kev saib ua ntej API-version uas nws daim ntawv cog lus {translate} tsis lees txais lub cev nrog HTTP 400 (yuam kev code {code}). Ua kom tiav qhov kho pib hauv 3.0.1.",
+			"v301": "{label} Lub {translate} thov lub cev tam sim no yog ib tug liab qab JSON array ntawm {textItem} khoom es tsis txhob qhwv {inputs} khoom, phim v3.0 REST daim ntawv cog lus. Ntawm nws tus kheej qhov no tsis tau rov qab txhais lus — saib 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (nyob rau hauv txoj kev loj hlob)",
 			"labels": {
 				"breaking": "TAWG",
 				"resilience": "Kev ua siab ntev:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} docs prose {codeElement} tam sim no hnav lub sov / amber ntsiab lus accent — txawv los ntawm lub hom→accent palette siv rau kev sib txuas thiab cov ntsiab lus.",
 				"automation": "Dependabot pib-merge, CodeQL luam theej duab, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Saib git keeb kwm."
 		}
 	}
 }

@@ -390,8 +390,13 @@
 		"lede": "發布的高層次摘要。正統且權威的變更日誌存放在倉庫 CHANGELOG.md 中。",
 		"fullRecord": "完整紀錄請參見{changelogLink}。",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "發行作品",
+		"fixedLabel": "修正：",
+		"releases": {
+			"v302": "{label}轉播器請求現在會同時在線路上{translate}和{languages}都用 {apiVersion} 針腳。Azure SDK 只有在傳遞憑證時才會尊重用戶端層級的 API 版本選項;該動作透過標頭為每個請求進行認證，因此該選項被悄悄放棄，請求預設為預覽版 API 版本，該 {translate} 契約以 HTTP 400（錯誤代碼 {code}）拒絕了該正文。完成了從 3.0.1 開始的修正。",
+			"v301": "{label} {translate}請求主體現在是一個裸 JSON 陣列，包含 {textItem} 項目，而非一個包裹的 {inputs} 物件，與 v3.0 REST 合約相符。單獨此功能無法恢復翻譯——詳見 3.0.2。"
+		},
 		"v3": {
-			"heading": "V3（開發中）",
 			"labels": {
 				"breaking": "破碎",
 				"resilience": "韌性：",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs 的散文{codeElement}現在採用溫暖/琥珀色主題的強調——與品牌→用於連結和標題的口音調色不同。",
 				"automation": "Dependabot 自動合併、CodeQL 掃描、CI 矩陣。"
 			}
-		},
-		"v2": {
-			"heading": "v2.x 版本",
-			"gitHistory": "請參考 git 歷史。"
 		}
 	}
 }

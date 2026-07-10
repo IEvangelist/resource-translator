@@ -390,8 +390,13 @@
 		"lede": "Julkaisujen yleiskatsaus. Kanoninen, auktoritatiivinen muutosloki elää CHANGELOG.md arkistossa.",
 		"fullRecord": "Katso {changelogLink} saadaksesi koko pöytäkirjan.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Julkaisut",
+		"fixedLabel": "Korjattu:",
+		"releases": {
+			"v302": "{label} Translator-pyynnöt kiinnittävät nyt {apiVersion} johtoon sekä {translate} että {languages}. Azure SDK hyväksyy asiakastason API-version vaihtoehdon vain, kun tunniste on siirretty; toiminto autentikoituu per pyyntö otsikoiden kautta, joten tämä vaihtoehto hylättiin hiljaisesti ja pyynnöt siirtyivät oletusarvoisesti esikatselu-API-versioon, jonka {translate}-sopimus hylkäsi HTTP 400:n rungon (virhekoodi {code}). Viimeistelee korjauksen, joka alkoi versiossa 3.0.1.",
+			"v301": "{label} {translate}-pyyntörunko on nyt pelkkä JSON-taulukko, jossa on {textItem} alkioita, eikä käärettyjä {inputs}-objekteja, jotka vastaavat v3.0 REST-sopimusta. Yksinään tämä ei palauttanut käännöksiä — katso 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (kehitteillä oleva)",
 			"labels": {
 				"breaking": "RIKKOMINEN",
 				"resilience": "Resilienssi:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs Prose {codeElement} käyttää nyt lämpimän/meripihkan väristä teemaa — eroaa linkkien ja otsikoiden brändi→aksenttipaletista.",
 				"automation": "Dependabot automaattinen yhdistäminen, CodeQL-skannaus, CI-matriisi."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Katso git-historia."
 		}
 	}
 }

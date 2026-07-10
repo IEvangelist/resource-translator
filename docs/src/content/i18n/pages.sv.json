@@ -390,8 +390,13 @@
 		"lede": "Sammanfattning av utgåvor på hög nivå. Den kanoniska, auktoritativa ändringsloggen finns i CHANGELOG.md i arkivet.",
 		"fullRecord": "Se {changelogLink} för hela protokollet.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Utgåvor",
+		"fixedLabel": "Åtgärdat:",
+		"releases": {
+			"v302": "{label} Translator-förfrågningar fäster nu {apiVersion} på tråden för både {translate} och {languages}. Azure SDK hedrar endast klientnivå-API-versionen när en legitimation har skickats; åtgärden autentiseras per förfrågan via headers, så det alternativet togs tyst bort och förfrågningarna gick till en förhandsgransknings-API-version vars {translate} kontrakt avvisade kroppen med HTTP 400 (felkod {code}). Slutför, fixen startade i 3.0.1.",
+			"v301": "{label} Den {translate} begäranska kroppen är nu en ren JSON-array av {textItem} objekt istället för ett wrapped {inputs} objekt, vilket matchar v3.0 REST-kontraktet. På egen hand återställde detta inte översättningarna — se 3.0.2."
+		},
 		"v3": {
-			"heading": "V3 (under utveckling)",
 			"labels": {
 				"breaking": "BRYTNING",
 				"resilience": "Motståndskraft:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} docs {codeElement} prosa bär nu den varma/bärnstensfärgade accenten – skild från varumärkes→accentpaletten som används för länkar och rubriker.",
 				"automation": "Dependabot auto-merge, CodeQL-skanning, CI-matris."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Se git-historik."
 		}
 	}
 }

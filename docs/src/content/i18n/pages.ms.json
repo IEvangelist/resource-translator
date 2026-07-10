@@ -390,8 +390,13 @@
 		"lede": "Ringkasan keluaran peringkat tinggi. Log perubahan kanonik dan berwibawa tinggal di CHANGELOG.md dalam repositori.",
 		"fullRecord": "Lihat {changelogLink} untuk rekod penuh.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Keluaran",
+		"fixedLabel": "Diperbaiki:",
+		"releases": {
+			"v302": "{label} Permintaan penterjemah kini menyematkan {apiVersion} pada wayar untuk kedua-dua {translate} dan {languages}. Azure SDK hanya menghormati opsyen versi api peringkat klien apabila kelayakan diluluskan; tindakan mengesahkan setiap permintaan melalui pengepala, jadi pilihan itu digugurkan secara senyap dan permintaan lalai kepada versi API pratonton yang kontrak {translate} menolak badan dengan HTTP 400 (kod ralat {code}). Melengkapkan pembetulan bermula pada 3.0.1.",
+			"v301": "{label} Isi permintaan {translate} kini merupakan tatasusunan JSON kosong item {textItem} dan bukannya objek {inputs} yang dibungkus, sepadan dengan kontrak REST v3.0. Dengan sendirinya ini tidak memulihkan terjemahan — lihat 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (dalam pembangunan)",
 			"labels": {
 				"breaking": "PEMECAHAN",
 				"resilience": "Ketahanan:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} {codeElement} prosa dokumen kini memakai aksen tema hangat/ambar — berbeza daripada palet loghat →jenama yang digunakan untuk pautan dan tajuk.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Lihat sejarah git."
 		}
 	}
 }

@@ -390,8 +390,13 @@
 		"lede": "Kakaretso e phahameng ea litokomane. Phetoho ea canonical, e nang le matla e lula CHANGELOG.md polokelong.",
 		"fullRecord": "Sheba {changelogLink} bakeng sa rekoto e felletseng.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Ho lokolloa",
+		"fixedLabel": "E tsitsitse:",
+		"releases": {
+			"v302": "{label} Likopo tsa mofetoleli joale li beha {apiVersion} ka terata bakeng sa {translate} le {languages}. Azure SDK e hlompha feela khetho ea mofuta oa API ea boemo ba moreki ha netefatso e fetisoa; ketso e netefatsa kopo ka lihlooho, ka hona khetho eo e ile ea lahloa ka khutso mme likopo li ile tsa fetoloa ho mofuta oa API oa ponelopele oo konteraka ea {translate} e hanneng 'mele ka HTTP 400 (khoutu ea phoso {code}). Ka mor'a moo, tokiso e qalile ho 3.0.1.",
+			"v301": "{label} 'Mele oa kopo ea {translate} joale ke JSON e se nang letho ea lintho tse {textItem} ho fapana le ntho ea {inputs} e phuthetsoeng, e lumellanang le konteraka ea v3.0 REST. Ka boeona sena ha sea ka sa khutlisa liphetolelo — bona 3.0.2."
+		},
 		"v3": {
-			"heading": "V3 (Ho Ho Ho)",
 			"labels": {
 				"breaking": "HO ROBEHA",
 				"resilience": "Mamello:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs prose {codeElement} hona joale e roala sehlooho se futhumetseng / sa amber — se fapaneng le palette ea brand→accent e sebelisetsoang lihokela le lihlooho.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "See git history."
 		}
 	}
 }

@@ -390,8 +390,13 @@
 		"lede": "Mataas na antas ng buod ng mga release. Ang kanonikal, makapangyarihang changelog ay nakatira sa CHANGELOG.md sa repositoryo.",
 		"fullRecord": "Tingnan {changelogLink} para sa buong talaan.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Mga Paglabas",
+		"fixedLabel": "Naayos:",
+		"releases": {
+			"v302": "{label} Ang mga kahilingan sa tagasalin ay i-pin na ngayon ang {apiVersion} sa wire para sa parehong {translate} at {languages}. Iginagalang lamang ng Azure SDK ang pagpipilian sa bersyon ng API sa antas ng kliyente kapag ipinasa ang isang kredensyal; ang pagkilos ay nagpapatunay sa bawat kahilingan sa pamamagitan ng mga header, kaya ang pagpipiliang iyon ay tahimik na nahulog at ang mga kahilingan ay default sa isang bersyon ng preview API na ang kontrata ng {translate} ay tinanggihan ang katawan gamit ang HTTP 400 (error code {code}). Kumpletuhin ang pag-aayos na nagsimula sa 3.0.1.",
+			"v301": "{label} Ang katawan ng kahilingan sa {translate} ay isang hubad na JSON array ng mga item ng {textItem} sa halip na isang nakabalot na {inputs} na bagay, na tumutugma sa v3.0 REST kontrata. Sa sarili nitong hindi nito naibalik ang mga pagsasalin - tingnan ang 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (sa pag-unlad)",
 			"labels": {
 				"breaking": "PAGLABAG",
 				"resilience": "Katatagan:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} docs prose {codeElement} ngayon ay nagsusuot ng mainit-init / amber na accent ng tema - naiiba mula sa palette ng brand→accent na ginagamit para sa mga link at heading.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Tingnan ang kasaysayan ng git."
 		}
 	}
 }

@@ -390,8 +390,13 @@
 		"lede": "Achoimre ardleibhéil ar eisiúintí. Tá an changelog canónach, údarásach ina chónaí i CHANGELOG.md sa stór.",
 		"fullRecord": "Féach {changelogLink} don taifead iomlán.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Eisiúintí",
+		"fixedLabel": "Seasta:",
+		"releases": {
+			"v302": "{label} Translator requests now pin {apiVersion} on the wire for both {translate} and {languages}. Ní thugann an Azure SDK onóir don rogha api-leagan ar leibhéal an chliaint ach amháin nuair a ritheann dintiúr; Fíordheimhníonn an gníomh in aghaidh an iarratais trí cheanntásca, ionas gur scaoileadh an rogha sin go ciúin agus réamhshocraíodh iarratais ar leagan API réamhamhairc a dhiúltaigh a chonradh {translate} an corp le HTTP 400 (cód earráide {code}). Críochnaíonn an socrú a thosaigh i 3.0.1.",
+			"v301": "{label} Is é an comhlacht iarratais {translate} sraith JSON lom de {textItem} míreanna anois seachas réad {inputs} fillte, a mheaitseálann leis an gconradh v3.0 REST. Níor chuir sé seo aistriúcháin ar ais leis féin — féach 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (á fhorbairt)",
 			"labels": {
 				"breaking": "BRISEADH",
 				"resilience": "Athléimneacht:",
@@ -421,10 +426,6 @@
 				"inlineCode": "Caitheann {label} docs prose {codeElement} an accent téama te / ómra anois - difriúil ón bpailéad branda→accent a úsáidtear le haghaidh naisc agus ceannteidil.",
 				"automation": "Cumaisc uathoibríoch Dependabot, scanadh CodeQL, maitrís CI."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Féach stair git."
 		}
 	}
 }

@@ -390,8 +390,13 @@
 		"lede": "Përmbledhje e nivelit të lartë të lëshimeve. Ndryshimi kanonik, autoritar jeton në CHANGELOG.md në depo.",
 		"fullRecord": "Shih {changelogLink} për të dhënat e plota.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Lëshimet",
+		"fixedLabel": "Rregulluar:",
+		"releases": {
+			"v302": "{label} Kërkesat e përkthyesit tani vendosni {apiVersion} në tel si për {translate} ashtu edhe për {languages}. Azure SDK respekton opsionin e versionit të api-së në nivel klienti vetëm kur kalohet një kredencial; Veprimi vërtetohet për kërkesë përmes titujve, kështu që opsioni u hoq në heshtje dhe kërkesat u paralajmëruan në një version API paraprak, kontrata e {translate} e të cilit refuzoi trupin me HTTP 400 (kodi i gabimit {code}). Përfundon rregullimin e filluar në 3.0.1.",
+			"v301": "{label} Trupi i kërkesës {translate} tani është një grup i zhveshur JSON i artikujve të {textItem} në vend të një objekti {inputs} të mbështjellë, që përputhet me kontratën v3.0 REST. Më vete kjo nuk i riktheu përkthimet — shih 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (në zhvillim)",
 			"labels": {
 				"breaking": "THYERJA",
 				"resilience": "Elasticiteti:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs Prose {codeElement} tani mban theksin e temës së ngrohtë/qelibar - të dallueshme nga paleta e markës→theksit të përdorur për lidhjet dhe titujt.",
 				"automation": "Bashkimi automatik i Dependabot, skanimi CodeQL, matrica CI."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Shihni historinë e git."
 		}
 	}
 }

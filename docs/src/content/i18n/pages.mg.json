@@ -390,8 +390,13 @@
 		"lede": "Famintinana avo lenta momba ny famotsorana Ny changelog kanonika sy manam-pahefana dia miaina ao amin'ny CHANGELOG.md ao amin'ny repository.",
 		"fullRecord": "Jereo {changelogLink} ho an'ny firaketana feno.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Famoahana",
+		"fixedLabel": "Namboarina:",
+		"releases": {
+			"v302": "{label} Ny fangatahan'ny mpandika teny dia mametaka {apiVersion} amin'ny tariby ho an'ny {translate} sy ny {languages}. Ny Azure SDK dia manome voninahitra ny safidin'ny API amin'ny sehatry ny mpanjifa rehefa mandalo ny fahazoan-dàlana; ny hetsika dia manamarina isaky ny fangatahana amin'ny alàlan'ny lohateny, noho izany dia nalatsaka mangina io safidy io ary ny fangatahana dia nalefa tamin'ny kinova API {translate} preview izay nandà ny vatana tamin'ny HTTP 400 (code error {code}). Vita ny fanitsiana natomboka tamin'ny 3.0.1.",
+			"v301": "{label} Ny vatan'ny fangatahana {translate} dia JSON miboridana amin'ny singa {textItem} fa tsy zavatra {inputs} fonosana, mifanaraka amin'ny fifanarahana v3.0 REST. Tsy namerina ny fandikan-teny izany - jereo ny 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (eo am-pampandrosoana)",
 			"labels": {
 				"breaking": "MANAPAKA",
 				"resilience": "Faharetana:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs prose {codeElement} ankehitriny dia mitafy ny lantom-peo mafana / amber - miavaka amin'ny paleta marika ampiasaina amin→'ny rohy sy lohateny.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Jereo ny tantaran'ny git."
 		}
 	}
 }

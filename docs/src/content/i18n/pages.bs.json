@@ -390,8 +390,13 @@
 		"lede": "Sažetak izdanja na visokom nivou. Kanonski, autoritativni changelog živi u CHANGELOG.md u repozitoriju.",
 		"fullRecord": "Pogledajte {changelogLink} za kompletan zapis.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Izdanja",
+		"fixedLabel": "Popravljeno:",
+		"releases": {
+			"v302": "{label} Zahtjevi prevodioca sada zakače {apiVersion} na žicu za {translate} i {languages}. Azure SDK poštuje opciju API-verzije na klijentskom nivou samo kada se prenese vjerodajnica; Akcija se autentifikuje po zahtjevu putem zaglavlja, pa je ta opcija tiho odbačena i zahtjevi su se podrazumijevano prebacivali na preview API verziju čiji {translate} ugovor odbija tijelo sa HTTP 400 (kod greške {code}). Završava popravku započetu u verziji 3.0.1.",
+			"v301": "{label} Tijelo zahtjeva {translate} sada je goli JSON niz od {textItem} stavki umjesto zamotanog {inputs} objekta, što odgovara v3.0 REST ugovoru. Samo po sebi ovo nije obnovilo prevode — vidi 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (u razvoju)",
 			"labels": {
 				"breaking": "RAZBIJANJE",
 				"resilience": "Otpornost:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} dokumentarna proza {codeElement} sada nosi topli/jantarni akcent — različit od palete brendova→akcenta koja se koristi za linkove i naslove.",
 				"automation": "Dependabot automatsko spajanje, CodeQL skeniranje, CI matrica."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Pogledaj git historiju."
 		}
 	}
 }

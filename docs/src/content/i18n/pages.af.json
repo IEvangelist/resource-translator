@@ -390,8 +390,13 @@
 		"lede": "Hoëvlak-opsomming van vrystellings. Die kanonieke, gesaghebbende veranderingslogboek leef in CHANGELOG.md in die bewaarplek.",
 		"fullRecord": "Sien {changelogLink} vir die volledige rekord.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Vrystellings",
+		"fixedLabel": "Reggemaak:",
+		"releases": {
+			"v302": "{label} Vertalerversoeke pen nou {apiVersion} op die draad vir beide {translate} en {languages}. Die Azure SDK eer slegs die kliëntvlak api-weergawe-opsie wanneer 'n geloofsbewys deurgegee word; die aksie verifieer per versoek via opskrifte, so daardie opsie is stilweg laat vaar en versoeke het standaard na 'n voorskou-API-weergawe gegaan waarvan die {translate} kontrak die liggaam met HTTP 400 (foutkode {code}) verwerp het. Voltooi die regstelling wat in 3.0.1 begin is.",
+			"v301": "{label} Die {translate} versoekliggaam is nou 'n kaal JSON-skikking van {textItem} items in plaas van 'n toegedraaide {inputs} objek, wat ooreenstem met die v3.0 REST-kontrak. Op sigself het dit nie vertalings herstel nie — sien 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (in ontwikkeling)",
 			"labels": {
 				"breaking": "BREEK",
 				"resilience": "Veerkragtigheid:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} docs prosa dra nou {codeElement} die warm/amber tema aksent — onderskeibaar van die handelsmerk→aksentpalet wat vir skakels en opskrifte gebruik word.",
 				"automation": "Dependabot outomatiese samevoeging, CodeQL-skandering, CI-matriks."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Sien git-geskiedenis."
 		}
 	}
 }

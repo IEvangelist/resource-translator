@@ -390,8 +390,13 @@
 		"lede": "Fakamatala fakanounou maʻolunga ʻo e ngaahi tukuange. ʻOku nofo ʻa e changelog ʻi he CHANGELOG.md ʻi he tauhiʻanga koloa.",
 		"fullRecord": "Vakai ki he {changelogLink} ki he lekooti kakato.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Tukuange",
+		"fixedLabel": "Fakaleleiʻi:",
+		"releases": {
+			"v302": "{label} ʻOku fakapipiki ʻe he ngaahi kole ʻa e Translator he taimi ni ʻa e {apiVersion} ʻi he uaea ki he {translate} mo e {languages} fakatouʻosi. ʻOku toki fakaʻapaʻapaʻi pe ʻe he Azure SDK ʻa e fili ʻo e api-version ʻi he taimi ʻoku paasi ai ha tohi fakamoʻoni; ʻoku fakamoʻoniʻi ʻe he ngaue ʻa e kole ʻo fakafou ʻi he headers, ko ia naʻe tukuange fakalongolongo ʻa e fili ko ia pea default ʻa e ngaahi kole ki ha preview API-version {translate}ʻa ia naʻe fakafisingaʻi ʻe he aleapau ʻa e sino ʻaki ʻa e HTTP 400 (error code {code}). Fakakakato ʻa e fakaleleiʻi naʻe kamata ʻi he 3.0.1.",
+			"v301": "{label} Ko e sino ʻo e kole ʻa e {translate} ʻoku hoko ia he taimi ni ko ha fokotuʻutuʻu JSON ʻo e ngaahi meʻa ʻe {textItem} kae ʻikai ko ha meʻa ʻoku {inputs} kofukofuʻi, ʻo tatau mo e aleapau v3.0 REST. Naʻe ʻikai ke toe fakafoki mai ʻe he meʻa ni ʻiate ia pe ʻa e ngaahi liliu — vakai ki he 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (ʻi he fakalakalaka)",
 			"labels": {
 				"breaking": "MAUMAUʻI",
 				"resilience": "Vilitaki:",
@@ -421,10 +426,6 @@
 				"inlineCode": "ʻ{label} {codeElement} ʻoku ne tui he taimi ni ʻa e accent ʻo e kaveinga mafana/ʻamipa — kehe mei he palette ʻo e brand→accent ʻoku fakaʻaongaʻi ki he ngaahi fehokotakiʻanga mo e ngaahi ʻuluʻi tohi.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Vakai ki he git history."
 		}
 	}
 }

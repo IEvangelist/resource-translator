@@ -390,8 +390,13 @@
 		"lede": "Podsumowanie wydawnictwa na wysokim poziomie. Kanoniczny, autorytatywny changelog znajduje się w CHANGELOG.md w repozytorium.",
 		"fullRecord": "Zobacz {changelogLink} pełny dokument.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Wydania",
+		"fixedLabel": "Naprawione:",
+		"releases": {
+			"v302": "{label} Translator prosi teraz przypięć {apiVersion} na przewód zarówno dla {translate}, jak i {languages}. Azure SDK respektuje opcję wersji API na poziomie klienta tylko wtedy, gdy dane uwierzytelniające zostaną przekazane; Akcja uwierzytelnia się na każde żądanie za pomocą nagłówków, więc ta opcja została cicho usunięta, a żądania domyślnie przechodziły do wersji API podglądowej, której {translate} kontrakt odrzucił treść z HTTP 400 (kod błędu {code}). Kończy poprawkę rozpoczętą w 3.0.1.",
+			"v301": "{label} Ciało żądań {translate} to teraz czysta tablica JSON {textItem} elementów zamiast opakowanego obiektu {inputs}, odpowiadająca kontraktowi REST z wersji 3.0. Samo w sobie nie przywróciło to tłumaczeń — zobacz 3.0.2."
+		},
 		"v3": {
-			"heading": "V3 (w fazie rozwoju)",
 			"labels": {
 				"breaking": "ŁAMANIE",
 				"resilience": "Odporność:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} proza {codeElement} dokumentów nosi teraz akcent ciepły/bursztynowy — odróżniający się od palety mark→akcent używanej do linków i nagłówków.",
 				"automation": "Auto-merge dependabot, skanowanie CodeQL, macierz CI."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Zobacz historię gita."
 		}
 	}
 }

@@ -390,8 +390,13 @@
 		"lede": "Povzetek izpustitev na visoki ravni. Kanonični, avtoritativni dnevnik sprememb živi v CHANGELOG.md v repozitoriju.",
 		"fullRecord": "Za celoten zapis glejte {changelogLink}.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Izdaje",
+		"fixedLabel": "Popravljeno:",
+		"releases": {
+			"v302": "{label} Prevajalci zdaj zahtevajo {apiVersion} na žico tako za {translate} kot {languages}. Azure SDK upošteva možnost API različice na ravni odjemalca le, ko je poverilnica prenesena; Dejanje se avtentikira za vsako zahtevo preko glav, zato je bila ta možnost tiho opuščena in zahteve so bile privzeto preklopljene na predogledno API-različico, katere {translate} pogodba je zavrnila telo s HTTP 400 (koda napake {code}). Dokonča popravek, ki se je začel v 3.0.1.",
+			"v301": "{label} Telo zahteve {translate} je zdaj gola JSON polje {textItem} elementov namesto ovitega {inputs} objekta, kar ustreza pogodbi v3.0 REST. Samo po sebi to ni obnovilo prevodov — glej 3.0.2."
+		},
 		"v3": {
-			"heading": "V3 (v razvoju)",
 			"labels": {
 				"breaking": "PRELOM",
 				"resilience": "Odpornost:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} dokumentarna proza {codeElement} zdaj nosi topel/jantarni poudarek — drugačen od palete znamk→naglas, ki se uporablja za povezave in naslove.",
 				"automation": "Dependabot samodejno združevanje, CodeQL skeniranje, CI matrika."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Glej zgodovino gita."
 		}
 	}
 }

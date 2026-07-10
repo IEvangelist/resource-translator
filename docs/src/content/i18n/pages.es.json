@@ -390,8 +390,13 @@
 		"lede": "Resumen general de los lanzamientos. El registro de cambios canónico y autoritativo se encuentra en CHANGELOG.md en el repositorio.",
 		"fullRecord": "Véase {changelogLink} para el registro completo.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Lanzamientos",
+		"fixedLabel": "Solucionado:",
+		"releases": {
+			"v302": "{label} solicitudes de traductor ahora fijan {apiVersion} en la línea tanto para {translate} como para {languages}. El SDK de Azure solo respeta la opción de versión de la API a nivel de cliente cuando se pasa una credencial; la acción se autentica por solicitud mediante cabeceras, por lo que esa opción se eliminó silenciosamente y las solicitudes pasaron por defecto a una versión previa de la API cuyo contrato de {translate} rechazó el cuerpo con HTTP 400 (código de error {code}). Completa la corrección que comenzó en la 3.0.1.",
+			"v301": "{label} El cuerpo de la solicitud {translate} ahora es un array JSON desnudo de {textItem} elementos en lugar de un objeto {inputs} encapsulado, que coincide con el contrato REST v3.0. Por sí solo, esto no restauraba las traducciones — véase 3.0.2."
+		},
 		"v3": {
-			"heading": "V3 (en desarrollo)",
 			"labels": {
 				"breaking": "ROMPIENDO",
 				"resilience": "Resiliencia:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} prosa de Docs {codeElement} ahora lleva el acento cálido/ámbar — distinto de la paleta → marcasacentos usada para enlaces y encabezados.",
 				"automation": "Auto-fusión Dependabot, escaneo CodeQL, matriz CI."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Consulta la historia de git."
 		}
 	}
 }

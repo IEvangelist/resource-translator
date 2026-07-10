@@ -390,8 +390,13 @@
 		"lede": "Aukšto lygio leidinių santrauka. Kanoninis, autoritetingas pakeitimų žurnalas gyvena saugykloje CHANGELOG.md.",
 		"fullRecord": "Visą įrašą rasite {changelogLink}.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Leidimai",
+		"fixedLabel": "Pataisyta:",
+		"releases": {
+			"v302": "{label} Vertėjo užklausos dabar prisegti {apiVersion} ant laido tiek {translate}, tiek {languages}. \"Azure\" SDK atsižvelgia į kliento lygio API versijos parinktį tik tada, kai perduodami kredencialai; Veiksmas autentifikuojamas pagal užklausą per antraštes, todėl ši parinktis buvo tyliai atmesta, o užklausos pagal numatytuosius nustatymus buvo peržiūros API versija, kurios {translate} sutartis atmetė turinį su HTTP 400 (klaidos kodas {code}). Užbaigia 3.0.1 pradėtą taisymą.",
+			"v301": "{label} {translate} užklausos turinys dabar yra plikas JSON masyvas {textItem} elementų, o ne suvyniotas {inputs} objektas, atitinkantis v3.0 REST sutartį. Vien tai neatkūrė vertimų (žr. 3.0.2)."
+		},
 		"v3": {
-			"heading": "v3 (kuriamas)",
 			"labels": {
 				"breaking": "LAUŽYMAS",
 				"resilience": "Atsparumas:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} docs prozos {codeElement} dabar dėvi šiltą / gintaro tema akcentas - skirtingai nuo prekės ženklo → akcentas paletės naudojamas nuorodos ir antraštės.",
 				"automation": "Priklausomas automatinis sujungimas, CodeQL nuskaitymas, CI matrica."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Žr. git istoriją."
 		}
 	}
 }

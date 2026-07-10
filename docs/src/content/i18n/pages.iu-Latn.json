@@ -390,8 +390,13 @@
 		"lede": "quttiktumiinniqsat nainaaqsimajut saqqitaujut. canonical, pijunnautilik asijjiruti iniqaqpuq CHANGELOG.md tuqquqsivingmi.",
 		"fullRecord": "takuguk {changelogLink} titiraqsimajulimaanut.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "sakkutauningit",
+		"fixedLabel": "aaqqiktaujuq:",
+		"releases": {
+			"v302": "{label} tukiliurijinut pijumajjutaujut maanna {apiVersion} uajamuuqtunut tamainnut {translate} amma {languages}. Azure SDK ikpigusutuinnaqtuq client-level api-version naliiraagaksamik nalunaikkutarmik aniguqtittijuqaraangat; taanna piliriangujuq nalunaiqsivakpuq atunit pijumajjutaujunik qulaaniittutigut, taimainninganullu taanna atuqtaungaarunnaqtuq nipiqanngilluni sakkutaulauqpuq pijumajjutaujullu atuqtaungaaqpakłutik qimirruakkannirnirmut API−mut {translate} kaantulaagijaujumut aakkaaqsilluni timigijaujumik HTTP 400−mut (tammaqsimajumut nalunaikkutaq {code}). pijariiqtuq aaqqiguti pigiaqtaulauqtuq 3.0.1-mi.",
+			"v301": "{label} {translate} tuksirautaujuq timiujuq maanna JSON−nguliqpuq {textItem} piqutinik imusimanngingaaqłuni {inputs}, ajjiqarłuni v3.0 REST kaantulaagijaujumik. taannatuangulluni utiqtittilaunngittuq tukiliuqtausimajunik — takulugu 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (pivalliatitaujuq)",
 			"labels": {
 				"breaking": "SURAKSIMANIQ",
 				"resilience": "sapiliqsarainnginniq:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs titirausingit {codeElement} maanna atuqput uqquujumik/aupajaaqtumik taqsaqaqłutik − ajjiginngimmagu →nalunaikkutangata taqsanga atuqtauvakłuni attatarviujunnaqtunut amma taijaujjusirnut.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "takulugu git history."
 		}
 	}
 }

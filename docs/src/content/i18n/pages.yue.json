@@ -390,8 +390,13 @@
 		"lede": "發佈嘅高層次總結。 正統、權威嘅變更日誌就喺倉庫入面 CHANGELOG.md。",
 		"fullRecord": "完整紀錄請參閱{changelogLink}。",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "發行作品",
+		"fixedLabel": "修正：",
+		"releases": {
+			"v302": "{label}轉播器請求而家會喺線路上{apiVersion}針腳，支援{translate}同{languages}。 Azure SDK 只會喺通過憑證時先承認客戶端層嘅 API 版本選項; 呢個動作係透過標頭去驗證每個請求，所以呢個選項就靜靜咁被放棄，請求就預設返去一個預覽 API 版本，而 {translate} 合約用 HTTP 400 拒絕咗正文（錯誤代碼 {code}）。 完成咗由 3.0.1 開始嘅修正。",
+			"v301": "{label} {translate}請求主體而家係一個裸嘅 JSON 陣列，包含 {textItem} 項目，而唔係一個包裹咗嘅 {inputs} 物件，符合 v3.0 REST 合約。 單靠呢個功能唔會恢復翻譯——見3.0.2。"
+		},
 		"v3": {
-			"heading": "V3（開發中）",
 			"labels": {
 				"breaking": "破碎聲",
 				"resilience": "韌性：",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs 嘅散文{codeElement}而家用咗暖色/琥珀色主題——同品牌用→口音調色板做連結同標題唔同。",
 				"automation": "Dependabot 自動合併、CodeQL 掃描、CI 矩陣。"
 			}
-		},
-		"v2": {
-			"heading": "v2.x 版本",
-			"gitHistory": "睇下 git 歷史。"
 		}
 	}
 }

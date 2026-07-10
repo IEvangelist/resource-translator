@@ -390,8 +390,13 @@
 		"lede": "Shrnutí vydání na vysoké úrovni. Kanonický, autoritativní changelog se nachází v CHANGELOG.md v repozitáři.",
 		"fullRecord": "Viz {changelogLink} pro kompletní záznam.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Vydání",
+		"fixedLabel": "Opraveno:",
+		"releases": {
+			"v302": "{label} Překladatel nyní připne {apiVersion} na drát pro {translate} i {languages}. Azure SDK respektuje možnost API na úrovni klienta pouze tehdy, když je předáno přihlašovací údaje; Akce se autentizuje na požadavek přes hlavičky, takže tato možnost byla tiše zrušena a požadavky byly výchozí nastaveny na preview API verzi, jejíž {translate} kontrakt odmítl tělo s HTTP 400 (chybový kód {code}). Oprava byla dokončena v 3.0.1.",
+			"v301": "{label} Tělo požadavku {translate} je nyní holé JSON pole {textItem} položek místo zabaleného {inputs} objektu, což odpovídá kontraktu REST v3.0. To samo o sobě překlady neobnovilo — viz 3.0.2."
+		},
 		"v3": {
-			"heading": "V3 (ve vývoji)",
 			"labels": {
 				"breaking": "BREAKING",
 				"resilience": "Odolnost:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} dokumentární proza, {codeElement} nyní nosí teplý/jantarový akcent — odlišný od palety značk→akcent používané pro odkazy a nadpisy.",
 				"automation": "Dependabot auto-merge, CodeQL skenování, CI matice."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Viz historie gitu."
 		}
 	}
 }

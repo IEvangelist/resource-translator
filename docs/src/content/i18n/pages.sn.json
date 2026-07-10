@@ -390,8 +390,13 @@
 		"lede": "Pfupiso yemhando yepamusoro yekuburitswa. Iyo canonical, ine chiremera changelog inogara CHANGELOG.md mune yekuchengetera.",
 		"fullRecord": "Tarisa uone {changelogLink} kuti uwane chinyorwa chakazara.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Kuburitswa",
+		"fixedLabel": "Yakagadziriswa:",
+		"releases": {
+			"v302": "{label} Translator zvikumbiro ikozvino pin {apiVersion} pane waya kune ese ari maviri {translate} uye {languages}. Iyo Azure SDK inongokudza iyo mutengi-chikamu api-vhezheni sarudzo kana chitupa chapfuura; chiito chinosimbisa pachikumbiro kuburikidza nemisoro yemusoro, saka sarudzo iyoyo yakadonhedzwa chinyararire uye zvikumbiro zvakatadza kune yekutarisa api-vhezheni ine {translate} chibvumirano chakaramba muviri neHTTP 400 (kukanganisa kodhi {code}). Yakazara nzira kuchinyorwa: Linux Vakapindwa muropa » General » Noticias » 3.0.1",
+			"v301": "{label} Iyo {translate} chikumbiro muviri ikozvino isina chinhu JSON array yezvinhu {textItem} panzvimbo yechinhu chakaputirwa {inputs}, chinoenderana nev3.0 REST chibvumirano. Pachayo izvi hazvina kudzoreredza shanduro — ona 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (mubudiriro)",
 			"labels": {
 				"breaking": "KUPUTSA",
 				"resilience": "Kutsungirira:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} docs prose {codeElement} ikozvino inopfeka inodziya / amber theme accent — yakasiyana neiyo brand→accent palette inoshandiswa kune zvinongedzo uye misoro.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Ona nhoroondo yeGIT."
 		}
 	}
 }

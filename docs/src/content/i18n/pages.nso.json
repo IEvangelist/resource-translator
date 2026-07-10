@@ -390,8 +390,13 @@
 		"lede": "Kakaretšo ya ditaodišosengwalo tša Sepedi. The canonical, authoritative changelog lives in CHANGELOG.md in the repository.",
 		"fullRecord": "Lebelela {changelogLink} go hwetša rekoto ka botlalo.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Ditokollo",
+		"fixedLabel": "E beakantšwe:",
+		"releases": {
+			"v302": "{label} Translator requests now pin {apiVersion} on the wire for both {translate} and {languages}. Azure SDK e hlompha fela kgetho ya maemo a client api-version ge setifikeiti se fetile; Tiro e tiišetša kgopelo ka dihlogo, ka fao kgetho yeo e ile ya tlogelwa ka setu gomme dikgopelo di ile tša fetolwa go version ya API ya go lebelela yeo konteraka ya {translate} e gannego mmele ka HTTP 400 (khoutu ya phošo {code}). Completes the fix started in 3.0.1.",
+			"v301": "{label} The {translate} request body is now a bare JSON array of {textItem} items instead of a wrapped {inputs} object, matching the v3.0 REST contract. Ka boyona se ga se sa bušetša diphetolelo — bona 3.0.2."
+		},
 		"v3": {
-			"heading": "V3 (in development)",
 			"labels": {
 				"breaking": "GO ROBA",
 				"resilience": "Kgotlelelo:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} docs prose {codeElement} now wears the warm/amber theme accent — distinct from the brand→accent palette used for links and headings.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "See git history."
 		}
 	}
 }

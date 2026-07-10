@@ -390,8 +390,13 @@
 		"lede": "Isishwankathelo esiphezulu sokukhutshwa. Utshintsho lwe-canonical, olunegunya luhlala CHANGELOG.md kwindawo yokugcina.",
 		"fullRecord": "Jonga {changelogLink} ukuze ufumane irekhodi elipheleleyo.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Ukukhutshwa",
+		"fixedLabel": "Ilungisiwe:",
+		"releases": {
+			"v302": "{label} Izicelo zabaguquleli ngoku ziqhoboshela {apiVersion} kucingo kuzo zombini {translate} kunye {languages}. I-Azure SDK ihlonipha kuphela ukhetho lwe-api-version yenqanaba lomthengi xa isiqinisekiso sidlulisiwe; isenzo siqinisekisa ngesicelo ngasinye ngeentloko, ke olo khetho lwalahlwa ngokuthe cwaka kwaye izicelo zagqitywa kuhlobo lwe-API olunekhontrakthi {translate} yakhaba umzimba nge-HTTP 400 (ikhowudi yempazamo {code}). Igqibezela ukulungiswa kwaqala kwi-3.0.1.",
+			"v301": "{label} Umzimba wesicelo se-{translate} ngoku luluhlu olungenanto lwe-JSON lwezinto {textItem} endaweni yento {inputs} esongelweyo, ehambelana nekhontrakthi ye-v3.0 REST. Ngokwayo oku akuzange kubuyisele iinguqulelo — jonga 3.0.2."
+		},
 		"v3": {
-			"heading": "I-v3 (kuphuhliso)",
 			"labels": {
 				"breaking": "UKWAPHULA",
 				"resilience": "Ukomelela:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs prose {codeElement} ngoku inxibe i-accent yomxholo ofudumeleyo / we-amber - eyahlukileyo kwiphalethi ye→accent esetyenziselwa amakhonkco kunye nezihloko.",
 				"automation": "I-Dependabot auto-merge, i-CodeQL scanning, i-CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Jonga imbali ye-git."
 		}
 	}
 }

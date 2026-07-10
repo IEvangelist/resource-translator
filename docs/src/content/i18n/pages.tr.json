@@ -390,8 +390,13 @@
 		"lede": "Yayınların üst düzey özeti. Kanonik, otoriter değişim logu CHANGELOG.md depoda yaşar.",
 		"fullRecord": "Tam kayıt için {changelogLink} bakınız.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Yayınlar",
+		"fixedLabel": "Düzeltildi:",
+		"releases": {
+			"v302": "{label} Çevirici istekleri artık hem {translate} hem de {languages} için {apiVersion} kabloya sabitleniyor. Azure SDK, yalnızca bir kimlik doğrulaması geçtiğinde istemci düzeyindeki API sürüm seçeneğini kabul eder; Eylem, başlıklar aracılığıyla her isteğe kimlik doğrulama yapar, bu yüzden bu seçenek sessizce düşürüldü ve istekler varsayılan olarak HTTP 400 ile (hata kodu {code}) gövdeyi reddeden {translate} sözleşmesi olan bir önizleme API sürümüne geçti. 3.0.1'de başlatılan düzeltmeyi tamamlıyor.",
+			"v301": "{label} {translate} istek gövdesi artık sarılmış {inputs} nesnesi yerine {textItem} öğeden oluşan çıplak bir JSON dizisi haline gelmiştir ve v3.0 REST sözleşmesine uyulmaktadır. Tek başına bu çevirileri geri getirmedi — bkz. 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (geliştirme aşamasında)",
 			"labels": {
 				"breaking": "BREAKING",
 				"resilience": "Dayanıklılık:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs Prose {codeElement} artık sıcak/kehribar tema aksanını taşıyor — bu da bağlantılar ve başlıklar için kullanılan marka→aksan paletinden farklı.",
 				"automation": "Dependabot otomatik birleştirme, CodeQL taraması, CI matrisi."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Git geçmişine bakınız."
 		}
 	}
 }

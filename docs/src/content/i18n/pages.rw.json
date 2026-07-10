@@ -390,8 +390,13 @@
 		"lede": "High-level summary of releases. The canonical, authoritative changelog lives in CHANGELOG.md in the repository.",
 		"fullRecord": "Reba {changelogLink} kugira ngo ubone ibisobanuro birambuye.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Ibisohoka",
+		"fixedLabel": "Fixed:",
+		"releases": {
+			"v302": "{label} Translator requests now pin {apiVersion} on the wire for both {translate} and {languages}. The Azure SDK only honors the client-level api-version option when a credential is passed; The action authenticates per request via headers, so that option was silently dropped and requests defaulted to a preview api-version whose {translate} contract rejected the body with HTTP 400 (error code {code}). Gusoza gukosora byatangiye muri 3.0.1.",
+			"v301": "{label} The {translate} request body is now a bare JSON array of {textItem} items instead of a wrapped {inputs} object, matching the v3.0 REST contract. On its own this didn't restore translations — see 3.0.2."
+		},
 		"v3": {
-			"heading": "V3 (mu iterambere)",
 			"labels": {
 				"breaking": "KUVUNIKA",
 				"resilience": "Kwihangana:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} docs prose {codeElement} now wears the warm/amber theme accent — distinct from the brand→accent palette used for links and headings.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "See git history."
 		}
 	}
 }

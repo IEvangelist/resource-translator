@@ -390,8 +390,13 @@
 		"lede": "Soo koobid heer sare ah oo ku saabsan sii deynta. Changelog-ka rasmiga ah ee awoodda leh wuxuu ku nool yahay CHANGELOG.md ku jira kaydka.",
 		"fullRecord": "Eeg {changelogLink} si aad u aragto diiwaanka buuxa.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Sii-deynta",
+		"fixedLabel": "La hagaajiyay:",
+		"releases": {
+			"v302": "{label} Codsiyada Turjubaanka hadda ku dheji {apiVersion} fiilada labadaba {translate} iyo {languages}. Azure SDK waxay kaliya ixtiraamtaa ikhtiyaarka api-version ee heerka client-ka marka aqoonsi la gudbiyo; falku wuxuu xaqiijiyaa codsi kasta iyada oo loo marayo madaxyo, sidaas darteed ikhtiyaarkaas si aamusnaan ah ayaa loo joojiyay codsiyada oo loo beddelay nooca API-ga Preview oo heshiiska {translate} diiday jirka iyadoo la adeegsanayo HTTP 400 (koodhka khaladka {code}). Waxay dhameystirtaa hagaajinta bilowga 3.0.1.",
+			"v301": "{label} Jirka codsiga {translate} hadda waa array JSON oo {textItem} ah halkii uu ka ahaan lahaa walax {inputs} oo la duubay, taasoo la mid ah heshiiska v3.0 REST. Tani kaligeed ma soo celin turjumaadaha — eeg 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (horumarin)",
 			"labels": {
 				"breaking": "JABINTA",
 				"resilience": "Adkeysiga:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs Prose {codeElement} hadda waxay xirataa lahjada mawduuca warm/amber — taasoo ka duwan palette→accent-ka loo isticmaalo xiriiriyeyaasha iyo cinwaanada.",
 				"automation": "Isku-darka otomaatiga ah ee Dependabot, baaritaanka CodeQL, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Eeg taariikhda git."
 		}
 	}
 }

@@ -390,8 +390,13 @@
 		"lede": "Augsta līmeņa laidienu kopsavilkums. Kanoniskais, autoritatīvais izmaiņu žurnāls dzīvo CHANGELOG.md repozitorijā.",
 		"fullRecord": "Skatīt {changelogLink} pilnu ierakstu.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Izlaidumi",
+		"fixedLabel": "Fiksēts:",
+		"releases": {
+			"v302": "{label} Tulkotājs tagad piespraust {apiVersion} vadam gan {translate}, gan {languages}. Azure SDK ievēro klienta līmeņa API versijas opciju tikai tad, kad tiek nodoti akreditācijas dati; Darbība autentificējas katram pieprasījumam, izmantojot galvenes, tāpēc šī opcija tika klusi atmesta, un pieprasījumi pēc noklusējuma tika noklusēti uz priekšskatījuma API versiju, kuras {translate} līgums noraidīja pamattekstu ar HTTP 400 (kļūdas kods {code}). Pabeidz labojumu, kas sākts 3.0.1.",
+			"v301": "{label} {translate} pieprasījuma ķermenis tagad ir tukšs JSON masīvs no {textItem} vienumiem, nevis iesaiņots {inputs} objekts, kas atbilst v3.0 REST līgumam. Tas pats par sevi neatjaunoja tulkojumus (sk. 3.0.2. punktu)."
+		},
 		"v3": {
-			"heading": "v3 (izstrādes stadijā)",
 			"labels": {
 				"breaking": "LAUŠANA",
 				"resilience": "Izturība:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} dokumentu prozā {codeElement} tagad nēsā siltu/dzintara tēmas akcentu, kas atšķiras no zīmola→akcenta paletes, ko izmanto saitēm un virsrakstiem.",
 				"automation": "Atkarīgā automātiskā apvienošana, CodeQL skenēšana, CI matrica."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Skatīt git vēsturi."
 		}
 	}
 }
