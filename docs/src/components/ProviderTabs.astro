@@ -1,0 +1,196 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface ProviderTab {
+  /** Stable id used for ARIA wiring, slot name, and persistence. */
+  id: string;
+  /** Visible tab label. */
+  label: string;
+  /** astro-icon name for the provider logo (e.g. "simple-icons:microsoftazure"). */
+  icon: string;
+  /** Brand color used to tint the decorative logo. */
+  color: string;
+}
+
+interface Props {
+  /** Unique id for this tab group (ARIA ids must be unique per page). */
+  group: string;
+  /** Accessible label for the tablist. */
+  label: string;
+  tabs: ProviderTab[];
+}
+
+const { group, label, tabs } = Astro.props;
+---
+
+{/*
+  Progressive enhancement: with JavaScript the tablist drives a single visible
+  panel (WAI-ARIA tabs pattern). Without JavaScript the tablist is hidden and
+  every panel is shown stacked, so no provider is favored over another.
+*/}
+<div class="provider-tabs my-8" data-provider-tabs data-group={group}>
+  <div
+    role="tablist"
+    aria-label={label}
+    data-provider-tablist
+    class="flex flex-wrap gap-1 border-b border-(--border)"
+  >
+    {
+      tabs.map((tab, index) => (
+        <button
+          type="button"
+          role="tab"
+          id={`${group}-tab-${tab.id}`}
+          aria-controls={`${group}-panel-${tab.id}`}
+          aria-selected={index === 0 ? "true" : "false"}
+          tabindex={index === 0 ? 0 : -1}
+          data-provider-tab={tab.id}
+          class="provider-tab -mb-px inline-flex cursor-pointer items-center gap-2 rounded-t-lg border-b-2 border-transparent px-4 py-2.5 text-sm font-semibold text-(--fg-muted) transition-colors hover:text-(--fg)"
+        >
+          <Icon
+            name={tab.icon}
+            class="size-5 flex-none"
+            style={`color:${tab.color}`}
+            aria-hidden="true"
+          />
+          <span>{tab.label}</span>
+        </button>
+      ))
+    }
+  </div>
+  {
+    tabs.map((tab, index) => (
+      <div
+        role="tabpanel"
+        id={`${group}-panel-${tab.id}`}
+        aria-labelledby={`${group}-tab-${tab.id}`}
+        data-provider-panel={tab.id}
+        tabindex="0"
+        hidden={index !== 0}
+        class="provider-panel pt-5 focus:outline-none"
+      >
+        <slot name={tab.id} />
+      </div>
+    ))
+  }
+</div>
+
+<noscript>
+  <style is:inline>
+    /* No JavaScript: the tablist can't switch panels, so hide it and reveal
+       every provider's setup stacked. Keeps the page provider-neutral. */
+    [data-provider-tablist] {
+      display: none !important;
+    }
+    [data-provider-panel][hidden] {
+      display: block !important;
+    }
+  </style>
+</noscript>
+
+<style>
+  .provider-tab[aria-selected="true"] {
+    color: var(--color-brand-700);
+    border-bottom-color: var(--color-brand-600);
+  }
+  :global(.dark) .provider-tab[aria-selected="true"] {
+    color: var(--color-brand-300);
+  }
+</style>
+
+<script>
+  const PROVIDER_STORAGE_KEY = "rt:provider";
+
+  function initProviderTabs() {
+    const groups =
+      document.querySelectorAll<HTMLElement>("[data-provider-tabs]");
+
+    groups.forEach((root) => {
+      const tablist = root.querySelector<HTMLElement>(
+        "[data-provider-tablist]",
+      );
+      const tabs = Array.from(
+        root.querySelectorAll<HTMLButtonElement>("[data-provider-tab]"),
+      );
+      const panels = Array.from(
+        root.querySelectorAll<HTMLElement>("[data-provider-panel]"),
+      );
+      if (!tablist || tabs.length === 0) return;
+
+      const ids = tabs.map((tab) => tab.dataset.providerTab ?? "");
+
+      const readStored = (): string | null => {
+        try {
+          return localStorage.getItem(PROVIDER_STORAGE_KEY);
+        } catch {
+          return null;
+        }
+      };
+      const writeStored = (id: string) => {
+        try {
+          localStorage.setItem(PROVIDER_STORAGE_KEY, id);
+        } catch {
+          /* localStorage may be unavailable (private mode, file://, etc.) */
+        }
+      };
+
+      const activate = (id: string, focus: boolean) => {
+        tabs.forEach((tab) => {
+          const selected = tab.dataset.providerTab === id;
+          tab.setAttribute("aria-selected", selected ? "true" : "false");
+          tab.tabIndex = selected ? 0 : -1;
+          if (selected && focus) tab.focus();
+        });
+        panels.forEach((panel) => {
+          panel.hidden = panel.dataset.providerPanel !== id;
+        });
+      };
+
+      // Restore the reader's previously chosen provider (shared across every
+      // provider tab group on the site) or fall back to the first tab.
+      let initial = ids[0];
+      const stored = readStored();
+      if (stored && ids.includes(stored)) initial = stored;
+      activate(initial, false);
+
+      if (root.dataset.bound === "1") return;
+      root.dataset.bound = "1";
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener("click", () => {
+          const id = tab.dataset.providerTab ?? "";
+          activate(id, false);
+          writeStored(id);
+        });
+        tab.addEventListener("keydown", (event) => {
+          let next: number | null = null;
+          switch (event.key) {
+            case "ArrowRight":
+            case "ArrowDown":
+              next = (index + 1) % tabs.length;
+              break;
+            case "ArrowLeft":
+            case "ArrowUp":
+              next = (index - 1 + tabs.length) % tabs.length;
+              break;
+            case "Home":
+              next = 0;
+              break;
+            case "End":
+              next = tabs.length - 1;
+              break;
+            default:
+              return;
+          }
+          event.preventDefault();
+          const id = tabs[next].dataset.providerTab ?? "";
+          activate(id, true);
+          writeStored(id);
+        });
+      });
+    });
+  }
+
+  initProviderTabs();
+  document.addEventListener("astro:page-load", initProviderTabs);
+</script>

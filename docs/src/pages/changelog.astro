@@ -132,7 +132,65 @@ const v300Items: ChangelogItem[] = [
   { text: copy.v3.items.automation },
 ];
 
+const configureAwsCredentialsUrl =
+  "https://github.com/aws-actions/configure-aws-credentials";
+
+const multiVendorValues = {
+  ...commonValues,
+  azure: "Azure AI Translator",
+  aws: "AWS Translate",
+  google: "Google Cloud Translation",
+  provider: code("provider"),
+  azureValue: code("azure"),
+  awsSdk: code("@aws-sdk/client-translate"),
+  googleSdk: code("@google-cloud/translate"),
+  configureAwsCredentials: link(
+    "aws-actions/configure-aws-credentials",
+    configureAwsCredentialsUrl,
+    { external: true },
+  ),
+  awsAccessKeyId: code("awsAccessKeyId"),
+  awsSecretAccessKey: code("awsSecretAccessKey"),
+  awsRegion: code("awsRegion"),
+  awsRegionEnv: code("AWS_REGION"),
+  googleApiKey: code("googleApiKey"),
+  googleCredentials: code("googleCredentials"),
+  googleProjectId: code("googleProjectId"),
+  format: code("format"),
+  subscriptionKey: code("subscriptionKey"),
+  endpoint: code("endpoint"),
+  region: code("region"),
+  actionYml: code("action.yml"),
+};
+
+const v310Items: ChangelogItem[] = [
+  {
+    text: copy.v31.items.multiVendor,
+    values: {
+      ...multiVendorValues,
+      label: strong(copy.v31.labels.multiVendor),
+    },
+  },
+  { text: copy.v31.items.aws, values: multiVendorValues },
+  { text: copy.v31.items.google, values: multiVendorValues },
+  { text: copy.v31.items.inputs, values: multiVendorValues },
+  {
+    text: copy.v31.items.intentMapping,
+    values: {
+      ...multiVendorValues,
+      label: strong(copy.v31.labels.intentMapping),
+    },
+  },
+  { text: copy.v31.items.azureRelaxed, values: multiVendorValues },
+  { text: copy.v31.items.docs, values: multiVendorValues },
+];
+
 const releases: ReleaseSection[] = [
+  {
+    version: "3.1.0",
+    date: "2026-07-10",
+    localizedItems: v310Items,
+  },
   {
     version: "3.0.2",
     date: "2026-07-10",

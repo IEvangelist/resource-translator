@@ -3,15 +3,20 @@ import { Code } from "astro-expressive-code/components";
 import DocLayout from "../layouts/DocLayout.astro";
 import LocalizedText from "../components/LocalizedText.astro";
 import PageHero from "../components/PageHero.astro";
+import ProviderTabs from "../components/ProviderTabs.astro";
+import type { ProviderTab } from "../components/ProviderTabs.astro";
 import Step from "../components/Step.astro";
 import { defaultLocale } from "../i18n/locales";
 import { getPageMessages } from "../i18n/messages";
-import { code } from "../i18n/rich-text";
+import { code, link } from "../i18n/rich-text";
 
 const { locale = defaultLocale } = Astro.props;
 const copy = getPageMessages(locale, "getting-started");
 
-const workflow = `name: translate
+const configureAwsCredentialsUrl =
+  "https://github.com/aws-actions/configure-aws-credentials";
+
+const azureWorkflow = `name: translate
 
 on:
   push:
@@ -32,6 +37,7 @@ jobs:
       - id: translate
         uses: IEvangelist/resource-translator@v3
         with:
+          # provider: azure  # default — may be omitted
           sourceLocale: en
           subscriptionKey: \${{ secrets.TRANSLATOR_KEY }}
           endpoint: \${{ secrets.TRANSLATOR_ENDPOINT }}
@@ -45,9 +51,136 @@ jobs:
           branch: machine-translation
 `;
 
-const workflowBodyValues = {
+const awsWorkflow = `name: translate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/**/*.en.resx"
+      - "src/**/*.en.json"
+
+permissions:
+  id-token: write # for aws-actions/configure-aws-credentials (OIDC)
+  contents: write
+  pull-requests: write
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::123456789012:role/gh-actions-translate
+          aws-region: us-east-1
+      - id: translate
+        uses: IEvangelist/resource-translator@v3
+        with:
+          provider: aws
+          sourceLocale: en
+          awsRegion: us-east-1 # or rely on AWS_REGION from the step above
+          toLocales: '["fr","de","es"]'
+      - if: steps.translate.outputs.has-new-translations == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          title: \${{ steps.translate.outputs.summary-title }}
+          body: \${{ steps.translate.outputs.summary-details }}
+          branch: machine-translation
+`;
+
+const googleWorkflow = `name: translate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/**/*.en.resx"
+      - "src/**/*.en.json"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - id: translate
+        uses: IEvangelist/resource-translator@v3
+        with:
+          provider: google
+          sourceLocale: en
+          # Provide EITHER a service-account JSON credential...
+          googleCredentials: \${{ secrets.GCP_TRANSLATE_CREDENTIALS }}
+          # ...OR an API key:
+          # googleApiKey: \${{ secrets.GCP_TRANSLATE_API_KEY }}
+          toLocales: '["fr","de","es"]'
+      - if: steps.translate.outputs.has-new-translations == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          title: \${{ steps.translate.outputs.summary-title }}
+          body: \${{ steps.translate.outputs.summary-details }}
+          branch: machine-translation
+`;
+
+const providerTabs: ProviderTab[] = [
+  {
+    id: "azure",
+    label: copy.tabs.azure,
+    icon: "simple-icons:microsoftazure",
+    color: "#0078d4",
+  },
+  {
+    id: "aws",
+    label: copy.tabs.aws,
+    icon: "simple-icons:amazonwebservices",
+    color: "#ff9900",
+  },
+  {
+    id: "google",
+    label: copy.tabs.google,
+    icon: "simple-icons:googlecloud",
+    color: "#4285f4",
+  },
+];
+
+const providersLink = link(
+  copy.steps.provider.providersLinkLabel,
+  "./providers",
+);
+
+const providerStepValues = {
+  azure: copy.steps.provider.azure,
+  aws: copy.steps.provider.aws,
+  google: copy.steps.provider.google,
+  provider: code("provider"),
+  providersLink,
+};
+const configureBodyValues = {
   workflowPath: code(".github/workflows/translate.yml"),
 };
+const azureNoteValues = { provider: code("provider") };
+const awsNoteValues = {
+  provider: code("provider"),
+  providerValue: code("aws"),
+  configureAwsCredentials: link(
+    "aws-actions/configure-aws-credentials",
+    configureAwsCredentialsUrl,
+    { external: true },
+  ),
+  awsRegionEnv: code("AWS_REGION"),
+};
+const awsRegionNoteValues = {
+  awsRegion: code("awsRegion"),
+  awsRegionEnv: code("AWS_REGION"),
+};
+const googleNoteValues = {
+  provider: code("provider"),
+  providerValue: code("google"),
+};
+const googleProjectNoteValues = { googleProjectId: code("googleProjectId") };
 const resourceBodyValues = {
   namingConvention: code("Name.<sourceLocale>.<ext>"),
   sourceFile: code("Greetings.en.resx"),
@@ -68,39 +201,143 @@ const outputBodyValues = {
     eyebrow={copy.eyebrow}
     title={copy.title}
     icon="lucide:rocket"
-    lede={copy.lede}
+    lede={copy.heroLede}
   />
 
   <Step
     number={1}
-    title={copy.steps.provision.title}
+    title={copy.steps.provider.title}
     accent="bg-(--color-brand-700)"
   >
     <p>
-      {copy.steps.provision.body}
+      <LocalizedText
+        text={copy.steps.provider.body}
+        values={providerStepValues}
+      />
     </p>
-    <ul>
-      <li>
-        <code>TRANSLATOR_KEY</code> — {copy.steps.provision.key}
-      </li>
-      <li>
-        <code>TRANSLATOR_ENDPOINT</code> — {copy.steps.provision.endpoint}
-      </li>
-      <li>
-        <code>TRANSLATOR_REGION</code> — {copy.steps.provision.region}
-      </li>
-    </ul>
   </Step>
 
   <Step
     number={2}
-    title={copy.steps.workflow.title}
+    title={copy.steps.configure.title}
     accent="bg-(--color-warm-700)"
   >
     <p>
-      <LocalizedText text={copy.steps.workflow.body} values={workflowBodyValues} />
+      <LocalizedText
+        text={copy.steps.configure.body}
+        values={configureBodyValues}
+      />
     </p>
-    <Code code={workflow} lang="yaml" title=".github/workflows/translate.yml" />
+
+    <ProviderTabs
+      group="getting-started-provider"
+      label={copy.tabs.ariaLabel}
+      tabs={providerTabs}
+    >
+      <Fragment slot="azure">
+        <p class="!mb-2 font-semibold text-(--fg)">
+          {copy.steps.provider.azure}
+        </p>
+        <p>
+          <LocalizedText
+            text={copy.steps.configure.azure.note}
+            values={azureNoteValues}
+          />
+        </p>
+        <p class="!mb-2 font-semibold text-(--fg)">
+          {copy.steps.configure.secretsHeading}
+        </p>
+        <ul>
+          <li><code>TRANSLATOR_KEY</code> — {copy.steps.configure.azure.key}</li>
+          <li>
+            <code>TRANSLATOR_ENDPOINT</code> — {copy.steps.configure.azure.endpoint}
+          </li>
+          <li>
+            <code>TRANSLATOR_REGION</code> — {copy.steps.configure.azure.region}
+          </li>
+        </ul>
+        <p class="!mb-2 font-semibold text-(--fg)">
+          {copy.steps.configure.workflowHeading}
+        </p>
+        <Code
+          code={azureWorkflow}
+          lang="yaml"
+          title=".github/workflows/translate.yml"
+        />
+      </Fragment>
+
+      <Fragment slot="aws">
+        <p class="!mb-2 font-semibold text-(--fg)">{copy.steps.provider.aws}</p>
+        <p>
+          <LocalizedText
+            text={copy.steps.configure.aws.note}
+            values={awsNoteValues}
+          />
+        </p>
+        <p class="!mb-2 font-semibold text-(--fg)">
+          {copy.steps.configure.secretsHeading}
+        </p>
+        <ul>
+          <li>
+            <code>AWS_ACCESS_KEY_ID</code> — {copy.steps.configure.aws.accessKeyId}
+          </li>
+          <li>
+            <code>AWS_SECRET_ACCESS_KEY</code> — {copy.steps.configure.aws.secretAccessKey}
+          </li>
+        </ul>
+        <p>
+          <LocalizedText
+            text={copy.steps.configure.aws.regionNote}
+            values={awsRegionNoteValues}
+          />
+        </p>
+        <p class="!mb-2 font-semibold text-(--fg)">
+          {copy.steps.configure.workflowHeading}
+        </p>
+        <Code
+          code={awsWorkflow}
+          lang="yaml"
+          title=".github/workflows/translate.yml"
+        />
+      </Fragment>
+
+      <Fragment slot="google">
+        <p class="!mb-2 font-semibold text-(--fg)">
+          {copy.steps.provider.google}
+        </p>
+        <p>
+          <LocalizedText
+            text={copy.steps.configure.google.note}
+            values={googleNoteValues}
+          />
+        </p>
+        <p class="!mb-2 font-semibold text-(--fg)">
+          {copy.steps.configure.secretsHeading}
+        </p>
+        <ul>
+          <li>
+            <code>GCP_TRANSLATE_CREDENTIALS</code> — {copy.steps.configure.google.credentials}
+          </li>
+          <li>
+            <code>GCP_TRANSLATE_API_KEY</code> — {copy.steps.configure.google.apiKey}
+          </li>
+        </ul>
+        <p>
+          <LocalizedText
+            text={copy.steps.configure.google.projectNote}
+            values={googleProjectNoteValues}
+          />
+        </p>
+        <p class="!mb-2 font-semibold text-(--fg)">
+          {copy.steps.configure.workflowHeading}
+        </p>
+        <Code
+          code={googleWorkflow}
+          lang="yaml"
+          title=".github/workflows/translate.yml"
+        />
+      </Fragment>
+    </ProviderTabs>
   </Step>
 
   <Step
@@ -109,7 +346,10 @@ const outputBodyValues = {
     accent="bg-(--color-accent-700)"
   >
     <p>
-      <LocalizedText text={copy.steps.resource.body} values={resourceBodyValues} />
+      <LocalizedText
+        text={copy.steps.resource.body}
+        values={resourceBodyValues}
+      />
     </p>
   </Step>
 
@@ -125,6 +365,9 @@ const outputBodyValues = {
 
   <h2>{copy.nextSteps.title}</h2>
   <ul>
+    <li>
+      <a href="./providers">{copy.nextSteps.providers}</a>
+    </li>
     <li>
       <a href="./configuration">
         <LocalizedText

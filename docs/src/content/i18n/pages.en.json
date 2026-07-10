@@ -69,18 +69,39 @@
 	"getting-started": {
 		"title": "Getting started",
 		"eyebrow": "Setup",
-		"lede": "Add a workflow file, point it at your Azure AI Translator credentials, and the action will scan the repo for source-language resource files and emit translated siblings.",
+		"heroLede": "Add a workflow file, choose your translation provider — Azure, AWS, or Google — and the action scans the repo for source-language resource files and emits translated siblings.",
 		"steps": {
-			"provision": {
-				"title": "Provision an Azure AI Translator resource",
-				"body": "Create an Azure AI Translator resource in the Azure portal, then store the following as GitHub repository secrets so the workflow can read them:",
-				"key": "the subscription key for the resource.",
-				"endpoint": "the regional endpoint URL.",
-				"region": "the resource's Azure region."
+			"provider": {
+				"title": "Choose a translation provider",
+				"body": "The action works with {azure}, {aws}, and {google} behind one unified API surface. Pick a single provider per run with the {provider} input — the workflow behaves identically regardless of provider; only the credentials differ. See {providersLink} for a full comparison.",
+				"azure": "Azure AI Translator",
+				"aws": "AWS Translate",
+				"google": "Google Cloud Translation",
+				"providersLinkLabel": "Translation providers"
 			},
-			"workflow": {
-				"title": "Add the workflow",
-				"body": "Create {workflowPath}:"
+			"configure": {
+				"title": "Add credentials and a workflow",
+				"body": "Store your provider's credentials as GitHub repository secrets, then create {workflowPath}. Select your provider below for its specific setup — the rest of the workflow is identical.",
+				"secretsHeading": "Store these as repository secrets",
+				"workflowHeading": "Add the workflow",
+				"azure": {
+					"note": "Azure is the default provider, so {provider} may be omitted. Provision an Azure AI Translator resource in the Azure portal, then store its credentials:",
+					"key": "the subscription key for the resource.",
+					"endpoint": "the regional endpoint URL.",
+					"region": "the resource's Azure region."
+				},
+				"aws": {
+					"note": "Set {provider} to {providerValue}. Prefer OIDC via {configureAwsCredentials} so no long-lived secrets are stored — the step exports {awsRegionEnv} for you. To use static keys instead, store:",
+					"accessKeyId": "your AWS access key ID.",
+					"secretAccessKey": "your AWS secret access key.",
+					"regionNote": "A region is always required — set it with {awsRegion} or the {awsRegionEnv} environment variable."
+				},
+				"google": {
+					"note": "Set {provider} to {providerValue}. Authenticate with either a service-account JSON credential or an API key — supply exactly one:",
+					"credentials": "a service-account JSON key (as a JSON string).",
+					"apiKey": "or a Google Cloud API key.",
+					"projectNote": "An optional {googleProjectId} is inferred from the credential when omitted."
+				}
 			},
 			"resource": {
 				"title": "Commit a source resource file",
@@ -91,8 +112,15 @@
 				"body": "Once the workflow finishes, the action exposes three outputs you can wire into a PR description: {summaryTitle}, {summaryDetails}, and {hasNewTranslations}. It also writes a Markdown summary into the job page via {coreSummary}."
 			}
 		},
+		"tabs": {
+			"azure": "Azure",
+			"aws": "AWS",
+			"google": "Google",
+			"ariaLabel": "Choose a translation provider"
+		},
 		"nextSteps": {
 			"title": "Next steps",
+			"providers": "Compare every provider and its credentials side by side.",
 			"configuration": "Configure repo-level defaults with {configPath}.",
 			"recipes": "See recipes for monorepos, custom glossaries, and Custom Translator categories."
 		}
@@ -498,6 +526,21 @@
 		"releases": {
 			"v302": "{label} Translator requests now pin {apiVersion} on the wire for both {translate} and {languages}. The Azure SDK only honors the client-level api-version option when a credential is passed; the action authenticates per request via headers, so that option was silently dropped and requests defaulted to a preview api-version whose {translate} contract rejected the body with HTTP 400 (error code {code}). Completes the fix started in 3.0.1.",
 			"v301": "{label} The {translate} request body is now a bare JSON array of {textItem} items instead of a wrapped {inputs} object, matching the v3.0 REST contract. On its own this did not restore translations — see 3.0.2."
+		},
+		"v31": {
+			"labels": {
+				"multiVendor": "Multi-vendor:",
+				"intentMapping": "Intent-specifier mapping:"
+			},
+			"items": {
+				"multiVendor": "{label} translate with {azure}, {aws}, or {google} behind one unified API surface. Pick a single provider per run with the new {provider} input; the action delegates to the matching SDK behind a factory and behaves identically regardless of vendor. Fully backward compatible — {provider} defaults to {azureValue}, so existing Azure workflows keep working unchanged.",
+				"aws": "New AWS Translate provider ({awsSdk}). Authenticate with the AWS default credential chain (recommended: OIDC via {configureAwsCredentials}) or explicit {awsAccessKeyId} / {awsSecretAccessKey}; region via {awsRegion} or {awsRegionEnv}.",
+				"google": "New Google Cloud Translation provider ({googleSdk}, v2). Authenticate with a service-account JSON credential ({googleCredentials}) or an API key ({googleApiKey}); optional {googleProjectId}.",
+				"inputs": "New inputs: {provider}, {awsAccessKeyId}, {awsSecretAccessKey}, {awsRegion}, {googleApiKey}, {googleCredentials}, {googleProjectId}.",
+				"intentMapping": "{label} {textType} maps to Google's {format} and {profanityAction} maps to AWS profanity masking where an equivalent exists. Azure-only specifiers ({categoryId}, {apiVersion}, {profanityMarker}, {allowFallback}) are ignored by other providers.",
+				"azureRelaxed": "Azure request inputs ({subscriptionKey}, {endpoint}, {region}) are no longer marked required in {actionYml} so other providers can be selected — still validated at runtime when {provider} is {azureValue}.",
+				"docs": "New Translation providers page, provider tabs on Getting started, provider selection on the Inputs page, and a refreshed home page leading with Azure, AWS, and Google."
+			}
 		},
 		"v3": {
 			"labels": {

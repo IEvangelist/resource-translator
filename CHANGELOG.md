@@ -7,6 +7,46 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [3.1.0] - 2026-07-10
+
+### Added
+
+- **Multi-vendor translation providers.** The action can now translate with
+  **Azure AI Translator**, **AWS Translate**, or **Google Cloud Translation**
+  behind a single, unified API surface. Select one provider per run with the
+  new `provider` input (`azure` | `aws` | `google`). The action deterministically
+  delegates to the matching SDK behind a provider factory and behaves
+  identically regardless of vendor. **Fully backward compatible** — `provider`
+  defaults to `azure`, so existing Azure workflows keep working unchanged with
+  no edits required.
+- **AWS Translate provider** (`@aws-sdk/client-translate`). Authenticate with
+  the AWS SDK default credential chain (recommended: OIDC via
+  `aws-actions/configure-aws-credentials`) or explicit `awsAccessKeyId` /
+  `awsSecretAccessKey`. The region comes from `awsRegion`, or the `AWS_REGION` /
+  `AWS_DEFAULT_REGION` environment variables.
+- **Google Cloud Translation provider** (`@google-cloud/translate` v2).
+  Authenticate with a service-account JSON credential (`googleCredentials`) or
+  an API key (`googleApiKey`); the project id is inferred from the credential
+  or set explicitly with `googleProjectId`.
+- New action inputs: `provider`, `awsAccessKeyId`, `awsSecretAccessKey`,
+  `awsRegion`, `googleApiKey`, `googleCredentials`, and `googleProjectId`.
+- **Intent-specifier mapping across vendors** where an equivalent exists:
+  `textType` maps to Google's `format`, and `profanityAction` maps to AWS
+  profanity masking. Azure-only specifiers (`categoryId`, `apiVersion`,
+  `profanityMarker`, `allowFallback`) are ignored by other providers so
+  behavior stays consistent.
+- Docs & marketing: a new **Translation providers** page, provider tabs (with
+  vendor logos) on **Getting started**, provider selection & credentials on the
+  **Inputs** page, and a refreshed home page that leads with Azure, AWS, and
+  Google.
+
+### Changed
+
+- Azure request inputs (`subscriptionKey`, `endpoint`, `region`) are no longer
+  marked `required` in `action.yml` so the other providers can be selected;
+  they are still validated at runtime when `provider` is `azure`, so existing
+  Azure workflows continue to fail fast on missing credentials.
+
 ## [3.0.2] - 2026-07-10
 
 ### Fixed
@@ -285,7 +325,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 - Initial prototype pre-releases (tags `0.01`–`0.09`).
 
-[Unreleased]: https://github.com/IEvangelist/resource-translator/compare/v3.0.2...HEAD
+[Unreleased]: https://github.com/IEvangelist/resource-translator/compare/v3.1.0...HEAD
+[3.1.0]: https://github.com/IEvangelist/resource-translator/compare/v3.0.2...v3.1.0
 [3.0.2]: https://github.com/IEvangelist/resource-translator/compare/v3.0.1...v3.0.2
 [3.0.1]: https://github.com/IEvangelist/resource-translator/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/IEvangelist/resource-translator/compare/v2.2.1...v3.0.0
