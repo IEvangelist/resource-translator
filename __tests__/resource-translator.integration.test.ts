@@ -104,8 +104,8 @@ describe("start() integration", () => {
     const translatePost = jest
       .fn()
       .mockImplementation(
-        async ({ body }: { body: { inputs: Array<{ text: string }> } }) => {
-          const responseBody = body.inputs.map((item) => ({
+        async ({ body }: { body: Array<{ text: string }> }) => {
+          const responseBody = body.map((item) => ({
             translations: [
               { to: "fr", text: `FR:${item.text}` },
               { to: "es", text: `ES:${item.text}` },

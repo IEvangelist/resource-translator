@@ -550,23 +550,21 @@ test("API: translate gives up after maxRetries and surfaces the failure", async 
 test("API: translate protects placeholders before sending and restores them in the response", async () => {
   // The Translator sees sentinel tokens, never the original `{{name}}`.
   // The caller sees `{{name}}` round-trip through the translation.
-  mockPost.mockImplementation(
-    ({ body }: { body: { inputs: Array<{ text: string }> } }) => {
-      return Promise.resolve({
-        status: "200",
-        body: body.inputs.map((entry) => ({
-          translations: [
-            {
-              to: "fr",
-              // Simulate the translator wrapping the (sentinel-bearing) text in
-              // a French phrase. The sentinel is preserved verbatim.
-              text: `Bonjour ${entry.text.replace(/^Hello /, "")}`,
-            },
-          ],
-        })),
-      });
-    },
-  );
+  mockPost.mockImplementation(({ body }: { body: Array<{ text: string }> }) => {
+    return Promise.resolve({
+      status: "200",
+      body: body.map((entry) => ({
+        translations: [
+          {
+            to: "fr",
+            // Simulate the translator wrapping the (sentinel-bearing) text in
+            // a French phrase. The sentinel is preserved verbatim.
+            text: `Bonjour ${entry.text.replace(/^Hello /, "")}`,
+          },
+        ],
+      })),
+    });
+  });
 
   const result = await translate(
     {
@@ -579,9 +577,15 @@ test("API: translate protects placeholders before sending and restores them in t
   );
 
   // The body actually sent to the SDK must NOT contain `{{name}}`.
-  const sentBody = mockPost.mock.calls[0][0].body.inputs as Array<{
+  const sentBody = mockPost.mock.calls[0][0].body as Array<{
     text: string;
   }>;
+  // Regression guard: the pinned api-version=3.0 endpoint requires a BARE
+  // array on the wire, never a `{ inputs: [...] }` wrapper (which Azure
+  // rejects with HTTP 400, code 400074). Assert the shape explicitly so the
+  // 3.0.0 body regression cannot silently return.
+  expect(Array.isArray(mockPost.mock.calls[0][0].body)).toBe(true);
+  expect(mockPost.mock.calls[0][0].body).not.toHaveProperty("inputs");
   expect(sentBody[0].text).not.toContain("{{name}}");
   expect(sentBody[0].text).toMatch(/RTKEEP\d{6}/);
 
@@ -609,7 +613,7 @@ test("API: translate skips placeholder protection when protectPlaceholders=false
     { protectPlaceholders: false },
   );
 
-  const sentBody = mockPost.mock.calls[0][0].body.inputs as Array<{
+  const sentBody = mockPost.mock.calls[0][0].body as Array<{
     text: string;
   }>;
   expect(sentBody[0].text).toBe("Hello {{name}}");

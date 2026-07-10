@@ -215,13 +215,15 @@ export const translate = async (
         const response = await retryablePost(
           () =>
             client.path("/translate").post({
-              // v2 requires the payload wrapped as `{ inputs }` (was a bare
-              // array in v1). Its types further model a forward-looking API
-              // where each input carries its own `targets`; we intentionally
-              // keep the v3.0 wire contract instead — target locales and
-              // options ride along as query parameters (see above) — so we
-              // assert the shape the pinned `apiVersion=3.0` endpoint expects.
-              body: { inputs: dataBatch } as unknown as TranslateBody,
+              // The pinned `apiVersion=3.0` REST endpoint expects the request
+              // body to be a BARE JSON array of `{ text }` items — target
+              // locales and options ride along as query parameters (see
+              // above). The SDK's `TranslateBody` type models the newer
+              // structured `{ inputs }` shape, but `@azure-rest` serializes
+              // `body` verbatim to JSON, so we pass the bare array and cast to
+              // satisfy the type. Wrapping it as `{ inputs }` makes Azure
+              // reject the call with HTTP 400 (code 400074, "not valid JSON").
+              body: dataBatch as unknown as TranslateBody,
               headers,
               queryParameters,
             }),

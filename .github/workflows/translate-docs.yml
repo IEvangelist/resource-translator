@@ -96,7 +96,7 @@ jobs:
           configPath: .github/resource-translator.yml
           toLocales: ${{ steps.locales.outputs.json }}
           dryRun: ${{ inputs.dry-run || 'false' }}
-          failOnError: false
+          failOnError: true
           allowFallback: true
 
       - name: Summary
