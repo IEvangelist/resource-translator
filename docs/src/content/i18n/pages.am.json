@@ -390,8 +390,13 @@
 		"lede": "የተለቀቁት ከፍተኛ ደረጃ ማጠቃለያ። ቀኖናዊ፣ ስልጣን ያለው የለውጥ ሎግ በማከማቻው ውስጥ CHANGELOG.md ይኖራል።",
 		"fullRecord": "ለሙሉ መዝገብ {changelogLink} ይመልከቱ።",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "የሚለቀቁት",
+		"fixedLabel": "ቋሚ",
+		"releases": {
+			"v302": "{label} ተርጓሚ ይጠይቃል አሁን ለሁለቱም {translate} እና {languages} {apiVersion} በሽቦው ላይ ይሰኩት። Azure ኤስዲኬ የደንበኛ ደረጃ የኤፒአይ-ስሪት አማራጭን የሚያከብረው ምስክርነት ሲተላለፍ ብቻ ነው። ድርጊቱ በአንድ ጥያቄ በራዕሶች በኩል ያረጋግጣል፣ ስለዚህ ያ አማራጭ በጸጥታ ተጥሏል እና ጥያቄዎች ወደ ቅድመ እይታ ኤፒአይ-ስሪት ነባሪ ሆነዋል {translate} ኮንትራቱ በኤችቲቲፒ 400 (የስህተት ኮድ {code}) ውድቅ አድርጓል። በ 3.0.1 የተጀመረውን ጥገና ያጠናቅቃል.",
+			"v301": "{label} {translate} የጥያቄ አካል አሁን ከ v3.0 REST ውል ጋር የሚዛመድ ከተጠቀለለ {inputs} ነገር ይልቅ ባዶ የJSON ድርድር {textItem} እቃዎች ነው። በራሱ ይህ ትርጉሞችን ወደነበረበት አልመለሰም - 3.0.2 ይመልከቱ።"
+		},
 		"v3": {
-			"heading": "V3 (በልማት ላይ)",
 			"labels": {
 				"breaking": "መስበር",
 				"resilience": "የመቋቋም ችሎታ",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} ሰነዶች ፕሮሴስ {codeElement} አሁን ሞቅ ያለ/አምበር ጭብጥ ዘዬ ለብሷል - ለአገናኞች እና አርእስቶች ጥቅም ላይ ከሚውለው የምርት ስም→አነጋገር ቤተ-ስዕል የተለየ።",
 				"automation": "Dependabot ራስ-ማዋሃድ፣ CodeQL ቅኝት፣ CI ማትሪክስ።"
 			}
-		},
-		"v2": {
-			"heading": "ቪ 2.ኤክስ",
-			"gitHistory": "የ git ታሪክን ይመልከቱ።"
 		}
 	}
 }

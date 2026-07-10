@@ -390,8 +390,13 @@
 		"lede": "Aotelega maualuga o fa'asa'olotoga. O le canonical, fa'amaoni changelog o lo'o ola i CHANGELOG.md i totonu o le faleteuoloa.",
 		"fullRecord": "Tagai {changelogLink} mo le faamaumauga atoa.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Fa'asa'olotoina",
+		"fixedLabel": "Fa'amautuina:",
+		"releases": {
+			"v302": "{label} talosaga a le Translator ua pine nei {apiVersion} i luga o le uaea mo {translate} ma {languages}. O le Azure SDK e na'o le fa'aaloalo i le client-level api-version option pe a pasia se fa'amaoniga; O le gaioiga e fa'amaonia ai le talosaga e ala i ulutala, o lea na pa'u lemu ai lena filifiliga ma talosaga na fa'aletonu i se preview API-version o lona konekarate {translate} teena le tino ma HTTP 400 (error code {code}). Fa'amae'aina le fa'aleleia na amata i le 3.0.1.",
+			"v301": "{label} O le tino talosaga a le {translate} ua avea nei ma se fa'asologa JSON o aitema {textItem} nai lo se mea {inputs} afifiina, e fetaui ma le konekarate v3.0 REST. Na o ia lava e le'i toefuatai mai ai faaliliuga — tagai i le 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (i le atina'e)",
 			"labels": {
 				"breaking": "SOLIA",
 				"resilience": "Maufetuuna'i:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs prose {codeElement} o lo'o ofuina nei le mafanafana / amber theme accent — ese mai le brand→accent palette fa'aaogaina mo feso'ota'iga ma ulutala.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Va'ai git talafa'asolopito."
 		}
 	}
 }

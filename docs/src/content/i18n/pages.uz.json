@@ -390,8 +390,13 @@
 		"lede": "Relizatsiyalarning yuqori darajadagi qisqacha mazmuni. Kanonik, vakolatli changelog CHANGELOG.md omborda yashaydi.",
 		"fullRecord": "To'liq yozuv uchun {changelogLink} qarang.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Chiqarilishlar",
+		"fixedLabel": "Tuzatildi:",
+		"releases": {
+			"v302": "{label} Tarjimon so'rovlari endi {translate} va {languages} uchun simda {apiVersion} pin qo'yishni so'ramoqda. Azure SDK faqat credential uzatilganda mijoz darajasidagi api-versiya opsiyasini qabul qiladi; harakat har bir so'rov uchun sarlavhalar orqali autentifikatsiya qilinadi, shuning uchun bu opsiya jimjit olib tashlangan va so'rovlar HTTP 400 (xato kodi {code}) bilan tanani rad etgan {translate} API versiyasiga o'tkazilgan. 3.0.1 da boshlangan tuzatishni yakunladi.",
+			"v301": "{label} {translate} so'rov tanasi endi {inputs} obyekt o'rniga {textItem} elementlardan iborat JSON massivi bo'lib, v3.0 REST kontraktiga mos keladi. Bu o'z-o'zidan tarjimalarni tiklamadi — qarang: 3.0.2."
+		},
 		"v3": {
-			"heading": "V3 (rivojlantirilmoqda)",
 			"labels": {
 				"breaking": "BUZILISH",
 				"resilience": "Bardoshlilik:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs Prose {codeElement} endi issiq/ambra rangli aksentda — bu →brend va sarlavhalar uchun ishlatiladigan aksent palitrasidan farq qiladi.",
 				"automation": "Dependabot avtomatik birlashtirish, CodeQL skanerlash, CI matritsa."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Git tarixiga qarang."
 		}
 	}
 }

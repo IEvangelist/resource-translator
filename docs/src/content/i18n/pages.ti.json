@@ -390,8 +390,13 @@
 		"lede": "ላዕለዋይ ደረጃ ጽማቝ ጽማቝ ናጻ ሓርነት። ቀኖናውን ስልጣን ዘለዎን ለውጥታት ኣብ CHANGELOG.md ኣብ መኽዘን እዩ ዚነብር።",
 		"fullRecord": "ምሉእ ሓበሬታ ንምርካብ {changelogLink} ርአ።",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "ዝወጸ ሓበሬታ",
+		"fixedLabel": "እተኣረመ ፦",
+		"releases": {
+			"v302": "{label} ተርጓሚ ሕጂ ን {translate} ኰነ ን {languages} {apiVersion} ኣብ ገመድ ይሰቕሎ ኣሎ። Azure SDK ነቲ ናይ ዓማዊል ደረጃ api-version ኣማራጺ ምስክር ወረቓቕቲ ምስ ሓለፈ ጥራይ እዩ ዜኽብር። እቲ ተግባር ንነፍሲ ወከፍ ሕቶ ብኣርእስትታት ኣቢሉ የረጋግጽ፣ ስለዚ እቲ ኣማራጺ ብጸጥታ ተደርበየ እቲ {translate} ውዕል ነቲ ኣካል ምስ HTTP 400 (ናይ ጌጋ ኮድ {code}) ዝነጸጎ ቅድመ-እይታ ኤፒአይ-ቨርሽን ጠለብዎ። እቲ መአረምታ ኣብ 3.0.1 ዝጀመረ መአረምታ ዛዘመ።",
+			"v301": "{label} እቲ ናይ {translate} ሕቶ ኣካል ሕጂ ምስ v3.0 REST ውዕል ዚሰማማዕ ኣብ ክንዲ እተጠቕለለ {inputs} ነገር {textItem} ኣቝሑ ዝሓዘ ጥራዩ JSON እዩ። እዚ ንባዕሉ ነቲ ትርጕማት ኣይመለሰሉን — 3።0.2 ርአ።"
+		},
 		"v3": {
-			"heading": "V3 (ኣብ ምዕባለ)",
 			"labels": {
 				"breaking": "ምስብራ",
 				"resilience": "ተጻዋርነት፦",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} ሰነድ ፕሮዝ {codeElement} ሕጂ ኻብቲ ንመራኸቢታትን ኣርእስትታትን ዜገልግል ብራንድ→ኣደማምጻ እተፈልየ ምዉቕ/ኣምበር ኣደማምጻ እዩ ዚጥቀም።",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "ታሪኽ git ርአ።"
 		}
 	}
 }

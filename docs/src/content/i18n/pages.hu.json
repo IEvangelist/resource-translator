@@ -390,8 +390,13 @@
 		"lede": "Magas szintű összefoglaló a kiadásokról. A kanonikus, tekintélyt meghatározó változásnapló CHANGELOG.md a reponóriumban él.",
 		"fullRecord": "A teljes jegyzőkönyvért lásd {changelogLink}.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Megjelenések",
+		"fixedLabel": "Javított:",
+		"releases": {
+			"v302": "{label} Fordító kérések most már {apiVersion}-t rögzítenek a vezetékre mind a {translate}, mind a {languages} esetében. Az Azure SDK csak akkor tartja tiszteletben a kliensszintű API-verziós opciót, amikor egy hitelesítést átadnak; Az akció minden kérésenként hitelesítést ad fejléceken keresztül, így ezt az opciót csendben elhagyták, és a kérések alapértelmezett egy előzetes API verzióra váltak, amelynek {translate} szerződése elutasította a testet HTTP 400-mal (hibakód {code}). Befejezi a 3.0.1-ben indított javítást.",
+			"v301": "{label} A {translate} kéréstest most már egy puszta JSON tömb, {textItem} elemekből áll, nem pedig egy becsomagolt {inputs} objektum, amely megfelel a v3.0 REST szerződésnek. Ez önmagában nem állította vissza a fordításokat — lásd 3.0.2."
+		},
 		"v3": {
-			"heading": "V3 (fejlesztés folyamatban)",
 			"labels": {
 				"breaking": "TÖRÉS",
 				"resilience": "Ellenállóképesség:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs próza {codeElement} most meleg/borostyánszínű témájú akcentust visel — ami eltér a márka→akcentus palettájától, amelyet a linkekhez és címekhez használnak.",
 				"automation": "Dependabot automatikus összevonás, CodeQL szkennelés, CI mátrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Lásd a git történetét."
 		}
 	}
 }

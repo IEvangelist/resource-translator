@@ -390,8 +390,13 @@
 		"lede": "Résumé ya ba publications ya likolo. Changelog canonique, autorité efandaka na CHANGELOG.md na ebombelo.",
 		"fullRecord": "Tala {changelogLink} mpo na lisolo mobimba.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Ebimisami",
+		"fixedLabel": "Fixe:",
+		"releases": {
+			"v302": "{label} Translator requests now pin {apiVersion} on the wire for both {translate} and {languages}. Azure SDK etosaka kaka option ya API ya niveau ya client soki identificatif eleki; Action ezali authentification na bosengi na nzela ya headers, yango wana option ebwakaki na kimya mpe bosengi ekendeki na API version ya preview oyo contrat na yango ya {translate} eboyaki nzoto na HTTP 400 (code ya libunga {code}). Kobongisa ebandaki na 3.0.1.",
+			"v301": "{label} Nzoto ya bosengi ya {translate} ekomi sikoyo liboke ya JSON ya biloko {textItem} na esika ya eloko ya {inputs} ekangamá, eyokani na contrat ya v3.0 REST. Yango moko ezongisaki babongoli te — tala 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (na développement)",
 			"labels": {
 				"breaking": "KOBUKA",
 				"resilience": "Résilience:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs prose {codeElement} sikoyo alati accent ya thème ya molunge/ambre — ekeseni na palette ya accent ya marque→accent oyo esalelamaka mpo na ba liens mpe mitó ya mikanda.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Tala lisolo ya git."
 		}
 	}
 }

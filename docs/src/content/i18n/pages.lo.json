@@ -390,8 +390,13 @@
 		"lede": "ການສະຫລຸບລະດັບສູງຂອງການປົດປ່ອຍ. changelog ທີ່ ມີ ສິດ ອໍາ ນາດ ແລະ ມີ ສິດ ອໍາ ນາດ ມີ ຢູ່ ໃນ CHANGELOG.md ໃນ repository.",
 		"fullRecord": "ເບິ່ງ {changelogLink} ສໍາ ລັບ ບັນ ທຶກ ຄົບ ຖ້ວນ.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "ການ ປົດ ປ່ອຍ",
+		"fixedLabel": "ແກ້ໄຂ:",
+		"releases": {
+			"v302": "{label} ຄໍາ ຂໍ ຮ້ອງ ຂອງ ຜູ້ ແປ ບັດ ນີ້ ຕິດ {apiVersion} ຢູ່ ໃນ ສາຍ ສໍາ ລັບ ທັງ {translate} ແລະ {languages}. Azure SDK ໃຫ້ກຽດທາງເລືອກ api-version ລະດັບລູກຄ້າເທົ່ານັ້ນເມື່ອຜ່ານຂໍ້ມູນ; ການກະທໍາຢືນຢັນຕໍ່ຄໍາຮ້ອງຂໍຜ່ານຫົວຂໍ້, ດັ່ງນັ້ນທາງເລືອກນັ້ນຈຶ່ງຖືກຖິ້ມຢ່າງງຽບໆ ແລະ ຄໍາຮ້ອງຂໍມາດຕະຖານເປັນລຸ້ນ Preview API ທີ່ສັນຍາ {translate} ປະຕິເສດເນື້ອໃນທີ່ມີ HTTP 400 (ລະຫັດຜິດພາດ {code}). ສໍາເລັດການແກ້ໄຂທີ່ເລີ່ມຕົ້ນໃນ 3.0.1.",
+			"v301": "{label} ຮ່າງກາຍຄໍາຮ້ອງຂໍ {translate} ຕອນນີ້ເປັນແຖວ JSON ເປົ່າຂອງລາຍການ {textItem} ແທນທີ່ຈະເປັນວັດຖຸ {inputs} ທີ່ຫຸ້ມຫໍ່, ສອດຄ່ອງກັບສັນຍາ REST v3.0. ມັນ ບໍ່ ໄດ້ ຟື້ນ ຟູ ການ ແປ ຄືນ ມາ ໃຫມ່ - ເບິ່ງ 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (ກໍາລັງພັດທະນາ)",
 			"labels": {
 				"breaking": "ການ ຫັກ",
 				"resilience": "ຄວາມອົດທົນ:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs prose {codeElement} ບັດ ນີ້ ນຸ່ງ ເຄື່ອງ ທີ່ ອົບ ອຸ່ນ / ສີ ເຫລືອງ - ແຕກ ຕ່າງ ຈາກ brand → palette ທີ່ ໃຊ້ ສໍາລັບ link ແລະ ຫົວ ຂໍ້.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "ເບິ່ງ git history."
 		}
 	}
 }

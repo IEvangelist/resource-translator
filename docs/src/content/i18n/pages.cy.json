@@ -390,8 +390,13 @@
 		"lede": "Crynodeb lefel uchel o ddatganiadau. Mae'r changelog canonaidd, awdurdodol yn byw yn CHANGELOG.md yn yr ystorfa.",
 		"fullRecord": "Gweler {changelogLink} am y cofnod llawn.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Datganiadau",
+		"fixedLabel": "Sefydlog:",
+		"releases": {
+			"v302": "{label} Ceisiadau Cyfieithydd nawr pin {apiVersion} ar y wifren ar gyfer {translate} a {languages}. Mae'r Azure SDK ond yn anrhydeddu'r opsiwn api-version ar lefel cleient pan fydd credential yn cael ei basio; Mae'r weithred yn dilysu fesul cais trwy benawdau, felly cafodd yr opsiwn hwnnw ei ollwng yn dawel a cheisiadau yn ddiofyn i fersiwn API rhagolwg y gwrthododd ei gontract {translate} y corff gyda HTTP 400 (cod gwall {code}). Yn cwblhau'r atgyweiriad a ddechreuwyd yn 3.0.1.",
+			"v301": "{label} Mae'r corff cais {translate} bellach yn arae JSON noeth o eitemau {textItem} yn hytrach na gwrthrych {inputs} wedi'i lapio, sy'n cyfateb i'r contract REST v3.0. Ar ei ben ei hun nid oedd hyn yn adfer cyfieithiadau — gweler 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (yn cael ei ddatblygu)",
 			"labels": {
 				"breaking": "TORRI",
 				"resilience": "Gwytnwch:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} docs rhyddiaith {codeElement} bellach yn gwisgo'r acen thema cynnes / ambr - yn wahanol i'r palet brand→acen a ddefnyddir ar gyfer dolenni a phenawdau.",
 				"automation": "Awto-uno Dependabot, sganio CodeQL, matrics CI."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Gweler hanes git."
 		}
 	}
 }

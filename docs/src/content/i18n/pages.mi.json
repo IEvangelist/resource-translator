@@ -390,8 +390,13 @@
 		"lede": "Whakarāpopototanga taumata tiketike o ngā pānuitanga. E noho ana te changelog canonical, whai mana i roto i te CHANGELOG.md i roto i te whare putunga.",
 		"fullRecord": "Tirohia {changelogLink} mō te pūkete katoa.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Ngā Pānuitanga",
+		"fixedLabel": "Kua Ū:",
+		"releases": {
+			"v302": "{label} Ngā tono Kaiwhakamāori ināianei kia pine {apiVersion} ki te waea mō ngā {translate} me ngā {languages}. Ka whakahonoretia anake e te Azure SDK te kōwhiringa putanga api-taumata-kiritaki ina tukuna he taipitopito tuakiri; ka whakamotuhēhētia te hohenga mō ia tono mā ngā pane, nā reira i whakataka puku taua kōwhiringa, ā, ka taunoa ngā tono ki tētahi putanga API arokite nāna te kirimana {translate} i whakakāhore i te tinana ki HTTP 400 (waehere hapa {code}). Ka whakaoti i te whakatika i tīmataria i te 3.0.1.",
+			"v301": "{label} Ko te tinana tono {translate} ināianei he huānga JSON noa iho o ngā tūemi {textItem}, kaua ko te ahanoa {inputs} kua takaia, e ōrite ana ki te kirimana REST v3.0. Kāore tēnei i whakaora i ngā whakamāoritanga — tirohia te 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (kei te whanaketia)",
 			"labels": {
 				"breaking": "WHATI ANA",
 				"resilience": "Te manawanui:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} te {codeElement} prose docs ināianei e mau ana i te nako tāhuhu mahana/amipere — he rerekē i te papatā nako parani→nako e whakamahia ana mō ngā hononga me ngā panekōrero.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Tirohia te hītori git."
 		}
 	}
 }

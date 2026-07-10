@@ -390,8 +390,13 @@
 		"lede": "Haapotoraa teitei o te mau haamataraa. Te vai ra te changelog canonique e te mana i roto i te CHANGELOG.md i roto i te haaputuraa.",
 		"fullRecord": "A hi'o {changelogLink} no te taatoaraa o te faaiteraa.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Te mau haamataraa",
+		"fixedLabel": "Faatitiaifarohia :",
+		"releases": {
+			"v302": "{label} Te mau aniraa a te Translator i teie nei, e tuu {apiVersion} i ni'a i te niuniu no te {translate} e no te {languages}. E faatura noa te Azure SDK i te ma'itiraa api-version ia horo'ahia te hoê parau faati'a ; e haapapû te ohipa i te aniraa na roto i te mau upoo parau, no reira, ua faaru'e te reira ma'itiraa ma te muhu ore e ua tuuhia te mau aniraa i roto i te hoê {translate} hi'oraa API e ua pato'i te parau faaau i te tino na roto i te HTTP 400 (error code {code}). Faaoti i te faatitiaifaroraa tei haamata i te 3.0.1.",
+			"v301": "{label} I teie nei, ua riro te tino o te {translate} request ei faanahoraa JSON no te mau tao'a {textItem} eiaha râ te hoê tao'a puohu {inputs}, e tu'ati ra i te parau faaau REST v3.0. Aita te reira i faaho'i faahou mai i te mau huriraa — a hi'o 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (i roto i te faaineineraa)",
 			"labels": {
 				"breaking": "TE OFATIRAA",
 				"resilience": "Te faaoroma'i :",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} {codeElement} i teie nei, te vai ra te ta'iraa parau mahanahana e te amber — taa ê atu →i te mau ta'iraa parau e faaohipahia no te mau hono e te mau upoo parau.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "A hi'o i te aamu o te git."
 		}
 	}
 }

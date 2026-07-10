@@ -390,8 +390,13 @@
 		"lede": "iVakaleka cecere ni veivagalalataki. Na canonical, authoritative changelog e bula tiko ena CHANGELOG.md ena repository.",
 		"fullRecord": "Raica na {changelogLink} me baleta na itukutuku taucoko.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Veivagalalataki",
+		"fixedLabel": "Vakavinakataki:",
+		"releases": {
+			"v302": "{label} Na kerekere ni dauvakadewa ena gauna oqo e vakapini {apiVersion} ena livaliva me baleta ruarua na {translate} kei na {languages}. Na Azure SDK e doka ga na digidigi ni api-version ni ivakatagedegede ni kasitama ni sa pasi e dua na credential; na cakacaka authenticates ena dua na kerekere mai na headers, ka sa vakalutu galugalu na digidigi oya ka defaulted na kerekere ki na dua na mataqali API preview ka sega ni vakadonuya na konitaraki ni {translate} na yago vata kei na HTTP 400 (nabavuni ni cala {code}). Vakacavara na vakavinakataki tekivu ena 3.0.1.",
+			"v301": "{label} Na yago ni kerekere ni {translate} sa ikoya oqo e dua na iyaya ni {textItem} ni JSON ka sega ni dua na iyaya ni {inputs} vivigi, veisotari kei na konitaraki ni v3.0 REST. E sega ni vakalesuya mai na vakadewa — raica na 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (ena veivakatorocaketaki)",
 			"labels": {
 				"breaking": "VOROKI",
 				"resilience": "Veivosoti:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs Prose {codeElement} sa daramaka tu oqo na ivakatakilakila ni ulutaga katakata/amber — duidui mai na palette ni brand→accent e vakayagataki me baleta na isema kei na ulutaga.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Raica na itukutuku makawa."
 		}
 	}
 }

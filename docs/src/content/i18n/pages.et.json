@@ -390,8 +390,13 @@
 		"lede": "Kõrgetasemeline kokkuvõte väljaannetest. Kanoniline, autoriteetne muutuste logi elab CHANGELOG.md repositooriumis.",
 		"fullRecord": "Vaata {changelogLink} täielikku protokolli.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Väljaanded",
+		"fixedLabel": "Parandatud:",
+		"releases": {
+			"v302": "{label} Translatori päringud kinnitavad nüüd {apiVersion} juhtmele nii {translate} kui ka {languages} jaoks. Azure SDK tunnustab kliendi tasemel API-versiooni valikut ainult siis, kui mandaat on väljastatud; tegevus autentib iga päringu kohta päiste kaudu, mistõttu see valik jäeti vaikimisi välja ja päringud läksid vaikimisi eelvaate API versiooniks, mille {translate} leping lükkas kere tagasi HTTP 400-ga (veakood {code}). Lõpetab paranduse, mis algas versioonis 3.0.1.",
+			"v301": "{label} {translate} päringu keha on nüüd paljas JSON-massiv {textItem} elementidest, mitte mähitud {inputs} objekt, mis vastab v3.0 REST lepingule. See iseenesest ei taastanud tõlkeid — vt 3.0.2."
+		},
 		"v3": {
-			"heading": "V3 (arenduses)",
 			"labels": {
 				"breaking": "MURDMINE",
 				"resilience": "Vastupidavus:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs Prose {codeElement} kannab nüüd sooja/merevaigukollase teema aktsenti — mis erineb brändi→aktsendi paletist, mida kasutatakse linkide ja pealkirjade jaoks.",
 				"automation": "Dependabot automaatne ühendamine, CodeQL skaneerimine, CI maatriks."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Vaata giti ajalugu."
 		}
 	}
 }

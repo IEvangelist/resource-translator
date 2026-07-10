@@ -390,8 +390,13 @@
 		"lede": "Muhtasari wa kiwango cha juu wa matoleo. Mabadiliko ya kisheria, yenye mamlaka huishi CHANGELOG.md kwenye hazina.",
 		"fullRecord": "Tazama {changelogLink} kwa rekodi kamili.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Matoleo",
+		"fixedLabel": "Fasta:",
+		"releases": {
+			"v302": "{label} Maombi ya Mtafsiri sasa yanabandika {apiVersion} kwenye waya kwa {translate} na {languages}. SDK ya Azure inaheshimu tu chaguo la toleo la api la kiwango cha mteja wakati kitambulisho kinapitishwa; kitendo kinathibitisha kwa kila ombi kupitia vichwa, kwa hivyo chaguo hilo liliondolewa kimya kimya na maombi kubadilishwa kwa toleo la onyesho la kukagua API ambalo mkataba wake wa {translate} ulikataa mwili na HTTP 400 (msimbo wa makosa {code}). Inakamilisha marekebisho yaliyoanza katika 3.0.1.",
+			"v301": "{label} Mwili wa ombi la {translate} sasa ni safu wazi ya JSON ya vitu {textItem} badala ya kitu {inputs} kilichofungwa, kinacholingana na mkataba wa v3.0 REST. Peke yake hii haikurejesha tafsiri - tazama 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (katika maendeleo)",
 			"labels": {
 				"breaking": "KUVUNJA",
 				"resilience": "Ustahimilivu:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} hati za nathari sasa {codeElement} huvaa lafudhi ya mandhari ya joto/kahawia - tofauti na palette →lafudhi ya chapa inayotumiwa kwa viungo na vichwa.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Tazama historia ya git."
 		}
 	}
 }

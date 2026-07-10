@@ -390,8 +390,13 @@
 		"lede": "Resumen ka'anal nivel u lanzamientos. Le registro cambios canónico, autorizado ku yaantal ti' CHANGELOG.md ti' le repositorio.",
 		"fullRecord": "Wil {changelogLink}'éel uchik k'iini'.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Lanzamientos",
+		"fixedLabel": "Solucionado:",
+		"releases": {
+			"v302": "{label} Traductor bejla'e' pin {apiVersion} ti' le cable utia'al u {translate} bey {languages}. Le SDK Azure chéen honra le opción api-version nivel cliente ken u yúuchul jump'éel credencial; le molayil autentica tumen j-na'akij yóol encabezados, yo'olal le opción ku k'uchul silenciosamente yéetel solicitudes tumen defecto ti' jump'éel versión previa API-versión cuyo {translate} contrato rechazó u wíinkilal yéetel HTTP 400 (código ba'alo' {code}). Kuuch le solución Káaj ti' 3.0.1.",
+			"v301": "{label} wíinkilal {translate} j-na'akij bejla'e' le jump'éel matriz JSON desnuda elementos {textItem} kúuchil jump'éel objeto {inputs} envuelto coincide yéetel le contrato v3.0 REST. Yan wéet le ba'ala' ma' restauró le traducciones — wil 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (ti' ma'alo'ob)",
 			"labels": {
 				"breaking": "JAATIK",
 				"resilience": "Resistencia:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} docs prosa bejla'e' {codeElement} le acento chun tuukulo' cálido leti' ámbar — jela'an ti' le paleta acento marca→ utilizada utia'al u K'aanan yéetel títulos.",
 				"automation": "Dependabot auto-fusión, escaneo CodeQL, matriz CI."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Wil k'ajláayo' git."
 		}
 	}
 }

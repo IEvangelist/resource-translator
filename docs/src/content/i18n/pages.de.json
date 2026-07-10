@@ -390,8 +390,13 @@
 		"lede": "Übersichtliche Zusammenfassung der Veröffentlichungen. Das kanonische, autoritative Changelog lebt in CHANGELOG.md im Repository.",
 		"fullRecord": "Siehe {changelogLink} für das vollständige Protokoll.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Veröffentlichungen",
+		"fixedLabel": "Behoben:",
+		"releases": {
+			"v302": "{label} Übersetzer-Anfragen pinnen {apiVersion} nun sowohl für {translate} als auch für {languages} auf die Leitung. Das Azure SDK akzeptiert die Client-Level-API-Version nur, wenn eine Zugangsdaten weitergegeben wird; die Aktion authentifiziert sich pro Anfrage über Header, sodass diese Option stillschweigend verworfen wurde und Anfragen standardmäßig auf eine Vorschau-API-Version umgestellt wurden, deren {translate} Vertrag den Body mit HTTP 400 (Fehlercode {code}) ablehnte. Es ist abgeschlossen, der Fix startete in 3.0.1.",
+			"v301": "{label} Der {translate}-Anforderungskörper ist nun ein nacktes JSON-Array aus {textItem} Items statt eines gewrapten {inputs} Objekts, das dem v3.0 REST-Vertrag entspricht. Allein stellte dies die Übersetzungen nicht wieder her – siehe 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (in Entwicklung)",
 			"labels": {
 				"breaking": "BRUCH",
 				"resilience": "Resilienz:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs {codeElement}→Prosa trägt nun den warmen/amberfarbenen Akzent – anders als die MarkenAkzentpalette, die für Links und Überschriften verwendet wird.",
 				"automation": "Dependabot Auto-Merge, CodeQL-Scanning, CI-Matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Siehe Git-Verlauf."
 		}
 	}
 }

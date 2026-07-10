@@ -390,8 +390,13 @@
 		"lede": "Riassunto generale delle pubblicazioni. Il changelog canonico e autorevole risiede in CHANGELOG.md nel repository.",
 		"fullRecord": "Vedi {changelogLink} per il verbale completo.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Pubblicazioni",
+		"fixedLabel": "Corretto:",
+		"releases": {
+			"v302": "{label} Richieste Traduttore ora fissano {apiVersion} sul filo sia per {translate} che per {languages}. L'Azure SDK rispetta l'opzione di versione API a livello client solo quando viene passata una credenziali; l'azione autentica ogni richiesta tramite header, quindi quell'opzione è stata silenziosamente abbandonata e le richieste sono passate di default a una versione API di anteprima il cui contratto {translate} ha respinto il corpo con HTTP 400 (codice di errore {code}). Completi la correzione iniziata nella 3.0.1.",
+			"v301": "{label} Il corpo della richiesta {translate} ora è un array JSON nudo di {textItem} elementi invece di un oggetto {inputs} wrapped, corrispondente al contratto REST v3.0. Da solo questo non ripristinava le traduzioni — vedi 3.0.2."
+		},
 		"v3": {
-			"heading": "V3 (in sviluppo)",
 			"labels": {
 				"breaking": "BREAKING",
 				"resilience": "Resilienza:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} prosa di documenti {codeElement} ora indossa l'accento a tema caldo/ambrato — distinto dalla palette di accento → marca usata per link e intestazioni.",
 				"automation": "Auto-merge Dependabut, scansione CodeQL, matrice CI."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Vedi git history."
 		}
 	}
 }

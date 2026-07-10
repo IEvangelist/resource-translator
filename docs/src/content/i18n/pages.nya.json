@@ -390,8 +390,13 @@
 		"lede": "Chidule chapamwamba cha kutulutsidwa. The canonical, authoritative changelog amakhala mu CHANGELOG.md mu nkhokwe.",
 		"fullRecord": "Onani {changelogLink} kuti mupeze mbiri yonse.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Zotulutsa",
+		"fixedLabel": "Anakonza:",
+		"releases": {
+			"v302": "{label} Zopempha Womasulira tsopano pini {apiVersion} pa waya onse {translate} ndi {languages}. Azure SDK imangolemekeza njira ya kasitomala ya api-version pamene chizindikiritso chikuperekedwa; Mchitidwewu umatsimikizira pempho lililonse kudzera pamitu, kotero kuti njirayo idagwetsedwa mwakachetechete ndipo zopempha zidalephera kuwonetseratu mtundu wa API womwe mgwirizano wake wa {translate} udakana thupi ndi HTTP 400 (code yolakwika {code}). Amamaliza kukonza anayamba mu 3.0.1.",
+			"v301": "{label} Thupi la pempho la {translate} tsopano ndi JSON yopanda kanthu ya zinthu {textItem} m'malo mwa chinthu {inputs} chokulungidwa, chofanana ndi mgwirizano wa v3.0 REST. Pazokha izi sizinabwezeretse matembenuzidwe - onani 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (mu chitukuko)",
 			"labels": {
 				"breaking": "KUPHWANYA",
 				"resilience": "Kupirira:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} docs prose {codeElement} tsopano imavala mawu ofunda / amber - osiyana ndi mtundu →accent womwe umagwiritsidwa ntchito polumikizana ndi mitu.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Onani mbiri ya git."
 		}
 	}
 }

@@ -390,8 +390,13 @@
 		"lede": "Yfirlit yfir útgáfur á háu stigi. Hin kanóníska, áreiðanlega breytingaskrá lifir í CHANGELOG.md í geymslunni.",
 		"fullRecord": "Sjáðu {changelogLink} fyrir fulla skrá.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Útgáfur",
+		"fixedLabel": "Lagað:",
+		"releases": {
+			"v302": "{label} þýðingarbeiðnir festa nú {apiVersion} á vírinn fyrir bæði {translate} og {languages}. Azure SDK virðir aðeins API-útgáfuvalkostinn á viðskiptavinastigi þegar auðkenni er afhent; aðgerðin auðkennir sig fyrir hverja beiðni með hausum, þannig að sá valkostur var þögull felldur niður og beiðnir sjálfgefnar í forskoðunarútgáfu API-útgáfu þar sem {translate} samningurinn hafnaði líkamanum með HTTP 400 (villukóði {code}). Klárar lagfæringuna sem byrjaði í 3.0.1.",
+			"v301": "{label} Beiðnilíkami {translate} er nú ber JSON-fylki af {textItem} hlutum í stað þess að vera vafinn {inputs} hlutur, sem passar við v3.0 REST samninginn. Þetta eitt og sér endurheimti ekki þýðingar — sjá 3.0.2."
+		},
 		"v3": {
-			"heading": "V3 (í þróun)",
 			"labels": {
 				"breaking": "BROT",
 				"resilience": "Seigla:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs prósa {codeElement} ber nú hlýja/amber þemaáherslu — ólíkan merki→áherslupallettunni sem notuð er fyrir tengla og fyrirsagnir.",
 				"automation": "Dependabot sjálfvirk samruni, CodeQL skönnun, CI fylki."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Sjá git sögu."
 		}
 	}
 }

@@ -390,8 +390,13 @@
 		"lede": "Isifinyezo esiphezulu sokukhishwa. I-canonical, i-changelog enegunya ihlala CHANGELOG.md endaweni yokugcina.",
 		"fullRecord": "Bheka {changelogLink} ukuze uthole irekhodi eliphelele.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Ukukhishwa",
+		"fixedLabel": "Fixed:",
+		"releases": {
+			"v302": "{label} Izicelo Translator manje pin {apiVersion} on the wire for both {translate} and {languages}. I-Azure SDK ihlonipha kuphela inketho ye-api-version yezinga leklayenti lapho isitifiketi sidlulisiwe; isenzo siqinisekisa isicelo ngasinye ngezihloko, ngakho-ke leyo nketho yaphonswa buthule futhi izicelo zafakwa ku-API yokubuka kuqala inkontileka yayo {translate} yenqaba umzimba nge-HTTP 400 (ikhodi yephutha {code}). Qedela ukulungiswa kwaqala ku-3.0.1.",
+			"v301": "{label} Umzimba wesicelo se-{translate} manje useyi-JSON engenalutho yezinto {textItem} esikhundleni sento egoqiwe {inputs}, ehambisana nenkontileka ye-v3.0 REST. Ngokwayo lokhu akuzange kubuyisele izinguqulo — bheka 3.0.2."
+		},
 		"v3": {
-			"heading": "I-v3 (ekuthuthukisweni)",
 			"labels": {
 				"breaking": "UKUPHULA",
 				"resilience": "Ukuqina:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} docs prose {codeElement} manje igqoke ukugcizelela kwengqikithi efudumele / ye-amber - ehlukile kuphalethi ye→accent esetshenziselwa izixhumanisi nezihloko.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Bheka umlando we-git."
 		}
 	}
 }

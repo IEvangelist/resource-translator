@@ -390,8 +390,13 @@
 		"lede": "Résumé général des sorties. Le journal des modifications canonique et faisant autorité vit en CHANGELOG.md dans le dépôt.",
 		"fullRecord": "Voir {changelogLink} pour le dossier complet.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Sorties",
+		"fixedLabel": "Corrigé :",
+		"releases": {
+			"v302": "{label} demandes de traducteur épinglent maintenant {apiVersion} sur le fil pour {translate} et {languages}. Le SDK Azure ne respecte l’option de version API au niveau client que lorsqu’un identifiant est transmis; l’action authentifie chaque requête via des en-têtes, donc cette option a été silencieusement abandonnée et les requêtes sont passées par défaut à une version API d’aperçu dont le contrat de {translate} rejetait le corps avec HTTP 400 (code d’erreur {code}). Termine, la correction commencée en 3.0.1.",
+			"v301": "{label} Le corps de la requête {translate} est maintenant un tableau JSON nu de {textItem} items au lieu d’un objet {inputs} enveloppé, correspondant au contrat REST v3.0. À lui seul, cela ne restaurait pas les traductions — voir 3.0.2."
+		},
 		"v3": {
-			"heading": "V3 (en développement)",
 			"labels": {
 				"breaking": "BREAKS",
 				"resilience": "Résilience :",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} prose documentaire {codeElement} porte maintenant l’accent à thème chaud/ambré — distinct de la palette d’accents → marque utilisée pour les liens et les titres.",
 				"automation": "Auto-fusion Dependabot, balayage CodeQL, matrice CI."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Voir l’historique git."
 		}
 	}
 }

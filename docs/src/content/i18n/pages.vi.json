@@ -390,8 +390,13 @@
 		"lede": "Tóm tắt cấp cao về các bản phát hành. Nhật ký thay đổi chính tắc, có thẩm quyền nằm trong CHANGELOG.md trong kho lưu trữ.",
 		"fullRecord": "Xem {changelogLink} để biết hồ sơ đầy đủ.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Phát hành",
+		"fixedLabel": "Đã sửa:",
+		"releases": {
+			"v302": "{label} Yêu cầu Translator hiện ghim {apiVersion} trên dây cho cả {translate} và {languages}. Azure SDK chỉ tôn trọng tùy chọn phiên bản api cấp máy khách khi thông tin xác thực được chuyển đến; Hành động xác thực từng yêu cầu thông qua tiêu đề, do đó, tùy chọn đó đã bị loại bỏ một cách âm thầm và các yêu cầu được mặc định là phiên bản API xem trước có hợp đồng {translate} từ chối nội dung bằng HTTP 400 (mã lỗi {code}). Hoàn tất bản sửa lỗi bắt đầu trong phiên bản 3.0.1.",
+			"v301": "{label} Nội dung yêu cầu {translate} hiện là một mảng JSON trần gồm các mục {textItem} thay vì một đối tượng {inputs} được bọc, phù hợp với hợp đồng REST v3.0. Bản thân điều này không khôi phục được bản dịch — xem 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (đang phát triển)",
 			"labels": {
 				"breaking": "PHÁ VỠ",
 				"resilience": "Khả năng phục hồi:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} tài liệu văn xuôi {codeElement} hiện có điểm nhấn chủ đề ấm / hổ phách - khác với bảng màu → điểm nhấn thương hiệu được sử dụng cho các liên kết và tiêu đề.",
 				"automation": "Tự động hợp nhất Dependabot, quét CodeQL, ma trận CI."
 			}
-		},
-		"v2": {
-			"heading": "phiên bản 2.x",
-			"gitHistory": "Xem lịch sử git."
 		}
 	}
 }

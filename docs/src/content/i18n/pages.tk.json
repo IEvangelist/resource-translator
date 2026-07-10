@@ -390,8 +390,13 @@
 		"lede": "Çykarylyşlaryň ýokary derejeli gysgaça maglumaty. Kanonik, ygtybarly changelog CHANGELOG.md saklanylýan ýerde ýaşaýar.",
 		"fullRecord": "Doly ýazgy {changelogLink} serediň.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Çykarylyşlar",
+		"fixedLabel": "Düzeltildi:",
+		"releases": {
+			"v302": "{label} terjimeçi haýyşlary indi {apiVersion} üçin hem {translate}, hem {languages}. Azure SDK diňe kimlik maglumaty geçirilende müşderi derejesindäki API wersiýasyna hormat goýýar; hereket her haýyşyň başlyklary arkaly tassyklanýar, şonuň üçin bu seçenek sessiz düşürildi we haýyşlar HTTP 400 (hata kody {code}) bilen bedeni ret eden {translate} API wersiýasyna öňünden bellenildi. 3.0.1-de başlan düzedişi tamamlaýar.",
+			"v301": "{label} {translate} haýyş bedeni indi v3.0 REST şertnamasyna gabat gelýän {inputs} obýekt däl-de, {textItem} elementlerden ybarat JSON dizaýnyndan ybarat. Bu öz-özünden terjimeleri dikeldip bilmedi — 3.0.2 serediň."
+		},
 		"v3": {
-			"heading": "v3 (ösüşde)",
 			"labels": {
 				"breaking": "DÖWÜLMEK",
 				"resilience": "Çydamlylyk:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs proza {codeElement} baglaýyşlar we başlyklar üçin ulanylýan marka→aksentden tapawutlylykda, ýyly / amber tema aksentini geýýär.",
 				"automation": "Dependabot auto-merge, CodeQL skanerleme, CI matris."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "git geçmişine serediň."
 		}
 	}
 }

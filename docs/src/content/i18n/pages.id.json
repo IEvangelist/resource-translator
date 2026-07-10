@@ -390,8 +390,13 @@
 		"lede": "Ringkasan rilis tingkat tinggi. Changelog kanonik dan otoritatif berada di CHANGELOG.md di repositori.",
 		"fullRecord": "Lihat {changelogLink} untuk catatan lengkapnya.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Rilis",
+		"fixedLabel": "Diperbaiki:",
+		"releases": {
+			"v302": "{label} Permintaan Penerjemah sekarang menyematkan {apiVersion} pada kabel untuk {translate} dan {languages}. Azure SDK hanya menghormati opsi versi api tingkat klien saat kredensial diteruskan; tindakan mengautentikasi per permintaan melalui header, sehingga opsi itu diam-diam dihilangkan dan permintaan default ke versi API pratinjau yang kontrak {translate}-nya menolak isi dengan HTTP 400 (kode kesalahan {code}). Menyelesaikan perbaikan yang dimulai di 3.0.1.",
+			"v301": "{label} Isi permintaan {translate} sekarang menjadi array JSON kosong dari item {textItem}, bukan objek {inputs} yang dibungkus, cocok dengan kontrak REST v3.0. Dengan sendirinya ini tidak memulihkan terjemahan — lihat 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (dalam pengembangan)",
 			"labels": {
 				"breaking": "MEMECAHKAN",
 				"resilience": "Ketahanan:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} {codeElement} prosa docs sekarang mengenakan aksen tema hangat/kuning — berbeda dari palet aksen →merek yang digunakan untuk tautan dan judul.",
 				"automation": "Penggabungan otomatis Dependabot, pemindaian CodeQL, matriks CI."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Lihat riwayat git."
 		}
 	}
 }

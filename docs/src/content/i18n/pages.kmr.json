@@ -390,8 +390,13 @@
 		"lede": "Kurteya asta bilind a guhertoyan. Guhertina kanonîk, otorîter di CHANGELOG.md de di depoyê de dijî.",
 		"fullRecord": "Ji bo qeyda {changelogLink} binêrin.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Berdan",
+		"fixedLabel": "Sabît:",
+		"releases": {
+			"v302": "{label} Daxwazên wergêr êdî hem ji bo {translate} û hem jî ji bo {apiVersion} li ser têlê {languages}. Azure SDK tenê dema ku nasnameyek derbas dibe vebijarka guhertoya api-asta xerîdar rûmetê dide; Çalakî her daxwazê bi navgîniya sernavan piştrast dike, ji ber vê yekê vebijark bi bêdengî hate avêtin û daxwazên pêşdîtina API-guhertoya ku peymana {translate} laş bi HTTP 400 (koda xeletiyê {code}) red kir. Sererastkirina ku di 3.0.1 de dest pê kir temam dike.",
+			"v301": "{label} Laşê daxwazê {translate} niha li şûna tiştê {inputs} pêçandî ya JSON-ê ya {textItem} ye, ku bi peymana v3.0 REST re lihevhatî ye. Ev bi tena serê xwe wergeran sererast nekir - li 3.0.2 binêrin."
+		},
 		"v3": {
-			"heading": "v3 (di pêşveçûnê de)",
 			"labels": {
 				"breaking": "ŞIKESTIN",
 				"resilience": "Berxwedan:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs Prose {codeElement} niha devoka mijara germ / amber li xwe dike - ji paleta marqeyê→devokê ku ji bo girêdan û sernavan tê bikar anîn.",
 				"automation": "Hevgirtina otomatîk a Dependabot, CodeQL scanning, matrix CI."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Dîroka gitê binêrin."
 		}
 	}
 }

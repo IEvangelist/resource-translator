@@ -390,8 +390,13 @@
 		"lede": "Rezumat la nivel înalt al lansărilor. Jurnalul de modificări canonic și autoritar se află în CHANGELOG.md în depozit.",
 		"fullRecord": "Vezi {changelogLink} pentru înregistrarea completă.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Lansări",
+		"fixedLabel": "Fix:",
+		"releases": {
+			"v302": "{label} cererile traducătorului fixează acum {apiVersion} pe fir atât pentru {translate}, cât și pentru {languages}. Azure SDK respectă opțiunea de versiune API la nivel de client doar atunci când o acreditare este transmisă; acțiunea se autentifică pentru fiecare cerere prin antete, astfel încât acea opțiune a fost abandonată în tăcere, iar cererile au trecut implicit la o versiune API de previzualizare al cărei contract de {translate} a respins corpul cu HTTP 400 (cod de eroare {code}). Finalizează corecția începută în 3.0.1.",
+			"v301": "{label} Corpul cererii {translate} este acum un array JSON gol de {textItem} elemente, în loc de un obiect {inputs} înfășurat, corespunzând contractului REST v3.0. De unul singur, acest lucru nu restaura traducerile — vezi 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (în dezvoltare)",
 			"labels": {
 				"breaking": "BREAK-UP",
 				"resilience": "Reziliență:",
@@ -421,10 +426,6 @@
 				"inlineCode": "Proza {label} documentară {codeElement} poartă acum accentul tematic cald/chihlimbar — distinct de paleta → accente de brand folosită pentru linkuri și titluri.",
 				"automation": "Dependabot auto-merge, scanare CodeQL, matrice CI."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Vezi istoricul git."
 		}
 	}
 }

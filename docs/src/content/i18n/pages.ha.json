@@ -390,8 +390,13 @@
 		"lede": "Babban taƙaitaccen taƙaitaccen bayani game da fitarwa. Canonical, canji mai iko yana rayuwa a cikin CHANGELOG.md a cikin ma'ajiyar.",
 		"fullRecord": "Duba {changelogLink} don cikakken rikodin.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Abubuwan da aka saki",
+		"fixedLabel": "An gyara:",
+		"releases": {
+			"v302": "{label} Translator buƙatun yanzu pin {apiVersion} a kan waya don duka {translate} da {languages}. Azure SDK kawai yana girmama zaɓi na abokin ciniki lokacin da aka wuce takardun shaida; Aikin yana tabbatar da buƙata ta hanyar kanun labarai, don haka an sauke wannan zaɓin a hankali kuma buƙatun sun ƙi zuwa sigar API ta samfoti wanda kwangilar ta {translate} ta ƙi jiki tare da HTTP 400 (lambar kuskure {code}). An kammala gyaran da aka fara a cikin 3.0.1.",
+			"v301": "{label} Jikin buƙata na {translate} yanzu shine jerin JSON na abubuwa {textItem} maimakon abin da aka nannade {inputs}, wanda ya dace da kwangilar v3.0 REST. A kan kansa wannan bai dawo da fassarar ba — duba 3.0.2."
+		},
 		"v3": {
-			"heading": "V3 (a cikin ci gaba)",
 			"labels": {
 				"breaking": "KARYA",
 				"resilience": "Juriya:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs prose {codeElement} yanzu yana sanye da lafazin jigo mai dumi / amber - ya bambanta da alamar →alamar da aka yi amfani da ita don hanyoyin haɗi da kanun labarai.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Duba tarihin git"
 		}
 	}
 }

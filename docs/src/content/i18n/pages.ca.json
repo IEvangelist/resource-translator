@@ -390,8 +390,13 @@
 		"lede": "Resum d'alt nivell dels llançaments. El registre de canvis canònic i autoritari viu en CHANGELOG.md al repositori.",
 		"fullRecord": "Vegeu {changelogLink} per a l'expedient complet.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Llançaments",
+		"fixedLabel": "Solucionat:",
+		"releases": {
+			"v302": "{label} Sol·licituds del traductor ara fixen {apiVersion} al cable tant per a {translate} com per a {languages}. L'Azure SDK només respecta l'opció de versió de l'API a nivell de client quan es passa una credencial; l'acció autentica per petició mitjançant capçaleres, així que aquesta opció es va eliminar silenciosament i les sol·licituds van passar per defecte a una versió de previsualització de l'API el contracte de la qual {translate} rebutjava el cos amb HTTP 400 (codi d'error {code}). Completa la correcció que va començar a la 3.0.1.",
+			"v301": "{label} El cos de la petició {translate} ara és una matriu JSON nua de {textItem} elements en lloc d'un objecte {inputs} embolcallat, que coincideix amb el contracte REST v3.0. Per si sol, això no restaurava les traduccions — vegeu 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (en desenvolupament)",
 			"labels": {
 				"breaking": "TRENCAMENT",
 				"resilience": "Resiliència:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} prosa documental {codeElement} ara porta l'accent càlid/ambre — diferent de la paleta d'accents → marca utilitzada per enllaços i encapçalaments.",
 				"automation": "Auto-fusió de dependents, escaneig CodeQL, matriu CI."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Consulta git history."
 		}
 	}
 }

@@ -390,8 +390,13 @@
 		"lede": "Segondè rezime nivo degaje Changelog kanonik, autorité ap viv nan CHANGELOG.md nan depo a.",
 		"fullRecord": "Gade {changelogLink} pou dosye konplè a",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Degaje",
+		"fixedLabel": "Fiks:",
+		"releases": {
+			"v302": "{label} Tradiktè mande kounye a pine {apiVersion} sou fil pou tou de {translate} ak {languages}. Azure SDK la sèlman onore opsyon api-version nivo kliyan an lè yon kalifikasyon pase; Aksyon an otantifye pou chak demann atravè Headers, se konsa ke opsyon te silans lage ak demann default nan yon preview API-vèsyon ki gen kontra {translate} rejte kò a ak HTTP 400 (kòd erè {code}). Konplete ranje a te kòmanse nan 3.0.1",
+			"v301": "{label} Kò a demann {translate} se kounye a yon etalaj JSON toutouni nan atik {textItem} olye pou yo vlope {inputs} objè, matche ak kontra a v3.0 REST. Pou kont li, sa pa t restore tradiksyon — gade 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (nan devlopman)",
 			"labels": {
 				"breaking": "KRAZE",
 				"resilience": "Rezilyans:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs {codeElement} kounye a mete aksan tèm cho / amber - diferan de palèt mak→aksan yo itilize pou lyen ak.",
 				"automation": "Dependabot oto-rantre , CodeQL eskane CI matris"
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Gade git istwa"
 		}
 	}
 }

@@ -390,8 +390,13 @@
 		"lede": "Anginiqhakkut naittut tuhaqtidjutit. Tamna canonical, atanniqtuidjutiqaqtuq aallannguqtirutinga ittuq CHANGELOG.md tutquumavingani.",
 		"fullRecord": "Takulugu {changelogLink} tamaat titiraqhimayuq.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Nuitiqtitauyut",
+		"fixedLabel": "Ihuaqhaqhimajuq:",
+		"releases": {
+			"v302": "{label} Numiktiriyi tukhiutait {apiVersion} alruyami tamangnun {translate} {languages}. Azure SDK nan'ngariyait ikayuqtauyumayunut api-version piyakhaq taimaa naunaitkutaq angiqtaukpat; Qanuriliurutinga naunaiqtitaa atauhiqmut apirhuutimut naunaitkutanganut, taimaa piyakhaq nipaittumik piiqtauyuq apirhuutingillu iliuraqtauyuq uumunnga Preview API-version talvani {translate} kaantrak qin'ngiyaa timiqutigiyaa HTTP 400 (Error Code {code}). Iniqtiqtaa ihuarhainiq aullaqtiqtuq 3.0.1-mi.",
+			"v301": "{label} Tamna {translate} tukhiut timia piqangittuq JSON array of {textItem} items imuhimaittumik {inputs} object, aadjikkutariyaa v3.0 REST kaantrak. Inmikkut una ihuaqhingitaa numiktirhimayut — takulugu 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (pivallialiqtuq)",
 			"labels": {
 				"breaking": "AHIRUQTIQTUQ",
 				"resilience": "Mahulingainiq:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} docs prose {codeElement} atuliqtuq uunavyaktumik/aupayaangayumik pidjutaa — aalangayuq qanurinia→accent atuqtauyuq atadjutinun uvalu taidjutainun.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Takulugu git history."
 		}
 	}
 }

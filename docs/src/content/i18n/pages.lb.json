@@ -390,8 +390,13 @@
 		"lede": "Héich Niveau Zesummefaassung vun de Verëffentlechungen. De kanonesche, autoritativen Changelog liewt an CHANGELOG.md am Repository.",
 		"fullRecord": "Kuckt {changelogLink} fir de komplette Rekord.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Verëffentlechungen",
+		"fixedLabel": "Fixéiert:",
+		"releases": {
+			"v302": "{label} Translator-Ufroen pinnen elo {apiVersion} op d'Drot fir béid {translate} an {languages}. De Azure SDK respektéiert nëmmen d'Client-Level API-Versiounsoptioun wann eng Credential weiderginn gëtt; d'Aktioun authentifizéiert sech pro Ufro iwwer Headeren, sou datt dës Optioun roueg ofgeschaaft gouf an d'Ufroen standardméisseg op eng Preview-API-Versioun gesat, deenen hiren {translate} Kontrakt de Kierper mat HTTP 400 (Feelercode {code}) refuséiert huet. Fäerdeg mat der Reparatur, déi an 3.0.1 ugefaangen huet.",
+			"v301": "{label} De Kierper {translate} Ufro ass elo eng nackt JSON-Array vu {textItem} Elementer amplaz vun engem verpackten {inputs} Objet, wat mam v3.0 REST Kontrakt entsprécht. Dëst eleng huet d'Iwwersetzungen net restauréiert — kuckt 3.0.2."
+		},
 		"v3": {
-			"heading": "V3 (an der Entwécklung)",
 			"labels": {
 				"breaking": "BRIECHEN",
 				"resilience": "Resilienz:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs Prosa {codeElement} dréit elo den waarme/amber Thema-Akzent – ënnerschiddlech vun der Mark→Akzentpalette, déi fir Linken a Iwwerschrëften benotzt gëtt.",
 				"automation": "Dependabot Auto-Merge, CodeQL Scanning, CI-Matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Kuckt Git-Geschicht."
 		}
 	}
 }

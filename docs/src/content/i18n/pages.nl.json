@@ -390,8 +390,13 @@
 		"lede": "Samenvatting op hoog niveau van de releases. De canonieke, gezaghebbende changelog bevindt zich in CHANGELOG.md in de repository.",
 		"fullRecord": "Zie {changelogLink} voor het volledige verslag.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Uitgaven",
+		"fixedLabel": "Opgelost:",
+		"releases": {
+			"v302": "{label} vertalerverzoeken pinnen nu {apiVersion} op de draad voor zowel {translate} als {languages}. De Azure SDK kent alleen de client-level api-versieoptie wanneer een credential wordt doorgegeven; de actie authenticeert per verzoek via headers, waardoor die optie stilletjes werd verwijderd en verzoeken standaard een preview-API-versie werden gebruikt waarvan het {translate} contract de body met HTTP 400 (foutcode {code}) afwees. Voltooit de fix die begon in 3.0.1.",
+			"v301": "{label} De {translate} request body is nu een kale JSON-array van {textItem} items in plaats van een wrapped {inputs} object, passend bij het v3.0 REST-contract. Op zichzelf herstelde dit de vertalingen niet — zie 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (in ontwikkeling)",
 			"labels": {
 				"breaking": "BREAKING",
 				"resilience": "Veerkracht:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} docs-proza draagt nu {codeElement} het warme/amberkleurige thema — verschillend van het merk→accentpalet dat wordt gebruikt voor links en koppen.",
 				"automation": "Dependabot auto-merge, CodeQL-scanning, CI-matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Zie git-geschiedenis."
 		}
 	}
 }

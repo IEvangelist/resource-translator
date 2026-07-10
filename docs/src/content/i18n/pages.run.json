@@ -390,8 +390,13 @@
 		"lede": "Incamake y'ibisohokayandikiro vyo ku rwego rwo hejuru. The canonical, authoritative changelog lives in CHANGELOG.md in the repository.",
 		"fullRecord": "Raba {changelogLink} kugira ubone iyo nkuru yose.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Ibisohokayandikiro",
+		"fixedLabel": "Fixe:",
+		"releases": {
+			"v302": "{label} Translator requests now pin {apiVersion} on the wire for both {translate} and {languages}. Azure SDK yubaha gusa uburyo bwa api-version yo ku rwego rw'umukiriya igihe credential yemejwe; Ico gikorwa kigenzura ubusabe kuri buri busabe biciye ku mitwe y'imitwe, ku buryo ubwo buryo bwakuweho bucece, hanyuma ubusabe buhagarikwa kuri version ya API ya preview amasezerano y'{translate} yanse umubiri hamwe na HTTP 400 (code y'amakosa {code}). Kirangira ikosorwa ryatanguye muri 3.0.1.",
+			"v301": "{label} The {translate} request body is now a bare JSON array of {textItem} items instead of a wrapped {inputs} object, matching the v3.0 REST contract. Ubwayo ivyo ntivyasubije ubuhinduzi — raba 3.0.2."
+		},
 		"v3": {
-			"heading": "V3 (mu iterambere)",
 			"labels": {
 				"breaking": "KUVUNIKA",
 				"resilience": "Ukwihangana:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs prose {codeElement} now wears the warm/amber theme accent — different from the brand→accent palette used for links and headings.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "See git history."
 		}
 	}
 }

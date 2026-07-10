@@ -390,8 +390,13 @@
 		"lede": "Akopọ ti o ga julọ ti awọn idasilẹ. Canonical, authoritative changelog ngbe ni CHANGELOG.md ninu ibi ipamọ.",
 		"fullRecord": "Wo {changelogLink} fun igbasilẹ kikun.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Awọn idasilẹ",
+		"fixedLabel": "Ti o wa titi:",
+		"releases": {
+			"v302": "{label} Onitumọ beere bayi pin {apiVersion} lori waya fun mejeeji {translate} ati {languages}. Azure SDK nikan bu ọla fun aṣayan ẹya api-ipele alabara nigbati iwe-ẹri kan ba kọja; Iṣe naa jẹrisi fun ibeere nipasẹ awọn akọle, nitorinaa aṣayan naa ni idakẹjẹ ati awọn ibeere ti yipada si ẹya API awotẹlẹ ti adehun {translate} kọ ara pẹlu HTTP 400 (koodu aṣiṣe {code}). O ti wa ni ti o",
+			"v301": "{label} Ara ibeere {translate} jẹ bayi akopọ JSON ti awọn ohun {textItem} dipo nkan {inputs} ti a we, ti o baamu adehun v3.0 REST. Lori ara rẹ eyi ko mu awọn itumọ pada — wo 3.0.2."
+		},
 		"v3": {
-			"heading": "v3 (ni idagbasoke)",
 			"labels": {
 				"breaking": "FIFỌ",
 				"resilience": "Resilience:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} Docs prose {codeElement} bayi wọ aami akori ti o gbona / amber — ti o yatọ si paleti ami iyasọtọ →ti a lo fun awọn ọna asopọ ati awọn akọle.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Wo itan Git."
 		}
 	}
 }

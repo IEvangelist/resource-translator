@@ -390,8 +390,13 @@
 		"lede": "Nchịkọta dị elu nke ntọhapụ. Canonical, ikike changelog na-ebi n'CHANGELOG.md na ebe nchekwa.",
 		"fullRecord": "Lee {changelogLink} maka ndekọ zuru ezu.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Ntọhapụ",
+		"fixedLabel": "Edozi:",
+		"releases": {
+			"v302": "{label} Translator arịrịọ ugbu a pin {apiVersion} na waya maka ma {translate} na {languages}. Azure SDK na-asọpụrụ nhọrọ api-version nke onye ahịa mgbe a gafere nzere; Ihe omume ahụ na-ekwenye na arịrịọ ọ bụla site na nkụnye eji isi mee, yabụ nhọrọ ahụ na-agbachi nkịtị na arịrịọ na-adaba na nsụgharị API nke nkwekọrịta {translate} jụrụ ahụ na HTTP 400 (koodu njehie {code}). Mezue ndozi ahụ malitere na 3.0.1.",
+			"v301": "{label} Ahụ arịrịọ {translate} ugbu a bụ usoro JSON nke ihe {textItem} kama ihe {inputs} kechie, nke kwekọrọ na nkwekọrịta v3.0 REST. N'onwe ya, nke a eweghachighị nsụgharị — lee 3.0.2."
+		},
 		"v3": {
-			"heading": "V3 (na mmepe)",
 			"labels": {
 				"breaking": "IMEBI",
 				"resilience": "Resilience:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label} docs prose {codeElement} ugbu a na-eyi isiokwu na-ekpo ọkụ / amber — dị iche na palette →accent eji maka njikọ na isiokwu.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matriks."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Lee akụkọ ihe mere eme."
 		}
 	}
 }

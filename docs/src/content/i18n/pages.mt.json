@@ -390,8 +390,13 @@
 		"lede": "Sommarju ta' livell għoli tar-rilaxxijiet. Il-bidliet kanoniku u awtorevoli jgħix f'CHANGELOG.md fir-repożitorju.",
 		"fullRecord": "Ara {changelogLink} għar-rekord sħiħ.",
 		"fullRecordLinkLabel": "CHANGELOG.md",
+		"releasesHeading": "Rilaxxijiet",
+		"fixedLabel": "Fiss:",
+		"releases": {
+			"v302": "It-talbiet {label} Translator issa jpoġġu {apiVersion} fuq il-wajer kemm għal {translate} kif ukoll għal {languages}. L-Azure SDK jirrispetta biss l-għażla ta' verżjoni tal-API fil-livell tal-klijent meta kredenzjali tiġi mgħadda; l-azzjoni tawtentika kull talba permezz ta' headers, għalhekk dik l-għażla ġiet waqfet b'mod silenzjuż u t-talbiet kienu default għal verżjoni API ta' preview li l-kuntratt tal-{translate} tagħha rrifjuta l-korp b'HTTP 400 (kodiċi ta' żball {code}). Jtemm it-soluzzjoni li bdiet f'3.0.1.",
+			"v301": "{label} Il-ġisem tal-{translate} tal-talba issa huwa array JSON vojt ta' oġġetti ta' {textItem} minflok oġġett {inputs} mgħotti, li jaqbel mal-kuntratt REST v3.0. Waħdu dan ma rrestawrax it-traduzzjonijiet — ara 3.0.2."
+		},
 		"v3": {
-			"heading": "V3 (fil-fażi ta' żvilupp)",
 			"labels": {
 				"breaking": "BREAKING",
 				"resilience": "Reżiljenza:",
@@ -421,10 +426,6 @@
 				"inlineCode": "{label}-proża ta' dokumentarji {codeElement} issa jilbsu l-aċċent tat-tema sħuna/ambra — distint mill-paletta ta' marka→aċċent użata għall-links u t-titliet.",
 				"automation": "Dependabot auto-merge, CodeQL scanning, CI matrix."
 			}
-		},
-		"v2": {
-			"heading": "v2.x",
-			"gitHistory": "Ara l-istorja tal-git."
 		}
 	}
 }
