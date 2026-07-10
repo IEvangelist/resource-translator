@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Cyfieithydd Adnoddau",
-		"description": "Mae Resource Translator yn agor ceisiadau tynnu wedi'u cyfieithu gan beiriant ar gyfer eich ffeiliau adnoddau mewn unrhyw repo, mewn unrhyw fformat - wedi'i bweru gan Azure AI Translator.",
+		"description": "Mae Resource Translator yn agor ceisiadau tynnu wedi'u cyfieithu gan beiriant ar gyfer eich ffeiliau adnoddau mewn unrhyw repo, mewn unrhyw fformat - wedi'i bweru gan Azure AI Translator, AWS Translate, neu Google Cloud Translation.",
 		"socialTitle": "Cyfieithydd Adnoddau - cyfieithu ffeiliau adnoddau yn awtomatig",
-		"badge": "v3.0 - Nod 24, ffurfweddu repo, geirfa, rhedeg sych",
+		"badge": "v3.0 - Azure, darparwyr AWS a Google, Nod 24, ffurfweddu repo",
 		"headlinePrefix": "Lleoleiddio eich depo ar",
 		"headlineAccent": "pob ymrwymiad.",
-		"lede": "Mae Resource Translator yn agor ceisiadau tynnu wedi'u cyfieithu gan beiriant ar gyfer eich ffeiliau adnoddau gan ddefnyddio Azure AI Translator trwy'r SDK swyddogol - dim gwasanaethau ychwanegol, dim ond llif gwaith.",
+		"lede": "Mae Resource Translator yn agor ceisiadau tynnu wedi'u cyfieithu gan beiriant ar gyfer eich ffeiliau adnoddau gan ddefnyddio Azure, AWS, neu Google - un weithred unedig, un darparwr fesul rhedeg, SDKs swyddogol o dan y cwfl.",
 		"primaryCta": "Dechrau arni",
 		"secondaryCta": "Seren ar GitHub",
 		"supports": "Cefnogi",
 		"builtForShipping": "Wedi'i adeiladu ar gyfer llongau",
 		"workflowTitle": "Cyfieithu fel llif gwaith, nid gore.",
-		"workflowBody": "Gollyngwch y weithred i'ch CI presennol, pwyntiwch ef at Azure AI Translator, a gadewch i'ch repo siarad pob iaith rydych chi'n ei dargedu.",
+		"workflowBody": "Gollyngwch y weithred i'ch CI presennol, pwyntiwch ef at Azure, AWS, neu Google, a gadewch i'ch repo siarad pob iaith rydych chi'n ei dargedu.",
 		"stats": {
 			"audit": "0 Materion archwilio NPM",
-			"tests": "150 o brofion",
+			"tests": "240+ o brofion",
 			"node": "Nod 20 / 22 / 24",
-			"sdk": "Azure SDK swyddogol"
+			"sdk": "Azure · AWS · Chwilio"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails}, a {hasNewTranslations} slot yn uniongyrchol i mewn i create-pull-request."
 			},
 			"sdk": {
-				"title": "Azure SDK swyddogol",
-				"body": "Wedi'i adeiladu ar {azureSdk} + {corePipeline} - ail-geisiadau awtomatig ar {statusCodes}, dim HTTP wedi'i rolio â llaw. {esbuild}-bwndelu, archwilio-glân."
+				"title": "Azure, AWS a Google",
+				"body": "Dewiswch un darparwr fesul rhediad. Mae pob un yn cael ei yrru gan ei SDK swyddogol ({azureSdk}, {awsSdk}, {googleSdk}) gydag ail-geisiadau awtomatig ar {statusCodes} - dim HTTP wedi'i rolio â llaw. {esbuild}-bwndelu, archwilio-glân."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Ydych chi'n barod i leologio ar awtobeilot?",
-			"body": "Un allwedd Azure AI Translator, un ffeil llif gwaith. Resource Translator sy'n trin y gweddill.",
+			"body": "Un allwedd darparwr - Azure, AWS, neu Google - ac un ffeil llif gwaith. Resource Translator sy'n trin y gweddill.",
 			"button": "Dechrau arni"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Camau nesaf",
 			"configuration": "Ffurfweddu rhagosodiadau lefel repo gyda {configPath}.",
 			"recipes": "Gweler ryseitiau ar gyfer monorepos, geirfa arferol, a chategorïau Custom Translator."
+		}
+	},
+	"providers": {
+		"title": "Darparwyr cyfieithu",
+		"eyebrow": "Cyfeirnod",
+		"lede": "Dewiswch un darparwr cyfieithu fesul rhediad - Azure AI Translator, AWS Translate, neu Google Cloud Translation - y tu ôl i un arwyneb API unedig. Mae'r cyfieithydd yn ymddwyn yr un fath waeth beth fo'r darparwr; dim ond y manylion cyflwyno sy'n wahanol.",
+		"backwardCompatible": "Fully backward compatible: {provider} defaults to {azure}, so existing Azure workflows keep working unchanged — no edits required.",
+		"selecting": {
+			"title": "Dewis darparwr",
+			"body": "Gosodwch y mewnbwn {provider} i {azure} (rhagosodiad), {aws}, neu {google}, yna cyflenwi manylion cyflwyno'r darparwr hwnnw. Dim ond un darparwr sy'n cael ei ddefnyddio fesul galwad gweithred; mae'r weithred yn dirprwyo yn benderfynol i'r SDK cyfatebol y tu ôl i ffatri."
+		},
+		"comparison": {
+			"title": "Cymhariaeth darparwyr",
+			"caption": "Cymhariaeth darparwyr cyfieithu",
+			"columns": {
+				"provider": "Darparwr",
+				"value": "Gwerth darparwr",
+				"sdk": "SDK",
+				"credentials": "Manylion Cyflwyno"
+			},
+			"azure": {
+				"name": "Cyfieithydd Azure AI",
+				"value": "Azure (rhagosodiad)",
+				"credentials": "subscriptionAllwedd, terfynol, rhanbarth (dewisol)"
+			},
+			"aws": {
+				"name": "AWS Cyfieithu",
+				"value": "Swyddi",
+				"credentials": "OIDC / cadwyn ddiofyn, neu awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Cyfieithu Cwmwl Google",
+				"value": "Cysylltu",
+				"credentials": "googleApiKey NEU googleCredentials (cyfrif gwasanaeth JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (rhagosodiad)",
+			"body": "Y darparwr rhagosodedig. Darparu adnodd Azure AI Translator a phasio {subscriptionKey}, {endpoint}, ac yn ddewisol {region}. Dyma'r un cyfluniad y mae llifoedd gwaith presennol eisoes yn ei ddefnyddio."
+		},
+		"aws": {
+			"title": "AWS Cyfieithu",
+			"body": "Yn defnyddio {sdk}. Mae'n well gennych OIDC trwy {configureAwsCredentials} fel nad oes cyfrinachau hirhoedlog yn cael eu storio - mae'r weithred yn darllen cadwyn credential diofyn AWS SDK. Fel arall, pasiwch {awsAccessKeyId} a {awsSecretAccessKey} yn benodol. Mae angen rhanbarth bob amser, trwy {awsRegion} neu'r newidyn amgylchedd {awsRegionEnv}.",
+			"oidcTitle": "OIDC (argymhellir)",
+			"keysNote": "I ddefnyddio allweddi statig yn lle OIDC, gollwng y cam {configureAwsCredentials} a phasio {awsAccessKeyId} / {awsSecretAccessKey} (trwy {secrets}) ynghyd â {awsRegion}."
+		},
+		"google": {
+			"title": "Cyfieithu Cwmwl Google",
+			"body": "Yn defnyddio {sdk} (v2). Dilysu gyda naill ai allwedd API ({googleApiKey}) neu ddata JSON cyfrif gwasanaeth ({googleCredentials}). Cyflenwi union un; Mae {googleProjectId} ddewisol yn cael ei gasglu o'r data cyflwyno pan gaiff ei hepgor."
+		},
+		"mapping": {
+			"title": "Mapio penodwr bwriad",
+			"body": "Mae penodwyr darparwr penodol yn cael eu mapio lle mae cyfwerth yn bodoli. Mae popeth arall yn disgyn yn ôl i ddiffygion synhwyrol felly mae ymddygiad yn aros yn gyson.",
+			"caption": "Mapio penodwr bwriad ar draws darparwyr",
+			"columns": {
+				"input": "Mewnbwn",
+				"azure": "Eiddo",
+				"aws": "Cartref",
+				"google": "Chwilio"
+			},
+			"supported": "Cefnogir",
+			"ignored": "Anwybyddu",
+			"rows": {
+				"textType": {
+					"azure": "textType (plaen / html)",
+					"aws": "Anwybyddwyd (dim toglo)",
+					"google": "Fformat (testun / html)"
+				},
+				"profanityAction": {
+					"azure": "Cefnogaeth lawn",
+					"aws": "Wedi'i farcio / dileu → masgio",
+					"google": "Anwybyddu"
+				},
+				"categoryId": {
+					"azure": "Cyfieithydd Addasedig",
+					"aws": "Anwybyddu",
+					"google": "Anwybyddu"
+				},
+				"allowFallback": {
+					"azure": "Cefnogir",
+					"aws": "Anwybyddu",
+					"google": "Anwybyddu"
+				}
+			}
+		},
+		"locales": {
+			"title": "Mae codau locale yn wahanol ym mhob darparwr",
+			"body": "Mae pob darparwr yn defnyddio ei godau locale ei hun (er enghraifft mae Simplified Chinese yn {azureCode} ar Azure, {awsCode} ar AWS, a {googleCode} ar Google). Mae codau yn pasio fel y mae ac yn gyrru'r enwau ffeiliau allbwn, felly dewiswch {toLocales} gwerthoedd y mae eich darparwr dewisedig yn eu cefnogi."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Mewnbynnau angenrheidiol",
 			"caption": "Mewnbynnau angenrheidiol",
 			"items": {
-				"sourceLocale": "Locale ffynhonnell (e.e. {en}) a ddefnyddir i ddod o hyd i ffeiliau adnoddau fel {sourceGlob}. Hefyd wedi'i anfon ymlaen at Cyfieithydd fel {fromLocale}.",
-				"subscriptionKey": "Allwedd tanysgrifio Azure AI Translator. Pasiwch trwy {secrets}.",
-				"endpoint": "URL terfyn cyfieithydd, e.e. {endpointUrl}."
+				"sourceLocale": "Locale ffynhonnell (e.e. {en}) a ddefnyddir i ddod o hyd i ffeiliau adnoddau fel {sourceGlob}. Hefyd wedi'i anfon ymlaen i'r darparwr fel {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Dewis darparwr a manylion cyflwyno",
+			"caption": "Dewis darparwr a manylion cyflwyno fesul gwerthwr",
+			"intro": "Dewiswch un darparwr ar bob rhediad gyda {provider}. Cyflenwch gymwysterau'r darparwr a ddewiswyd yn unig — gweler y canllaw {providersLink} am y setup llawn.",
+			"items": {
+				"provider": "Darparwr cyfieithu: {azure} (rhagosodiad), {aws}, neu {google}. Dim ond un darparwr sy'n cael ei ddefnyddio ym mhob galwad gweithred.",
+				"subscriptionKey": "Allwedd tanysgrifio Azure AI Translator. Angenrheidiol ar gyfer {azure}. Pasiwch trwy {secrets}.",
+				"endpoint": "URL terfynbwynt Azure Translator, e.e. {endpointUrl}. Angenrheidiol ar gyfer {azure}.",
+				"awsAccessKeyId": "ID allwedd mynediad AWS. Dewisol - hepgorer (gyda {awsSecretAccessKey}) i ddefnyddio cadwyn credential diofyn AWS / OIDC. Pasiwch trwy {secrets}.",
+				"awsSecretAccessKey": "Allwedd mynediad cyfrinachol AWS. Rhaid ei gyflenwi ynghyd â {awsAccessKeyId}. Pasiwch trwy {secrets}.",
+				"awsSessionToken": "Tocyn sesiwn AWS dewisol ar gyfer tystysgrifau dros dro. Pasiwch trwy {secrets}.",
+				"awsRegion": "Rhanbarth AWS ar gyfer y gwasanaeth Cyfieithu (e.e. {regionExample}). Yn ofynnol ar gyfer {aws} oni bai bod {awsRegionEnv} wedi'i osod yn yr amgylchedd.",
+				"googleApiKey": "Allwedd API Google Cloud. Darparwch y {googleCredentials} OR hwn ar gyfer {google}. Pasiwch trwy {secrets}.",
+				"googleCredentials": "Allwedd cyfrif gwasanaeth Google Cloud fel llinyn JSON. Darparwch y {googleApiKey} OR hwn ar gyfer {google}. Pasiwch trwy {secrets}.",
+				"googleProjectId": "ID prosiect Google Cloud dewisol. Fel arfer yn cael ei gasglu o'r tystysgrif cyfrif gwasanaeth."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Mewnbynnau cais cyfieithydd",
-			"intro": "Mae'r rhain yn mapio'n uniongyrchol ar baramedrau ymholiad Azure AI Translator v3. Mae pob un yn ddewisol; mae'r rhagosodiadau Cyfieithydd yn berthnasol pan gaiff ei ddad-osod.",
-			"caption": "Mewnbynnau cais cyfieithydd",
+			"heading": "Mewnbynnau cais Azure Translator",
+			"intro": "Mae'r rhain yn mapio'n uniongyrchol ar baramedrau ymholiad Azure AI Translator v3 ac yn berthnasol i'r darparwr Azure. textType a profanityAction hefyd yn cael eu mapio i AWS / Google lle mae cyfwerth yn bodoli (gweler y canllaw darparwyr); mae'r gweddill yn Azure-only. Mae pob un yn ddewisol; mae'r rhagosodiadau Cyfieithydd yn berthnasol pan gaiff ei ddad-osod.",
+			"caption": "Mewnbynnau cais Azure Translator",
 			"items": {
 				"categoryId": "Categori Azure {customTranslatorLink} - y diwydiant / parth / knob tôn. Wedi'i anfon ymlaen fel {categoryQuery}.",
 				"textType": "{plain} neu {html}. Defnyddiwch {html} dim ond pan fydd eich gwerthoedd adnoddau yn ddarnau HTML go iawn.",

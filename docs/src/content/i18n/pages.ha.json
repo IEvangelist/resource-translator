@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Mai fassarar albarkatu",
-		"description": "Mai fassarar albarkatu yana buɗe buƙatun jawo na'ura don fayilolin albarkatun ku a cikin kowane repo, a kowane tsari - wanda Azure AI Translator ke amfani da shi.",
+		"description": "Mai fassarar Albarkatu yana buɗe buƙatun jawo na'ura don fayilolin albarkatun ku a kowane repo, a kowane tsari - wanda Azure AI Translator, AWS Translate, ko Google Cloud Translation ke sarrafawa.",
 		"socialTitle": "Resource Translator — fassara fayilolin albarkatu ta atomatik",
-		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Localize your repo a kan",
 		"headlineAccent": "kowane sadaukarwa.",
-		"lede": "Mai fassarar albarkatu yana buɗe buƙatun jawo na'ura don fayilolin albarkatun ku ta amfani da Azure AI Translator ta hanyar SDK na hukuma - babu ƙarin ayyuka, kawai aikin aiki.",
+		"lede": "Mai fassarar albarkatu yana buɗe buƙatun jawo na'ura don fayilolin albarkatun ku ta amfani da Azure, AWS, ko Google - aiki ɗaya mai haɗin kai, mai ba da sabis ɗaya a kowane gudu, SDKs na hukuma a ƙarƙashin murfin.",
 		"primaryCta": "Fara farawa",
 		"secondaryCta": "Tauraro akan GitHub",
 		"supports": "Tallafi",
 		"builtForShipping": "An gina shi don jigilar kaya",
 		"workflowTitle": "Fassarar a matsayin aikin aiki, ba aikin aiki ba.",
-		"workflowBody": "Sauke aikin a cikin CI ɗinku na yanzu, nuna shi a Azure AI Translator, kuma bari repo ɗinku yayi magana da kowane yare da kuka yi niyya.",
+		"workflowBody": "Sauke aikin a cikin CI ɗinku na yanzu, nuna shi a Azure, AWS, ko Google, kuma bari repo ɗinku yayi magana da kowane yare da kuka yi niyya.",
 		"stats": {
 			"audit": "0 npm-audit al'amurran da suka shafi",
-			"tests": "Gwaje-gwaje 150",
+			"tests": "Gwaje-gwaje 240+",
 			"node": "Node 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails}, da kuma {hasNewTranslations} kai tsaye a cikin create-jawo-request."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "An gina shi a kan {azureSdk} + {corePipeline} — sake gwadawa ta atomatik a kan {statusCodes}, babu HTTP da aka mirgine da hannu. {esbuild}-bundled, audit-clean."
+				"title": "Azure, AWS & Google",
+				"body": "Zaɓi mai ba da sabis ɗaya a kowane gudu. Kowannensu yana motsa shi ta hanyar SDK na hukuma ({azureSdk}, {awsSdk}, {googleSdk}) tare da sake gwadawa ta atomatik a kan {statusCodes} - babu HTTP da aka mirgine da hannu. {esbuild}-bundled, audit-tsabta."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Shirye don yin amfani da autopilot?",
-			"body": "Maɓallin mai fassara na Azure AI, fayil ɗin aiki ɗaya. Resource Translator yana kula da sauran.",
+			"body": "Maɓallin mai ba da sabis ɗaya - Azure, AWS, ko Google - da fayil ɗin aiki ɗaya. Resource Translator yana kula da sauran.",
 			"button": "Fara farawa"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Matakai na gaba",
 			"configuration": "Saita kuskuren matakin repo tare da {configPath}.",
 			"recipes": "Duba girke-girke don monorepos, ƙamus na al'ada, da nau'ikan masu fassara na al'ada."
+		}
+	},
+	"providers": {
+		"title": "Masu ba da fassara",
+		"eyebrow": "Reference",
+		"lede": "Zaɓi mai ba da fassara guda ɗaya a kowane gudu - Azure AI Translator, AWS Translate, ko Google Cloud Translation - a bayan ɗaya, haɗin API mai haɗin kai. Mai fassara yana nuna hali iri ɗaya ba tare da la'akari da mai ba da sabis ba; kawai takardun shaida sun bambanta.",
+		"backwardCompatible": "Cikakken jituwa a baya: {provider} tsoho zuwa {azure}, don haka ayyukan Azure na yanzu suna ci gaba da aiki ba tare da canzawa ba - babu gyare-gyare da ake buƙata.",
+		"selecting": {
+			"title": "Zaɓin mai ba da sabis",
+			"body": "Saita shigarwar {provider} zuwa {azure} (tsoho), {aws}, ko {google}, sa'an nan kuma samar da takardun shaidar wannan mai bayarwa. Ana amfani da mai ba da sabis ɗaya kawai a kowane kiran aiki; aikin yana ƙayyade zuwa SDK mai dacewa a bayan masana'anta."
+		},
+		"comparison": {
+			"title": "Kwatancen mai ba da sabis",
+			"caption": "Kwatancen mai ba da fassara",
+			"columns": {
+				"provider": "Mai ba da sabis",
+				"value": "Darajar mai ba da sabis",
+				"sdk": "SDK",
+				"credentials": "Takaddun shaida"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (tsoho)",
+				"credentials": "subscriptionKey, endpoint, region (optional)"
+			},
+			"aws": {
+				"name": "Fassarar AWS",
+				"value": "aws",
+				"credentials": "OIDC / sarkar tsoho, ko awsAccessKeyId + awsSecretAccessKeyKey; awsRegion"
+			},
+			"google": {
+				"name": "Fassarar Google Cloud",
+				"value": "Google",
+				"credentials": "googleApiKey OR googleCredentials (asusun sabis na JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (tsoho)",
+			"body": "Mai ba da sabis na tsoho. Samar da kayan aikin mai fassara na Azure AI kuma wuce {subscriptionKey}, {endpoint}, da zaɓi {region}. Wannan shi ne tsarin da aka riga aka yi amfani da shi a yanzu."
+		},
+		"aws": {
+			"title": "Fassarar AWS",
+			"body": "Yi amfani da {sdk}. Zaɓi OIDC ta hanyar {configureAwsCredentials} don haka ba a adana sirri na dogon lokaci ba - aikin yana karanta sarkar takardun shaida ta AWS SDK. A madadin haka, wuce {awsAccessKeyId} kuma {awsSecretAccessKey} a bayyane. Ana buƙatar yanki koyaushe, ta hanyar {awsRegion} ko {awsRegionEnv} yanayin yanayi.",
+			"oidcTitle": "OIDC (an ba da shawarar)",
+			"keysNote": "Don amfani da maɓallan tsayayye maimakon OIDC, sauke matakin {configureAwsCredentials} kuma wuce {awsAccessKeyId} / {awsSecretAccessKey} (ta hanyar {secrets}) da {awsRegion}."
+		},
+		"google": {
+			"title": "Fassarar Google Cloud",
+			"body": "Yi amfani da {sdk} (v2). Tabbatar da ko dai maɓallin API ({googleApiKey}) ko takaddun shaidar JSON na asusun sabis ({googleCredentials}). Samar da daidai daya; Ana samun zaɓi {googleProjectId} daga takardun shaida idan aka cire shi."
+		},
+		"mapping": {
+			"title": "Taswirar taswirar niyya",
+			"body": "An tsara ƙayyadaddun ƙayyadaddun ƙa Duk sauran abubuwa sun koma ga kuskure mai ma'ana don haka halayyar ta kasance daidai.",
+			"caption": "Taswirar taswirar niyya a duk faɗin masu samarwa",
+			"columns": {
+				"input": "Shigarwa",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Tallafi",
+			"ignored": "An yi watsi da shi",
+			"rows": {
+				"textType": {
+					"azure": "TypeType (a bayyane / html)",
+					"aws": "An yi watsi da shi (babu toggle)",
+					"google": "Tsarin (rubutu / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Cikakken goyon baya",
+					"aws": "Marked / Deleted → masking",
+					"google": "An yi watsi da shi"
+				},
+				"categoryId": {
+					"azure": "Mai fassara na al'ada",
+					"aws": "An yi watsi da shi",
+					"google": "An yi watsi da shi"
+				},
+				"allowFallback": {
+					"azure": "Tallafi",
+					"aws": "An yi watsi da shi",
+					"google": "An yi watsi da shi"
+				}
+			}
+		},
+		"locales": {
+			"title": "Lambobin yanki sun bambanta da mai ba da sabis",
+			"body": "Kowane mai ba da sabis yana amfani da lambobin yanki na kansa (misali Sinanci mai sauƙi yana {azureCode} akan Azure, {awsCode} akan AWS, da {googleCode} akan Google). Lambobin suna wucewa kamar yadda yake kuma suna fitar da sunayen fayil ɗin fitarwa, don haka zaɓi ƙimar da {toLocales} zaɓa mai ba da sabis ɗin da kuka zaɓa ke tallafawa."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Abubuwan da ake buƙata",
 			"caption": "Abubuwan da ake buƙata",
 			"items": {
-				"sourceLocale": "Source locale (misali {en}) da aka yi amfani da su don nemo fayilolin albarkatu kamar {sourceGlob}. An kuma aika zuwa ga mai fassara kamar yadda {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. Wucewa ta hanyar {secrets}.",
-				"endpoint": "Translator endpoint URL, misali {endpointUrl}."
+				"sourceLocale": "Source locale (misali {en}) da aka yi amfani da su don nemo fayilolin albarkatu kamar {sourceGlob}. Hakanan an aika shi zuwa ga mai ba da sabis kamar yadda {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Zaɓin mai ba da sabis da takaddun shaida",
+			"caption": "Zaɓin mai ba da sabis da takaddun shaida na kowane mai siyarwa",
+			"intro": "Zaɓi mai ba da sabis ɗaya a kowane gudu tare da {provider}. Samar da takardun shaidar mai ba da sabis da aka zaɓa ne kawai — duba jagorar {providersLink} don cikakken saiti.",
+			"items": {
+				"provider": "Mai ba da sabis na fassara: {azure} (tsoho), {aws}, ko {google}. Ana amfani da mai ba da sabis ɗaya ne kawai a kowane kiran aiki.",
+				"subscriptionKey": "Azure AI Translator subscription key. Abin da ake buƙata don {azure}. Wucewa ta hanyar {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, misali {endpointUrl}. Abin da ake buƙata don {azure}.",
+				"awsAccessKeyId": "AWS access key id. Zaɓi - cire (tare da {awsSecretAccessKey}) don amfani da sarkar takardun shaida ta AWS / OIDC. Wucewa ta hanyar {secrets}.",
+				"awsSecretAccessKey": "Maɓallin Samun Sirri na AWS Dole ne a samar da shi tare da {awsAccessKeyId}. Wucewa ta hanyar {secrets}.",
+				"awsSessionToken": "Zaɓi na zaɓi na zaman AWS don takaddun shaida na wucin gadi. Wucewa ta hanyar {secrets}.",
+				"awsRegion": "Yankin AWS don sabis na fassara (misali {regionExample}) Ana buƙatar {aws} sai dai idan an saita {awsRegionEnv} a cikin muhalli.",
+				"googleApiKey": "Maɓallin API na Google Cloud Bayar da wannan KO {googleCredentials} don {google}. Wucewa ta hanyar {secrets}.",
+				"googleCredentials": "Maɓallin asusun sabis na Google Cloud a matsayin igiyar JSON. Bayar da wannan KO {googleApiKey} don {google}. Wucewa ta hanyar {secrets}.",
+				"googleProjectId": "Zaɓin Google Cloud project id. Yawanci ana yin la'akari da shi daga takaddun shaida na asusun sabis."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Translator request inputs",
-			"intro": "Waɗannan taswirar kai tsaye zuwa sigogin tambaya na Azure AI Translator v3. Kowane ɗayan zaɓi ne; Kuskuren fassara yana aiki lokacin da ba a saita shi ba.",
-			"caption": "Translator request inputs",
+			"heading": "Azure Translator request inputs",
+			"intro": "Waɗannan taswirar kai tsaye zuwa sigogin tambaya na Azure AI Translator v3 kuma suna amfani da mai ba da sabis na azure. textType da lalata Action kuma an taswirar su zuwa AWS / Google inda kwatankwacin ya wanzu (duba jagorar masu samarwa); sauran su ne azure-kawai. Kowane ɗayan zaɓi ne; Kuskuren fassara yana aiki lokacin da ba a saita shi ba.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. An tura shi kamar yadda {categoryQuery}.",
 				"textType": "{plain} ko {html}. Yi amfani da {html} ne kawai lokacin da ƙimar albarkatun ka na ainihi ne.",

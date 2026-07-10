@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "អ្នកបកប្រែធនធាន",
-		"description": "Resource Translator បើកសំណើទាញដែលបកប្រែដោយម៉ាស៊ីនសម្រាប់ឯកសារធនធានរបស់អ្នកនៅក្នុង repo ណាមួយ ក្នុងទម្រង់ណាមួយ — ដំណើរការដោយ Azure AI Translator ។",
+		"description": "Resource Translator បើកសំណើទាញដែលបកប្រែដោយម៉ាស៊ីនសម្រាប់ឯកសារធនធានរបស់អ្នកនៅក្នុង repo ណាមួយ ក្នុងទម្រង់ណាមួយ — ដំណើរការដោយ Azure AI Translator, AWS Translate ឬ Google Cloud Translation ។",
 		"socialTitle": "Resource Translator - បកប្រែឯកសារធនធានដោយស្វ័យប្រវត្តិ",
-		"badge": "v3.0 - ថ្នាំង 24, ការកំណត់រចនាសម្ព័ន្ធ repo, សទ្ទានុក្រម, ដំណើរការស្ងួត",
+		"badge": "v3.0 — Azure, AWS & Google អ្នកផ្តល់សេវា, ថ្នាំង 24, ការកំណត់ repo",
 		"headlinePrefix": "ធ្វើមូលដ្ឋានីយកម្ម repo របស់អ្នកនៅលើ",
 		"headlineAccent": "រាល់ការប្តេជ្ញាចិត្ត.",
-		"lede": "Resource Translator បើកសំណើទាញដែលបកប្រែដោយម៉ាស៊ីនសម្រាប់ឯកសារធនធានរបស់អ្នកដោយប្រើ Azure AI Translator តាមរយៈ SDK ផ្លូវការ — មិនមានសេវាកម្មបន្ថែមទេ គ្រាន់តែជាលំហូរការងារប៉ុណ្ណោះ។",
+		"lede": "Resource Translator បើកសំណើទាញដែលបកប្រែដោយម៉ាស៊ីនសម្រាប់ឯកសារធនធានរបស់អ្នកដោយប្រើ Azure, AWS ឬ Google — សកម្មភាពបង្រួបបង្រួមមួយ អ្នកផ្តល់សេវាមួយក្នុងមួយដំណើរការ SDKs ផ្លូវការនៅក្រោមក្រណាត់។",
 		"primaryCta": "ចាប់ផ្តើម",
 		"secondaryCta": "តារានៅលើ GitHub",
 		"supports": "ការគាំទ្រ",
 		"builtForShipping": "បង្កើតឡើងសម្រាប់ការដឹកជញ្ជូន",
 		"workflowTitle": "ការបកប្រែជាលំហូរការងារ មិនមែនជាការងារទេ។",
-		"workflowBody": "ទម្លាក់សកម្មភាពទៅក្នុង CI ដែលមានស្រាប់របស់អ្នក ចង្អុលវានៅ Azure AI Translator ហើយអនុញ្ញាតឱ្យ repo របស់អ្នកនិយាយគ្រប់ភាសាដែលអ្នកកំណត់គោលដៅ។",
+		"workflowBody": "ទម្លាក់សកម្មភាពទៅក្នុង CI ដែលមានស្រាប់របស់អ្នក ចង្អុលវានៅ Azure, AWS, ឬ Google ហើយអនុញ្ញាតឱ្យ repo របស់អ្នកនិយាយគ្រប់ភាសាដែលអ្នកកំណត់គោលដៅ។",
 		"stats": {
 			"audit": "0 បញ្ហាសវនកម្ម NPM",
-			"tests": "150 ការធ្វើតេស្ត",
+			"tests": "240+ ការធ្វើតេស្ត",
 			"node": "ថ្នាំង 20 / 22 / 24",
-			"sdk": "Azure SDK ផ្លូវការ"
+			"sdk": "អាហ្សូអេស · AWS · ក្រុមហ៊ុន google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} និង {hasNewTranslations} រន្ធដោតដោយផ្ទាល់ទៅក្នុង create-pull-request ។"
 			},
 			"sdk": {
-				"title": "Azure SDK ផ្លូវការ",
-				"body": "បង្កើតឡើងនៅលើ {azureSdk} + {corePipeline} - ការព្យាយាមឡើងវិញដោយស្វ័យប្រវត្តិនៅលើ {statusCodes} មិនមាន HTTP រមៀលដោយដៃទេ។ {esbuild} កញ្ចប់សវនកម្មស្អាត។"
+				"title": "Azure, AWS និង Google",
+				"body": "ជ្រើសរើសអ្នកផ្តល់សេវាម្នាក់ក្នុងមួយការរត់។ នីមួយៗត្រូវបានជំរុញដោយ SDK ផ្លូវការរបស់វា ({azureSdk}, {awsSdk}, {googleSdk}) ជាមួយនឹងការព្យាយាមឡើងវិញដោយស្វ័យប្រវត្តិនៅលើ {statusCodes} — មិនមាន HTTP រមៀលដោយដៃទេ។ {esbuild} កញ្ចប់សវនកម្មស្អាត។"
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "ត្រៀមខ្លួនរួចរាល់ដើម្បីធ្វើមូលដ្ឋានីយកម្មនៅលើ autopilot ហើយឬនៅ?",
-			"body": "សោ Azure AI Translator មួយ ឯកសារលំហូរការងារមួយ។ Resource Translator ដោះស្រាយនៅសល់។",
+			"body": "សោអ្នកផ្តល់សេវាមួយ - Azure, AWS, ឬ Google - និងឯកសារលំហូរការងារមួយ។ Resource Translator ដោះស្រាយនៅសល់។",
 			"button": "ចាប់ផ្តើម"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "ជំហានបន្ទាប់",
 			"configuration": "កំណត់រចនាសម្ព័ន្ធលំនាំដើមកម្រិត repo ជាមួយ {configPath} ។",
 			"recipes": "សូមមើលរូបមន្តសម្រាប់ monorepos, សទ្ទានុក្រមផ្ទាល់ខ្លួន និងប្រភេទអ្នកបកប្រែផ្ទាល់ខ្លួន។"
+		}
+	},
+	"providers": {
+		"title": "អ្នកផ្តល់សេវាបកប្រែ",
+		"eyebrow": "ឯកសារយោង",
+		"lede": "ជ្រើសរើសអ្នកផ្តល់សេវាបកប្រែមួយក្នុងមួយដំណើរការ — Azure AI Translator, AWS Translate ឬ Google Cloud Translation — នៅពីក្រោយផ្ទៃ API បង្រួបបង្រួមតែមួយ។ អ្នកបកប្រែមានឥរិយាបថដូចគ្នាដោយមិនគិតពីអ្នកផ្តល់សេវា; មានតែលិខិតសម្គាល់ខុសគ្នាប៉ុណ្ណោះ។",
+		"backwardCompatible": "ឆបគ្នាថយក្រោយយ៉ាងពេញលេញ៖ {provider} លំនាំដើមទៅ {azure} ដូច្នេះលំហូរការងារ Azure ដែលមានស្រាប់បន្តធ្វើការមិនផ្លាស់ប្តូរ — មិនទាមទារការកែសម្រួលទេ។",
+		"selecting": {
+			"title": "ការជ្រើសរើសអ្នកផ្តល់សេវា",
+			"body": "កំណត់ការបញ្ចូល {provider} ទៅ {azure} (លំនាំដើម), {aws} ឬ {google} បន្ទាប់មកផ្គត់ផ្គង់លិខិតសម្គាល់របស់អ្នកផ្តល់សេវានោះ។ មានតែអ្នកផ្តល់សេវាម្នាក់ប៉ុណ្ណោះដែលត្រូវបានប្រើក្នុងមួយការហៅសកម្មភាព; សកម្មភាពនេះតំណាងឱ្យ SDK ដែលផ្គូផ្គងនៅពីក្រោយរោងចក្រ។"
+		},
+		"comparison": {
+			"title": "ការប្រៀបធៀបអ្នកផ្គត់ផ្គង់",
+			"caption": "ការប្រៀបធៀបអ្នកផ្តល់សេវាបកប្រែ",
+			"columns": {
+				"provider": "អ្នកផ្គត់ផ្គង់",
+				"value": "តម្លៃអ្នកផ្គត់ផ្គង់",
+				"sdk": "អេសឌីខេ",
+				"credentials": "លិខិតសម្គាល់"
+			},
+			"azure": {
+				"name": "អ្នកបកប្រែ Azure AI",
+				"value": "Azure (លំនាំដើម)",
+				"credentials": "subscriptionKey, endpoint, region (ជាជម្រើស)"
+			},
+			"aws": {
+				"name": "AWS បកប្រែ",
+				"value": "អង្គការ AWS",
+				"credentials": "OIDC / ខ្សែសង្វាក់លំនាំដើម ឬ awsAccessKeyId + awsSecretAccessKey; តំបន់ aws"
+			},
+			"google": {
+				"name": "Google ការបកប្រែពពក",
+				"value": "ក្រុមហ៊ុន google",
+				"credentials": "googleApiKey ឬ googleលិខិតសម្គាល់ (គណនីសេវាកម្ម JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (លំនាំដើម)",
+			"body": "អ្នកផ្តល់សេវាលំនាំដើម។ ផ្តល់ធនធាន Azure AI Translator ហើយឆ្លងកាត់ {subscriptionKey}, {endpoint} និងជាជម្រើស {region}។ នេះគឺជាការកំណត់រចនាសម្ព័ន្ធដូចគ្នាដែលលំហូរការងារដែលមានស្រាប់ប្រើរួចហើយ។"
+		},
+		"aws": {
+			"title": "AWS បកប្រែ",
+			"body": "ប្រើ {sdk} ។ ចូលចិត្ត OIDC តាមរយៈ {configureAwsCredentials} ដូច្នេះមិនមានការសម្ងាត់ដែលមានអាយុកាលយូរត្រូវបានរក្សាទុក — សកម្មភាពអានខ្សែសង្វាក់ព័ត៌មានសម្គាល់លំនាំដើម AWS SDK ។ ជាជម្រើស ឆ្លងកាត់ {awsAccessKeyId} និង {awsSecretAccessKey} យ៉ាងច្បាស់លាស់។ តំបន់តែងតែត្រូវបានទាមទារតាមរយៈ {awsRegion} ឬអថេរបរិស្ថាន {awsRegionEnv} ។",
+			"oidcTitle": "OIDC (បានណែនាំ)",
+			"keysNote": "ដើម្បីប្រើគ្រាប់ចុចឋិតិវន្តជំនួសឱ្យ OIDC សូមទម្លាក់ជំហាន {configureAwsCredentials} ហើយបញ្ជូន {awsAccessKeyId} / {awsSecretAccessKey} (តាមរយៈ {secrets}) បូក {awsRegion} ។"
+		},
+		"google": {
+			"title": "Google ការបកប្រែពពក",
+			"body": "ប្រើ {sdk} (v2) ។ ផ្ទៀងផ្ទាត់ភាពត្រឹមត្រូវជាមួយគន្លឹះ API ({googleApiKey}) ឬលិខិតបញ្ជាក់ JSON គណនីសេវាកម្ម ({googleCredentials})។ ផ្គត់ផ្គង់ពិតប្រាកដមួយ; {googleProjectId} ស្រេចចិត្តត្រូវបានសន្និដ្ឋានពីលិខិតសម្គាល់នៅពេលលុបចោល។"
+		},
+		"mapping": {
+			"title": "ការធ្វើផែនទីចេតនាជាក់លាក់",
+			"body": "អ្នកបញ្ជាក់ជាក់លាក់របស់អ្នកផ្តល់សេវាត្រូវបានគូសផែនទីនៅកន្លែងដែលសមមូលមាន។ អ្វីគ្រប់យ៉ាងផ្សេងទៀតធ្លាក់ត្រឡប់ទៅលំនាំដើមដែលសមហេតុផលដូច្នេះអាកប្បកិរិយានៅតែស្របគ្នា.",
+			"caption": "ការគូសផែនទីចេតនា-បញ្ជាក់នៅទូទាំងអ្នកផ្តល់សេវា",
+			"columns": {
+				"input": "បញ្ចូល",
+				"azure": "អាហ្សូអេស",
+				"aws": "អេអេសប៊ី",
+				"google": "ក្រុមហ៊ុន google"
+			},
+			"supported": "គាំទ្រ",
+			"ignored": "មិនអើពើ",
+			"rows": {
+				"textType": {
+					"azure": "ប្រភេទអត្ថបទ (ធម្មតា / html)",
+					"aws": "មិនអើពើ (គ្មានបិទបើក)",
+					"google": "ទ្រង់ទ្រាយ (អត្ថបទ / HTML)"
+				},
+				"profanityAction": {
+					"azure": "ការគាំទ្រពេញលេញ",
+					"aws": "សម្គាល់ / លុបរបាំង →",
+					"google": "មិនអើពើ"
+				},
+				"categoryId": {
+					"azure": "អ្នកបកប្រែផ្ទាល់ខ្លួន",
+					"aws": "មិនអើពើ",
+					"google": "មិនអើពើ"
+				},
+				"allowFallback": {
+					"azure": "គាំទ្រ",
+					"aws": "មិនអើពើ",
+					"google": "មិនអើពើ"
+				}
+			}
+		},
+		"locales": {
+			"title": "លេខកូដមូលដ្ឋានខុសគ្នាក្នុងមួយអ្នកផ្តល់សេវា",
+			"body": "អ្នកផ្តល់សេវានីមួយៗប្រើលេខកូដមូលដ្ឋានផ្ទាល់ខ្លួន (ឧទាហរណ៍ ភាសាចិនសាមញ្ញគឺ {azureCode} នៅលើ Azure, {awsCode} នៅលើ AWS និង {googleCode} នៅលើ Google)។ លេខកូដឆ្លងកាត់ដូចដែលជា និងជំរុញឈ្មោះឯកសារលទ្ធផល ដូច្នេះជ្រើសរើសតម្លៃ {toLocales} ដែលអ្នកផ្តល់សេវាដែលបានជ្រើសរើសគាំទ្រ។"
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "ធាតុចូលដែលត្រូវការ",
 			"caption": "ធាតុចូលដែលត្រូវការ",
 			"items": {
-				"sourceLocale": "មូលដ្ឋានប្រភព (ឧទាហរណ៍ {en}) ប្រើដើម្បីស្វែងរកឯកសារធនធានដូចជា {sourceGlob} ។ ក៏បានបញ្ជូនទៅអ្នកបកប្រែជា {fromLocale} ។",
-				"subscriptionKey": "សោការជាវ Azure AI Translator ។ ឆ្លងកាត់ {secrets} ។",
-				"endpoint": "URL ចំណុចបញ្ចប់របស់អ្នកបកប្រែ ឧទាហរណ៍ {endpointUrl}"
+				"sourceLocale": "មូលដ្ឋានប្រភព (ឧទាហរណ៍ {en}) ប្រើដើម្បីស្វែងរកឯកសារធនធានដូចជា {sourceGlob} ។ ក៏បានបញ្ជូនទៅអ្នកផ្តល់សេវាជា {fromLocale} ផងដែរ។"
+			}
+		},
+		"providerInputs": {
+			"heading": "ការជ្រើសរើសអ្នកផ្តល់សេវា & លិខិតបញ្ជាក់",
+			"caption": "ការជ្រើសរើសអ្នកផ្តល់សេវា និងលិខិតសម្គាល់អ្នកលក់",
+			"intro": "ជ្រើសរើសអ្នកផ្តល់សេវាមួយក្នុងមួយដំណើរការជាមួយ {provider} ។ ផ្គត់ផ្គង់តែលិខិតសម្គាល់របស់អ្នកផ្តល់សេវាដែលបានជ្រើសរើស — សូមមើលមគ្គុទ្ទេសក៍ {providersLink} សម្រាប់ការរៀបចំពេញលេញ។",
+			"items": {
+				"provider": "អ្នកផ្តល់ការបកប្រែ៖ {azure} (លំនាំដើម), {aws}, ឬ {google}។ មានតែអ្នកផ្តល់សេវាម្នាក់ប៉ុណ្ណោះដែលត្រូវបានប្រើក្នុងមួយការហៅសកម្មភាព។",
+				"subscriptionKey": "សោការជាវ Azure AI Translator ។ ទាមទារសម្រាប់ {azure} ។ ឆ្លងកាត់តាមរយៈ {secrets}.",
+				"endpoint": "URL ចំណុចបញ្ចប់របស់ Azure Translator ឧទាហរណ៍ {endpointUrl}. ទាមទារសម្រាប់ {azure} ។",
+				"awsAccessKeyId": "លេខសម្គាល់សោចូលប្រើ AWS។ ស្រេចចិត្ត - លុបចោល (ជាមួយ {awsSecretAccessKey}) ដើម្បីប្រើខ្សែសង្វាក់ព័ត៌មានសម្គាល់លំនាំដើម AWS / OIDC ។ ឆ្លងកាត់តាមរយៈ {secrets}.",
+				"awsSecretAccessKey": "សោចូលប្រើសម្ងាត់ AWS ។ ត្រូវតែត្រូវបានផ្គត់ផ្គង់រួមជាមួយ {awsAccessKeyId} ។ ឆ្លងកាត់តាមរយៈ {secrets}.",
+				"awsSessionToken": "និមិត្តសញ្ញាវគ្គ AWS ស្រេចចិត្តសម្រាប់លិខិតសម្គាល់បណ្តោះអាសន្ន។ ឆ្លងកាត់ {secrets} ។",
+				"awsRegion": "តំបន់ AWS សម្រាប់សេវាកម្មបកប្រែ (ឧទាហរណ៍ {regionExample})។ ទាមទារសម្រាប់ {aws} លុះត្រាតែ {awsRegionEnv} ត្រូវបានកំណត់នៅក្នុងបរិស្ថាន។",
+				"googleApiKey": "Google គន្លឹះ Cloud API ។ ផ្តល់ OR {googleCredentials} នេះសម្រាប់ {google}។ ឆ្លងកាត់ {secrets} ។",
+				"googleCredentials": "Google សោគណនីសេវាកម្ម Cloud ជាខ្សែអក្សរ JSON ។ ផ្តល់ OR {googleApiKey} នេះសម្រាប់ {google}។ ឆ្លងកាត់ {secrets} ។",
+				"googleProjectId": "ស្រេចចិត្ត Google លេខសម្គាល់គម្រោង Cloud ។ ជាធម្មតាសន្និដ្ឋានពីលិខិតបញ្ជាក់គណនីសេវាកម្ម។"
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "ការបញ្ចូលសំណើអ្នកបកប្រែ",
-			"intro": "ផែនទីទាំងនេះដោយផ្ទាល់ទៅលើប៉ារ៉ាម៉ែត្រសំណួរ Azure AI Translator v3 ។ រាល់មួយគឺស្រេចចិត្ត; លំនាំដើមអ្នកបកប្រែអនុវត្តនៅពេលមិនបានកំណត់។",
-			"caption": "ការបញ្ចូលសំណើអ្នកបកប្រែ",
+			"heading": "Azure Translator request inputs",
+			"intro": "ផែនទីទាំងនេះដោយផ្ទាល់ទៅលើប៉ារ៉ាម៉ែត្រសំណួរ Azure AI Translator v3 ហើយអនុវត្តទៅអ្នកផ្តល់សេវា Azure ។ textType និង profanityAction ក៏ត្រូវបានផែនទីទៅ AWS/Google ដែលមានសមមូល (សូមមើលមគ្គុទ្ទេសក៍អ្នកផ្តល់សេវា); នៅសល់គឺ Azure តែប៉ុណ្ណោះ។ រាល់មួយគឺស្រេចចិត្ត; លំនាំដើមអ្នកបកប្រែអនុវត្តនៅពេលមិនបានកំណត់។",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "ប្រភេទ Azure {customTranslatorLink} - ឧស្សាហកម្ម/ដែន/សម្លេង knob ។ បញ្ជូនបន្តជា {categoryQuery} ។",
 				"textType": "{plain} ឬ {html} ។ ប្រើ {html} តែនៅពេលដែលតម្លៃធនធានរបស់អ្នកគឺជាបំណែក HTML ពិតប្រាកដ។",

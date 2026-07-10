@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Překladač zdrojů",
-		"description": "Resource Translator otevírá strojově přeložené pull requesty pro vaše resource soubory v jakémkoli repozitáři, v jakémkoli formátu — poháněn Azure AI Translatorem.",
+		"description": "Resource Translator otevírá strojově přeložené pull requesty pro vaše resource soubory v jakémkoli repozitáři, v jakémkoli formátu — poháněn Azure AI Translator, AWS Translate nebo Google Cloud Translation.",
 		"socialTitle": "Resource Translator — automaticky překládá soubory zdrojů",
-		"badge": "v3.0 — Node 24, konfigurace repozitáře, slovníček, suchý běh",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Lokalizujte svůj repozitář na",
 		"headlineAccent": "Každý závazek.",
-		"lede": "Resource Translator otevírá strojově přeložené pull requesty pro vaše resource soubory pomocí Azure AI Translator prostřednictvím oficiálního SDK — žádné další služby, jen workflow.",
+		"lede": "Resource Translator otevírá strojově přeložené pull requesty pro vaše resource soubory pomocí Azure, AWS nebo Google — jedna sjednocená akce, jeden poskytovatel na jeden běh, oficiální SDK pod kapotou.",
 		"primaryCta": "Začněte",
 		"secondaryCta": "Hvězda na GitHubu",
 		"supports": "Podpory",
 		"builtForShipping": "Postavena pro lodní dopravu",
 		"workflowTitle": "Překlad jako pracovní postup, ne jako povinnost.",
-		"workflowBody": "Vložte akci do svého stávajícího CI, nasměrujte ji na Azure AI Translator a nechte repozitář mluvit všemi jazyky, které cílíte.",
+		"workflowBody": "Vložte akci do svého stávajícího CI, nasměrujte ji na Azure, AWS nebo Google a nechte repozitář mluvit všemi jazyky, které cílíte.",
 		"stats": {
 			"audit": "0 Problémy s auditem NPM",
-			"tests": "150 testů",
+			"tests": "240+ testů",
 			"node": "Uzel 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} a {hasNewTranslations} se přímo zasazují do create-pull-request."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Postaveno na {azureSdk} + {corePipeline} — automatické opakování na {statusCodes}, žádné ručně přenášené HTTP. {esbuild} balíčky, čisté od auditu."
+				"title": "Azure, AWS & Google",
+				"body": "Vyberte si jednoho poskytovatele na každý běh. Každá je řízena svým oficiálním SDK ({azureSdk}, {awsSdk}, {googleSdk}) s automatickými pokusy na {statusCodes} — bez ručně vytvořeného HTTP. {esbuild} balíčky, audity čisté."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Jste připraveni lokalizovat na autopilota?",
-			"body": "Jeden klíč Azure AI Translator, jeden workflow soubor. Resource Translator se postará o zbytek.",
+			"body": "Jeden klíč poskytovatele — Azure, AWS nebo Google — a jeden workflow soubor. Resource Translator se postará o zbytek.",
 			"button": "Začněte"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Další kroky",
 			"configuration": "Nastavte výchozí nastavení na úrovni repozitáře pomocí {configPath}.",
 			"recipes": "Podívejte se na recepty na monorepo, vlastní slovníčky a kategorie vlastních překladačů."
+		}
+	},
+	"providers": {
+		"title": "Překladatelské služby",
+		"eyebrow": "Reference",
+		"lede": "Vyberte si jednoho poskytovatele překladu pro každý běh — Azure AI Translator, AWS Translate nebo Google Cloud Translation — za jedním sjednoceným API povrchem. Převaděč se chová stejně bez ohledu na poskytovatele; liší se pouze kvalifikace.",
+		"backwardCompatible": "Plně zpětně kompatibilní: {provider} výchozí {azure}, takže stávající Azure workflowy fungují beze změny — není třeba upravovat.",
+		"selecting": {
+			"title": "Výběr poskytovatele",
+			"body": "Nastavte vstup {provider} na {azure} (výchozí), {aws} nebo {google} a poté zadejte přihlašovací údaje daného poskytovatele. Na každé volání akce se používá pouze jeden poskytovatel; akce deterministicky deleguje na odpovídající SDK za továrnou."
+		},
+		"comparison": {
+			"title": "Srovnání poskytovatelů",
+			"caption": "Srovnání překladatelských poskytovatelů",
+			"columns": {
+				"provider": "Poskytovatel",
+				"value": "Hodnota poskytovatele",
+				"sdk": "SDK",
+				"credentials": "Kvalifikace"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (výchozí)",
+				"credentials": "subscriptionKey, endpoint, region (volitelné)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "aws",
+				"credentials": "OIDC / default chain, nebo awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud překlad",
+				"value": "Google",
+				"credentials": "googleApiKey NEBO googleCredentials (servisní účet JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Výchozí poskytovatel. Nastavte si zdroj Azure AI Translator a projděte {subscriptionKey}, {endpoint} a volitelně {region}. To je stejná konfigurace, kterou již používají stávající pracovní postupy."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Používá {sdk}. Preferujte OIDC přes {configureAwsCredentials}, aby se neukládala dlouho trvající tajemství — akce čte výchozí řetězec přihlašovacích údajů AWS SDK. Alternativně předejte {awsAccessKeyId} a {awsSecretAccessKey} explicitně. Vždy je vyžadována oblast, a to přes {awsRegion} nebo proměnnou {awsRegionEnv} prostředí.",
+			"oidcTitle": "OIDC (doporučeno)",
+			"keysNote": "Pro použití statických kláves místo OIDC vynechte {configureAwsCredentials} step a předejte {awsAccessKeyId} / {awsSecretAccessKey} (přes {secrets}) plus {awsRegion}."
+		},
+		"google": {
+			"title": "Google Cloud překlad",
+			"body": "Používá {sdk} (v2). Autentizujte se buď pomocí API klíče ({googleApiKey}), nebo přihlašovacího data služby v JSON ({googleCredentials}). Dodat přesně jeden; volitelný {googleProjectId} je z kvalifikace odvozen, pokud je vynechán."
+		},
+		"mapping": {
+			"title": "Mapování záměru a specifikátora",
+			"body": "Specifikátory specifické pro poskytovatele jsou mapovány tam, kde existuje ekvivalent. Všechno ostatní se vrací k rozumným výchozím stavům, aby chování zůstalo konzistentní.",
+			"caption": "Mapování intent-specificer mezi poskytovateli",
+			"columns": {
+				"input": "Vstup",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Podporováno",
+			"ignored": "Ignorováno",
+			"rows": {
+				"textType": {
+					"azure": "textType (obyčejný / html)",
+					"aws": "Ignorováno (bez přepínání)",
+					"google": "Formát (text / html)"
+				},
+				"profanityAction": {
+					"azure": "Plná podpora",
+					"aws": "Označeno / Smazáno → maskování",
+					"google": "Ignorováno"
+				},
+				"categoryId": {
+					"azure": "Vlastní překladač",
+					"aws": "Ignorováno",
+					"google": "Ignorováno"
+				},
+				"allowFallback": {
+					"azure": "Podporováno",
+					"aws": "Ignorováno",
+					"google": "Ignorováno"
+				}
+			}
+		},
+		"locales": {
+			"title": "Kódy místa se liší podle poskytovatele",
+			"body": "Každý poskytovatel používá své vlastní lokální kódy (například zjednodušená čínština je {azureCode} na Azure, {awsCode} na AWS a {googleCode} na Googlu). Kódy procházejí tak, jak jsou, a řídí názvy výstupních souborů, proto zvolte {toLocales} hodnoty, které váš vybraný poskytovatel podporuje."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Požadované vstupy",
 			"caption": "Požadované vstupy",
 			"items": {
-				"sourceLocale": "Zdrojové místo (např. {en}) používané k nalezení souborů zdrojů, například {sourceGlob}. Také přesměrováno překladateli jako {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. Přejděte přes {secrets}.",
-				"endpoint": "URL překladačského endpointu, např. {endpointUrl}."
+				"sourceLocale": "Zdrojové místo (např. {en}) používané k nalezení souborů zdrojů, například {sourceGlob}. Také jsem to přeposlal poskytovateli jako {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Výběr poskytovatele a kvalifikace",
+			"caption": "Výběr poskytovatele a přihlašovací údaje podle dodavatele",
+			"intro": "Vyberte si jednoho poskytovatele na každý běh s {provider}. Uveďte pouze přihlašovací údaje vybraného poskytovatele — pro kompletní nastavení viz {providersLink} průvodce.",
+			"items": {
+				"provider": "Poskytovatel překladu: {azure} (výchozí), {aws} nebo {google}. Na každé volání akce se používá pouze jeden poskytovatel.",
+				"subscriptionKey": "Azure AI Translator subscription key. Povinné pro {azure}. Projděte přes {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, eg. {endpointUrl}. Povinné pro {azure}.",
+				"awsAccessKeyId": "ID přístupového klíče AWS. Volitelné — vynechat (s {awsSecretAccessKey}) použití výchozího AWS přihlašovacího řetězce / OIDC. Projděte přes {secrets}.",
+				"awsSecretAccessKey": "Tajný přístupový klíč AWS. Musí být dodána spolu s {awsAccessKeyId}. Projděte přes {secrets}.",
+				"awsSessionToken": "Volitelný AWS session token pro dočasné přihlašovací údaje. Přejděte přes {secrets}.",
+				"awsRegion": "AWS region pro službu Translate (např. {regionExample}). Povinné pro {aws}, pokud {awsRegionEnv} není nastaveno v prostředí.",
+				"googleApiKey": "Google Cloud API klíč. Uveďte tento {googleCredentials} operačního sálu pro {google}. Přejděte přes {secrets}.",
+				"googleCredentials": "Klíč k účtu služby Google Cloud jako JSON řetězec. Uveďte tento {googleApiKey} operačního sálu pro {google}. Přejděte přes {secrets}.",
+				"googleProjectId": "Volitelné ID projektu Google Cloud. Obvykle se to odvozuje z přihlašovacího dokladu o servisním účtu."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Vstupy na požadavek překladače",
-			"intro": "Tyto mapy se přímo přenášejí na parametry dotazu Azure AI Translator v3. Každý je volitelný; výchozí nastavení překladatele platí při nenastavení.",
-			"caption": "Vstupy na požadavek překladače",
+			"heading": "Azure Translator request inputs",
+			"intro": "Tyto mapy se přímo mapují na parametry dotazu Azure AI Translator v3 a aplikují se na poskytovatele Azure. textType a profanityAction jsou také přiřazeny k AWS/Google, kde existuje ekvivalent (viz průvodce poskytovatelů); ostatní jsou pouze Azure. Každý je volitelný; výchozí nastavení překladatele platí při nenastavení.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} kategorii — ovladač průmysl/doména/tón. Přeposíláno jako {categoryQuery}.",
 				"textType": "{plain} nebo {html}. Používejte {html} jen tehdy, když jsou vaše hodnoty zdrojů skutečné HTML fragmenty.",

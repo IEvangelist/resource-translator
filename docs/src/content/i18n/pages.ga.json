@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Aistritheoir Acmhainne",
-		"description": "Osclaíonn Resource Translator iarratais tarraingthe meaisín-aistrithe do do chuid comhad acmhainne in aon repo, in aon fhormáid - faoi thiomáint ag Azure AI Translator.",
+		"description": "Osclaíonn Resource Translator iarratais tarraingthe meaisín-aistrithe ar do chuid comhad acmhainne in aon repo, in aon fhormáid - faoi thiomáint ag Azure AI Translator, AWS Translate, nó Google Cloud Translation.",
 		"socialTitle": "Aistritheoir Acmhainne - aistrigh comhaid acmhainne go huathoibríoch",
-		"badge": "v3.0 - Nód 24, cumraíocht repo, gluais, rith tirim",
+		"badge": "v3.0 - Azure, soláthraithe AWS & Google, Nód 24, cumraíocht repo",
 		"headlinePrefix": "Logánaigh d'ionadaí ar",
 		"headlineAccent": "gach tiomantas.",
-		"lede": "Osclaíonn Resource Translator iarratais tarraingthe meaisín-aistrithe do do chomhaid acmhainní ag baint úsáide as Azure AI Translator tríd an SDK oifigiúil - gan aon seirbhísí breise, ach sreabhadh oibre.",
+		"lede": "Osclaíonn Resource Translator iarratais tarraingthe meaisín-aistrithe do do chuid comhad acmhainne ag baint úsáide as Azure, AWS, nó Google - gníomh aontaithe amháin, soláthraí amháin in aghaidh an rith, SDKanna oifigiúla faoin gcochall.",
 		"primaryCta": "Tosaigh",
 		"secondaryCta": "Réalta ar GitHub",
 		"supports": "Tacaíochtaí",
 		"builtForShipping": "Tógtha le haghaidh loingseoireachta",
 		"workflowTitle": "Aistriúchán mar shreabhadh oibre, ní mar chúram.",
-		"workflowBody": "Buail an gníomh isteach i do CI atá ann cheana, dírigh é ar Azure AI Translator, agus lig do do repo gach teanga a dhíríonn tú orthu a labhairt.",
+		"workflowBody": "Buail an gníomh isteach i do CI atá ann cheana, dírigh é ar Azure, AWS, nó Google, agus lig do do repo gach teanga a dhíríonn tú orthu a labhairt.",
 		"stats": {
 			"audit": "0 npm-saincheisteanna iniúchóireachta",
-			"tests": "150 tástáil",
+			"tests": "240+ tástáil",
 			"node": "Nód 20 / 22 / 24",
-			"sdk": "Oifigiúil Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails}, agus {hasNewTranslations} sliotán go díreach isteach create-pull-request."
 			},
 			"sdk": {
-				"title": "Oifigiúil Azure SDK",
-				"body": "Tógtha ar {azureSdk} + {corePipeline} - athiarrachtaí uathoibríocha ar {statusCodes}, gan aon HTTP lámh-rollta. {esbuild}-bundled, iniúchadh-glan."
+				"title": "Azure, AWS & Google",
+				"body": "Roghnaigh soláthraí amháin in aghaidh an rith. Tá gach ceann acu tiomáinte ag a SDK oifigiúil ({azureSdk}, {awsSdk}, {googleSdk}) le hiarrachtaí uathoibríocha ar {statusCodes} - gan aon HTTP lámh-rollta. {esbuild}-bundled, iniúchadh-glan."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Réidh le logánú ar uathphíolóta?",
-			"body": "Eochair Aistritheoir Azure AI amháin, comhad sreabhadh oibre amháin. Láimhseálann Resource Translator an chuid eile.",
+			"body": "Eochair sholáthraí amháin - Azure, AWS, nó Google - agus comhad sreabhadh oibre amháin. Láimhseálann Resource Translator an chuid eile.",
 			"button": "Tosaigh"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Na chéad chéimeanna eile",
 			"configuration": "Cumraigh réamhshocruithe leibhéal repo le {configPath}.",
 			"recipes": "Féach oidis do monorepos, gluaiseanna saincheaptha, agus catagóirí Aistritheoir Saincheaptha."
+		}
+	},
+	"providers": {
+		"title": "Soláthraithe aistriúcháin",
+		"eyebrow": "Tagairt",
+		"lede": "Roghnaigh soláthraí aistriúcháin amháin in aghaidh an rith - Azure AI Translator, AWS Translate, nó Google Cloud Translation - taobh thiar de dhromchla API aontaithe amháin. Iompraíonn an t-aistritheoir mar an gcéanna beag beann ar an soláthraí; Ní hionann ach na dintiúir a dhéanamh.",
+		"backwardCompatible": "Fully backward compatible: {provider} defaults to {azure}, so existing Azure workflows keep working unchanged — no edits required.",
+		"selecting": {
+			"title": "Soláthraí á roghnú",
+			"body": "Socraigh an t-ionchur {provider} go {azure} (réamhshocrú), {aws}, nó {google}, ansin soláthraigh dintiúir an tsoláthraí sin. Ní úsáidtear ach soláthraí amháin in aghaidh an ghlao gníomhaíochta; tarmligeann an gníomh go deterministically chuig an SDK meaitseála taobh thiar de mhonarcha."
+		},
+		"comparison": {
+			"title": "Comparáid idir soláthraithe",
+			"caption": "Comparáid idir soláthraithe aistriúcháin",
+			"columns": {
+				"provider": "Soláthraí",
+				"value": "Luach an tsoláthraí",
+				"sdk": "SDK",
+				"credentials": "Dintiúir"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (réamhshocrú)",
+				"credentials": "subscriptionKey, críochphointe, réigiún (roghnach)"
+			},
+			"aws": {
+				"name": "AWS Aistrigh",
+				"value": "AWS",
+				"credentials": "OIDC / slabhra réamhshocraithe, nó awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Aistriúchán Google Cloud",
+				"value": "Google",
+				"credentials": "googleApiKey NÓ googleCredentials (cuntas seirbhíse JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (réamhshocrú)",
+			"body": "An soláthraí réamhshocraithe. Acmhainn Azure AI Translator a sholáthar agus pas a fháil {subscriptionKey}, {endpoint}, agus roghnach {region}. Is é seo an chumraíocht chéanna a úsáideann sreafaí oibre atá ann cheana féin."
+		},
+		"aws": {
+			"title": "AWS Aistrigh",
+			"body": "Úsáidí {sdk}. Is fearr leat OIDC trí {configureAwsCredentials} ionas nach stóráiltear rúin fhadsaoil - léann an gníomh slabhra dintiúir réamhshocraithe AWS SDK. De rogha air sin, pas a fháil {awsAccessKeyId} agus {awsSecretAccessKey} go sainráite. Tá réigiún ag teastáil i gcónaí, trí {awsRegion} nó an athróg timpeallachta {awsRegionEnv}.",
+			"oidcTitle": "OIDC (molta)",
+			"keysNote": "Chun eochracha statacha a úsáid in ionad OIDC, scaoil an chéim {configureAwsCredentials} agus pas {awsAccessKeyId} / {awsSecretAccessKey} (via {secrets}) móide {awsRegion}."
+		},
+		"google": {
+			"title": "Aistriúchán Google Cloud",
+			"body": "Úsáidí {sdk} (v2). Fíordheimhnigh le heochair API ({googleApiKey}) nó le dintiúr JSON cuntais seirbhíse ({googleCredentials}). Soláthraigh ceann amháin go díreach; Baintear {googleProjectId} roghnach as an dintiúr nuair a fhágtar ar lár é."
+		},
+		"mapping": {
+			"title": "Mapáil sonraitheoirí intinne",
+			"body": "Déantar sonraitheoirí a bhaineann go sonrach le soláthraí a mhapáil nuair a bhíonn coibhéis ann. Titeann gach rud eile ar ais go mainneachtainí ciallmhara ionas go bhfanann iompar comhsheasmhach.",
+			"caption": "Mapáil sonraitheoirí intinne ar fud soláthraithe",
+			"columns": {
+				"input": "Ionchur",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Tacaithe",
+			"ignored": "Neamhaird Déanta",
+			"rows": {
+				"textType": {
+					"azure": "textType (plain / html)",
+					"aws": "Neamhaird déanta (gan scorán)",
+					"google": "formáid (téacs / html)"
+				},
+				"profanityAction": {
+					"azure": "Tacaíocht iomlán",
+					"aws": "Marcáilte / Scriosta → chumhdach",
+					"google": "Neamhaird Déanta"
+				},
+				"categoryId": {
+					"azure": "Aistritheoir Saincheaptha",
+					"aws": "Neamhaird Déanta",
+					"google": "Neamhaird Déanta"
+				},
+				"allowFallback": {
+					"azure": "Tacaithe",
+					"aws": "Neamhaird Déanta",
+					"google": "Neamhaird Déanta"
+				}
+			}
+		},
+		"locales": {
+			"title": "Tá difríocht idir cóid logánta de réir soláthraí",
+			"body": "Úsáideann gach soláthraí a chóid áitiúil féin (mar shampla tá Sínis Simplithe {azureCode} ar Azure, {awsCode} ar AWS, agus {googleCode} ar Google). Téann cóid tríd mar atá agus tiomáineann siad na hainmneacha comhaid aschuir, mar sin roghnaigh {toLocales} luachanna a thacaíonn le do sholáthraí roghnaithe."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Ionchuir riachtanacha",
 			"caption": "Ionchuir riachtanacha",
 			"items": {
-				"sourceLocale": "Loguchtaigh foinse (m.sh. {en}) a úsáidtear chun comhaid acmhainne a aimsiú ar nós {sourceGlob}. Cuireadh ar aghaidh chuig an Aistritheoir mar {fromLocale} freisin.",
-				"subscriptionKey": "Eochair síntiúis Azure AI Translator. Pas trí {secrets}.",
-				"endpoint": "URL críochphointe an aistritheora, m.sh. {endpointUrl}."
+				"sourceLocale": "Loguchtaigh foinse (m.sh. {en}) a úsáidtear chun comhaid acmhainne a aimsiú ar nós {sourceGlob}. Cuireadh ar aghaidh chuig an soláthraí freisin mar {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Dintiúir roghnúcháin soláthraí",
+			"caption": "Roghnú soláthraí agus dintiúir in aghaidh an díoltóra",
+			"intro": "Roghnaigh soláthraí amháin in aghaidh an rith le {provider}. Tabhair dintiúir an tsoláthraí roghnaithe amháin - féach an treoir {providersLink} le haghaidh socrú iomlán.",
+			"items": {
+				"provider": "Soláthraí aistriúcháin: {azure} (réamhshocrú), {aws}, nó {google}. Ní úsáidtear ach soláthraí amháin in aghaidh an ghlao gníomhaíochta.",
+				"subscriptionKey": "Eochair síntiúis Azure AI Translator. Riachtanach le haghaidh {azure}. Pas trí {secrets}.",
+				"endpoint": "URL críochphointe Azure Translator, m.sh. {endpointUrl}. Riachtanach le haghaidh {azure}.",
+				"awsAccessKeyId": "Id eochair rochtana AWS. Roghnach - fág ar lár (le {awsSecretAccessKey}) chun slabhra dintiúir réamhshocraithe AWS / OIDC a úsáid. Pas trí {secrets}.",
+				"awsSecretAccessKey": "Eochair rochtana rúnda AWS. Ní mór é a sholáthar in éineacht le {awsAccessKeyId}. Pas trí {secrets}.",
+				"awsSessionToken": "Comhartha seisiúin AWS roghnach le haghaidh dintiúir shealadacha. Pas trí {secrets}.",
+				"awsRegion": "Réigiún AWS don tseirbhís Translate (m.sh. {regionExample}). Riachtanach le haghaidh {aws} mura bhfuil {awsRegionEnv} socraithe sa timpeallacht.",
+				"googleApiKey": "Eochair API Google Cloud. Provide this OR {googleCredentials} for {google}. Pas trí {secrets}.",
+				"googleCredentials": "Eochair chuntas seirbhíse Google Cloud mar teaghrán JSON. Provide this OR {googleApiKey} for {google}. Pas trí {secrets}.",
+				"googleProjectId": "Aitheantas tionscadail roghnach Google Cloud. De ghnáth tátal a bhaint as an dintiúr cuntais seirbhíse."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Ionchuir iarratais aistritheora",
-			"intro": "Mapálann siad seo go díreach ar pharaiméadair fiosrúcháin Azure AI Translator v3. Tá gach ceann roghnach; Baineann réamhshocruithe an Aistritheora le chéile nuair a dhíshocraíodh.",
-			"caption": "Ionchuir iarratais aistritheora",
+			"heading": "Azure Translator request inputs",
+			"intro": "Mapálann siad seo go díreach ar pharaiméadair fiosrúcháin Azure AI Translator v3 agus baineann siad leis an soláthraí Azure. Déantar textType agus profanityAction a mhapáil freisin chuig AWS / Google nuair atá coibhéis ann (féach an treoir soláthraithe); tá an chuid eile Azure amháin. Tá gach ceann roghnach; Baineann réamhshocruithe an Aistritheora le chéile nuair a dhíshocraíodh.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Catagóir Azure {customTranslatorLink} - an tionscal / fearann / knob ton. Curtha ar aghaidh mar {categoryQuery}.",
 				"textType": "{plain} nó {html}. Úsáid {html} ach amháin nuair is fíor-bhlúirí HTML iad do luachanna acmhainne.",

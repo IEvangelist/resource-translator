@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "مەنبە تەرجىمانى",
-		"description": "Resource Translator ھەر قانداق repos، ھەرقانداق شەكىلدە مەنبە ھۆججىتىڭىزنى ماشىنا تەرجىمە قىلىش ئىلتىماسىنى ئاچىدۇ.",
+		"description": "Resource Translator ھەر قانداق repo، ھەرقانداق شەكىلدە مەنبە ھۆججىتىڭىزنى ماشىنا ئارقىلىق تەرجىمە قىلىش ئىلتىماسىنى ئاچىدۇ—Azure AI Translator، AWS Translate ياكى Google Cloud Translation.",
 		"socialTitle": "مەنبە تەرجىمانى — مەنبە ھۆججەتلىرىنى ئاپتوماتىك تەرجىمە قىلىش",
-		"badge": "v3.0 — تۈگۈن 24، repo سەپلىمىسى، قامۇس، قۇرۇق ئىجرا قىلىش",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Repoنى يەرلىكلەشتۈرۈش",
 		"headlineAccent": "ھەر بىر ۋەدىسى.",
-		"lede": "Resource Translator رەسمىي SDK ئارقىلىق Azure AI Translator ئارقىلىق مەنبە ھۆججىتىڭىزنى ماشىنا تەرجىمە قىلىپ تارتىش ئىلتىماسىنى ئاچىدۇ.",
+		"lede": "Resource Translator Azure، AWS ياكى Google ئارقىلىق مەنبە ھۆججىتىڭىزنى ماشىنا تەرجىمە قىلىپ تارتىش ئىلتىماسىنى ئاچىدۇ—بىر تۇتاش مەشغۇلات، بىر تەمىنلىگۈچى ھەر بىر ئىجرا قىلىش، رەسمىي SDK.",
 		"primaryCta": "باشلاش",
 		"secondaryCta": "GitHub دىكى چولپان",
 		"supports": "قوللىغۇچىلار",
 		"builtForShipping": "دېڭىز تىرانسىپورتى ئۈچۈن ياسالغان",
 		"workflowTitle": "تەرجىمە بىر خىزمەت تەرتىپى، ھەرگىزمۇ جاپالىق ئىش ئەمەس.",
-		"workflowBody": "مەشغۇلاتنى ھازىرقى CI غا كىرگۈزۈپ، Azure AI تەرجىمانىغا توغرىلاپ، Repo ئارقىلىق سىز نىشان قىلغان ھەر بىر تىلدا سۆزلىشەلەيدۇ.",
+		"workflowBody": "مەشغۇلاتنى ھازىرقى CI غا كىرگۈزۈپ، Azure، AWS ياكى Google غا كۆرسىتىپ، Repo نى نىشان قىلغان ھەر بىر تىلدا سۆزلەشكە يول قويۇڭ.",
 		"stats": {
 			"audit": "0 npm ئىقتىسادىي تەپتىش مەسىلىسى",
-			"tests": "150 سىناق",
+			"tests": "240+ سىناق",
 			"node": "تۈگۈن 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · گۇگۇل"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}، {summaryDetails} ۋە {hasNewTranslations} بىۋاستە create-pull-request غا كىرگۈزۈلىدۇ."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "{azureSdk} + {corePipeline} ئاساسىدا قۇرۇلغان — ئاپتوماتىك قايتا سىناش {statusCodes}، قولدا يۆگىلگەن HTTP يوق. {esbuild} يىغىلغان، ئىقتىسادىي تەپتىشلىك پاكىز."
+				"title": "Azure, AWS & Google",
+				"body": "ھەر قېتىم بىردىن تەمىنلىگۈچىنى تاللاڭ. ھەر بىرى ئۆزىنىڭ رەسمىي SDK ({azureSdk}، {awsSdk}، {googleSdk}) ئارقىلىق قوزغىلىدۇ، {statusCodes} ئاپتوماتىك قايتا سىناق قىلىنىدۇ. {esbuild} باغلانغان، ئىقتىسادىي تەپتىشلىك پاكىز."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "ئاپتوماتىك ئۇچقۇچى ئارقىلىق يەرلىكلەشتۈرۈشكە تەييار بولدىڭىزمۇ؟",
-			"body": "بىر Azure AI تەرجىمە ئاچقۇچى، بىر workflow ھۆججىتى. Resource Translator قالغان ئىشلارنى بىر تەرەپ قىلىدۇ.",
+			"body": "بىر تەمىنلىگۈچى ئاچقۇچى — Azure، AWS ياكى Google — ۋە بىر خىزمەت تەرتىپى ھۆججىتى. Resource Translator قالغان ئىشلارنى بىر تەرەپ قىلىدۇ.",
 			"button": "باشلاش"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "كېيىنكى قەدەملەر",
 			"configuration": "Repo-دەرىجىلىك سۈكۈتتىكى تەڭشەش {configPath}.",
 			"recipes": "مونورېپوس، خاس لۇغەت ۋە خاس تەرجىمان كاتېگورىيىسىنىڭ رېتسېپىغا قاراڭ."
+		}
+	},
+	"providers": {
+		"title": "تەرجىمە بىلەن تەمىنلىگۈچى",
+		"eyebrow": "پايدىلىنىش",
+		"lede": "ھەر قېتىم بىردىن تەرجىمە تەمىنلىگۈچىنى تاللاڭ—Azure AI Translator، AWS Translate ياكى Google Cloud Translation—بىرلىككە كەلگەن API يۈزىنىڭ ئارقىسىدا. تەرجىمان تەمىنلىگۈچىنىڭ قانداق بولۇشىدىن قەتئىينەزەر ئوخشاش ھەرىكەت قىلىدۇ. پەقەت سالاھىيەت گۇۋاھنامىسىلا پەرقلىنىدۇ.",
+		"backwardCompatible": "پۈتۈنلەي تەتۈر ماسلىشىش: {provider} سۈكۈتتە {azure} بولىدۇ، شۇڭا ھازىر بار بولغان Azure خىزمەت تەرتىپى ئۆزگەرمەيدۇ، تەھرىرلەش ھاجەتسىز.",
+		"selecting": {
+			"title": "تەمىنلىگۈچىنى تاللاش",
+			"body": "{provider} كىرگۈزگۈچنى {azure} (كۆڭۈلدىكى)، {aws} ياكى {google} قىلىپ تەڭشەپ، ئاندىن تەمىنلىگۈچىنىڭ سالاھىيەت گۇۋاھنامىسىنى تەمىنلەڭ. ھەر بىر ھەرىكەت چاقىرىشتا پەقەت بىرلا تەمىنلىگۈچى ئىشلىتىلىدۇ. بۇ ھەرىكەت زاۋۇتنىڭ ئارقىسىدىكى ماسلاشتۇرۇلغان SDK غا كەسكىن ۋەكىللىك قىلىدۇ."
+		},
+		"comparison": {
+			"title": "تەمىنلىگۈچى سېلىشتۇرما",
+			"caption": "تەرجىمە تەمىنلىگۈچى سېلىشتۇرمىسى",
+			"columns": {
+				"provider": "تەمىنلىگۈچى",
+				"value": "تەمىنلىگۈچى قىممىتى",
+				"sdk": "SDK",
+				"credentials": "سالاھىيەت گۇۋاھنامىسى"
+			},
+			"azure": {
+				"name": "Azure AI تەرجىمانى",
+				"value": "Azure (كۆڭۈلدىكى)",
+				"credentials": "subscriptionKey, endpoint, region (ئىختىيارى)"
+			},
+			"aws": {
+				"name": "AWS تەرجىمە",
+				"value": "AWS",
+				"credentials": "OIDC / سۈكۈتتىكى زەنجىر، ياكى awsAccessKeyId + awsSecretAccessKey؛ awsRegion"
+			},
+			"google": {
+				"name": "گۇگۇل بۇلۇت تەرجىمە",
+				"value": "گۇگۇل",
+				"credentials": "googleApiKey ياكى googleCredentials (service-account JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "كۆڭۈلدىكى تەمىنلىگۈچى . Azure AI تەرجىمانلىق مەنبەسى بىلەن تەمىنلەپ، {subscriptionKey}، {endpoint} ۋە ئىختىيارىي يوللاش {region}. بۇ ھازىر ئىشلىتىلگەن خىزمەت تەرتىپى ئوخشاش سەپلىمىسى."
+		},
+		"aws": {
+			"title": "AWS تەرجىمە",
+			"body": "ئىشلىتىلىدۇ {sdk}. {configureAwsCredentials} ئارقىلىق OIDC نى تاللاڭ، بۇنداق بولغاندا ئۇزۇن ئۆمۈر كۆرىدىغان مەخپىيەتلىكلەر ساقلىنىپ قالمىسۇن — مەشغۇلاتتا AWS SDK سۈكۈتتىكى سالاھىيەت زەنجىرى ئوقۇلىدۇ. ئەكسىچە، {awsAccessKeyId} ۋە {awsSecretAccessKey} ئېنىق يوللاڭ. بىر رايون ھامان زۆرۈر بولىدۇ، {awsRegion} ياكى {awsRegionEnv} مۇھىت ئۆزگەرگۈچى مىقدار.",
+			"oidcTitle": "OIDC (تەۋسىيە قىلىنىدۇ)",
+			"keysNote": "OIDC نىڭ ئورنىغا تىنچ كۇنۇپكىنى ئىشلەتمەكچى بولسىڭىز، {configureAwsCredentials} باسقۇچنى تاشلاپ، {awsAccessKeyId} / {awsSecretAccessKey} ({secrets} ئارقىلىق ) قوشۇلغان {awsRegion} يوللاڭ."
+		},
+		"google": {
+			"title": "گۇگۇل بۇلۇت تەرجىمە",
+			"body": "ئىشلىتىلىدۇ {sdk} (v2). API ئاچقۇچى ({googleApiKey}) ياكى مۇلازىمەت ھېساباتى JSON سالاھىيەت گۇۋاھنامىسى ({googleCredentials}) ئارقىلىق سالاھىيەت دەلىللەش كېرەك. تەمىنلەش دەل بىرسى؛ بىر ئىختىيارى {googleProjectId} ئۆچۈرۈلگەندە سالاھىيەت گۇۋاھنامىسىدىن چىقىرىۋېتىلىدۇ."
+		},
+		"mapping": {
+			"title": "مەقسەت بەلگىلىگۈچ خەرىتىسى",
+			"body": "تەمىنلىگۈچىگە خاس بەلگىلىگۈچ تەڭ مەۋجۇت بولغان جايدا خەرىتىلىنىدۇ. باشقا ئىشلار ئاقىلانە كۆڭۈلدىكىدەك بولىدۇ، شۇڭا ھەرىكىتى بىردەك بولىدۇ.",
+			"caption": "تەمىنلىگۈچىلەر ئارىسىدىكى مەقسەت بەلگىلەش خەرىتىسى",
+			"columns": {
+				"input": "كىرگۈزۈش",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "گۇگۇل"
+			},
+			"supported": "قوللىغۇچىلار",
+			"ignored": "نەزەردىن ساقىت قىلىندى",
+			"rows": {
+				"textType": {
+					"azure": "textType (plain / html)",
+					"aws": "نەزەردىن ساقىت قىلىندى (ئالماشتۇرۇش يوق)",
+					"google": "فورماتى (تېكىست / HTML)"
+				},
+				"profanityAction": {
+					"azure": "پۈتۈن كۈچى بىلەن قوللايمەن",
+					"aws": "بەلگە قويۇلدى/ئۆچۈرۈلدى→",
+					"google": "نەزەردىن ساقىت قىلىندى"
+				},
+				"categoryId": {
+					"azure": "ئۆزى بەلگىلىگەن تەرجىمان",
+					"aws": "نەزەردىن ساقىت قىلىندى",
+					"google": "نەزەردىن ساقىت قىلىندى"
+				},
+				"allowFallback": {
+					"azure": "قوللىغۇچىلار",
+					"aws": "نەزەردىن ساقىت قىلىندى",
+					"google": "نەزەردىن ساقىت قىلىندى"
+				}
+			}
+		},
+		"locales": {
+			"title": "يەرلىك كودلار تەمىنلىگۈچىگە ئوخشىمايدۇ",
+			"body": "ھەر بىر تەمىنلىگۈچى ئۆزىنىڭ يەرلىك كودىنى ئىشلىتىدۇ (مەسىلەن، ئاددىيلاشتۇرۇلغان خەنزۇ تىلى Azure دا {azureCode}، {awsCode} AWS ۋە {googleCode} Google دا ئىشلىتىلىدۇ). كودلار ئەسلى ھالىتىدىن ئۆتىدۇ ۋە چىقىرىش ھۆججىتى نامىنى قوزغايدۇ، شۇڭا سىز تاللىغان تەمىنلىگۈچى قوللايدىغان {toLocales} قىممەتنى تاللاڭ."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "زۆرۈر كىرگۈزۈش",
 			"caption": "زۆرۈر كىرگۈزۈش",
 			"items": {
-				"sourceLocale": "مەنبە ئورنى (مەسىلەن: {en}) مەنبە ھۆججىتىنى تېپىشتا {sourceGlob}. يەنە تەرجىمانغا ئەۋەتىپ {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator مۇشتەرى ئاچقۇچ. يولدىن ئۆتمەك {secrets}",
-				"endpoint": "تەرجىمە نۇقتىسى ئادرېسى، مەسىلەن: {endpointUrl}."
+				"sourceLocale": "مەنبە ئورنى (مەسىلەن: {en}) مەنبە ھۆججىتىنى تېپىشتا {sourceGlob}. يەنە تەمىنلىگۈچىگە يوللاپ {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "تەمىنلىگۈچى تاللاش ۋە سالاھىيەت ئۇچۇرلىرى",
+			"caption": "تەمىنلىگۈچىنى تاللاش ۋە ھەر بىر سودىگەر سالاھىيەت گۇۋاھنامىسى",
+			"intro": "ھەر قېتىم بىردىن تەمىنلىگۈچىنى تاللاپ {provider}. پەقەت تاللانغان تەمىنلىگۈچىنىڭ سالاھىيەت گۇۋاھنامىسى بىلەن تەمىنلەڭ—تولۇق تەڭشەش ئۈچۈن {providersLink} قوللانمىسىغا قاراڭ.",
+			"items": {
+				"provider": "تەرجىمە بىلەن تەمىنلىگۈچى: {azure} (كۆڭۈلدىكى)، {aws} ياكى {google}. ھەر بىر ھەرىكەت چاقىرىش پەقەت بىرلا تەمىنلىگۈچى ئىشلىتىلىدۇ.",
+				"subscriptionKey": "Azure AI Translator مۇشتەرى ئاچقۇچ. زۆرۈر {azure}. يولدىن ئۆتمەك {secrets}",
+				"endpoint": "Azure Translator endpoint URL، مەسىلەن: {endpointUrl}. زۆرۈر {azure}.",
+				"awsAccessKeyId": "AWS زىيارەت ئاچقۇچى كىملىكى. ئىختىيارى — AWS سۈكۈتتىكى سالاھىيەت زەنجىرى / OIDC نى ئىشلىتىش ئۈچۈن ({awsSecretAccessKey} بىلەن) چىقىرىۋېتىڭ. يولدىن ئۆتمەك {secrets}",
+				"awsSecretAccessKey": "AWS مەخپىي زىيارەت ئاچقۇچى. چوقۇم بىللە تەمىنلىنىشى {awsAccessKeyId} . يولدىن ئۆتمەك {secrets}",
+				"awsSessionToken": "ۋاقىتلىق سالاھىيەت گۇۋاھنامىلىرى ئۈچۈن ئىختىيارى AWS ئەلاسە بەلگىسى. يولدىن ئۆتمەك {secrets}",
+				"awsRegion": "تەرجىمە مۇلازىمىتى ئۈچۈن AWS رايونى (مەسىلەن: {regionExample}). مۇھىتتا بېكىتىلمىگەن {aws} ئۈچۈن زۆرۈر {awsRegionEnv}.",
+				"googleApiKey": "گۇگۇل بۇلۇت API ئاچقۇچى. بۇ ئوپېراتسىيە ئۇسۇلى {googleCredentials} {google}. يولدىن ئۆتمەك {secrets}",
+				"googleCredentials": "Google Cloud مۇلازىمەت ھېسابات ئاچقۇچى JSON تىزمىسى. بۇ ئوپېراتسىيە ئۇسۇلى {googleApiKey} {google}. يولدىن ئۆتمەك {secrets}",
+				"googleProjectId": "ئىختىيارى Google Cloud تۈر كىملىكى. ئادەتتە مۇلازىمەت ھېسابات سالاھىيىتىدىن پەرەز قىلىنىدۇ."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "تەرجىماننىڭ ئىلتىماسىنى كىرگۈزۈش",
-			"intro": "بۇلار بىۋاستە Azure AI Translator v3 سۈرۈشتۈرۈش پارامېتىرلىرىغا ماسلاشتۇرۇلىدۇ. ھەر بىرى ئىختىيارى بولىدۇ. تەرجىماننىڭ كۆڭۈلدىكىسى تەڭشەلمىگەندە تەتبىقلىنىدۇ.",
-			"caption": "تەرجىماننىڭ ئىلتىماسىنى كىرگۈزۈش",
+			"heading": "Azure تەرجىماننىڭ ئىلتىماس قىلىش كىرگۈزگۈسى",
+			"intro": "بۇلار Azure AI Translator v3 سۈرۈشتۈرۈش پارامېتىرلىرىغا بىۋاستە ماسلاشتۇرۇلىدۇ ھەمدە Azure تەمىنلىگۈچىگە ماس كېلىدۇ. textType ۋە profanityAction يەنە تەڭداش مەۋجۇت بولغان AWS/Google غا ماسلاشتۇرۇلغان (تەمىنلىگۈچى قوللانمىسىغا قاراڭ)؛ قالغانلىرى پەقەت Azure. ھەر بىرى ئىختىيارى بولىدۇ. تەرجىماننىڭ كۆڭۈلدىكىسى تەڭشەلمىگەندە تەتبىقلىنىدۇ.",
+			"caption": "Azure تەرجىماننىڭ ئىلتىماس قىلىش كىرگۈزگۈسى",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} كاتېگورىيىسى — industry/domain/tone كۇنۇپكىسى. يۆتكەپ {categoryQuery}.",
 				"textType": "{plain} ياكى {html}. پەقەت مەنبە قىممىتىڭىز ھەقىقىي HTML پارچىلىرى بولغاندا {html} ئىشلىتىڭ.",

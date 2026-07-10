@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "سرچینې ژباړونکی",
-		"description": "Resource Translator ستاسو د سرچینې فایلونو لپاره په هر ریپو، په هر فورمټ کې د ماشین ژباړل شوی کش غوښتنې خلاصوی — چې د Azure AI Translator لخوا ځواکمن کیږی.",
+		"description": "Resource Translator ستاسو د سرچینې فایلونو لپاره په هر ریپو، په هر فورمټ کې د ماشین ژباړل شوی کش غوښتنې خلاصوی — چې د Azure AI Translator، AWS Translate، یا Google Cloud Translation لخوا ځواکمن شوی وی.",
 		"socialTitle": "د سرچینې ژباړونکی — د سرچینې فایلونه په اتومات ډول ژباړل",
-		"badge": "v3.0 — Node 24، د ریپو تنظیم، لغت، وچې اجرا",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "خپل ریپو محلی کړئ",
 		"headlineAccent": "هر تعهد.",
-		"lede": "Resource Translator د Azure AI Translator په کارولو سره د رسمی SDK له لارې ستاسو د سرچینې فایلونو لپاره ماشین ژباړل شوی راکویټونه خلاصوی — هیڅ اضافی خدمات نشته، یوازې یو کاری بهیر لری.",
+		"lede": "Resource Translator د Azure، AWS، یا Google په کارولو سره ستاسو د سرچینې فایلونو لپاره ماشین ژباړل شوی pull غوښتنې خلاصوی — یو متحد عمل، یو چمتو کوونکی په هر اجرا کې، رسمی SDKs په پوښ کې.",
 		"primaryCta": "پیل وکړه",
 		"secondaryCta": "ستوری په GitHub کې",
 		"supports": "ملاتړ کوونکی",
 		"builtForShipping": "د کښتۍ لپاره جوړ شوی",
 		"workflowTitle": "ژباړه د کاری بهیر په توګه، نه د کار په توګه.",
-		"workflowBody": "عمل خپل موجود CI ته واچوه، Azure AI Translator ته یې اشاره وکړه، او خپل ریپو ته اجازه ورکړه چې هره ژبه چې هدف یې لرې، خبرې وکړی.",
+		"workflowBody": "عمل خپل موجود CI ته واچوئ، دا Azure، AWS، یا Google ته واستوئ، او خپل ریپو ته اجازه ورکړئ چې هره ژبه چې تاسو هدف ګرځوئ، خبرې وکړی.",
 		"stats": {
 			"audit": "۰ npm تفتیش ستونزې",
-			"tests": "۱۵۰ ازموینې",
+			"tests": "۲۴۰+ ازموینې",
 			"node": "نوډ ۲۰ / ۲۲ / ۲۴",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · ګوګل"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}، {summaryDetails}، او {hasNewTranslations} مستقیم د create-pull-request کې ځای پر ځای کېږی."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "په {azureSdk} + {corePipeline} باندې جوړ شوی — په {statusCodes} کې اتومات بیا هڅه کول، هیڅ لاس رول شوی HTTP نشته. {esbuild} پاک، تفتیش پاک."
+				"title": "Azure، AWS او Google",
+				"body": "هر ځل یو چمتو کوونکی انتخاب کړئ. هر یو د خپل رسمی SDK ({azureSdk}، {awsSdk}، {googleSdk}) لخوا پرمخ وړل کیږی چې په {statusCodes} کې اتومات بیا هڅه کوی — هیڅ لاس رول شوی HTTP نشته. {esbuild} پاک، تفتیش پاک."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "چمتو یې چې په اتومات ډول ځای پر ځای کړې؟",
-			"body": "One Azure AI Translator key, one workflow file. د سرچینو ژباړونکی پاتې کارونه سمبالوی.",
+			"body": "یوه عرضه کوونکی کلید — Azure، AWS، یا Google — او یوه د workflow فایل. د سرچینو ژباړونکی پاتې کارونه سمبالوی.",
 			"button": "پیل وکړه"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "راتلونکی ګامونه",
 			"configuration": "د ریپو کچې ډیفالټونه د {configPath} سره تنظیم کړئ.",
 			"recipes": "د مونورېپو، دودیز لغتونو، او دودیز ژباړونکی کټګوریو ترکیبونه وګورئ."
+		}
+	},
+	"providers": {
+		"title": "د ژباړې چمتو کوونکی",
+		"eyebrow": "مرجع",
+		"lede": "د هر ځل لپاره یو ژباړه چمتو کوونکی انتخاب کړئ — Azure AI Translator، AWS Translate، یا Google Cloud Translation — د یوه واحد، متحد API سطحې شاته. ژباړونکی د عرضه کوونکی پرته په ورته ډول چلند کوی؛ یوازې اسناد توپیر لری.",
+		"backwardCompatible": "بشپړ شاته سازګار: {provider} ډیفالټ {azure} ته ځی، نو موجوده Azure کاری بهیر بې بدلون کار کوی — هیڅ ایډیټ ته اړتیا نشته.",
+		"selecting": {
+			"title": "د عرضه کوونکی انتخاب",
+			"body": "د {provider} معلومات {azure} (ډیفالټ)، {aws}، یا {google} ته وټاکئ، بیا د هغه چمتو کوونکی اسناد ورکړئ. یوازې یو عرضه کوونکی د هر عمل کال لپاره کارول کیږی؛ عمل په ټاکلی ډول د ورته SDK ته د فابریکې شاته سپاری."
+		},
+		"comparison": {
+			"title": "د عرضه کوونکو پرتله",
+			"caption": "د ژباړې چمتو کوونکی پرتله",
+			"columns": {
+				"provider": "عرضه کوونکی",
+				"value": "د عرضه کوونکی ارزښت",
+				"sdk": "SDK",
+				"credentials": "اسناد"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (default)",
+				"credentials": "subscriptionKey، endpoint، سیمه (اختیاری)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "AWS",
+				"credentials": "OIDC / ډیفالټ زنځیر، یا awsAccessKeyId + awsSecretAccessKey؛ awsRegion"
+			},
+			"google": {
+				"name": "د ګوګل کلاوډ ژباړه",
+				"value": "ګوګل",
+				"credentials": "googleApiKey یا googleCredentials (د خدمت حساب JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "اصلی چمتو کوونکی. د Azure AI Translator سرچینه برابرول او پاس {subscriptionKey}، {endpoint}، او اختیاری {region}. دا هماغه تنظیم دی چې اوسنی جریان کارونه یې لا دمخه کاروی."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "کاروی {sdk}. د {configureAwsCredentials} له لارې OIDC غوره ګڼم ترڅو اوږدمهاله رازونه ذخیره نه شی — عمل د AWS SDK ډیفالټ تصدیق زنځیر لوستل کوی. یا دا چې {awsAccessKeyId} پاس کړئ او {awsSecretAccessKey} په واضح ډول ووایاست. یوه سیمه تل اړینه وی، د {awsRegion} یا د {awsRegionEnv} چاپیریال متغیر له لارې.",
+			"oidcTitle": "OIDC (سپارښتنه شوی)",
+			"keysNote": "د OIDC پر ځای د سټیټیک کیلی کارولو لپاره، {configureAwsCredentials} ګام پرېږدئ او {awsAccessKeyId} / {awsSecretAccessKey} (د {secrets} له لارې) جمع {awsRegion} پاس کړئ."
+		},
+		"google": {
+			"title": "د ګوګل کلاوډ ژباړه",
+			"body": "{sdk} (v2) کاروی. د API کیلی ({googleApiKey}) یا د خدمت-حساب JSON اسناد ({googleCredentials}) سره تصدیق کړئ. دقیقاً یو برابر کړئ؛ اختیاری {googleProjectId} له اسنادو څخه اخیستل کېږی کله چې حذف شی."
+		},
+		"mapping": {
+			"title": "د نیت ټاکونکی نقشه",
+			"body": "د عرضه کوونکی ځانګړی مشخصونه هغه ځای نقشه کېږی چې معادل موجود وی. نور هر څه بېرته معقولو ډیفالټونو ته راګرځی، نو چلند ثابت پاتې شی.",
+			"caption": "د ارادې ټاکونکی نقشه د عرضه کوونکو ترمنځ",
+			"columns": {
+				"input": "ورودی",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "ګوګل"
+			},
+			"supported": "ملاتړ شوی",
+			"ignored": "له پامه غورځول شوی",
+			"rows": {
+				"textType": {
+					"azure": "textType (ساده / html)",
+					"aws": "له پامه غورځول شوی (هیڅ ټوګل نشته)",
+					"google": "بڼه (متن / HTML)"
+				},
+				"profanityAction": {
+					"azure": "بشپړ ملاتړ",
+					"aws": "نښه شوی / حذف شوی د ماسک →",
+					"google": "له پامه غورځول شوی"
+				},
+				"categoryId": {
+					"azure": "دودیز ټرانسلیټر",
+					"aws": "له پامه غورځول شوی",
+					"google": "له پامه غورځول شوی"
+				},
+				"allowFallback": {
+					"azure": "ملاتړ شوی",
+					"aws": "له پامه غورځول شوی",
+					"google": "له پامه غورځول شوی"
+				}
+			}
+		},
+		"locales": {
+			"title": "محلی کوډونه هر چمتو کوونکی سره توپیر لری",
+			"body": "هر چمتو کوونکی خپل محلی کوډونه کاروی (د بېلګې په توګه Simplified Chinese په Azure کې {azureCode}، {awsCode} په AWS، او {googleCode} په Google کې شتون لری). کوډونه لکه څنګه چې دی تېرېږی او د محصول فایل نومونه چلوی، نو هغه ارزښتونه انتخاب کړئ چې {toLocales} ټاکل شوی چمتو کوونکی ملاتړ کوی."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "اړین داخلونه",
 			"caption": "اړین داخلونه",
 			"items": {
-				"sourceLocale": "د سرچینې ځای (لکه {en}) چې د سرچینې فایلونو موندلو لپاره کارول کیږی لکه {sourceGlob}. همداراز ژباړونکی ته د {fromLocale} په توګه واستول شو.",
-				"subscriptionKey": "Azure AI Translator subscription key. د تېرېدو له لارې {secrets}.",
-				"endpoint": "د ټرانسلیټر پای ټکی URL، لکه {endpointUrl}."
+				"sourceLocale": "د سرچینې ځای (لکه {en}) چې د سرچینې فایلونو موندلو لپاره کارول کیږی لکه {sourceGlob}. همداراز چمتو کوونکی ته د {fromLocale} په توګه واستول شو."
+			}
+		},
+		"providerInputs": {
+			"heading": "د عرضه کوونکی انتخاب او اسناد",
+			"caption": "د عرضه کوونکی انتخاب او د هر پلورونکی اسناد",
+			"intro": "د هر ځل لپاره یو چمتو کوونکی انتخاب {provider}. یوازې د ټاکل شوی عرضه کوونکی اسناد وړاندې کړئ — د بشپړ تنظیم لپاره {providersLink} لارښود وګورئ.",
+			"items": {
+				"provider": "د ژباړې چمتو کوونکی: {azure} (ډیفالټ)، {aws}، یا {google}. یوازې یو عرضه کوونکی د هر عمل زنګ لپاره کارول کېږی.",
+				"subscriptionKey": "Azure AI Translator subscription key. د {azure} لپاره اړین دی. تېر {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, مثلاً {endpointUrl}. د {azure} لپاره اړین دی.",
+				"awsAccessKeyId": "د AWS د لاسرسی کیلی پېژندنه. اختیاری — د AWS ډیفالټ اسنادو زنځیر / OIDC کارول (د {awsSecretAccessKey} سره) پریښودل. تېر {secrets}.",
+				"awsSecretAccessKey": "د AWS پټ لاسرسی کیلی. باید له {awsAccessKeyId} سره برابر شی. تېر {secrets}.",
+				"awsSessionToken": "اختیاری AWS سیشن ټوکن د لنډمهاله اسنادو لپاره. د تېرېدو له لارې {secrets}.",
+				"awsRegion": "د AWS سیمه د Translate خدمت لپاره (لکه {regionExample}). د {aws} لپاره اړین دی، پرته له دې چې {awsRegionEnv} په چاپیریال کې تنظیم شوی وی.",
+				"googleApiKey": "د Google Cloud API کیلی. دا عملیات {googleCredentials} {google}. تېر {secrets}.",
+				"googleCredentials": "د Google Cloud خدمت-حساب کلید د JSON تار په توګه. دا عملیات {googleApiKey} {google}. تېر {secrets}.",
+				"googleProjectId": "اختیاری د Google Cloud پروژې پېژندنه. عموماً د خدمت حساب له اسنادو څخه اخیستل کېږی."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "د ټرانسلیټر غوښتنې داخلونه",
-			"intro": "دا مستقیماً د Azure AI Translator v3 پوښتنې پارامیټرونو ته نقشه کیږی. هر یو اختیاری دی؛ د ټرانسلیټر ډیفالټونه هغه وخت تطبیقېږی چې غیر تنظیم شی.",
-			"caption": "د ټرانسلیټر غوښتنې داخلونه",
+			"heading": "Azure Translator request inputs",
+			"intro": "دا برخې مستقیم د Azure AI Translator v3 پوښتنې پارامیټرونو ته نقشه کیږی او د Azure چمتو کوونکی ته تطبیقیږی. textType او profanityAction هم AWS/Google ته نقشه شوی چیرې چې ورته موجود وی (د عرضه کوونکی لارښود وګورئ); نور یوازې Azure دی. هر یو اختیاری دی؛ د ټرانسلیټر ډیفالټونه هغه وخت تطبیقېږی چې غیر تنظیم شی.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} کټګوری — صنعت/ډومېن/تون knob. د {categoryQuery} په توګه لیږل شوی.",
 				"textType": "{plain} یا {html}. {html} یوازې هغه وخت وکاروئ کله چې ستاسو سرچینې ارزښتونه ریښتینی HTML ټوټې وی.",

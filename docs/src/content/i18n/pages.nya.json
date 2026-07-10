@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Womasulira Resource",
-		"description": "Resource Translator imatsegula zopempha zomasuliridwa ndi makina a mafayilo anu othandizira mu repo iliyonse, mu mtundu uliwonse - woyendetsedwa ndi Azure AI Translator.",
+		"description": "Resource Translator imatsegula zopempha zomasuliridwa ndi makina a mafayilo anu othandizira mu repo iliyonse, mu mtundu uliwonse - woyendetsedwa ndi Azure AI Translator, AWS Translate, kapena Google Cloud Translation.",
 		"socialTitle": "Womasulira Resource - kumasulira mafayilo othandizira okha",
-		"badge": "v3.0 - Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 - Azure, AWS & Google opereka, Node 24, repo config",
 		"headlinePrefix": "Khazikitsani repo yanu pa",
 		"headlineAccent": "kudzipereka kulikonse.",
-		"lede": "Resource Translator imatsegula zopempha zokoka zomasuliridwa ndi makina a mafayilo anu ogwiritsira ntchito Azure AI Translator kudzera pa SDK yovomerezeka - palibe ntchito zowonjezera, ntchito yokha.",
+		"lede": "Resource Translator imatsegula zopempha zokoka zomasuliridwa ndi makina a mafayilo anu ogwiritsira ntchito Azure, AWS, kapena Google - kachitidwe kamodzi kogwirizana, wopereka wina pa kuthamanga, ma SDK ovomerezeka pansi pa hood.",
 		"primaryCta": "Yambani",
 		"secondaryCta": "Nyenyezi pa GitHub",
 		"supports": "Zothandizira",
 		"builtForShipping": "Zomangidwa kuti zitumizidwe",
 		"workflowTitle": "Kutanthauzira ngati ntchito, osati ntchito.",
-		"workflowBody": "Gwetsani zochitikazo mu CI yanu yomwe ilipo, lozani pa Azure AI Translator, ndipo lolani repo yanu kulankhula chinenero chilichonse chomwe mumayang'ana.",
+		"workflowBody": "Ponyani zochitikazo mu CI yanu yomwe ilipo, lozani ku Azure, AWS, kapena Google, ndipo lolani repo yanu kulankhula chilankhulo chilichonse chomwe mumayang'ana.",
 		"stats": {
 			"audit": "0 npm-audit nkhani",
-			"tests": "Mayesero a 150",
+			"tests": "Mayesero a 240+",
 			"node": "Kodi Mungakhalire Ndi Moyo Wabwino / 20 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails}, ndi {hasNewTranslations} kagawo mwachindunji mu kulenga-kukoka-pempho."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Yomangidwa pa {azureSdk} + {corePipeline} - zodziwikiratu zoyesanso pa {statusCodes}, palibe HTTP yogubuduzidwa pamanja. {esbuild}-bundled, audit-woyera."
+				"title": "Azure, AWS ndi Google",
+				"body": "Sankhani wopereka m'modzi pa kuthamanga. Aliyense amayendetsedwa ndi SDK yake yovomerezeka ({azureSdk}, {awsSdk}, {googleSdk}) yokhala ndi zoyesanso zokha pa {statusCodes} - palibe HTTP yomwe idagubuduzidwa pamanja. {esbuild}-bundled, audit-woyera."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Kodi mwakonzeka kukhazikitsa malo pa autopilot?",
-			"body": "Chinsinsi chimodzi cha Azure AI Translator, fayilo imodzi yogwirira ntchito. Womasulira Resource amasamalira zina zonse.",
+			"body": "Chinsinsi chimodzi chopereka - Azure, AWS, kapena Google - ndi fayilo imodzi yogwirira ntchito. Womasulira Resource amasamalira zina zonse.",
 			"button": "Yambani"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Masitepe otsatira",
 			"configuration": "Konzani kusakhulupirika kwa repo-level ndi {configPath}.",
 			"recipes": "Onani maphikidwe a monorepos, ma glossaries achizolowezi, ndi magulu a Custom Translator."
+		}
+	},
+	"providers": {
+		"title": "Othandizira omasulira",
+		"eyebrow": "Zolemba",
+		"lede": "Sankhani wopereka womasulira mmodzi pa kuthamanga - Azure AI Translator, AWS Translate, kapena Google Cloud Translation - kumbuyo kwa malo amodzi, ogwirizana a API. Womasulira amachita chimodzimodzi mosasamala kanthu za wopereka; Zidziwitso zokha ndizosiyana.",
+		"backwardCompatible": "Kugwirizana kwathunthu kumbuyo: {provider} kusakhulupirika kwa {azure}, kotero ntchito za Azure zomwe zilipo zimapitiriza kugwira ntchito mosasinthika - palibe kusintha kofunikira.",
+		"selecting": {
+			"title": "Kusankha wopereka chithandizo",
+			"body": "Ikani {provider} yolowetsa ku {azure} (kusakhulupirika), {aws}, kapena {google}, kenako perekani zidziwitso za woperekayo. Wopereka m'modzi yekha amagwiritsidwa ntchito pa kuitana kochitapo kanthu; mchitidwewu umapereka ku SDK yofananira kumbuyo kwa fakitale."
+		},
+		"comparison": {
+			"title": "Kuyerekeza kwa opereka",
+			"caption": "Kuyerekeza kwa wopereka kumasulira",
+			"columns": {
+				"provider": "Wopereka",
+				"value": "Mtengo wopereka",
+				"sdk": "SDK",
+				"credentials": "Zovomerezeka"
+			},
+			"azure": {
+				"name": "Womasulira wa Azure AI",
+				"value": "Azure (kusakhulupirika)",
+				"credentials": "subscriptionKey, endpoint, dera (chosankha)"
+			},
+			"aws": {
+				"name": "Kumasulira kwa AWS",
+				"value": "aws",
+				"credentials": "OIDC / unyolo wosasinthika, kapena awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Kutanthauzira kwa Mtambo wa Google",
+				"value": "Google",
+				"credentials": "googleApiKey KAPENA googleCredentials (akaunti ya utumiki JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (kusakhulupirika)",
+			"body": "Wopereka kusakhulupirika. Perekani chuma cha Azure AI Translator ndikudutsa {subscriptionKey}, {endpoint}, ndipo mwakusankha {region}. Ichi ndi kasinthidwe komweko komwe ntchito zomwe zilipo zomwe zimagwiritsa ntchito kale."
+		},
+		"aws": {
+			"title": "Kumasulira kwa AWS",
+			"body": "Amagwiritsa ntchito {sdk}. Konzani OIDC kudzera pa {configureAwsCredentials} kotero palibe zinsinsi zokhala ndi moyo wautali zomwe zimasungidwa - zochitikazo zimawerenga unyolo wovomerezeka wa AWS SDK. Kapenanso, perekani {awsAccessKeyId} ndi {awsSecretAccessKey} momveka bwino. Dera nthawi zonse limafunika, kudzera mu {awsRegion} kapena {awsRegionEnv} chilengedwe chosinthika.",
+			"oidcTitle": "OIDC (akulimbikitsidwa)",
+			"keysNote": "Kuti mugwiritse ntchito makiyi amodzi m'malo mwa OIDC, gwetsani sitepe ya {configureAwsCredentials} ndikudutsa {awsAccessKeyId} / {awsSecretAccessKey} (kudzera {secrets}) kuphatikiza {awsRegion}."
+		},
+		"google": {
+			"title": "Kutanthauzira kwa Mtambo wa Google",
+			"body": "Amagwiritsa ntchito {sdk} (v2). Tsimikizirani ndi kiyi ya API ({googleApiKey}) kapena chizindikiritso cha JSON cha akaunti yautumiki ({googleCredentials}). Perekani ndendende imodzi; {googleProjectId} wosankha umachokera ku chizindikiritso pamene wasiyidwa."
+		},
+		"mapping": {
+			"title": "Mapu ofotokozera cholinga",
+			"body": "Othandizira mwachindunji amapangidwira mapu pomwe zofanana zilipo. Zina zonse zimagwera kumbuyo kwa zolephera zomveka kotero khalidwe limakhala losasinthasintha.",
+			"caption": "Mapu ofotokozera cholinga pa opereka",
+			"columns": {
+				"input": "Kulowetsa",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Kuthandizidwa",
+			"ignored": "Kunyalanyazidwa",
+			"rows": {
+				"textType": {
+					"azure": "textType (wamba / html)",
+					"aws": "Kunyalanyazidwa (palibe toggle)",
+					"google": "Mtundu (malemba / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Thandizo lathunthu",
+					"aws": "Chizindikiro / Chochotsedwa → masking",
+					"google": "Kunyalanyazidwa"
+				},
+				"categoryId": {
+					"azure": "Womasulira Mwambo",
+					"aws": "Kunyalanyazidwa",
+					"google": "Kunyalanyazidwa"
+				},
+				"allowFallback": {
+					"azure": "Kuthandizidwa",
+					"aws": "Kunyalanyazidwa",
+					"google": "Kunyalanyazidwa"
+				}
+			}
+		},
+		"locales": {
+			"title": "Zizindikiro za locale zimasiyana pa wopereka",
+			"body": "Wopereka aliyense amagwiritsa ntchito zizindikiro zake zakomweko (mwachitsanzo Chitchaina Chosavuta ndi {azureCode} pa Azure, {awsCode} pa AWS, ndi {googleCode} pa Google). Zizindikiro zimadutsa monga-ndikuyendetsa mayina otulutsa mafayilo, kotero sankhani makhalidwe {toLocales} omwe omwe mnzanu wosankhidwa amathandizira."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Zofunikira zofunikira",
 			"caption": "Zofunikira zofunikira",
 			"items": {
-				"sourceLocale": "Source locale (mwachitsanzo {en}) yomwe imagwiritsidwa ntchito kupeza mafayilo othandizira monga {sourceGlob}. Komanso kutumizidwa kwa Womasulira monga {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator muzimvetsera kiyi. Pitani kudzera {secrets}.",
-				"endpoint": "Translator endpoint URL, mwachitsanzo {endpointUrl}."
+				"sourceLocale": "Source locale (mwachitsanzo {en}) yomwe imagwiritsidwa ntchito kupeza mafayilo othandizira monga {sourceGlob}. Komanso kutumizidwa kwa wopereka monga {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Kusankhidwa kwa opereka ndi zidziwitso",
+			"caption": "Kusankhidwa kwa opereka ndi zidziwitso za wogulitsa aliyense",
+			"intro": "Sankhani wopereka m'modzi pa kuthamanga ndi {provider}. Perekani zidziwitso zokhazokha za wopereka wosankhidwa - onani chitsogozo cha {providersLink} kuti mukhazikitse zonse.",
+			"items": {
+				"provider": "Wopereka womasulira: {azure} (kusakhulupirika), {aws}, kapena {google}. Wopereka m'modzi yekha ndi amene amagwiritsidwa ntchito pa kuitana kochitapo kanthu.",
+				"subscriptionKey": "Azure AI Translator muzimvetsera kiyi. Zofunikira {azure}. Pitani kudzera {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, mwachitsanzo {endpointUrl}. Zofunikira pa {azure}.",
+				"awsAccessKeyId": "AWS access key id. Optional - omit (ndi {awsSecretAccessKey}) kugwiritsa ntchito AWS kusakhulupirika chizindikiritso unyolo / OIDC. Pitani kudzera {secrets}.",
+				"awsSecretAccessKey": "Chinsinsi chofikira chinsinsi cha AWS. Ayenera kuperekedwa pamodzi ndi {awsAccessKeyId}. Pitani kudzera {secrets}.",
+				"awsSessionToken": "Chizindikiro cha gawo la AWS chosankha cha zidziwitso zosakhalitsa. Pitani kudzera {secrets}.",
+				"awsRegion": "Dera la AWS la ntchito ya Translate (mwachitsanzo {regionExample}). Zofunikira kwa {aws} pokhapokha ngati {awsRegionEnv} yakhazikitsidwa m'chilengedwe.",
+				"googleApiKey": "Chinsinsi cha Google Cloud API. Perekani izi KAPENA {googleCredentials} kwa {google}. Pitani kudzera {secrets}.",
+				"googleCredentials": "Chinsinsi cha akaunti ya Google Cloud ngati chingwe cha JSON. Perekani izi KAPENA {googleApiKey} kwa {google}. Pitani kudzera {secrets}.",
+				"googleProjectId": "Optional Google Cloud project id. Nthawi zambiri amachokera ku chizindikiritso cha akaunti yautumiki."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Womasulira pempho athandizira",
-			"intro": "Izi zimapanga mapu mwachindunji pa magawo a mafunso a Azure AI Translator v3. Aliyense ndi wosankha; ndi Womasulira defaults ntchito pamene unset.",
-			"caption": "Womasulira pempho athandizira",
+			"heading": "Azure Translator request inputs",
+			"intro": "Izi zimapanga mapu mwachindunji pa Azure AI Translator v3 magawo ofunsira ndikugwira ntchito kwa wopereka azure. textType ndi kutukwanaAction zimapangidwanso ku AWS / Google pomwe zofanana zilipo (onani chitsogozo cha opereka); ena onse ndi Azure okha. Aliyense ndi wosankha; ndi Womasulira defaults ntchito pamene unset.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Gulu la Azure {customTranslatorLink} - batani la makampani / gawo / kamvekedwe. Kutumizidwa monga {categoryQuery}.",
 				"textType": "{plain} kapena {html}. Gwiritsani ntchito {html} pokhapokha ngati mtengo wanu wa chuma ndi zidutswa zenizeni za HTML.",

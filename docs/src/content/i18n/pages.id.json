@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Penerjemah Sumber Daya",
-		"description": "Penerjemah Sumber Daya membuka permintaan pull terjemahan mesin untuk file sumber daya Anda dalam repositori apa pun, dalam format apa pun — didukung oleh Azure AI Translator.",
+		"description": "Penerjemah Sumber Daya membuka permintaan pull terjemahan mesin untuk file sumber daya Anda dalam repositori apa pun, dalam format apa pun — didukung oleh Azure AI Translator, AWS Translate, atau Google Cloud Translation.",
 		"socialTitle": "Penerjemah Sumber Daya — menerjemahkan file sumber daya secara otomatis",
-		"badge": "v3.0 — Node 24, konfigurasi repo, glosarium, dry run",
+		"badge": "v3.0 — Penyedia Azure, AWS & Google, Node 24, konfigurasi repositori",
 		"headlinePrefix": "Melokalkan repositori Anda di",
 		"headlineAccent": "setiap komitmen.",
-		"lede": "Penerjemah Sumber Daya membuka permintaan pull terjemahan mesin untuk file sumber daya Anda menggunakan Azure AI Translator melalui SDK resmi — tidak ada layanan tambahan, hanya alur kerja.",
+		"lede": "Penerjemah Sumber Daya membuka permintaan pull terjemahan mesin untuk file sumber daya Anda menggunakan Azure, AWS, atau Google — satu tindakan terpadu, satu penyedia per eksekusi, SDK resmi di bawah tenda.",
 		"primaryCta": "Mulai",
 		"secondaryCta": "Bintang di GitHub",
 		"supports": "Mendukung",
 		"builtForShipping": "Dibuat untuk pengiriman",
 		"workflowTitle": "Terjemahan sebagai alur kerja, bukan tugas.",
-		"workflowBody": "Jatuhkan tindakan ke CI yang ada, arahkan ke Azure AI Translator, dan biarkan repositori Anda berbicara setiap bahasa yang Anda targetkan.",
+		"workflowBody": "Jatuhkan tindakan ke CI yang ada, arahkan ke Azure, AWS, atau Google, dan biarkan repositori Anda berbicara di setiap bahasa yang Anda targetkan.",
 		"stats": {
 			"audit": "Masalah audit 0 npm",
-			"tests": "150 tes",
+			"tests": "240+ tes",
 			"node": "Node 20 / 22 / 24",
-			"sdk": "Azure SDK resmi"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails}, dan {hasNewTranslations} dimasukkan langsung ke create-pull-request."
 			},
 			"sdk": {
-				"title": "Azure SDK resmi",
-				"body": "Dibangun di atas {azureSdk} + {corePipeline} — percobaan ulang otomatis pada {statusCodes}, tidak ada HTTP yang digulung tangan. {esbuild}-bundel, audit bersih."
+				"title": "Azure, AWS & Google",
+				"body": "Pilih satu penyedia per eksekusi. Masing-masing digerakkan oleh SDK resminya ({azureSdk}, {awsSdk}, {googleSdk}) dengan percobaan ulang otomatis pada {statusCodes} — tanpa HTTP yang digulung tangan. {esbuild}-bundel, audit bersih."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Siap untuk melokalkan secara otomatis?",
-			"body": "Satu kunci Azure AI Translator, satu file alur kerja. Penerjemah Sumber Daya menangani sisanya.",
+			"body": "Satu kunci penyedia — Azure, AWS, atau Google — dan satu file alur kerja. Penerjemah Sumber Daya menangani sisanya.",
 			"button": "Mulai"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Langkah berikutnya",
 			"configuration": "Konfigurasikan default tingkat repositori dengan {configPath}.",
 			"recipes": "Lihat resep untuk kategori monorepos, glosarium khusus, dan Penerjemah Kustom."
+		}
+	},
+	"providers": {
+		"title": "Penyedia terjemahan",
+		"eyebrow": "Referensi",
+		"lede": "Pilih satu penyedia terjemahan per eksekusi — Azure AI Translator, AWS Translate, atau Google Cloud Translation — di balik satu permukaan API terpadu. Penerjemah berperilaku identik terlepas dari penyedianya; hanya kredensial yang berbeda.",
+		"backwardCompatible": "Sepenuhnya kompatibel dengan versi sebelumnya: {provider} default ke {azure}, sehingga alur kerja Azure yang ada tetap berfungsi tidak berubah — tidak perlu mengedit.",
+		"selecting": {
+			"title": "Memilih penyedia",
+			"body": "Atur input {provider} ke {azure} (default), {aws}, atau {google}, lalu berikan kredensial penyedia tersebut. Hanya satu penyedia yang digunakan per panggilan tindakan; tindakan secara deterministik mendelegasikan ke SDK yang cocok di belakang pabrik."
+		},
+		"comparison": {
+			"title": "Perbandingan penyedia",
+			"caption": "Perbandingan penyedia terjemahan",
+			"columns": {
+				"provider": "Penyedia",
+				"value": "Nilai Penyedia",
+				"sdk": "SDK",
+				"credentials": "Kredensial"
+			},
+			"azure": {
+				"name": "Penerjemah AI Azure",
+				"value": "Azure (default)",
+				"credentials": "subscriptionKey, titik akhir, wilayah (opsional)"
+			},
+			"aws": {
+				"name": "Terjemahan AWS",
+				"value": "aws",
+				"credentials": "OIDC / rantai default, atau awsAccessKeyId + awsSecretAccessKey; awsWilayah"
+			},
+			"google": {
+				"name": "Terjemahan Google Cloud",
+				"value": "Google",
+				"credentials": "googleApiKey ATAU googleCredentials (JSON akun layanan)"
+			}
+		},
+		"azure": {
+			"title": "Penerjemah AI Azure (default)",
+			"body": "Penyedia default. Menyediakan sumber daya Azure AI Translator dan meneruskan {subscriptionKey}, {endpoint}, dan opsional {region}. Ini adalah konfigurasi yang sama yang sudah digunakan alur kerja yang ada."
+		},
+		"aws": {
+			"title": "Terjemahan AWS",
+			"body": "Menggunakan {sdk}. Lebih suka OIDC melalui {configureAwsCredentials} sehingga tidak ada rahasia berumur panjang yang disimpan — tindakan tersebut membaca rantai kredensial default AWS SDK. Atau, berikan {awsAccessKeyId} dan {awsSecretAccessKey} secara eksplisit. Wilayah selalu diperlukan, melalui {awsRegion} atau variabel lingkungan {awsRegionEnv}.",
+			"oidcTitle": "OIDC (direkomendasikan)",
+			"keysNote": "Untuk menggunakan kunci statis alih-alih OIDC, jatuhkan langkah {configureAwsCredentials} dan lewati {awsAccessKeyId} / {awsSecretAccessKey} (melalui {secrets}) ditambah {awsRegion}."
+		},
+		"google": {
+			"title": "Terjemahan Google Cloud",
+			"body": "Menggunakan {sdk} (v2). Autentikasi dengan kunci API ({googleApiKey}) atau kredensial JSON akun layanan ({googleCredentials}). Pasokan tepat satu; {googleProjectId} opsional disimpulkan dari kredensial saat dihilangkan."
+		},
+		"mapping": {
+			"title": "Pemetaan penentu maksud",
+			"body": "Penentu khusus penyedia dipetakan di mana ada ekor. Segala sesuatu yang lain kembali ke default yang masuk akal sehingga perilaku tetap konsisten.",
+			"caption": "Pemetaan penentu intent di seluruh penyedia",
+			"columns": {
+				"input": "Masukan",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Didukung",
+			"ignored": "Diabaikan",
+			"rows": {
+				"textType": {
+					"azure": "textType (biasa / html)",
+					"aws": "Diabaikan (tidak ada sakelar)",
+					"google": "Format (teks / html)"
+				},
+				"profanityAction": {
+					"azure": "Dukungan penuh",
+					"aws": "Ditandai / Dihapus → masking",
+					"google": "Diabaikan"
+				},
+				"categoryId": {
+					"azure": "Penerjemah Kustom",
+					"aws": "Diabaikan",
+					"google": "Diabaikan"
+				},
+				"allowFallback": {
+					"azure": "Didukung",
+					"aws": "Diabaikan",
+					"google": "Diabaikan"
+				}
+			}
+		},
+		"locales": {
+			"title": "Kode lokal berbeda di setiap penyedia",
+			"body": "Setiap penyedia menggunakan kode lokalnya sendiri (misalnya Mandarin Sederhana {azureCode} di Azure, {awsCode} di AWS, dan {googleCode} di Google). Kode melewati apa adanya dan menggerakkan nama file output, jadi pilih nilai {toLocales} yang didukung oleh penyedia yang Anda pilih."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Masukan yang diperlukan",
 			"caption": "Masukan yang diperlukan",
 			"items": {
-				"sourceLocale": "Lokal sumber (misalnya {en}) yang digunakan untuk menemukan file sumber daya seperti {sourceGlob}. Juga diteruskan ke Penerjemah sebagai {fromLocale}.",
-				"subscriptionKey": "Kunci langganan Azure AI Translator. Lewati melalui {secrets}.",
-				"endpoint": "URL titik akhir penerjemah, misalnya {endpointUrl}."
+				"sourceLocale": "Lokal sumber (misalnya {en}) yang digunakan untuk menemukan file sumber daya seperti {sourceGlob}. Juga diteruskan ke penyedia sebagai {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Pemilihan penyedia & kredensial",
+			"caption": "Pemilihan penyedia dan kredensial per vendor",
+			"intro": "Pilih satu penyedia per eksekusi dengan {provider}. Berikan hanya kredensial penyedia yang dipilih — lihat panduan {providersLink} untuk pengaturan lengkap.",
+			"items": {
+				"provider": "Penyedia terjemahan: {azure} (default), {aws}, atau {google}. Hanya satu penyedia yang digunakan per panggilan tindakan.",
+				"subscriptionKey": "Kunci langganan Azure AI Translator. Diperlukan untuk {azure}. Lulus melalui {secrets}.",
+				"endpoint": "URL titik akhir Azure Translator, misalnya {endpointUrl}. Diperlukan untuk {azure}.",
+				"awsAccessKeyId": "ID kunci akses AWS. Opsional — hilangkan (dengan {awsSecretAccessKey}) untuk menggunakan rantai kredensial default AWS/OIDC. Lulus melalui {secrets}.",
+				"awsSecretAccessKey": "Kunci akses rahasia AWS. Harus dipasok bersama dengan {awsAccessKeyId}. Lulus melalui {secrets}.",
+				"awsSessionToken": "Token sesi AWS opsional untuk kredensial sementara. Lewati melalui {secrets}.",
+				"awsRegion": "AWS untuk layanan Terjemahan (misalnya {regionExample}). Diperlukan untuk {aws} kecuali {awsRegionEnv} diatur di lingkungan.",
+				"googleApiKey": "Kunci API Google Cloud. Berikan {googleCredentials} ATAU ini untuk {google}. Lewati melalui {secrets}.",
+				"googleCredentials": "Kunci akun layanan Google Cloud sebagai string JSON. Berikan {googleApiKey} ATAU ini untuk {google}. Lewati melalui {secrets}.",
+				"googleProjectId": "ID project Google Cloud opsional. Biasanya disimpulkan dari kredensial akun layanan."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Input permintaan penerjemah",
-			"intro": "Ini memetakan langsung ke parameter kueri Azure AI Translator v3. Masing-masing adalah opsional; default Penerjemah berlaku saat tidak disetel.",
-			"caption": "Input permintaan penerjemah",
+			"heading": "Input permintaan Azure Translator",
+			"intro": "Ini dipetakan langsung ke parameter kueri Azure AI Translator v3 dan berlaku untuk penyedia Azure. textType dan profanityAction juga dipetakan ke AWS/Google jika ada yang setara (lihat panduan penyedia); sisanya hanya Azure. Masing-masing adalah opsional; default Penerjemah berlaku saat tidak disetel.",
+			"caption": "Input permintaan Azure Translator",
 			"items": {
 				"categoryId": "Kategori {customTranslatorLink} Azure — kenop industri/domain/nada. Diteruskan sebagai {categoryQuery}.",
 				"textType": "{plain} atau {html}. Gunakan {html} hanya jika nilai resource Anda adalah fragmen HTML nyata.",

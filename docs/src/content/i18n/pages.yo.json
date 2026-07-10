@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Onitumọ Orisun",
-		"description": "Onitumọ orisun ṣii awọn ibeere fifa ti a tumọ ẹrọ fun awọn faili orisun rẹ ni eyikeyi repo, ni eyikeyi ọna kika — agbara nipasẹ Azure AI Translator.",
+		"description": "Onitumọ orisun ṣii awọn ibeere fifa ẹrọ fun awọn faili orisun rẹ ni eyikeyi repo, ni eyikeyi ọna kika — agbara nipasẹ Azure AI Translator, AWS Translate, tabi Google Cloud Translation.",
 		"socialTitle": "Resource Translator — pese awọn faili orisun laifọwọyi",
-		"badge": "v3.0 — Node 24, repo config, glossary, gbẹ ṣiṣe",
+		"badge": "v3.0 — Azure, AWS ati awọn olupese Google, Node 24, repo config",
 		"headlinePrefix": "Localize rẹ repo lori",
 		"headlineAccent": "Gbogbo ifaramọ.",
-		"lede": "Onitumọ orisun ṣii awọn ibeere fifa ẹrọ fun awọn faili orisun rẹ nipa lilo Azure AI Translator nipasẹ SDK osise — ko si awọn iṣẹ afikun, o kan iṣan-an.",
+		"lede": "Onitumọ orisun ṣii awọn ibeere fifa ẹrọ fun awọn faili orisun rẹ nipa lilo Azure, AWS, tabi Google — iṣe iṣọkan kan, olupese kan fun ṣiṣe, awọn SDK osise labẹ ibori.",
 		"primaryCta": "Bẹrẹ",
 		"secondaryCta": "Star lori GitHub",
 		"supports": "Awọn atilẹyin",
 		"builtForShipping": "Ti a ṣe fun gbigbe ọkọ oju omi",
 		"workflowTitle": "Itumọ bi iṣẹ-ṣiṣe, kii ṣe iṣẹ-ṣiṣe.",
-		"workflowBody": "Fi iṣe silẹ sinu CI rẹ ti o wa tẹlẹ, tọka si Azure AI Translator, ki o jẹ ki repo rẹ sọ gbogbo ede ti o fojusi.",
+		"workflowBody": "Fi iṣe naa silẹ sinu CI rẹ ti o wa tẹlẹ, tọka si Azure, AWS, tabi Google, ki o jẹ ki repo rẹ sọ gbogbo ede ti o fojusi.",
 		"stats": {
 			"audit": "0 NPM-Audit oran",
-			"tests": "Awọn idanwo 150",
+			"tests": "Awọn idanwo 240 +",
 			"node": "Ẹ Máa Ṣe Iṣẹ́ Ìsìn Yín , 20 / 8 / 8",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails}, ati {hasNewTranslations} iho taara sinu ṣẹda-fa-ibeere."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Itumọ ti lori {azureSdk} + {corePipeline} — laifọwọyi retries lori {statusCodes}, ko si ọwọ-yiyi HTTP. {esbuild}-bundled, audit-clean."
+				"title": "Azure, AWS ati Google",
+				"body": "Yan olupese kan fun ṣiṣe. Olukuluku ni iwakọ nipasẹ SDK osise rẹ ({azureSdk}, {awsSdk}, {googleSdk}) pẹlu awọn atunyẹwo laifọwọyi lori {statusCodes} — ko si HTTP ti a fi ọwọ ṣe. {esbuild}-bundled, ayewo-mọ."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Ṣetan lati ṣe agbekalẹ lori autopilot?",
-			"body": "Bọtini Onitumọ Azure AI kan, faili iṣan-iṣẹ kan. Onitumọ orisun n ṣakoso awọn iyokù.",
+			"body": "Bọtini olupese kan — Azure, AWS, tabi Google — ati faili iṣan-iṣẹ kan. Onitumọ orisun n ṣakoso awọn iyokù.",
 			"button": "Bẹrẹ"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Awọn igbesẹ ti o tẹle",
 			"configuration": "Ṣe atunto awọn aiṣedeede ipele repo pẹlu {configPath}.",
 			"recipes": "Wo awọn ilana fun awọn monorepos, awọn glossaries aṣa, ati awọn ẹka Onitumọ Aṣa."
+		}
+	},
+	"providers": {
+		"title": "Awọn olupese itumọ",
+		"eyebrow": "Itọkasi",
+		"lede": "Yan olupese itumọ kan fun ṣiṣe — Azure AI Translator, AWS Translate, tabi Google Cloud Translation — lẹhin ẹyọkan, oju API ti o ṣọkan. Onitumọ naa huwa kanna laibikita olupese; Awọn iwe-ẹri nikan yatọ.",
+		"backwardCompatible": "Ibaramu ẹhin ni kikun: {provider} awọn aiyipada si {azure}, nitorinaa awọn iṣan-iṣẹ Azure ti o wa tẹlẹ tẹsiwaju lati ṣiṣẹ laisi iyipada — ko si awọn atunṣe ti o nilo.",
+		"selecting": {
+			"title": "Yiyan olupese kan",
+			"body": "Ñëàâà Áîãó {provider} {azure} (Õîçÿéñòâî), {aws} Õî÷ó ïîìî÷ü, {google}÷òî ó ìåíÿ íåò íèêàêèõ ÷åëîâåê. Olupese kan ṣoṣo ni a lo fun ipe igbese; awọn igbese deterministically delegates si awọn ti o baamu SDK sile a factory."
+		},
+		"comparison": {
+			"title": "Ifiwera olupese",
+			"caption": "Translation olupese lafiwe",
+			"columns": {
+				"provider": "Olupese",
+				"value": "Olupese iye",
+				"sdk": "SDK",
+				"credentials": "Awọn iwe-ẹri"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (aiyipada)",
+				"credentials": "subscriptionKey, endpoint, region (iyan)"
+			},
+			"aws": {
+				"name": "AWS Itumọ",
+				"value": "aws",
+				"credentials": "OIDC / aiyipada pq, tabi awsAccessKeyId + awsSecretAccessKeyKey; awsRegion"
+			},
+			"google": {
+				"name": "Itumọ awọsanma Google",
+				"value": "Google",
+				"credentials": "googleApiKey OR googleCredentials (akọọlẹ iṣẹ JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (aiyipada)",
+			"body": "Olupese ti ko ni idiyele. Pese ohun elo Onitumọ Azure AI ki o kọja {subscriptionKey}, {endpoint}, ati {region} aṣayan. Eyi ni iṣeto kanna ti awọn iṣẹ ṣiṣe ti o wa lọwọlọwọ ti lo tẹlẹ."
+		},
+		"aws": {
+			"title": "AWS Itumọ",
+			"body": "Lo {sdk}. Fẹ OIDC nipasẹ {configureAwsCredentials} nitorinaa ko si awọn aṣiri igba pipẹ ti o wa ni fipamọ — iṣe naa ka pq iwe-ẹri aiyipada AWS SDK. Ni omiiran, kọja {awsAccessKeyId} ati {awsSecretAccessKey} ni kedere. A nilo agbegbe nigbagbogbo, nipasẹ {awsRegion} tabi iyipada ayika {awsRegionEnv}.",
+			"oidcTitle": "OIDC (iṣeduro)",
+			"keysNote": "Lati lo awọn bọtini aimi dipo OIDC, ju igbesẹ {configureAwsCredentials} silẹ ki o kọja {awsAccessKeyId} / {awsSecretAccessKey} (nipasẹ {secrets}) pẹlu {awsRegion}."
+		},
+		"google": {
+			"title": "Itumọ awọsanma Google",
+			"body": "Lo {sdk} (v2). Jẹrisi pẹlu boya bọtini API ({googleApiKey}) tabi iwe-ẹri JSON akọọlẹ iṣẹ ({googleCredentials}). Pese gangan ọkan; Àṣà {googleProjectId} àṣàyàn ni wọ́n máa ń gba láti inú ìwé ìjẹ́ẹ́ nígbà tí wọ́n bá fi sílẹ̀."
+		},
+		"mapping": {
+			"title": "Maapu ti o ni imọran",
+			"body": "A ṣe apejuwe awọn aami aisan ti o wa ni ibi ti o ti wa ni Ohun gbogbo miiran ṣubu pada si awọn aiyipada ti o ni oye nitorinaa ihuwasi duro ni ibamu.",
+			"caption": "Maapu ti o ni imọran kọja awọn olupese",
+			"columns": {
+				"input": "Input",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Atilẹyin",
+			"ignored": "A foju",
+			"rows": {
+				"textType": {
+					"azure": "textType (pẹtẹlẹ / html)",
+					"aws": "Ignored (ko si toggle)",
+					"google": "Ọna kika (ọrọ / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Atilẹyin ni kikun",
+					"aws": "Ti samisi / Paarẹ → masking",
+					"google": "A foju"
+				},
+				"categoryId": {
+					"azure": "Aṣa Onitumọ",
+					"aws": "A foju",
+					"google": "A foju"
+				},
+				"allowFallback": {
+					"azure": "Atilẹyin",
+					"aws": "A foju",
+					"google": "A foju"
+				}
+			}
+		},
+		"locales": {
+			"title": "Awọn koodu agbegbe yatọ si fun olupese",
+			"body": "Olupese kọọkan nlo awọn koodu agbegbe tirẹ (fun apẹẹrẹ Simplified Chinese ti wa ni {azureCode} lori Azure, {awsCode} lori AWS, ati {googleCode} lori Google). Awọn koodu kọja nipasẹ bi o ti jẹ ati wakọ awọn orukọ faili ti o wu, nitorinaa yan awọn iye {toLocales} ti olupese ti o yan ṣe atilẹyin."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Awọn igbewọle ti a beere",
 			"caption": "Awọn igbewọle ti a beere",
 			"items": {
-				"sourceLocale": "Orisun agbegbe (fun apẹẹrẹ {en}) ti a lo lati wa awọn faili orisun bii {sourceGlob}. Pẹlupẹlu, o ti wa ni ti o ti wa ni {fromLocale} ti o ti wa ni",
-				"subscriptionKey": "Bọtini ṣiṣe alabapin Azure AI Translator. Gba nipasẹ {secrets}.",
-				"endpoint": "URL opin onitumọ, fun apẹẹrẹ {endpointUrl}."
+				"sourceLocale": "Orisun agbegbe (fun apẹẹrẹ {en}) ti a lo lati wa awọn faili orisun bii {sourceGlob}. Pẹlupẹlu, o ti firanṣẹ si olupese naa bi {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Aṣayan olupese ati awọn iwe-ẹri",
+			"caption": "Yiyan olupese ati awọn iwe-ẹri fun olutaja",
+			"intro": "Yan olupese kan fun ṣiṣe pẹlu {provider}. Pese awọn iwe-ẹri ti olupese ti a yan nikan — wo itọsọna {providersLink} fun iṣeto ni kikun.",
+			"items": {
+				"provider": "Õî÷ó ïîìî÷ü: {azure} ({aws} ìëí. ðóáëåé, {google}. Olupese kan ṣoṣo ni a lo fun ipe igbese.",
+				"subscriptionKey": "Bọtini ṣiṣe alabapin Azure AI Translator. je l'ai demandé {azure}. Gba nipasẹ {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, fun apẹẹrẹ {endpointUrl}. O nilo fun {azure}.",
+				"awsAccessKeyId": "Bọtini Wiwọle AWS ID Aṣayan — fi silẹ (pẹlu {awsSecretAccessKey}) lati lo pq iwe-ẹri aiyipada AWS / OIDC. Gba nipasẹ {secrets}.",
+				"awsSecretAccessKey": "Bọtini Wiwọle Asiri AWS O yẹ ki o wa ni papọ pẹlu {awsAccessKeyId}. Gba nipasẹ {secrets}.",
+				"awsSessionToken": "Aami akoko AWS fun awọn iwe-ẹri igba diẹ. Gba nipasẹ {secrets}.",
+				"awsRegion": "Agbegbe AWS fun iṣẹ itumọ (fun apẹẹrẹ {regionExample}). A nílò fún {aws} àyàfi tí wọ́n bá ṣètò {awsRegionEnv} ní àyíká.",
+				"googleApiKey": "Bọtini API awọsanma Google. Pèsè èyí OR {googleCredentials} fún {google}. Gba nipasẹ {secrets}.",
+				"googleCredentials": "Bọtini akọọlẹ iṣẹ awọsanma Google bi okun JSON. Pèsè èyí OR {googleApiKey} fún {google}. Gba nipasẹ {secrets}.",
+				"googleProjectId": "Aṣayan Google Cloud ise agbese id. Nigbagbogbo a ṣe afihan lati iwe-ẹri akọọlẹ iṣẹ."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Onitumọ beere awọn igbewọle",
-			"intro": "Awọn maapu wọnyi taara lori Azure AI Translator v3 ibeere sile. Gbogbo wọn jẹ aṣayan; awọn aiṣedeede Onitumọ waye nigbati o ba ko ṣeto.",
-			"caption": "Onitumọ beere awọn igbewọle",
+			"heading": "Azure Translator request inputs",
+			"intro": "Awọn wọnyi ni maapu taara lori Azure AI Translator v3 ibeere sile ati ki o waye si awọn azure olupese. textType ati profanityAction ti wa ni tun mapped to AWS / Google ibi ti ohun deede wa (wo awọn olupese itọsọna); awọn iyokù jẹ azure-nikan. Gbogbo wọn jẹ aṣayan; awọn aiṣedeede Onitumọ waye nigbati o ba ko ṣeto.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Ẹka {customTranslatorLink} Azure — ile-iṣẹ / agbegbe / ohun orin bọtini. Ti o ba ti wa ni ti o ti wa ni ti o ti wa ni {categoryQuery} ti o ti wa ni ti o ti wa ni ti o ti wa ni",
 				"textType": "{plain} tabi {html}. Lo {html} nikan nigbati awọn ohun elo rẹ ba jẹ awọn ajẹkù HTML gidi.",

@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "रिसोर्स भाशांतर करपी",
-		"description": "रिसोर्स ट्रान्सलेटर तुमच्या रिसोर्स फायलींखातीर खंयच्याय रेपोंत, खंयच्याय फॉरमॅटांत — Azure AI ट्रान्सलेटर वरवीं संचालित, मशीन-अणकारीत पुल विनंत्या उगडटा.",
+		"description": "संसाधन अनुवादक तुमच्या संसाधन फायलींखातीर खंयच्याय रेपोंत, खंयच्याय स्वरूपांत — Azure AI Translator, AWS Translate, वा Google Clus Translation वरवीं संचालित.",
 		"socialTitle": "संसाधन अनुवादक — संसाधन फायलींचें स्वयंचलितपणान अणकार करप",
-		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 — Azure, AWS आनी Google providers, Node 24, repo config",
 		"headlinePrefix": "तुमचें रेपोचें स्थानिकीकरण करचें",
 		"headlineAccent": "दरेक कमिट.",
-		"lede": "संसाधन अनुवादक अधिकृत SDK वरवीं Azure AI ट्रान्सलेटर वापरून तुमच्या संसाधन फायलीं खातीर मशीन-अणकारीत पुल विनंत्या उगडटा — अतिरिक्त सेवा ना, फकत एक कार्यप्रवाह.",
+		"lede": "संसाधन अनुवादक Azure, AWS, वा Google वापरून तुमच्या संसाधन फायलीं खातीर मशीन-अणकारीत पुल विनंत्या उगडटा — एक एकवटीत कृती, दर धांव एक पुरवणदार, हुड खाला अधिकृत SDK.",
 		"primaryCta": "सुरवात करात",
 		"secondaryCta": "गिटहबाचेर स्टार",
 		"supports": "आदार दिता",
 		"builtForShipping": "येरादारी खातीर बांदिल्लें",
 		"workflowTitle": "अणकार एक कार्यप्रवाह म्हणून, काम न्हय.",
-		"workflowBody": "तुमच्या सद्याच्या CI कडेन कृती सोडची, Azure AI ट्रान्सलेटराचेर दाखोवची, आनी तुमच्या रेपोक तुमी लक्ष्य केल्ली दरेक भास उलोवपाक दिवची.",
+		"workflowBody": "तुमच्या सद्याच्या CI हातूंत कृती सोडची, Azure, AWS, वा Google हाचेर दाखोवची, आनी तुमच्या रेपोक तुमी लक्ष्य केल्ली दरेक भास उलोवंक दिवची.",
 		"stats": {
 			"audit": "0 एनपीएम-ऑडिट मुद्दे",
-			"tests": "150 चांचण्यो",
+			"tests": "240+ चांचण्यो",
 			"node": "नोड 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · एडब्ल्यूएस · गूगल"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} आनी {hasNewTranslations} स्लॉट थेट क्रिएट-पुल-रिक्वेस्टांत करतात."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "{azureSdk} + {corePipeline} चेर तयार केल्लो — {statusCodes} ऑटोमॅटिक रिट्राय, हातान रोल केल्लो HTTP ना. {esbuild}-बंडल, ऑडिट-क्लीन."
+				"title": "Azure, AWS आनी गुगल",
+				"body": "दर धांवड्याक एक पुरवणदार वेंचून काडात. दरेक ताच्या अधिकृत SDK ({azureSdk}, {awsSdk}, {googleSdk}) वरवीं चलता, जातूंत {statusCodes} ऑटोमॅटिक रिट्राय आसता — हातान रोल केल्लो HTTP ना. {esbuild}-बंडल, ऑडिट-क्लीन."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "ऑटोपायलटाचेर लोकलायझेशन करपाक तयार आसात?",
-			"body": "एक Azure AI Translator की, एक वर्कफ्लो फायल. संसाधन अनुवादक उरिल्लें काम हाताळटा.",
+			"body": "एक पुरवणदार की - Azure, AWS, वा Google - आनी एक वर्कफ्लो फायल. संसाधन अनुवादक उरिल्लें काम हाताळटा.",
 			"button": "सुरवात करात"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "फुडलीं पावलां",
 			"configuration": "रेपो-लेव्हल डिफॉल्ट {configPath} सयत कॉन्फिगर करात.",
 			"recipes": "मोनोरेपो, सानुकूल शब्दावली, आनी सानुकूल अनुवादक वर्गांची पाककृती पळयात."
+		}
+	},
+	"providers": {
+		"title": "भाक्षांतोर पुरवणदार[सुदार]",
+		"eyebrow": "सोंदोर्भ",
+		"lede": "दर धांवेक एक अणकार पुरवणदार निवडात — Azure AI Translator, AWS Translate, वा Google Cloud Translation — एकेच, एकसंध API पृश्ठभागा फाटल्यान. अनुवादक पुरवणदाराची पर्वा करिनासतना सारकेच वागता. फकत प्रमाणपत्रां वेगळीं आसात.",
+		"backwardCompatible": "पुरायपणान बॅकवर्ड सुसंगत: {provider} {azure} डिफॉल्ट करता, देखून अस्तित्वांत आशिल्ले Azure वर्कफ्लो अपरिवर्तित काम करतात — संपादनांची गरज ना.",
+		"selecting": {
+			"title": "पुरवणदार वेंचून काडप",
+			"body": "{provider} इनपुट {azure} (डिफॉल्ट), {aws} वा {google} चेर सेट करात, मागीर त्या पुरवणदाराची क्रेडेन्शियल्स पुरयतले. दर एका ऍक्शन कॉलाक फकत एक पुरवणदार वापरतात. ही कृती एका कारखान्या फाटल्यान जुळपी SDK कडेन निरिक्षण करता."
+		},
+		"comparison": {
+			"title": "पुरवणदाराची तुलना",
+			"caption": "अणकार पुरवणदाराची तुळा",
+			"columns": {
+				"provider": "पुरवणदार",
+				"value": "पुरवणदाराचें मोल",
+				"sdk": "SDK",
+				"credentials": "प्रमाणपत्रां"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "azure (default)",
+				"credentials": "subscriptionKey, endpoint, Region (पर्यायी)"
+			},
+			"aws": {
+				"name": "AWS अणकार",
+				"value": "आवोस",
+				"credentials": "OIDC / डिफॉल्ट चेन, वा awsAccessKeyId + awsSecretAccessKey; awsregion"
+			},
+			"google": {
+				"name": "गूगल क्लाऊड ट्रान्सलेशन[बदल]",
+				"value": "गूगल",
+				"credentials": "googleApiKey वा googleCredentials (सेवा-खातें JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "डिफॉल्ट पुरवणदार. Azure AI ट्रान्सलेटर रिसोर्साची तजवीज करात आनी {subscriptionKey}, {endpoint} आनी पर्यायी {region} पास करात. हें तेच कॉन्फिगरेशन आसा जें अस्तित्वांत आशिल्लें वर्कफ्लो पयलींच वापरतात."
+		},
+		"aws": {
+			"title": "AWS अणकार",
+			"body": "{sdk} वापरता. {configureAwsCredentials} वरवीं OIDC पसंत करात जाका लागून दीर्घकाळ तिगून उरपी गुपीत सांठोवन दवरूंक जायना — ही कृती AWS SDK डिफॉल्ट क्रेडेन्शियल चेन वाचता. पर्यायान, {awsAccessKeyId} पास करात आनी स्पश्टपणान {awsSecretAccessKey} करात. एक प्रदेश सदांच गरजेचो आसता, {awsRegion} वा {awsRegionEnv} पर्यावरण व्हेरिएबल वरवीं आसता.",
+			"oidcTitle": "OIDC (शिफारस केल्ली)",
+			"keysNote": "OIDC बदला स्टॅटिक कीज वापरपाक, {configureAwsCredentials} स्टेप सोडचें आनी {awsAccessKeyId}/{awsSecretAccessKey} ({secrets} वरवीं ) प्लस {awsRegion} पास करात."
+		},
+		"google": {
+			"title": "गूगल क्लाऊड ट्रान्सलेशन[बदल]",
+			"body": "{sdk} (v2) वापरता. API कळ ({googleApiKey}) वा सेवा-खातें JSON क्रेडेन्शियल ({googleCredentials}) वापरून प्रमाणीत करात. पुरवण नेमकी एक; एक पर्यायी {googleProjectId} वगळल्यार क्रेडेन्शियलांतल्यान निश्कर्श काडटा."
+		},
+		"mapping": {
+			"title": "इंटेंट-स्पेसिफायर मॅपिंग",
+			"body": "पुरवणदार-विशिश्ट विशिश्ट स्पेसिफायर मॅप करतात जंय समतुल्य अस्तित्वांत आसा. हेर सगळें समंजस डिफॉल्टाचेर पडटा देखून वागणूक सातत्यान उरता.",
+			"caption": "पुरवणदारां मदीं इंटेंट-स्पेसिफायर मॅपिंग",
+			"columns": {
+				"input": "इनपूट",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "गूगल"
+			},
+			"supported": "तेंको दिल्लो",
+			"ignored": "दुर्लक्ष केलें",
+			"rows": {
+				"textType": {
+					"azure": "टेक्स्टटाइप (सादो / html)",
+					"aws": "दुर्लक्ष केलें (टॉगल ना)",
+					"google": "फॉरमॅट (टेक्स्ट/एचटीएमएल)"
+				},
+				"profanityAction": {
+					"azure": "पुराय तेंको",
+					"aws": "चिन्न केल्लें / काडून उडयल्लें → मास्कींग",
+					"google": "दुर्लक्ष केलें"
+				},
+				"categoryId": {
+					"azure": "सानुकूल भाशांतकार[सुदार]",
+					"aws": "दुर्लक्ष केलें",
+					"google": "दुर्लक्ष केलें"
+				},
+				"allowFallback": {
+					"azure": "तेंको दिल्लो",
+					"aws": "दुर्लक्ष केलें",
+					"google": "दुर्लक्ष केलें"
+				}
+			}
+		},
+		"locales": {
+			"title": "दरेक पुरवणदाराक लोकेल कोड वेगवेगळे आसतात",
+			"body": "दरेक पुरवणदार स्वताचे लोकल कोड वापरता (देखीक Simplified Chinese Azure, {awsCode} AWS चेर आनी {googleCode} गुगलाचेर {azureCode}). कोड आसा तशे वतात आनी आउटपुट फायलीचीं नांवां चलयतात, देखून तुमचो वेंचून काडिल्लो पुरवणदार खंयच्या मूल्यांक तेंको दिता {toLocales} निवडात."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "गरजेच्यो इनपुट्स",
 			"caption": "गरजेच्यो इनपुट्स",
 			"items": {
-				"sourceLocale": "सोर्स लोकेल (देखीक {en}) {sourceGlob} सारक्यो रिसोर्स फायली सोदपाक वापरता. तशेंच {fromLocale} म्हणून अनुवादकाक फॉरवर्ड केला.",
-				"subscriptionKey": "Azure AI Translator subscription key. {secrets} मार्गान वचप.",
-				"endpoint": "अणकार निमाणो बिंदू URL, देखीक {endpointUrl}."
+				"sourceLocale": "सोर्स लोकेल (देखीक {en}) {sourceGlob} सारक्यो रिसोर्स फायली सोदपाक वापरता. तशेंच {fromLocale} म्हणून पुरवणदाराक धाडटा."
+			}
+		},
+		"providerInputs": {
+			"heading": "पुरवणदाराची निवड आनी प्रमाणपत्रां",
+			"caption": "पुरवणदार निवड आनी दर विक्रेता प्रमाणपत्रां",
+			"intro": "दरेक धांवड्याक एक पुरवणदार वेंचून {provider}. फकत वेंचून काडिल्ल्या पुरवणदाराची क्रेडेन्शियल्स पुरवण करात — पुराय सेटअपा खातीर {providersLink} मार्गदर्शक पळयात.",
+			"items": {
+				"provider": "अणकार पुरवणदार: {azure} (डिफॉल्ट), {aws}, वा {google}. दर एका ऍक्शन कॉलाक फकत एक पुरवणदार वापरतात.",
+				"subscriptionKey": "Azure AI Translator subscription key. ते खातीर गरजेची {azure}. {secrets} मार्गान वचप.",
+				"endpoint": "Azure Translator endpoint URL, देखीक {endpointUrl}. ते खातीर गरजेची {azure}.",
+				"awsAccessKeyId": "AWS ऍक्सेस की आयडी. पर्यायी — AWS डिफॉल्ट क्रेडेन्शियल चेन / OIDC वापरपाक वगळात ({awsSecretAccessKey} वांगडा). {secrets} मार्गान वचप.",
+				"awsSecretAccessKey": "AWS सिक्रेट ऍक्सेस की. ते वांगडा पुरवण करूंक {awsAccessKeyId}. {secrets} मार्गान वचप.",
+				"awsSessionToken": "तात्पुरते क्रेडेन्शियल्स खातीर पर्यायी AWS सत्र टोकन. {secrets} मार्गान वचप.",
+				"awsRegion": "अणकार सेवे खातीर AWS क्षेत्र (देखीक {regionExample}). वातावरणांत {aws} {awsRegionEnv} आसले बगर गरजेची.",
+				"googleApiKey": "Google Cloud API की. {google} खातीर हें वा {googleCredentials} दिवचें. {secrets} मार्गान वचप.",
+				"googleCredentials": "JSON स्ट्रिंग म्हणून Google Cloud service-account की. {google} खातीर हें वा {googleApiKey} दिवचें. {secrets} मार्गान वचप.",
+				"googleProjectId": "पर्यायी गूगल क्लाऊड प्रकल्प आयडी. चड करून सेवा-खात्याच्या क्रेडेन्शियलांतल्यान निश्कर्श काडटा."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "अणकारप्यान इनपुट्स मागयली",
-			"intro": "हे मॅप थेट Azure AI Translator v3 क्वेरी पॅरामीटर्साचेर करतात. दरेक एक ऐच्छिक आसा. अनसेट जातकच अनुवादक डिफॉल्ट लागू जाता.",
-			"caption": "अणकारप्यान इनपुट्स मागयली",
+			"heading": "Azure Translator request inputs",
+			"intro": "हे मॅप थेट Azure AI Translator v3 क्वेरी पॅरामीटर्साचेर करतात आनी Azure पुरवणदाराक लागू जातात. textType आनी profanityAction लेगीत AWS/Google कडेन मॅप केल्यात जंय एक समतुल्य अस्तित्वांत आसा (पुरवणदार मार्गदर्शक पळयात); उरिल्ले फकत अझूर आसात. दरेक एक ऐच्छिक आसा. अनसेट जातकच अनुवादक डिफॉल्ट लागू जाता.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} श्रेणी — उद्देग/डोमेन/टोन नॉब. {categoryQuery} म्हणून फॉरवर्ड केला.",
 				"textType": "{plain} वा {html}. जेन्ना तुमचीं संसाधनां {html} खरीं HTML तुकडी आसतात तेन्नाच ताचो वापर करात.",

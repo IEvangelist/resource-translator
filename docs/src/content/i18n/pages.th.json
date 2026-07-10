@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "นักแปลทรัพยากร",
-		"description": "Resource Translator เปิดคําขอดึงข้อมูลที่แปลด้วยเครื่องสําหรับไฟล์ทรัพยากรของคุณในที่เก็บใดๆ ในรูปแบบใดก็ได้ — ขับเคลื่อนโดย Azure AI Translator",
+		"description": "Resource Translator จะเปิดคําขอดึงข้อมูลที่แปลด้วยเครื่องสําหรับไฟล์ทรัพยากรของคุณในที่เก็บใดๆ ในรูปแบบใดก็ได้ ซึ่งขับเคลื่อนโดย Azure AI Translator, AWS Translate หรือ Google Cloud Translation",
 		"socialTitle": "Resource Translator — แปลไฟล์ทรัพยากรโดยอัตโนมัติ",
-		"badge": "v3.0 — โหนด 24, การกําหนดค่า repo, อภิธานศัพท์, การเรียกใช้แบบแห้ง",
+		"badge": "v3.0 — ผู้ให้บริการ Azure, AWS และ Google, โหนด 24, การกําหนดค่าที่เก็บ",
 		"headlinePrefix": "แปลที่เก็บของคุณเป็นภาษาท้องถิ่นบน",
 		"headlineAccent": "ทุกคอมมิต",
-		"lede": "Resource Translator เปิดคําขอดึงข้อมูลที่แปลด้วยเครื่องสําหรับไฟล์ทรัพยากรของคุณโดยใช้ Azure AI Translator ผ่าน SDK อย่างเป็นทางการ — ไม่มีบริการเพิ่มเติม มีเพียงเวิร์กโฟลว์",
+		"lede": "Resource Translator เปิดคําขอดึงข้อมูลที่แปลด้วยเครื่องสําหรับไฟล์ทรัพยากรของคุณโดยใช้ Azure, AWS หรือ Google ซึ่งเป็นการดําเนินการแบบครบวงจรหนึ่งรายการ ผู้ให้บริการหนึ่งรายต่อการเรียกใช้ SDK อย่างเป็นทางการภายใต้ประทุน",
 		"primaryCta": "เริ่มต้นใช้งาน",
 		"secondaryCta": "ดาวบน GitHub",
 		"supports": "สนับสนุน",
 		"builtForShipping": "สร้างขึ้นเพื่อการจัดส่ง",
 		"workflowTitle": "การแปลเป็นเวิร์กโฟลว์ ไม่ใช่งานที่น่าเบื่อ",
-		"workflowBody": "วางการดําเนินการลงใน CI ที่มีอยู่ของคุณ ชี้ไปที่ Azure AI Translator และให้ที่เก็บของคุณพูดทุกภาษาที่คุณกําหนดเป้าหมาย",
+		"workflowBody": "วางการดําเนินการลงใน CI ที่มีอยู่ ชี้ไปที่ Azure, AWS หรือ Google และให้ repo ของคุณพูดทุกภาษาที่คุณกําหนดเป้าหมาย",
 		"stats": {
 			"audit": "0 ปัญหาการตรวจสอบ npm",
-			"tests": "150 การทดสอบ",
+			"tests": "240+ การทดสอบ",
 			"node": "โหนด 20 / 22 / 24",
-			"sdk": "Azure SDK อย่างเป็นทางการ"
+			"sdk": "Azure · $$ เอเอสเอส · กูเกิล"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle} {summaryDetails} และ {hasNewTranslations} สล็อตโดยตรงในคําขอสร้างดึง"
 			},
 			"sdk": {
-				"title": "Azure SDK อย่างเป็นทางการ",
-				"body": "สร้างขึ้นบน {azureSdk} + {corePipeline} — ลองใหม่อัตโนมัติบน {statusCodes} ไม่มี HTTP ที่ม้วนด้วยมือ {esbuild} รวม สะอาดตรวจสอบ"
+				"title": "Azure, AWS และ Google",
+				"body": "เลือกผู้ให้บริการหนึ่งรายต่อการเรียกใช้ แต่ละรายการขับเคลื่อนโดย SDK อย่างเป็นทางการ ({azureSdk}, {awsSdk}, {googleSdk}) พร้อมการลองใหม่อัตโนมัติบน {statusCodes} — ไม่มี HTTP ที่ม้วนด้วยมือ {esbuild} รวม สะอาดตรวจสอบ"
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "พร้อมที่จะแปลเป็นภาษาท้องถิ่นด้วยระบบขับเคลื่อนอัตโนมัติแล้วหรือยัง",
-			"body": "คีย์ Azure AI Translator หนึ่งคีย์ ไฟล์เวิร์กโฟลว์หนึ่งไฟล์ Resource Translator จัดการส่วนที่เหลือ",
+			"body": "คีย์ผู้ให้บริการหนึ่งคีย์ — Azure, AWS หรือ Google — และไฟล์เวิร์กโฟลว์หนึ่งไฟล์ Resource Translator จัดการส่วนที่เหลือ",
 			"button": "เริ่มต้นใช้งาน"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "ขั้นตอนถัดไป",
 			"configuration": "กําหนดค่าเริ่มต้นระดับ repo ด้วย {configPath}",
 			"recipes": "ดูสูตรสําหรับโมโนรีโป อภิธานศัพท์ที่กําหนดเอง และหมวดหมู่นักแปลแบบกําหนดเอง"
+		}
+	},
+	"providers": {
+		"title": "ผู้ให้บริการแปลภาษา",
+		"eyebrow": "อ้างอิง",
+		"lede": "เลือกผู้ให้บริการการแปลหนึ่งรายต่อการเรียกใช้ — Azure AI Translator, AWS Translate หรือ Google Cloud Translation — ที่อยู่เบื้องหลังพื้นผิว API แบบรวมเดียว นักแปลมีพฤติกรรมเหมือนกันโดยไม่คํานึงถึงผู้ให้บริการ มีเพียงข้อมูลประจําตัวเท่านั้นที่ต่างกัน",
+		"backwardCompatible": "เข้ากันได้แบบย้อนหลังอย่างสมบูรณ์: {provider} ค่าเริ่มต้นเป็น {azure} ดังนั้นเวิร์กโฟลว์ Azure ที่มีอยู่จึงยังคงทํางานไม่เปลี่ยนแปลง — ไม่จําเป็นต้องแก้ไข",
+		"selecting": {
+			"title": "การเลือกผู้ให้บริการ",
+			"body": "ตั้งค่าอินพุต {provider} เป็น {azure} (ค่าเริ่มต้น) {aws} หรือ {google} จากนั้นระบุข้อมูลประจําตัวของผู้ให้บริการรายนั้น มีการใช้ผู้ให้บริการเพียงรายเดียวต่อการเรียกใช้การดําเนินการ การดําเนินการจะมอบหมายให้กับ SDK ที่ตรงกันที่อยู่เบื้องหลังโรงงาน"
+		},
+		"comparison": {
+			"title": "การเปรียบเทียบผู้ให้บริการ",
+			"caption": "การเปรียบเทียบผู้ให้บริการแปล",
+			"columns": {
+				"provider": "ผู้ให้บริการ",
+				"value": "มูลค่าของผู้ให้บริการ",
+				"sdk": "เอสดีเค",
+				"credentials": "ข้อมูลประจําตัว"
+			},
+			"azure": {
+				"name": "นักแปล Azure AI",
+				"value": "Azure (ค่าเริ่มต้น)",
+				"credentials": "subscriptionKey, endpoint, region (ไม่บังคับ)"
+			},
+			"aws": {
+				"name": "แปลภาษาของ AWS",
+				"value": "เอเอสเอส",
+				"credentials": "OIDC / เชนเริ่มต้น หรือ awsAccessKeyId + awsSecretAccessKey; aws ภูมิภาค"
+			},
+			"google": {
+				"name": "การแปลของ Google Cloud",
+				"value": "กูเกิล",
+				"credentials": "googleApiKey หรือ googleCredentials (JSON ของบัญชีบริการ)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (ค่าเริ่มต้น)",
+			"body": "ผู้ให้บริการเริ่มต้น เตรียมใช้งานทรัพยากร Azure AI Translator และส่งผ่าน {subscriptionKey}, {endpoint} และ {region} ที่เลือกได้ นี่เป็นการกําหนดค่าเดียวกันกับที่เวิร์กโฟลว์ที่มีอยู่ใช้อยู่แล้ว"
+		},
+		"aws": {
+			"title": "แปลภาษาของ AWS",
+			"body": "ใช้ {sdk} ต้องการ OIDC ผ่าน {configureAwsCredentials} เพื่อไม่ให้มีการจัดเก็บข้อมูลลับที่มีอายุการใช้งานยาวนาน — การดําเนินการจะอ่านห่วงโซ่ข้อมูลประจําตัวเริ่มต้นของ AWS SDK หรือส่ง {awsAccessKeyId} และ {awsSecretAccessKey} อย่างชัดเจน จําเป็นต้องมีภูมิภาคเสมอ ผ่าน {awsRegion} หรือตัวแปรสภาพแวดล้อม {awsRegionEnv}",
+			"oidcTitle": "OIDC (แนะนํา)",
+			"keysNote": "หากต้องการใช้ปุ่มคงที่แทน OIDC ให้วางขั้นตอน {configureAwsCredentials} แล้วส่ง {awsAccessKeyId} / {awsSecretAccessKey} (ผ่าน {secrets}) บวก {awsRegion}"
+		},
+		"google": {
+			"title": "การแปลของ Google Cloud",
+			"body": "ใช้ {sdk} (v2) ตรวจสอบสิทธิ์ด้วยคีย์ API ({googleApiKey}) หรือข้อมูลเข้าสู่ระบบ JSON ของบัญชีบริการ ({googleCredentials}) จัดหาหนึ่งอย่าง {googleProjectId} เสริมจะอนุมานจากข้อมูลประจําตัวเมื่อละเว้น"
+		},
+		"mapping": {
+			"title": "การแม็ปตัวระบุเจตนา",
+			"body": "ตัวระบุเฉพาะผู้ให้บริการจะถูกแมปเมื่อมีรายการที่เทียบเท่าอยู่ ทุกอย่างจะกลับไปเป็นค่าเริ่มต้นที่สมเหตุสมผลเพื่อให้พฤติกรรมยังคงสอดคล้องกัน",
+			"caption": "การแมปตัวระบุเจตนาระหว่างผู้ให้บริการ",
+			"columns": {
+				"input": "อินพุต",
+				"azure": "อาซูร์",
+				"aws": "AWS",
+				"google": "กูเกิล"
+			},
+			"supported": "ได้รับการสนับสนุน",
+			"ignored": "ละเว้น",
+			"rows": {
+				"textType": {
+					"azure": "textType (ธรรมดา / html)",
+					"aws": "ละเว้น (ไม่มีการสลับ)",
+					"google": "รูปแบบ (ข้อความ / HTML)"
+				},
+				"profanityAction": {
+					"azure": "การสนับสนุนอย่างเต็มที่",
+					"aws": "ทําเครื่องหมาย / ลบ→การกําบัง",
+					"google": "ละเว้น"
+				},
+				"categoryId": {
+					"azure": "นักแปลที่กําหนดเอง",
+					"aws": "ละเว้น",
+					"google": "ละเว้น"
+				},
+				"allowFallback": {
+					"azure": "ได้รับการสนับสนุน",
+					"aws": "ละเว้น",
+					"google": "ละเว้น"
+				}
+			}
+		},
+		"locales": {
+			"title": "รหัสตําแหน่งที่ตั้งแตกต่างกันไปในแต่ละผู้ให้บริการ",
+			"body": "ผู้ให้บริการแต่ละรายใช้รหัสภาษาของตนเอง (เช่น ภาษาจีนตัวย่อ {azureCode} ใน Azure, {awsCode} บน AWS และ {googleCode} บน Google) รหัสจะส่งผ่านตามที่เป็นอยู่และขับเคลื่อนชื่อไฟล์เอาต์พุต ดังนั้นให้เลือกค่า {toLocales} ผู้ให้บริการที่คุณเลือกรองรับ"
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "อินพุตที่จําเป็น",
 			"caption": "อินพุตที่จําเป็น",
 			"items": {
-				"sourceLocale": "ตําแหน่งที่ตั้งต้นทาง (เช่น {en}) ที่ใช้เพื่อค้นหาไฟล์ทรัพยากร เช่น {sourceGlob} ส่งต่อไปยังนักแปลเป็น {fromLocale} ด้วย",
-				"subscriptionKey": "คีย์การสมัครใช้งาน Azure AI Translator ผ่าน {secrets}",
-				"endpoint": "URL ปลายทางของนักแปล เช่น {endpointUrl}"
+				"sourceLocale": "ตําแหน่งที่ตั้งต้นทาง (เช่น {en}) ที่ใช้เพื่อค้นหาไฟล์ทรัพยากร เช่น {sourceGlob} ส่งต่อไปยังผู้ให้บริการเป็น {fromLocale} ด้วย"
+			}
+		},
+		"providerInputs": {
+			"heading": "การเลือกผู้ให้บริการและข้อมูลประจําตัว",
+			"caption": "การเลือกผู้ให้บริการและข้อมูลประจําตัวต่อผู้ขาย",
+			"intro": "เลือกผู้ให้บริการหนึ่งรายต่อการเรียกใช้ด้วย {provider} ระบุเฉพาะข้อมูลประจําตัวของผู้ให้บริการที่เลือก — ดูคู่มือ {providersLink} สําหรับการตั้งค่าแบบเต็ม",
+			"items": {
+				"provider": "ผู้ให้บริการแปลภาษา: {azure} (ค่าเริ่มต้น), {aws} หรือ {google} มีการใช้ผู้ให้บริการเพียงรายเดียวต่อการเรียกใช้การดําเนินการ",
+				"subscriptionKey": "คีย์การสมัครใช้งาน Azure AI Translator จําเป็นสําหรับ {azure} ผ่าน {secrets}",
+				"endpoint": "URL ปลายทาง Azure Translator เช่น {endpointUrl} จําเป็นสําหรับ {azure}",
+				"awsAccessKeyId": "รหัสคีย์การเข้าถึงของ AWS ไม่บังคับ — ละเว้น (พร้อม {awsSecretAccessKey}) เพื่อใช้ห่วงโซ่ข้อมูลประจําตัวเริ่มต้นของ AWS / OIDC ผ่าน {secrets}",
+				"awsSecretAccessKey": "คีย์การเข้าถึงลับของ AWS ต้องจัดหาพร้อมกับ {awsAccessKeyId} ผ่าน {secrets}",
+				"awsSessionToken": "โทเค็นเซสชัน AWS เสริมสําหรับข้อมูลประจําตัวชั่วคราว ผ่าน {secrets}",
+				"awsRegion": "ภูมิภาค AWS สําหรับบริการแปลภาษา (เช่น {regionExample}) จําเป็นสําหรับ {aws} เว้นแต่จะมีการตั้งค่า {awsRegionEnv} ในสภาพแวดล้อม",
+				"googleApiKey": "คีย์ Google Cloud API ระบุ OR {googleCredentials} นี้สําหรับ {google} ผ่าน {secrets}",
+				"googleCredentials": "คีย์บัญชีบริการของ Google Cloud เป็นสตริง JSON ระบุ OR {googleApiKey} นี้สําหรับ {google} ผ่าน {secrets}",
+				"googleProjectId": "รหัสโปรเจ็กต์ Google Cloud ที่ไม่บังคับ โดยปกติจะอนุมานจากข้อมูลประจําตัวของบัญชีบริการ"
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "อินพุตคําขอนักแปล",
-			"intro": "สิ่งเหล่านี้แมปโดยตรงกับพารามิเตอร์คิวรี Azure AI Translator v3 ทุกคนเป็นทางเลือก ค่าเริ่มต้นของตัวแปลจะมีผลเมื่อยกเลิกการตั้งค่า",
-			"caption": "อินพุตคําขอนักแปล",
+			"heading": "อินพุตคําขอ Azure Translator",
+			"intro": "สิ่งเหล่านี้แมปโดยตรงกับพารามิเตอร์คิวรี Azure AI Translator v3 และนําไปใช้กับผู้ให้บริการ Azure textType และ profanityAction ยังจับคู่กับ AWS/Google ที่มีรายการที่เทียบเท่าอยู่ (ดูคู่มือผู้ให้บริการ) ส่วนที่เหลือเป็น Azure เท่านั้น ทุกคนเป็นทางเลือก ค่าเริ่มต้นของตัวแปลจะมีผลเมื่อยกเลิกการตั้งค่า",
+			"caption": "อินพุตคําขอ Azure Translator",
 			"items": {
 				"categoryId": "ประเภท Azure {customTranslatorLink} — ปุ่มอุตสาหกรรม/โดเมน/โทน ส่งต่อเป็น {categoryQuery}",
 				"textType": "{plain} หรือ {html} ใช้ {html} เฉพาะเมื่อค่าทรัพยากรของคุณเป็นส่วนย่อย HTML จริง",

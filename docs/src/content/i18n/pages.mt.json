@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Traduttur tar-Riżorsi",
-		"description": "Resource Translator jiftaħ pull requests tradotti bil-magna għall-fajls tar-riżorsi tiegħek f'kull repo, f'kull format — imħaddem minn Azure AI Translator.",
+		"description": "Resource Translator jiftaħ pull requests tradotti bil-magna għall-fajls tar-riżorsi tiegħek f'kull repo, f'kull format — imħaddem minn Azure AI Translator, AWS Translate, jew Google Cloud Translation.",
 		"socialTitle": "Resource Translator — ittraduċi fajls ta' riżorsi awtomatikament",
-		"badge": "v3.0 — Node 24, konfigurazzjoni tar-repo, glossarju, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Lokalizza r-repo tiegħek fuq",
 		"headlineAccent": "kull impenju.",
-		"lede": "Resource Translator jiftaħ pull requests tradotti bil-magna għall-fajls tar-riżorsi tiegħek billi juża Azure AI Translator permezz tal-SDK uffiċjali — l-ebda servizzi żejda, biss fluss tax-xogħol.",
+		"lede": "Resource Translator jiftaħ pull requests tradotti bil-magna għall-fajls tar-riżorsi tiegħek bl-użu ta' Azure, AWS, jew Google — azzjoni waħda unifikata, fornitur wieħed għal kull run, SDKs uffiċjali taħt il-kopertura.",
 		"primaryCta": "Ibda",
 		"secondaryCta": "Star fuq GitHub",
 		"supports": "Appoġġ",
 		"builtForShipping": "Mibnija għall-vapuri",
 		"workflowTitle": "It-traduzzjoni bħala fluss tax-xogħol, mhux xogħol.",
-		"workflowBody": "Daħħal l-azzjoni fil-CI eżistenti tiegħek, ippuntaha lejn Azure AI Translator, u ħalli r-repo tiegħek jitkellem kull lingwa li timmira.",
+		"workflowBody": "Daħħal l-azzjoni fil-CI eżistenti tiegħek, ippuntaha lejn Azure, AWS, jew Google, u ħalli r-repo tiegħek jitkellem kull lingwa li timmira.",
 		"stats": {
 			"audit": "0 problemi ta' awditjar tal-NPM",
-			"tests": "150 test",
+			"tests": "240+ testijiet",
 			"node": "Nodu 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails}, u {hasNewTranslations} jidħlu direttament fil-create-pull-request."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Mibni fuq {azureSdk} + {corePipeline} — jerġgħu jippruvaw awtomatiċi fuq {statusCodes}, l-ebda HTTP imdawwar bl-idejn. {esbuild}-bundles, nadif għall-awditjar."
+				"title": "Azure, AWS u Google",
+				"body": "Agħżel fornitur wieħed għal kull run. Kull wieħed huwa mmexxi mill-SDK uffiċjali tiegħu ({azureSdk}, {awsSdk}, {googleSdk}) b'ripetizzjonijiet awtomatiċi fuq {statusCodes} — l-ebda HTTP imdawwar bl-idejn. {esbuild} magħquda, awditjar-nadif."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Lest biex tilokalizza fuq l-awtopilota?",
-			"body": "Ċavetta waħda ta' Azure AI Translator, fajl wieħed ta' fluss tax-xogħol. Resource Translator jimmaniġġja l-bqija.",
+			"body": "Ċavetta waħda ta' fornitur — Azure, AWS, jew Google — u fajl wieħed ta' workflow. Resource Translator jimmaniġġja l-bqija.",
 			"button": "Ibda"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Il-passi li jmiss",
 			"configuration": "Ikkonfigura d-deċiżi tal-livell ta' repo-level b'{configPath}.",
 			"recipes": "Ara riċetti għal monorepos, glossarji personalizzati, u kategoriji ta' Traduttur Personalizzat."
+		}
+	},
+	"providers": {
+		"title": "Fornituri tat-traduzzjoni",
+		"eyebrow": "Referenza",
+		"lede": "Agħżel fornitur wieħed ta' traduzzjoni għal kull run — Azure AI Translator, AWS Translate, jew Google Cloud Translation — wara wiċċ wieħed u unifikat ta' API. It-traduttur jaġixxi bl-istess mod irrispettivament mill-fornitur; biss il-kredenzjali jvarjaw.",
+		"backwardCompatible": "Kompletament kompatibbli 'l quddiem: {provider} default għal {azure}, għalhekk il-flussi tax-xogħol eżistenti ta' Azure jibqgħu jaħdmu bla bidla — l-ebda modifikazzjonijiet meħtieġa.",
+		"selecting": {
+			"title": "Għażla ta' fornitur",
+			"body": "Issettja l-input {provider} għal {azure} (default), {aws}, jew {google}, imbagħad ipprovdi l-kredenzjali ta' dak il-fornitur. Jintuża biss fornitur wieħed għal kull sejħa ta' azzjoni; l-azzjoni tiddelega b'mod deterministiku lill-SDK li jaqbel wara fabbrika."
+		},
+		"comparison": {
+			"title": "Paragun tal-fornituri",
+			"caption": "Paragun tal-fornituri tat-traduzzjoni",
+			"columns": {
+				"provider": "Fornitur",
+				"value": "Valur tal-fornitur",
+				"sdk": "SDK",
+				"credentials": "Kredenzjali"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (default)",
+				"credentials": "subscriptionKey, endpoint, reġjun (fakultattiv)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "aws",
+				"credentials": "OIDC / chain default, jew awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Traduzzjoni tal-Cloud ta' Google",
+				"value": "Google",
+				"credentials": "googleApiKey JEW googleCredentials (JSON ta' kont tas-servizz)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Il-fornitur default. Ipprovdi riżorsa Azure AI Translator u għaddi {subscriptionKey}, {endpoint}, u fakultattivament {region}. Din hija l-istess konfigurazzjoni li diġà jużaw il-flussi tax-xogħol eżistenti."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Jintużaw {sdk}. Ippreferi OIDC permezz ta' {configureAwsCredentials} sabiex ma jinħażnu l-ebda sigrieti ta' ħajja twila — l-azzjoni taqra l-katina ta' kredenzjali default tal-AWS SDK. Alternattivament, għaddi {awsAccessKeyId} u {awsSecretAccessKey} b'mod esplicitu. Reġjun dejjem huwa meħtieġ, permezz ta' {awsRegion} jew il-varjabbli ta' {awsRegionEnv} ambjent.",
+			"oidcTitle": "OIDC (rakkomandat)",
+			"keysNote": "Biex tuża ċwievet statiku minflok OIDC, neħħi l-{configureAwsCredentials} step u għaddi {awsAccessKeyId} / {awsSecretAccessKey} (permezz ta' {secrets}) flimkien ma' {awsRegion}."
+		},
+		"google": {
+			"title": "Traduzzjoni tal-Cloud ta' Google",
+			"body": "Tuża {sdk} (v2). Awtentika jew b'ċavetta API ({googleApiKey}) jew b'kredenzjali JSON ta' kont ta' servizz ({googleCredentials}). Ipprovdi eżatt wieħed; {googleProjectId} fakultattiv jiġi dedott mill-kredenzjali meta jitħalla barra."
+		},
+		"mapping": {
+			"title": "Mappatura ta' speċifikazzjoni ta' intenzjoni",
+			"body": "Speċifikaturi speċifiċi għall-fornitur jiġu mappjati fejn hemm ekwivalenti. Kollox ieħor jerġa' lura għal defaults sensibbli sabiex l-imġiba tibqa' konsistenti.",
+			"caption": "Mappjar ta' intenzjoni bejn il-fornituri",
+			"columns": {
+				"input": "Input",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Appoġġjat",
+			"ignored": "Injorat",
+			"rows": {
+				"textType": {
+					"azure": "textType (sempliċi / html)",
+					"aws": "Injorata (l-ebda toggle)",
+					"google": "Format (test / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Appoġġ sħiħ",
+					"aws": "Immarkat / Imħassar → masking",
+					"google": "Injorat"
+				},
+				"categoryId": {
+					"azure": "Traduttur Personalizzat",
+					"aws": "Injorat",
+					"google": "Injorat"
+				},
+				"allowFallback": {
+					"azure": "Appoġġjat",
+					"aws": "Injorat",
+					"google": "Injorat"
+				}
+			}
+		},
+		"locales": {
+			"title": "Il-kodiċijiet lokali jvarjaw skont il-fornitur",
+			"body": "Kull fornitur juża l-kodiċijiet lokali tiegħu stess (per eżempju Simplified Chinese is {azureCode} fuq Azure, {awsCode} fuq AWS, u {googleCode} fuq Google). Il-kodiċijiet jgħaddu kif huma u jmexxu l-ismijiet tal-fajls tal-output, għalhekk agħżel {toLocales} valuri li l-fornitur magħżul tiegħek jappoġġja."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Inputs meħtieġa",
 			"caption": "Inputs meħtieġa",
 			"items": {
-				"sourceLocale": "Il-lokalità tas-sors (eż. {en}) użata biex issib fajls ta' riżorsi bħal {sourceGlob}. Intbagħat ukoll lit-Traduttur bħala {fromLocale}.",
-				"subscriptionKey": "Ċavetta ta' abbonament Azure AI Translator. Għaddi minn {secrets}.",
-				"endpoint": "URL tal-endpoint tat-traduttur, eż. {endpointUrl}."
+				"sourceLocale": "Il-lokalità tas-sors (eż. {en}) użata biex issib fajls ta' riżorsi bħal {sourceGlob}. Ukoll mibgħuta lill-fornitur bħala {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Għażla tal-fornitur u kredenzjali",
+			"caption": "Għażla tal-fornitur u kredenzjali għal kull fornitur",
+			"intro": "Agħżel fornitur wieħed għal kull run ma' {provider}. Ipprovdi biss il-kredenzjali tal-fornitur magħżul — ara l-gwida tal-{providersLink} għal setup sħiħ.",
+			"items": {
+				"provider": "Fornitur tat-traduzzjoni: {azure} (default), {aws}, jew {google}. Jintuża biss fornitur wieħed għal kull sejħa ta' azzjoni.",
+				"subscriptionKey": "Ċavetta ta' abbonament Azure AI Translator. Meħtieġa għal {azure}. Għaddi minn {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, eż. {endpointUrl}. Meħtieġa għal {azure}.",
+				"awsAccessKeyId": "ID tal-ċavetta ta' aċċess AWS. Fakultattiv — ħalli barra (b'{awsSecretAccessKey}) li tuża l-katina default tal-kredenzjali AWS / OIDC. Għaddi minn {secrets}.",
+				"awsSecretAccessKey": "Ċavetta ta' aċċess sigriet AWS. Għandu jiġi provdut flimkien ma' {awsAccessKeyId}. Għaddi minn {secrets}.",
+				"awsSessionToken": "Token ta' sessjoni AWS fakultattiv għal kredenzjali temporanji. Għaddi minn {secrets}.",
+				"awsRegion": "Reġjun AWS għas-servizz Translate (eż. {regionExample}). Meħtieġa għal {aws} sakemm {awsRegionEnv} issettjat fl-ambjent.",
+				"googleApiKey": "Ċavetta API ta' Google Cloud. Ipprovdi dan il-{googleCredentials} ta' OR għal {google}. Għaddi minn {secrets}.",
+				"googleCredentials": "Ċavetta ta' kont tas-servizz ta' Google Cloud bħala stringa JSON. Ipprovdi dan il-{googleApiKey} ta' OR għal {google}. Għaddi minn {secrets}.",
+				"googleProjectId": "ID ta' proġett Google Cloud fakultattiv. Normalment jiġi dedott mill-kredenzjali tal-kont tas-servizz."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Inputs tat-talba tat-traduttur",
-			"intro": "Dawn jimparaw direttament mal-parametri ta' mistoqsija ta' Azure AI Translator v3. Kull waħda minnhom hija fakultattiva; it-Traduttur default japplika meta jkun mhux issettjat.",
-			"caption": "Inputs tat-talba tat-traduttur",
+			"heading": "Inputs ta' talba ta' Azure Translator",
+			"intro": "Dawn jiġu mappjati direttament mal-parametri tal-mistoqsija ta' Azure AI Translator v3 u japplikaw għall-fornitur Azure. textType u profanityAction huma wkoll mappjati għal AWS/Google fejn hemm ekwivalenti (ara l-gwida tal-fornituri); il-bqija huma biss Azure. Kull waħda minnhom hija fakultattiva; it-Traduttur default japplika meta jkun mhux issettjat.",
+			"caption": "Inputs ta' talba ta' Azure Translator",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — il-knob industry/domain/ton. Mibgħuta bħala {categoryQuery}.",
 				"textType": "{plain} jew {html}. Uża {html} biss meta l-valuri tar-riżorsi tiegħek ikunu frammenti HTML veri.",

@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Traductor de recursos",
-		"description": "Resource Translator abre pull requests traducidas por máquina para tus archivos de recursos en cualquier repositorio, en cualquier formato — impulsado por Azure AI Translator.",
+		"description": "Resource Translator abre pull requests traducidas por máquina para tus archivos de recursos en cualquier repositorio, en cualquier formato — impulsado por Azure AI Translator, AWS Translate o Google Cloud Translation.",
 		"socialTitle": "Traductor de recursos — traduce archivos de recursos automáticamente",
-		"badge": "v3.0 — Nodo 24, configuración del repositorio, glosario, ensayo",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repositorio config",
 		"headlinePrefix": "Localiza tu repositorio en",
 		"headlineAccent": "Cada compromiso.",
-		"lede": "Resource Translator abre pull requests traducidas por máquina para tus archivos de recursos usando Azure AI Translator a través del SDK oficial — sin servicios adicionales, solo un flujo de trabajo.",
+		"lede": "Resource Translator abre pull requests traducidas por máquina para tus archivos de recursos usando Azure, AWS o Google — una acción unificada, un proveedor por ejecución, SDKs oficiales bajo el capó.",
 		"primaryCta": "Empieza",
 		"secondaryCta": "Estrella en GitHub",
 		"supports": "Apoyos",
 		"builtForShipping": "Construido para transporte marítimo",
 		"workflowTitle": "La traducción es un flujo de trabajo, no una tarea pesada.",
-		"workflowBody": "Introduce la acción en tu CI existente, apúntala a Azure AI Translator y deja que tu repositorio hable todos los idiomas que apuntes.",
+		"workflowBody": "Introduce la acción en tu CI actual, apúntala a Azure, AWS o Google, y deja que tu repositorio hable todos los idiomas que apuntes.",
 		"stats": {
 			"audit": "0 problemas de auditoría npm",
-			"tests": "150 pruebas",
+			"tests": "240+ pruebas",
 			"node": "Nodo 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} y {hasNewTranslations} encajan directamente en crear-pull-request."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Construido sobre {azureSdk} + {corePipeline} — intentos automáticos en {statusCodes}, sin HTTP enrollado a mano. {esbuild} empaquetado, limpio en auditoría."
+				"title": "Azure, AWS y Google",
+				"body": "Elige un proveedor por partida. Cada uno está controlado por su SDK oficial ({azureSdk}, {awsSdk}, {googleSdk}) con intentos automáticos en {statusCodes} — sin HTTP enrollado a mano. {esbuild} empaquetado, limpio como auditoría."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "¿Listo para localizar en piloto automático?",
-			"body": "Una clave de Azure AI Translator, un archivo de flujo de trabajo. El traductor de recursos se encarga del resto.",
+			"body": "Una clave de proveedor — Azure, AWS o Google — y un archivo de flujo de trabajo. El traductor de recursos se encarga del resto.",
 			"button": "Empieza"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Próximos pasos",
 			"configuration": "Configura los valores predeterminados a nivel de repositorio con {configPath}.",
 			"recipes": "Consulta recetas para monorepos, glosarios personalizados y categorías de Traductor Personalizado."
+		}
+	},
+	"providers": {
+		"title": "Proveedores de traducción",
+		"eyebrow": "Referencia",
+		"lede": "Elige un proveedor de traducción por partida — Azure AI Translator, AWS Translate o Google Cloud Translation — detrás de una única superficie de API unificada. El traductor se comporta de forma idéntica independientemente del proveedor; solo difieren las credenciales.",
+		"backwardCompatible": "Totalmente retrocompatible: {provider} por defecto es {azure}, así que los flujos de trabajo existentes de Azure siguen funcionando sin cambios — sin necesidad de editar.",
+		"selecting": {
+			"title": "Selección de un proveedor",
+			"body": "Configura la entrada de {provider} en {azure} (por defecto), {aws} o {google}, y luego proporciona las credenciales de ese proveedor. Solo se utiliza un proveedor por llamada de acción; la acción delega determinísticamente al SDK correspondiente detrás de una fábrica."
+		},
+		"comparison": {
+			"title": "Comparación de proveedores",
+			"caption": "Comparación de proveedores de traducción",
+			"columns": {
+				"provider": "Proveedor",
+				"value": "Valor del proveedor",
+				"sdk": "SDK",
+				"credentials": "Credenciales"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (por defecto)",
+				"credentials": "subscriptionKey, endpoint, región (opcional)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "aws",
+				"credentials": "OIDC / cadena predeterminada, o awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Traducción de Google Cloud",
+				"value": "Google",
+				"credentials": "googleApiKey O googleCredentials (JSON de la cuenta de servicio)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (por defecto)",
+			"body": "El proveedor por defecto. Provisiona un recurso Azure AI Translator y aprueba {subscriptionKey}, {endpoint} y, opcionalmente, {region}. Esta es la misma configuración que ya usan los flujos de trabajo existentes."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Usa {sdk}. Prefiere OIDC mediante {configureAwsCredentials} para que no se almacenen secretos duraderos: la acción lee la cadena de credenciales predeterminada del AWS SDK. Alternativamente, pasa {awsAccessKeyId} y {awsSecretAccessKey} explícitamente. Siempre se requiere una región, mediante {awsRegion} o la variable de entorno {awsRegionEnv}.",
+			"oidcTitle": "OIDC (recomendado)",
+			"keysNote": "Para usar teclas estáticas en lugar de OIDC, elimina el paso {configureAwsCredentials} y pasa {awsAccessKeyId} / {awsSecretAccessKey} (vía {secrets}) más {awsRegion}."
+		},
+		"google": {
+			"title": "Traducción de Google Cloud",
+			"body": "Utiliza {sdk} (v2). Autentica con una clave API ({googleApiKey}) o con una credencial JSON ({googleCredentials}) de la cuenta de servicio. Suministra exactamente una; se infiere un {googleProjectId} opcional de la credencial cuando se omite."
+		},
+		"mapping": {
+			"title": "Mapeo de especificador de intención",
+			"body": "Los especificadores específicos de cada proveedor se mapean donde existe un equivalente. Todo lo demás vuelve a los valores predeterminados sensatos para que el comportamiento se mantenga consistente.",
+			"caption": "Mapeo de especificadores de intención entre proveedores",
+			"columns": {
+				"input": "Entrada",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Apoyado",
+			"ignored": "Ignorado",
+			"rows": {
+				"textType": {
+					"azure": "textType (plano / html)",
+					"aws": "Ignorado (sin interruptor)",
+					"google": "Formato (texto / html)"
+				},
+				"profanityAction": {
+					"azure": "Apoyo total",
+					"aws": "Marcados / Eliminados → enmascaramiento",
+					"google": "Ignorado"
+				},
+				"categoryId": {
+					"azure": "Traductor personalizado",
+					"aws": "Ignorado",
+					"google": "Ignorado"
+				},
+				"allowFallback": {
+					"azure": "Apoyado",
+					"aws": "Ignorado",
+					"google": "Ignorado"
+				}
+			}
+		},
+		"locales": {
+			"title": "Los códigos locales varían según el proveedor",
+			"body": "Cada proveedor utiliza sus propios códigos locales (por ejemplo, Simplified Chinese se {azureCode} en Azure, {awsCode} en AWS y {googleCode} en Google). Los códigos pasan tal cual y controlan los nombres de los archivos de salida, así que elige {toLocales} valores que soporte tu proveedor seleccionado."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Entradas requeridas",
 			"caption": "Entradas requeridas",
 			"items": {
-				"sourceLocale": "Localidad de origen (por ejemplo, {en}) utilizada para encontrar archivos de recursos como {sourceGlob}. También reenviado a Traductor como {fromLocale}.",
-				"subscriptionKey": "Clave de suscripción Azure AI Translator. Pasa por {secrets}.",
-				"endpoint": "URL del traductor, por ejemplo, {endpointUrl}."
+				"sourceLocale": "Localidad de origen (por ejemplo, {en}) utilizada para encontrar archivos de recursos como {sourceGlob}. También se remitió al proveedor como {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Selección de proveedores y credenciales",
+			"caption": "Selección de proveedores y credenciales por proveedor",
+			"intro": "Elige un proveedor por cada partida con {provider}. Proporciona solo las credenciales del proveedor seleccionado — consulta la guía {providersLink} para la configuración completa.",
+			"items": {
+				"provider": "Proveedor de traducción: {azure} (por defecto), {aws} o {google}. Solo se utiliza un proveedor por llamada de acción.",
+				"subscriptionKey": "Clave de suscripción Azure AI Translator. Obligatorio para {azure}. Pasa por {secrets}.",
+				"endpoint": "URL de endpoint de Azure Translator, por ejemplo, {endpointUrl}. Obligatorio para {azure}.",
+				"awsAccessKeyId": "ID de clave de acceso AWS. Opcional — omitir (con {awsSecretAccessKey}) usar la cadena de credenciales predeterminada de AWS / OIDC. Pasa por {secrets}.",
+				"awsSecretAccessKey": "Clave de acceso secreto de AWS. Debe ser suministrado junto con {awsAccessKeyId}. Pasa por {secrets}.",
+				"awsSessionToken": "Token de sesión AWS opcional para credenciales temporales. Pasa por {secrets}.",
+				"awsRegion": "Región AWS para el servicio Translate (por ejemplo, {regionExample}). Obligatorio para {aws} a menos que {awsRegionEnv} esté ambientado en el entorno.",
+				"googleApiKey": "Clave API de Google Cloud. Proporciona este {googleCredentials} de quirófano para {google}. Pasa por {secrets}.",
+				"googleCredentials": "Clave de cuenta de servicio en Google Cloud como cadena JSON. Proporciona este {googleApiKey} de quirófano para {google}. Pasa por {secrets}.",
+				"googleProjectId": "ID de proyecto opcional en Google Cloud. Normalmente se infiere a partir de la credencial de la cuenta de servicio."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Entradas de solicitud del traductor",
-			"intro": "Estos se asignan directamente a los parámetros de consulta de Azure AI Translator v3. Cada uno es opcional; los valores predeterminados del traductor se aplican cuando no se activan.",
-			"caption": "Entradas de solicitud del traductor",
+			"heading": "Entradas de solicitud de Azure Translator",
+			"intro": "Estos se asignan directamente a los parámetros de consulta de Azure AI Translator v3 y se aplican al proveedor de Azure. textType y profanityAction también se asignan a AWS/Google donde existe un equivalente (véase la guía de proveedores); el resto son solo Azure. Cada uno es opcional; los valores predeterminados del traductor se aplican cuando no se activan.",
+			"caption": "Entradas de solicitud de Azure Translator",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — el perillón industry/domain/tone. Reenviado como {categoryQuery}.",
 				"textType": "{plain} o {html}. Usa {html} solo cuando los valores de tus recursos sean fragmentos HTML reales.",

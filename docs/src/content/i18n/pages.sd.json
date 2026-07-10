@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "وسيلا مترجم",
-		"description": "ريسورس مترجم ڪنهن به ريپو ۾ ، ڪنهن به شڪل ۾ توهان جي وسيلن جي فائلن لاءِ مشين سان ترجمو ٿيل ڇڪڻ جون درخواستون کوليندو آهي - Azure AI Translator پاران هلندڙ آهي.",
+		"description": "ريسورس مترجم ڪنهن به ريپو ۾ ، ڪنهن به شڪل ۾ توهان جي وسيلن جي فائلن لاءِ مشين سان ترجمو ٿيل پل درخواستون کوليندو آهي — Azure AI Translator ، AWS Translate ، يا Google Cloud Translation پاران هلندڙ آهي.",
 		"socialTitle": "ريسورس مترجم — ريسورس فائلن کي خودڪار طريقي سان ترجمو ڪريو",
-		"badge": "v3.0 — نوڊ 24 ، ريپو config ، لغت ، خشڪ ڊوڙ",
+		"badge": "v3.0 - Azure ، AWS & گوگل فراهم ڪندڙ ، نوڊ 24 ، ريپو config",
 		"headlinePrefix": "پنهنجي ريپو کي مقامي بڻايو",
 		"headlineAccent": "هر ڪمٽ.",
-		"lede": "ريسورس مترجم سرڪاري SDK ذريعي Azure AI Translator استعمال ڪندي توهان جي وسيلن جي فائلن لاءِ مشين سان ترجمو ٿيل ڇڪڻ جون درخواستون کوليندو آهي — اضافي خدمتون نه ، صرف هڪ ڪم فلو.",
+		"lede": "ريسورس مترجم Azure ، AWS ، يا گوگل استعمال ڪندي توهان جي وسيلن جي فائلن لاءِ مشين سان ترجمو ٿيل پل درخواستون کوليندو آهي — هڪ متحد عمل ، هڪ فراهم ڪندڙ في رن ، سرڪاري SDKs هود هيٺ.",
 		"primaryCta": "شروع ڪريو",
 		"secondaryCta": "GitHub تي اسٽار",
 		"supports": "سهڪار",
 		"builtForShipping": "شپنگ لاءِ ٺهيل",
 		"workflowTitle": "ترجمو ڪم جي فلو جي طور تي ، ڪم ڪار نه آهي.",
-		"workflowBody": "عمل کي پنهنجي موجوده سي آءِ ۾ ڇڏي ڏيو ، ان کي Azure AI مترجم ڏانهن اشارو ڪريو ، ۽ توهان جي ريپو کي هر ٻولي ڳالهائڻ ڏيو جنهن کي توهان نشانو بڻايو ٿا.",
+		"workflowBody": "عمل کي پنهنجي موجوده سي آءِ ۾ ڇڏي ڏيو ، ان کي Azure ، AWS يا گوگل ڏانهن اشارو ڪريو ، ۽ توهان جي ريپو کي هر ٻولي ڳالهائڻ ڏيو جنهن کي توهان نشانو بڻايو ٿا.",
 		"stats": {
 			"audit": "0 اين پي ايم-آڊٽ جا مسئلا",
-			"tests": "150 ٽيسٽ",
+			"tests": "240+ ٽيسٽ",
 			"node": "نوڊ 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · گوگل"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} ايم ايل",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle} ، {summaryDetails} ۽ {hasNewTranslations} سلاٽ سڌو سنئون تخليق-ڇڪڻ-درخواست ۾."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "{azureSdk} + {corePipeline} تي ٺهيل — {statusCodes} تي پاڻمرادو ٻيهر ڪوشش ، هٿ سان رولڊ ٿيل HTTP ناهي. {esbuild} بنڈل ، آڊٽ صاف."
+				"title": "Azure, AWS & گوگل",
+				"body": "هر رن ۾ هڪ فراهم ڪندڙ چونڊيو. هر هڪ پنهنجي سرڪاري SDK ({azureSdk} ، {awsSdk} ، {googleSdk}) تي پاڻمرادو ٻيهر ڪوشش سان هلائي رهيو آهي {statusCodes} - ڪو به هٿ سان رول ٿيل HTTP. {esbuild} بنڈل ، آڊٽ صاف."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "آٽو پائلٽ تي لوڪلائيز ڪرڻ لاءِ تيار؟",
-			"body": "One Azure AI Translator key, one workflow file. ريسورس مترجم باقي کي سنڀاليندو آهي.",
+			"body": "هڪ فراهم ڪندڙ چاٻي — Azure ، AWS ، يا گوگل - ۽ هڪ ڪم فلو فائل. ريسورس مترجم باقي کي سنڀاليندو آهي.",
 			"button": "شروع ڪريو"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "اڳيون قدم",
 			"configuration": "ريپو ليول ڊفالٽ کي {configPath} سان ترتيب ڏيو",
 			"recipes": "مونوريپوس ، ڪسٽم لغت ۽ ڪسٽم مترجم ڪيٽيگريز لاءِ ترڪيبون ڏسو."
+		}
+	},
+	"providers": {
+		"title": "ترجمو فراهم ڪندڙ",
+		"eyebrow": "حوالو",
+		"lede": "هر رن ۾ هڪ ترجمو فراهم ڪندڙ چونڊيو — Azure AI ترجمو ، AWS ترجمو ، يا گوگل ڪلائوڊ ترجمو - هڪ واحد ، متحد API سطح جي پويان. مترجم فراهم ڪندڙ جي پرواه ڪرڻ کان سواءِ هڪجهڙائي سان برتاءُ ڪري ٿو؛ صرف سندون مختلف آهن.",
+		"backwardCompatible": "مڪمل طور تي پٺتي پيل مطابقت: {provider} {azure} تي ڊفالٽ آهن ، تنهن ڪري موجوده Azure ورڪ فلوز بغير ڪنهن تبديلي جي ڪم ڪندا رهندا آهن — ڪابه ترميم جي ضرورت ناهي.",
+		"selecting": {
+			"title": "فراهم ڪندڙ چونڊڻ",
+			"body": "{provider} ان پٽ کي {azure} (ڊفالٽ) ، {aws} يا {google} تي سيٽ ڪريو ، پوءِ انهي فراهم ڪندڙ جي سند فراهم ڪريو. صرف هڪ فراهم ڪندڙ في ايڪشن ڪال استعمال ڪيو ويندو آهي ؛ عمل هڪ ڪارخاني جي پويان ملندڙ SDK کي determinstically نمائندو ڪري ٿو."
+		},
+		"comparison": {
+			"title": "فراهم ڪندڙ جي مقابلي ۾",
+			"caption": "ترجمو فراهم ڪندڙ جو مقابلو",
+			"columns": {
+				"provider": "فراهم ڪندڙ",
+				"value": "فراهم ڪندڙ جي قيمت",
+				"sdk": "ايس ڊي ڪي",
+				"credentials": "سندون"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (default)",
+				"credentials": "سبسڪرپشن ڪيچ ، آخري پوائنٽ ، علائقو (اختياري)"
+			},
+			"aws": {
+				"name": "AWS ترجمو",
+				"value": "AWS",
+				"credentials": "OIDC / ڊفالٽ زنجير ، يا awsAccessKeyId + awsSecretAccessKey ؛ awsRegion"
+			},
+			"google": {
+				"name": "گوگل ڪلائوڊ ترجمو",
+				"value": "گوگل",
+				"credentials": "googleApiKey يا googleCredentials (سروس-اڪائونٽ JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "ڊفالٽ فراهم ڪندڙ. Azure AI مترجم وسيلن جي فراهمي ڪريو ۽ {subscriptionKey} ، {endpoint} ۽ اختياري طور تي {region} پاس ڪريو. اها ساڳي ترتيب آهي جيڪا موجوده ڪم جي فلو اڳ ۾ ئي استعمال ڪري ٿي."
+		},
+		"aws": {
+			"title": "AWS ترجمو",
+			"body": "استعمال {sdk}. {configureAwsCredentials} ذريعي OIDC کي ترجيح ڏيو ته جيئن ڪو به ڊگهو راز محفوظ نه ڪيو وڃي — عمل پڙهي ٿو AWS SDK ڊفالٽ سند زنجير. متبادل طور تي، {awsAccessKeyId} پاس ڪريو ۽ واضح طور تي {awsSecretAccessKey} ڪريو. هڪ علائقو هميشه گهربل هوندو آهي ، {awsRegion} يا {awsRegionEnv} ماحول متغير ذريعي.",
+			"oidcTitle": "او آءِ ڊي سي (تجويز ڪيل)",
+			"keysNote": "OIDC جي بدران جامد چابيون استعمال ڪرڻ لاءِ ، {configureAwsCredentials} قدم کي ڇڏي ڏيو ۽ {awsAccessKeyId} / {awsSecretAccessKey} ({secrets} ذريعي) پلس {awsRegion} پاس ڪريو."
+		},
+		"google": {
+			"title": "گوگل ڪلائوڊ ترجمو",
+			"body": "استعمال ڪري ٿو {sdk} (v2) يا ته API ڪيچ ({googleApiKey}) يا سروس-اڪائونٽ JSON سند ({googleCredentials}) سان تصديق ڪريو. بلڪل هڪ سپلائي ؛ هڪ اختياري {googleProjectId} سند مان اندازو لڳايو ويندو آهي جڏهن خارج ڪيو ويندو آهي."
+		},
+		"mapping": {
+			"title": "ارادي جي وضاحت ڪندڙ نقشه سازي",
+			"body": "فراهم ڪندڙ مخصوص وضاحتن جو نقشو ٺاهيو ويو آهي جتي هڪ برابر موجود آهي. ٻيو سڀ ڪجهه سمجھدار ڊفالٽ ڏانهن واپس اچي ٿو تنهن ڪري رويو مستقل رهي ٿو.",
+			"caption": "فراهم ڪندڙن جي وچ ۾ ارادي جي وضاحت ڪندڙ نقشه سازي",
+			"columns": {
+				"input": "ان پٽ",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "گوگل"
+			},
+			"supported": "سپورٽ ٿيل",
+			"ignored": "نظرانداز ڪيو ويو",
+			"rows": {
+				"textType": {
+					"azure": "textType (سادي / html)",
+					"aws": "نظرانداز ڪيو ويو (ڪوبه ٽوگل نه)",
+					"google": "فارميٽ (متن / HTML)"
+				},
+				"profanityAction": {
+					"azure": "مڪمل حمايت",
+					"aws": "نشان لڳل / حذف ٿيل → نقاب پوش",
+					"google": "نظرانداز ڪيو ويو"
+				},
+				"categoryId": {
+					"azure": "حسب ضرورت مترجم",
+					"aws": "نظرانداز ڪيو ويو",
+					"google": "نظرانداز ڪيو ويو"
+				},
+				"allowFallback": {
+					"azure": "سپورٽ ٿيل",
+					"aws": "نظرانداز ڪيو ويو",
+					"google": "نظرانداز ڪيو ويو"
+				}
+			}
+		},
+		"locales": {
+			"title": "لوڪل ڪوڊ في فراهم ڪندڙ مختلف آهن",
+			"body": "هر فراهم ڪندڙ پنهنجو لوڪل ڪوڊ استعمال ڪندو آهي (مثال طور آسان چيني Azure تي {azureCode} آهي ، {awsCode} AWS تي ، ۽ گوگل تي {googleCode} آهي). ڪوڊ جيئن آهي ذريعي گذري ٿو ۽ آئوٽ فائل جا نالا ڊرائيو ڪن ٿا ، تنهن ڪري چونڊيو {toLocales} قدر توهان جي چونڊيل فراهم ڪندڙ جي حمايت ڪن ٿا."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "گهربل ان پٽ",
 			"caption": "گهربل ان پٽ",
 			"items": {
-				"sourceLocale": "ماخذ لوڪل (مثال طور {en}) وسيلن جي فائلن کي ڳولڻ لاءِ استعمال ڪيو ويندو آهي جهڙوڪ {sourceGlob}. مترجم کي پڻ {fromLocale} طور تي موڪليو ويو آهي.",
-				"subscriptionKey": "Azure AI Translator subscription key. {secrets} ذريعي پاس ڪريو",
-				"endpoint": "مترجم آخري پوائنٽ يو آر ايل ، مثال طور {endpointUrl}."
+				"sourceLocale": "ماخذ لوڪل (مثال طور {en}) وسيلن جي فائلن کي ڳولڻ لاءِ استعمال ڪيو ويندو آهي جهڙوڪ {sourceGlob}. پڻ فراهم ڪندڙ کي {fromLocale} طور تي موڪليو ويو آهي."
+			}
+		},
+		"providerInputs": {
+			"heading": "فراهم ڪندڙ جي چونڊ ۽ سندون",
+			"caption": "فراهم ڪندڙ جي چونڊ ۽ في وينڊر سندون",
+			"intro": "هر رن سان گڏ هڪ فراهم ڪندڙ چونڊيو {provider} صرف چونڊيل فراهم ڪندڙ جي سند فراهم ڪريو — مڪمل ترتيب لاءِ {providersLink} گائيڊ ڏسو.",
+			"items": {
+				"provider": "ترجمو فراهم ڪندڙ: {azure} (ڊفالٽ), {aws} يا {google}. صرف هڪ فراهم ڪندڙ في ايڪشن ڪال استعمال ڪيو ويندو آهي.",
+				"subscriptionKey": "Azure AI Translator subscription key. {azure} لاءِ گهربل آهي. {secrets} ذريعي پاس ڪريو",
+				"endpoint": "Azure Translator endpoint URL, مثال طور {endpointUrl}. {azure} لاءِ گهربل آهي.",
+				"awsAccessKeyId": "AWS رسائي جي چاٻي آئي ڊي اختياري — ڇڏي ڏيو ({awsSecretAccessKey} سان) AWS ڊفالٽ سند زنجير / OIDC استعمال ڪرڻ لاءِ. {secrets} ذريعي پاس ڪريو",
+				"awsSecretAccessKey": "AWS ڳجهي رسائي چاٻي لازمي طور تي {awsAccessKeyId} سان گڏ فراهم ڪيو وڃي. {secrets} ذريعي پاس ڪريو",
+				"awsSessionToken": "عارضي اسناد لاءِ اختياري AWS سيشن ٽوڪن {secrets} ذريعي پاس ڪريو",
+				"awsRegion": "ترجمو سروس لاءِ AWS علائقو (مثال طور {regionExample}) {aws} لاءِ گهربل جيستائين ماحول ۾ {awsRegionEnv} مقرر نه ڪيو وڃي.",
+				"googleApiKey": "گوگل ڪلائوڊ API ڪيچ {google} لاءِ هي يا {googleCredentials} فراهم ڪريو. {secrets} ذريعي پاس ڪريو.",
+				"googleCredentials": "گوگل ڪلائوڊ سروس-اڪائونٽ ڪيچ JSON اسٽرنگ جي طور تي. {google} لاءِ هي يا {googleApiKey} فراهم ڪريو. {secrets} ذريعي پاس ڪريو.",
+				"googleProjectId": "اختياري گوگل ڪلائوڊ پروجيڪٽ آئي ڊي. عام طور تي سروس-اڪائونٽ جي سند مان اندازو لڳايو ويو آهي."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "مترجم جي درخواست ان پٽ",
-			"intro": "اهي سڌو سنئون Azure AI Translator v3 سوال جي پيرا ميٽرز تي نقشو ٺاهيندا آهن. هر هڪ اختياري آهي ؛ مترجم ڊفالٽ لاڳو ٿئي ٿو جڏهن اڻ سيٽ ڪيو ويو آهي.",
-			"caption": "مترجم جي درخواست ان پٽ",
+			"heading": "Azure Translator request inputs",
+			"intro": "اهي سڌو سنئون Azure AI Translator v3 سوال جي پيرا ميٽرز تي نقشو ٺاهيندا آهن ۽ Azure فراهم ڪندڙ تي لاڳو ٿيندا آهن. textType ۽ profanityAction پڻ AWS / گوگل ڏانهن نقشو ٺاهيا ويا آهن جتي هڪ برابر موجود آهي (ڏسو فراهم ڪندڙ گائيڊ)؛ باقي صرف Azure آهن. هر هڪ اختياري آهي ؛ مترجم ڊفالٽ لاڳو ٿئي ٿو جڏهن اڻ سيٽ ڪيو ويو آهي.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} ڪيٽيگري — انڊسٽري / ڊومين / ٽون نوب. {categoryQuery} طور تي اڳتي وڌايو ويو.",
 				"textType": "{plain} يا {html}. صرف {html} استعمال ڪريو جڏهن توهان جا وسيلا قدر حقيقي HTML ٽڪرا آهن.",

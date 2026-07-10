@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Mtafsiri wa Rasilimali",
-		"description": "Mtafsiri wa Rasilimali hufungua maombi ya kuvuta yaliyotafsiriwa kwa mashine kwa faili zako za rasilimali katika repo yoyote, katika umbizo lolote - inayoendeshwa na Azure AI Translator.",
+		"description": "Mtafsiri wa Rasilimali hufungua maombi ya kuvuta yaliyotafsiriwa kwa mashine kwa faili zako za rasilimali katika repo yoyote, katika umbizo lolote - inayoendeshwa na Azure AI Translator, AWS Tafsiri au Tafsiri ya Wingu la Google.",
 		"socialTitle": "Mtafsiri wa Rasilimali - tafsiri faili za rasilimali kiotomatiki",
-		"badge": "v3.0 - Nodi 24, usanidi wa repo, faharasa, kukimbia kavu",
+		"badge": "v3.0 - Watoa huduma wa Azure, AWS na Google, Node 24, usanidi wa repo",
 		"headlinePrefix": "Weka repo yako kwenye",
 		"headlineAccent": "kila kujitolea.",
-		"lede": "Mtafsiri wa Rasilimali hufungua maombi ya kuvuta yaliyotafsiriwa kwa mashine kwa faili zako za rasilimali kwa kutumia Azure AI Translator kupitia SDK rasmi - hakuna huduma za ziada, mtiririko wa kazi tu.",
+		"lede": "Mtafsiri wa Rasilimali hufungua maombi ya kuvuta yaliyotafsiriwa kwa mashine kwa faili zako za rasilimali kwa kutumia Azure, AWS, au Google - kitendo kimoja kilichounganishwa, mtoa huduma mmoja kwa kila kukimbia, SDK rasmi chini ya kofia.",
 		"primaryCta": "Anza",
 		"secondaryCta": "Nyota kwenye GitHub",
 		"supports": "Inasaidia",
 		"builtForShipping": "Imejengwa kwa usafirishaji",
 		"workflowTitle": "Tafsiri kama mtiririko wa kazi, sio kazi.",
-		"workflowBody": "Dondosha kitendo kwenye CI yako iliyopo, ielekeze kwa Mtafsiri wa Azure AI, na uruhusu repo yako izungumze kila lugha unayolenga.",
+		"workflowBody": "Dondosha kitendo kwenye CI yako iliyopo, ielekeze kwenye Azure, AWS, au Google, na uruhusu repo yako izungumze kila lugha unayolenga.",
 		"stats": {
 			"audit": "Masuala 0 ya ukaguzi wa npm",
-			"tests": "Vipimo 150",
+			"tests": "Vipimo 240+",
 			"node": "Nodi 20 / 22 / 24",
-			"sdk": "SDK rasmi ya Azure"
+			"sdk": "Azure · AWS · Mtandao"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails}, na {hasNewTranslations} yanayopangwa moja kwa moja kwenye ombi la kuunda-kuvuta-kuunda."
 			},
 			"sdk": {
-				"title": "SDK rasmi ya Azure",
-				"body": "Imejengwa kwa {azureSdk} + {corePipeline} - majaribio ya kiotomatiki kwenye {statusCodes}, hakuna HTTP iliyovingirishwa kwa mkono. {esbuild}-bundled, ukaguzi-safi."
+				"title": "Azure, AWS na Google",
+				"body": "Chagua mtoa huduma mmoja kwa kila kukimbia. Kila moja inaendeshwa na SDK yake rasmi ({azureSdk}, {awsSdk}, {googleSdk}) na majaribio ya kiotomatiki kwenye {statusCodes} - hakuna HTTP iliyovingirishwa kwa mkono. {esbuild}-bundled, ukaguzi-safi."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Je, uko tayari kubinafsisha kwenye majaribio ya kiotomatiki?",
-			"body": "Ufunguo mmoja wa Mtafsiri wa Azure AI, faili moja ya mtiririko wa kazi. Mtafsiri wa Rasilimali hushughulikia mengine.",
+			"body": "Ufunguo mmoja wa mtoa huduma - Azure, AWS, au Google - na faili moja ya mtiririko wa kazi. Mtafsiri wa Rasilimali hushughulikia mengine.",
 			"button": "Anza"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Hatua zifuatazo",
 			"configuration": "Sanidi chaguo-msingi za kiwango cha repo na {configPath}.",
 			"recipes": "Tazama mapishi ya monorepos, faharasa maalum, na kategoria za Mtafsiri Maalum."
+		}
+	},
+	"providers": {
+		"title": "Watoa huduma za tafsiri",
+		"eyebrow": "Rejea",
+		"lede": "Chagua mtoa huduma mmoja wa tafsiri kwa kila kukimbia - Azure AI Translator, AWS Tafsiri, au Tafsiri ya Wingu la Google - nyuma ya uso mmoja wa API. Mtafsiri anafanya sawa bila kujali mtoa huduma; Ni sifa tu zinazotofautiana.",
+		"backwardCompatible": "Inaoana nyuma kikamilifu: {provider} chaguo-msingi kuwa {azure}, kwa hivyo mtiririko wa kazi uliopo wa Azure unaendelea kufanya kazi bila kubadilika - hakuna uhariri unaohitajika.",
+		"selecting": {
+			"title": "Kuchagua mtoa huduma",
+			"body": "Weka ingizo la {provider} kwa {azure} (chaguo-msingi), {aws}, au {google}, kisha utoe kitambulisho cha mtoa huduma huyo. Mtoa huduma mmoja tu hutumiwa kwa kila simu ya hatua; hatua hiyo inakabidhi kwa SDK inayolingana nyuma ya kiwanda."
+		},
+		"comparison": {
+			"title": "Ulinganisho wa mtoa huduma",
+			"caption": "Ulinganisho wa mtoa huduma wa tafsiri",
+			"columns": {
+				"provider": "Mtoa huduma",
+				"value": "thamani ya mtoa huduma",
+				"sdk": "SDK",
+				"credentials": "Vitambulisho"
+			},
+			"azure": {
+				"name": "Mtafsiri wa Azure AI",
+				"value": "Azure (chaguo-msingi)",
+				"credentials": "usajiliUfunguo, mwisho, mkoa (hiari)"
+			},
+			"aws": {
+				"name": "Tafsiri ya AWS",
+				"value": "AWS",
+				"credentials": "OIDC / mnyororo chaguo-msingi, au awsAccessKeyId + awsSecretAccessKeyKey; mkoa wa aws"
+			},
+			"google": {
+				"name": "Tafsiri ya Wingu la Google",
+				"value": "Google",
+				"credentials": "googleApiKey AU googleCredentials (akaunti ya huduma JSON)"
+			}
+		},
+		"azure": {
+			"title": "Mtafsiri wa Azure AI (chaguo-msingi)",
+			"body": "Mtoa huduma chaguo-msingi. Toa rasilimali ya Mtafsiri wa Azure AI na upitishe {subscriptionKey}, {endpoint}, na kwa hiari {region}. Huu ni usanidi ule ule ambao mtiririko wa kazi uliopo tayari hutumia."
+		},
+		"aws": {
+			"title": "Tafsiri ya AWS",
+			"body": "Matumizi {sdk}. Pendelea OIDC kupitia {configureAwsCredentials} ili hakuna siri za muda mrefu zinazohifadhiwa - kitendo kinasoma msururu wa kitambulisho chaguomsingi cha AWS SDK. Vinginevyo, pitisha {awsAccessKeyId} na {awsSecretAccessKey} wazi. Mkoa unahitajika kila wakati, kupitia {awsRegion} au kutofautiana kwa mazingira ya {awsRegionEnv}.",
+			"oidcTitle": "OIDC (inapendekezwa)",
+			"keysNote": "Ili kutumia funguo tuli badala ya OIDC, acha hatua ya {configureAwsCredentials} na upitishe {awsAccessKeyId} / {awsSecretAccessKey} (kupitia {secrets}) pamoja na {awsRegion}."
+		},
+		"google": {
+			"title": "Tafsiri ya Wingu la Google",
+			"body": "Inatumia {sdk} (v2). Thibitisha kwa ufunguo wa API ({googleApiKey}) au kitambulisho cha JSON cha akaunti ya huduma ({googleCredentials}). Sambaza moja haswa; {googleProjectId} ya hiari hutolewa kutoka kwa kitambulisho wakati imeachwa."
+		},
+		"mapping": {
+			"title": "Ramani ya kibainisha dhamira",
+			"body": "Vibainishi mahususi vya mtoa huduma vimepangwa mahali ambapo sawa ipo. Kila kitu kingine kinarudi kwa chaguo-msingi za busara ili tabia ikae thabiti.",
+			"caption": "Ramani ya kubainisha dhamira kwa watoa huduma",
+			"columns": {
+				"input": "Pembejeo",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Mtandao"
+			},
+			"supported": "Inaungwa mkono",
+			"ignored": "Imepuuzwa",
+			"rows": {
+				"textType": {
+					"azure": "Aina ya maandishi (wazi / html)",
+					"aws": "Imepuuzwa (hakuna kugeuza)",
+					"google": "Muundo (maandishi / html)"
+				},
+				"profanityAction": {
+					"azure": "Msaada kamili",
+					"aws": "Imewekwa alama / Imefutwa → masking",
+					"google": "Imepuuzwa"
+				},
+				"categoryId": {
+					"azure": "Mtafsiri maalum",
+					"aws": "Imepuuzwa",
+					"google": "Imepuuzwa"
+				},
+				"allowFallback": {
+					"azure": "Inaungwa mkono",
+					"aws": "Imepuuzwa",
+					"google": "Imepuuzwa"
+				}
+			}
+		},
+		"locales": {
+			"title": "Misimbo ya mitaa hutofautiana kwa kila mtoa huduma",
+			"body": "Kila mtoa huduma hutumia misimbo yake ya eneo (kwa mfano Kichina Kilichorahisishwa {azureCode} kwenye Azure, {awsCode} kwenye AWS, na {googleCode} kwenye Google). Nambari hupitia kama ilivyo na kuendesha majina ya faili ya pato, kwa hivyo chagua maadili {toLocales} mtoa huduma wako aliyechaguliwa anaunga mkono."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Pembejeo zinazohitajika",
 			"caption": "Pembejeo zinazohitajika",
 			"items": {
-				"sourceLocale": "Eneo la chanzo (k.m. {en}) linalotumika kupata faili za rasilimali kama vile {sourceGlob}. Pia imetumwa kwa Mtafsiri kama {fromLocale}.",
-				"subscriptionKey": "Ufunguo wa usajili wa Azure AI Translator. Pita kupitia {secrets}.",
-				"endpoint": "URL ya mwisho ya mtafsiri, kwa mfano {endpointUrl}."
+				"sourceLocale": "Eneo la chanzo (k.m. {en}) linalotumika kupata faili za rasilimali kama vile {sourceGlob}. Pia imetumwa kwa mtoa huduma kama {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Uteuzi wa mtoa huduma na vitambulisho",
+			"caption": "Uteuzi wa mtoa huduma na vitambulisho vya kila muuzaji",
+			"intro": "Chagua mtoa huduma mmoja kwa kila kukimbia na {provider}. Toa tu kitambulisho cha mtoa huduma aliyechaguliwa - angalia mwongozo wa {providersLink} kwa usanidi kamili.",
+			"items": {
+				"provider": "Mtoa huduma wa tafsiri: {azure} (chaguo-msingi), {aws}, au {google}. Mtoa huduma mmoja tu hutumiwa kwa kila simu ya hatua.",
+				"subscriptionKey": "Ufunguo wa usajili wa Azure AI Translator. Inahitajika kwa {azure}. Pita kupitia {secrets}.",
+				"endpoint": "URL ya mwisho ya Mtafsiri wa Azure, k.m. {endpointUrl}. Inahitajika kwa {azure}.",
+				"awsAccessKeyId": "Kitambulisho cha ufunguo wa ufikiaji wa AWS. Hiari - acha (na {awsSecretAccessKey}) kutumia mnyororo wa kitambulisho chaguo-msingi wa AWS / OIDC. Pita kupitia {secrets}.",
+				"awsSecretAccessKey": "Ufunguo wa ufikiaji wa siri wa AWS. Lazima itolewe pamoja na {awsAccessKeyId}. Pita kupitia {secrets}.",
+				"awsSessionToken": "Tokeni ya hiari ya kipindi cha AWS kwa vitambulisho vya muda. Pita kupitia {secrets}.",
+				"awsRegion": "Mkoa wa AWS kwa huduma ya Tafsiri (k.m. {regionExample}). Inahitajika kwa {aws} isipokuwa {awsRegionEnv} imewekwa katika mazingira.",
+				"googleApiKey": "Ufunguo wa API ya Wingu la Google. Toa hii AU {googleCredentials} kwa {google}. Pita kupitia {secrets}.",
+				"googleCredentials": "Ufunguo wa akaunti ya huduma ya Wingu la Google kama mfuatano wa JSON. Toa hii AU {googleApiKey} kwa {google}. Pita kupitia {secrets}.",
+				"googleProjectId": "Kitambulisho cha mradi wa Wingu la Google hiari. Kawaida huzingatiwa kutoka kwa kitambulisho cha akaunti ya huduma."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Pembejeo za ombi la mtafsiri",
-			"intro": "Hizi ramani moja kwa moja kwenye vigezo vya hoja vya Azure AI Translator v3. Kila moja ni hiari; chaguo-msingi za Mtafsiri zinatumika wakati hazijawekwa.",
-			"caption": "Pembejeo za ombi la mtafsiri",
+			"heading": "Azure Translator ombi pembejeo",
+			"intro": "Ramani hizi huweka ramani moja kwa moja kwenye vigezo vya hoja vya Azure AI Translator v3 na kutumika kwa mtoa huduma wa azure. textType na lugha chafuAction pia zimepangwa kwa AWS/Google ambapo sawa ipo (angalia mwongozo wa watoa huduma); zingine ni Azure pekee. Kila moja ni hiari; chaguo-msingi za Mtafsiri zinatumika wakati hazijawekwa.",
+			"caption": "Azure Translator ombi pembejeo",
 			"items": {
 				"categoryId": "Kitengo cha {customTranslatorLink} cha Azure - kisu cha tasnia/kikoa/toni. Imesambazwa kama {categoryQuery}.",
 				"textType": "{plain} au {html}. Tumia {html} tu wakati maadili yako ya rasilimali ni vipande halisi vya HTML.",

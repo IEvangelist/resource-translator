@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Išteklių vertėjas",
-		"description": "\"Resource Translator\" atidaro mašininiu būdu išverstas jūsų išteklių failų ištraukimo užklausas bet kokiu saugykla, bet kokiu formatu, kurį teikia \"Azure AI Translator\".",
+		"description": "\"Resource Translator\" atidaro mašininiu būdu išverstas jūsų išteklių failų ištraukimo užklausas bet kokiu formatu – naudojant \"Azure AI Translator\", \"AWS Translate\" arba \"Google Cloud Translation\".",
 		"socialTitle": "Resource Translator — išversti išteklių failus automatiškai",
-		"badge": "v3.0 – 24 mazgas, saugyklos konfigūracija, žodynėlis, sausas paleidimas",
+		"badge": "v3.0 – \"Azure\", AWS ir \"Google\" teikėjai, 24 mazgas, saugyklos konfigūracija",
 		"headlinePrefix": "Lokalizuokite savo atpirkimo sandorius",
 		"headlineAccent": "kiekvienas įsipareigojimas.",
-		"lede": "\"Resource Translator\" atidaro mašininiu būdu išverstas jūsų išteklių failų ištraukimo užklausas naudojant \"Azure AI Translator\" per oficialų SDK – jokių papildomų paslaugų, tik darbo eigą.",
+		"lede": "Išteklių vertėjas atidaro mašininiu būdu išverstas išteklių failų ištraukimo užklausas naudojant \"Azure\", AWS arba \"Google\" – vienas vieningas veiksmas, vienas teikėjas vienam paleidimui, oficialūs SDK po gaubtu.",
 		"primaryCta": "Pradėti",
 		"secondaryCta": "Žvaigždė \"GitHub\"",
 		"supports": "Palaiko",
 		"builtForShipping": "Sukurta siuntimui",
 		"workflowTitle": "Vertimas kaip darbo eiga, o ne darbas.",
-		"workflowBody": "Perkelkite veiksmą į esamą CI, nukreipkite jį į \"Azure AI Translator\" ir leiskite saugyklai kalbėti visomis kalbomis, į kurias orientuojatės.",
+		"workflowBody": "Įmeskite veiksmą į esamą CI, nukreipkite jį į \"Azure\", AWS arba \"Google\" ir leiskite saugyklai kalbėti visomis kalbomis, į kurias orientuojatės.",
 		"stats": {
 			"audit": "0 NPM audito klausimai",
-			"tests": "150 testų",
+			"tests": "240+ testų",
 			"node": "Mazgas 20 / 22 / 24",
-			"sdk": "Oficialus \"Azure\" SDK"
+			"sdk": "Azure · AWS · \"Google\""
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} ir {hasNewTranslations} vieta tiesiai į create-pull-request."
 			},
 			"sdk": {
-				"title": "Oficialus \"Azure\" SDK",
-				"body": "Sukurta remiantis {azureSdk} + {corePipeline} - automatiniai pakartotiniai bandymai {statusCodes}, be rankinio HTTP. {esbuild} susietas, švarus auditas."
+				"title": "\"Azure\", AWS ir \"Google\"",
+				"body": "Pasirinkite vieną teikėją vienam vykdymui. Kiekvienas yra valdomas pagal savo oficialų SDK ({azureSdk}, {awsSdk}, {googleSdk}) su automatiniais pakartotiniais bandymais {statusCodes} - nėra rankinio HTTP. {esbuild} komplektuojamas, auditas švarus."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Pasiruošę lokalizuoti autopilotu?",
-			"body": "Vienas \"Azure AI Translator\" raktas, vienas darbo eigos failas. Išteklių vertėjas tvarko likusią dalį.",
+			"body": "Vienas teikėjo raktas – \"Azure\", AWS arba \"Google\" – ir vienas darbo eigos failas. Išteklių vertėjas tvarko likusią dalį.",
 			"button": "Pradėti"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Tolesni veiksmai",
 			"configuration": "Konfigūruokite numatytuosius saugyklos lygio nustatymus naudodami {configPath}.",
 			"recipes": "Peržiūrėkite monorepos, pasirinktinių žodynėlių ir pasirinktinių vertėjų kategorijų receptus."
+		}
+	},
+	"providers": {
+		"title": "Vertimo paslaugų teikėjai",
+		"eyebrow": "Nuoroda",
+		"lede": "Pasirinkite vieną vertimo teikėją – \"Azure AI Translator\", \"AWS Translate\" arba \"Google Cloud Translation\" – už vieno vieningo API paviršiaus. Vertėjas elgiasi identiškai, nepriklausomai nuo teikėjo; skiriasi tik kredencialai.",
+		"backwardCompatible": "Visiškai suderinamas su ankstesnėmis versijomis: {provider} numatytoji {azure}, todėl esamos \"Azure\" darbo eigos veikia nepakitusios – nereikia redaguoti.",
+		"selecting": {
+			"title": "Teikėjo pasirinkimas",
+			"body": "Nustatykite {provider} įvestį į {azure} (numatytasis), {aws} arba {google}, tada pateikite to teikėjo kredencialus. Vienam veiksmo iškvietimui naudojamas tik vienas teikėjas; veiksmas deterministiškai deleguoja atitinkamą SDK už gamyklos."
+		},
+		"comparison": {
+			"title": "Paslaugų teikėjų palyginimas",
+			"caption": "Vertimo paslaugų teikėjų palyginimas",
+			"columns": {
+				"provider": "Teikėjas",
+				"value": "Teikėjo vertė",
+				"sdk": "SDK",
+				"credentials": "Kredencialai"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "\"Azure\" (numatytasis)",
+				"credentials": "subscriptionKey, galinis punktas, regionas (pasirinktinai)"
+			},
+			"aws": {
+				"name": "AWS vertimas",
+				"value": "AWS",
+				"credentials": "OIDC / numatytoji grandinė arba awsAccessKeyId + awsSecretAccessKey; awsRegionas"
+			},
+			"google": {
+				"name": "\"Google\" debesies vertimas",
+				"value": "\"Google\"",
+				"credentials": "googleApiKey ARBA googleCredentials (paslaugos paskyros JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (numatytasis)",
+			"body": "Numatytasis teikėjas. Konfigūruokite \"Azure AI Translator\" išteklius ir perduokite {subscriptionKey}, {endpoint} ir pasirinktinai {region}. Tai ta pati konfigūracija, kurią jau naudoja esamos darbo eigos."
+		},
+		"aws": {
+			"title": "AWS vertimas",
+			"body": "Naudoja {sdk}. Pirmenybę teikite OIDC per {configureAwsCredentials} kad nebūtų saugomos ilgaamžės paslaptys – veiksmas nuskaito numatytąją AWS SDK kredencialų grandinę. Arba perduokite {awsAccessKeyId} ir {awsSecretAccessKey} aiškiai. Regionas visada reikalingas per {awsRegion} arba {awsRegionEnv} aplinkos kintamąjį.",
+			"oidcTitle": "OIDC (rekomenduojama)",
+			"keysNote": "Norėdami naudoti statinius klavišus, o ne OIDC, numeskite {configureAwsCredentials} žingsnį ir praeikite {awsAccessKeyId} / {awsSecretAccessKey} (per {secrets}) plius {awsRegion}."
+		},
+		"google": {
+			"title": "\"Google\" debesies vertimas",
+			"body": "Naudoja {sdk} (v2). Autentifikuokite naudodami API raktą ({googleApiKey}) arba paslaugos paskyros JSON kredencialą ({googleCredentials}). Pateikite tiksliai vieną; neprivalomas {googleProjectId} išvedamas iš kredencialų, kai jis praleistas."
+		},
+		"mapping": {
+			"title": "Tikslo specifikatoriaus susiejimas",
+			"body": "Konkretaus teikėjo specifikatoriai susiejami ten, kur yra atitikmuo. Visa kita grįžta prie protingų nutylėjimo, todėl elgesys išlieka nuoseklus.",
+			"caption": "Tikslo specifikatoriaus susiejimas tarp teikėjų",
+			"columns": {
+				"input": "Įvestis",
+				"azure": "Žydras",
+				"aws": "AWS",
+				"google": "\"Google\""
+			},
+			"supported": "Palaikoma",
+			"ignored": "Nepaisyta",
+			"rows": {
+				"textType": {
+					"azure": "textType (paprastas / html)",
+					"aws": "Nepaisyta (be perjungimo)",
+					"google": "formatas (tekstas / html)"
+				},
+				"profanityAction": {
+					"azure": "Visiškas palaikymas",
+					"aws": "Pažymėtas / ištrintas → maskavimas",
+					"google": "Nepaisyta"
+				},
+				"categoryId": {
+					"azure": "Pasirinktinis vertėjas",
+					"aws": "Nepaisyta",
+					"google": "Nepaisyta"
+				},
+				"allowFallback": {
+					"azure": "Palaikoma",
+					"aws": "Nepaisyta",
+					"google": "Nepaisyta"
+				}
+			}
+		},
+		"locales": {
+			"title": "Lokalės kodai skiriasi priklausomai nuo teikėjo",
+			"body": "Kiekvienas teikėjas naudoja savo lokalės kodus (pvz., supaprastinta kinų kalba {azureCode} \"Azure\", {awsCode} AWS ir {googleCode} \"Google\"). Kodai perduodami tokie, kokie yra, ir valdo išvesties failų vardus, todėl pasirinkite reikšmes, {toLocales} palaiko jūsų pasirinktas teikėjas."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Reikalingi įvesties duomenys",
 			"caption": "Reikalingi įvesties duomenys",
 			"items": {
-				"sourceLocale": "Šaltinio lokalė (pvz., {en}), naudojama išteklių failams, pvz., {sourceGlob}, rasti. Taip pat persiųsta vertėjui kaip {fromLocale}.",
-				"subscriptionKey": "\"Azure AI Translator\" prenumeratos raktas. Praeikite per {secrets}.",
-				"endpoint": "Vertėjo galinio punkto URL, pvz., {endpointUrl}."
+				"sourceLocale": "Šaltinio lokalė (pvz., {en}), naudojama išteklių failams, pvz., {sourceGlob}, rasti. Taip pat perduodama paslaugų teikėjui kaip {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Teikėjo pasirinkimas ir kredencialai",
+			"caption": "Teikėjo pasirinkimas ir tiekėjo kredencialai",
+			"intro": "Pasirinkite vieną teikėją vienam paleidimui su {provider}. Pateikite tik pasirinkto teikėjo kredencialus – visą sąranką rasite {providersLink} vadove.",
+			"items": {
+				"provider": "Vertimo teikėjas: {azure} (numatytasis), {aws} arba {google}. Vienam veiksmo iškvietimui naudojamas tik vienas teikėjas.",
+				"subscriptionKey": "\"Azure AI Translator\" prenumeratos raktas. Reikalingas {azure}. Pravažiuokite per {secrets}.",
+				"endpoint": "Azure Translator galinio punkto URL, pvz., {endpointUrl}. Reikalingas {azure}.",
+				"awsAccessKeyId": "AWS prieigos rakto ID. Neprivaloma – praleiskite (su {awsSecretAccessKey}), kad naudotumėte numatytąją AWS kredencialų grandinę / OIDC. Pravažiuokite per {secrets}.",
+				"awsSecretAccessKey": "AWS slaptas prieigos raktas. Turi būti tiekiamas kartu su {awsAccessKeyId}. Pravažiuokite per {secrets}.",
+				"awsSessionToken": "Pasirenkamas AWS seanso raktas laikiniems kredencialams. Praeikite per {secrets}.",
+				"awsRegion": "AWS regionas vertimo paslaugai (pvz., {regionExample}). Reikalinga {aws}, nebent {awsRegionEnv} nustatyta aplinkoje.",
+				"googleApiKey": "\"Google Cloud API\" raktas. Pateikite šį OR {googleCredentials} {google}. Pravažiuokite per {secrets}.",
+				"googleCredentials": "\"Google Cloud\" paslaugos paskyros raktas kaip JSON eilutė. Pateikite šį OR {googleApiKey} {google}. Pravažiuokite per {secrets}.",
+				"googleProjectId": "Pasirenkamas \"Google Cloud\" projekto ID. Paprastai daroma išvada iš aptarnavimo sąskaitos kredencialų."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Vertėjo užklausos įvestis",
-			"intro": "Jie susiejami tiesiai su \"Azure AI Translator v3\" užklausos parametrais. Kiekvienas iš jų yra neprivalomas; Numatytieji vertėjo nustatymai taikomi, kai nenustatyta.",
-			"caption": "Vertėjo užklausos įvestis",
+			"heading": "\"Azure Translator\" užklausos įvestis",
+			"intro": "Jie susiejami tiesiogiai su \"Azure AI Translator v3\" užklausos parametrais ir taikomi \"Azure\" teikėjui. textType ir nešvankybėsAction taip pat susiejami su AWS/Google, kur yra atitikmuo (žr. paslaugų teikėjų vadovą); likusieji yra tik \"Azure\". Kiekvienas iš jų yra neprivalomas; Numatytieji vertėjo nustatymai taikomi, kai nenustatyta.",
+			"caption": "\"Azure Translator\" užklausos įvestis",
 			"items": {
 				"categoryId": "\"Azure {customTranslatorLink}\" kategorija – pramonės/domeno/tono rankenėlė. Persiųsta kaip {categoryQuery}.",
 				"textType": "{plain} ar {html}. Naudokite {html} tik tada, kai jūsų išteklių reikšmės yra tikri HTML fragmentai.",

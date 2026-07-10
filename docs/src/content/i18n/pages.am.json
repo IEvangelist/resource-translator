@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "የመርጃ ተርጓሚ",
-		"description": "የመርጃ ተርጓሚ በማሽን የተተረጎሙ የመሳብ ጥያቄዎችን ለንብት ፋይሎችዎ በማንኛውም ሪፖ፣ በማንኛውም ቅርጸት ይከፍታል - በ Azure AI ተርጓሚ የተጎላበተ።",
+		"description": "የመርጃ ተርጓሚ በማንኛውም ሪፖ፣ በማንኛውም ቅርጸት ለመርጃ ፋይሎችዎ በማሽን የተተረጎሙ የመሳብ ጥያቄዎችን ይከፍታል - በ Azure AI ተርጓሚ፣ AWS Translate ወይም Google Cloud Translation የተጎላበተ።",
 		"socialTitle": "የመረጃ ተርጓሚ - የሀብት ፋይሎችን በራስ-ሰር መተርጎም",
-		"badge": "v3.0 - መስቀለኛ መንገድ 24 ፣ ሪፖ ውቅር ፣ የቃላት መፍቻ ፣ ደረቅ ሩጫ",
+		"badge": "v3.0 — Azure, AWS & Google አቅራቢዎች, መስቀለኛ መንገድ 24, repo ውቅር",
 		"headlinePrefix": "ሪፖዎን በአካባቢው ያድርጉ",
 		"headlineAccent": "እያንዳንዱ ቁርጠኝነት.",
-		"lede": "የመርጃ ተርጓሚ Azure AI ተርጓሚን በኦፊሴላዊው ኤስዲኬ በመጠቀም ለመርጃ ፋይሎችዎ በማሽን የተተረጎሙ የመጎተት ጥያቄዎችን ይከፍታል - ምንም ተጨማሪ አገልግሎቶች የሉም፣ የስራ ፍሰት ብቻ።",
+		"lede": "የመርጃ ተርጓሚ Azure፣ AWS ወይም Googleን በመጠቀም ለመርጃ ፋይሎችዎ በማሽን የተተረጎሙ የመጎተት ጥያቄዎችን ይከፍታል - አንድ የተዋሃደ እርምጃ፣ በአንድ ሩጫ አንድ አቅራቢ፣ ኦፊሴላዊ ኤስዲኬዎች በመከለያው ስር።",
 		"primaryCta": "መጀመር",
 		"secondaryCta": "በ GitHub ላይ ኮከብ",
 		"supports": "ይደግፋል",
 		"builtForShipping": "ለማጓጓዣ የተሰራ",
 		"workflowTitle": "መተርጎም እንደ የስራ ሂደት እንጂ እንደ ስራ አይደለም።",
-		"workflowBody": "ድርጊቱን አሁን ባለው CIዎ ላይ ይጣሉት፣ ወደ Azure AI ተርጓሚ ይጠቁሙት እና ሪፖዎ ያነጣጠሩትን እያንዳንዱን ቋንቋ እንዲናገር ያድርጉ።",
+		"workflowBody": "ድርጊቱን አሁን ባለው CIዎ ላይ ይጣሉት፣ ወደ Azure፣ AWS ወይም Google ይጠቁሙ እና ሪፖዎ ያነጣጠሩትን እያንዳንዱን ቋንቋ እንዲናገር ያድርጉ።",
 		"stats": {
 			"audit": "0 npm-ኦዲት ጉዳዮች",
-			"tests": "150 ሙከራዎች",
+			"tests": "240+ ሙከራዎች",
 			"node": "መስቀለኛ መንገድ 20 / 22 / 24",
-			"sdk": "ኦፊሴላዊ Azure ኤስዲኬ"
+			"sdk": "አዙር · AWS · ጉግል"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} ኤክስኤምኤል",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}፣ {summaryDetails} እና {hasNewTranslations} ማስገቢያ በቀጥታ ወደ ፍጠር-መጎተት-ጥያቄ።"
 			},
 			"sdk": {
-				"title": "ኦፊሴላዊ Azure ኤስዲኬ",
-				"body": "በ {azureSdk} + {corePipeline} ላይ የተገነባ - በ {statusCodes} ላይ አውቶማቲክ ድጋሚ ሙከራዎች፣ በእጅ የሚጠቀለል ኤችቲቲፒ የለም። {esbuild} የተጠቀለለ፣ ኦዲት-ንፁህ።"
+				"title": "Azure, AWS እና Google",
+				"body": "በአንድ ሩጫ አንድ አቅራቢ ይምረጡ። እያንዳንዳቸው የሚነዱት በኦፊሴላዊው ኤስዲኬ ({azureSdk}፣ {awsSdk}፣ {googleSdk}) በ {statusCodes} ላይ አውቶማቲክ ድጋሚ ሙከራዎች አሉት - በእጅ የሚጠቀለል ኤችቲቲፒ የለም። {esbuild} የተጠቀለለ፣ ኦዲት-ንፁህ።"
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "በአውቶ ፓይሎት ላይ አካባቢያዊ ለማድረግ ዝግጁ ነዎት?",
-			"body": "አንድ የ Azure AI ተርጓሚ ቁልፍ፣ አንድ የስራ ፍሰት ፋይል። የመርጃ ተርጓሚ የቀረውን ያስተናግዳል።",
+			"body": "አንድ የአቅራቢ ቁልፍ - Azure፣ AWS ወይም Google - እና አንድ የስራ ፍሰት ፋይል። የመርጃ ተርጓሚ የቀረውን ያስተናግዳል።",
 			"button": "መጀመር"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "ቀጣይ እርምጃዎች",
 			"configuration": "የሪፖ-ደረጃ ነባሪዎችን በ {configPath} ያዋቅሩ።",
 			"recipes": "ለሞኖሬፖስ፣ ብጁ መዝገበ ቃላት እና ብጁ ተርጓሚ ምድቦች የምግብ አዘገጃጀት መመሪያዎችን ይመልከቱ።"
+		}
+	},
+	"providers": {
+		"title": "የትርጉም አቅራቢዎች",
+		"eyebrow": "ማጣቀሻ",
+		"lede": "በአንድ ሩጫ አንድ የትርጉም አቅራቢ ይምረጡ - Azure AI ተርጓሚ፣ AWS ትርጉም ወይም ጎግል ክላውድ ትርጉም - ከአንድ የተዋሃደ የኤፒአይ ወለል ጀርባ። ተርጓሚው አቅራቢው ምንም ይሁን ምን አንድ አይነት ባህሪ አለው; ምስክርነቶቹ ብቻ ይለያያሉ።",
+		"backwardCompatible": "ሙሉ በሙሉ ወደ ኋላ ተኳሃኝ {provider} ወደ {azure} ነባሪ ነው፣ ስለዚህ ነባር የ Azure የስራ ፍሰቶች ሳይለወጡ መስራታቸውን ይቀጥላሉ - ምንም አርትዖቶች አያስፈልጉም።",
+		"selecting": {
+			"title": "አቅራቢ መምረጥ",
+			"body": "{provider} ግቤቱን ወደ {azure} (ነባሪ)፣ {aws} ወይም {google} ያቀናብሩ እና ከዚያ የአቅራቢውን ምስክርነቶች ያቅርቡ። በአንድ የድርጊት ጥሪ አንድ አቅራቢ ብቻ ጥቅም ላይ ይውላል; ድርጊቱ ከፋብሪካ ጀርባ ላለው ተዛማጅ ኤስዲኬ በቆራጥነት ውክልና ይሰጣል።"
+		},
+		"comparison": {
+			"title": "የአቅራቢዎች ንጽጽር",
+			"caption": "የትርጉም አቅራቢ ንጽጽር",
+			"columns": {
+				"provider": "አቅራቢ",
+				"value": "የአቅራቢ ዋጋ",
+				"sdk": "ኤስዲኬ",
+				"credentials": "ምስክርነቶች"
+			},
+			"azure": {
+				"name": "Azure AI ተርጓሚ",
+				"value": "Azure (ነባሪ)",
+				"credentials": "የደንበኝነት ምዝገባ ቁልፍ፣ የመጨረሻ ነጥብ፣ ክልል (አማራጭ)"
+			},
+			"aws": {
+				"name": "AWS ትርጉም",
+				"value": "አማርኛ",
+				"credentials": "OIDC / ነባሪ ሰንሰለት፣ ወይም awsAccessKeyId + awsSecretAccessKey; awsክልል"
+			},
+			"google": {
+				"name": "የጉግል ክላውድ ትርጉም",
+				"value": "የታመነ አይነትን",
+				"credentials": "googleApiKey ወይም googleCredentials (የአገልግሎት-መለያ JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI ተርጓሚ (ነባሪ)",
+			"body": "ነባሪው አቅራቢ። የ Azure AI ተርጓሚ ግብአት ያቅርቡ እና {subscriptionKey}፣ {endpoint} እና እንደ አማራጭ {region} ይለፉ። ይህ ነባር የስራ ፍሰቶች አስቀድመው የሚጠቀሙበት ተመሳሳይ ውቅር ነው።"
+		},
+		"aws": {
+			"title": "AWS ትርጉም",
+			"body": "{sdk} ይጠቀማል. ለረጅም ጊዜ የሚቆዩ ሚስጥሮች እንዳይቀመጡ OIDCን በ {configureAwsCredentials} ይምረጡ - ድርጊቱ የAWS ኤስዲኬ ነባሪ ምስክርነት ሰንሰለት ያነባል። በአማራጭ፣ {awsAccessKeyId} ይለፉ እና {awsSecretAccessKey} በግልጽ። አንድ ክልል ሁል ጊዜ ያስፈልጋል ፣ በ {awsRegion} ወይም በ {awsRegionEnv} አካባቢ ተለዋዋጭ።",
+			"oidcTitle": "OIDC (የሚመከር)",
+			"keysNote": "ከ OIDC ይልቅ የማይንቀሳቀሱ ቁልፎችን ለመጠቀም {configureAwsCredentials} ደረጃውን ይጣሉ እና {awsAccessKeyId} / {awsSecretAccessKey} (በ {secrets} በኩል) እና {awsRegion} ይለፉ።"
+		},
+		"google": {
+			"title": "የጉግል ክላውድ ትርጉም",
+			"body": "{sdk} (v2) ን ይጠቀማል ። በኤፒአይ ቁልፍ ({googleApiKey}) ወይም በአገልግሎት-መለያ JSON ምስክርነት ({googleCredentials}) ያረጋግጡ። በትክክል አንድ ያቅርቡ; አማራጭ {googleProjectId} ሲቀር ከምስክርነቱ ይገመታል።"
+		},
+		"mapping": {
+			"title": "የዓላማ-ገላጭ ካርታ",
+			"body": "አቅራቢ-ተኮር ገላጮች ተመጣጣኝ ባለበት ቦታ ተቀርፀዋል። ሁሉም ነገር ወደ አስተዋይ ነባሪዎች ይመለሳል ስለዚህ ባህሪው ወጥነት ያለው ሆኖ ይቆያል።",
+			"caption": "በአቅራቢዎች ላይ የዓላማ መግለጫ ካርታ",
+			"columns": {
+				"input": "ግቤት",
+				"azure": "አዙር",
+				"aws": "AWS",
+				"google": "ጉግል"
+			},
+			"supported": "የሚደገፍ",
+			"ignored": "ችላ ተብሏል",
+			"rows": {
+				"textType": {
+					"azure": "የጽሑፍ አይነት (ግልጽ / ኤችቲኤምኤል)",
+					"aws": "ችላ ተብሏል (መቀያየር የለም)",
+					"google": "አቀራረብ (ጽሑፍ / ኤችቲኤምኤል)"
+				},
+				"profanityAction": {
+					"azure": "ሙሉ ድጋፍ",
+					"aws": "ምልክት የተደረገበት / ተሰርዟል → ጭምብል",
+					"google": "ችላ ተብሏል"
+				},
+				"categoryId": {
+					"azure": "ብጁ ተርጓሚ",
+					"aws": "ችላ ተብሏል",
+					"google": "ችላ ተብሏል"
+				},
+				"allowFallback": {
+					"azure": "የሚደገፍ",
+					"aws": "ችላ ተብሏል",
+					"google": "ችላ ተብሏል"
+				}
+			}
+		},
+		"locales": {
+			"title": "የአካባቢ ኮዶች እንደ አቅራቢ ይለያያሉ",
+			"body": "እያንዳንዱ አቅራቢ የራሱን የአካባቢ ኮዶች ይጠቀማል (ለምሳሌ ቀለል ያለ ቻይንኛ በ Azure፣ {awsCode} በAWS እና {googleCode} በGoogle ላይ {azureCode} ነው። ኮዶች እንዳለ ያልፋሉ እና የውጤት ፋይል ስሞችን ያሽከረክራሉ፣ ስለዚህ የመረጡት አቅራቢ የሚደግፋቸውን {toLocales} እሴቶችን ይምረጡ።"
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "የሚያስፈልጉ ግብዓቶች",
 			"caption": "የሚያስፈልጉ ግብዓቶች",
 			"items": {
-				"sourceLocale": "የምንጭ አካባቢ (ለምሳሌ {en}) እንደ {sourceGlob} ያሉ የመርጃ ፋይሎችን ለማግኘት ጥቅም ላይ ይውላል። እንደ {fromLocale} ወደ ተርጓሚም ተላልፏል።",
-				"subscriptionKey": "Azure AI ተርጓሚ የደንበኝነት ምዝገባ ቁልፍ። በ {secrets} በኩል ማለፍ.",
-				"endpoint": "የተርጓሚ የመጨረሻ ነጥብ ዩአርኤል፣ ለምሳሌ {endpointUrl}."
+				"sourceLocale": "የምንጭ አካባቢ (ለምሳሌ {en}) እንደ {sourceGlob} ያሉ የመርጃ ፋይሎችን ለማግኘት ጥቅም ላይ ይውላል። እንዲሁም እንደ {fromLocale} ለአቅራቢው ተላልፏል።"
+			}
+		},
+		"providerInputs": {
+			"heading": "የአቅራቢ ምርጫ እና ምስክርነቶች",
+			"caption": "የአቅራቢ ምርጫ እና የሻጭ ምስክርነቶች",
+			"intro": "ከ {provider} ጋር በአንድ ሩጫ አንድ አቅራቢ ይምረጡ። የተመረጠውን የአቅራቢ ምስክርነቶች ብቻ ያቅርቡ - ለሙሉ ማዋቀር {providersLink} መመሪያውን ይመልከቱ።",
+			"items": {
+				"provider": "የትርጉም አቅራቢ {azure} (ነባሪ)፣ {aws} ወይም {google}። በአንድ የድርጊት ጥሪ አንድ አቅራቢ ብቻ ጥቅም ላይ ይውላል።",
+				"subscriptionKey": "Azure AI ተርጓሚ የደንበኝነት ምዝገባ ቁልፍ። ለ {azure} ያስፈልጋል። በ {secrets} በኩል ማለፍ.",
+				"endpoint": "Azure Translator የመጨረሻ ነጥብ URL፣ ለምሳሌ {endpointUrl}. ለ {azure} ያስፈልጋል።",
+				"awsAccessKeyId": "የAWS መዳረሻ ቁልፍ መታወቂያ። አማራጭ - የAWS ነባሪ ምስክርነት ሰንሰለት/OIDC ለመጠቀም (ከ {awsSecretAccessKey} ጋር) ይተዉት። በ {secrets} በኩል ማለፍ.",
+				"awsSecretAccessKey": "AWS ሚስጥራዊ መዳረሻ ቁልፍ። ከ {awsAccessKeyId} ጋር አብሮ መቅረብ አለበት. በ {secrets} በኩል ማለፍ.",
+				"awsSessionToken": "ለጊዜያዊ ምስክርነቶች አማራጭ የAWS ክፍለ ጊዜ ማስመሰያ። በ {secrets} በኩል ማለፍ.",
+				"awsRegion": "የ AWS ክልል ለትርጉም አገልግሎት (ለምሳሌ {regionExample})። በአካባቢው {awsRegionEnv} ካልተዘጋጀ በስተቀር ለ {aws} ያስፈልጋል።",
+				"googleApiKey": "ጎግል ክላውድ ኤፒአይ ቁልፍ። ይህንን ያቅርቡ ወይም {googleCredentials} ለ {google}. በ {secrets} በኩል ማለፍ.",
+				"googleCredentials": "የጉግል ክላውድ አገልግሎት-መለያ ቁልፍ እንደ JSON ሕብረቁምፊ። ይህንን ያቅርቡ ወይም {googleApiKey} ለ {google}. በ {secrets} በኩል ማለፍ.",
+				"googleProjectId": "አማራጭ የጉግል ክላውድ ፕሮጀክት መታወቂያ። ብዙውን ጊዜ ከአገልግሎት-መለያ ምስክርነት ይገመታል።"
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "የአስተርጓሚ ጥያቄ ግብዓቶች",
-			"intro": "እነዚህ በቀጥታ ወደ Azure AI Translator v3 መጠይቅ መለኪያዎች ካርታ ያደርጋሉ። እያንዳንዱ አማራጭ ነው; የ የተርጓሚ ነባሪዎች ሲዘጋጁ ተፈጻሚ ይሆናሉ።",
-			"caption": "የአስተርጓሚ ጥያቄ ግብዓቶች",
+			"heading": "የ Azure ተርጓሚ ግብዓቶችን ይጠይቁ",
+			"intro": "እነዚህ ካርታ በቀጥታ ወደ Azure AI Translator v3 መጠይቅ መለኪያዎች እና ለ azure አቅራቢ ተፈጻሚ ይሆናሉ። textType እና ጸያፍ ድርጊት እንዲሁ ተመጣጣኝ ባለበት ወደ AWS/Google ተቀርፀዋል (የአቅራቢዎችን መመሪያ ይመልከቱ)። የተቀሩት Azure-ብቻ ናቸው። እያንዳንዱ አማራጭ ነው; የ የተርጓሚ ነባሪዎች ሲዘጋጁ ተፈጻሚ ይሆናሉ።",
+			"caption": "የ Azure ተርጓሚ ግብዓቶችን ይጠይቁ",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} ምድብ - የኢንዱስትሪ/ጎራ/ቃና ቁልፍ። እንደ {categoryQuery} ተላልፏል።",
 				"textType": "{plain} ወይም {html}. የንብረት እሴቶችዎ እውነተኛ የኤችቲኤምኤል ቁርጥራጮች ሲሆኑ ብቻ {html} ይጠቀሙ።",

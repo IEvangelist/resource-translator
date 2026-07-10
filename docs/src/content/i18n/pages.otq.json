@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Traductor recursos",
-		"description": "Translator recursos gi xoki solicitudes tirón traducidas ir nge ya máquina yá archivos recursos jar 'na repositorio, jar 'na formato — impulsado ya Azure AI Translator.",
+		"description": "Resource Translator gi xoki solicitudes tirón traducidas ir nge ar máquina yá archivos recursos jar 'na repositorio, jar 'na formato — impulsado ya Azure AI Translator, AWS Translate wa Google Cloud Translation.",
 		"socialTitle": "Traductor recursos — gi 'rats'u̲hñä ko ya archivos recursos automáticamente",
-		"badge": "v3.0 — Nodo 24, repositorio config, glosario, tirada jar seco",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, reposito config",
 		"headlinePrefix": "Localizar ár repositorio jar",
 		"headlineAccent": "nga̲tho ya nt'o̲t'e",
-		"lede": "Traductor recursos gi xoki solicitudes tirón traducidas ir nge ya máquina pa yá archivos recursos ir nge ar Azure AI Translator a través de ar SDK xidi mfädi — hinda 'befi Nthuts'i ar 'be̲fi, ho̲ntho 'nar flujo ar 'be̲fi.",
+		"lede": "Translator recursos gi xoki solicitudes tirón traducidas ir nge ya máquina pa yá archivos recursos ir nge ar Azure, AWS wa Google — 'nar nt'ot'e unificada, 'nar proveedor ya ejecutar, SDK oficiales jár ar capó.",
 		"primaryCta": "Bu̲i",
 		"secondaryCta": "Estrella jar GitHub",
 		"supports": "Apoyos",
 		"builtForShipping": "Construido pa ar envío",
 		"workflowTitle": "Traducción komongu 'nar flujo ar 'be̲fi, hingi 'nar 'befi nguu.",
-		"workflowBody": "Dejar ar nt'ot'e ja ár CI existente, apuntar nä'ä da Azure AI Translator ne dejar ke ár repositorio ñä kadu̲ 'nar hñä da objetivo ya.",
+		"workflowBody": "Dejar ar nt'ot'e ja ir CI existente, apuntar nä'ä jar Azure, AWS wa Google ne dejar ke ár repositorio ñä ya hñä ya hñä nä'ä bí objetivo jar.",
 		"stats": {
 			"audit": "0 hñäki NPM-auditoría",
-			"tests": "150 pruebas",
+			"tests": "240 + pruebas",
 			"node": "Nodo 20 yá 22 yá 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} ne {hasNewTranslations} ranura Hmunts'i jar da t'ot'e — tirar — petición."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Construido jar {azureSdk} + {corePipeline} — reintentos automáticos jar {statusCodes}, hinda HTTP enrollado tso̲kwa mano. {esbuild} empaquetado, auditoría — limpieza."
+				"title": "Azure, AWS ne Google",
+				"body": "Da 'ñets'i 'nar proveedor ya nt'ot'e. Kadu 'na ar impulsado ir nge ár SDK xidi mfädi ({azureSdk}, {awsSdk}, {googleSdk}) ko ya reintentos automáticos jar {statusCodes} — hinda HTTP enrollado tso̲kwa mano. {esbuild} agrupado, auditoría — limpiar."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "¿Listo pa localizar jar piloto automático?",
-			"body": "'Nar clave Azure AI Translator, 'nar archivo flujo ar 'be̲fi. Reproductor recursos ar maneja ar resto.",
+			"body": "'Nar clave proveedor — Azure, AWS wa Google — ne 'nar archivo flujo ar 'be̲fi. Reproductor recursos ar maneja ar resto.",
 			"button": "Bu̲i"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Nuya ya pasos",
 			"configuration": "Configurar ya valores predeterminados ar repositorio ko ya {configPath}.",
 			"recipes": "Ga recetas pa monorepos, glosarios personalizados ne ya nt'ot'e Custom Translator."
+		}
+	},
+	"providers": {
+		"title": "Proveedores traducción",
+		"eyebrow": "Referencia",
+		"lede": "Da 'ñets'i 'nar proveedor traducción ya ejecutar — Azure AI Translator, AWS Translate wa Google Cloud Translation — jár xu̲tha 'nar sola superficie API unificada. Ar traductor ar comporta idénticamente independientemente ar proveedor; Ho̲ntho ya credenciales 'na'ño.",
+		"backwardCompatible": "Totalmente compatible ko ar nt'ot'e atrás: {provider} predeterminados jar {azure}, nä'ä ya flujos ar 'be̲fi 'bui Azure siguen mpe̲fi xkagentho hinda cambios — hingi se requieren ar ediciones.",
+		"selecting": {
+			"title": "Selección 'nar proveedor",
+			"body": "Configurar ar entrada {provider} jar {azure} (predeterminado), {aws} wa {google}, xu̲ki suministrar credenciales Nunu̲ proveedor. Ho̲ntho 'nar proveedor ar gi japu̲'be̲fi ya llamada ya nt'ot'e; ar nt'ot'e determinísticamente delega da SDK ar coincidencia jár xu̲tha 'nar fábrica."
+		},
+		"comparison": {
+			"title": "Comparación proveedores",
+			"caption": "Comparación proveedores traducción",
+			"columns": {
+				"provider": "Proveedor",
+				"value": "Hmädi proveedor",
+				"sdk": "SDK",
+				"credentials": "Credenciales"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (Default)",
+				"credentials": "subscriptionKey, punto final, hnini (opcional)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "aws",
+				"credentials": "OIDC yá cadena predeterminada, wa awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Traducción ar gui Google",
+				"value": "Google",
+				"credentials": "googleApiKey WA googleCredentials (hontho — nu JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (por defecto)",
+			"body": "Ar proveedor ya defecto. Provisionar 'nar hño Azure AI Translator ne thoka {subscriptionKey}, {endpoint} ne opcionalmente {region}. Nuna gehna ar xkagentho configuración flujo ar 'be̲fi 'bui ya utilizan."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Gi japu̲'be̲fi {sdk} Prefiere OIDC a través de {configureAwsCredentials} nja'bu da ningún secreto xi maa nzaki ar almacenan — ar nt'ot'e gi lei ar cadena credenciales predeterminada AWS SDK. Alternativamente, thogi {awsAccessKeyId} ne {awsSecretAccessKey} explícitamente. 'Nar hnini nzäm'bu̲ ar requiere, a través de {awsRegion} wa ar variable entorno {awsRegionEnv}.",
+			"oidcTitle": "OIDC (recomendado)",
+			"keysNote": "Pa utilizar teclas estáticas en lugar de OIDC, soltar ar bi thogi {configureAwsCredentials} ne thogi {awsAccessKeyId} yá {awsSecretAccessKey} (vía {secrets}) mäs {awsRegion}."
+		},
+		"google": {
+			"title": "Traducción ar gui Google",
+			"body": "Gi japu̲'be̲fi {sdk} (v2). Autenticar ko ya da 'nar clave API ({googleApiKey}) wa 'nar credencial JSON nu hontho ({googleCredentials}). Suministrar exactamente 'na; 'Nar {googleProjectId} opcional ar infiere ar credencial nu'bu̲ ar omite."
+		},
+		"mapping": {
+			"title": "Intent-specifier mapping",
+			"body": "Ya especificadores específicos ar proveedor ar mapean ho 'nar equivalente 'bu̲i. Nga̲tho nä'ä 'ra ho̲e ar vuelta ja ya valores predeterminados sensatos nä'ä ar comportamiento ar mantiene consistente.",
+			"caption": "Mapeo especificador intención a través de proveedores",
+			"columns": {
+				"input": "Entrada",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Apoyado",
+			"ignored": "Ignorado",
+			"rows": {
+				"textType": {
+					"azure": "textType (llanura yá html)",
+					"aws": "Ignorado (hingi alternar)",
+					"google": "Formato (texto yá html)"
+				},
+				"profanityAction": {
+					"azure": "Apoyo completo",
+					"aws": "Marcado yá eliminado → enmascaramiento",
+					"google": "Ignorado"
+				},
+				"categoryId": {
+					"azure": "Traductor personalizado",
+					"aws": "Ignorado",
+					"google": "Ignorado"
+				},
+				"allowFallback": {
+					"azure": "Apoyado",
+					"aws": "Ignorado",
+					"google": "Ignorado"
+				}
+			}
+		},
+		"locales": {
+			"title": "Códigos locales 'na'ño ir nge ar proveedor",
+			"body": "Nu'bu̲ proveedor gi japu̲'be̲fi yá propios códigos locales ('nar nt'udi, chino simplificado ar {azureCode} jar Azure, {awsCode} jar AWS ne {googleCode} jar Google). Ya códigos thogi a través de Honja — es ne da t'ot'e ya thuhuu archivo salida, nja'bu da da 'ñets'i valores {toLocales} soporta ár proveedor seleccionado."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Entradas requeridas",
 			"caption": "Entradas requeridas",
 			"items": {
-				"sourceLocale": "Lugar fuente (nt'udi, {en}) utilizado pa tingigi mbo archivos recursos komongu ar {sourceGlob}. 'Nehe reenviado ma Translator komongu ar {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator clave suscripción. Thogi ja {secrets}",
-				"endpoint": "URL ar punto final ar traductor, 'nar nt'udi, {endpointUrl}."
+				"sourceLocale": "Lugar fuente (nt'udi, {en}) utilizado pa tingigi mbo archivos recursos komongu ar {sourceGlob}. 'Nehe reenviado ar proveedor komongu ar {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Selección proveedores & credenciales",
+			"caption": "Selección ar proveedor ne credenciales ya proveedor",
+			"intro": "Da 'ñets'i 'nar proveedor ya run ko {provider}. Suministre ho̲ntho ya credenciales ar proveedor seleccionado — consulte guía {providersLink} pa ar configuración nxo̲ge.",
+			"items": {
+				"provider": "Proveedor traducción: {azure} (predeterminado), {aws} wa {google}. Ho̲ntho 'nar proveedor ar gi japu̲'be̲fi ya llamada ya nt'ot'e.",
+				"subscriptionKey": "Azure AI Translator clave suscripción. Mahyoni pa {azure} Thogi ja {secrets}",
+				"endpoint": "URL endpoint Azure Translator, {endpointUrl}. Mahyoni pa {azure}",
+				"awsAccessKeyId": "ID clave nthogi AWS. Opcional — omitir (ko {awsSecretAccessKey}) pa utilizar ar cadena credenciales predeterminada AWS yá OIDC. Thogi ja {secrets}",
+				"awsSecretAccessKey": "Clave nthogi njot'i njot'i AWS. Da suministrar ar junto {awsAccessKeyId}. Thogi ja {secrets}",
+				"awsSessionToken": "Token sesión AWS opcional pa credenciales tse̲t'i. Thogi ja {secrets}",
+				"awsRegion": "Hnini AWS pa hontho Translate (nt'udi, {regionExample}). Mahyoni pa {aws} menos da {awsRegionEnv} 'bu̲i establecido jar nt'uni mbo jar ximha̲i.",
+				"googleApiKey": "Google Cloud API clave. Proporciona nuna ar {googleCredentials} pa {google}. Thogi ja ya {secrets}",
+				"googleCredentials": "Google Cloud nt'ot'e nu nu'bu̲ komongu 'nar cadena JSON. Proporciona nuna ar {googleApiKey} pa {google}. Thogi ja ya {secrets}",
+				"googleProjectId": "ID ar 'be̲fi Google Cloud opcional. Nu'bu̲ da nthe̲hu̲ 'ra infiere ar credencial hontho — nu."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Entradas petición traductor",
-			"intro": "Nuya 'me̲ni Hmunts'i jar Azure AI Translator v3 parámetros consulta. Kadu 'na ar opcional; ya defecto ar Traductor da t'uni nu'bu̲ ar desajusta.",
-			"caption": "Entradas petición traductor",
+			"heading": "Entradas solicitudes Azure Translator",
+			"intro": "Nuya 'me̲ni Hmunts'i jar Azure AI Translator v3 parámetros consulta ne da t'uni jar proveedor ar Azure. textType ne profanityAction 'nehe gi 'bu̲hu̲ mapeados ma AWS yá Google ho nuna ar dängo 'nar equivalente (ga guía proveedores); ar resto ya ho̲ntho Azure. Kadu 'na ar opcional; ya defecto ar Traductor da t'uni nu'bu̲ ar desajusta.",
+			"caption": "Entradas solicitudes Azure Translator",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob. Reenviado komongu {categoryQuery}.",
 				"textType": "{plain} wa {html} Utilice {html} ho̲ntho nu'bu̲ yá valores recursos ya fragmentos HTML reales.",

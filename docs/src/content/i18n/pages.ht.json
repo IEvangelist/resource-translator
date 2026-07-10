@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Tradiktè Resous",
-		"description": "Tradiktè Resous ouvè demann rale tradui machin pou dosye resous ou yo nan nenpòt repo, nan nenpòt fòma — patrone pa Azure AI Translator.",
+		"description": "Resource Translator louvri demann rale tradui machin pou dosye resous ou yo nan nenpòt repo, nan nenpòt fòma — patrone pa Azure AI Translator, AWS Translate, oswa Google Cloud Tradiksyon",
 		"socialTitle": "Resource Translator — tradui dosye resous otomatikman",
-		"badge": "v3.0 — Node 24, repo config, glossary, sèk kouri",
+		"badge": "v3.0 — Azure, AWS & Google Providers, Node 24, repo config",
 		"headlinePrefix": "Lokalize repo ou sou",
 		"headlineAccent": "chak komèt",
-		"lede": "Tradiktè Resous louvri demann rale tradui machin pou dosye resous ou lè l sèvi avèk Azure AI tradiktè via SDK ofisyèl la - pa gen okenn sèvis siplemantè, jis yon workflow.",
+		"lede": "Tradiktè Resous ouvè demann rale tradui machin pou dosye resous ou lè l sèvi avèk Azure, AWS, oswa Google - yon sèl aksyon inifye, yon sèl founisè pou chak kouri, SDKs ofisyèl anba kapo a.",
 		"primaryCta": "Jwenn te kòmanse",
 		"secondaryCta": "Star sou GitHub",
 		"supports": "Sipò yo",
 		"builtForShipping": "Bati pou anbake",
 		"workflowTitle": "Tradiksyon kòm yon workflow, pa yon travay.",
-		"workflowBody": "Drop aksyon an nan CI ki deja egziste ou, lonje dwèt li nan Azure AI Translator, epi kite repo ou pale chak lang ou sib.",
+		"workflowBody": "Drop aksyon an nan CI ki deja egziste ou, pwen li nan Azure, AWS, oswa Google, epi kite repo ou pale chak lang ou vize.",
 		"stats": {
 			"audit": "0 npm-kontwòl kontab pwoblèm",
-			"tests": "150 tès",
+			"tests": "240+ tès",
 			"node": "Nœud 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} ak plas {hasNewTranslations} dirèkteman nan kreye-rale demann"
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Bati sou {azureSdk} + {corePipeline} — otomatikman retries sou {statusCodes}, pa gen men woule HTTP. {esbuild}-pake, odit pwòp"
+				"title": "Azure, AWS & Google",
+				"body": "Chwazi yon sèl founisè pou chak kouri. Chak se kondwi pa SDK ofisyèl li yo ({azureSdk}, {awsSdk}, {googleSdk}) ak otomatikman retries sou {statusCodes} — pa gen men-woule HTTP. {esbuild}-pake, odit pwòp"
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Pare yo lokalize sou pilòt otomatik?",
-			"body": "Yon sèl Azure AI tradiktè kle, yon sèl dosye workflow. Resource Translator okipe rès la.",
+			"body": "Yon sèl kle founisè - Azure, AWS, oswa Google - ak yon sèl dosye workflow. Resource Translator okipe rès la.",
 			"button": "Jwenn te kòmanse"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Pwochen etap yo",
 			"configuration": "Konfigirasyon defo-nivo repo ak {configPath}",
 			"recipes": "Gade resèt pou monorepos, glosè koutim, ak kategori tradiktè Custom"
+		}
+	},
+	"providers": {
+		"title": "Founisè tradiksyon yo",
+		"eyebrow": "Referans",
+		"lede": "Chwazi yon founisè tradiksyon pou chak kouri — Azure AI Translator, AWS Translate, oswa Google Cloud Translation — dèyè yon sèl sifas API inifye. Tradiktè a konpòte yo menm jan kèlkeswa founisè a; Se sèlman kalifikasyon yo diferan.",
+		"backwardCompatible": "Konplètman bak konpatib: {provider} default {azure}, se konsa ki deja egziste Azure workflows kontinye ap travay san chanje - pa gen okenn modifikasyon obligatwa.",
+		"selecting": {
+			"title": "Chwazi yon founisè",
+			"body": "Mete opinyon an {provider} {azure} (default), {aws} oswa {google}, Lè sa a, bay kalifikasyon founisè sa a. Se sèlman yon sèl founisè yo itilize pou chak apèl aksyon; aksyon an detèminatif delege nan matche SDK la dèyè faktori a."
+		},
+		"comparison": {
+			"title": "Konparezon founisè",
+			"caption": "Konparezon founisè tradiksyon",
+			"columns": {
+				"provider": "Founisè a",
+				"value": "Valè founisè",
+				"sdk": "SDK",
+				"credentials": "Kalifikasyon yo"
+			},
+			"azure": {
+				"name": "Azure AI tradiktè",
+				"value": "Azure (default)",
+				"credentials": "abònmanKey, fen, rejyon (si ou vle)"
+			},
+			"aws": {
+				"name": "AWS Tradui",
+				"value": "AWS",
+				"credentials": "OIDC / chèn default, oswa awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud Tradiksyon",
+				"value": "google",
+				"credentials": "googleApiKey OR googleCredentials (sèvis-kont JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Founisè a default. Pwovizyon yon resous Azure AI Translator epi pase {subscriptionKey}, {endpoint}, ak opsyonèlman {region}. Sa a se menm konfigirasyon ki deja egziste workflows itilize."
+		},
+		"aws": {
+			"title": "AWS Tradui",
+			"body": "Sèvi ak {sdk} Prefere OIDC via {configureAwsCredentials} konsa pa gen sekrè ki viv lontan ki estoke - aksyon an li chèn kalifikasyon AWS SDK default. Altènativman, pase {awsAccessKeyId} ak {awsSecretAccessKey} ekspresite. Yon rejyon toujou obligatwa, via {awsRegion} oswa varyab anviwònman an {awsRegionEnv}.",
+			"oidcTitle": "OIDC (rekòmande)",
+			"keysNote": "Pou itilize kle estatik olye pou yo OIDC, lage etap la {configureAwsCredentials} epi pase {awsAccessKeyId} / {awsSecretAccessKey} (via {secrets}) plis {awsRegion}."
+		},
+		"google": {
+			"title": "Google Cloud Tradiksyon",
+			"body": "Sèvi ak {sdk} (v2) Otantifye ak swa yon kle API ({googleApiKey}) oswa yon sèvis-kont JSON kalifikasyon ({googleCredentials}). Pwovizyon pou egzakteman yon sèl; Yon {googleProjectId} si ou vle dedwi soti nan kalifikasyon an lè omite."
+		},
+		"mapping": {
+			"title": "Entansyon espesifyan kat",
+			"body": "Espesifikasyon founisè espesifik yo kat kote yon ekivalan egziste. Tout lòt bagay tonbe tounen nan défauts sansib pou konpòtman rete konsistan.",
+			"caption": "Entansyon espesifikasyon kat atravè founisè yo",
+			"columns": {
+				"input": "Antre",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Sipòte",
+			"ignored": "Inyore",
+			"rows": {
+				"textType": {
+					"azure": "textType (plenn / html)",
+					"aws": "Inyore (pa gen okenn baskile)",
+					"google": "fòma (tèks / html)"
+				},
+				"profanityAction": {
+					"azure": "Sipò konplè",
+					"aws": "Ki make / Efase → mask",
+					"google": "Inyore"
+				},
+				"categoryId": {
+					"azure": "Tradiktè Custom",
+					"aws": "Inyore",
+					"google": "Inyore"
+				},
+				"allowFallback": {
+					"azure": "Sipòte",
+					"aws": "Inyore",
+					"google": "Inyore"
+				}
+			}
+		},
+		"locales": {
+			"title": "Lokal kòd diferan pou chak founisè",
+			"body": "Chak founisè itilize pwòp kòd lokal li yo (pou egzanp Chinwa senplifye se {azureCode} sou Azure, {awsCode} sou AWS, ak {googleCode} sou Google). Kòd pase nan jan se ak kondwi non dosye pèsistans yap ogmante jiska yo, se konsa chwazi valè {toLocales} ou chwazi founisè sipòte."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Entrain obligatwa yo",
 			"caption": "Entrain obligatwa yo",
 			"items": {
-				"sourceLocale": "Sous lokal (egzanp {en}) itilize pou jwenn dosye resous tankou {sourceGlob}. Tou voye nan Translator kòm {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator abònman kle Pase nan {secrets}",
-				"endpoint": "URL ekstremite tradiktè, egzanp {endpointUrl}."
+				"sourceLocale": "Sous lokal (egzanp {en}) itilize pou jwenn dosye resous tankou {sourceGlob}. Tou voye bay founisè a kòm {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Seleksyon founisè & kalifikasyon",
+			"caption": "Seleksyon founisè ak kalifikasyon pou chak machann",
+			"intro": "Chwazi yon sèl founisè pou chak kouri ak {provider}. Founi sèlman kalifikasyon founisè a chwazi - gade gid {providersLink} pou konfigirasyon konplè.",
+			"items": {
+				"provider": "Founisè tradiksyon: {azure} (default), {aws} oswa {google}. Se sèlman yon sèl founisè itilize pou chak apèl aksyon.",
+				"subscriptionKey": "Azure AI Translator abònman kle Obligatwa pou {azure} Pase nan {secrets}",
+				"endpoint": "URL ekstremite Azure Translator, egzanp {endpointUrl}. Obligatwa pou {azure}",
+				"awsAccessKeyId": "AWS aksè kle idantite Si ou vle — omitan (ak {awsSecretAccessKey}) pou itilize AWS default kalifikasyon chèn / OIDC. Pase nan {secrets}",
+				"awsSecretAccessKey": "AWS kle aksè sekrè Dwe apwovizyone ansanm ak {awsAccessKeyId}. Pase nan {secrets}",
+				"awsSessionToken": "Si ou vle AWS sesyon siy pou kalifikasyon tanporè. Pase nan {secrets}",
+				"awsRegion": "Rejyon AWS pou sèvis la Tradwi (egzanp {regionExample}). Obligatwa pou {aws} sof si {awsRegionEnv} mete nan anviwònman an.",
+				"googleApiKey": "Google Cloud API kle Bay sa a OSWA {googleCredentials} pou {google}. Pase nan {secrets}",
+				"googleCredentials": "Google Cloud sèvis-kont kle kòm JSON string. Bay sa a OSWA {googleApiKey} pou {google}. Pase nan {secrets}",
+				"googleProjectId": "Si ou vle Google Cloud pwojè ID Anjeneral dedwi soti nan kalifikasyon an sèvis-kont."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Tradiktè demann opinyon",
-			"intro": "Sa yo kat dirèkteman nan paramèt rechèch Azure AI Translator v3. Tout moun se si ou vle; defo Translator aplike lè unset.",
-			"caption": "Tradiktè demann opinyon",
+			"heading": "Azure Translator mande entrain",
+			"intro": "Sa yo kat jeyografik dirèkteman nan paramèt rechèch Azure AI Translator v3 epi aplike nan founisè a Azure. textType ak profanityAction yo tou trase nan AWS / Google kote yon ekivalan egziste (gade gid founisè a); rès la se Azure sèlman. Tout moun se si ou vle; defo Translator aplike lè unset.",
+			"caption": "Azure Translator mande entrain",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} kategori — endistri / domèn / bouton ton Voye kòm {categoryQuery}.",
 				"textType": "{plain} oswa {html} Sèvi ak {html} sèlman lè valè resous ou yo se fragman HTML reyèl.",

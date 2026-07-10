@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "ریسورس ٹرانسلیٹر",
-		"description": "Resource Translator آپ کی ریسورس فائلز کے لیے کسی بھی ریپو، کسی بھی فارمیٹ میں مشین ٹرانسلیٹڈ پل ریکویسٹ کھولتا ہے — Azure AI Translator کے ذریعے چلایا جاتا ہے۔",
+		"description": "ریسورس ٹرانسلیٹر آپ کی ریسورس فائلز کے لیے کسی بھی ریپو، کسی بھی فارمیٹ میں مشین ٹرانسلیٹڈ پل ریکویسٹ کھولتا ہے — جو Azure AI Translator، AWS Translate، یا Google Cloud Translation سے چلتا ہے۔",
 		"socialTitle": "ریسورس ٹرانسلیٹر — ریسورس فائلز کو خودکار طور پر ترجمہ کرنا",
-		"badge": "v3.0 — نوڈ 24، ریپو کنفیگریشن، گلوسری، ڈرائی رن",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "اپنے ریپو کو لوکلائز کریں",
 		"headlineAccent": "ہر کمٹ۔",
-		"lede": "Resource Translator Azure AI Translator کے ذریعے آپ کی ریسورس فائلز کے لیے مشین ٹرانسلیٹڈ پل ریکویسٹ آفیشل SDK کے ذریعے کھولتا ہے — کوئی اضافی سروسز نہیں، صرف ایک ورک فلو ہوتا ہے۔",
+		"lede": "ریسورس ٹرانسلیٹر آپ کی ریسورس فائلز کے لیے مشین ٹرانسلیٹڈ پل ریکویسٹ کھولتا ہے جو Azure، AWS، یا گوگل کے ذریعے — ایک متحدہ ایکشن، ہر رن میں ایک فراہم کنندہ، اور سرکاری SDKs کے اندر۔",
 		"primaryCta": "شروع کریں",
 		"secondaryCta": "اسٹار آن گٹ ہب",
 		"supports": "سپورٹس",
 		"builtForShipping": "جہاز رانی کے لیے بنایا گیا",
 		"workflowTitle": "ترجمہ ایک ورک فلو کے طور پر، بوجھ نہیں۔",
-		"workflowBody": "ایکشن کو اپنے موجودہ CI میں ڈالیں، اسے Azure AI Translator کی طرف موڑیں، اور اپنے ریپو کو ہر زبان میں بولنے دیں جسے آپ ہدف بنا رہے ہیں۔",
+		"workflowBody": "ایکشن کو اپنے موجودہ CI میں ڈالیں، اسے Azure، AWS، یا Google کی طرف موڑ دیں، اور اپنے ریپو کو ہر وہ زبان بولنے دیں جو آپ ہدف بناتے ہیں۔",
 		"stats": {
 			"audit": "0 npm آڈٹ کے مسائل",
-			"tests": "150 ٹیسٹ",
+			"tests": "240+ ٹیسٹ",
 			"node": "نوڈ 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · گوگل"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}، {summaryDetails}، اور {hasNewTranslations} براہ راست create-pull-request میں فٹ ہوتے ہیں۔"
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "یہ {azureSdk} + {corePipeline} پر مبنی ہے — {statusCodes} پر خودکار دوبارہ کوششیں، کوئی ہاتھ سے بنایا گیا HTTP نہیں۔ {esbuild} بنڈل، آڈٹ کی طرح صاف۔"
+				"title": "Azure, AWS اور Google",
+				"body": "ہر رن میں ایک پرووائیڈر منتخب کریں۔ ہر ایک اپنے سرکاری SDK ({azureSdk}، {awsSdk}، {googleSdk}) کے ذریعے چلایا جاتا ہے جس میں {statusCodes} پر خودکار دوبارہ کوششیں ہوتی ہیں — کوئی ہاتھ سے چلنے والا HTTP نہیں۔ {esbuild} بنڈلڈ، آڈٹ کلین۔"
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "کیا آپ خودکار طریقے سے لوکلائزیشن کرنے کے لیے تیار ہیں؟",
-			"body": "ایک Azure AI Translator key، ایک ورک فلو فائل۔ ریسورس ٹرانسلیٹر باقی کام سنبھالتا ہے۔",
+			"body": "ایک پرووائیڈر کی — Azure، AWS، یا Google — اور ایک ورک فلو فائل۔ ریسورس ٹرانسلیٹر باقی کام سنبھالتا ہے۔",
 			"button": "شروع کریں"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "اگلے اقدامات",
 			"configuration": "ریپو لیول ڈیفالٹس کو {configPath} کے ساتھ کنفیگر کریں۔",
 			"recipes": "مونوریپوز، کسٹم گلاسریز اور کسٹم ٹرانسلیٹر کیٹیگریز کے لیے ترکیبیں دیکھیں۔"
+		}
+	},
+	"providers": {
+		"title": "ترجمہ فراہم کرنے والے",
+		"eyebrow": "حوالہ",
+		"lede": "ہر رن کے لیے ایک ترجمہ فراہم کنندہ منتخب کریں — Azure AI Translator، AWS Translate، یا Google Cloud Translation — ایک متحد، API سطح کے پیچھے میں۔ مترجم فراہم کنندہ سے قطع نظر ایک جیسا برتاؤ کرتا ہے؛ صرف اسناد مختلف ہیں۔",
+		"backwardCompatible": "مکمل طور پر بیک ورڈ کمپٹیبل: {provider} ڈیفالٹ {azure} پر ہے، اس لیے موجودہ Azure ورک فلو بغیر تبدیلی کے کام کرتے رہتے ہیں — کسی ترمیم کی ضرورت نہیں۔",
+		"selecting": {
+			"title": "فراہم کنندہ کا انتخاب",
+			"body": "{provider} ان پٹ کو {azure} (ڈیفالٹ)، {aws}، یا {google} پر سیٹ کریں، پھر اس فراہم کنندہ کی اسناد فراہم کریں۔ ہر ایکشن کال کے لیے صرف ایک فراہم کنندہ استعمال ہوتا ہے؛ یہ عمل ایک فیکٹری کے پیچھے میچنگ SDK کو متعین طور پر تفویض کرتا ہے۔"
+		},
+		"comparison": {
+			"title": "فراہم کنندگان کا موازنہ",
+			"caption": "ترجمہ فراہم کنندہ کا موازنہ",
+			"columns": {
+				"provider": "فراہم کنندہ",
+				"value": "فراہم کنندہ کی قدر",
+				"sdk": "SDK",
+				"credentials": "اسناد"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (ڈیفالٹ)",
+				"credentials": "subscriptionKey, endpoint, region (اختیاری)"
+			},
+			"aws": {
+				"name": "AWS ترجمہ",
+				"value": "AWS",
+				"credentials": "OIDC / ڈیفالٹ چین، یا awsAccessKeyId + awsSecretAccessKey؛ awsRegion"
+			},
+			"google": {
+				"name": "گوگل کلاؤڈ ترجمہ",
+				"value": "گوگل",
+				"credentials": "googleApiKey یا googleCredentials (service-account JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "ڈیفالٹ فراہم کنندہ۔ Azure AI Translator ریسورس فراہم کریں اور {subscriptionKey}، {endpoint}، اور اختیاری طور پر {region} پاس کریں۔ یہ وہی کنفیگریشن ہے جو موجودہ ورک فلو پہلے ہی استعمال کرتے ہیں۔"
+		},
+		"aws": {
+			"title": "AWS ترجمہ",
+			"body": "استعمال {sdk} ہے۔ ترجیح دی جاتی ہے OIDC کے ذریعے {configureAwsCredentials} تاکہ کوئی طویل مدتی راز محفوظ نہ ہوں — عمل AWS SDK ڈیفالٹ کریڈینشل چین کو پڑھتا ہے۔ متبادل طور پر، {awsAccessKeyId} پاس کریں اور واضح طور پر {awsSecretAccessKey} کریں۔ ایک علاقہ ہمیشہ ضروری ہوتا ہے، {awsRegion} یا {awsRegionEnv} ماحول کے متغیر کے ذریعے۔",
+			"oidcTitle": "OIDC (تجویز شدہ)",
+			"keysNote": "OIDC کی بجائے سٹیٹک کیز استعمال کرنے کے لیے، {configureAwsCredentials} اسٹیپ چھوڑیں اور {awsAccessKeyId} / {awsSecretAccessKey} ({secrets} کے ذریعے) اور {awsRegion} پاس کریں۔"
+		},
+		"google": {
+			"title": "گوگل کلاؤڈ ترجمہ",
+			"body": "یہ {sdk} (v2) استعمال کرتا ہے۔ یا تو API کی ({googleApiKey}) یا سروس-اکاؤنٹ JSON کریڈینشل ({googleCredentials}) سے تصدیق کریں۔ بالکل ایک فراہم کریں؛ ایک اختیاری {googleProjectId} کریڈینشیل سے اخذ کیا جاتا ہے جب اسے چھوڑ دیا جائے۔"
+		},
+		"mapping": {
+			"title": "انٹینٹ-اسپیسفائر میپنگ",
+			"body": "فراہم کنندہ کے مخصوص اسپیسفائرز وہاں میپ کیے جاتے ہیں جہاں اس کا متبادل موجود ہو۔ باقی سب کچھ معقول ڈیفالٹ پر واپس آ جاتا ہے تاکہ رویہ مستقل رہے۔",
+			"caption": "فراہم کنندگان کے درمیان انٹینٹ اسپیسفائر میپنگ",
+			"columns": {
+				"input": "ان پٹ",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "گوگل"
+			},
+			"supported": "حمایت یافتہ",
+			"ignored": "نظر انداز کیا گیا",
+			"rows": {
+				"textType": {
+					"azure": "textType (سادہ / html)",
+					"aws": "نظر انداز (کوئی ٹوگل نہیں)",
+					"google": "فارمیٹ (متن / HTML)"
+				},
+				"profanityAction": {
+					"azure": "مکمل حمایت",
+					"aws": "نشان زد / حذف شدہ ماسکنگ →",
+					"google": "نظر انداز کیا گیا"
+				},
+				"categoryId": {
+					"azure": "کسٹم ٹرانسلیٹر",
+					"aws": "نظر انداز کیا گیا",
+					"google": "نظر انداز کیا گیا"
+				},
+				"allowFallback": {
+					"azure": "حمایت یافتہ",
+					"aws": "نظر انداز کیا گیا",
+					"google": "نظر انداز کیا گیا"
+				}
+			}
+		},
+		"locales": {
+			"title": "لوکل کوڈز ہر فراہم کنندہ کے لحاظ سے مختلف ہوتے ہیں",
+			"body": "ہر فراہم کنندہ اپنے مقامی کوڈز استعمال کرتا ہے (مثلا Simplified Chinese Azure پر {azureCode} ہے، AWS پر {awsCode}، اور گوگل پر {googleCode} ہے)۔ کوڈز ویسے ہی گزرتے ہیں جیسے ہیں اور آؤٹ پٹ فائل کے نام چلاتا ہے، اس لیے منتخب کریں {toLocales} ویلیوز آپ کے منتخب کردہ فراہم کنندہ کی حمایت کریں۔"
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "ضروری ان پٹس",
 			"caption": "ضروری ان پٹس",
 			"items": {
-				"sourceLocale": "سورس لوکل (مثلا {en}) جو ریسورس فائلز جیسے {sourceGlob} تلاش کرنے کے لیے استعمال ہوتا ہے۔ ٹرانسلیٹر کو بھی {fromLocale} کے طور پر فارورڈ کیا گیا۔",
-				"subscriptionKey": "Azure AI Translator subscription key. {secrets} کے ذریعے گزریں۔",
-				"endpoint": "ٹرانسلیٹر اینڈ پوائنٹ URL، مثلا {endpointUrl}"
+				"sourceLocale": "سورس لوکل (مثلا {en}) جو ریسورس فائلز جیسے {sourceGlob} تلاش کرنے کے لیے استعمال ہوتا ہے۔ یہ بھی فراہم کنندہ کو {fromLocale} کے طور پر فارورڈ کر دیا گیا۔"
+			}
+		},
+		"providerInputs": {
+			"heading": "فراہم کنندہ کا انتخاب اور اسناد",
+			"caption": "فراہم کنندہ کا انتخاب اور ہر وینڈر کی اسناد",
+			"intro": "ہر رن کے ساتھ ایک فراہم کنندہ منتخب کریں {provider}۔ صرف منتخب کردہ فراہم کنندہ کی اسناد فراہم کریں — مکمل سیٹ اپ کے لیے {providersLink} گائیڈ دیکھیں۔",
+			"items": {
+				"provider": "ترجمہ فراہم کنندہ: {azure} (ڈیفالٹ)، {aws}، یا {google}۔ ہر ایکشن کال کے لیے صرف ایک فراہم کنندہ استعمال ہوتا ہے۔",
+				"subscriptionKey": "Azure AI Translator subscription key. {azure} کے لیے ضروری ہے۔ {secrets} راستے سے گزریں۔",
+				"endpoint": "Azure Translator endpoint URL, مثلا {endpointUrl}. {azure} کے لیے ضروری۔",
+				"awsAccessKeyId": "AWS ایکسیس کی آئی ڈی۔ اختیاری — AWS ڈیفالٹ کریڈینشل چین / OIDC استعمال کرنے کے لیے ({awsSecretAccessKey} کے ساتھ) کو چھوڑ دیں۔ {secrets} راستے سے گزریں۔",
+				"awsSecretAccessKey": "AWS خفیہ رسائی کی چابی۔ {awsAccessKeyId} کے ساتھ فراہم کرنا ضروری ہے۔ {secrets} راستے سے گزریں۔",
+				"awsSessionToken": "عارضی اسناد کے لیے اختیاری AWS سیشن ٹوکن۔ {secrets} کے ذریعے گزریں۔",
+				"awsRegion": "AWS ریجن برائے Translate سروس (مثلا {regionExample})۔ {aws} کے لیے ضروری ہے جب تک {awsRegionEnv} ماحول میں سیٹ نہ ہو۔",
+				"googleApiKey": "گوگل کلاؤڈ API کی چابی۔ یہ آپریشن {googleCredentials} {google} کے لیے فراہم کریں۔ {secrets} کے ذریعے گزریں۔",
+				"googleCredentials": "گوگل کلاؤڈ سروس اکاؤنٹ کی بطور JSON سٹرنگ۔ یہ آپریشن {googleApiKey} {google} کے لیے فراہم کریں۔ {secrets} کے ذریعے گزریں۔",
+				"googleProjectId": "اختیاری گوگل کلاؤڈ پروجیکٹ آئی ڈی۔ عام طور پر سروس اکاؤنٹ کی کریڈینشیل سے اندازہ لگایا جاتا ہے۔"
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "ٹرانسلیٹر ریکویسٹ ان پٹس",
-			"intro": "یہ براہ راست Azure AI Translator v3 کوئری پیرامیٹرز پر میپ ہوتے ہیں۔ ہر ایک اختیاری ہے؛ ٹرانسلیٹر ڈیفالٹس ان سیٹ ہونے پر لاگو ہوتے ہیں۔",
-			"caption": "ٹرانسلیٹر ریکویسٹ ان پٹس",
+			"heading": "Azure Translator request inputs",
+			"intro": "یہ براہ راست Azure AI Translator v3 کوئری پیرامیٹرز پر میپ ہوتے ہیں اور Azure فراہم کنندہ پر لاگو ہوتے ہیں۔ textType اور profanityAction کو AWS/Google پر بھی میپ کیا جاتا ہے جہاں اس کا متبادل موجود ہے (فراہم کنندگان کی رہنمائی دیکھیں)؛ باقی صرف Azure کے لیے ہیں۔ ہر ایک اختیاری ہے؛ ٹرانسلیٹر ڈیفالٹس ان سیٹ ہونے پر لاگو ہوتے ہیں۔",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} کیٹیگری — صنعت/ڈومین/ٹون نوب۔ {categoryQuery} کے طور پر فارورڈ کیا گیا۔",
 				"textType": "{plain} یا {html}۔ {html} صرف تب استعمال کریں جب آپ کے وسائل کی ویلیوز حقیقی HTML فریگمنٹس ہوں۔",

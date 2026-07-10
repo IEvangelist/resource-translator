@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Ressursitõlkija",
-		"description": "Resource Translator avab masintõlgitud tõmbetaotlused sinu ressursifailide jaoks igas repos, igas formaadis — Azure AI Translatori toel.",
+		"description": "Resource Translator avab masintõlgitud tõmbetaotlused sinu ressursifailide jaoks mis tahes reposit, mis tahes formaadis — toetudes Azure AI Translatorile, AWS Translate'ile või Google Cloud Translationile.",
 		"socialTitle": "Ressursitõlkija — tõlgi ressursifailid automaatselt",
-		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Lokaliseeri oma repositsioon",
 		"headlineAccent": "Iga kohustus.",
-		"lede": "Resource Translator avab masintõlkitud pull request'id sinu ressursifailide jaoks Azure AI Translatori kaudu ametliku SDK kaudu — lisateenuseid pole, lihtsalt töövoog.",
+		"lede": "Resource Translator avab masintõlgitud pull request'id sinu ressursifailide jaoks Azure'i, AWS-i või Google'i abil — üks ühtne tegevus, üks teenusepakkuja iga jooksu kohta, ametlikud SDK-d kapoti all.",
 		"primaryCta": "Alusta",
 		"secondaryCta": "Star GitHubis",
 		"supports": "Toetused",
 		"builtForShipping": "Ehitatud laevanduseks",
 		"workflowTitle": "Tõlkimine on töövoog, mitte kohustus.",
-		"workflowBody": "Pane tegevus oma olemasolevasse CI-sse, suuna see Azure AI Translatorile ja lase oma repositoodil rääkida kõiki sihtkeeli.",
+		"workflowBody": "Pane tegevus olemasolevasse CI-sse, suuna see Azure'i, AWS-i või Google'i poole ja lase oma repositsioonil rääkida kõiki sihtkeeli.",
 		"stats": {
 			"audit": "0 NPM-auditi probleeme",
-			"tests": "150 testi",
+			"tests": "240+ testi",
 			"node": "Sõlm 20 / 22 / 24",
-			"sdk": "Ametlik Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} ja {hasNewTranslations} sobituvad otse create-pull-request režiimi."
 			},
 			"sdk": {
-				"title": "Ametlik Azure SDK",
-				"body": "Ehitatud {azureSdk} + {corePipeline} peale — automaatsed korduskatsed {statusCodes}-l, ilma käsitsi rullitud HTTP-ta. {esbuild}-komplekt, audit-puhas."
+				"title": "Azure, AWS & Google",
+				"body": "Vali iga jooksu kohta üks teenusepakkuja. Igaüht juhib ametlik SDK ({azureSdk}, {awsSdk}, {googleSdk}) ning {statusCodes} puhul tehakse automaatseid korduskatseid — ilma käsitsi rullitud HTTP-ta. {esbuild} komplekt, audit-puhas."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Kas oled valmis autopiloodil lokaliseerimiseks?",
-			"body": "Üks Azure AI tõlkija võti, üks töövoo fail. Ressursitõlkija tegeleb ülejäänuga.",
+			"body": "Üks teenusepakkuja võti — Azure, AWS või Google — ja üks töövoo fail. Ressursitõlkija tegeleb ülejäänuga.",
 			"button": "Alusta"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Järgmised sammud",
 			"configuration": "Seadista repo-taseme vaikeseaded {configPath}.",
 			"recipes": "Vaata retsepte monorepode, kohandatud sõnastuse ja kohandatud tõlkijate kategooriate jaoks."
+		}
+	},
+	"providers": {
+		"title": "Tõlketeenuse pakkujad",
+		"eyebrow": "Viide",
+		"lede": "Vali iga jooksu kohta üks tõlkepakkuja — Azure AI Translator, AWS Translate või Google Cloud Translation — ühe, ühtse API pinna taga. Tõlkija käitub identselt sõltumata teenusepakkujast; ainult kvalifikatsioonid erinevad.",
+		"backwardCompatible": "Täielikult tagurpidi ühilduv: {provider} vaikimisi kasutab {azure}, nii et olemasolevad Azure'i töövood töötavad muutumatult — muudatusi pole vaja.",
+		"selecting": {
+			"title": "Teenusepakkuja valimine",
+			"body": "Määra {provider} sisendiks {azure} (vaikimisi), {aws} või {google} ning sisesta selle pakkuja mandaadid. Iga tegevuskõne kohta kasutatakse ainult ühte teenusepakkujat; tegevus delegeerib deterministlikult sobivale SDK-le tehase taga."
+		},
+		"comparison": {
+			"title": "Pakkujate võrdlus",
+			"caption": "Tõlketeenuse pakkuja võrdlus",
+			"columns": {
+				"provider": "Teenusepakkuja",
+				"value": "Teenusepakkuja väärtus",
+				"sdk": "SDK",
+				"credentials": "Kvalifikatsioonid"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (vaikimisi)",
+				"credentials": "subscriptionKey, endpoint, region (valikuline)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "AWS",
+				"credentials": "OIDC / vaikimisi ahel või awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud Translation",
+				"value": "Google",
+				"credentials": "googleApiKey VÕI googleCredentials (teenusekonto JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Vaikimisi teenusepakkuja. Loo Azure AI Translator ressurss ja edasta {subscriptionKey}, {endpoint} ja valikuliselt {region}. See on sama konfiguratsioon, mida olemasolevad töövood juba kasutavad."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Kasutab {sdk}. Eelista OIDC-d {configureAwsCredentials} kaudu, et pikaajalisi saladusi ei salvestataks — tegevus loeb AWS SDK vaikimisi mandaadiahelat. Või siis tee {awsAccessKeyId} ja {awsSecretAccessKey} selgelt. Regioon on alati vajalik, kas {awsRegion} või {awsRegionEnv} keskkonnamuutuja kaudu.",
+			"oidcTitle": "OIDC (soovitatav)",
+			"keysNote": "Staatiliste klahvide kasutamiseks OIDC asemel jäta {configureAwsCredentials} samm välja ja anna {awsAccessKeyId} / {awsSecretAccessKey} ({secrets} kaudu) pluss {awsRegion}."
+		},
+		"google": {
+			"title": "Google Cloud Translation",
+			"body": "Kasutab {sdk} (v2). Auntimine kas API võtme ({googleApiKey}) või teenusekonto JSON mandaadiga ({googleCredentials}). Anna täpselt üks; Vabatahtlik {googleProjectId} tuletatakse kvalifikatsioonist, kui see välja jäetakse."
+		},
+		"mapping": {
+			"title": "Intent-specifier kaardistamine",
+			"body": "Teenusepakkujaspetsiifilised spetsifikaatorid kaardistatakse kohtades, kus eksisteerib ekvivalent. Kõik muu langeb mõistlike vaikimisi reegleid, et käitumine püsiks ühtlane.",
+			"caption": "Intent-specifier kaardistamine pakkujate vahel",
+			"columns": {
+				"input": "Sisend",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Toetatud",
+			"ignored": "Ignoreeritud",
+			"rows": {
+				"textType": {
+					"azure": "textType (tavaline / html)",
+					"aws": "Ignoreeritud (lülitit pole)",
+					"google": "Formaat (tekst / html)"
+				},
+				"profanityAction": {
+					"azure": "Täielik toetus",
+					"aws": "Märgistatud / kustutatud → maskeerimine",
+					"google": "Ignoreeritud"
+				},
+				"categoryId": {
+					"azure": "Kohandatud tõlkija",
+					"aws": "Ignoreeritud",
+					"google": "Ignoreeritud"
+				},
+				"allowFallback": {
+					"azure": "Toetatud",
+					"aws": "Ignoreeritud",
+					"google": "Ignoreeritud"
+				}
+			}
+		},
+		"locales": {
+			"title": "Kohalikud koodid erinevad teenusepakkujati",
+			"body": "Iga teenusepakkuja kasutab oma kohalikke koode (näiteks Simplified Chinese on Azure'is {azureCode}, AWS-is {awsCode} ja Google'is {googleCode}). Koodid läbivad nii nagu on ja juhivad väljundfailide nimesid, seega vali, {toLocales} väärtusi sinu valitud teenusepakkuja toetab."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Nõutud sisendid",
 			"caption": "Nõutud sisendid",
 			"items": {
-				"sourceLocale": "Allika asukoht (nt {en}) kasutati ressursifailide, näiteks {sourceGlob} leidmiseks. Samuti saadeti edasi Translatorile kui {fromLocale}.",
-				"subscriptionKey": "Azure AI Translatori tellimusvõti. Sõida läbi {secrets}.",
-				"endpoint": "Tõlkija lõpp-punkti URL, nt {endpointUrl}."
+				"sourceLocale": "Allika asukoht (nt {en}) kasutati ressursifailide, näiteks {sourceGlob} leidmiseks. Samuti edastati see teenusepakkujale kui {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Teenusepakkujate valik ja kvalifikatsioonid",
+			"caption": "Teenusepakkuja valik ja tarnijapõhised volitused",
+			"intro": "Vali iga jooksu kohta üks teenusepakkuja {provider}. Esita ainult valitud teenusepakkuja mandaadid — vaata {providersLink} juhendit täieliku seadistamise kohta.",
+			"items": {
+				"provider": "Tõlkepakkuja: {azure} (vaikimisi), {aws} või {google}. Iga tegevuskõne kohta kasutatakse ainult ühte teenusepakkujat.",
+				"subscriptionKey": "Azure AI Translatori tellimusvõti. Vajalik {azure}. Läbige {secrets}.",
+				"endpoint": "Azure Translatori lõpp-punkti URL, nt {endpointUrl}. Vajalik {azure}.",
+				"awsAccessKeyId": "AWS ligipääsuvõtme ID. Valikuline — jätta (koos {awsSecretAccessKey}) AWS vaikimisi mandaadiahela / OIDC kasutamata. Läbige {secrets}.",
+				"awsSecretAccessKey": "AWS salajase juurdepääsu võti. Tuleb tarnida koos {awsAccessKeyId}. Läbige {secrets}.",
+				"awsSessionToken": "Valikuline AWS sessioonitoken ajutiste mandaate jaoks. Sõida läbi {secrets}.",
+				"awsRegion": "AWS piirkond Translate-teenuse jaoks (nt {regionExample}). Vajalik {aws} jaoks, kui {awsRegionEnv} pole keskkonnas seatud.",
+				"googleApiKey": "Google Cloud API võti. Anna see {googleCredentials} {google} jaoks. Mine läbi {secrets}.",
+				"googleCredentials": "Google Cloud teenuse konto võti JSON-stringina. Anna see {googleApiKey} {google} jaoks. Mine läbi {secrets}.",
+				"googleProjectId": "Valikuline Google Cloud projekti ID. Tavaliselt tuletatakse see teenusekonto mandaadi põhjal."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Tõlkija päringu sisendid",
-			"intro": "Need kaardistuvad otse Azure AI Translator v3 päringuparameetritele. Igaüks neist on vabatahtlik; Translatori vaikeseaded kehtivad, kui seade on eemaldatud.",
-			"caption": "Tõlkija päringu sisendid",
+			"heading": "Azure Translator request inputs",
+			"intro": "Need kaardistuvad otse Azure AI Translator v3 päringuparameetritele ja rakenduvad Azure'i teenusepakkujale. textType ja profanityAction on samuti seotud AWS/Google'iga, kus eksisteerib ekvivalent (vt teenusepakkuja juhendit); ülejäänud on ainult Azure'i jaoks. Igaüks neist on vabatahtlik; Translatori vaikeseaded kehtivad, kui seade on eemaldatud.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} kategooria — tööstus/domeen/tooninupp. Saadetud {categoryQuery}.",
 				"textType": "{plain} või {html}. Kasuta {html} ainult siis, kui sinu ressursiväärtused on päris HTML-fragmendid.",

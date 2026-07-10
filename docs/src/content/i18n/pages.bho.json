@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "संसाधन अनुवादक",
-		"description": "संसाधन अनुवादक राउर संसाधन फाइल खातिर कवनो रेपो में, कवनो प्रारूप में — Azure AI Translator द्वारा संचालित मशीन से अनुवादित पुल अनुरोध खोलेला।",
+		"description": "संसाधन अनुवादक आपके संसाधन फाइल खातिर कवनो भी रेपो में, कवनो प्रारूप में — Azure AI Translator, AWS Translate, भा Google Cloud Translation द्वारा संचालित मशीन से अनुवादित पुल अनुरोध खोलेला।",
 		"socialTitle": "संसाधन अनुवादक — संसाधन फाइल के स्वचालित रूप से अनुवाद करीं",
-		"badge": "v3.0 — नोड 24, रेपो कॉन्फ़िगरेशन, शब्दावली, ड्राई रन",
+		"badge": "v3.0 — Azure, AWS and Google प्रदाता, नोड 24, रेपो कॉन्फिग",
 		"headlinePrefix": "अपना रेपो के लोकलाइज करीं",
 		"headlineAccent": "हर कमिट।",
-		"lede": "संसाधन अनुवादक आधिकारिक एसडीके के माध्यम से Azure AI Translator के उपयोग कs के राउर संसाधन फाइल खातिर मशीन-अनुवादित पुल अनुरोध खोलेला — कवनो अतिरिक्त सेवा ना, बस एगो वर्कफ़्लो।",
+		"lede": "संसाधन अनुवादक Azure, AWS, या Google के उपयोग कs के राउर संसाधन फाइल खातिर मशीन-अनुवादित पुल अनुरोध खोलेला — एगो एकीकृत कार्रवाई, प्रति रन एगो प्रदाता, हुड के नीचे आधिकारिक एसडीके।",
 		"primaryCta": "शुरू हो जाईं",
 		"secondaryCta": "GitHub पर स्टार",
 		"supports": "समर्थन करेला",
 		"builtForShipping": "शिपिंग खातिर बनावल गइल",
 		"workflowTitle": "अनुवाद एगो वर्कफ़्लो के रूप में, काम के रूप में ना.",
-		"workflowBody": "एक्शन के अपना मौजूदा CI में छोड़ दीं, एकरा के Azure AI Translator पs इंगित करीं, आ अपना रेपो के हर भाषा बोले दीं जवन रउआ लक्षित करत बानी।",
+		"workflowBody": "एक्शन के अपना मौजूदा CI में छोड़ दीं, ओकरा के Azure, AWS भा Google पर इंगित करीं आ अपना रेपो के हर ऊ भाषा बोले दीं जवन रउरा लक्षित करत बानी।",
 		"stats": {
 			"audit": "0 एनपीएम-ऑडिट मुद्दा",
-			"tests": "150 टेस्ट",
+			"tests": "240+ टेस्ट",
 			"node": "नोड 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · एडब्ल्यूएस · गूगल"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} एक्सएमएल",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} आ {hasNewTranslations} स्लॉट सीधे क्रिएट-पुल-रिक्वेस्ट में आ जाला।"
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "{azureSdk} + {corePipeline} पर बनल — {statusCodes} पर स्वचालित पुन: प्रयास करेला, कौनो हाथ से रोल्ड HTTP नइखे. {esbuild}-बंडल, ऑडिट-क्लीन."
+				"title": "Azure, AWS आ Google",
+				"body": "हर रन में एगो प्रदाता चुनीं. प्रत्येक आपन आधिकारिक SDK ({azureSdk}, {awsSdk}, {googleSdk}) द्वारा संचालित होला जवना में {statusCodes} पs स्वचालित पुनर्प्रयास होला — कवनो हाथ से लुढ़का HTTP नइखे। {esbuild}-बंडल, ऑडिट-क्लीन."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "ऑटोपायलट पर स्थानीयकरण करे खातिर तैयार बानी?",
-			"body": "One Azure AI Translator key, one workflow file. संसाधन अनुवादक बाकी काम संभालेला.",
+			"body": "एगो प्रदाता कुंजी — Azure, AWS, या Google — आउर एगो वर्कफ़्लो फ़ाइल. संसाधन अनुवादक बाकी काम संभालेला.",
 			"button": "शुरू हो जाईं"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "अगिला कदम",
 			"configuration": "{configPath} के साथे रेपो-लेवल डिफॉल्ट कॉन्फ़िगर करीं।",
 			"recipes": "मोनोरेपो, कस्टम शब्दावली आ कस्टम अनुवादक श्रेणी के रेसिपी देखीं."
+		}
+	},
+	"providers": {
+		"title": "अनुवाद प्रदाता",
+		"eyebrow": "संदर्भ",
+		"lede": "एकल, एकीकृत एपीआई सतह के पीछे हर रन में एगो अनुवाद प्रदाता चुनीं — Azure AI Translator, AWS Translate, चाहे Google Cloud Translation —। अनुवादक प्रदाता के परवाह कइले बिना समान व्यवहार करेला; खाली क्रेडेंशियल्स अलग बा.",
+		"backwardCompatible": "पूरा तरह से बैकवर्ड संगत: {provider} {azure} के डिफ़ॉल्ट बा, एही खातिर मौजूदा Azure वर्कफ़्लो अपरिवर्तित काम करत रहेला — कौनो संपादन के जरूरत नइखे।",
+		"selecting": {
+			"title": "प्रदाता के चयन कइल",
+			"body": "{provider} इनपुट के {azure} (डिफ़ॉल्ट), {aws} भा {google} पर सेट करीं, फेर ओह प्रदाता के क्रेडेंशियल्स के आपूर्ति करीं. प्रति एक्शन कॉल खाली एगो प्रदाता के उपयोग कइल जाला; क्रिया निर्धारक रूप से एगो कारखाना के पीछे मिलान करे वाला एसडीके के प्रतिनिधि बनावेला."
+		},
+		"comparison": {
+			"title": "प्रदाता तुलना",
+			"caption": "अनुवाद प्रदाता तुलना",
+			"columns": {
+				"provider": "प्रदाता",
+				"value": "प्रदाता मूल्य",
+				"sdk": "एसडीके",
+				"credentials": "क्रेडेंशियल्स"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (default)",
+				"credentials": "subscriptionKey, endpoint, region (वैकल्पिक)"
+			},
+			"aws": {
+				"name": "AWS अनुवाद",
+				"value": "एडब्ल्यूएस",
+				"credentials": "OIDC / डिफ़ॉल्ट चेन, या awsAccessKeyId + awsSecretAccessKey; awsregion"
+			},
+			"google": {
+				"name": "गूगल क्लाउड अनुवाद",
+				"value": "गूगल",
+				"credentials": "googleApiKey या googleCredentials (service-account JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "डिफ़ॉल्ट प्रदाता. एगो Azure AI अनुवादक संसाधन के प्रावधान करीं आ {subscriptionKey}, {endpoint} आ वैकल्पिक रूप से {region} पास करीं। इ उहे कॉन्फ़िगरेशन हवे जवन मौजूदा वर्कफ़्लो पहिले से उपयोग करेला."
+		},
+		"aws": {
+			"title": "AWS अनुवाद",
+			"body": "{sdk} के इस्तेमाल करेला. {configureAwsCredentials} के माध्यम से OIDC के प्राथमिकता दीं ताकि कौनो लंबा समय तक रहे वाला रहस्य संग्रहीत ना होखे - कार्रवाई AWS SDK डिफ़ॉल्ट क्रेडेंशियल चेन के पढ़ेला. वैकल्पिक रूप से, {awsAccessKeyId} पास करीं आ स्पष्ट रूप से {awsSecretAccessKey} करीं. {awsRegion} या {awsRegionEnv} पर्यावरन चर के माध्यम से एगो क्षेत्र के हमेशा जरूरत होला.",
+			"oidcTitle": "ओआईडीसी (अनुशंसित)",
+			"keysNote": "OIDC के बजाय स्थैतिक कुंजी के उपयोग करे खातिर, {configureAwsCredentials} चरण के छोड़ के {awsAccessKeyId} / {awsSecretAccessKey} ({secrets} के माध्यम से) प्लस {awsRegion} पास करीं."
+		},
+		"google": {
+			"title": "गूगल क्लाउड अनुवाद",
+			"body": "{sdk} (v2) के उपयोग करेला. एपीआई कुंजी ({googleApiKey}) चाहे सेवा-खाता JSON क्रेडेंशियल ({googleCredentials}) से प्रमाणित करीं. ठीक एगो आपूर्ति करीं; छोड़ल जाए पर क्रेडेंशियल से वैकल्पिक {googleProjectId} के अनुमान लगावल जाला."
+		},
+		"mapping": {
+			"title": "इंटेंट-स्पेसिफायर मैपिंग",
+			"body": "प्रदाता-विशिष्ट विनिर्देशक के मैप कइल जाला जहां एगो समतुल्य मौजूद होला. बाकी सब कुछ समझदार डिफ़ॉल्ट पर आ जाला ताकि व्यवहार सुसंगत रहे.",
+			"caption": "प्रदाता सभ में इंटेंट-स्पेसिफायर मैपिंग",
+			"columns": {
+				"input": "इनपुट",
+				"azure": "Azure",
+				"aws": "एडब्ल्यूएस",
+				"google": "गूगल"
+			},
+			"supported": "समर्थित",
+			"ignored": "अनदेखा कइल गइल",
+			"rows": {
+				"textType": {
+					"azure": "टेक्स्टटाइप (सादा / एचटीएमएल)",
+					"aws": "अनदेखा (कोई टॉगल नहीं)",
+					"google": "फार्मेट (टेक्स्ट / एचटीएमएल)"
+				},
+				"profanityAction": {
+					"azure": "पूरा समर्थन",
+					"aws": "मास्किंग → चिह्नित/ हटावल गइल",
+					"google": "अनदेखा कइल गइल"
+				},
+				"categoryId": {
+					"azure": "कस्टम अनुवादक",
+					"aws": "अनदेखा कइल गइल",
+					"google": "अनदेखा कइल गइल"
+				},
+				"allowFallback": {
+					"azure": "समर्थित",
+					"aws": "अनदेखा कइल गइल",
+					"google": "अनदेखा कइल गइल"
+				}
+			}
+		},
+		"locales": {
+			"title": "लोकेल कोड प्रति प्रदाता अलग-अलग होला",
+			"body": "हर प्रदाता आपन खुद के लोकेल कोड के उपयोग करेला (उदाहरण खातिर सरलीकृत चीनी एज़्योर पर, {awsCode} एडब्ल्यूएस पर आउर {googleCode} गूगल पर {azureCode} बा). कोड जस के तस गुजरेला आ आउटपुट फाइल के नाम के चलावेला, एही से आपके चुनल प्रदाता के समर्थन {toLocales} मान चुनीं।"
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "जरूरी इनपुट",
 			"caption": "जरूरी इनपुट",
 			"items": {
-				"sourceLocale": "स्रोत लोकेल (जइसे {en}) संसाधन फाइल खोजे खातिर उपयोग कइल जाला जइसे कि {sourceGlob}. अनुवादक के भी {fromLocale} के रूप में अग्रेषित कइल गइल।",
-				"subscriptionKey": "Azure AI Translator subscription key. {secrets} से गुजरीं.",
-				"endpoint": "अनुवादक समापन बिंदु यूआरएल, जइसे {endpointUrl}."
+				"sourceLocale": "स्रोत लोकेल (जइसे {en}) संसाधन फाइल खोजे खातिर उपयोग कइल जाला जइसे कि {sourceGlob}. प्रदाता के भी {fromLocale} के रूप में अग्रेषित कइल गइल।"
+			}
+		},
+		"providerInputs": {
+			"heading": "प्रदाता चयन आ क्रेडेंशियल्स",
+			"caption": "प्रदाता चयन आउर प्रति-विक्रेता क्रेडेंशियल्स",
+			"intro": "{provider} के साथे हर रन में एगो प्रदाता चुनीं. खाली चुनल प्रदाता के क्रेडेंशियल्स के आपूर्ति करीं — पूरा सेटअप खातिर {providersLink} गाइड देखीं.",
+			"items": {
+				"provider": "अनुवाद प्रदाता: {azure} (डिफॉल्ट), {aws} भा {google}. प्रति एक्शन कॉल खाली एगो प्रदाता के उपयोग कइल जाला।",
+				"subscriptionKey": "Azure AI Translator subscription key. {azure} खातिर जरूरी बा. {secrets} से गुजरीं.",
+				"endpoint": "Azure Translator endpoint URL, उदा. {endpointUrl}. {azure} खातिर जरूरी बा.",
+				"awsAccessKeyId": "AWS एक्सेस कुंजी आईडी. वैकल्पिक — AWS डिफ़ॉल्ट क्रेडेंशियल चेन/OIDC के इस्तेमाल करे खातिर छोड़ दीं ({awsSecretAccessKey} के साथ). {secrets} से गुजरीं.",
+				"awsSecretAccessKey": "AWS सीक्रेट एक्सेस कुंजी. {awsAccessKeyId} के साथे आपूर्ति करे के होई. {secrets} से गुजरीं.",
+				"awsSessionToken": "अस्थायी क्रेडेंशियल्स खातिर वैकल्पिक AWS सत्र टोकन. {secrets} से गुजरीं.",
+				"awsRegion": "अनुवाद सेवा खातिर AWS क्षेत्र (जइसे {regionExample}). {aws} खातिर जरूरी बा जब तक कि {awsRegionEnv} वातावरण में सेट ना होखे.",
+				"googleApiKey": "गूगल क्लाउड एपीआई कुंजी. {google} खातिर ई या {googleCredentials} दीं. {secrets} से गुजरीं.",
+				"googleCredentials": "JSON स्ट्रिंग के रूप में Google Cloud service-account key. {google} खातिर ई या {googleApiKey} दीं. {secrets} से गुजरीं.",
+				"googleProjectId": "वैकल्पिक गूगल क्लाउड प्रोजेक्ट आईडी. आमतौर पर सेवा-खाता क्रेडेंशियल से अनुमान लगावल जाला."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "अनुवादक इनपुट के अनुरोध करे",
-			"intro": "ई सीधे Azure AI Translator v3 क्वेरी पैरामीटर पs मैप करेला। हर एक वैकल्पिक बा; अनुवादक डिफ़ॉल्ट रूप से अनसेट होखे पर लागू होला।",
-			"caption": "अनुवादक इनपुट के अनुरोध करे",
+			"heading": "Azure Translator request inputs",
+			"intro": "ई सीधे Azure AI Translator v3 क्वेरी पैरामीटर पs मैप करेला आ Azure प्रदाता पs लागू होला। textType आउर profanityAction के AWS/Google पर भी मैप कइल गइल बा जहाँ एगो समकक्ष मौजूद बा (प्रदाता गाइड देखीं); बाकी खाली एज़्योर बा. हर एक वैकल्पिक बा; अनुवादक डिफ़ॉल्ट रूप से अनसेट होखे पर लागू होला।",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} श्रेणी — the industry/domain/tone knob. {categoryQuery} के रूप में अग्रेषित कइल गइल.",
 				"textType": "{plain} भा {html}. {html} के इस्तेमाल खाली तब करीं जब राउर संसाधन मान वास्तविक HTML टुकड़ा होखे.",

@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "מתרגם משאבים",
-		"description": "Resource Translator פותח בקשות משיכה מתורגמות במכונה עבור קבצי המשאבים שלך בכל מאגר, בכל פורמט — מופעל על ידי Azure AI Translator.",
+		"description": "Resource Translator פותח בקשות משיכה מתורגמות במכונה עבור קבצי המשאבים שלך בכל מאגר, בכל פורמט — מופעל על ידי Azure AI Translator, AWS Translate או Google Cloud Translation.",
 		"socialTitle": "מתרגם משאבים — תרגום אוטומטי של קבצי משאבים",
-		"badge": "גרסה 3.0 — צומת 24, קונפיגורציית מאגר, מילון מונחים, ריצה יבשה",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "לוקליז את המאגר שלך",
 		"headlineAccent": "כל התחייבות.",
-		"lede": "Resource Translator פותח בקשות משיכה מתורגמות מכונה עבור קבצי המשאבים שלך באמצעות Azure AI Translator דרך ערכת הפיתוח הרשמית — בלי שירותים נוספים, רק תהליך עבודה.",
+		"lede": "Resource Translator פותח בקשות משיכה מתורגמות מכונה עבור קבצי המשאבים שלך באמצעות Azure, AWS או Google — פעולה מאוחדת אחת, ספק אחד בכל ריצה, ערכות SDK רשמיות מתחת למכסה המנוע.",
 		"primaryCta": "תתחילו",
 		"secondaryCta": "Star ב-GitHub",
 		"supports": "תומכים",
 		"builtForShipping": "נבנה לשיט",
 		"workflowTitle": "תרגום כתהליך עבודה, לא מטלה.",
-		"workflowBody": "הכניס את הפעולה ל-CI הקיים שלך, כוון אותה ל-Azure AI Translator, ותן למאגר שלך לדבר כל שפה שאתה מכוון אליה.",
+		"workflowBody": "תכניס את הפעולה ל-CI הקיים שלך, תכוון אותה ל-Azure, AWS או Google, ותן למאגר שלך לדבר כל שפה שאתה מכוון אליה.",
 		"stats": {
 			"audit": "0 בעיות ביקורת NPM",
-			"tests": "150 מבחנים",
+			"tests": "240+ מבחנים",
 			"node": "צומת 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · גוגל"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} ו-{hasNewTranslations} משתלבים ישירות ל-create-pull-request."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "מבוסס על {azureSdk} + {corePipeline} — ניסיונות אוטומטיים על {statusCodes}, ללא HTTP ידני. {esbuild}, נקי כמו ביקורת."
+				"title": "Azure, AWS ו-Google",
+				"body": "בחר ספק אחד בכל ריצה. כל אחד מהם מופעל על ידי SDK הרשמי שלו ({azureSdk}, {awsSdk}, {googleSdk}) עם ניסיונות אוטומטיים על {statusCodes} — ללא HTTP ידני. {esbuild} חבילה, נקי כמו ביקורת."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "מוכן ללוקליז על אוטומט?",
-			"body": "מפתח Azure AI Translator אחד, קובץ workflow אחד. Resource Translator מטפל בשאר.",
+			"body": "מפתח ספק אחד — Azure, AWS או Google — וקובץ זרימת עבודה אחד. Resource Translator מטפל בשאר.",
 			"button": "תתחילו"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "הצעדים הבאים",
 			"configuration": "הגדר ברירת מחדל ברמת ריפו עם {configPath}.",
 			"recipes": "ראו מתכונים למונורפואים, מילונים מותאמים אישית וקטגוריות מתרגמים מותאמים אישית."
+		}
+	},
+	"providers": {
+		"title": "ספקי תרגום",
+		"eyebrow": "מקור",
+		"lede": "בחרו ספק תרגום אחד בכל ריצה — Azure AI Translator, AWS Translate או Google Cloud Translation — מאחורי משטח API אחיד אחד. המתרגם מתנהג באופן זהה ללא קשר לספק; רק ההסמכות שונות.",
+		"backwardCompatible": "תואם לאחור לחלוטין: {provider} מוגדר כברירת מחדל ל-{azure}, כך שזרימות העבודה הקיימות של Azure ממשיכות לפעול ללא שינוי — ללא צורך בעריכות.",
+		"selecting": {
+			"title": "בחירת ספק",
+			"body": "הגדר את קלט {provider} ל-{azure} (ברירת מחדל), {aws} או {google}, ואז ספק את פרטי האישור של אותו ספק. רק ספק אחד משמש לכל קריאת פעולה; הפעולה מעבירה באופן דטרמיניסטי ל-SDK התואם מאחורי מפעל."
+		},
+		"comparison": {
+			"title": "השוואת ספקים",
+			"caption": "השוואת ספקי תרגום",
+			"columns": {
+				"provider": "ספק",
+				"value": "ערך הספק",
+				"sdk": "SDK",
+				"credentials": "תעודות"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (ברירת מחדל)",
+				"credentials": "subscriptionKey, נקודת קצה, אזור (אופציונלי)"
+			},
+			"aws": {
+				"name": "AWS תרגום",
+				"value": "AWS",
+				"credentials": "OIDC / שרשרת ברירת מחדל, או awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "תרגום ענן של גוגל",
+				"value": "גוגל",
+				"credentials": "googleApiKey או googleCredentials (חשבון שירות-JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "ספק ברירת המחדל. אספקו משאב Azure AI Translator והעבירו {subscriptionKey}, {endpoint} ואופציונלית {region}. זו אותה תצורה שכבר משתמשים בה תהליכי עבודה קיימים."
+		},
+		"aws": {
+			"title": "AWS תרגום",
+			"body": "משתמש {sdk}. מעדיף OIDC דרך {configureAwsCredentials} כדי שלא נשמרים סודות ארוכי חיים — הפעולה קוראת את שרשרת האישורים ברירת המחדל של AWS SDK. חלופה נוספת היא להעביר {awsAccessKeyId} {awsSecretAccessKey} במפורש. תמיד נדרש אזור, באמצעות {awsRegion} או משתנה הסביבה {awsRegionEnv}.",
+			"oidcTitle": "OIDC (מומלץ)",
+			"keysNote": "כדי להשתמש במקשים סטטיים במקום OIDC, תוותר על שלב {configureAwsCredentials} ותעבור {awsAccessKeyId} / {awsSecretAccessKey} (דרך {secrets}) פלוס {awsRegion}."
+		},
+		"google": {
+			"title": "תרגום ענן של גוגל",
+			"body": "משתמש {sdk} (v2). אימות באמצעות מפתח API ({googleApiKey}) או עם אישור JSON של שירות ({googleCredentials}). ספק בדיוק אחד; {googleProjectId} אופציונלי נלקח מהאישור כאשר הוא מושמט."
+		},
+		"mapping": {
+			"title": "מיפוי מגדיר כוונה",
+			"body": "מפרטים ספציפיים לספק ממופים במקום שבו קיימת מקבילה. כל השאר חוזר לברירת מחדל הגיונית כדי שההתנהגות תישאר עקבית.",
+			"caption": "מיפוי מגדיר כוונה בין ספקים",
+			"columns": {
+				"input": "קלט",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "גוגל"
+			},
+			"supported": "נתמך",
+			"ignored": "התעלמו ממנו",
+			"rows": {
+				"textType": {
+					"azure": "textType (פשוט / html)",
+					"aws": "התעלמו ממנו (בלי הפעלה)",
+					"google": "פורמט (טקסט / HTML)"
+				},
+				"profanityAction": {
+					"azure": "תמיכה מלאה",
+					"aws": "מסומן / נמחק → מסכה",
+					"google": "התעלמו ממנו"
+				},
+				"categoryId": {
+					"azure": "מתרגם מותאם אישית",
+					"aws": "התעלמו ממנו",
+					"google": "התעלמו ממנו"
+				},
+				"allowFallback": {
+					"azure": "נתמך",
+					"aws": "התעלמו ממנו",
+					"google": "התעלמו ממנו"
+				}
+			}
+		},
+		"locales": {
+			"title": "קודי הלוקאל משתנים בין ספק",
+			"body": "כל ספק משתמש בקודי לוקאל משלו (למשל Simplified Chinese {azureCode} ב-Azure, {awsCode} ב-AWS, ו-{googleCode} בגוגל). קודים עוברים כפי שהם ומניעים את שמות קבצי הפלט, לכן בחר {toLocales} ערכים שהספק שבחרת תומך בהם."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "קלטים נדרשים",
 			"caption": "קלטים נדרשים",
 			"items": {
-				"sourceLocale": "מיקום המקור (למשל {en}) המשמש למציאת קבצי משאבים כמו {sourceGlob}. הועבר גם למתרגם כ-{fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. מעבר דרך {secrets}.",
-				"endpoint": "כתובת URL של נקודת קצה של המתרגם (Translator), לדוגמה {endpointUrl}."
+				"sourceLocale": "מיקום המקור (למשל {en}) המשמש למציאת קבצי משאבים כמו {sourceGlob}. גם הועברתי לספק כ-{fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "בחירת ספק והסמכות",
+			"caption": "בחירת ספק ואישורים לכל ספק",
+			"intro": "בחר ספק אחד בכל ריצה עם {provider}. ספק רק את פרטי השירות של הספק הנבחר — ראה את מדריך {providersLink} להגדרה מלאה.",
+			"items": {
+				"provider": "ספק תרגום: {azure} (ברירת מחדל), {aws}, או {google}. משתמשים רק ספק אחד בכל קריאת פעולה.",
+				"subscriptionKey": "Azure AI Translator subscription key. נדרש {azure}. מעבר דרך {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, למשל {endpointUrl}. נדרש {azure}.",
+				"awsAccessKeyId": "מזהה מפתח גישה של AWS. אופציונלי — להשמיט (עם {awsSecretAccessKey}) להשתמש בשרשרת האישורים המוגדרת כברירת מחדל של AWS / OIDC. מעבר דרך {secrets}.",
+				"awsSecretAccessKey": "מפתח גישה סודי של AWS. יש לספק יחד עם {awsAccessKeyId}. מעבר דרך {secrets}.",
+				"awsSessionToken": "טוקן סשן AWS אופציונלי לאישורים זמניים. מעבר דרך {secrets}.",
+				"awsRegion": "אזור AWS עבור שירות Translate (למשל {regionExample}). נדרש {aws} אלא אם {awsRegionEnv} מוגדר בסביבה.",
+				"googleApiKey": "מפתח Google Cloud API. ספק את {googleCredentials} הניתוח הזה עבור {google}. מעבר דרך {secrets}.",
+				"googleCredentials": "מפתח חשבון שירות Google Cloud כמחרוזת JSON. ספק את {googleApiKey} הניתוח הזה עבור {google}. מעבר דרך {secrets}.",
+				"googleProjectId": "מזהה פרויקט Google Cloud אופציונלי. בדרך כלל מסיק זאת מאישור חשבון השירות."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "קלטי בקשות למתרגם",
-			"intro": "אלה מתמפים ישירות לפרמטרי השאילתות של Azure AI Translator v3. כל אחד מהם הוא אופציונלי; ברירת המחדל של המתרגם חלה כאשר היא לא מוגדרת.",
-			"caption": "קלטי בקשות למתרגם",
+			"heading": "Azure Translator request inputs",
+			"intro": "אלה מתמפים ישירות לפרמטרי השאילתות של Azure AI Translator v3 וחלים על ספק Azure. textType ו-profanityAction גם הם ממופים ל-AWS/Google שבהם קיימת מקבילה (ראו מדריך הספקים); השאר הם רק ב-Azure. כל אחד מהם הוא אופציונלי; ברירת המחדל של המתרגם חלה כאשר היא לא מוגדרת.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "קטגוריית Azure {customTranslatorLink} — ידית התעשייה/תחום/טון. הועבר כ-{categoryQuery}.",
 				"textType": "{plain} או {html}. השתמש {html} רק כאשר ערכי המשאבים שלך הם מקטעי HTML אמיתיים.",

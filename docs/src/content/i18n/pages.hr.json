@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Prevoditelj resursa",
-		"description": "Resource Translator otvara strojno prevedene pull requestove za vaše resource datoteke u bilo kojem repozitoriju, u bilo kojem formatu — pokretan Azure AI Translatorom.",
+		"description": "Resource Translator otvara strojno prevedene pull requestove za vaše resource datoteke u bilo kojem repozitoriju, u bilo kojem formatu — pokretan putem Azure AI Translatora, AWS Translatea ili Google Cloud Translationa.",
 		"socialTitle": "Prevoditelj resursa — automatski prevodi datoteke resursa",
-		"badge": "v3.0 — Node 24, konfiguracija repozitorija, rječnik, probni rad",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Lokalizirajte svoj repozitorij na",
 		"headlineAccent": "Svaki commit.",
-		"lede": "Resource Translator otvara strojno prevedene pull requestove za vaše resource datoteke koristeći Azure AI Translator putem službenog SDK-a — bez dodatnih usluga, samo workflow.",
+		"lede": "Resource Translator otvara strojno prevedene pull requestove za vaše datoteke resursa koristeći Azure, AWS ili Google — jedna objedinjena akcija, jedan pružatelj po pokretanju, službeni SDK-ovi ispod haube.",
 		"primaryCta": "Započnite",
 		"secondaryCta": "Zvjezdica na GitHubu",
 		"supports": "Potpore",
 		"builtForShipping": "Izgrađen za brodarstvo",
 		"workflowTitle": "Prijevod kao tijek rada, a ne kao obaveza.",
-		"workflowBody": "Ubacite akciju u svoj postojeći CI, usmjerite je na Azure AI Translator i neka vaš repozitorij govori svaki jezik koji ciljate.",
+		"workflowBody": "Ubacite akciju u svoj postojeći CI, usmjerite je na Azure, AWS ili Google, i neka vaš repozitorij govori svaki jezik koji ciljate.",
 		"stats": {
 			"audit": "0 NPM-revizijskih problema",
-			"tests": "150 testova",
+			"tests": "240+ testova",
 			"node": "Čvor 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} i {hasNewTranslations} se izravno uklapaju u create-pull-request."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Izgrađeno na {azureSdk} + {corePipeline} — automatski ponovni pokušaji na {statusCodes}, bez ručno vođenog HTTP-a. {esbuild} u paketu, čisto od revizije."
+				"title": "Azure, AWS & Google",
+				"body": "Odaberite jednog pružatelja po trčanju. Svaki pokreće službeni SDK ({azureSdk}, {awsSdk}, {googleSdk}) s automatskim ponovnim pokušajima na {statusCodes} — bez ručno vođenog HTTP-a. {esbuild} u paketu, čisto od revizije."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Spremni za lokalizaciju na autopilotu?",
-			"body": "Jedan Azure AI Translator ključ, jedna workflow datoteka. Resource Translator preuzima ostalo.",
+			"body": "Jedan ključ pružatelja — Azure, AWS ili Google — i jedna datoteka radnog procesa. Resource Translator preuzima ostalo.",
 			"button": "Započnite"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Sljedeći koraci",
 			"configuration": "Konfigurirajte zadane postavke na razini repozitorija pomoću {configPath}.",
 			"recipes": "Pogledajte recepte za monorepo, prilagođene rječnike i kategorije prilagođenih prevoditelja."
+		}
+	},
+	"providers": {
+		"title": "Pružatelji prevođenja",
+		"eyebrow": "Reference",
+		"lede": "Odaberite jednog pružatelja prevođenja po pokretanju — Azure AI Translator, AWS Translate ili Google Cloud Translation — iza jedne, jedinstvene API površine. Prevoditelj se ponaša identično bez obzira na pružatelja; Samo se kvalifikacije razlikuju.",
+		"backwardCompatible": "Potpuno kompatibilno unatrag: {provider} je zadano {azure}, pa postojeći Azure radni tokovi rade nepromijenjeni — bez potrebe za izmjenama.",
+		"selecting": {
+			"title": "Odabir pružatelja usluga",
+			"body": "Postavite ulaz {provider} na {azure} (zadani), {aws} ili {google}, zatim unesite vjerodajnice tog pružatelja. Koristi se samo jedan pružatelj po pozivu akcije; akcija deterministički delegira odgovarajućem SDK-u iza tvornice."
+		},
+		"comparison": {
+			"title": "Usporedba pružatelja usluga",
+			"caption": "Usporedba pružatelja prevođenja",
+			"columns": {
+				"provider": "Pružatelj",
+				"value": "Vrijednost pružatelja",
+				"sdk": "SDK",
+				"credentials": "Kvalifikacije"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (default)",
+				"credentials": "subscriptionKey, endpoint, region (opcionalno)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "aws",
+				"credentials": "OIDC / default chain, ili awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud prijevod",
+				"value": "Google",
+				"credentials": "googleApiKey ILI googleCredentials (service-account JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Zadani pružatelj. Osigurajte Azure AI Translator resurs i položite {subscriptionKey}, {endpoint} i opcionalno {region}. To je ista konfiguracija koju već koriste postojeći radni tokovi."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Koristi {sdk}. Preferirajte OIDC putem {configureAwsCredentials} kako se ne pohranjuju dugotrajne tajne — akcija čita AWS SDK zadani lanac vjerodajnica. Alternativno, prenesite {awsAccessKeyId} i {awsSecretAccessKey} eksplicitno. Uvijek je potrebna regija, putem {awsRegion} ili {awsRegionEnv} varijable okoline.",
+			"oidcTitle": "OIDC (preporučeno)",
+			"keysNote": "Za korištenje statičkih tipki umjesto OIDC-a, izostavite {configureAwsCredentials} step i proslijedite {awsAccessKeyId} / {awsSecretAccessKey} (putem {secrets}) plus {awsRegion}."
+		},
+		"google": {
+			"title": "Google Cloud prijevod",
+			"body": "Koristi {sdk} (v2). Autentificirajte se pomoću API ključa ({googleApiKey}) ili JSON vjerodajnice servisnog računa ({googleCredentials}). Opskrbite točno jednu; opcionalni {googleProjectId} se izvlači iz povjerovnice kada se izostavi."
+		},
+		"mapping": {
+			"title": "Preslikavanje namjerno-specificerskog preslikavanja",
+			"body": "Specifičeri specifični za pružatelja mapiraju se tamo gdje postoji ekvivalent. Sve ostalo se vraća na razumne zadane postavke kako bi ponašanje ostalo dosljedno.",
+			"caption": "Mapiranje intent-specificer među pružateljima usluga",
+			"columns": {
+				"input": "Ulaz",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Podržano",
+			"ignored": "Ignorirano",
+			"rows": {
+				"textType": {
+					"azure": "textType (običan / html)",
+					"aws": "Ignorirano (bez prekidača)",
+					"google": "Format (tekst / html)"
+				},
+				"profanityAction": {
+					"azure": "Puna podrška",
+					"aws": "Označeno / Izbrisano → maskiranje",
+					"google": "Ignorirano"
+				},
+				"categoryId": {
+					"azure": "Prilagođeni prevoditelj",
+					"aws": "Ignorirano",
+					"google": "Ignorirano"
+				},
+				"allowFallback": {
+					"azure": "Podržano",
+					"aws": "Ignorirano",
+					"google": "Ignorirano"
+				}
+			}
+		},
+		"locales": {
+			"title": "Lokalni kodovi razlikuju se od pružatelja do pružatelja usluga",
+			"body": "Svaki pružatelj koristi svoje lokalne kodove (na primjer, pojednostavljeni kineski se {azureCode} na Azureu, {awsCode} na AWS-u, a {googleCode} na Googleu). Kodovi prolaze u postojećem stanju i upravljaju imenima izlaznih datoteka, pa odaberite {toLocales} vrijednosti koje vaš odabrani pružatelj podržava."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Potrebni ulazi",
 			"caption": "Potrebni ulazi",
 			"items": {
-				"sourceLocale": "Izvorna lokacija (npr. {en}) koristi se za pronalaženje datoteka resursa poput {sourceGlob}. Također proslijeđeno prevoditelju kao {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. Prođi preko {secrets}.",
-				"endpoint": "URL prevoditeljske krajnje točke, npr. {endpointUrl}."
+				"sourceLocale": "Izvorna lokacija (npr. {en}) koristi se za pronalaženje datoteka resursa poput {sourceGlob}. Također proslijeđeno pružatelju usluga kao {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Odabir pružatelja usluga i kvalifikacije",
+			"caption": "Odabir pružatelja i vjerodajnice po dobavljaču",
+			"intro": "Odaberite jednog pružatelja usluga po vožnji s {provider}. Dajte samo podatke za vjerodajnice odabranog pružatelja — pogledajte {providersLink} vodič za potpunu postavku.",
+			"items": {
+				"provider": "Pružatelj prijevoda: {azure} (zadano), {aws} ili {google}. Koristi se samo jedan pružatelj usluga po pozivu akcije.",
+				"subscriptionKey": "Azure AI Translator subscription key. Obavezno za {azure}. Prođi preko {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, eg. {endpointUrl}. Obavezno za {azure}.",
+				"awsAccessKeyId": "ID AWS pristupnog ključa. Opcionalno — izostaviti (s {awsSecretAccessKey}) koristiti AWS zadani lanac vjerodajnica / OIDC. Prođi preko {secrets}.",
+				"awsSecretAccessKey": "AWS tajni pristupni ključ. Mora biti opskrbljen zajedno s {awsAccessKeyId}. Prođi preko {secrets}.",
+				"awsSessionToken": "Opcionalni AWS session token za privremene vjerodajnice. Prođi preko {secrets}.",
+				"awsRegion": "AWS regiju za Translate uslugu (npr. {regionExample}). Obavezno za {aws} osim ako {awsRegionEnv} nije postavljeno u okruženju.",
+				"googleApiKey": "Google Cloud API ključ. Dostavite ovaj operacijski {googleCredentials} za {google}. Prođi preko {secrets}.",
+				"googleCredentials": "Google Cloud service-account ključ kao JSON string. Dostavite ovaj operacijski {googleApiKey} za {google}. Prođi preko {secrets}.",
+				"googleProjectId": "Opcionalni ID projekta Google Cloud. Obično se to zaključuje iz službenog računa o usluzi."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Ulazi za zahtjevom prevoditelja",
-			"intro": "Oni se izravno preslikavaju na parametre upita Azure AI Translatora v3. Svaki je opcionalan; zadane postavke prevoditelja primjenjuju se kada nisu postavljene.",
-			"caption": "Ulazi za zahtjevom prevoditelja",
+			"heading": "Azure Translator request inputs",
+			"intro": "Oni se izravno mapiraju na Azure AI Translator v3 upitne parametre i primjenjuju se na Azure providera. textType i propsovkaAkcija također su povezani s AWS/Googleom gdje postoji ekvivalent (vidi vodič za pružatelje); ostali su samo Azure. Svaki je opcionalan; zadane postavke prevoditelja primjenjuju se kada nisu postavljene.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} kategorija — kotačić industrija/domena/ton. Proslijeđeno kao {categoryQuery}.",
 				"textType": "{plain} ili {html}. Koristite {html} samo kada su vaše vrijednosti resursa pravi HTML fragmenti.",

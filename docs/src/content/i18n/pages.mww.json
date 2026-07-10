@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Tus Neeg Txhais Lus Resource",
-		"description": "Resource Translator qhib tshuab-txhais rub thov rau koj cov ntaub ntawv peev txheej hauv txhua qhov repo, hauv txhua hom ntawv — powered los ntawm Azure AI Translator.",
+		"description": "Resource Translator qhib lub tshuab-txhais rub thov rau koj cov ntaub ntawv peev txheej hauv txhua qhov repo, hauv txhua hom ntawv - powered los ntawm Azure AI Translator, AWS Txhais lossis Google Cloud Translation.",
 		"socialTitle": "Resource Translator — txhais cov ntaub ntawv peev txheej tsis siv neeg",
-		"badge": "v3.0 — Node 24, repo config, glossary, qhuav khiav",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Localize koj repo rau",
 		"headlineAccent": "txhua yam cog lus.",
-		"lede": "Resource Translator qhib lub tshuab-txhais rub thov rau koj cov ntaub ntawv peev txheej siv Azure AI Translator los ntawm SDK raug cai — tsis muaj kev pabcuam ntxiv, tsuas yog kev ua haujlwm.",
+		"lede": "Resource Translator qhib lub tshuab-txhais rub thov rau koj cov ntaub ntawv peev txheej siv Azure, AWS lossis Google — ib qho kev sib koom ua ke, ib tus neeg muab kev pabcuam ib qho khiav, SDKs raug cai hauv qab lub hood.",
 		"primaryCta": "Pib",
 		"secondaryCta": "Lub hnub qub ntawm GitHub",
 		"supports": "Kev txhawb nqa",
 		"builtForShipping": "Ua rau kev xa khoom",
 		"workflowTitle": "Kev txhais lus raws li kev ua haujlwm, tsis yog kev ua haujlwm.",
-		"workflowBody": "Tso qhov kev txiav txim rau hauv koj CI uas twb muaj lawm, taw tes rau Azure AI Tus Neeg Txhais Lus, thiab cia koj lub repo hais txhua hom lus koj lub hom phiaj.",
+		"workflowBody": "Tso qhov kev txiav txim rau hauv koj CI uas twb muaj lawm, taw tes rau Azure, AWS lossis Google, thiab cia koj lub repo hais txhua hom lus koj lub hom phiaj.",
 		"stats": {
 			"audit": "0 npm-audit teeb meem",
-			"tests": "150 kev xeem",
+			"tests": "240+ kev xeem",
 			"node": "Node 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} thiab {hasNewTranslations} qhov ncaj qha rau hauv tsim-rub-thov."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Ua rau {azureSdk} + {corePipeline} — tsis siv neeg rov sim ntawm {statusCodes}, tsis muaj tes-dov HTTP. {esbuild}-bundled, audit-huv."
+				"title": "Azure, AWS & Google",
+				"body": "Xaiv ib tus neeg zov me nyuam ib qho kev khiav. Txhua tus yog tsav los ntawm nws cov nom SDK ({azureSdk}, {awsSdk}, {googleSdk}) nrog tsis siv neeg rov sim ntawm {statusCodes} — tsis muaj tes-dov HTTP. {esbuild}-bundled, audit-huv."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Npaj txhij rau localize ntawm autopilot?",
-			"body": "Ib tug Azure AI txhais lus yuam sij, ib tug workflow ntaub ntawv. Resource Translator tuav tus so.",
+			"body": "Ib tus neeg muab kev pabcuam tus yuam sij — Azure, AWS lossis Google — thiab ib qho ntaub ntawv workflow. Resource Translator tuav tus so.",
 			"button": "Pib"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Cov kauj ruam tom ntej",
 			"configuration": "Configure repo-theem defaults nrog {configPath}.",
 			"recipes": "Saib cov zaub mov txawv rau monorepos, kev cai glossaries thiab Custom Translator pawg."
+		}
+	},
+	"providers": {
+		"title": "Cov chaw muab kev txhais lus",
+		"eyebrow": "Reference",
+		"lede": "Xaiv ib tus neeg txhais lus ib qho kev khiav — Azure AI Txhais lus, AWS Txhais lus, lossis Google Cloud Txhais lus — tom qab ib leeg, sib koom ua ke API nto. Tus neeg txhais lus coj zoo ib yam tsis hais tus neeg zov me nyuam; tsuas yog cov ntawv pov thawj sib txawv.",
+		"backwardCompatible": "Tag nrho rov qab tshaj: {provider} neej ntawd rau {azure}, yog li Azure workflows uas twb muaj lawm khaws cia ua haujlwm tsis hloov pauv - tsis muaj kev hloov kho yuav tsum tau.",
+		"selecting": {
+			"title": "Xaiv ib tug neeg zov me nyuam",
+			"body": "Teem cov {provider} tswv yim rau {azure} (lub neej ntawd), {aws} lossis {google}, tom qab ntawd muab cov ntawv pov thawj ntawm tus neeg zov me nyuam ntawd. Tsuas siv ib tus neeg zov me nyuam rau ib qho kev hu xov tooj xwb; qhov kev txiav txim siab deterministically delegates rau qhov sib txuam SDK tom qab lub Hoobkas."
+		},
+		"comparison": {
+			"title": "Kev sib piv ntawm cov neeg zov me nyuam",
+			"caption": "Kev sib piv ntawm tus neeg muab kev txhais lus",
+			"columns": {
+				"provider": "Tus Neeg Zov Me Nyuam",
+				"value": "tus nqi muab kev pab",
+				"sdk": "SDK",
+				"credentials": "Cov Ntawv Pov Thawj"
+			},
+			"azure": {
+				"name": "Azure AI Tus Neeg Txhais Lus",
+				"value": "Azure (neej ntawd)",
+				"credentials": "subscriptionYuam sij, qhov kawg, cheeb tsam (yeem)"
+			},
+			"aws": {
+				"name": "AWS Txhais Lus",
+				"value": "aws",
+				"credentials": "OIDC / lub neej ntawd saw, lossis awsAccessKeyId + awsSecretAccessKey; awsCheeb Tsam"
+			},
+			"google": {
+				"name": "Google Huab Txhais lus",
+				"value": "google",
+				"credentials": "googleApiKey LOSSIS googleCredentials (kev pabcuam-account JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI txhais lus (lub neej ntawd)",
+			"body": "Tus neeg muab kev pab rau lub neej ntawd. Muab Azure AI Txhais lus cov peev txheej thiab dhau {subscriptionKey}, {endpoint} thiab yeem {region}. Qhov no yog tib configuration uas twb muaj lawm workflows twb siv."
+		},
+		"aws": {
+			"title": "AWS Txhais Lus",
+			"body": "Siv {sdk}. Nyiam OIDC los ntawm {configureAwsCredentials} yog li tsis muaj cov lus zais ntev ntev tau khaws cia - qhov kev nqis tes ua nyeem AWS SDK lub neej ntawd daim ntawv pov thawj saw. Xwb, dhau {awsAccessKeyId} thiab {awsSecretAccessKey} kom meej. Ib cheeb tsam ib txwm xav tau, los ntawm {awsRegion} lossis qhov {awsRegionEnv} ib puag ncig hloov pauv.",
+			"oidcTitle": "OIDC (pom zoo)",
+			"keysNote": "Txhawm rau siv cov yuam sij zoo li qub es tsis txhob OIDC, poob cov kauj ruam {configureAwsCredentials} thiab dhau {awsAccessKeyId} / {awsSecretAccessKey} (ntawm {secrets}) ntxiv rau {awsRegion}."
+		},
+		"google": {
+			"title": "Google Huab Txhais lus",
+			"body": "Siv {sdk} (v2). Txheeb xyuas qhov tseeb nrog tus yuam sij API ({googleApiKey}) lossis kev pabcuam-account JSON daim ntawv pov thawj ({googleCredentials}). Muab raws nraim ib qho; Ib qho kev {googleProjectId} yeem yog inferred los ntawm daim ntawv pov thawj thaum raug rho tawm."
+		},
+		"mapping": {
+			"title": "Lub hom phiaj-specifier mapping",
+			"body": "Cov neeg muab kev pabcuam tshwj xeeb yog mapped qhov twg muaj qhov sib npaug. Txhua yam ntxiv ntog rov qab mus rau kev xav tsis thoob yog li tus cwj pwm nyob twj ywm.",
+			"caption": "Lub hom phiaj-specifier daim duab qhia thoob plaws cov chaw muab kev pabcuam",
+			"columns": {
+				"input": "Kev tawm tswv yim",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Txhawb nqa",
+			"ignored": "Tsis quav ntsej",
+			"rows": {
+				"textType": {
+					"azure": "textType (tiaj / html)",
+					"aws": "Tsis quav ntsej (tsis muaj toggle)",
+					"google": "hom ntawv (ntawv nyeem / html)"
+				},
+				"profanityAction": {
+					"azure": "Kev txhawb nqa tag nrho",
+					"aws": "Cim / Deleted → npog ntsej muag",
+					"google": "Tsis quav ntsej"
+				},
+				"categoryId": {
+					"azure": "Kev Cai Lub Tshuab Txhais Lus",
+					"aws": "Tsis quav ntsej",
+					"google": "Tsis quav ntsej"
+				},
+				"allowFallback": {
+					"azure": "Txhawb nqa",
+					"aws": "Tsis quav ntsej",
+					"google": "Tsis quav ntsej"
+				}
+			}
+		},
+		"locales": {
+			"title": "Cov lej hauv zos sib txawv rau ib tus neeg zov me nyuam",
+			"body": "Txhua tus neeg zov me nyuam siv nws tus kheej cov lej hauv zos (piv txwv li Yooj Yim Suav yog {azureCode} ntawm Azure, {awsCode} ntawm AWS thiab {googleCode} hauv Google). Cov lej dhau los ntawm raws li yog thiab tsav cov npe tso zis cov ntaub ntawv, yog li xaiv qhov tseem ceeb {toLocales} uas koj tus neeg muab kev pab xaiv txhawb nqa."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Yuav tsum tau tawm tswv yim",
 			"caption": "Yuav tsum tau tawm tswv yim",
 			"items": {
-				"sourceLocale": "Qhov chaw hauv zos (piv txwv li {en}) siv los nrhiav cov ntaub ntawv peev txheej xws li {sourceGlob}. Kuj xa mus rau Tus Neeg Txhais Lus raws li {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription yuam sij. Dhau los ntawm {secrets}.",
-				"endpoint": "Tus neeg txhais lus endpoint URL, piv txwv li {endpointUrl}."
+				"sourceLocale": "Qhov chaw hauv zos (piv txwv li {en}) siv los nrhiav cov ntaub ntawv peev txheej xws li {sourceGlob}. Kuj xa mus rau tus neeg zov me nyuam raws li {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Kev xaiv tus neeg zov me nyuam & cov ntawv pov thawj",
+			"caption": "Kev xaiv tus neeg zov me nyuam thiab cov ntawv pov thawj rau ib tus neeg muag khoom",
+			"intro": "Xaiv ib tus neeg muab kev pab rau ib qho kev khiav nrog {provider}. Muab cov ntawv pov thawj ntawm tus neeg zov me nyuam xaiv nkaus xwb — saib daim ntawv qhia {providersLink} rau kev teeb tsa tag nrho.",
+			"items": {
+				"provider": "Tus neeg muab kev txhais lus: {azure} (default), {aws}, los yog {google}. Tsuas siv ib tus neeg zov me nyuam rau ib qho kev hu xov tooj xwb.",
+				"subscriptionKey": "Azure AI Translator subscription yuam sij. Yuav tsum tau {azure}. Dhau los ntawm {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, piv txwv li {endpointUrl}. Yuav tsum tau {azure}.",
+				"awsAccessKeyId": "AWS nkag mus rau tus ID tseem ceeb Yeem — tshem tawm (nrog {awsSecretAccessKey}) los siv AWS lub neej ntawd daim ntawv pov thawj saw / OIDC. Dhau los ntawm {secrets}.",
+				"awsSecretAccessKey": "AWS zais cia nkag yuam sij. Yuav tsum tau muab ua ke nrog {awsAccessKeyId}. Dhau los ntawm {secrets}.",
+				"awsSessionToken": "Yeem AWS kev sib kho token rau cov ntawv pov thawj ib ntus. Dhau los ntawm {secrets}.",
+				"awsRegion": "AWS cheeb tsam rau Kev Txhais Lus (piv txwv li {regionExample}). Yuav tsum tau {aws} tshwj tsis yog {awsRegionEnv} teeb tsa hauv ib puag ncig.",
+				"googleApiKey": "Google Cloud API tus yuam sij. Muab qhov no LOS YOG {googleCredentials} rau {google}. Dhau los ntawm {secrets}.",
+				"googleCredentials": "Google Huab kev pabcuam-account tus yuam sij raws li JSON hlua. Muab qhov no LOS YOG {googleApiKey} rau {google}. Dhau los ntawm {secrets}.",
+				"googleProjectId": "Yeem Google Cloud project id. Feem ntau inferred los ntawm cov kev pabcuam-account daim ntawv pov thawj."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Tus neeg txhais lus thov tswv yim",
-			"intro": "Cov ntawv qhia no ncaj qha mus rau Azure AI Translator v3 query parameter. Txhua tus yog xaiv tau; lub Txhais lus defaults siv thaum unset.",
-			"caption": "Tus neeg txhais lus thov tswv yim",
+			"heading": "Azure Translator thov inputs",
+			"intro": "Cov ntawv qhia no ncaj qha rau Azure AI Translator v3 query parameter thiab thov rau azure tus muab kev pab. textType thiab profanityAction kuj tau mapped rau AWS / Google qhov twg muaj qhov sib npaug (saib cov lus qhia ntawm cov chaw muab kev pab); tus so yog Azure nkaus xwb. Txhua tus yog xaiv tau; lub Txhais lus defaults siv thaum unset.",
+			"caption": "Azure Translator thov inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} qeb — kev lag luam / domain / tone pob khawm Forwarded raws li {categoryQuery}.",
 				"textType": "{plain} los yog {html}. Siv {html} tsuas yog thaum koj cov peev txheej muaj nuj nqis yog HTML tawg tiag tiag.",

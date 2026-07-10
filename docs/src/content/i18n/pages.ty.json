@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Tauturu no te iriti parau",
-		"description": "E iriti te Resource Translator i te mau aniraa iritihia na roto i te matini no ta outou mau pu'e parau i roto i te mau huru faanahoraa atoa, noa'tu te huru o te faanahoraa — faaterehia e Azure AI Translator.",
+		"description": "E iriti te Resource Translator i te mau aniraa iritihia na roto i te matini no ta outou mau pu'e parau i roto i te mau huru repo, noa'tu te huru o te faanahoraa — faaterehia e Azure AI Translator, AWS Translate, e aore râ, Google Cloud Translation.",
 		"socialTitle": "Resource Translator — iriti noa i te mau pu'e parau tauturu",
-		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "A tuu i ta outou repo i ni'a i te",
 		"headlineAccent": "te mau fafauraa atoa.",
-		"lede": "E iriti te Resource Translator i te mau aniraa iritihia na roto i te matini no ta outou mau pu'e rave'a na roto i te faaohiparaa i te Azure AI Translator na roto i te SDK mana — aita e ohipa hau atu, te hoê noa tereraa ohipa.",
+		"lede": "E iriti te Resource Translator i te mau aniraa iritihia na roto i te matini no ta outou mau pu'e parau na roto i te faaohiparaa i te Azure, AWS, e aore râ Google — hoê ohipa tahoê, hoê taata horo'a i te hororaa, te mau SDK mana i raro a'e i te tapo'i.",
 		"primaryCta": "A haamata",
 		"secondaryCta": "Feti'a i ni'a i te GitHub",
 		"supports": "Te mau patururaa",
 		"builtForShipping": "Hamanihia no te haponoraa",
 		"workflowTitle": "Te iritiraa mai te hoê tereraa ohipa, e ere i te hoê ohipa.",
-		"workflowBody": "A tuu i te ohipa i roto i ta outou CI e vai ra, a faatoro atu i ni'a i te Azure AI Translator, e a vaiiho i ta outou repo ia paraparau i te mau reo atoa ta outou e titau ra.",
+		"workflowBody": "A tuu i te ohipa i roto i ta outou CI e vai ra, a faatoro i ni'a ia Azure, AWS, e aore râ Google, e a vaiiho i ta outou repo ia paraparau i te mau reo atoa ta outou e opua.",
 		"stats": {
 			"audit": "0 npm-audit issues",
-			"tests": "150 hi'opo'araa",
+			"tests": "240+ hi'opo'araa",
 			"node": "' E nehenehe anei oe e rave i te mau mea atoa i roto i te ao nei, ' 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} e {hasNewTranslations} e tuuhia te reira i roto i te create-pull-request."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Patuhia i ni'a i te {azureSdk} + {corePipeline} — te mau tamataraa i ni'a i te {statusCodes}, aita e HTTP taviri-rima-hia. {esbuild}-puohuhia, hi'opo'araa mâ."
+				"title": "Azure, AWS & Google",
+				"body": "A ma'iti i te hoê taata horo i te hororaa tata'itahi. E arata'ihia te reira e ta ratou SDK ({azureSdk}, {awsSdk}, {googleSdk}) e te mau tamataraa faahou i ni'a i te {statusCodes} — aita e HTTP e taviri-rima-hia. {esbuild}-puohuhia, hi'opo'araa mâ."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Ua ineine anei outou no te hi'opo'a i te vahi i ni'a i te autopilot ?",
-			"body": "Hoê taviri Azure AI Translator, hoê putu'ite ohipa. Na te Resource Translator e haapa'o i te toe'a.",
+			"body": "Hoê taviri no te faanahoraa — Azure, AWS, e aore râ Google — e hoê pu'e ohipa. Na te Resource Translator e haapa'o i te toe'a.",
 			"button": "A haamata"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Te mau taahiraa i muri iho",
 			"configuration": "Configure repo-level defaults with {configPath}.",
 			"recipes": "A hi'o i te mau faanahoraa no te monorepos, te mau faahororaa parau taa ê, e te mau tuhaa no te iriti parau."
+		}
+	},
+	"providers": {
+		"title": "Te mau taata iriti parau",
+		"eyebrow": "Faahororaa",
+		"lede": "A ma'iti i te hoê faanahoraa iritiraa i te taime tata'itahi — Azure AI Translator, AWS Translate, e aore râ Google Cloud Translation — i muri mai i te hoê ana'e API tahoê. Hoê â huru to te taata iriti parau noa'tu te taata horo'a ; e mea taa ê ana'e te mau parau faati'a.",
+		"backwardCompatible": "E tu'ati maitai i muri : E mea {azure} te {provider}, no reira, e tamau noa te mau tereraa ohipa Azure e vai ra ma te taui ore — aita e titauhia te mau tauiraa.",
+		"selecting": {
+			"title": "Te ma'itiraa i te hoê taata horo'a",
+			"body": "A tuu i te {provider} i ni'a i te {azure} (default), {aws}, e aore râ {google}, e i muri iho a horo'a i te mau parau faati'a a taua taata ra. Hoê ana'e faanahoraa e faaohipahia i te hoê piiraa ohipa ; te ohipa e tuuhia i roto i te SDK tu'ati i muri mai i te hoê fare hamaniraa."
+		},
+		"comparison": {
+			"title": "Faaauraa i te feia horo'a",
+			"caption": "Faaauraa a te taata iriti parau",
+			"columns": {
+				"provider": "Taata horo'a",
+				"value": "Te faufaa o te taata horo'a",
+				"sdk": "SDK",
+				"credentials": "Te mau parau faati'a"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "azure (default)",
+				"credentials": "subscriptionKey, endpoint, region (ma'itihia)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "aws",
+				"credentials": "OIDC / default chain, e aore râ awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud Translation",
+				"value": "Google",
+				"credentials": "googleApiKey OR googleCredentials (service-account JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Te taata horo'a matauhia. A horo'a i te hoê rave'a Azure AI Translator e a horo'a i te {subscriptionKey}, te {endpoint}, e te {region}. Hoê â faanahoraa teie ta te mau tereraa ohipa e faaohipa nei."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "E faaohipa i te {sdk}. A ma'iti a'e i te OIDC na roto i te {configureAwsCredentials} ia ore te mau parau huna maoro e haaputuhia. E aore râ, a horo'a {awsAccessKeyId} e {awsSecretAccessKey} ma te papû maitai. E titauhia te hoê tuhaa fenua i te mau taime atoa, na roto i te {awsRegion} e aore râ, na roto i te {awsRegionEnv} vahi nohoraa.",
+			"oidcTitle": "OIDC (faaitoitoraa)",
+			"keysNote": "No te faaohipa i te mau taviri static eiaha râ te OIDC, a tuu i te taahiraa {configureAwsCredentials} e a tuu i te {awsAccessKeyId} / {awsSecretAccessKey} (na roto i te {secrets}) e te {awsRegion}."
+		},
+		"google": {
+			"title": "Google Cloud Translation",
+			"body": "E faaohipa i te {sdk} (v2). A haapapû na roto i te hoê API key ({googleApiKey}) e aore râ, te hoê parau faati'a JSON ({googleCredentials}). A horo'a mai i te hoê ti'a; e faahitihia te hoê {googleProjectId} ma'itiraa mai roto mai i te parau faati'a ia faaorehia."
+		},
+		"mapping": {
+			"title": "Hoho'a no te haapapûraa i te opuaraa",
+			"body": "E faanahohia te mau faataaraa taa ê no te taata horo'a i te mau vahi e vai ra te hoê aifaitoraa. Te tahi atu mau mea atoa, e ho'i mai ïa i ni'a i te mau hape tano maitai, no reira e vai tamau noa te haerea.",
+			"caption": "Hoho'a no te mau taata haapapû i te mau faanahoraa",
+			"columns": {
+				"input": "Te mau mana'o",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Paturuhia",
+			"ignored": "Aita i tau'a-ore-hia",
+			"rows": {
+				"textType": {
+					"azure": "textType (plain / html)",
+					"aws": "Tau'a-ore-hia (aita e taui)",
+					"google": "Format (text / html)"
+				},
+				"profanityAction": {
+					"azure": "Te patururaa taatoa",
+					"aws": "Tapa'ohia / Tumâhia → te tapo'iraa",
+					"google": "Aita i tau'a-ore-hia"
+				},
+				"categoryId": {
+					"azure": "Taata iriti parau",
+					"aws": "Aita i tau'a-ore-hia",
+					"google": "Aita i tau'a-ore-hia"
+				},
+				"allowFallback": {
+					"azure": "Paturuhia",
+					"aws": "Aita i tau'a-ore-hia",
+					"google": "Aita i tau'a-ore-hia"
+				}
+			}
+		},
+		"locales": {
+			"title": "E mea taa ê te mau numera no te fenua tata'itahi",
+			"body": "Te faaohipa nei te pûpû tata'itahi i ta'na iho mau numera fenua (ei hi'oraa, e {azureCode} te reo Tinito faaohie i ni'a i te Azure, te {awsCode} i ni'a i te AWS, e te {googleCode} i ni'a i te Google). E haere te mau numera na roto i te mau i'oa o te mau putu'{toLocales} e arata'i i te mau i'oa o te putu'ite, no reira, a ma'iti i te mau faufaa ta outou i ma'iti."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Te mau mana'o e titauhia",
 			"caption": "Te mau mana'o e titauhia",
 			"items": {
-				"sourceLocale": "Source locale (ei hi'oraa, {en}) faaohipahia no te imi i te mau pu'e parau mai te {sourceGlob}. Ua hapono-atoa-hia i te Translator ei {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. A haere na roto i te {secrets}.",
-				"endpoint": "URL hopea o te iritiraa, ei hi'oraa, {endpointUrl}."
+				"sourceLocale": "Source locale (ei hi'oraa, {en}) faaohipahia no te imi i te mau pu'e parau mai te {sourceGlob}. Ua hapono-atoa-hia i te taata horo'a ei {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Ma'itiraa e te mau parau faati'a",
+			"caption": "Te ma'itiraa i te taata horo'a e te parau faati'a no te taata hoo tata'itahi",
+			"intro": "A ma'iti i te hoê pŭpŭ no te hororaa tata'itahi e te {provider}. A horo'a noa i te mau parau faati'a a te taata i ma'itihia — a hi'o i te {providersLink} arata'iraa no te faaineineraa taatoa.",
+			"items": {
+				"provider": "Taata iriti : {azure} (default), {aws}, e aore râ {google}. Hoê ana'e faanahoraa e faaohipahia i te hoê piiraa ohipa.",
+				"subscriptionKey": "Azure AI Translator subscription key. Titauhia no te {azure}. A haere na roto i te {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, e.g. {endpointUrl}. Titauhia no te {azure}.",
+				"awsAccessKeyId": "AWS access key id. Ma'itiraa — haapae (e te {awsSecretAccessKey}) no te faaohipa i te AWS default credential chain / OIDC. A haere na roto i te {secrets}.",
+				"awsSecretAccessKey": "AWS secret access key. E mea ti'a ia horo'ahia e te {awsAccessKeyId}. A haere na roto i te {secrets}.",
+				"awsSessionToken": "Optional AWS session token for temporary credentials. A haere na roto i te {secrets}.",
+				"awsRegion": "AWS no te faanahoraa Translate (ei hi'oraa, {regionExample}). Titauhia no te {aws} maori râ ua tuuhia te {awsRegionEnv} i roto i te vahi nohoraa.",
+				"googleApiKey": "Taviri API Google Cloud. A horo'a i teie OR {googleCredentials} no te {google}. A haere na roto i te {secrets}.",
+				"googleCredentials": "Google Cloud service-account key as a JSON string. A horo'a i teie OR {googleApiKey} no te {google}. A haere na roto i te {secrets}.",
+				"googleProjectId": "Optional Google Cloud project id. E mea pinepine te reira i te faahitihia mai roto mai i te parau faati'a no te taviniraa."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Te aniraa a te taata iriti i te mau mana'o",
-			"intro": "E faanaho ti'a te reira i ni'a i te Azure AI Translator v3 query parameters. E ma'itiraa te mau mea atoa ; e tano te Translator default mai te mea e, aita e faanahoraa.",
-			"caption": "Te aniraa a te taata iriti i te mau mana'o",
+			"heading": "Azure Translator request inputs",
+			"intro": "E faanaho-ti'a-hia te reira i ni'a i te Azure AI Translator v3 query parameters e e faaohipahia i ni'a i te Azure Provider. textType e te profanityAction e faanaho-atoa-hia i ni'a i te AWS/Google mai te mea te vai ra te hoê tu'atiraa (a hi'o i te buka arata'i a te feia horo'a) ; te toe'a no te Azure ana'e. E ma'itiraa te mau mea atoa ; e tano te Translator default mai te mea e, aita e faanahoraa.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone button. Haponohia mai te {categoryQuery}.",
 				"textType": "{plain} e aore râ {html}. A faaohipa i te {html} mai te mea e, e mau hu'ahu'a HTML mau ta outou mau rave'a.",

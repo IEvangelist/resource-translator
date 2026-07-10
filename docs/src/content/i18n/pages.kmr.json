@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Wergêra Çavkanî",
-		"description": "Wergêra Çavkaniyê ji bo pelên çavkaniya we di her repoyê, di her formatê de daxwazên kişandinê yên bi makîneyê vedike - ji hêla Azure AI Translator ve tê xebitandin.",
+		"description": "Wergêra Çavkaniyê ji bo pelên çavkaniya we di her repoyê, di her formatê de daxwazên kişandina makîneyê vedike - ji hêla Azure AI Translator, AWS Translate an Google Cloud Translation ve tê xebitandin.",
 		"socialTitle": "Wergêra Çavkaniyê - pelên çavkaniyê bixweber wergerînin",
-		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Repo xwe li ser herêmî bikin",
 		"headlineAccent": "her peyman.",
-		"lede": "Wergêra Çavkaniyê ji bo pelên çavkaniya we bi karanîna Azure AI Translator bi rêya SDK-ya fermî daxwazên kişandinê yên makîneyê vedike - ne karûbarên zêde, tenê herikîna xebatê.",
+		"lede": "Wergêra Çavkaniyê ji bo pelên çavkaniya we bi karanîna Azure, AWS an Google daxwazên kişandinê yên wergerandî vedike - çalakiyek yekbûyî, yek pêşkêşker ji bo her xebitandinê, SDK-yên fermî di bin kaputê de.",
 		"primaryCta": "Dest pê bikin",
 		"secondaryCta": "Stêrk li ser GitHub",
 		"supports": "Piştgirî",
 		"builtForShipping": "Ji bo barkêşiyê hatiye çêkirin",
 		"workflowTitle": "Wergerandin wekî herikîna xebatê, ne karek.",
-		"workflowBody": "Çalakiyê bavêjin CI-ya xweya heyî, wê li ser Azure AI Translator nîşan bidin, û bila repoya we her zimanê ku hûn armanc dikin biaxivin.",
+		"workflowBody": "Çalakiyê bavêjin CI-ya xweya heyî, wê li Azure, AWS, an Google-ê nîşan bidin, û bila repoya we her zimanê ku hûn armanc dikin biaxivin.",
 		"stats": {
 			"audit": "0 Pirsgirêkên NPM-kontrolê",
-			"tests": "150 ceribandin",
+			"tests": "240+ testan",
 			"node": "Girêk 20 / 22 / 24",
-			"sdk": "Fermî Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} û {hasNewTranslations} rasterast di nav afirandin-kişandin-daxwazê de cih digirin."
 			},
 			"sdk": {
-				"title": "Fermî Azure SDK",
-				"body": "Li ser {azureSdk} + {corePipeline} hatiye avakirin - li ser {statusCodes} ceribandinên otomatîk hene, HTTP-ya destan tune ye. {esbuild}-pakêt, kontrol-paqij."
+				"title": "Azure, AWS & Google",
+				"body": "Ji bo her bezê yek pêşkêşker hilbijêrin. Her yek ji hêla SDK-ya xwe ya fermî ({azureSdk}, {awsSdk}, {googleSdk}) ve bi ceribandinên otomatîk ên li ser {statusCodes} ve tê rêve kirin - HTTP-ya dest-pêçandî tune. {esbuild}-pakêt, kontrol-paqij."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Amade ne ku li ser otopîlotê herêmî bikin?",
-			"body": "Yek mifteya wergera Azure AI, yek pelê herikîna xebatê. Wergêra Çavkaniyê yên mayî birêve dibe.",
+			"body": "Yek mifteya dabînker - Azure, AWS, an Google - û yek pelê herikîna xebatê. Wergêra Çavkaniyê yên mayî birêve dibe.",
 			"button": "Dest pê bikin"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Gavên din",
 			"configuration": "Xwerû asta repo-yê bi {configPath} vesaz bikin.",
 			"recipes": "Li reçeteyên ji bo monorepo, ferhengên xwerû û kategoriyên Wergêra Taybet binêrin."
+		}
+	},
+	"providers": {
+		"title": "Pêşkêşvanên wergerê",
+		"eyebrow": "Referans",
+		"lede": "Ji bo her xebatê yek dabînkerê wergerê hilbijêrin - Azure AI Translator, AWS Translate, an Google Cloud Translation - li pişt rûyê API-yê yekbûyî. Wergêr bêyî ku pêşkêşker be heman tevdigere; Tenê bawername cuda ne.",
+		"backwardCompatible": "Bi tevahî paşve lihevhatî: {provider} ji bo {azure} xwerû ye, ji ber vê yekê herikîna heyî ya Azure-ê bê guhertin berdewam dike - ne hewceyê sererastkirinan.",
+		"selecting": {
+			"title": "Hilbijartina peydaker",
+			"body": "Têketina {provider} li ser {azure} (xwerû), {aws} an {google} saz bikin, paşê nasnameyên wê dabînkerê peyda bikin. Ji bo her banga çalakiyê tenê yek peydaker tê bikar anîn; çalakî bi awayekî diyarker ji SDK-ya lihevhatî ya li pişt kargehekê re şandiye."
+		},
+		"comparison": {
+			"title": "Berhevdana pêşkêşker",
+			"caption": "Berhevdana dabînkerê wergerê",
+			"columns": {
+				"provider": "Pêşkêşker",
+				"value": "nirxa peydaker",
+				"sdk": "SDK",
+				"credentials": "Bawername"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (default)",
+				"credentials": "subscriptionKey, endpoint, herêm (vebijarkî)"
+			},
+			"aws": {
+				"name": "AWS Wergere",
+				"value": "aws",
+				"credentials": "OIDC / zincîra xwerû, an awsAccessKeyId + awsSecretAccessKey; awsHerêm"
+			},
+			"google": {
+				"name": "Wergera Google Cloud",
+				"value": "Google",
+				"credentials": "googleApiKey OR googleCredentials (karûbar-hesabê JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Pêşkêşkerê xwerû. Çavkaniyek Wergera Azure AI peyda bikin û {subscriptionKey}, {endpoint} û vebijarkî derbas {region}. Ev heman mîheng e ku herikîna heyî jixwe bikar tîne."
+		},
+		"aws": {
+			"title": "AWS Wergere",
+			"body": "Bikaranîna {sdk}. OIDC-ê bi rêya {configureAwsCredentials} tercîh bikin da ku razên demdirêj neyên hilanîn - çalakî zincîra nasnameya xwerû ya AWS SDK dixwîne. Wekî din, {awsAccessKeyId} derbas bikin û {awsSecretAccessKey} eşkere bikin. Herêmek her dem hewce ye, bi navgîniya {awsRegion} an jî guhêrbara hawîrdorê {awsRegionEnv}.",
+			"oidcTitle": "OIDC (tê pêşniyarkirin)",
+			"keysNote": "Ji bo ku hûn li şûna OIDC bişkokên statîk bikar bînin, gava {configureAwsCredentials} bavêjin û {awsAccessKeyId} / {awsSecretAccessKey} (bi rêya {secrets}) û {awsRegion} derbas bikin."
+		},
+		"google": {
+			"title": "Wergera Google Cloud",
+			"body": "{sdk} (v2) bikar tîne. Bi mifteya API-yê ({googleApiKey}) an jî bi nasnameya JSON-ê ya karûbarê ({googleCredentials}) piştrast bikin. Tam yek peyda bikin; Gava ku {googleProjectId} ji bawernameyê vebijarkek vebijarkî tê derxistin."
+		},
+		"mapping": {
+			"title": "Nexşeya armanc-diyarker",
+			"body": "Taybetmendiyên taybetî yên pêşkêşker li cihê ku wekhevî heye têne nexşeykirin. Her tiştê din vedigere kêmasiyên maqûl ji ber vê yekê tevger berdewam dike.",
+			"caption": "Nexşeya armanc-diyarker li seranserê peydakeran",
+			"columns": {
+				"input": "Input",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Piştgirî",
+			"ignored": "Piştguh kirin",
+			"rows": {
+				"textType": {
+					"azure": "textType (sade / html)",
+					"aws": "Piştguh kirin (bê guherandin)",
+					"google": "format (nivîs / html)"
+				},
+				"profanityAction": {
+					"azure": "Piştgiriya tam",
+					"aws": "Nîşankirin / Jêbirin → maskekirinê",
+					"google": "Piştguh kirin"
+				},
+				"categoryId": {
+					"azure": "Wergêrê Taybet",
+					"aws": "Piştguh kirin",
+					"google": "Piştguh kirin"
+				},
+				"allowFallback": {
+					"azure": "Piştgirî",
+					"aws": "Piştguh kirin",
+					"google": "Piştguh kirin"
+				}
+			}
+		},
+		"locales": {
+			"title": "Kodên herêmî li gorî peydaker cuda ne",
+			"body": "Her pêşkêşker kodên xwe yên herêmî bikar tîne (mînak Çînî ya Hêsankirî {azureCode} li Azure, {awsCode} li AWS, û {googleCode} li Google). Kod wekî ku heye derbas dibin û navên pelên derketinê dimeşînin, ji ber vê yekê nirxên {toLocales} hilbijêrin ku dabînkerê we hilbijartî piştgirî dike."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Têketinên pêwîst",
 			"caption": "Têketinên pêwîst",
 			"items": {
-				"sourceLocale": "Çavkaniya herêmî (mînak {en}) ji bo dîtina pelên çavkaniyê yên wekî {sourceGlob}. Her weha wekî Wergêr jî {fromLocale}.",
-				"subscriptionKey": "Mifteya abonetiyê ya Azure AI Translator. Bi rêya {secrets} derbas bibin.",
-				"endpoint": "URL-ya dawîn a wergêrê, mînak {endpointUrl}."
+				"sourceLocale": "Çavkaniya herêmî (mînak {en}) ji bo dîtina pelên çavkaniyê yên wekî {sourceGlob}. Her weha wekî dabînker jî {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Hilbijartina pêşkêşker û bawernameyên",
+			"caption": "Hilbijartina dabînker û nasnameyên per-vendor",
+			"intro": "Bi her bezê re yek dabînker hilbijêrin {provider}. Tenê nasnameyên dabînkerê hilbijartî peyda bikin - ji bo sazkirina tevahî li rêbera {providersLink} binêrin.",
+			"items": {
+				"provider": "Pêşkêşvanê wergerê: {azure} (default), {aws}, an {google}. Ji bo her banga çalakiyê tenê yek peydaker tê bikar anîn.",
+				"subscriptionKey": "Mifteya abonetiyê ya Azure AI Translator. Ji bo {azure}. Derbas {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, mînak {endpointUrl}. Ji bo {azure}.",
+				"awsAccessKeyId": "Nasnameya mifteya gihîştina AWS. Vebijarkî - ji bo bikaranîna zincîra nasnameya xwerû ya AWS / OIDC (bi {awsSecretAccessKey}) ji bîr bikin. Derbas {secrets}.",
+				"awsSecretAccessKey": "Mifteya gihîştina veşartî ya AWS. Divê bi hev re {awsAccessKeyId}. Derbas {secrets}.",
+				"awsSessionToken": "Ji bo nasnameyên demkî nîşana rûniştina AWS ya vebijarkî. Bi rêya {secrets} derbas bibin.",
+				"awsRegion": "Herêma AWS ji bo karûbarê wergerandinê (mînak {regionExample}). Ji bo {aws} hewce {awsRegionEnv} ku li hawîrdorê neyê danîn.",
+				"googleApiKey": "Mifteya Google Cloud API. Vê OR {googleCredentials} ji bo {google}. Di {secrets} derbas bibin.",
+				"googleCredentials": "Mifteya hesabê karûbarê Google Cloud wekî rêzikek JSON. Vê OR {googleApiKey} ji bo {google}. Di {secrets} derbas bibin.",
+				"googleProjectId": "Nasnameya projeya Google Cloud ya vebijarkî. Bi gelemperî ji nasnameya hesabê xizmetê tê derxistin."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Têketinên daxwaza wergêr",
-			"intro": "Ev rasterast li ser parametreyên lêpirsînê yên Azure AI Translator v3 nexşeyê dikin. Her yek vebijarkî ye; dema ku neyê danîn xwerû yên Wergêr têne sepandin.",
-			"caption": "Têketinên daxwaza wergêr",
+			"heading": "Azure Translator request inputs",
+			"intro": "Ev rasterast li ser parametreyên lêpirsînê yên Azure AI Translator v3 nexşeyê dikin û li ser dabînkerê azure bicîh dikin. textType û profanityAction jî bi AWS / Google re têne nexşeykirin ku wekheviyek heye (li rêbera pêşkêşvanan binêrin); yên mayî tenê Azure-ê ne. Her yek vebijarkî ye; dema ku neyê danîn xwerû yên Wergêr têne sepandin.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Kategoriya Azure {customTranslatorLink} — bişkoja pîşesaziyê / domainê / ton. Wekî {categoryQuery}.",
 				"textType": "{plain} an {html}. {html} tenê dema ku nirxên çavkaniya we perçeyên HTML-ê yên rastîn in, bikar bînin.",

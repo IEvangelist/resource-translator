@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Ресурслар тәрҗемәчесе",
-		"description": "Resource Translator теләсә кайсы репозиториядә, теләсә кайсы форматта ресурс файлларыгыз өчен машина тәрҗемәсе белән pull requestларын ача.",
+		"description": "Resource Translator сезнең ресурс файлларыгыз өчен машина тәрҗемәсе белән теләсә кайсы репозиториядә, теләсә нинди форматта — Azure AI Тәрҗемәчесе, AWS Тәрҗемәчесе яки Google Cloud Translation ярдәмендә эшли.",
 		"socialTitle": "Resource Translator — ресурс файлларын автомат рәвештә тәрҗемә итә",
-		"badge": "v3.0 — Node 24, репо конфигурациясе, сүзлек, коры эшләнмә",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Репозиторийны локализацияләгез",
 		"headlineAccent": "һәр коммит.",
-		"lede": "Resource Translator рәсми SDK аша Azure AI Translator ярдәмендә ресурс файлларыгыз өчен машина тәрҗемәсе белән pull requestларын ача — өстәмә хезмәтләр юк, бары тик эш процессы.",
+		"lede": "Resource Translator Azure, AWS яки Google ярдәмендә ресурс файлларыгыз өчен машина тәрҗемәсе белән pull requestларын ача.",
 		"primaryCta": "Башлагыз",
 		"secondaryCta": "GitHubта йолдыз",
 		"supports": "Ярдәмнәр",
 		"builtForShipping": "Суднолар йөртү өчен төзелгән",
 		"workflowTitle": "Тәрҗемә эш процессы буларак, мәшәкать түгел.",
-		"workflowBody": "Гамәлне гамәлдәге CIга төшерегез, Azure AI Тәрҗемәчесенә юнәлтегез һәм репозиторийыгызга һәр телдә сөйләшергә рөхсәт итегез.",
+		"workflowBody": "Гамәлне гамәлдәге CI-га төшерегез, аны Azure, AWS яки Google-га юнәлтегез һәм репозиторийыгызга сез максат иткән һәр телдә сөйләшергә рөхсәт итегез.",
 		"stats": {
 			"audit": "0 npm-аудит мәсьәләләре",
-			"tests": "150 тест",
+			"tests": "240+ тестлар",
 			"node": "Нокта 20 / 22 / 24",
-			"sdk": "Рәсми Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} һәм {hasNewTranslations} турыдан-туры create-pull-requestка урнаштырыла."
 			},
 			"sdk": {
-				"title": "Рәсми Azure SDK",
-				"body": "{azureSdk} + {corePipeline} нигезендә төзелгән — {statusCodes} буенча автоматик рәвештә кабатлап карау, кулдан әйләндерелгән HTTP юк. {esbuild}-җыелма, аудит-чиста."
+				"title": "Azure, AWS & Google",
+				"body": "Һәр йөгерүгә бер провайдер сайлагыз. Аларның һәрберсе үзенең рәсми SDK ({azureSdk}, {awsSdk}, {googleSdk}) белән идарә ителә, {statusCodes} автоматик рәвештә кабатлап карау — кулдан әйләндерелгән HTTP юк. {esbuild}-җыелма, аудит-чиста."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Автопилотта локализацияләргә әзерме?",
-			"body": "Бер Azure AI Тәрҗемәче ачкычы, бер workflow файлы. Калганын Resource Translator башкара.",
+			"body": "Бер провайдер ачкычы — Azure, AWS яки Google — һәм бер эш процессы файлы. Калганын Resource Translator башкара.",
 			"button": "Башлагыз"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Алдагы адымнар",
 			"configuration": "Репо дәрәҗәсендәге стандартларны {configPath} белән көйләгез.",
 			"recipes": "Монорепо, махсус сүзлек һәм Custom Translator категорияләре рецептларын карагыз."
+		}
+	},
+	"providers": {
+		"title": "Тәрҗемә күрсәтүчеләр",
+		"eyebrow": "Белешмә",
+		"lede": "Бердәм API өслеге артында бер тәрҗемә провайдерын — Azure AI Translator, AWS Translate яки Google Cloud Translation — сайлагыз. Тәрҗемәче провайдерга карамастан үзен бер төрле тота; Бары тик вәкаләтләре генә аерыла.",
+		"backwardCompatible": "Тулысынча артка туры килә: {provider} стандарт буенча {azure}, шуңа күрә гамәлдәге Azure эш процесслары үзгәрешсез эшли.",
+		"selecting": {
+			"title": "Провайдер сайлау",
+			"body": "{provider} кертүне {azure} (стандарт), {aws} яки {google} итеп куегыз, аннары провайдерның учет мәгълүматларын бирегез. Бер шалтырату өчен бер провайдер гына кулланыла; акция билгеле рәвештә завод артында тиешле SDK-га делегат бирә."
+		},
+		"comparison": {
+			"title": "Провайдерлар белән чагыштыру",
+			"caption": "Тәрҗемә провайдерлары белән чагыштыру",
+			"columns": {
+				"provider": "Провайдер",
+				"value": "провайдер кыйммәте",
+				"sdk": "SDK",
+				"credentials": "Таныклыклар"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (default)",
+				"credentials": "subscriptionKey, endpoint, region (мәҗбүри)"
+			},
+			"aws": {
+				"name": "AWS Тәрҗемә",
+				"value": "aws",
+				"credentials": "OIDC / стандарт чылбыры, яки awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Болыт тәрҗемәсе",
+				"value": "Google",
+				"credentials": "googleApiKey ЯКИ googleCredentials (сервис-аккаунт JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Стандарт тәэмин итүче. Azure AI тәрҗемәче ресурсын тәэмин итү һәм {subscriptionKey}, {endpoint} һәм факультатив рәвештә {region}. Бу гамәлдәге эш процесслары кулланыла торган конфигурация."
+		},
+		"aws": {
+			"title": "AWS Тәрҗемә",
+			"body": "Кулланыла {sdk}. Озак вакытлы серләр сакланмас өчен OIDC аша OIDC-ны өстен күрегез {configureAwsCredentials} эш AWS SDK стандарт учет чылбырын укый. Альтернатив рәвештә, {awsAccessKeyId} һәм {awsSecretAccessKey} ачыктан-ачык үтергә. Төбәк һәрвакыт {awsRegion} яки {awsRegionEnv} әйләнә-тирә үзгәрүчән аша таләп ителә.",
+			"oidcTitle": "OIDC (тәкъдим ителә)",
+			"keysNote": "OIDC урынына статик төймәләрне куллану өчен {configureAwsCredentials} адымын төшереп калдырыгыз һәм {awsAccessKeyId}/{awsSecretAccessKey} ({secrets} аша) плюс {awsRegion}."
+		},
+		"google": {
+			"title": "Google Болыт тәрҗемәсе",
+			"body": "Кулланыла {sdk} (v2). API ачкычы ({googleApiKey}) яки сервис-аккаунт JSON учет мәгълүматы ({googleCredentials}) белән аутентификацияләгез. Нәкъ берсен тәэмин итегез; Өстәмә {googleProjectId} төшереп калдырылган чакта таныклыктан факультатив  чыгарыла."
+		},
+		"mapping": {
+			"title": "Интент-спецификатор карталаштыру",
+			"body": "Провайдерга хас спецификаторлар эквивалент булган җирдә карталаштырыла. Калганнары үз-үзеңне тотрыклы калдыру өчен акыллы дефолтларга кире кайта.",
+			"caption": "Провайдерлар арасында максат-спецификатор карталаштыру",
+			"columns": {
+				"input": "Кертү",
+				"azure": "Зәңгәр",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Хупланды",
+			"ignored": "Игътибар ителмәгән",
+			"rows": {
+				"textType": {
+					"azure": "textType (гади / html)",
+					"aws": "Игътибар ителмәде.",
+					"google": "Формат (текст / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Тулы ярдәм",
+					"aws": "Билгеләнгән/Юкка чыгарылган →",
+					"google": "Игътибар ителмәгән"
+				},
+				"categoryId": {
+					"azure": "Кастомлаштырылган тәрҗемәче",
+					"aws": "Игътибар ителмәгән",
+					"google": "Игътибар ителмәгән"
+				},
+				"allowFallback": {
+					"azure": "Хупланды",
+					"aws": "Игътибар ителмәгән",
+					"google": "Игътибар ителмәгән"
+				}
+			}
+		},
+		"locales": {
+			"title": "Локаль кодлар һәр провайдер белән аерыла.",
+			"body": "Һәр провайдер үзенең локаль кодларын куллана (мәсәлән, Azure {azureCode} да Simplified Chinese , AWS-та {awsCode} һәм Google-да {googleCode}). Кодлар шулай үтә һәм чыга торган файл исемнәрен идарә итә, шуңа күрә сайлаган провайдер хуплаган {toLocales} кыйммәтләрне сайлагыз."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Кирәкле кертемнәр",
 			"caption": "Кирәкле кертемнәр",
 			"items": {
-				"sourceLocale": "Чыганак локалы (мәсәлән, {en}) {sourceGlob} кебек ресурс файлларын табу өчен кулланыла. Шулай ук тәрҗемәчегә {fromLocale}.",
-				"subscriptionKey": "Azure AI Тәрҗемәче подписка ачкычы. Үтеп {secrets}.",
-				"endpoint": "Тәрҗемәче ахыры URL, мәсәлән, {endpointUrl}."
+				"sourceLocale": "Чыганак локалы (мәсәлән, {en}) {sourceGlob} кебек ресурс файлларын табу өчен кулланыла. Шулай ук хезмәт күрсәтүчегә {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Провайдер сайлау һәм таныклыклар",
+			"caption": "Провайдер сайлау һәм һәр җитештерүче өчен учет мәгълүматлары",
+			"intro": "Һәр йөгерү өчен бер провайдер сайлагыз {provider}. Сайланган провайдерның таныклыкларын гына күрсәтегез — {providersLink} кулланмасын карагыз.",
+			"items": {
+				"provider": "Тәрҗемә провайдеры: {azure} (default), {aws} яки {google}. Бер чакыру өчен бер провайдер гына кулланыла.",
+				"subscriptionKey": "Azure AI Тәрҗемәче подписка ачкычы. Мәҗбүри {azure}. Узыгыз {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, мәсәлән, {endpointUrl}. Мәҗбүри {azure}.",
+				"awsAccessKeyId": "AWS керү ачкычы идентификаторы. Мәҗбүри — AWS стандарт учет чылбырын / OIDC куллану өчен төшереп калдырыгыз ({awsSecretAccessKey} белән). Узыгыз {secrets}.",
+				"awsSecretAccessKey": "AWS яшерен керү ачкычы. Алар белән бергә тәэмин ителергә {awsAccessKeyId}. Узыгыз {secrets}.",
+				"awsSessionToken": "Вакытлы учет мәгълүматлары өчен факультатив AWS сессия токене. Үтеп {secrets}.",
+				"awsRegion": "Тәрҗемә хезмәте өчен AWS төбәге (мәсәлән, {regionExample}). Әйләнә-тирә мохиттә {aws} {awsRegionEnv} өчен таләп ителә.",
+				"googleApiKey": "Google Cloud API ачкычы. Бу ЯКИ {googleCredentials} {google}. Үтеп {secrets}.",
+				"googleCredentials": "Google Cloud сервис-аккаунт ачкычы JSON строкасы буларак. Бу ЯКИ {googleApiKey} {google}. Үтеп {secrets}.",
+				"googleProjectId": "Факультатив Google Cloud проекты id. Гадәттә хезмәт аккаунты мәгълүматыннан чыгарыла."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Тәрҗемәче запрослары кертемнәре",
-			"intro": "Алар турыдан-туры Azure AI Translator v3 сорау параметрларына туры килә. Һәрберсе мәҗбүри; Тәрҗемәче стандартлары көйләнмәгән чакта кулланыла.",
-			"caption": "Тәрҗемәче запрослары кертемнәре",
+			"heading": "Azure Translator request inputs",
+			"intro": "Алар турыдан-туры Azure AI Translator v3 запрос параметрларына туры килә һәм Azure провайдерына кулланыла. textType һәм profanityAction шулай ук AWS/Google белән чагыштырыла; калганнары бары тик Azure форматында. Һәрберсе мәҗбүри; Тәрҗемәче стандартлары көйләнмәгән чакта кулланыла.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — industry/domain/tone knob. Җибәрелгән {categoryQuery}.",
 				"textType": "{plain} яки {html}. Ресурс кыйммәтләрегез чын HTML фрагментлары булганда гына {html} кулланыгыз.",

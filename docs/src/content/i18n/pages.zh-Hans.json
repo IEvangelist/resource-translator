@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "资源转换器",
-		"description": "Resource Translator可以在任何仓库、任何格式下为你的资源文件打开机器翻译的拉取请求——由Azure AI Translator驱动。",
+		"description": "Resource Translator可以在任何仓库、任何格式中为你的资源文件打开机器翻译的拉取请求——由Azure AI Translator、AWS Translate或Google Cloud Translation驱动。",
 		"socialTitle": "资源翻译器——自动翻译资源文件",
-		"badge": "v3.0 — Node 24， repo config， glossary， dry run",
+		"badge": "v3.0 — Azure， AWS & Google providers， Node 24， repo config",
 		"headlinePrefix": "将你的仓库本地化",
 		"headlineAccent": "每一次提交。",
-		"lede": "Resource Translator通过官方SDK使用Azure AI Translator打开机器翻译的资源文件拉取请求——没有额外服务，只有一个工作流程。",
+		"lede": "Resource Translator通过Azure、AWS或Google打开机器翻译的资源文件拉取请求——一个统一操作，每次运行一个提供者，内部有官方SDK。",
 		"primaryCta": "开始",
 		"secondaryCta": "GitHub 上的星级",
 		"supports": "辅助",
 		"builtForShipping": "为航运而建",
 		"workflowTitle": "翻译作为一种工作流程，而不是一项苦差事。",
-		"workflowBody": "把动作放进你现有的配置项，指向Azure AI Translator，让你的仓库能说你目标的所有语言。",
+		"workflowBody": "把操作放进你现有的配置项里，指向Azure、AWS或Google，让你的仓库支持你目标的所有语言。",
 		"stats": {
 			"audit": "0 NPM-审计问题",
-			"tests": "150场测试赛",
+			"tests": "240+测试",
 			"node": "节点20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure ·AWS ·谷歌"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}、{summaryDetails}和{hasNewTranslations}直接插入创建拉取请求。"
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "基于{azureSdk} + {corePipeline}——{statusCodes}自动重试，没有手卷HTTP。{esbuild}捆绑，审计干净。"
+				"title": "Azure、AWS 与 Google",
+				"body": "每次跑步只选一个医生。每个 SDK 都由其官方 SDK（{azureSdk}、{awsSdk}、{googleSdk}）驱动，{statusCodes} 上自动重试——没有手卷 HTTP。{esbuild}捆绑，审计干净。"
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "准备好自动驾驶本地化了吗？",
-			"body": "一个Azure AI翻译密钥，一个工作流程文件。剩下的则由资源翻译器处理。",
+			"body": "一个提供商密钥——Azure、AWS或Google——和一个工作流程文件。剩下的则由资源翻译器处理。",
 			"button": "开始"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "下一步",
 			"configuration": "用{configPath}配置仓库级默认值。",
 			"recipes": "查看 monorepo 的配方、自定义词汇表和自定义翻译器类别。"
+		}
+	},
+	"providers": {
+		"title": "翻译提供商",
+		"eyebrow": "参考文献",
+		"lede": "每次运行选择一个翻译提供商——Azure AI Translator、AWS Translate 或 Google Cloud Translation——在单一统一的 API 表面下。无论哪个提供者，转播器的行为都相同;只是资历不同。",
+		"backwardCompatible": "完全向后兼容：{provider}默认为{azure}，因此现有的Azure工作流程保持不变——无需修改。",
+		"selecting": {
+			"title": "选择服务提供者",
+			"body": "将{provider}输入设置为{azure}（默认）、{aws}或{google}，然后提供该提供商的凭证。每个动作调用只使用一个提供者;该动作确定性地委派给工厂后面的匹配 SDK。"
+		},
+		"comparison": {
+			"title": "提供者比较",
+			"caption": "翻译提供商比较",
+			"columns": {
+				"provider": "提供者",
+				"value": "提供者价值",
+				"sdk": "SDK",
+				"credentials": "资历"
+			},
+			"azure": {
+				"name": "Azure AI 翻译器",
+				"value": "Azure（默认）",
+				"credentials": "subscriptionKey， endpoint， region（可选）"
+			},
+			"aws": {
+				"name": "AWS 翻译",
+				"value": "AWS",
+				"credentials": "OIDC / 默认链，或 awsAccessKeyID + awsSecretAccessKey;awsRegion"
+			},
+			"google": {
+				"name": "谷歌云翻译",
+				"value": "谷歌",
+				"credentials": "googleApiKey OR googleCredentials （service-account JSON）"
+			}
+		},
+		"azure": {
+			"title": "Azure AI 翻译器（默认）",
+			"body": "默认的供应商。配置一个Azure AI翻译器资源，并传递{subscriptionKey}、{endpoint}，以及可选的{region}。这和现有工作流程已经使用的配置相同。"
+		},
+		"aws": {
+			"title": "AWS 翻译",
+			"body": "使用{sdk}。优先通过{configureAwsCredentials}进行OIDC，这样就不会存储长期存在的秘密——动作读取AWS SDK默认凭据链。或者，直接传递{awsAccessKeyId}并明确{awsSecretAccessKey}。区域总是需要，通过{awsRegion}或{awsRegionEnv}环境变量。",
+			"oidcTitle": "OIDC（推荐）",
+			"keysNote": "要使用静态键代替OIDC，可以去掉{configureAwsCredentials}步，通过{secrets}传递{awsAccessKeyId} / {awsSecretAccessKey}加{awsRegion}。"
+		},
+		"google": {
+			"title": "谷歌云翻译",
+			"body": "使用{sdk}（v2）。用API密钥（{googleApiKey}）或服务账户JSON凭证（{googleCredentials}）进行认证。只提供一个;当省略凭据时，会推断出可选{googleProjectId}。"
+		},
+		"mapping": {
+			"title": "意图-指定符映射",
+			"body": "提供者专用的指定词会映射在存在等价物的地方。其他一切都回归到合理的默认状态，以保持行为一致性。",
+			"caption": "跨提供者的意图-指定符映射",
+			"columns": {
+				"input": "输入",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "谷歌"
+			},
+			"supported": "支持",
+			"ignored": "被忽视",
+			"rows": {
+				"textType": {
+					"azure": "textType（纯 / html）",
+					"aws": "无开关被忽略",
+					"google": "格式（文本 / HTML）"
+				},
+				"profanityAction": {
+					"azure": "全力支持",
+					"aws": "已标记/删除→掩蔽",
+					"google": "被忽视"
+				},
+				"categoryId": {
+					"azure": "定制翻译器",
+					"aws": "被忽视",
+					"google": "被忽视"
+				},
+				"allowFallback": {
+					"azure": "支持",
+					"aws": "被忽视",
+					"google": "被忽视"
+				}
+			}
+		},
+		"locales": {
+			"title": "不同服务商的地区代码不同",
+			"body": "每个提供商使用自己的本地代码（例如，简体中文在Azure上{azureCode}，{awsCode}在AWS上，{googleCode}在Google上）。代码按现状传输并驱动输出文件名，因此选择你所选服务提供商支持的{toLocales}值。"
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "所需输入",
 			"caption": "所需输入",
 			"items": {
-				"sourceLocale": "用于查找资源文件（如{sourceGlob}）的源位置（例如 {en}）。也转发到翻译器，作为{fromLocale}。",
-				"subscriptionKey": "Azure AI Translator 订阅密钥。通过{secrets}。",
-				"endpoint": "翻译端点URL，例如{endpointUrl}。"
+				"sourceLocale": "用于查找资源文件（如{sourceGlob}）的源位置（例如 {en}）。也转发给了{fromLocale}。"
+			}
+		},
+		"providerInputs": {
+			"heading": "提供者选择与资质",
+			"caption": "提供者选择与各供应商资质",
+			"intro": "每次使用时选择一位{provider}。只需提供所选供应商的资质——完整设置请参见 {providersLink} 指南。",
+			"items": {
+				"provider": "翻译提供商：{azure}（默认）、{aws}或{google}。每个行动呼叫只使用一位提供者。",
+				"subscriptionKey": "Azure AI Translator 订阅密钥。{azure}必修。通过{secrets}。",
+				"endpoint": "Azure Translator endpoint URL，例如 {endpointUrl}.{azure}必修。",
+				"awsAccessKeyId": "AWS 访问密钥 ID。可选——{awsSecretAccessKey}省略使用AWS默认凭证链/OIDC。通过{secrets}。",
+				"awsSecretAccessKey": "AWS 秘密访问密钥。必须与{awsAccessKeyId}一起提供。通过{secrets}。",
+				"awsSessionToken": "可选的AWS会话令牌用于临时凭证。通过{secrets}。",
+				"awsRegion": "翻译服务的AWS区域（例如{regionExample}）。除非{awsRegionEnv}设定在环境中，否则{aws}是必需的。",
+				"googleApiKey": "Google Cloud API 密钥。请提供这份手术室{googleCredentials}给{google}。通过{secrets}。",
+				"googleCredentials": "Google Cloud 服务账户密钥作为 JSON 字符串。请提供这份手术室{googleApiKey}给{google}。通过{secrets}。",
+				"googleProjectId": "可选的 Google Cloud 项目 ID。通常通过服务账户凭证推断出来。"
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "译者请求输入",
-			"intro": "这些参数直接映射到 Azure AI Translator v3 的查询参数。所有选择都是可选的;未设置时，翻译器默认值生效。",
-			"caption": "译者请求输入",
+			"heading": "Azure Translator request inputs",
+			"intro": "这些直接映射到 Azure AI Translator v3 的查询参数，并应用到 Azure 提供者。textType 和 profanityAction 也映射到 AWS/Google，而 Google 存在相应的服务（详见提供者指南）;其余的都是仅限Azure的。所有选择都是可选的;未设置时，翻译器默认值生效。",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — the industry/domain/tone knob.转发为{categoryQuery}。",
 				"textType": "{plain}或{html}。只有当资源值是真实的HTML片段时才使用{html}。",

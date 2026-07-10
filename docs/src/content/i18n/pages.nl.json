@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Resource Translator",
-		"description": "Resource Translator opent machine-vertaalde pull requests voor je resourcebestanden in elk repository, in elk formaat — aangedreven door Azure AI Translator.",
+		"description": "Resource Translator opent machine-vertaalde pull requests voor je resourcebestanden in elk repository, in elk formaat — aangedreven door Azure AI Translator, AWS Translate of Google Cloud Translation.",
 		"socialTitle": "Resource Translator — vertaal automatisch bronbestanden",
-		"badge": "v3.0 — Node 24, repo config, glossarium, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Lokaliseer je repo op",
 		"headlineAccent": "elke committ.",
-		"lede": "Resource Translator opent machine-vertaalde pull requests voor je resourcebestanden met Azure AI Translator via de officiële SDK — geen extra diensten, alleen een workflow.",
+		"lede": "Resource Translator opent machine-vertaalde pull requests voor je resourcebestanden met Azure, AWS of Google — één geïntegreerde actie, één provider per run, officiële SDK's onder de motorkap.",
 		"primaryCta": "Begin maar",
 		"secondaryCta": "Star op GitHub",
 		"supports": "Supports",
 		"builtForShipping": "Gebouwd voor de scheepvaart",
 		"workflowTitle": "Vertaling als werkwijze, geen klus.",
-		"workflowBody": "Plaats de actie in je bestaande CI, richt hem op Azure AI Translator en laat je repo elke taal spreken die je target.",
+		"workflowBody": "Plaats de actie in je bestaande CI, richt het op Azure, AWS of Google, en laat je repo elke taal spreken die je target.",
 		"stats": {
 			"audit": "0 npm-auditproblemen",
-			"tests": "150 tests",
+			"tests": "240+ tests",
 			"node": "Node 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} en {hasNewTranslations} direct in create-pull-request worden gepast."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Gebouwd op {azureSdk} + {corePipeline} — automatische herpogingen op {statusCodes}, geen handmatig gerolde HTTP. {esbuild} gebundeld, audit-schoon."
+				"title": "Azure, AWS & Google",
+				"body": "Kies per run één zorgverlener. Elke versie wordt aangestuurd door de officiële SDK ({azureSdk}, {awsSdk}, {googleSdk}) met automatische herpogingen op {statusCodes} — geen handmatig gerolde HTTP. {esbuild} gebundeld, audit-schoon."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Klaar om op de automatische piloot te lokaliseren?",
-			"body": "Eén Azure AI Translator-sleutel, één workflowbestand. Resource Translator regelt de rest.",
+			"body": "Eén providersleutel — Azure, AWS of Google — en één workflowbestand. Resource Translator regelt de rest.",
 			"button": "Begin maar"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Volgende stappen",
 			"configuration": "Configureer repositoriaal-standaardinstellingen met {configPath}.",
 			"recipes": "Zie recepten voor monorepos, aangepaste glossaria en Custom Translator-categorieën."
+		}
+	},
+	"providers": {
+		"title": "Vertaalaanbieders",
+		"eyebrow": "Referentie",
+		"lede": "Kies per run één vertaalprovider — Azure AI Translator, AWS Translate of Google Cloud Translation — achter één uniforme API-oppervlakte. De vertaler gedraagt zich identiek, ongeacht de aanbieder; alleen de kwalificaties verschillen.",
+		"backwardCompatible": "Volledig achterwaarts compatibel: {provider} staat standaard op {azure}, dus bestaande Azure-workflows blijven ongewijzigd — er zijn geen aanpassingen nodig.",
+		"selecting": {
+			"title": "Het kiezen van een aanbieder",
+			"body": "Stel de {provider} invoer in op {azure} (standaard), {aws} of {google} en geef vervolgens de inloggegevens van die provider in. Er wordt slechts één provider per actieoproep gebruikt; de actie delegeert deterministisch aan de bijpassende SDK achter een fabriek."
+		},
+		"comparison": {
+			"title": "Vergelijking van aanbieders",
+			"caption": "Vergelijking van vertaaldienstverlener",
+			"columns": {
+				"provider": "Aanbieder",
+				"value": "Waarde van de aanbieder",
+				"sdk": "SDK",
+				"credentials": "Geloofsbrieven"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (standaard)",
+				"credentials": "subscriptionKey, endpoint, region (optioneel)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "aws",
+				"credentials": "OIDC / standaardketen, of awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud Vertaling",
+				"value": "Google",
+				"credentials": "googleApiKey OF googleCredentials (service-account JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "De standaardprovider. Stel een Azure AI Translator-bron beschikbaar en geef {subscriptionKey}, {endpoint} en optioneel {region} door. Dit is dezelfde configuratie die bestaande workflows al gebruiken."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Gebruikt {sdk}. Geef de voorkeur aan OIDC via {configureAwsCredentials} zodat er geen langlopende geheimen worden opgeslagen — de actie leest de standaard inloggegevensketen van de AWS SDK. Of {awsAccessKeyId} passen en expliciet {awsSecretAccessKey}. Een regio is altijd vereist, via {awsRegion} of de {awsRegionEnv} omgevingsvariabele.",
+			"oidcTitle": "OIDC (aanbevolen)",
+			"keysNote": "Om statische toetsen te gebruiken in plaats van OIDC, laat je de {configureAwsCredentials} stap vallen en geef {awsAccessKeyId} / {awsSecretAccessKey} door (via {secrets}) plus {awsRegion}."
+		},
+		"google": {
+			"title": "Google Cloud Vertaling",
+			"body": "Gebruikt {sdk} (v2). Authenticeer met een API-sleutel ({googleApiKey}) of een service-account JSON-credential ({googleCredentials}). Lever precies één; Een optionele {googleProjectId} wordt afgeleid uit de kwalificatie wanneer deze wordt weggelaten."
+		},
+		"mapping": {
+			"title": "Intent-specifier mapping",
+			"body": "Provider-specifieke specificaties worden gemapt waar een equivalent bestaat. De rest valt terug op verstandige standaardwaarden zodat het gedrag consistent blijft.",
+			"caption": "Intent-specifiseerder mapping tussen providers",
+			"columns": {
+				"input": "Input",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Ondersteund",
+			"ignored": "Genegeerd",
+			"rows": {
+				"textType": {
+					"azure": "textType (plain / html)",
+					"aws": "Negeerd (geen schakelaar)",
+					"google": "Formaat (tekst / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Volledige ondersteuning",
+					"aws": "Gemarkeerd / Verwijderd → maskeren",
+					"google": "Genegeerd"
+				},
+				"categoryId": {
+					"azure": "Custom Translator",
+					"aws": "Genegeerd",
+					"google": "Genegeerd"
+				},
+				"allowFallback": {
+					"azure": "Ondersteund",
+					"aws": "Genegeerd",
+					"google": "Genegeerd"
+				}
+			}
+		},
+		"locales": {
+			"title": "Locatiecodes verschillen per aanbieder",
+			"body": "Elke provider gebruikt zijn eigen locatiecodes (bijvoorbeeld Vereenvoudigd Chinees wordt {azureCode} op Azure, {awsCode} op AWS en {googleCode} op Google). Codes worden doorgegeven zoals ze zijn en sturen de uitvoerbestandsnamen aan, dus kies {toLocales} waarden die je gekozen provider ondersteunt."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Vereiste invoer",
 			"caption": "Vereiste invoer",
 			"items": {
-				"sourceLocale": "Bronlocatie (bijv. {en}) gebruikt om bronbestanden zoals {sourceGlob} te vinden. Ook doorgestuurd naar de vertaler als {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. Ga via {secrets}.",
-				"endpoint": "Vertaler-endpoint URL, bijvoorbeeld {endpointUrl}."
+				"sourceLocale": "Bronlocatie (bijv. {en}) gebruikt om bronbestanden zoals {sourceGlob} te vinden. Ook doorgestuurd naar de zorgverlener als {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Keuze en referenties van zorgverlener",
+			"caption": "Leveranciersselectie en referenties per leverancier",
+			"intro": "Kies één aanbieder per run met {provider}. Geef alleen de gegevens van de geselecteerde aanbieder — zie de {providersLink} gids voor de volledige installatie.",
+			"items": {
+				"provider": "Vertaalaanbieder: {azure} (standaard), {aws} of {google}. Er wordt per actieoproep slechts één provider gebruikt.",
+				"subscriptionKey": "Azure AI Translator subscription key. Verplicht voor {azure}. Ga via {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, bijvoorbeeld {endpointUrl}. Verplicht voor {azure}.",
+				"awsAccessKeyId": "AWS toegangssleutel-id. Optioneel — laat (met {awsSecretAccessKey}) weg om de AWS standaard credential chain / OIDC te gebruiken. Ga via {secrets}.",
+				"awsSecretAccessKey": "AWS geheime toegangssleutel. Moet samen met {awsAccessKeyId} worden geleverd. Ga via {secrets}.",
+				"awsSessionToken": "Optioneel AWS-sessietoken voor tijdelijke inloggegevens. Ga via {secrets}.",
+				"awsRegion": "AWS-regio voor de Translate-service (bijv. {regionExample}). Verplicht voor {aws} tenzij {awsRegionEnv} zich in de omgeving afspeelt.",
+				"googleApiKey": "Google Cloud API-sleutel. Geef deze operatiekamer of {googleCredentials} voor {google}. Ga via {secrets}.",
+				"googleCredentials": "Google Cloud service-account key als JSON-string. Geef deze operatiekamer of {googleApiKey} voor {google}. Ga via {secrets}.",
+				"googleProjectId": "Optionele Google Cloud project-id. Meestal afgeleid uit de service-account credential."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Invoer van vertalerverzoeken",
-			"intro": "Deze worden direct gekoppeld aan Azure AI Translator v3 queryparameters. Elke optie is optioneel; de standaardinstellingen van de Vertaler gelden wanneer deze worden uitgeschakeld.",
-			"caption": "Invoer van vertalerverzoeken",
+			"heading": "Azure Translator request inputs",
+			"intro": "Deze worden direct gekoppeld aan Azure AI Translator v3-queryparameters en worden toegepast op de Azure provider. textType en profanityAction worden ook gekoppeld aan AWS/Google waar een equivalent bestaat (zie de gids voor providers); de rest is alleen voor Azure. Elke optie is optioneel; de standaardinstellingen van de Vertaler gelden wanneer deze worden uitgeschakeld.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} categorie — de industrie/domein/toonknop. Doorgestuurd als {categoryQuery}.",
 				"textType": "{plain} of {html}. Gebruik {html} alleen wanneer je resourcewaarden echte HTML-fragmenten zijn.",

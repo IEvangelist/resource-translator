@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Ressourceoversætter",
-		"description": "Resource Translator åbner maskinoversatte pull requests for dine ressourcefiler i ethvert repository, i ethvert format — drevet af Azure AI Translator.",
+		"description": "Resource Translator åbner maskinoversatte pull requests for dine ressourcefiler i ethvert repo, i ethvert format — drevet af Azure AI Translator, AWS Translate eller Google Cloud Translation.",
 		"socialTitle": "Ressourceoversætter — oversæt ressourcefiler automatisk",
-		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Lokaliser dit repo på",
 		"headlineAccent": "hver forpligtelse.",
-		"lede": "Resource Translator åbner maskinoversatte pull requests for dine ressourcefiler ved hjælp af Azure AI Translator via det officielle SDK — ingen ekstra tjenester, kun en arbejdsgang.",
+		"lede": "Resource Translator åbner maskinoversatte pull requests for dine ressourcefiler ved hjælp af Azure, AWS eller Google — én samlet handling, én udbyder pr. kørsel, officielle SDK'er under motorhjelmen.",
 		"primaryCta": "Kom i gang",
 		"secondaryCta": "Star på GitHub",
 		"supports": "Støtter",
 		"builtForShipping": "Bygget til skibsfart",
 		"workflowTitle": "Oversættelse som en arbejdsgang, ikke som en pligt.",
-		"workflowBody": "Læg handlingen ind i dit eksisterende CI, peg den mod Azure AI Translator, og lad dit repo tale alle de sprog, du målretter efter.",
+		"workflowBody": "Læg handlingen ind i dit eksisterende CI, peg den mod Azure, AWS eller Google, og lad dit repo tale alle de sprog, du målretter efter.",
 		"stats": {
 			"audit": "0 npm-revisionsproblemer",
-			"tests": "150 tests",
+			"tests": "240+ tests",
 			"node": "Node 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} og {hasNewTranslations} direkte ind i create-pull-request."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Bygget på {azureSdk} + {corePipeline} — automatiske genforsøg på {statusCodes}, ingen håndrullet HTTP. {esbuild} pakket, revisionsren."
+				"title": "Azure, AWS & Google",
+				"body": "Vælg én udbyder pr. gennemgang. Hver styres af sit officielle SDK ({azureSdk}, {awsSdk}, {googleSdk}) med automatiske genforsøg på {statusCodes} — ingen håndrullet HTTP. {esbuild} pakket ind, revisions-ren."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Klar til at lokalisere på autopilot?",
-			"body": "Én Azure AI Translator-nøgle, én workflow-fil. Resource Translator håndterer resten.",
+			"body": "Én providernøgle — Azure, AWS eller Google — og én workflow-fil. Resource Translator håndterer resten.",
 			"button": "Kom i gang"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Næste skridt",
 			"configuration": "Konfigurer repo-niveau standardindstillinger med {configPath}.",
 			"recipes": "Se opskrifter for monorepos, brugerdefinerede ordlister og kategorier for brugerdefinerede oversættere."
+		}
+	},
+	"providers": {
+		"title": "Oversættelsesudbydere",
+		"eyebrow": "Reference",
+		"lede": "Vælg én oversættelsesudbyder pr. gennemkørsel — Azure AI Translator, AWS Translate eller Google Cloud Translation — bag en enkelt, samlet API-overflade. Oversætteren opfører sig identisk uanset udbyder; kun kvalifikationerne adskiller sig.",
+		"backwardCompatible": "Fuldt bagudkompatibel: {provider} er som standard {azure}, så eksisterende Azure-arbejdsgange fortsætter uændret — ingen redigeringer nødvendige.",
+		"selecting": {
+			"title": "Valg af udbyder",
+			"body": "Indstil {provider} input til {azure} (standard), {aws} eller {google}, og giv derefter udbyderens legitimationsoplysninger. Kun én udbyder bruges pr. aktionskald; handlingen delegerer deterministisk til det matchende SDK bag en fabrik."
+		},
+		"comparison": {
+			"title": "Udbydersammenligning",
+			"caption": "Sammenligning af oversættelsesudbydere",
+			"columns": {
+				"provider": "Udbyder",
+				"value": "Udbyderværdi",
+				"sdk": "SDK",
+				"credentials": "Kvalifikationer"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (standard)",
+				"credentials": "subscriptionKey, endpoint, region (valgfrit)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "aws",
+				"credentials": "OIDC / standardkæde, eller awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud Oversættelse",
+				"value": "Google",
+				"credentials": "googleApiKey ELLER googleCredentials (service-konto JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Standardudbyderen. Provisioner en Azure AI Translator-ressource og overfør {subscriptionKey}, {endpoint} og eventuelt {region}. Dette er den samme konfiguration, som eksisterende arbejdsgange allerede bruger."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Bruger {sdk}. Foretrukk OIDC via {configureAwsCredentials}, så ingen langlivede hemmeligheder gemmes — handlingen læser AWS SDK's standard-credentialkæde. Alternativt kan du bestå {awsAccessKeyId} og {awsSecretAccessKey} eksplicit. Et område er altid påkrævet, via {awsRegion} eller den {awsRegionEnv} miljøvariabel.",
+			"oidcTitle": "OIDC (anbefalet)",
+			"keysNote": "For at bruge statiske taster i stedet for OIDC, smid {configureAwsCredentials} step og overfør {awsAccessKeyId} / {awsSecretAccessKey} (via {secrets}) plus {awsRegion}."
+		},
+		"google": {
+			"title": "Google Cloud Oversættelse",
+			"body": "Bruger {sdk} (v2). Autentificér med enten en API-nøgle ({googleApiKey}) eller en servicekonto JSON-legitimation ({googleCredentials}). Lever præcis én; En valgfri {googleProjectId} udledes af legitimationen, når den udelades."
+		},
+		"mapping": {
+			"title": "Intent-specifier mapping",
+			"body": "Udbyderspecifikke specifikationer mappes, hvor en ækvivalent findes. Alt andet falder tilbage på fornuftige standardindstillinger, så adfærden forbliver ensartet.",
+			"caption": "Intent-specifier mapping på tværs af udbydere",
+			"columns": {
+				"input": "Input",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Støttet",
+			"ignored": "Ignoreret",
+			"rows": {
+				"textType": {
+					"azure": "textType (almindelig / html)",
+					"aws": "Ignoreret (ingen togle)",
+					"google": "Format (tekst / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Fuld støtte",
+					"aws": "Markeret / slettet → maskering",
+					"google": "Ignoreret"
+				},
+				"categoryId": {
+					"azure": "Custom Oversætter",
+					"aws": "Ignoreret",
+					"google": "Ignoreret"
+				},
+				"allowFallback": {
+					"azure": "Støttet",
+					"aws": "Ignoreret",
+					"google": "Ignoreret"
+				}
+			}
+		},
+		"locales": {
+			"title": "Lokalkoderne varierer fra udbyder til udbyder",
+			"body": "Hver udbyder bruger sine egne lokalkoder (for eksempel er forenklet kinesisk {azureCode} på Azure, {awsCode} på AWS og {googleCode} på Google). Koder passerer gennem som de er og styrer outputfilnavnene, så vælg {toLocales} værdier, din valgte udbyder understøtter."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Påkrævede input",
 			"caption": "Påkrævede input",
 			"items": {
-				"sourceLocale": "Kildelokalitet (f.eks. {en}), der bruges til at finde ressourcefiler som {sourceGlob}. Også videresendt til Oversætter som {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. Kør via {secrets}.",
-				"endpoint": "Oversætter-endpoint URL, f.eks. {endpointUrl}."
+				"sourceLocale": "Kildelokalitet (f.eks. {en}), der bruges til at finde ressourcefiler som {sourceGlob}. Også videresendt til udbyderen som {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Udbydervalg og kvalifikationer",
+			"caption": "Udbydervalg og leverandør-per-leverandør legitimation",
+			"intro": "Vælg én udbyder pr. gennemkørsel med {provider}. Oplys kun den valgte udbyders legitimationsoplysninger — se {providersLink}-guiden for fuld opsætning.",
+			"items": {
+				"provider": "Oversættelsesudbyder: {azure} (standard), {aws} eller {google}. Der bruges kun én udbyder pr. aktionskald.",
+				"subscriptionKey": "Azure AI Translator subscription key. Påkrævet for {azure}. Kør via {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, f.eks. {endpointUrl}. Påkrævet for {azure}.",
+				"awsAccessKeyId": "AWS adgangsnøgle-id. Valgfrit — udelad (med {awsSecretAccessKey}) at bruge AWS' standard credential chain / OIDC. Kør via {secrets}.",
+				"awsSecretAccessKey": "AWS hemmelig adgangsnøgle. Skal leveres sammen med {awsAccessKeyId}. Kør via {secrets}.",
+				"awsSessionToken": "Valgfri AWS-sessionstoken til midlertidige legitimationsoplysninger. Kør via {secrets}.",
+				"awsRegion": "AWS-region for Translate-tjenesten (f.eks. {regionExample}). Påkrævet for {aws}, medmindre {awsRegionEnv} foregår i miljøet.",
+				"googleApiKey": "Google Cloud API-nøgle. Giv dette ELLER {googleCredentials} til {google}. Kør via {secrets}.",
+				"googleCredentials": "Google Cloud service-account key som en JSON-streng. Giv dette ELLER {googleApiKey} til {google}. Kør via {secrets}.",
+				"googleProjectId": "Valgfrit Google Cloud projekt-id. Det udledes som regel ud fra servicekontoens legitimation."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Oversætteranmodninger",
-			"intro": "Disse mappes direkte til Azure AI Translator v3 forespørgselsparametre. Alle er valgfrie; oversætterstandarderne gælder, når de ikke aktiveres.",
-			"caption": "Oversætteranmodninger",
+			"heading": "Azure Translator request inputs",
+			"intro": "Disse mappes direkte til Azure AI Translator v3 forespørgselsparametre og gælder for Azure-udbyderen. textType og ProfanityAction er også kortlagt til AWS/Google, hvor en tilsvarende findes (se udbydervejledningen); resten er kun Azure. Alle er valgfrie; oversætterstandarderne gælder, når de ikke aktiveres.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} kategori — industri/domæne/tone-knappen. Videresendt som {categoryQuery}.",
 				"textType": "{plain} eller {html}. Brug {html} kun, når dine ressourceværdier er ægte HTML-fragmenter.",

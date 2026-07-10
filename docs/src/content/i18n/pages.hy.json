@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Ռեսուրս թարգմանիչ",
-		"description": "Resource Translator-ը բացում է ձեր ռեսուրսների ֆայլերի մեքենայական թարգմանության հարցումները ցանկացած պահեստով, ցանկացած ձեւաչափով՝ Azure AI Translator-ով:",
+		"description": "Resource Translator-ը բացում է ձեր ռեսուրսների ֆայլերի մեքենայական թարգմանության հարցումները ցանկացած պահեստով, ցանկացած ձեւաչափով՝ Azure AI Translator-ի, AWS Translate-ի կամ Google Cloud Translation-ի միջոցով:",
 		"socialTitle": "Resource Translator — թարգմանել ռեսուրսների ֆայլերը ինքնաբերաբար",
-		"badge": "v3.0 — Node 24, repo config, glossary, չոր վազք",
+		"badge": "v3.0 — Azure, AWS & Google պրովայդերներ, Node 24, repo config",
 		"headlinePrefix": "Տեղայնացրեք ձեր ռեպոն",
 		"headlineAccent": "յուրաքանչյուր պարտավորություն:",
-		"lede": "Resource Translator-ը բացում է ձեր ռեսուրսների ֆայլերի մեքենայական թարգմանության հարցումները՝ օգտագործելով Azure AI Translator-ը պաշտոնական SDK-ի միջոցով՝ առանց լրացուցիչ ծառայությունների, պարզապես աշխատանքային հոսք։",
+		"lede": "Resource Translator-ը բացում է ձեր ռեսուրսների ֆայլերի մեքենայական թարգմանության հարցումները՝ օգտագործելով Azure, AWS կամ Google.",
 		"primaryCta": "Սկսել",
 		"secondaryCta": "Աստղը GitHub-ում",
 		"supports": "Աջակցում է",
 		"builtForShipping": "Կառուցված է առաքման համար",
 		"workflowTitle": "Թարգմանությունը որպես աշխատանքային հոսք, ոչ թե գործ։",
-		"workflowBody": "Գցեք գործողությունը ձեր գոյություն ունեցող CI-ի մեջ, ցույց տվեք այն Azure AI Translator-ի վրա եւ թույլ տվեք, որ ձեր ռեպոն խոսի ձեր թիրախավորած բոլոր լեզուներով։",
+		"workflowBody": "Գցեք գործողությունը ձեր գոյություն ունեցող CI-ի մեջ, ցույց տվեք այն Azure-ի, AWS-ի կամ Google-ի վրա եւ թույլ տվեք, որ ձեր ռեպոն խոսի բոլոր լեզուներով, որոնց թիրախավորում եք։",
 		"stats": {
 			"audit": "0 NPM-աուդիտի խնդիրներ",
-			"tests": "150 թեստ",
+			"tests": "240+ թեստեր",
 			"node": "Հանգույց 20 / 22 / 24",
-			"sdk": "Պաշտոնական Azure SDK"
+			"sdk": "Azure · AWS · Գուգլ"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} եւ {hasNewTranslations} տեղավորվում են անմիջապես create-pull-request-ում։"
 			},
 			"sdk": {
-				"title": "Պաշտոնական Azure SDK",
-				"body": "Կառուցված է {azureSdk} + {corePipeline} - ավտոմատ կրկնություններ {statusCodes}-ի վրա, առանց ձեռքով գլորված HTTP-ի: {esbuild}-միավորված, աուդիտ-մաքուր:"
+				"title": "Azure, AWS եւ Google",
+				"body": "Ընտրեք մեկ մատակարար մեկ վազքի համար: Յուրաքանչյուրը ղեկավարվում է իր պաշտոնական SDK ({azureSdk}, {awsSdk}, {googleSdk}) ավտոմատ կրկնություններով {statusCodes}-ում՝ առանց ձեռքի գլորվող HTTP-ի։ {esbuild}-միավորված, աուդիտ-մաքուր:"
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Պատրա՞ստ եք տեղայնացնել ավտոպիլոտի վրա:",
-			"body": "Մեկ Azure AI Translator բանալին, մեկ աշխատանքային հոսքի ֆայլը: Ռեսուրսների թարգմանիչը զբաղվում է մնացածով։",
+			"body": "Մեկ մատակարարի բանալին՝ Azure, AWS կամ Google, եւ մեկ աշխատանքային հոսքի ֆայլ։ Ռեսուրսների թարգմանիչը զբաղվում է մնացածով։",
 			"button": "Սկսել"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Հաջորդ քայլերը",
 			"configuration": "Կազմաձեւել ռեպո-մակարդակի լռելյայնները {configPath}-ով:",
 			"recipes": "Տես մոնոռեպոների, մաքսային բառարանների եւ Custom Translator կատեգորիաների բաղադրատոմսերը:"
+		}
+	},
+	"providers": {
+		"title": "Թարգմանչական ծառայություններ մատուցողներ",
+		"eyebrow": "Հղում",
+		"lede": "Ընտրեք մեկ թարգմանության մատակարար մեկ վազքի համար՝ Azure AI Translator, AWS Translate կամ Google Cloud Translation՝ մեկ միասնական API մակերեսի ետեւում։ Թարգմանիչը վարվում է նույն կերպ՝ անկախ մատակարարից; տարբերվում են միայն հավատարմագրերը։",
+		"backwardCompatible": "Լիովին հետադարձ համատեղելիություն. {provider} լռելյայն է {azure}, այնպես որ գոյություն ունեցող Azure աշխատանքային հոսքերը շարունակում են աշխատել անփոփոխ.",
+		"selecting": {
+			"title": "Մատակարարի ընտրություն",
+			"body": "Սահմանեք {provider} մուտքագրումը {azure} (լռելյայն), {aws} կամ {google}, այնուհետեւ տրամադրեք այդ մատակարարի հավատարմագրերը: Գործողության կանչի համար օգտագործվում է միայն մեկ պրովայդեր. գործողությունը դետերմինիստորեն պատվիրակում է գործարանի հետեւում գտնվող համապատասխան SDK-ին։"
+		},
+		"comparison": {
+			"title": "Մատակարարների համեմատություն",
+			"caption": "Թարգմանչական պրովայդերների համեմատություն",
+			"columns": {
+				"provider": "Պրովայդեր",
+				"value": "մատակարարի արժեքը",
+				"sdk": "SDK",
+				"credentials": "Հավատարմագրեր"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (լռելյայն)",
+				"credentials": "բաժանորդագրությունԲանալի, վերջնակետ, տարածաշրջան (ըստ ցանկության)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "AWS",
+				"credentials": "OIDC / լռելյայն շղթա, կամ awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud թարգմանություն",
+				"value": "Գուգլ",
+				"credentials": "googleApiKey ԿԱՄ googleCredentials (ծառայության հաշիվ JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Լռելյայն մատակարարը: Տրամադրել Azure AI Translator ռեսուրս եւ անցնել {subscriptionKey}, {endpoint} եւ ընտրովի {region}: Սա նույն կոնֆիգուրացիան է, որն արդեն օգտագործում են գոյություն ունեցող աշխատանքային հոսքերը։"
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Օգտագործում է {sdk}։ Նախընտրեք OIDC {configureAwsCredentials}-ի միջոցով, որպեսզի երկարատեւ գաղտնիքներ չպահվեն. գործողությունը կարդում է AWS SDK լռելյայն հավատարմագրերի շղթան: Այլապես, փոխանցեք {awsAccessKeyId} եւ {awsSecretAccessKey} հստակ։ Տարածաշրջանը միշտ պահանջվում է {awsRegion} կամ {awsRegionEnv} միջավայրի փոփոխականի միջոցով։",
+			"oidcTitle": "OIDC (խորհուրդ է տրվում)",
+			"keysNote": "OIDC-ի փոխարեն ստատիկ բանալիներ օգտագործելու համար թողեք {configureAwsCredentials} քայլը եւ անցեք {awsAccessKeyId} / {awsSecretAccessKey} ({secrets}-ի միջոցով) գումարած {awsRegion}:"
+		},
+		"google": {
+			"title": "Google Cloud թարգմանություն",
+			"body": "Օգտագործում է {sdk} (v2)։ Նույնականացրեք API բանալիով ({googleApiKey}) կամ ծառայության հաշվի JSON հավատարմագրով ({googleCredentials}): Մատակարարեք ճիշտ մեկ; Ընտրովի {googleProjectId} եզրակացվում է հավատարմագրումից, երբ բաց է թողնվում։"
+		},
+		"mapping": {
+			"title": "Մտադրությունների հատկորոշիչ քարտեզագրում",
+			"body": "Մատակարարի հատուկ հատկորոշիչները քարտեզագրվում են այնտեղ, որտեղ գոյություն ունի համարժեք։ Մնացած ամեն ինչ վերադառնում է խելամիտ դեֆոլտներին, որպեսզի վարքագիծը մնա հետեւողական։",
+			"caption": "Մտադրությունների հատկորոշիչների քարտեզագրում պրովայդերների միջեւ",
+			"columns": {
+				"input": "Input",
+				"azure": "Ազուր",
+				"aws": "Կենսագրություն",
+				"google": "Գուգլ"
+			},
+			"supported": "Աջակցում է",
+			"ignored": "Անտեսված",
+			"rows": {
+				"textType": {
+					"azure": "textType (պարզ / html)",
+					"aws": "Անտեսված (առանց անջատելու)",
+					"google": "Ձեւաչափ (Text / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Լիարժեք աջակցություն",
+					"aws": "Նշված / ջնջված → դիմակավորմամբ",
+					"google": "Անտեսված"
+				},
+				"categoryId": {
+					"azure": "Custom Translator",
+					"aws": "Անտեսված",
+					"google": "Անտեսված"
+				},
+				"allowFallback": {
+					"azure": "Աջակցում է",
+					"aws": "Անտեսված",
+					"google": "Անտեսված"
+				}
+			}
+		},
+		"locales": {
+			"title": "Տեղակայման կոդերը տարբերվում են ըստ մատակարարի",
+			"body": "Յուրաքանչյուր պրովայդեր օգտագործում է իր տեղային կոդերը (օրինակ՝ պարզեցված չինարենը {azureCode} է Azure-ում, {awsCode}-ում՝ AWS-ում եւ {googleCode}-ում՝ Google-ում)։ Կոդերը անցնում են այնպես, ինչպես կա, եւ քշում են ելքային ֆայլերի անունները, այնպես որ ընտրեք {toLocales} արժեքները, որոնք աջակցում են ձեր ընտրած պրովայդերին:"
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Պարտադիր դաշտեր",
 			"caption": "Պարտադիր դաշտեր",
 			"items": {
-				"sourceLocale": "Աղբյուրի տեղանքը (օրինակ՝ {en}), որն օգտագործվում է ռեսուրսների ֆայլեր գտնելու համար, օրինակ՝ {sourceGlob}։ Նաեւ փոխանցվել է Translator-ին որպես {fromLocale}։",
-				"subscriptionKey": "Azure AI Translator բաժանորդագրության բանալին. Անցեք {secrets} միջոցով:",
-				"endpoint": "Թարգմանչի վերջնակետի URL, օրինակ՝ {endpointUrl}."
+				"sourceLocale": "Աղբյուրի տեղանքը (օրինակ՝ {en}), որն օգտագործվում է ռեսուրսների ֆայլեր գտնելու համար, օրինակ՝ {sourceGlob}։ Նաեւ փոխանցվել է մատակարարին որպես {fromLocale}։"
+			}
+		},
+		"providerInputs": {
+			"heading": "Մատակարարի ընտրություն եւ հավատարմագրեր",
+			"caption": "Մատակարարի ընտրություն եւ յուրաքանչյուր վաճառողի հավատարմագրեր",
+			"intro": "Ընտրեք մեկ մատակարար յուրաքանչյուր վազքի հետ {provider}. Տրամադրեք միայն ընտրված մատակարարի հավատարմագրերը {providersLink}.",
+			"items": {
+				"provider": "Թարգմանության մատակարար՝ {azure} (լռելյայն), {aws} կամ {google}: Գործողության կանչի համար օգտագործվում է միայն մեկ պրովայդեր:",
+				"subscriptionKey": "Azure AI Translator բաժանորդագրության բանալին. Պահանջվում է {azure} համար: Անցեք {secrets} միջոցով:",
+				"endpoint": "Azure Translator վերջնակետի URL, օրինակ՝ {endpointUrl}. Պահանջվում է {azure} համար:",
+				"awsAccessKeyId": "AWS մուտքի բանալիի ID. Ըստ ցանկության — բաց թողնել ({awsSecretAccessKey}-ով)՝ AWS լռելյայն հավատարմագրերի շղթան / OIDC-ն օգտագործելու համար: Անցեք {secrets} միջոցով:",
+				"awsSecretAccessKey": "AWS գաղտնի մուտքի բանալին: Պետք է մատակարարվի {awsAccessKeyId} հետ միասին: Անցեք {secrets} միջոցով:",
+				"awsSessionToken": "Ընտրովի AWS նիստի նշան ժամանակավոր հավատարմագրերի համար: Անցեք {secrets} միջոցով:",
+				"awsRegion": "AWS տարածաշրջան Translate ծառայության համար (օրինակ՝ {regionExample}): Պահանջվում է {aws} համար, եթե {awsRegionEnv} սահմանված չէ միջավայրում:",
+				"googleApiKey": "Google Cloud API բանալին: Տրամադրեք այս OR {googleCredentials} {google} համար: Անցեք {secrets} միջոցով:",
+				"googleCredentials": "Google Cloud ծառայության հաշվի բանալին որպես JSON տող: Տրամադրեք այս OR {googleApiKey} {google} համար: Անցեք {secrets} միջոցով:",
+				"googleProjectId": "Ըստ ցանկության Google Cloud նախագծի ID. Սովորաբար եզրակացվում է ծառայության հաշվի հավատարմագրումից։"
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Թարգմանչի հարցման մուտքագրումներ",
-			"intro": "Դրանք քարտեզագրվում են անմիջապես Azure AI Translator v3 հարցման պարամետրերի վրա։ Յուրաքանչյուրը ընտրովի է; Թարգմանիչի լռելյայնները կիրառվում են, երբ սահմանված չէ։",
-			"caption": "Թարգմանչի հարցման մուտքագրումներ",
+			"heading": "Azure Translator request inputs",
+			"intro": "Դրանք քարտեզագրվում են անմիջապես Azure AI Translator v3 հարցման պարամետրերի վրա եւ կիրառվում են Azure պրովայդերին: textType եւ profanityAction նույնպես քարտեզագրվում են AWS/Google-ում, որտեղ գոյություն ունի համարժեք (տես պրովայդերների ուղեցույցը); մնացածը միայն Azure-ն են։ Յուրաքանչյուրը ընտրովի է; Թարգմանիչի լռելյայնները կիրառվում են, երբ սահմանված չէ։",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} կատեգորիա — արդյունաբերություն/տիրույթ/տոնային կոճակ։ Փոխանցվել է որպես {categoryQuery}։",
 				"textType": "{plain} կամ {html}։ Օգտագործեք {html} միայն այն դեպքում, երբ ձեր ռեսուրսների արժեքները իրական HTML բեկորներ են:",

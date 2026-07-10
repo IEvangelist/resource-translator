@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Keldutýðari",
-		"description": "Resource Translator letur upp maskinumsettar pull requests fyri tínar resursufílur í hvørjum repo, í hvørjum formati — driven av Azure AI Translator.",
+		"description": "Resource Translator letur upp maskinumsettar pull requests fyri tínar resursufílur í hvørjum sum helst repo, í hvørjum formati — drivið av Azure AI Translator, AWS Translate ella Google Cloud Translation.",
 		"socialTitle": "Resource Translator — umsetur sjálvvirkandi tilfeingisfílur",
-		"badge": "v3.0 — Node 24, repo config, orðalisti, turrkoyring",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Lokalisera títt repo á",
 		"headlineAccent": "Hvørja einastu áseting.",
-		"lede": "Resource Translator letur upp maskinumsettar pull requests fyri tínar resursfílur við Azure AI Translator gjøgnum offisella SDK — eingin eyka tænastur, bara ein arbeiðsgongd.",
+		"lede": "Resource Translator letur upp maskinumsettar pull requests fyri tínar resursufílur við Azure, AWS ella Google — ein sameind handling, ein veitari fyri hvørja koyring, og offisiell SDK undir hettuni.",
 		"primaryCta": "Kom í gongd",
 		"secondaryCta": "Star á GitHub",
 		"supports": "Stuðlar",
 		"builtForShipping": "Bygd til skipaflutning",
 		"workflowTitle": "Týðing sum arbeiðsgongd, ikki sum ein byrða.",
-		"workflowBody": "Legg handlingina í títt verandi CI, peika á Azure AI Translator, og lat repo'ið tosa øll málini, tú siktar eftir.",
+		"workflowBody": "Legg handlingina inn í títt verandi CI, peika á Azure, AWS ella Google, og lat repo'ið tosa øll mál, tú siktar eftir.",
 		"stats": {
 			"audit": "0 npm-eftirlitstrupulleikar",
-			"tests": "150 royndir",
+			"tests": "240+ royndir",
 			"node": "Knútur 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} og {hasNewTranslations} beinleiðis inn í create-pull-request."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Bygt á {azureSdk} + {corePipeline} — sjálvvirkandi royndir á {statusCodes}, eingin handrullað HTTP. {esbuild} pakkað, reinur í grannskoðan."
+				"title": "Azure, AWS & Google",
+				"body": "Vel ein veitara fyri hvørja ferð. Hvør verður stýrdur av sínum offisella SDK ({azureSdk}, {awsSdk}, {googleSdk}) við sjálvvirkandi royndum á {statusCodes} — eingin handrullað HTTP. {esbuild} pakkað, reinur í grannskoðan."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Klárur at lokalisera á autopiloti?",
-			"body": "Ein Azure AI Translator lykil, ein workflow-fíla. Resource Translator tekur sær av restini.",
+			"body": "Ein veitaralykil — Azure, AWS ella Google — og ein arbeiðsgongdarskrá. Resource Translator tekur sær av restini.",
 			"button": "Kom í gongd"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Næstu stig",
 			"configuration": "Stilla repo-level defaults við {configPath}.",
 			"recipes": "Sí uppskriftir til monorepos, serstakar orðalistar og Custom Translator bólkar."
+		}
+	},
+	"providers": {
+		"title": "Týðingarveitarar",
+		"eyebrow": "Keldur",
+		"lede": "Vel ein týðingarveitara fyri hvørja koyring — Azure AI Translator, AWS Translate ella Google Cloud Translation — aftanfyri eina samanhangandi API-flatu. Umsetarin uppførir seg eins, óansæð veitara; Bara prógvini eru ymisk.",
+		"backwardCompatible": "Fult afturkompatibult: {provider} er sjálvvirkandi til {azure}, so verandi Azure-arbeiðsgongdir halda fram at virka óbroytt — eingin broyting krevst.",
+		"selecting": {
+			"title": "At velja veitara",
+			"body": "Set {provider} inntakið til {azure} (sjálvvirkandi), {aws} ella {google}, og gev síðani inn upplýsingarnar hjá veitaranum. Bert ein veitari verður brúktur fyri hvørt átakskall; henda gerðin verður deterministiskt latin samsvarandi SDK aftanfyri eina verksmiðju."
+		},
+		"comparison": {
+			"title": "Veitarasamanbering",
+			"caption": "Samanbering av týðingarveitara",
+			"columns": {
+				"provider": "Veitari",
+				"value": "Veitaravirði",
+				"sdk": "SDK",
+				"credentials": "Prógv"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (default)",
+				"credentials": "subscriptionKey, endpoint, region (valfrítt)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "AWS",
+				"credentials": "OIDC / standard chain, ella awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud Týðing",
+				"value": "Google",
+				"credentials": "googleApiKey ELLA googleCredentials (service-account JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Sjálvvirkandi veitarin. Útvega eina Azure AI Translator resursu og send {subscriptionKey}, {endpoint} og valfrítt {region}. Hetta er sama konfiguratión, sum verandi arbeiðsgongdir longu brúka."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Brúkar {sdk}. Val OIDC gjøgnum {configureAwsCredentials} so eingi langlivd loyndarmál verða goymd — hetta er AWS SDK standard credential chain. Eisini kanst tú lata {awsAccessKeyId} og {awsSecretAccessKey} beinleiðis. Eitt øki er altíð kravt, við {awsRegion} ella {awsRegionEnv} umhvørvisvariablinum.",
+			"oidcTitle": "OIDC (mælt til)",
+			"keysNote": "Fyri at brúka statiskar tangentar í staðin fyri OIDC, slepp {configureAwsCredentials} step og send {awsAccessKeyId} / {awsSecretAccessKey} (við {secrets}) pluss {awsRegion}."
+		},
+		"google": {
+			"title": "Google Cloud Týðing",
+			"body": "Nýtir {sdk} (v2). Vátta við annaðhvørt einum API-lykli ({googleApiKey}) ella einum JSON-credential til tænastukontu ({googleCredentials}). Veita júst eina; Ein valfrí {googleProjectId} verður drigin úr prógvinum, tá hann ikki er nevndur."
+		},
+		"mapping": {
+			"title": "Intent-specifier kortlegging",
+			"body": "Veitarasértøkir ásetingar verða kortlagdir, har ein javngildur er til. Alt annað fellur aftur til skynsamar standardar, so atferðin heldur seg støðug.",
+			"caption": "Intent-specifier kortlegging tvørtur um veitarar",
+			"columns": {
+				"input": "Inntak",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Stuðlað",
+			"ignored": "Ignorerað",
+			"rows": {
+				"textType": {
+					"azure": "textType (vanlig / html)",
+					"aws": "Ignorerað (eingin togle)",
+					"google": "Format (tekst / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Fullur stuðul",
+					"aws": "Merkt / strikað → maskering",
+					"google": "Ignorerað"
+				},
+				"categoryId": {
+					"azure": "Serligur umsetari",
+					"aws": "Ignorerað",
+					"google": "Ignorerað"
+				},
+				"allowFallback": {
+					"azure": "Stuðlað",
+					"aws": "Ignorerað",
+					"google": "Ignorerað"
+				}
+			}
+		},
+		"locales": {
+			"title": "Lokalkodur eru ymiskar frá veitara til veitara",
+			"body": "Hvør veitari brúkar sínar egnu lokalkodur (til dømis verður Simplified Chinese {azureCode} á Azure, {awsCode} á AWS og {googleCode} á Google). Kóðarnir fara gjøgnum sum teir eru og stýra úttaksfílunøvnunum, so vel {toLocales} virði, sum tín valda veitari stuðlar."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Kravdar inntøkur",
 			"caption": "Kravdar inntøkur",
 			"items": {
-				"sourceLocale": "Keldustaður (t.d. {en}), sum verður brúktur til at finna resursfílur sum {sourceGlob}. Eisini send víðari til Translator sum {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. Far gjøgnum {secrets}.",
-				"endpoint": "Umsetaraendapunktur, t.d. {endpointUrl}."
+				"sourceLocale": "Keldustaður (t.d. {en}), sum verður brúktur til at finna resursfílur sum {sourceGlob}. Sendi eisini víðari til veitaran sum {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Val av veitara og prógv",
+			"caption": "Val av veitara og treytir fyri hvønn veitara",
+			"intro": "Vel ein veitara fyri hvørja ferð við {provider}. Lat bert inn upplýsingar hjá valda veitaranum — sí {providersLink} vegleiðingina fyri fulla uppseting.",
+			"items": {
+				"provider": "Týðingarveitari: {azure} (sjálvvirkandi), {aws} ella {google}. Bert ein veitari verður brúktur fyri hvørt átakskall.",
+				"subscriptionKey": "Azure AI Translator subscription key. Kravt til {azure}. Far gjøgnum {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, t.d. {endpointUrl}. Kravt til {azure}.",
+				"awsAccessKeyId": "AWS access key id. Valfrítt — lat vera (við {awsSecretAccessKey}) at brúka AWS standard credential chain / OIDC. Far gjøgnum {secrets}.",
+				"awsSecretAccessKey": "AWS loyniligur atgongdarlykil. Mugu veitast saman við {awsAccessKeyId}. Far gjøgnum {secrets}.",
+				"awsSessionToken": "Valfrítt AWS session token til fyribils loyniorð. Far gjøgnum {secrets}.",
+				"awsRegion": "AWS økið fyri Translate-tænastuna (t.d. {regionExample}). Kravt fyri {aws}, um ikki {awsRegionEnv} er sett í umhvørvið.",
+				"googleApiKey": "Google Cloud API-lykil. Veita hesa ELLA {googleCredentials} til {google}. Koyr gjøgnum {secrets}.",
+				"googleCredentials": "Google Cloud tænastukontolykil sum ein JSON-strengur. Veita hesa ELLA {googleApiKey} til {google}. Koyr gjøgnum {secrets}.",
+				"googleProjectId": "Valfrítt Google Cloud verkætlanar-id. Vanliga verður tað grundað á tænastukontu-innritan."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Innleggingar til umsetarafyrispurningar",
-			"intro": "Hesar verða beinleiðis lagdar til Azure AI Translator v3 fyrispurningarparametrar. Øll eru valfrí; Translator-standardarnir gilda, tá teir ikki eru settir.",
-			"caption": "Innleggingar til umsetarafyrispurningar",
+			"heading": "Azure Translator request inputs",
+			"intro": "Hesi verða beinleiðis kortløgd til Azure AI Translator v3 fyrispurningsparametrar og verða brúkt til Azure Provider. textType og ProfanityAction verða eisini kortlagdar til AWS/Google, har ein samsvarandi loysn finst (sí veitaravegleiðingina); hinir eru bert Azure-útgávur. Øll eru valfrí; Translator-standardarnir gilda, tá teir ikki eru settir.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} kategori — vinnu-/domain-/tone-knøtturin. Sendur víðari sum {categoryQuery}.",
 				"textType": "{plain} ella {html}. Brúka {html} bara, tá tíni tilfeingisvirði eru verulig HTML-brot.",

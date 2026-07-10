@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Resursu tulkotājs",
-		"description": "Resursu tulkotājs atver mašīntulkotus resursu failu izvilkšanas pieprasījumus jebkurā repo formātā, izmantojot Azure AI Translator.",
+		"description": "Resursu tulkotājs atver mašīntulkotus jūsu resursu failu izvilkšanas pieprasījumus jebkurā repo formātā, izmantojot Azure AI Translator, AWS Translate vai Google Cloud Translation.",
 		"socialTitle": "Resursu tulkotājs — automātiski tulkot resursu failus",
-		"badge": "v3.0 - 24. mezgls, repo konfigurācija, glosārijs, sausā darbība",
+		"badge": "v3.0 — Azure, AWS un Google pakalpojumu sniedzēji, 24. mezgls, repo konfigurācija",
 		"headlinePrefix": "Lokalizējiet savu repo",
 		"headlineAccent": "katru apņemšanos.",
-		"lede": "Resursu tulkotājs atver mašīntulkotus izvilkšanas pieprasījumus jūsu resursu failiem, izmantojot Azure AI Translator, izmantojot oficiālo SDK — bez papildu pakalpojumiem, tikai darbplūsmu.",
+		"lede": "Resursu tulkotājs atver mašīntulkotus izvilkšanas pieprasījumus jūsu resursu failiem, izmantojot Azure, AWS vai Google - viena vienota darbība, viens pakalpojumu sniedzējs katram izpildījumam, oficiālie SDK zem pārsega.",
 		"primaryCta": "Darba sākšana",
 		"secondaryCta": "Zvaigzne vietnē GitHub",
 		"supports": "Atbalsta",
 		"builtForShipping": "Izstrādāts pārvadāšanai",
 		"workflowTitle": "Tulkošana kā darbplūsma, nevis darbs.",
-		"workflowBody": "Nometiet darbību savā esošajā CI, norādiet to uz Azure AI Translator un ļaujiet repo pēc pēc valodas runāt visās jūsu mērķauditorijas valodās.",
+		"workflowBody": "Nometiet darbību esošajā CI, norādiet to uz Azure, AWS vai Google un ļaujiet repo runāt visās valodās, kuras vēlaties atlasīt.",
 		"stats": {
 			"audit": "0 NPM revīzijas jautājumi",
-			"tests": "150 testi",
+			"tests": "240+ testi",
 			"node": "Mezgls 20 / 22 / 24",
-			"sdk": "Oficiālais Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} un {hasNewTranslations} slotu tieši create-pull-request."
 			},
 			"sdk": {
-				"title": "Oficiālais Azure SDK",
-				"body": "Veidots uz {azureSdk} + {corePipeline} — automātiski atkārtoti mēģinājumi {statusCodes}, bez HTTP ar roku. {esbuild} komplektā, audita tīrs."
+				"title": "Azure, AWS un Google",
+				"body": "Izvēlieties vienu pakalpojumu sniedzēju katram izpildījumam. Katru vada oficiālais SDK ({azureSdk}, {awsSdk}, {googleSdk}) ar automātiskiem atkārtotiem mēģinājumiem {statusCodes} — bez HTTP ar roku. {esbuild} komplektā, audita tīrs."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Vai esat gatavs lokalizēt autopilotā?",
-			"body": "Viena Azure AI tulkotāja atslēga, viens darbplūsmas fails. Resursu tulkotājs veic pārējo.",
+			"body": "Viena pakalpojumu sniedzēja atslēga — Azure, AWS vai Google — un viens darbplūsmas fails. Resursu tulkotājs veic pārējo.",
 			"button": "Darba sākšana"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Turpmākie pasākumi",
 			"configuration": "Konfigurējiet repo līmeņa noklusējuma iestatījumus, izmantojot {configPath}.",
 			"recipes": "Skatiet monorepo, pielāgoto glosāriju un pielāgoto tulkotāju kategoriju receptes."
+		}
+	},
+	"providers": {
+		"title": "Tulkošanas pakalpojumu sniedzēji",
+		"eyebrow": "Atsauce",
+		"lede": "Izvēlieties vienu tulkošanas pakalpojumu sniedzēju — Azure AI Translator, AWS Translate vai Google Cloud Translation — aiz vienotas, vienotas API virsmas. Tulkotājs uzvedas identiski neatkarīgi no pakalpojumu sniedzēja; atšķiras tikai akreditācijas dati.",
+		"backwardCompatible": "Pilnībā atpakaļsaderīgs: {provider} noklusējuma vērtība ir {azure}, tāpēc esošās Azure darbplūsmas turpina darboties nemainīgas — nav nepieciešami labojumi.",
+		"selecting": {
+			"title": "Pakalpojumu sniedzēja izvēle",
+			"body": "Iestatiet {provider} ievadi uz {azure} (noklusējums), {aws} vai {google}, pēc tam norādiet šī nodrošinātāja akreditācijas datus. Vienam darbības izsaukumam tiek izmantots tikai viens pakalpojumu sniedzējs; darbība deterministiski deleģē atbilstošajam SDK aiz rūpnīcas."
+		},
+		"comparison": {
+			"title": "Pakalpojumu sniedzēju salīdzinājums",
+			"caption": "Tulkošanas pakalpojumu sniedzēju salīdzinājums",
+			"columns": {
+				"provider": "Pakalpojumu sniedzējs",
+				"value": "Pakalpojumu sniedzēja vērtība",
+				"sdk": "SDK",
+				"credentials": "Akreditācijas dati"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (noklusējums)",
+				"credentials": "subscriptionKey, galapunkts, reģions (neobligāti)"
+			},
+			"aws": {
+				"name": "AWS tulkotājs",
+				"value": "AWS",
+				"credentials": "OIDC / noklusējuma ķēde vai awsAccessKeyId + awsSecretAccessKey; awsReģions"
+			},
+			"google": {
+				"name": "Google mākoņa tulkojums",
+				"value": "Google",
+				"credentials": "googleApiKey VAI googleCredentials (pakalpojuma konts JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (noklusējums)",
+			"body": "Noklusējuma nodrošinātājs. Nodrošiniet Azure AI tulkotāja resursu un nododiet {subscriptionKey}, {endpoint} un pēc izvēles {region}. Šī ir tā pati konfigurācija, ko jau izmanto esošās darbplūsmas."
+		},
+		"aws": {
+			"title": "AWS tulkotājs",
+			"body": "Izmanto {sdk}. Dod priekšroku OIDC, izmantojot {configureAwsCredentials} lai netiktu saglabāti ilgmūžīgi noslēpumi - darbība nolasa AWS SDK noklusējuma akreditācijas datu ķēdi. Alternatīvi, nododiet {awsAccessKeyId} un {awsSecretAccessKey} nepārprotami. Reģions vienmēr ir nepieciešams, izmantojot {awsRegion} vai {awsRegionEnv} vides mainīgo.",
+			"oidcTitle": "OIDC (ieteicams)",
+			"keysNote": "Lai OIDC vietā izmantotu statiskās atslēgas, nometiet {configureAwsCredentials} soli un nododiet {awsAccessKeyId} / {awsSecretAccessKey} (izmantojot {secrets}) plus {awsRegion}."
+		},
+		"google": {
+			"title": "Google mākoņa tulkojums",
+			"body": "Izmanto {sdk} (v2). Autentificējieties, izmantojot API atslēgu ({googleApiKey}) vai pakalpojuma konta JSON akreditācijas datus ({googleCredentials}). Piegādājiet tieši vienu; Fakultatīva {googleProjectId} tiek izsecināta no akreditācijas datiem, ja tā ir izlaista."
+		},
+		"mapping": {
+			"title": "Nolūka specifikatora kartēšana",
+			"body": "Pakalpojumu sniedzējam specifiskie apzīmētāji tiek kartēti, ja ir ekvivalents. Viss pārējais atgriežas pie saprātīgiem noklusējumiem, tāpēc uzvedība paliek konsekventa.",
+			"caption": "Nolūka apzīmētāja kartēšana starp pakalpojumu sniedzējiem",
+			"columns": {
+				"input": "Ieguldījums",
+				"azure": "Zils",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Atbalstīts",
+			"ignored": "Ignorēts",
+			"rows": {
+				"textType": {
+					"azure": "textType (vienkāršs / html)",
+					"aws": "Ignorēts (bez pārslēgšanas)",
+					"google": "formāts (teksts / html)"
+				},
+				"profanityAction": {
+					"azure": "Pilns atbalsts",
+					"aws": "Atzīmēta / izdzēsta → maskēšana",
+					"google": "Ignorēts"
+				},
+				"categoryId": {
+					"azure": "Pielāgots tulkotājs",
+					"aws": "Ignorēts",
+					"google": "Ignorēts"
+				},
+				"allowFallback": {
+					"azure": "Atbalstīts",
+					"aws": "Ignorēts",
+					"google": "Ignorēts"
+				}
+			}
+		},
+		"locales": {
+			"title": "Lokalizācijas kodi atšķiras atkarībā no pakalpojumu sniedzēja",
+			"body": "Katrs pakalpojumu sniedzējs izmanto savus lokalizācijas kodus (piemēram, vienkāršotā ķīniešu valoda {azureCode} pakalpojumā Azure, {awsCode} AWS un {googleCode} Google tīklā). Kodi tiek izvadīti tādi, kādi tie ir, un vada izvades failu nosaukumus, tāpēc izvēlieties, {toLocales} vērtības atbalsta jūsu izvēlētais pakalpojumu sniedzējs."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Nepieciešamās ievades",
 			"caption": "Nepieciešamās ievades",
 			"items": {
-				"sourceLocale": "Avota lokalizācija (piemēram, {en}), ko izmanto, lai atrastu resursu failus, piemēram, {sourceGlob}. Pārsūtīts arī tulkotājam kā {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator abonementa atslēga. Iet cauri {secrets}.",
-				"endpoint": "Tulkotāja galapunkta URL, piemēram, {endpointUrl}."
+				"sourceLocale": "Avota lokalizācija (piemēram, {en}), ko izmanto, lai atrastu resursu failus, piemēram, {sourceGlob}. Pārsūtīts arī pakalpojumu sniedzējam kā {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Pakalpojumu sniedzēja izvēle un akreditācijas dati",
+			"caption": "Pakalpojumu sniedzēja izvēle un katra piegādātāja akreditācijas dati",
+			"intro": "Izvēlieties vienu pakalpojumu sniedzēju katram izpildījumam ar {provider}. Norādiet tikai atlasītā pakalpojumu sniedzēja akreditācijas datus — skatiet {providersLink} rokasgrāmatu, lai uzzinātu pilnu iestatīšanu.",
+			"items": {
+				"provider": "Tulkošanas nodrošinātājs: {azure} (noklusējums), {aws} vai {google}. Vienam darbības izsaukumam tiek izmantots tikai viens pakalpojumu sniedzējs.",
+				"subscriptionKey": "Azure AI Translator abonementa atslēga. Nepieciešams {azure}. Iet cauri {secrets}.",
+				"endpoint": "Azure Translator galapunkta URL, piemēram, {endpointUrl}. Nepieciešams {azure}.",
+				"awsAccessKeyId": "AWS piekļuves atslēgas ID. Pēc izvēles — izlaidiet (ar {awsSecretAccessKey}), lai izmantotu AWS noklusējuma akreditācijas datu ķēdi / OIDC. Iet cauri {secrets}.",
+				"awsSecretAccessKey": "AWS slepenā piekļuves atslēga. Jāpiegādā kopā ar {awsAccessKeyId}. Iet cauri {secrets}.",
+				"awsSessionToken": "Neobligāts AWS sesijas marķieris pagaidu akreditācijas datiem. Iet cauri {secrets}.",
+				"awsRegion": "AWS reģions tulkošanas pakalpojumam (piemēram, {regionExample}). Nepieciešams {aws}, ja vien vidē nav iestatīts {awsRegionEnv}.",
+				"googleApiKey": "Google Cloud API atslēga. Norādiet šo OR {googleCredentials} {google}. Iet cauri {secrets}.",
+				"googleCredentials": "Google Cloud pakalpojuma konta atslēga kā JSON virkne. Norādiet šo OR {googleApiKey} {google}. Iet cauri {secrets}.",
+				"googleProjectId": "Neobligāts Google Cloud projekta ID. Parasti tiek secināts no pakalpojuma konta akreditācijas datiem."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Tulkotāja pieprasījuma ievades",
-			"intro": "Tie tiek kartēti tieši uz Azure AI Translator v3 vaicājuma parametriem. Katrs no tiem nav obligāts; tulkotāja noklusējuma iestatījumi tiek piemēroti, ja tas ir atcelts.",
-			"caption": "Tulkotāja pieprasījuma ievades",
+			"heading": "Azure Translator pieprasījuma ievades",
+			"intro": "Tie tiek kartēti tieši uz Azure AI Translator v3 vaicājuma parametriem un attiecas uz Azure nodrošinātāju. textType un profanityAction tiek kartēti arī uz AWS/Google, ja pastāv ekvivalents (skatīt pakalpojumu sniedzēju rokasgrāmatu); pārējie ir tikai Azure. Katrs no tiem nav obligāts; tulkotāja noklusējuma iestatījumi tiek piemēroti, ja tas ir atcelts.",
+			"caption": "Azure Translator pieprasījuma ievades",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} kategorija — nozares/domēna/toņa poga. Pārsūtīts kā {categoryQuery}.",
 				"textType": "{plain} vai {html}. Izmantojiet {html} tikai tad, ja resursu vērtības ir reāli HTML fragmenti.",

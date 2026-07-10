@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Resurssikääntäjä",
-		"description": "Resource Translator avaa konekäännetyt pullrequestit resurssitiedostoillesi missä tahansa reposito, missä tahansa muodossa — Azure AI Translatorin tukemana.",
+		"description": "Resource Translator avaa konekäännetyt pullrequestit resurssitiedostoillesi missä tahansa reposita ja missä tahansa muodossa — Azure AI Translatorin, AWS Translaten tai Google Cloud Translationin tukemana.",
 		"socialTitle": "Resource Translator — käännä resurssitiedostot automaattisesti",
-		"badge": "v3.0 — Node 24, repo config, glossary, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Lokalisoi varastosi",
 		"headlineAccent": "jokaisen sitoutumisen.",
-		"lede": "Resource Translator avaa konekäännetyt pullrequestit resurssitiedostoillesi Azure AI Translatorilla virallisen SDK:n kautta — ei lisäpalveluita, pelkkä työnkulku.",
+		"lede": "Resource Translator avaa konekäännetyt pull-requestit resurssitiedostoihisi Azuren, AWS:n tai Googlen avulla — yksi yhtenäinen toiminto, yksi palveluntarjoaja per ajo, viralliset SDK:t konepellin alla.",
 		"primaryCta": "Aloita",
 		"secondaryCta": "Star GitHubissa",
 		"supports": "Tukiryhmät",
 		"builtForShipping": "Rakennettu laivaliikenteeseen",
 		"workflowTitle": "Kääntäminen työnkuluna, ei velvollisuutena.",
-		"workflowBody": "Laita toiminto olemassa olevaan CI:hen, osoita se Azure AI Translatoriin ja anna repositasi puhua kaikki kohteesi kielet.",
+		"workflowBody": "Pudota toiminto olemassa olevaan CI:hen, osoita se Azureen, AWS:ään tai Googleen ja anna repositosi puhua kaikki kohteesi kielet.",
 		"stats": {
 			"audit": "0 NPM-auditointiongelmat",
-			"tests": "150 testiä",
+			"tests": "240+ testiä",
 			"node": "Solmu 20 / 22 / 24",
-			"sdk": "Virallinen Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} ja {hasNewTranslations} sijoittuvat suoraan create-pull-requestiin."
 			},
 			"sdk": {
-				"title": "Virallinen Azure SDK",
-				"body": "Rakennettu {azureSdk} + {corePipeline}:lle — automaattiset uudelleenyritykset {statusCodes}:llä, ei käsin rullattua HTTP:tä. {esbuild}-paketissa, audit-puhtaana."
+				"title": "Azure, AWS & Google",
+				"body": "Valitse yksi palveluntarjoaja per pelikerta. Jokainen perustuu viralliseen SDK:honsa ({azureSdk}, {awsSdk}, {googleSdk}) ja {statusCodes}:llä on automaattisia uudelleenyrityksiä — ei käsin rullattua HTTP:tä. {esbuild}-niputettu, auditointi-puhdas."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Valmiina lokalisoimaan autopilotilla?",
-			"body": "Yksi Azure AI Translator -avain, yksi työnkulkutiedosto. Resource Translator hoitaa loput.",
+			"body": "Yksi palveluntarjoajan avain — Azure, AWS tai Google — ja yksi työnkulkutiedosto. Resource Translator hoitaa loput.",
 			"button": "Aloita"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Seuraavat askeleet",
 			"configuration": "Määritä repo-tason oletusasetukset {configPath}.",
 			"recipes": "Katso reseptejä monorepoille, mukautetuille sanastoksille ja Custom Translator -kategorioille."
+		}
+	},
+	"providers": {
+		"title": "Käännöspalveluntarjoajat",
+		"eyebrow": "Viite",
+		"lede": "Valitse yksi käännöspalveluntarjoaja per suoritus — Azure AI Translator, AWS Translate tai Google Cloud Translation — yhden yhtenäisen API-pinnan taakse. Kääntäjä käyttäytyy samalla tavalla palveluntarjoajasta riippumatta; vain pätevyydet eroavat.",
+		"backwardCompatible": "Täysin taaksepäin yhteensopiva: {provider} oletuksena on {azure}, joten olemassa olevat Azure-työnkulut toimivat muuttumattomina — muokkauksia ei tarvita.",
+		"selecting": {
+			"title": "Palveluntarjoajan valinta",
+			"body": "Aseta {provider}-syötteeksi {azure} (oletus), {aws} tai {google} ja anna sitten kyseisen palveluntarjoajan tunnukset. Jokaista toimintakutsua käytetään vain yhtä palveluntarjoajaa; toiminta delegoi deterministisesti tehtaan takana olevalle vastaavalle SDK:lle."
+		},
+		"comparison": {
+			"title": "Tarjoajien vertailu",
+			"caption": "Käännöspalveluntarjoajien vertailu",
+			"columns": {
+				"provider": "Tarjoaja",
+				"value": "Palveluntarjoajan arvo",
+				"sdk": "SDK",
+				"credentials": "Pätevyydet"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (oletus)",
+				"credentials": "subscriptionKey, päätepiste, alue (valinnainen)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "AWS",
+				"credentials": "OIDC / oletusketju tai awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud Translation",
+				"value": "Google",
+				"credentials": "googleApiKey TAI googleCredentials (palvelutili JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Oletuspalveluntarjoaja. Tarjoa Azure AI Translator -resurssi ja läpäise {subscriptionKey}, {endpoint} ja halutessasi {region}. Tämä on sama kokoonpano, jota olemassa olevat työnkulut jo käyttävät."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Käyttää {sdk}. Suosi OIDC:tä {configureAwsCredentials}:n kautta, jotta pitkäaikaisia salaisuuksia ei tallenneta — toiminto lukee AWS SDK:n oletustunnistusketjun. Vaihtoehtoisesti voit {awsAccessKeyId} ja {awsSecretAccessKey} selkeästi. Alue vaaditaan aina, joko {awsRegion} tai {awsRegionEnv} ympäristömuuttujan kautta.",
+			"oidcTitle": "OIDC (suositeltava)",
+			"keysNote": "Jos haluat käyttää staattisia näppäimiä OIDC:n sijaan, poista {configureAwsCredentials}-vaihe ja välitä {awsAccessKeyId} / {awsSecretAccessKey} ({secrets}:n kautta) plus {awsRegion}."
+		},
+		"google": {
+			"title": "Google Cloud Translation",
+			"body": "Käyttää {sdk} (v2). Tunnista joko API-avaimella ({googleApiKey}) tai palvelutilin JSON-tunnisteella ({googleCredentials}). Anna täsmälleen yksi; valinnainen {googleProjectId} päätellen pätevyydestä, jos se jätetään pois."
+		},
+		"mapping": {
+			"title": "Intent-specifier -kuvaus",
+			"body": "Palveluntarjoajakohtaiset spesifikaattorit kartoitetaan siellä, missä vastaava on olemassa. Kaikki muu palautuu järkevään oletustilaan, jotta käytös pysyy johdonmukaisena.",
+			"caption": "Intent-specifier -kartoitus palveluntarjoajien välillä",
+			"columns": {
+				"input": "Syöte",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Tuettu",
+			"ignored": "Jätetty huomiotta",
+			"rows": {
+				"textType": {
+					"azure": "textType (tavallinen / html)",
+					"aws": "Ohitettu (ei kytkintä)",
+					"google": "Muoto (teksti / html)"
+				},
+				"profanityAction": {
+					"azure": "Täysi tuki",
+					"aws": "Merkitty / Poistettu → peittäminen",
+					"google": "Jätetty huomiotta"
+				},
+				"categoryId": {
+					"azure": "Räätälöity kääntäjä",
+					"aws": "Jätetty huomiotta",
+					"google": "Jätetty huomiotta"
+				},
+				"allowFallback": {
+					"azure": "Tuettu",
+					"aws": "Jätetty huomiotta",
+					"google": "Jätetty huomiotta"
+				}
+			}
+		},
+		"locales": {
+			"title": "Paikalliskoodit vaihtelevat palveluntarjoajasta riippuen",
+			"body": "Jokainen palveluntarjoaja käyttää omia paikalliskoodiaan (esimerkiksi Simplified Chinese on {azureCode} Azuressa, {awsCode} AWS:ssä ja {googleCode} Googlessa). Koodit kulkevat läpi sellaisenaan ja ohjaavat tulostiedostojen nimiä, joten valitse {toLocales} arvot, joita valitsemasi palveluntarjoaja tukee."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Vaaditut syötteet",
 			"caption": "Vaaditut syötteet",
 			"items": {
-				"sourceLocale": "Lähdepaikka (esim. {en}), jota käytetään resurssitiedostojen, kuten {sourceGlob}, löytämiseen. Lähetetty myös kääntäjälle nimellä {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator -tilausavain. Kulje {secrets} kautta.",
-				"endpoint": "Kääntäjän päätepisteen URL, esim. {endpointUrl}."
+				"sourceLocale": "Lähdepaikka (esim. {en}), jota käytetään resurssitiedostojen, kuten {sourceGlob}, löytämiseen. Lähetetään myös palveluntarjoajalle {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Palveluntarjoajan valinta ja pätevyydet",
+			"caption": "Palveluntarjoajan valinta ja toimittajakohtaiset tunnistetiedot",
+			"intro": "Valitse yksi operaattori per käyttökerta {provider}:n kanssa. Toimita vain valitun palveluntarjoajan tunnukset — katso {providersLink}-opas täydellistä asennusta varten.",
+			"items": {
+				"provider": "Käännöspalveluntarjoaja: {azure} (oletus), {aws} tai {google}. Yksi operaattori on käytössä per toimintakutsu.",
+				"subscriptionKey": "Azure AI Translator -tilausavain. Vaaditaan {azure}. Kulje {secrets} kautta.",
+				"endpoint": "Azure Translator endpoint URL, esim. {endpointUrl}. Vaaditaan {azure}.",
+				"awsAccessKeyId": "AWS:n pääsyavaimen tunnus. Valinnainen — jätä ({awsSecretAccessKey}) pois AWS:n oletustunnisteketjun / OIDC:n käytöstä. Kulje {secrets} kautta.",
+				"awsSecretAccessKey": "AWS:n salainen pääsyavain. Se täytyy toimittaa yhdessä {awsAccessKeyId} kanssa. Kulje {secrets} kautta.",
+				"awsSessionToken": "Valinnainen AWS-istuntotunnus väliaikaisille tunnuksille. Kulje {secrets} kautta.",
+				"awsRegion": "AWS-alue Translate-palvelulle (esim. {regionExample}). Vaaditaan {aws}, ellei {awsRegionEnv} ole asetettu ympäristöön.",
+				"googleApiKey": "Google Cloud API -avain. Anna tämä OR {googleCredentials} {google}. Kulje {secrets} kautta.",
+				"googleCredentials": "Google Cloud -palvelun tiliavain JSON-merkkijonona. Anna tämä OR {googleApiKey} {google}. Kulje {secrets} kautta.",
+				"googleProjectId": "Valinnainen Google Cloud Project ID. Yleensä päätellen palvelutilin tunnuksesta."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Kääntäjän pyyntösyötteet",
-			"intro": "Nämä vastaavat suoraan Azure AI Translator v3 -kyselyparametreihin. Jokainen niistä on vapaaehtoinen; Kääntäjän oletusasetukset pätevät, kun ne ovat pois asetuksista.",
-			"caption": "Kääntäjän pyyntösyötteet",
+			"heading": "Azure Translator request inputs",
+			"intro": "Nämä liittyvät suoraan Azure AI Translator v3 -kyselyparametreihin ja koskevat Azure-palveluntarjoajaa. textType ja profanityAction on myös yhdistetty AWS/Googleen, missä vastaava on olemassa (katso palveluntarjoajan opas); loput ovat vain Azure-laitteita. Jokainen niistä on vapaaehtoinen; Kääntäjän oletusasetukset pätevät, kun ne ovat pois asetuksista.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — industry/domain/tone nnob. Lähetetty {categoryQuery}.",
 				"textType": "{plain} tai {html}. Käytä {html} vain silloin, kun resurssiarvosi ovat oikeita HTML-fragmentteja.",

@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "مترجم الموارد",
-		"description": "يفتح مترجم الموارد طلبات سحب مترجمة آليا لملفات الموارد الخاصة بك في أي مستودع وبأي صيغة — مدعوما بواسطة Azure AI Translator.",
+		"description": "يفتح مترجم الموارد طلبات سحب مترجمة آليا لملفات الموارد الخاصة بك في أي مستودع، وبأي صيغة — مدعومة بمترجم Azure AI أو AWS Translate أو Google Cloud Translation.",
 		"socialTitle": "مترجم الموارد — ترجمة ملفات الموارد تلقائيا",
-		"badge": "v3.0 — العقدة 24، إعدادات المستودع، القامود، التجربة الجافة",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "قم بتحديد موقع المستودع الخاص بك",
 		"headlineAccent": "كل التزام.",
-		"lede": "يفتح مترجم الموارد طلبات سحب مترجمة آليا لملفات الموارد الخاصة بك باستخدام Azure AI Translator عبر حزمة تطوير البرمجيات الرسمية — بدون خدمات إضافية، فقط سير عمل.",
+		"lede": "يفتح Resource Translator طلبات سحب مترجمة آليا لملفات الموارد الخاصة بك باستخدام Azure أو AWS أو Google — إجراء موحد واحد، مزود واحد لكل تشغيل، وSDK رسمية تحت الغطاء.",
 		"primaryCta": "ابدأ",
 		"secondaryCta": "ستار على GitHub",
 		"supports": "الدعم",
 		"builtForShipping": "بنيت للشحن",
 		"workflowTitle": "الترجمة كسير عمل، وليست مهمة روتينية.",
-		"workflowBody": "ضع الإجراء في CI الحالي، وجهه إلى Azure AI Translator، ودع مستودعك يتحدث كل لغة تستهدفها.",
+		"workflowBody": "ضع الإجراء في CI الحالي، وجهه إلى Azure أو AWS أو Google، ودع مستودعك يتحدث كل لغة تستهدفها.",
 		"stats": {
 			"audit": "0 مشاكل تدقيق في الدقيقة النارية",
-			"tests": "150 اختبارا",
+			"tests": "240+ اختبار",
 			"node": "العقدة 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · جوجل"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle} و {summaryDetails} و {hasNewTranslations} توضع مباشرة في إنشاء وسحب طلب."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "مبني على {azureSdk} + {corePipeline} — إعادة المحاولات التلقائية على {statusCodes}، بدون ملف HTTP يدوي. {esbuild} مغلف، نظيف تماما في التدقيق."
+				"title": "Azure، AWS وGoogle",
+				"body": "اختر مزودا واحدا في كل جولة. كل منها يعتمد على مجموعة SDK الرسمية ({azureSdk}، {awsSdk}، {googleSdk}) مع إعادة محاولات تلقائية على {statusCodes} — بدون ملف HTTP يدوي. {esbuild} مكثف، نظيف من التدقيق."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "هل أنت مستعد للتوطين التلقائي؟",
-			"body": "مفتاح Azure AI Translator واحد، ملف workflow واحد. يتولى مترجم الموارد الباقي.",
+			"body": "مفتاح مزود واحد — Azure أو AWS أو Google — وملف سير عمل واحد. يتولى مترجم الموارد الباقي.",
 			"button": "ابدأ"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "الخطوات التالية",
 			"configuration": "قم بتكوين الإعدادات الافتراضية على مستوى المستودع باستخدام {configPath}.",
 			"recipes": "راجع وصفات المونوريبوس، والقواميس المخصصة، وفئات المترجمين المخصصين."
+		}
+	},
+	"providers": {
+		"title": "مزودو الترجمة",
+		"eyebrow": "المرجع",
+		"lede": "اختر مزود ترجمة واحد في كل تشغيل — Azure AI Translator، AWS Translate، أو Google Cloud Translation — خلف واجهة برمجة تطبيقات موحدة واحدة. يتصرف المترجم بشكل متطابق بغض النظر عن المزود؛ لكن المؤهلات تختلف.",
+		"backwardCompatible": "متوافق بالكامل مع الإصدارات السابقة: {provider} افتراضيا على {azure}، لذا تستمر سير العمل الحالي في Azure دون تغيير — دون الحاجة إلى تعديلات.",
+		"selecting": {
+			"title": "اختيار مزود الخدمة",
+			"body": "اضبط مدخل {provider} على {azure} (افتراضي)، {aws}، أو {google}، ثم زود بيانات اعتماد ذلك المزود. يتم استخدام مزود واحد فقط لكل نداء إجراء؛ تقوم الحركة بتفويض حتمي إلى مجموعة تطوير التنمية المطابقة خلف المصنع."
+		},
+		"comparison": {
+			"title": "مقارنة المزودين",
+			"caption": "مقارنة مزودي الترجمة",
+			"columns": {
+				"provider": "المزود",
+				"value": "قيمة المزود",
+				"sdk": "SDK",
+				"credentials": "المؤهلات"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (افتراضي)",
+				"credentials": "subscriptionKey، نقطة نهاية، منطقة (اختياري)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "AWS",
+				"credentials": "OIDC / السلسلة الافتراضية، أو awsAccessKeyId + awsSecretAccessKey؛ awsRegion"
+			},
+			"google": {
+				"name": "ترجمة جوجل كلاود",
+				"value": "جوجل",
+				"credentials": "googleApiKey أو googleCredentials (خدمة حساب JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "المزود الافتراضي. توفير مورد Azure AI Translator وتمرير {subscriptionKey} و {endpoint} واختياري {region}. هذا هو نفس التكوين الذي تستخدمه سير العمل الحالي بالفعل."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "يستخدم {sdk}. أفضل OIDC عبر {configureAwsCredentials} حتى لا يتم تخزين أسرار طويلة الأمد — حيث تقرأ الإجراء سلسلة بيانات اعتماد AWS SDK الافتراضية. بدلا من ذلك، تمرير {awsAccessKeyId} و {awsSecretAccessKey} بشكل صريح. المنطقة مطلوبة دائما، عبر {awsRegion} أو متغير البيئة {awsRegionEnv}.",
+			"oidcTitle": "OIDC (موصى به)",
+			"keysNote": "لاستخدام المفاتيح الثابتة بدلا من OIDC، اترك الخطوة {configureAwsCredentials} ومرر {awsAccessKeyId} / {awsSecretAccessKey} (عبر {secrets}) بالإضافة إلى {awsRegion}."
+		},
+		"google": {
+			"title": "ترجمة جوجل كلاود",
+			"body": "يستخدم {sdk} (الإصدار الثاني). قم بالتحقق إما باستخدام مفتاح API ({googleApiKey}) أو بيانات اعتماد JSON لحساب الخدمة ({googleCredentials}). زود واحدة فقط؛ يتم استنتاج {googleProjectId} اختياري من الشهادة عند حذفها."
+		},
+		"mapping": {
+			"title": "تعيين محدد النية",
+			"body": "يتم تعيين محددات خاصة بمزود الخدمة حيث يوجد ما يعادلها. كل شيء آخر يعود إلى الافتراضيات المنطقية حتى يبقى السلوك ثابتا.",
+			"caption": "تعيين محدد النية بين المزودين",
+			"columns": {
+				"input": "المدخلات",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "جوجل"
+			},
+			"supported": "مدعوم",
+			"ignored": "تم تجاهله",
+			"rows": {
+				"textType": {
+					"azure": "textType (بسيط / HTML)",
+					"aws": "تم تجاهله (بدون تفعيل)",
+					"google": "التنسيق (نص / HTML)"
+				},
+				"profanityAction": {
+					"azure": "الدعم الكامل",
+					"aws": "تم تمييز / حذف → التمويه",
+					"google": "تم تجاهله"
+				},
+				"categoryId": {
+					"azure": "المترجم المخصص",
+					"aws": "تم تجاهله",
+					"google": "تم تجاهله"
+				},
+				"allowFallback": {
+					"azure": "مدعوم",
+					"aws": "تم تجاهله",
+					"google": "تم تجاهله"
+				}
+			}
+		},
+		"locales": {
+			"title": "تختلف رموز الموقع حسب المزود",
+			"body": "كل مزود يستخدم رموزه المحلية الخاصة (على سبيل المثال، الصينية المبسطة {azureCode} على Azure، {awsCode} على AWS، و {googleCode} على Google). تمر الرموز كما هي وتدفع أسماء ملفات الإخراج، لذا اختر {toLocales} القيم التي يدعمها مزودك المختار."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "المدخلات المطلوبة",
 			"caption": "المدخلات المطلوبة",
 			"items": {
-				"sourceLocale": "الموقع المصدر (مثل {en}) المستخدم للعثور على ملفات الموارد مثل {sourceGlob}. كما تم تحويلها إلى المترجم بعنوان {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. المرور عبر {secrets}.",
-				"endpoint": "رابط نقطة نهاية المترجم، مثل {endpointUrl}."
+				"sourceLocale": "الموقع المصدر (مثل {en}) المستخدم للعثور على ملفات الموارد مثل {sourceGlob}. كما تم تحويلها إلى المزود بصفتها {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "اختيار مقدم الخدمة والمؤهلات",
+			"caption": "اختيار المزود وبيانات اعتماد كل مورد",
+			"intro": "اختر مزودا واحدا لكل جولة مع {provider}. قدم فقط بيانات اعتماد المزود المختار — راجع دليل {providersLink} للإعداد الكامل.",
+			"items": {
+				"provider": "مزود الترجمة: {azure} (افتراضي)، {aws}، أو {google}. يتم استخدام مزود واحد فقط لكل نداء إجراء.",
+				"subscriptionKey": "Azure AI Translator subscription key. مطلوب {azure}. المرور عبر {secrets}.",
+				"endpoint": "Azure Translator endpoint URL، مثلا {endpointUrl}. مطلوب {azure}.",
+				"awsAccessKeyId": "معرف مفتاح الوصول إلى AWS. اختياري — حذف (مع {awsSecretAccessKey}) لاستخدام سلسلة بيانات الاعتماد الافتراضية / OIDC في AWS. المرور عبر {secrets}.",
+				"awsSecretAccessKey": "مفتاح الوصول السري AWS. يجب أن يكون متوفرا مع {awsAccessKeyId}. المرور عبر {secrets}.",
+				"awsSessionToken": "رمز جلسة AWS اختياري لبيانات الاعتماد المؤقتة. المرور عبر {secrets}.",
+				"awsRegion": "منطقة AWS لخدمة الترجمة (مثل {regionExample}). مطلوب {aws} إلا إذا كان {awsRegionEnv} في البيئة.",
+				"googleApiKey": "مفتاح Google Cloud API. قدم هذا الإجراء {googleCredentials} {google}. المرور عبر {secrets}.",
+				"googleCredentials": "مفتاح خدمة حساب Google Cloud كسلسلة JSON. قدم هذا الإجراء {googleApiKey} {google}. المرور عبر {secrets}.",
+				"googleProjectId": "معرف مشروع Google Cloud اختياري. عادة ما يستنتج ذلك من بيانات اعتماد حساب الخدمة."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "مدخلات طلبات المترجم",
-			"intro": "هذه الروابط تتوافق مباشرة مع معلمات استعلام Azure AI Translator v3. كل واحدة اختيارية؛ تطبق إعدادات المترجم الافتراضية عند عدم التعيين.",
-			"caption": "مدخلات طلبات المترجم",
+			"heading": "Azure Translator request inputs",
+			"intro": "هذه الروابط تتوافق مباشرة مع معلمات الاستعلام Azure AI Translator v3 وتطبق على مزود Azure. يتم أيضا ربط textType و profanityAction ب AWS/Google حيث يوجد ما يعادل (انظر دليل المزودين); أما البقية فهي فقط على الأزرق. كل واحدة اختيارية؛ تطبق إعدادات المترجم الافتراضية عند عدم التعيين.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} فئة — مقبض الصناعة/المجال/النغمة. تم تحويلها إلى {categoryQuery}.",
 				"textType": "{plain} أو {html}. استخدم {html} فقط عندما تكون قيم الموارد عبارة عن شظايا HTML حقيقية.",

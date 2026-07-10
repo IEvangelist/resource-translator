@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "ຜູ້ແປຊັບພະຍາກອນ",
-		"description": "Resource Translator ເປີດຄໍາຮ້ອງຂໍດຶງທີ່ແປໂດຍເຄື່ອງຈັກສໍາລັບແຟ້ມຊັບພະຍາກອນຂອງທ່ານໃນຮູບແບບໃດໆກໍຕາມ - powered by Azure AI Translator.",
+		"description": "Resource Translator ເປີດຄໍາຮ້ອງຂໍດຶງທີ່ແປໂດຍເຄື່ອງຈັກສໍາລັບແຟ້ມຊັບພະຍາກອນຂອງທ່ານໃນຮູບແບບໃດໆກໍຕາມ - powered by Azure AI Translator, AWS Translate ຫຼື Google Cloud Translation.",
 		"socialTitle": "Resource Translator — ແປແຟ້ມຊັບພະຍາກອນໂດຍອັດຕະໂນມັດ",
-		"badge": "v3.0 — Node 24, repoconfig, glossary, dry run",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Localize repo ຂອງທ່ານໃນ",
 		"headlineAccent": "ທຸກໆ commit.",
-		"lede": "Resource Translator ເປີດຄໍາຮ້ອງຂໍດຶງທີ່ແປໂດຍເຄື່ອງຈັກສໍາລັບແຟ້ມຊັບພະຍາກອນຂອງທ່ານໂດຍໃຊ້ Azure AI Translator ຜ່ານ SDK ທາງການ - ບໍ່ມີການບໍລິການເພີ່ມເຕີມ, ພຽງແຕ່ຂະບວນການເຮັດວຽກເທົ່ານັ້ນ.",
+		"lede": "Resource Translator ເປີດຄໍາຮ້ອງຂໍດຶງທີ່ແປໂດຍເຄື່ອງຈັກສໍາລັບແຟ້ມຊັບພະຍາກອນຂອງທ່ານໂດຍໃຊ້ Azure, AWS ຫຼື Google - ຫນຶ່ງການກະທໍາທີ່ເປັນເອກະພາບ, ຜູ້ໃຫ້ບໍລິການຫນຶ່ງຕໍ່ການແລ່ນ, SDK ທາງການພາຍໃຕ້ຫນ້າ.",
 		"primaryCta": "ເລີ່ມຕົ້ນ",
 		"secondaryCta": "ດວງດາວໃນ GitHub",
 		"supports": "ສະຫນັບສະຫນູນ",
 		"builtForShipping": "ສ້າງຂຶ້ນສໍາລັບການຂົນສົ່ງ",
 		"workflowTitle": "ການ ແປ ເປັນ ວຽກ ງານ, ບໍ່ ແມ່ນ ວຽກ ງານ.",
-		"workflowBody": "ໃຫ້ ວາງ ການ ກະ ທໍາ ລົງ ໃນ CI ທີ່ ມີ ຢູ່ ຂອງ ທ່ານ, ຊີ້ ໄປ ຫາ Azure AI Translator ແລະ ປ່ອຍ ໃຫ້ repo ຂອງ ທ່ານ ເວົ້າ ທຸກ ພາ ສາ ທີ່ ທ່ານ ເປົ້າ ຫມາຍ.",
+		"workflowBody": "ໃຫ້ ວາງ ການ ກະ ທໍາ ລົງ ໃນ CI ທີ່ ມີ ຢູ່ ຂອງ ທ່ານ, ຊີ້ ໄປ ຫາ Azure, AWS ຫລື Google, ແລະ ປ່ອຍ ໃຫ້ repo ຂອງ ທ່ານ ເວົ້າ ທຸກ ພາ ສາ ທີ່ ທ່ານ ເປົ້າ ຫມາຍ.",
 		"stats": {
 			"audit": "0 ບັນຫາການກວດສອບ NPM",
-			"tests": "150 ການ ທົດ ສອບ",
+			"tests": "240+ ການທົດສອບ",
 			"node": "ໂນດ 20 / 22 / 24",
-			"sdk": "Azure SDK ທາງການ"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} ແລະ {hasNewTranslations} ຊ່ອງ ໂດຍ ກົງ ໃນ create-pull-request."
 			},
 			"sdk": {
-				"title": "Azure SDK ທາງການ",
-				"body": "ສ້າງ ຂຶ້ນ ເທິງ {azureSdk} + {corePipeline} - ການ ທົດ ລອງ ໃຫມ່ ໂດຍ ອັດ ຕະ ໂນ ມັດ ໃນ {statusCodes}, ບໍ່ ມີ HTTP ທີ່ ໃຊ້ ມື. {esbuild} ຫໍ່, ສະອາດກວດສອບ."
+				"title": "Azure, AWS ແລະ Google",
+				"body": "ເລືອກຜູ້ໃຫ້ບໍລິການຫນຶ່ງຄົນຕໍ່ການແລ່ນ. ແຕ່ ລະ ຢ່າງ ຖືກ ຂັບ ໄລ່ ໂດຍ SDK ທີ່ ເປັນ ທາງ ການ ({azureSdk}, {awsSdk}, {googleSdk}) ພ້ອມ ດ້ວຍ ການ ທົດ ລອງ ໃຫມ່ ໂດຍ ອັດ ຕະ ໂນ ມັດ ໃນ {statusCodes} - ບໍ່ ມີ HTTP ທີ່ ໃຊ້ ມື. {esbuild} ຫໍ່, ສະອາດກວດສອບ."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "ພ້ອມແລ້ວບໍທີ່ຈະ localize ໂດຍອັດຕະໂນມັດ?",
-			"body": "ຫນຶ່ງກະແຈ Azure AI Translator, ຫນຶ່ງແຟ້ມວຽກງານ. Resource Translator ຈັດການກັບສ່ວນທີ່ເຫຼືອ.",
+			"body": "ກະແຈຂອງຜູ້ໃຫ້ບໍລິການ - Azure, AWS ຫຼື Google - ແລະ ແຟ້ມ workflow ຫນຶ່ງ. Resource Translator ຈັດການກັບສ່ວນທີ່ເຫຼືອ.",
 			"button": "ເລີ່ມຕົ້ນ"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "ຂັ້ນຕອນຕໍ່ໄປ",
 			"configuration": "ຕັ້ງຄ່າມາດຕະຖານລະດັບ repo ດ້ວຍ {configPath}.",
 			"recipes": "ເບິ່ງ recipes for monorepos, custom glossaries ແລະ Custom Translator categories."
+		}
+	},
+	"providers": {
+		"title": "ຜູ້ໃຫ້ການແປ",
+		"eyebrow": "ຂໍ້ ອ້າງ ອີງ",
+		"lede": "ເລືອກຜູ້ໃຫ້ການແປຫນຶ່ງຄົນຕໍ່ການແລ່ນ - Azure AI Translator, AWS Translate ຫຼື Google Cloud Translation - ທີ່ຢູ່ເບື້ອງຫຼັງ API ທີ່ເປັນເອກະພາບດຽວ. ຜູ້ ແປ ປະພຶດ ແບບ ດຽວ ກັນ ບໍ່ ວ່າ ຜູ້ ຈັດ ຫາ ຈະ ເປັນ ແນວ ໃດ ກໍ ຕາມ; ພຽງ ແຕ່ ຂໍ້ ມູນ ທີ່ ແຕກ ຕ່າງ ກັນ.",
+		"backwardCompatible": "ສອດຄ່ອງກັບຫຼັງຢ່າງເຕັມທີ: {provider} ມາດຕະຖານເປັນ {azure}, ດັ່ງນັ້ນ ວຽກງານ Azure ທີ່ມີຢູ່ຈະເຮັດວຽກໂດຍບໍ່ປ່ຽນແປງ - ບໍ່ຈໍາເປັນຕ້ອງມີການແກ້ໄຂ.",
+		"selecting": {
+			"title": "ການເລືອກຜູ້ໃຫ້ບໍລິການ",
+			"body": "ຕັ້ງ ຂໍ້ ມູນ {provider} ເປັນ {azure} (ມາດຕະຖານ), {aws} ຫລື {google}, ແລ້ວ ໃຫ້ ຂໍ້ ມູນ ຂອງ ຜູ້ ຈັດ ຫາ ນັ້ນ. ມີ ພຽງ ແຕ່ ຜູ້ ຈັດ ຫາ ຄົນ ດຽວ ເທົ່າ ນັ້ນ ທີ່ ຖືກ ໃຊ້ ຕໍ່ ການ ເອີ້ນ ໃຫ້ ລົງມື ປະຕິບັດ; ການກະທໍາຈະມອບຫມາຍໃຫ້ SDK ທີ່ສອດຄ່ອງກັນຢູ່ເບື້ອງຫຼັງໂຮງງານ."
+		},
+		"comparison": {
+			"title": "ການປຽບທຽບຜູ້ໃຫ້ບໍລິການ",
+			"caption": "ການປຽບທຽບຜູ້ໃຫ້ການແປ",
+			"columns": {
+				"provider": "ຜູ້ໃຫ້ບໍລິການ",
+				"value": "ຄຸນຄ່າຂອງຜູ້ໃຫ້ບໍລິການ",
+				"sdk": "SDK",
+				"credentials": "ຂໍ້ມູນ"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (ມາດຕະຖານ)",
+				"credentials": "subscriptionKey, endpoint, region (ບໍ່ຈໍາເປັນ)"
+			},
+			"aws": {
+				"name": "AWS ແປ",
+				"value": "AWS",
+				"credentials": "OIDC / default chain ຫຼື awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "ການແປ Google Cloud",
+				"value": "Google",
+				"credentials": "googleApiKey ຫຼື googleCredentials (service account JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (ມາດຕະຖານ)",
+			"body": "ຜູ້ໃຫ້ບໍລິການມາດຕະຖານ. ຈັດ ຫາ ຊັບ ພະ ຍາ ກອນ Azure AI Translator ແລະ ສົ່ງ {subscriptionKey}, {endpoint} ແລະ ທາງ ເລືອກ {region}. ນີ້ແມ່ນການຕັ້ງຄ່າແບບດຽວກັນກັບທີ່ລະບົບການເຮັດວຽກທີ່ມີຢູ່ແລ້ວ."
+		},
+		"aws": {
+			"title": "AWS ແປ",
+			"body": "ໃຊ້ {sdk}. ເລືອກ OIDC ຜ່ານ {configureAwsCredentials} ເພື່ອ ວ່າ ຈະ ບໍ່ ມີ ຄວາມ ລັບ ທີ່ ຍາວ ນານ - ການ ກະທໍາ ຈະ ອ່ານ ສາຍ ໂສ້ ຂໍ້ ມູນ ມາດຕະຖານ ຂອງ AWS SDK. ອີກ ທາງ ຫນຶ່ງ, pass {awsAccessKeyId} ແລະ {awsSecretAccessKey} ຢ່າງ ແຈ່ມ ແຈ້ງ. ພາກພື້ນແມ່ນຈໍາເປັນສະເຫມີ, ຜ່ານ {awsRegion} ຫຼື {awsRegionEnv} ສະພາບແວດລ້ອມ.",
+			"oidcTitle": "OIDC (ແນະນໍາ)",
+			"keysNote": "ເພື່ອໃຊ້ກະແຈສະຖິຕິແທນ OIDC, ໃຫ້ປ່ອຍຂັ້ນຕອນ {configureAwsCredentials} ແລະ ຜ່ານ {awsAccessKeyId} / {awsSecretAccessKey} (ຜ່ານ {secrets}) ພ້ອມກັບ {awsRegion}."
+		},
+		"google": {
+			"title": "ການແປ Google Cloud",
+			"body": "ໃຊ້ {sdk} (v2). ຢືນຢັນດ້ວຍກະແຈ API ({googleApiKey}) ຫຼື ຂໍ້ມູນ JSON ຂອງບັນຊີການບໍລິການ ({googleCredentials}). ຈັດ ຫາ ຢ່າງ ດຽວ; ການ {googleProjectId} ທາງ ເລືອກ ຈະ ຖືກ ສະຫລຸບ ຈາກ ໃບ ຢັ້ງຢືນ ເມື່ອ ຖືກ ຕັດ ອອກ."
+		},
+		"mapping": {
+			"title": "ການວາງແຜນທີ່ລະບຸເຈດຕະນາ",
+			"body": "ລະບຸສະເພາະຂອງຜູ້ໃຫ້ບໍລິການຈະຖືກວາງແຜນໃນບ່ອນທີ່ມີສິ່ງທີ່ເທົ່າທຽມກັນ. ທຸກ ສິ່ງ ທຸກ ຢ່າງ ຈະ ກັບ ຄືນ ໄປ ຫາ ມາດ ຕະ ຖານ ທີ່ ມີ ເຫດ ຜົນ ເພື່ອ ວ່າ ພຶດ ຕິ ກໍາ ຈະ ສະ ຫມ່ໍາ ສະ ເຫມີ.",
+			"caption": "Intent-specifier mapping across providers",
+			"columns": {
+				"input": "ຂໍ້ມູນນໍາເຂົ້າ",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "ສະຫນັບສະຫນູນ",
+			"ignored": "ບໍ່ ເອົາ ໃຈ ໃສ່",
+			"rows": {
+				"textType": {
+					"azure": "textType (ທໍາມະດາ / html)",
+					"aws": "ບໍ່ ເອົາ ໃຈ ໃສ່ (ບໍ່ ມີ ການ ປ່ຽນ ແປງ)",
+					"google": "ຮູບແບບ (text / html)"
+				},
+				"profanityAction": {
+					"azure": "ການສະຫນັບສະຫນູນຢ່າງເຕັມທີ",
+					"aws": "ຫມາຍ / ລຶບ → masking",
+					"google": "ບໍ່ ເອົາ ໃຈ ໃສ່"
+				},
+				"categoryId": {
+					"azure": "ຜູ້ແປ Custom",
+					"aws": "ບໍ່ ເອົາ ໃຈ ໃສ່",
+					"google": "ບໍ່ ເອົາ ໃຈ ໃສ່"
+				},
+				"allowFallback": {
+					"azure": "ສະຫນັບສະຫນູນ",
+					"aws": "ບໍ່ ເອົາ ໃຈ ໃສ່",
+					"google": "ບໍ່ ເອົາ ໃຈ ໃສ່"
+				}
+			}
+		},
+		"locales": {
+			"title": "ລະຫັດທ້ອງຖິ່ນແຕກຕ່າງກັນຕໍ່ຜູ້ໃຫ້ບໍລິການ",
+			"body": "ຜູ້ ຈັດ ຫາ ແຕ່ ລະ ຄົນ ໃຊ້ ລະຫັດ ພາສາ ຂອງ ຕົນ ເອງ (ຍົກ ຕົວຢ່າງ ພາສາ ຈີນ {azureCode} ໃນ Azure, {awsCode} ໃນ AWS ແລະ {googleCode} ໃນ Google). ລະຫັດຜ່ານຕາມທີ່ເປັນຢູ່ແລະຂັບໄລ່ຊື່ແຟ້ມທີ່ອອກມາ, ດັ່ງນັ້ນໃຫ້ເລືອກຄ່າ {toLocales} ທີ່ຜູ້ໃຫ້ບໍລິການທີ່ທ່ານເລືອກສະຫນັບສະຫນູນ."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "ຂໍ້ມູນທີ່ຈໍາເປັນ",
 			"caption": "ຂໍ້ມູນທີ່ຈໍາເປັນ",
 			"items": {
-				"sourceLocale": "ແຫຼ່ງຂໍ້ມູນ (ຕົວຢ່າງ: {en}) ທີ່ໃຊ້ເພື່ອຊອກຫາແຟ້ມຊັບພະຍາກອນເຊັ່ນ {sourceGlob}. ຍັງສົ່ງຕໍ່ໃຫ້ຜູ້ແປໃນຊື່ {fromLocale}.",
-				"subscriptionKey": "ກະແຈການຈົດທະບຽນ Azure AI Translator. ຜ່ານ {secrets}.",
-				"endpoint": "URL endpoint ຂອງຜູ້ແປ, ຕົວຢ່າງ: {endpointUrl}."
+				"sourceLocale": "ແຫຼ່ງຂໍ້ມູນ (ຕົວຢ່າງ: {en}) ທີ່ໃຊ້ເພື່ອຊອກຫາແຟ້ມຊັບພະຍາກອນເຊັ່ນ {sourceGlob}. ຍັງ ຖືກ ສົ່ງ ຕໍ່ ໄປ ໃຫ້ ຜູ້ ຈັດ ຫາ {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "ການເລືອກຜູ້ໃຫ້ບໍລິການ ແລະ ໃບຢັ້ງຢືນ",
+			"caption": "ການເລືອກຜູ້ໃຫ້ບໍລິການ ແລະ ໃບຢັ້ງຢືນຕໍ່ຜູ້ຂາຍ",
+			"intro": "ເລືອກຜູ້ໃຫ້ບໍລິການຫນຶ່ງຄົນຕໍ່ການແລ່ນກັບ {provider}. ໃຫ້ພຽງແຕ່ຂໍ້ມູນຜູ້ໃຫ້ບໍລິການທີ່ເລືອກເທົ່ານັ້ນ - ເບິ່ງຄູ່ມື {providersLink} ສໍາລັບການຕັ້ງຄ່າຄົບຖ້ວນ.",
+			"items": {
+				"provider": "ຜູ້ໃຫ້ການແປ: {azure} (ມາດຕະຖານ), {aws} ຫຼື {google}. ມີ ພຽງ ແຕ່ ຜູ້ ຈັດ ຫາ ຄົນ ດຽວ ເທົ່າ ນັ້ນ ທີ່ ຖືກ ໃຊ້ ຕໍ່ ການ ເອີ້ນ ໃຫ້ ລົງມື ເຮັດ.",
+				"subscriptionKey": "ກະແຈການຈົດທະບຽນ Azure AI Translator. ຈໍາເປັນ ສໍາລັບ ການ {azure}. ຜ່ານ {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, ຕົວຢ່າງ: {endpointUrl}. ຈໍາເປັນ ສໍາລັບ {azure}.",
+				"awsAccessKeyId": "AWS access key id. ທາງເລືອກ - ຍົກເວັ້ນ (ກັບ {awsSecretAccessKey}) ເພື່ອໃຊ້ສາຍໂສ້ຂໍ້ມູນມາດຕະຖານ / OIDC. ຜ່ານ {secrets}.",
+				"awsSecretAccessKey": "ກະແຈການເຂົ້າເຖິງຄວາມລັບຂອງ AWS. ຕ້ອງ ຈັດ ຫາ ພ້ອມ ກັບ {awsAccessKeyId}. ຜ່ານ {secrets}.",
+				"awsSessionToken": "ທາງເລືອກ AWS session token ສໍາລັບຂໍ້ມູນຊົ່ວຄາວ. ຜ່ານ {secrets}.",
+				"awsRegion": "ພາກພື້ນ AWS ສໍາລັບການບໍລິການ Translate (ຕົວຢ່າງ: {regionExample}). ຈໍາເປັນ ສໍາລັບ {aws} ຍົກ ເວັ້ນ {awsRegionEnv} ຖືກ ກໍານົດ ໄວ້ ໃນ ສະພາບ ແວດ ລ້ອມ.",
+				"googleApiKey": "ກະແຈ Google Cloud API. ໃຫ້ ຂໍ້ ມູນ ນີ້ OR {googleCredentials} ສໍາ ລັບ {google}. ຜ່ານ ທາງ {secrets}.",
+				"googleCredentials": "ກະແຈບັນຊີການບໍລິການ Google Cloud ເປັນຂໍ້ມູນ JSON. ໃຫ້ ຂໍ້ ມູນ ນີ້ OR {googleApiKey} ສໍາ ລັບ {google}. ຜ່ານ ທາງ {secrets}.",
+				"googleProjectId": "ທາງເລືອກ Google Cloud project id. ຕາມປົກກະຕິແລ້ວຈະອ້າງອີງຈາກຂໍ້ມູນບັນຊີການບໍລິການ."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "ຄໍາຮ້ອງຂໍຂອງຜູ້ແປ",
-			"intro": "ສິ່ງເຫຼົ່ານີ້ຖືກວາງແຜນໂດຍກົງກັບ Azure AI Translator v3 query parameters. ທຸກ ຢ່າງ ເປັນ ທາງ ເລືອກ; ມາດຕະຖານ Translator ໃຊ້ໄດ້ເມື່ອບໍ່ໄດ້ຕັ້ງຄ່າ.",
-			"caption": "ຄໍາຮ້ອງຂໍຂອງຜູ້ແປ",
+			"heading": "ຂໍ້ມູນຄໍາຮ້ອງຂໍ Azure Translator",
+			"intro": "ສິ່ງເຫຼົ່ານີ້ຖືກວາງແຜນໂດຍກົງກັບຕົວເລກການສອບຖາມ Azure AI Translator v3 ແລະນໍາໃຊ້ກັບຜູ້ໃຫ້ບໍລິການ azure. textType ແລະ profanityAction ຍັງ ຖືກ map ກັບ AWS / Google ທີ່ ມີ ຂໍ້ ມູນ ທີ່ ເທົ່າ ທຽມ ກັນ (ເບິ່ງ ຄູ່ ມື ຂອງ ຜູ້ ຈັດ ຫາ); ສ່ວນທີ່ເຫຼືອແມ່ນ Azure ເທົ່ານັ້ນ. ທຸກ ຢ່າງ ເປັນ ທາງ ເລືອກ; ມາດຕະຖານ Translator ໃຊ້ໄດ້ເມື່ອບໍ່ໄດ້ຕັ້ງຄ່າ.",
+			"caption": "ຂໍ້ມູນຄໍາຮ້ອງຂໍ Azure Translator",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} category — ອຸດສາຫະກໍາ/domain/tone knob. ສົ່ງ ຕໍ່ ເປັນ {categoryQuery}.",
 				"textType": "{plain} ຫລື {html}. ໃຊ້ {html} ເມື່ອຄ່າຊັບພະຍາກອນຂອງເຈົ້າເປັນຊິ້ນສ່ວນ HTML ແທ້.",

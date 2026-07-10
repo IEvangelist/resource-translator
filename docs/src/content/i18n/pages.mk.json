@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Преведувач на ресурси",
-		"description": "Resource Translator отвора машински преведени pull барања за вашите ресурсни датотеки во било кој репозитор, во било кој формат — поддржан од Azure AI Translator.",
+		"description": "Resource Translator отвора машински преведени pull барања за вашите ресурсни датотеки во било кој репозитор, во било кој формат — поддржан од Azure AI Translator, AWS Translate или Google Cloud Translation.",
 		"socialTitle": "Преведувач на ресурси — автоматски преведува датотеки со ресурси",
-		"badge": "v3.0 — Јазол 24, репозиториум конфигурација, глосар, проба",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Локализирај го репозиторот на",
 		"headlineAccent": "Секој коммит.",
-		"lede": "Resource Translator отвора машински преведени pull барања за вашите ресурсни датотеки користејќи Azure AI Translator преку официјалниот SDK — нема дополнителни услуги, само работен тек.",
+		"lede": "Resource Translator отвора машински преведени pull барања за вашите ресурсни датотеки користејќи Azure, AWS или Google — една унифицирана акција, еден провајдер по извршување, официјални SDK-и под хаубата.",
 		"primaryCta": "Започнете",
 		"secondaryCta": "Star на GitHub",
 		"supports": "Поддршка",
 		"builtForShipping": "Изградена за бродски сообраќај",
 		"workflowTitle": "Преводот како работен процес, а не како обврска.",
-		"workflowBody": "Ставете ја акцијата во вашиот постоечки CI, насочете ја кон Azure AI Translator и оставете го вашиот репозиториум да зборува секој јазик што го таргетирате.",
+		"workflowBody": "Ставете ја акцијата во вашиот постоечки CI, насочете ја кон Azure, AWS или Google, и оставете го вашиот репозиториум да зборува секој јазик што го таргетирате.",
 		"stats": {
 			"audit": "0 прашања поврзани со npm-audit",
-			"tests": "150 тестови",
+			"tests": "240+ тестови",
 			"node": "Јазол 20 / 22 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Гугл"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} и {hasNewTranslations} директно се вклопуваат во креирање-повлекување-барање."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Изградено на {azureSdk} + {corePipeline} — автоматски повторни обиди на {statusCodes}, без рачно превртен HTTP. {esbuild} пакетирани, чисти по ревизија."
+				"title": "Azure, AWS и Google",
+				"body": "Избери по еден провајдер по трчање. Секој е управуван од својот официјален SDK ({azureSdk}, {awsSdk}, {googleSdk}) со автоматски повторни обиди на {statusCodes} — без рачно превртен HTTP. {esbuild}-пакетирани, ревизиски чисти."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Подготвени за локализација на автопилот?",
-			"body": "Еден Azure AI Translator клуч, еден workflow фајл. Преведувачот на ресурси се грижи за останатото.",
+			"body": "Еден клуч за провајдер — Azure, AWS или Google — и една датотека за работен тек. Преведувачот на ресурси се грижи за останатото.",
 			"button": "Започнете"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Следни чекори",
 			"configuration": "Конфигурирајте ги стандардните параметри на ниво на репозиториум со {configPath}.",
 			"recipes": "Погледнете рецепти за монорепо, прилагодени глосари и категории за прилагодени преведувачи."
+		}
+	},
+	"providers": {
+		"title": "Провајдери на превод",
+		"eyebrow": "Референца",
+		"lede": "Изберете еден провајдер на превод по секое извршување — Azure AI Translator, AWS Translate или Google Cloud Translation — зад единствена, унифицирана API површина. Преведувачот се однесува идентично без разлика на провајдерот; Само квалификациите се разликуваат.",
+		"backwardCompatible": "Целосно компатибилен наназад: {provider} по дифолт е на {azure}, така што постоечките Azure работни процеси продолжуваат да работат непроменети — без потреба од уредувања.",
+		"selecting": {
+			"title": "Избор на провајдер",
+			"body": "Поставете го {provider} влезот на {azure} (стандардно), {aws} или {google}, па потоа внесете ги креденцијалите на тој провајдер. Се користи само еден провајдер по акциски повик (action call); акцијата детерминистички се делегира на соодветниот SDK зад фабрика."
+		},
+		"comparison": {
+			"title": "Споредба на провајдери",
+			"caption": "Споредба на даватели на превод",
+			"columns": {
+				"provider": "Провајдер",
+				"value": "Вредност на провајдерот",
+				"sdk": "SDK",
+				"credentials": "Акредитации"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (default)",
+				"credentials": "subscriptionКлуч, крајна точка, регион (опционално)"
+			},
+			"aws": {
+				"name": "AWS Translate",
+				"value": "aws",
+				"credentials": "OIDC / стандардна ланец, или awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud превод",
+				"value": "Google",
+				"credentials": "googleApiKey ИЛИ googleCredentials (сервис-акаунт JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (default)",
+			"body": "Стандардниот провајдер. Обезбеди Azure AI преведувач ресурс и положи {subscriptionKey}, {endpoint}, и опционално {region}. Ова е иста конфигурација што веќе ја користат постоечките работни процеси."
+		},
+		"aws": {
+			"title": "AWS Translate",
+			"body": "Користи {sdk}. Преферирам OIDC преку {configureAwsCredentials} за да не се чуваат долготрајни тајни — акцијата го чита стандардниот ланец на креденцијали на AWS SDK. Алтернативно, поминете {awsAccessKeyId} и {awsSecretAccessKey} експлицитно. Секогаш е потребен регион, преку {awsRegion} или {awsRegionEnv} променливата на околината.",
+			"oidcTitle": "OIDC (препорачано)",
+			"keysNote": "За да користите статички клучеви наместо OIDC, отпуштете го чекорот {configureAwsCredentials} и пренесете {awsAccessKeyId} / {awsSecretAccessKey} (преку {secrets}) плус {awsRegion}."
+		},
+		"google": {
+			"title": "Google Cloud превод",
+			"body": "Користи {sdk} (v2). Автентикирајте со API клуч ({googleApiKey}) или со JSON креденцијал за сервис-сметка ({googleCredentials}). Обезбеди точно еден; Опционален {googleProjectId} се изведува од креденцијалот кога е изоставен."
+		},
+		"mapping": {
+			"title": "Мапирање на спецификатори на намера",
+			"body": "Специфичните специјализатори за провајдер се мапираат каде што постои еквивалент. Сè друго се враќа на разумни стандарди за однесувањето да остане конзистентно.",
+			"caption": "Мапирање на спецификатори на намера помеѓу провајдерите",
+			"columns": {
+				"input": "Влез",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Гугл"
+			},
+			"supported": "Поддржано",
+			"ignored": "Игнорирано",
+			"rows": {
+				"textType": {
+					"azure": "textType (обичен / html)",
+					"aws": "Игнорирано (без прекинување)",
+					"google": "Формат (текст / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Целосна поддршка",
+					"aws": "Означено / Избришано → маскирање",
+					"google": "Игнорирано"
+				},
+				"categoryId": {
+					"azure": "Прилагоден преведувач",
+					"aws": "Игнорирано",
+					"google": "Игнорирано"
+				},
+				"allowFallback": {
+					"azure": "Поддржано",
+					"aws": "Игнорирано",
+					"google": "Игнорирано"
+				}
+			}
+		},
+		"locales": {
+			"title": "Кодовите на локалите се разликуваат по провајдери",
+			"body": "Секој провајдер користи свои локални кодови (на пример, Simplified Chinese е {azureCode} на Azure, {awsCode} на AWS и {googleCode} на Google). Кодовите минуваат како што се и ги управуваат имињата на излезните датотеки, па изберете {toLocales} вредности што ги поддржува избраниот провајдер."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Потребни влезови",
 			"caption": "Потребни влезови",
 			"items": {
-				"sourceLocale": "Изворната локација (на пр. {en}) се користи за наоѓање ресурсни датотеки како {sourceGlob}. Исто така препратен до Преведувач како {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator subscription key. Поминете низ {secrets}.",
-				"endpoint": "URL на крајната точка на преведувачот, на пр. {endpointUrl}."
+				"sourceLocale": "Изворната локација (на пр. {en}) се користи за наоѓање ресурсни датотеки како {sourceGlob}. Исто така е проследено до провајдерот како {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Избор на давател и квалификации",
+			"caption": "Избор на провајдер и креденцијали по добавувач",
+			"intro": "Изберете еден провајдер по секоја трка со {provider}. Наведете ги само акредитивите на избраниот давател — погледнете го водичот за {providersLink} за целосна поставка.",
+			"items": {
+				"provider": "Давател на превод: {azure} (стандардно), {aws} или {google}. Се користи само еден провајдер по акциски повик (action call).",
+				"subscriptionKey": "Azure AI Translator subscription key. Задолжително за {azure}. Поминете преку {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, на пр. {endpointUrl}. Задолжително за {azure}.",
+				"awsAccessKeyId": "AWS пристапен клуч ID. Опционално — изоставете (со {awsSecretAccessKey}) за користење на AWS стандардниот ланец на креденцијали / OIDC. Поминете преку {secrets}.",
+				"awsSecretAccessKey": "AWS таен пристапен клуч. Мора да се обезбеди заедно со {awsAccessKeyId}. Поминете преку {secrets}.",
+				"awsSessionToken": "Опционален AWS сесија токен за привремени креденцијали. Поминете низ {secrets}.",
+				"awsRegion": "AWS регион за услугата Translate (на пр. {regionExample}). Задолжително за {aws} освен ако {awsRegionEnv} не е поставено во околината.",
+				"googleApiKey": "Google Cloud API клуч. Обезбедете ја оваа операциона сала {googleCredentials} за {google}. Поминете преку {secrets}.",
+				"googleCredentials": "Google Cloud сервисен клуч за сметка како JSON низ. Обезбедете ја оваа операциона сала {googleApiKey} за {google}. Поминете преку {secrets}.",
+				"googleProjectId": "Опционален Google Cloud проект id. Обично се заклучува од акредитивот на сервисната сметка."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Влезови за барања од преведувач",
-			"intro": "Овие директно се мапираат на Azure AI Translator v3 параметри за пребарување. Секоја е опционална; стандардните преведувачи се применуваат кога не е поставен.",
-			"caption": "Влезови за барања од преведувач",
+			"heading": "Azure Translator request inputs",
+			"intro": "Овие директно се мапираат на Azure AI Translator v3 параметри за пребарување и се применуваат на Azure провајдерот. textType и profanityAction исто така се мапираат на AWS/Google каде што постои еквивалент (видете го водичот за давателите); останатите се само на Azure. Секоја е опционална; стандардните преведувачи се применуваат кога не е поставен.",
+			"caption": "Azure Translator request inputs",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} категорија — the industry/domain/tone knob. Препратено како {categoryQuery}.",
 				"textType": "{plain} или {html}. Користи {html} само кога вредностите на ресурсите ти се вистински HTML фрагменти.",

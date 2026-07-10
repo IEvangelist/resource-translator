@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Onye ntụgharị akụrụngwa",
-		"description": "Resource Translator na-emepe arịrịọ ndị a sụgharịrị igwe maka faịlụ akụ gị na repo ọ bụla, n'ụdị ọ bụla — kwadoro site na Azure AI Translator.",
+		"description": "Resource Translator na-emepe arịrịọ ndị a sụgharịrị igwe maka faịlụ akụ gị na repo ọ bụla, n'ụdị ọ bụla — kwadoro site na Azure AI Translator, AWS Translate, ma ọ bụ Google Cloud Translation.",
 		"socialTitle": "Resource Translator — sụgharịa faịlụ akụ na-akpaghị aka",
-		"badge": "v3.0 — Node 24, repo config, glossary, akọrọ na-agba ọsọ",
+		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
 		"headlinePrefix": "Tinye repo gị na",
 		"headlineAccent": "Ntinye ọ bụla.",
-		"lede": "Resource Translator na-emepe arịrịọ ndị a sụgharịrị igwe maka faịlụ akụ gị site na iji Azure AI Translator site na SDK gọọmentị — enweghị ọrụ ndị ọzọ, naanị arụmọrụ.",
+		"lede": "Onye ntụgharị Resource na-emepe arịrịọ ndị a sụgharịrị igwe maka faịlụ akụ gị site na iji Azure, AWS, ma ọ bụ Google — otu ihe dị n'otu, otu onye na-eweta ọrụ kwa ọsọ, SDK gọọmentị n'okpuru mkpuchi.",
 		"primaryCta": "Bido",
 		"secondaryCta": "Kpakpando na GitHub",
 		"supports": "Nkwado",
 		"builtForShipping": "E wuru maka ụgbọ mmiri",
 		"workflowTitle": "Nsụgharị dị ka ọrụ, ọ bụghị ịrụ ọrụ.",
-		"workflowBody": "Dobe ihe ahụ n'ime CI gị dị ugbu a, tụọ ya na Azure AI Translator, ma kwe ka repo gị kwuo asụsụ ọ bụla ị lekwasịrị anya.",
+		"workflowBody": "Dobe ihe ahụ n'ime CI gị dị ugbu a, tụọ ya na Azure, AWS, ma ọ bụ Google, ma kwe ka repo gị kwuo asụsụ ọ bụla ị lekwasịrị anya.",
 		"stats": {
 			"audit": "0 npm-audit mbipụta",
-			"tests": "150 ule",
+			"tests": "240+ ule",
 			"node": "Ebe E Si Agbanwe Agbanwe / 20 / 24",
-			"sdk": "Official Azure SDK"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails}, na {hasNewTranslations} oghere ozugbo n'ime create-pull-arịrịọ."
 			},
 			"sdk": {
-				"title": "Official Azure SDK",
-				"body": "Wuru na {azureSdk} + {corePipeline} — akpaka retries na {statusCodes}, ọ dịghị aka-akpọrepu HTTP. {esbuild}-bundled, audit-clean."
+				"title": "Azure, AWS na Google",
+				"body": "Họrọ otu onye na-eweta ya kwa ọsọ. Onye ọ bụla na-ebugharị site na SDK gọọmentị ya ({azureSdk}, {awsSdk}, {googleSdk}) na nnwale akpaka na {statusCodes} — enweghị HTTP aka. {esbuild}-bundled, audit-ọcha."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Njikere ịbanye na autopilot?",
-			"body": "Otu igodo Azure AI Translator, otu faịlụ arụmọrụ. Onye ntụgharị ihe na-eme ka ndị ọzọ na-eme ihe ndị ọzọ.",
+			"body": "Otu igodo ndị na-eweta ọrụ — Azure, AWS, ma ọ bụ Google — na otu faịlụ arụmọrụ. Onye ntụgharị ihe na-eme ka ndị ọzọ na-eme ihe ndị ọzọ.",
 			"button": "Bido"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Nzọụkwụ ndị ọzọ",
 			"configuration": "Rụnyụọ ọdịda repo-level ya na {configPath}.",
 			"recipes": "Lee ntụziaka maka monorepos, omenala glossaries, na Omenala Translator edemede."
+		}
+	},
+	"providers": {
+		"title": "Ndị na-enye ntụgharị",
+		"eyebrow": "Ntụaka",
+		"lede": "Họrọ otu onye na-eweta ntụgharị ntụgharị kwa ọsọ - Azure AI Translator, AWS Translate, ma ọ bụ Google Cloud Translation - n'azụ otu, API dị n'otu. Onye ntụgharị okwu na-akpa àgwà n'otu ụzọ ahụ n'agbanyeghị onye na-eweta ya; Naanị nzere dị iche.",
+		"backwardCompatible": "N'ụzọ zuru ezu azụ: {provider} ndabara na {azure}, yabụ arụmọrụ Azure dị ugbu a na-arụ ọrụ na-agbanwe agbanwe — enweghị ndezi achọrọ.",
+		"selecting": {
+			"title": "Ịhọrọ onye na-eweta ọrụ",
+			"body": "Debe ntinye {provider} na {azure} (ndabara), {aws}, ma ọ bụ {google}, wee nye nzere nke onye na-eweta ya. Naanị otu onye na-eweta ọrụ na-eji oku oku ọ bụla; ihe omume ahụ na-eme ka SDK kwekọrọ na ya n'azụ ụlọ ọrụ mmepụta ihe."
+		},
+		"comparison": {
+			"title": "Ntụnyere ndị na-eweta",
+			"caption": "Ntụnyere onye na-eweta ntụnyere",
+			"columns": {
+				"provider": "Onye na-eweta ya",
+				"value": "Uru ndị na-eweta",
+				"sdk": "SDK",
+				"credentials": "Nzere"
+			},
+			"azure": {
+				"name": "Azure AI Translator",
+				"value": "Azure (ndabara)",
+				"credentials": "subscriptionKey, endpoint, region (nhọrọ)"
+			},
+			"aws": {
+				"name": "AWS Sụgharịa",
+				"value": "Aws",
+				"credentials": "OIDC / ndabara yinye, ma ọ bụ awsAccessKeyId + awsSecretAccessKeyKey; awsRegion"
+			},
+			"google": {
+				"name": "Google Cloud Translation",
+				"value": "Google",
+				"credentials": "googleApiKey OR googleCredentials (ọrụ-akaụntụ JSON)"
+			}
+		},
+		"azure": {
+			"title": "Azure AI Translator (ndabara)",
+			"body": "Onye na-eweta ihe na-adịghị mma. Nye ihe Azure AI Translator akụ na gafere {subscriptionKey}, {endpoint}, na nhọrọ {region}. Nke a bụ otu ihe ahụ ndị na-arụ ọrụ ugbu a na-eji."
+		},
+		"aws": {
+			"title": "AWS Sụgharịa",
+			"body": "Jiri {sdk}. Họrọ OIDC site na {configureAwsCredentials} ka a ghara ịchekwa ihe nzuzo ogologo oge — ihe ahụ na-agụ AWS SDK ndabara nzere yinye. N'aka nke ọzọ, gafere {awsAccessKeyId} ma {awsSecretAccessKey} n'ụzọ doro anya. A na-achọ mpaghara mgbe niile, site na {awsRegion} ma ọ bụ {awsRegionEnv} gburugburu ebe obibi.",
+			"oidcTitle": "OIDC (akwadoro)",
+			"keysNote": "Iji jiri igodo static kama OIDC, dobe nzọụkwụ {configureAwsCredentials} ma gafere {awsAccessKeyId} / {awsSecretAccessKey} (site na {secrets}) gbakwunyere {awsRegion}."
+		},
+		"google": {
+			"title": "Google Cloud Translation",
+			"body": "Jiri {sdk} (v2). Nyochaa na igodo API ({googleApiKey}) ma ọ bụ nzere JSON akaụntụ ọrụ ({googleCredentials}). Nye kpọmkwem otu; A na-ewepụta {googleProjectId} nhọrọ site na nzere mgbe ewepụrụ ya."
+		},
+		"mapping": {
+			"title": "Ebumnuche nkọwapụta map",
+			"body": "A na-edepụta ndị na-eweta ihe ndị a kapịrị ọnụ ebe otu ihe ahụ dị. Ihe ndị ọzọ niile na-alaghachi na ndabara ezi uche dị na ya, yabụ omume na-agbanwe agbanwe.",
+			"caption": "Ebumnuche nkọwapụta map gafee ndị na-eweta ọrụ",
+			"columns": {
+				"input": "Ntinye",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Nkwado",
+			"ignored": "Leghaara anya",
+			"rows": {
+				"textType": {
+					"azure": "textType (plain / html)",
+					"aws": "Leghaara anya (ọ dịghị toggle)",
+					"google": "Format (ederede / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Nkwado zuru oke",
+					"aws": "Akara / ehichapụ → masking",
+					"google": "Leghaara anya"
+				},
+				"categoryId": {
+					"azure": "Omenalụ",
+					"aws": "Leghaara anya",
+					"google": "Leghaara anya"
+				},
+				"allowFallback": {
+					"azure": "Nkwado",
+					"aws": "Leghaara anya",
+					"google": "Leghaara anya"
+				}
+			}
+		},
+		"locales": {
+			"title": "Koodu mpaghara dị iche iche kwa onye na-eweta ya",
+			"body": "Onye ọ bụla na-eweta ọrụ na-eji koodu mpaghara nke ya (dịka ọmụmaatụ Simplified Chinese {azureCode} na Azure, {awsCode} na AWS, na {googleCode} na Google). Koodu na-agafe dị ka ọ dị ma na-ebugharị aha faịlụ mmepụta, yabụ họrọ ụkpụrụ {toLocales} ị họọrọ na-akwado."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Ntinye achọrọ",
 			"caption": "Ntinye achọrọ",
 			"items": {
-				"sourceLocale": "Isi mmalite locale (dịka {en}) iji chọta faịlụ akụ dị ka {sourceGlob}. A na-ezigakwa ya na onye ntụgharị dị ka {fromLocale}.",
-				"subscriptionKey": "Azure AI Translator ndenye aha igodo. Gafere site na {secrets}.",
-				"endpoint": "Translator endpoint URL, e.g. {endpointUrl}."
+				"sourceLocale": "Isi mmalite locale (dịka {en}) iji chọta faịlụ akụ dị ka {sourceGlob}. A na-ezigakwa ya na onye na-eweta ya dị ka {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Nhọrọ ndị na-eweta ọrụ na nzere",
+			"caption": "Nhọrọ ndị na-eweta ọrụ na nzere kwa onye na-ere ahịa",
+			"intro": "Họrọ otu onye na-eweta ọrụ kwa na-agba ọsọ na {provider}. Nye naanị nzere nke onye na-eweta ahọpụtara — lee ntuziaka {providersLink} maka nhazi zuru ezu.",
+			"items": {
+				"provider": "Onye na-eweta nsụgharị: {azure} (ndabara), {aws}, ma ọ bụ {google}. Naanị otu onye na-eweta ọrụ na-eji oku oku ọ bụla.",
+				"subscriptionKey": "Azure AI Translator ndenye aha igodo. Achọrọ maka {azure}. Gafere site na {secrets}.",
+				"endpoint": "Azure Translator endpoint URL, dịka ọmụmaatụ {endpointUrl}. Achọrọ maka {azure}.",
+				"awsAccessKeyId": "AWS Access Key ID. Nhọrọ — wepụ (na {awsSecretAccessKey}) iji AWS ndabara nzere yinye / OIDC. Gafere site na {secrets}.",
+				"awsSecretAccessKey": "Igodo nzuzo nzuzo nke AWS A ghaghị itinye ya na {awsAccessKeyId}. Gafere site na {secrets}.",
+				"awsSessionToken": "Nhọrọ AWS nnọkọ token maka nzere nwa oge. Gafere site na {secrets}.",
+				"awsRegion": "Mpaghara AWS maka ọrụ ntụgharị (dịka {regionExample}). Ọ dị mkpa maka {aws} ọ gwụla ma etinyere {awsRegionEnv} na gburugburu ebe obibi.",
+				"googleApiKey": "Google Cloud API igodo. Nye nke a ma ọ bụ {googleCredentials} maka {google}. Gafere site na {secrets}.",
+				"googleCredentials": "Igodo akaụntụ Google Cloud dị ka eriri JSON. Nye nke a ma ọ bụ {googleApiKey} maka {google}. Gafere site na {secrets}.",
+				"googleProjectId": "Nhọrọ Google Cloud Project ID. A na-ejikarị ya eme ihe site na nzere akaụntụ ọrụ."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Ntinye arịrịọ ntụgharị",
-			"intro": "Ndị a na-ese foto ozugbo na Azure AI Translator v3 ajụjụ parameters. Onye ọ bụla n'ime ha bụ nhọrọ; Ntughari nsụgharị na-emetụta mgbe a na-edozighị ya.",
-			"caption": "Ntinye arịrịọ ntụgharị",
+			"heading": "Azure Translator arịrịọ ntinye",
+			"intro": "Ndị a na-ese foto ozugbo na Azure AI Translator v3 ajụjụ parameters ma tinye aka na onye na-eweta azure. textType na okwu rụrụ arụAction na-mapped na AWS / Google ebe ihe yiri ya dị (lee ntuziaka ndị na-eweta ya); Ndị fọdụrụ bụ naanị Azure. Onye ọ bụla n'ime ha bụ nhọrọ; Ntughari nsụgharị na-emetụta mgbe a na-edozighị ya.",
+			"caption": "Azure Translator arịrịọ ntinye",
 			"items": {
 				"categoryId": "Azure {customTranslatorLink} Atiya — ụlọ ọrụ / ngalaba / ụda knob. Zigara ya dị ka {categoryQuery}.",
 				"textType": "{plain} ma ọ bụ {html}. Jiri {html} naanị mgbe ụkpụrụ akụ gị bụ ezigbo iberibe HTML.",

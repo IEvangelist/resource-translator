@@ -1,23 +1,23 @@
 {
 	"index": {
 		"title": "Penterjemah Sumber",
-		"description": "Penterjemah Sumber membuka permintaan tarik terjemahan mesin untuk fail sumber anda dalam mana-mana repo, dalam sebarang format — dikuasakan oleh Azure AI Translator.",
+		"description": "Penterjemah Sumber membuka permintaan tarik terjemahan mesin untuk fail sumber anda dalam mana-mana repo, dalam sebarang format — dikuasakan oleh Azure AI Translator, AWS Translate atau Google Cloud Translation.",
 		"socialTitle": "Penterjemah Sumber — menterjemah fail sumber secara automatik",
-		"badge": "v3.0 — Nod 24, konfigurasi repo, glosari, larian kering",
+		"badge": "v3.0 — Pembekal Azure, AWS & Google, Node 24, konfigurasi repo",
 		"headlinePrefix": "Setempatkan repo anda pada",
 		"headlineAccent": "setiap komitmen.",
-		"lede": "Penterjemah Sumber membuka permintaan tarik terjemahan mesin untuk fail sumber anda menggunakan Azure AI Translator melalui SDK rasmi — tiada perkhidmatan tambahan, hanya aliran kerja.",
+		"lede": "Penterjemah Sumber membuka permintaan tarik terjemahan mesin untuk fail sumber anda menggunakan Azure, AWS atau Google — satu tindakan bersatu, satu pembekal setiap larian, SDK rasmi di bawah hud.",
 		"primaryCta": "Bermula",
 		"secondaryCta": "Bintang di GitHub",
 		"supports": "Menyokong",
 		"builtForShipping": "Dibina untuk penghantaran",
 		"workflowTitle": "Terjemahan sebagai aliran kerja, bukan tugas.",
-		"workflowBody": "Jatuhkan tindakan ke dalam CI sedia ada anda, halakannya ke Azure AI Translator dan biarkan repositori anda bercakap setiap bahasa yang anda sasarkan.",
+		"workflowBody": "Jatuhkan tindakan ke dalam CI sedia ada anda, halakannya ke Azure, AWS atau Google, dan biarkan repositori anda bercakap setiap bahasa yang anda sasarkan.",
 		"stats": {
 			"audit": "0 isu audit npm",
-			"tests": "150 ujian",
+			"tests": "240+ ujian",
 			"node": "Nod 20 / 22 / 24",
-			"sdk": "Azure SDK Rasmi"
+			"sdk": "Azure · AWS · Google"
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -49,8 +49,8 @@
 				"body": "{summaryTitle}, {summaryDetails} dan {hasNewTranslations} slot terus ke dalam create-pull-request."
 			},
 			"sdk": {
-				"title": "Azure SDK Rasmi",
-				"body": "Dibina di atas {azureSdk} + {corePipeline} — percubaan semula automatik pada {statusCodes}, tiada HTTP yang digulung tangan. {esbuild}-dibundel, audit bersih."
+				"title": "Azure, AWS & Google",
+				"body": "Pilih satu pembekal setiap larian. Setiap satu didorong oleh SDK rasminya ({azureSdk}, {awsSdk}, {googleSdk}) dengan percubaan semula automatik pada {statusCodes} — tiada HTTP yang digulung tangan. {esbuild}-dibundel, audit bersih."
 			}
 		},
 		"workflowPreview": {
@@ -62,7 +62,7 @@
 		},
 		"cta": {
 			"title": "Bersedia untuk menyetempatkan pada autopilot?",
-			"body": "Satu kunci Penterjemah Azure AI, satu fail aliran kerja. Penterjemah Sumber mengendalikan selebihnya.",
+			"body": "Satu kunci pembekal — Azure, AWS atau Google — dan satu fail aliran kerja. Penterjemah Sumber mengendalikan selebihnya.",
 			"button": "Bermula"
 		}
 	},
@@ -95,6 +95,94 @@
 			"title": "Langkah seterusnya",
 			"configuration": "Konfigurasikan lalai peringkat repo dengan {configPath}.",
 			"recipes": "Lihat resipi untuk monorepos, glosari tersuai dan kategori Penterjemah Tersuai."
+		}
+	},
+	"providers": {
+		"title": "Pembekal terjemahan",
+		"eyebrow": "Rujukan",
+		"lede": "Pilih satu penyedia terjemahan setiap larian — Penterjemah AI Azure, Terjemahan AWS atau Terjemahan Awan Google — di sebalik satu permukaan API bersatu. Penterjemah berkelakuan sama tanpa mengira pembekal; hanya kelayakan yang berbeza.",
+		"backwardCompatible": "Serasi ke belakang sepenuhnya: {provider} lalai kepada {azure}, jadi aliran kerja Azure sedia ada terus berfungsi tanpa perubahan — tiada pengeditan diperlukan.",
+		"selecting": {
+			"title": "Memilih pembekal",
+			"body": "Tetapkan input {provider} kepada {azure} (lalai), {aws} atau {google}, kemudian bekalkan kelayakan pembekal tersebut. Hanya satu pembekal digunakan setiap panggilan tindakan; tindakan itu secara deterministik mewakilkan kepada SDK yang sepadan di belakang kilang."
+		},
+		"comparison": {
+			"title": "Perbandingan pembekal",
+			"caption": "Perbandingan penyedia terjemahan",
+			"columns": {
+				"provider": "Pembekal",
+				"value": "Nilai pembekal",
+				"sdk": "SDK",
+				"credentials": "Kelayakan"
+			},
+			"azure": {
+				"name": "Penterjemah Azure AI",
+				"value": "Azure (lalai)",
+				"credentials": "subscriptionKey, titik akhir, rantau (pilihan)"
+			},
+			"aws": {
+				"name": "Terjemahan AWS",
+				"value": "aws",
+				"credentials": "OIDC / rantaian lalai, atau awsAccessKeyId + awsSecretAccessKey; awsRegion"
+			},
+			"google": {
+				"name": "Terjemahan Awan Google",
+				"value": "Google",
+				"credentials": "googleApiKey ATAU googleCredentials (JSON akaun perkhidmatan)"
+			}
+		},
+		"azure": {
+			"title": "Penterjemah AI Azure (lalai)",
+			"body": "Pembekal lalai. Peruntukkan sumber Azure AI Translator dan lulus {subscriptionKey}, {endpoint} dan pilihan {region}. Ini adalah konfigurasi yang sama yang telah digunakan oleh aliran kerja sedia ada."
+		},
+		"aws": {
+			"title": "Terjemahan AWS",
+			"body": "Menggunakan {sdk}. Pilih OIDC melalui {configureAwsCredentials} supaya tiada rahsia jangka panjang disimpan — tindakan itu membaca rantaian kelayakan lalai AWS SDK. Sebagai alternatif, lulus {awsAccessKeyId} dan {awsSecretAccessKey} secara eksplisit. Rantau sentiasa diperlukan, melalui {awsRegion} atau pembolehubah persekitaran {awsRegionEnv}.",
+			"oidcTitle": "OIDC (disyorkan)",
+			"keysNote": "Untuk menggunakan kekunci statik dan bukannya OIDC, lepaskan langkah {configureAwsCredentials} dan lulus {awsAccessKeyId} / {awsSecretAccessKey} (melalui {secrets}) ditambah {awsRegion}."
+		},
+		"google": {
+			"title": "Terjemahan Awan Google",
+			"body": "Menggunakan {sdk} (v2). Sahkan dengan sama ada kunci API ({googleApiKey}) atau kelayakan JSON akaun perkhidmatan ({googleCredentials}). Membekalkan tepat satu; {googleProjectId} pilihan disimpulkan daripada kelayakan apabila ditinggalkan."
+		},
+		"mapping": {
+			"title": "Pemetaan penentu niat",
+			"body": "Penentu khusus pembekal dipetakan di mana yang setara wujud. Segala-galanya kembali kepada lalai yang masuk akal supaya tingkah laku kekal konsisten.",
+			"caption": "Pemetaan penentu niat merentas pembekal",
+			"columns": {
+				"input": "Input",
+				"azure": "Azure",
+				"aws": "AWS",
+				"google": "Google"
+			},
+			"supported": "Disokong",
+			"ignored": "Diabaikan",
+			"rows": {
+				"textType": {
+					"azure": "textType (biasa / html)",
+					"aws": "Diabaikan (tiada togol)",
+					"google": "Format (teks / HTML)"
+				},
+				"profanityAction": {
+					"azure": "Sokongan penuh",
+					"aws": "Bertanda / Dipadamkan → penyamaran",
+					"google": "Diabaikan"
+				},
+				"categoryId": {
+					"azure": "Penterjemah Tersuai",
+					"aws": "Diabaikan",
+					"google": "Diabaikan"
+				},
+				"allowFallback": {
+					"azure": "Disokong",
+					"aws": "Diabaikan",
+					"google": "Diabaikan"
+				}
+			}
+		},
+		"locales": {
+			"title": "Kod tempatan berbeza bagi setiap pembekal",
+			"body": "Setiap pembekal menggunakan kod tempatannya sendiri (contohnya Bahasa Cina Ringkas {azureCode} di Azure, {awsCode} di AWS dan {googleCode} di Google). Kod melalui sedia ada dan memacu nama fail output, jadi pilih nilai {toLocales} disokong oleh pembekal pilihan anda."
 		}
 	},
 	"configuration": {
@@ -169,9 +257,24 @@
 			"heading": "Input yang diperlukan",
 			"caption": "Input yang diperlukan",
 			"items": {
-				"sourceLocale": "Lokasi sumber (cth. {en}) digunakan untuk mencari fail sumber seperti {sourceGlob}. Juga dimajukan kepada Penterjemah sebagai {fromLocale}.",
-				"subscriptionKey": "Kunci langganan Azure AI Translator. Lulus melalui {secrets}.",
-				"endpoint": "URL titik akhir penterjemah, cth. {endpointUrl}."
+				"sourceLocale": "Lokasi sumber (cth. {en}) digunakan untuk mencari fail sumber seperti {sourceGlob}. Juga dimajukan kepada pembekal sebagai {fromLocale}."
+			}
+		},
+		"providerInputs": {
+			"heading": "Pemilihan pembekal & kelayakan",
+			"caption": "Pemilihan pembekal dan kelayakan setiap vendor",
+			"intro": "Pilih satu pembekal setiap larian dengan {provider}. Berikan hanya kelayakan pembekal yang dipilih — lihat panduan {providersLink} untuk persediaan penuh.",
+			"items": {
+				"provider": "Pembekal terjemahan: {azure} (lalai), {aws} atau {google}. Hanya satu pembekal digunakan setiap panggilan tindakan.",
+				"subscriptionKey": "Kunci langganan Azure AI Translator. Diperlukan untuk {azure}. Lulus melalui {secrets}.",
+				"endpoint": "URL endpoint Azure Translator, cth. {endpointUrl}. Diperlukan untuk {azure}.",
+				"awsAccessKeyId": "ID kunci akses AWS. Pilihan — tinggalkan (dengan {awsSecretAccessKey}) untuk menggunakan rantaian kelayakan lalai AWS/OIDC. Lulus melalui {secrets}.",
+				"awsSecretAccessKey": "Kunci akses rahsia AWS. Mesti dibekalkan bersama-sama dengan {awsAccessKeyId}. Lulus melalui {secrets}.",
+				"awsSessionToken": "Token sesi AWS pilihan untuk kelayakan sementara. Lulus melalui {secrets}.",
+				"awsRegion": "Rantau AWS untuk perkhidmatan Terjemahan (cth. {regionExample}). Diperlukan untuk {aws} melainkan {awsRegionEnv} ditetapkan dalam persekitaran.",
+				"googleApiKey": "Kekunci API Google Cloud. Sediakan {googleCredentials} ATAU ini untuk {google}. Lulus melalui {secrets}.",
+				"googleCredentials": "Kunci akaun perkhidmatan Google Cloud sebagai rentetan JSON. Sediakan {googleApiKey} ATAU ini untuk {google}. Lulus melalui {secrets}.",
+				"googleProjectId": "ID projek Google Cloud pilihan. Biasanya disimpulkan daripada kelayakan akaun perkhidmatan."
 			}
 		},
 		"optionalInputs": {
@@ -188,9 +291,9 @@
 			}
 		},
 		"translatorInputs": {
-			"heading": "Input permintaan penterjemah",
-			"intro": "Ini memetakan terus ke parameter pertanyaan Azure AI Translator v3. Setiap satu adalah pilihan; lalai Penterjemah digunakan apabila dinyahtetapkan.",
-			"caption": "Input permintaan penterjemah",
+			"heading": "Input permintaan Azure Translator",
+			"intro": "Ini dipetakan terus ke parameter pertanyaan Azure AI Translator v3 dan digunakan pada pembekal Azure. textType dan clamanityAction juga dipetakan ke AWS/Google di mana yang setara wujud (lihat panduan pembekal); selebihnya adalah Azure sahaja. Setiap satu adalah pilihan; lalai Penterjemah digunakan apabila dinyahtetapkan.",
+			"caption": "Input permintaan Azure Translator",
 			"items": {
 				"categoryId": "Kategori {customTranslatorLink} Azure — tombol industri/domain/nada. Dimajukan sebagai {categoryQuery}.",
 				"textType": "{plain} atau {html}. Gunakan {html} hanya apabila nilai sumber anda ialah serpihan HTML sebenar.",
