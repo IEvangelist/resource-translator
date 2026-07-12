@@ -73,13 +73,16 @@ const mockedIsUnexpected = isUnexpected as unknown as jest.Mock;
 describe("start() integration", () => {
   let tmp: string;
   let originalCwd: string;
+  let originalWorkspace: string | undefined;
   let translatePost: jest.Mock;
 
   beforeEach(() => {
     jest.clearAllMocks();
     originalCwd = process.cwd();
+    originalWorkspace = process.env.GITHUB_WORKSPACE;
     tmp = mkdtempSync(join(tmpdir(), "rt-it-"));
     process.chdir(tmp);
+    process.env.GITHUB_WORKSPACE = tmp;
 
     // Source fixture: a minimal .resx with two translatable entries.
     mkdirSync(join(tmp, "src"), { recursive: true });
@@ -136,6 +139,11 @@ describe("start() integration", () => {
 
   afterEach(() => {
     process.chdir(originalCwd);
+    if (originalWorkspace === undefined) {
+      delete process.env.GITHUB_WORKSPACE;
+    } else {
+      process.env.GITHUB_WORKSPACE = originalWorkspace;
+    }
     rmSync(tmp, { recursive: true, force: true });
   });
 
