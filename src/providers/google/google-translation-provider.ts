@@ -38,6 +38,9 @@ export class GoogleTranslationProvider extends BaseTranslationProvider {
   private readonly credentials?: Credentials;
   private readonly projectId?: string;
   private readonly format: "text" | "html";
+  private readonly model?: string;
+  private readonly apiEndpoint?: string;
+  private readonly autoRetry?: boolean;
   private cachedClient?: InstanceType<typeof Translate>;
 
   constructor(inputs: Inputs, context: BaseProviderContext = {}) {
@@ -45,6 +48,9 @@ export class GoogleTranslationProvider extends BaseTranslationProvider {
 
     this.apiKey = inputs.googleApiKey || undefined;
     this.projectId = inputs.googleProjectId || undefined;
+    this.model = inputs.googleModel || undefined;
+    this.apiEndpoint = inputs.googleApiEndpoint || undefined;
+    this.autoRetry = inputs.googleAutoRetry;
     // Map textType -> Google format; default to "text" to match Azure's plain
     // default and avoid Google v2's html-default entity escaping.
     this.format = inputs.textType === "html" ? "html" : "text";
@@ -71,6 +77,8 @@ export class GoogleTranslationProvider extends BaseTranslationProvider {
         ...(this.apiKey ? { key: this.apiKey } : {}),
         ...(this.credentials ? { credentials: this.credentials } : {}),
         ...(this.projectId ? { projectId: this.projectId } : {}),
+        ...(this.apiEndpoint ? { apiEndpoint: this.apiEndpoint } : {}),
+        ...(this.autoRetry !== undefined ? { autoRetry: this.autoRetry } : {}),
         ...(options?.maxRetries !== undefined
           ? { maxRetries: options.maxRetries }
           : {}),
@@ -104,6 +112,7 @@ export class GoogleTranslationProvider extends BaseTranslationProvider {
       const [translated] = await client.translate(segment, {
         format: this.format,
         ...(this.sourceLocale ? { from: this.sourceLocale } : {}),
+        ...(this.model ? { model: this.model } : {}),
         to: toLocale,
       });
       const arr = Array.isArray(translated) ? translated : [translated];

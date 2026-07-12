@@ -3,6 +3,8 @@ import { Code } from "astro-expressive-code/components";
 import DocLayout from "../layouts/DocLayout.astro";
 import LocalizedText from "../components/LocalizedText.astro";
 import PageHero from "../components/PageHero.astro";
+import ReferenceCards from "../components/ReferenceCards.astro";
+import type { ReferenceItem } from "../components/ReferenceCards.astro";
 import { defaultLocale } from "../i18n/locales";
 import { getPageMessages } from "../i18n/messages";
 import { code, link, type LocalizedReplacements } from "../i18n/rich-text";
@@ -12,6 +14,15 @@ const copy = getPageMessages(locale, "configuration");
 
 const yaml = `# .github/resource-translator.yml
 sourceLocale: en
+
+# Provider config can be nested. Keep secrets in workflow inputs; use repo
+# config for non-secret defaults like region, model, formality, or category.
+provider:
+  azure:
+    categoryId: my-custom-translator-category
+    apiVersion: "3.0"
+    allowFallback: true
+
 toLocales:
   - fr
   - de
@@ -25,17 +36,10 @@ glossary:
   Acme: Contoso
   Octocat: Octocat   # keep brand names verbatim
 
-# Domain / industry — uses an Azure Custom Translator category trained on
-# your tone and vocabulary. Leave unset for the general model.
-categoryId: my-custom-translator-category
-
 # Translator request shape — most users can ignore these.
 textType: plain                  # plain | html
 profanityAction: NoAction        # NoAction | Marked | Deleted
 profanityMarker: Asterisk        # Asterisk | Tag (only when profanityAction == Marked)
-allowFallback: true              # false fails when the categoryId has no deployment
-
-apiVersion: "3.0"
 
 # Resilience — Translator returns 429 under load. Defaults are usually
 # fine; tune only if your runs are large enough to hit them.
@@ -74,6 +78,21 @@ const customTranslatorConceptsUrl =
   "https://learn.microsoft.com/azure/ai-services/translator/custom-translator/concepts/customization";
 
 const fieldRows: FieldRow[] = [
+  {
+    field: { text: "{provider}", values: { provider: code("provider") } },
+    type: {
+      text: "{providerValue} | provider block",
+      values: { providerValue: code('"azure" | "aws" | "google"') },
+    },
+    notes: {
+      text: copy.fieldReference.fields.provider,
+      values: {
+        azureBlock: code("provider.azure"),
+        awsBlock: code("provider.aws"),
+        googleBlock: code("provider.google"),
+      },
+    },
+  },
   {
     field: { text: "{sourceLocale}", values: { sourceLocale: code("sourceLocale") } },
     type: { text: "string" },
@@ -176,6 +195,57 @@ const fieldRows: FieldRow[] = [
     },
   },
   {
+    field: { text: "{awsFormality}", values: { awsFormality: code("awsFormality") } },
+    type: {
+      text: "{formal} | {informal}",
+      values: { formal: code('"FORMAL"'), informal: code('"INFORMAL"') },
+    },
+    notes: { text: copy.fieldReference.fields.awsFormality },
+  },
+  {
+    field: { text: "{awsBrevity}", values: { awsBrevity: code("awsBrevity") } },
+    type: { text: "boolean" },
+    notes: {
+      text: copy.fieldReference.fields.awsBrevity,
+      values: { true: code("true") },
+    },
+  },
+  {
+    field: {
+      text: "{awsTerminologyNames} / {awsParallelDataNames}",
+      values: {
+        awsTerminologyNames: code("awsTerminologyNames"),
+        awsParallelDataNames: code("awsParallelDataNames"),
+      },
+    },
+    type: { text: "string[]" },
+    notes: { text: copy.fieldReference.fields.awsCustomization },
+  },
+  {
+    field: { text: "{googleModel}", values: { googleModel: code("googleModel") } },
+    type: { text: "string" },
+    notes: {
+      text: copy.fieldReference.fields.googleModel,
+      values: { nmt: code("nmt"), base: code("base") },
+    },
+  },
+  {
+    field: {
+      text: "{googleApiEndpoint}",
+      values: { googleApiEndpoint: code("googleApiEndpoint") },
+    },
+    type: { text: "string" },
+    notes: { text: copy.fieldReference.fields.googleApiEndpoint },
+  },
+  {
+    field: {
+      text: "{googleAutoRetry}",
+      values: { googleAutoRetry: code("googleAutoRetry") },
+    },
+    type: { text: "boolean" },
+    notes: { text: copy.fieldReference.fields.googleAutoRetry },
+  },
+  {
     field: { text: "{maxRetries}", values: { maxRetries: code("maxRetries") } },
     type: { text: "integer" },
     notes: {
@@ -274,6 +344,13 @@ const fieldRows: FieldRow[] = [
 ];
 
 const loadingStepOrder = ["actionInputs", "config", "precedence", "validation"] as const;
+
+const fieldCards: ReferenceItem[] = fieldRows.map((row) => ({
+  title: row.field.text,
+  titleValues: row.field.values,
+  description: row.notes,
+  meta: [{ label: copy.fieldReference.columns.type, value: row.type }],
+}));
 ---
 
 <DocLayout title={copy.title} locale={locale} slug="configuration">
@@ -295,33 +372,7 @@ const loadingStepOrder = ["actionInputs", "config", "precedence", "validation"] 
   <Code code={yaml} lang="yaml" title=".github/resource-translator.yml" />
 
   <h2 id="field-reference">{copy.fieldReference.heading}</h2>
-  <table>
-    <caption class="sr-only">{copy.fieldReference.caption}</caption>
-    <thead>
-      <tr>
-        <th>{copy.fieldReference.columns.field}</th>
-        <th>{copy.fieldReference.columns.type}</th>
-        <th>{copy.fieldReference.columns.notes}</th>
-      </tr>
-    </thead>
-    <tbody>
-      {
-        fieldRows.map((row) => (
-          <tr>
-            <td>
-              <LocalizedText text={row.field.text} values={row.field.values} />
-            </td>
-            <td>
-              <LocalizedText text={row.type.text} values={row.type.values} />
-            </td>
-            <td>
-              <LocalizedText text={row.notes.text} values={row.notes.values} />
-            </td>
-          </tr>
-        ))
-      }
-    </tbody>
-  </table>
+  <ReferenceCards items={fieldCards} ariaLabel={copy.fieldReference.caption} />
 
   <h2>{copy.loadingOrder.heading}</h2>
   <ol>

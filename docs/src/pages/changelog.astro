@@ -192,15 +192,18 @@ const v310Items: ChangelogItem[] = [
   { text: copy.v31.items.docs, values: multiVendorValues },
 ];
 
+const v320Items: ChangelogItem[] = [
+  {
+    text: copy.releases.v320SmartChangeDetection,
+    values: commonValues,
+  },
+];
+
 const releases: ReleaseSection[] = [
   {
-    version: "Unreleased",
-    localizedItems: [
-      {
-        text: copy.releases.unreleasedSmartChangeDetection,
-        values: commonValues,
-      },
-    ],
+    version: "3.2.0",
+    date: "2026-07-12",
+    localizedItems: v320Items,
   },
   {
     version: "3.1.0",

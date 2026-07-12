@@ -222,8 +222,15 @@ export const buildTranslationFingerprint = (
   inputs: Inputs,
   providerName: string,
   targetLocale: string,
-): string =>
-  hashStableValue({
+): string => {
+  const awsTerminologyNames = inputs.awsTerminologyNames?.length
+    ? inputs.awsTerminologyNames
+    : undefined;
+  const awsParallelDataNames = inputs.awsParallelDataNames?.length
+    ? inputs.awsParallelDataNames
+    : undefined;
+
+  return hashStableValue({
     schemaVersion: TRANSLATION_STATE_SCHEMA_VERSION,
     provider: providerName,
     sourceLocale: inputs.sourceLocale,
@@ -237,10 +244,32 @@ export const buildTranslationFingerprint = (
         ? (inputs.profanityMarker ?? null)
         : null,
     allowFallback: inputs.allowFallback ?? null,
+    ...(providerName === "aws" && inputs.awsFormality
+      ? { awsFormality: inputs.awsFormality }
+      : {}),
+    ...(providerName === "aws" && inputs.awsBrevity
+      ? { awsBrevity: true }
+      : {}),
+    ...(providerName === "aws" && awsTerminologyNames
+      ? { awsTerminologyNames }
+      : {}),
+    ...(providerName === "aws" && awsParallelDataNames
+      ? { awsParallelDataNames }
+      : {}),
+    ...(providerName === "google" && inputs.googleModel
+      ? { googleModel: inputs.googleModel }
+      : {}),
+    ...(providerName === "google" && inputs.googleApiEndpoint
+      ? { googleApiEndpoint: inputs.googleApiEndpoint }
+      : {}),
+    ...(providerName === "google" && inputs.googleAutoRetry !== undefined
+      ? { googleAutoRetry: inputs.googleAutoRetry }
+      : {}),
     protectPlaceholders: inputs.protectPlaceholders !== false,
     customPlaceholderPatterns: inputs.customPlaceholderPatterns ?? [],
     glossary: inputs.glossary ?? {},
   });
+};
 
 export const stableStringify = (value: unknown, space?: number): string =>
   JSON.stringify(sortStable(value), null, space);

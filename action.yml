@@ -9,9 +9,8 @@ inputs:
     description: "Source locale (e.g. 'en') used to find translation files (e.g. **/*.en.resx)."
     required: true
   provider:
-    description: "Translation provider to use: 'azure' (default), 'aws', or 'google'. Only one provider is used per action call; supply that provider's credentials below."
+    description: "Translation provider to use: 'azure' (default), 'aws', or 'google'. Also accepts a YAML/JSON provider block such as `azure: { subscriptionKey, endpoint }`, `aws: { region, formality }`, or `google: { apiKey, model }`. Flat inputs below still work and override values inside the block."
     required: false
-    default: 'azure'
   # --- Azure AI Translator (provider: azure — the default) ---
   subscriptionKey:
     description: "Azure AI Translator resource subscription key. Required when provider is 'azure'. Pass via secrets."
@@ -35,6 +34,18 @@ inputs:
   awsRegion:
     description: "AWS region for the Translate service (e.g. 'us-east-1'). Required when provider is 'aws' unless AWS_REGION is set in the environment (e.g. by aws-actions/configure-aws-credentials)."
     required: false
+  awsFormality:
+    description: "AWS Translate formality setting: 'FORMAL' or 'INFORMAL'. Optional; ignored by Azure and Google."
+    required: false
+  awsBrevity:
+    description: "When 'true', enables AWS Translate brevity mode for supported language pairs. Optional; ignored by Azure and Google."
+    required: false
+  awsTerminologyNames:
+    description: 'Optional AWS Translate custom terminology resource names. Accepts a JSON array or comma-separated values.'
+    required: false
+  awsParallelDataNames:
+    description: 'Optional AWS Translate parallel data resource names. Accepts a JSON array or comma-separated values.'
+    required: false
   # --- Google Cloud Translation v2 (provider: google) ---
   googleApiKey:
     description: "Google Cloud API key. Provide this OR googleCredentials when provider is 'google'. Pass via secrets."
@@ -44,6 +55,15 @@ inputs:
     required: false
   googleProjectId:
     description: 'Optional Google Cloud project id. Usually inferred from the service-account credentials.'
+    required: false
+  googleModel:
+    description: "Optional Google Cloud Translation model, e.g. 'nmt' or 'base'."
+    required: false
+  googleApiEndpoint:
+    description: 'Optional Google Cloud Translation API endpoint override.'
+    required: false
+  googleAutoRetry:
+    description: "Optional Google Cloud Translation auto-retry toggle. When unset, the Google client default applies; use maxRetries to control retry count."
     required: false
   toLocales:
     description: 'Optional locales to translate to. Accepts a JSON array (`["es","de","fr"]`) or comma-separated values (`es,de,fr`). When omitted, every supported locale is targeted.'
@@ -64,7 +84,6 @@ inputs:
   apiVersion:
     description: "Translator API version. Defaults to '3.0'. Azure-only; ignored by the aws and google providers."
     required: false
-    default: '3.0'
   textType:
     description: "Text type — 'plain' (default) or 'html'. Use 'html' only when resource values contain real HTML fragments. Mapped for azure (textType) and google (format); ignored by aws (no plain/html toggle)."
     required: false
@@ -83,11 +102,9 @@ inputs:
   changeDetection:
     description: "Smart change detection mode. Defaults to 'smart', which uses a deterministic state manifest to translate only changed/missing keys. Set to 'disabled' (or 'false') to translate every eligible key on every run."
     required: false
-    default: 'smart'
   statePath:
     description: "Path to the deterministic smart change-detection state manifest, relative to the workspace root unless absolute."
     required: false
-    default: '.github/resource-translator-state.json'
   protectPlaceholders:
     description: "When 'true' (default), wrap '{{name}}', '{0}', '%s', '${var}', etc. in stable sentinels so Translator does not rearrange or translate them. Set to 'false' only if your source contains literal placeholder-like sequences."
     required: false

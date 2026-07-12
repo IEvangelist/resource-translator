@@ -3,6 +3,8 @@ import { Code } from "astro-expressive-code/components";
 import DocLayout from "../layouts/DocLayout.astro";
 import LocalizedText from "../components/LocalizedText.astro";
 import PageHero from "../components/PageHero.astro";
+import ReferenceCards from "../components/ReferenceCards.astro";
+import type { ReferenceItem } from "../components/ReferenceCards.astro";
 import { defaultLocale } from "../i18n/locales";
 import { getPageMessages } from "../i18n/messages";
 import { code, link } from "../i18n/rich-text";
@@ -12,6 +14,33 @@ const copy = getPageMessages(locale, "providers");
 
 const configureAwsCredentialsUrl =
   "https://github.com/aws-actions/configure-aws-credentials";
+const azureDocsUrl =
+  "https://learn.microsoft.com/en-us/azure/ai-services/translator/";
+const azureTranslateApiUrl =
+  "https://learn.microsoft.com/en-us/azure/ai-services/translator/text-translation/reference/v3/translate";
+const azureCustomTranslatorUrl =
+  "https://learn.microsoft.com/en-us/azure/ai-services/translator/custom-translator/overview";
+const azureLanguageSupportUrl =
+  "https://learn.microsoft.com/en-us/azure/ai-services/translator/language-support";
+const awsDocsUrl = "https://docs.aws.amazon.com/translate/latest/dg/what-is.html";
+const awsTranslateApiUrl =
+  "https://docs.aws.amazon.com/translate/latest/APIReference/API_TranslateText.html";
+const awsFormalityUrl =
+  "https://docs.aws.amazon.com/translate/latest/dg/customizing-translations-formality.html";
+const awsBrevityUrl =
+  "https://docs.aws.amazon.com/translate/latest/dg/customizing-translations-brevity.html";
+const awsTerminologyUrl =
+  "https://docs.aws.amazon.com/translate/latest/dg/how-custom-terminology.html";
+const awsParallelDataUrl =
+  "https://docs.aws.amazon.com/translate/latest/dg/customizing-translations-parallel-data.html";
+const awsLanguageSupportUrl =
+  "https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html";
+const googleDocsUrl = "https://docs.cloud.google.com/translate/docs";
+const googleSetupUrl = "https://docs.cloud.google.com/translate/docs/setup";
+const googleTranslateTextUrl =
+  "https://docs.cloud.google.com/translate/docs/translate-text";
+const googleLanguageSupportUrl =
+  "https://docs.cloud.google.com/translate/docs/languages";
 
 const awsWorkflow = `permissions:
   id-token: write # for aws-actions/configure-aws-credentials OIDC
@@ -32,9 +61,12 @@ jobs:
       - id: translator
         uses: IEvangelist/resource-translator@v3
         with:
-          provider: aws
+          provider: |
+            aws:
+              region: us-east-1 # or rely on AWS_REGION from the step above
+              formality: FORMAL
+              brevity: true
           sourceLocale: en
-          awsRegion: us-east-1 # or rely on AWS_REGION from the step above
           toLocales: '["es","fr","de"]'
 `;
 
@@ -47,12 +79,14 @@ const googleWorkflow = `jobs:
       - id: translator
         uses: IEvangelist/resource-translator@v3
         with:
-          provider: google
+          provider: |
+            google:
+              # Provide EITHER a service-account JSON credential...
+              credentials: \${{ secrets.GCP_TRANSLATE_CREDENTIALS }}
+              # ...OR an API key:
+              # apiKey: \${{ secrets.GCP_TRANSLATE_API_KEY }}
+              model: nmt
           sourceLocale: en
-          # Provide EITHER a service-account JSON credential...
-          googleCredentials: \${{ secrets.GCP_TRANSLATE_CREDENTIALS }}
-          # ...OR an API key:
-          # googleApiKey: \${{ secrets.GCP_TRANSLATE_API_KEY }}
           toLocales: '["es","fr","de"]'
 `;
 
@@ -65,11 +99,12 @@ const azureWorkflow = `jobs:
       - id: translator
         uses: IEvangelist/resource-translator@v3
         with:
-          # provider: azure  # default — may be omitted
+          provider: |
+            azure:
+              subscriptionKey: \${{ secrets.TRANSLATOR_KEY }}
+              endpoint: \${{ secrets.TRANSLATOR_ENDPOINT }}
+              region: \${{ secrets.TRANSLATOR_REGION }}
           sourceLocale: en
-          subscriptionKey: \${{ secrets.TRANSLATOR_KEY }}
-          endpoint: \${{ secrets.TRANSLATOR_ENDPOINT }}
-          region: \${{ secrets.TRANSLATOR_REGION }}
           toLocales: '["es","fr","de"]'
 `;
 
@@ -94,11 +129,64 @@ const comparisonRows = [
   },
 ];
 
+const comparisonCards: ReferenceItem[] = comparisonRows.map((row) => ({
+  title: row.name,
+  description: { text: row.credentials },
+  meta: [
+    {
+      label: copy.comparison.columns.value,
+      value: { text: "{value}", values: { value: code(row.value) } },
+    },
+    {
+      label: copy.comparison.columns.sdk,
+      value: { text: "{sdk}", values: { sdk: code(row.sdk) } },
+    },
+  ],
+}));
+
 const mappingRows = [
   { input: "textType", ...copy.mapping.rows.textType },
   { input: "profanityAction", ...copy.mapping.rows.profanityAction },
   { input: "categoryId", ...copy.mapping.rows.categoryId },
   { input: "allowFallback", ...copy.mapping.rows.allowFallback },
+  { input: "awsFormality", ...copy.mapping.rows.awsFormality },
+  { input: "awsBrevity", ...copy.mapping.rows.awsBrevity },
+  { input: "awsTerminologyNames", ...copy.mapping.rows.awsTerminologyNames },
+  { input: "awsParallelDataNames", ...copy.mapping.rows.awsParallelDataNames },
+  { input: "googleModel", ...copy.mapping.rows.googleModel },
+  { input: "googleApiEndpoint", ...copy.mapping.rows.googleApiEndpoint },
+];
+
+const mappingCards: ReferenceItem[] = mappingRows.map((row) => ({
+  title: row.input,
+  titleCode: true,
+  meta: [
+    { label: copy.mapping.columns.azure, value: { text: row.azure } },
+    { label: copy.mapping.columns.aws, value: { text: row.aws } },
+    { label: copy.mapping.columns.google, value: { text: row.google } },
+  ],
+}));
+
+const azureDocLinks = [
+  { href: azureDocsUrl, label: copy.azure.docs.overview },
+  { href: azureTranslateApiUrl, label: copy.azure.docs.translateApi },
+  { href: azureCustomTranslatorUrl, label: copy.azure.docs.customTranslator },
+  { href: azureLanguageSupportUrl, label: copy.azure.docs.languages },
+];
+const awsDocLinks = [
+  { href: awsDocsUrl, label: copy.aws.docs.overview },
+  { href: awsTranslateApiUrl, label: copy.aws.docs.translateTextApi },
+  { href: awsFormalityUrl, label: copy.aws.docs.formality },
+  { href: awsBrevityUrl, label: copy.aws.docs.brevity },
+  { href: awsTerminologyUrl, label: copy.aws.docs.terminology },
+  { href: awsParallelDataUrl, label: copy.aws.docs.parallelData },
+  { href: awsLanguageSupportUrl, label: copy.aws.docs.languages },
+];
+const googleDocLinks = [
+  { href: googleDocsUrl, label: copy.google.docs.overview },
+  { href: googleSetupUrl, label: copy.google.docs.setup },
+  { href: googleTranslateTextUrl, label: copy.google.docs.translateText },
+  { href: googleLanguageSupportUrl, label: copy.google.docs.languages },
 ];
 ---
 
@@ -132,29 +220,7 @@ const mappingRows = [
   </p>
 
   <h2>{copy.comparison.title}</h2>
-  <table>
-    <caption class="sr-only">{copy.comparison.caption}</caption>
-    <thead>
-      <tr>
-        <th>{copy.comparison.columns.provider}</th>
-        <th>{copy.comparison.columns.value}</th>
-        <th>{copy.comparison.columns.sdk}</th>
-        <th>{copy.comparison.columns.credentials}</th>
-      </tr>
-    </thead>
-    <tbody>
-      {
-        comparisonRows.map((row) => (
-          <tr>
-            <td>{row.name}</td>
-            <td><code>{row.value}</code></td>
-            <td><code>{row.sdk}</code></td>
-            <td>{row.credentials}</td>
-          </tr>
-        ))
-      }
-    </tbody>
-  </table>
+  <ReferenceCards items={comparisonCards} ariaLabel={copy.comparison.caption} />
 
   <h2>{copy.azure.title}</h2>
   <p>
@@ -164,9 +230,20 @@ const mappingRows = [
         subscriptionKey: code("subscriptionKey"),
         endpoint: code("endpoint"),
         region: code("region"),
+        azureBlock: code("provider.azure"),
       }}
     />
   </p>
+  <h3>{copy.azure.docsHeading}</h3>
+  <ul class="provider-doc-links">
+    {
+      azureDocLinks.map((item) => (
+        <li>
+          <a href={item.href}>{item.label}</a>
+        </li>
+      ))
+    }
+  </ul>
   <Code code={azureWorkflow} lang="yaml" title=".github/workflows/translate.yml" />
 
   <h2>{copy.aws.title}</h2>
@@ -184,9 +261,23 @@ const mappingRows = [
         awsSecretAccessKey: code("awsSecretAccessKey"),
         awsRegion: code("awsRegion"),
         awsRegionEnv: code("AWS_REGION"),
+        awsFormality: code("awsFormality"),
+        awsBrevity: code("awsBrevity"),
+        awsTerminologyNames: code("awsTerminologyNames"),
+        awsParallelDataNames: code("awsParallelDataNames"),
       }}
     />
   </p>
+  <h3>{copy.aws.docsHeading}</h3>
+  <ul class="provider-doc-links">
+    {
+      awsDocLinks.map((item) => (
+        <li>
+          <a href={item.href}>{item.label}</a>
+        </li>
+      ))
+    }
+  </ul>
   <h3>{copy.aws.oidcTitle}</h3>
   <Code code={awsWorkflow} lang="yaml" title=".github/workflows/translate.yml" />
   <p>
@@ -211,36 +302,27 @@ const mappingRows = [
         googleApiKey: code("googleApiKey"),
         googleCredentials: code("googleCredentials"),
         googleProjectId: code("googleProjectId"),
+        googleModel: code("googleModel"),
+        googleApiEndpoint: code("googleApiEndpoint"),
+        googleAutoRetry: code("googleAutoRetry"),
       }}
     />
   </p>
+  <h3>{copy.google.docsHeading}</h3>
+  <ul class="provider-doc-links">
+    {
+      googleDocLinks.map((item) => (
+        <li>
+          <a href={item.href}>{item.label}</a>
+        </li>
+      ))
+    }
+  </ul>
   <Code code={googleWorkflow} lang="yaml" title=".github/workflows/translate.yml" />
 
   <h2>{copy.mapping.title}</h2>
   <p>{copy.mapping.body}</p>
-  <table>
-    <caption class="sr-only">{copy.mapping.caption}</caption>
-    <thead>
-      <tr>
-        <th>{copy.mapping.columns.input}</th>
-        <th>{copy.mapping.columns.azure}</th>
-        <th>{copy.mapping.columns.aws}</th>
-        <th>{copy.mapping.columns.google}</th>
-      </tr>
-    </thead>
-    <tbody>
-      {
-        mappingRows.map((row) => (
-          <tr>
-            <td><code>{row.input}</code></td>
-            <td>{row.azure}</td>
-            <td>{row.aws}</td>
-            <td>{row.google}</td>
-          </tr>
-        ))
-      }
-    </tbody>
-  </table>
+  <ReferenceCards items={mappingCards} ariaLabel={copy.mapping.caption} />
 
   <h2>{copy.locales.title}</h2>
   <p>

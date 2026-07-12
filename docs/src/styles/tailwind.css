@@ -380,6 +380,55 @@
     text-decoration: none;
   }
 
+  .reference-list {
+    @apply my-6 grid gap-3;
+  }
+
+  .reference-card {
+    background-color: var(--bg-elevated);
+    border: 1px solid var(--border);
+    @apply rounded-xl p-4 shadow-sm;
+  }
+
+  .reference-card-title {
+    @apply mb-3 text-base font-semibold leading-6;
+  }
+
+  .reference-meta {
+    @apply mb-3 grid gap-2 text-sm sm:grid-cols-2;
+  }
+
+  .reference-meta > div {
+    @apply min-w-0;
+  }
+
+  .reference-meta dt {
+    color: var(--fg-muted);
+    @apply text-xs font-semibold uppercase tracking-wide;
+  }
+
+  .reference-meta dd {
+    @apply m-0 mt-1 leading-6;
+  }
+
+  .reference-description {
+    @apply !my-0 text-[0.97em] leading-7;
+  }
+
+  .prose-rt .provider-doc-links {
+    @apply my-4 grid list-none gap-2 pl-0 sm:grid-cols-2;
+  }
+
+  .prose-rt .provider-doc-links li {
+    @apply m-0;
+  }
+
+  .prose-rt .provider-doc-links a {
+    background-color: var(--bg-elevated);
+    border: 1px solid var(--border);
+    @apply block rounded-lg px-3 py-2 text-sm font-medium no-underline shadow-sm;
+  }
+
   .expressive-code {
     @apply my-6;
   }
@@ -390,4 +439,3 @@
     }
   }
 }
-

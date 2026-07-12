@@ -84,6 +84,21 @@ describe("GoogleTranslationProvider", () => {
     expect(mockTranslate.mock.calls[0][1].format).toBe("html");
   });
 
+  it("passes the configured Google model in translate requests", async () => {
+    mockTranslate.mockResolvedValue([["x"]]);
+
+    await makeProvider({ googleModel: "nmt" }).translate(
+      ["es"],
+      new Map([["k", "v"]]),
+      "f.json",
+    );
+
+    expect(mockTranslate.mock.calls[0][1]).toMatchObject({
+      model: "nmt",
+      to: "es",
+    });
+  });
+
   it("batches large inputs into <=100-segment requests", async () => {
     mockTranslate.mockImplementation(async (segment: string[]) => [
       segment.map(() => "t"),
@@ -142,5 +157,18 @@ describe("GoogleTranslationProvider", () => {
     });
 
     expect(mockTranslateCtor.mock.calls[0][0].maxRetries).toBe(7);
+  });
+
+  it("passes endpoint and autoRetry through to the Translate client", async () => {
+    mockTranslate.mockResolvedValue([["t"]]);
+    await makeProvider({
+      googleApiEndpoint: "translation.googleapis.com",
+      googleAutoRetry: false,
+    }).translate(["es"], new Map([["k", "v"]]), "f.json");
+
+    expect(mockTranslateCtor.mock.calls[0][0]).toMatchObject({
+      apiEndpoint: "translation.googleapis.com",
+      autoRetry: false,
+    });
   });
 });

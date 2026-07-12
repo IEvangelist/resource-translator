@@ -37,11 +37,12 @@ jobs:
       - id: translate
         uses: IEvangelist/resource-translator@v3
         with:
-          # provider: azure  # default — may be omitted
+          provider: |
+            azure:
+              subscriptionKey: \${{ secrets.TRANSLATOR_KEY }}
+              endpoint: \${{ secrets.TRANSLATOR_ENDPOINT }}
+              region: \${{ secrets.TRANSLATOR_REGION }}
           sourceLocale: en
-          subscriptionKey: \${{ secrets.TRANSLATOR_KEY }}
-          endpoint: \${{ secrets.TRANSLATOR_ENDPOINT }}
-          region: \${{ secrets.TRANSLATOR_REGION }}
           toLocales: '["fr","de","es"]'
       - if: steps.translate.outputs.has-new-translations == 'true'
         uses: peter-evans/create-pull-request@v7
@@ -77,9 +78,12 @@ jobs:
       - id: translate
         uses: IEvangelist/resource-translator@v3
         with:
-          provider: aws
+          provider: |
+            aws:
+              region: us-east-1 # or rely on AWS_REGION from the step above
+              formality: FORMAL
+              brevity: true
           sourceLocale: en
-          awsRegion: us-east-1 # or rely on AWS_REGION from the step above
           toLocales: '["fr","de","es"]'
       - if: steps.translate.outputs.has-new-translations == 'true'
         uses: peter-evans/create-pull-request@v7
@@ -110,12 +114,14 @@ jobs:
       - id: translate
         uses: IEvangelist/resource-translator@v3
         with:
-          provider: google
+          provider: |
+            google:
+              # Provide EITHER a service-account JSON credential...
+              credentials: \${{ secrets.GCP_TRANSLATE_CREDENTIALS }}
+              # ...OR an API key:
+              # apiKey: \${{ secrets.GCP_TRANSLATE_API_KEY }}
+              model: nmt
           sourceLocale: en
-          # Provide EITHER a service-account JSON credential...
-          googleCredentials: \${{ secrets.GCP_TRANSLATE_CREDENTIALS }}
-          # ...OR an API key:
-          # googleApiKey: \${{ secrets.GCP_TRANSLATE_API_KEY }}
           toLocales: '["fr","de","es"]'
       - if: steps.translate.outputs.has-new-translations == 'true'
         uses: peter-evans/create-pull-request@v7

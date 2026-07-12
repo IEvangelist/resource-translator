@@ -2,6 +2,8 @@
 import DocLayout from "../layouts/DocLayout.astro";
 import LocalizedText from "../components/LocalizedText.astro";
 import PageHero from "../components/PageHero.astro";
+import ReferenceCards from "../components/ReferenceCards.astro";
+import type { ReferenceItem } from "../components/ReferenceCards.astro";
 import { defaultLocale } from "../i18n/locales";
 import { getPageMessages } from "../i18n/messages";
 import { code, em, link, type LocalizedReplacements } from "../i18n/rich-text";
@@ -104,6 +106,32 @@ const providerRows: InputRow[] = [
     },
   },
   {
+    name: "awsFormality",
+    default: noneDefault,
+    description: {
+      text: copy.providerInputs.items.awsFormality,
+      values: { formal: code("FORMAL"), informal: code("INFORMAL") },
+    },
+  },
+  {
+    name: "awsBrevity",
+    default: noneDefault,
+    description: {
+      text: copy.providerInputs.items.awsBrevity,
+      values: { true: code("true") },
+    },
+  },
+  {
+    name: "awsTerminologyNames",
+    default: noneDefault,
+    description: { text: copy.providerInputs.items.awsTerminologyNames },
+  },
+  {
+    name: "awsParallelDataNames",
+    default: noneDefault,
+    description: { text: copy.providerInputs.items.awsParallelDataNames },
+  },
+  {
     name: "googleApiKey",
     default: noneDefault,
     description: {
@@ -131,6 +159,24 @@ const providerRows: InputRow[] = [
     name: "googleProjectId",
     default: noneDefault,
     description: { text: copy.providerInputs.items.googleProjectId },
+  },
+  {
+    name: "googleModel",
+    default: noneDefault,
+    description: {
+      text: copy.providerInputs.items.googleModel,
+      values: { nmt: code("nmt"), base: code("base") },
+    },
+  },
+  {
+    name: "googleApiEndpoint",
+    default: noneDefault,
+    description: { text: copy.providerInputs.items.googleApiEndpoint },
+  },
+  {
+    name: "googleAutoRetry",
+    default: noneDefault,
+    description: { text: copy.providerInputs.items.googleAutoRetry },
   },
 ];
 
@@ -370,6 +416,23 @@ const outputRows: InputRow[] = [
     },
   },
 ];
+
+const toInputCards = (rows: InputRow[]): ReferenceItem[] =>
+  rows.map((row) => ({
+    title: row.name,
+    titleCode: true,
+    description: row.description,
+    meta: row.default
+      ? [{ label: copy.columns.default, value: row.default }]
+      : undefined,
+  }));
+
+const requiredCards = toInputCards(requiredRows);
+const providerCards = toInputCards(providerRows);
+const optionalCards = toInputCards(optionalRows);
+const translatorCards = toInputCards(translatorRows);
+const resilienceCards = toInputCards(resilienceRows);
+const outputCards = toInputCards(outputRows);
 ---
 
 <DocLayout title={copy.title} locale={locale} slug="inputs">
@@ -388,27 +451,7 @@ const outputRows: InputRow[] = [
   </p>
 
   <h2>{copy.requiredInputs.heading}</h2>
-  <table>
-    <caption class="sr-only">{copy.requiredInputs.caption}</caption>
-    <thead>
-      <tr><th>{copy.columns.name}</th><th>{copy.columns.description}</th></tr>
-    </thead>
-    <tbody>
-      {
-        requiredRows.map((row) => (
-          <tr>
-            <td><code>{row.name}</code></td>
-            <td>
-              <LocalizedText
-                text={row.description.text}
-                values={row.description.values}
-              />
-            </td>
-          </tr>
-        ))
-      }
-    </tbody>
-  </table>
+  <ReferenceCards items={requiredCards} ariaLabel={copy.requiredInputs.caption} />
 
   <h2>{copy.providerInputs.heading}</h2>
   <p>
@@ -420,101 +463,14 @@ const outputRows: InputRow[] = [
       }}
     />
   </p>
-  <table>
-    <caption class="sr-only">{copy.providerInputs.caption}</caption>
-    <thead>
-      <tr>
-        <th>{copy.columns.name}</th>
-        <th>{copy.columns.default}</th>
-        <th>{copy.columns.description}</th>
-      </tr>
-    </thead>
-    <tbody>
-      {
-        providerRows.map((row) => (
-          <tr>
-            <td><code>{row.name}</code></td>
-            <td>
-              {row.default && (
-                <LocalizedText text={row.default.text} values={row.default.values} />
-              )}
-            </td>
-            <td>
-              <LocalizedText
-                text={row.description.text}
-                values={row.description.values}
-              />
-            </td>
-          </tr>
-        ))
-      }
-    </tbody>
-  </table>
+  <ReferenceCards items={providerCards} ariaLabel={copy.providerInputs.caption} />
 
   <h2>{copy.optionalInputs.heading}</h2>
-  <table>
-    <caption class="sr-only">{copy.optionalInputs.caption}</caption>
-    <thead>
-      <tr>
-        <th>{copy.columns.name}</th>
-        <th>{copy.columns.default}</th>
-        <th>{copy.columns.description}</th>
-      </tr>
-    </thead>
-    <tbody>
-      {
-        optionalRows.map((row) => (
-          <tr>
-            <td><code>{row.name}</code></td>
-            <td>
-              {row.default && (
-                <LocalizedText text={row.default.text} values={row.default.values} />
-              )}
-            </td>
-            <td>
-              <LocalizedText
-                text={row.description.text}
-                values={row.description.values}
-              />
-            </td>
-          </tr>
-        ))
-      }
-    </tbody>
-  </table>
+  <ReferenceCards items={optionalCards} ariaLabel={copy.optionalInputs.caption} />
 
   <h2>{copy.translatorInputs.heading}</h2>
   <p>{copy.translatorInputs.intro}</p>
-  <table>
-    <caption class="sr-only">{copy.translatorInputs.caption}</caption>
-    <thead>
-      <tr>
-        <th>{copy.columns.name}</th>
-        <th>{copy.columns.default}</th>
-        <th>{copy.columns.description}</th>
-      </tr>
-    </thead>
-    <tbody>
-      {
-        translatorRows.map((row) => (
-          <tr>
-            <td><code>{row.name}</code></td>
-            <td>
-              {row.default && (
-                <LocalizedText text={row.default.text} values={row.default.values} />
-              )}
-            </td>
-            <td>
-              <LocalizedText
-                text={row.description.text}
-                values={row.description.values}
-              />
-            </td>
-          </tr>
-        ))
-      }
-    </tbody>
-  </table>
+  <ReferenceCards items={translatorCards} ariaLabel={copy.translatorInputs.caption} />
 
   <h2>{copy.resilienceInputs.heading}</h2>
   <p>
@@ -523,57 +479,8 @@ const outputRows: InputRow[] = [
       values={{ mustache: code("{{name}}"), indexZero: code("{0}") }}
     />
   </p>
-  <table>
-    <caption class="sr-only">{copy.resilienceInputs.caption}</caption>
-    <thead>
-      <tr>
-        <th>{copy.columns.name}</th>
-        <th>{copy.columns.default}</th>
-        <th>{copy.columns.description}</th>
-      </tr>
-    </thead>
-    <tbody>
-      {
-        resilienceRows.map((row) => (
-          <tr>
-            <td><code>{row.name}</code></td>
-            <td>
-              {row.default && (
-                <LocalizedText text={row.default.text} values={row.default.values} />
-              )}
-            </td>
-            <td>
-              <LocalizedText
-                text={row.description.text}
-                values={row.description.values}
-              />
-            </td>
-          </tr>
-        ))
-      }
-    </tbody>
-  </table>
+  <ReferenceCards items={resilienceCards} ariaLabel={copy.resilienceInputs.caption} />
 
   <h2>{copy.outputs.heading}</h2>
-  <table>
-    <caption class="sr-only">{copy.outputs.caption}</caption>
-    <thead>
-      <tr><th>{copy.columns.name}</th><th>{copy.columns.description}</th></tr>
-    </thead>
-    <tbody>
-      {
-        outputRows.map((row) => (
-          <tr>
-            <td><code>{row.name}</code></td>
-            <td>
-              <LocalizedText
-                text={row.description.text}
-                values={row.description.values}
-              />
-            </td>
-          </tr>
-        ))
-      }
-    </tbody>
-  </table>
+  <ReferenceCards items={outputCards} ariaLabel={copy.outputs.caption} />
 </DocLayout>

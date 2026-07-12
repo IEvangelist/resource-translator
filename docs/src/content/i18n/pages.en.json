@@ -128,11 +128,11 @@
 	"providers": {
 		"title": "Translation providers",
 		"eyebrow": "Reference",
-		"lede": "Choose one translation provider per run — Azure AI Translator, AWS Translate, or Google Cloud Translation — behind a single, unified API surface. The translator behaves identically regardless of provider; only the credentials differ.",
+		"lede": "Choose one translation provider per run — Azure AI Translator, AWS Translate, or Google Cloud Translation — behind a single, unified API surface. The orchestration stays provider-neutral while credentials and provider-native tuning stay scoped to the selected vendor.",
 		"backwardCompatible": "Fully backward compatible: {provider} defaults to {azure}, so existing Azure workflows keep working unchanged — no edits required.",
 		"selecting": {
 			"title": "Selecting a provider",
-			"body": "Set the {provider} input to {azure} (default), {aws}, or {google}, then supply that provider's credentials. Only one provider is used per action call; the action deterministically delegates to the matching SDK behind a factory."
+			"body": "Set the {provider} input to {azure} (default), {aws}, or {google}, or use a nested provider block for cleaner credentials and provider-native settings. Only one provider is used per action call; the action deterministically delegates to the matching SDK behind a factory."
 		},
 		"comparison": {
 			"title": "Provider comparison",
@@ -161,17 +161,41 @@
 		},
 		"azure": {
 			"title": "Azure AI Translator (default)",
-			"body": "The default provider. Provision an Azure AI Translator resource and pass {subscriptionKey}, {endpoint}, and optionally {region}. This is the same configuration existing workflows already use."
+			"body": "The default provider. Provision an Azure AI Translator resource and pass {subscriptionKey}, {endpoint}, and optionally {region}; either as flat inputs or under a nested {azureBlock} block.",
+			"docsHeading": "Official Azure docs",
+			"docs": {
+				"overview": "Azure Translator documentation",
+				"translateApi": "Translate API reference",
+				"customTranslator": "Custom Translator overview",
+				"languages": "Language support"
+			}
 		},
 		"aws": {
 			"title": "AWS Translate",
-			"body": "Uses {sdk}. Prefer OIDC via {configureAwsCredentials} so no long-lived secrets are stored — the action reads the AWS SDK default credential chain. Alternatively, pass {awsAccessKeyId} and {awsSecretAccessKey} explicitly. A region is always required, via {awsRegion} or the {awsRegionEnv} environment variable.",
+			"body": "Uses {sdk}. Prefer OIDC via {configureAwsCredentials} so no long-lived secrets are stored — the action reads the AWS SDK default credential chain. Alternatively, pass {awsAccessKeyId} and {awsSecretAccessKey} explicitly. A region is always required, via {awsRegion} or the {awsRegionEnv} environment variable. Provider-native settings include {awsFormality}, {awsBrevity}, {awsTerminologyNames}, and {awsParallelDataNames}.",
 			"oidcTitle": "OIDC (recommended)",
-			"keysNote": "To use static keys instead of OIDC, drop the {configureAwsCredentials} step and pass {awsAccessKeyId} / {awsSecretAccessKey} (via {secrets}) plus {awsRegion}."
+			"keysNote": "To use static keys instead of OIDC, drop the {configureAwsCredentials} step and pass {awsAccessKeyId} / {awsSecretAccessKey} (via {secrets}) plus {awsRegion}.",
+			"docsHeading": "Official AWS docs",
+			"docs": {
+				"overview": "Amazon Translate overview",
+				"translateTextApi": "TranslateText API reference",
+				"formality": "Setting formality",
+				"brevity": "Using brevity",
+				"terminology": "Custom terminology",
+				"parallelData": "Parallel data",
+				"languages": "Supported languages"
+			}
 		},
 		"google": {
 			"title": "Google Cloud Translation",
-			"body": "Uses {sdk} (v2). Authenticate with either an API key ({googleApiKey}) or a service-account JSON credential ({googleCredentials}). Supply exactly one; an optional {googleProjectId} is inferred from the credential when omitted."
+			"body": "Uses {sdk} (v2). Authenticate with either an API key ({googleApiKey}) or a service-account JSON credential ({googleCredentials}). Supply exactly one; an optional {googleProjectId} is inferred from the credential when omitted. Provider-native settings include {googleModel}, {googleApiEndpoint}, and {googleAutoRetry}.",
+			"docsHeading": "Official Google docs",
+			"docs": {
+				"overview": "Cloud Translation documentation",
+				"setup": "Cloud Translation setup",
+				"translateText": "Translating text",
+				"languages": "Supported languages"
+			}
 		},
 		"mapping": {
 			"title": "Intent-specifier mapping",
@@ -205,6 +229,36 @@
 					"azure": "Supported",
 					"aws": "Ignored",
 					"google": "Ignored"
+				},
+				"awsFormality": {
+					"azure": "Ignored",
+					"aws": "Formality setting",
+					"google": "Ignored"
+				},
+				"awsBrevity": {
+					"azure": "Ignored",
+					"aws": "Brevity mode",
+					"google": "Ignored"
+				},
+				"awsTerminologyNames": {
+					"azure": "Ignored",
+					"aws": "Custom terminology",
+					"google": "Ignored"
+				},
+				"awsParallelDataNames": {
+					"azure": "Ignored",
+					"aws": "Parallel data",
+					"google": "Ignored"
+				},
+				"googleModel": {
+					"azure": "Ignored",
+					"aws": "Ignored",
+					"google": "Translation model"
+				},
+				"googleApiEndpoint": {
+					"azure": "Ignored",
+					"aws": "Ignored",
+					"google": "API endpoint override"
 				}
 			}
 		},
@@ -229,6 +283,7 @@
 				"notes": "Notes"
 			},
 			"fields": {
+				"provider": "Either a provider string or a nested provider block ({azureBlock}, {awsBlock}, or {googleBlock}). Prefer nested blocks for provider-specific settings; keep secrets in workflow inputs rather than committed config.",
 				"sourceLocale": "Falls back to the {sourceLocale} input if not set. Also forwarded to Translator as {fromLocale} so short strings aren't autodetected.",
 				"toLocales": "Either an array or a comma-separated string.",
 				"includeExclude": "Glob patterns evaluated against absolute and workspace-relative paths.",
@@ -239,6 +294,12 @@
 				"profanityMarker": "Only meaningful when {profanityAction} is {marked}.",
 				"allowFallback": "Set to {false} to fail the translation when your {categoryId} has no deployment for a target locale instead of falling back to the general model.",
 				"apiVersion": "Translator REST API version. Defaults to {version}.",
+				"awsFormality": "AWS Translate formality setting for supported target languages.",
+				"awsBrevity": "Set to {true} to enable AWS Translate brevity mode for supported language pairs.",
+				"awsCustomization": "AWS Translate custom terminology and parallel data resource names. Either an array or comma-separated string.",
+				"googleModel": "Google Cloud Translation model, e.g. {nmt} or {base}.",
+				"googleApiEndpoint": "Optional Google Cloud Translation API endpoint override.",
+				"googleAutoRetry": "Optional Google Cloud Translation automatic retry toggle. Leave unset to use the Google client default.",
 				"maxRetries": "Maximum retry attempts on transient HTTP responses ({statusCodes}). Defaults to {defaultRetries}. Total HTTP calls per request is {totalCalls}.",
 				"retryBackoffMs": "Cap (ms) on any single backoff sleep. Defaults to {defaultBackoff}. Azure's {retryAfter} header is honored exactly when present; otherwise jittered exponential backoff is used, capped at this value.",
 				"protectPlaceholders": "Defaults to {true}. When on, tokens like {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} and HTML entities are replaced with sentinel tokens before translation and restored afterward. Disable only when source intentionally contains placeholder-shaped literals.",
@@ -293,7 +354,7 @@
 		"providerInputs": {
 			"heading": "Provider selection & credentials",
 			"caption": "Provider selection and per-vendor credentials",
-			"intro": "Choose one provider per run with {provider}. Supply only the selected provider's credentials — see the {providersLink} guide for full setup.",
+			"intro": "Choose one provider per run with {provider}. It can be a simple provider name or a nested YAML/JSON block with that provider's credentials and native settings. Flat inputs remain supported and override nested values. See the {providersLink} guide for full setup.",
 			"items": {
 				"provider": "Translation provider: {azure} (default), {aws}, or {google}. Only one provider is used per action call.",
 				"subscriptionKey": "Azure AI Translator subscription key. Required for {azure}. Pass via {secrets}.",
@@ -302,9 +363,16 @@
 				"awsSecretAccessKey": "AWS secret access key. Must be supplied together with {awsAccessKeyId}. Pass via {secrets}.",
 				"awsSessionToken": "Optional AWS session token for temporary credentials. Pass via {secrets}.",
 				"awsRegion": "AWS region for the Translate service (e.g. {regionExample}). Required for {aws} unless {awsRegionEnv} is set in the environment.",
+				"awsFormality": "AWS Translate formality setting: {formal} or {informal}.",
+				"awsBrevity": "When {true}, enables AWS Translate brevity mode for supported language pairs.",
+				"awsTerminologyNames": "AWS Translate custom terminology resource names. Accepts a JSON array or comma-separated values.",
+				"awsParallelDataNames": "AWS Translate parallel data resource names. Accepts a JSON array or comma-separated values.",
 				"googleApiKey": "Google Cloud API key. Provide this OR {googleCredentials} for {google}. Pass via {secrets}.",
 				"googleCredentials": "Google Cloud service-account key as a JSON string. Provide this OR {googleApiKey} for {google}. Pass via {secrets}.",
-				"googleProjectId": "Optional Google Cloud project id. Usually inferred from the service-account credential."
+				"googleProjectId": "Optional Google Cloud project id. Usually inferred from the service-account credential.",
+				"googleModel": "Google Cloud Translation model, e.g. {nmt} or {base}.",
+				"googleApiEndpoint": "Optional Google Cloud Translation API endpoint override.",
+				"googleAutoRetry": "Optional Google Cloud Translation automatic retry toggle. Leave unset to use the Google client default."
 			}
 		},
 		"optionalInputs": {
@@ -529,7 +597,7 @@
 		"releasesHeading": "Releases",
 		"fixedLabel": "Fixed:",
 		"releases": {
-			"unreleasedSmartChangeDetection": "Smart change detection now defaults to {smart}: a compact provider-neutral state manifest ({stateManifest}) tracks parser keys, source hashes, target hashes, and translation-affecting settings so only changed or missing keys are sent to the selected provider. Use {changeDetection}={disabled} or {false} for legacy always-translate behavior, {statePath} to relocate the manifest, and {snapshotOnly} to bootstrap the manifest from existing target files without calling a provider. Key-level audit rule codes are logged for every decision.",
+			"v320SmartChangeDetection": "Smart change detection now defaults to {smart}: a compact provider-neutral state manifest ({stateManifest}) tracks parser keys, source hashes, target hashes, and translation-affecting settings so only changed or missing keys are sent to the selected provider. Use {changeDetection}={disabled} or {false} for legacy always-translate behavior, {statePath} to relocate the manifest, and {snapshotOnly} to bootstrap the manifest from existing target files without calling a provider. The same release adds nested {provider} blocks, AWS/Google-native behavior knobs, narrow-friendly reference cards, and official provider-doc links. Key-level audit rule codes are logged for every decision.",
 			"v302": "{label} Translator requests now pin {apiVersion} on the wire for both {translate} and {languages}. The Azure SDK only honors the client-level api-version option when a credential is passed; the action authenticates per request via headers, so that option was silently dropped and requests defaulted to a preview api-version whose {translate} contract rejected the body with HTTP 400 (error code {code}). Completes the fix started in 3.0.1.",
 			"v301": "{label} The {translate} request body is now a bare JSON array of {textItem} items instead of a wrapped {inputs} object, matching the v3.0 REST contract. On its own this did not restore translations — see 3.0.2."
 		},

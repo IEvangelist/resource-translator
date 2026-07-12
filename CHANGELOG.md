@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [3.2.0] - 2026-07-12
+
 ### Added
 
 - **Smart change detection.** The action now defaults to a compact,
@@ -21,6 +23,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New `snapshotOnly` bootstrap mode creates the smart change-detection manifest
   from existing source/target files without calling any translation provider or
   writing target resource files.
+- The `provider` input and repo config now support a nested provider block, e.g.
+  `provider: { azure: { subscriptionKey, endpoint } }`, so credentials and
+  provider-native behavior settings no longer have to be expressed as a long
+  flat list. Existing flat inputs remain supported and take precedence.
+- Provider-native behavior knobs for AWS and Google: `awsFormality`,
+  `awsBrevity`, `awsTerminologyNames`, `awsParallelDataNames`, `googleModel`,
+  `googleApiEndpoint`, and `googleAutoRetry`. These are included in smart
+  change-detection fingerprints when configured so setting changes retranslate
+  affected keys.
+- Docs now use narrow-friendly reference cards instead of wide tables for
+  inputs, configuration fields, and provider matrices. The provider guide has
+  dedicated Azure, AWS, and Google headings with links to the official vendor
+  docs for setup, APIs, locale support, and provider-native tuning.
 
 ## [3.1.0] - 2026-07-10
 

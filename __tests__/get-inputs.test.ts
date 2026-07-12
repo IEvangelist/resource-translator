@@ -209,6 +209,51 @@ describe("getInputs", () => {
     expect(inputs.changeDetection).toEqual("smart");
   });
 
+  it("reads nested provider YAML from the provider input", () => {
+    setInput(
+      "provider",
+      [
+        "aws:",
+        "  region: us-east-1",
+        "  formality: formal",
+        "  brevity: true",
+        "  terminologyNames:",
+        "    - terms",
+      ].join("\n"),
+    );
+    delete inputValues["subscriptionKey"];
+    delete inputValues["endpoint"];
+
+    const inputs = getInputs();
+    expect(inputs.provider).toEqual("aws");
+    expect(inputs.awsRegion).toEqual("us-east-1");
+    expect(inputs.awsFormality).toEqual("FORMAL");
+    expect(inputs.awsBrevity).toEqual(true);
+    expect(inputs.awsTerminologyNames).toEqual(["terms"]);
+  });
+
+  it("lets flat provider inputs override the provider block aliases", () => {
+    setInput(
+      "provider",
+      [
+        "google:",
+        "  apiKey: from-block",
+        "  projectId: from-block-project",
+        "  model: base",
+      ].join("\n"),
+    );
+    setInput("googleApiKey", "from-flat-input");
+    setInput("googleModel", "nmt");
+    delete inputValues["subscriptionKey"];
+    delete inputValues["endpoint"];
+
+    const inputs = getInputs();
+    expect(inputs.provider).toEqual("google");
+    expect(inputs.googleApiKey).toEqual("from-flat-input");
+    expect(inputs.googleProjectId).toEqual("from-block-project");
+    expect(inputs.googleModel).toEqual("nmt");
+  });
+
   it("rejects an invalid changeDetection value", () => {
     setInput("changeDetection", "maybe");
     expect(() => getInputs()).toThrow(/changeDetection/);
@@ -287,6 +332,34 @@ describe("getInputs provider validation", () => {
     const inputs = getInputs();
     expect(inputs.provider).toEqual("google");
     expect(inputs.googleApiKey).toEqual("test-api-key");
+  });
+
+  it("reads AWS behavior inputs", () => {
+    setInput("provider", "aws");
+    setInput("awsRegion", "us-east-1");
+    setInput("awsFormality", "informal");
+    setInput("awsBrevity", "true");
+    setInput("awsTerminologyNames", "terms-one,terms-two");
+    setInput("awsParallelDataNames", '["parallel-one"]');
+
+    const inputs = getInputs();
+    expect(inputs.awsFormality).toEqual("INFORMAL");
+    expect(inputs.awsBrevity).toEqual(true);
+    expect(inputs.awsTerminologyNames).toEqual(["terms-one", "terms-two"]);
+    expect(inputs.awsParallelDataNames).toEqual(["parallel-one"]);
+  });
+
+  it("reads Google behavior inputs", () => {
+    setInput("provider", "google");
+    setInput("googleApiKey", "test-api-key");
+    setInput("googleModel", "nmt");
+    setInput("googleApiEndpoint", "translation.googleapis.com");
+    setInput("googleAutoRetry", "false");
+
+    const inputs = getInputs();
+    expect(inputs.googleModel).toEqual("nmt");
+    expect(inputs.googleApiEndpoint).toEqual("translation.googleapis.com");
+    expect(inputs.googleAutoRetry).toEqual(false);
   });
 
   it("rejects malformed googleCredentials JSON", () => {

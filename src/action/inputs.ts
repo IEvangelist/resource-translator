@@ -13,6 +13,9 @@ export type ProfanityMarker = "Asterisk" | "Tag";
 /** Smart change-detection behavior. */
 export type ChangeDetectionMode = "smart" | "disabled";
 
+/** AWS Translate formality setting. */
+export type AwsFormality = "FORMAL" | "INFORMAL";
+
 /**
  * Optional repo-level configuration that can be supplied either via action
  * inputs or via a YAML file at `.github/resource-translator.yml`. Action
@@ -21,10 +24,90 @@ export type ChangeDetectionMode = "smart" | "disabled";
 export interface RepoConfig {
   /**
    * Translation vendor to use for this run: "azure" (default), "aws", or
-   * "google". Exactly one vendor is used per action call. Can be set here or
-   * via the `provider` action input (the input wins).
+   * "google". Exactly one vendor is used per action call.
    */
   provider?: Provider;
+
+  /**
+   * Azure AI Translator resource subscription key (provider=azure).
+   * Store as a GitHub secret. Required when provider is "azure".
+   */
+  subscriptionKey?: string;
+
+  /**
+   * Azure AI Translator resource endpoint (provider=azure). Store as a
+   * GitHub secret. Required when provider is "azure".
+   */
+  endpoint?: string;
+
+  /**
+   * Azure AI Translator region (optional for global resources).
+   */
+  region?: string;
+
+  /**
+   * AWS access key id (provider=aws). Optional — when omitted the AWS SDK's
+   * default credential provider chain is used (e.g. OIDC via
+   * `aws-actions/configure-aws-credentials`, env vars, or an instance role).
+   */
+  awsAccessKeyId?: string;
+
+  /**
+   * AWS secret access key (provider=aws). Store as a GitHub secret. Optional;
+   * see {@link awsAccessKeyId}.
+   */
+  awsSecretAccessKey?: string;
+
+  /**
+   * AWS session token (provider=aws), for temporary credentials. Optional.
+   */
+  awsSessionToken?: string;
+
+  /**
+   * AWS region (provider=aws). Falls back to the `AWS_REGION` environment
+   * variable when unset.
+   */
+  awsRegion?: string;
+
+  /** AWS Translate formality setting. */
+  awsFormality?: AwsFormality;
+
+  /** Enable AWS Translate brevity mode for supported language pairs. */
+  awsBrevity?: boolean;
+
+  /** AWS custom terminology resource names to apply. */
+  awsTerminologyNames?: string[];
+
+  /** AWS parallel data resource names to apply. */
+  awsParallelDataNames?: string[];
+
+  /**
+   * Google Cloud API key (provider=google). Store as a GitHub secret. Provide
+   * either this or {@link googleCredentials}.
+   */
+  googleApiKey?: string;
+
+  /**
+   * Google Cloud service-account credentials as a JSON string (provider=google).
+   * Store as a GitHub secret. Provide either this or {@link googleApiKey}.
+   */
+  googleCredentials?: string;
+
+  /**
+   * Google Cloud project id (provider=google). Optional — inferred from the
+   * service-account credentials when those are supplied.
+   */
+  googleProjectId?: string;
+
+  /** Google Cloud Translation model, e.g. "nmt" or "base". */
+  googleModel?: string;
+
+  /** Optional Google Cloud Translation API endpoint override. */
+  googleApiEndpoint?: string;
+
+  /** Google Cloud Translation automatic retry toggle. */
+  googleAutoRetry?: boolean;
+
   /** Source locale (used as the glob discriminator in resource file names). */
   sourceLocale?: string;
   /** Locales to translate to. When omitted every supported locale is targeted. */
@@ -150,6 +233,11 @@ export const CHANGE_DETECTION_MODES: readonly ChangeDetectionMode[] = [
   "smart",
   "disabled",
 ] as const;
+/** Closed set of valid AWS formality values. */
+export const AWS_FORMALITIES: readonly AwsFormality[] = [
+  "FORMAL",
+  "INFORMAL",
+] as const;
 
 export interface Inputs extends RepoConfig {
   /**
@@ -201,6 +289,18 @@ export interface Inputs extends RepoConfig {
    */
   awsRegion?: string;
 
+  /** AWS Translate formality setting. */
+  awsFormality?: AwsFormality;
+
+  /** Enable AWS Translate brevity mode for supported language pairs. */
+  awsBrevity?: boolean;
+
+  /** AWS custom terminology resource names to apply. */
+  awsTerminologyNames?: string[];
+
+  /** AWS parallel data resource names to apply. */
+  awsParallelDataNames?: string[];
+
   /**
    * Google Cloud API key (provider=google). Store as a GitHub secret. Provide
    * either this or {@link googleCredentials}.
@@ -218,6 +318,15 @@ export interface Inputs extends RepoConfig {
    * service-account credentials when those are supplied.
    */
   googleProjectId?: string;
+
+  /** Google Cloud Translation model, e.g. "nmt" or "base". */
+  googleModel?: string;
+
+  /** Optional Google Cloud Translation API endpoint override. */
+  googleApiEndpoint?: string;
+
+  /** Google Cloud Translation automatic retry toggle. */
+  googleAutoRetry?: boolean;
 
   /**
    * Source locale (required at runtime after input/config merge).
@@ -246,4 +355,57 @@ export interface Inputs extends RepoConfig {
    * writing target resource files. Intended as a one-time bootstrap mode.
    */
   snapshotOnly?: boolean;
+}
+
+export interface AzureProviderConfig {
+  subscriptionKey?: string;
+  endpoint?: string;
+  region?: string;
+  categoryId?: string;
+  apiVersion?: string;
+  allowFallback?: boolean;
+}
+
+export interface AwsProviderConfig {
+  accessKeyId?: string;
+  awsAccessKeyId?: string;
+  secretAccessKey?: string;
+  awsSecretAccessKey?: string;
+  sessionToken?: string;
+  awsSessionToken?: string;
+  region?: string;
+  awsRegion?: string;
+  formality?: AwsFormality;
+  awsFormality?: AwsFormality;
+  brevity?: boolean;
+  awsBrevity?: boolean;
+  terminologyNames?: string[] | string;
+  awsTerminologyNames?: string[] | string;
+  parallelDataNames?: string[] | string;
+  awsParallelDataNames?: string[] | string;
+}
+
+export interface GoogleProviderConfig {
+  apiKey?: string;
+  googleApiKey?: string;
+  credentials?: string;
+  googleCredentials?: string;
+  projectId?: string;
+  googleProjectId?: string;
+  model?: string;
+  googleModel?: string;
+  apiEndpoint?: string;
+  googleApiEndpoint?: string;
+  autoRetry?: boolean;
+  googleAutoRetry?: boolean;
+}
+
+export interface NestedProviderConfig {
+  azure?: AzureProviderConfig | null;
+  aws?: AwsProviderConfig | null;
+  google?: GoogleProviderConfig | null;
+}
+
+export interface RawRepoConfig extends Omit<RepoConfig, "provider"> {
+  provider?: Provider | NestedProviderConfig;
 }

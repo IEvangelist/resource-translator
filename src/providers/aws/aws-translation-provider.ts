@@ -43,6 +43,8 @@ export class AwsTranslationProvider extends BaseTranslationProvider {
     sessionToken?: string;
   };
   private readonly settings?: TranslationSettings;
+  private readonly terminologyNames?: string[];
+  private readonly parallelDataNames?: string[];
   private cachedClient?: TranslateClient;
 
   constructor(inputs: Inputs, context: BaseProviderContext = {}) {
@@ -70,14 +72,29 @@ export class AwsTranslationProvider extends BaseTranslationProvider {
       };
     }
 
+    const settings: TranslationSettings = {};
+
     // Map our profanity specifier onto AWS. AWS only offers masking, so both
     // "Marked" and "Deleted" collapse to MASK; "NoAction"/unset leaves it off.
     if (
       inputs.profanityAction === "Marked" ||
       inputs.profanityAction === "Deleted"
     ) {
-      this.settings = { Profanity: Profanity.MASK };
+      settings.Profanity = Profanity.MASK;
     }
+    if (inputs.awsFormality) {
+      settings.Formality = inputs.awsFormality;
+    }
+    if (inputs.awsBrevity) {
+      settings.Brevity = "ON";
+    }
+    this.settings = Object.keys(settings).length ? settings : undefined;
+    this.terminologyNames = inputs.awsTerminologyNames?.length
+      ? inputs.awsTerminologyNames
+      : undefined;
+    this.parallelDataNames = inputs.awsParallelDataNames?.length
+      ? inputs.awsParallelDataNames
+      : undefined;
   }
 
   private client(options?: TranslateOptions): TranslateClient {
@@ -148,6 +165,12 @@ export class AwsTranslationProvider extends BaseTranslationProvider {
           SourceLanguageCode: source,
           TargetLanguageCode: toLocale,
           ...(this.settings ? { Settings: this.settings } : {}),
+          ...(this.terminologyNames
+            ? { TerminologyNames: this.terminologyNames }
+            : {}),
+          ...(this.parallelDataNames
+            ? { ParallelDataNames: this.parallelDataNames }
+            : {}),
         }),
       );
       return response.TranslatedText ?? "";

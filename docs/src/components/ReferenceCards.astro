@@ -1,0 +1,68 @@
+---
+import LocalizedText from "./LocalizedText.astro";
+import type { LocalizedReplacements } from "../i18n/rich-text";
+
+export type LocalizedCell = {
+  text: string;
+  values?: LocalizedReplacements;
+};
+
+export type ReferenceMeta = {
+  label: string;
+  value: LocalizedCell;
+};
+
+export type ReferenceItem = {
+  title: string;
+  titleValues?: LocalizedReplacements;
+  titleCode?: boolean;
+  description?: LocalizedCell;
+  meta?: ReferenceMeta[];
+};
+
+interface Props {
+  items: ReferenceItem[];
+  ariaLabel?: string;
+}
+
+const { items, ariaLabel } = Astro.props;
+---
+
+<div class="reference-list" aria-label={ariaLabel}>
+  {
+    items.map((item) => (
+      <section class="reference-card">
+        <div class="reference-card-title">
+          {item.titleCode && !item.titleValues ? (
+            <code>{item.title}</code>
+          ) : (
+            <LocalizedText text={item.title} values={item.titleValues} />
+          )}
+        </div>
+        {item.meta && item.meta.length > 0 && (
+          <dl class="reference-meta">
+            {item.meta.map((entry) => (
+              <div>
+                <dt>{entry.label}</dt>
+                <dd>
+                  <LocalizedText
+                    text={entry.value.text}
+                    values={entry.value.values}
+                  />
+                </dd>
+              </div>
+            ))}
+          </dl>
+        )}
+        {item.description && (
+          <p class="reference-description">
+            <LocalizedText
+              text={item.description.text}
+              values={item.description.values}
+            />
+          </p>
+        )}
+      </section>
+    ))
+  }
+</div>

@@ -128,6 +128,27 @@ describe("AwsTranslationProvider", () => {
     expect(translateCall.Settings).toEqual({ Profanity: "MASK" });
   });
 
+  it("passes AWS formality, brevity, terminology, and parallel data options", async () => {
+    mockSend.mockResolvedValue({ TranslatedText: "ok" });
+
+    await makeProvider({
+      awsFormality: "FORMAL",
+      awsBrevity: true,
+      awsTerminologyNames: ["brand-terms"],
+      awsParallelDataNames: ["domain-data"],
+    }).translate(["es"], new Map([["k", "v"]]), "f.json");
+
+    const translateCall = mockSend.mock.calls
+      .map((c) => c[0])
+      .find((c: Record<string, unknown>) => c._kind === "translate");
+    expect(translateCall.Settings).toEqual({
+      Formality: "FORMAL",
+      Brevity: "ON",
+    });
+    expect(translateCall.TerminologyNames).toEqual(["brand-terms"]);
+    expect(translateCall.ParallelDataNames).toEqual(["domain-data"]);
+  });
+
   it("omits Settings when profanityAction is NoAction/unset", async () => {
     mockSend.mockResolvedValue({ TranslatedText: "ok" });
 

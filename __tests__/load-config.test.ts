@@ -125,6 +125,86 @@ describe("loadRepoConfig", () => {
     expect(config.statePath).toEqual(".github/custom-translation-state.json");
   });
 
+  it("parses nested Azure provider config", () => {
+    mkdirSync(join(tempWorkspace, ".github"), { recursive: true });
+    writeFileSync(
+      join(tempWorkspace, ".github", "resource-translator.yml"),
+      [
+        "provider:",
+        "  azure:",
+        "    subscriptionKey: 0123456789abcdef0123456789abcdef",
+        "    endpoint: https://example.cognitiveservices.azure.com/",
+        "    region: eastus",
+        "    categoryId: custom-category",
+        "    apiVersion: '3.0'",
+        "    allowFallback: false",
+      ].join("\n"),
+      "utf-8",
+    );
+
+    const config = loadRepoConfig();
+    expect(config.provider).toEqual("azure");
+    expect(config.subscriptionKey).toEqual("0123456789abcdef0123456789abcdef");
+    expect(config.endpoint).toEqual(
+      "https://example.cognitiveservices.azure.com/",
+    );
+    expect(config.region).toEqual("eastus");
+    expect(config.categoryId).toEqual("custom-category");
+    expect(config.apiVersion).toEqual("3.0");
+    expect(config.allowFallback).toEqual(false);
+  });
+
+  it("parses nested AWS provider behavior config", () => {
+    mkdirSync(join(tempWorkspace, ".github"), { recursive: true });
+    writeFileSync(
+      join(tempWorkspace, ".github", "resource-translator.yml"),
+      [
+        "provider:",
+        "  aws:",
+        "    region: us-east-1",
+        "    formality: informal",
+        "    brevity: true",
+        "    terminologyNames: term-one,term-two",
+        "    parallelDataNames:",
+        "      - parallel-one",
+      ].join("\n"),
+      "utf-8",
+    );
+
+    const config = loadRepoConfig();
+    expect(config.provider).toEqual("aws");
+    expect(config.awsRegion).toEqual("us-east-1");
+    expect(config.awsFormality).toEqual("INFORMAL");
+    expect(config.awsBrevity).toEqual(true);
+    expect(config.awsTerminologyNames).toEqual(["term-one", "term-two"]);
+    expect(config.awsParallelDataNames).toEqual(["parallel-one"]);
+  });
+
+  it("parses nested Google provider behavior config", () => {
+    mkdirSync(join(tempWorkspace, ".github"), { recursive: true });
+    writeFileSync(
+      join(tempWorkspace, ".github", "resource-translator.yml"),
+      [
+        "provider:",
+        "  google:",
+        "    apiKey: test-api-key",
+        "    projectId: project-one",
+        "    model: nmt",
+        "    apiEndpoint: private.googleapis.com",
+        "    autoRetry: false",
+      ].join("\n"),
+      "utf-8",
+    );
+
+    const config = loadRepoConfig();
+    expect(config.provider).toEqual("google");
+    expect(config.googleApiKey).toEqual("test-api-key");
+    expect(config.googleProjectId).toEqual("project-one");
+    expect(config.googleModel).toEqual("nmt");
+    expect(config.googleApiEndpoint).toEqual("private.googleapis.com");
+    expect(config.googleAutoRetry).toEqual(false);
+  });
+
   it("drops invalid enum values silently from YAML", () => {
     mkdirSync(join(tempWorkspace, ".github"), { recursive: true });
     writeFileSync(
@@ -209,5 +289,23 @@ describe("mergeInputsAndConfig", () => {
     });
     expect(merged.changeDetection).toEqual("disabled");
     expect(merged.statePath).toEqual(".github/custom-state.json");
+  });
+
+  it("merges provider credentials and behavior from YAML", () => {
+    const merged = mergeInputsAndConfig(
+      { sourceLocale: "en", configPath: "custom.yml" } as Inputs,
+      {
+        provider: "aws",
+        awsRegion: "us-east-1",
+        awsFormality: "FORMAL",
+        awsBrevity: true,
+        awsTerminologyNames: ["terms"],
+      },
+    );
+    expect(merged.provider).toEqual("aws");
+    expect(merged.awsRegion).toEqual("us-east-1");
+    expect(merged.awsFormality).toEqual("FORMAL");
+    expect(merged.awsBrevity).toEqual(true);
+    expect(merged.awsTerminologyNames).toEqual(["terms"]);
   });
 });

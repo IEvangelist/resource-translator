@@ -1,5 +1,8 @@
 import { getBooleanInput, getInput } from "@actions/core";
+import * as yaml from "js-yaml";
 import {
+  AWS_FORMALITIES,
+  AwsFormality,
   CHANGE_DETECTION_MODES,
   ChangeDetectionMode,
   Inputs,
@@ -13,37 +16,85 @@ import {
   TEXT_TYPES,
   TextType,
 } from "./inputs";
-import { loadRepoConfig, mergeInputsAndConfig } from "./load-config";
+import {
+  loadRepoConfig,
+  mergeInputsAndConfig,
+  normalizeProviderConfig,
+} from "./load-config";
 
 export const getInputs = (): Inputs => {
   // Resolve provider precedence explicitly (input > config > default) below,
   // so capture the raw input value here rather than defaulting it early.
-  const providerInput = getOptionalEnum<Provider>("provider", PROVIDERS);
+  const providerInputConfig = getProviderInputConfig("provider");
+  const providerInput = providerInputConfig.provider;
 
   const inputs: Inputs = {
     provider: providerInput ?? "azure",
     // Azure credentials are only required when provider is "azure"; they are
     // validated per-provider after the config merge (see validateProvider).
-    subscriptionKey: getInput("subscriptionKey") || undefined,
-    endpoint: getInput("endpoint") || undefined,
-    region: getInput("region"),
+    subscriptionKey:
+      getInput("subscriptionKey") ||
+      providerInputConfig.subscriptionKey ||
+      undefined,
+    endpoint: getInput("endpoint") || providerInputConfig.endpoint || undefined,
+    region: getInput("region") || providerInputConfig.region || "",
     // AWS credentials — all optional. When omitted, the AWS SDK's default
     // credential provider chain (OIDC/env/instance role) is used.
-    awsAccessKeyId: getInput("awsAccessKeyId") || undefined,
-    awsSecretAccessKey: getInput("awsSecretAccessKey") || undefined,
-    awsSessionToken: getInput("awsSessionToken") || undefined,
-    awsRegion: getInput("awsRegion") || undefined,
+    awsAccessKeyId:
+      getInput("awsAccessKeyId") ||
+      providerInputConfig.awsAccessKeyId ||
+      undefined,
+    awsSecretAccessKey:
+      getInput("awsSecretAccessKey") ||
+      providerInputConfig.awsSecretAccessKey ||
+      undefined,
+    awsSessionToken:
+      getInput("awsSessionToken") ||
+      providerInputConfig.awsSessionToken ||
+      undefined,
+    awsRegion:
+      getInput("awsRegion") || providerInputConfig.awsRegion || undefined,
+    awsFormality:
+      getOptionalAwsFormality("awsFormality") ??
+      providerInputConfig.awsFormality,
+    awsBrevity:
+      getOptionalBooleanOrUndefined("awsBrevity") ??
+      providerInputConfig.awsBrevity,
+    awsTerminologyNames:
+      getQuestionableArray("awsTerminologyNames") ??
+      providerInputConfig.awsTerminologyNames,
+    awsParallelDataNames:
+      getQuestionableArray("awsParallelDataNames") ??
+      providerInputConfig.awsParallelDataNames,
     // Google credentials — provide either an API key or service-account JSON.
-    googleApiKey: getInput("googleApiKey") || undefined,
-    googleCredentials: getInput("googleCredentials") || undefined,
-    googleProjectId: getInput("googleProjectId") || undefined,
+    googleApiKey:
+      getInput("googleApiKey") || providerInputConfig.googleApiKey || undefined,
+    googleCredentials:
+      getInput("googleCredentials") ||
+      providerInputConfig.googleCredentials ||
+      undefined,
+    googleProjectId:
+      getInput("googleProjectId") ||
+      providerInputConfig.googleProjectId ||
+      undefined,
+    googleModel:
+      getInput("googleModel") || providerInputConfig.googleModel || undefined,
+    googleApiEndpoint:
+      getInput("googleApiEndpoint") ||
+      providerInputConfig.googleApiEndpoint ||
+      undefined,
+    googleAutoRetry:
+      getOptionalBooleanOrUndefined("googleAutoRetry") ??
+      providerInputConfig.googleAutoRetry,
     sourceLocale: getInput("sourceLocale", { required: true }),
     toLocales: getQuestionableArray("toLocales"),
     include: getMultilineList("include"),
     exclude: getMultilineList("exclude"),
     configPath: getInput("configPath") || undefined,
-    categoryId: getInput("categoryId") || undefined,
-    apiVersion: getInput("apiVersion") || undefined,
+    categoryId:
+      getInput("categoryId") || providerInputConfig.categoryId || undefined,
+    apiVersion:
+      getInput("apiVersion") || providerInputConfig.apiVersion || undefined,
     textType: getOptionalEnum<TextType>("textType", TEXT_TYPES),
     profanityAction: getOptionalEnum<ProfanityAction>(
       "profanityAction",
@@ -53,7 +104,9 @@ export const getInputs = (): Inputs => {
       "profanityMarker",
       PROFANITY_MARKERS,
     ),
-    allowFallback: getOptionalBooleanOrUndefined("allowFallback"),
+    allowFallback:
+      getOptionalBooleanOrUndefined("allowFallback") ??
+      providerInputConfig.allowFallback,
     noTranslatePatterns: getMultilineList("noTranslatePatterns"),
     protectPlaceholders: getOptionalBooleanOrUndefined("protectPlaceholders"),
     customPlaceholderPatterns: getMultilineList("customPlaceholderPatterns"),
@@ -98,6 +151,7 @@ const validateMerged = (inputs: Inputs) => {
   oneOf("profanityAction", PROFANITY_ACTIONS);
   oneOf("profanityMarker", PROFANITY_MARKERS);
   oneOf("changeDetection", CHANGE_DETECTION_MODES);
+  oneOf("awsFormality", AWS_FORMALITIES);
 
   if (inputs.profanityMarker && inputs.profanityAction !== "Marked") {
     throw new Error(
@@ -234,6 +288,53 @@ const getOptionalEnum = <T extends string>(
     );
   }
   return raw as T;
+};
+
+const getOptionalAwsFormality = (name: string): AwsFormality | undefined => {
+  const raw = getInput(name)?.trim();
+  if (!raw) return undefined;
+  const normalized = raw.toUpperCase();
+  if (!AWS_FORMALITIES.includes(normalized as AwsFormality)) {
+    throw new Error(
+      `Invalid value for '${name}': '${raw}'. Expected one of: ${AWS_FORMALITIES.join(", ")}.`,
+    );
+  }
+  return normalized as AwsFormality;
+};
+
+const getProviderInputConfig = (name: string): Partial<Inputs> => {
+  const raw = getInput(name)?.trim();
+  if (!raw) return {};
+
+  if (PROVIDERS.includes(raw as Provider)) {
+    return { provider: raw as Provider };
+  }
+
+  let parsed: unknown;
+  try {
+    parsed = yaml.load(raw);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    throw new Error(
+      `Invalid value for '${name}': expected ${PROVIDERS.join(", ")} or a YAML/JSON provider block. ${message}`,
+      { cause: error },
+    );
+  }
+
+  let invalidMessage: string | undefined;
+  const providerConfig = normalizeProviderConfig(parsed, (message) => {
+    invalidMessage = message;
+  });
+  if (invalidMessage) {
+    throw new Error(invalidMessage);
+  }
+  if (!providerConfig.provider) {
+    throw new Error(
+      `Invalid value for '${name}': expected ${PROVIDERS.join(", ")} or a YAML/JSON provider block.`,
+    );
+  }
+
+  return providerConfig;
 };
 
 const getOptionalChangeDetection = (

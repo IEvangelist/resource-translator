@@ -83,9 +83,11 @@ jobs:
         uses: IEvangelist/resource-translator@v3
         with:
           sourceLocale: en
-          subscriptionKey: ${{ secrets.AZURE_TRANSLATOR_SUBSCRIPTION_KEY }}
-          endpoint: ${{ secrets.AZURE_TRANSLATOR_ENDPOINT }}
-          region: ${{ secrets.AZURE_TRANSLATOR_REGION }}
+          provider: |
+            azure:
+              subscriptionKey: ${{ secrets.AZURE_TRANSLATOR_SUBSCRIPTION_KEY }}
+              endpoint: ${{ secrets.AZURE_TRANSLATOR_ENDPOINT }}
+              region: ${{ secrets.AZURE_TRANSLATOR_REGION }}
           toLocales: '["es","fr","de"]'
 
       - if: steps.translator.outputs.has-new-translations == 'true'
@@ -103,9 +105,12 @@ the **[full docs](https://ievangelist.github.io/resource-translator/)**.
 ## 🌐 Translation providers
 
 Pick **one** provider per run via the `provider` input (defaults to `azure`).
-The translator behaves identically regardless of provider — only the credentials
-differ. See the [providers docs](https://ievangelist.github.io/resource-translator/providers)
-for the full setup and credential matrix.
+For cleaner workflows, `provider` can be a nested YAML block with that
+provider's credentials and native behavior settings; the older flat inputs still
+work and override values inside the block. The
+[providers docs](https://ievangelist.github.io/resource-translator/providers)
+include dedicated Azure, AWS, and Google sections with links to the official
+vendor docs.
 
 | Provider | `provider` value | SDK | Credentials |
 | --- | --- | --- | --- |
@@ -140,14 +145,18 @@ jobs:
       - id: translator
         uses: IEvangelist/resource-translator@v3
         with:
-          provider: aws
+          provider: |
+            aws:
+              region: us-east-1 # or rely on AWS_REGION from the step above
+              formality: FORMAL
+              brevity: true
           sourceLocale: en
-          awsRegion: us-east-1 # or rely on AWS_REGION from the step above
           toLocales: '["es","fr","de"]'
 ```
 
 To use static keys instead of OIDC, drop the `configure-aws-credentials` step and
-pass `awsAccessKeyId` / `awsSecretAccessKey` (via secrets) plus `awsRegion`.
+add `accessKeyId` / `secretAccessKey` (via secrets) to the nested `aws` block, or
+use the equivalent flat inputs.
 
 ### Google Cloud Translation
 
@@ -161,12 +170,14 @@ jobs:
       - id: translator
         uses: IEvangelist/resource-translator@v3
         with:
-          provider: google
+          provider: |
+            google:
+              # Provide EITHER a service-account JSON credential...
+              credentials: ${{ secrets.GCP_TRANSLATE_CREDENTIALS }}
+              # ...OR an API key:
+              # apiKey: ${{ secrets.GCP_TRANSLATE_API_KEY }}
+              model: nmt
           sourceLocale: en
-          # Provide EITHER a service-account JSON credential...
-          googleCredentials: ${{ secrets.GCP_TRANSLATE_CREDENTIALS }}
-          # ...OR an API key:
-          # googleApiKey: ${{ secrets.GCP_TRANSLATE_API_KEY }}
           toLocales: '["es","fr","de"]'
 ```
 
@@ -174,6 +185,10 @@ Provider-specific intent specifiers are mapped where an equivalent exists:
 `textType` → Google `format`; `profanityAction` (`Marked`/`Deleted`) → AWS
 profanity masking. `categoryId`, `apiVersion`, `profanityMarker`, and
 `allowFallback` are Azure-only and ignored by the other providers.
+
+Provider-native knobs are also available: AWS supports `formality`, `brevity`,
+`terminologyNames`, and `parallelDataNames`; Google supports `model`,
+`apiEndpoint`, and `autoRetry`.
 
 ## 🔗 Project links
 
