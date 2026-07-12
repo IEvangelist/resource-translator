@@ -104,7 +104,7 @@ const featureValues = {
 
 const features: Feature[] = [
   {
-    icon: "lucide:scan-search",
+    icon: "lucide:sparkles",
     title: copy.features.smartDetection.title,
     body: copy.features.smartDetection.body,
     values: featureValues.smartDetection,
@@ -135,7 +135,7 @@ const features: Feature[] = [
     accent: "from-(--color-warm-500) to-(--color-brand-500)",
   },
   {
-    icon: "lucide:file-clock",
+    icon: "lucide:shield-check",
     title: copy.features.dryRun.title,
     body: copy.features.dryRun.body,
     accent: "from-(--color-cool-500) to-(--color-brand-500)",
@@ -205,6 +205,7 @@ const formats: FormatBadge[] = [
             transition:name="hero-title"
           >
             {copy.headlinePrefix}
+            {" "}
             <span class="text-gradient">{copy.headlineAccent}</span>
           </h1>
 
@@ -362,7 +363,7 @@ const formats: FormatBadge[] = [
             </p>
             {f.stat && (
               <p class="relative mt-5 inline-flex items-center gap-2 rounded-full border border-(--color-brand-500)/25 bg-(--color-brand-500)/10 px-3 py-1 text-xs font-semibold text-(--color-brand-700) dark:text-(--color-brand-200)">
-                <Icon name="lucide:badge-dollar-sign" class="size-3.5" />
+                <Icon name="lucide:check" class="size-3.5" />
                 {f.stat}
               </p>
             )}
@@ -382,6 +383,7 @@ const formats: FormatBadge[] = [
       </p>
       <h2 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
         {copy.workflowPreview.titlePrefix}
+        {" "}
         <span class="text-gradient">{copy.workflowPreview.titleAccent}</span>
       </h2>
       <p class="mt-4 text-(--fg-muted)">
