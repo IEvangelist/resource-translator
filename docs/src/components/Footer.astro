@@ -22,7 +22,6 @@ const { locale = defaultLocale, common, nav, slug = "index" } = Astro.props;
 const repoUrl = "https://github.com/IEvangelist/resource-translator";
 const marketplaceUrl =
   "https://github.com/marketplace/actions/machine-translator";
-const npmUrl = "https://www.npmjs.com/package/@azure-rest/ai-translation-text";
 
 // Keep in lock-step with the `uses:` references across the docs pages.
 const actionVersion = "v3";
@@ -94,18 +93,28 @@ const localeLabel = currentLocale?.nativeName ?? locale;
 ---
 
 <footer
-  class="relative mt-16 border-t border-(--border) bg-(--bg-elevated) text-sm text-(--fg-muted)"
+  class="relative mt-16 overflow-hidden border-t border-(--border) bg-(--bg-elevated) text-sm text-(--fg-muted)"
 >
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute -left-24 top-10 size-72 rounded-full bg-(--color-brand-500)/10 blur-3xl"
+  >
+  </div>
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute -right-24 bottom-0 size-80 rounded-full bg-(--color-accent-500)/10 blur-3xl"
+  >
+  </div>
   <div
     aria-hidden="true"
     class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-(--color-brand-500)/40 to-transparent"
   >
   </div>
 
-  <div class="mx-auto max-w-7xl px-6 py-12">
+  <div class="relative mx-auto max-w-7xl px-6 py-14">
     <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-12">
       <!-- Brand + tagline + quick install + socials -->
-      <div class="lg:col-span-4 min-w-0">
+      <div class="rt-foot-brand min-w-0 lg:col-span-4">
         <a
           href={localizedHref(locale, "index")}
           class="group inline-flex items-center gap-2.5 text-base font-semibold text-(--fg) no-underline"
@@ -117,20 +126,29 @@ const localeLabel = currentLocale?.nativeName ?? locale;
           <span>{site?.name ?? "Resource Translator"}</span>
         </a>
         <p class="mt-4 max-w-sm leading-relaxed">
-          {footer?.taglinePrefix ??
-            "A GitHub Action that translates your resource files automatically, built atop the official"}
-          <a
-            href={npmUrl}
-            rel="noopener"
-            target="_blank"
-            class="rt-foot-prose-link">@azure-rest/ai-translation-text</a
-          > {footer?.taglineMiddle ?? "SDK from"} <a
-            href="https://github.com/Azure/azure-sdk-for-js"
-            rel="noopener"
-            target="_blank"
-            class="rt-foot-prose-link">Azure SDK for JavaScript</a
-          >.
+          {
+            footer?.tagline ??
+              "Smart GitHub Action localization for resource files. Translate only changed keys, preserve manual edits, and open PR-ready summaries with Azure, AWS, or Google."
+          }
         </p>
+
+        <ul
+          class="rt-foot-highlights"
+          aria-label={footer?.highlightsAria ?? "Resource Translator highlights"}
+        >
+          <li>
+            <Icon name="lucide:check" class="size-3.5" aria-hidden="true" />
+            <span>{footer?.smartHighlight ?? "Smart by default"}</span>
+          </li>
+          <li>
+            <Icon name="lucide:shield-check" class="size-3.5" aria-hidden="true" />
+            <span>{footer?.auditHighlight ?? "Audit-friendly logs"}</span>
+          </li>
+          <li>
+            <Icon name="lucide:languages" class="size-3.5" aria-hidden="true" />
+            <span>{footer?.providerHighlight ?? "Azure · AWS · Google"}</span>
+          </li>
+        </ul>
 
         <!-- Quick-install snippet with copy button -->
         <div class="mt-6 min-w-0">
@@ -291,14 +309,14 @@ const localeLabel = currentLocale?.nativeName ?? locale;
         </li>
         <li>
           <a
-            href={npmUrl}
+            href={marketplaceUrl}
             rel="noopener"
             target="_blank"
-            aria-label={footer?.npmAria ?? "View the Azure Translator SDK on npm"}
-            title="npm"
+            aria-label={footer?.marketplaceAria ?? "View on GitHub Marketplace"}
+            title="GitHub Marketplace"
             class="rt-social"
           >
-            <Icon name="simple-icons:npm" class="size-4" />
+            <Icon name="simple-icons:githubactions" class="size-4" />
           </a>
         </li>
         <li>
@@ -350,6 +368,7 @@ const localeLabel = currentLocale?.nativeName ?? locale;
       <div class="flex flex-col gap-2">
         <p>
           © {year}
+          {" "}
           <a
             href="https://davidpine.dev"
             rel="noopener"
@@ -357,6 +376,7 @@ const localeLabel = currentLocale?.nativeName ?? locale;
             class="rt-foot-prose-link font-medium">David Pine 🤓</a
           >
           · {footer?.copyrightPrefix ?? "Released under the"}
+          {" "}
           <a
             href={`${repoUrl}/blob/main/LICENSE`}
             rel="noopener"
@@ -388,8 +408,11 @@ const localeLabel = currentLocale?.nativeName ?? locale;
       </div>
       <p class="text-(--fg-muted)">
         {footer?.builtWith ?? "Built with"}
+        {" "}
         <a href="https://astro.build" rel="noopener" target="_blank" class="rt-foot-prose-link">Astro</a>
+        {" "}
         &
+        {" "}
         <a href="https://tailwindcss.com" rel="noopener" target="_blank" class="rt-foot-prose-link"
           >Tailwind CSS</a
         >.
@@ -416,6 +439,54 @@ const localeLabel = currentLocale?.nativeName ?? locale;
   .rt-foot-prose-link:hover {
     color: var(--link-hover);
     text-decoration-thickness: 2px;
+  }
+
+  .rt-foot-brand {
+    position: relative;
+    border: 1px solid rgba(110, 103, 248, 0.24);
+    border-radius: 1.25rem;
+    background:
+      linear-gradient(135deg, rgba(110, 103, 248, 0.09), transparent 42%),
+      var(--bg);
+    box-shadow: 0 18px 50px rgba(70, 53, 188, 0.08);
+    padding: 1.25rem;
+  }
+
+  :root.dark .rt-foot-brand {
+    background:
+      linear-gradient(135deg, rgba(110, 103, 248, 0.16), transparent 48%),
+      rgba(21, 22, 42, 0.76);
+  }
+
+  .rt-foot-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+  }
+
+  .rt-foot-highlights li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    border: 1px solid rgba(110, 103, 248, 0.24);
+    border-radius: 999px;
+    background: rgba(110, 103, 248, 0.08);
+    color: var(--fg);
+    padding: 0.25rem 0.5625rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+  }
+
+  .rt-foot-highlights svg {
+    color: var(--color-brand-700);
+  }
+
+  :root.dark .rt-foot-highlights svg {
+    color: var(--color-brand-200);
   }
 
   .rt-foot-link {
