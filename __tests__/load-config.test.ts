@@ -109,6 +109,22 @@ describe("loadRepoConfig", () => {
     expect(config.allowFallback).toEqual(false);
   });
 
+  it("parses smart change detection settings", () => {
+    mkdirSync(join(tempWorkspace, ".github"), { recursive: true });
+    writeFileSync(
+      join(tempWorkspace, ".github", "resource-translator.yml"),
+      [
+        "changeDetection: false",
+        "statePath: .github/custom-translation-state.json",
+      ].join("\n"),
+      "utf-8",
+    );
+
+    const config = loadRepoConfig();
+    expect(config.changeDetection).toEqual("disabled");
+    expect(config.statePath).toEqual(".github/custom-translation-state.json");
+  });
+
   it("drops invalid enum values silently from YAML", () => {
     mkdirSync(join(tempWorkspace, ".github"), { recursive: true });
     writeFileSync(
@@ -184,5 +200,14 @@ describe("mergeInputsAndConfig", () => {
     expect(merged.textType).toEqual("html");
     expect(merged.profanityAction).toEqual("Marked");
     expect(merged.profanityMarker).toEqual("Tag");
+  });
+
+  it("merges smart change detection settings from YAML", () => {
+    const merged = mergeInputsAndConfig(baseInputs, {
+      changeDetection: "disabled",
+      statePath: ".github/custom-state.json",
+    });
+    expect(merged.changeDetection).toEqual("disabled");
+    expect(merged.statePath).toEqual(".github/custom-state.json");
   });
 });

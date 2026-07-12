@@ -5,6 +5,15 @@ export class Summary {
   updatedFileCount: number = 0;
   updatedFileTranslations: number = 0;
 
+  reusedTranslations: number = 0;
+  preservedManualEdits: number = 0;
+  noTranslateSkipped: number = 0;
+  providerRequestCount: number = 0;
+  providerRequestedTranslations: number = 0;
+  structureOnlyFileCount: number = 0;
+  snapshotBaselineTranslations: number = 0;
+  stateUpdated: boolean = false;
+
   constructor(
     public sourceLocale: string,
     public toLocales: string[],
@@ -19,6 +28,8 @@ export class Summary {
   }
 
   get hasNewTranslations(): boolean {
-    return this.totalTranslations > 0;
+    return (
+      this.totalFileCount > 0 || this.totalTranslations > 0 || this.stateUpdated
+    );
   }
 }

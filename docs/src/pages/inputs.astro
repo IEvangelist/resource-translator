@@ -170,6 +170,42 @@ const optionalRows: InputRow[] = [
     description: { text: copy.optionalInputs.items.configPath },
   },
   {
+    name: "changeDetection",
+    default: { text: "{value}", values: { value: code("smart") } },
+    description: {
+      text: copy.optionalInputs.items.changeDetection,
+      values: {
+        smart: code("smart"),
+        disabled: code("disabled"),
+        false: code("false"),
+      },
+    },
+  },
+  {
+    name: "statePath",
+    default: {
+      text: "{value}",
+      values: { value: code(".github/resource-translator-state.json") },
+    },
+    description: {
+      text: copy.optionalInputs.items.statePath,
+      values: {
+        defaultPath: code(".github/resource-translator-state.json"),
+      },
+    },
+  },
+  {
+    name: "snapshotOnly",
+    default: { text: "{value}", values: { value: code("false") } },
+    description: {
+      text: copy.optionalInputs.items.snapshotOnly,
+      values: {
+        true: code("true"),
+        statePath: code("statePath"),
+      },
+    },
+  },
+  {
     name: "dryRun",
     default: { text: "{value}", values: { value: code("false") } },
     description: {

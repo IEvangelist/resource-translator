@@ -57,6 +57,15 @@ jest.mock("@actions/core", () => {
 import createClient, { isUnexpected } from "@azure-rest/ai-translation-text";
 import { start } from "../src/resource-translator";
 import type { Inputs } from "../src/action/inputs";
+import {
+  buildTranslationFingerprint,
+  getTranslationLocaleState,
+  hashText,
+  normalizeStatePath,
+  replaceTranslationLocaleState,
+  TRANSLATION_STATE_SCHEMA_VERSION,
+  TranslationState,
+} from "../src/helpers/translation-state";
 
 const mockedCreateClient = createClient as unknown as jest.Mock;
 const mockedIsUnexpected = isUnexpected as unknown as jest.Mock;
@@ -64,6 +73,7 @@ const mockedIsUnexpected = isUnexpected as unknown as jest.Mock;
 describe("start() integration", () => {
   let tmp: string;
   let originalCwd: string;
+  let translatePost: jest.Mock;
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -101,7 +111,7 @@ describe("start() integration", () => {
     // 2) POST /translate – return locale-specific text per call. Our flow
     //    sends each text item once with all target locales requested, so
     //    each response contains a translations array per item.
-    const translatePost = jest
+    translatePost = jest
       .fn()
       .mockImplementation(
         async ({ body }: { body: Array<{ text: string }> }) => {
@@ -164,4 +174,173 @@ describe("start() integration", () => {
     expect(() => readFileSync(join(tmp, "src", "Test.fr.resx"))).toThrow();
     expect(() => readFileSync(join(tmp, "src", "Test.es.resx"))).toThrow();
   });
+
+  it("translates only changed keys and preserves manual target edits", async () => {
+    const sourcePath = join(tmp, "src", "Test.en.resx");
+    const targetPath = join(tmp, "src", "Test.fr.resx");
+    writeFileSync(
+      sourcePath,
+      `<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Hello"><value>Hello updated</value></data>
+  <data name="World"><value>World</value></data>
+</root>
+`,
+      "utf-8",
+    );
+    writeFileSync(
+      targetPath,
+      `<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Hello"><value>FR:Hello</value></data>
+  <data name="World"><value>Manual world</value></data>
+</root>
+`,
+      "utf-8",
+    );
+
+    const inputs = { ...baseInputs, toLocales: ["fr"] };
+    writeState(inputs, sourcePath, targetPath, {
+      Hello: {
+        sourceHash: hashText("Hello"),
+        targetHash: hashText("FR:Hello"),
+      },
+      World: {
+        sourceHash: hashText("World"),
+        targetHash: hashText("FR:World"),
+      },
+    });
+
+    await start(inputs);
+
+    expect(translatePost).toHaveBeenCalledTimes(1);
+    expect(translatePost.mock.calls[0][0].body).toEqual([
+      { text: "Hello updated" },
+    ]);
+
+    const fr = readFileSync(targetPath, "utf-8");
+    expect(fr).toContain("FR:Hello updated");
+    expect(fr).toContain("Manual world");
+
+    const state = readState();
+    const entry = getTranslationLocaleState(
+      state,
+      normalizeStatePath(sourcePath),
+      "fr",
+    )!.keys.World;
+    expect(entry.targetHash).toBe(hashText("Manual world"));
+  });
+
+  it("does not call the provider when all keys are unchanged", async () => {
+    const sourcePath = join(tmp, "src", "Test.en.resx");
+    const targetPath = join(tmp, "src", "Test.fr.resx");
+    writeFileSync(
+      targetPath,
+      `<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Hello"><value>FR:Hello</value></data>
+  <data name="World"><value>FR:World</value></data>
+</root>
+`,
+      "utf-8",
+    );
+
+    const inputs = { ...baseInputs, toLocales: ["fr"] };
+    writeState(inputs, sourcePath, targetPath, {
+      Hello: {
+        sourceHash: hashText("Hello"),
+        targetHash: hashText("FR:Hello"),
+      },
+      World: {
+        sourceHash: hashText("World"),
+        targetHash: hashText("FR:World"),
+      },
+    });
+
+    await start(inputs);
+
+    expect(translatePost).not.toHaveBeenCalled();
+  });
+
+  it("snapshotOnly bootstraps state from existing targets without provider calls", async () => {
+    const sourcePath = join(tmp, "src", "Test.en.resx");
+    const targetPath = join(tmp, "src", "Test.fr.resx");
+    writeFileSync(
+      targetPath,
+      `<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Hello"><value>Bonjour</value></data>
+  <data name="World"><value>Monde</value></data>
+</root>
+`,
+      "utf-8",
+    );
+
+    await start({
+      provider: "azure",
+      sourceLocale: "en",
+      snapshotOnly: true,
+      failOnError: false,
+    });
+
+    expect(mockedCreateClient).not.toHaveBeenCalled();
+    expect(translatePost).not.toHaveBeenCalled();
+
+    const state = readState();
+    const localeState = getTranslationLocaleState(
+      state,
+      normalizeStatePath(sourcePath),
+      "fr",
+    )!;
+    expect(localeState.targetPath).toBe(normalizeStatePath(targetPath));
+    expect(localeState.keys.Hello.sourceHash).toBe(hashText("Hello"));
+    expect(localeState.keys.Hello.targetHash).toBe(hashText("Bonjour"));
+    expect(localeState.keys.World.sourceHash).toBe(hashText("World"));
+    expect(localeState.keys.World.targetHash).toBe(hashText("Monde"));
+  });
+
+  const writeState = (
+    inputs: Inputs,
+    sourcePath: string,
+    targetPath: string,
+    keys: Record<string, { sourceHash: string; targetHash: string }>,
+  ) => {
+    mkdirSync(join(tmp, ".github"), { recursive: true });
+    const fingerprint = buildTranslationFingerprint(inputs, "azure", "fr");
+    const sourceStatePath = normalizeStatePath(sourcePath);
+    const targetStatePath = normalizeStatePath(targetPath);
+    const state: TranslationState = {
+      schemaVersion: TRANSLATION_STATE_SCHEMA_VERSION,
+      files: {},
+    };
+    replaceTranslationLocaleState(
+      state,
+      sourceStatePath,
+      "resx",
+      "fr",
+      targetStatePath,
+      Object.fromEntries(
+        Object.entries(keys).map(([key, value]) => [
+          key,
+          {
+            ...value,
+            fingerprint,
+          },
+        ]),
+      ),
+    );
+    writeFileSync(
+      join(tmp, ".github", "resource-translator-state.json"),
+      JSON.stringify(state, null, 2),
+      "utf-8",
+    );
+  };
+
+  const readState = (): TranslationState =>
+    JSON.parse(
+      readFileSync(
+        join(tmp, ".github", "resource-translator-state.json"),
+        "utf-8",
+      ),
+    ) as TranslationState;
 });

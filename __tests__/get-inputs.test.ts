@@ -196,6 +196,31 @@ describe("getInputs", () => {
   it("defaults provider to azure when unset", () => {
     expect(getInputs().provider).toEqual("azure");
   });
+
+  it("reads smart change detection settings", () => {
+    setInput("changeDetection", "false");
+    setInput("statePath", ".github/custom-translation-state.json");
+    let inputs = getInputs();
+    expect(inputs.changeDetection).toEqual("disabled");
+    expect(inputs.statePath).toEqual(".github/custom-translation-state.json");
+
+    setInput("changeDetection", "smart");
+    inputs = getInputs();
+    expect(inputs.changeDetection).toEqual("smart");
+  });
+
+  it("rejects an invalid changeDetection value", () => {
+    setInput("changeDetection", "maybe");
+    expect(() => getInputs()).toThrow(/changeDetection/);
+  });
+
+  it("does not require provider credentials for snapshotOnly", () => {
+    delete inputValues["subscriptionKey"];
+    delete inputValues["endpoint"];
+    setInput("snapshotOnly", "true");
+    const inputs = getInputs();
+    expect(inputs.snapshotOnly).toBe(true);
+  });
 });
 
 describe("getInputs provider validation", () => {

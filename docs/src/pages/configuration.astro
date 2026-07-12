@@ -243,6 +243,34 @@ const fieldRows: FieldRow[] = [
       },
     },
   },
+  {
+    field: {
+      text: "{changeDetection}",
+      values: { changeDetection: code("changeDetection") },
+    },
+    type: {
+      text: "{smart} | {disabled}",
+      values: { smart: code('"smart"'), disabled: code('"disabled"') },
+    },
+    notes: {
+      text: copy.fieldReference.fields.changeDetection,
+      values: {
+        smart: code("smart"),
+        disabled: code("disabled"),
+        false: code("false"),
+      },
+    },
+  },
+  {
+    field: { text: "{statePath}", values: { statePath: code("statePath") } },
+    type: { text: "string" },
+    notes: {
+      text: copy.fieldReference.fields.statePath,
+      values: {
+        defaultPath: code(".github/resource-translator-state.json"),
+      },
+    },
+  },
 ];
 
 const loadingStepOrder = ["actionInputs", "config", "precedence", "validation"] as const;

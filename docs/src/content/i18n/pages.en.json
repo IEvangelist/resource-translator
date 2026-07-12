@@ -243,7 +243,9 @@
 				"retryBackoffMs": "Cap (ms) on any single backoff sleep. Defaults to {defaultBackoff}. Azure's {retryAfter} header is honored exactly when present; otherwise jittered exponential backoff is used, capped at this value.",
 				"protectPlaceholders": "Defaults to {true}. When on, tokens like {mustache}, {jsVar}, {indexZero}, {numberFormat}, {printf}, {positionalPrintf} and HTML entities are replaced with sentinel tokens before translation and restored afterward. Disable only when source intentionally contains placeholder-shaped literals.",
 				"customPlaceholderPatterns": "Extra regex patterns (without delimiters) added to the default placeholder set, e.g. {angleToken} for custom token syntax. Invalid regexes are ignored.",
-				"noTranslatePatterns": "Glob patterns matched against parser-level keys (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). Matching keys are dropped from the request and pass through with their source value preserved."
+				"noTranslatePatterns": "Glob patterns matched against parser-level keys (JSON dotted path, RESX {resxName}, PO {poMsgid}, XLIFF unit {xliffId}, INI/restext key). Matching keys are dropped from the request and pass through with their source value preserved.",
+				"changeDetection": "Defaults to {smart}. Uses the committed state manifest to translate only changed or missing parser keys. Set to {disabled} or {false} to preserve the legacy always-translate behavior.",
+				"statePath": "Path to the deterministic smart change-detection state manifest. Defaults to {defaultPath}."
 			}
 		},
 		"loadingOrder": {
@@ -314,6 +316,9 @@
 				"include": "Newline-separated glob patterns; only matching files are translated.",
 				"exclude": "Newline-separated glob patterns; matching files are skipped (applied after include).",
 				"configPath": "Path to the YAML config file (relative to the workspace root).",
+				"changeDetection": "Smart change detection mode. {smart} translates only keys whose source value, target presence, state entry, or translation-affecting settings require it. Use {disabled} or {false} to send every eligible key on every run.",
+				"statePath": "Path to the compact deterministic smart change-detection state manifest. Defaults to {defaultPath}; commit it so future runs can audit and reuse unchanged translations.",
+				"snapshotOnly": "When {true}, create/update the smart change-detection manifest from existing source and target files without calling a translation provider or writing target resource files. Useful when bootstrapping {statePath} while a provider is unavailable.",
 				"dryRun": "When {true}, run translations and emit summaries but do not write files.",
 				"failOnError": "When {true}, unexpected errors fail the action; when {false}, errors are warnings."
 			}
@@ -524,6 +529,7 @@
 		"releasesHeading": "Releases",
 		"fixedLabel": "Fixed:",
 		"releases": {
+			"unreleasedSmartChangeDetection": "Smart change detection now defaults to {smart}: a compact provider-neutral state manifest ({stateManifest}) tracks parser keys, source hashes, target hashes, and translation-affecting settings so only changed or missing keys are sent to the selected provider. Use {changeDetection}={disabled} or {false} for legacy always-translate behavior, {statePath} to relocate the manifest, and {snapshotOnly} to bootstrap the manifest from existing target files without calling a provider. Key-level audit rule codes are logged for every decision.",
 			"v302": "{label} Translator requests now pin {apiVersion} on the wire for both {translate} and {languages}. The Azure SDK only honors the client-level api-version option when a credential is passed; the action authenticates per request via headers, so that option was silently dropped and requests defaulted to a preview api-version whose {translate} contract rejected the body with HTTP 400 (error code {code}). Completes the fix started in 3.0.1.",
 			"v301": "{label} The {translate} request body is now a bare JSON array of {textItem} items instead of a wrapped {inputs} object, matching the v3.0 REST contract. On its own this did not restore translations — see 3.0.2."
 		},

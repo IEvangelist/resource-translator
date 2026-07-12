@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- **Smart change detection.** The action now defaults to a compact,
+  provider-neutral translation-memory state manifest at
+  `.github/resource-translator-state.json` and sends only changed, missing, or
+  settings-invalidated keys to the selected provider. Unchanged target values
+  are reused, manual target edits are preserved, and every key-level decision is
+  logged with an audit rule code.
+- New action inputs: `changeDetection` (`smart` by default, `disabled`/`false`
+  for legacy always-translate behavior) and `statePath` for relocating the
+  deterministic state manifest.
+- New `snapshotOnly` bootstrap mode creates the smart change-detection manifest
+  from existing source/target files without calling any translation provider or
+  writing target resource files.
+
 ## [3.1.0] - 2026-07-10
 
 ### Added

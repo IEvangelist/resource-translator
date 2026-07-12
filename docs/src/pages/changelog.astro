@@ -17,7 +17,7 @@ type ChangelogItem = {
 
 type ReleaseSection = {
   version: string;
-  date: string;
+  date?: string;
   /** Rich, localized bullets (recent releases). */
   localizedItems?: ChangelogItem[];
   /** Plain-text bullets (historical releases). */
@@ -53,6 +53,13 @@ const commonValues = {
   protectPlaceholders: code("protectPlaceholders"),
   customPlaceholderPatterns: code("customPlaceholderPatterns"),
   noTranslatePatterns: code("noTranslatePatterns"),
+  changeDetection: code("changeDetection"),
+  statePath: code("statePath"),
+  snapshotOnly: code("snapshotOnly"),
+  smart: code("smart"),
+  disabled: code("disabled"),
+  false: code("false"),
+  stateManifest: code(".github/resource-translator-state.json"),
   resxName: code("name"),
   poMsgid: code("msgid"),
   xliffId: code("id"),
@@ -187,6 +194,15 @@ const v310Items: ChangelogItem[] = [
 
 const releases: ReleaseSection[] = [
   {
+    version: "Unreleased",
+    localizedItems: [
+      {
+        text: copy.releases.unreleasedSmartChangeDetection,
+        values: commonValues,
+      },
+    ],
+  },
+  {
     version: "3.1.0",
     date: "2026-07-10",
     localizedItems: v310Items,
@@ -259,8 +275,13 @@ const releases: ReleaseSection[] = [
     releases.map((release) => (
       <section>
         <h3>
-          {release.version} —{" "}
-          <time datetime={release.date}>{release.date}</time>
+          {release.version}
+          {release.date && (
+            <>
+              {" "}
+              — <time datetime={release.date}>{release.date}</time>
+            </>
+          )}
         </h3>
         <ul>
           {release.localizedItems?.map((item) => (

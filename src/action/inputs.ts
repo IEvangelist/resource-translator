@@ -10,6 +10,9 @@ export type ProfanityAction = "NoAction" | "Marked" | "Deleted";
 /** Translator profanity marker (only meaningful when profanityAction is "Marked"). */
 export type ProfanityMarker = "Asterisk" | "Tag";
 
+/** Smart change-detection behavior. */
+export type ChangeDetectionMode = "smart" | "disabled";
+
 /**
  * Optional repo-level configuration that can be supplied either via action
  * inputs or via a YAML file at `.github/resource-translator.yml`. Action
@@ -107,6 +110,20 @@ export interface RepoConfig {
    * this value. Defaults to 30000ms (30s).
    */
   retryBackoffMs?: number;
+
+  /**
+   * Smart translation-memory-backed change detection. Defaults to "smart";
+   * set to "disabled" to preserve the legacy behavior of translating every
+   * eligible key on every run.
+   */
+  changeDetection?: ChangeDetectionMode;
+
+  /**
+   * Path to the deterministic translation state manifest, relative to the
+   * workspace root unless absolute. Defaults to
+   * `.github/resource-translator-state.json`.
+   */
+  statePath?: string;
 }
 
 /** Closed set of valid `provider` values for runtime validation. */
@@ -127,6 +144,11 @@ export const PROFANITY_ACTIONS: readonly ProfanityAction[] = [
 export const PROFANITY_MARKERS: readonly ProfanityMarker[] = [
   "Asterisk",
   "Tag",
+] as const;
+/** Closed set of valid `changeDetection` values for runtime validation. */
+export const CHANGE_DETECTION_MODES: readonly ChangeDetectionMode[] = [
+  "smart",
+  "disabled",
 ] as const;
 
 export interface Inputs extends RepoConfig {
@@ -217,4 +239,11 @@ export interface Inputs extends RepoConfig {
    * they are logged as warnings and processing continues.
    */
   failOnError?: boolean;
+
+  /**
+   * When true, initialize/update the smart change-detection manifest from
+   * existing source and target files without calling a translation provider or
+   * writing target resource files. Intended as a one-time bootstrap mode.
+   */
+  snapshotOnly?: boolean;
 }

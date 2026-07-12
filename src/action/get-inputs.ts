@@ -1,5 +1,7 @@
 import { getBooleanInput, getInput } from "@actions/core";
 import {
+  CHANGE_DETECTION_MODES,
+  ChangeDetectionMode,
   Inputs,
   PROFANITY_ACTIONS,
   PROFANITY_MARKERS,
@@ -57,8 +59,11 @@ export const getInputs = (): Inputs => {
     customPlaceholderPatterns: getMultilineList("customPlaceholderPatterns"),
     maxRetries: getOptionalInt("maxRetries"),
     retryBackoffMs: getOptionalInt("retryBackoffMs"),
+    changeDetection: getOptionalChangeDetection("changeDetection"),
+    statePath: getInput("statePath") || undefined,
     dryRun: getOptionalBoolean("dryRun", false),
     failOnError: getOptionalBoolean("failOnError", true),
+    snapshotOnly: getOptionalBoolean("snapshotOnly", false),
   };
 
   const config = loadRepoConfig(inputs.configPath);
@@ -92,6 +97,7 @@ const validateMerged = (inputs: Inputs) => {
   oneOf("textType", TEXT_TYPES);
   oneOf("profanityAction", PROFANITY_ACTIONS);
   oneOf("profanityMarker", PROFANITY_MARKERS);
+  oneOf("changeDetection", CHANGE_DETECTION_MODES);
 
   if (inputs.profanityMarker && inputs.profanityAction !== "Marked") {
     throw new Error(
@@ -101,6 +107,11 @@ const validateMerged = (inputs: Inputs) => {
     );
   }
 
+  if (inputs.snapshotOnly && inputs.changeDetection === "disabled") {
+    throw new Error(
+      `'snapshotOnly' requires smart change detection. Remove 'snapshotOnly' or set 'changeDetection' to 'smart'.`,
+    );
+  }
   validateProvider(inputs);
 };
 
@@ -112,6 +123,10 @@ const validateMerged = (inputs: Inputs) => {
 const validateProvider = (inputs: Inputs) => {
   if (!inputs.sourceLocale) {
     throw new Error(`Input 'sourceLocale' is required.`);
+  }
+
+  if (inputs.snapshotOnly) {
+    return;
   }
 
   switch (inputs.provider) {
@@ -219,6 +234,23 @@ const getOptionalEnum = <T extends string>(
     );
   }
   return raw as T;
+};
+
+const getOptionalChangeDetection = (
+  name: string,
+): ChangeDetectionMode | undefined => {
+  const raw = getInput(name)?.trim();
+  if (!raw) return undefined;
+  const normalized = raw.toLowerCase();
+  if (["true", "yes", "on", "1", "smart", "enabled"].includes(normalized)) {
+    return "smart";
+  }
+  if (["false", "no", "off", "0", "disabled", "disable"].includes(normalized)) {
+    return "disabled";
+  }
+  throw new Error(
+    `Invalid value for '${name}': '${raw}'. Expected one of: ${CHANGE_DETECTION_MODES.join(", ")}, true, or false.`,
+  );
 };
 
 const getMultilineList = (name: string): string[] | undefined => {

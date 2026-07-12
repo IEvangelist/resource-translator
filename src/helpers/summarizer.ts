@@ -22,6 +22,16 @@ export const summarize = (summary: Summary): [string, string] => {
 
   const ufc = summary.updatedFileCount.toLocaleString("en");
   const uft = summary.updatedFileTranslations.toLocaleString("en");
+  const providerRequests = summary.providerRequestCount.toLocaleString("en");
+  const providerRequestedTranslations =
+    summary.providerRequestedTranslations.toLocaleString("en");
+  const reused = summary.reusedTranslations.toLocaleString("en");
+  const preservedManualEdits =
+    summary.preservedManualEdits.toLocaleString("en");
+  const noTranslateSkipped = summary.noTranslateSkipped.toLocaleString("en");
+  const structureOnly = summary.structureOnlyFileCount.toLocaleString("en");
+  const snapshotBaseline =
+    summary.snapshotBaselineTranslations.toLocaleString("en");
 
   // Pull request message template
   const details: string[] = [
@@ -42,6 +52,17 @@ export const summarize = (summary: Summary): [string, string] => {
     `| Updated | ${ufc}     | ${uft}            |`,
     "",
     `Of the ${fileCount} translated files, there are a total of ${translations} individual translations.`,
+    "",
+    "## Smart change-detection details",
+    "",
+    `- Provider requests made: ${providerRequests}`,
+    `- Provider-requested key/locale translations: ${providerRequestedTranslations}`,
+    `- Reused unchanged translations: ${reused}`,
+    `- Preserved manual target edits: ${preservedManualEdits}`,
+    `- Skipped by noTranslatePatterns: ${noTranslateSkipped}`,
+    `- Structure-only file updates: ${structureOnly}`,
+    `- Snapshot baseline entries: ${snapshotBaseline}`,
+    `- Translation state updated: ${summary.stateUpdated ? "yes" : "no"}`,
     "",
     "> These machine translations are a result of Azure Cognitive Services Translator, and the [Machine Translator](https://github.com/marketplace/actions/machine-translator) GitHub action. For more information, see [Translator v3.0](https://docs.microsoft.com/azure/cognitive-services/translator/reference/v3-0-reference?WT.mc_id=dapine). To post an issue, or feature request please do so [here](https://github.com/IEvangelist/resource-translator/issues).",
   ];

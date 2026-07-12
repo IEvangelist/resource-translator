@@ -24,6 +24,26 @@ with built-in retry/throttling — no hand-rolled HTTP clients.
 
 Supported formats: `.resx`, `.xliff`, `.po`, `.json`, `.ini`, `.restext`.
 
+## Smart change detection
+
+The action defaults to provider-independent smart change detection. It keeps a
+compact, deterministic state manifest at `.github/resource-translator-state.json`
+and uses parser keys plus source-value hashes to translate only keys that are
+new, missing from a target file, changed in the source locale, or affected by
+translation-setting changes. Unchanged target values are reused, and manual
+target-file edits are preserved and logged.
+
+Commit the state manifest so future runs have a reliable baseline. Set
+`changeDetection: disabled` (or `false`) to restore the legacy behavior of
+translating every eligible key on every run, or set `statePath` to move the
+manifest.
+
+If you already have localized target files and want to avoid the initial full
+retranslation, run once with `snapshotOnly: true`. Snapshot mode does not call
+Azure, AWS, or Google and does not write target resource files; it creates the
+state manifest from existing source/target files, then future smart runs only
+translate changed or missing keys.
+
 ## 📚 Documentation
 
 **Everything lives on the docs site:**

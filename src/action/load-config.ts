@@ -3,6 +3,8 @@ import { resolve } from "node:path";
 import { warning, debug } from "@actions/core";
 import * as yaml from "js-yaml";
 import {
+  CHANGE_DETECTION_MODES,
+  ChangeDetectionMode,
   PROFANITY_ACTIONS,
   PROFANITY_MARKERS,
   PROVIDERS,
@@ -90,6 +92,21 @@ const normalizeRepoConfig = (raw: RepoConfig): RepoConfig => {
     return n;
   };
 
+  const changeDetection = (value: unknown): ChangeDetectionMode | undefined => {
+    if (value === undefined || value === null || value === "") return undefined;
+    if (typeof value === "boolean") return value ? "smart" : "disabled";
+    if (typeof value === "string") {
+      const v = value.trim().toLowerCase();
+      if (["true", "yes", "on", "1", "smart", "enabled"].includes(v)) {
+        return "smart";
+      }
+      if (["false", "no", "off", "0", "disabled", "disable"].includes(v)) {
+        return "disabled";
+      }
+    }
+    return enumOf<ChangeDetectionMode>(value, CHANGE_DETECTION_MODES);
+  };
+
   return {
     provider: enumOf<Provider>(raw.provider, PROVIDERS),
     sourceLocale:
@@ -118,6 +135,8 @@ const normalizeRepoConfig = (raw: RepoConfig): RepoConfig => {
     customPlaceholderPatterns: stringList(raw.customPlaceholderPatterns),
     maxRetries: nonNegativeInt(raw.maxRetries),
     retryBackoffMs: nonNegativeInt(raw.retryBackoffMs),
+    changeDetection: changeDetection(raw.changeDetection),
+    statePath: typeof raw.statePath === "string" ? raw.statePath : undefined,
   };
 };
 
@@ -148,6 +167,8 @@ export const mergeInputsAndConfig = <T extends RepoConfig>(
     "customPlaceholderPatterns",
     "maxRetries",
     "retryBackoffMs",
+    "changeDetection",
+    "statePath",
   ];
   for (const key of keys) {
     if (merged[key] === undefined || isEmpty(merged[key])) {

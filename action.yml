@@ -80,6 +80,14 @@ inputs:
   noTranslatePatterns:
     description: "Optional newline-separated glob patterns matched against parser key paths (resx 'name', po 'msgid', xliff unit 'id', '[--]'-joined paths for json, raw key for ini/restext). Matching keys are kept verbatim and never sent to Translator."
     required: false
+  changeDetection:
+    description: "Smart change detection mode. Defaults to 'smart', which uses a deterministic state manifest to translate only changed/missing keys. Set to 'disabled' (or 'false') to translate every eligible key on every run."
+    required: false
+    default: 'smart'
+  statePath:
+    description: "Path to the deterministic smart change-detection state manifest, relative to the workspace root unless absolute."
+    required: false
+    default: '.github/resource-translator-state.json'
   protectPlaceholders:
     description: "When 'true' (default), wrap '{{name}}', '{0}', '%s', '${var}', etc. in stable sentinels so Translator does not rearrange or translate them. Set to 'false' only if your source contains literal placeholder-like sequences."
     required: false
@@ -96,6 +104,10 @@ inputs:
     description: "When 'true', perform translations and emit summary outputs but do not write files."
     required: false
     default: 'false'
+  snapshotOnly:
+    description: "When 'true', bootstrap/update the smart change-detection state manifest from existing source and target files without calling a translation provider or writing target resource files. Useful for seeding .github/resource-translator-state.json before enabling normal incremental runs."
+    required: false
+    default: 'false'
   failOnError:
     description: "When 'true' (default), unexpected errors fail the action. When 'false', errors are logged as warnings."
     required: false
@@ -110,4 +122,3 @@ outputs:
 runs:
   using: 'node24'
   main: 'dist/resource-translator/index.js'
-
