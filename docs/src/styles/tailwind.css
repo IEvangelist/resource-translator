@@ -381,21 +381,68 @@
   }
 
   .reference-list {
-    @apply my-6 grid gap-3;
+    @apply my-6 grid gap-4;
   }
 
   .reference-card {
     background-color: var(--bg-elevated);
     border: 1px solid var(--border);
-    @apply rounded-xl p-4 shadow-sm;
+    @apply relative overflow-hidden rounded-2xl p-4 shadow-sm transition-all duration-200;
+  }
+
+  .reference-card::before {
+    content: "";
+    background: linear-gradient(
+      180deg,
+      var(--color-brand-500),
+      var(--color-accent-500),
+      var(--color-warm-500)
+    );
+    @apply absolute inset-y-0 left-0 w-1 opacity-80;
+  }
+
+  .reference-card::after {
+    content: "";
+    background: radial-gradient(
+      circle,
+      rgba(110, 103, 248, 0.22),
+      transparent 68%
+    );
+    @apply pointer-events-none absolute -right-14 -top-14 size-32 opacity-0 blur-xl transition-opacity duration-200;
+  }
+
+  .reference-card:nth-child(3n + 2)::before {
+    background: linear-gradient(
+      180deg,
+      var(--color-accent-500),
+      var(--color-warm-500)
+    );
+  }
+
+  .reference-card:nth-child(3n)::before {
+    background: linear-gradient(
+      180deg,
+      var(--color-cool-500),
+      var(--color-brand-500)
+    );
+  }
+
+  .reference-card:hover {
+    border-color: rgba(110, 103, 248, 0.45);
+    box-shadow: 0 18px 40px rgba(70, 53, 188, 0.12);
+    transform: translateY(-2px);
+  }
+
+  .reference-card:hover::after {
+    @apply opacity-100;
   }
 
   .reference-card-title {
-    @apply mb-3 text-base font-semibold leading-6;
+    @apply relative mb-3 pl-2 text-base font-semibold leading-6;
   }
 
   .reference-meta {
-    @apply mb-3 grid gap-2 text-sm sm:grid-cols-2;
+    @apply relative mb-3 grid gap-2 pl-2 text-sm sm:grid-cols-2;
   }
 
   .reference-meta > div {
@@ -412,7 +459,7 @@
   }
 
   .reference-description {
-    @apply !my-0 text-[0.97em] leading-7;
+    @apply relative !my-0 pl-2 text-[0.97em] leading-7;
   }
 
   .prose-rt .provider-doc-links {

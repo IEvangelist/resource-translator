@@ -193,6 +193,11 @@ const resourceBodyValues = {
   frFile: code("Greetings.fr.resx"),
   deFile: code("Greetings.de.resx"),
 };
+const smartBodyValues = {
+  changeDetection: code("changeDetection"),
+  stateManifest: code(".github/resource-translator-state.json"),
+  snapshotOnly: code("snapshotOnly: true"),
+};
 const outputBodyValues = {
   summaryTitle: code("summary-title"),
   summaryDetails: code("summary-details"),
@@ -361,6 +366,16 @@ const outputBodyValues = {
 
   <Step
     number={4}
+    title={copy.steps.smart.title}
+    accent="bg-(--color-cool-500)"
+  >
+    <p>
+      <LocalizedText text={copy.steps.smart.body} values={smartBodyValues} />
+    </p>
+  </Step>
+
+  <Step
+    number={5}
     title={copy.steps.output.title}
     accent="bg-(--color-brand-700)"
   >

@@ -1,18 +1,18 @@
 {
 	"index": {
 		"title": "Resource Translator",
-		"description": "Resource Translator opens machine-translated pull requests for your resource files in any repo, in any format — powered by Azure AI Translator, AWS Translate, or Google Cloud Translation.",
-		"socialTitle": "Resource Translator — translate resource files automatically",
-		"badge": "v3.0 — Azure, AWS & Google providers, Node 24, repo config",
-		"headlinePrefix": "Localize your repo on",
-		"headlineAccent": "every commit.",
-		"lede": "Resource Translator opens machine-translated pull requests for your resource files using Azure, AWS, or Google — one unified action, one provider per run, official SDKs under the hood.",
+		"description": "Resource Translator opens machine-translated pull requests for your resource files and uses smart change detection to translate only what changed — powered by Azure AI Translator, AWS Translate, or Google Cloud Translation.",
+		"socialTitle": "Resource Translator — smart resource-file translation for GitHub Actions",
+		"badge": "v3.2 — smart change detection, Azure, AWS & Google",
+		"headlinePrefix": "Translate the diff,",
+		"headlineAccent": "not the catalog.",
+		"lede": "Resource Translator opens machine-translated pull requests using Azure, AWS, or Google — and its default smart change detection sends only new, missing, or changed keys to your provider.",
 		"primaryCta": "Get started",
 		"secondaryCta": "Star on GitHub",
 		"supports": "Supports",
 		"builtForShipping": "Built for shipping",
 		"workflowTitle": "Translation as a workflow, not a chore.",
-		"workflowBody": "Drop the action into your existing CI, point it at Azure, AWS, or Google, and let your repo speak every language you target.",
+		"workflowBody": "Drop the action into your existing CI, point it at Azure, AWS, or Google, and let smart change detection keep provider calls focused on the keys that actually need work.",
 		"stats": {
 			"audit": "0 npm-audit issues",
 			"tests": "240+ tests",
@@ -28,6 +28,12 @@
 			"restext": "MUI text"
 		},
 		"features": {
+			"smartDetection": {
+				"eyebrow": "Default in v3.2",
+				"title": "Smart change detection",
+				"body": "A compact {stateManifest} tracks parser keys, source hashes, and translation-affecting settings. The action skips stable keys, preserves manual target edits, and logs every decision with rule codes. Use {snapshotOnly} to bootstrap existing translations without a provider call.",
+				"stat": "Most runs translate only the changed keys"
+			},
 			"formats": {
 				"title": "Six file formats",
 				"body": "Round-trips {resx}, {xliff}, {po}, {json}, {ini}, and {restext} with byte-stable formatting."
@@ -41,8 +47,8 @@
 				"body": "Lock brand names and product terms with smart word-boundary regex that handles {cpp}, {dotnet}, and friends."
 			},
 			"dryRun": {
-				"title": "Dry-run + soft-fail",
-				"body": "Preview translations without writing files, or surface every error as a warning while you iterate."
+				"title": "Snapshot bootstrap",
+				"body": "Already have localized files? Seed the manifest from disk without provider calls, then let future runs translate only the delta."
 			},
 			"outputs": {
 				"title": "PR-friendly outputs",
@@ -57,19 +63,19 @@
 			"eyebrow": "Drop-in workflow",
 			"titlePrefix": "Copy. Paste.",
 			"titleAccent": "Translate.",
-			"body": "Three secrets, four lines, and your repo is multilingual on the next push.",
+			"body": "Three secrets, one workflow, and smart change detection is on by default for every future push.",
 			"setupLink": "Walk through the full setup"
 		},
 		"cta": {
 			"title": "Ready to localize on autopilot?",
-			"body": "One provider key — Azure, AWS, or Google — and one workflow file. Resource Translator handles the rest.",
+			"body": "One provider key — Azure, AWS, or Google — and one workflow file. Resource Translator handles the rest without retranslating stable strings over and over.",
 			"button": "Get started"
 		}
 	},
 	"getting-started": {
 		"title": "Getting started",
 		"eyebrow": "Setup",
-		"heroLede": "Add a workflow file, choose your translation provider — Azure, AWS, or Google — and the action scans the repo for source-language resource files and emits translated siblings.",
+		"heroLede": "Add a workflow file, choose your translation provider — Azure, AWS, or Google — and the action scans source-language resource files, translates only what changed, and emits translated siblings.",
 		"steps": {
 			"provider": {
 				"title": "Choose a translation provider",
@@ -106,6 +112,10 @@
 			"resource": {
 				"title": "Commit a source resource file",
 				"body": "Resource files use the {namingConvention} convention. For example {sourceFile} becomes {frFile}, {deFile}, and so on after a run."
+			},
+			"smart": {
+				"title": "Let smart change detection protect your bill",
+				"body": "{changeDetection} defaults to smart and stores a compact {stateManifest} manifest in the repo. Commit that file so future runs can reuse stable translations, preserve manual target edits, and send only new, missing, changed, or settings-invalidated keys to the provider. If localized files already exist, run once with {snapshotOnly} to create the manifest without provider calls."
 			},
 			"output": {
 				"title": "Inspect the output",

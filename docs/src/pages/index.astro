@@ -32,9 +32,13 @@ jobs:
         uses: IEvangelist/resource-translator@v3
         with:
           sourceLocale: en
-          subscriptionKey: \${{ secrets.TRANSLATOR_KEY }}
-          endpoint: \${{ secrets.TRANSLATOR_ENDPOINT }}
-          region: \${{ secrets.TRANSLATOR_REGION }}
+          # Smart change detection is on by default.
+          # Commit .github/resource-translator-state.json after the first run.
+          provider: |
+            azure:
+              subscriptionKey: \${{ secrets.TRANSLATOR_KEY }}
+              endpoint: \${{ secrets.TRANSLATOR_ENDPOINT }}
+              region: \${{ secrets.TRANSLATOR_REGION }}
           toLocales: '["fr","de","es","ja"]'
 
       - if: steps.translator.outputs.has-new-translations == 'true'
@@ -52,6 +56,9 @@ type Feature = {
   body: string;
   values?: LocalizedReplacements;
   accent: string;
+  eyebrow?: string;
+  stat?: string;
+  featured?: boolean;
 };
 
 type FormatBadge = {
@@ -88,9 +95,24 @@ const featureValues = {
     statusCodes: code("408/429/5xx"),
     esbuild: code("esbuild"),
   },
+  smartDetection: {
+    changeDetection: code("changeDetection"),
+    stateManifest: code(".github/resource-translator-state.json"),
+    snapshotOnly: code("snapshotOnly"),
+  },
 } satisfies Record<string, LocalizedReplacements>;
 
 const features: Feature[] = [
+  {
+    icon: "lucide:scan-search",
+    title: copy.features.smartDetection.title,
+    body: copy.features.smartDetection.body,
+    values: featureValues.smartDetection,
+    accent: "from-(--color-brand-500) via-(--color-accent-500) to-(--color-warm-500)",
+    eyebrow: copy.features.smartDetection.eyebrow,
+    stat: copy.features.smartDetection.stat,
+    featured: true,
+  },
   {
     icon: "lucide:languages",
     title: copy.features.formats.title,
@@ -113,7 +135,7 @@ const features: Feature[] = [
     accent: "from-(--color-warm-500) to-(--color-brand-500)",
   },
   {
-    icon: "lucide:shield-check",
+    icon: "lucide:file-clock",
     title: copy.features.dryRun.title,
     body: copy.features.dryRun.body,
     accent: "from-(--color-cool-500) to-(--color-brand-500)",
@@ -306,7 +328,12 @@ const formats: FormatBadge[] = [
     <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {
         features.map((f) => (
-          <div class="group relative overflow-hidden rounded-2xl border border-(--border) bg-(--bg-elevated) p-6 transition-all hover:-translate-y-1 hover:border-(--color-brand-500)/40 hover:shadow-xl hover:shadow-(--color-brand-500)/10">
+          <div
+            class:list={[
+              "feature-card group relative overflow-hidden rounded-2xl border border-(--border) bg-(--bg-elevated) p-6 transition-all hover:-translate-y-1 hover:border-(--color-brand-500)/40 hover:shadow-xl hover:shadow-(--color-brand-500)/10",
+              f.featured ? "md:col-span-2 lg:col-span-2" : "",
+            ]}
+          >
             <div
               aria-hidden="true"
               class:list={[
@@ -322,10 +349,23 @@ const formats: FormatBadge[] = [
             >
               <Icon name={f.icon} class="size-5" />
             </div>
-            <h3 class="relative mt-5 text-lg font-semibold">{f.title}</h3>
+            {f.eyebrow && (
+              <p class="relative mt-5 text-xs font-semibold uppercase tracking-[0.18em] text-(--color-accent-700) dark:text-(--color-accent-300)">
+                {f.eyebrow}
+              </p>
+            )}
+            <h3 class:list={["relative text-lg font-semibold", f.eyebrow ? "mt-2" : "mt-5"]}>
+              {f.title}
+            </h3>
             <p class="relative mt-2 text-sm leading-relaxed text-(--fg-muted)">
               <LocalizedText text={f.body} values={f.values} />
             </p>
+            {f.stat && (
+              <p class="relative mt-5 inline-flex items-center gap-2 rounded-full border border-(--color-brand-500)/25 bg-(--color-brand-500)/10 px-3 py-1 text-xs font-semibold text-(--color-brand-700) dark:text-(--color-brand-200)">
+                <Icon name="lucide:badge-dollar-sign" class="size-3.5" />
+                {f.stat}
+              </p>
+            )}
           </div>
         ))
       }

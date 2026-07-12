@@ -10,7 +10,8 @@
 [![docs](https://img.shields.io/badge/docs-ievangelist.github.io%2Fresource--translator-1f3a8a)](https://ievangelist.github.io/resource-translator/)
 
 A GitHub Action that opens machine-translated pull requests for resource files
-in your repository. Choose one translation **provider** per run — **Azure AI
+in your repository — without retranslating your entire catalog every time one
+string changes. Choose one translation **provider** per run — **Azure AI
 Translator** (default), **AWS Translate**, or **Google Cloud Translation** — behind
 a single, unified API surface. Each provider is driven by its official SDK
 ([`@azure-rest/ai-translation-text`](https://www.npmjs.com/package/@azure-rest/ai-translation-text),
@@ -26,12 +27,13 @@ Supported formats: `.resx`, `.xliff`, `.po`, `.json`, `.ini`, `.restext`.
 
 ## Smart change detection
 
-The action defaults to provider-independent smart change detection. It keeps a
-compact, deterministic state manifest at `.github/resource-translator-state.json`
-and uses parser keys plus source-value hashes to translate only keys that are
-new, missing from a target file, changed in the source locale, or affected by
-translation-setting changes. Unchanged target values are reused, and manual
-target-file edits are preserved and logged.
+**Translate the diff, not the catalog.** Smart change detection is on by default
+and provider independent. The action keeps a compact, deterministic state
+manifest at `.github/resource-translator-state.json` and uses parser keys plus
+source-value hashes to translate only keys that are new, missing from a target
+file, changed in the source locale, or affected by translation-setting changes.
+Unchanged target values are reused, manual target-file edits are preserved, and
+every decision is logged with audit-friendly rule codes.
 
 Commit the state manifest so future runs have a reliable baseline. Set
 `changeDetection: disabled` (or `false`) to restore the legacy behavior of

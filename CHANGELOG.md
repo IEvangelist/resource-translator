@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Improved smart change detection positioning in the README and docs, including
+  clearer cost-control/auditability messaging, a getting-started adoption step,
+  and more visually engaging docs reference cards.
+
 ## [3.2.0] - 2026-07-12
 
 ### Added
