@@ -112,20 +112,19 @@ const localeLabel = currentLocale?.nativeName ?? locale;
   </div>
 
   <div class="relative mx-auto max-w-7xl px-6 py-14">
-    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-12">
-      <!-- Brand + tagline + quick install + socials -->
-      <div class="rt-foot-brand min-w-0 lg:col-span-4">
+    <div class="rt-foot-top">
+      <section class="rt-foot-brandline" aria-label={site?.name ?? "Resource Translator"}>
         <a
           href={localizedHref(locale, "index")}
-          class="group inline-flex items-center gap-2.5 text-base font-semibold text-(--fg) no-underline"
+          class="group inline-flex items-center gap-3 text-base font-semibold text-(--fg) no-underline"
         >
           <Logo
-            size={32}
-            class="rounded-lg shadow-sm transition-transform group-hover:rotate-[-6deg]"
+            size={36}
+            class="rounded-xl shadow-sm transition-transform group-hover:rotate-[-6deg]"
           />
           <span>{site?.name ?? "Resource Translator"}</span>
         </a>
-        <p class="mt-4 max-w-sm leading-relaxed">
+        <p class="rt-foot-tagline">
           {
             footer?.tagline ??
               "Smart GitHub Action localization for resource files. Translate only changed keys, preserve manual edits, and open PR-ready summaries with Azure, AWS, or Google."
@@ -149,39 +148,40 @@ const localeLabel = currentLocale?.nativeName ?? locale;
             <span>{footer?.providerHighlight ?? "Azure · AWS · Google"}</span>
           </li>
         </ul>
+      </section>
 
-        <!-- Quick-install snippet with copy button -->
-        <div class="mt-6 min-w-0">
-          <p
-            id="rt-foot-install-label"
-            class="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-(--fg)"
-          >
+      <section class="rt-foot-action-panel" aria-labelledby="rt-foot-install-label">
+        <div>
+          <p id="rt-foot-install-label" class="rt-foot-kicker">
             {footer?.installLabel ?? "Add it to your workflow"}
           </p>
-          <div class="rt-foot-snippet" role="group" aria-labelledby="rt-foot-install-label">
-            <code class="rt-foot-snippet-code" data-snippet>{installSnippet}</code>
-            <button
-              type="button"
-              class="rt-foot-copy"
-              data-copy-snippet
-              data-copy-label={footer?.copy ?? "Copy"}
-              data-copied-label={footer?.copied ?? "Copied!"}
-              aria-label={footer?.copyAria ?? "Copy the install snippet to your clipboard"}
-            >
-              <Icon name="lucide:copy" class="size-3.5" data-copy-icon aria-hidden="true" />
-              <Icon
-                name="lucide:check"
-                class="size-3.5 hidden text-(--color-brand-500)"
-                data-check-icon
-                aria-hidden="true"
-              />
-              <span data-copy-text>{footer?.copy ?? "Copy"}</span>
-            </button>
-          </div>
+          <p class="rt-foot-install-note">
+            {footer?.installNote ?? "Pin the action in any workflow and let smart detection handle the rest."}
+          </p>
         </div>
 
-        <!-- Primary CTAs: Marketplace + star -->
-        <div class="mt-5 flex flex-wrap items-center gap-2.5">
+        <div class="rt-foot-snippet" role="group" aria-labelledby="rt-foot-install-label">
+          <code class="rt-foot-snippet-code" data-snippet>{installSnippet}</code>
+          <button
+            type="button"
+            class="rt-foot-copy"
+            data-copy-snippet
+            data-copy-label={footer?.copy ?? "Copy"}
+            data-copied-label={footer?.copied ?? "Copied!"}
+            aria-label={footer?.copyAria ?? "Copy the install snippet to your clipboard"}
+          >
+            <Icon name="lucide:copy" class="size-3.5" data-copy-icon aria-hidden="true" />
+            <Icon
+              name="lucide:check"
+              class="size-3.5 hidden text-(--color-brand-500)"
+              data-check-icon
+              aria-hidden="true"
+            />
+            <span data-copy-text>{footer?.copy ?? "Copy"}</span>
+          </button>
+        </div>
+
+        <div class="rt-foot-cta-row">
           <a
             href={marketplaceUrl}
             rel="noopener"
@@ -210,81 +210,68 @@ const localeLabel = currentLocale?.nativeName ?? locale;
             )}
           </a>
         </div>
+      </section>
+    </div>
 
+    <div class="rt-foot-nav-card">
+      <div class="rt-foot-nav-grid">
+        <nav class="rt-foot-nav-section" aria-label="Footer · Docs">
+          <h2>{footer?.docs ?? "Docs"}</h2>
+          <ul>
+            {
+              docsLinks.map((l) => (
+                <li>
+                  <a class="rt-foot-link" href={l.href}>
+                    {l.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+
+        <nav class="rt-foot-nav-section" aria-label="Footer · Project">
+          <h2>{footer?.project ?? "Project"}</h2>
+          <ul>
+            {
+              projectLinks.map((l) => (
+                <li>
+                  <a class="rt-foot-link" href={l.href}>
+                    {l.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+
+        <nav class="rt-foot-nav-section" aria-label="Footer · Community and support">
+          <h2>{footer?.community ?? "Community"}</h2>
+          <ul>
+            {
+              communityLinks.map((l) => (
+                <li>
+                  <a
+                    class="rt-foot-link"
+                    href={l.href}
+                    rel={isExternal(l.href) ? "noopener" : undefined}
+                    target={isExternal(l.href) ? "_blank" : undefined}
+                  >
+                    <span>{l.label}</span>
+                    {isExternal(l.href) && (
+                      <Icon
+                        name="lucide:external-link"
+                        class="size-3 opacity-50"
+                        aria-hidden="true"
+                      />
+                    )}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
       </div>
-
-      <!-- Footer · Docs (sidebar already owns the primary "Documentation"
-           landmark; rename here to keep landmarks unique per axe). -->
-      <nav class="lg:col-span-3" aria-label="Footer · Docs">
-        <h2
-          class="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-(--fg)"
-        >
-          {footer?.docs ?? "Docs"}
-        </h2>
-        <ul class="space-y-2">
-          {
-            docsLinks.map((l) => (
-              <li>
-                <a class="rt-foot-link" href={l.href}>
-                  {l.label}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
-
-      <!-- Project -->
-      <nav class="lg:col-span-2" aria-label="Footer · Project">
-        <h2
-          class="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-(--fg)"
-        >
-          {footer?.project ?? "Project"}
-        </h2>
-        <ul class="space-y-2">
-          {
-            projectLinks.map((l) => (
-              <li>
-                <a class="rt-foot-link" href={l.href}>
-                  {l.label}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
-
-      <!-- Community -->
-      <nav class="lg:col-span-3" aria-label="Footer · Community and support">
-        <h2
-          class="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-(--fg)"
-        >
-          {footer?.community ?? "Community"}
-        </h2>
-        <ul class="space-y-2">
-          {
-            communityLinks.map((l) => (
-              <li>
-                <a
-                  class="rt-foot-link inline-flex items-center gap-1.5"
-                  href={l.href}
-                  rel={isExternal(l.href) ? "noopener" : undefined}
-                  target={isExternal(l.href) ? "_blank" : undefined}
-                >
-                  <span>{l.label}</span>
-                  {isExternal(l.href) && (
-                    <Icon
-                      name="lucide:external-link"
-                      class="size-3 opacity-50"
-                      aria-hidden="true"
-                    />
-                  )}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
     </div>
 
     <!-- Utility strip: project socials (left) + version / language (right) -->
@@ -441,21 +428,78 @@ const localeLabel = currentLocale?.nativeName ?? locale;
     text-decoration-thickness: 2px;
   }
 
-  .rt-foot-brand {
+  .rt-foot-top {
     position: relative;
-    border: 1px solid rgba(110, 103, 248, 0.24);
-    border-radius: 1.25rem;
+    display: grid;
+    gap: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(110, 103, 248, 0.22);
+    border-radius: 1.75rem;
     background:
-      linear-gradient(135deg, rgba(110, 103, 248, 0.09), transparent 42%),
+      radial-gradient(circle at 0% 0%, rgba(110, 103, 248, 0.13), transparent 38%),
+      radial-gradient(circle at 100% 100%, rgba(215, 28, 208, 0.1), transparent 36%),
       var(--bg);
-    box-shadow: 0 18px 50px rgba(70, 53, 188, 0.08);
+    box-shadow: 0 28px 70px rgba(70, 53, 188, 0.1);
     padding: 1.25rem;
   }
 
-  :root.dark .rt-foot-brand {
+  :root.dark .rt-foot-top {
     background:
-      linear-gradient(135deg, rgba(110, 103, 248, 0.16), transparent 48%),
-      rgba(21, 22, 42, 0.76);
+      radial-gradient(circle at 0% 0%, rgba(110, 103, 248, 0.22), transparent 40%),
+      radial-gradient(circle at 100% 100%, rgba(215, 28, 208, 0.14), transparent 38%),
+      rgba(21, 22, 42, 0.82);
+  }
+
+  .rt-foot-brandline {
+    min-width: 0;
+    padding: 0.25rem;
+  }
+
+  .rt-foot-tagline {
+    max-width: 44rem;
+    margin: 1rem 0 0;
+    color: var(--fg-muted);
+    font-size: 0.95rem;
+    line-height: 1.75;
+  }
+
+  .rt-foot-action-panel {
+    min-width: 0;
+    display: grid;
+    align-content: center;
+    gap: 0.875rem;
+    border: 1px solid var(--border);
+    border-radius: 1.25rem;
+    background: rgba(251, 251, 255, 0.78);
+    padding: 1rem;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  }
+
+  :root.dark .rt-foot-action-panel {
+    background: rgba(11, 12, 26, 0.42);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .rt-foot-kicker {
+    margin: 0;
+    color: var(--fg);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .rt-foot-install-note {
+    margin: 0.25rem 0 0;
+    color: var(--fg-muted);
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+
+  .rt-foot-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem;
   }
 
   .rt-foot-highlights {
@@ -489,16 +533,121 @@ const localeLabel = currentLocale?.nativeName ?? locale;
     color: var(--color-brand-200);
   }
 
+  .rt-foot-nav-card {
+    margin-top: 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 1.5rem;
+    background: rgba(251, 251, 255, 0.62);
+    padding: 1.25rem;
+    box-shadow: 0 18px 46px rgba(70, 53, 188, 0.06);
+  }
+
+  :root.dark .rt-foot-nav-card {
+    background: rgba(11, 12, 26, 0.28);
+  }
+
+  .rt-foot-nav-grid {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .rt-foot-nav-section {
+    min-width: 0;
+  }
+
+  .rt-foot-nav-section h2 {
+    margin: 0 0 0.875rem;
+    color: var(--fg);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .rt-foot-nav-section ul {
+    display: grid;
+    gap: 0.375rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  @media (min-width: 48rem) {
+    .rt-foot-nav-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0;
+    }
+
+    .rt-foot-nav-section {
+      padding-inline: 1.25rem;
+    }
+
+    .rt-foot-nav-section:first-child {
+      padding-inline-start: 0;
+    }
+
+    .rt-foot-nav-section:not(:first-child) {
+      border-inline-start: 1px solid var(--border);
+    }
+
+    .rt-foot-nav-section:last-child {
+      padding-inline-end: 0;
+    }
+  }
+
+  @media (min-width: 72rem) {
+    .rt-foot-top {
+      grid-template-columns: minmax(0, 1.08fr) minmax(30rem, 0.92fr);
+      align-items: stretch;
+      padding: 1.5rem;
+    }
+
+    .rt-foot-brandline {
+      align-self: center;
+      padding: 0.5rem 1rem 0.5rem 0.5rem;
+    }
+
+    .rt-foot-action-panel {
+      padding: 1.125rem;
+    }
+  }
+
   .rt-foot-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
     color: var(--fg-muted);
+    border-radius: 0.5rem;
+    padding: 0.125rem 0.25rem;
     text-decoration: none;
     transition:
+      background 150ms ease,
       color 150ms ease,
       transform 150ms ease;
   }
+
+  .rt-foot-link::before {
+    content: "";
+    width: 0.28rem;
+    height: 0.28rem;
+    border-radius: 999px;
+    background: var(--color-brand-500);
+    opacity: 0;
+    transform: scale(0.6);
+    transition:
+      opacity 150ms ease,
+      transform 150ms ease;
+  }
+
   .rt-foot-link:hover {
     color: var(--fg);
+    background: rgba(110, 103, 248, 0.07);
     transform: translateX(2px);
+  }
+
+  .rt-foot-link:hover::before {
+    opacity: 0.82;
+    transform: scale(1);
   }
   .rt-foot-link:focus-visible {
     outline: 2px solid var(--focus-ring);
