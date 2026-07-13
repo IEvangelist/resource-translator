@@ -1,0 +1,1813 @@
+---
+import { Icon } from "astro-icon/components";
+import Logo from "./Logo.astro";
+
+type StageCopy = {
+  short: string;
+  title: string;
+  body: string;
+};
+
+type OrbitCopy = {
+  label: string;
+  playing: string;
+  paused: string;
+  reduced: string;
+  pause: string;
+  resume: string;
+  stages: {
+    change: StageCopy;
+    action: StageCopy;
+    provider: StageCopy;
+    locales: StageCopy;
+    pullRequest: StageCopy;
+  };
+};
+
+interface Props {
+  copy: OrbitCopy;
+}
+
+const { copy } = Astro.props;
+const stages = [
+  {
+    id: "change",
+    icon: "lucide:file-pen-line",
+    ...copy.stages.change,
+  },
+  {
+    id: "action",
+    icon: "simple-icons:githubactions",
+    ...copy.stages.action,
+  },
+  {
+    id: "provider",
+    icon: "lucide:route",
+    ...copy.stages.provider,
+  },
+  {
+    id: "locales",
+    icon: "lucide:languages",
+    ...copy.stages.locales,
+  },
+  {
+    id: "pull-request",
+    icon: "lucide:git-pull-request",
+    ...copy.stages.pullRequest,
+  },
+] as const;
+
+const anchorAngle = 144;
+const angleStep = 360 / stages.length;
+---
+
+<div
+  class="translation-orbit"
+  data-translation-orbit
+  data-phase="playing"
+  data-autoplay="running"
+  data-reduced="false"
+  data-copy-playing={copy.playing}
+  data-copy-paused={copy.paused}
+  data-copy-reduced={copy.reduced}
+  data-copy-pause={copy.pause}
+  data-copy-resume={copy.resume}
+  dir="ltr"
+>
+  <div class="orbit-toolbar">
+    <span class="orbit-status">
+      <i aria-hidden="true"></i>
+      <span data-orbit-status>{copy.playing}</span>
+    </span>
+    <button
+      type="button"
+      class="orbit-toggle"
+      data-orbit-toggle
+      aria-label={copy.pause}
+    >
+      <Icon name="lucide:pause" class="toggle-pause size-3.5" />
+      <Icon name="lucide:play" class="toggle-play size-3.5" />
+      <span class="sr-only" data-orbit-toggle-label>{copy.pause}</span>
+    </button>
+  </div>
+
+  <div class="orbit-track" aria-hidden="true"></div>
+  <div class="orbit-hub" aria-hidden="true">
+    <span class="hub-ring"></span>
+    <span class="hub-logo">
+      <Logo size={62} />
+    </span>
+  </div>
+
+  <nav class="orbit-nav" aria-label={copy.label}>
+    {
+      stages.map((stage, index) => (
+        <button
+          type="button"
+          class="orbit-node"
+          data-orbit-node
+          data-orbit-index={index}
+          data-active={index === 0 ? "true" : "false"}
+          data-stage-title={stage.title}
+          aria-label={stage.title}
+          aria-pressed={index === 0 ? "true" : "false"}
+          style={`--orbit-angle: ${anchorAngle + index * angleStep}deg; --node-layer: ${5 - index};`}
+        >
+          <span class="node-icon" aria-hidden="true">
+            <Icon name={stage.icon} class="size-4" />
+          </span>
+          <span class="node-label">{stage.short}</span>
+          <span class="node-progress" aria-hidden="true" />
+        </button>
+      ))
+    }
+  </nav>
+
+  <div class="orbit-stage">
+    {
+      stages.map((stage, index) => (
+        <article
+          class="stage-card"
+          data-orbit-stage
+          data-stage-id={stage.id}
+          data-active={index === 0 ? "true" : "false"}
+          aria-hidden={index === 0 ? "false" : "true"}
+        >
+          <header class="stage-header">
+            <span class="stage-icon" aria-hidden="true">
+              <Icon name={stage.icon} class="size-4" />
+            </span>
+            <div>
+              <span class="stage-short">{stage.short}</span>
+              <h3>{stage.title}</h3>
+            </div>
+          </header>
+          <p class="stage-body">{stage.body}</p>
+
+          {stage.id === "change" && (
+            <div class="event-scene scene-change" aria-hidden="true">
+              <div
+                class="file-caption sequence-item"
+                style="--sequence-delay: 80ms"
+              >
+                <Icon name="lucide:file-code-2" class="size-3.5" />
+                <code>app.en.resx</code>
+              </div>
+              <div
+                class="diff-line diff-old sequence-item"
+                style="--sequence-delay: 260ms"
+              >
+                <span>-</span>
+                <code>&lt;value&gt;Ship fast&lt;/value&gt;</code>
+              </div>
+              <div
+                class="diff-line diff-new sequence-item"
+                style="--sequence-delay: 520ms"
+              >
+                <span>+</span>
+                <code>&lt;value&gt;Ship with confidence&lt;/value&gt;</code>
+              </div>
+              <div
+                class="scene-result sequence-item"
+                style="--sequence-delay: 880ms"
+              >
+                <Icon name="lucide:sparkles" class="size-3.5" />1 changed key
+              </div>
+            </div>
+          )}
+
+          {stage.id === "action" && (
+            <div class="event-scene scene-action" aria-hidden="true">
+              <div
+                class="runner-head sequence-item"
+                style="--sequence-delay: 80ms"
+              >
+                <Icon name="simple-icons:githubactions" class="size-3.5" />
+                <code>translate.yml</code>
+                <span>running</span>
+              </div>
+              <div class="runner-steps">
+                {[
+                  "Checkout repository",
+                  "Detect changed keys",
+                  "Build translation plan",
+                ].map((label, stepIndex) => (
+                  <div
+                    class="runner-step sequence-item"
+                    style={`--sequence-delay: ${300 + stepIndex * 260}ms`}
+                  >
+                    <span>
+                      <Icon name="lucide:check" class="size-3" />
+                    </span>
+                    <code>{label}</code>
+                  </div>
+                ))}
+              </div>
+              <span
+                class="runner-sweep sequence-item"
+                style="--sequence-delay: 260ms"
+              />
+            </div>
+          )}
+
+          {stage.id === "provider" && (
+            <div class="event-scene scene-provider" aria-hidden="true">
+              <div
+                class="delegate-source sequence-item"
+                style="--sequence-delay: 80ms"
+              >
+                <Logo size={38} />
+                <span>3 keys</span>
+              </div>
+              <div
+                class="delegate-path sequence-item"
+                style="--sequence-delay: 360ms"
+              >
+                <span />
+                <i />
+              </div>
+              <div class="provider-options">
+                <span
+                  class="provider-option provider-azure sequence-item"
+                  style="--sequence-delay: 620ms"
+                >
+                  <Icon name="simple-icons:microsoftazure" class="size-5" />
+                  Azure
+                </span>
+                <span
+                  class="provider-option sequence-item"
+                  style="--sequence-delay: 760ms"
+                >
+                  <Icon name="simple-icons:amazonwebservices" class="size-5" />
+                  AWS
+                </span>
+                <span
+                  class="provider-option sequence-item"
+                  style="--sequence-delay: 900ms"
+                >
+                  <Icon name="simple-icons:googlecloud" class="size-5" />
+                  Google
+                </span>
+              </div>
+            </div>
+          )}
+
+          {stage.id === "locales" && (
+            <div class="event-scene scene-locales" aria-hidden="true">
+              {[
+                ["fr", "Enregistrer"],
+                ["de", "Speichern"],
+                ["es", "Guardar"],
+              ].map(([locale, value], localeIndex) => (
+                <div
+                  class="locale-result sequence-item"
+                  style={`--sequence-delay: ${160 + localeIndex * 260}ms`}
+                >
+                  <span>{locale}</span>
+                  <code>{value}</code>
+                  <Icon name="lucide:check" class="size-3.5" />
+                </div>
+              ))}
+            </div>
+          )}
+
+          {stage.id === "pull-request" && (
+            <div class="event-scene scene-pr" aria-hidden="true">
+              <div
+                class="pr-heading sequence-item"
+                style="--sequence-delay: 100ms"
+              >
+                <span>
+                  <Icon name="lucide:git-pull-request" class="size-4" />
+                </span>
+                <div>
+                  <strong>Update translations</strong>
+                  <small>Ready for review</small>
+                </div>
+                <b>Open</b>
+              </div>
+              <div class="pr-files">
+                {["app.fr.resx", "app.de.resx", "app.es.resx"].map(
+                  (file, fileIndex) => (
+                    <code
+                      class="sequence-item"
+                      style={`--sequence-delay: ${380 + fileIndex * 180}ms`}
+                    >
+                      <Icon name="lucide:file-check-2" class="size-3" />
+                      {file}
+                    </code>
+                  ),
+                )}
+              </div>
+              <div
+                class="pr-result sequence-item"
+                style="--sequence-delay: 980ms"
+              >
+                <Icon name="lucide:circle-check" class="size-3.5" />
+                Pull request created
+              </div>
+            </div>
+          )}
+        </article>
+      ))
+    }
+  </div>
+
+  <span class="sr-only" aria-live="polite" aria-atomic="true" data-orbit-live>
+    {stages[0].title}
+  </span>
+</div>
+
+<style>
+  .translation-orbit {
+    --orbit-x: 73%;
+    --orbit-y: 34%;
+    --orbit-radius: 7.7rem;
+    --stage-duration: 5.6s;
+    position: relative;
+    isolation: isolate;
+    min-height: 31rem;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 2rem;
+    background:
+      linear-gradient(rgba(110, 103, 248, 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(110, 103, 248, 0.055) 1px, transparent 1px),
+      var(--bg-elevated);
+    background-size: 2rem 2rem;
+    box-shadow: 0 2rem 5rem rgba(70, 53, 188, 0.12);
+  }
+
+  .translation-orbit::before {
+    position: absolute;
+    inset: -25% -20% auto 42%;
+    z-index: -1;
+    height: 68%;
+    content: "";
+    border-radius: 50%;
+    background: rgba(110, 103, 248, 0.13);
+    filter: blur(3.5rem);
+    pointer-events: none;
+  }
+
+  .orbit-toolbar {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 9;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .orbit-status,
+  .orbit-toggle {
+    min-height: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 0.8rem;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    box-shadow: 0 0.5rem 1.4rem rgba(70, 53, 188, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .orbit-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.65rem;
+    color: var(--fg-muted);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 700;
+  }
+
+  .orbit-status i {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--color-brand-600);
+    box-shadow: 0 0 0 0.2rem rgba(110, 103, 248, 0.13);
+  }
+
+  .orbit-toggle {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    padding: 0;
+    color: var(--fg);
+    cursor: pointer;
+    transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .orbit-toggle:hover {
+    transform: translateY(-1px);
+  }
+
+  .orbit-toggle:active {
+    transform: translateY(1px) scale(0.96);
+  }
+
+  .orbit-toggle:focus-visible,
+  .orbit-node:focus-visible {
+    outline: 3px solid
+      color-mix(in srgb, var(--color-brand-500) 62%, transparent);
+    outline-offset: 3px;
+  }
+
+  .toggle-play {
+    display: none;
+  }
+
+  .translation-orbit[data-autoplay="paused"] .toggle-pause {
+    display: none;
+  }
+
+  .translation-orbit[data-autoplay="paused"] .toggle-play {
+    display: block;
+  }
+
+  .orbit-track {
+    position: absolute;
+    left: var(--orbit-x);
+    top: var(--orbit-y);
+    z-index: 0;
+    width: calc(var(--orbit-radius) * 2);
+    height: calc(var(--orbit-radius) * 2);
+    border: 1px solid
+      color-mix(in srgb, var(--color-brand-500) 22%, var(--border));
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .orbit-track::before,
+  .orbit-track::after {
+    position: absolute;
+    inset: 1.1rem;
+    content: "";
+    border: 1px solid
+      color-mix(in srgb, var(--color-brand-500) 12%, transparent);
+    border-radius: inherit;
+  }
+
+  .orbit-track::after {
+    inset: 2.2rem;
+  }
+
+  .orbit-hub {
+    position: absolute;
+    left: var(--orbit-x);
+    top: var(--orbit-y);
+    z-index: 4;
+    display: grid;
+    place-items: center;
+    width: 5.4rem;
+    height: 5.4rem;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hub-ring {
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(110, 103, 248, 0.36);
+    border-radius: 1.6rem;
+  }
+
+  .hub-ring::before,
+  .hub-ring::after {
+    position: absolute;
+    width: 0.55rem;
+    height: 0.55rem;
+    content: "";
+    border: 2px solid var(--color-brand-500);
+    border-radius: 50%;
+    background: var(--bg-elevated);
+  }
+
+  .hub-ring::before {
+    top: -0.3rem;
+    left: 1rem;
+  }
+
+  .hub-ring::after {
+    right: 0.65rem;
+    bottom: -0.3rem;
+  }
+
+  .hub-logo {
+    display: grid;
+    place-items: center;
+    width: 4.1rem;
+    height: 4.1rem;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 1.25rem;
+    background: var(--bg);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.28),
+      0 1rem 2.25rem rgba(70, 53, 188, 0.17);
+  }
+
+  .orbit-nav {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  .orbit-node {
+    --node-scale: 0.88;
+    position: absolute;
+    left: var(--orbit-x);
+    top: var(--orbit-y);
+    z-index: var(--node-layer);
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.55rem;
+    width: 7.4rem;
+    min-height: 3.2rem;
+    margin: -1.6rem 0 0 -3.7rem;
+    padding: 0.45rem 0.55rem;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 0.95rem;
+    color: var(--fg);
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    box-shadow: 0 0.75rem 1.8rem rgba(70, 53, 188, 0.1);
+    transform: rotate(var(--orbit-angle)) translateX(var(--orbit-radius))
+      rotate(calc(-1 * var(--orbit-angle))) scale(var(--node-scale));
+    cursor: pointer;
+    pointer-events: auto;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    translate: 0 0;
+    transition:
+      transform 780ms cubic-bezier(0.22, 1, 0.36, 1),
+      translate 780ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 280ms ease;
+  }
+
+  .orbit-node:hover {
+    --node-scale: 0.94;
+  }
+
+  .orbit-node:active {
+    --node-scale: 0.84;
+  }
+
+  .orbit-node[data-active="true"] {
+    --node-scale: 1.08;
+    border-color: color-mix(
+      in srgb,
+      var(--scene-accent, var(--color-brand-500)) 52%,
+      var(--border)
+    );
+    background: var(--bg);
+    box-shadow: 0 1rem 2.4rem rgba(70, 53, 188, 0.17);
+  }
+
+  .orbit-node[data-orbit-index="0"],
+  .stage-card[data-stage-id="change"] {
+    --scene-accent: #db2777;
+  }
+
+  .orbit-node[data-orbit-index="1"],
+  .stage-card[data-stage-id="action"] {
+    --scene-accent: #0969da;
+  }
+
+  .orbit-node[data-orbit-index="2"],
+  .stage-card[data-stage-id="provider"] {
+    --scene-accent: #6e67f8;
+  }
+
+  .orbit-node[data-orbit-index="3"],
+  .stage-card[data-stage-id="locales"] {
+    --scene-accent: #0284c7;
+  }
+
+  .orbit-node[data-orbit-index="4"],
+  .stage-card[data-stage-id="pull-request"] {
+    --scene-accent: #15803d;
+  }
+
+  :global(.dark) .orbit-node[data-orbit-index="0"],
+  :global(.dark) .stage-card[data-stage-id="change"] {
+    --scene-accent: #f472b6;
+  }
+
+  :global(.dark) .orbit-node[data-orbit-index="1"],
+  :global(.dark) .stage-card[data-stage-id="action"] {
+    --scene-accent: #60a5fa;
+  }
+
+  :global(.dark) .orbit-node[data-orbit-index="2"],
+  :global(.dark) .stage-card[data-stage-id="provider"] {
+    --scene-accent: var(--color-brand-200);
+  }
+
+  :global(.dark) .orbit-node[data-orbit-index="3"],
+  :global(.dark) .stage-card[data-stage-id="locales"] {
+    --scene-accent: #38bdf8;
+  }
+
+  :global(.dark) .orbit-node[data-orbit-index="4"],
+  :global(.dark) .stage-card[data-stage-id="pull-request"] {
+    --scene-accent: #4ade80;
+  }
+
+  .node-icon,
+  .stage-icon {
+    display: grid;
+    place-items: center;
+    color: var(--scene-accent, var(--color-brand-700));
+    background: color-mix(
+      in srgb,
+      var(--scene-accent, var(--color-brand-700)) 12%,
+      var(--bg)
+    );
+  }
+
+  :global(.dark) .node-icon,
+  :global(.dark) .stage-icon {
+    color: var(--scene-accent, var(--color-brand-200));
+    background: color-mix(
+      in srgb,
+      var(--scene-accent, var(--color-brand-200)) 18%,
+      var(--bg)
+    );
+  }
+
+  .node-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.65rem;
+  }
+
+  .node-label {
+    overflow: hidden;
+    font-size: 0.68rem;
+    font-weight: 750;
+    line-height: 1.15;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .node-progress {
+    position: absolute;
+    inset: auto 0 0;
+    height: 2px;
+    background: var(--scene-accent, var(--color-brand-600));
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .orbit-stage {
+    position: absolute;
+    inset: auto 4.75rem 1rem 1rem;
+    z-index: 3;
+    height: 17.3rem;
+  }
+
+  .stage-card {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-rows: auto auto minmax(0, 1fr);
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 1.35rem;
+    background: var(--bg);
+    box-shadow: 0 1.5rem 3rem rgba(70, 53, 188, 0.12);
+    opacity: 0;
+    transform: translate3d(0, 0.85rem, 0) scale(0.985);
+    pointer-events: none;
+    transition:
+      transform 520ms cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 280ms ease;
+  }
+
+  .stage-card[data-active="true"] {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    pointer-events: auto;
+  }
+
+  .translation-orbit[data-phase="rewinding"] .stage-card[data-active="true"] {
+    opacity: 0;
+    transform: translate3d(0.75rem, -0.5rem, 0) scale(0.97);
+  }
+
+  .translation-orbit[data-phase="rotating"] .stage-card,
+  .translation-orbit[data-phase="reset"] .stage-card {
+    opacity: 0;
+    transform: translate3d(-0.65rem, 0.65rem, 0) scale(0.985);
+  }
+
+  .translation-orbit[data-phase="paused"]
+    .stage-card[data-active="true"]
+    .sequence-item {
+    opacity: 1;
+    transform: none;
+  }
+
+  .translation-orbit[data-phase="paused"]
+    .stage-card[data-stage-id="action"][data-active="true"]
+    .runner-sweep {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+
+  .translation-orbit[data-phase="paused"]
+    .stage-card[data-stage-id="provider"][data-active="true"]
+    .delegate-path
+    span {
+    opacity: 1;
+    transform: translate3d(180%, 0, 0) scaleX(0.35);
+  }
+
+  .stage-header {
+    display: grid;
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.7rem;
+    max-width: calc(100% - 7.5rem);
+  }
+
+  .stage-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.7rem;
+  }
+
+  .stage-short {
+    display: block;
+    margin-bottom: 0.15rem;
+    color: var(--fg-muted);
+    font-family: var(--font-mono);
+    font-size: 0.59rem;
+    font-weight: 700;
+  }
+
+  .stage-card h3 {
+    margin: 0;
+    font-size: clamp(0.98rem, 1.7vw, 1.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+  }
+
+  .stage-body {
+    max-width: 42ch;
+    margin: 0.6rem 0 0;
+    color: var(--fg-muted);
+    font-size: 0.76rem;
+    line-height: 1.55;
+  }
+
+  .event-scene {
+    position: relative;
+    align-self: end;
+    min-height: 7.3rem;
+    margin-top: 0.8rem;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: var(--bg-elevated);
+  }
+
+  .sequence-item {
+    opacity: 0;
+    transform: translate3d(0, 0.7rem, 0);
+  }
+
+  .file-caption,
+  .runner-head {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.25rem;
+    padding: 0.45rem 0.7rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--fg-muted);
+    font-size: 0.61rem;
+  }
+
+  .file-caption code,
+  .runner-head code {
+    overflow: hidden;
+    color: var(--fg);
+    font-size: 0.63rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .file-caption span,
+  .runner-head span {
+    color: var(--link);
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    font-weight: 750;
+  }
+
+  .diff-line {
+    display: grid;
+    grid-template-columns: 1.2rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.35rem;
+    min-height: 1.8rem;
+    padding-inline: 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 0.59rem;
+  }
+
+  .diff-line span {
+    font-weight: 800;
+  }
+
+  .diff-line code {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .diff-old {
+    color: color-mix(in srgb, #be123c 76%, var(--fg));
+    background: color-mix(in srgb, #e11d48 7%, var(--bg-elevated));
+  }
+
+  .diff-new {
+    color: color-mix(in srgb, #15803d 84%, var(--fg));
+    background: color-mix(in srgb, #22c55e 10%, var(--bg-elevated));
+  }
+
+  :global(.dark) .diff-old {
+    color: #fda4af;
+    background: color-mix(in srgb, #e11d48 13%, var(--bg-elevated));
+  }
+
+  :global(.dark) .diff-new {
+    color: #86efac;
+    background: color-mix(in srgb, #22c55e 12%, var(--bg-elevated));
+  }
+
+  .scene-result,
+  .pr-result {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--link);
+    font-size: 0.6rem;
+    font-weight: 750;
+  }
+
+  .scene-result {
+    position: absolute;
+    right: 0.7rem;
+    top: 0.55rem;
+  }
+
+  .scene-action {
+    padding-bottom: 0.35rem;
+    background:
+      linear-gradient(
+        135deg,
+        color-mix(in srgb, #2088ff 8%, transparent),
+        transparent 58%
+      ),
+      var(--bg-elevated);
+  }
+
+  .scene-action .runner-head :global(svg),
+  .scene-action .runner-head span {
+    color: #2088ff;
+  }
+
+  .runner-steps {
+    display: grid;
+    gap: 0.25rem;
+    padding: 0.55rem 0.65rem;
+  }
+
+  .runner-step {
+    display: grid;
+    grid-template-columns: 1.25rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 1.25rem;
+  }
+
+  .runner-step > span {
+    display: grid;
+    place-items: center;
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 0.35rem;
+    color: #0969da;
+    background: color-mix(in srgb, #2088ff 12%, var(--bg));
+  }
+
+  :global(.dark) .runner-step > span {
+    color: #60a5fa;
+    background: color-mix(in srgb, #2088ff 18%, var(--bg));
+  }
+
+  .runner-step code {
+    color: var(--fg);
+    font-size: 0.58rem;
+  }
+
+  .runner-sweep {
+    position: absolute;
+    left: 0.65rem;
+    top: 2.8rem;
+    bottom: 0.8rem;
+    width: 2px;
+    border-radius: 999px;
+    background: #2088ff;
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+
+  .scene-provider {
+    display: grid;
+    grid-template-columns: auto minmax(2.5rem, 1fr) minmax(0, 1.55fr);
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.85rem;
+    background:
+      radial-gradient(
+        circle at 78% 16%,
+        color-mix(in srgb, #0078d4 12%, transparent),
+        transparent 33%
+      ),
+      radial-gradient(
+        circle at 92% 72%,
+        color-mix(in srgb, #ff9900 10%, transparent),
+        transparent 30%
+      ),
+      var(--bg-elevated);
+  }
+
+  .delegate-source {
+    display: grid;
+    justify-items: center;
+    gap: 0.25rem;
+    color: var(--fg-muted);
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+  }
+
+  .delegate-source :global(img) {
+    border-radius: 0.65rem;
+  }
+
+  .delegate-path {
+    position: relative;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .delegate-path span {
+    position: absolute;
+    left: 0;
+    top: -1px;
+    width: 35%;
+    height: 3px;
+    border-radius: 999px;
+    background: var(--color-brand-600);
+  }
+
+  .delegate-path i {
+    position: absolute;
+    right: -0.15rem;
+    top: -0.25rem;
+    width: 0.55rem;
+    height: 0.55rem;
+    border: 2px solid var(--color-brand-500);
+    border-radius: 50%;
+    background: var(--bg-elevated);
+  }
+
+  .provider-options {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .provider-option {
+    display: grid;
+    grid-template-columns: 1.65rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2rem;
+    padding: 0.3rem 0.5rem;
+    border: 1px solid transparent;
+    border-radius: 0.65rem;
+    color: var(--fg-muted);
+    font-size: 0.6rem;
+    font-weight: 700;
+  }
+
+  .provider-option:first-child {
+    border-color: color-mix(in srgb, #0078d4 36%, var(--border));
+    color: var(--fg);
+    background: color-mix(in srgb, #0078d4 8%, var(--bg));
+  }
+
+  .provider-option:first-child :global(svg) {
+    color: #0078d4;
+  }
+
+  .provider-option:nth-child(2) :global(svg) {
+    color: #ff9900;
+  }
+
+  .provider-option:nth-child(2) {
+    border-color: color-mix(in srgb, #ff9900 28%, var(--border));
+    background: color-mix(in srgb, #ff9900 7%, var(--bg));
+  }
+
+  .provider-option:nth-child(3) :global(svg) {
+    color: #4285f4;
+  }
+
+  .provider-option:nth-child(3) {
+    border-color: color-mix(in srgb, #4285f4 28%, var(--border));
+    background: color-mix(in srgb, #4285f4 7%, var(--bg));
+  }
+
+  .scene-locales {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 0.45rem;
+    padding: 0.65rem;
+    background:
+      linear-gradient(
+        120deg,
+        color-mix(in srgb, #2563eb 7%, transparent),
+        color-mix(in srgb, #f59e0b 6%, transparent) 52%,
+        color-mix(in srgb, #e11d48 7%, transparent)
+      ),
+      var(--bg-elevated);
+  }
+
+  .locale-result {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-width: 0;
+    padding: 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg);
+  }
+
+  .locale-result span {
+    display: grid;
+    place-items: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 0.5rem;
+    color: var(--color-brand-700);
+    background: var(--color-brand-100);
+    font-family: var(--font-mono);
+    font-size: 0.57rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  :global(.dark) .locale-result span {
+    color: var(--color-brand-200);
+    background: rgba(110, 103, 248, 0.17);
+  }
+
+  .locale-result code {
+    align-self: center;
+    overflow: hidden;
+    padding-block: 0.4rem;
+    color: var(--fg);
+    font-size: 0.58rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .locale-result :global(svg) {
+    justify-self: end;
+    color: var(--locale-accent, var(--color-brand-600));
+  }
+
+  .locale-result:nth-child(1) {
+    --locale-accent: #2563eb;
+    border-color: color-mix(in srgb, #2563eb 30%, var(--border));
+  }
+
+  .locale-result:nth-child(2) {
+    --locale-accent: #d97706;
+    border-color: color-mix(in srgb, #f59e0b 32%, var(--border));
+  }
+
+  .locale-result:nth-child(3) {
+    --locale-accent: #e11d48;
+    border-color: color-mix(in srgb, #e11d48 28%, var(--border));
+  }
+
+  .scene-pr {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 0.65rem;
+    background:
+      linear-gradient(
+        135deg,
+        color-mix(in srgb, #22c55e 9%, transparent),
+        transparent 60%
+      ),
+      var(--bg-elevated);
+  }
+
+  .pr-heading {
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.55rem;
+  }
+
+  .pr-heading > span {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.65rem;
+    color: var(--color-brand-700);
+    background: var(--color-brand-100);
+  }
+
+  :global(.dark) .pr-heading > span {
+    color: var(--color-brand-200);
+    background: rgba(110, 103, 248, 0.17);
+  }
+
+  .pr-heading div {
+    display: grid;
+    gap: 0.1rem;
+    min-width: 0;
+  }
+
+  .pr-heading strong {
+    overflow: hidden;
+    font-size: 0.67rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .pr-heading small {
+    color: var(--fg-muted);
+    font-size: 0.55rem;
+  }
+
+  .pr-heading b {
+    padding: 0.25rem 0.45rem;
+    border: 1px solid color-mix(in srgb, #22c55e 36%, var(--border));
+    border-radius: 0.55rem;
+    color: color-mix(in srgb, #15803d 82%, var(--fg));
+    background: color-mix(in srgb, #22c55e 8%, var(--bg));
+    font-family: var(--font-mono);
+    font-size: 0.54rem;
+  }
+
+  .pr-files {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.3rem;
+    padding-block: 0.5rem;
+  }
+
+  .pr-files code {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    min-width: 0;
+    overflow: hidden;
+    color: var(--fg-muted);
+    font-size: 0.51rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .pr-result {
+    justify-self: end;
+    color: color-mix(in srgb, #15803d 82%, var(--fg));
+  }
+
+  @media (max-width: 1199px) {
+    .translation-orbit {
+      --orbit-x: 69%;
+      --orbit-radius: 6.3rem;
+    }
+
+    .orbit-stage {
+      right: 3rem;
+    }
+
+    .orbit-node {
+      width: 6.65rem;
+      margin-left: -3.325rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .translation-orbit {
+      --orbit-x: 69%;
+      --orbit-y: 25%;
+      --orbit-radius: 4rem;
+      min-height: 21rem;
+      border-radius: 1.5rem;
+      background-size: 1.5rem 1.5rem;
+    }
+
+    .orbit-toolbar {
+      top: 0.7rem;
+      left: 0.7rem;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.35rem;
+    }
+
+    .orbit-status {
+      max-width: 8.5rem;
+      min-height: 1.85rem;
+      padding: 0.35rem 0.5rem;
+      font-size: 0.55rem;
+    }
+
+    .orbit-toggle {
+      align-self: center;
+      width: 1.85rem;
+      min-height: 1.85rem;
+    }
+
+    .orbit-hub {
+      width: 4.25rem;
+      height: 4.25rem;
+    }
+
+    .hub-ring {
+      border-radius: 1.25rem;
+    }
+
+    .hub-logo {
+      width: 3.35rem;
+      height: 3.35rem;
+      border-radius: 1rem;
+    }
+
+    .orbit-node {
+      grid-template-columns: 1.55rem minmax(0, 1fr);
+      place-items: center start;
+      gap: 0.22rem;
+      width: 4.65rem;
+      min-height: 2.65rem;
+      margin: -1.325rem 0 0 -2.325rem;
+      padding: 0.22rem 0.25rem;
+      border-radius: 0.85rem;
+    }
+
+    .orbit-node[data-active="true"] {
+      --node-scale: 1;
+      translate: 0 -1.25rem;
+    }
+
+    .node-icon {
+      width: 1.55rem;
+      height: 1.55rem;
+    }
+
+    .node-label {
+      position: static;
+      width: auto;
+      height: auto;
+      overflow: visible;
+      clip: auto;
+      font-size: 0.5rem;
+      line-height: 1.05;
+      text-overflow: clip;
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .orbit-stage {
+      inset: auto 0.7rem 0.7rem;
+      height: 13.25rem;
+    }
+
+    .stage-card {
+      padding: 0.75rem;
+      border-radius: 1.1rem;
+    }
+
+    .stage-header {
+      grid-template-columns: 2rem minmax(0, 1fr);
+      max-width: 11.5rem;
+    }
+
+    .stage-icon {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    .stage-short {
+      display: none;
+    }
+
+    .stage-card h3 {
+      font-size: 0.96rem;
+    }
+
+    .stage-body {
+      margin-top: 0.35rem;
+      font-size: 0.68rem;
+      line-height: 1.45;
+    }
+
+    .event-scene {
+      min-height: 6rem;
+      margin-top: 0.3rem;
+    }
+
+    .scene-provider {
+      grid-template-columns: auto minmax(2rem, 1fr) minmax(0, 1.7fr);
+      gap: 0.4rem;
+      padding: 0.55rem;
+    }
+
+    .scene-action .runner-steps {
+      gap: 0.15rem;
+      padding: 0.35rem 0.55rem;
+    }
+
+    .scene-action .runner-step {
+      min-height: 1rem;
+    }
+
+    .provider-option {
+      grid-template-columns: 1.35rem minmax(0, 1fr);
+      min-height: 1.65rem;
+      padding: 0.2rem 0.35rem;
+      font-size: 0.52rem;
+    }
+
+    .scene-locales {
+      gap: 0.3rem;
+      padding: 0.45rem;
+    }
+
+    .locale-result {
+      padding: 0.4rem;
+    }
+
+    .locale-result code {
+      font-size: 0.51rem;
+    }
+
+    .pr-files {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.2rem;
+      padding-block: 0.3rem;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .translation-orbit {
+      --orbit-y: 29%;
+      min-height: 28.75rem;
+    }
+  }
+
+  @media (max-width: 374px) {
+    .translation-orbit {
+      --orbit-x: 68%;
+      --orbit-radius: 4rem;
+    }
+
+    .orbit-toolbar {
+      left: 0.35rem;
+    }
+
+    .orbit-status {
+      max-width: 7.65rem;
+      gap: 0.35rem;
+      padding-inline: 0.4rem;
+      font-size: 0.5rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .translation-orbit[data-autoplay="running"] .hub-ring {
+      animation: hub-turn 9s linear infinite;
+    }
+
+    .translation-orbit[data-autoplay="running"][data-phase="playing"]
+      .orbit-node[data-active="true"]
+      .node-progress {
+      animation: orbit-progress var(--stage-duration) linear both;
+    }
+
+    .translation-orbit[data-phase="playing"]
+      .stage-card[data-active="true"]
+      .sequence-item {
+      animation: sequence-enter 620ms cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-delay: var(--sequence-delay, 0ms);
+    }
+
+    .translation-orbit[data-phase="playing"]
+      .stage-card[data-stage-id="action"][data-active="true"]
+      .runner-sweep {
+      animation-name: runner-fill;
+      animation-duration: 1.1s;
+    }
+
+    .translation-orbit[data-phase="playing"]
+      .stage-card[data-stage-id="provider"][data-active="true"]
+      .delegate-path
+      span {
+      animation: delegate-packet 1.05s cubic-bezier(0.16, 1, 0.3, 1) 620ms both;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .orbit-node,
+    .stage-card,
+    .orbit-toggle,
+    .sequence-item,
+    .delegate-path span,
+    .hub-ring,
+    .node-progress {
+      animation: none !important;
+      transition: none !important;
+    }
+
+    .sequence-item {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .orbit-status,
+    .orbit-toggle,
+    .orbit-node {
+      background: var(--bg);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+  }
+
+  @keyframes hub-turn {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes orbit-progress {
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes sequence-enter {
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes runner-fill {
+    to {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+  }
+
+  @keyframes delegate-packet {
+    from {
+      opacity: 0;
+      transform: translate3d(-1rem, 0, 0) scaleX(0.35);
+    }
+    20% {
+      opacity: 1;
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(180%, 0, 0) scaleX(0.35);
+    }
+  }
+</style>
+
+<script>
+  const ORBIT_ANCHOR = 144;
+  const REWIND_DURATION = 340;
+  const ROTATION_DURATION = 780;
+  const STAGE_DURATION = 5600;
+
+  let orbitCleanups: Array<() => void> = [];
+
+  function modulo(value: number, divisor: number) {
+    return ((value % divisor) + divisor) % divisor;
+  }
+
+  function setupTranslationOrbits() {
+    orbitCleanups.forEach((cleanup) => cleanup());
+    orbitCleanups = [];
+
+    document
+      .querySelectorAll<HTMLElement>("[data-translation-orbit]")
+      .forEach((root) => {
+        const nodes = Array.from(
+          root.querySelectorAll<HTMLButtonElement>("[data-orbit-node]"),
+        );
+        const stages = Array.from(
+          root.querySelectorAll<HTMLElement>("[data-orbit-stage]"),
+        );
+        const toggle = root.querySelector<HTMLButtonElement>(
+          "[data-orbit-toggle]",
+        );
+        const toggleLabel = root.querySelector<HTMLElement>(
+          "[data-orbit-toggle-label]",
+        );
+        const status = root.querySelector<HTMLElement>("[data-orbit-status]");
+        const live = root.querySelector<HTMLElement>("[data-orbit-live]");
+
+        if (
+          nodes.length === 0 ||
+          stages.length !== nodes.length ||
+          !toggle ||
+          !toggleLabel ||
+          !status ||
+          !live
+        ) {
+          return;
+        }
+
+        const controller = new AbortController();
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        );
+        const angleStep = 360 / nodes.length;
+        const copy = {
+          playing: root.dataset.copyPlaying ?? "",
+          paused: root.dataset.copyPaused ?? "",
+          reduced: root.dataset.copyReduced ?? "",
+          pause: root.dataset.copyPause ?? "",
+          resume: root.dataset.copyResume ?? "",
+        };
+
+        let rotationStep = 0;
+        let activeIndex = 0;
+        let autoplay = !reduceMotion.matches;
+        let transitioning = false;
+        let autoplayTimer: number | undefined;
+        let rewindTimer: number | undefined;
+        let rotationTimer: number | undefined;
+
+        const clearTimers = () => {
+          window.clearTimeout(autoplayTimer);
+          window.clearTimeout(rewindTimer);
+          window.clearTimeout(rotationTimer);
+          autoplayTimer = undefined;
+          rewindTimer = undefined;
+          rotationTimer = undefined;
+        };
+
+        const updateStatus = () => {
+          const reduced = reduceMotion.matches;
+          root.dataset.reduced = String(reduced);
+          root.dataset.autoplay = autoplay && !reduced ? "running" : "paused";
+          status.textContent = reduced
+            ? copy.reduced
+            : autoplay
+              ? copy.playing
+              : copy.paused;
+          toggle.setAttribute(
+            "aria-label",
+            autoplay ? copy.pause : copy.resume,
+          );
+          toggleLabel.textContent = autoplay ? copy.pause : copy.resume;
+          toggle.hidden = reduced;
+          live.setAttribute(
+            "aria-live",
+            autoplay && !reduced ? "off" : "polite",
+          );
+        };
+
+        const updateNodes = () => {
+          nodes.forEach((node, index) => {
+            const angle = ORBIT_ANCHOR + (index - rotationStep) * angleStep;
+            const relative = modulo(index - activeIndex, nodes.length);
+            const distance = Math.min(relative, nodes.length - relative);
+            const isActive = index === activeIndex;
+
+            node.style.setProperty("--orbit-angle", `${angle}deg`);
+            node.style.setProperty("--node-layer", String(8 - distance));
+            node.dataset.active = String(isActive);
+            node.setAttribute("aria-pressed", String(isActive));
+          });
+        };
+
+        const updateStage = (index: number) => {
+          activeIndex = index;
+          stages.forEach((stage, stageIndex) => {
+            const isActive = stageIndex === activeIndex;
+            stage.dataset.active = String(isActive);
+            stage.setAttribute("aria-hidden", String(!isActive));
+          });
+
+          if (!autoplay || reduceMotion.matches) {
+            live.textContent = nodes[index]?.dataset.stageTitle ?? "";
+          }
+        };
+
+        const scheduleNext = () => {
+          window.clearTimeout(autoplayTimer);
+          if (!autoplay || reduceMotion.matches || document.hidden) return;
+
+          autoplayTimer = window.setTimeout(() => {
+            transitionTo(modulo(activeIndex + 1, nodes.length), false);
+          }, STAGE_DURATION);
+        };
+
+        const playActiveStage = (manualSelection: boolean) => {
+          root.dataset.phase = "reset";
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              root.dataset.phase = "playing";
+              transitioning = false;
+              if (manualSelection) {
+                autoplay = false;
+                updateStatus();
+                live.textContent = nodes[activeIndex]?.dataset.stageTitle ?? "";
+              } else {
+                scheduleNext();
+              }
+            });
+          });
+        };
+
+        const transitionTo = (
+          targetIndex: number,
+          manualSelection: boolean,
+        ) => {
+          if (transitioning || targetIndex === activeIndex) {
+            if (manualSelection && targetIndex === activeIndex) {
+              autoplay = false;
+              clearTimers();
+              updateStatus();
+            }
+            return;
+          }
+
+          clearTimers();
+          let delta = modulo(targetIndex - activeIndex, nodes.length);
+          if (delta > nodes.length / 2) delta -= nodes.length;
+
+          if (reduceMotion.matches) {
+            rotationStep += delta;
+            updateStage(targetIndex);
+            updateNodes();
+            autoplay = false;
+            root.dataset.phase = "paused";
+            updateStatus();
+            return;
+          }
+
+          transitioning = true;
+          root.dataset.phase = "rewinding";
+
+          rewindTimer = window.setTimeout(() => {
+            rotationStep += delta;
+            root.dataset.direction = delta < 0 ? "forward" : "backward";
+            root.dataset.phase = "rotating";
+            updateStage(targetIndex);
+            updateNodes();
+
+            rotationTimer = window.setTimeout(() => {
+              playActiveStage(manualSelection);
+            }, ROTATION_DURATION);
+          }, REWIND_DURATION);
+        };
+
+        const pauseNow = () => {
+          autoplay = false;
+          transitioning = false;
+          clearTimers();
+          root.dataset.phase = "paused";
+          updateStatus();
+        };
+
+        const resume = () => {
+          if (reduceMotion.matches) return;
+          autoplay = true;
+          transitioning = false;
+          updateStatus();
+          playActiveStage(false);
+        };
+
+        nodes.forEach((node, index) => {
+          node.addEventListener("click", () => transitionTo(index, true), {
+            signal: controller.signal,
+          });
+
+          node.addEventListener(
+            "keydown",
+            (event) => {
+              if (
+                event.key !== "ArrowRight" &&
+                event.key !== "ArrowLeft" &&
+                event.key !== "Home" &&
+                event.key !== "End"
+              ) {
+                return;
+              }
+
+              event.preventDefault();
+              const target =
+                event.key === "Home"
+                  ? 0
+                  : event.key === "End"
+                    ? nodes.length - 1
+                    : modulo(
+                        index + (event.key === "ArrowRight" ? 1 : -1),
+                        nodes.length,
+                      );
+              nodes[target]?.focus();
+              transitionTo(target, true);
+            },
+            { signal: controller.signal },
+          );
+        });
+
+        toggle.addEventListener(
+          "click",
+          () => {
+            if (autoplay) {
+              pauseNow();
+            } else {
+              resume();
+            }
+          },
+          { signal: controller.signal },
+        );
+
+        const handleVisibility = () => {
+          if (document.hidden) {
+            window.clearTimeout(autoplayTimer);
+            if (autoplay) root.dataset.phase = "paused";
+            return;
+          }
+
+          if (autoplay && !reduceMotion.matches) {
+            playActiveStage(false);
+          }
+        };
+
+        const handleMotionPreference = () => {
+          clearTimers();
+          transitioning = false;
+          autoplay = !reduceMotion.matches;
+          root.dataset.phase = reduceMotion.matches ? "paused" : "playing";
+          updateStatus();
+          if (autoplay) scheduleNext();
+        };
+
+        document.addEventListener("visibilitychange", handleVisibility, {
+          signal: controller.signal,
+        });
+        reduceMotion.addEventListener("change", handleMotionPreference, {
+          signal: controller.signal,
+        });
+
+        updateNodes();
+        updateStage(0);
+        updateStatus();
+        if (reduceMotion.matches) root.dataset.phase = "paused";
+        scheduleNext();
+
+        orbitCleanups.push(() => {
+          clearTimers();
+          controller.abort();
+        });
+      });
+  }
+
+  setupTranslationOrbits();
+  document.addEventListener("astro:page-load", setupTranslationOrbits);
+  document.addEventListener("astro:before-preparation", () => {
+    orbitCleanups.forEach((cleanup) => cleanup());
+    orbitCleanups = [];
+  });
+</script>

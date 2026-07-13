@@ -36,9 +36,15 @@ export default defineConfig({
           "arrow-left",
           "arrow-up",
           "check",
+          "circle-check",
           "circle-dashed",
           "circle-help",
+          "file-check-2",
+          "file-pen-line",
           "menu",
+          "pause",
+          "play",
+          "route",
           "x",
           "chevron-right",
           "chevron-down",
@@ -80,5 +86,3 @@ export default defineConfig({
     format: "directory",
   },
 });
-
-

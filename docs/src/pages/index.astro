@@ -3,7 +3,7 @@ import { Icon } from "astro-icon/components";
 import { Code } from "astro-expressive-code/components";
 import DocLayout from "../layouts/DocLayout.astro";
 import LocalizedText from "../components/LocalizedText.astro";
-import Logo from "../components/Logo.astro";
+import TranslationOrbit from "../components/TranslationOrbit.astro";
 import { defaultLocale } from "../i18n/locales";
 import { getPageMessages } from "../i18n/messages";
 import { localizedHref } from "../i18n/routes";
@@ -12,11 +12,15 @@ import { code, type LocalizedReplacements } from "../i18n/rich-text";
 const { locale = defaultLocale } = Astro.props;
 const copy = getPageMessages(locale, "index");
 const link = (path: string) => localizedHref(locale, path);
+const displayText = (value: string) =>
+  value
+    .replaceAll("\u2014", " - ")
+    .replaceAll("\u2013", " - ")
+    .replaceAll(" · ", ", ");
 
 const workflow = `name: translate
 on:
   push:
-    branches: [main]
     paths: ["**/*.en.resx", "**/*.en.json"]
 
 permissions:
@@ -32,22 +36,16 @@ jobs:
         uses: IEvangelist/resource-translator@v3
         with:
           sourceLocale: en
-          # Smart change detection is on by default.
-          # Commit .github/resource-translator-state.json after the first run.
           provider: |
             azure:
-              subscriptionKey: \${{ secrets.TRANSLATOR_KEY }}
-              endpoint: \${{ secrets.TRANSLATOR_ENDPOINT }}
-              region: \${{ secrets.TRANSLATOR_REGION }}
+              subscriptionKey: \${{ secrets.KEY }}
+              endpoint: \${{ secrets.ENDPOINT }}
+              region: \${{ secrets.REGION }}
           toLocales: '["fr","de","es","ja"]'
 
-      - if: steps.translator.outputs.has-new-translations == 'true'
-        uses: peter-evans/create-pull-request@v7
+      - uses: peter-evans/create-pull-request@v7
         with:
-          branch: machine-translation
-          title: \${{ steps.translator.outputs.summary-title }}
-          body:  \${{ steps.translator.outputs.summary-details }}
-          labels: localization
+          title: Update translations
 `;
 
 type Feature = {
@@ -55,7 +53,8 @@ type Feature = {
   title: string;
   body: string;
   values?: LocalizedReplacements;
-  accent: string;
+  layout: "lead" | "wide" | "side";
+  visual?: "formats" | "providers";
   eyebrow?: string;
   stat?: string;
   featured?: boolean;
@@ -108,7 +107,7 @@ const features: Feature[] = [
     title: copy.features.smartDetection.title,
     body: copy.features.smartDetection.body,
     values: featureValues.smartDetection,
-    accent: "from-(--color-brand-500) via-(--color-accent-500) to-(--color-warm-500)",
+    layout: "lead",
     eyebrow: copy.features.smartDetection.eyebrow,
     stat: copy.features.smartDetection.stat,
     featured: true,
@@ -118,110 +117,102 @@ const features: Feature[] = [
     title: copy.features.formats.title,
     body: copy.features.formats.body,
     values: featureValues.formats,
-    accent: "from-(--color-brand-500) to-(--color-accent-500)",
+    layout: "side",
+    visual: "formats",
   },
   {
     icon: "lucide:settings-2",
     title: copy.features.config.title,
     body: copy.features.config.body,
     values: featureValues.config,
-    accent: "from-(--color-accent-500) to-(--color-warm-500)",
+    layout: "side",
   },
   {
     icon: "lucide:wand-sparkles",
     title: copy.features.glossary.title,
     body: copy.features.glossary.body,
     values: featureValues.glossary,
-    accent: "from-(--color-warm-500) to-(--color-brand-500)",
+    layout: "wide",
   },
   {
     icon: "lucide:shield-check",
     title: copy.features.dryRun.title,
     body: copy.features.dryRun.body,
-    accent: "from-(--color-cool-500) to-(--color-brand-500)",
+    layout: "side",
   },
   {
     icon: "lucide:git-pull-request",
     title: copy.features.outputs.title,
     body: copy.features.outputs.body,
     values: featureValues.outputs,
-    accent: "from-(--color-brand-500) to-(--color-cool-500)",
+    layout: "side",
   },
   {
     icon: "lucide:zap",
     title: copy.features.sdk.title,
     body: copy.features.sdk.body,
     values: featureValues.sdk,
-    accent: "from-(--color-accent-500) to-(--color-cool-500)",
+    layout: "wide",
+    visual: "providers",
   },
 ];
 
 const formats: FormatBadge[] = [
-  { ext: ".resx", note: copy.formatNotes.resx, values: { dotnet: code(".NET") } },
+  {
+    ext: ".resx",
+    note: copy.formatNotes.resx,
+    values: { dotnet: code(".NET") },
+  },
   { ext: ".xliff", note: copy.formatNotes.xliff },
   { ext: ".po", note: copy.formatNotes.po },
   { ext: ".json", note: copy.formatNotes.json },
-  { ext: ".ini", note: copy.formatNotes.ini, values: { keyValue: code("key=value") } },
+  {
+    ext: ".ini",
+    note: copy.formatNotes.ini,
+    values: { keyValue: code("key=value") },
+  },
   { ext: ".restext", note: copy.formatNotes.restext },
 ];
 ---
 
 <DocLayout
-  title={copy.title}
-  description={copy.description}
-  socialTitle={copy.socialTitle}
+  title={displayText(copy.title)}
+  description={displayText(copy.description)}
+  socialTitle={displayText(copy.socialTitle)}
   hideSidebar
   locale={locale}
   slug="index"
 >
-  <!-- HERO -->
-  <section class="relative overflow-hidden">
-    <div
-      aria-hidden="true"
-      class="hero-mesh pointer-events-none absolute inset-0 -z-10"
-    >
-    </div>
-    <div
-      aria-hidden="true"
-      class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,transparent_60%,var(--bg))]"
-    >
-    </div>
-
-    <div class="mx-auto max-w-6xl px-4 pt-12 pb-16 sm:px-6 sm:pt-24 sm:pb-28">
-      <div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
-        <div>
-          <div
-            class="mb-6 inline-flex items-center gap-2 rounded-full border border-(--border) bg-(--bg-elevated) px-3 py-1 text-xs font-medium text-(--fg-muted)"
-          >
-            <Icon
-              name="lucide:sparkles"
-              class="size-3.5 text-(--color-warm-700) dark:text-(--color-warm-300)"
-            />
-            <span>{copy.badge}</span>
-          </div>
-
+  <div class="landing-page">
+    <section class="landing-hero">
+      <div class="hero-wash" aria-hidden="true"></div>
+      <div class="hero-shell">
+        <div class="hero-copy">
           <h1
             class="text-balance text-5xl font-bold tracking-tight sm:text-6xl"
             transition:name="hero-title"
+            data-hero-item
           >
-            {copy.headlinePrefix}
+            {displayText(copy.headlinePrefix)}
             {" "}
-            <span class="text-gradient">{copy.headlineAccent}</span>
+            <span class="text-gradient">{displayText(copy.headlineAccent)}</span
+            >
           </h1>
 
           <p
-            class="mt-6 max-w-xl text-balance text-lg leading-relaxed text-(--fg-muted)"
+            class="max-w-xl text-balance text-lg leading-relaxed text-(--fg-muted)"
+            data-hero-item
           >
-            {copy.lede}
+            {displayText(copy.workflowPreview.body)}
           </p>
 
-          <div class="mt-9 flex flex-wrap items-center gap-3">
+          <div class="hero-actions" data-hero-item>
             <a
               href={link("/getting-started")}
-              class="group inline-flex items-center gap-2 rounded-md bg-(--color-brand-700) px-5 py-2.5 text-sm font-semibold text-white no-underline shadow-lg shadow-(--color-brand-500)/20 hover:bg-(--color-brand-600) hover:shadow-xl hover:shadow-(--color-accent-500)/30 transition-all"
+              class="landing-button group inline-flex items-center gap-2 whitespace-nowrap rounded-lg bg-(--color-brand-700) px-5 py-3 text-sm font-semibold text-white no-underline shadow-lg shadow-(--color-brand-500)/20 hover:bg-(--color-brand-600)"
             >
               <Icon name="lucide:rocket" class="size-4" />
-              {copy.primaryCta}
+              {displayText(copy.primaryCta)}
               <Icon
                 name="lucide:arrow-right"
                 class="size-4 transition-transform group-hover:translate-x-0.5"
@@ -231,210 +222,985 @@ const formats: FormatBadge[] = [
               href="https://github.com/IEvangelist/resource-translator"
               rel="noopener"
               target="_blank"
-              class="inline-flex items-center gap-2 rounded-md border border-(--border) bg-(--bg-elevated) px-5 py-2.5 text-sm font-semibold text-(--fg) no-underline hover:border-(--color-brand-500)/50 hover:text-(--color-brand-700) dark:hover:text-(--color-brand-200)"
+              class="landing-button inline-flex items-center gap-2 whitespace-nowrap rounded-lg border border-(--border) bg-(--bg-elevated) px-5 py-3 text-sm font-semibold text-(--fg) no-underline hover:border-(--color-brand-500)/60 hover:text-(--color-brand-700) dark:hover:text-(--color-brand-200)"
             >
               <Icon name="simple-icons:github" class="size-4" />
-              {copy.secondaryCta}
+              {displayText(copy.secondaryCta)}
             </a>
           </div>
-
-          <ul
-            class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-(--fg-muted)"
-          >
-            <li class="inline-flex items-center gap-1.5">
-              <Icon
-                name="lucide:check"
-                class="size-3.5 text-(--color-brand-700) dark:text-(--color-brand-200)"
-              />
-              {copy.stats.audit}
-            </li>
-            <li class="inline-flex items-center gap-1.5">
-              <Icon
-                name="lucide:check"
-                class="size-3.5 text-(--color-brand-700) dark:text-(--color-brand-200)"
-              />
-              {copy.stats.tests}
-            </li>
-            <li class="inline-flex items-center gap-1.5">
-              <Icon
-                name="lucide:check"
-                class="size-3.5 text-(--color-brand-700) dark:text-(--color-brand-200)"
-              />
-              {copy.stats.node}
-            </li>
-            <li class="inline-flex items-center gap-1.5">
-              <Icon
-                name="lucide:check"
-                class="size-3.5 text-(--color-brand-700) dark:text-(--color-brand-200)"
-              />
-              {copy.stats.sdk}
-            </li>
-          </ul>
         </div>
 
-        <!-- Floating logo -->
-        <div class="relative mx-auto lg:mx-0">
-          <div
-            aria-hidden="true"
-            class="absolute -inset-6 rounded-full bg-linear-to-br from-(--color-brand-500)/30 via-(--color-accent-500)/30 to-(--color-warm-500)/30 blur-2xl"
-          >
+        <div class="hero-visual" data-hero-visual>
+          <TranslationOrbit copy={copy.heroDemo} />
+        </div>
+      </div>
+    </section>
+
+    <section class="landing-proof" data-landing-reveal>
+      <h2 class="sr-only">{displayText(copy.supports)}</h2>
+      <div class="proof-shell">
+        <div class="proof-cell proof-metric">
+          <span class="proof-icon" aria-hidden="true">
+            <Icon name="lucide:shield-check" class="size-5" />
+          </span>
+          <strong>{displayText(copy.stats.audit)}</strong>
+        </div>
+        <div class="proof-cell proof-metric">
+          <span class="proof-icon" aria-hidden="true">
+            <Icon name="lucide:check" class="size-5" />
+          </span>
+          <strong>{displayText(copy.stats.tests)}</strong>
+        </div>
+        <div class="proof-cell proof-vendors">
+          <div class="proof-vendor-copy">
+            <strong>{displayText(copy.stats.sdk)}</strong>
+            <span>{displayText(copy.stats.node)}</span>
           </div>
-          <Logo
-            size={160}
-            class="relative rounded-3xl shadow-2xl shadow-(--color-brand-500)/30 sm:size-[200px] lg:size-[220px]"
+          <div class="vendor-list" aria-hidden="true">
+            <span class="vendor-mark">
+              <Icon
+                name="simple-icons:microsoftazure"
+                class="vendor-azure size-7"
+              />
+            </span>
+            <span class="vendor-mark">
+              <Icon
+                name="simple-icons:amazonwebservices"
+                class="vendor-aws size-7"
+              />
+            </span>
+            <span class="vendor-mark">
+              <Icon
+                name="simple-icons:googlecloud"
+                class="vendor-google size-7"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="landing-features">
+      <div class="section-shell">
+        <div class="section-heading" data-landing-reveal>
+          <p class="section-eyebrow">{displayText(copy.builtForShipping)}</p>
+          <h2>{displayText(copy.workflowTitle)}</h2>
+          <p>{displayText(copy.workflowBody)}</p>
+        </div>
+
+        <div class="feature-bento">
+          {
+            features.map((feature, index) => (
+              <article
+                class="feature-card"
+                data-layout={feature.layout}
+                data-visual={feature.visual}
+                data-landing-reveal
+                style={`--reveal-delay: ${Math.min(index * 55, 220)}ms`}
+              >
+                <div class="feature-icon">
+                  <Icon name={feature.icon} class="size-5" />
+                </div>
+
+                {feature.eyebrow && (
+                  <p class="feature-eyebrow">{displayText(feature.eyebrow)}</p>
+                )}
+
+                <h3>{displayText(feature.title)}</h3>
+                <p class="feature-body">
+                  <LocalizedText
+                    text={displayText(feature.body)}
+                    values={feature.values}
+                  />
+                </p>
+
+                {feature.featured && (
+                  <div class="change-path" aria-hidden="true">
+                    <span>
+                      <Icon name="lucide:file-code-2" class="size-4" />
+                    </span>
+                    <i />
+                    <span>
+                      <Icon name="lucide:sparkles" class="size-4" />
+                    </span>
+                    <i />
+                    <span>
+                      <Icon name="lucide:git-pull-request" class="size-4" />
+                    </span>
+                  </div>
+                )}
+
+                {feature.visual === "formats" && (
+                  <div class="format-cloud" aria-hidden="true">
+                    {formats.map((format) => (
+                      <code>{format.ext}</code>
+                    ))}
+                  </div>
+                )}
+
+                {feature.visual === "providers" && (
+                  <div class="provider-cloud" aria-hidden="true">
+                    <span class="vendor-mark">
+                      <Icon
+                        name="simple-icons:microsoftazure"
+                        class="vendor-azure size-8"
+                      />
+                    </span>
+                    <span class="vendor-mark">
+                      <Icon
+                        name="simple-icons:amazonwebservices"
+                        class="vendor-aws size-8"
+                      />
+                    </span>
+                    <span class="vendor-mark">
+                      <Icon
+                        name="simple-icons:googlecloud"
+                        class="vendor-google size-8"
+                      />
+                    </span>
+                  </div>
+                )}
+
+                {feature.stat && (
+                  <p class="feature-stat">
+                    <Icon name="lucide:check" class="size-3.5" />
+                    {displayText(feature.stat)}
+                  </p>
+                )}
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="landing-workflow">
+      <div class="workflow-shell">
+        <div class="workflow-copy" data-landing-reveal>
+          <h2>
+            {displayText(copy.workflowPreview.titlePrefix)}
+            {" "}
+            <span class="text-gradient">
+              {displayText(copy.workflowPreview.titleAccent)}
+            </span>
+          </h2>
+          <p>{displayText(copy.lede)}</p>
+          <a href={link("/getting-started")} class="workflow-link group">
+            {displayText(copy.primaryCta)}
+            <Icon
+              name="lucide:arrow-right"
+              class="size-4 transition-transform group-hover:translate-x-1"
+            />
+          </a>
+        </div>
+
+        <div
+          class="workflow-code"
+          data-landing-reveal
+          style="--reveal-delay: 90ms"
+        >
+          <Code
+            code={workflow}
+            lang="yaml"
+            title=".github/workflows/translate.yml"
           />
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FORMAT BADGES -->
-  <section class="border-y border-(--border) bg-(--bg-elevated)">
-    <div
-      class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-3 px-6 py-6 sm:gap-6"
-    >
-      <span class="text-xs font-semibold uppercase tracking-wider text-(--fg-muted)">
-        {copy.supports}
-      </span>
-      {
-        formats.map((f) => (
-          <span class="group inline-flex items-center gap-1.5 rounded-full border border-(--border) bg-(--bg) px-3 py-1 text-xs font-mono transition-colors hover:border-(--color-brand-500)/50 hover:text-(--color-brand-700) dark:hover:text-(--color-brand-200)">
-            <Icon name="lucide:file-text" class="size-3 opacity-60" />
-            <span class="font-semibold">{f.ext}</span>
-            <span class="text-(--fg-muted)">
-              <LocalizedText text={f.note} values={f.values} />
-            </span>
-          </span>
-        ))
-      }
-    </div>
-  </section>
-
-  <!-- FEATURES -->
-  <section class="mx-auto max-w-6xl px-6 py-20">
-    <div class="mx-auto max-w-2xl text-center">
-      <p
-        class="text-sm font-semibold uppercase tracking-wider text-(--color-accent-700) dark:text-(--color-accent-300)"
-      >
-        {copy.builtForShipping}
-      </p>
-      <h2 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
-        {copy.workflowTitle}
-      </h2>
-      <p class="mt-4 text-(--fg-muted)">
-        {copy.workflowBody}
-      </p>
-    </div>
-
-    <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {
-        features.map((f) => (
-          <div
-            class:list={[
-              "feature-card group relative overflow-hidden rounded-2xl border border-(--border) bg-(--bg-elevated) p-6 transition-all hover:-translate-y-1 hover:border-(--color-brand-500)/40 hover:shadow-xl hover:shadow-(--color-brand-500)/10",
-              f.featured ? "md:col-span-2 lg:col-span-2" : "",
-            ]}
-          >
-            <div
-              aria-hidden="true"
-              class:list={[
-                "absolute -right-12 -top-12 size-32 rounded-full bg-linear-to-br opacity-30 blur-2xl transition-opacity group-hover:opacity-60",
-                f.accent,
-              ]}
-            />
-            <div
-              class:list={[
-                "relative inline-flex size-11 items-center justify-center rounded-xl bg-linear-to-br text-white shadow-md",
-                f.accent,
-              ]}
-            >
-              <Icon name={f.icon} class="size-5" />
-            </div>
-            {f.eyebrow && (
-              <p class="relative mt-5 text-xs font-semibold uppercase tracking-[0.18em] text-(--color-accent-700) dark:text-(--color-accent-300)">
-                {f.eyebrow}
-              </p>
-            )}
-            <h3 class:list={["relative text-lg font-semibold", f.eyebrow ? "mt-2" : "mt-5"]}>
-              {f.title}
-            </h3>
-            <p class="relative mt-2 text-sm leading-relaxed text-(--fg-muted)">
-              <LocalizedText text={f.body} values={f.values} />
-            </p>
-            {f.stat && (
-              <p class="relative mt-5 inline-flex items-center gap-2 rounded-full border border-(--color-brand-500)/25 bg-(--color-brand-500)/10 px-3 py-1 text-xs font-semibold text-(--color-brand-700) dark:text-(--color-brand-200)">
-                <Icon name="lucide:check" class="size-3.5" />
-                {f.stat}
-              </p>
-            )}
-          </div>
-        ))
-      }
-    </div>
-  </section>
-
-  <!-- WORKFLOW PREVIEW -->
-  <section class="mx-auto max-w-5xl px-6 pb-20">
-    <div class="mx-auto max-w-2xl text-center">
-      <p
-        class="text-sm font-semibold uppercase tracking-wider text-(--color-warm-700) dark:text-(--color-warm-300)"
-      >
-        {copy.workflowPreview.eyebrow}
-      </p>
-      <h2 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
-        {copy.workflowPreview.titlePrefix}
-        {" "}
-        <span class="text-gradient">{copy.workflowPreview.titleAccent}</span>
-      </h2>
-      <p class="mt-4 text-(--fg-muted)">
-        {copy.workflowPreview.body}
-      </p>
-    </div>
-
-    <div class="mt-10">
-      <Code code={workflow} lang="yaml" title=".github/workflows/translate.yml" />
-    </div>
-
-    <div class="mt-8 flex justify-center">
-      <a
-        href={link("/getting-started")}
-        class="group inline-flex items-center gap-2 text-sm font-semibold text-(--color-brand-700) dark:text-(--color-brand-200)"
-      >
-        {copy.workflowPreview.setupLink}
-        <Icon
-          name="lucide:arrow-right"
-          class="size-4 transition-transform group-hover:translate-x-1"
-        />
-      </a>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="mx-auto max-w-5xl px-6 pb-24">
-    <div
-      class="relative overflow-hidden rounded-3xl border border-(--border) bg-(--color-brand-700) p-10 text-white shadow-2xl shadow-(--color-brand-500)/20 sm:p-14"
-    >
-      <div class="grid gap-8 sm:grid-cols-[1fr_auto] sm:items-center">
+    <section class="landing-cta">
+      <div class="cta-panel" data-landing-reveal>
         <div>
-          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">
-            {copy.cta.title}
-          </h2>
-          <p class="mt-3 max-w-xl text-white">
-            {copy.cta.body}
-          </p>
+          <h2>{displayText(copy.cta.title)}</h2>
+          <p>{displayText(copy.cta.body)}</p>
         </div>
         <a
           href={link("/getting-started")}
-          class="group inline-flex items-center justify-center gap-2 rounded-md bg-white px-6 py-3 text-sm font-bold text-(--color-brand-700) no-underline shadow-lg hover:bg-white/95"
+          class="landing-button group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-white px-6 py-3 text-sm font-bold text-(--color-brand-700) no-underline shadow-lg hover:bg-white/95"
         >
           <Icon name="lucide:rocket" class="size-4" />
-          {copy.cta.button}
+          {displayText(copy.primaryCta)}
           <Icon
             name="lucide:arrow-right"
             class="size-4 transition-transform group-hover:translate-x-0.5"
           />
         </a>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </DocLayout>
+
+<style>
+  .landing-page {
+    overflow: clip;
+    background: var(--bg);
+  }
+
+  .landing-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-wash {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(
+        circle at 82% 46%,
+        rgba(110, 103, 248, 0.18),
+        transparent 34%
+      ),
+      linear-gradient(125deg, rgba(110, 103, 248, 0.08), transparent 42%);
+    pointer-events: none;
+  }
+
+  :global(.dark) .hero-wash {
+    background:
+      radial-gradient(
+        circle at 82% 46%,
+        rgba(110, 103, 248, 0.22),
+        transparent 34%
+      ),
+      linear-gradient(125deg, rgba(110, 103, 248, 0.1), transparent 42%);
+  }
+
+  .hero-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 0.88fr) minmax(31rem, 1.12fr);
+    align-items: center;
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+    width: min(100% - 2rem, 80rem);
+    min-height: calc(100dvh - 4.125rem);
+    margin-inline: auto;
+    padding-block: clamp(2.5rem, 6vh, 4.5rem);
+  }
+
+  .hero-copy {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 39rem;
+  }
+
+  .hero-copy h1 {
+    margin: 0;
+    line-height: 0.98;
+  }
+
+  .hero-copy p {
+    margin: 0;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-visual {
+    min-width: 0;
+  }
+
+  .landing-button {
+    transition:
+      color 180ms ease,
+      background-color 180ms ease,
+      border-color 180ms ease,
+      box-shadow 220ms ease,
+      transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .landing-button:active {
+    transform: translateY(1px) scale(0.985);
+  }
+
+  .landing-proof {
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-elevated);
+  }
+
+  .proof-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 0.78fr) minmax(
+        0,
+        1.44fr
+      );
+    width: min(100% - 2rem, 80rem);
+    margin: 0 auto;
+  }
+
+  .proof-cell {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-height: 7rem;
+    padding: 1.25rem 1.5rem;
+    color: var(--fg-muted);
+  }
+
+  .proof-cell + .proof-cell {
+    border-inline-start: 1px solid var(--border);
+  }
+
+  .proof-icon {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid rgba(110, 103, 248, 0.25);
+    border-radius: 0.8rem;
+    color: var(--link);
+    background: var(--bg);
+  }
+
+  .proof-metric strong {
+    color: var(--fg);
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+    line-height: 1.3;
+    letter-spacing: -0.025em;
+  }
+
+  .proof-vendors {
+    justify-content: space-between;
+  }
+
+  .proof-vendor-copy {
+    display: grid;
+    gap: 0.3rem;
+  }
+
+  .proof-vendor-copy strong {
+    color: var(--fg);
+    font-size: 0.95rem;
+  }
+
+  .proof-vendor-copy span {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+  }
+
+  .vendor-list,
+  .provider-cloud {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  .vendor-mark {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid var(--border);
+    border-radius: 0.85rem;
+    background: var(--bg);
+    box-shadow: 0 0.55rem 1.4rem rgba(70, 53, 188, 0.07);
+  }
+
+  .vendor-azure {
+    color: #0078d4;
+  }
+
+  .vendor-aws {
+    color: #ff9900;
+  }
+
+  .vendor-google {
+    color: #4285f4;
+  }
+
+  .section-shell,
+  .workflow-shell {
+    width: min(100% - 2rem, 80rem);
+    margin-inline: auto;
+  }
+
+  .landing-features {
+    padding-block: clamp(5rem, 10vw, 8rem);
+  }
+
+  .section-heading {
+    display: grid;
+    gap: 0.9rem;
+    max-width: 45rem;
+  }
+
+  .section-eyebrow,
+  .feature-eyebrow {
+    margin: 0;
+    color: var(--link);
+    font-size: 0.72rem;
+    font-weight: 750;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .section-heading h2,
+  .workflow-copy h2,
+  .cta-panel h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 650;
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+  }
+
+  .section-heading > p:last-child,
+  .workflow-copy > p,
+  .cta-panel p {
+    max-width: 65ch;
+    margin: 0;
+    color: var(--fg-muted);
+    line-height: 1.75;
+  }
+
+  .feature-bento {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 3.25rem;
+  }
+
+  .feature-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 16rem;
+    overflow: hidden;
+    padding: clamp(1.35rem, 3vw, 2rem);
+    border: 1px solid var(--border);
+    border-radius: 1.5rem;
+    background: var(--bg-elevated);
+    transition:
+      border-color 220ms ease,
+      box-shadow 280ms ease,
+      transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .feature-card[data-layout="lead"],
+  .feature-card[data-layout="wide"] {
+    grid-column: span 7;
+  }
+
+  .feature-card[data-layout="side"] {
+    grid-column: span 5;
+  }
+
+  .feature-card[data-layout="lead"] {
+    grid-row: span 2;
+    min-height: 33rem;
+    background:
+      linear-gradient(145deg, rgba(110, 103, 248, 0.16), transparent 55%),
+      var(--bg-elevated);
+  }
+
+  .feature-card[data-visual="formats"] {
+    background:
+      linear-gradient(rgba(110, 103, 248, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(110, 103, 248, 0.06) 1px, transparent 1px),
+      var(--bg-elevated);
+    background-size: 1.5rem 1.5rem;
+  }
+
+  .feature-card[data-visual="providers"] {
+    background:
+      radial-gradient(
+        circle at 90% 15%,
+        rgba(110, 103, 248, 0.18),
+        transparent 36%
+      ),
+      var(--bg-elevated);
+  }
+
+  .feature-icon {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid rgba(110, 103, 248, 0.24);
+    border-radius: 0.8rem;
+    color: var(--color-brand-700);
+    background: var(--color-brand-100);
+  }
+
+  :global(.dark) .feature-icon {
+    color: var(--color-brand-200);
+    background: rgba(110, 103, 248, 0.16);
+  }
+
+  .feature-eyebrow {
+    margin-top: 1.5rem;
+  }
+
+  .feature-card h3 {
+    margin: 1.35rem 0 0;
+    font-size: clamp(1.1rem, 2vw, 1.45rem);
+    font-weight: 650;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+
+  .feature-eyebrow + h3 {
+    margin-top: 0.5rem;
+  }
+
+  .feature-body {
+    max-width: 58ch;
+    margin: 0.7rem 0 0;
+    color: var(--fg-muted);
+    font-size: 0.9rem;
+    line-height: 1.75;
+  }
+
+  .feature-stat {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 0.45rem;
+    margin: auto 0 0;
+    padding-top: 1.5rem;
+    color: var(--link);
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .change-path {
+    display: grid;
+    grid-template-columns: auto 1fr auto 1fr auto;
+    align-items: center;
+    gap: 0.7rem;
+    width: min(100%, 28rem);
+    margin-top: auto;
+    padding-top: 3rem;
+  }
+
+  .change-path span {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid rgba(110, 103, 248, 0.28);
+    border-radius: 0.8rem;
+    color: var(--link);
+    background: var(--bg);
+  }
+
+  .change-path i {
+    height: 1px;
+    background: var(--border);
+  }
+
+  .format-cloud,
+  .provider-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.55rem;
+    margin-top: auto;
+    padding-top: 1.5rem;
+  }
+
+  .format-cloud code {
+    padding: 0.45rem 0.65rem;
+    border: 1px solid var(--border);
+    border-radius: 0.65rem;
+    color: var(--link);
+    background: var(--bg);
+    font-size: 0.72rem;
+    font-weight: 750;
+  }
+
+  .provider-cloud {
+    gap: 0.75rem;
+  }
+
+  .provider-cloud .vendor-mark {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  @media (hover: hover) {
+    .feature-card:hover {
+      border-color: rgba(110, 103, 248, 0.42);
+      box-shadow: 0 1.5rem 3.5rem rgba(70, 53, 188, 0.1);
+      transform: translateY(-0.3rem);
+    }
+  }
+
+  .landing-workflow {
+    padding-block: clamp(4.5rem, 9vw, 7rem);
+    border-block: 1px solid var(--border);
+    background: var(--bg-elevated);
+  }
+
+  .workflow-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+    align-items: center;
+    gap: clamp(2.5rem, 7vw, 6rem);
+  }
+
+  .workflow-copy {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .workflow-link {
+    display: inline-flex;
+    align-items: center;
+    justify-self: start;
+    gap: 0.45rem;
+    color: var(--link);
+    font-size: 0.85rem;
+    font-weight: 750;
+  }
+
+  .workflow-code {
+    min-width: 0;
+    overflow: hidden;
+    filter: drop-shadow(0 1.5rem 2.5rem rgba(70, 53, 188, 0.11));
+  }
+
+  .landing-cta {
+    width: min(100% - 2rem, 80rem);
+    margin-inline: auto;
+    padding-block: clamp(5rem, 10vw, 8rem);
+  }
+
+  .cta-panel {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 2rem;
+    overflow: hidden;
+    padding: clamp(2rem, 6vw, 4rem);
+    border-radius: 2rem;
+    color: white;
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+      var(--color-brand-700);
+    background-size: 2rem 2rem;
+    box-shadow: 0 2rem 5rem rgba(70, 53, 188, 0.2);
+  }
+
+  .cta-panel p {
+    margin-top: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  [data-landing-reveal][data-reveal-state="hidden"] {
+    transform: translate3d(0, 1.5rem, 0);
+  }
+
+  [data-landing-reveal][data-reveal-state="visible"] {
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)
+      var(--reveal-delay, 0ms);
+  }
+
+  @media (max-width: 1023px) {
+    .hero-shell {
+      grid-template-columns: minmax(0, 1fr);
+      min-height: auto;
+      gap: 2.75rem;
+      padding-block: 3.5rem;
+    }
+
+    .workflow-shell {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .hero-copy,
+    .hero-visual {
+      width: 100%;
+    }
+
+    .hero-copy {
+      max-width: 43rem;
+    }
+
+    .feature-bento {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .feature-card[data-layout] {
+      grid-column: span 1;
+      grid-row: auto;
+      min-height: 18rem;
+    }
+
+    .feature-card[data-layout="lead"] {
+      grid-column: span 2;
+      min-height: 28rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero-shell,
+    .section-shell,
+    .workflow-shell,
+    .landing-cta,
+    .proof-shell {
+      width: min(100% - 2rem, 100%);
+    }
+
+    .hero-shell {
+      gap: 1.75rem;
+      padding-block: 2.5rem 2rem;
+    }
+
+    .hero-copy {
+      gap: 1.2rem;
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(2.45rem, 12.3vw, 3.25rem);
+      line-height: 0.98;
+    }
+
+    .hero-copy > p {
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    .hero-actions {
+      align-items: stretch;
+    }
+
+    .hero-actions a {
+      justify-content: center;
+    }
+
+    .proof-shell {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .proof-cell {
+      min-height: 6rem;
+      padding: 1rem;
+    }
+
+    .proof-vendors {
+      grid-column: 1 / -1;
+      min-height: 6.5rem;
+      border-inline-start: 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .proof-icon {
+      width: 2.35rem;
+      height: 2.35rem;
+    }
+
+    .proof-metric {
+      gap: 0.75rem;
+    }
+
+    .proof-metric strong {
+      font-size: 0.83rem;
+    }
+
+    .vendor-mark {
+      width: 2.65rem;
+      height: 2.65rem;
+    }
+
+    .landing-features {
+      padding-block: 3.75rem;
+    }
+
+    .feature-bento {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .feature-card[data-layout],
+    .feature-card[data-layout="lead"] {
+      grid-column: auto;
+      min-height: auto;
+      padding: 1.25rem;
+    }
+
+    .change-path,
+    .format-cloud,
+    .provider-cloud,
+    .feature-stat {
+      margin-top: 2rem;
+      padding-top: 0;
+    }
+
+    .workflow-shell,
+    .cta-panel {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .workflow-shell {
+      gap: 2rem;
+    }
+
+    .landing-workflow {
+      padding-block: 3.75rem;
+    }
+
+    .workflow-code :global(.expressive-code .frame .code) {
+      box-sizing: border-box;
+      width: 100%;
+      min-width: 0;
+      padding-inline: 0.5625rem;
+      font-size: 0.675rem;
+      line-height: 1.55;
+    }
+
+    .workflow-code :global(.expressive-code .ec-line) {
+      width: 100%;
+      grid-template-columns: 0 minmax(0, 1fr);
+    }
+
+    .landing-cta {
+      padding-block: 3.75rem;
+    }
+
+    .cta-panel {
+      align-items: start;
+    }
+
+    .cta-panel a {
+      justify-self: start;
+    }
+  }
+
+  @media (min-width: 1024px) and (max-width: 1199px) {
+    .hero-copy h1 {
+      font-size: 2.75rem;
+    }
+  }
+
+  @media (max-width: 374px) {
+    .hero-shell {
+      gap: 1.25rem;
+      padding-block: 2rem 1.5rem;
+    }
+
+    .hero-copy {
+      gap: 1rem;
+    }
+
+    .hero-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .hero-actions a {
+      width: auto;
+      padding-inline: 0.75rem;
+      font-size: 0.75rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    [data-hero-item] {
+      animation: landing-enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    [data-hero-item]:nth-child(2) {
+      animation-delay: 100ms;
+    }
+
+    [data-hero-item]:nth-child(3) {
+      animation-delay: 180ms;
+    }
+
+    [data-hero-visual] {
+      animation: landing-visual-enter 1s cubic-bezier(0.16, 1, 0.3, 1) 120ms
+        both;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .landing-button,
+    .feature-card,
+    [data-landing-reveal] {
+      transition: none !important;
+    }
+
+    [data-landing-reveal] {
+      transform: none !important;
+    }
+  }
+
+  @keyframes landing-enter {
+    from {
+      transform: translate3d(0, 1.25rem, 0);
+    }
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes landing-visual-enter {
+    from {
+      transform: translate3d(1.75rem, 0, 0) scale(0.98);
+    }
+    to {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+  }
+</style>
+
+<script>
+  let landingObserver: IntersectionObserver | undefined;
+
+  function setupLandingReveals() {
+    const elements = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-landing-reveal]"),
+    );
+
+    landingObserver?.disconnect();
+    if (elements.length === 0) return;
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      elements.forEach((element) => {
+        element.dataset.revealState = "visible";
+      });
+      return;
+    }
+
+    landingObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          const element = entry.target as HTMLElement;
+          element.dataset.revealState = "visible";
+          observer.unobserve(element);
+        });
+      },
+      {
+        rootMargin: "0px 0px -10% 0px",
+        threshold: 0.12,
+      },
+    );
+    elements.forEach((element) => {
+      element.dataset.revealState = "hidden";
+      landingObserver?.observe(element);
+    });
+  }
+
+  setupLandingReveals();
+  document.addEventListener("astro:page-load", setupLandingReveals);
+  document.addEventListener("astro:before-preparation", () => {
+    landingObserver?.disconnect();
+  });
+</script>

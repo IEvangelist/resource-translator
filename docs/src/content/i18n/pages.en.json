@@ -1,12 +1,12 @@
 {
 	"index": {
 		"title": "Resource Translator",
-		"description": "Resource Translator opens machine-translated pull requests for your resource files and uses smart change detection to translate only what changed — powered by Azure AI Translator, AWS Translate, or Google Cloud Translation.",
-		"socialTitle": "Resource Translator — smart resource-file translation for GitHub Actions",
-		"badge": "v3.2 — smart change detection, Azure, AWS & Google",
+		"description": "Resource Translator opens machine-translated pull requests for your resource files and uses smart change detection to translate only what changed. Powered by Azure AI Translator, AWS Translate, or Google Cloud Translation.",
+		"socialTitle": "Resource Translator: smart resource-file translation for GitHub Actions",
+		"badge": "Smart change detection with Azure, AWS & Google",
 		"headlinePrefix": "Translate the diff,",
 		"headlineAccent": "not the catalog.",
-		"lede": "Resource Translator opens machine-translated pull requests using Azure, AWS, or Google — and its default smart change detection sends only new, missing, or changed keys to your provider.",
+		"lede": "Resource Translator opens machine-translated pull requests using Azure, AWS, or Google. Its default smart change detection sends only new, missing, or changed keys to your provider.",
 		"primaryCta": "Get started",
 		"secondaryCta": "Star on GitHub",
 		"supports": "Supports",
@@ -17,7 +17,42 @@
 			"audit": "0 npm-audit issues",
 			"tests": "240+ tests",
 			"node": "Node 20 / 22 / 24",
-			"sdk": "Azure · AWS · Google"
+			"sdk": "Azure / AWS / Google"
+		},
+		"heroDemo": {
+			"label": "Translation feature tour",
+			"playing": "Feature tour playing",
+			"paused": "Feature tour paused",
+			"reduced": "Motion reduced",
+			"pause": "Pause feature tour",
+			"resume": "Resume feature tour",
+			"stages": {
+				"change": {
+					"short": "Source",
+					"title": "One source key changes",
+					"body": "Smart detection isolates the delta before any provider call."
+				},
+				"action": {
+					"short": "Action",
+					"title": "The workflow starts",
+					"body": "The action parses your files and builds a precise translation plan."
+				},
+				"provider": {
+					"short": "Provider",
+					"title": "Translator delegates",
+					"body": "The batch moves through your selected official provider SDK."
+				},
+				"locales": {
+					"short": "Locales",
+					"title": "Target files update",
+					"body": "Only missing or changed values are written back to each locale."
+				},
+				"pullRequest": {
+					"short": "PR",
+					"title": "A reviewable PR opens",
+					"body": "Translated files arrive together with a focused summary for review."
+				}
+			}
 		},
 		"formatNotes": {
 			"resx": "{dotnet} XML",
@@ -56,7 +91,7 @@
 			},
 			"sdk": {
 				"title": "Azure, AWS & Google",
-				"body": "Pick one provider per run. Each is driven by its official SDK ({azureSdk}, {awsSdk}, {googleSdk}) with automatic retries on {statusCodes} — no hand-rolled HTTP. {esbuild}-bundled, audit-clean."
+				"body": "Pick one provider per run. Each is driven by its official SDK ({azureSdk}, {awsSdk}, {googleSdk}) with automatic retries on {statusCodes} and no hand-rolled HTTP. {esbuild}-bundled, audit-clean."
 			}
 		},
 		"workflowPreview": {
@@ -68,7 +103,7 @@
 		},
 		"cta": {
 			"title": "Ready to localize on autopilot?",
-			"body": "One provider key — Azure, AWS, or Google — and one workflow file. Resource Translator handles the rest without retranslating stable strings over and over.",
+			"body": "One provider key for Azure, AWS, or Google, plus one workflow file. Resource Translator handles the rest without retranslating stable strings over and over.",
 			"button": "Get started"
 		}
 	},
