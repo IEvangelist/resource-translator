@@ -147,9 +147,6 @@ long/umd/index.js:
    *
    */
 
-gtoken/build/cjs/src/index.cjs:
-  /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */
-
 sax/lib/sax.js:
   /*! http://mths.be/fromcodepoint v0.1.0 by @mathias */
 
@@ -161,4 +158,4 @@ sax/lib/sax.js:
   /* v8 ignore else -- @preserve */
 
 js-yaml/dist/js-yaml.mjs:
-  /*! js-yaml 5.2.1 https://github.com/nodeca/js-yaml @license MIT */
+  /*! js-yaml 5.4.2 https://github.com/nodeca/js-yaml @license MIT */

@@ -17,6 +17,7 @@ import {
   mkdtempSync,
   mkdirSync,
   readFileSync,
+  realpathSync,
   rmSync,
   writeFileSync,
 } from "fs";
@@ -80,7 +81,8 @@ describe("start() integration", () => {
     jest.clearAllMocks();
     originalCwd = process.cwd();
     originalWorkspace = process.env.GITHUB_WORKSPACE;
-    tmp = mkdtempSync(join(tmpdir(), "rt-it-"));
+    // macOS temp paths can be symlinked; match the canonical cwd used by glob.
+    tmp = realpathSync(mkdtempSync(join(tmpdir(), "rt-it-")));
     process.chdir(tmp);
     process.env.GITHUB_WORKSPACE = tmp;
 
