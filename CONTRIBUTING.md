@@ -23,6 +23,14 @@ npm install
 npm run verify   # lint + format:check + test + build
 ```
 
+Type-checking uses the native TypeScript 7 compiler via the
+`@typescript/native` npm alias. The `typescript` alias points to Microsoft's
+`@typescript/typescript6` compatibility package because ts-jest,
+typescript-eslint, and Astro still require the TypeScript 6 JavaScript API.
+Keep both aliases in the root and `docs/` packages; do not replace the
+compatibility alias with native TypeScript or bypass peer dependency checks.
+This is the [upstream-supported side-by-side setup](https://kulshekhar.github.io/ts-jest/docs/guides/typescript-7).
+
 Useful scripts:
 
 | Script              | What it does                                        |

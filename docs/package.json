@@ -20,12 +20,13 @@
     "@iconify-json/lucide": "^1.2.133",
     "@iconify-json/simple-icons": "^1.2.96",
     "@tailwindcss/vite": "^4.3.3",
+    "@typescript/native": "npm:typescript@^7.0.2",
     "astro": "^7.3.3",
     "astro-expressive-code": "^0.44.2",
     "astro-icon": "^1.2.0",
     "pagefind": "^1.5.2",
     "tailwindcss": "^4.2.4",
-    "typescript": "^6.0.3"
+    "typescript": "npm:@typescript/typescript6@^6.0.2"
   },
   "overrides": {
     "yaml": "^2.8.4",
@@ -34,6 +35,6 @@
   },
   "devDependencies": {
     "http-server": "^14.1.1",
-    "pa11y": "^9.1.1"
+    "pa11y": "^10.0.0"
   }
 }

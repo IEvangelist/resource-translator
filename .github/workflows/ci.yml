@@ -27,7 +27,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node }}
           cache: npm
@@ -80,10 +80,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: "24"
           cache: npm
       - run: npm ci
-      - name: Run audit (production deps only)
-        run: npm audit --omit=dev --audit-level=high
+      - name: Audit all dependencies
+        run: npm audit
+
+  docs:
+    name: docs build + audit
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: docs
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: docs/package-lock.json
+      - run: npm ci
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: "true"
+      - run: npm audit
+      - run: npm run build
+        env:
+          SITE_URL: https://ievangelist.github.io
+          BASE_PATH: /resource-translator
