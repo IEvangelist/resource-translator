@@ -72,7 +72,7 @@
     "@eslint/js": "^10.0.1",
     "@types/jest": "^30.0.0",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^26.6.5",
+    "@types/node": "^26.6.6",
     "@types/xml2js": "^0.4.14",
     "@typescript/native": "npm:typescript@^7.0.2",
     "esbuild": "^0.28.2",
@@ -84,6 +84,6 @@
     "prettier": "^3.9.10",
     "ts-jest": "^29.4.15",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
-    "typescript-eslint": "^8.72.0"
+    "typescript-eslint": "^8.72.1"
   }
 }
